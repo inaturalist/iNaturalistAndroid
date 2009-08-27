@@ -616,16 +616,42 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                 title = (TextView) view.findViewById(R.id.title);
             } else {
                 // Tag list item
+                GuideMenuTag guideMenuTag = (GuideMenuTag)item;
+
                 view = inflater.inflate(R.layout.guide_menu_tag, parent, false);
                 title = (TextView) view.findViewById(R.id.tagName);
                 TextView tagCount = (TextView) view.findViewById(R.id.tagCount);
-                tagCount.setText(String.valueOf(((GuideMenuTag)item).getCount()));
+                tagCount.setText(String.valueOf((guideMenuTag.getCount())));
 
-                if (mFilter.hasTag(((GuideMenuTag)item).getValue())) {
+                if (mFilter.hasTag(guideMenuTag.getValue())) {
                     // Tag is checked on
                     view.setBackgroundColor(Color.parseColor("#006600"));
                     tagCount.setTextColor(Color.parseColor("#FFFFFF"));
                 }
+
+
+                ImageView photoIcon = (ImageView) view.findViewById(R.id.tag_photo);
+                final String[] values = guideMenuTag.getValue().split("=", 2);
+                final List<GuideTaxonPhotoXML> photos =  mGuideXml.getTagRepresentativePhoto(values[0], values[1]);
+
+                if (photos == null) {
+                    // No representative photo for the tag value
+                    photoIcon.setVisibility(View.INVISIBLE);
+                } else {
+                    photoIcon.setVisibility(View.VISIBLE);
+                    photoIcon.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(GuideDetails.this, TaxonTagPhotosViewer.class);
+                            intent.putExtra("guide_id", mGuideXml.getID());
+                            intent.putExtra("guide_xml_filename", mGuideXmlFilename);
+                            intent.putExtra("tag_name", values[0]);
+                            intent.putExtra("tag_value", values[1]);
+                            startActivity(intent);
+                        }
+                    });
+                }
+
             }
 
             title.setText(itemText);

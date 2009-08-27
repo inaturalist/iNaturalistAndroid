@@ -184,6 +184,10 @@
             android:configChanges="orientation"
             android:name=".ObservationPhotosViewer" >
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:name=".TaxonTagPhotosViewer" >
+        </activity>
 
 
 

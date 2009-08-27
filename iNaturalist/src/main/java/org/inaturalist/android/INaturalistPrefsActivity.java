@@ -275,7 +275,6 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
         mFacebookAccessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
-                Log.e("AAA", "NEW ACCESS TOKEN: " + newToken);
                 if (newToken != null) {
                     String username = mPreferences.getString("username", null);
                     if (username == null) {

@@ -3,11 +3,12 @@ package org.inaturalist.android;
 import org.w3c.dom.Node;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * Represents a GuideTaxonPhotoXML XML node
  */
-public class GuideTaxonPhotoXML extends BaseGuideXMLParser {
+public class GuideTaxonPhotoXML extends BaseGuideXMLParser implements Serializable {
 
     private GuideXML mGuide;
 

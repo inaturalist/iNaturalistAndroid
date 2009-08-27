@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:text="10"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:textColor="#006600"
         android:textStyle="bold"
@@ -19,12 +19,23 @@
         android:layout_marginRight="20dp"
         />
 
+
+    <ImageView
+        android:id="@+id/tag_photo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:src="@drawable/ic_insert_photo_white_24dp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/tagName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_toLeftOf="@id/tagCount"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/tag_photo"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
         android:textColor="#000000"

@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.Pair;
 
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
@@ -46,6 +47,9 @@ public class GuideXML extends BaseGuideXMLParser {
     private Map<String, Integer> mTagCounts;
     private Map<String, Set<String>> mTags;
 
+    // Representative photos of the tag values (e.g. what photo should we display for "number of legs=4")
+    private Map<Pair<String, String>, List<GuideTaxonPhotoXML>> mReprTagPhotos;
+
     /**
      * Initialize the GuideXML class with the offline (downloaded) version of it
      * @param context the app context
@@ -86,6 +90,8 @@ public class GuideXML extends BaseGuideXMLParser {
 
             // Parse all taxon tags
             parseTags();
+            // Parse the TaxonImage tags (so we'll know what are the representative image for each tag value)
+            parseImageTags();
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }
@@ -342,6 +348,49 @@ public class GuideXML extends BaseGuideXMLParser {
         return getValueByXPath("//ngz/size");
     }
 
+    /**
+     * Utility method that parses out all of the guide photos's taxon tags
+     */
+    private void parseImageTags() {
+        ArrayList<Node> nodes = getNodesByXPath("//GuideTaxon/GuidePhoto/tag");
+
+        if (nodes == null) {
+            return;
+        }
+
+        mReprTagPhotos = new HashMap<Pair<String, String>, List<GuideTaxonPhotoXML>>();
+
+        for (Node node: nodes) {
+            String predicateName = getAttribute(node, "predicate");
+            String value = getAttribute(node, "value");
+            Pair<String, String> key = new Pair<String, String>(predicateName, value);
+            GuideTaxonPhotoXML photo = new GuideTaxonPhotoXML(this, node.getParentNode());
+
+            if (!mReprTagPhotos.containsKey(key)) {
+                mReprTagPhotos.put(key, new ArrayList<GuideTaxonPhotoXML>());
+            }
+
+            List<GuideTaxonPhotoXML> photos = mReprTagPhotos.get(key);
+            photos.add(photo);
+        }
+    }
+
+    /**
+     * Returns the representative photos of a specific tag name + value combo.
+     *
+     * @param tagName the tag name (e.g. number of legs)
+     * @param tagValue the tag value (e.g. 3)
+     * @return the representative photos for that combo (or null if non existent)
+     */
+    public List<GuideTaxonPhotoXML> getTagRepresentativePhoto(String tagName, String tagValue) {
+        Pair<String, String> key = new Pair<String, String>(tagName, tagValue);
+
+        if (!mReprTagPhotos.containsKey(key)) {
+            return null;
+        }
+
+        return mReprTagPhotos.get(key);
+    }
 
     /**
      * Utility method that parses out all of the guide's taxon tags
