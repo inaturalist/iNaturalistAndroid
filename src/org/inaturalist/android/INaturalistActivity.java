@@ -1,6 +1,6 @@
 package org.inaturalist.android;
 
-import org.inaturalist.android.ObservationProvider.ObservationColumns;
+import org.inaturalist.android.ObservationProvider.Observation;
 
 import android.app.ListActivity;
 import android.content.ContentUris;
@@ -17,11 +17,6 @@ import android.widget.SimpleCursorAdapter;
 
 public class INaturalistActivity extends ListActivity {
 	public static String APP_TAG = "INAT";
-    public static final String[] PROJECTION = new String[] {
-        ObservationColumns._ID, // 0
-        ObservationColumns.SPECIES_GUESS, // 1
-        ObservationColumns.DESCRIPTION
-    };
   
     /** Called when the activity is first created. */
     @Override
@@ -31,7 +26,7 @@ public class INaturalistActivity extends ListActivity {
         
         Intent intent = getIntent();
         if (intent.getData() == null) {
-            intent.setData(ObservationColumns.CONTENT_URI);
+            intent.setData(Observation.CONTENT_URI);
         }
         
         // Inform the list we provide context menus for items
@@ -39,13 +34,13 @@ public class INaturalistActivity extends ListActivity {
         
         // Perform a managed query. The Activity will handle closing and requerying the cursor
         // when needed.
-        Cursor cursor = managedQuery(getIntent().getData(), PROJECTION, null, null,
-            ObservationColumns.DEFAULT_SORT_ORDER);
+        Cursor cursor = managedQuery(getIntent().getData(), ObservationProvider.PROJECTION, 
+        		null, null, Observation.DEFAULT_SORT_ORDER);
 
         // Used to map notes entries from the database to views
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(
             this, R.layout.list_item, cursor,
-            new String[] { ObservationColumns.SPECIES_GUESS, ObservationColumns.DESCRIPTION }, 
+            new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
             new int[] { R.id.speciesGuess, R.id.subContent });
         setListAdapter(adapter);
         

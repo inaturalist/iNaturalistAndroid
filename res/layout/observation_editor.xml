@@ -5,6 +5,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <ImageView
+        android:id="@+id/primaryPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_camera" />
+
+    <Button
+        android:id="@+id/add_photo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:text="Add photo"/>
+
     <EditText
         android:id="@+id/speciesGuess"
         android:layout_width="match_parent"
