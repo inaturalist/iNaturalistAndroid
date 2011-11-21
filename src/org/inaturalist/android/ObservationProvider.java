@@ -55,7 +55,8 @@ public class ObservationProvider extends ContentProvider {
         	this.speciesGuess = c.getString(c.getColumnIndexOrThrow(SPECIES_GUESS));
         	this.taxonId = c.getInt(c.getColumnIndexOrThrow(TAXON_ID));
         	this.description = c.getString(c.getColumnIndexOrThrow(DESCRIPTION));
-//        	this.createdAt = c.getLong(c.getColumnIndexOrThrow(CREATED_AT));
+        	this.createdAt = new Timestamp(c.getLong(c.getColumnIndexOrThrow(CREATED_AT)));
+        	this.updatedAt = new Timestamp(c.getLong(c.getColumnIndexOrThrow(UPDATED_AT)));
         }
     }
 

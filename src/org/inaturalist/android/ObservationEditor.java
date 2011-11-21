@@ -1,14 +1,19 @@
 package org.inaturalist.android;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.inaturalist.android.ObservationProvider.Observation;
+
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,9 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ObservationEditor extends Activity {
-	private final static String TAG = "ObservationEditor";
+	private final static String TAG = "INAT: ObservationEditor";
 	private Uri mUri;
     private Cursor mCursor;
+    private Cursor mImageCursor;
     private TextView mSpeciesGuessTextView;
     private TextView mDescriptionTextView;
     private Button mSaveButton;
@@ -37,8 +43,12 @@ public class ObservationEditor extends Activity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
     
+    /**
+     * LIFECYCLE CALLBACKS
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	Log.d(TAG, "creating...");
         super.onCreate(savedInstanceState);
 
         final Intent intent = getIntent();
@@ -76,16 +86,14 @@ public class ObservationEditor extends Activity {
         mSaveButton = (Button) findViewById(R.id.save);
         mAddPhotoButton = (Button) findViewById(R.id.add_photo);
         mPrimaryPhotoImageView = (ImageView) findViewById(R.id.primaryPhoto);
-        mCursor = managedQuery(mUri, ObservationProvider.PROJECTION, null, null, null);
-        mObservation = new Observation(mCursor);
-        
-        Log.d(TAG, "mUri: " + mUri);
-        
-        if (Intent.ACTION_EDIT.equals(action)) {
-        	mSpeciesGuessTextView.setText(mObservation.speciesGuess);
-        	mDescriptionTextView.setText(mObservation.description);
-        	updateImages();
+        if (savedInstanceState != null) {
+        	String fileUri = savedInstanceState.getString("mFileUri");
+        	if (fileUri != null) {
+        		mFileUri = Uri.parse(fileUri);
+        	}
         }
+        
+        setUiState();
         
         mSaveButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -111,6 +119,64 @@ public class ObservationEditor extends Activity {
 		});
     }
     
+    private void setUiState() {
+    	if (mCursor == null) {
+    		mCursor = managedQuery(mUri, ObservationProvider.PROJECTION, null, null, null);
+    	} else {
+    		mCursor.requery();
+    	}
+        mObservation = new Observation(mCursor);
+        
+        if (Intent.ACTION_EDIT.equals(getIntent().getAction())) {
+        	mSpeciesGuessTextView.setText(mObservation.speciesGuess);
+        	mDescriptionTextView.setText(mObservation.description);
+        	updateImages();
+        }
+    }
+    
+    @Override
+    protected void onPause() {
+    	Log.d(TAG, "pausing");
+    	super.onPause();
+    	if (isFinishing() && isDeleteable()) {
+    		delete();
+    	} else {
+    		save();
+    	}
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    	Log.d(TAG, "onSaveInstanceState...");
+        // Save away the original text, so we still have it if the activity
+        // needs to be killed while paused.
+    	if (mFileUri != null) {
+    		outState.putString("mFileUri", mFileUri.toString());
+    	}
+    }
+    
+    @Override
+    protected void onResume() {
+    	Log.d(TAG, "resuming");
+    	super.onResume();
+    	setUiState();
+    }
+    
+    /**
+     * CRUD WRAPPERS
+     */
+    
+    private final Boolean isDeleteable() {
+    	Log.d(TAG, "mCursor: " + mCursor);
+    	Log.d(TAG, "mImageCursor: " + mImageCursor);
+    	if (mCursor == null) { return true; }
+    	if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
+    	if (mSpeciesGuessTextView.length() == 0 && mDescriptionTextView.length() == 0) {
+    		return true;
+    	}
+    	return false;
+    }
+    
     private final void save() {
     	if (mCursor == null) { return; }
     	ContentValues values = new ContentValues();
@@ -125,6 +191,19 @@ public class ObservationEditor extends Activity {
     	}
     }
     
+    private final void delete() {
+    	if (mCursor == null) { return; }
+    	try {
+    		getContentResolver().delete(mUri, null, null);
+    	} catch (NullPointerException e) {
+    		Log.e(TAG, e.getMessage());
+    	}
+    }
+    
+    /**
+     * MENUS
+     */
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -136,7 +215,7 @@ public class ObservationEditor extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.delete:
-        	getContentResolver().delete(mUri, null, null);
+        	delete();
         	Toast.makeText(this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
         	finish();
             return true;
@@ -149,7 +228,8 @@ public class ObservationEditor extends Activity {
     private Uri getOutputMediaFileUri(int type){
     	ContentValues values = new ContentValues();
     	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-    	String name = "observation_" + mObservation.id + "_" + timeStamp;
+    	String name = "observation_" + mObservation.createdAt.getTime() + "_" + timeStamp;
+    	Log.d(TAG, "inserting title" + name);
     	values.put(android.provider.MediaStore.Images.Media.TITLE, name);
     	return getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
@@ -186,6 +266,10 @@ public class ObservationEditor extends Activity {
 //        return mediaFile;
 //    }
     
+    /**
+     * MISC
+     */
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	Log.d(TAG, "requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data);
@@ -193,6 +277,8 @@ public class ObservationEditor extends Activity {
             if (resultCode == RESULT_OK) {
                 // Image captured and saved to mFileUri specified in the Intent
                 Toast.makeText(this, "Image saved to (hopefully):\n" + mFileUri, Toast.LENGTH_LONG).show();
+                Log.d(TAG + " onActivityResult", "mFileUri: " + mFileUri);
+                updateImageOrientation(mFileUri);
 	            updateImages(mFileUri);
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
@@ -207,22 +293,62 @@ public class ObservationEditor extends Activity {
         }
     }
     
-    protected void updateImages() {
+    // TODO this fails intermittently when the camera is done b/c you haven't implemented proper lifecycle stuff, onPause, onResume, etc
+    private void updateImageOrientation(Uri uri) {
+    	Log.d(TAG, "updateImageOrientation, uri: " + uri);
     	String[] projection = {
     			MediaStore.MediaColumns._ID,
-    			MediaStore.MediaColumns.TITLE,  
-    			MediaStore.Images.ImageColumns.ORIENTATION};
-    	Cursor c = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
-    			projection, 
-    			MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation.id + "_%'", 
+    			MediaStore.Images.ImageColumns.ORIENTATION,
+    			MediaStore.Images.Media.DATA
+    	};
+    	Cursor c = getContentResolver().query(uri, projection, null, null, null);
+    	c.moveToFirst();
+    	String imgFilePath = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+		ContentValues values = new ContentValues();
+		try {
+			ExifInterface exif = new ExifInterface(imgFilePath);
+			int degrees = exifOrientationToDegrees(
+					exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 
+							ExifInterface.ORIENTATION_NORMAL));
+			values.put(MediaStore.Images.ImageColumns.ORIENTATION, degrees);
+			Log.d(TAG, "EXIF orientation: " + degrees);
+			Log.d(TAG, "MediaStore orientation: " + c.getInt(c.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION)));
+			getContentResolver().update(uri, values, null, null);
+		} catch (IOException e) {
+			Log.e(TAG, "couldn't find " + imgFilePath);
+		}
+    }
+    
+    protected void updateImages() {
+    	mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
+    			new String[] {MediaStore.MediaColumns._ID}, 
+    			MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation.createdAt.getTime() + "_%'", 
     			null, 
     			null);
-    	if (c.getCount() > 0) {
-    		c.moveToFirst();
+    	if (mImageCursor.getCount() > 0) {
+    		mImageCursor.moveToFirst();
     		updatePrimaryImage(
-    			c.getInt(c.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
+    				mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
     		);
     	}
+    }
+    
+    protected void updateImages(Uri uri) {
+    	updatePrimaryImage(Integer.parseInt(uri.getLastPathSegment()));
+    }
+    
+    private int exifOrientationToDegrees(int orientation) {
+    	switch (orientation) {
+    	case ExifInterface.ORIENTATION_ROTATE_90:
+    		return 90;
+    	case ExifInterface.ORIENTATION_ROTATE_180:
+    		return 180;
+    	case ExifInterface.ORIENTATION_ROTATE_270:
+    		return -90;
+    	default:
+    		return 0;
+    	}
+
     }
     
     protected void updatePrimaryImage(int photoId) {
@@ -232,9 +358,5 @@ public class ObservationEditor extends Activity {
         		MediaStore.Images.Thumbnails.MINI_KIND, 
         		(BitmapFactory.Options) null);
     	mPrimaryPhotoImageView.setImageBitmap(bitmapImage);
-    }
-    
-    protected void updateImages(Uri uri) {
-    	updatePrimaryImage(Integer.parseInt(uri.getLastPathSegment()));
     }
 }

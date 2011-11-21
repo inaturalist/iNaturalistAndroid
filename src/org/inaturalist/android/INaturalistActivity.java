@@ -40,8 +40,8 @@ public class INaturalistActivity extends ListActivity {
         // Used to map notes entries from the database to views
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(
             this, R.layout.list_item, cursor,
-            new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
-            new int[] { R.id.speciesGuess, R.id.subContent });
+            new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION, Observation._ID }, 
+            new int[] { R.id.speciesGuess, R.id.subContent, R.id.observationId });
         setListAdapter(adapter);
         
 //        DefaultHttpClient client = new DefaultHttpClient();

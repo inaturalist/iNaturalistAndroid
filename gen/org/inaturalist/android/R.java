@@ -14,14 +14,15 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int add_photo=0x7f060005;
-        public static final int delete=0x7f060008;
-        public static final int description=0x7f060006;
+        public static final int add_photo=0x7f060006;
+        public static final int delete=0x7f060009;
+        public static final int description=0x7f060007;
         public static final int linearLayout1=0x7f060000;
         public static final int linearLayout2=0x7f060001;
-        public static final int observations_menu_add=0x7f060009;
-        public static final int primaryPhoto=0x7f060004;
-        public static final int save=0x7f060007;
+        public static final int observationId=0x7f060004;
+        public static final int observations_menu_add=0x7f06000a;
+        public static final int primaryPhoto=0x7f060005;
+        public static final int save=0x7f060008;
         public static final int speciesGuess=0x7f060002;
         public static final int subContent=0x7f060003;
     }

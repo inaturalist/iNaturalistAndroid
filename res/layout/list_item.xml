@@ -31,6 +31,17 @@
             android:textColor="#666"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/observationId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:text="obs id"
+            android:textColor="#666"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>
