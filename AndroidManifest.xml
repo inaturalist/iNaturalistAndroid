@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:label="@string/app_name"
-            android:name="ObservationEditor" >
+            android:name="ObservationEditor"
+            android:configChanges="orientation" >
         </activity>
         <provider android:name="ObservationProvider" android:authorities="org.inaturalist.android.observation"></provider>
     </application>

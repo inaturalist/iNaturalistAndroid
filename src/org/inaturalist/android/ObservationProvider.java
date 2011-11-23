@@ -27,9 +27,9 @@ public class ObservationProvider extends ContentProvider {
     private static HashMap<String, String> sProjectionMap;
     
     // uri match ids
-    private static final int OBSERVATIONS_URI_CODE = 1;
-    private static final int OBSERVATION_ID_URI_CODE = 2;
-    private static final UriMatcher sUriMatcher;
+    public static final int OBSERVATIONS_URI_CODE = 1;
+    public static final int OBSERVATION_ID_URI_CODE = 2;
+    public static final UriMatcher sUriMatcher;
     
     public static final class Observation implements BaseColumns {
     	public int id;

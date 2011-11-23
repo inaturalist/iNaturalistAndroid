@@ -3,16 +3,18 @@ package org.inaturalist.android;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.inaturalist.android.ObservationProvider.Observation;
 
 import android.app.Activity;
-import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,8 +24,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +42,7 @@ public class ObservationEditor extends Activity {
     private TextView mDescriptionTextView;
     private Button mSaveButton;
     private Button mAddPhotoButton;
-    private ImageView mPrimaryPhotoImageView;
+    private Gallery mGallery;
     private Uri mFileUri;
     private Observation mObservation;
     
@@ -55,27 +61,24 @@ public class ObservationEditor extends Activity {
         setContentView(R.layout.observation_editor);
         
         // Do some setup based on the action being performed.
-        final String action = intent.getAction();
-        if (Intent.ACTION_EDIT.equals(action)) {
-            mUri = intent.getData();
-        } else if (Intent.ACTION_INSERT.equals(action)) {
+        Uri uri = intent.getData();
+        Log.d(TAG, "intent.getData(): " + intent.getData());
+        switch (ObservationProvider.sUriMatcher.match(uri)) {
+        case ObservationProvider.OBSERVATION_ID_URI_CODE:
+        	getIntent().setAction(Intent.ACTION_EDIT);
+        	mUri = uri;
+            break;
+        case ObservationProvider.OBSERVATIONS_URI_CODE:
             mUri = getContentResolver().insert(intent.getData(), null);
-
-            // If we were unable to create a new note, then just finish
-            // this activity.  A RESULT_CANCELED will be sent back to the
-            // original activity if they requested a result.
             if (mUri == null) {
                 Log.e(TAG, "Failed to insert new note into " + getIntent().getData());
                 finish();
                 return;
             }
-
-            // The new entry was created, so assume all will end well and
-            // set the result to be returned.
             setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
-
-        } else {
-            // Whoops, unknown action!  Bail.
+            getIntent().setAction(Intent.ACTION_INSERT);
+            break;
+        default:
             Log.e(TAG, "Unknown action, exiting");
             finish();
             return;
@@ -85,7 +88,7 @@ public class ObservationEditor extends Activity {
         mDescriptionTextView = (TextView) findViewById(R.id.description);
         mSaveButton = (Button) findViewById(R.id.save);
         mAddPhotoButton = (Button) findViewById(R.id.add_photo);
-        mPrimaryPhotoImageView = (ImageView) findViewById(R.id.primaryPhoto);
+        mGallery = (Gallery) findViewById(R.id.gallery);
         if (savedInstanceState != null) {
         	String fileUri = savedInstanceState.getString("mFileUri");
         	if (fileUri != null) {
@@ -128,6 +131,8 @@ public class ObservationEditor extends Activity {
         mObservation = new Observation(mCursor);
         
         if (Intent.ACTION_EDIT.equals(getIntent().getAction())) {
+        	Log.d(TAG, "mSpeciesGuessTextView.getText(): " + mSpeciesGuessTextView.getText());
+        	Log.d(TAG, "mObservation.speciesGuess: " + mObservation.speciesGuess);
         	mSpeciesGuessTextView.setText(mObservation.speciesGuess);
         	mDescriptionTextView.setText(mObservation.description);
         	updateImages();
@@ -279,7 +284,7 @@ public class ObservationEditor extends Activity {
                 Toast.makeText(this, "Image saved to (hopefully):\n" + mFileUri, Toast.LENGTH_LONG).show();
                 Log.d(TAG + " onActivityResult", "mFileUri: " + mFileUri);
                 updateImageOrientation(mFileUri);
-	            updateImages(mFileUri);
+	            updateImages();
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
             	Log.d(TAG, "cancelled camera");
@@ -293,7 +298,6 @@ public class ObservationEditor extends Activity {
         }
     }
     
-    // TODO this fails intermittently when the camera is done b/c you haven't implemented proper lifecycle stuff, onPause, onResume, etc
     private void updateImageOrientation(Uri uri) {
     	Log.d(TAG, "updateImageOrientation, uri: " + uri);
     	String[] projection = {
@@ -321,20 +325,62 @@ public class ObservationEditor extends Activity {
     
     protected void updateImages() {
     	mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
-    			new String[] {MediaStore.MediaColumns._ID}, 
+    			new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION}, 
     			MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation.createdAt.getTime() + "_%'", 
     			null, 
     			null);
     	if (mImageCursor.getCount() > 0) {
     		mImageCursor.moveToFirst();
-    		updatePrimaryImage(
-    				mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
-    		);
+    		mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
     	}
     }
     
-    protected void updateImages(Uri uri) {
-    	updatePrimaryImage(Integer.parseInt(uri.getLastPathSegment()));
+    public class GalleryCursorAdapter extends BaseAdapter {
+        private Context mContext;
+        private Cursor mCursor;
+        private HashMap<Integer, ImageView> mViews;
+
+        public GalleryCursorAdapter(Context c, Cursor cur) {
+            mContext = c;
+            mCursor = cur;
+            mViews = new HashMap<Integer, ImageView>();
+        }
+
+        public int getCount() {
+            return mCursor.getCount();
+        }
+
+        public Object getItem(int position) {
+            return position;
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+        	if (mViews.containsKey(position)) {
+        		return (ImageView) mViews.get(position);
+        	}
+            ImageView imageView = new ImageView(mContext);
+            mCursor.moveToPosition(position);
+            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
+            int orientation = mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+            Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
+            		getContentResolver(), 
+            		imageId, 
+            		MediaStore.Images.Thumbnails.MINI_KIND, 
+            		(BitmapFactory.Options) null);
+            Log.d(TAG, "orientation for " + position + ": " + orientation);
+            if (orientation != 0) {
+            	Matrix matrix = new Matrix();
+            	matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+            	bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+            }
+        	imageView.setImageBitmap(bitmapImage);
+        	mViews.put(position, imageView);
+            return imageView;
+        }
     }
     
     private int exifOrientationToDegrees(int orientation) {
@@ -349,14 +395,5 @@ public class ObservationEditor extends Activity {
     		return 0;
     	}
 
-    }
-    
-    protected void updatePrimaryImage(int photoId) {
-    	Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
-        		getContentResolver(), 
-        		photoId, 
-        		MediaStore.Images.Thumbnails.MINI_KIND, 
-        		(BitmapFactory.Options) null);
-    	mPrimaryPhotoImageView.setImageBitmap(bitmapImage);
     }
 }

@@ -5,11 +5,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <ImageView
-        android:id="@+id/primaryPhoto"
+    <Gallery
+        android:id="@+id/gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_camera" />
+        android:spacing="5dp" />
 
     <Button
         android:id="@+id/add_photo"
