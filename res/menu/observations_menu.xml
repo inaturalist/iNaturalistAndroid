@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/observations_menu_add"
-          android:icon="@android:drawable/ic_input_add"
-          android:alphabeticShortcut='a'
-          android:title="@string/observations_menu_add" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/observations_menu_add"
+        android:alphabeticShortcut="a"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="@string/observations_menu_add"/>
+
+    <item
+        android:id="@+id/observations_menu_preferences"
+        android:alphabeticShortcut="p"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Preferences"/>
+
 </menu>

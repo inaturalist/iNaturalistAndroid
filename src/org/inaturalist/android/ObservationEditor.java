@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.inaturalist.android.ObservationProvider.Observation;
+import org.inaturalist.android.Observation;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -54,7 +54,6 @@ public class ObservationEditor extends Activity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    	Log.d(TAG, "creating...");
         super.onCreate(savedInstanceState);
 
         final Intent intent = getIntent();
@@ -62,13 +61,12 @@ public class ObservationEditor extends Activity {
         
         // Do some setup based on the action being performed.
         Uri uri = intent.getData();
-        Log.d(TAG, "intent.getData(): " + intent.getData());
-        switch (ObservationProvider.sUriMatcher.match(uri)) {
-        case ObservationProvider.OBSERVATION_ID_URI_CODE:
+        switch (Observation.URI_MATCHER.match(uri)) {
+        case Observation.OBSERVATION_ID_URI_CODE:
         	getIntent().setAction(Intent.ACTION_EDIT);
         	mUri = uri;
             break;
-        case ObservationProvider.OBSERVATIONS_URI_CODE:
+        case Observation.OBSERVATIONS_URI_CODE:
             mUri = getContentResolver().insert(intent.getData(), null);
             if (mUri == null) {
                 Log.e(TAG, "Failed to insert new note into " + getIntent().getData());
@@ -114,7 +112,6 @@ public class ObservationEditor extends Activity {
 
 			    mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
 			    intent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri); // set the image file name
-			    Log.d(TAG, "generated mFileUri: " + mFileUri);
 
 			    // start the image capture Intent
 			    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -124,16 +121,14 @@ public class ObservationEditor extends Activity {
     
     private void setUiState() {
     	if (mCursor == null) {
-    		mCursor = managedQuery(mUri, ObservationProvider.PROJECTION, null, null, null);
+    		mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
     	} else {
     		mCursor.requery();
     	}
         mObservation = new Observation(mCursor);
         
         if (Intent.ACTION_EDIT.equals(getIntent().getAction())) {
-        	Log.d(TAG, "mSpeciesGuessTextView.getText(): " + mSpeciesGuessTextView.getText());
-        	Log.d(TAG, "mObservation.speciesGuess: " + mObservation.speciesGuess);
-        	mSpeciesGuessTextView.setText(mObservation.speciesGuess);
+        	mSpeciesGuessTextView.setText(mObservation.species_guess);
         	mDescriptionTextView.setText(mObservation.description);
         	updateImages();
         }
@@ -172,8 +167,6 @@ public class ObservationEditor extends Activity {
      */
     
     private final Boolean isDeleteable() {
-    	Log.d(TAG, "mCursor: " + mCursor);
-    	Log.d(TAG, "mImageCursor: " + mImageCursor);
     	if (mCursor == null) { return true; }
     	if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
     	if (mSpeciesGuessTextView.length() == 0 && mDescriptionTextView.length() == 0) {
@@ -233,43 +226,10 @@ public class ObservationEditor extends Activity {
     private Uri getOutputMediaFileUri(int type){
     	ContentValues values = new ContentValues();
     	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-    	String name = "observation_" + mObservation.createdAt.getTime() + "_" + timeStamp;
-    	Log.d(TAG, "inserting title" + name);
+    	String name = "observation_" + mObservation.created_at.getTime() + "_" + timeStamp;
     	values.put(android.provider.MediaStore.Images.Media.TITLE, name);
     	return getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
-
-//    /** Create a File for saving an image or video */
-//    private static File getOutputMediaFile(int type){
-//    	Log.d(TAG, "getOutputMediaFile, type: " + type);
-//        // To be safe, you should check that the SDCard is mounted
-//        // using Environment.getExternalStorageState() before doing this.
-//
-//        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-//                  Environment.DIRECTORY_PICTURES), "iNaturalist");
-//        // This location works best if you want the created images to be shared
-//        // between applications and persist after your app has been uninstalled.
-//
-//        // Create the storage directory if it does not exist
-//        if (!mediaStorageDir.exists()){
-//            if (!mediaStorageDir.mkdirs()){
-//                Log.d(TAG, "failed to create directory");
-//                return null;
-//            }
-//        }
-//
-//        // Create a media file name
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        File mediaFile;
-//        if (type == MEDIA_TYPE_IMAGE){
-//            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-//            "IMG_"+ timeStamp + ".jpg");
-//        } else {
-//            return null;
-//        }
-//
-//        return mediaFile;
-//    }
     
     /**
      * MISC
@@ -282,7 +242,6 @@ public class ObservationEditor extends Activity {
             if (resultCode == RESULT_OK) {
                 // Image captured and saved to mFileUri specified in the Intent
                 Toast.makeText(this, "Image saved to (hopefully):\n" + mFileUri, Toast.LENGTH_LONG).show();
-                Log.d(TAG + " onActivityResult", "mFileUri: " + mFileUri);
                 updateImageOrientation(mFileUri);
 	            updateImages();
             } else if (resultCode == RESULT_CANCELED) {
@@ -299,7 +258,6 @@ public class ObservationEditor extends Activity {
     }
     
     private void updateImageOrientation(Uri uri) {
-    	Log.d(TAG, "updateImageOrientation, uri: " + uri);
     	String[] projection = {
     			MediaStore.MediaColumns._ID,
     			MediaStore.Images.ImageColumns.ORIENTATION,
@@ -326,7 +284,7 @@ public class ObservationEditor extends Activity {
     protected void updateImages() {
     	mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
     			new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION}, 
-    			MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation.createdAt.getTime() + "_%'", 
+    			MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation.created_at.getTime() + "_%'", 
     			null, 
     			null);
     	if (mImageCursor.getCount() > 0) {
