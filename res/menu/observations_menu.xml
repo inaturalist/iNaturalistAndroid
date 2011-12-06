@@ -8,6 +8,12 @@
         android:title="@string/observations_menu_add"/>
 
     <item
+        android:id="@+id/observations_menu_sync"
+        android:alphabeticShortcut="s"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:title="@string/observations_menu_sync"/>
+
+    <item
         android:id="@+id/observations_menu_preferences"
         android:alphabeticShortcut="p"
         android:icon="@android:drawable/ic_menu_preferences"

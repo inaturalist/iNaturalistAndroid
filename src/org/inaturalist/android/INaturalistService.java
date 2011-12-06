@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -25,17 +26,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.IntentService;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 public class INaturalistService extends IntentService {
 	public static String TAG = "INaturalistService";
 	public static String HOST = "http://192.168.1.12:3000";
 	public static String ACTION_PASSIVE_SYNC = "passive_sync";
+	public static String ACTION_SYNC = "sync";
 	private String mLogin;
 	private String mCredentials;
 	private SharedPreferences mPreferences;
@@ -62,6 +64,7 @@ public class INaturalistService extends IntentService {
 			mPassive = false;
 		}
 		getUserObservations();
+		Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
 	}
 
 	private void postObservations() {
@@ -96,8 +99,35 @@ public class INaturalistService extends IntentService {
 		}
 		c.close();
 		
-		// TODO query observations where _synced_at IS NULL
+		// query observations where _synced_at IS NULL
+		c = getContentResolver().query(Observation.CONTENT_URI, 
+				Observation.PROJECTION, 
+				"id IS NULL", null, Observation.DEFAULT_SORT_ORDER);
+		
 		// TODO for each observation POST to /observations/
+		Log.d(TAG, "POSTing " + c.getCount() + " observations");
+		c.moveToFirst();
+		while (c.isAfterLast() == false) {
+			observation = new Observation(c);
+			JSONArray response = post(HOST + "/observations.json", observation.getParams());
+			try {
+				Log.d(TAG, "response: " + response);
+				if (response != null && response.length() == 1) {
+					JSONObject json = response.getJSONObject(0);
+					BetterJSONObject o = new BetterJSONObject(json);
+					Observation jsonObservation = new Observation(o);
+					observation.merge(jsonObservation);
+					observation._synced_at = new Timestamp(Calendar.SECOND);
+					observation._updated_at = observation._synced_at;
+					Log.d(TAG, "updating observation " + observation + "");
+					getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
+				}
+			} catch (JSONException e) {
+				Log.e(TAG, "JSONException: " + e.toString());
+			}
+			c.moveToNext();
+		}
+		c.close();
 	}
 
 	private void getUserObservations() {
@@ -115,9 +145,9 @@ public class INaturalistService extends IntentService {
 		return request(url, "put", params, true);
 	}
 
-	//	private static JSONArray post(String url, ContentValues params) {
-	//		
-	//	}
+	private JSONArray post(String url, ArrayList<NameValuePair> params) {
+		return request(url, "post", params, true);
+	}
 
 	private JSONArray get(String url) {
 		return get(url, false);
@@ -128,7 +158,7 @@ public class INaturalistService extends IntentService {
 	}
 
 	private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) {
-		Log.d(TAG, "requesting " + url);
+		Log.d(TAG, method.toUpperCase() + " " + url);
 		DefaultHttpClient client = new DefaultHttpClient();
 
 		HttpRequestBase request = method == "get" ? new HttpGet(url) : new HttpPost(url);
@@ -154,11 +184,20 @@ public class INaturalistService extends IntentService {
 			HttpResponse response = client.execute(request);
 			HttpEntity entity = response.getEntity();
 			String content = EntityUtils.toString(entity);
-			try {
-				JSONArray json = new JSONArray(content);
-				return json;
-			} catch (JSONException e) {
-				Log.e(TAG, "JSONException: " + e.toString());
+			switch (response.getStatusLine().getStatusCode()) {
+			case HttpStatus.SC_OK:
+				try {
+					JSONArray json = new JSONArray(content);
+					return json;
+				} catch (JSONException e) {
+					Log.e(TAG, "JSONException: " + e.toString());
+				}
+				break;
+			case HttpStatus.SC_UNAUTHORIZED:
+				requestCredentials();
+				break;
+			default:
+				Log.e(TAG, response.getStatusLine().toString());
 			}
 		}
 		catch (IOException e) {
@@ -174,12 +213,17 @@ public class INaturalistService extends IntentService {
 		// request login unless passive
 		Log.d(TAG, "ensuring creds, mPassive: " + mPassive);
 		if (!mPassive) {
-			Intent intent = new Intent(getBaseContext(), INaturalistPrefsActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			getApplication().startActivity(intent);
+			requestCredentials();
 		}
 		stopSelf();
 		return false;
+	}
+	
+	private void requestCredentials() {
+		Intent intent = new Intent(INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
+				null, getBaseContext(), INaturalistPrefsActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		getApplication().startActivity(intent);
 	}
 
 	public static boolean verifyCredentials(String credentials) {
@@ -246,7 +290,7 @@ public class INaturalistService extends IntentService {
 			observation = new Observation(c);
 			jsonObservation = jsonObservationsById.get(observation.id);
 			observation.merge(jsonObservation); 
-			observation._synced_at = new Timestamp(Calendar.SECOND);
+			observation._synced_at = new Timestamp(Calendar.getInstance().getTimeInMillis());
 			observation._updated_at = observation._synced_at;
 			getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
 			existingIds.add(observation.id);
@@ -256,13 +300,13 @@ public class INaturalistService extends IntentService {
 
 		// insert new
 		newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
+		Collections.sort(newIds);
 		Log.d(TAG, "ids: " + ids);
 		Log.d(TAG, "existingIds: " + existingIds);
 		Log.d(TAG, "newIds: " + newIds);
 		for (int i = 0; i < newIds.size(); i++) {			
 			jsonObservation = jsonObservationsById.get(newIds.get(i));
-			ContentValues cv = jsonObservation.getContentValues();
-			getContentResolver().insert(Observation.CONTENT_URI, cv);
+			getContentResolver().insert(Observation.CONTENT_URI, jsonObservation.getContentValues());
 		}
 	}
 }

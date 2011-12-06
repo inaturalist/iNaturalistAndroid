@@ -22,7 +22,8 @@ public final class R {
         public static final int linearLayout2=0x7f060001;
         public static final int observationId=0x7f060004;
         public static final int observations_menu_add=0x7f060012;
-        public static final int observations_menu_preferences=0x7f060013;
+        public static final int observations_menu_preferences=0x7f060014;
+        public static final int observations_menu_sync=0x7f060013;
         public static final int password=0x7f06000c;
         public static final int save=0x7f060008;
         public static final int signIn=0x7f060009;
@@ -47,9 +48,10 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int delete_observation=0x7f040002;
-        public static final int observation_deleted=0x7f040003;
+        public static final int delete_observation=0x7f040003;
+        public static final int observation_deleted=0x7f040004;
         public static final int observations_menu_add=0x7f040001;
-        public static final int species_guess_hint=0x7f040004;
+        public static final int observations_menu_sync=0x7f040002;
+        public static final int species_guess_hint=0x7f040005;
     }
 }

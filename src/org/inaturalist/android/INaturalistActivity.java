@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class INaturalistActivity extends ListActivity {
 	public static String TAG = "INAT";
@@ -62,6 +63,11 @@ public class INaturalistActivity extends ListActivity {
         case R.id.observations_menu_add:
             // Launch activity to insert a new item
         	startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), this, ObservationEditor.class));
+            return true;
+        case R.id.observations_menu_sync:
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, this, INaturalistService.class);
+            startService(serviceIntent);
+            Toast.makeText(getApplicationContext(), "Sync started", Toast.LENGTH_SHORT);
             return true;
         case R.id.observations_menu_preferences:
         	startActivity(new Intent(Intent.ACTION_MAIN, getIntent().getData(), this, INaturalistPrefsActivity.class));

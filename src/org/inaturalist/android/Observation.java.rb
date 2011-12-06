@@ -30,7 +30,7 @@ vars = {
   '_synced_at' => 'Timestamp'
 }.to_a.sort
 
-non_merge_var_names = %w(id user_id user_login created_at _synced_at)
+non_merge_var_names = %w(_id user_id user_login _synced_at)
 merge_vars = vars.reject {|name,type| non_merge_var_names.include?(name)}
 
 non_param_var_names = %w(id user_id user_login created_at updated_at _created_at _updated_at _id _synced_at)
@@ -65,7 +65,7 @@ public class Observation implements BaseColumns {
   public static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/observations");
   public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.google.observation";
   public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.google.observation";
-  public static final String DEFAULT_SORT_ORDER = "_created_at DESC";
+  public static final String DEFAULT_SORT_ORDER = "observed_on DESC";
   #{vars.map{|name, type| "public static final String #{name.upcase} = \"#{name}\";\n"}}
   
   public static final String[] PROJECTION = new String[] {
@@ -87,15 +87,10 @@ public class Observation implements BaseColumns {
     if (c.getPosition() == -1) {
       c.moveToFirst();
     }
-    this._id = c.getInt(c.getColumnIndexOrThrow(_ID));
+    BetterCursor bc = new BetterCursor(c);
+    this._id = bc.getInt(_ID);
     #{vars.map {|name, type|
-      if type == 'Timestamp'
-        "this.#{name} = new Timestamp(c.getLong(c.getColumnIndexOrThrow(#{name.upcase})));\n"
-      elsif type == 'Boolean'
-        "this.#{name} = (1 == c.getInt(c.getColumnIndexOrThrow(#{name.upcase})));\n"
-      else
-        "this.#{name} = c.get#{type.capitalize}(c.getColumnIndexOrThrow(#{name.upcase}));\n"
-      end
+      "this.#{name} = bc.get#{type.capitalize}(#{name.upcase});\n"
     }}
   }
   
@@ -103,6 +98,11 @@ public class Observation implements BaseColumns {
     #{vars.map {|name, type|
       "this.#{name} = o.get#{type.capitalize}(\"#{name}\");\n"
     }}
+  }
+  
+  @Override
+  public String toString() {
+    return "Observation(id: " + id + ", _id: " + _id + ")";
   }
   
   public Uri getUri() {
@@ -114,7 +114,7 @@ public class Observation implements BaseColumns {
   }
   
   public void merge(Observation observation) {
-    if (this.updated_at.before(observation.updated_at)) {
+    if (this._updated_at.before(observation.updated_at)) {
       // overwrite
       #{merge_vars.map {|name, type|
         "this.#{name} = observation.#{name};\n"

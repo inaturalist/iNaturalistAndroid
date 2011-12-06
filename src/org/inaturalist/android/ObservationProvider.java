@@ -131,10 +131,7 @@ public class ObservationProvider extends ContentProvider {
 		if (values.containsKey(Observation._UPDATED_AT) == false) {
 			values.put(Observation._UPDATED_AT, now);
 		}
-		//
-		//        if (values.containsKey(Observation.NOTE) == false) {
-		//            values.put(Observation.NOTE, "");
-		//        }
+		
 
 		SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 		long rowId = db.insert(TABLE_NAME, Observation.SPECIES_GUESS, values);

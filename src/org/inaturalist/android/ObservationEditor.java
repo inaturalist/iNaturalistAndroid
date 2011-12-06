@@ -1,11 +1,10 @@
 package org.inaturalist.android;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-
-import org.inaturalist.android.Observation;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -29,7 +28,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -182,6 +180,10 @@ public class ObservationEditor extends Activity {
     	values.put(Observation.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
     	values.put(Observation.DESCRIPTION, mDescriptionTextView.getText().toString());
     	
+    	Timestamp now = new Timestamp(Long.valueOf(System.currentTimeMillis()));
+    	values.put(Observation.OBSERVED_ON, now.getTime());
+    	values.put(Observation.OBSERVED_ON_STRING, now.toLocaleString());
+    	
     	try {
     		getContentResolver().update(mUri, values, null, null);
     	} catch (NullPointerException e) {
@@ -226,7 +228,7 @@ public class ObservationEditor extends Activity {
     private Uri getOutputMediaFileUri(int type){
     	ContentValues values = new ContentValues();
     	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-    	String name = "observation_" + mObservation.created_at.getTime() + "_" + timeStamp;
+    	String name = "observation_" + mObservation._created_at.getTime() + "_" + timeStamp;
     	values.put(android.provider.MediaStore.Images.Media.TITLE, name);
     	return getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
@@ -284,7 +286,7 @@ public class ObservationEditor extends Activity {
     protected void updateImages() {
     	mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
     			new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION}, 
-    			MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation.created_at.getTime() + "_%'", 
+    			MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation._created_at.getTime() + "_%'", 
     			null, 
     			null);
     	if (mImageCursor.getCount() > 0) {

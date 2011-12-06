@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 public class INaturalistPrefsActivity extends Activity {
 	private static final String TAG = "INaturalistPrefsActivity";
+	public static final String REAUTHENTICATE_ACTION = "reauthenticate_action";
 	private LinearLayout mSignInLayout;
 	private LinearLayout mSignOutLayout;
 	private TextView mUsernameTextView;
@@ -35,6 +37,7 @@ public class INaturalistPrefsActivity extends Activity {
 	    
 	    mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
 	    mPrefEditor = mPreferences.edit();
+	    
 	    
 	    mSignInLayout = (LinearLayout) findViewById(R.id.signIn);
 	    mSignOutLayout = (LinearLayout) findViewById(R.id.signOut);
@@ -59,6 +62,11 @@ public class INaturalistPrefsActivity extends Activity {
 				signOut();
 			}
 		});
+        
+	    if (getIntent().getAction().equals(REAUTHENTICATE_ACTION)) {
+	    	signOut();
+	    	alert("Username or password was invalid, please sign in again.");
+	    }
 	}
 	
 	private void toggle() {
@@ -85,7 +93,6 @@ public class INaturalistPrefsActivity extends Activity {
 		protected Boolean doInBackground(String... pieces) {
 			mUsername = pieces[0];
 			mPassword = pieces[1];
-			Log.d(TAG, "SignInTask, username: " + mUsername + ", password: " + mPassword);
 	        return INaturalistService.verifyCredentials(mUsername, mPassword);
 	    }
 		

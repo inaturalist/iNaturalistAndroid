@@ -1,3 +1,9 @@
+/**
+ * BetterJSONObject
+ * 
+ * Wraps JSONObject with simpler getters
+ */
+
 package org.inaturalist.android;
 
 import java.sql.Timestamp;
