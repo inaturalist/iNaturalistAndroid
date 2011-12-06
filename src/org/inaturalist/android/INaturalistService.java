@@ -1,7 +1,10 @@
 package org.inaturalist.android;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -9,13 +12,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.IntentService;
 import android.content.ContentValues;
@@ -33,7 +40,7 @@ public class INaturalistService extends IntentService {
 	private String mCredentials;
 	private SharedPreferences mPreferences;
 	private boolean mPassive;
-	
+
 	public INaturalistService() {
 		super("INaturalistService");
 	}
@@ -44,9 +51,10 @@ public class INaturalistService extends IntentService {
 		mLogin = mPreferences.getString("username", null);
 		mCredentials = mPreferences.getString("credentials", null);
 		String action = intent.getAction();
-		
+
 		// TODO dispatch intent actions
 		// TODO postObservations()
+		postObservations();
 		// TODO postPhotos()
 		if (action.equals(ACTION_PASSIVE_SYNC)) {
 			mPassive = true;
@@ -55,7 +63,43 @@ public class INaturalistService extends IntentService {
 		}
 		getUserObservations();
 	}
-	
+
+	private void postObservations() {
+		Observation observation;
+		// query observations where _updated_at > updated_at
+		Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+				Observation.PROJECTION, 
+				"_updated_at > _synced_at AND _synced_at IS NOT NULL", null, Observation.DEFAULT_SORT_ORDER);
+		
+		// for each observation PUT to /observations/:id
+		Log.d(TAG, "PUTing " + c.getCount() + " observations");
+		c.moveToFirst();
+		while (c.isAfterLast() == false) {
+			observation = new Observation(c);
+			JSONArray response = put(HOST + "/observations/" + observation.id + ".json", observation.getParams());
+			try {
+				Log.d(TAG, "response: " + response);
+				if (response != null && response.length() == 1) {
+					JSONObject json = response.getJSONObject(0);
+					BetterJSONObject o = new BetterJSONObject(json);
+					Observation jsonObservation = new Observation(o);
+					observation.merge(jsonObservation);
+					observation._synced_at = new Timestamp(Calendar.SECOND);
+					observation._updated_at = observation._synced_at;
+					Log.d(TAG, "updating observation " + observation + "");
+					getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
+				}
+			} catch (JSONException e) {
+				Log.e(TAG, "JSONException: " + e.toString());
+			}
+			c.moveToNext();
+		}
+		c.close();
+		
+		// TODO query observations where _synced_at IS NULL
+		// TODO for each observation POST to /observations/
+	}
+
 	private void getUserObservations() {
 		if (ensureCredentials() == false) {
 			return;
@@ -65,26 +109,51 @@ public class INaturalistService extends IntentService {
 		if (json == null || json.length() == 0) { return; }
 		syncJson(json);
 	}
-	
-	private static JSONArray get(String url) {
+
+	private JSONArray put(String url, ArrayList<NameValuePair> params) {
+		params.add(new BasicNameValuePair("_method", "PUT"));
+		return request(url, "put", params, true);
+	}
+
+	//	private static JSONArray post(String url, ContentValues params) {
+	//		
+	//	}
+
+	private JSONArray get(String url) {
 		return get(url, false);
 	}
-	
-	private static JSONArray get(String url, boolean authenticated) {
-		return request(url, "get", authenticated);
+
+	private JSONArray get(String url, boolean authenticated) {
+		return request(url, "get", null, authenticated);
 	}
-	
-	private static JSONArray request(String url, String method, boolean authenticated) {
+
+	private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) {
 		Log.d(TAG, "requesting " + url);
 		DefaultHttpClient client = new DefaultHttpClient();
+
 		HttpRequestBase request = method == "get" ? new HttpGet(url) : new HttpPost(url);
-		request.setHeader("Content-Type", "application/json");
+
+		// POST params
+		if (params != null) {
+			try {
+				HttpEntity entity = new UrlEncodedFormEntity(params);
+				((HttpPost) request).setEntity(entity);
+			} catch (final UnsupportedEncodingException e) {
+				// this should never happen.
+				throw new AssertionError(e);
+			}
+		}
+
+		// auth
+		if (authenticated) {
+			ensureCredentials();
+			request.setHeader("Authorization", "Basic "+ mCredentials);
+		}
+
 		try {
 			HttpResponse response = client.execute(request);
-
 			HttpEntity entity = response.getEntity();
 			String content = EntityUtils.toString(entity);
-			Log.d(TAG, "OK: " + content.toString());
 			try {
 				JSONArray json = new JSONArray(content);
 				return json;
@@ -98,10 +167,10 @@ public class INaturalistService extends IntentService {
 		}
 		return null;
 	}
-	
+
 	private boolean ensureCredentials() {
 		if (mCredentials != null) { return true; }
-		
+
 		// request login unless passive
 		Log.d(TAG, "ensuring creds, mPassive: " + mPassive);
 		if (!mPassive) {
@@ -112,14 +181,14 @@ public class INaturalistService extends IntentService {
 		stopSelf();
 		return false;
 	}
-	
+
 	public static boolean verifyCredentials(String credentials) {
 		DefaultHttpClient client = new DefaultHttpClient();
 		String url = HOST + "/observations/new.json";
 		HttpRequestBase request = new HttpGet(url);
 		request.setHeader("Authorization", "Basic "+credentials);
 		request.setHeader("Content-Type", "application/json");
-		
+
 		try {
 			HttpResponse response = client.execute(request);
 			HttpEntity entity = response.getEntity();
@@ -138,14 +207,14 @@ public class INaturalistService extends IntentService {
 		}
 		return false;
 	}
-	
+
 	public static boolean verifyCredentials(String username, String password) {
 		String credentials = Base64.encodeToString(
 			(username + ":" + password).getBytes(), Base64.URL_SAFE|Base64.NO_WRAP
 		);
 		return verifyCredentials(credentials);
 	}
-	
+
 	public void syncJson(JSONArray json) {
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		ArrayList<Integer> existingIds = new ArrayList<Integer>();
@@ -153,7 +222,7 @@ public class INaturalistService extends IntentService {
 		HashMap<Integer,Observation> jsonObservationsById = new HashMap<Integer,Observation>();
 		Observation observation;
 		Observation jsonObservation;
-		
+
 		BetterJSONObject o;
 		for (int i = 0; i < json.length(); i++) {
 			try {
@@ -170,24 +239,26 @@ public class INaturalistService extends IntentService {
 		Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
 				Observation.PROJECTION, 
 				"id IN ("+joinedIds+")", null, Observation.DEFAULT_SORT_ORDER);
-		
+
 		// update existing
 		c.moveToFirst();
-        while (c.isAfterLast() == false) {
-        	observation = new Observation(c);
-        	jsonObservation = jsonObservationsById.get(observation.id);
-        	observation.merge(jsonObservation);
-        	getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
-        	existingIds.add(observation.id);
-       	    c.moveToNext();
-        }
-        c.close();
-        
-        // insert new
-        newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
-        Log.d(TAG, "ids: " + ids);
-        Log.d(TAG, "existingIds: " + existingIds);
-        Log.d(TAG, "newIds: " + newIds);
+		while (c.isAfterLast() == false) {
+			observation = new Observation(c);
+			jsonObservation = jsonObservationsById.get(observation.id);
+			observation.merge(jsonObservation); 
+			observation._synced_at = new Timestamp(Calendar.SECOND);
+			observation._updated_at = observation._synced_at;
+			getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
+			existingIds.add(observation.id);
+			c.moveToNext();
+		}
+		c.close();
+
+		// insert new
+		newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
+		Log.d(TAG, "ids: " + ids);
+		Log.d(TAG, "existingIds: " + existingIds);
+		Log.d(TAG, "newIds: " + newIds);
 		for (int i = 0; i < newIds.size(); i++) {			
 			jsonObservation = jsonObservationsById.get(newIds.get(i));
 			ContentValues cv = jsonObservation.getContentValues();

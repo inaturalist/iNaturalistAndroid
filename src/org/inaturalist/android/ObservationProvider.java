@@ -16,7 +16,7 @@ import android.util.Log;
 public class ObservationProvider extends ContentProvider {
 	private static final String TAG = "ObservationProvider";
 	private static final String DATABASE_NAME = "inaturalist.db";
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 5;
 	private static final String TABLE_NAME = "observations";
 	private static final SQLiteCursorFactory sFactory;
 	
@@ -124,12 +124,12 @@ public class ObservationProvider extends ContentProvider {
 		Long now = Long.valueOf(System.currentTimeMillis());
 
 		// Make sure that the fields are all set
-		if (values.containsKey(Observation.CREATED_AT) == false) {
-			values.put(Observation.CREATED_AT, now);
+		if (values.containsKey(Observation._CREATED_AT) == false) {
+			values.put(Observation._CREATED_AT, now);
 		}
 
-		if (values.containsKey(Observation.UPDATED_AT) == false) {
-			values.put(Observation.UPDATED_AT, now);
+		if (values.containsKey(Observation._UPDATED_AT) == false) {
+			values.put(Observation._UPDATED_AT, now);
 		}
 		//
 		//        if (values.containsKey(Observation.NOTE) == false) {
@@ -175,8 +175,8 @@ public class ObservationProvider extends ContentProvider {
 		SQLiteDatabase db = mOpenHelper.getWritableDatabase();
 		int count;
 		Long now = Long.valueOf(System.currentTimeMillis());
-		if (values.containsKey(Observation.UPDATED_AT) == false) {
-			values.put(Observation.UPDATED_AT, now);
+		if (values.containsKey(Observation._UPDATED_AT) == false) {
+			values.put(Observation._UPDATED_AT, now);
 		}
 		switch (Observation.URI_MATCHER.match(uri)) {
 		case Observation.OBSERVATIONS_URI_CODE:
