@@ -16,7 +16,7 @@ import android.util.Log;
 public class ObservationProvider extends ContentProvider {
 	private static final String TAG = "ObservationProvider";
 	private static final String DATABASE_NAME = "inaturalist.db";
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 6;
 	private static final String TABLE_NAME = "observations";
 	private static final SQLiteCursorFactory sFactory;
 	

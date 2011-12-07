@@ -17,7 +17,8 @@
             android:padding="10dp"
             android:singleLine="true"
             android:text="species guess"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:hint="Unknown species" />
 
         <TextView
             android:id="@+id/subContent"
@@ -29,19 +30,8 @@
             android:singleLine="true"
             android:text="sub stuff"
             android:textColor="#666"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/observationId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:singleLine="true"
-            android:text="obs id"
-            android:textColor="#666"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:hint="No description" />
     </LinearLayout>
 
 </LinearLayout>

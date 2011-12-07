@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearLayout1"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
     <Gallery
         android:id="@+id/gallery"
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:text="Add photo"/>
+        android:text="Add photo" />
 
     <EditText
         android:id="@+id/speciesGuess"
@@ -29,6 +29,26 @@
         <requestFocus />
     </EditText>
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/observed_on"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Set date" />
+
+        <Button
+            android:id="@+id/time_observed_at"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Set time" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
@@ -36,8 +56,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_weight="1"
-        android:hint="Brief description..."
         android:gravity="top"
+        android:hint="Brief description..."
         android:inputType="textMultiLine" />
 
     <Button

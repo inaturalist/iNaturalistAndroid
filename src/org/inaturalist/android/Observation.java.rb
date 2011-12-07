@@ -14,6 +14,7 @@ vars = {
   'user_id' => 'int',
   'user_login' => 'String',
   'observed_on' => 'Timestamp',
+  'time_observed_at' => 'Timestamp',
   'observed_on_string' => 'String',
   'species_guess' => 'String',
   'place_guess' => 'String',
@@ -65,7 +66,7 @@ public class Observation implements BaseColumns {
   public static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/observations");
   public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.google.observation";
   public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.google.observation";
-  public static final String DEFAULT_SORT_ORDER = "observed_on DESC";
+  public static final String DEFAULT_SORT_ORDER = "observed_on DESC, _id DESC";
   #{vars.map{|name, type| "public static final String #{name.upcase} = \"#{name}\";\n"}}
   
   public static final String[] PROJECTION = new String[] {

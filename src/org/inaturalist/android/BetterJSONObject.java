@@ -27,7 +27,7 @@ public class BetterJSONObject {
 	public BetterJSONObject(JSONObject o) {
 		mJSONObject = o;
 		mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 	}
 	
 	
@@ -81,7 +81,6 @@ public class BetterJSONObject {
 			try {
 				date =  mDateFormat.parse(value);
 			} catch (ParseException e2) {
-				Log.e(TAG, "Failed to parse Timstamp for " + name + " from " + value);
 				return null;
 			}
 		}

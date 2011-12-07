@@ -40,10 +40,14 @@ public class INaturalistActivity extends ListActivity {
         		null, null, Observation.DEFAULT_SORT_ORDER);
 
         // Used to map notes entries from the database to views
+//        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+//            this, R.layout.list_item, cursor,
+//            new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION, Observation._ID }, 
+//            new int[] { R.id.speciesGuess, R.id.subContent, R.id.observationId });
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-            this, R.layout.list_item, cursor,
-            new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION, Observation._ID }, 
-            new int[] { R.id.speciesGuess, R.id.subContent, R.id.observationId });
+                this, R.layout.list_item, cursor,
+                new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
+                new int[] { R.id.speciesGuess, R.id.subContent });
         setListAdapter(adapter);
         
         Intent serviceIntent = new Intent(INaturalistService.ACTION_PASSIVE_SYNC, null, this, INaturalistService.class);
