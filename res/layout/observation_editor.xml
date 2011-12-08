@@ -1,70 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout1"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <Gallery
-        android:id="@+id/gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spacing="5dp" />
-
-    <Button
-        android:id="@+id/add_photo"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:text="Add photo" />
-
-    <EditText
-        android:id="@+id/speciesGuess"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:hint="@string/species_guess_hint"
-        android:singleLine="true" >
-
-        <requestFocus />
-    </EditText>
+    android:layout_height="fill_parent" >
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Gallery
+            android:id="@+id/gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spacing="5dp" />
 
         <Button
-            android:id="@+id/observed_on"
-            android:layout_width="fill_parent"
+            android:id="@+id/add_photo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="5dp"
+            android:text="Add photo" />
+
+        <EditText
+            android:id="@+id/speciesGuess"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="3dp"
+            android:hint="@string/species_guess_hint"
+            android:singleLine="true"
+            android:imeOptions="actionDone" >
+
+            <requestFocus />
+        </EditText>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/observed_on"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="0.5"
+                android:text="Set date" />
+
+            <Button
+                android:id="@+id/time_observed_at"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:layout_weight="0.5"
+                android:text="Set time" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Set date" />
+            android:layout_margin="5dp" >
+
+            <TableLayout
+                android:id="@+id/locationAttributes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical" >
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingRight="5dp"
+                        android:text="Lat"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/latitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unknown" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="5dp"
+                        android:text="Lon"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/longitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unknown" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Acc"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/accuracy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unknown" />
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/locationActions"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <ProgressBar
+                    android:id="@+id/locationProgress"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/locationRefreshButton"
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:src="@android:drawable/ic_menu_compass" />
+
+                <ImageButton
+                    android:id="@+id/locationStopRefreshButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:hint="Brief description..."
+            android:imeOptions="actionDone" />
 
         <Button
-            android:id="@+id/time_observed_at"
-            android:layout_width="fill_parent"
+            android:id="@+id/save"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Set time" />
+            android:layout_margin="5dp"
+            android:text="Save" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:hint="Brief description..."
-        android:inputType="textMultiLine" />
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Save" />
-
-</LinearLayout>
+</ScrollView>

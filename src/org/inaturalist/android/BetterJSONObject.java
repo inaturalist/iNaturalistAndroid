@@ -1,7 +1,7 @@
 /**
  * BetterJSONObject
  * 
- * Wraps JSONObject with simpler getters
+ * Wraps JSONObject with simpler getters.  I'm sure there some smarter way to delegate calls than this...
  */
 
 package org.inaturalist.android;
@@ -24,12 +24,19 @@ public class BetterJSONObject {
 	private DateFormat mDateTimeFormat; 
 	private DateFormat mDateFormat;
 	
+	public BetterJSONObject() {
+	    this(new JSONObject());
+	}
+	
 	public BetterJSONObject(JSONObject o) {
 		mJSONObject = o;
 		mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 	}
 	
+	public JSONObject getJSONObject() {
+	    return mJSONObject;
+	}
 	
 	public Object get(String name) {
 		if (mJSONObject.isNull(name)) {
@@ -68,7 +75,7 @@ public class BetterJSONObject {
 	
 	public Float getFloat(String name) {
 		Object value = get(name);
-		return value == null ? null : (Float) value;
+		return value == null ? null : Float.parseFloat(value.toString());
 	}
 	
 	public Timestamp getTimestamp(String name) {
@@ -85,5 +92,17 @@ public class BetterJSONObject {
 			}
 		}
 		return new Timestamp(date.getTime());
+	}
+	
+	public void put(String name, Object value) {
+	    try {
+	        mJSONObject.put(name, value);
+	    } catch (JSONException e1) {
+	        try {
+	            mJSONObject.put(name, value.toString());
+	        } catch (JSONException e2) {
+	            Log.e(TAG, "Failed to put " + name + ", " + value + ": " + e2);
+	        }
+	    }
 	}
 }

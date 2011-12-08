@@ -17,6 +17,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,7 +34,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -48,15 +53,26 @@ public class ObservationEditor extends Activity {
     private Button mObservedOnButton;
     private Button mTimeObservedAtButton;
     private Gallery mGallery;
+    private TextView mLatitudeView;
+    private TextView mLongitudeView;
+    private TextView mAccuracyView;
+    private ProgressBar mLocationProgressView;
+    private ImageButton mLocationRefreshButton;
+    private ImageButton mLocationStopRefreshButton;
     private Uri mFileUri;
     private Observation mObservation;
     private SimpleDateFormat mDateFormat;
     private SimpleDateFormat mTimeFormat;
+    private LocationManager mLocationManager;
+    private LocationListener mLocationListener;
+    private Location mCurrentLocation;
+    private Long mLocationRequestedAt;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
+    private static final int ONE_MINUTE = 60 * 1000;
 
     /**
      * LIFECYCLE CALLBACKS
@@ -90,7 +106,7 @@ public class ObservationEditor extends Activity {
             finish();
             return;
         }
-        
+
         mDateFormat = new SimpleDateFormat("MMM d, yyyy");
         mTimeFormat = new SimpleDateFormat("h:mm a z");
 
@@ -101,12 +117,20 @@ public class ObservationEditor extends Activity {
         mObservedOnButton = (Button) findViewById(R.id.observed_on);
         mTimeObservedAtButton = (Button) findViewById(R.id.time_observed_at);
         mGallery = (Gallery) findViewById(R.id.gallery);
+        mLatitudeView = (TextView) findViewById(R.id.latitude);
+        mLongitudeView = (TextView) findViewById(R.id.longitude);
+        mAccuracyView = (TextView) findViewById(R.id.accuracy);
+        mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
+        mLocationRefreshButton = (ImageButton) findViewById(R.id.locationRefreshButton);
+        mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
 
         if (savedInstanceState != null) {
             String fileUri = savedInstanceState.getString("mFileUri");
             if (fileUri != null) {
                 mFileUri = Uri.parse(fileUri);
             }
+            mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
+            Log.d(TAG, "deserialized observation: " + mObservation);
         }
 
         initUi();
@@ -146,6 +170,20 @@ public class ObservationEditor extends Activity {
                 showDialog(TIME_DIALOG_ID);
             }
         });
+
+        mLocationRefreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLocation();
+            }
+        });
+
+        mLocationStopRefreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopGetLocation();
+            }
+        });
     }
 
     private void initUi() {
@@ -154,17 +192,36 @@ public class ObservationEditor extends Activity {
         } else {
             mCursor.requery();
         }
-        mObservation = new Observation(mCursor);
-        Log.d(TAG, "mObservation.time_observed_at: " + mObservation.time_observed_at);
+        if (mObservation == null) {
+            mObservation = new Observation(mCursor);
+            Log.d(TAG, "created new observation from cursor: " + mObservation);
+        }
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
             mObservation.observed_on = new Timestamp(System.currentTimeMillis());
-            mObservation.time_observed_at = mObservation.observed_on; 
+            mObservation.time_observed_at = mObservation.observed_on;
+            if (mObservation.latitude == null && mCurrentLocation == null) {
+                getLocation();
+            }
         }
         updateUi();
     }
 
     private void updateUi() {
+        observationToUi();
+        updateImages();
+    }
+    
+    private void uiToObservation() {
+        mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+        mObservation.description = mDescriptionTextView.getText().toString();
+        // date and time already set
+        mObservation.latitude = Double.parseDouble(mLatitudeView.getText().toString());
+        mObservation.longitude = Double.parseDouble(mLongitudeView.getText().toString());
+        mObservation.positional_accuracy = Float.parseFloat(mAccuracyView.getText().toString());
+    }
+    
+    private void observationToUi() {
         mSpeciesGuessTextView.setText(mObservation.species_guess);
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {
@@ -177,17 +234,33 @@ public class ObservationEditor extends Activity {
         } else {
             mTimeObservedAtButton.setText(mTimeFormat.format(mObservation.time_observed_at));
         }
-        updateImages();
+        if (mObservation.latitude != null) {
+            mLatitudeView.setText(mObservation.latitude.toString());
+        }
+        if (mObservation.longitude != null) {
+            mLongitudeView.setText(mObservation.longitude.toString());
+        }
+        if (mObservation.positional_accuracy != null) {
+            mAccuracyView.setText(mObservation.positional_accuracy.toString());
+        }
     }
 
     @Override
     protected void onPause() {
         Log.d(TAG, "pausing");
         super.onPause();
-        if (isFinishing() && isDeleteable()) {
-            delete();
-        } else {
-            save();
+        stopGetLocation();
+        //        if (isFinishing() && isDeleteable()) {
+        //            delete();
+        //        } else {
+        //            save();
+        //        }
+        if (isFinishing()) {
+            if (isDeleteable()) {
+                delete();
+            } else {
+                save();
+            }
         }
     }
 
@@ -199,6 +272,8 @@ public class ObservationEditor extends Activity {
         if (mFileUri != null) {
             outState.putString("mFileUri", mFileUri.toString());
         }
+        uiToObservation();
+        outState.putSerializable("mObservation", mObservation);
     }
 
     @Override
@@ -224,8 +299,9 @@ public class ObservationEditor extends Activity {
     private final void save() {
         if (mCursor == null) { return; }
 
-        mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
-        mObservation.description = mDescriptionTextView.getText().toString();
+        uiToObservation();
+
+        Log.d(TAG, "saving mObservation.latitude: " + mObservation.latitude);
 
         try {
             getContentResolver().update(mUri, mObservation.getContentValues(), null, null);
@@ -316,10 +392,10 @@ public class ObservationEditor extends Activity {
                 refDate = new Timestamp(Long.valueOf(System.currentTimeMillis()));
             }
             try {
-             return new DatePickerDialog(this, mDateSetListener, 
-                    refDate.getYear() + 1900,
-                    refDate.getMonth(),
-                    refDate.getDate());
+                return new DatePickerDialog(this, mDateSetListener, 
+                        refDate.getYear() + 1900,
+                        refDate.getMonth(),
+                        refDate.getDate());
             } catch (IllegalArgumentException e) {
                 refDate = new Timestamp(Long.valueOf(System.currentTimeMillis()));
                 return new DatePickerDialog(this, mDateSetListener, 
@@ -339,6 +415,117 @@ public class ObservationEditor extends Activity {
                     false);
         }
         return null;
+    }
+
+    /**
+     * Location
+     */
+
+    // Kicks of location service
+    private void getLocation() {
+        if (mLocationManager == null) {
+            mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        }
+
+        if (mLocationListener == null) {
+            // Define a listener that responds to location updates
+            mLocationListener = new LocationListener() {
+                public void onLocationChanged(Location location) {
+                    // Called when a new location is found by the network location provider.
+                    handleNewLocation(location);
+                }
+
+                public void onStatusChanged(String provider, int status, Bundle extras) {}
+                public void onProviderEnabled(String provider) {}
+                public void onProviderDisabled(String provider) {}
+            };
+        }
+
+        mLocationRequestedAt = System.currentTimeMillis();
+        mLocationProgressView.setVisibility(View.VISIBLE);
+        mLocationRefreshButton.setVisibility(View.GONE);
+        mLocationStopRefreshButton.setVisibility(View.VISIBLE);
+
+        // Register the listener with the Location Manager to receive location updates
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+    }
+
+    private void handleNewLocation(Location location) {
+        Log.d(TAG, "prv: " + location.getProvider());
+        Log.d(TAG, "lat: " + location.getLatitude());
+        Log.d(TAG, "lon: " + location.getLongitude());
+        Log.d(TAG, "acu: " + location.getAccuracy());
+
+        if (isBetterLocation(location, mCurrentLocation)) {
+            //            mCurrentLocation = location;
+            setCurrentLocation(location);
+        }
+
+        if (locationIsGood(mCurrentLocation)) {
+            Log.d(TAG, "location was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            stopGetLocation();
+        }
+
+        if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
+            Log.d(TAG, "location request was old and location was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            stopGetLocation();
+        }
+    }
+
+    private void stopGetLocation() {
+        mLocationProgressView.setVisibility(View.GONE);
+        mLocationRefreshButton.setVisibility(View.VISIBLE);
+        mLocationStopRefreshButton.setVisibility(View.GONE);
+        if (mLocationManager != null && mLocationListener != null) {
+            mLocationManager.removeUpdates(mLocationListener);
+        }
+    }
+
+    private void setCurrentLocation(Location location) {
+        mCurrentLocation = location;
+        mLatitudeView.setText(Double.toString(location.getLatitude()));
+        mLongitudeView.setText(Double.toString(location.getLatitude()));
+        mObservation.latitude = location.getLatitude();
+        Log.d(TAG, "set mObservation.latitude to " + mObservation.latitude);
+        mObservation.longitude = location.getLongitude();
+        if (location.hasAccuracy()) {
+            mAccuracyView.setText(Float.toString(location.getAccuracy()));
+            mObservation.positional_accuracy = location.getAccuracy();
+        }
+    }
+
+    private boolean locationRequestIsOld() {
+        long delta = System.currentTimeMillis() - mLocationRequestedAt;
+        Log.d(TAG, "locationr request running for " + delta / 1000 + " seconds");
+        return delta > ONE_MINUTE;
+    }
+
+    private boolean isBetterLocation(Location newLocation, Location currentLocation) {
+        if (currentLocation == null) {
+            return true;
+        }
+        if (newLocation.hasAccuracy() && !currentLocation.hasAccuracy()) {
+            return true;
+        }
+        if (!newLocation.hasAccuracy() && currentLocation.hasAccuracy()) {
+            return false;
+        }
+        return newLocation.getAccuracy() < currentLocation.getAccuracy();
+    }
+
+    private boolean locationIsGood(Location location) {
+        if (!locationIsGoodEnough(location)) { return false; }
+        if (location.getAccuracy() <= 20) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean locationIsGoodEnough(Location location) {
+        if (location == null || !location.hasAccuracy()) { return false; }
+        if (location.getAccuracy() <= 500) { return true; }
+        return false;
     }
 
     /**
