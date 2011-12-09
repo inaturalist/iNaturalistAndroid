@@ -209,13 +209,13 @@ public class INaturalistService extends IntentService {
         return null;
     }
 
-    private boolean ensureCredentials() {
+    private boolean ensureCredentials() throws AuthenticationException {
         if (mCredentials != null) { return true; }
 
         // request login unless passive
         Log.d(TAG, "ensuring creds, mPassive: " + mPassive);
         if (!mPassive) {
-            requestCredentials();
+            throw new AuthenticationException();
         }
         stopSelf();
         return false;

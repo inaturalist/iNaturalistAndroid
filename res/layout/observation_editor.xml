@@ -89,7 +89,7 @@
                         android:id="@+id/latitude"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Unknown" />
+                        android:hint="Unknown" />
                 </TableRow>
 
                 <TableRow
@@ -108,7 +108,7 @@
                         android:id="@+id/longitude"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Unknown" />
+                        android:hint="Unknown" />
                 </TableRow>
 
                 <TableRow
@@ -126,7 +126,7 @@
                         android:id="@+id/accuracy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Unknown" />
+                        android:hint="Unknown" />
                 </TableRow>
             </TableLayout>
 

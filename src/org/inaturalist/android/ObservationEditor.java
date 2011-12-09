@@ -216,9 +216,21 @@ public class ObservationEditor extends Activity {
         mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
         mObservation.description = mDescriptionTextView.getText().toString();
         // date and time already set
-        mObservation.latitude = Double.parseDouble(mLatitudeView.getText().toString());
-        mObservation.longitude = Double.parseDouble(mLongitudeView.getText().toString());
-        mObservation.positional_accuracy = Float.parseFloat(mAccuracyView.getText().toString());
+        if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
+            mObservation.latitude = null;
+        } else {
+            mObservation.latitude = Double.parseDouble(mLatitudeView.getText().toString());
+        }
+        if (mLongitudeView.getText() == null || mLongitudeView.getText().length() == 0) {
+            mObservation.longitude = null;
+        } else {
+            mObservation.longitude = Double.parseDouble(mLongitudeView.getText().toString());
+        }
+        if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
+            mObservation.positional_accuracy = null;
+        } else {
+            mObservation.positional_accuracy = Float.parseFloat(mAccuracyView.getText().toString());
+        }
     }
     
     private void observationToUi() {
