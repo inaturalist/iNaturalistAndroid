@@ -35,7 +35,7 @@
         </activity>
 
         <provider
-            android:authorities="org.inaturalist.android.observation"
+            android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo"
             android:name=".ObservationProvider" >
         </provider>
 

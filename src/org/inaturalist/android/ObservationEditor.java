@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -86,7 +87,7 @@ public class ObservationEditor extends Activity {
 
         // Do some setup based on the action being performed.
         Uri uri = intent.getData();
-        switch (Observation.URI_MATCHER.match(uri)) {
+        switch (ObservationProvider.URI_MATCHER.match(uri)) {
         case Observation.OBSERVATION_ID_URI_CODE:
             getIntent().setAction(Intent.ACTION_EDIT);
             mUri = uri;
@@ -229,7 +230,7 @@ public class ObservationEditor extends Activity {
         if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
             mObservation.positional_accuracy = null;
         } else {
-            mObservation.positional_accuracy = Float.parseFloat(mAccuracyView.getText().toString());
+            mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
         }
     }
     
@@ -503,7 +504,7 @@ public class ObservationEditor extends Activity {
         mObservation.longitude = location.getLongitude();
         if (location.hasAccuracy()) {
             mAccuracyView.setText(Float.toString(location.getAccuracy()));
-            mObservation.positional_accuracy = location.getAccuracy();
+            mObservation.positional_accuracy = ((Float) location.getAccuracy()).intValue();
         }
     }
 
@@ -552,18 +553,29 @@ public class ObservationEditor extends Activity {
                 // Image captured and saved to mFileUri specified in the Intent
                 Toast.makeText(this, "Image saved to (hopefully):\n" + mFileUri, Toast.LENGTH_LONG).show();
                 updateImageOrientation(mFileUri);
+                createObservationPhotoForPhoto(mFileUri);
                 updateImages();
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
                 Log.d(TAG, "cancelled camera");
             } else {
                 // Image capture failed, advise user
-                Toast.makeText(this, "Crap something went wrong:\n" +
+                Toast.makeText(this, "Blast, something went wrong:\n" +
                         mFileUri, Toast.LENGTH_LONG).show();
                 Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data.getData());
             }
             mFileUri = null; // don't let this hang around
         }
+    }
+    
+    private Uri createObservationPhotoForPhoto(Uri photoUri) {
+        ObservationPhoto op = new ObservationPhoto();
+        op._observation_id = mObservation._id;
+        Long photoId = ContentUris.parseId(photoUri);
+        if (photoId > -1) {
+            op._photo_id = photoId.intValue();
+        }
+        return getContentResolver().insert(ObservationPhoto.CONTENT_URI, op.getContentValues());
     }
 
     private void updateImageOrientation(Uri uri) {
