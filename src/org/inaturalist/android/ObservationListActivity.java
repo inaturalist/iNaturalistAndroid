@@ -14,14 +14,14 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-public class INaturalistActivity extends ListActivity {
+public class ObservationListActivity extends ListActivity {
 	public static String TAG = "INAT";
   
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.observation_list);
         
         Intent intent = getIntent();
         if (intent.getData() == null) {
