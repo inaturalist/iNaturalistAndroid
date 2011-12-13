@@ -161,16 +161,11 @@ public class ObservationProvider extends ContentProvider {
         Long now = Long.valueOf(System.currentTimeMillis());
 
         // Make sure that the fields are all set
-        if (values.containsKey(Observation._CREATED_AT) == false) {
-            values.put(Observation._CREATED_AT, now);
-        }
-
-        if (values.containsKey(Observation._UPDATED_AT) == false) {
-            values.put(Observation._UPDATED_AT, now);
-        }
-
+        values.put(Observation._CREATED_AT, now);
+        values.put(Observation._UPDATED_AT, now);
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        Log.d(TAG, "inserting " + uri + ", table: " + tableName + ", values: " + values);
         long rowId = db.insert(tableName, BaseColumns._ID, values);
         if (rowId > 0) {
             Uri newUri = ContentUris.withAppendedId(contentUri, rowId);
@@ -192,8 +187,11 @@ public class ObservationProvider extends ContentProvider {
             break;
         case Observation.OBSERVATION_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
-            count = db.delete(Observation.TABLE_NAME, ObservationPhoto._ID + "=" + id
+            count = db.delete(Observation.TABLE_NAME, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            db.delete(ObservationPhoto.TABLE_NAME, 
+                    ObservationPhoto._OBSERVATION_ID + "=" + id, 
+                    whereArgs);
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             count = db.delete(ObservationPhoto.TABLE_NAME, where, whereArgs);
@@ -216,18 +214,28 @@ public class ObservationProvider extends ContentProvider {
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         int count;
         String id;
-        Long now = Long.valueOf(System.currentTimeMillis());
-        if (values.containsKey(Observation._UPDATED_AT) == false) {
-            values.put(Observation._UPDATED_AT, now);
+        if  (values.containsKey(Observation._SYNCED_AT)) {
+            // if synced at is being set, updated at should *always* match exactly
+            values.put(Observation._UPDATED_AT, values.getAsLong(Observation._SYNCED_AT));
+        } else {
+            values.put(Observation._UPDATED_AT, System.currentTimeMillis());
         }
+        
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             count = db.update(Observation.TABLE_NAME, values, where, whereArgs);
             break;
         case Observation.OBSERVATION_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
-            count = db.update(Observation.TABLE_NAME, values, ObservationPhoto._ID + "=" + id
+            count = db.update(Observation.TABLE_NAME, values, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            
+            // update foreign key in observation_photos
+            if (count > 0 && values.containsKey(Observation.ID)) {
+                ContentValues cv = new ContentValues();
+                cv.put(ObservationPhoto.OBSERVATION_ID, values.getAsInteger(Observation.ID));
+                db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
+            }
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             count = db.update(ObservationPhoto.TABLE_NAME, values, where, whereArgs);

@@ -1,10 +1,10 @@
 package org.inaturalist.android;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -14,10 +14,13 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -26,16 +29,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.IntentService;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
-    public static String HOST = "http://192.168.1.12:3000";
+    public static String HOST = "http://192.168.1.128:3000";
+    public static String MEDIA_HOST = HOST;
+//    public static String HOST = "http://www.inaturalist.org";
+//    public static String MEDIA_HOST = "http://up.inaturalist.org";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_SYNC = "sync";
     private String mLogin;
@@ -58,7 +67,7 @@ public class INaturalistService extends IntentService {
         try {
             // TODO dispatch intent actions
             postObservations();
-            // TODO postPhotos()
+            postPhotos();
             getUserObservations();
             Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
         } catch (AuthenticationException e) {
@@ -80,23 +89,10 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             observation = new Observation(c);
-            JSONArray response = put(HOST + "/observations/" + observation.id + ".json", observation.getParams());
-            try {
-                Log.d(TAG, "response: " + response);
-                if (response == null || response.length() != 1) {
-                    break;
-                }
-                JSONObject json = response.getJSONObject(0);
-                BetterJSONObject o = new BetterJSONObject(json);
-                Observation jsonObservation = new Observation(o);
-                observation.merge(jsonObservation);
-                observation._synced_at = new Timestamp(Calendar.SECOND);
-                observation._updated_at = observation._synced_at;
-                Log.d(TAG, "updating observation " + observation + "");
-                getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
-            } catch (JSONException e) {
-                Log.e(TAG, "JSONException: " + e.toString());
-            }
+            handleObservationResponse(
+                    observation,
+                    put(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation))
+            );
             c.moveToNext();
         }
         c.close();
@@ -111,20 +107,64 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             observation = new Observation(c);
-            JSONArray response = post(HOST + "/observations.json", observation.getParams());
+            handleObservationResponse(
+                    observation,
+                    post(HOST + "/observations.json", paramsForObservation(observation))
+            );
+            c.moveToNext();
+        }
+        c.close();
+    }
+    
+    private void postPhotos() throws AuthenticationException {
+        ObservationPhoto op;
+        // query observations where _updated_at > updated_at
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+                ObservationPhoto.PROJECTION, 
+                "_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        // for each observation PUT to /observations/:id
+        Log.d(TAG, "POSTing " + c.getCount() + " observation photos");
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            op = new ObservationPhoto(c);
+            ArrayList <NameValuePair> params = op.getParams();
+            // http://stackoverflow.com/questions/2935946/sending-images-using-http-post
+            Uri photoUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, op._photo_id); 
+            Cursor pc = getContentResolver().query(photoUri, 
+                    new String[] {MediaStore.MediaColumns._ID, MediaStore.Images.Media.DATA}, 
+                    null, 
+                    null, 
+                    MediaStore.Images.Media.DEFAULT_SORT_ORDER);
+            
+            Log.d(TAG, "photoUri: " + photoUri);
+            Log.d(TAG, "pc.getCount(): " + pc.getCount());
+            if (pc.getCount() == 0) {
+                // photo has been deleted, destroy the ObservationPhoto
+                getContentResolver().delete(op.getUri(), null, null);
+                continue;
+            } else {
+                pc.moveToFirst();
+            }
+            
+            String imgFilePath = pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+            params.add(new BasicNameValuePair("file", imgFilePath));
+            
+            // TODO LATER resize the image for upload, maybe a 1024px jpg
+            JSONArray response = post(MEDIA_HOST + "/observation_photos.json", params);
             try {
                 Log.d(TAG, "response: " + response);
                 if (response == null || response.length() != 1) {
                     break;
                 }
                 JSONObject json = response.getJSONObject(0);
-                BetterJSONObject o = new BetterJSONObject(json);
-                Observation jsonObservation = new Observation(o);
-                observation.merge(jsonObservation);
-                observation._synced_at = new Timestamp(Calendar.SECOND);
-                observation._updated_at = observation._synced_at;
-                Log.d(TAG, "updating observation " + observation + "");
-                getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
+                BetterJSONObject j = new BetterJSONObject(json);
+                ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
+                op.merge(jsonObservationPhoto);
+                op._synced_at = new Timestamp(System.currentTimeMillis());
+                op._updated_at = op._synced_at;
+                Log.d(TAG, "updating observation photo " + op + "");
+                getContentResolver().update(op.getUri(), op.getContentValues(), null, null);
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }
@@ -168,13 +208,22 @@ public class INaturalistService extends IntentService {
 
         // POST params
         if (params != null) {
-            try {
-                HttpEntity entity = new UrlEncodedFormEntity(params);
-                ((HttpPost) request).setEntity(entity);
-            } catch (final UnsupportedEncodingException e) {
-                // this should never happen.
-                throw new AssertionError(e);
+            MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+            for (int i = 0; i < params.size(); i++) {
+                Log.d(TAG, "adding " + params.get(i).getName() + " to params");
+                if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
+                    // If the key equals to "image", we use FileBody to transfer the data
+                    entity.addPart(params.get(i).getName(), new FileBody(new File (params.get(i).getValue())));
+                } else {
+                    // Normal string data
+                    try {
+                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue()));
+                    } catch (UnsupportedEncodingException e) {
+                        Log.e(TAG, "failed tp add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
+                    }
+                }
             }
+            ((HttpPost) request).setEntity(entity);
         }
 
         // auth
@@ -187,15 +236,22 @@ public class INaturalistService extends IntentService {
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
+            JSONArray json = null;
             switch (response.getStatusLine().getStatusCode()) {
             case HttpStatus.SC_OK:
                 try {
-                    JSONArray json = new JSONArray(content);
-                    return json;
+                    json = new JSONArray(content);
                 } catch (JSONException e) {
-                    Log.e(TAG, "JSONException: " + e.toString());
+                    Log.e(TAG, "Failed to create JSONArray, JSONException: " + e.toString());
+                    try {
+                        JSONObject jo = new JSONObject(content);
+                        json = new JSONArray();
+                        json.put(jo);
+                    } catch (JSONException e2) {
+                        Log.e(TAG, "Failed to create JSONObject, JSONException: " + e2.toString());
+                    }
                 }
-                break;
+                return json;
             case HttpStatus.SC_UNAUTHORIZED:
                 throw new AuthenticationException();
             default:
@@ -295,8 +351,7 @@ public class INaturalistService extends IntentService {
             observation = new Observation(c);
             jsonObservation = jsonObservationsById.get(observation.id);
             observation.merge(jsonObservation); 
-            observation._synced_at = new Timestamp(Calendar.getInstance().getTimeInMillis());
-            observation._updated_at = observation._synced_at;
+            observation._synced_at = new Timestamp(System.currentTimeMillis());
             getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
             existingIds.add(observation.id);
             c.moveToNext();
@@ -312,6 +367,31 @@ public class INaturalistService extends IntentService {
         for (int i = 0; i < newIds.size(); i++) {			
             jsonObservation = jsonObservationsById.get(newIds.get(i));
             getContentResolver().insert(Observation.CONTENT_URI, jsonObservation.getContentValues());
+        }
+    }
+    
+    private ArrayList<NameValuePair> paramsForObservation(Observation observation) {
+        ArrayList<NameValuePair> params = observation.getParams();
+        params.add(new BasicNameValuePair("ignore_photos", "true"));
+        return params;
+    }
+    
+    private void handleObservationResponse(Observation observation, JSONArray response) {
+        try {
+            Log.d(TAG, "response: " + response);
+            if (response == null || response.length() != 1) {
+                return;
+            }
+            JSONObject json = response.getJSONObject(0);
+            BetterJSONObject o = new BetterJSONObject(json);
+            Observation jsonObservation = new Observation(o);
+            observation.merge(jsonObservation);
+            observation._synced_at = new Timestamp(System.currentTimeMillis());
+            observation._updated_at = observation._synced_at;
+            Log.d(TAG, "updating observation " + observation + "");
+            getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
+        } catch (JSONException e) {
+            Log.e(TAG, "JSONException: " + e.toString());
         }
     }
 

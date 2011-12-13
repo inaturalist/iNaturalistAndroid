@@ -81,31 +81,47 @@ public class ObservationEditor extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d(TAG, "onCreate, savedInstanceState: " + savedInstanceState);
         final Intent intent = getIntent();
         setContentView(R.layout.observation_editor);
-
-        // Do some setup based on the action being performed.
-        Uri uri = intent.getData();
-        switch (ObservationProvider.URI_MATCHER.match(uri)) {
-        case Observation.OBSERVATION_ID_URI_CODE:
-            getIntent().setAction(Intent.ACTION_EDIT);
-            mUri = uri;
-            break;
-        case Observation.OBSERVATIONS_URI_CODE:
-            mUri = getContentResolver().insert(intent.getData(), null);
-            if (mUri == null) {
-                Log.e(TAG, "Failed to insert new note into " + getIntent().getData());
+        
+        if (savedInstanceState == null) {
+            // Do some setup based on the action being performed.
+            Uri uri = intent.getData();
+            Log.d(TAG, "uri: " + uri);
+            Log.d(TAG, "mUri: " + mUri);
+            switch (ObservationProvider.URI_MATCHER.match(uri)) {
+            case Observation.OBSERVATION_ID_URI_CODE:
+                getIntent().setAction(Intent.ACTION_EDIT);
+                mUri = uri;
+                break;
+            case Observation.OBSERVATIONS_URI_CODE:
+                mUri = getContentResolver().insert(uri, null);
+                if (mUri == null) {
+                    Log.e(TAG, "Failed to insert new observation into " + uri);
+                    finish();
+                    return;
+                }
+                setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
+                getIntent().setAction(Intent.ACTION_INSERT);
+                break;
+            default:
+                Log.e(TAG, "Unknown action, exiting");
                 finish();
                 return;
             }
-            setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
-            getIntent().setAction(Intent.ACTION_INSERT);
-            break;
-        default:
-            Log.e(TAG, "Unknown action, exiting");
-            finish();
-            return;
+        } else {
+            String fileUri = savedInstanceState.getString("mFileUri");
+            if (fileUri != null) {mFileUri = Uri.parse(fileUri);}
+            String obsUri = savedInstanceState.getString("mUri");
+            if (obsUri != null) {
+                mUri = Uri.parse(obsUri);
+            } else {
+                mUri = intent.getData();
+            }
+            
+            mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
+            Log.d(TAG, "deserialized observation: " + mObservation);
         }
 
         mDateFormat = new SimpleDateFormat("MMM d, yyyy");
@@ -124,15 +140,6 @@ public class ObservationEditor extends Activity {
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
         mLocationRefreshButton = (ImageButton) findViewById(R.id.locationRefreshButton);
         mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
-
-        if (savedInstanceState != null) {
-            String fileUri = savedInstanceState.getString("mFileUri");
-            if (fileUri != null) {
-                mFileUri = Uri.parse(fileUri);
-            }
-            mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
-            Log.d(TAG, "deserialized observation: " + mObservation);
-        }
 
         initUi();
 
@@ -216,7 +223,17 @@ public class ObservationEditor extends Activity {
     private void uiToObservation() {
         mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
         mObservation.description = mDescriptionTextView.getText().toString();
-        // date and time already set
+        if (mObservation.observed_on != null || mObservation.time_observed_at != null) {
+            Timestamp refDate = mObservation.observed_on;
+            if (refDate == null) { refDate = mObservation.time_observed_at; }
+            if (mObservation.time_observed_at != null) {
+                refDate.setHours(mObservation.time_observed_at.getHours());
+                refDate.setSeconds(mObservation.time_observed_at.getSeconds());
+                mObservation.observed_on_string = refDate.toLocaleString();
+            } else {
+                mObservation.observed_on_string = mDateFormat.format(refDate);
+            }
+        }
         if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
             mObservation.latitude = null;
         } else {
@@ -263,11 +280,6 @@ public class ObservationEditor extends Activity {
         Log.d(TAG, "pausing");
         super.onPause();
         stopGetLocation();
-        //        if (isFinishing() && isDeleteable()) {
-        //            delete();
-        //        } else {
-        //            save();
-        //        }
         if (isFinishing()) {
             if (isDeleteable()) {
                 delete();
@@ -282,16 +294,15 @@ public class ObservationEditor extends Activity {
         Log.d(TAG, "onSaveInstanceState...");
         // Save away the original text, so we still have it if the activity
         // needs to be killed while paused.
-        if (mFileUri != null) {
-            outState.putString("mFileUri", mFileUri.toString());
-        }
+        if (mFileUri != null) { outState.putString("mFileUri", mFileUri.toString()); }
+        if (mUri != null) { outState.putString("mUri", mUri.toString()); }
         uiToObservation();
         outState.putSerializable("mObservation", mObservation);
     }
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "resuming");
+        Log.d(TAG, "onResuming");
         super.onResume();
         initUi();
     }
@@ -303,7 +314,12 @@ public class ObservationEditor extends Activity {
     private final Boolean isDeleteable() {
         if (mCursor == null) { return true; }
         if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
-        if (mSpeciesGuessTextView.length() == 0 && mDescriptionTextView.length() == 0) {
+        if (mSpeciesGuessTextView.length() == 0 
+                && mDescriptionTextView.length() == 0
+                && mObservedOnButton.length() == 0
+                && mTimeObservedAtButton.length() == 0
+                && mLatitudeView.length() == 0
+                && mLongitudeView.length() == 0) {
             return true;
         }
         return false;
@@ -315,6 +331,7 @@ public class ObservationEditor extends Activity {
         uiToObservation();
 
         Log.d(TAG, "saving mObservation.latitude: " + mObservation.latitude);
+        Log.d(TAG, "saving mUri: " + mUri);
 
         try {
             getContentResolver().update(mUri, mObservation.getContentValues(), null, null);
@@ -465,13 +482,7 @@ public class ObservationEditor extends Activity {
     }
 
     private void handleNewLocation(Location location) {
-        Log.d(TAG, "prv: " + location.getProvider());
-        Log.d(TAG, "lat: " + location.getLatitude());
-        Log.d(TAG, "lon: " + location.getLongitude());
-        Log.d(TAG, "acu: " + location.getAccuracy());
-
         if (isBetterLocation(location, mCurrentLocation)) {
-            //            mCurrentLocation = location;
             setCurrentLocation(location);
         }
 
@@ -498,9 +509,8 @@ public class ObservationEditor extends Activity {
     private void setCurrentLocation(Location location) {
         mCurrentLocation = location;
         mLatitudeView.setText(Double.toString(location.getLatitude()));
-        mLongitudeView.setText(Double.toString(location.getLatitude()));
+        mLongitudeView.setText(Double.toString(location.getLongitude()));
         mObservation.latitude = location.getLatitude();
-        Log.d(TAG, "set mObservation.latitude to " + mObservation.latitude);
         mObservation.longitude = location.getLongitude();
         if (location.hasAccuracy()) {
             mAccuracyView.setText(Float.toString(location.getAccuracy()));
@@ -575,6 +585,7 @@ public class ObservationEditor extends Activity {
         if (photoId > -1) {
             op._photo_id = photoId.intValue();
         }
+        Log.d(TAG, "inserting new observation photo: " + op);
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, op.getContentValues());
     }
 

@@ -1,14 +1,11 @@
 package org.inaturalist.android;
 
-import org.inaturalist.android.Observation;
-
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,8 +47,8 @@ public class INaturalistActivity extends ListActivity {
                 new int[] { R.id.speciesGuess, R.id.subContent });
         setListAdapter(adapter);
         
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_PASSIVE_SYNC, null, this, INaturalistService.class);
-        startService(serviceIntent);
+//        Intent serviceIntent = new Intent(INaturalistService.ACTION_PASSIVE_SYNC, null, this, INaturalistService.class);
+//        startService(serviceIntent);
     }
     
     @Override

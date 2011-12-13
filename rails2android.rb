@@ -7,7 +7,8 @@ Creates a Java class from a Rails model for use in an REST-oriented Android
 app. Makes a number of assumptions:
 
 * all Rails columns are represented in the app
-* app database has _id, _created_at, _updated_at, and _synced_at columns to 
+* columsn exclusive to the app database are preceded by an underscore. By
+  default, _id, _created_at, _updated_at, and _synced_at columns are added to
   maintain local state
 
 Usage:
@@ -26,10 +27,11 @@ EOS
   opt :non_param, "Instnace variables to ignore to running getParams(), which generates params for POST requests", 
     :type => :string, 
     :short => "-p", 
-    :default => "id created_at updated_at _created_at _updated_at _id _synced_at"
+    :default => "id created_at updated_at"
   opt :extra, "Extra columns not in the Rails model to include in the Android model, specified as space-separated name:type pairs",
     :type => :string,
-    :short => "-e"
+    :short => "-e",
+    :default => ""
   opt :default_sort_order, "Default sort order for the corresponding table in the app",
     :type => :string,
     :short => "-s",
@@ -70,7 +72,7 @@ klass.columns.each do |column|
   else column.type.to_s.capitalize
   end
 end
-(opts[:extra].split || []).each do |extra_column|
+opts[:extra].split.each do |extra_column|
   name, type = extra_column.split(':')
   Trollop::die "\"#{extra_column}\" isn't a valid name:type pair" if name.blank? || type.blank?
   vars[name] = type
@@ -78,10 +80,12 @@ end
 vars = vars.to_a.sort
 
 non_merge_var_names = opts[:non_merge].split
-merge_vars = vars.reject {|name,type| non_merge_var_names.include?(name)}
+merge_vars = vars.reject {|name,type| non_merge_var_names.include?(name) || name =~ /^_/}
 
 non_param_var_names = opts[:non_param].split
-param_vars = vars.reject {|name,type| non_param_var_names.include?(name)}
+param_vars = vars.reject {|name,type| non_param_var_names.include?(name) || name =~ /^_/}
+
+content_value_vars = vars.reject{|name,type| name =~ /^_/}
 
 now = Time.now
 

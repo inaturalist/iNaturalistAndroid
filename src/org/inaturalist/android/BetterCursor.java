@@ -7,8 +7,8 @@
 package org.inaturalist.android;
 
 import java.sql.Timestamp;
+
 import android.database.Cursor;
-import android.util.Log;
 
 public class BetterCursor {
 	public final static String TAG = "BetterCursor";
