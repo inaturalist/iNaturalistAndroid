@@ -88,8 +88,6 @@ public class ObservationEditor extends Activity {
         if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
-            Log.d(TAG, "uri: " + uri);
-            Log.d(TAG, "mUri: " + mUri);
             switch (ObservationProvider.URI_MATCHER.match(uri)) {
             case Observation.OBSERVATION_ID_URI_CODE:
                 getIntent().setAction(Intent.ACTION_EDIT);
@@ -471,14 +469,14 @@ public class ObservationEditor extends Activity {
             };
         }
 
+        // Register the listener with the Location Manager to receive location updates
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+        
         mLocationRequestedAt = System.currentTimeMillis();
         mLocationProgressView.setVisibility(View.VISIBLE);
         mLocationRefreshButton.setVisibility(View.GONE);
         mLocationStopRefreshButton.setVisibility(View.VISIBLE);
-
-        // Register the listener with the Location Manager to receive location updates
-        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
     }
 
     private void handleNewLocation(Location location) {
@@ -539,7 +537,7 @@ public class ObservationEditor extends Activity {
 
     private boolean locationIsGood(Location location) {
         if (!locationIsGoodEnough(location)) { return false; }
-        if (location.getAccuracy() <= 20) {
+        if (location.getAccuracy() <= 10) {
             return true;
         }
         return false;

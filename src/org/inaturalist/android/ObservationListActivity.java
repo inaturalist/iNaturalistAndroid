@@ -67,7 +67,7 @@ public class ObservationListActivity extends ListActivity {
             Toast.makeText(getApplicationContext(), "Sync started", Toast.LENGTH_SHORT);
             return true;
         case R.id.observations_menu_menu:
-            startActivity(new Intent(Intent.ACTION_MAIN, getIntent().getData(), this, MenuActivity.class));
+            startActivity(new Intent(this, MenuActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             return true;
         default:
             return super.onOptionsItemSelected(item);

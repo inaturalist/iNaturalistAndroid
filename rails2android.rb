@@ -187,7 +187,7 @@ public class #{klass.name} implements BaseColumns, Serializable {
   
   public ContentValues getContentValues() {
     ContentValues cv = new ContentValues();
-    #{vars.map{|name, type|
+    #{content_value_vars.map{|name, type|
       if type == "Timestamp"
         "if (#{name} != null) { cv.put(#{name.upcase}, #{name}.getTime()); }\n"
       else

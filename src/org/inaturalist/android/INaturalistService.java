@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import android.app.IntentService;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -41,7 +42,7 @@ import android.widget.Toast;
 
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
-    public static String HOST = "http://192.168.1.128:3000";
+    public static String HOST = "http://192.168.1.12:3000";
     public static String MEDIA_HOST = HOST;
 //    public static String HOST = "http://www.inaturalist.org";
 //    public static String MEDIA_HOST = "http://up.inaturalist.org";
@@ -125,6 +126,7 @@ public class INaturalistService extends IntentService {
 
         // for each observation PUT to /observations/:id
         Log.d(TAG, "POSTing " + c.getCount() + " observation photos");
+        ContentValues cv;
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             op = new ObservationPhoto(c);
@@ -161,10 +163,10 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject j = new BetterJSONObject(json);
                 ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
                 op.merge(jsonObservationPhoto);
-                op._synced_at = new Timestamp(System.currentTimeMillis());
-                op._updated_at = op._synced_at;
+                cv = op.getContentValues();
+                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                 Log.d(TAG, "updating observation photo " + op + "");
-                getContentResolver().update(op.getUri(), op.getContentValues(), null, null);
+                getContentResolver().update(op.getUri(), cv, null, null);
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }
@@ -347,12 +349,14 @@ public class INaturalistService extends IntentService {
 
         // update existing
         c.moveToFirst();
+        ContentValues cv;
         while (c.isAfterLast() == false) {
             observation = new Observation(c);
             jsonObservation = jsonObservationsById.get(observation.id);
             observation.merge(jsonObservation); 
-            observation._synced_at = new Timestamp(System.currentTimeMillis());
-            getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
+            cv = observation.getContentValues();
+            cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+            getContentResolver().update(observation.getUri(), cv, null, null);
             existingIds.add(observation.id);
             c.moveToNext();
         }
@@ -386,10 +390,10 @@ public class INaturalistService extends IntentService {
             BetterJSONObject o = new BetterJSONObject(json);
             Observation jsonObservation = new Observation(o);
             observation.merge(jsonObservation);
-            observation._synced_at = new Timestamp(System.currentTimeMillis());
-            observation._updated_at = observation._synced_at;
+            ContentValues cv = observation.getContentValues();
+            cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
             Log.d(TAG, "updating observation " + observation + "");
-            getContentResolver().update(observation.getUri(), observation.getContentValues(), null, null);
+            getContentResolver().update(observation.getUri(), cv, null, null);
         } catch (JSONException e) {
             Log.e(TAG, "JSONException: " + e.toString());
         }

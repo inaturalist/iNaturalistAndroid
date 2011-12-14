@@ -40,7 +40,6 @@ public class MenuActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.activity_list_item, MENU_ITEMS);
         SimpleAdapter adapter = new SimpleAdapter(this, 
                 (List<? extends Map<String, ?>>) MENU_ITEMS, 
                 R.layout.menu_item,
@@ -54,11 +53,11 @@ public class MenuActivity extends ListActivity {
         Map<String,String> item = (Map<String,String>) l.getItemAtPosition(position);
         String title = item.get("title");
         if (title.equals("Observations")) {
-            startActivity(new Intent(this, ObservationListActivity.class));
+            startActivity(new Intent(this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals("Map")) {
-            
+            startActivity(new Intent(this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals("Settings")) {
-            startActivity(new Intent(this, INaturalistPrefsActivity.class));
+            startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         }
     }
 }
