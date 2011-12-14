@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
+    
+    <item
+        android:id="@+id/observations_menu_menu"
+        android:alphabeticShortcut="m"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Menu"/>
+    
     <item
         android:id="@+id/observations_menu_add"
         android:alphabeticShortcut="a"
@@ -12,11 +18,5 @@
         android:alphabeticShortcut="s"
         android:icon="@android:drawable/ic_menu_rotate"
         android:title="@string/observations_menu_sync"/>
-
-    <item
-        android:id="@+id/observations_menu_preferences"
-        android:alphabeticShortcut="p"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:title="Preferences"/>
 
 </menu>

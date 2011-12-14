@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">iNaturalist</string>
-    <string name="observations_menu_add">Add observation</string>
-    <string name="observations_menu_sync">Sync observations</string>
+    <string name="observations_menu_add">Add</string>
+    <string name="observations_menu_sync">Sync</string>
     <string name="delete_observation">Delete observation</string>
     <string name="observation_deleted">Observation deleted</string>
     <string name="species_guess_hint">Species name...</string>

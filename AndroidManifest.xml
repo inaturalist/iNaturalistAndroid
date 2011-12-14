@@ -32,6 +32,11 @@
             android:label="@string/app_name"
             android:name=".INaturalistPrefsActivity" >
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:name=".MenuActivity" >
+        </activity>
 
         <provider
             android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo"

@@ -61,7 +61,7 @@ public class INaturalistPrefsActivity extends Activity {
 			}
 		});
         
-	    if (getIntent().getAction().equals(REAUTHENTICATE_ACTION)) {
+	    if (getIntent().getAction() != null && getIntent().getAction().equals(REAUTHENTICATE_ACTION)) {
 	    	signOut();
 	    	alert("Username or password was invalid, please sign in again.");
 	    }

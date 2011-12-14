@@ -37,10 +37,6 @@ public class ObservationListActivity extends ListActivity {
         		null, null, Observation.DEFAULT_SORT_ORDER);
 
         // Used to map notes entries from the database to views
-//        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-//            this, R.layout.list_item, cursor,
-//            new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION, Observation._ID }, 
-//            new int[] { R.id.speciesGuess, R.id.subContent, R.id.observationId });
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(
                 this, R.layout.list_item, cursor,
                 new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
@@ -70,8 +66,8 @@ public class ObservationListActivity extends ListActivity {
             startService(serviceIntent);
             Toast.makeText(getApplicationContext(), "Sync started", Toast.LENGTH_SHORT);
             return true;
-        case R.id.observations_menu_preferences:
-        	startActivity(new Intent(Intent.ACTION_MAIN, getIntent().getData(), this, INaturalistPrefsActivity.class));
+        case R.id.observations_menu_menu:
+            startActivity(new Intent(Intent.ACTION_MAIN, getIntent().getData(), this, MenuActivity.class));
             return true;
         default:
             return super.onOptionsItemSelected(item);
