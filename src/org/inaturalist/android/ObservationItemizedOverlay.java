@@ -16,18 +16,19 @@ import com.google.android.maps.OverlayItem;
 public class ObservationItemizedOverlay extends ItemizedOverlay {
     private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
     private Context mContext;
-    
+    private INaturalistApp app;
+
     private class ObservationOverlayItem extends OverlayItem {
         private Observation mObservation;
         public ObservationOverlayItem(GeoPoint point, String title, String snippet) {
             super(point, title, snippet);
         }
-        
+
         public ObservationOverlayItem(GeoPoint point, String title, String snippet, Observation observation) {
             super(point, title, snippet);
             mObservation = observation;
         }
-        
+
         public Observation getObservation() {
             return mObservation;
         }
@@ -40,28 +41,33 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
     public ObservationItemizedOverlay(Drawable defaultMarker, Context context) {
         this(defaultMarker);
         mContext = context;
+        app = (INaturalistApp) context.getApplicationContext();
     }
 
     @Override
     protected boolean onTap(int index) {
         ObservationOverlayItem item = (ObservationOverlayItem) mOverlays.get(index);
-        final Uri observationUri = item.getObservation().getUri();
+        Observation observation = item.getObservation();
+        final Uri observationUri = observation.getUri();
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
         dialog.setTitle(item.getTitle())
             .setMessage(item.getSnippet())
-            .setNeutralButton("Edit", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    mContext.startActivity(new Intent(Intent.ACTION_EDIT, observationUri)); 
-                }
-            })
             .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.cancel();
                 }
-            })
-            .show();
+            });
+        if (app.loggedIn() && 
+                app.currentUserLogin().equals(observation.user_login)) {
+            dialog.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    mContext.startActivity(new Intent(Intent.ACTION_EDIT, observationUri)); 
+                }
+            });
+        }
+        dialog.show();
 
         return true;
     }
@@ -70,7 +76,7 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
         mOverlays.add(overlay);
         populate();
     }
-    
+
     public void addObservation(Observation o) {
         if (o.latitude == null || o.longitude == null) {
             return;

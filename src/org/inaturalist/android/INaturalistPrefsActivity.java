@@ -27,6 +27,7 @@ public class INaturalistPrefsActivity extends Activity {
 	private SharedPreferences mPreferences;
 	private SharedPreferences.Editor mPrefEditor;
 	private ProgressDialog mProgressDialog;
+	private ActivityHelper mHelper;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class INaturalistPrefsActivity extends Activity {
 	    
 	    mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
 	    mPrefEditor = mPreferences.edit();
+	    mHelper = new ActivityHelper(this);
 	    
 	    
 	    mSignInLayout = (LinearLayout) findViewById(R.id.signIn);
@@ -63,8 +65,14 @@ public class INaturalistPrefsActivity extends Activity {
         
 	    if (getIntent().getAction() != null && getIntent().getAction().equals(REAUTHENTICATE_ACTION)) {
 	    	signOut();
-	    	alert("Username or password was invalid, please sign in again.");
+	    	mHelper.alert("Username or password was invalid, please sign in again.");
 	    }
+	}
+	
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	    mHelper = new ActivityHelper(this);
 	}
 	
 	private void toggle() {
@@ -100,11 +108,11 @@ public class INaturalistPrefsActivity extends Activity {
 
 	    protected void onPostExecute(Boolean result) {
 			if (result) {
-				Toast.makeText(mActivity, "Signed in!", Toast.LENGTH_SHORT);
+				Toast.makeText(mActivity, "Signed in!", Toast.LENGTH_SHORT).show();
 				mProgressDialog.dismiss();
 			} else {
 				mProgressDialog.dismiss();
-				alert("Sign in failed!");
+				mHelper.alert("Sign in failed!");
 				return;
 			}
 			
@@ -122,27 +130,11 @@ public class INaturalistPrefsActivity extends Activity {
 		String username = mUsernameTextView.getText().toString();
 		String password = mPasswordTextView.getText().toString();
 		if (username.isEmpty() || password.isEmpty()) {
-			alert("Username and password cannot be blank");
+			mHelper.alert("Username and password cannot be blank");
 			return;
 		}
 		
 		new SignInTask(this).execute(username, password);
-		
-//		ProgressDialog dialog = ProgressDialog.show(this, "", "Signing in...", true);
-//		
-//		if (INaturalistService.verifyCredentials(username, password)) {
-//			Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT);
-//			dialog.dismiss();
-//		} else {
-//			dialog.dismiss();
-//			alert("Sign in failed!");
-//			return;
-//		}
-//		
-//		mPrefEditor.putString("username", username);
-//		mPrefEditor.putString("password", password);
-//		mPrefEditor.commit();
-//		toggle();
 	}
 	
 	private void signOut() {
@@ -150,17 +142,5 @@ public class INaturalistPrefsActivity extends Activity {
 		mPrefEditor.remove("credentials");
 		mPrefEditor.commit();
 		toggle();
-	}
-	
-	private void alert(String msg) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(msg)
-		       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		                dialog.cancel();
-		           }
-		       });
-		AlertDialog alert = builder.create();
-		alert.show();
 	}
 }

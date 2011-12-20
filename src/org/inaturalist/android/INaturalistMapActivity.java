@@ -1,8 +1,10 @@
 package org.inaturalist.android;
 import java.util.List;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
@@ -27,6 +30,8 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
     private LocationListener mLocationListener;
     private boolean mLocationEnabled = false;
     private Location mCurrentLocation;
+    private NearbyObservationsReceiver mNearbyReceiver;
+    private ActivityHelper mHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume...");
+        mHelper = new ActivityHelper(this);
         reloadObservations();
         startLocation();
     }
@@ -107,13 +113,6 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
             }
             return true;
         case R.id.location:
-//            if (locationEnabled()) {
-//                item.setTitle("My location");
-//                stopLocation();
-//            } else {
-//                item.setTitle("Stop GPS");
-//                startLocation();
-//            }
             zoomToLocation(mCurrentLocation);
             return true;
         case R.id.menu:
@@ -121,7 +120,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
             finish();
             return true;
         case R.id.nearby:
-            //TODO reloadNearbyObservations();
+            reloadNearbyObservations();
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -138,6 +137,27 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
             mObservationsOverlay.addObservation(new Observation(c));
             c.moveToNext();
         }
+    }
+    
+    private void reloadNearbyObservations() {
+       mHelper.loading(); 
+       // register a broadcast receiver to handle observations when complete
+       mNearbyReceiver = new NearbyObservationsReceiver(mObservationsOverlay);
+       IntentFilter filter = new IntentFilter(INaturalistService.ACTION_NEARBY);
+       registerReceiver(mNearbyReceiver, filter);
+       
+       Intent serviceIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
+       GeoPoint center = mMapView.getMapCenter();
+       int span = Math.max(mMapView.getLatitudeSpan(),mMapView.getLongitudeSpan());
+       Double miny = (center.getLatitudeE6() - (span / 2)) / 1e6;
+       Double maxy = (center.getLatitudeE6() + (span / 2)) / 1e6;
+       Double minx = (center.getLongitudeE6() - (span / 2)) / 1e6;
+       Double maxx = (center.getLongitudeE6() + (span / 2)) / 1e6;
+       serviceIntent.putExtra("minx", minx);
+       serviceIntent.putExtra("maxx", maxx);
+       serviceIntent.putExtra("miny", miny);
+       serviceIntent.putExtra("maxy", maxy);
+       startService(serviceIntent);
     }
 
     private boolean locationEnabled() {
@@ -198,5 +218,40 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
         int lon = ((Double) (location.getLongitude() * 1e6)).intValue();
         GeoPoint point = new GeoPoint(lat, lon);
         mMapView.getController().animateTo(point);
+    }
+    
+    private class NearbyObservationsReceiver extends BroadcastReceiver {
+        private ObservationItemizedOverlay mOverlay;
+        
+        public NearbyObservationsReceiver(ObservationItemizedOverlay overlay) {
+            super();
+            mOverlay = overlay;
+        }
+        
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mHelper.stopLoading();
+            Log.d(TAG, "received broadcast, context: " + context + ", intent: " + intent);
+            Bundle extras = intent.getExtras();
+            String error = extras.getString("error");
+            if (error != null) {
+                mHelper.alert("Couldn't load nearby observations: " + error);
+                return;
+            }
+            Double minx = extras.getDouble("minx");
+            Double maxx = extras.getDouble("maxx");
+            Double miny = extras.getDouble("miny");
+            Double maxy = extras.getDouble("maxy");
+            Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
+                    "(latitude BETWEEN "+miny+" AND "+maxy+") AND (longitude BETWEEN "+minx+" AND "+maxx+")", // selection 
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+            c.moveToFirst();
+            while (c.isAfterLast() == false) {
+                mOverlay.addObservation(new Observation(c));
+                c.moveToNext();
+            }
+            Toast.makeText(getApplicationContext(), "Found " + c.getCount() + " observations", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -3,7 +3,6 @@ package org.inaturalist.android;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -35,6 +34,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -42,12 +42,15 @@ import android.widget.Toast;
 
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
-    public static String HOST = "http://192.168.1.12:3000";
-    public static String MEDIA_HOST = HOST;
-//    public static String HOST = "http://www.inaturalist.org";
+//    public static String HOST = "http://10.0.1.8:3000";
+//    public static String MEDIA_HOST = HOST;
+//    public static String MEDIA_HOST = "http://10.0.1.8:3001";
+    public static String HOST = "http://www.inaturalist.org";
+    public static String MEDIA_HOST = "http://www.inaturalist.org";
 //    public static String MEDIA_HOST = "http://up.inaturalist.org";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_SYNC = "sync";
+    public static String ACTION_NEARBY = "nearby";
     private String mLogin;
     private String mCredentials;
     private SharedPreferences mPreferences;
@@ -67,15 +70,23 @@ public class INaturalistService extends IntentService {
 
         try {
             // TODO dispatch intent actions
-            postObservations();
-            postPhotos();
-            getUserObservations();
-            Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
+            if (action.equals(ACTION_NEARBY)) {
+                getNearbyObservations(intent);
+            } else {
+                syncObservations();
+            }
         } catch (AuthenticationException e) {
             if (!mPassive) {
                 requestCredentials();
             }
         }
+    }
+    
+    private void syncObservations() throws AuthenticationException {
+        postObservations();
+        postPhotos();
+//        getUserObservations();
+        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
     }
 
     private void postObservations() throws AuthenticationException {
@@ -183,6 +194,31 @@ public class INaturalistService extends IntentService {
         Log.d(TAG, "json: " + json);
         if (json == null || json.length() == 0) { return; }
         syncJson(json);
+    }
+    
+    private void getNearbyObservations(Intent intent) throws AuthenticationException {
+        Bundle extras = intent.getExtras();
+        Double minx = extras.getDouble("minx");
+        Double maxx = extras.getDouble("maxx");
+        Double miny = extras.getDouble("miny");
+        Double maxy = extras.getDouble("maxy");
+        String url = HOST + "/observations.json?";
+        url += "swlat="+miny;
+        url += "&nelat="+maxy;
+        url += "&swlng="+minx;
+        url += "&nelng="+maxx;
+        JSONArray json = get(url);
+        Intent reply = new Intent(ACTION_NEARBY);
+        reply.putExtra("minx", minx);
+        reply.putExtra("maxx", maxx);
+        reply.putExtra("miny", miny);
+        reply.putExtra("maxy", maxy);
+        if (json == null) {
+            reply.putExtra("error", "Couldn't connect to server.");
+        } else {
+            syncJson(json);
+        }
+        sendBroadcast(reply);
     }
 
     private JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
@@ -370,7 +406,9 @@ public class INaturalistService extends IntentService {
         Log.d(TAG, "newIds: " + newIds);
         for (int i = 0; i < newIds.size(); i++) {			
             jsonObservation = jsonObservationsById.get(newIds.get(i));
-            getContentResolver().insert(Observation.CONTENT_URI, jsonObservation.getContentValues());
+            cv = jsonObservation.getContentValues();
+            cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+            getContentResolver().insert(Observation.CONTENT_URI, cv);
         }
     }
     

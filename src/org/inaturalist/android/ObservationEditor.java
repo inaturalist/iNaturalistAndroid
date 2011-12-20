@@ -578,13 +578,14 @@ public class ObservationEditor extends Activity {
     
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         ObservationPhoto op = new ObservationPhoto();
-        op._observation_id = mObservation._id;
         Long photoId = ContentUris.parseId(photoUri);
+        ContentValues cv = op.getContentValues();
+        cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         if (photoId > -1) {
-            op._photo_id = photoId.intValue();
+            cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
         }
         Log.d(TAG, "inserting new observation photo: " + op);
-        return getContentResolver().insert(ObservationPhoto.CONTENT_URI, op.getContentValues());
+        return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
 
     private void updateImageOrientation(Uri uri) {

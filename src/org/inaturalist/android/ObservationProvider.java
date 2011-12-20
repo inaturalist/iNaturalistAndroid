@@ -105,6 +105,7 @@ public class ObservationProvider extends ContentProvider {
 
         // Get the database and run the query
         SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+        Log.d(TAG, "selectionArgs: " + selectionArgs);
         Cursor c = qb.query(db, projection, selection, selectionArgs, null, null, orderBy);
 
         // Tell the cursor what uri to watch, so it knows when its source data changes
