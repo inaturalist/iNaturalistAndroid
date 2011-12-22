@@ -38,23 +38,26 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.Toast;
 
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
-//    public static String HOST = "http://10.0.1.8:3000";
-//    public static String MEDIA_HOST = HOST;
+    public static String HOST = "http://10.0.1.8:3000";
+    public static String MEDIA_HOST = HOST;
 //    public static String MEDIA_HOST = "http://10.0.1.8:3001";
-    public static String HOST = "http://www.inaturalist.org";
-    public static String MEDIA_HOST = "http://www.inaturalist.org";
+//    public static String HOST = "http://www.inaturalist.org";
+//    public static String MEDIA_HOST = "http://www.inaturalist.org";
 //    public static String MEDIA_HOST = "http://up.inaturalist.org";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
+    public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
+    public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
+    public static Integer AUTH_NOTIFICATION = 3;
     private String mLogin;
     private String mCredentials;
     private SharedPreferences mPreferences;
     private boolean mPassive;
+    private INaturalistApp app;
 
     public INaturalistService() {
         super("INaturalistService");
@@ -65,11 +68,11 @@ public class INaturalistService extends IntentService {
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         mLogin = mPreferences.getString("username", null);
         mCredentials = mPreferences.getString("credentials", null);
+        app = (INaturalistApp) getApplicationContext();
         String action = intent.getAction();
         mPassive = action.equals(ACTION_PASSIVE_SYNC);
 
         try {
-            // TODO dispatch intent actions
             if (action.equals(ACTION_NEARBY)) {
                 getNearbyObservations(intent);
             } else {
@@ -86,7 +89,7 @@ public class INaturalistService extends IntentService {
         postObservations();
         postPhotos();
 //        getUserObservations();
-        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
+//        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
     }
 
     private void postObservations() throws AuthenticationException {
@@ -94,13 +97,24 @@ public class INaturalistService extends IntentService {
         // query observations where _updated_at > updated_at
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
                 Observation.PROJECTION, 
-                "_updated_at > _synced_at AND _synced_at IS NOT NULL", null, Observation.DEFAULT_SORT_ORDER);
-
+                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '"+mLogin+"'", 
+                null, 
+                Observation.DEFAULT_SORT_ORDER);
+        int updatedCount = c.getCount();
+        app.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
+                "Syncing observations...", 
+                "Syncing " + c.getCount() + " observations...",
+                "Syncing...");
         // for each observation PUT to /observations/:id
         Log.d(TAG, "PUTing " + c.getCount() + " observations");
         c.moveToFirst();
         while (c.isAfterLast() == false) {
+            app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+                    "Updating observations...", 
+                    "Updating " + (c.getPosition() + 1) + " of " + c.getCount() + " existing observations...",
+                    "Syncing...");
             observation = new Observation(c);
+            Log.d(TAG, "updating ");
             handleObservationResponse(
                     observation,
                     put(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation))
@@ -113,11 +127,15 @@ public class INaturalistService extends IntentService {
         c = getContentResolver().query(Observation.CONTENT_URI, 
                 Observation.PROJECTION, 
                 "id IS NULL", null, Observation.DEFAULT_SORT_ORDER);
-
+        int createdCount = c.getCount();
         // for each observation POST to /observations/
         Log.d(TAG, "POSTing " + c.getCount() + " observations");
         c.moveToFirst();
         while (c.isAfterLast() == false) {
+            app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+                    "Posting new observations...", 
+                    "Posting " + (c.getPosition() + 1) + " of " + c.getCount() + " new observations..", 
+                    "Syncing...");
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
@@ -126,20 +144,33 @@ public class INaturalistService extends IntentService {
             c.moveToNext();
         }
         c.close();
+        
+        app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+                "Observation sync complete", 
+                createdCount + " new, " + updatedCount + " updated.",
+                "Sync complete!");
     }
     
     private void postPhotos() throws AuthenticationException {
         ObservationPhoto op;
+        int createdCount = 0;
         // query observations where _updated_at > updated_at
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                 ObservationPhoto.PROJECTION, 
                 "_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
-
+        if (c.getCount() == 0) {
+            return;
+        }
+            
         // for each observation PUT to /observations/:id
         Log.d(TAG, "POSTing " + c.getCount() + " observation photos");
         ContentValues cv;
         c.moveToFirst();
         while (c.isAfterLast() == false) {
+            app.notify(SYNC_PHOTOS_NOTIFICATION, 
+                    "Posting new photos...", 
+                    "Posting " + (c.getPosition() + 1) + " of " + c.getCount() + " new photos..",
+                    "Syncing...");
             op = new ObservationPhoto(c);
             ArrayList <NameValuePair> params = op.getParams();
             // http://stackoverflow.com/questions/2935946/sending-images-using-http-post
@@ -178,12 +209,17 @@ public class INaturalistService extends IntentService {
                 cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                 Log.d(TAG, "updating observation photo " + op + "");
                 getContentResolver().update(op.getUri(), cv, null, null);
+                createdCount += 1;
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }
             c.moveToNext();
         }
         c.close();
+        app.notify(SYNC_PHOTOS_NOTIFICATION, 
+                "Photo sync complete", 
+                "Postied " + createdCount + " new photos.",
+                "Sync complete!");
     }
 
     private void getUserObservations() throws AuthenticationException {
@@ -248,7 +284,7 @@ public class INaturalistService extends IntentService {
         if (params != null) {
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
             for (int i = 0; i < params.size(); i++) {
-                Log.d(TAG, "adding " + params.get(i).getName() + " to params");
+//                Log.d(TAG, "adding " + params.get(i).getName() + " to params");
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
                     // If the key equals to "image", we use FileBody to transfer the data
                     entity.addPart(params.get(i).getName(), new FileBody(new File (params.get(i).getValue())));
@@ -292,6 +328,8 @@ public class INaturalistService extends IntentService {
                 return json;
             case HttpStatus.SC_UNAUTHORIZED:
                 throw new AuthenticationException();
+            case HttpStatus.SC_GONE:
+                // TODO create notification that informs user some observations have been deleted on the server, click should take them to an activity that lets them decide whether to delete them locally or post them as new observations
             default:
                 Log.e(TAG, response.getStatusLine().toString());
             }
@@ -317,12 +355,12 @@ public class INaturalistService extends IntentService {
 
     private void requestCredentials() {
         stopSelf();
-        Intent intent = new Intent(INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
+        Intent intent = new Intent(
+                mLogin == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
                 null, getBaseContext(), INaturalistPrefsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        Log.d(TAG, "trying to stop self");
-        getApplication().startActivity(intent);
+        app.sweepingNotify(AUTH_NOTIFICATION, "Please sign in", "Please sign in to your iNaturalist account or sign up for a new one.", null, intent);
+//        getApplication().startActivity(intent);
     }
 
     public static boolean verifyCredentials(String credentials) {

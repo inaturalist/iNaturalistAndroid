@@ -6,20 +6,25 @@
 
 package org.inaturalist.android;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import android.database.Cursor;
 
-public class BetterCursor {
+public class BetterCursor implements Serializable {
 	public final static String TAG = "BetterCursor";
 	private Cursor mCursor;
+	private Integer mPosition;
 	
 	public BetterCursor(Cursor c) {
 		mCursor = c;
+		if (mCursor.getPosition() == -1) mCursor.moveToFirst();
+		mPosition = mCursor.getPosition();
 	}
 	
 	
 	public Object get(String name) {
+	    mCursor.moveToPosition(mPosition);
 		if (mCursor.isNull(mCursor.getColumnIndexOrThrow(name))) {
 			return null;
 		}
@@ -32,10 +37,12 @@ public class BetterCursor {
 	}
 	
 	public Boolean getBoolean(String name) {
+	    mCursor.moveToPosition(mPosition);
 		return (1 == mCursor.getInt(mCursor.getColumnIndexOrThrow(name)));
 	}
 	
 	public Integer getInt(String name) {
+	    mCursor.moveToPosition(mPosition);
 		if (mCursor.isNull(mCursor.getColumnIndexOrThrow(name))) {
 			return null;
 		}
@@ -54,6 +61,7 @@ public class BetterCursor {
 	}
 	
 	public Float getFloat(String name) {
+	    mCursor.moveToPosition(mPosition);
 		if (mCursor.isNull(mCursor.getColumnIndexOrThrow(name))) {
 			return null;
 		}
@@ -61,9 +69,14 @@ public class BetterCursor {
 	}
 	
 	public Timestamp getTimestamp(String name) {
+	    mCursor.moveToPosition(mPosition);
 		if (mCursor.isNull(mCursor.getColumnIndexOrThrow(name))) {
 			return null;
 		}
 		return new Timestamp(mCursor.getLong(mCursor.getColumnIndexOrThrow(name)));
+	}
+	
+	public int getCount() {
+	    return mCursor.getCount();
 	}
 }

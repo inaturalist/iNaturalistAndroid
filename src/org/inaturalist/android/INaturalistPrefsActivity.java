@@ -127,8 +127,8 @@ public class INaturalistPrefsActivity extends Activity {
 	}
 	
 	private void signIn() {
-		String username = mUsernameTextView.getText().toString();
-		String password = mPasswordTextView.getText().toString();
+		String username = mUsernameTextView.getText().toString().trim();
+		String password = mPasswordTextView.getText().toString().trim();
 		if (username.isEmpty() || password.isEmpty()) {
 			mHelper.alert("Username and password cannot be blank");
 			return;

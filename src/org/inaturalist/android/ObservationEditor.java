@@ -68,6 +68,7 @@ public class ObservationEditor extends Activity {
     private LocationListener mLocationListener;
     private Location mCurrentLocation;
     private Long mLocationRequestedAt;
+    private INaturalistApp app;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
@@ -228,8 +229,10 @@ public class ObservationEditor extends Activity {
                 refDate.setHours(mObservation.time_observed_at.getHours());
                 refDate.setSeconds(mObservation.time_observed_at.getSeconds());
                 mObservation.observed_on_string = refDate.toLocaleString();
+                Log.d(TAG, "set observed_on_string using time: " + mObservation.observed_on_string);
             } else {
                 mObservation.observed_on_string = mDateFormat.format(refDate);
+                Log.d(TAG, "set observed_on_string using date: " + mObservation.observed_on_string);
             }
         }
         if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
@@ -303,6 +306,7 @@ public class ObservationEditor extends Activity {
         Log.d(TAG, "onResuming");
         super.onResume();
         initUi();
+        app = (INaturalistApp) getApplicationContext();
     }
 
     /**
@@ -311,6 +315,8 @@ public class ObservationEditor extends Activity {
 
     private final Boolean isDeleteable() {
         if (mCursor == null) { return true; }
+        Cursor c = getContentResolver().query(mUri, new String[] {Observation._ID}, null, null, null);
+        if (c.getCount() == 0) { return true; }
         if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
         if (mSpeciesGuessTextView.length() == 0 
                 && mDescriptionTextView.length() == 0
@@ -327,23 +333,23 @@ public class ObservationEditor extends Activity {
         if (mCursor == null) { return; }
 
         uiToObservation();
-
-        Log.d(TAG, "saving mObservation.latitude: " + mObservation.latitude);
-        Log.d(TAG, "saving mUri: " + mUri);
-
-        try {
-            getContentResolver().update(mUri, mObservation.getContentValues(), null, null);
-        } catch (NullPointerException e) {
-            Log.e(TAG, e.getMessage());
+        if (mObservation.isDirty()) {
+            try {
+                getContentResolver().update(mUri, mObservation.getContentValues(), null, null);
+            } catch (NullPointerException e) {
+                Log.e(TAG, e.getMessage());
+            }
         }
+        app.checkSyncNeeded();
     }
 
     private final void delete() {
         if (mCursor == null) { return; }
         try {
             getContentResolver().delete(mUri, null, null);
+            app.checkSyncNeeded();
         } catch (NullPointerException e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, e.toString());
         }
     }
 
@@ -392,8 +398,7 @@ public class ObservationEditor extends Activity {
         }
     };
 
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener =
-            new TimePickerDialog.OnTimeSetListener() {
+    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hour, int minute) {
             Timestamp refDate;
             if (mObservation.time_observed_at != null) {
@@ -559,7 +564,7 @@ public class ObservationEditor extends Activity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Image captured and saved to mFileUri specified in the Intent
-                Toast.makeText(this, "Image saved to (hopefully):\n" + mFileUri, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Image saved", Toast.LENGTH_LONG).show();
                 updateImageOrientation(mFileUri);
                 createObservationPhotoForPhoto(mFileUri);
                 updateImages();

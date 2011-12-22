@@ -6,6 +6,7 @@
 
 package org.inaturalist.android;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,7 +19,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 
-public class BetterJSONObject {
+public class BetterJSONObject implements Serializable {
 	public final static String TAG = "BetterJSONObject";
 	private JSONObject mJSONObject;
 	private DateFormat mDateTimeFormat; 

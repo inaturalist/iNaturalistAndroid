@@ -71,7 +71,7 @@ public class ObservationProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
             String sortOrder) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-
+        
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             qb.setTables(Observation.TABLE_NAME);
@@ -162,8 +162,14 @@ public class ObservationProvider extends ContentProvider {
         Long now = Long.valueOf(System.currentTimeMillis());
 
         // Make sure that the fields are all set
-        values.put(Observation._CREATED_AT, now);
-        values.put(Observation._UPDATED_AT, now);
+        if  (values.containsKey(Observation._SYNCED_AT)) {
+            // if synced at is being set, updated at should *always* match exactly
+            values.put(Observation._UPDATED_AT, values.getAsLong(Observation._SYNCED_AT));
+            values.put(Observation._CREATED_AT, values.getAsLong(Observation._SYNCED_AT));
+        } else {
+            values.put(Observation._CREATED_AT, now);
+            values.put(Observation._UPDATED_AT, now);
+        }
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         Log.d(TAG, "inserting " + uri + ", table: " + tableName + ", values: " + values);
@@ -171,6 +177,7 @@ public class ObservationProvider extends ContentProvider {
         if (rowId > 0) {
             Uri newUri = ContentUris.withAppendedId(contentUri, rowId);
             getContext().getContentResolver().notifyChange(newUri, null);
+//            getContext().getContentResolver().notifyChange(contentUri, null);
             return newUri;
         }
 
@@ -182,12 +189,15 @@ public class ObservationProvider extends ContentProvider {
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         int count;
         String id;
+        Uri contentUri;
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             count = db.delete(Observation.TABLE_NAME, where, whereArgs);
+            contentUri = Observation.CONTENT_URI;
             break;
         case Observation.OBSERVATION_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
+            contentUri = Observation.CONTENT_URI;
             count = db.delete(Observation.TABLE_NAME, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             db.delete(ObservationPhoto.TABLE_NAME, 
@@ -196,9 +206,11 @@ public class ObservationProvider extends ContentProvider {
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             count = db.delete(ObservationPhoto.TABLE_NAME, where, whereArgs);
+            contentUri = ObservationPhoto.CONTENT_URI;
             break;
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
+            contentUri = ObservationPhoto.CONTENT_URI;
             count = db.delete(ObservationPhoto.TABLE_NAME, ObservationPhoto._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
@@ -207,6 +219,7 @@ public class ObservationProvider extends ContentProvider {
         }
 
         getContext().getContentResolver().notifyChange(uri, null);
+        getContext().getContentResolver().notifyChange(contentUri, null);
         return count;
     }
 
@@ -215,6 +228,7 @@ public class ObservationProvider extends ContentProvider {
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         int count;
         String id;
+        Uri contentUri;
         if  (values.containsKey(Observation._SYNCED_AT)) {
             // if synced at is being set, updated at should *always* match exactly
             values.put(Observation._UPDATED_AT, values.getAsLong(Observation._SYNCED_AT));
@@ -225,9 +239,11 @@ public class ObservationProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             count = db.update(Observation.TABLE_NAME, values, where, whereArgs);
+            contentUri = Observation.CONTENT_URI;
             break;
         case Observation.OBSERVATION_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
+            contentUri = Observation.CONTENT_URI;
             count = db.update(Observation.TABLE_NAME, values, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             
@@ -240,17 +256,20 @@ public class ObservationProvider extends ContentProvider {
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             count = db.update(ObservationPhoto.TABLE_NAME, values, where, whereArgs);
+            contentUri = ObservationPhoto.CONTENT_URI;
             break;
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
+            contentUri = ObservationPhoto.CONTENT_URI;
             count = db.update(ObservationPhoto.TABLE_NAME, values, ObservationPhoto._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
         default:
             throw new IllegalArgumentException("Unknown URI " + uri);
         }
-
+        
         getContext().getContentResolver().notifyChange(uri, null);
+        getContext().getContentResolver().notifyChange(contentUri, null);
         return count;
     }
 }

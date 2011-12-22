@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
@@ -17,6 +18,7 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
     private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
     private Context mContext;
     private INaturalistApp app;
+    private static String TAG = "ObservationItemizedOverlay";
 
     private class ObservationOverlayItem extends OverlayItem {
         private Observation mObservation;
@@ -42,12 +44,15 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
         this(defaultMarker);
         mContext = context;
         app = (INaturalistApp) context.getApplicationContext();
+        populate();
     }
 
     @Override
     protected boolean onTap(int index) {
         ObservationOverlayItem item = (ObservationOverlayItem) mOverlays.get(index);
+        Log.d(TAG, "item: " + item);
         Observation observation = item.getObservation();
+        Log.d(TAG, "observation: " + observation);
         final Uri observationUri = observation.getUri();
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
@@ -58,8 +63,9 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
                     dialog.cancel();
                 }
             });
-        if (app.loggedIn() && 
-                app.currentUserLogin().equals(observation.user_login)) {
+        String login = app.currentUserLogin();
+        Log.d(TAG, "login: " + login);
+        if (login != null && login.equals(observation.user_login)) {
             dialog.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

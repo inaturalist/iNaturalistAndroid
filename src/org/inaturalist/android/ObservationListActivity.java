@@ -73,7 +73,7 @@ public class ObservationListActivity extends ListActivity {
         case R.id.observations_menu_sync:
             Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, this, INaturalistService.class);
             startService(serviceIntent);
-            Toast.makeText(getApplicationContext(), "Sync started", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "Sync started", Toast.LENGTH_SHORT).show();
             return true;
         case R.id.observations_menu_menu:
             startActivity(new Intent(this, MenuActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
