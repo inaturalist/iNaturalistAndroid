@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,6 +52,7 @@ public class ObservationEditor extends Activity {
     private TextView mDescriptionTextView;
     private Button mSaveButton;
     private Button mAddPhotoButton;
+    private TextView mObservedOnStringTextView;
     private Button mObservedOnButton;
     private Button mTimeObservedAtButton;
     private Gallery mGallery;
@@ -62,8 +64,6 @@ public class ObservationEditor extends Activity {
     private ImageButton mLocationStopRefreshButton;
     private Uri mFileUri;
     private Observation mObservation;
-    private SimpleDateFormat mDateFormat;
-    private SimpleDateFormat mTimeFormat;
     private LocationManager mLocationManager;
     private LocationListener mLocationListener;
     private Location mCurrentLocation;
@@ -85,7 +85,10 @@ public class ObservationEditor extends Activity {
         Log.d(TAG, "onCreate, savedInstanceState: " + savedInstanceState);
         final Intent intent = getIntent();
         setContentView(R.layout.observation_editor);
-        
+        if (app == null) {
+            app = (INaturalistApp) getApplicationContext();
+        }
+
         if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
@@ -118,18 +121,16 @@ public class ObservationEditor extends Activity {
             } else {
                 mUri = intent.getData();
             }
-            
+
             mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
             Log.d(TAG, "deserialized observation: " + mObservation);
         }
-
-        mDateFormat = new SimpleDateFormat("MMM d, yyyy");
-        mTimeFormat = new SimpleDateFormat("h:mm a z");
 
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
         mSaveButton = (Button) findViewById(R.id.save);
         mAddPhotoButton = (Button) findViewById(R.id.add_photo);
+        mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
         mObservedOnButton = (Button) findViewById(R.id.observed_on);
         mTimeObservedAtButton = (Button) findViewById(R.id.time_observed_at);
         mGallery = (Gallery) findViewById(R.id.gallery);
@@ -192,6 +193,27 @@ public class ObservationEditor extends Activity {
             }
         });
     }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState...");
+        // Save away the original text, so we still have it if the activity
+        // needs to be killed while paused.
+        if (mFileUri != null) { outState.putString("mFileUri", mFileUri.toString()); }
+        if (mUri != null) { outState.putString("mUri", mUri.toString()); }
+        uiToObservation();
+        outState.putSerializable("mObservation", mObservation);
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResuming");
+        super.onResume();
+        initUi();
+        if (app == null) {
+            app = (INaturalistApp) getApplicationContext();
+        }
+    }
 
     private void initUi() {
         if (mCursor == null) {
@@ -207,6 +229,7 @@ public class ObservationEditor extends Activity {
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
             mObservation.observed_on = new Timestamp(System.currentTimeMillis());
             mObservation.time_observed_at = mObservation.observed_on;
+            mObservation.observed_on_string = app.formatDatetime(mObservation.time_observed_at);
             if (mObservation.latitude == null && mCurrentLocation == null) {
                 getLocation();
             }
@@ -218,21 +241,16 @@ public class ObservationEditor extends Activity {
         observationToUi();
         updateImages();
     }
-    
+
     private void uiToObservation() {
         mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
         mObservation.description = mDescriptionTextView.getText().toString();
-        if (mObservation.observed_on != null || mObservation.time_observed_at != null) {
-            Timestamp refDate = mObservation.observed_on;
-            if (refDate == null) { refDate = mObservation.time_observed_at; }
-            if (mObservation.time_observed_at != null) {
-                refDate.setHours(mObservation.time_observed_at.getHours());
-                refDate.setSeconds(mObservation.time_observed_at.getSeconds());
-                mObservation.observed_on_string = refDate.toLocaleString();
-                Log.d(TAG, "set observed_on_string using time: " + mObservation.observed_on_string);
-            } else {
-                mObservation.observed_on_string = mDateFormat.format(refDate);
-                Log.d(TAG, "set observed_on_string using date: " + mObservation.observed_on_string);
+        if (mObservedOnStringTextView.getText() == null || mObservedOnStringTextView.getText().length() == 0) {
+            mObservation.observed_on_string = null; 
+        } else {
+            mObservation.observed_on_string = mObservedOnStringTextView.getText().toString();
+            if (mObservation.observed_on == null) {
+
             }
         }
         if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
@@ -251,19 +269,22 @@ public class ObservationEditor extends Activity {
             mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
         }
     }
-    
+
     private void observationToUi() {
         mSpeciesGuessTextView.setText(mObservation.species_guess);
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {
             mObservedOnButton.setText("Set date");
         } else {
-            mObservedOnButton.setText(mDateFormat.format(mObservation.observed_on));
+            mObservedOnButton.setText(app.shortFormatDate(mObservation.observed_on));
+        }
+        if (mObservation.observed_on_string != null) {
+            mObservedOnStringTextView.setText(mObservation.observed_on_string);
         }
         if (mObservation.time_observed_at == null) {
             mTimeObservedAtButton.setText("Set time");
         } else {
-            mTimeObservedAtButton.setText(mTimeFormat.format(mObservation.time_observed_at));
+            mTimeObservedAtButton.setText(app.shortFormatTime(mObservation.time_observed_at));
         }
         if (mObservation.latitude != null) {
             mLatitudeView.setText(mObservation.latitude.toString());
@@ -288,25 +309,6 @@ public class ObservationEditor extends Activity {
                 save();
             }
         }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState...");
-        // Save away the original text, so we still have it if the activity
-        // needs to be killed while paused.
-        if (mFileUri != null) { outState.putString("mFileUri", mFileUri.toString()); }
-        if (mUri != null) { outState.putString("mUri", mUri.toString()); }
-        uiToObservation();
-        outState.putSerializable("mObservation", mObservation);
-    }
-
-    @Override
-    protected void onResume() {
-        Log.d(TAG, "onResuming");
-        super.onResume();
-        initUi();
-        app = (INaturalistApp) getApplicationContext();
     }
 
     /**
@@ -335,17 +337,19 @@ public class ObservationEditor extends Activity {
         uiToObservation();
         if (mObservation.isDirty()) {
             try {
+                Log.d(TAG, "updating " + mObservation);
                 getContentResolver().update(mUri, mObservation.getContentValues(), null, null);
+                app.checkSyncNeeded();
             } catch (NullPointerException e) {
                 Log.e(TAG, e.getMessage());
             }
         }
-        app.checkSyncNeeded();
     }
 
     private final void delete() {
         if (mCursor == null) { return; }
         try {
+            Log.d(TAG, "deleting " + mObservation);
             getContentResolver().delete(mUri, null, null);
             app.checkSyncNeeded();
         } catch (NullPointerException e) {
@@ -389,27 +393,55 @@ public class ObservationEditor extends Activity {
     /**
      * Date/Time Pickers
      */
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
+    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            Log.d(TAG, "year: " + year);
-            mObservation.observed_on = new Timestamp(year - 1900, month, day, 0, 0, 0, 0);
+            Timestamp refDate;
+            Timestamp date;
+            try {
+                refDate = new Timestamp(INaturalistApp.DATETIME_FORMAT.parse(mObservedOnStringTextView.getText().toString()).getTime());
+                date = new Timestamp(year - 1900, month, day, refDate.getHours(), refDate.getMinutes(), refDate.getSeconds(), refDate.getNanos());
+                if (date.getTime() > System.currentTimeMillis()) {
+                    date = new Timestamp(System.currentTimeMillis());
+                }
+                mObservedOnStringTextView.setText(INaturalistApp.DATETIME_FORMAT.format(date));
+            } catch (ParseException dateTimeException) {
+                date = new Timestamp(year - 1900, month, day, 0, 0, 0, 0);
+                if (date.getTime() > System.currentTimeMillis()) {
+                    date = new Timestamp(System.currentTimeMillis());
+                }
+                mObservedOnStringTextView.setText(app.formatDate(date));
+            }
             updateUi();
         }
     };
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hour, int minute) {
+            //            Timestamp refDate = getBestObservedOnTimestamp();
             Timestamp refDate;
-            if (mObservation.time_observed_at != null) {
-                refDate = mObservation.time_observed_at; 
-            } else if (mObservation.observed_on != null) { 
-                refDate = mObservation.observed_on;
-            } else {
-                refDate = new Timestamp(System.currentTimeMillis());
+            Date date;
+            try {
+                date = INaturalistApp.DATETIME_FORMAT.parse(mObservedOnStringTextView.getText().toString());
+                refDate = new Timestamp(date.getTime());
+            } catch (ParseException dateTimeException) {
+                try {
+                    date = INaturalistApp.DATE_FORMAT.parse(mObservedOnStringTextView.getText().toString());
+                    refDate = new Timestamp(date.getTime());
+                } catch (ParseException dateException) {
+                    if (mObservation.time_observed_at != null) {
+                        refDate = mObservation.time_observed_at; 
+                    } else if (mObservation.observed_on != null) { 
+                        refDate = mObservation.observed_on;
+                    } else {
+                        refDate = new Timestamp(System.currentTimeMillis());
+                    }
+                }
             }
-            mObservation.time_observed_at = new Timestamp(refDate.getYear(), 
-                    refDate.getMonth(), refDate.getDate(), hour, minute, 0, 0);
+            Timestamp datetime = new Timestamp(refDate.getYear(), refDate.getMonth(), refDate.getDate(), hour, minute, 0, 0);
+            if (datetime.getTime() > System.currentTimeMillis()) {
+                datetime = new Timestamp(System.currentTimeMillis());
+            }
+            mObservedOnStringTextView.setText(app.formatDatetime(datetime));
             updateUi();
         }
     };
@@ -477,7 +509,7 @@ public class ObservationEditor extends Activity {
         // Register the listener with the Location Manager to receive location updates
         mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
-        
+
         mLocationRequestedAt = System.currentTimeMillis();
         mLocationProgressView.setVisibility(View.VISIBLE);
         mLocationRefreshButton.setVisibility(View.GONE);
@@ -580,7 +612,7 @@ public class ObservationEditor extends Activity {
             mFileUri = null; // don't let this hang around
         }
     }
-    
+
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         ObservationPhoto op = new ObservationPhoto();
         Long photoId = ContentUris.parseId(photoUri);

@@ -1,5 +1,8 @@
 package org.inaturalist.android;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -7,18 +10,18 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.ContentObserver;
 import android.database.Cursor;
-import android.os.Handler;
-import android.util.Log;
 
 public class INaturalistApp extends Application {
     private SharedPreferences mPrefs;
     private NotificationManager mNotificationManager;
+    public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+    public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("MMM d, yyyy");
+    public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("h:mm a z");
     private static Integer SYNC_NOTIFICATION = 3;
     
     public void checkSyncNeeded() {
-        Log.d("INAT", "observation changed");
         Cursor oCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
                 "_synced_at IS NULL OR (_updated_at > _synced_at)", null, Observation.DEFAULT_SORT_ORDER);
         Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, 
@@ -92,4 +95,9 @@ public class INaturalistApp extends Application {
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         mNotificationManager.notify(id, notification);
     }
+    
+    public String formatDate(Timestamp date) { return DATE_FORMAT.format(date); }
+    public String formatDatetime(Timestamp date) { return DATETIME_FORMAT.format(date); }
+    public String shortFormatDate(Timestamp date) { return SHORT_DATE_FORMAT.format(date); }
+    public String shortFormatTime(Timestamp date) { return SHORT_TIME_FORMAT.format(date); }
 }

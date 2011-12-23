@@ -252,6 +252,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
                 c.moveToNext();
             }
             Toast.makeText(getApplicationContext(), "Found " + c.getCount() + " observations", Toast.LENGTH_SHORT).show();
+            unregisterReceiver(mNearbyReceiver);
         }
     }
 }

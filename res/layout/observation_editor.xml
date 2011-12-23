@@ -37,6 +37,12 @@
             <requestFocus />
         </EditText>
 
+        <EditText
+            android:id="@+id/observed_on_string"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
