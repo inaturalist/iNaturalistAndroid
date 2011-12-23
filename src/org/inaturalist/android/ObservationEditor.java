@@ -32,6 +32,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -51,6 +52,7 @@ public class ObservationEditor extends Activity {
     private TextView mSpeciesGuessTextView;
     private TextView mDescriptionTextView;
     private Button mSaveButton;
+    private Button mCancelButton;
     private Button mAddPhotoButton;
     private TextView mObservedOnStringTextView;
     private Button mObservedOnButton;
@@ -69,6 +71,7 @@ public class ObservationEditor extends Activity {
     private Location mCurrentLocation;
     private Long mLocationRequestedAt;
     private INaturalistApp app;
+    private boolean mCanceled = false;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
@@ -129,6 +132,7 @@ public class ObservationEditor extends Activity {
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
         mSaveButton = (Button) findViewById(R.id.save);
+        mCancelButton = (Button) findViewById(R.id.cancel);
         mAddPhotoButton = (Button) findViewById(R.id.add_photo);
         mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
         mObservedOnButton = (Button) findViewById(R.id.observed_on);
@@ -147,6 +151,14 @@ public class ObservationEditor extends Activity {
             @Override
             public void onClick(View v) {
                 save();
+                finish();
+            }
+        });
+        
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCanceled = true;
                 finish();
             }
         });
@@ -203,6 +215,20 @@ public class ObservationEditor extends Activity {
         if (mUri != null) { outState.putString("mUri", mUri.toString()); }
         uiToObservation();
         outState.putSerializable("mObservation", mObservation);
+    }
+    
+    @Override
+    protected void onPause() {
+        Log.d(TAG, "pausing");
+        super.onPause();
+        stopGetLocation();
+        if (isFinishing()) {
+            if (isDeleteable()) {
+                delete();
+            } else if (!mCanceled) {
+                save();
+            }
+        }
     }
 
     @Override
@@ -294,20 +320,6 @@ public class ObservationEditor extends Activity {
         }
         if (mObservation.positional_accuracy != null) {
             mAccuracyView.setText(mObservation.positional_accuracy.toString());
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d(TAG, "pausing");
-        super.onPause();
-        stopGetLocation();
-        if (isFinishing()) {
-            if (isDeleteable()) {
-                delete();
-            } else {
-                save();
-            }
         }
     }
 

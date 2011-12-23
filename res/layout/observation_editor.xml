@@ -31,8 +31,8 @@
             android:layout_height="50dp"
             android:layout_margin="3dp"
             android:hint="@string/species_guess_hint"
-            android:singleLine="true"
-            android:imeOptions="actionDone" >
+            android:imeOptions="actionDone"
+            android:singleLine="true" >
 
             <requestFocus />
         </EditText>
@@ -166,7 +166,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <EditText
+        <org.inaturalist.android.MultilineEditText
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -177,12 +177,28 @@
             android:hint="Brief description..."
             android:imeOptions="actionDone" />
 
-        <Button
-            android:id="@+id/save"
+        <LinearLayout
+            android:id="@+id/actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Save" />
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="0.5"
+                android:text="Cancel" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:layout_weight="0.5"
+                android:text="Save" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
