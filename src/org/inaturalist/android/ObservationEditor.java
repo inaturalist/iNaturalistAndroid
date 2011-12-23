@@ -416,14 +416,15 @@ public class ObservationEditor extends Activity {
                     date = new Timestamp(System.currentTimeMillis());
                 }
                 mObservedOnStringTextView.setText(INaturalistApp.DATETIME_FORMAT.format(date));
+                mObservedOnButton.setText(app.shortFormatDate(date));
             } catch (ParseException dateTimeException) {
                 date = new Timestamp(year - 1900, month, day, 0, 0, 0, 0);
                 if (date.getTime() > System.currentTimeMillis()) {
                     date = new Timestamp(System.currentTimeMillis());
                 }
                 mObservedOnStringTextView.setText(app.formatDate(date));
+                mObservedOnButton.setText(app.shortFormatDate(date));
             }
-            updateUi();
         }
     };
 
@@ -454,7 +455,7 @@ public class ObservationEditor extends Activity {
                 datetime = new Timestamp(System.currentTimeMillis());
             }
             mObservedOnStringTextView.setText(app.formatDatetime(datetime));
-            updateUi();
+            mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
         }
     };
 

@@ -41,11 +41,11 @@ import android.util.Log;
 
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
-    public static String HOST = "http://10.0.1.8:3000";
-    public static String MEDIA_HOST = HOST;
+//    public static String HOST = "http://10.0.1.8:3000";
+//    public static String MEDIA_HOST = HOST;
 //    public static String MEDIA_HOST = "http://10.0.1.8:3001";
-//    public static String HOST = "http://www.inaturalist.org";
-//    public static String MEDIA_HOST = "http://www.inaturalist.org";
+    public static String HOST = "http://www.inaturalist.org";
+    public static String MEDIA_HOST = "http://www.inaturalist.org";
 //    public static String MEDIA_HOST = "http://up.inaturalist.org";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_SYNC = "sync";
