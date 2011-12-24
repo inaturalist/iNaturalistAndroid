@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
+import org.apache.commons.lang3.StringUtils;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -32,7 +35,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -109,6 +111,27 @@ public class ObservationEditor extends Activity {
                 }
                 setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
                 getIntent().setAction(Intent.ACTION_INSERT);
+                break;
+            case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
+                mFileUri = (Uri) intent.getExtras().get("photoUri");
+                if (mFileUri == null) {
+                    Toast.makeText(getApplicationContext(), "Photo not specified", Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
+                }
+                mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
+                if (mUri == null) {
+                    Log.e(TAG, "Failed to insert new observation into " + uri);
+                    finish();
+                    return;
+                }
+                mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
+                mObservation = new Observation(mCursor);
+                updateImageOrientation(mFileUri);
+                createObservationPhotoForPhoto(mFileUri);
+                setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
+                getIntent().setAction(Intent.ACTION_INSERT);
+                mFileUri = null;
                 break;
             default:
                 Log.e(TAG, "Unknown action, exiting");
@@ -568,7 +591,7 @@ public class ObservationEditor extends Activity {
 
     private boolean locationRequestIsOld() {
         long delta = System.currentTimeMillis() - mLocationRequestedAt;
-        Log.d(TAG, "locationr request running for " + delta / 1000 + " seconds");
+//        Log.d(TAG, "locationr request running for " + delta / 1000 + " seconds");
         return delta > ONE_MINUTE;
     }
 
@@ -663,11 +686,20 @@ public class ObservationEditor extends Activity {
     }
 
     protected void updateImages() {
-        mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
-                new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION}, 
-                MediaStore.MediaColumns.TITLE + " LIKE 'observation_"+ mObservation._created_at.getTime() + "_%'", 
-                null, 
-                null);
+        Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+                ObservationPhoto.PROJECTION, 
+                "_observation_id=?", 
+                new String[]{mObservation._id.toString()}, 
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+        ArrayList<Integer> photoIds = new ArrayList<Integer>();
+        opCursor.moveToFirst();
+        while (opCursor.isAfterLast() == false) {
+            photoIds.add(opCursor.getInt(opCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID)));
+            opCursor.moveToNext();
+        }
+        mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
+                MediaStore.MediaColumns._ID + " IN ("+StringUtils.join(photoIds, ",")+")", null, null);
         if (mImageCursor.getCount() > 0) {
             mImageCursor.moveToFirst();
             mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));

@@ -1,20 +1,35 @@
 package org.inaturalist.android;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.ListActivity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class MenuActivity extends ListActivity {
     public static String TAG = "MenuActivity";
     static final List<Map> MENU_ITEMS;
+    static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
+    private Button mAddObservationButton;
+    private Button mTakePictureButton;
+    private Uri mPhotoUri;
+    private INaturalistApp app;
+    private ActivityHelper mHelper;
     
     static {
         MENU_ITEMS = new ArrayList<Map>();
@@ -45,7 +60,70 @@ public class MenuActivity extends ListActivity {
                 R.layout.menu_item,
                 new String[] {"title"},
                 new int[] {R.id.title});
+        ListView lv = getListView();
+        LinearLayout header = (LinearLayout) getLayoutInflater().inflate(R.layout.menu_header, lv, false);
+        lv.addHeaderView(header, null, false);
         setListAdapter(adapter);
+        
+        if (app == null) { app = (INaturalistApp) getApplicationContext(); }
+        if (mHelper == null) { mHelper = new ActivityHelper(this);}
+        
+        mAddObservationButton = (Button) findViewById(R.id.add_observation);
+        mTakePictureButton = (Button) findViewById(R.id.take_picture);
+        
+        mAddObservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI));
+            }
+        });
+        
+        mTakePictureButton.setOnClickListener(new View.OnClickListener() {           
+            @Override
+            public void onClick(View v) {
+                mPhotoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
+                Log.d(TAG, "starting camera with " + mPhotoUri);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+        });
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (app == null) { app = (INaturalistApp) getApplicationContext(); }
+//        if (mHelper == null) { mHelper = new ActivityHelper(this);}
+    }
+    
+    @Override
+    public void onPause() {
+        super.onPause();
+        mHelper.stopLoading();
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data);
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                mHelper.loading("Processing...");
+                Intent intent = new Intent(Intent.ACTION_INSERT, ObservationPhoto.CONTENT_URI, this, ObservationEditor.class);
+                intent.putExtra("photoUri", mPhotoUri);
+                startActivity(intent);
+            } else if (resultCode == RESULT_CANCELED) {
+                // User cancelled the image capture
+                Log.d(TAG, "cancelled camera");
+                getContentResolver().delete(mPhotoUri, null, null);
+            } else {
+                // Image capture failed, advise user
+                Toast.makeText(this, "Blast, something went wrong:\n" + mPhotoUri, Toast.LENGTH_LONG).show();
+                Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data.getData());
+                getContentResolver().delete(mPhotoUri, null, null);
+            }
+            mPhotoUri = null; // don't let this hang around
+        }
     }
     
     @Override

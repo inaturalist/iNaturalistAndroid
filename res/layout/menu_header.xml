@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:maxHeight="50dp"
+        android:src="@drawable/logo_text" >
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/add_observation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.5"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:gravity="center_vertical"
+            android:text="Add observation" />
+
+        <Button
+            android:id="@+id/take_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.5"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:gravity="center_vertical"
+            android:text="Take picture" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -207,8 +207,10 @@ public class ObservationProvider extends ContentProvider {
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             count = db.delete(ObservationPhoto.TABLE_NAME, where, whereArgs);
             contentUri = ObservationPhoto.CONTENT_URI;
+            // TODO delete associated photos
             break;
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
+            // TODO delete associated photo
             id = uri.getPathSegments().get(1);
             contentUri = ObservationPhoto.CONTENT_URI;
             count = db.delete(ObservationPhoto.TABLE_NAME, ObservationPhoto._ID + "=" + id
