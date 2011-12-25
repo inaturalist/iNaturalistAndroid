@@ -395,6 +395,15 @@ public class ObservationEditor extends Activity {
     /**
      * MENUS
      */
+    
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem viewItem = menu.findItem(R.id.view);
+        if (mObservation.id == null) {
+            viewItem.setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -410,6 +419,11 @@ public class ObservationEditor extends Activity {
             delete();
             Toast.makeText(this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
             finish();
+            return true;
+        case R.id.view:
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(INaturalistService.HOST + "/observations/"+mObservation.id));
+            startActivity(i);
             return true;
         default:
             return super.onOptionsItemSelected(item);

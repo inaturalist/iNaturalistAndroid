@@ -50,9 +50,9 @@ public final class R {
         public static final int mapview=0x7f060004;
         public static final int menu=0x7f060027;
         public static final int nearby=0x7f060029;
-        public static final int observations_menu_add=0x7f06002d;
-        public static final int observations_menu_menu=0x7f06002c;
-        public static final int observations_menu_sync=0x7f06002e;
+        public static final int observations_menu_add=0x7f06002e;
+        public static final int observations_menu_menu=0x7f06002d;
+        public static final int observations_menu_sync=0x7f06002f;
         public static final int observed_on=0x7f06000e;
         public static final int observed_on_string=0x7f06000d;
         public static final int password=0x7f060022;
@@ -72,6 +72,7 @@ public final class R {
         public static final int time_observed_at=0x7f06000f;
         public static final int title=0x7f060009;
         public static final int username=0x7f060021;
+        public static final int view=0x7f06002c;
     }
     public static final class layout {
         public static final int list_item=0x7f030000;
