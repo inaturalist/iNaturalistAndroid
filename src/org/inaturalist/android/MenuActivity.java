@@ -65,6 +65,11 @@ public class MenuActivity extends ListActivity {
         lv.addHeaderView(header, null, false);
         setListAdapter(adapter);
         
+        if  (savedInstanceState != null) {
+            String photoUri = savedInstanceState.getString("mFileUri");
+            if (photoUri != null) {mPhotoUri = Uri.parse(photoUri);}
+        }
+        
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
         if (mHelper == null) { mHelper = new ActivityHelper(this);}
         
@@ -101,6 +106,11 @@ public class MenuActivity extends ListActivity {
     public void onPause() {
         super.onPause();
         mHelper.stopLoading();
+    }
+    
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (mPhotoUri != null) { outState.putString("mFileUri", mPhotoUri.toString()); }
     }
     
     @Override

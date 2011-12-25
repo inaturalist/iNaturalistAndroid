@@ -374,10 +374,10 @@ public class ObservationEditor extends Activity {
             try {
                 Log.d(TAG, "updating " + mObservation);
                 getContentResolver().update(mUri, mObservation.getContentValues(), null, null);
-                app.checkSyncNeeded();
             } catch (NullPointerException e) {
-                Log.e(TAG, e.getMessage());
+                Log.e(TAG, "failed to save observation:" + e);
             }
+            app.checkSyncNeeded();
         }
     }
 
@@ -386,10 +386,10 @@ public class ObservationEditor extends Activity {
         try {
             Log.d(TAG, "deleting " + mObservation);
             getContentResolver().delete(mUri, null, null);
-            app.checkSyncNeeded();
         } catch (NullPointerException e) {
-            Log.e(TAG, e.toString());
+            Log.e(TAG, "Failed to delete observation: " + e);
         }
+        app.checkSyncNeeded();
     }
 
     /**
