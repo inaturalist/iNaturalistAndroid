@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
@@ -24,6 +26,7 @@ public class INaturalistPrefsActivity extends Activity {
 	private TextView mSignOutLabel;
 	private Button mSignInButton;
 	private Button mSignOutButton;
+	private Button mSignUpButton;
 	private SharedPreferences mPreferences;
 	private SharedPreferences.Editor mPrefEditor;
 	private ProgressDialog mProgressDialog;
@@ -46,6 +49,7 @@ public class INaturalistPrefsActivity extends Activity {
 	    mSignOutLabel = (TextView) findViewById(R.id.signOutLabel);
 	    mSignInButton = (Button) findViewById(R.id.signInButton);
 	    mSignOutButton = (Button) findViewById(R.id.signOutButton);
+	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
 	    
 	    toggle();
 	    
@@ -62,6 +66,24 @@ public class INaturalistPrefsActivity extends Activity {
 				signOut();
 			}
 		});
+        
+        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHelper.confirm("Ready to sign up?", 
+                        "You're about to visit iNaturalist.org, where you can sign up for a new account. " + 
+                        "Once you've confirmed your new account by clicking the link in the confirmation " + 
+                        "email you'll receive, you can come back here to enter your username and password.", 
+                        new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(INaturalistService.HOST + "/users/new"));
+                        startActivity(i);
+                    }
+                });
+            }
+        });
         
 	    if (getIntent().getAction() != null && getIntent().getAction().equals(REAUTHENTICATE_ACTION)) {
 	    	signOut();

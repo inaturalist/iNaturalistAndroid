@@ -22,6 +22,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +48,12 @@ public class INaturalistService extends IntentService {
     public static String HOST = "http://www.inaturalist.org";
     public static String MEDIA_HOST = "http://www.inaturalist.org";
 //    public static String MEDIA_HOST = "http://up.inaturalist.org";
+    public static String USER_AGENT = "iNaturalist/"+INaturalistApp.VERSION + " (" +
+            "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
+            "SDK " + android.os.Build.VERSION.SDK + "; " +
+            android.os.Build.DEVICE + " " +
+            android.os.Build.MODEL + " " + 
+            android.os.Build.PRODUCT + ")";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
@@ -218,7 +225,7 @@ public class INaturalistService extends IntentService {
         c.close();
         app.notify(SYNC_PHOTOS_NOTIFICATION, 
                 "Photo sync complete", 
-                "Postied " + createdCount + " new photos.",
+                "Posted " + createdCount + " new photos.",
                 "Sync complete!");
     }
 
@@ -277,6 +284,7 @@ public class INaturalistService extends IntentService {
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
         Log.d(TAG, method.toUpperCase() + " " + url);
         DefaultHttpClient client = new DefaultHttpClient();
+        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
 
         HttpRequestBase request = method == "get" ? new HttpGet(url) : new HttpPost(url);
 
@@ -365,6 +373,7 @@ public class INaturalistService extends IntentService {
 
     public static boolean verifyCredentials(String credentials) {
         DefaultHttpClient client = new DefaultHttpClient();
+        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
         String url = HOST + "/observations/new.json";
         HttpRequestBase request = new HttpGet(url);
         request.setHeader("Authorization", "Basic "+credentials);

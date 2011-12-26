@@ -11,20 +11,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.util.Log;
 
 public class INaturalistApp extends Application {
     private SharedPreferences mPrefs;
     private NotificationManager mNotificationManager;
+    public static Integer VERSION = 1;
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("MMMM d, yyyy h:mm:ss a z");
     public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("MMM d, yyyy");
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("h:mm a z");
-    private static Integer SYNC_NOTIFICATION = 3;
+    private static Integer SYNC_NOTIFICATION = 3; 
     
     @Override
     public void onCreate() {
         super.onCreate();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        
+        String s="Debug-infos:";
+        s += "\n OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
+        s += "\n OS API Level: " + android.os.Build.VERSION.SDK;
+        s += "\n Device: " + android.os.Build.DEVICE;
+        s += "\n Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
+        Log.d("INAT", s);
     }
     
     public void checkSyncNeeded() {

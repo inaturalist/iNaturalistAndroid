@@ -383,8 +383,13 @@ public class ObservationEditor extends Activity {
         uiToObservation();
         if (mObservation.isDirty()) {
             try {
+                ContentValues cv = mObservation.getContentValues();
+                if (mObservation.latitude_changed()) {
+                    cv.put(Observation.POSITIONING_METHOD, "gps");
+                    cv.put(Observation.POSITIONING_DEVICE, "gps");
+                }
                 Log.d(TAG, "updating " + mObservation);
-                getContentResolver().update(mUri, mObservation.getContentValues(), null, null);
+                getContentResolver().update(mUri, cv, null, null);
             } catch (NullPointerException e) {
                 Log.e(TAG, "failed to save observation:" + e);
             }

@@ -27,17 +27,17 @@ public final class R {
     public static final class id {
         public static final int accuracy=0x7f060017;
         public static final int actions=0x7f060006;
-        public static final int add=0x7f06002a;
+        public static final int add=0x7f06002b;
         public static final int add_observation=0x7f060007;
         public static final int add_photo=0x7f06000c;
         public static final int cancel=0x7f06001d;
-        public static final int delete=0x7f06002b;
+        public static final int delete=0x7f06002c;
         public static final int description=0x7f06001c;
         public static final int gallery=0x7f06000b;
         public static final int imageView1=0x7f060005;
         public static final int imageView2=0x7f06000a;
         public static final int latitude=0x7f060013;
-        public static final int layers=0x7f060028;
+        public static final int layers=0x7f060029;
         public static final int linearLayout1=0x7f060000;
         public static final int linearLayout2=0x7f060001;
         public static final int location=0x7f060010;
@@ -48,20 +48,21 @@ public final class R {
         public static final int locationStopRefreshButton=0x7f06001b;
         public static final int longitude=0x7f060015;
         public static final int mapview=0x7f060004;
-        public static final int menu=0x7f060027;
-        public static final int nearby=0x7f060029;
-        public static final int observations_menu_add=0x7f06002e;
-        public static final int observations_menu_menu=0x7f06002d;
-        public static final int observations_menu_sync=0x7f06002f;
+        public static final int menu=0x7f060028;
+        public static final int nearby=0x7f06002a;
+        public static final int observations_menu_add=0x7f06002f;
+        public static final int observations_menu_menu=0x7f06002e;
+        public static final int observations_menu_sync=0x7f060030;
         public static final int observed_on=0x7f06000e;
         public static final int observed_on_string=0x7f06000d;
         public static final int password=0x7f060022;
         public static final int save=0x7f06001e;
         public static final int signIn=0x7f06001f;
         public static final int signInButton=0x7f060023;
-        public static final int signOut=0x7f060024;
-        public static final int signOutButton=0x7f060026;
-        public static final int signOutLabel=0x7f060025;
+        public static final int signOut=0x7f060025;
+        public static final int signOutButton=0x7f060027;
+        public static final int signOutLabel=0x7f060026;
+        public static final int signUpButton=0x7f060024;
         public static final int speciesGuess=0x7f060002;
         public static final int subContent=0x7f060003;
         public static final int tableRow1=0x7f060012;
@@ -72,7 +73,7 @@ public final class R {
         public static final int time_observed_at=0x7f06000f;
         public static final int title=0x7f060009;
         public static final int username=0x7f060021;
-        public static final int view=0x7f06002c;
+        public static final int view=0x7f06002d;
     }
     public static final class layout {
         public static final int list_item=0x7f030000;
