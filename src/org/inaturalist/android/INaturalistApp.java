@@ -96,7 +96,7 @@ public class INaturalistApp extends Application {
         if (mNotificationManager == null) {
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }
-        Notification notification = new Notification(R.drawable.ic_stat_inaturalist, ticker, System.currentTimeMillis());
+        Notification notification = new Notification(R.drawable.ic_launcher, ticker, System.currentTimeMillis());
         notification.setLatestEventInfo(getApplicationContext(), title, content, pendingIntent);
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         mNotificationManager.notify(id, notification);

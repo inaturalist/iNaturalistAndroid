@@ -35,6 +35,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -225,6 +226,16 @@ public class ObservationEditor extends Activity {
             @Override
             public void onClick(View v) {
                 stopGetLocation();
+            }
+        });
+        
+        mGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+                Gallery g = (Gallery) parent;
+                Uri uri = ((GalleryCursorAdapter) g.getAdapter()).getItemUri(position);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }
@@ -736,11 +747,18 @@ public class ObservationEditor extends Activity {
         }
 
         public Object getItem(int position) {
-            return position;
+            mCursor.moveToPosition(position);
+            return mCursor;
         }
 
         public long getItemId(int position) {
             return position;
+        }
+        
+        public Uri getItemUri(int position) {
+            mCursor.moveToPosition(position);
+            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
+            return ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageId);
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
