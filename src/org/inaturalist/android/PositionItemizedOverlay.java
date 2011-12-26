@@ -29,6 +29,7 @@ public class PositionItemizedOverlay extends ItemizedOverlay {
     }
     
     public void updateLocation(Location location) {
+        if (location == null) return;
         int lat = ((Double) (location.getLatitude() * 1e6)).intValue();
         int lon = ((Double) (location.getLongitude() * 1e6)).intValue();
         GeoPoint point = new GeoPoint(lat, lon);
