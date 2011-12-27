@@ -27,13 +27,6 @@ public class INaturalistApp extends Application {
     public void onCreate() {
         super.onCreate();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        
-        String s="Debug-infos:";
-        s += "\n OS Version: " + System.getProperty("os.version") + "(" + android.os.Build.VERSION.INCREMENTAL + ")";
-        s += "\n OS API Level: " + android.os.Build.VERSION.SDK;
-        s += "\n Device: " + android.os.Build.DEVICE;
-        s += "\n Model (and Product): " + android.os.Build.MODEL + " ("+ android.os.Build.PRODUCT + ")";
-        Log.d("INAT", s);
     }
     
     public void checkSyncNeeded() {

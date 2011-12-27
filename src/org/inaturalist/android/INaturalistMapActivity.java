@@ -36,13 +36,13 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate...");
+        // Log.d(TAG, "onCreate...");
         setContentView(R.layout.map);
         mMapView = (MapView) findViewById(R.id.mapview);
         mMapView.setBuiltInZoomControls(true);
         mOverlays = mMapView.getOverlays();
 
-        Log.d(TAG, "mObservationsOverlay: " + mObservationsOverlay);
+        // Log.d(TAG, "mObservationsOverlay: " + mObservationsOverlay);
         // this might need to happen in reloadObservations
         mObservationsOverlay = new ObservationItemizedOverlay(
                 this.getResources().getDrawable(R.drawable.mm_34_dodger_blue),
@@ -54,7 +54,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
     @Override 
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume...");
+        // Log.d(TAG, "onResume...");
         mHelper = new ActivityHelper(this);
         reloadObservations();
         startLocation();
@@ -198,7 +198,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
 
     private void stopLocation() {
         if (mLocationManager != null && mLocationListener != null) {
-            Log.d(TAG, "removing location updates");
+            // Log.d(TAG, "removing location updates");
             mLocationManager.removeUpdates(mLocationListener);
             mOverlays.remove(mPositionOverlay);
             mLocationEnabled = false;
@@ -235,7 +235,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
         @Override
         public void onReceive(Context context, Intent intent) {
             mHelper.stopLoading();
-            Log.d(TAG, "received broadcast, context: " + context + ", intent: " + intent);
+            // Log.d(TAG, "received broadcast, context: " + context + ", intent: " + intent);
             Bundle extras = intent.getExtras();
             String error = extras.getString("error");
             if (error != null) {

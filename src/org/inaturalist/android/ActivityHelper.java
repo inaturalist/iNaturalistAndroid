@@ -52,7 +52,7 @@ public class ActivityHelper {
         }
         if (title == null) { title = ""; }
         if (msg == null) { msg = "Loading..."; }
-        Log.d(TAG, "title: " + title + ", msg: " + msg);
+        // Log.d(TAG, "title: " + title + ", msg: " + msg);
         mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
     }
 

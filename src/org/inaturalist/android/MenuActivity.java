@@ -87,7 +87,7 @@ public class MenuActivity extends ListActivity {
             @Override
             public void onClick(View v) {
                 mPhotoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
-                Log.d(TAG, "starting camera with " + mPhotoUri);
+                // Log.d(TAG, "starting camera with " + mPhotoUri);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, mPhotoUri);
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -115,7 +115,7 @@ public class MenuActivity extends ListActivity {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data);
+        // Log.d(TAG, "requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 mHelper.loading("Processing...");
@@ -124,7 +124,7 @@ public class MenuActivity extends ListActivity {
                 startActivity(intent);
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
-                Log.d(TAG, "cancelled camera");
+                // Log.d(TAG, "cancelled camera");
                 getContentResolver().delete(mPhotoUri, null, null);
             } else {
                 // Image capture failed, advise user

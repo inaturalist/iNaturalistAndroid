@@ -16,22 +16,22 @@ import android.util.Log;
  */
 public class SQLiteCursorFactory implements CursorFactory {
 
-	private boolean debugQueries = false;
+  private boolean debugQueries = false;
 
-	public SQLiteCursorFactory() {
-		this.debugQueries = false;
-	}
+  public SQLiteCursorFactory() {
+    this.debugQueries = false;
+  }
 
-	public SQLiteCursorFactory(boolean debugQueries) {
-		this.debugQueries = debugQueries;
-	}
+  public SQLiteCursorFactory(boolean debugQueries) {
+    this.debugQueries = debugQueries;
+  }
 
-	@Override
-	public Cursor newCursor(SQLiteDatabase db, SQLiteCursorDriver masterQuery, 
-			String editTable, SQLiteQuery query) {
-		if (debugQueries) {
-			Log.d("SQL", query.toString());
-		}
-		return new SQLiteCursor(db, masterQuery, editTable, query);
-	}
+  @Override
+  public Cursor newCursor(SQLiteDatabase db, SQLiteCursorDriver masterQuery, 
+      String editTable, SQLiteQuery query) {
+    if (debugQueries) {
+      Log.d("SQL", query.toString());
+    }
+    return new SQLiteCursor(db, masterQuery, editTable, query);
+  }
 }

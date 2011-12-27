@@ -39,7 +39,7 @@ public class ObservationProvider extends ContentProvider {
 
         DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, sFactory, DATABASE_VERSION);
-            Log.d(TAG, "created DatabaseHelper");
+            // Log.d(TAG, "created DatabaseHelper");
         }
 
         @Override
@@ -105,7 +105,7 @@ public class ObservationProvider extends ContentProvider {
 
         // Get the database and run the query
         SQLiteDatabase db = mOpenHelper.getReadableDatabase();
-        Log.d(TAG, "selectionArgs: " + selectionArgs);
+        // Log.d(TAG, "selectionArgs: " + selectionArgs);
         Cursor c = qb.query(db, projection, selection, selectionArgs, null, null, orderBy);
 
         // Tell the cursor what uri to watch, so it knows when its source data changes
@@ -172,7 +172,7 @@ public class ObservationProvider extends ContentProvider {
         }
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        Log.d(TAG, "inserting " + uri + ", table: " + tableName + ", values: " + values);
+        // Log.d(TAG, "inserting " + uri + ", table: " + tableName + ", values: " + values);
         long rowId = db.insert(tableName, BaseColumns._ID, values);
         if (rowId > 0) {
             Uri newUri = ContentUris.withAppendedId(contentUri, rowId);

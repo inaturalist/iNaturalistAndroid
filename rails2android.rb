@@ -223,10 +223,7 @@ public class #{klass.name} implements BaseColumns, Serializable {
   
   public boolean isDirty() {
     #{vars.map {|name, type| 
-      "if (#{name}_changed()) {\n"+
-        "Log.d(TAG, \"#{name}: \" + #{name} + \", #{name}_was: \" + #{name}_was);\n" +
-        "return true;\n" +
-      "}\n"
+      "if (#{name}_changed()) { return true; }\n"
     }}
     return false;
   }

@@ -113,7 +113,7 @@ public class INaturalistService extends IntentService {
                 "Syncing " + c.getCount() + " observations...",
                 "Syncing...");
         // for each observation PUT to /observations/:id
-        Log.d(TAG, "PUTing " + c.getCount() + " observations");
+        // Log.d(TAG, "PUTing " + c.getCount() + " observations");
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
@@ -121,7 +121,7 @@ public class INaturalistService extends IntentService {
                     "Updating " + (c.getPosition() + 1) + " of " + c.getCount() + " existing observations...",
                     "Syncing...");
             observation = new Observation(c);
-            Log.d(TAG, "updating ");
+            // Log.d(TAG, "updating ");
             handleObservationResponse(
                     observation,
                     put(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation))
@@ -136,7 +136,7 @@ public class INaturalistService extends IntentService {
                 "id IS NULL", null, Observation.DEFAULT_SORT_ORDER);
         int createdCount = c.getCount();
         // for each observation POST to /observations/
-        Log.d(TAG, "POSTing " + c.getCount() + " observations");
+        // Log.d(TAG, "POSTing " + c.getCount() + " observations");
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
@@ -170,7 +170,7 @@ public class INaturalistService extends IntentService {
         }
             
         // for each observation PUT to /observations/:id
-        Log.d(TAG, "POSTing " + c.getCount() + " observation photos");
+        // Log.d(TAG, "POSTing " + c.getCount() + " observation photos");
         ContentValues cv;
         c.moveToFirst();
         while (c.isAfterLast() == false) {
@@ -188,8 +188,8 @@ public class INaturalistService extends IntentService {
                     null, 
                     MediaStore.Images.Media.DEFAULT_SORT_ORDER);
             
-            Log.d(TAG, "photoUri: " + photoUri);
-            Log.d(TAG, "pc.getCount(): " + pc.getCount());
+            // Log.d(TAG, "photoUri: " + photoUri);
+            // Log.d(TAG, "pc.getCount(): " + pc.getCount());
             if (pc.getCount() == 0) {
                 // photo has been deleted, destroy the ObservationPhoto
                 getContentResolver().delete(op.getUri(), null, null);
@@ -204,7 +204,7 @@ public class INaturalistService extends IntentService {
             // TODO LATER resize the image for upload, maybe a 1024px jpg
             JSONArray response = post(MEDIA_HOST + "/observation_photos.json", params);
             try {
-                Log.d(TAG, "response: " + response);
+                // Log.d(TAG, "response: " + response);
                 if (response == null || response.length() != 1) {
                     break;
                 }
@@ -214,7 +214,7 @@ public class INaturalistService extends IntentService {
                 op.merge(jsonObservationPhoto);
                 cv = op.getContentValues();
                 cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                Log.d(TAG, "updating observation photo " + op + "");
+                // Log.d(TAG, "updating observation photo " + op + "");
                 getContentResolver().update(op.getUri(), cv, null, null);
                 createdCount += 1;
             } catch (JSONException e) {
@@ -234,7 +234,7 @@ public class INaturalistService extends IntentService {
             return;
         }
         JSONArray json = get(HOST + "/observations/" + mLogin + ".json");
-        Log.d(TAG, "json: " + json);
+        // Log.d(TAG, "json: " + json);
         if (json == null || json.length() == 0) { return; }
         syncJson(json);
     }
@@ -282,7 +282,7 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
-        Log.d(TAG, method.toUpperCase() + " " + url);
+        // Log.d(TAG, method.toUpperCase() + " " + url);
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
 
@@ -353,7 +353,7 @@ public class INaturalistService extends IntentService {
         if (mCredentials != null) { return true; }
 
         // request login unless passive
-        Log.d(TAG, "ensuring creds, mPassive: " + mPassive);
+        // Log.d(TAG, "ensuring creds, mPassive: " + mPassive);
         if (!mPassive) {
             throw new AuthenticationException();
         }
@@ -383,7 +383,7 @@ public class INaturalistService extends IntentService {
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
-            Log.d(TAG, "OK: " + content.toString());
+            // Log.d(TAG, "OK: " + content.toString());
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return true;
             } else {
@@ -448,9 +448,6 @@ public class INaturalistService extends IntentService {
         // insert new
         newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
         Collections.sort(newIds);
-        Log.d(TAG, "ids: " + ids);
-        Log.d(TAG, "existingIds: " + existingIds);
-        Log.d(TAG, "newIds: " + newIds);
         for (int i = 0; i < newIds.size(); i++) {			
             jsonObservation = jsonObservationsById.get(newIds.get(i));
             cv = jsonObservation.getContentValues();
@@ -467,7 +464,7 @@ public class INaturalistService extends IntentService {
     
     private void handleObservationResponse(Observation observation, JSONArray response) {
         try {
-            Log.d(TAG, "response: " + response);
+            // Log.d(TAG, "response: " + response);
             if (response == null || response.length() != 1) {
                 return;
             }
@@ -477,10 +474,10 @@ public class INaturalistService extends IntentService {
             observation.merge(jsonObservation);
             ContentValues cv = observation.getContentValues();
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-            Log.d(TAG, "updating observation " + observation + "");
+            // Log.d(TAG, "updating observation " + observation + "");
             getContentResolver().update(observation.getUri(), cv, null, null);
         } catch (JSONException e) {
-            Log.e(TAG, "JSONException: " + e.toString());
+            // Log.d(TAG, "JSONException: " + e.toString());
         }
     }
 
