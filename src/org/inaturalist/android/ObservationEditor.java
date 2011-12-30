@@ -380,6 +380,7 @@ public class ObservationEditor extends Activity {
                 && mLongitudeView.length() == 0) {
             return true;
         }
+        if (Intent.ACTION_INSERT.equals(getIntent().getAction()) && mCanceled) return true;
         return false;
     }
 
