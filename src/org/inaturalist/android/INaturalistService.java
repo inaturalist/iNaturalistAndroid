@@ -189,8 +189,6 @@ public class INaturalistService extends IntentService {
                     null, 
                     MediaStore.Images.Media.DEFAULT_SORT_ORDER);
             
-            // Log.d(TAG, "photoUri: " + photoUri);
-            // Log.d(TAG, "pc.getCount(): " + pc.getCount());
             if (pc.getCount() == 0) {
                 // photo has been deleted, destroy the ObservationPhoto
                 getContentResolver().delete(op.getUri(), null, null);

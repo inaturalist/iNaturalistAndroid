@@ -1,5 +1,9 @@
 package org.inaturalist.android;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.StringUtils;
+
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -12,6 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -71,36 +76,33 @@ public class ObservationProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
             String sortOrder) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        String orderBy;
         
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             qb.setTables(Observation.TABLE_NAME);
             qb.setProjectionMap(Observation.PROJECTION_MAP);
+            orderBy = TextUtils.isEmpty(sortOrder) ? Observation.DEFAULT_SORT_ORDER : sortOrder;
             break;
         case Observation.OBSERVATION_ID_URI_CODE:
             qb.setTables(Observation.TABLE_NAME);
             qb.setProjectionMap(Observation.PROJECTION_MAP);
             qb.appendWhere(Observation._ID + "=" + uri.getPathSegments().get(1));
+            orderBy = TextUtils.isEmpty(sortOrder) ? Observation.DEFAULT_SORT_ORDER : sortOrder;
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             qb.setTables(ObservationPhoto.TABLE_NAME);
             qb.setProjectionMap(ObservationPhoto.PROJECTION_MAP);
+            orderBy = TextUtils.isEmpty(sortOrder) ? ObservationPhoto.DEFAULT_SORT_ORDER : sortOrder;
             break;
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
             qb.setTables(ObservationPhoto.TABLE_NAME);
             qb.setProjectionMap(ObservationPhoto.PROJECTION_MAP);
             qb.appendWhere(ObservationPhoto._ID + "=" + uri.getPathSegments().get(1));
+            orderBy = TextUtils.isEmpty(sortOrder) ? ObservationPhoto.DEFAULT_SORT_ORDER : sortOrder;
             break;
         default:
             throw new IllegalArgumentException("Unknown URI " + uri);
-        }
-
-        // If no sort order is specified use the default
-        String orderBy;
-        if (TextUtils.isEmpty(sortOrder)) {
-            orderBy = Observation.DEFAULT_SORT_ORDER;
-        } else {
-            orderBy = sortOrder;
         }
 
         // Get the database and run the query
@@ -192,6 +194,7 @@ public class ObservationProvider extends ContentProvider {
         Uri contentUri;
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
+            // TODO delete associated observation photos
             count = db.delete(Observation.TABLE_NAME, where, whereArgs);
             contentUri = Observation.CONTENT_URI;
             break;
@@ -200,18 +203,16 @@ public class ObservationProvider extends ContentProvider {
             contentUri = Observation.CONTENT_URI;
             count = db.delete(Observation.TABLE_NAME, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
-            db.delete(ObservationPhoto.TABLE_NAME, 
-                    ObservationPhoto._OBSERVATION_ID + "=" + id, 
-                    whereArgs);
+            delete(ObservationPhoto.CONTENT_URI, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
+            deleteAssociatedImages(where);
             count = db.delete(ObservationPhoto.TABLE_NAME, where, whereArgs);
             contentUri = ObservationPhoto.CONTENT_URI;
-            // TODO delete associated photos
             break;
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
-            // TODO delete associated photo
             id = uri.getPathSegments().get(1);
+            deleteAssociatedImages("_id = "+id);
             contentUri = ObservationPhoto.CONTENT_URI;
             count = db.delete(ObservationPhoto.TABLE_NAME, ObservationPhoto._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
@@ -223,6 +224,28 @@ public class ObservationProvider extends ContentProvider {
         getContext().getContentResolver().notifyChange(uri, null);
         getContext().getContentResolver().notifyChange(contentUri, null);
         return count;
+    }
+    
+    private void deleteAssociatedImages(String where) {
+        Cursor c = query(ObservationPhoto.CONTENT_URI, 
+                new String[] {ObservationPhoto._ID, ObservationPhoto._PHOTO_ID}, 
+                where, 
+                null, 
+                null);
+        if (c.getCount() == 0) return;
+        BetterCursor bc;
+        ArrayList<Integer> photoIds = new ArrayList<Integer>();
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            bc = new BetterCursor(c);
+            photoIds.add(bc.getInt(ObservationPhoto._PHOTO_ID));
+            c.moveToNext();
+        }
+        String photoWhere = MediaStore.Images.ImageColumns._ID+" IN ("+StringUtils.join(photoIds, ",")+")";
+        getContext().getContentResolver().delete(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
+                photoWhere, 
+                null);
     }
 
     @Override

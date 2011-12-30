@@ -31,12 +31,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -75,6 +78,7 @@ public class ObservationEditor extends Activity {
     private Location mCurrentLocation;
     private Long mLocationRequestedAt;
     private INaturalistApp app;
+    private ActivityHelper mHelper;
     private boolean mCanceled = false;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -94,6 +98,9 @@ public class ObservationEditor extends Activity {
         setContentView(R.layout.observation_editor);
         if (app == null) {
             app = (INaturalistApp) getApplicationContext();
+        }
+        if (mHelper == null) {
+            mHelper = new ActivityHelper(this);
         }
 
         if (savedInstanceState == null) {
@@ -169,6 +176,8 @@ public class ObservationEditor extends Activity {
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
         mLocationRefreshButton = (ImageButton) findViewById(R.id.locationRefreshButton);
         mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
+        
+        registerForContextMenu(mGallery);
 
         initUi();
 
@@ -179,7 +188,7 @@ public class ObservationEditor extends Activity {
                 finish();
             }
         });
-        
+
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,7 +238,7 @@ public class ObservationEditor extends Activity {
                 stopGetLocation();
             }
         });
-        
+
         mGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
@@ -246,7 +255,7 @@ public class ObservationEditor extends Activity {
             }
         });
     }
-    
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // Log.d(TAG, "onSaveInstanceState...");
@@ -257,7 +266,7 @@ public class ObservationEditor extends Activity {
         uiToObservation();
         outState.putSerializable("mObservation", mObservation);
     }
-    
+
     @Override
     protected void onPause() {
         // Log.d(TAG, "pausing");
@@ -396,13 +405,12 @@ public class ObservationEditor extends Activity {
                     cv.put(Observation.POSITIONING_METHOD, "gps");
                     cv.put(Observation.POSITIONING_DEVICE, "gps");
                 }
-                // Log.d(TAG, "updating " + mObservation);
                 getContentResolver().update(mUri, cv, null, null);
             } catch (NullPointerException e) {
                 Log.e(TAG, "failed to save observation:" + e);
             }
-            app.checkSyncNeeded();
         }
+        app.checkSyncNeeded();
     }
 
     private final void delete() {
@@ -419,7 +427,7 @@ public class ObservationEditor extends Activity {
     /**
      * MENUS
      */
-    
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem viewItem = menu.findItem(R.id.view);
@@ -451,6 +459,25 @@ public class ObservationEditor extends Activity {
             return true;
         default:
             return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.gallery_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+        case R.id.delete:
+            Log.d(TAG, "selected delete from menu");
+            deletePhoto(info.position);
+        default:
+            return super.onContextItemSelected(item);
         }
     }
 
@@ -633,7 +660,7 @@ public class ObservationEditor extends Activity {
 
     private boolean locationRequestIsOld() {
         long delta = System.currentTimeMillis() - mLocationRequestedAt;
-//        Log.d(TAG, "locationr request running for " + delta / 1000 + " seconds");
+        //        Log.d(TAG, "locationr request running for " + delta / 1000 + " seconds");
         return delta > ONE_MINUTE;
     }
 
@@ -703,6 +730,13 @@ public class ObservationEditor extends Activity {
         // Log.d(TAG, "inserting new observation photo: " + op);
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
+    
+    private void deletePhoto(int position) {
+        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+        Long photoId = adapter.getItemId(position);
+        getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_photo_id = " + photoId, null);
+        updateImages();
+    }
 
     private void updateImageOrientation(Uri uri) {
         String[] projection = {
@@ -743,10 +777,8 @@ public class ObservationEditor extends Activity {
         mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
                 MediaStore.MediaColumns._ID + " IN ("+StringUtils.join(photoIds, ",")+")", null, null);
-        if (mImageCursor.getCount() > 0) {
-            mImageCursor.moveToFirst();
-            mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
-        }
+        mImageCursor.moveToFirst();
+        mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
     }
 
     public class GalleryCursorAdapter extends BaseAdapter {
@@ -770,9 +802,10 @@ public class ObservationEditor extends Activity {
         }
 
         public long getItemId(int position) {
-            return position;
+            mCursor.moveToPosition(position);
+            return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
         }
-        
+
         public Uri getItemUri(int position) {
             mCursor.moveToPosition(position);
             int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
