@@ -11,7 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.util.Log;
+import android.net.Uri;
+import android.webkit.MimeTypeMap;
 
 public class INaturalistApp extends Application {
     private SharedPreferences mPrefs;

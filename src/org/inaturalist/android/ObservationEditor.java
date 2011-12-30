@@ -236,7 +236,8 @@ public class ObservationEditor extends Activity {
                 Gallery g = (Gallery) parent;
                 Uri uri = ((GalleryCursorAdapter) g.getAdapter()).getItemUri(position);
                 Log.d(TAG, "uri: " + uri);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, MediaStore.Images.Media.CONTENT_TYPE);
                 try {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
@@ -695,6 +696,7 @@ public class ObservationEditor extends Activity {
         Long photoId = ContentUris.parseId(photoUri);
         ContentValues cv = op.getContentValues();
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
+        cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         if (photoId > -1) {
             cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
         }
