@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu"
+        android:alphabeticShortcut="m"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Menu"/>
+
+    <item
+        android:id="@+id/reload"
+        android:alphabeticShortcut="r"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:title="Reload"></item>
+
+    <item
+        android:id="@+id/view"
+        android:alphabeticShortcut="v"
+        android:icon="@drawable/ic_menu_new_window"
+        android:title="View in browser"></item>
+
+</menu>

@@ -46,6 +46,11 @@ public class MenuActivity extends ListActivity {
         MENU_ITEMS.add(map);
         
         map = new HashMap<String,String>();
+        map.put("title", "Updates feed");
+        map.put("description", "Updates from people you follow on iNat");
+        MENU_ITEMS.add(map);
+        
+        map = new HashMap<String,String>();
         map.put("title", "Settings");
         map.put("description", "Sign in/out");
         MENU_ITEMS.add(map);
@@ -144,6 +149,8 @@ public class MenuActivity extends ListActivity {
             startActivity(new Intent(this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals("Map")) {
             startActivity(new Intent(this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+        } else if (title.equals("Updates feed")) {
+            startActivity(new Intent(this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals("Settings")) {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         }

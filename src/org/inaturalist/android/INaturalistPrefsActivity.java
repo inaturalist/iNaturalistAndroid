@@ -143,6 +143,7 @@ public class INaturalistPrefsActivity extends Activity {
 					(mUsername + ":" + mPassword).getBytes(), Base64.URL_SAFE|Base64.NO_WRAP
 			);
 			mPrefEditor.putString("credentials", credentials);
+			mPrefEditor.putString("password", mPassword);
 			mPrefEditor.commit();
 			toggle();
 	    }
@@ -162,6 +163,7 @@ public class INaturalistPrefsActivity extends Activity {
 	private void signOut() {
 		mPrefEditor.remove("username");
 		mPrefEditor.remove("credentials");
+		mPrefEditor.remove("password");
 		mPrefEditor.commit();
 		toggle();
 	}
