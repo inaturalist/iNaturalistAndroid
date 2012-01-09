@@ -1,5 +1,10 @@
 package org.inaturalist.android;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.commons.lang3.StringUtils;
+
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.Context;
@@ -105,10 +110,67 @@ public class ObservationListActivity extends ListActivity {
     }
     
     private class ObservationCursorAdapter extends SimpleCursorAdapter {
-
-        public ObservationCursorAdapter(Context context, int layout, Cursor c,
-                String[] from, int[] to) {
+        private HashMap<Long, String[]> mPhotoInfo = new HashMap<Long, String[]>();
+        
+        public ObservationCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
             super(context, layout, c, from, to);
+            getPhotoInfo();
+        }
+        
+        /**
+         * Retrieves photo ids and orientations for photos associated with the listed observations.
+         */
+        private void getPhotoInfo() {
+            Cursor c = getCursor();
+            if (c.getCount() == 0) return;
+            c.moveToFirst();
+            ArrayList<Long> obsIds = new ArrayList<Long>();
+            ArrayList<Long> photoIds = new ArrayList<Long>();
+            while (!c.isAfterLast()) {
+                obsIds.add(c.getLong(c.getColumnIndexOrThrow(Observation._ID)));
+                c.moveToNext();
+            }
+            Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID}, 
+                    "_observation_id IN ("+StringUtils.join(obsIds, ',')+")", 
+                    null, 
+                    ObservationPhoto._ID);
+            if (opc.getCount() == 0) return;
+            opc.moveToFirst();
+            while (!opc.isAfterLast()) {
+                photoIds.add(opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID)));
+                opc.moveToNext();
+            }
+            
+            Cursor pc = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
+                    new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
+                    "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
+                    null, 
+                    null);
+            if (pc.getCount() == 0) return;
+            HashMap<Long,String> orientationsByPhotoId = new HashMap<Long,String>();
+            pc.moveToFirst();
+            while (!pc.isAfterLast()) {
+                orientationsByPhotoId.put(
+                        pc.getLong(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns._ID)), 
+                        pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION)));
+                pc.moveToNext();
+            }
+            
+            opc.moveToFirst();
+            while (!opc.isAfterLast()) {
+                Long obsId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
+                Long photoId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                if (!mPhotoInfo.containsKey(obsId)) {
+                    mPhotoInfo.put(
+                            obsId,
+                            new String[] {
+                                photoId.toString(),
+                                orientationsByPhotoId.get(photoId)
+                            });
+                }
+                opc.moveToNext();
+            }
         }
         
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -121,23 +183,13 @@ public class ObservationListActivity extends ListActivity {
             c.moveToPosition(position);
             Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
             
-            Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
-                    ObservationPhoto.PROJECTION, 
-                    "_observation_id=?", 
-                    new String[]{obsId.toString()}, 
-                    ObservationPhoto.DEFAULT_SORT_ORDER);
-            if (opCursor.getCount() > 0) {
-                ObservationPhoto op = new ObservationPhoto(opCursor);
-                Uri photoUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, op._photo_id);
-                Cursor photoCursor = getContentResolver().query(
-                        photoUri, 
-                        new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
-                        null, null, null);
-                photoCursor.moveToFirst();
-                int orientation = photoCursor.getInt(photoCursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+            String[] photoInfo = mPhotoInfo.get(obsId);
+            if (photoInfo != null) {
+                Long photoId = Long.parseLong(photoInfo[0]);
+                Integer orientation = Integer.parseInt(photoInfo[1]);
                 Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
                         getContentResolver(), 
-                        opCursor.getLong(opCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID)), 
+                        photoId, 
                         MediaStore.Images.Thumbnails.MICRO_KIND, 
                         (BitmapFactory.Options) null);
                 if (orientation != 0) {
@@ -166,6 +218,8 @@ public class ObservationListActivity extends ListActivity {
                 image.setImageResource(R.drawable.iconic_taxon_amphibia);
             } else if (iconicTaxonName.equals("Reptilia")) {
                 image.setImageResource(R.drawable.iconic_taxon_reptilia);
+            } else if (iconicTaxonName.equals("Aves")) {
+                image.setImageResource(R.drawable.iconic_taxon_aves);
             } else if (iconicTaxonName.equals("Mammalia")) {
                 image.setImageResource(R.drawable.iconic_taxon_mammalia);
             } else if (iconicTaxonName.equals("Mollusca")) {
