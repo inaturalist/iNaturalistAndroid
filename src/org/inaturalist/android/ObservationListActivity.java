@@ -120,7 +120,7 @@ public class ObservationListActivity extends ListActivity {
         /**
          * Retrieves photo ids and orientations for photos associated with the listed observations.
          */
-        private void getPhotoInfo() {
+        public void getPhotoInfo() {
             Cursor c = getCursor();
             if (c.getCount() == 0) return;
             c.moveToFirst();
@@ -130,7 +130,7 @@ public class ObservationListActivity extends ListActivity {
                 obsIds.add(c.getLong(c.getColumnIndexOrThrow(Observation._ID)));
                 c.moveToNext();
             }
-            Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+            Cursor opc = managedQuery(ObservationPhoto.CONTENT_URI, 
                     new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID}, 
                     "_observation_id IN ("+StringUtils.join(obsIds, ',')+")", 
                     null, 
@@ -142,7 +142,7 @@ public class ObservationListActivity extends ListActivity {
                 opc.moveToNext();
             }
             
-            Cursor pc = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
+            Cursor pc = managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
                     new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
                     "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
                     null, 
@@ -185,8 +185,14 @@ public class ObservationListActivity extends ListActivity {
             
             String[] photoInfo = mPhotoInfo.get(obsId);
             if (photoInfo != null) {
+                if (photoInfo[0] == null || photoInfo[0].equals("null")) return view;
                 Long photoId = Long.parseLong(photoInfo[0]);
-                Integer orientation = Integer.parseInt(photoInfo[1]);
+                Integer orientation;
+                if (photoInfo[1] == null || photoInfo[1].equals("null")) {
+                    orientation = 0;
+                } else {
+                    orientation = Integer.parseInt(photoInfo[1]);
+                }
                 Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
                         getContentResolver(), 
                         photoId, 
