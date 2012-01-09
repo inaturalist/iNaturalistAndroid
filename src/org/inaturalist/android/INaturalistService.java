@@ -44,6 +44,7 @@ public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
 //    public static String HOST = "http://10.0.1.8:3000";
 //    public static String HOST = "http://inat.kueda.net";
+//    public static String HOST = "http://10.0.2.2:3000";
 //    public static String MEDIA_HOST = HOST;
 //    public static String MEDIA_HOST = "http://10.0.1.8:3001";
     public static String HOST = "http://www.inaturalist.org";

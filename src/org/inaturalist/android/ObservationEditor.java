@@ -754,8 +754,6 @@ public class ObservationEditor extends Activity {
                     exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 
                             ExifInterface.ORIENTATION_NORMAL));
             values.put(MediaStore.Images.ImageColumns.ORIENTATION, degrees);
-            // Log.d(TAG, "EXIF orientation: " + degrees);
-            // Log.d(TAG, "MediaStore orientation: " + c.getInt(c.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION)));
             getContentResolver().update(uri, values, null, null);
         } catch (IOException e) {
             Log.e(TAG, "couldn't find " + imgFilePath);

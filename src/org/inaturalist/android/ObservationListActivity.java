@@ -2,18 +2,24 @@ package org.inaturalist.android;
 
 import android.app.ListActivity;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 public class ObservationListActivity extends ListActivity {
 	public static String TAG = "INAT";
@@ -46,7 +52,7 @@ public class ObservationListActivity extends ListActivity {
         		conditions, null, Observation.DEFAULT_SORT_ORDER);
 
         // Used to map notes entries from the database to views
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+        ObservationCursorAdapter adapter = new ObservationCursorAdapter(
                 this, R.layout.list_item, cursor,
                 new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
                 new int[] { R.id.speciesGuess, R.id.subContent });
@@ -96,5 +102,83 @@ public class ObservationListActivity extends ListActivity {
             // Launch activity to view/edit the currently selected item
             startActivity(new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class));
         }
+    }
+    
+    private class ObservationCursorAdapter extends SimpleCursorAdapter {
+
+        public ObservationCursorAdapter(Context context, int layout, Cursor c,
+                String[] from, int[] to) {
+            super(context, layout, c, from, to);
+        }
+        
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = super.getView(position, convertView, parent);
+            Cursor c = this.getCursor();
+            if (c.getCount() == 0) {
+                return view;
+            }
+            ImageView image = (ImageView) view.findViewById(R.id.image);
+            c.moveToPosition(position);
+            Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+            
+            Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+                    ObservationPhoto.PROJECTION, 
+                    "_observation_id=?", 
+                    new String[]{obsId.toString()}, 
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
+            if (opCursor.getCount() > 0) {
+                ObservationPhoto op = new ObservationPhoto(opCursor);
+                Uri photoUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, op._photo_id);
+                Cursor photoCursor = getContentResolver().query(
+                        photoUri, 
+                        new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
+                        null, null, null);
+                photoCursor.moveToFirst();
+                int orientation = photoCursor.getInt(photoCursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+                Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
+                        getContentResolver(), 
+                        opCursor.getLong(opCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID)), 
+                        MediaStore.Images.Thumbnails.MICRO_KIND, 
+                        (BitmapFactory.Options) null);
+                if (orientation != 0) {
+                    Matrix matrix = new Matrix();
+                    matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                    bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                }
+                image.setImageBitmap(bitmapImage);
+                return view;
+            }
+            
+            String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
+            if (iconicTaxonName == null) {
+                image.setImageResource(R.drawable.iconic_taxon_unknown);
+            } else if (iconicTaxonName.equals("Animalia")) {
+                image.setImageResource(R.drawable.iconic_taxon_animalia);
+            } else if (iconicTaxonName.equals("Plantae")) {
+                image.setImageResource(R.drawable.iconic_taxon_plantae);
+            } else if (iconicTaxonName.equals("Fungi")) {
+                image.setImageResource(R.drawable.iconic_taxon_fungi);
+            } else if (iconicTaxonName.equals("Protozoa")) {
+                image.setImageResource(R.drawable.iconic_taxon_protozoa);
+            } else if (iconicTaxonName.equals("Actinopterygii")) {
+                image.setImageResource(R.drawable.iconic_taxon_actinopterygii);
+            } else if (iconicTaxonName.equals("Amphibia")) {
+                image.setImageResource(R.drawable.iconic_taxon_amphibia);
+            } else if (iconicTaxonName.equals("Reptilia")) {
+                image.setImageResource(R.drawable.iconic_taxon_reptilia);
+            } else if (iconicTaxonName.equals("Mammalia")) {
+                image.setImageResource(R.drawable.iconic_taxon_mammalia);
+            } else if (iconicTaxonName.equals("Mollusca")) {
+                image.setImageResource(R.drawable.iconic_taxon_mollusca);
+            } else if (iconicTaxonName.equals("Insecta")) {
+                image.setImageResource(R.drawable.iconic_taxon_insecta);
+            } else if (iconicTaxonName.equals("Arachnida")) {
+                image.setImageResource(R.drawable.iconic_taxon_arachnida);
+            } else {
+                image.setImageResource(R.drawable.iconic_taxon_unknown);
+            }
+            return view;
+        }
+        
     }
 }

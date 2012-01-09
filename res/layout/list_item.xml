@@ -5,33 +5,50 @@
     android:layout_height="wrap_content" >
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/speciesGuess"
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_margin="0dp"
+            android:src="@drawable/iconic_taxon_unknown" >
+
+        </ImageView>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:text="species guess"
-            android:textSize="16sp"
-            android:hint="Unknown species" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/subContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:singleLine="true"
-            android:text="sub stuff"
-            android:textColor="#666"
-            android:textSize="14sp"
-            android:hint="No description" />
+            <TextView
+                android:id="@+id/speciesGuess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Unknown species"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:singleLine="true"
+                android:text="species guess"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/subContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="No description"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:text="sub stuff"
+                android:textColor="#666"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
