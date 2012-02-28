@@ -50,9 +50,7 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
     @Override
     protected boolean onTap(int index) {
         ObservationOverlayItem item = (ObservationOverlayItem) mOverlays.get(index);
-        // Log.d(TAG, "item: " + item);
         Observation observation = item.getObservation();
-        // Log.d(TAG, "observation: " + observation);
         final Uri observationUri = observation.getUri();
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
@@ -64,7 +62,6 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
                 }
             });
         String login = app.currentUserLogin();
-        // Log.d(TAG, "login: " + login);
         if (login != null && login.equals(observation.user_login)) {
             dialog.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
                 @Override

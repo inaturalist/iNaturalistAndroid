@@ -93,7 +93,6 @@ public class ObservationEditor extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Log.d(TAG, "onCreate, savedInstanceState: " + savedInstanceState);
         final Intent intent = getIntent();
         setContentView(R.layout.observation_editor);
         if (app == null) {
@@ -158,7 +157,6 @@ public class ObservationEditor extends Activity {
             }
 
             mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
-            // Log.d(TAG, "deserialized observation: " + mObservation);
         }
 
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
@@ -258,7 +256,6 @@ public class ObservationEditor extends Activity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        // Log.d(TAG, "onSaveInstanceState...");
         // Save away the original text, so we still have it if the activity
         // needs to be killed while paused.
         if (mFileUri != null) { outState.putString("mFileUri", mFileUri.toString()); }
@@ -269,7 +266,6 @@ public class ObservationEditor extends Activity {
 
     @Override
     protected void onPause() {
-        // Log.d(TAG, "pausing");
         super.onPause();
         stopGetLocation();
         if (isFinishing()) {
@@ -283,7 +279,6 @@ public class ObservationEditor extends Activity {
 
     @Override
     protected void onResume() {
-        // Log.d(TAG, "onResuming");
         super.onResume();
         initUi();
         if (app == null) {
@@ -299,7 +294,6 @@ public class ObservationEditor extends Activity {
         }
         if (mObservation == null) {
             mObservation = new Observation(mCursor);
-            // Log.d(TAG, "created new observation from cursor: " + mObservation);
         }
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
@@ -416,7 +410,6 @@ public class ObservationEditor extends Activity {
     private final void delete() {
         if (mCursor == null) { return; }
         try {
-            // Log.d(TAG, "deleting " + mObservation);
             getContentResolver().delete(mUri, null, null);
         } catch (NullPointerException e) {
             Log.e(TAG, "Failed to delete observation: " + e);
@@ -518,7 +511,6 @@ public class ObservationEditor extends Activity {
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hour, int minute) {
-            //            Timestamp refDate = getBestObservedOnTimestamp();
             Timestamp refDate;
             Date date;
             try {
@@ -660,7 +652,6 @@ public class ObservationEditor extends Activity {
 
     private boolean locationRequestIsOld() {
         long delta = System.currentTimeMillis() - mLocationRequestedAt;
-        //        Log.d(TAG, "locationr request running for " + delta / 1000 + " seconds");
         return delta > ONE_MINUTE;
     }
 
@@ -697,7 +688,6 @@ public class ObservationEditor extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Log.d(TAG, "requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Image captured and saved to mFileUri specified in the Intent
@@ -707,7 +697,6 @@ public class ObservationEditor extends Activity {
                 updateImages();
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
-                // Log.d(TAG, "cancelled camera");
             } else {
                 // Image capture failed, advise user
                 Toast.makeText(this, "Blast, something went wrong:\n" +
@@ -727,7 +716,6 @@ public class ObservationEditor extends Activity {
         if (photoId > -1) {
             cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
         }
-        // Log.d(TAG, "inserting new observation photo: " + op);
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
     
@@ -823,7 +811,6 @@ public class ObservationEditor extends Activity {
                     imageId, 
                     MediaStore.Images.Thumbnails.MINI_KIND, 
                     (BitmapFactory.Options) null);
-            // Log.d(TAG, "orientation for " + position + ": " + orientation);
             if (orientation != 0) {
                 Matrix matrix = new Matrix();
                 matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);

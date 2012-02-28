@@ -13,6 +13,7 @@ import android.util.Log;
  * the cursor
  * 
  * @author Vincent @ MarvinLabs
+ * http://stackoverflow.com/questions/5966584/logging-sql-queries-in-android
  */
 public class SQLiteCursorFactory implements CursorFactory {
 

@@ -42,14 +42,8 @@ import android.util.Log;
 
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
-//    public static String HOST = "http://10.0.1.8:3000";
-//    public static String HOST = "http://inat.kueda.net";
-//    public static String HOST = "http://10.0.2.2:3000";
-//    public static String MEDIA_HOST = HOST;
-//    public static String MEDIA_HOST = "http://10.0.1.8:3001";
     public static String HOST = "http://www.inaturalist.org";
     public static String MEDIA_HOST = "http://www.inaturalist.org";
-//    public static String MEDIA_HOST = "http://up.inaturalist.org";
     public static String USER_AGENT = "iNaturalist/"+INaturalistApp.VERSION + " (" +
             "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
             "SDK " + android.os.Build.VERSION.SDK + "; " +
@@ -115,7 +109,6 @@ public class INaturalistService extends IntentService {
                 "Syncing " + c.getCount() + " observations...",
                 "Syncing...");
         // for each observation PUT to /observations/:id
-        // Log.d(TAG, "PUTing " + c.getCount() + " observations");
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
@@ -123,7 +116,6 @@ public class INaturalistService extends IntentService {
                     "Updating " + (c.getPosition() + 1) + " of " + c.getCount() + " existing observations...",
                     "Syncing...");
             observation = new Observation(c);
-            // Log.d(TAG, "updating ");
             handleObservationResponse(
                     observation,
                     put(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation))
@@ -138,7 +130,6 @@ public class INaturalistService extends IntentService {
                 "id IS NULL", null, Observation.DEFAULT_SORT_ORDER);
         int createdCount = c.getCount();
         // for each observation POST to /observations/
-        // Log.d(TAG, "POSTing " + c.getCount() + " observations");
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
@@ -172,7 +163,6 @@ public class INaturalistService extends IntentService {
         }
             
         // for each observation PUT to /observations/:id
-        // Log.d(TAG, "POSTing " + c.getCount() + " observation photos");
         ContentValues cv;
         c.moveToFirst();
         while (c.isAfterLast() == false) {
@@ -204,7 +194,6 @@ public class INaturalistService extends IntentService {
             // TODO LATER resize the image for upload, maybe a 1024px jpg
             JSONArray response = post(MEDIA_HOST + "/observation_photos.json", params);
             try {
-                // Log.d(TAG, "response: " + response);
                 if (response == null || response.length() != 1) {
                     break;
                 }
@@ -214,7 +203,6 @@ public class INaturalistService extends IntentService {
                 op.merge(jsonObservationPhoto);
                 cv = op.getContentValues();
                 cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                // Log.d(TAG, "updating observation photo " + op + "");
                 getContentResolver().update(op.getUri(), cv, null, null);
                 createdCount += 1;
             } catch (JSONException e) {
@@ -234,7 +222,6 @@ public class INaturalistService extends IntentService {
             return;
         }
         JSONArray json = get(HOST + "/observations/" + mLogin + ".json");
-        // Log.d(TAG, "json: " + json);
         if (json == null || json.length() == 0) { return; }
         syncJson(json);
     }
@@ -282,7 +269,6 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
-        // Log.d(TAG, method.toUpperCase() + " " + url);
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
 
@@ -292,7 +278,6 @@ public class INaturalistService extends IntentService {
         if (params != null) {
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
             for (int i = 0; i < params.size(); i++) {
-//                Log.d(TAG, "adding " + params.get(i).getName() + " to params");
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
                     // If the key equals to "image", we use FileBody to transfer the data
                     entity.addPart(params.get(i).getName(), new FileBody(new File (params.get(i).getValue())));
@@ -301,7 +286,7 @@ public class INaturalistService extends IntentService {
                     try {
                         entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue()));
                     } catch (UnsupportedEncodingException e) {
-                        Log.e(TAG, "failed tp add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
+                        Log.e(TAG, "failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
                     }
                 }
             }
@@ -337,7 +322,9 @@ public class INaturalistService extends IntentService {
             case HttpStatus.SC_UNAUTHORIZED:
                 throw new AuthenticationException();
             case HttpStatus.SC_GONE:
-                // TODO create notification that informs user some observations have been deleted on the server, click should take them to an activity that lets them decide whether to delete them locally or post them as new observations
+                // TODO create notification that informs user some observations have been deleted on the server, 
+                // click should take them to an activity that lets them decide whether to delete them locally 
+                // or post them as new observations
             default:
                 Log.e(TAG, response.getStatusLine().toString());
             }
@@ -353,7 +340,6 @@ public class INaturalistService extends IntentService {
         if (mCredentials != null) { return true; }
 
         // request login unless passive
-        // Log.d(TAG, "ensuring creds, mPassive: " + mPassive);
         if (!mPassive) {
             throw new AuthenticationException();
         }
@@ -368,7 +354,6 @@ public class INaturalistService extends IntentService {
                 null, getBaseContext(), INaturalistPrefsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         app.sweepingNotify(AUTH_NOTIFICATION, "Please sign in", "Please sign in to your iNaturalist account or sign up for a new one.", null, intent);
-//        getApplication().startActivity(intent);
     }
 
     public static boolean verifyCredentials(String credentials) {
@@ -383,7 +368,6 @@ public class INaturalistService extends IntentService {
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
-            // Log.d(TAG, "OK: " + content.toString());
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return true;
             } else {
@@ -464,7 +448,6 @@ public class INaturalistService extends IntentService {
     
     private void handleObservationResponse(Observation observation, JSONArray response) {
         try {
-            // Log.d(TAG, "response: " + response);
             if (response == null || response.length() != 1) {
                 return;
             }
@@ -474,7 +457,6 @@ public class INaturalistService extends IntentService {
             observation.merge(jsonObservation);
             ContentValues cv = observation.getContentValues();
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-            // Log.d(TAG, "updating observation " + observation + "");
             getContentResolver().update(observation.getUri(), cv, null, null);
         } catch (JSONException e) {
             // Log.d(TAG, "JSONException: " + e.toString());

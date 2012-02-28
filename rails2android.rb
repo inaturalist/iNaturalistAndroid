@@ -7,7 +7,7 @@ Creates a Java class from a Rails model for use in an REST-oriented Android
 app. Makes a number of assumptions:
 
 * all Rails columns are represented in the app
-* columsn exclusive to the app database are preceded by an underscore. By
+* columns exclusive to the app database are preceded by an underscore. By
   default, _id, _created_at, _updated_at, and _synced_at columns are added to
   maintain local state
 
