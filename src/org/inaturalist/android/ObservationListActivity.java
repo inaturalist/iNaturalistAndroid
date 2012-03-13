@@ -210,6 +210,8 @@ public class ObservationListActivity extends ListActivity {
                 image.setImageResource(R.drawable.iconic_taxon_animalia);
             } else if (iconicTaxonName.equals("Plantae")) {
                 image.setImageResource(R.drawable.iconic_taxon_plantae);
+            } else if (iconicTaxonName.equals("Chromista")) {
+                image.setImageResource(R.drawable.iconic_taxon_chromista);
             } else if (iconicTaxonName.equals("Fungi")) {
                 image.setImageResource(R.drawable.iconic_taxon_fungi);
             } else if (iconicTaxonName.equals("Protozoa")) {

@@ -43,7 +43,8 @@ import android.util.Log;
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
     public static String HOST = "http://www.inaturalist.org";
-    public static String MEDIA_HOST = "http://www.inaturalist.org";
+//    public static String HOST = "http://10.0.2.2:3000";
+    public static String MEDIA_HOST = HOST;
     public static String USER_AGENT = "iNaturalist/"+INaturalistApp.VERSION + " (" +
             "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
             "SDK " + android.os.Build.VERSION.SDK + "; " +
