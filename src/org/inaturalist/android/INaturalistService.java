@@ -110,7 +110,7 @@ public class INaturalistService extends IntentService {
     private void syncObservations() throws AuthenticationException {
         postObservations();
         postPhotos();
-        getUserObservations();
+//        getUserObservations();
 //        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
     }
 
