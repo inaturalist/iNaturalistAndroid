@@ -22,6 +22,7 @@ import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,9 +37,11 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,7 +57,6 @@ public class INaturalistPrefsActivity extends Activity {
 	private TextView mPasswordTextView;
 	private TextView mSignOutLabel;
 	private TextView mOrLabel;
-	private CheckBox mGoogleLoginCheckbox;
 	private Button mSignInButton;
 	private Button mSignOutButton;
 	private Button mSignUpButton;
@@ -63,8 +65,8 @@ public class INaturalistPrefsActivity extends Activity {
 	private ProgressDialog mProgressDialog;
 	private ActivityHelper mHelper;
     private LoginButton mFacebookLoginButton;
+    private Button mGoogleLogin;
 	private View mFBSeparator;
-	
 	
     private UiLifecycleHelper mUiHelper;
 
@@ -119,7 +121,6 @@ public class INaturalistPrefsActivity extends Activity {
 	    mSignOutLayout = (LinearLayout) findViewById(R.id.signOut);
 	    mUsernameTextView = (TextView) findViewById(R.id.username);
 	    mPasswordTextView = (TextView) findViewById(R.id.password);
-	    mGoogleLoginCheckbox = (CheckBox) findViewById(R.id.google_login);
 	    mSignOutLabel = (TextView) findViewById(R.id.signOutLabel);
 	    mOrLabel = (TextView) findViewById(R.id.orLabel);
 	    mSignInButton = (Button) findViewById(R.id.signInButton);
@@ -127,7 +128,34 @@ public class INaturalistPrefsActivity extends Activity {
 	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
 	    
         mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);
+        mGoogleLogin = (Button) findViewById(R.id.google_login_button);
         mFBSeparator = (View) findViewById(R.id.facebook_login_button_separator);
+        
+        mGoogleLogin.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText input = new EditText(INaturalistPrefsActivity.this);
+                new AlertDialog.Builder(INaturalistPrefsActivity.this)
+                    .setTitle(R.string.google_login)
+                    .setMessage(R.string.email_address)
+                    .setView(input)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String username = input.getText().toString(); 
+                            
+                            if (username.trim().length() == 0) {
+                                return;
+                            }
+                            
+                            signIn(LoginType.GOOGLE, username.trim().toLowerCase(), null);
+                        }
+                    }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Do nothing.
+                        }
+                    }).show(); 
+            }
+        });
         
         ArrayList<String> permissions = new ArrayList<String>();
         permissions.add("email");
@@ -152,26 +180,13 @@ public class INaturalistPrefsActivity extends Activity {
         
 	    toggle();
 	    
-	    mGoogleLoginCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mPasswordTextView.setVisibility(View.INVISIBLE);
-                    mSignUpButton.setVisibility(View.INVISIBLE);
-                    mOrLabel.setVisibility(View.INVISIBLE);
-                } else {
-                    mPasswordTextView.setVisibility(View.VISIBLE);
-                    mSignUpButton.setVisibility(View.VISIBLE);
-                    mOrLabel.setVisibility(View.VISIBLE);
-                }
-                
-            }
-        });
-	    
+    
         mSignInButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				signIn();
+			    String username = mUsernameTextView.getText().toString().trim().toLowerCase();
+			    String password = mPasswordTextView.getText().toString().trim();
+				signIn(LoginType.PASSWORD, username, password);
 			}
 		});
         
@@ -248,6 +263,7 @@ public class INaturalistPrefsActivity extends Activity {
 	    	mSignOutLayout.setVisibility(View.GONE);
     	    mFacebookLoginButton.setVisibility(View.VISIBLE);
     	    mFBSeparator.setVisibility(View.VISIBLE);
+    	    mGoogleLogin.setVisibility(View.VISIBLE);
     	    
 	    } else {
 	    	mSignInLayout.setVisibility(View.GONE);
@@ -258,10 +274,12 @@ public class INaturalistPrefsActivity extends Activity {
 	    	    mSignOutButton.setVisibility(View.GONE);
 	    	    mFacebookLoginButton.setVisibility(View.VISIBLE);
 	    	    mFBSeparator.setVisibility(View.VISIBLE);
+        	    mGoogleLogin.setVisibility(View.GONE);
 	    	} else {
 	    	    mSignOutButton.setVisibility(View.VISIBLE);
 	    	    mFacebookLoginButton.setVisibility(View.GONE);
 	    	    mFBSeparator.setVisibility(View.GONE);
+        	    mGoogleLogin.setVisibility(View.GONE);
 	    	}
 	    }
 	}
@@ -346,10 +364,9 @@ public class INaturalistPrefsActivity extends Activity {
 
 	}
 	
-	private void signIn() {
-		String username = mUsernameTextView.getText().toString().trim().toLowerCase();
-		String password = mPasswordTextView.getText().toString().trim();
-		Boolean googleLogin = mGoogleLoginCheckbox.isChecked();
+	private void signIn(LoginType loginType, String username, String password) {
+	    boolean googleLogin = (loginType == LoginType.GOOGLE);
+	    
 		if (username.isEmpty() || (!googleLogin && password.isEmpty())) {
 			mHelper.alert(getString(R.string.username_cannot_be_blank));
 			return;
