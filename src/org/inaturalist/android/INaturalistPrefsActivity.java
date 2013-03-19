@@ -34,6 +34,7 @@ import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +52,10 @@ import android.widget.Toast;
 public class INaturalistPrefsActivity extends Activity {
 	private static final String TAG = "INaturalistPrefsActivity";
 	public static final String REAUTHENTICATE_ACTION = "reauthenticate_action";
+	
+    private static final int REQUEST_CODE_LOGIN = 0x1000;
+    private static final int REQUEST_CODE_ADD_ACCOUNT = 0x1001;
+    
 	private LinearLayout mSignInLayout;
 	private LinearLayout mSignOutLayout;
 	private TextView mUsernameTextView;
@@ -69,6 +74,9 @@ public class INaturalistPrefsActivity extends Activity {
 	private View mFBSeparator;
 	
     private UiLifecycleHelper mUiHelper;
+    
+    private String mGoogleUsername;
+    
 
     private Session.StatusCallback mCallback = new Session.StatusCallback() {
         @Override
@@ -233,11 +241,20 @@ public class INaturalistPrefsActivity extends Activity {
         mUiHelper.onSaveInstanceState(outState);
     }
     
-    private String mUsr = null;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult " + requestCode + ":" + resultCode + ":" + data);
         mUiHelper.onActivityResult(requestCode, resultCode, data);
+        
+        if ((requestCode == REQUEST_CODE_ADD_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
+            // User finished adding his account
+            signIn(LoginType.GOOGLE, mGoogleUsername, null);
+            
+        } else if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
+            // User finished entering his password
+            signIn(LoginType.GOOGLE, mGoogleUsername, null);
+        }
     }
 
     @Override
@@ -374,6 +391,27 @@ public class INaturalistPrefsActivity extends Activity {
 		
 		if (googleLogin) {
 		    final String googleUsername = username.toLowerCase();
+		    
+		    // See if given account exists
+		    Account[] availableAccounts = AccountManager.get(this).getAccountsByType("com.google");
+		    boolean accountFound = false;
+		    
+		    for (int i = 0; i < availableAccounts.length; i++) {
+		        if (availableAccounts[i].name.equalsIgnoreCase(googleUsername)) {
+		            // Found the account
+		            accountFound = true;
+		            break;
+		        }
+		    }
+
+		    if (!accountFound) {
+		        // Redirect user to add account dialog
+		        mGoogleUsername = googleUsername;
+		        startActivityForResult(new Intent(Settings.ACTION_ADD_ACCOUNT), REQUEST_CODE_ADD_ACCOUNT);
+		        //AccountManager.get(this).addAccount("com.google", , requiredFeatures, addAccountOptions, activity, callback, handler)
+		        return;
+		    }
+		   
 		    // Google account login
 		    final AccountManagerCallback<Bundle> cb = new AccountManagerCallback<Bundle>() {
 		        public void run(AccountManagerFuture<Bundle> future) {
@@ -391,7 +429,7 @@ public class INaturalistPrefsActivity extends Activity {
             		        int flags = authIntent.getFlags();
             		        flags &= ~Intent.FLAG_ACTIVITY_NEW_TASK; 
             		        authIntent.setFlags(flags);
-	                        INaturalistPrefsActivity.this.startActivityForResult(authIntent, 666);
+	                        INaturalistPrefsActivity.this.startActivityForResult(authIntent, REQUEST_CODE_LOGIN);
 	                    } else {
 	                        Log.e(TAG, "AccountManager was unable to obtain an authToken.");
 	                    }
