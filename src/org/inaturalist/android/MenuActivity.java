@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 public class MenuActivity extends ListActivity {
     public static String TAG = "MenuActivity";
-    static final List<Map> MENU_ITEMS;
+    List<Map> MENU_ITEMS;
     static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
     private Button mAddObservationButton;
     private Button mTakePictureButton;
@@ -29,35 +29,34 @@ public class MenuActivity extends ListActivity {
     private INaturalistApp app;
     private ActivityHelper mHelper;
     
-    static {
-        MENU_ITEMS = new ArrayList<Map>();
-        Map<String,String> map;
-        
-        map = new HashMap<String,String>();
-        map.put("title", "Observations");
-        map.put("description", "Observations list");
-        MENU_ITEMS.add(map);
-        
-        map = new HashMap<String,String>();
-        map.put("title", "Map");
-        map.put("description", "Observations map");
-        MENU_ITEMS.add(map);
-        
-        map = new HashMap<String,String>();
-        map.put("title", "Updates feed");
-        map.put("description", "Updates from people you follow on iNat");
-        MENU_ITEMS.add(map);
-        
-        map = new HashMap<String,String>();
-        map.put("title", "Settings");
-        map.put("description", "Sign in/out");
-        MENU_ITEMS.add(map);
-    }
-    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        
+        MENU_ITEMS = new ArrayList<Map>();
+        Map<String,String> map;
+        
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.observations));
+        map.put("description", getString(R.string.observations_description));
+        MENU_ITEMS.add(map);
+        
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.map));
+        map.put("description", getString(R.string.map_description));
+        MENU_ITEMS.add(map);
+        
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.updates));
+        map.put("description", getString(R.string.updates_description));
+        MENU_ITEMS.add(map);
+        
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.settings));
+        map.put("description", getString(R.string.settings_description));
+        MENU_ITEMS.add(map);
+        
         SimpleAdapter adapter = new SimpleAdapter(this, 
                 (List<? extends Map<String, ?>>) MENU_ITEMS, 
                 R.layout.menu_item,
@@ -118,7 +117,7 @@ public class MenuActivity extends ListActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                mHelper.loading("Processing...");
+                mHelper.loading(getString(R.string.processing));
                 Intent intent = new Intent(Intent.ACTION_INSERT, ObservationPhoto.CONTENT_URI, this, ObservationEditor.class);
                 intent.putExtra("photoUri", mPhotoUri);
                 startActivity(intent);
@@ -127,7 +126,7 @@ public class MenuActivity extends ListActivity {
                 getContentResolver().delete(mPhotoUri, null, null);
             } else {
                 // Image capture failed, advise user
-                Toast.makeText(this, "Blast, something went wrong:\n" + mPhotoUri, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, String.format(getString(R.string.something_went_wrong), mPhotoUri.toString()), Toast.LENGTH_LONG).show();
                 Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data.getData());
                 getContentResolver().delete(mPhotoUri, null, null);
             }
@@ -139,13 +138,13 @@ public class MenuActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         Map<String,String> item = (Map<String,String>) l.getItemAtPosition(position);
         String title = item.get("title");
-        if (title.equals("Observations")) {
+        if (title.equals(getString(R.string.observations))) {
             startActivity(new Intent(this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        } else if (title.equals("Map")) {
+        } else if (title.equals(getString(R.string.map))) {
             startActivity(new Intent(this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        } else if (title.equals("Updates feed")) {
+        } else if (title.equals(getString(R.string.updates))) {
             startActivity(new Intent(this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        } else if (title.equals("Settings")) {
+        } else if (title.equals(getString(R.string.settings))) {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         }
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
@@ -9,26 +10,56 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="5dp" >
+        
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+	        <com.facebook.widget.LoginButton
+	            android:id="@+id/facebook_login_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerHorizontal="true"
+	            android:layout_marginTop="5dp"
+	            android:gravity="center_vertical|center_horizontal" />
+	             
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/facebook_login_button_separator"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#CCC"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        
         <LinearLayout
             android:id="@+id/signIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+            
+            <CheckBox 
+                android:id="@+id/google_login"
+                android:text="@string/google_login"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+                />
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Sign in to your iNaturalist account"
+                android:text="@string/sign_in_to_inat"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username" >
+                android:hint="@string/username" >
 
                 <requestFocus />
             </EditText>
@@ -37,7 +68,7 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
 
             <Button
@@ -45,21 +76,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Sign in" />
+                android:text="@string/sign_in" />
 
             <TextView
+                android:id="@+id/orLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:text="or" />
+                android:text="@string/or" />
 
             <Button
                 android:id="@+id/signUpButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Create a new account" />
+                android:text="@string/create_new_account" />
         </LinearLayout>
 
         <LinearLayout
@@ -74,14 +106,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Signed in as"
+                android:text="@string/signed_in_as_plain"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Button
                 android:id="@+id/signOutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign out" />
+                android:text="@string/signed_out" />
         </LinearLayout>
     </LinearLayout>
 

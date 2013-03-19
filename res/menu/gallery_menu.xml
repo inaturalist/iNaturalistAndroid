@@ -5,6 +5,6 @@
         android:id="@+id/delete"
         android:alphabeticShortcut="d"
         android:icon="@android:drawable/ic_input_delete"
-        android:title="Delete photo"></item>
+        android:title="@string/delete_photo"></item>
 
 </menu>

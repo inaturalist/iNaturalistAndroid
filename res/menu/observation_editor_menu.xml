@@ -11,6 +11,6 @@
         android:id="@+id/view"
         android:alphabeticShortcut="v"
         android:icon="@drawable/ic_menu_new_window"
-        android:title="View on iNat"/>
+        android:title="@string/view_on_inat"/>
 
 </menu>

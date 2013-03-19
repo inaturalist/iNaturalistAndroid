@@ -5,18 +5,18 @@
         android:id="@+id/menu"
         android:alphabeticShortcut="m"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="Menu"/>
+        android:title="@string/menu"/>
 
     <item
         android:id="@+id/reload"
         android:alphabeticShortcut="r"
         android:icon="@android:drawable/ic_menu_rotate"
-        android:title="Reload"></item>
+        android:title="@string/reload"></item>
 
     <item
         android:id="@+id/view"
         android:alphabeticShortcut="v"
         android:icon="@drawable/ic_menu_new_window"
-        android:title="View in browser"></item>
+        android:title="@string/view_in_browser"></item>
 
 </menu>

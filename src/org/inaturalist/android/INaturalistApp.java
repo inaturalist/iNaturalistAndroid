@@ -3,6 +3,8 @@ package org.inaturalist.android;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import org.inaturalist.android.INaturalistService.LoginType;
+
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -10,6 +12,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.webkit.MimeTypeMap;
@@ -38,9 +41,10 @@ public class INaturalistApp extends Application {
         if (oCursor.getCount() == 0 && opCursor.getCount() == 0) {
             mNotificationManager.cancel(SYNC_NOTIFICATION);
         } else {
+            Resources res = getResources();
             serviceNotify(SYNC_NOTIFICATION, 
-                    "Sync required", 
-                    oCursor.getCount() + " observations, " + opCursor.getCount() + " photos to sync",
+                    res.getString(R.string.sync_required),
+                    String.format(res.getString(R.string.sync_required_message), oCursor.getCount(), opCursor.getCount()),
                     null,
                     new Intent(INaturalistService.ACTION_SYNC, null, this, INaturalistService.class));
         }
@@ -49,6 +53,11 @@ public class INaturalistApp extends Application {
     public boolean loggedIn() {
         return getPrefs().contains("credentials");
     }
+    
+    public LoginType getLoginType() {
+        return LoginType.valueOf(getPrefs().getString("login_type", LoginType.PASSWORD.toString()));
+    }
+
 
     public String currentUserLogin() {
         return getPrefs().getString("username", null);

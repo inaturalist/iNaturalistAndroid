@@ -56,14 +56,14 @@ public class ObservationItemizedOverlay extends ItemizedOverlay {
         AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
         dialog.setTitle(item.getTitle())
             .setMessage(item.getSnippet())
-            .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+            .setPositiveButton(mContext.getString(R.string.close), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.cancel();
                 }
             });
         String login = app.currentUserLogin();
         if (login != null && login.equals(observation.user_login)) {
-            dialog.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+            dialog.setNeutralButton(mContext.getString(R.string.edit), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mContext.startActivity(new Intent(Intent.ACTION_EDIT, observationUri)); 

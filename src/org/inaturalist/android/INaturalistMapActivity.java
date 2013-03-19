@@ -73,9 +73,9 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem layersItem = menu.findItem(R.id.layers);
         if (mMapView.isSatellite()) {
-            layersItem.setTitle("Street");
+            layersItem.setTitle(R.string.street);
         } else {
-            layersItem.setTitle("Satellite");
+            layersItem.setTitle(R.string.satellite);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -97,10 +97,10 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
         case R.id.layers:
             if (mMapView.isSatellite()) {
                 mMapView.setSatellite(false);
-                item.setTitle("Satellite");
+                item.setTitle(R.string.satellite);
             } else {
                 mMapView.setSatellite(true);
-                item.setTitle("Street");
+                item.setTitle(R.string.street);
             }
             return true;
         case R.id.location:
@@ -229,7 +229,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
             Bundle extras = intent.getExtras();
             String error = extras.getString("error");
             if (error != null) {
-                mHelper.alert("Couldn't load nearby observations: " + error);
+                mHelper.alert(String.format(getString(R.string.couldnt_load_nearby_observations), error));
                 return;
             }
             Double minx = extras.getDouble("minx");
@@ -245,7 +245,7 @@ public class INaturalistMapActivity extends com.google.android.maps.MapActivity 
                 mOverlay.addObservation(new Observation(c));
                 c.moveToNext();
             }
-            Toast.makeText(getApplicationContext(), "Found " + c.getCount() + " observations", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
             unregisterReceiver(mNearbyReceiver);
         }
     }

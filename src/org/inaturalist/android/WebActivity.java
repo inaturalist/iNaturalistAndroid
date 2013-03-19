@@ -2,6 +2,8 @@ package org.inaturalist.android;
 
 import java.util.HashMap;
 
+import org.inaturalist.android.INaturalistService.LoginType;
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,7 +56,7 @@ public class WebActivity extends Activity {
             }
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 helper.stopLoading();
-                helper.alert("Oh no! " + description);
+                helper.alert(String.format(getString(R.string.oh_no), description));
             }
         });
 
@@ -62,11 +64,16 @@ public class WebActivity extends Activity {
         if (app.loggedIn()) {
             Log.d(TAG, "setting auth...");
             HashMap<String,String> headers = new HashMap<String,String>();
-            headers.put("Authorization", "Basic " + app.getPrefs().getString("credentials", null));
+            
+            if (app.getLoginType() == LoginType.PASSWORD) {
+                headers.put("Authorization", "Basic " + app.getPrefs().getString("credentials", null));
+            } else {
+                headers.put("Authorization", "Bearer " + app.getPrefs().getString("credentials", null));
+            }
             mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
             mWebView.loadUrl(INaturalistService.HOST + "/home", headers);
         } else {
-            helper.confirm("You need to log in to view your feed.  Log in now?", new DialogInterface.OnClickListener() {
+            helper.confirm(getString(R.string.need_to_login), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
                     Intent intent = new Intent(

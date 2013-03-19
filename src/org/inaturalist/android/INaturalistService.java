@@ -1,7 +1,10 @@
 package org.inaturalist.android;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +16,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -24,16 +28,19 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
+import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.facebook.Session.NewPermissionsRequest;
 import android.app.IntentService;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Credentials;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -62,6 +69,16 @@ public class INaturalistService extends IntentService {
     private SharedPreferences mPreferences;
     private boolean mPassive;
     private INaturalistApp app;
+    private LoginType mLoginType;
+    
+    private static String OAUTH_CLIENT_ID = "51c1ca35e35ac4438e389d0119b0b8a57644341fe03eca486a341b004c3ec22f";
+    
+	public enum LoginType {
+	    PASSWORD,
+	    GOOGLE,
+	    FACEBOOK
+	};
+
 
     public INaturalistService() {
         super("INaturalistService");
@@ -72,6 +89,7 @@ public class INaturalistService extends IntentService {
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         mLogin = mPreferences.getString("username", null);
         mCredentials = mPreferences.getString("credentials", null);
+        mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.PASSWORD.toString()));
         app = (INaturalistApp) getApplicationContext();
         String action = intent.getAction();
         mPassive = action.equals(ACTION_PASSIVE_SYNC);
@@ -92,7 +110,7 @@ public class INaturalistService extends IntentService {
     private void syncObservations() throws AuthenticationException {
         postObservations();
         postPhotos();
-//        getUserObservations();
+        getUserObservations();
 //        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
     }
 
@@ -106,16 +124,16 @@ public class INaturalistService extends IntentService {
                 Observation.DEFAULT_SORT_ORDER);
         int updatedCount = c.getCount();
         app.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
-                "Syncing observations...", 
-                "Syncing " + c.getCount() + " observations...",
-                "Syncing...");
+                getString(R.string.syncing_observations), 
+                String.format(getString(R.string.syncing_x_observations), c.getCount()),
+                getString(R.string.syncing));
         // for each observation PUT to /observations/:id
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
-                    "Updating observations...", 
-                    "Updating " + (c.getPosition() + 1) + " of " + c.getCount() + " existing observations...",
-                    "Syncing...");
+                    getString(R.string.updating_observations), 
+                    String.format(getString(R.string.updating_x_observations), (c.getPosition() + 1), c.getCount()),
+                    getString(R.string.syncing));
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
@@ -134,9 +152,9 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
-                    "Posting new observations...", 
-                    "Posting " + (c.getPosition() + 1) + " of " + c.getCount() + " new observations..", 
-                    "Syncing...");
+                    getString(R.string.posting_observations), 
+                    String.format(getString(R.string.posting_x_observations), (c.getPosition() + 1), c.getCount()),
+                    getString(R.string.syncing));
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
@@ -147,9 +165,9 @@ public class INaturalistService extends IntentService {
         c.close();
         
         app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
-                "Observation sync complete", 
-                createdCount + " new, " + updatedCount + " updated.",
-                "Sync complete!");
+                getString(R.string.observation_sync_complete), 
+                String.format(getString(R.string.observation_sync_status), createdCount, updatedCount),
+                getString(R.string.sync_complete));
     }
     
     private void postPhotos() throws AuthenticationException {
@@ -168,9 +186,9 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             app.notify(SYNC_PHOTOS_NOTIFICATION, 
-                    "Posting new photos...", 
-                    "Posting " + (c.getPosition() + 1) + " of " + c.getCount() + " new photos..",
-                    "Syncing...");
+                    getString(R.string.posting_photos), 
+                    String.format(getString(R.string.posting_x_photos), (c.getPosition() + 1), c.getCount()),
+                    getString(R.string.syncing));
             op = new ObservationPhoto(c);
             ArrayList <NameValuePair> params = op.getParams();
             // http://stackoverflow.com/questions/2935946/sending-images-using-http-post
@@ -213,9 +231,9 @@ public class INaturalistService extends IntentService {
         }
         c.close();
         app.notify(SYNC_PHOTOS_NOTIFICATION, 
-                "Photo sync complete", 
-                "Posted " + createdCount + " new photos.",
-                "Sync complete!");
+                getString(R.string.photo_sync_complete), 
+                String.format(getString(R.string.posted_new_x_photos), createdCount),
+                getString(R.string.sync_complete));
     }
 
     private void getUserObservations() throws AuthenticationException {
@@ -245,7 +263,7 @@ public class INaturalistService extends IntentService {
         reply.putExtra("miny", miny);
         reply.putExtra("maxy", maxy);
         if (json == null) {
-            reply.putExtra("error", "Couldn't connect to server.");
+            reply.putExtra("error", getString(R.string.couldnt_load_nearby_observations));
         } else {
             syncJson(json);
         }
@@ -273,8 +291,88 @@ public class INaturalistService extends IntentService {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
 
-        HttpRequestBase request = method == "get" ? new HttpGet(url) : new HttpPost(url);
-
+        /*
+        NetHttpTransport httpTransport = new NetHttpTransport();
+        final Credential credential;
+        HttpRequestFactory requestFactory;
+        
+        if ((authenticated) && (mLoginType != LoginType.PASSWORD)) {
+            ensureCredentials();
+            credential = new Credential.Builder(BearerToken.authorizationHeaderAccessMethod())
+                    .setTransport(httpTransport)
+                    .build()
+                    .setAccessToken(mCredentials);
+        } else {
+            credential = null;
+        }
+        
+        requestFactory = httpTransport.createRequestFactory(new HttpRequestInitializer() {
+                @Override
+                public void initialize(HttpRequest request) throws IOException {
+                    if ((mLoginType != LoginType.PASSWORD) && (credential != null)) {
+                        credential.initialize(request);
+                    }
+                }
+            });
+        
+        GenericUrl genericUrl = new GenericUrl(url);
+        HttpRequest request;
+        
+        if (method.equalsIgnoreCase("get")) {
+            try {
+                request = requestFactory.buildGetRequest(genericUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            MultipartRelatedContent content = null;
+            
+            // POST params
+            if ((params != null) && (params.size() > 0)) {
+                ArrayList<HttpContent> parts = new ArrayList<HttpContent>();
+               
+                for (int i = 0; i < params.size(); i++) {
+                    if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
+                        // If the key equals to "image", we use FileBody to transfer the data
+                        parts.add(new FileContent(null, new File(params.get(i).getValue())));
+                    } else {
+                        // Normal string data
+                        parts.add(new ByteArrayContent(null, params.get(i).getValue().getBytes()));
+                    }
+                }
+                
+                if (parts.size() > 1) {
+                    HttpContent[] tmp = { null };
+                    HttpContent[] restOfParts = parts.subList(1, parts.size()).toArray(tmp);
+                    content = new MultipartRelatedContent(parts.get(0), restOfParts);
+                } else {
+                    content = new MultipartRelatedContent(parts.get(0));
+                }
+            }
+            
+            try {
+                request = requestFactory.buildPostRequest(genericUrl, content);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        
+        if ((authenticated) && (mLoginType == LoginType.PASSWORD)) {
+            ensureCredentials();
+            request.getHeaders().setAuthorization("Basic "+ mCredentials);
+        }
+        */
+        
+        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
+                authenticated ? mCredentials : "<null>",
+                url));
+        
+        HttpRequestBase request;
+        
+        request = (method.equalsIgnoreCase("get")) ? new HttpGet(url) : new HttpPost(url);
+        
         // POST params
         if (params != null) {
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -297,15 +395,28 @@ public class INaturalistService extends IntentService {
         // auth
         if (authenticated) {
             ensureCredentials();
-            request.setHeader("Authorization", "Basic "+ mCredentials);
+            
+            if (mLoginType == LoginType.PASSWORD) {
+                request.setHeader("Authorization", "Basic " + mCredentials);
+            } else {
+                request.setHeader("Authorization", "Bearer " + mCredentials);
+            }
         }
 
         try {
+            /*
+            com.google.api.client.http.HttpResponse response = request.execute();
+            String content = response.parseAsString();
+            */
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
+            
+            Log.d(TAG, String.format("RESP: %s", content));
+            
             JSONArray json = null;
             switch (response.getStatusLine().getStatusCode()) {
+            //switch (response.getStatusCode()) {
             case HttpStatus.SC_OK:
                 try {
                     json = new JSONArray(content);
@@ -328,10 +439,11 @@ public class INaturalistService extends IntentService {
                 // or post them as new observations
             default:
                 Log.e(TAG, response.getStatusLine().toString());
+                //Log.e(TAG, response.getStatusMessage());
             }
         }
         catch (IOException e) {
-            request.abort();
+            //request.abort();
             Log.w(TAG, "Error for URL " + url, e);
         }
         return null;
@@ -354,9 +466,9 @@ public class INaturalistService extends IntentService {
                 mLogin == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
                 null, getBaseContext(), INaturalistPrefsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        app.sweepingNotify(AUTH_NOTIFICATION, "Please sign in", "Please sign in to your iNaturalist account or sign up for a new one.", null, intent);
+        app.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null, intent);
     }
-
+    
     public static boolean verifyCredentials(String credentials) {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
@@ -388,6 +500,84 @@ public class INaturalistService extends IntentService {
                 (username + ":" + password).getBytes(), Base64.URL_SAFE|Base64.NO_WRAP
                 );
         return verifyCredentials(credentials);
+    }
+    
+    // Returns an array of two strings: access token + iNat username
+    public static String[] verifyCredentials(String oauth2Token, LoginType authType) {
+        String grantType;
+        DefaultHttpClient client = new DefaultHttpClient();
+        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
+        String url = HOST + "/oauth/assertion_token";
+        HttpRequestBase request = new HttpPost(url);
+        ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
+        
+        postParams.add(new BasicNameValuePair("format", "json"));
+        postParams.add(new BasicNameValuePair("client_id", OAUTH_CLIENT_ID));
+        if (authType == LoginType.FACEBOOK) {
+            grantType = "facebook";
+        } else {
+            grantType = "google";
+        }
+        
+        postParams.add(new BasicNameValuePair("grant_type", grantType));
+        postParams.add(new BasicNameValuePair("assertion", oauth2Token));
+        
+        try {
+            ((HttpPost)request).setEntity(new UrlEncodedFormEntity(postParams));
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+            return null;
+        }
+        
+        try {
+            HttpResponse response = client.execute(request);
+            HttpEntity entity = response.getEntity();
+            String content = EntityUtils.toString(entity);
+            
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                // Upgrade to an access token
+                Log.d(TAG, "Authorization Response: " + content);
+                JSONObject json = new JSONObject(content);
+                String accessToken = json.getString("access_token");
+                
+                // Next, find the iNat username (since we currently only have the FB/Google email)
+                request = new HttpGet(HOST + "/users/edit.json");
+                request.setHeader("Authorization", "Bearer " + accessToken);
+                
+                response = client.execute(request);
+                entity = response.getEntity();
+                content = EntityUtils.toString(entity);
+
+                Log.d(TAG, String.format("RESP2: %s", content));
+
+                if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                    return null;
+                }
+                
+                json = new JSONObject(content);
+                if (!json.has("login")) {
+                    return null;
+                }
+                
+                String username = json.getString("login");
+               
+                return new String[] { accessToken, username };
+                
+            } else {
+                Log.e(TAG, "Authentication failed: " + content);
+                return null;
+            }
+        }
+        catch (IOException e) {
+            request.abort();
+            Log.w(TAG, "Error for URL " + url, e);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        return null;
+
     }
 
     public void syncJson(JSONArray json) {

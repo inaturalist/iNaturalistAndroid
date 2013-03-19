@@ -5,7 +5,7 @@
         android:id="@+id/observations_menu_menu"
         android:alphabeticShortcut="m"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="Menu"/>
+        android:title="@string/menu"/>
     
     <item
         android:id="@+id/observations_menu_add"

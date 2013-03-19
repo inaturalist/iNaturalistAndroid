@@ -29,7 +29,7 @@
             android:layout_weight="0.5"
             android:drawableLeft="@android:drawable/ic_menu_add"
             android:gravity="center_vertical"
-            android:text="Add observation" />
+            android:text="@string/add_observation" />
 
         <Button
             android:id="@+id/take_picture"
@@ -39,7 +39,7 @@
             android:layout_weight="0.5"
             android:drawableLeft="@android:drawable/ic_menu_camera"
             android:gravity="center_vertical"
-            android:text="Take picture" />
+            android:text="@string/take_picture" />
     </LinearLayout>
 
 </LinearLayout>

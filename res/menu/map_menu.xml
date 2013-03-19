@@ -4,30 +4,30 @@
         android:id="@+id/menu"
         android:alphabeticShortcut="m"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="Menu"/>
+        android:title="@string/menu"/>
 
     <item
         android:id="@+id/layers"
         android:alphabeticShortcut="l"
         android:icon="@android:drawable/ic_menu_mapmode"
-        android:title="Layers"/>
+        android:title="@string/layers"/>
     
     <item
         android:id="@+id/location"
         android:alphabeticShortcut="c"
         android:icon="@android:drawable/ic_menu_mylocation"
-        android:title="My location"/>
+        android:title="@string/my_location"/>
     
     <item
         android:id="@+id/nearby"
         android:alphabeticShortcut="n"
         android:icon="@android:drawable/ic_menu_myplaces"
-        android:title="Nearby observations"/>
+        android:title="@string/nearby_observations"/>
     
     <item
         android:id="@+id/add"
         android:alphabeticShortcut="a"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="Add"/>
+        android:title="@string/add"/>
 
 </menu>

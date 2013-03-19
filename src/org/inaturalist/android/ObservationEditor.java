@@ -123,7 +123,7 @@ public class ObservationEditor extends Activity {
             case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
                 mFileUri = (Uri) intent.getExtras().get("photoUri");
                 if (mFileUri == null) {
-                    Toast.makeText(getApplicationContext(), "Photo not specified", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.photo_not_specified), Toast.LENGTH_SHORT).show();
                     finish();
                     return;
                 }
@@ -344,7 +344,7 @@ public class ObservationEditor extends Activity {
         mSpeciesGuessTextView.setText(mObservation.species_guess);
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {
-            mObservedOnButton.setText("Set date");
+            mObservedOnButton.setText(getString(R.string.set_date));
         } else {
             mObservedOnButton.setText(app.shortFormatDate(mObservation.observed_on));
         }
@@ -352,7 +352,7 @@ public class ObservationEditor extends Activity {
             mObservedOnStringTextView.setText(mObservation.observed_on_string);
         }
         if (mObservation.time_observed_at == null) {
-            mTimeObservedAtButton.setText("Set time");
+            mTimeObservedAtButton.setText(getString(R.string.set_time));
         } else {
             mTimeObservedAtButton.setText(app.shortFormatTime(mObservation.time_observed_at));
         }
@@ -691,7 +691,7 @@ public class ObservationEditor extends Activity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Image captured and saved to mFileUri specified in the Intent
-                Toast.makeText(this, "Image saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.image_saved), Toast.LENGTH_LONG).show();
                 updateImageOrientation(mFileUri);
                 createObservationPhotoForPhoto(mFileUri);
                 updateImages();
@@ -699,8 +699,7 @@ public class ObservationEditor extends Activity {
                 // User cancelled the image capture
             } else {
                 // Image capture failed, advise user
-                Toast.makeText(this, "Blast, something went wrong:\n" +
-                        mFileUri, Toast.LENGTH_LONG).show();
+                Toast.makeText(this,  String.format(getString(R.string.something_went_wrong), mFileUri.toString()), Toast.LENGTH_LONG).show();
                 Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data.getData());
             }
             mFileUri = null; // don't let this hang around

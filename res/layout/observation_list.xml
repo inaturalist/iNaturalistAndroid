@@ -16,6 +16,6 @@
         android:layout_height="fill_parent"
         android:padding="30dp"
         android:gravity="center"
-        android:text="No observations yet!" />
+        android:text="@string/no_observations_yet" />
 
 </LinearLayout>

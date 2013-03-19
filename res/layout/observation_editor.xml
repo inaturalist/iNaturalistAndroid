@@ -23,7 +23,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="5dp"
-            android:text="Add photo" />
+            android:text="@string/add_photo" />
 
         <EditText
             android:id="@+id/speciesGuess"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_weight="0.5"
-                android:text="Set date" />
+                android:text="@string/set_date" />
 
             <Button
                 android:id="@+id/time_observed_at"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
                 android:layout_weight="0.5"
-                android:text="Set time" />
+                android:text="@string/set_time" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,7 +95,7 @@
                         android:id="@+id/latitude"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Unknown" />
+                        android:hint="@string/unknown" />
                 </TableRow>
 
                 <TableRow
@@ -114,7 +114,7 @@
                         android:id="@+id/longitude"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Unknown" />
+                        android:hint="@string/unknown" />
                 </TableRow>
 
                 <TableRow
@@ -132,7 +132,7 @@
                         android:id="@+id/accuracy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Unknown" />
+                        android:hint="@string/unknown" />
                 </TableRow>
             </TableLayout>
 
@@ -174,7 +174,7 @@
             android:layout_marginRight="3dp"
             android:layout_weight="1"
             android:gravity="top"
-            android:hint="Brief description..."
+            android:hint="@string/brief_description"
             android:imeOptions="actionDone" />
 
         <LinearLayout
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_weight="0.5"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
 
             <Button
                 android:id="@+id/save"
@@ -197,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
                 android:layout_weight="0.5"
-                android:text="Save" />
+                android:text="@string/save" />
         </LinearLayout>
     </LinearLayout>
 

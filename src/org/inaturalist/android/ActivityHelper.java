@@ -18,7 +18,7 @@ public class ActivityHelper {
     public void alert(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setMessage(msg)
-        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }
@@ -31,13 +31,13 @@ public class ActivityHelper {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(title);
         builder.setMessage(msg);
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
             })
-            .setPositiveButton("OK", listener);
+            .setPositiveButton(R.string.ok, listener);
         AlertDialog alert = builder.create();
         alert.show();
     }
@@ -51,7 +51,7 @@ public class ActivityHelper {
             mProgressDialog.dismiss();
         }
         if (title == null) { title = ""; }
-        if (msg == null) { msg = "Loading..."; }
+        if (msg == null) { msg = mContext.getString(R.string.loading); }
         mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
     }
 
