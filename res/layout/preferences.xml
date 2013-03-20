@@ -35,6 +35,7 @@
 	            android:layout_height="wrap_content"
 	            android:layout_centerHorizontal="true"
 	            android:layout_marginTop="8dp"
+	            android:drawablePadding="5dp"
 	            android:text="@string/google_login"
 	            android:drawableLeft="@drawable/google"
 	            android:gravity="center_vertical|center_horizontal" />
