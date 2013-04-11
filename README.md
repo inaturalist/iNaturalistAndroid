@@ -23,12 +23,11 @@ tar xzvf httpcomponents-client-4.1.2-bin.tar.gz
 cd ../../
 
 # Get the FacebookSDK
-tar xzvf http://psg.mtu.edu/pub/apache//commons/collections/binaries/commons-collections-3.2.1-bin.tar.gz
 git clone git://github.com/facebook/facebook-android-sdk.git
 ./facebook-android-sdk/scripts/build_and_test.sh
 
 # Copy the example config file and add your own API keys etc
-cp res/values/config.xml.example res/values/config.xml
+cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/values/config.xml
 ```
 
 ### From Eclipse
@@ -41,7 +40,5 @@ cp res/values/config.xml.example res/values/config.xml
 1. Choose `General / Existing Projects into Workspace`
 1. `Select root directory` as `path/to/your/workspace/INaturalistAndroid`
 1. Check the `INaturalistAndroid` project and click `Finish`
-1. Open the project properties for the INaturalistAndroid project (right click on it, use File menu, etc)
-1. Go to `Android` and add the `FaceookSDK` as a library
 
 In theory it should build now!
