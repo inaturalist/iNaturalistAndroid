@@ -1,6 +1,8 @@
 package org.inaturalist.android;
 import java.util.List;
 
+import org.inaturalist.android.R;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

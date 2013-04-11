@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="facebook_app_id">26558815027</string>
     <string name="app_name">NaturaLista</string>
     <string name="google_login">  Iniciar sesión con Google</string>
     <string name="email_address">Dirección de correo electrónico</string>

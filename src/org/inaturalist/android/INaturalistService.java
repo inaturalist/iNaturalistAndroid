@@ -49,15 +49,15 @@ import android.util.Log;
 
 public class INaturalistService extends IntentService {
     public static String TAG = "INaturalistService";
-    public static String HOST = "http://www.inaturalist.org";
+    public static String HOST = "https://www.inaturalist.org";
 //    public static String HOST = "http://10.0.2.2:3000";
     public static String MEDIA_HOST = HOST;
-    public static String USER_AGENT = "iNaturalist/"+INaturalistApp.VERSION + " (" +
-            "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
-            "SDK " + android.os.Build.VERSION.SDK + "; " +
-            android.os.Build.DEVICE + " " +
-            android.os.Build.MODEL + " " + 
-            android.os.Build.PRODUCT + ")";
+    public static String USER_AGENT = "iNaturalist/" + INaturalistApp.VERSION + " (" +
+        "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
+        "SDK " + android.os.Build.VERSION.SDK + "; " +
+        android.os.Build.DEVICE + " " +
+        android.os.Build.MODEL + " " + 
+        android.os.Build.PRODUCT + ")";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
@@ -70,8 +70,6 @@ public class INaturalistService extends IntentService {
     private boolean mPassive;
     private INaturalistApp app;
     private LoginType mLoginType;
-    
-    private static String OAUTH_CLIENT_ID = "51c1ca35e35ac4438e389d0119b0b8a57644341fe03eca486a341b004c3ec22f";
     
 	public enum LoginType {
 	    PASSWORD,
@@ -290,80 +288,6 @@ public class INaturalistService extends IntentService {
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
-
-        /*
-        NetHttpTransport httpTransport = new NetHttpTransport();
-        final Credential credential;
-        HttpRequestFactory requestFactory;
-        
-        if ((authenticated) && (mLoginType != LoginType.PASSWORD)) {
-            ensureCredentials();
-            credential = new Credential.Builder(BearerToken.authorizationHeaderAccessMethod())
-                    .setTransport(httpTransport)
-                    .build()
-                    .setAccessToken(mCredentials);
-        } else {
-            credential = null;
-        }
-        
-        requestFactory = httpTransport.createRequestFactory(new HttpRequestInitializer() {
-                @Override
-                public void initialize(HttpRequest request) throws IOException {
-                    if ((mLoginType != LoginType.PASSWORD) && (credential != null)) {
-                        credential.initialize(request);
-                    }
-                }
-            });
-        
-        GenericUrl genericUrl = new GenericUrl(url);
-        HttpRequest request;
-        
-        if (method.equalsIgnoreCase("get")) {
-            try {
-                request = requestFactory.buildGetRequest(genericUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } else {
-            MultipartRelatedContent content = null;
-            
-            // POST params
-            if ((params != null) && (params.size() > 0)) {
-                ArrayList<HttpContent> parts = new ArrayList<HttpContent>();
-               
-                for (int i = 0; i < params.size(); i++) {
-                    if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
-                        // If the key equals to "image", we use FileBody to transfer the data
-                        parts.add(new FileContent(null, new File(params.get(i).getValue())));
-                    } else {
-                        // Normal string data
-                        parts.add(new ByteArrayContent(null, params.get(i).getValue().getBytes()));
-                    }
-                }
-                
-                if (parts.size() > 1) {
-                    HttpContent[] tmp = { null };
-                    HttpContent[] restOfParts = parts.subList(1, parts.size()).toArray(tmp);
-                    content = new MultipartRelatedContent(parts.get(0), restOfParts);
-                } else {
-                    content = new MultipartRelatedContent(parts.get(0));
-                }
-            }
-            
-            try {
-                request = requestFactory.buildPostRequest(genericUrl, content);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-        
-        if ((authenticated) && (mLoginType == LoginType.PASSWORD)) {
-            ensureCredentials();
-            request.getHeaders().setAuthorization("Basic "+ mCredentials);
-        }
-        */
         
         Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
                 authenticated ? mCredentials : "<null>",
@@ -512,7 +436,7 @@ public class INaturalistService extends IntentService {
         ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
         
         postParams.add(new BasicNameValuePair("format", "json"));
-        postParams.add(new BasicNameValuePair("client_id", OAUTH_CLIENT_ID));
+        postParams.add(new BasicNameValuePair("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id)));
         if (authType == LoginType.FACEBOOK) {
             grantType = "facebook";
         } else {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Set;
 
 import org.inaturalist.android.INaturalistService.LoginType;
@@ -24,6 +25,7 @@ import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,6 +45,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -93,27 +97,49 @@ public class INaturalistPrefsActivity extends Activity {
         }
     }
 
-
+    
+    private void askForGoogleEmail() {
+      final EditText input = new EditText(INaturalistPrefsActivity.this);
+      new AlertDialog.Builder(INaturalistPrefsActivity.this)
+          .setTitle(R.string.google_login)
+          .setMessage(R.string.email_address)
+          .setView(input)
+          .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int whichButton) {
+                  String username = input.getText().toString(); 
+                  
+                  if (username.trim().length() == 0) {
+                      return;
+                  }
+                  
+                  signIn(LoginType.GOOGLE, username.trim().toLowerCase(), null);
+              }
+          }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int whichButton) {
+                  // Do nothing.
+              }
+          }).show(); 
+    }
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-	try {
-        Log.d("KeyHash:", "ENTER");
-    PackageInfo info = getPackageManager().getPackageInfo(
-            "org.inaturalist.android", 
-            PackageManager.GET_SIGNATURES);
-    for (Signature signature : info.signatures) {
-        MessageDigest md = MessageDigest.getInstance("SHA");
-        md.update(signature.toByteArray());
-        Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-        }
-} catch (NameNotFoundException e) {
-
-} catch (NoSuchAlgorithmException e) {
-
-}	
+		try {
+		    Log.d("KeyHash:", "ENTER");
+		    PackageInfo info = getPackageManager().getPackageInfo(
+		            "org.inaturalist.android", 
+		            PackageManager.GET_SIGNATURES);
+		    for (Signature signature : info.signatures) {
+		        MessageDigest md = MessageDigest.getInstance("SHA");
+		        md.update(signature.toByteArray());
+		        Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+		    }
+		} catch (NameNotFoundException e) {
+		    Log.d("NameNotFoundException: ", e.toString());
+		} catch (NoSuchAlgorithmException e) {
+		    Log.d("NoSuchAlgorithmException: ", e.toString());
+		}	
 		
         mUiHelper = new UiLifecycleHelper(this, mCallback);
         mUiHelper.onCreate(savedInstanceState);
@@ -142,26 +168,7 @@ public class INaturalistPrefsActivity extends Activity {
         mGoogleLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText input = new EditText(INaturalistPrefsActivity.this);
-                new AlertDialog.Builder(INaturalistPrefsActivity.this)
-                    .setTitle(R.string.google_login)
-                    .setMessage(R.string.email_address)
-                    .setView(input)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            String username = input.getText().toString(); 
-                            
-                            if (username.trim().length() == 0) {
-                                return;
-                            }
-                            
-                            signIn(LoginType.GOOGLE, username.trim().toLowerCase(), null);
-                        }
-                    }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            // Do nothing.
-                        }
-                    }).show(); 
+                signIn(LoginType.GOOGLE, null, null);
             }
         });
         
@@ -383,38 +390,43 @@ public class INaturalistPrefsActivity extends Activity {
 	
 	private void signIn(LoginType loginType, String username, String password) {
 	    boolean googleLogin = (loginType == LoginType.GOOGLE);
-	    
-		if (username.isEmpty() || (!googleLogin && password.isEmpty())) {
-			mHelper.alert(getString(R.string.username_cannot_be_blank));
-			return;
-		}
-		
-		if (googleLogin) {
-		    final String googleUsername = username.toLowerCase();
-		    
-		    // See if given account exists
-		    Account[] availableAccounts = AccountManager.get(this).getAccountsByType("com.google");
-		    boolean accountFound = false;
-		    
-		    for (int i = 0; i < availableAccounts.length; i++) {
-		        if (availableAccounts[i].name.equalsIgnoreCase(googleUsername)) {
-		            // Found the account
-		            accountFound = true;
-		            break;
-		        }
-		    }
 
-		    if (!accountFound) {
-		        // Redirect user to add account dialog
-		        mGoogleUsername = googleUsername;
-		        startActivityForResult(new Intent(Settings.ACTION_ADD_ACCOUNT), REQUEST_CODE_ADD_ACCOUNT);
-		        //AccountManager.get(this).addAccount("com.google", , requiredFeatures, addAccountOptions, activity, callback, handler)
-		        return;
-		    }
-		   
-		    // Google account login
-		    final AccountManagerCallback<Bundle> cb = new AccountManagerCallback<Bundle>() {
-		        public void run(AccountManagerFuture<Bundle> future) {
+	    if (googleLogin) {
+	        String googleUsername = null;
+	        Account account = null;
+
+	        // See if given account exists
+	        Account[] availableAccounts = AccountManager.get(this).getAccountsByType("com.google");
+	        boolean accountFound = false;
+
+	        if (username != null) {
+	            googleUsername = username.toLowerCase();
+	            for (int i = 0; i < availableAccounts.length; i++) {
+	                if (availableAccounts[i].name.equalsIgnoreCase(googleUsername)) {
+	                    // Found the account
+	                    accountFound = true;
+	                    break;
+	                }
+	            }
+	        }
+
+	        if (availableAccounts.length > 0) {
+	            accountFound = true;
+	            account = availableAccounts[0];
+	        } else if (googleUsername == null) {
+	            askForGoogleEmail();
+	            return;
+	        } else {
+	            // Redirect user to add account dialog
+	            mGoogleUsername = googleUsername;
+	            startActivityForResult(new Intent(Settings.ACTION_ADD_ACCOUNT), REQUEST_CODE_ADD_ACCOUNT);
+	            return;
+	        }
+
+	        // Google account login
+	        final String boundUsername = googleUsername;
+	        final AccountManagerCallback<Bundle> cb = new AccountManagerCallback<Bundle>() {
+	            public void run(AccountManagerFuture<Bundle> future) {
 	                try {
 	                    final Bundle result = future.getResult();
 	                    final String accountName = result.getString(AccountManager.KEY_ACCOUNT_NAME);
@@ -422,13 +434,12 @@ public class INaturalistPrefsActivity extends Activity {
 	                    final Intent authIntent = result.getParcelable(AccountManager.KEY_INTENT);
 	                    if (accountName != null && authToken != null) {
 	                        Log.d(TAG, String.format("Token: %s", authToken));
-	                        
-                    	    new SignInTask(INaturalistPrefsActivity.this).execute(googleUsername, authToken, LoginType.GOOGLE.toString());
-                    	    
+	                        new SignInTask(INaturalistPrefsActivity.this).execute(boundUsername, authToken, LoginType.GOOGLE.toString());
+
 	                    } else if (authIntent != null) {
-            		        int flags = authIntent.getFlags();
-            		        flags &= ~Intent.FLAG_ACTIVITY_NEW_TASK; 
-            		        authIntent.setFlags(flags);
+	                        int flags = authIntent.getFlags();
+	                        flags &= ~Intent.FLAG_ACTIVITY_NEW_TASK; 
+	                        authIntent.setFlags(flags);
 	                        INaturalistPrefsActivity.this.startActivityForResult(authIntent, REQUEST_CODE_LOGIN);
 	                    } else {
 	                        Log.e(TAG, "AccountManager was unable to obtain an authToken.");
@@ -437,14 +448,20 @@ public class INaturalistPrefsActivity extends Activity {
 	                    Log.e(TAG, "Auth Error", e);
 	                }
 	            }
-	        };  
-		   Account account = new Account(googleUsername, "com.google");
-		   AccountManager.get(this).getAuthToken(account, "oauth2:https://www.googleapis.com/auth/userinfo.email", true, cb, null); 
-		   
-		} else {
-		    // "Regular" login
-		    new SignInTask(this).execute(username, password, LoginType.PASSWORD.toString());
-		}
+	        };
+	        if (account == null) {
+	            account = new Account(googleUsername, "com.google");
+	        }
+	        AccountManager.get(this).getAuthToken(account, 
+	                "oauth2:https://www.googleapis.com/auth/userinfo.profile",
+	                true,
+	                cb, 
+	                null); 
+
+	    } else {
+	        // "Regular" login
+	        new SignInTask(this).execute(username, password, LoginType.PASSWORD.toString());
+	    }
 	}
 	
 	private void signOut() {

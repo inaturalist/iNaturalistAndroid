@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import org.inaturalist.android.R;
 import org.inaturalist.android.INaturalistService.LoginType;
 
 import android.app.Application;
@@ -25,12 +26,18 @@ public class INaturalistApp extends Application {
     public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("MMMM d, yyyy h:mm:ss a z");
     public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("MMM d, yyyy");
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("h:mm a z");
-    private static Integer SYNC_NOTIFICATION = 3; 
+    private static Integer SYNC_NOTIFICATION = 3;
+    private static Context context;
     
     @Override
     public void onCreate() {
         super.onCreate();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        INaturalistApp.context = getApplicationContext();
+    }
+    
+    public static Context getAppContext() {
+        return INaturalistApp.context;
     }
     
     public void checkSyncNeeded() {
