@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NaturaLista</string>
+    <string name="app_name">iNaturalist</string>
     <string name="google_login">  Iniciar sesión con Google</string>
     <string name="email_address">Dirección de correo electrónico</string>
     <string name="observations_menu_add">Añadir</string>
@@ -8,7 +8,6 @@
     <string name="delete_observation">Borrar observación</string>
     <string name="observation_deleted">Observación borrada</string>
     <string name="species_guess_hint">Nombre de la especie...</string>
-    <string name="gmaps_api_key">08Zy8D_Hk3fkh4ndmGpNnsJeEBHlJonaTU1eBuw</string>
     
     <string name="ok">OK</string>
     <string name="cancel">Cancelar</string>
@@ -20,7 +19,7 @@
     <string name="couldnt_load_nearby_observations">No se han podido cargar las observaciones cercanas: %1$s</string>
     <string name="found_observations">Se han encontrado %1$d observaciones</string>
     <string name="ready_to_signup">¿Listo para registrarte?</string>
-    <string name="about_to_signup">Estás a punto de visitar NaturaLista, donde podrás registrar una cuenta nueva. En cuanto hayas confirmado tu cuenta haciendo clic en el enlace del email de confirmación que recibirás, podrás volver aquí para introducir tu nombre de usuario y tu contraseña.</string>
+    <string name="about_to_signup">Estás a punto de visitar iNaturalist, donde podrás registrar una cuenta nueva. En cuanto hayas confirmado tu cuenta haciendo clic en el enlace del email de confirmación que recibirás, podrás volver aquí para introducir tu nombre de usuario y tu contraseña.</string>
     <string name="username_invalid">Nombre de usuario o contraseña no válidos, por favor inicia sesión de nuevo.</string>
     <string name="signed_in_as">Sesión iniciada como %1$s</string>
     <string name="signing_in">Iniciando sesión...</string>
@@ -62,7 +61,7 @@
     <string name="map">Mapa</string>
     <string name="map_description">Mapa de observaciones</string>
     <string name="updates">Feed de novedades</string>
-    <string name="updates_description">Novedades de la gente a la que sigues en NaturaLista</string>
+    <string name="updates_description">Novedades de la gente a la que sigues en iNaturalist</string>
     <string name="settings">Configuración</string>
     <string name="settings_description">Iniciar/cerrar sesión</string>
     <string name="processing">Procesando...</string>
@@ -76,13 +75,14 @@
     <string name="view_on_inat">Ver en NaturaLista</string>
     <string name="reload">Refrescar</string>
     <string name="view_in_browser">Ver en el navegador</string>
+    <string name="view">Ver</string>
     
     <string name="add_observation">Añadir observación</string>
     <string name="take_picture">Hacer una foto</string>
     <string name="add_photo">Añadir foto</string>
     <string name="save">Guardar</string>
     <string name="no_observations_yet">¡Aún no hay observaciones!</string>
-    <string name="sign_in_to_inat">Inicia sesión en tu cuenta de NaturaLista</string>
+    <string name="sign_in_to_inat">Inicia sesión en tu cuenta de iNaturalist</string>
     <string name="sign_in">Inicia sesión</string>
     <string name="or">o</string>
     <string name="create_new_account">Crea una cuenta nueva</string>

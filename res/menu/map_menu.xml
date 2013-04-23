@@ -13,12 +13,6 @@
         android:title="@string/layers"/>
     
     <item
-        android:id="@+id/location"
-        android:alphabeticShortcut="c"
-        android:icon="@android:drawable/ic_menu_mylocation"
-        android:title="@string/my_location"/>
-    
-    <item
         android:id="@+id/nearby"
         android:alphabeticShortcut="n"
         android:icon="@android:drawable/ic_menu_myplaces"

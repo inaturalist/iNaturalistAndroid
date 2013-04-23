@@ -86,6 +86,7 @@
     <string name="create_new_account">Create new account</string>
     <string name="signed_in_as_plain">Signed in as</string>
     <string name="signed_out">Sign out</string>
+    <string name="view">View</string>
     
     <string name="username">Username</string>
     <string name="password">Password</string>

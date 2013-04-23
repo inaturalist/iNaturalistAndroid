@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.util.Log;
 
 public class ActivityHelper {
@@ -66,6 +67,33 @@ public class ActivityHelper {
     public void stopLoading() {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
+        }
+    }
+    
+    public int observationColor(Observation o) {
+        if (o.iconic_taxon_name== null) {
+            return Color.BLACK;
+        } else if (o.iconic_taxon_name.equals("Animalia") || 
+                o.iconic_taxon_name.equals("Actinopterygii") ||
+                o.iconic_taxon_name.equals("Amphibia") || 
+                o.iconic_taxon_name.equals("Reptilia") || 
+                o.iconic_taxon_name.equals("Aves") || 
+                o.iconic_taxon_name.equals("Mammalia")) {
+            return Color.parseColor("#1E90FF");
+        } else if (o.iconic_taxon_name.equals("Insecta") || 
+                o.iconic_taxon_name.equals("Arachnida") ||
+                o.iconic_taxon_name.equals("Mollusca")) {
+            return Color.parseColor("#FF4500");
+        } else if (o.iconic_taxon_name.equals("Protozoa")) {
+            return Color.parseColor("#691776");
+        } else if (o.iconic_taxon_name.equals("Plantae")) {
+            return Color.parseColor("#73AC13");
+        } else if (o.iconic_taxon_name.equals("Fungi")) {
+            return Color.parseColor("#FF1493");
+        } else if (o.iconic_taxon_name.equals("Chromista")) {
+            return Color.parseColor("#993300");
+        } else {
+            return Color.BLACK;
         }
     }
 }

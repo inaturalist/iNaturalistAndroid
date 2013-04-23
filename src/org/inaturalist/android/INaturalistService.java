@@ -1,10 +1,7 @@
 package org.inaturalist.android;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,19 +25,16 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
-import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.facebook.Session.NewPermissionsRequest;
 import android.app.IntentService;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.net.Credentials;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -254,7 +248,7 @@ public class INaturalistService extends IntentService {
         url += "&nelat="+maxy;
         url += "&swlng="+minx;
         url += "&nelng="+maxx;
-        JSONArray json = get(url);
+        JSONArray json = get(url, app.loggedIn());
         Intent reply = new Intent(ACTION_NEARBY);
         reply.putExtra("minx", minx);
         reply.putExtra("maxx", maxx);
