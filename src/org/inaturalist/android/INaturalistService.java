@@ -283,9 +283,9 @@ public class INaturalistService extends IntentService {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
         
-        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
-                authenticated ? mCredentials : "<null>",
-                url));
+//        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
+//                authenticated ? mCredentials : "<null>",
+//                url));
         
         HttpRequestBase request;
         
@@ -454,7 +454,7 @@ public class INaturalistService extends IntentService {
             
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 // Upgrade to an access token
-                Log.d(TAG, "Authorization Response: " + content);
+//                Log.d(TAG, "Authorization Response: " + content);
                 JSONObject json = new JSONObject(content);
                 String accessToken = json.getString("access_token");
                 

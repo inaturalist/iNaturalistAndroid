@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- copy this file to config.xml and fill in the values specific to your project -->
+<!-- copy this file to config.xml and uncomment / fill in the values specific to your project -->
 <resources>
     <!-- https://developers.google.com/maps/documentation/android/ -->
-    <string name="gmaps_api_key">xxx</string>
+    <!-- <string name="gmaps_api_key">xxx</string>  -->
 
     <!-- https://developers.facebook.com/android/ -->
-    <string name="facebook_app_id">xxx</string>
+    <!-- <string name="facebook_app_id">xxx</string>  -->
 
     <!-- http://www.inaturalist.org/oauth/applications -->
-    <string name="oauth_client_id">xxx</string>
+    <!-- <string name="oauth_client_id">xxx</string>  -->
 </resources>

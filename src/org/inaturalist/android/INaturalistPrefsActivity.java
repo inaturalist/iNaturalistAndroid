@@ -1,38 +1,24 @@
 package org.inaturalist.android;
 
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Set;
-
 import org.inaturalist.android.INaturalistService.LoginType;
 
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.Session.StatusCallback;
 import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
-import android.accounts.AuthenticatorException;
-import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,12 +28,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,12 +41,13 @@ public class INaturalistPrefsActivity extends Activity {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final int REQUEST_CODE_ADD_ACCOUNT = 0x1001;
     
+    private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
+    
 	private LinearLayout mSignInLayout;
 	private LinearLayout mSignOutLayout;
 	private TextView mUsernameTextView;
 	private TextView mPasswordTextView;
 	private TextView mSignOutLabel;
-	private TextView mOrLabel;
 	private Button mSignInButton;
 	private Button mSignOutButton;
 	private Button mSignUpButton;
@@ -90,8 +72,7 @@ public class INaturalistPrefsActivity extends Activity {
     };
     
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
-        Log.d(TAG, "onSessionStateChange: " + session.toString() + ":" + state.toString());
-        
+//        Log.d(TAG, "onSessionStateChange: " + session.toString() + ":" + state.toString());
         if ((state == SessionState.CLOSED) || (state == SessionState.CLOSED_LOGIN_FAILED)) {
             signOut();
         }
@@ -125,21 +106,21 @@ public class INaturalistPrefsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		try {
-		    Log.d("KeyHash:", "ENTER");
-		    PackageInfo info = getPackageManager().getPackageInfo(
-		            "org.inaturalist.android", 
-		            PackageManager.GET_SIGNATURES);
-		    for (Signature signature : info.signatures) {
-		        MessageDigest md = MessageDigest.getInstance("SHA");
-		        md.update(signature.toByteArray());
-		        Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-		    }
-		} catch (NameNotFoundException e) {
-		    Log.d("NameNotFoundException: ", e.toString());
-		} catch (NoSuchAlgorithmException e) {
-		    Log.d("NoSuchAlgorithmException: ", e.toString());
-		}	
+//		try {
+//		    Log.d("KeyHash:", "ENTER");
+//		    PackageInfo info = getPackageManager().getPackageInfo(
+//		            "org.inaturalist.android", 
+//		            PackageManager.GET_SIGNATURES);
+//		    for (Signature signature : info.signatures) {
+//		        MessageDigest md = MessageDigest.getInstance("SHA");
+//		        md.update(signature.toByteArray());
+//		        Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//		    }
+//		} catch (NameNotFoundException e) {
+//		    Log.d("NameNotFoundException: ", e.toString());
+//		} catch (NoSuchAlgorithmException e) {
+//		    Log.d("NoSuchAlgorithmException: ", e.toString());
+//		}	
 		
         mUiHelper = new UiLifecycleHelper(this, mCallback);
         mUiHelper.onCreate(savedInstanceState);
@@ -156,7 +137,6 @@ public class INaturalistPrefsActivity extends Activity {
 	    mUsernameTextView = (TextView) findViewById(R.id.username);
 	    mPasswordTextView = (TextView) findViewById(R.id.password);
 	    mSignOutLabel = (TextView) findViewById(R.id.signOutLabel);
-	    mOrLabel = (TextView) findViewById(R.id.orLabel);
 	    mSignInButton = (Button) findViewById(R.id.signInButton);
 	    mSignOutButton = (Button) findViewById(R.id.signOutButton);
 	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
@@ -179,14 +159,13 @@ public class INaturalistPrefsActivity extends Activity {
         mFacebookLoginButton.setSessionStatusCallback(new StatusCallback() {
             @Override
             public void call(Session session, SessionState state, Exception exception) {
-                Log.d(TAG, "onSessionStateChange: " + state.toString());
-                
+//                Log.d(TAG, "onSessionStateChange: " + state.toString());
                 if ((state == SessionState.OPENED) || (state == SessionState.OPENED_TOKEN_UPDATED)) {
                     String username = mPreferences.getString("username", null);
                     if (username == null) {
                         // First time login
                         String accessToken = session.getAccessToken();
-                        Log.d(TAG, "FB Login: " + accessToken);
+//                        Log.d(TAG, "FB Login: " + accessToken);
                         new SignInTask(INaturalistPrefsActivity.this).execute(null, accessToken, LoginType.FACEBOOK.toString());
                     }
                 }
@@ -251,7 +230,7 @@ public class INaturalistPrefsActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "onActivityResult " + requestCode + ":" + resultCode + ":" + data);
+//        Log.d(TAG, "onActivityResult " + requestCode + ":" + resultCode + ":" + data);
         mUiHelper.onActivityResult(requestCode, resultCode, data);
         
         if ((requestCode == REQUEST_CODE_ADD_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
@@ -313,6 +292,7 @@ public class INaturalistPrefsActivity extends Activity {
 		private String mPassword;
 		private LoginType mLoginType;
 		private Activity mActivity;
+		private boolean mInvalidated;
 		
 		public SignInTask(Activity activity) {
 			mActivity = activity;
@@ -322,9 +302,14 @@ public class INaturalistPrefsActivity extends Activity {
 			mUsername = pieces[0];
 			mPassword = pieces[1];
 			mLoginType = LoginType.valueOf(pieces[2]);
+			if (pieces.length > 3) {
+			    mInvalidated = (pieces[3] == "invalidated");
+			} else {
+			    mInvalidated = false;
+			}
 			
-			Log.d(TAG, String.format("Verifying credentials for %s login with %s:%s",
-			        mLoginType.toString(), (mUsername != null ? mUsername : "<null>"), mPassword));
+//			Log.d(TAG, String.format("Verifying credentials for %s login with %s:%s",
+//			        mLoginType.toString(), (mUsername != null ? mUsername : "<null>"), mPassword));
 			
 			// TODO - Support for OAuth2 login with Google/Facebook
 			if (mLoginType == LoginType.PASSWORD) {
@@ -353,19 +338,21 @@ public class INaturalistPrefsActivity extends Activity {
 		}
 
 	    protected void onPostExecute(String result) {
+	        mProgressDialog.dismiss();
 			if (result != null) {
 				Toast.makeText(mActivity, getString(R.string.signed_in), Toast.LENGTH_SHORT).show();
-				mProgressDialog.dismiss();
 			} else {
-				mProgressDialog.dismiss();
-				mHelper.alert(getString(R.string.signed_in_failed));
-				
 				if (mLoginType == LoginType.FACEBOOK) {
 				    // Login failed - need to sign-out of Facebook as well
 				    Session session = Session.getActiveSession();
 				    session.closeAndClearTokenInformation();
+				} else if (mLoginType == LoginType.GOOGLE && !mInvalidated) {
+				    AccountManager.get(mActivity).invalidateAuthToken("com.google", mPassword);
+				    INaturalistPrefsActivity a = (INaturalistPrefsActivity) mActivity;
+				    a.signIn(LoginType.GOOGLE, mUsername, null, true);
+				    return;
 				}
-				
+                mHelper.alert(getString(R.string.signed_in_failed));
 				return;
 			}
 			
@@ -388,7 +375,11 @@ public class INaturalistPrefsActivity extends Activity {
 
 	}
 	
-	private void signIn(LoginType loginType, String username, String password) {
+	public void signIn(LoginType loginType, String username, String password) {
+	    signIn(loginType, username, password, false);
+	}
+	
+	public void signIn(LoginType loginType, String username, String password, boolean invalidated) {
 	    boolean googleLogin = (loginType == LoginType.GOOGLE);
 
 	    if (googleLogin) {
@@ -404,6 +395,7 @@ public class INaturalistPrefsActivity extends Activity {
 	            for (int i = 0; i < availableAccounts.length; i++) {
 	                if (availableAccounts[i].name.equalsIgnoreCase(googleUsername)) {
 	                    // Found the account
+//	                    Log.d(TAG, "googleUsername: " + googleUsername);
 	                    accountFound = true;
 	                    break;
 	                }
@@ -425,6 +417,7 @@ public class INaturalistPrefsActivity extends Activity {
 
 	        // Google account login
 	        final String boundUsername = googleUsername;
+	        final String boundInvalidated = invalidated ? "invalidated" : null;
 	        final AccountManagerCallback<Bundle> cb = new AccountManagerCallback<Bundle>() {
 	            public void run(AccountManagerFuture<Bundle> future) {
 	                try {
@@ -433,8 +426,8 @@ public class INaturalistPrefsActivity extends Activity {
 	                    final String authToken = result.getString(AccountManager.KEY_AUTHTOKEN);
 	                    final Intent authIntent = result.getParcelable(AccountManager.KEY_INTENT);
 	                    if (accountName != null && authToken != null) {
-	                        Log.d(TAG, String.format("Token: %s", authToken));
-	                        new SignInTask(INaturalistPrefsActivity.this).execute(boundUsername, authToken, LoginType.GOOGLE.toString());
+//	                        Log.d(TAG, String.format("Token: %s", authToken));
+	                        new SignInTask(INaturalistPrefsActivity.this).execute(boundUsername, authToken, LoginType.GOOGLE.toString(), boundInvalidated);
 
 	                    } else if (authIntent != null) {
 	                        int flags = authIntent.getFlags();
@@ -453,7 +446,7 @@ public class INaturalistPrefsActivity extends Activity {
 	            account = new Account(googleUsername, "com.google");
 	        }
 	        AccountManager.get(this).getAuthToken(account, 
-	                "oauth2:https://www.googleapis.com/auth/userinfo.profile",
+	                GOOGLE_AUTH_TOKEN_TYPE,
 	                true,
 	                cb, 
 	                null); 
