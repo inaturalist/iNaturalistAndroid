@@ -16,13 +16,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
+import android.webkit.*;
 
 public class WebActivity extends Activity {
     private static String TAG = "WebActivity";
+    private static String HOME_URL = INaturalistService.HOST + "/home";
     private WebView mWebView;
     private INaturalistApp app;
     private ActivityHelper helper;
@@ -58,42 +56,19 @@ public class WebActivity extends Activity {
                 helper.stopLoading();
                 helper.alert(String.format(getString(R.string.oh_no), description));
             }
-        });
-
-
-        if (app.loggedIn()) {
-            Log.d(TAG, "setting auth...");
-            HashMap<String,String> headers = new HashMap<String,String>();
-            
-            if (app.getLoginType() == LoginType.PASSWORD) {
-                headers.put("Authorization", "Basic " + app.getPrefs().getString("credentials", null));
-            } else {
-                headers.put("Authorization", "Bearer " + app.getPrefs().getString("credentials", null));
-            }
-            mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
-            mWebView.loadUrl(INaturalistService.HOST + "/home", headers);
-        } else {
-            helper.confirm(getString(R.string.need_to_login), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Intent intent = new Intent(
-                            app.currentUserLogin() == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
-                                    null, getBaseContext(), INaturalistPrefsActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+            // TODO this works for get requests, but it doesn't intercept POSTs, 
+            // so it leads to some weird behavior. Apparently this has been a bug 
+            // since 2010, which is pretty disgusting:
+            // https://code.google.com/p/android/issues/detail?id=9122
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (!app.loggedIn()) {
+                    return false;
                 }
-            });
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
+                mWebView.loadUrl(url, getAuthHeaders());
+                return true;
+            }
+        });
+        goHome();
     }
 
     @Override
@@ -102,7 +77,15 @@ public class WebActivity extends Activity {
             switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 if (mWebView.canGoBack() == true) {
-                    mWebView.goBack();
+                    WebBackForwardList webBackForwardList = mWebView.copyBackForwardList();
+                    String historyUrl = webBackForwardList.getItemAtIndex(webBackForwardList.getCurrentIndex()-1).getUrl();
+                    // weird bug shows a blank page when just going back to the first url in history
+                    if (historyUrl.equals(HOME_URL)) {
+                        mWebView.clearHistory();
+                        goHome();
+                    } else {
+                        mWebView.goBack();
+                    }
                 } else {
                     finish();
                 }
@@ -136,6 +119,37 @@ public class WebActivity extends Activity {
             return true;
         default:
             return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    public HashMap<String,String> getAuthHeaders() {
+        HashMap<String,String> headers = new HashMap<String,String>();
+        if (!app.loggedIn()) {
+            return headers;
+        }
+        if (app.getLoginType() == LoginType.PASSWORD) {
+            headers.put("Authorization", "Basic " + app.getPrefs().getString("credentials", null));
+        } else {
+            headers.put("Authorization", "Bearer " + app.getPrefs().getString("credentials", null));
+        }
+        return headers;
+    }
+    
+    public void goHome() {
+        if (app.loggedIn()) {
+            mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
+            mWebView.loadUrl(HOME_URL, getAuthHeaders());
+        } else {
+            helper.confirm(getString(R.string.need_to_login), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    Intent intent = new Intent(
+                            app.currentUserLogin() == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
+                                    null, getBaseContext(), INaturalistPrefsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            });
         }
     }
 }
