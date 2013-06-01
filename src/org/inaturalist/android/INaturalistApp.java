@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import org.inaturalist.android.R;
 import org.inaturalist.android.INaturalistService.LoginType;
@@ -16,9 +17,11 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 public class INaturalistApp extends Application {
+    private final static String TAG = "INAT: Application";
     private SharedPreferences mPrefs;
     private NotificationManager mNotificationManager;
     public static Integer VERSION = 1;
@@ -123,6 +126,14 @@ public class INaturalistApp extends Application {
     
     public String formatDate(Timestamp date) { return DATE_FORMAT.format(date); }
     public String formatDatetime(Timestamp date) { return DATETIME_FORMAT.format(date); }
-    public String shortFormatDate(Timestamp date) { return SHORT_DATE_FORMAT.format(date); }
+    public String shortFormatDate(Timestamp date) {
+        SimpleDateFormat f;
+        if (Locale.getDefault().getCountry() == "MX") {
+            f = new SimpleDateFormat("d MMM yyyy");
+        } else {
+            f = SHORT_DATE_FORMAT;
+        }
+        return f.format(date);
+    }
     public String shortFormatTime(Timestamp date) { return SHORT_TIME_FORMAT.format(date); }
 }

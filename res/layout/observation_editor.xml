@@ -124,7 +124,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Acc"
+                        android:text="@string/acc"
                         android:textStyle="bold" />
 
                     <TextView

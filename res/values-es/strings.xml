@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="acc">Prec</string>
     <string name="app_name">iNaturalist</string>
     <string name="google_login">  Iniciar sesión con Google</string>
     <string name="email_address">Dirección de correo electrónico</string>
@@ -78,7 +79,7 @@
     <string name="view">Ver</string>
     
     <string name="add_observation">Añadir observación</string>
-    <string name="take_picture">Hacer una foto</string>
+    <string name="take_picture">Tomar una foto</string>
     <string name="add_photo">Añadir foto</string>
     <string name="save">Guardar</string>
     <string name="no_observations_yet">¡Aún no hay observaciones!</string>

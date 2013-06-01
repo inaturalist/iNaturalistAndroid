@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="acc">Acc</string>
     <string name="app_name">iNaturalist</string>
     <string name="google_login">Login with Google</string>
     <string name="email_address">Email Address</string>
