@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
@@ -118,7 +117,7 @@ public class INaturalistMapActivity extends FragmentActivity implements OnMarker
             mMarkerObservations = new HashMap<String, Observation>();
         }
         if (mMap == null) {
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+            mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 // The Map is verified. It is now safe to manipulate the map.
@@ -147,6 +146,7 @@ public class INaturalistMapActivity extends FragmentActivity implements OnMarker
     }
 
     private void reloadObservations() {
+        if (mMap == null) return;
         String where = "id IS NULL";
         if (mApp.loggedIn()) {
             where += " OR user_login = '" + mApp.currentUserLogin() + "'";
