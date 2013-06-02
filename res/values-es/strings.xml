@@ -50,8 +50,8 @@
     <string name="set_time">Establecer hora</string>
     <string name="image_saved">Imagen guardada</string>
     <string name="something_went_wrong">Rayos, algo ha ido mal: %1$s</string>
-    <string name="close">Close</string>
-    <string name="edit">Edit</string>
+    <string name="close">Cerrar</string>
+    <string name="edit">Editar</string>
     <string name="current_position">Posición actual</string>
     <string name="you_are_here">¡Estás aquí!</string>
     <string name="oh_no">¡Oh no! %1$s</string>
