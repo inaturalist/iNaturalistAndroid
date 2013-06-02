@@ -27,7 +27,7 @@ public class INaturalistApp extends Application {
     public static Integer VERSION = 1;
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("MMMM d, yyyy h:mm:ss a z");
-    public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("MMM d, yyyy");
+    public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("d MMM yyyy");
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("h:mm a z");
     private static Integer SYNC_NOTIFICATION = 3;
     private static Context context;
@@ -128,8 +128,8 @@ public class INaturalistApp extends Application {
     public String formatDatetime(Timestamp date) { return DATETIME_FORMAT.format(date); }
     public String shortFormatDate(Timestamp date) {
         SimpleDateFormat f;
-        if (Locale.getDefault().getCountry() == "MX") {
-            f = new SimpleDateFormat("d MMM yyyy");
+        if (Locale.getDefault().getCountry().equals("US")) {
+            f = new SimpleDateFormat("MMM d, yyyy");
         } else {
             f = SHORT_DATE_FORMAT;
         }
