@@ -26,7 +26,7 @@ public class INaturalistApp extends Application {
     private NotificationManager mNotificationManager;
     public static Integer VERSION = 1;
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-    public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("MMMM d, yyyy h:mm:ss a z");
+    public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a z");
     public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("d MMM yyyy");
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("h:mm a z");
     private static Integer SYNC_NOTIFICATION = 3;

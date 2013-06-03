@@ -319,9 +319,6 @@ public class ObservationEditor extends Activity {
             mObservation.observed_on_string = null; 
         } else {
             mObservation.observed_on_string = mObservedOnStringTextView.getText().toString();
-            if (mObservation.observed_on == null) {
-
-            }
         }
         if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
             mObservation.latitude = null;
