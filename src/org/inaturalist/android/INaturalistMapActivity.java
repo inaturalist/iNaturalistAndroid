@@ -165,6 +165,9 @@ public class INaturalistMapActivity extends FragmentActivity implements OnMarker
     }
     
     private void addObservation(Observation o) {
+        if (o.private_latitude == null && o.latitude == null) {
+            return;
+        }
         LatLng latLng;
         if (o.private_latitude != null && mApp.currentUserLogin() == o.user_login) {
             latLng = new LatLng(o.private_latitude, o.private_longitude);
