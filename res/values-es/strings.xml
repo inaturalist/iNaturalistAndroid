@@ -61,7 +61,7 @@
     <string name="observations_description">Lista de observaciones</string>
     <string name="map">Mapa</string>
     <string name="map_description">Mapa de observaciones</string>
-    <string name="updates">Actualizaciones</string>
+    <string name="updates">Tablero</string>
     <string name="updates_description">Novedades de la gente a la que sigues en iNaturalist</string>
     <string name="settings">Configuración</string>
     <string name="settings_description">Iniciar/cerrar sesión</string>
