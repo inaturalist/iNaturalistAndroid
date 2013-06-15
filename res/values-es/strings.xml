@@ -55,7 +55,7 @@
     <string name="current_position">Posición actual</string>
     <string name="you_are_here">¡Estás aquí!</string>
     <string name="oh_no">¡Oh no! %1$s</string>
-    <string name="need_to_login">Tienes que iniciar sesión para ver tu feed. ¿Quieres iniciar sesión ahora?</string>
+    <string name="need_to_login">Tienes que iniciar sesión para ver tu tablero. ¿Quieres iniciar sesión ahora?</string>
     
     <string name="observations">Observaciones</string>
     <string name="observations_description">Lista de observaciones</string>
