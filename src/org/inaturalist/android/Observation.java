@@ -46,6 +46,10 @@ public class Observation implements BaseColumns, Serializable {
     public String user_agent;
     public Integer user_id;
     public String user_login;
+    public Integer commentsCount;
+    public Integer identificationsCount;
+    public Timestamp activityViewedAt;
+    public Timestamp lastActivityAt;
 
     public Timestamp _created_at_was;
     public Timestamp _synced_at_was;
@@ -119,6 +123,10 @@ public class Observation implements BaseColumns, Serializable {
     public static final String USER_AGENT = "user_agent";
     public static final String USER_ID = "user_id";
     public static final String USER_LOGIN = "user_login";
+    public static final String COMMENTS_COUNT = "comments_count";
+    public static final String IDENTIFICATIONS_COUNT = "id_count";
+    public static final String ACTIVITY_VIEWED_AT = "activity_viewed_at";
+    public static final String LAST_ACTIVITY_AT = "last_activity_at";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -152,7 +160,11 @@ public class Observation implements BaseColumns, Serializable {
         Observation.UPDATED_AT,
         Observation.USER_AGENT,
         Observation.USER_ID,
-        Observation.USER_LOGIN
+        Observation.USER_LOGIN,
+        Observation.IDENTIFICATIONS_COUNT,
+        Observation.COMMENTS_COUNT,
+        Observation.ACTIVITY_VIEWED_AT,
+        Observation.LAST_ACTIVITY_AT,
     };
 
     static {
@@ -188,7 +200,10 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.USER_AGENT, Observation.USER_AGENT);
         PROJECTION_MAP.put(Observation.USER_ID, Observation.USER_ID);
         PROJECTION_MAP.put(Observation.USER_LOGIN, Observation.USER_LOGIN);
-
+        PROJECTION_MAP.put(Observation.IDENTIFICATIONS_COUNT, Observation.IDENTIFICATIONS_COUNT);
+        PROJECTION_MAP.put(Observation.COMMENTS_COUNT, Observation.COMMENTS_COUNT);
+        PROJECTION_MAP.put(Observation.ACTIVITY_VIEWED_AT, Observation.ACTIVITY_VIEWED_AT);
+        PROJECTION_MAP.put(Observation.LAST_ACTIVITY_AT, Observation.LAST_ACTIVITY_AT);
     }
 
     public Observation() {}
@@ -257,6 +272,11 @@ public class Observation implements BaseColumns, Serializable {
         this.user_id_was = this.user_id;
         this.user_login = bc.getString(USER_LOGIN);
         this.user_login_was = this.user_login;
+        
+        this.activityViewedAt = bc.getTimestamp(ACTIVITY_VIEWED_AT);
+        this.lastActivityAt = bc.getTimestamp(LAST_ACTIVITY_AT);
+        this.commentsCount = bc.getInteger(COMMENTS_COUNT);
+        this.identificationsCount = bc.getInteger(IDENTIFICATIONS_COUNT);
 
     }
 
@@ -322,6 +342,9 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login = o.getString("user_login");
         this.user_login_was = this.user_login;
 
+        this.activityViewedAt = o.getTimestamp("activity_viewed_at");
+        this.commentsCount = o.getInteger("comments_count");
+        this.identificationsCount = o.getInteger("id_count");
     }
 
     @Override
@@ -361,6 +384,10 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("user_agent", user_agent);
         bo.put("user_id", user_id);
         bo.put("user_login", user_login);
+        bo.put("id_count", identificationsCount);
+        bo.put("comment_count", commentsCount);
+        bo.put("activity_viewed_at", activityViewedAt);
+        bo.put("last_activity_at", lastActivityAt);
 
         return bo.getJSONObject();
     }
@@ -403,6 +430,10 @@ public class Observation implements BaseColumns, Serializable {
             this.user_agent = observation.user_agent;
             this.user_id = observation.user_id;
             this.user_login = observation.user_login;
+            this.commentsCount = observation.commentsCount;
+            this.identificationsCount = observation.identificationsCount;
+            this.lastActivityAt = observation.lastActivityAt;
+            this.activityViewedAt = observation.activityViewedAt;
 
         } else {
             // set if null
@@ -433,6 +464,10 @@ public class Observation implements BaseColumns, Serializable {
             if (this.user_agent == null) { this.user_agent = observation.user_agent; }
             if (this.user_id == null) { this.user_id = observation.user_id; }
             if (this.user_login == null) { this.user_login = observation.user_login; }
+            if (this.commentsCount == null) { this.commentsCount = observation.commentsCount; }
+            if (this.identificationsCount == null) { this.identificationsCount = observation.identificationsCount; }
+            if (this.activityViewedAt == null) { this.activityViewedAt = observation.activityViewedAt; }
+            if (this.lastActivityAt == null) { this.lastActivityAt = observation.lastActivityAt; }
 
         }
     }
@@ -466,6 +501,10 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(USER_AGENT, user_agent);
         cv.put(USER_ID, user_id);
         cv.put(USER_LOGIN, user_login);
+        if (lastActivityAt != null) { cv.put(LAST_ACTIVITY_AT, lastActivityAt.getTime()); }
+        if (activityViewedAt != null) { cv.put(ACTIVITY_VIEWED_AT, activityViewedAt.getTime()); }
+        cv.put(COMMENTS_COUNT, commentsCount);
+        cv.put(IDENTIFICATIONS_COUNT, identificationsCount);
 
         return cv;
     }
@@ -527,7 +566,11 @@ public class Observation implements BaseColumns, Serializable {
                 + "updated_at INTEGER,"
                 + "user_agent TEXT,"
                 + "user_id INTEGER,"
-                + "user_login TEXT"
+                + "user_login TEXT,"
+                + "comments_count INTEGER,"
+                + "id_count INTEGER,"
+                + "activity_viewed_at INTEGER,"
+                + "last_activity_at INTEGER"
                 + ");";
     }
 
