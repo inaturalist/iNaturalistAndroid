@@ -14,6 +14,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -106,10 +107,27 @@ public class INaturalistService extends IntentService {
     }
     
     private void syncObservations() throws AuthenticationException {
-        postObservations();
+        deleteObservations(); // Delete locally-removed observations
+        postObservations(); // Update local-to-remote observations
         postPhotos();
 //        getUserObservations();
 //        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
+    }
+    
+    private void deleteObservations() throws AuthenticationException {
+        // Remotely delete any locally-removed observations
+        Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+                Observation.PROJECTION, 
+                "is_deleted = 1 AND user_login = '"+mLogin+"'", 
+                null, 
+                Observation.DEFAULT_SORT_ORDER);
+        
+       // for each observation DELETE to /observations/:id
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            Observation observation = new Observation(c);
+            delete(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation));
+        }
     }
 
     private void postObservations() throws AuthenticationException {
@@ -278,6 +296,10 @@ public class INaturalistService extends IntentService {
         params.add(new BasicNameValuePair("_method", "PUT"));
         return request(url, "put", params, true);
     }
+    
+    private JSONArray delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
+        return request(url, "delete", params, true);
+    }
 
     private JSONArray post(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
         return request(url, "post", params, true);
@@ -301,7 +323,13 @@ public class INaturalistService extends IntentService {
         
         HttpRequestBase request;
         
-        request = (method.equalsIgnoreCase("get")) ? new HttpGet(url) : new HttpPost(url);
+        if (method.equalsIgnoreCase("post")) {
+            request = new HttpPost(url);
+        } else if (method.equalsIgnoreCase("delete")) {
+            request = new HttpDelete(url);
+        } else {
+            request = new HttpGet(url);
+        }
         
         // POST params
         if (params != null) {
