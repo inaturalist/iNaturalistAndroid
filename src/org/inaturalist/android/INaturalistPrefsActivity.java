@@ -371,6 +371,10 @@ public class INaturalistPrefsActivity extends Activity {
 			mPrefEditor.putString("login_type", mLoginType.toString());
 			mPrefEditor.commit();
 			toggle();
+			
+			// Run the first observation sync
+			Intent serviceIntent = new Intent(INaturalistService.ACTION_FIRST_SYNC, null, INaturalistPrefsActivity.this, INaturalistService.class);
+			startService(serviceIntent);
 	    }
 
 	}

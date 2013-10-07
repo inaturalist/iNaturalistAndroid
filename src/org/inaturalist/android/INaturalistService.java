@@ -42,6 +42,9 @@ import android.util.Base64;
 import android.util.Log;
 
 public class INaturalistService extends IntentService {
+    // How many observations should we initially download for the user
+    private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
+    
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
 //    public static String HOST = "http://10.0.2.2:3000";
@@ -53,6 +56,7 @@ public class INaturalistService extends IntentService {
         android.os.Build.MODEL + " " + 
         android.os.Build.PRODUCT + ")";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
+    public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
@@ -89,6 +93,8 @@ public class INaturalistService extends IntentService {
         try {
             if (action.equals(ACTION_NEARBY)) {
                 getNearbyObservations(intent);
+            } else if (action.equals(ACTION_FIRST_SYNC)) {
+                getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
             } else {
                 syncObservations();
             }
@@ -228,11 +234,17 @@ public class INaturalistService extends IntentService {
                 getString(R.string.sync_complete));
     }
 
-    private void getUserObservations() throws AuthenticationException {
+    private void getUserObservations(int maxCount) throws AuthenticationException {
         if (ensureCredentials() == false) {
             return;
         }
-        JSONArray json = get(HOST + "/observations/" + mLogin + ".json");
+        String url = HOST + "/observations/" + mLogin + ".json";
+        
+        if (maxCount > 0) {
+            // Retrieve only a certain number of observations
+            url += String.format("?per_page=%d&page=1&order_by=date_added&order=desc", maxCount);
+        }
+        JSONArray json = get(url);
         if (json == null || json.length() == 0) { return; }
         syncJson(json);
     }
