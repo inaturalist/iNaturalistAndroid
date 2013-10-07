@@ -46,10 +46,11 @@ public class Observation implements BaseColumns, Serializable {
     public String user_agent;
     public Integer user_id;
     public String user_login;
-    public Integer commentsCount;
-    public Integer identificationsCount;
-    public Timestamp activityViewedAt;
-    public Timestamp lastActivityAt;
+    public Integer comments_count;
+    public Integer identifications_count;
+    public Timestamp activity_viewed_at;
+    public Timestamp last_activity_at;
+    public Boolean is_deleted;
 
     public Timestamp _created_at_was;
     public Timestamp _synced_at_was;
@@ -81,6 +82,7 @@ public class Observation implements BaseColumns, Serializable {
     public String user_agent_was;
     public Integer user_id_was;
     public String user_login_was;
+    public Boolean is_deleted_was;
 
 
     public static final String TAG = "Observation";
@@ -127,6 +129,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String IDENTIFICATIONS_COUNT = "id_count";
     public static final String ACTIVITY_VIEWED_AT = "activity_viewed_at";
     public static final String LAST_ACTIVITY_AT = "last_activity_at";
+    public static final String IS_DELETED = "is_deleted";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -165,6 +168,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.COMMENTS_COUNT,
         Observation.ACTIVITY_VIEWED_AT,
         Observation.LAST_ACTIVITY_AT,
+        Observation.IS_DELETED,
     };
 
     static {
@@ -204,6 +208,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.COMMENTS_COUNT, Observation.COMMENTS_COUNT);
         PROJECTION_MAP.put(Observation.ACTIVITY_VIEWED_AT, Observation.ACTIVITY_VIEWED_AT);
         PROJECTION_MAP.put(Observation.LAST_ACTIVITY_AT, Observation.LAST_ACTIVITY_AT);
+        PROJECTION_MAP.put(Observation.IS_DELETED, Observation.IS_DELETED);
     }
 
     public Observation() {}
@@ -272,11 +277,13 @@ public class Observation implements BaseColumns, Serializable {
         this.user_id_was = this.user_id;
         this.user_login = bc.getString(USER_LOGIN);
         this.user_login_was = this.user_login;
+        this.is_deleted = bc.getBoolean(IS_DELETED);
+        this.is_deleted_was = this.is_deleted;
         
-        this.activityViewedAt = bc.getTimestamp(ACTIVITY_VIEWED_AT);
-        this.lastActivityAt = bc.getTimestamp(LAST_ACTIVITY_AT);
-        this.commentsCount = bc.getInteger(COMMENTS_COUNT);
-        this.identificationsCount = bc.getInteger(IDENTIFICATIONS_COUNT);
+        this.activity_viewed_at = bc.getTimestamp(ACTIVITY_VIEWED_AT);
+        this.last_activity_at = bc.getTimestamp(LAST_ACTIVITY_AT);
+        this.comments_count = bc.getInteger(COMMENTS_COUNT);
+        this.identifications_count = bc.getInteger(IDENTIFICATIONS_COUNT);
 
     }
 
@@ -341,10 +348,11 @@ public class Observation implements BaseColumns, Serializable {
         this.user_id_was = this.user_id;
         this.user_login = o.getString("user_login");
         this.user_login_was = this.user_login;
+        this.is_deleted_was = this.is_deleted;
 
-        this.activityViewedAt = o.getTimestamp("activity_viewed_at");
-        this.commentsCount = o.getInteger("comments_count");
-        this.identificationsCount = o.getInteger("id_count");
+        this.activity_viewed_at = o.getTimestamp("activity_viewed_at");
+        this.comments_count = o.getInteger("comments_count");
+        this.identifications_count = o.getInteger("id_count");
     }
 
     @Override
@@ -384,10 +392,10 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("user_agent", user_agent);
         bo.put("user_id", user_id);
         bo.put("user_login", user_login);
-        bo.put("id_count", identificationsCount);
-        bo.put("comment_count", commentsCount);
-        bo.put("activity_viewed_at", activityViewedAt);
-        bo.put("last_activity_at", lastActivityAt);
+        bo.put("id_count", identifications_count);
+        bo.put("comment_count", comments_count);
+        bo.put("activity_viewed_at", activity_viewed_at);
+        bo.put("last_activity_at", last_activity_at);
 
         return bo.getJSONObject();
     }
@@ -430,10 +438,10 @@ public class Observation implements BaseColumns, Serializable {
             this.user_agent = observation.user_agent;
             this.user_id = observation.user_id;
             this.user_login = observation.user_login;
-            this.commentsCount = observation.commentsCount;
-            this.identificationsCount = observation.identificationsCount;
-            this.lastActivityAt = observation.lastActivityAt;
-            this.activityViewedAt = observation.activityViewedAt;
+            this.comments_count = observation.comments_count;
+            this.identifications_count = observation.identifications_count;
+            this.last_activity_at = observation.last_activity_at;
+            this.activity_viewed_at = observation.activity_viewed_at;
 
         } else {
             // set if null
@@ -464,10 +472,10 @@ public class Observation implements BaseColumns, Serializable {
             if (this.user_agent == null) { this.user_agent = observation.user_agent; }
             if (this.user_id == null) { this.user_id = observation.user_id; }
             if (this.user_login == null) { this.user_login = observation.user_login; }
-            if (this.commentsCount == null) { this.commentsCount = observation.commentsCount; }
-            if (this.identificationsCount == null) { this.identificationsCount = observation.identificationsCount; }
-            if (this.activityViewedAt == null) { this.activityViewedAt = observation.activityViewedAt; }
-            if (this.lastActivityAt == null) { this.lastActivityAt = observation.lastActivityAt; }
+            if (this.comments_count == null) { this.comments_count = observation.comments_count; }
+            if (this.identifications_count == null) { this.identifications_count = observation.identifications_count; }
+            if (this.activity_viewed_at == null) { this.activity_viewed_at = observation.activity_viewed_at; }
+            if (this.last_activity_at == null) { this.last_activity_at = observation.last_activity_at; }
 
         }
     }
@@ -501,10 +509,11 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(USER_AGENT, user_agent);
         cv.put(USER_ID, user_id);
         cv.put(USER_LOGIN, user_login);
-        if (lastActivityAt != null) { cv.put(LAST_ACTIVITY_AT, lastActivityAt.getTime()); }
-        if (activityViewedAt != null) { cv.put(ACTIVITY_VIEWED_AT, activityViewedAt.getTime()); }
-        cv.put(COMMENTS_COUNT, commentsCount);
-        cv.put(IDENTIFICATIONS_COUNT, identificationsCount);
+        if (last_activity_at != null) { cv.put(LAST_ACTIVITY_AT, last_activity_at.getTime()); }
+        if (activity_viewed_at != null) { cv.put(ACTIVITY_VIEWED_AT, activity_viewed_at.getTime()); }
+        cv.put(COMMENTS_COUNT, comments_count);
+        cv.put(IDENTIFICATIONS_COUNT, identifications_count);
+        cv.put(IS_DELETED, is_deleted);
 
         return cv;
     }
@@ -570,7 +579,8 @@ public class Observation implements BaseColumns, Serializable {
                 + "comments_count INTEGER,"
                 + "id_count INTEGER,"
                 + "activity_viewed_at INTEGER,"
-                + "last_activity_at INTEGER"
+                + "last_activity_at INTEGER,"
+                + "is_deleted INTEGER"
                 + ");";
     }
 
@@ -604,6 +614,7 @@ public class Observation implements BaseColumns, Serializable {
     public boolean user_agent_changed() { return !String.valueOf(user_agent).equals(String.valueOf(user_agent_was)); }
     public boolean user_id_changed() { return !String.valueOf(user_id).equals(String.valueOf(user_id_was)); }
     public boolean user_login_changed() { return !String.valueOf(user_login).equals(String.valueOf(user_login_was)); }
+    public boolean is_deleted_changed() { return is_deleted != is_deleted_was; }
 
 
     public boolean isDirty() {
@@ -637,6 +648,7 @@ public class Observation implements BaseColumns, Serializable {
         if (user_agent_changed()) { return true; }
         if (user_id_changed()) { return true; }
         if (user_login_changed()) { return true; }
+        if (is_deleted_changed()) { return true; }
 
         return false;
     }
