@@ -282,7 +282,7 @@ public class INaturalistService extends IntentService {
         
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return; }
-        syncJson(json);
+        syncJson(json, true);
     }
     
     private void getNearbyObservations(Intent intent) throws AuthenticationException {
@@ -305,7 +305,7 @@ public class INaturalistService extends IntentService {
         if (json == null) {
             reply.putExtra("error", getString(R.string.couldnt_load_nearby_observations));
         } else {
-            syncJson(json);
+            syncJson(json, false);
         }
         sendBroadcast(reply);
     }
@@ -562,7 +562,7 @@ public class INaturalistService extends IntentService {
 
     }
 
-    public void syncJson(JSONArray json) {
+    public void syncJson(JSONArray json, boolean isUser) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         ArrayList<Integer> existingIds = new ArrayList<Integer>();
         ArrayList<Integer> newIds = new ArrayList<Integer>();
@@ -620,8 +620,10 @@ public class INaturalistService extends IntentService {
             getContentResolver().insert(Observation.CONTENT_URI, cv);
         }
         
-        // Delete any local observations which were deleted remotely by the user
-        getContentResolver().delete(Observation.CONTENT_URI, "(id IS NOT NULL) and (id NOT IN ("+joinedIds+"))", null);
+        if (isUser) {
+            // Delete any local observations which were deleted remotely by the user
+            getContentResolver().delete(Observation.CONTENT_URI, "(id IS NOT NULL) and (id NOT IN ("+joinedIds+"))", null);
+        }
     }
     
     private ArrayList<NameValuePair> paramsForObservation(Observation observation) {
