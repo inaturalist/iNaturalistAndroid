@@ -587,6 +587,7 @@ public class INaturalistService extends IntentService {
         ContentValues cv = op.getContentValues();
         cv.put(ObservationPhoto._OBSERVATION_ID, observation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, observation.id);
+        cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
         if (photoId > -1) {
             cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
         }
@@ -672,11 +673,6 @@ public class INaturalistService extends IntentService {
 
                         createObservationPhotoForPhoto(fileUri, jsonObservation);
                         
-                    } catch (Exception exc) {
-                        Exception exc2 = exc;
-                        exc2.printStackTrace();
-                    }
-                        /*
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (MalformedURLException e) {
@@ -684,7 +680,6 @@ public class INaturalistService extends IntentService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    */
 
                 }
 
