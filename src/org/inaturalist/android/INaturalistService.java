@@ -17,6 +17,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -69,6 +70,8 @@ public class INaturalistService extends IntentService {
     private boolean mPassive;
     private INaturalistApp app;
     private LoginType mLoginType;
+
+    private boolean mIsSyncing;
     
 	public enum LoginType {
 	    PASSWORD,
@@ -97,20 +100,27 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
             } else {
+                mIsSyncing = true;
                 syncObservations();
+                
+                // Update last sync time
+                long lastSync = System.currentTimeMillis();
+                mPreferences.edit().putLong("last_sync_time", lastSync).commit();
             }
         } catch (AuthenticationException e) {
             if (!mPassive) {
                 requestCredentials();
             }
+        } finally {
+            mIsSyncing = false;
         }
     }
     
     private void syncObservations() throws AuthenticationException {
         deleteObservations(); // Delete locally-removed observations
-        postObservations(); // Update local-to-remote observations
+        getUserObservations(0); // First, download remote observations (new/updated)
+        postObservations(); // Next, update local-to-remote observations
         postPhotos();
-//        getUserObservations();
 //        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
     }
     
@@ -128,6 +138,9 @@ public class INaturalistService extends IntentService {
             Observation observation = new Observation(c);
             delete(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation));
         }
+        
+        // Now it's safe to delete all of the observations locally
+        getContentResolver().delete(Observation.CONTENT_URI, "is_deleted = 1", null);
     }
 
     private void postObservations() throws AuthenticationException {
@@ -258,10 +271,15 @@ public class INaturalistService extends IntentService {
         }
         String url = HOST + "/observations/" + mLogin + ".json";
         
+        // TODO updated_since format - is it epoch?
+        long lastSync = mPreferences.getLong("last_sync_time", 0);
+        url += String.format("?updated_since=%d&order_by=date_added&order=desc", lastSync);
+        
         if (maxCount > 0) {
             // Retrieve only a certain number of observations
-            url += String.format("?per_page=%d&page=1&order_by=date_added&order=desc", maxCount);
+            url += String.format("&per_page=%d&page=1", maxCount);
         }
+        
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return; }
         syncJson(json);
@@ -327,6 +345,8 @@ public class INaturalistService extends IntentService {
             request = new HttpPost(url);
         } else if (method.equalsIgnoreCase("delete")) {
             request = new HttpDelete(url);
+        } else if (method.equalsIgnoreCase("put")) {
+            request = new HttpPut(url);
         } else {
             request = new HttpGet(url);
         }
@@ -347,7 +367,11 @@ public class INaturalistService extends IntentService {
                     }
                 }
             }
-            ((HttpPost) request).setEntity(entity);
+            if (method.equalsIgnoreCase("put")) {
+                ((HttpPut) request).setEntity(entity);
+            } else {
+                ((HttpPost) request).setEntity(entity);
+            }
         }
 
         // auth
@@ -569,10 +593,18 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             observation = new Observation(c);
             jsonObservation = jsonObservationsById.get(observation.id);
-            observation.merge(jsonObservation); 
+            boolean isModified = observation.merge(jsonObservation); 
             cv = observation.getContentValues();
-            cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-            getContentResolver().update(observation.getUri(), cv, null, null);
+            if (observation._updated_at.before(jsonObservation.updated_at)) {
+                // Remote observation is newer (and thus has overwritten the local one) - update its
+                // sync at time so we won't update the remote servers later on (since we won't
+                // accidently consider this an updated record)
+                cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+            }
+            if (isModified) {
+                // Only update the DB if needed
+                getContentResolver().update(observation.getUri(), cv, null, null);
+            }
             existingIds.add(observation.id);
             c.moveToNext();
         }
@@ -587,6 +619,9 @@ public class INaturalistService extends IntentService {
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
             getContentResolver().insert(Observation.CONTENT_URI, cv);
         }
+        
+        // Delete any local observations which were deleted remotely by the user
+        getContentResolver().delete(Observation.CONTENT_URI, "(id IS NOT NULL) and (id NOT IN ("+joinedIds+"))", null);
     }
     
     private ArrayList<NameValuePair> paramsForObservation(Observation observation) {

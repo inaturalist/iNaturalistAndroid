@@ -408,7 +408,8 @@ public class Observation implements BaseColumns, Serializable {
         }
     }
 
-    public void merge(Observation observation) {
+    // Returns true if observation was modified because of the merge
+    public boolean merge(Observation observation) {
         if (this._updated_at.before(observation.updated_at)) {
             // overwrite
             this.created_at = observation.created_at;
@@ -443,40 +444,44 @@ public class Observation implements BaseColumns, Serializable {
             this.last_activity_at = observation.last_activity_at;
             this.activity_viewed_at = observation.activity_viewed_at;
 
+            return true;
         } else {
             // set if null
-            if (this.created_at == null) { this.created_at = observation.created_at; }
-            if (this.description == null) { this.description = observation.description; }
-            if (this.geoprivacy == null) { this.geoprivacy = observation.geoprivacy; }
-            if (this.iconic_taxon_id == null) { this.iconic_taxon_id = observation.iconic_taxon_id; }
-            if (this.iconic_taxon_name == null) { this.iconic_taxon_name = observation.iconic_taxon_name; }
-            if (this.id == null) { this.id = observation.id; }
-            if (this.id_please == null) { this.id_please = observation.id_please; }
-            if (this.latitude == null) { this.latitude = observation.latitude; }
-            if (this.longitude == null) { this.longitude = observation.longitude; }
-            if (this.observed_on == null) { this.observed_on = observation.observed_on; }
-            if (this.observed_on_string == null) { this.observed_on_string = observation.observed_on_string; }
-            if (this.out_of_range == null) { this.out_of_range = observation.out_of_range; }
-            if (this.place_guess == null) { this.place_guess = observation.place_guess; }
-            if (this.positional_accuracy == null) { this.positional_accuracy = observation.positional_accuracy; }
-            if (this.positioning_device == null) { this.positioning_device = observation.positioning_device; }
-            if (this.positioning_method == null) { this.positioning_method = observation.positioning_method; }
-            if (this.private_latitude == null) { this.private_latitude = observation.private_latitude; }
-            if (this.private_longitude == null) { this.private_longitude = observation.private_longitude; }
-            if (this.private_positional_accuracy == null) { this.private_positional_accuracy = observation.private_positional_accuracy; }
-            if (this.quality_grade == null) { this.quality_grade = observation.quality_grade; }
-            if (this.species_guess == null) { this.species_guess = observation.species_guess; }
-            if (this.taxon_id == null) { this.taxon_id = observation.taxon_id; }
-            if (this.time_observed_at == null) { this.time_observed_at = observation.time_observed_at; }
-            if (this.updated_at == null) { this.updated_at = observation.updated_at; }
-            if (this.user_agent == null) { this.user_agent = observation.user_agent; }
-            if (this.user_id == null) { this.user_id = observation.user_id; }
-            if (this.user_login == null) { this.user_login = observation.user_login; }
-            if (this.comments_count == null) { this.comments_count = observation.comments_count; }
-            if (this.identifications_count == null) { this.identifications_count = observation.identifications_count; }
-            if (this.activity_viewed_at == null) { this.activity_viewed_at = observation.activity_viewed_at; }
-            if (this.last_activity_at == null) { this.last_activity_at = observation.last_activity_at; }
+            boolean isModified = false;
+            
+            if ((this.created_at == null) && (observation.created_at != null)) { this.created_at = observation.created_at; isModified = true; }
+            if ((this.description == null) && (observation.description != null)) { this.description = observation.description; isModified = true; }
+            if ((this.geoprivacy == null) && (observation.geoprivacy != null)) { this.geoprivacy = observation.geoprivacy; isModified = true; }
+            if ((this.iconic_taxon_id == null) && (observation.iconic_taxon_id != null)) { this.iconic_taxon_id = observation.iconic_taxon_id; isModified = true; }
+            if ((this.iconic_taxon_name == null) && (observation.iconic_taxon_name != null)) { this.iconic_taxon_name = observation.iconic_taxon_name; isModified = true; }
+            if ((this.id == null) && (observation.id != null)) { this.id = observation.id; isModified = true; }
+            if ((this.id_please == null) && (observation.id_please != null)) { this.id_please = observation.id_please; isModified = true; }
+            if ((this.latitude == null) && (observation.latitude != null)) { this.latitude = observation.latitude; isModified = true; }
+            if ((this.longitude == null) && (observation.longitude != null)) { this.longitude = observation.longitude; isModified = true; }
+            if ((this.observed_on == null) && (observation.observed_on != null)) { this.observed_on = observation.observed_on; isModified = true; }
+            if ((this.observed_on_string == null) && (observation.observed_on_string != null)) { this.observed_on_string = observation.observed_on_string; isModified = true; }
+            if ((this.out_of_range == null) && (observation.out_of_range != null)) { this.out_of_range = observation.out_of_range; isModified = true; }
+            if ((this.place_guess == null) && (observation.place_guess != null)) { this.place_guess = observation.place_guess; isModified = true; }
+            if ((this.positional_accuracy == null) && (observation.positional_accuracy != null)) { this.positional_accuracy = observation.positional_accuracy; isModified = true; }
+            if ((this.positioning_device == null) && (observation.positioning_device != null)) { this.positioning_device = observation.positioning_device; isModified = true; }
+            if ((this.positioning_method == null) && (observation.positioning_method != null)) { this.positioning_method = observation.positioning_method; isModified = true; }
+            if ((this.private_latitude == null) && (observation.private_latitude != null)) { this.private_latitude = observation.private_latitude; isModified = true; }
+            if ((this.private_longitude == null) && (observation.private_longitude != null)) { this.private_longitude = observation.private_longitude; isModified = true; }
+            if ((this.private_positional_accuracy == null) && (observation.private_positional_accuracy != null)) { this.private_positional_accuracy = observation.private_positional_accuracy; isModified = true; }
+            if ((this.quality_grade == null) && (observation.quality_grade != null)) { this.quality_grade = observation.quality_grade; isModified = true; }
+            if ((this.species_guess == null) && (observation.species_guess != null)) { this.species_guess = observation.species_guess; isModified = true; }
+            if ((this.taxon_id == null) && (observation.taxon_id != null)) { this.taxon_id = observation.taxon_id; isModified = true; }
+            if ((this.time_observed_at == null) && (observation.time_observed_at != null)) { this.time_observed_at = observation.time_observed_at; isModified = true; }
+            if ((this.updated_at == null) && (observation.updated_at != null)) { this.updated_at = observation.updated_at; isModified = true; }
+            if ((this.user_agent == null) && (observation.user_agent != null)) { this.user_agent = observation.user_agent; isModified = true; }
+            if ((this.user_id == null) && (observation.user_id != null)) { this.user_id = observation.user_id; isModified = true; }
+            if ((this.user_login == null) && (observation.user_login != null)) { this.user_login = observation.user_login; isModified = true; }
+            if ((this.comments_count == null) && (observation.comments_count != null)) { this.comments_count = observation.comments_count; isModified = true; }
+            if ((this.identifications_count == null) && (observation.identifications_count != null)) { this.identifications_count = observation.identifications_count; isModified = true; }
+            if ((this.activity_viewed_at == null) && (observation.activity_viewed_at != null)) { this.activity_viewed_at = observation.activity_viewed_at; isModified = true; }
+            if ((this.last_activity_at == null) && (observation.last_activity_at != null)) { this.last_activity_at = observation.last_activity_at; isModified = true; }
 
+            return isModified;
         }
     }
 
