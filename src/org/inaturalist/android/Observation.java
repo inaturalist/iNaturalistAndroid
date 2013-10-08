@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -51,6 +55,8 @@ public class Observation implements BaseColumns, Serializable {
     public Timestamp activity_viewed_at;
     public Timestamp last_activity_at;
     public Boolean is_deleted;
+    
+    public List<String> photo_urls;
 
     public Timestamp _created_at_was;
     public Timestamp _synced_at_was;
@@ -349,6 +355,18 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login = o.getString("user_login");
         this.user_login_was = this.user_login;
         this.is_deleted_was = this.is_deleted;
+        
+        try {
+            this.photo_urls = new ArrayList<String>();
+            JSONArray photos;
+            photos = o.getJSONObject().getJSONArray("photos");
+            for (int i = 0; i < photos.length(); i++) {
+                String imageUrl = ((JSONObject)photos.get(i)).getString("medium_url");
+                this.photo_urls.add(imageUrl);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         this.activity_viewed_at = o.getTimestamp("activity_viewed_at");
         this.comments_count = o.getInteger("comments_count");

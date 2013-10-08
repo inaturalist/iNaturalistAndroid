@@ -1,10 +1,16 @@
 package org.inaturalist.android;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -37,6 +43,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -562,6 +570,30 @@ public class INaturalistService extends IntentService {
 
     }
 
+    
+    /** Create a file Uri for saving an image or video */
+    private Uri getOutputMediaFileUri(Observation observation){
+        ContentValues values = new ContentValues();
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String name = "observation_" + observation.created_at.getTime() + "_" + timeStamp;
+        values.put(android.provider.MediaStore.Images.Media.TITLE, name);
+        return getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+    }
+
+
+    private Uri createObservationPhotoForPhoto(Uri photoUri, Observation observation) {
+        ObservationPhoto op = new ObservationPhoto();
+        Long photoId = ContentUris.parseId(photoUri);
+        ContentValues cv = op.getContentValues();
+        cv.put(ObservationPhoto._OBSERVATION_ID, observation._id);
+        cv.put(ObservationPhoto.OBSERVATION_ID, observation.id);
+        if (photoId > -1) {
+            cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
+        }
+        return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
+    }
+
+    
     public void syncJson(JSONArray json, boolean isUser) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         ArrayList<Integer> existingIds = new ArrayList<Integer>();
@@ -617,7 +649,46 @@ public class INaturalistService extends IntentService {
             jsonObservation = jsonObservationsById.get(newIds.get(i));
             cv = jsonObservation.getContentValues();
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-            getContentResolver().insert(Observation.CONTENT_URI, cv);
+            Uri newObs = getContentResolver().insert(Observation.CONTENT_URI, cv);
+            Long newObsId = ContentUris.parseId(newObs);
+            jsonObservation._id = Integer.valueOf(newObsId.toString());
+            
+            if (isUser) {
+                // Save the new observation's photos
+                for (int j = 0; j < jsonObservation.photo_urls.size(); j++) {
+                    String photoUrl = jsonObservation.photo_urls.get(j);
+
+                    try {
+                        Uri fileUri = getOutputMediaFileUri(jsonObservation); // create a file to save the image
+                        OutputStream outStream;
+                        outStream = app.getContentResolver().openOutputStream(fileUri);
+                        URL imageResource = new URL(photoUrl);
+                        Bitmap mBitmap = BitmapFactory.decodeStream(imageResource.openStream());
+
+                        mBitmap.compress(Bitmap.CompressFormat.JPEG, 90, outStream);
+
+                        outStream.flush();
+                        outStream.close();
+
+                        createObservationPhotoForPhoto(fileUri, jsonObservation);
+                        
+                    } catch (Exception exc) {
+                        Exception exc2 = exc;
+                        exc2.printStackTrace();
+                    }
+                        /*
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    */
+
+                }
+
+            }
         }
         
         if (isUser) {
