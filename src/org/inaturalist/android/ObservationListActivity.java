@@ -1,5 +1,7 @@
 package org.inaturalist.android;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 public class ObservationListActivity extends ListActivity {
 	public static String TAG = "INAT";
@@ -235,6 +238,20 @@ public class ObservationListActivity extends ListActivity {
             } else {
                 image.setImageResource(R.drawable.iconic_taxon_unknown);
             }
+            
+            
+            TextView observedOn = (TextView) view.findViewById(R.id.dateObserved);
+            Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
+            
+            if (observationTimestamp == 0) {
+                // Now observation date set - don't show it
+                observedOn.setVisibility(View.INVISIBLE);
+            } else {
+                observedOn.setVisibility(View.VISIBLE);
+                Timestamp observationDate = new Timestamp(observationTimestamp);
+                observedOn.setText(new SimpleDateFormat("M/d/yyyy").format(observationDate));
+            }
+            
             return view;
         }
         

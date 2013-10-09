@@ -281,7 +281,7 @@ public class INaturalistService extends IntentService {
         
         // TODO updated_since format - is it epoch?
         long lastSync = mPreferences.getLong("last_sync_time", 0);
-        url += String.format("?updated_since=%d&order_by=date_added&order=desc", lastSync);
+        url += String.format("?updated_since2=%d&order_by=date_added&order=desc", lastSync);
         
         if (maxCount > 0) {
             // Retrieve only a certain number of observations
