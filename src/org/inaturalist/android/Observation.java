@@ -132,7 +132,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String USER_ID = "user_id";
     public static final String USER_LOGIN = "user_login";
     public static final String COMMENTS_COUNT = "comments_count";
-    public static final String IDENTIFICATIONS_COUNT = "id_count";
+    public static final String IDENTIFICATIONS_COUNT = "identifications_count";
     public static final String ACTIVITY_VIEWED_AT = "activity_viewed_at";
     public static final String LAST_ACTIVITY_AT = "last_activity_at";
     public static final String IS_DELETED = "is_deleted";
@@ -370,7 +370,7 @@ public class Observation implements BaseColumns, Serializable {
 
         this.activity_viewed_at = o.getTimestamp("activity_viewed_at");
         this.comments_count = o.getInteger("comments_count");
-        this.identifications_count = o.getInteger("id_count");
+        this.identifications_count = o.getInteger("identifications_count");
     }
 
     @Override
@@ -410,7 +410,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("user_agent", user_agent);
         bo.put("user_id", user_id);
         bo.put("user_login", user_login);
-        bo.put("id_count", identifications_count);
+        bo.put("identifications_count", identifications_count);
         bo.put("comment_count", comments_count);
         bo.put("activity_viewed_at", activity_viewed_at);
         bo.put("last_activity_at", last_activity_at);
@@ -600,7 +600,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "user_id INTEGER,"
                 + "user_login TEXT,"
                 + "comments_count INTEGER,"
-                + "id_count INTEGER,"
+                + "identifications_count INTEGER,"
                 + "activity_viewed_at INTEGER,"
                 + "last_activity_at INTEGER,"
                 + "is_deleted INTEGER"
