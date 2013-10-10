@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -646,6 +647,7 @@ public class INaturalistService extends IntentService {
         c.close();
 
         // insert new
+        List<Observation> newObservations = new ArrayList<Observation>();
         newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
         Collections.sort(newIds);
         for (int i = 0; i < newIds.size(); i++) {			
@@ -657,8 +659,13 @@ public class INaturalistService extends IntentService {
             Uri newObs = getContentResolver().insert(Observation.CONTENT_URI, cv);
             Long newObsId = ContentUris.parseId(newObs);
             jsonObservation._id = Integer.valueOf(newObsId.toString());
-            
-            if (isUser) {
+            newObservations.add(jsonObservation);
+        }
+        
+        if (isUser) {
+            for (int i = 0; i < newObservations.size(); i++) {
+                jsonObservation = newObservations.get(i);
+                
                 // Save the new observation's photos
                 for (int j = 0; j < jsonObservation.photo_urls.size(); j++) {
                     String photoUrl = jsonObservation.photo_urls.get(j);
@@ -676,7 +683,7 @@ public class INaturalistService extends IntentService {
                         outStream.close();
 
                         createObservationPhotoForPhoto(fileUri, jsonObservation);
-                        
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (MalformedURLException e) {
@@ -684,16 +691,18 @@ public class INaturalistService extends IntentService {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 }
-
             }
         }
-        
+
+
+            /* Doesn't work since we use a updated_since parameter that returns only partial results - so non-deleted
+         observations won't be returned if they weren't updated recently
         if (isUser) {
             // Delete any local observations which were deleted remotely by the user
             getContentResolver().delete(Observation.CONTENT_URI, "(id IS NOT NULL) and (id NOT IN ("+joinedIds+"))", null);
         }
+             */
     }
     
     private ArrayList<NameValuePair> paramsForObservation(Observation observation) {
