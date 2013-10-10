@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -279,9 +281,9 @@ public class INaturalistService extends IntentService {
         }
         String url = HOST + "/observations/" + mLogin + ".json";
         
-        // TODO updated_since format - is it epoch?
         long lastSync = mPreferences.getLong("last_sync_time", 0);
-        url += String.format("?updated_since2=%d&order_by=date_added&order=desc", lastSync);
+        Timestamp lastSyncTS = new Timestamp(lastSync);
+        url += String.format("?updated_since=%s&order_by=date_added&order=desc", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
         
         if (maxCount > 0) {
             // Retrieve only a certain number of observations
@@ -650,6 +652,8 @@ public class INaturalistService extends IntentService {
             jsonObservation = jsonObservationsById.get(newIds.get(i));
             cv = jsonObservation.getContentValues();
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+            cv.put(Observation.LAST_COMMENTS_COUNT, jsonObservation.comments_count);
+            cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, jsonObservation.identifications_count);
             Uri newObs = getContentResolver().insert(Observation.CONTENT_URI, cv);
             Long newObsId = ContentUris.parseId(newObs);
             jsonObservation._id = Integer.valueOf(newObsId.toString());

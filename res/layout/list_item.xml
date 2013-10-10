@@ -54,8 +54,10 @@
         
         <LinearLayout
             android:layout_width="150px"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingRight="5dp"
+            >
             
              <TextView
                  android:id="@+id/dateObserved"
@@ -69,7 +71,47 @@
                  android:text="5/7/2010"
                  android:textColor="#666"
                  android:textSize="13sp" />
-           
+             
+	         <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_gravity="right"
+	            >
+	            
+	             <ImageView 
+		            android:id="@+id/syncRequired"
+		            android:layout_width="50px"
+		            android:layout_height="50px"
+		            android:layout_margin="5dp"
+		            android:src="@drawable/sync_required"
+		            android:layout_gravity="right"
+	                 />
+	             
+		         <LinearLayout
+	                 android:id="@+id/countWrapper"
+		            android:layout_width="wrap_content"
+		            android:layout_height="50px"
+		            android:orientation="vertical"
+		            android:layout_gravity="right"
+		            android:background="@drawable/id_comment_count"
+		            >
+		             
+		             <TextView
+	                 android:id="@+id/commentIdCount"
+	                 android:layout_width="wrap_content"
+	                 android:layout_height="wrap_content"
+	                 android:gravity="center"
+	                 android:layout_gravity="center"
+	                 android:paddingLeft="8dp"
+	                 android:paddingRight="8dp"
+	                 android:paddingTop="1dp"
+	                 android:singleLine="true"
+	                 android:text="30"
+	                 android:textColor="#666"
+	                 android:textSize="13sp" />
+		        </LinearLayout>
+	        </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

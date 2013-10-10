@@ -52,8 +52,8 @@ public class Observation implements BaseColumns, Serializable {
     public String user_login;
     public Integer comments_count;
     public Integer identifications_count;
-    public Timestamp activity_viewed_at;
-    public Timestamp last_activity_at;
+    public Integer last_comments_count;
+    public Integer last_identifications_count;
     public Boolean is_deleted;
     
     public List<String> photo_urls;
@@ -133,8 +133,8 @@ public class Observation implements BaseColumns, Serializable {
     public static final String USER_LOGIN = "user_login";
     public static final String COMMENTS_COUNT = "comments_count";
     public static final String IDENTIFICATIONS_COUNT = "identifications_count";
-    public static final String ACTIVITY_VIEWED_AT = "activity_viewed_at";
-    public static final String LAST_ACTIVITY_AT = "last_activity_at";
+    public static final String LAST_COMMENTS_COUNT = "last_comments_count";
+    public static final String LAST_IDENTIFICATIONS_COUNT = "last_identifications_count";
     public static final String IS_DELETED = "is_deleted";
 
 
@@ -172,8 +172,8 @@ public class Observation implements BaseColumns, Serializable {
         Observation.USER_LOGIN,
         Observation.IDENTIFICATIONS_COUNT,
         Observation.COMMENTS_COUNT,
-        Observation.ACTIVITY_VIEWED_AT,
-        Observation.LAST_ACTIVITY_AT,
+        Observation.LAST_COMMENTS_COUNT,
+        Observation.LAST_IDENTIFICATIONS_COUNT,
         Observation.IS_DELETED,
     };
 
@@ -212,8 +212,8 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.USER_LOGIN, Observation.USER_LOGIN);
         PROJECTION_MAP.put(Observation.IDENTIFICATIONS_COUNT, Observation.IDENTIFICATIONS_COUNT);
         PROJECTION_MAP.put(Observation.COMMENTS_COUNT, Observation.COMMENTS_COUNT);
-        PROJECTION_MAP.put(Observation.ACTIVITY_VIEWED_AT, Observation.ACTIVITY_VIEWED_AT);
-        PROJECTION_MAP.put(Observation.LAST_ACTIVITY_AT, Observation.LAST_ACTIVITY_AT);
+        PROJECTION_MAP.put(Observation.LAST_IDENTIFICATIONS_COUNT, Observation.LAST_IDENTIFICATIONS_COUNT);
+        PROJECTION_MAP.put(Observation.LAST_COMMENTS_COUNT, Observation.LAST_COMMENTS_COUNT);
         PROJECTION_MAP.put(Observation.IS_DELETED, Observation.IS_DELETED);
     }
 
@@ -286,10 +286,10 @@ public class Observation implements BaseColumns, Serializable {
         this.is_deleted = bc.getBoolean(IS_DELETED);
         this.is_deleted_was = this.is_deleted;
         
-        this.activity_viewed_at = bc.getTimestamp(ACTIVITY_VIEWED_AT);
-        this.last_activity_at = bc.getTimestamp(LAST_ACTIVITY_AT);
         this.comments_count = bc.getInteger(COMMENTS_COUNT);
         this.identifications_count = bc.getInteger(IDENTIFICATIONS_COUNT);
+        this.last_comments_count = bc.getInteger(LAST_COMMENTS_COUNT);
+        this.last_identifications_count = bc.getInteger(LAST_IDENTIFICATIONS_COUNT);
 
     }
 
@@ -368,7 +368,6 @@ public class Observation implements BaseColumns, Serializable {
             e.printStackTrace();
         }
 
-        this.activity_viewed_at = o.getTimestamp("activity_viewed_at");
         this.comments_count = o.getInteger("comments_count");
         this.identifications_count = o.getInteger("identifications_count");
     }
@@ -412,8 +411,6 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("user_login", user_login);
         bo.put("identifications_count", identifications_count);
         bo.put("comment_count", comments_count);
-        bo.put("activity_viewed_at", activity_viewed_at);
-        bo.put("last_activity_at", last_activity_at);
 
         return bo.getJSONObject();
     }
@@ -459,8 +456,6 @@ public class Observation implements BaseColumns, Serializable {
             this.user_login = observation.user_login;
             this.comments_count = observation.comments_count;
             this.identifications_count = observation.identifications_count;
-            this.last_activity_at = observation.last_activity_at;
-            this.activity_viewed_at = observation.activity_viewed_at;
 
             return true;
         } else {
@@ -496,8 +491,6 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.user_login == null) && (observation.user_login != null)) { this.user_login = observation.user_login; isModified = true; }
             if ((this.comments_count == null) && (observation.comments_count != null)) { this.comments_count = observation.comments_count; isModified = true; }
             if ((this.identifications_count == null) && (observation.identifications_count != null)) { this.identifications_count = observation.identifications_count; isModified = true; }
-            if ((this.activity_viewed_at == null) && (observation.activity_viewed_at != null)) { this.activity_viewed_at = observation.activity_viewed_at; isModified = true; }
-            if ((this.last_activity_at == null) && (observation.last_activity_at != null)) { this.last_activity_at = observation.last_activity_at; isModified = true; }
 
             return isModified;
         }
@@ -532,10 +525,10 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(USER_AGENT, user_agent);
         cv.put(USER_ID, user_id);
         cv.put(USER_LOGIN, user_login);
-        if (last_activity_at != null) { cv.put(LAST_ACTIVITY_AT, last_activity_at.getTime()); }
-        if (activity_viewed_at != null) { cv.put(ACTIVITY_VIEWED_AT, activity_viewed_at.getTime()); }
         cv.put(COMMENTS_COUNT, comments_count);
         cv.put(IDENTIFICATIONS_COUNT, identifications_count);
+        cv.put(LAST_COMMENTS_COUNT, last_comments_count);
+        cv.put(LAST_IDENTIFICATIONS_COUNT, last_identifications_count);
         cv.put(IS_DELETED, is_deleted);
 
         return cv;
@@ -601,6 +594,8 @@ public class Observation implements BaseColumns, Serializable {
                 + "user_login TEXT,"
                 + "comments_count INTEGER,"
                 + "identifications_count INTEGER,"
+                + "last_comments_count INTEGER,"
+                + "last_identifications_count INTEGER,"
                 + "activity_viewed_at INTEGER,"
                 + "last_activity_at INTEGER,"
                 + "is_deleted INTEGER"

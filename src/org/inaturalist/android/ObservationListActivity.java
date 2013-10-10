@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -203,53 +205,89 @@ public class ObservationListActivity extends ListActivity {
                     bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
                 }
                 image.setImageBitmap(bitmapImage);
-                return view;
-            }
-            
-            String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
-            if (iconicTaxonName == null) {
-                image.setImageResource(R.drawable.iconic_taxon_unknown);
-            } else if (iconicTaxonName.equals("Animalia")) {
-                image.setImageResource(R.drawable.iconic_taxon_animalia);
-            } else if (iconicTaxonName.equals("Plantae")) {
-                image.setImageResource(R.drawable.iconic_taxon_plantae);
-            } else if (iconicTaxonName.equals("Chromista")) {
-                image.setImageResource(R.drawable.iconic_taxon_chromista);
-            } else if (iconicTaxonName.equals("Fungi")) {
-                image.setImageResource(R.drawable.iconic_taxon_fungi);
-            } else if (iconicTaxonName.equals("Protozoa")) {
-                image.setImageResource(R.drawable.iconic_taxon_protozoa);
-            } else if (iconicTaxonName.equals("Actinopterygii")) {
-                image.setImageResource(R.drawable.iconic_taxon_actinopterygii);
-            } else if (iconicTaxonName.equals("Amphibia")) {
-                image.setImageResource(R.drawable.iconic_taxon_amphibia);
-            } else if (iconicTaxonName.equals("Reptilia")) {
-                image.setImageResource(R.drawable.iconic_taxon_reptilia);
-            } else if (iconicTaxonName.equals("Aves")) {
-                image.setImageResource(R.drawable.iconic_taxon_aves);
-            } else if (iconicTaxonName.equals("Mammalia")) {
-                image.setImageResource(R.drawable.iconic_taxon_mammalia);
-            } else if (iconicTaxonName.equals("Mollusca")) {
-                image.setImageResource(R.drawable.iconic_taxon_mollusca);
-            } else if (iconicTaxonName.equals("Insecta")) {
-                image.setImageResource(R.drawable.iconic_taxon_insecta);
-            } else if (iconicTaxonName.equals("Arachnida")) {
-                image.setImageResource(R.drawable.iconic_taxon_arachnida);
+                
             } else {
-                image.setImageResource(R.drawable.iconic_taxon_unknown);
+                
+                String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
+                if (iconicTaxonName == null) {
+                    image.setImageResource(R.drawable.iconic_taxon_unknown);
+                } else if (iconicTaxonName.equals("Animalia")) {
+                    image.setImageResource(R.drawable.iconic_taxon_animalia);
+                } else if (iconicTaxonName.equals("Plantae")) {
+                    image.setImageResource(R.drawable.iconic_taxon_plantae);
+                } else if (iconicTaxonName.equals("Chromista")) {
+                    image.setImageResource(R.drawable.iconic_taxon_chromista);
+                } else if (iconicTaxonName.equals("Fungi")) {
+                    image.setImageResource(R.drawable.iconic_taxon_fungi);
+                } else if (iconicTaxonName.equals("Protozoa")) {
+                    image.setImageResource(R.drawable.iconic_taxon_protozoa);
+                } else if (iconicTaxonName.equals("Actinopterygii")) {
+                    image.setImageResource(R.drawable.iconic_taxon_actinopterygii);
+                } else if (iconicTaxonName.equals("Amphibia")) {
+                    image.setImageResource(R.drawable.iconic_taxon_amphibia);
+                } else if (iconicTaxonName.equals("Reptilia")) {
+                    image.setImageResource(R.drawable.iconic_taxon_reptilia);
+                } else if (iconicTaxonName.equals("Aves")) {
+                    image.setImageResource(R.drawable.iconic_taxon_aves);
+                } else if (iconicTaxonName.equals("Mammalia")) {
+                    image.setImageResource(R.drawable.iconic_taxon_mammalia);
+                } else if (iconicTaxonName.equals("Mollusca")) {
+                    image.setImageResource(R.drawable.iconic_taxon_mollusca);
+                } else if (iconicTaxonName.equals("Insecta")) {
+                    image.setImageResource(R.drawable.iconic_taxon_insecta);
+                } else if (iconicTaxonName.equals("Arachnida")) {
+                    image.setImageResource(R.drawable.iconic_taxon_arachnida);
+                } else {
+                    image.setImageResource(R.drawable.iconic_taxon_unknown);
+                }
             }
-            
+                
             
             TextView observedOn = (TextView) view.findViewById(R.id.dateObserved);
             Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
             
             if (observationTimestamp == 0) {
-                // Now observation date set - don't show it
+                // No observation date set - don't show it
                 observedOn.setVisibility(View.INVISIBLE);
             } else {
                 observedOn.setVisibility(View.VISIBLE);
                 Timestamp observationDate = new Timestamp(observationTimestamp);
                 observedOn.setText(new SimpleDateFormat("M/d/yyyy").format(observationDate));
+            }
+            
+            
+            LinearLayout commentWrapper = (LinearLayout) view.findViewById(R.id.countWrapper);
+            TextView commentIdCountText = (TextView) view.findViewById(R.id.commentIdCount);
+            Long commentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.COMMENTS_COUNT));
+            Long idCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
+            Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
+            Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
+            Long totalCount = commentsCount + idCount;
+            
+            if (totalCount == 0) {
+                // No comments/IDs - don't display the indicator
+                commentWrapper.setVisibility(View.INVISIBLE);
+            } else {
+                commentWrapper.setVisibility(View.VISIBLE);
+                commentIdCountText.setText(totalCount.toString());
+                
+                if ((lastCommentsCount == null) || (lastCommentsCount != commentsCount) ||
+                        (lastIdCount == null) || (lastIdCount != idCount)) {
+                    // There are unread comments/IDs
+                    commentWrapper.setBackgroundResource(R.drawable.id_comment_count_highlighted);
+                }
+            }
+ 
+            Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
+            Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
+            
+            ImageView needToSync = (ImageView) view.findViewById(R.id.syncRequired);
+            
+            if ((syncedAt == null) || (updatedAt > syncedAt)) {
+                // This observations needs to be synced
+                needToSync.setVisibility(View.VISIBLE);
+            } else {
+                needToSync.setVisibility(View.INVISIBLE);
             }
             
             return view;
