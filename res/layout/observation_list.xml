@@ -4,8 +4,8 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 	
-    <ListView
-        android:id="@android:id/list"
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/observations_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"/>

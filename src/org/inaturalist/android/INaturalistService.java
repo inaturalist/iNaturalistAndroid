@@ -72,6 +72,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
+    public static String ACTION_SYNC_COMPLETE = "sync_complete";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -113,10 +114,14 @@ public class INaturalistService extends IntentService {
             } else {
                 mIsSyncing = true;
                 syncObservations();
-                
+               
                 // Update last sync time
                 long lastSync = System.currentTimeMillis();
                 mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+                
+                // Notify the rest of the app of the completion of the sync
+                Intent reply = new Intent(ACTION_SYNC_COMPLETE);
+                sendBroadcast(reply); 
             }
         } catch (AuthenticationException e) {
             if (!mPassive) {
@@ -147,7 +152,8 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             Observation observation = new Observation(c);
-            delete(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation));
+            delete(HOST + "/observations/" + observation.id + ".json", null);
+            c.moveToNext();
         }
         
         // Now it's safe to delete all of the observations locally

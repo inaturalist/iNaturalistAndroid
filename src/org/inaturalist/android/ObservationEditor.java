@@ -270,7 +270,7 @@ public class ObservationEditor extends Activity {
         stopGetLocation();
         if (isFinishing()) {
             if (isDeleteable()) {
-                delete();
+                delete(true);
             } else if (!mCanceled) {
                 save();
             }
@@ -404,13 +404,22 @@ public class ObservationEditor extends Activity {
         app.checkSyncNeeded();
     }
 
-    private final void delete() {
+    private final void delete(boolean deleteLocal) {
         if (mCursor == null) { return; }
-        try {
-            getContentResolver().delete(mUri, null, null);
-        } catch (NullPointerException e) {
-            Log.e(TAG, "Failed to delete observation: " + e);
+        
+        if (deleteLocal) {
+            try {
+                getContentResolver().delete(mUri, null, null);
+            } catch (NullPointerException e) {
+                Log.e(TAG, "Failed to delete observation: " + e);
+            }
+        } else {
+            // Only mark as deleted (so we'll later on sync the deletion)
+            ContentValues cv = mObservation.getContentValues();
+            cv.put(Observation.IS_DELETED, 1);
+            getContentResolver().update(mUri, cv, null, null);
         }
+        
         app.checkSyncNeeded();
     }
 
@@ -438,7 +447,7 @@ public class ObservationEditor extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.delete:
-            delete();
+            delete(false);
             Toast.makeText(this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
             finish();
             return true;

@@ -7,10 +7,16 @@ import java.util.HashMap;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -33,6 +39,17 @@ import android.widget.TextView;
 
 public class ObservationListActivity extends ListActivity {
 	public static String TAG = "INAT";
+	
+	private PullToRefreshListView mPullRefreshListView;
+	
+	private SyncCompleteReceiver mSyncCompleteReceiver;
+	
+    private class SyncCompleteReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mPullRefreshListView.onRefreshComplete();
+        }
+    } 	
   
     /** Called when the activity is first created. */
     @Override
@@ -45,18 +62,44 @@ public class ObservationListActivity extends ListActivity {
             intent.setData(Observation.CONTENT_URI);
         }
         
+        mSyncCompleteReceiver = new SyncCompleteReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
+        registerReceiver(mSyncCompleteReceiver, filter);  
+        
+        mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
+
+        // Set a listener to be invoked when the list should be refreshed.
+        mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                // Start sync
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                startService(serviceIntent);
+                
+                //refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+            }
+        });
+        
+		ListView actualListView = mPullRefreshListView.getRefreshableView();
+
+		// Need to use the Actual ListView when registering for Context Menu
+		registerForContextMenu(actualListView);
+        
+        
         // Inform the list we provide context menus for items
-        getListView().setOnCreateContextMenuListener(this);
+        //getListView().setOnCreateContextMenuListener(this);
         
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         
         // Perform a managed query. The Activity will handle closing and requerying the cursor
         // when needed.
-        String conditions = "_synced_at IS NULL";
+        String conditions = "(_synced_at IS NULL";
         if (login != null) {
             conditions += " OR user_login = '" + login + "'";
         }
+        
+        conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         
         Cursor cursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
         		conditions, null, Observation.DEFAULT_SORT_ORDER);
