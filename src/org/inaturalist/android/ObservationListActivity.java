@@ -67,7 +67,12 @@ public class ObservationListActivity extends ListActivity {
         registerReceiver(mSyncCompleteReceiver, filter);  
         
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
-
+        
+        
+        mPullRefreshListView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_sync));
+        mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_sync));
+        mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.syncing));
+        
         // Set a listener to be invoked when the list should be refreshed.
         mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
@@ -75,8 +80,6 @@ public class ObservationListActivity extends ListActivity {
                 // Start sync
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
-                
-                //refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
             }
         });
         

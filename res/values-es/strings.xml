@@ -96,4 +96,8 @@
     <string name="brief_description">Descripción breve...</string>
     <string name="unknown_species">Especie desconocida</string>
     <string name="no_description">Sin descripción</string>
+    
+    <string name="pull_to_sync">Pull to sync...</string>
+    <string name="release_to_sync">Release to sync...</string>
+    <string name="syncing">Syncing...</string>
 </resources>
