@@ -118,17 +118,22 @@ public class INaturalistService extends IntentService {
                 // Update last sync time
                 long lastSync = System.currentTimeMillis();
                 mPreferences.edit().putLong("last_sync_time", lastSync).commit();
-                
-                // Notify the rest of the app of the completion of the sync
-                Intent reply = new Intent(ACTION_SYNC_COMPLETE);
-                sendBroadcast(reply); 
+ 
             }
         } catch (AuthenticationException e) {
             if (!mPassive) {
                 requestCredentials();
             }
         } finally {
-            mIsSyncing = false;
+            if (mIsSyncing) {
+                mIsSyncing = false;
+                
+                Log.i(TAG, "Sending ACTION_SYNC_COMPLETE");
+                
+                // Notify the rest of the app of the completion of the sync
+                Intent reply = new Intent(ACTION_SYNC_COMPLETE);
+                sendBroadcast(reply); 
+            }
         }
     }
     

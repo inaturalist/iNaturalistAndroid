@@ -26,6 +26,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -51,6 +52,25 @@ public class ObservationListActivity extends ListActivity {
         }
     } 	
   
+    public static Intent createIntent(Context context) {
+        Intent i = new Intent(context, ObservationListActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        return i;
+    } 
+    
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        
+        if (mSyncCompleteReceiver != null) {
+            Log.i(TAG, "Unregistering ACTION_SYNC_COMPLETE");
+            unregisterReceiver(mSyncCompleteReceiver);
+            mSyncCompleteReceiver = null;
+        }
+    }
+
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +84,7 @@ public class ObservationListActivity extends ListActivity {
         
         mSyncCompleteReceiver = new SyncCompleteReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
+        Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
         registerReceiver(mSyncCompleteReceiver, filter);  
         
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
@@ -121,6 +142,18 @@ public class ObservationListActivity extends ListActivity {
         inflater.inflate(R.menu.observations_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        
+        mSyncCompleteReceiver = new SyncCompleteReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
+        Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
+        registerReceiver(mSyncCompleteReceiver, filter);  
+ 
+    }
+
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

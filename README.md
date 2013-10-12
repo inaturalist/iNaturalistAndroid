@@ -29,6 +29,8 @@ git clone git://github.com/facebook/facebook-android-sdk.git
 # Get the Android-PullToRefresh library
 git clone git://github.com/chrisbanes/Android-PullToRefresh.git
 
+# Get the Android-ActionBar library
+git clone git://github.com/johannilsson/android-actionbar.git
 
 # Copy the example config file and add your own API keys etc
 cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/values/config.xml

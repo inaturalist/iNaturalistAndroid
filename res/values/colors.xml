@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionbar_separator">#EEE</color>
+    <color name="actionbar_background_start">#222222</color>
+    <color name="actionbar_background_end">#222222</color>
+</resources> 

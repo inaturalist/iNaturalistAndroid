@@ -100,4 +100,5 @@
     <string name="pull_to_sync">Pull to sync...</string>
     <string name="release_to_sync">Release to sync...</string>
     <string name="syncing">Syncing...</string>
+    <string name="edit_observation">Edit Observation</string>
 </resources>

@@ -1,5 +1,7 @@
 package org.inaturalist.android;
 
+import com.markupartist.android.widget.ActionBar.IntentAction;
+import com.markupartist.android.widget.ActionBar.AbstractAction;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -9,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.markupartist.android.widget.ActionBar;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -47,6 +51,7 @@ import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -59,8 +64,6 @@ public class ObservationEditor extends Activity {
     private TextView mSpeciesGuessTextView;
     private TextView mDescriptionTextView;
     private Button mSaveButton;
-    private Button mCancelButton;
-    private Button mAddPhotoButton;
     private TextView mObservedOnStringTextView;
     private Button mObservedOnButton;
     private Button mTimeObservedAtButton;
@@ -80,12 +83,70 @@ public class ObservationEditor extends Activity {
     private INaturalistApp app;
     private ActivityHelper mHelper;
     private boolean mCanceled = false;
+    
+    private ActionBar mTopActionBar;
+    private ImageButton mDeleteButton;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
     private static final int ONE_MINUTE = 60 * 1000;
+    
+    private class DeleteObservationAction extends AbstractAction {
+
+        public DeleteObservationAction() {
+            super(R.drawable.delete_observation);
+        }
+
+        @Override
+        public void performAction(View view) {
+            delete(false);
+            Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+    }    
+
+  
+    
+    private class TakePhotoAction extends AbstractAction {
+
+        public TakePhotoAction() {
+            super(R.drawable.take_photo);
+        }
+
+        @Override
+        public void performAction(View view) {
+            // create Intent to take a picture and return control to the calling application
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri); // set the image file name
+
+            // start the image capture Intent
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+
+    }    
+
+    
+    private class BackAction extends AbstractAction {
+
+        public BackAction() {
+            super(R.drawable.back);
+        }
+
+        @Override
+        public void performAction(View view) {
+            // Get back to the observations list (consider this as canceled)
+            mCanceled = true;
+            Intent intent = ObservationListActivity.createIntent(ObservationEditor.this);
+            startActivity(intent);
+            finish();
+        }
+
+    }    
 
     /**
      * LIFECYCLE CALLBACKS
@@ -161,9 +222,7 @@ public class ObservationEditor extends Activity {
 
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
-        mSaveButton = (Button) findViewById(R.id.save);
-        mCancelButton = (Button) findViewById(R.id.cancel);
-        mAddPhotoButton = (Button) findViewById(R.id.add_photo);
+        mSaveButton = (Button) findViewById(R.id.save_observation);
         mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
         mObservedOnButton = (Button) findViewById(R.id.observed_on);
         mTimeObservedAtButton = (Button) findViewById(R.id.time_observed_at);
@@ -174,10 +233,37 @@ public class ObservationEditor extends Activity {
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
         mLocationRefreshButton = (ImageButton) findViewById(R.id.locationRefreshButton);
         mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
+        mTopActionBar = (ActionBar) findViewById(R.id.top_actionbar);
+        mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         
+        mTopActionBar.setHomeAction(new BackAction());
+        mTopActionBar.addAction(new TakePhotoAction());
+        
+
         registerForContextMenu(mGallery);
 
         initUi();
+        
+        RelativeLayout commentWrapper = (RelativeLayout) findViewById(R.id.commentCountWrapper);
+        TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
+        Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
+        commentIdCountText.setText(totalCount.toString());
+
+        if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
+                (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
+            // There are unread comments/IDs
+            commentWrapper.setBackgroundResource(R.drawable.id_comment_count_highlighted);
+        }
+
+        
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete(false);
+                Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
 
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,27 +273,6 @@ public class ObservationEditor extends Activity {
             }
         });
 
-        mCancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCanceled = true;
-                finish();
-            }
-        });
-
-        mAddPhotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // create Intent to take a picture and return control to the calling application
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri); // set the image file name
-
-                // start the image capture Intent
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-            }
-        });
 
         mObservedOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
