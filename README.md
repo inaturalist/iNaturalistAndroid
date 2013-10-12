@@ -26,6 +26,10 @@ cd ../../
 git clone git://github.com/facebook/facebook-android-sdk.git
 ./facebook-android-sdk/scripts/build_and_test.sh
 
+# Get the Android-PullToRefresh library
+git clone git://github.com/chrisbanes/Android-PullToRefresh.git
+
+
 # Copy the example config file and add your own API keys etc
 cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/values/config.xml
 ```
