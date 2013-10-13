@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.android"
     android:layout_width="fill_parent"
@@ -10,14 +10,126 @@
       android:id="@+id/top_actionbar"
 	  app:title="@string/edit_observation"
 	  style="@style/ActionBar"
+	  android:layout_alignParentTop="true"
    />  
         
  
+<LinearLayout
+    android:id="@+id/bottom_actionbar"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/actionbar_height"
+    android:orientation="horizontal"
+    android:layout_alignParentBottom="true"
+    >
+    <ImageButton
+	    android:id="@+id/delete_observation"
+	    android:background="@drawable/actionbar_btn"
+	    android:layout_centerVertical="true"
+	    android:singleLine="true"
+	    android:src="@drawable/delete_observation"
+	    style="@style/ActionBarItem"
+	    />
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+	    android:layout_weight="1"
+	    android:layout_height="fill_parent"
+	    android:background="@drawable/actionbar_btn"
+	    style="@style/ActionBarItem"
+	    android:padding="0dp"
+        >
+	      <Button
+		    android:id="@+id/save_observation"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:background="@drawable/actionbar_btn"
+		    style="@style/ActionBarItem"
+		    />
+	      
+	      <LinearLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+   	        android:layout_centerInParent="true"
+	          >
+   	      <ImageView 
+	          android:src="@drawable/save_observation"
+   		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+	          />
+
+	      <TextView 
+			  android:id="@+id/save_observation_label"
+	          android:text="@string/save"
+   		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:paddingLeft="3dp"
+		      android:textSize="18dp"
+		      android:layout_gravity="center_vertical"
+	          />
+	      
+	      </LinearLayout>
+	        
+    </RelativeLayout>
+    
+    <ImageButton
+	    android:id="@+id/view_on_inat"
+	    android:background="@drawable/actionbar_btn"
+	    android:layout_centerVertical="true"
+	    android:singleLine="true"
+	    android:src="@drawable/ic_menu_new_window"
+	    style="@style/ActionBarItem"
+	    />
+ 
+   
+    <RelativeLayout
+ 		    android:layout_width="wrap_content"
+		    android:layout_height="45dip"
+		    android:background="@drawable/actionbar_btn"
+		    style="@style/ActionBarItem"       
+            android:padding="0dp"
+        >
+
+        <Button
+            android:padding="0dp"
+            android:id="@+id/observation_id_count"
+            style="@style/ActionBarItem"
+            android:background="@drawable/actionbar_btn" />
+
+      <RelativeLayout
+           android:id="@+id/commentCountWrapper"
+           android:layout_width="wrap_content"
+           android:layout_height="fill_parent"
+           android:background="@drawable/id_comment_count"
+           android:layout_centerInParent="true"
+           >
+            
+            <TextView
+               android:id="@+id/observationCommentIdCount"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_centerHorizontal="true"
+               android:paddingTop="5dp"
+               android:singleLine="true"
+               android:text="30"
+               android:textColor="#666"
+               android:textSize="17sp" />
+            
+
+       </RelativeLayout>
+    
+    </RelativeLayout>
+    
+</LinearLayout>
+
+
 
 <ScrollView
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" 
-    android:layout_weight="1" 
+    android:layout_height="fill_parent" 
+    android:layout_above="@id/bottom_actionbar"
+    android:layout_below="@id/top_actionbar"
     >
 
    
@@ -188,118 +300,10 @@
     </LinearLayout>
 
 </ScrollView>
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="@dimen/actionbar_height"
-    android:orientation="horizontal"
-    >
-    <ImageButton
-	    android:id="@+id/delete_observation"
-	    android:background="@drawable/actionbar_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/delete_observation"
-	    style="@style/ActionBarItem"
-	    />
-    
-    <RelativeLayout
-        android:layout_width="wrap_content"
-	    android:layout_weight="1"
-	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_btn"
-	    style="@style/ActionBarItem"
-	    android:padding="0dp"
-        >
-	      <Button
-		    android:id="@+id/save_observation"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:background="@drawable/actionbar_btn"
-		    style="@style/ActionBarItem"
-		    />
-	      
-	      <LinearLayout
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-   	        android:layout_centerInParent="true"
-	          >
-   	      <ImageView 
-	          android:src="@drawable/save_observation"
-   		      android:layout_width="wrap_content"
-		      android:layout_height="wrap_content"
-	          />
-
-	      <TextView 
-			  android:id="@+id/save_observation_label"
-	          android:text="@string/save"
-   		      android:layout_width="wrap_content"
-		      android:layout_height="wrap_content"
-		      android:paddingLeft="3dp"
-		      android:textSize="18dp"
-		      android:layout_gravity="center_vertical"
-	          />
-	      
-	      </LinearLayout>
-	        
-    </RelativeLayout>
-    
-    <ImageButton
-	    android:id="@+id/view_on_inat"
-	    android:background="@drawable/actionbar_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/ic_menu_new_window"
-	    style="@style/ActionBarItem"
-	    />
- 
-   
-    <RelativeLayout
- 		    android:layout_width="wrap_content"
-		    android:layout_height="45dip"
-		    android:background="@drawable/actionbar_btn"
-		    style="@style/ActionBarItem"       
-            android:padding="0dp"
-        >
-
-        <Button
-            android:padding="0dp"
-            android:id="@+id/observation_id_count"
-            style="@style/ActionBarItem"
-            android:background="@drawable/actionbar_btn" />
-
-      <RelativeLayout
-           android:id="@+id/commentCountWrapper"
-           android:layout_width="wrap_content"
-           android:layout_height="fill_parent"
-           android:background="@drawable/id_comment_count"
-           android:layout_centerInParent="true"
-           >
-            
-            <TextView
-               android:id="@+id/observationCommentIdCount"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:gravity="center"
-               android:layout_centerHorizontal="true"
-               android:paddingTop="5dp"
-               android:singleLine="true"
-               android:text="30"
-               android:textColor="#666"
-               android:textSize="17sp" />
-            
-
-       </RelativeLayout>
-    
-    </RelativeLayout>
-    
-</LinearLayout>
-
 <!--
   <com.markupartist.android.widget.ActionBar
       android:id="@+id/bottom_actionbar"
 	  style="@style/ActionBar"
    />  
   -->
-</LinearLayout>
+</RelativeLayout>
