@@ -46,5 +46,18 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 1. Choose `General / Existing Projects into Workspace`
 1. `Select root directory` as `path/to/your/workspace/INaturalistAndroid`
 1. Check the `INaturalistAndroid` project and click `Finish`
+1. Open menu `File / Import...`
+1. Choose `General / Existing Projects into Workspace`
+1. `Select root directory` as `path/to/your/workspace/Android-PullToRefresh/library`
+1. Check the `library` project and click `Finish`
+1. Choose `General / Existing Projects into Workspace`
+1. `Select root directory` as `path/to/your/workspace/android-actionbar/actionbar`
+1. Check the `android-actionbar-library` project and click `Finish`
+1. Right-click the `iNaturalistAndroid` project and select `Properties`
+1. Go to `Android` tab
+1. Scroll down to the `Library` box and click `Add`
+1. Select the `actionbar-library` and `PullToRefresh-library` project and press OK
+1. Press OK to close the dialog
+
 
 In theory it should build now!
