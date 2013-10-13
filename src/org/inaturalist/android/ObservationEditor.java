@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.markupartist.android.widget.ActionBar;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -22,6 +23,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -93,22 +95,11 @@ public class ObservationEditor extends Activity {
     private static final int TIME_DIALOG_ID = 1;
     private static final int ONE_MINUTE = 60 * 1000;
     
-    private class DeleteObservationAction extends AbstractAction {
-
-        public DeleteObservationAction() {
-            super(R.drawable.delete_observation);
-        }
-
-        @Override
-        public void performAction(View view) {
-            delete(false);
-            Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
-    }    
-
-  
+    @Override
+    public void onBackPressed() {
+        BackAction action = new BackAction();
+        action.performAction(null);
+    }
     
     private class TakePhotoAction extends AbstractAction {
 
@@ -139,11 +130,29 @@ public class ObservationEditor extends Activity {
 
         @Override
         public void performAction(View view) {
-            // Get back to the observations list (consider this as canceled)
-            mCanceled = true;
-            Intent intent = ObservationListActivity.createIntent(ObservationEditor.this);
-            startActivity(intent);
-            finish();
+            Observation observationCopy = new Observation(mCursor);
+            uiToObservation();
+            if (!mObservation.isDirty()) {
+                // User hasn't changed anything - no need to display confirmation dialog
+                mCanceled = true;
+                finish();
+                return;
+            }
+            
+            // Restore the old observation (since uiToObservation overwritten it)
+            mObservation = observationCopy;
+            
+            // Display a confirmation dialog
+            confirm(ObservationEditor.this, R.string.edit_observation, R.string.discard_changes, 
+                    R.string.yes, R.string.no, 
+                    new Runnable() { public void run() {
+                        // Get back to the observations list (consider this as canceled)
+                        mCanceled = true;
+                        Intent intent = ObservationListActivity.createIntent(ObservationEditor.this);
+                        startActivity(intent);
+                        finish();
+                    }}, 
+                    null);
         }
 
     }    
@@ -905,4 +914,45 @@ public class ObservationEditor extends Activity {
         }
 
     }
+    
+    /**
+     * Display a confirm dialog. 
+     * @param activity
+     * @param title
+     * @param message
+     * @param positiveLabel
+     * @param negativeLabel
+     * @param onPositiveClick runnable to call (in UI thread) if positive button pressed. Can be null
+     * @param onNegativeClick runnable to call (in UI thread) if negative button pressed. Can be null
+     */
+    public static final void confirm(
+            final Activity activity, 
+            final int title, 
+            final int message,
+            final int positiveLabel, 
+            final int negativeLabel,
+            final Runnable onPositiveClick,
+            final Runnable onNegativeClick) {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
+        dialog.setTitle(title);
+        dialog.setMessage(message);
+        dialog.setCancelable (false);
+        dialog.setPositiveButton(positiveLabel,
+                new DialogInterface.OnClickListener () {
+            public void onClick (DialogInterface dialog, int buttonId) {
+                if (onPositiveClick != null) onPositiveClick.run();
+            }
+        });
+        dialog.setNegativeButton(negativeLabel,
+                new DialogInterface.OnClickListener () {
+            public void onClick (DialogInterface dialog, int buttonId) {
+                if (onNegativeClick != null) onNegativeClick.run();
+            }
+        });
+        dialog.setIcon (android.R.drawable.ic_dialog_alert);
+        dialog.show();
+
+    }
+
 }

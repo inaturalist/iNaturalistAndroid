@@ -101,4 +101,7 @@
     <string name="release_to_sync">Release to sync...</string>
     <string name="syncing">Syncing...</string>
     <string name="edit_observation">Edit Observation</string>
+    <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
