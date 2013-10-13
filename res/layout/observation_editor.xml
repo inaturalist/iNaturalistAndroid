@@ -244,6 +244,16 @@
 	      </LinearLayout>
 	        
     </RelativeLayout>
+    
+    <ImageButton
+	    android:id="@+id/view_on_inat"
+	    android:background="@drawable/actionbar_btn"
+	    android:layout_centerVertical="true"
+	    android:singleLine="true"
+	    android:src="@drawable/ic_menu_new_window"
+	    style="@style/ActionBarItem"
+	    />
+ 
    
     <RelativeLayout
  		    android:layout_width="wrap_content"

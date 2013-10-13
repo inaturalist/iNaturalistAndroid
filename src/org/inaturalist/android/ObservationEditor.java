@@ -88,6 +88,7 @@ public class ObservationEditor extends Activity {
     
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
+    private ImageButton mViewOnInat;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
@@ -139,7 +140,7 @@ public class ObservationEditor extends Activity {
                 return;
             }
             
-            // Restore the old observation (since uiToObservation overwritten it)
+            // Restore the old observation (since uiToObservation has overwritten it)
             mObservation = observationCopy;
             
             // Display a confirmation dialog
@@ -244,9 +245,19 @@ public class ObservationEditor extends Activity {
         mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
         mTopActionBar = (ActionBar) findViewById(R.id.top_actionbar);
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
+        mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
         
         mTopActionBar.setHomeAction(new BackAction());
         mTopActionBar.addAction(new TakePhotoAction());
+        
+        mViewOnInat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(INaturalistService.HOST + "/observations/"+mObservation.id));
+                startActivity(i);
+            }
+        });
         
 
         registerForContextMenu(mGallery);
