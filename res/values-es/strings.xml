@@ -104,4 +104,11 @@
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="agree">Agree?</string>
+    <string name="no_comments">No comments/identifications yet</string>
+    <string name="posted_by">Posted by %1$s on %2$s</string>
+    <string name="you">you</string>
+    <string name="loading_comments">Loading comments and identifications...</string>
+    <string name="add_comment">Add comment</string>
+    <string name="add_id">Add identification</string>
 </resources>

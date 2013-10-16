@@ -57,6 +57,9 @@ import android.util.Log;
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
+
+    public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_RESULT = "observation_result";
     
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
@@ -70,9 +73,11 @@ public class INaturalistService extends IntentService {
         android.os.Build.PRODUCT + ")";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_FIRST_SYNC = "first_sync";
+    public static String ACTION_GET_OBSERVATION = "get_observation";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
+    public static String ACTION_OBSERVATION_RESULT = "observation_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -111,6 +116,14 @@ public class INaturalistService extends IntentService {
                 getNearbyObservations(intent);
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
+            } else if (action.equals(ACTION_GET_OBSERVATION)) {
+                int id = intent.getExtras().getInt(OBSERVATION_ID);
+                Observation observation = getObservation(id);
+                
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply); 
+                
             } else {
                 mIsSyncing = true;
                 syncObservations();
@@ -219,6 +232,24 @@ public class INaturalistService extends IntentService {
                 getString(R.string.observation_sync_complete), 
                 String.format(getString(R.string.observation_sync_status), createdCount, updatedCount),
                 getString(R.string.sync_complete));
+    }
+    
+    
+    private Observation getObservation(int id) throws AuthenticationException {
+        String url = String.format("%s/observations/%d.json", HOST, id);
+
+        JSONArray json = get(url);
+        if (json == null || json.length() == 0) { return null; }
+        
+        JSONObject observation;
+        
+        try {
+            observation = (JSONObject) json.get(0);
+        } catch (JSONException e) {
+            return null;
+        }
+        
+        return new Observation(new BetterJSONObject(observation));
     }
     
     private void postPhotos() throws AuthenticationException {

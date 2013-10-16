@@ -6,6 +6,9 @@
 
 package org.inaturalist.android;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -13,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +29,7 @@ public class BetterJSONObject implements Serializable {
 	private DateFormat mDateTimeFormat; 
 	private DateFormat mDateFormat;
 	
+
 	public BetterJSONObject() {
 	    this(new JSONObject());
 	}
@@ -37,6 +42,23 @@ public class BetterJSONObject implements Serializable {
 	
 	public JSONObject getJSONObject() {
 	    return mJSONObject;
+	}
+	
+	public SerializableJSONArray getJSONArray(String name) {
+	    try {
+	        return new SerializableJSONArray(mJSONObject.getJSONArray(name));
+	    } catch (JSONException e) {
+	        return null;
+	    }
+	}
+	
+	
+	public JSONObject getJSONObject(String name) {
+	    try {
+	        return mJSONObject.getJSONObject(name);
+	    } catch (JSONException e) {
+	        return null;
+	    }
 	}
 	
 	public Object get(String name) {

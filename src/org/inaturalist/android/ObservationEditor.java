@@ -89,6 +89,7 @@ public class ObservationEditor extends Activity {
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
     private ImageButton mViewOnInat;
+    private Button mObservationCommentsIds;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int MEDIA_TYPE_IMAGE = 1;
@@ -246,9 +247,24 @@ public class ObservationEditor extends Activity {
         mTopActionBar = (ActionBar) findViewById(R.id.top_actionbar);
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
+        mObservationCommentsIds = (Button) findViewById(R.id.observation_id_count);
         
         mTopActionBar.setHomeAction(new BackAction());
         mTopActionBar.addAction(new TakePhotoAction());
+        
+        mObservationCommentsIds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ObservationEditor.this, CommentsIdsActivity.class);
+                intent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                startActivity(intent);
+                
+                // Get the observation's IDs/comments
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationEditor.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                startService(serviceIntent);
+            }
+        });
         
         mViewOnInat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,13 +282,16 @@ public class ObservationEditor extends Activity {
         
         RelativeLayout commentWrapper = (RelativeLayout) findViewById(R.id.commentCountWrapper);
         TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
-        Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
+        Integer totalCount = (mObservation.comments_count == null ? 0 : mObservation.comments_count) +
+                (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
         commentIdCountText.setText(totalCount.toString());
 
-        if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
-                (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
-            // There are unread comments/IDs
-            commentWrapper.setBackgroundResource(R.drawable.id_comment_count_highlighted);
+        if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
+            if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
+                    (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
+                // There are unread comments/IDs
+                commentWrapper.setBackgroundResource(R.drawable.id_comment_count_highlighted);
+            }
         }
 
         
@@ -389,6 +408,13 @@ public class ObservationEditor extends Activity {
                 getLocation();
             }
         }
+        
+        if (mObservation.id == null) {
+            // Unsynced observation - don't allow adding new comments/ids
+            RelativeLayout container = (RelativeLayout) findViewById(R.id.observation_comments);
+            container.setVisibility(View.GONE);
+        }
+        
         updateUi();
     }
 

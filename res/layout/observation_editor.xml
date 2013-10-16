@@ -83,6 +83,7 @@
  
    
     <RelativeLayout
+	        android:id="@+id/observation_comments"
  		    android:layout_width="wrap_content"
 		    android:layout_height="45dip"
 		    android:background="@drawable/actionbar_btn"

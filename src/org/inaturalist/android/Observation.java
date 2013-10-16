@@ -56,6 +56,9 @@ public class Observation implements BaseColumns, Serializable {
     public Integer last_identifications_count;
     public Boolean is_deleted;
     
+    public SerializableJSONArray comments;
+    public SerializableJSONArray identifications;
+    
     public List<String> photo_urls;
 
     public Timestamp _created_at_was;
@@ -355,6 +358,9 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login = o.getString("user_login");
         this.user_login_was = this.user_login;
         this.is_deleted_was = this.is_deleted;
+        
+        this.comments = o.getJSONArray("comments");
+        this.identifications = o.getJSONArray("identifications");
         
         try {
             this.photo_urls = new ArrayList<String>();
