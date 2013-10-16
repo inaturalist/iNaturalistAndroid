@@ -14,34 +14,46 @@ import org.json.JSONObject;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.LinearGradient;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class CommentsIdsActivity extends ListActivity {
-	public static String TAG = "INAT";
+    public static final String NEW_COMMENTS = "new_comments";
+    public static final String NEW_IDS = "new_ids";
+
+    public static String TAG = "INAT";
 	
 	private String mLogin;
 	
 	private ObservationReceiver mObservationReceiver;
 
     private int mObservationId;
+    
+    private CommentsIdsAdapter mAdapter;
+
+    private int mNewComments = 0;
+    private int mNewIds = 0;
 	
 	private class ObservationReceiver extends BroadcastReceiver {
 	    @Override
@@ -79,8 +91,8 @@ public class CommentsIdsActivity extends ListActivity {
                 }
             });
 	        
-	        CommentsIdsAdapter adapter = new CommentsIdsAdapter(CommentsIdsActivity.this, results);
-	        setListAdapter(adapter);
+	        mAdapter = new CommentsIdsAdapter(CommentsIdsActivity.this, results);
+	        setListAdapter(mAdapter);
 	        
 	        TextView loadingComments = (TextView) findViewById(android.R.id.empty);
 	        loadingComments.setText(R.string.no_comments);
@@ -107,14 +119,90 @@ public class CommentsIdsActivity extends ListActivity {
         Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
         registerReceiver(mObservationReceiver, filter);  
         
-        ArrayList<JSONObject> list = new ArrayList<JSONObject>();
-        try {
-            list.add(new JSONObject("{\"type\": \"identification\", \"body\":\"my remarks\r\nsecond line\",\"created_at\":\"2013-10-13T14:36:15+02:00\",\"current\":true,\"id\":714781,\"observation_id\":216721,\"taxon_change_id\":null,\"taxon_id\":49057,\"updated_at\":\"2013-10-13T14:36:15+02:00\",\"user_id\":13244,\"user\":{\"id\":13244,\"login\":\"budowski\",\"name\":\"\",\"user_icon_url\":\"http://www.inaturalist.org/attachments/users/icons/13244-thumb.jpg?1381663957\"},\"taxon\":{\"iconic_taxon_id\":47158,\"id\":49057,\"name\":\"Megacrania alpheus\",\"rank\":\"species\",\"iconic_taxon_name\":\"Insecta\",\"image_url\":\"http://www.inaturalist.org/images/iconic_taxa/insecta-32px.png\"}}"));
-            list.add(new JSONObject("{\"type\": \"comment\", \"body\":\"bl jaksld jkjl adskldj aklklasj dklja dkljaskldj akljd akljd askljd kldasj ksajdfsk\",\"created_at\":\"2013-10-12T17:40:02+02:00\",\"id\":86003,\"parent_id\":216721,\"parent_type\":\"Observation\",\"updated_at\":\"2013-10-12T17:40:02+02:00\",\"user_id\":13244,\"user\":{\"id\":13244,\"login\":\"budowski\",\"name\":\"\",\"user_icon_url\":\"http://www.inaturalist.org/attachments/users/icons/13244-thumb.jpg?1381663957\"}}"));
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        Button addComment = (Button) findViewById(R.id.add_comment);
+        addComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog();
+            }
+        });
+    }
+    
+    private void showInputDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.add_comment);
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() { 
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String comment = input.getText().toString();
+                
+                // Add the comment
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, CommentsIdsActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+                serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
+                startService(serviceIntent);
+                
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                
+                // Refresh the comment/id list
+                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, CommentsIdsActivity.this, INaturalistService.class);
+                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+                startService(serviceIntent2);
+                
+                // Ask for a sync (to update the comment count)
+                Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC, null, CommentsIdsActivity.this, INaturalistService.class);
+                startService(serviceIntent3);
+                
+                mNewComments++;
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();        
+    }
+    
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putInt(NEW_COMMENTS, mNewComments);
+        bundle.putInt(NEW_IDS, mNewIds);
+        intent.putExtras(bundle);
+        
+        setResult(RESULT_OK, intent);
+        
+        super.onBackPressed();
+    }
+    
+    @Override
+    public void onStop() {
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putInt(NEW_COMMENTS, mNewComments);
+        bundle.putInt(NEW_IDS, mNewIds);
+        intent.putExtras(bundle);
+        
+        setResult(RESULT_OK, intent);
+        super.onStop();
     }
     
     public class CommentsIdsAdapter extends ArrayAdapter<JSONObject> {
@@ -127,6 +215,10 @@ public class CommentsIdsActivity extends ListActivity {
             
             mItems = objects;
             mContext = context;
+        }
+        
+        public void addItemAtBeginning(JSONObject newItem) {
+            mItems.add(0, newItem);
         }
         
         @Override
@@ -179,6 +271,8 @@ public class CommentsIdsActivity extends ListActivity {
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
                                 serviceIntent.putExtra(INaturalistService.TAXON_ID, item.getJSONObject("taxon").getInt("id"));
                                 startService(serviceIntent);
+                                
+                                mNewIds++;
                             } catch (JSONException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
@@ -187,6 +281,11 @@ public class CommentsIdsActivity extends ListActivity {
                             agree.setVisibility(View.INVISIBLE);
                         }
                     });
+                    
+                    if (username.equalsIgnoreCase(mLogin)) {
+                        // Can't agree on our on identification
+                        agree.setVisibility(View.INVISIBLE);
+                    }
                 }
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
