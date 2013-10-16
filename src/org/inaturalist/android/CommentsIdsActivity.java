@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
@@ -133,7 +134,7 @@ public class CommentsIdsActivity extends ListActivity {
             Resources res = getResources();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.comment_id_item, parent, false); 
-            BetterJSONObject item = new BetterJSONObject(mItems.get(position));
+            final BetterJSONObject item = new BetterJSONObject(mItems.get(position));
             
             try {
                 TextView comment = (TextView) view.findViewById(R.id.comment);
@@ -168,6 +169,24 @@ public class CommentsIdsActivity extends ListActivity {
                     idName.setText(item.getJSONObject("taxon").getString("name"));
                     TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
                     idTaxonName.setText(item.getJSONObject("taxon").getString("iconic_taxon_name"));
+                    
+                    final Button agree = (Button) view.findViewById(R.id.id_agree);
+                    agree.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, CommentsIdsActivity.this, INaturalistService.class);
+                                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+                                serviceIntent.putExtra(INaturalistService.TAXON_ID, item.getJSONObject("taxon").getInt("id"));
+                                startService(serviceIntent);
+                            } catch (JSONException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                            
+                            agree.setVisibility(View.INVISIBLE);
+                        }
+                    });
                 }
             } catch (JSONException e) {
                 // TODO Auto-generated catch block

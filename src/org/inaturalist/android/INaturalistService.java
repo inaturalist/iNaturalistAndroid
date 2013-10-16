@@ -60,6 +60,7 @@ public class INaturalistService extends IntentService {
 
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
+    public static final String TAXON_ID = "taxon_id";
     
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
@@ -76,6 +77,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_OBSERVATION = "get_observation";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
+    public static String ACTION_AGREE_ID = "agree_id";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
     public static String ACTION_OBSERVATION_RESULT = "observation_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
@@ -116,6 +118,11 @@ public class INaturalistService extends IntentService {
                 getNearbyObservations(intent);
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
+            } else if (action.equals(ACTION_AGREE_ID)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                agreeIdentification(observationId, taxonId);
+                
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 Observation observation = getObservation(id);
@@ -176,6 +183,14 @@ public class INaturalistService extends IntentService {
         
         // Now it's safe to delete all of the observations locally
         getContentResolver().delete(Observation.CONTENT_URI, "is_deleted = 1", null);
+    }
+    
+    private void agreeIdentification(int observationId, int taxonId) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
+        params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
+        
+        post(HOST + "/identifications.json", params);
     }
 
     private void postObservations() throws AuthenticationException {
