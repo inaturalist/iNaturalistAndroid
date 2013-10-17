@@ -27,7 +27,7 @@ git clone git://github.com/facebook/facebook-android-sdk.git
 ./facebook-android-sdk/scripts/build_and_test.sh
 
 # Get the Android-PullToRefresh library
-git clone git://github.com/chrisbanes/Android-PullToRefresh.git
+git clone git://github.com/budowski/Android-PullToRefresh.git
 
 # Get the Android-ActionBar library
 git clone git://github.com/johannilsson/android-actionbar.git
