@@ -342,6 +342,7 @@ public class ObservationListActivity extends ListActivity {
             Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
             Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
             Long totalCount = commentsCount + idCount;
+            if (idCount > 0) totalCount--; // Don't count our own ID
             
             if (totalCount == 0) {
                 // No comments/IDs - don't display the indicator

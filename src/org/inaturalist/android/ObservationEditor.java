@@ -288,6 +288,7 @@ public class ObservationEditor extends Activity {
         TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
         Integer totalCount = (mObservation.comments_count == null ? 0 : mObservation.comments_count) +
                 (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
+        if (mObservation.identifications_count > 0) totalCount--; // Don't count our own ID
         commentIdCountText.setText(totalCount.toString());
 
         if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
@@ -816,6 +817,7 @@ public class ObservationEditor extends Activity {
             
             TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
             Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
+            if (mObservation.identifications_count > 0) totalCount--; // Don't count our own ID
             commentIdCountText.setText(totalCount.toString());
         }
     }
