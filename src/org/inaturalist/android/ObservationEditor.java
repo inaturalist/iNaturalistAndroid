@@ -288,7 +288,7 @@ public class ObservationEditor extends Activity {
         TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
         Integer totalCount = (mObservation.comments_count == null ? 0 : mObservation.comments_count) +
                 (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
-        if (mObservation.identifications_count > 0) totalCount--; // Don't count our own ID
+        if ((mObservation.identifications_count != null) && (mObservation.identifications_count > 0)) totalCount--; // Don't count our own ID
         commentIdCountText.setText(totalCount.toString());
 
         if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
@@ -303,7 +303,7 @@ public class ObservationEditor extends Activity {
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delete(false);
+                delete((mObservation == null) || (mObservation.id == null));
                 Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -817,7 +817,7 @@ public class ObservationEditor extends Activity {
             
             TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
             Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
-            if (mObservation.identifications_count > 0) totalCount--; // Don't count our own ID
+            if ((mObservation.identifications_count != null) && (mObservation.identifications_count > 0)) totalCount--; // Don't count our own ID
             commentIdCountText.setText(totalCount.toString());
         }
     }
