@@ -62,7 +62,8 @@ public class INaturalistService extends IntentService {
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String TAXON_ID = "taxon_id";
     public static final String COMMENT_BODY = "comment_body";
-    
+    public static final String IDENTIFICATION_BODY = "id_body";
+
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
 //    public static String HOST = "http://10.0.2.2:3000";
@@ -74,6 +75,7 @@ public class INaturalistService extends IntentService {
         android.os.Build.MODEL + " " + 
         android.os.Build.PRODUCT + ")";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
+    public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_GET_OBSERVATION = "get_observation";
     public static String ACTION_SYNC = "sync";
@@ -124,6 +126,12 @@ public class INaturalistService extends IntentService {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 agreeIdentification(observationId, taxonId);
+                
+            } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                String body = intent.getStringExtra(IDENTIFICATION_BODY);
+                addIdentification(observationId, taxonId, body);
                 
              } else if (action.equals(ACTION_ADD_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -199,6 +207,17 @@ public class INaturalistService extends IntentService {
         
         post(HOST + "/identifications.json", params);
     }
+    
+    
+     private void addIdentification(int observationId, int taxonId, String body) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("identification[observation_iid]", new Integer(observationId).toString()));
+        params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
+        params.add(new BasicNameValuePair("identification[body]", body));
+        
+        post(HOST + "/identifications.json", params);
+    }
+   
     
     private void addComment(int observationId, String body) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();

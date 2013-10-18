@@ -41,6 +41,7 @@ import android.widget.TextView;
 public class CommentsIdsActivity extends ListActivity {
     public static final String NEW_COMMENTS = "new_comments";
     public static final String NEW_IDS = "new_ids";
+    protected static final int NEW_ID_REQUEST_CODE = 202;
 
     public static String TAG = "INAT";
 	
@@ -126,8 +127,56 @@ public class CommentsIdsActivity extends ListActivity {
                 showInputDialog();
             }
         });
+        
+        Button addId = (Button) findViewById(R.id.add_id);
+        addId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CommentsIdsActivity.this, IdentificationActivity.class);
+                startActivityForResult(intent, NEW_ID_REQUEST_CODE);
+            }
+        });
+ 
     }
     
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_ID_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Add the ID
+                Integer taxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);
+                String idRemarks = data.getStringExtra(IdentificationActivity.ID_REMARKS);
+            
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_IDENTIFICATION, null, CommentsIdsActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
+                serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
+                startService(serviceIntent);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                // Refresh the comment/id list
+                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, CommentsIdsActivity.this, INaturalistService.class);
+                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+                startService(serviceIntent2);
+
+                // Ask for a sync (to update the id count)
+                Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC, null, CommentsIdsActivity.this, INaturalistService.class);
+                startService(serviceIntent3);
+
+                mNewComments++;
+
+            }
+        }
+    }
+        
     private void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.add_comment);

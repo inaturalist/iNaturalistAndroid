@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+  <com.markupartist.android.widget.ActionBar
+      android:id="@+id/top_actionbar"
+	  app:title="@string/add_id"
+	  style="@style/ActionBar"
+	  android:layout_alignParentTop="true"
+   />  
+        
+ 
+<LinearLayout
+    android:id="@+id/bottom_actionbar"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/actionbar_height"
+    android:orientation="horizontal"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/actionbar_btn"
+    android:padding="0dp"
+    >
+   
+    <RelativeLayout
+        android:layout_width="wrap_content"
+	    android:layout_height="fill_parent"
+        >
+	      <Button
+		    android:id="@+id/save_id"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:background="@drawable/actionbar_btn"
+		    style="@style/ActionBarItem"
+		    />
+	      
+	      <LinearLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+   	        android:layout_centerInParent="true"
+	          >
+   	      <ImageView 
+	          android:src="@drawable/save_observation"
+   		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+	          />
+
+	      <TextView 
+			  android:id="@+id/save_observation_label"
+	          android:text="@string/save"
+   		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:paddingLeft="3dp"
+		      android:textSize="18dp"
+		      android:layout_gravity="center_vertical"
+	          />
+	      
+	      </LinearLayout>
+	        
+    </RelativeLayout>
+    
+</LinearLayout>
+
+
+
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:layout_above="@id/bottom_actionbar"
+    android:layout_below="@id/top_actionbar"
+    >
+
+   
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+ <TableLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    
+    <TableRow >
+
+    <ImageView
+        android:id="@+id/user_pic"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/actionbar_back_indicator" />
+	
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/id_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/id_taxon_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/id_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change" />
+
+	</TableRow>
+	
+</TableLayout>
+       
+        
+        
+        <org.inaturalist.android.MultilineEditText
+            android:id="@+id/remarks"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:hint="@string/remarks"
+            android:imeOptions="actionDone" />
+    </LinearLayout>
+
+</ScrollView>
+
+</RelativeLayout>
