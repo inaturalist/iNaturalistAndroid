@@ -171,7 +171,7 @@ public class CommentsIdsActivity extends ListActivity {
                 Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC, null, CommentsIdsActivity.this, INaturalistService.class);
                 startService(serviceIntent3);
 
-                mNewComments++;
+                mNewIds++;
 
             }
         }

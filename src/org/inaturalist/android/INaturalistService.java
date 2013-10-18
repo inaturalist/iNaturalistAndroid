@@ -211,7 +211,7 @@ public class INaturalistService extends IntentService {
     
      private void addIdentification(int observationId, int taxonId, String body) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("identification[observation_iid]", new Integer(observationId).toString()));
+        params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
         params.add(new BasicNameValuePair("identification[body]", body));
         

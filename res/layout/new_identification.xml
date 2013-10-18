@@ -88,7 +88,7 @@
     <TableRow >
 
     <ImageView
-        android:id="@+id/user_pic"
+        android:id="@+id/id_pic"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/actionbar_back_indicator" />

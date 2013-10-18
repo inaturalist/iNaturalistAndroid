@@ -111,4 +111,6 @@
     <string name="add_id">Add identification</string>
     <string name="remarks">Remarks...</string>
     <string name="change">Change</string>
+    <string name="no_taxon_found">No taxon found</string>
+    <string name="enter_taxon_name">Enter taxon name</string>
 </resources>
