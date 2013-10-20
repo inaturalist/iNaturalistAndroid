@@ -759,30 +759,16 @@ public class INaturalistService extends IntentService {
                 jsonObservation = newObservations.get(i);
                 
                 // Save the new observation's photos
-                for (int j = 0; j < jsonObservation.photo_urls.size(); j++) {
-                    String photoUrl = jsonObservation.photo_urls.get(j);
+                for (int j = 0; j < jsonObservation.photos.size(); j++) {
+                    ObservationPhoto photo = jsonObservation.photos.get(j);
+                    photo._observation_id = jsonObservation._id;
 
-                    try {
-                        Uri fileUri = getOutputMediaFileUri(jsonObservation); // create a file to save the image
-                        OutputStream outStream;
-                        outStream = app.getContentResolver().openOutputStream(fileUri);
-                        URL imageResource = new URL(photoUrl);
-                        Bitmap mBitmap = BitmapFactory.decodeStream(imageResource.openStream());
-
-                        mBitmap.compress(Bitmap.CompressFormat.JPEG, 90, outStream);
-
-                        outStream.flush();
-                        outStream.close();
-
-                        createObservationPhotoForPhoto(fileUri, jsonObservation);
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    ContentValues opcv = photo.getContentValues();
+                    opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
+                    opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
+                    opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
+                    opcv.put(ObservationPhoto._ID, photo.id);
+                    getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                 }
             }
         }

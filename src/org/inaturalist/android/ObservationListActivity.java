@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
@@ -211,9 +212,35 @@ public class ObservationListActivity extends ListActivity {
                 obsIds.add(c.getLong(c.getColumnIndexOrThrow(Observation._ID)));
                 c.moveToNext();
             }
+            
+            
+            // Add any online-only photos
+            Cursor onlinePc = managedQuery(ObservationPhoto.CONTENT_URI, 
+                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
+                    "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NOT NULL", 
+                    null, 
+                    ObservationPhoto._ID);
+            onlinePc.moveToFirst();
+            while (!onlinePc.isAfterLast()) {
+                Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
+                Long photoId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                if (!mPhotoInfo.containsKey(obsId)) {
+                    mPhotoInfo.put(
+                            obsId,
+                            new String[] {
+                                    photoId.toString(),
+                                    null,
+                                    photoUrl
+                            });
+                }
+                onlinePc.moveToNext();
+            }
+
+            
             Cursor opc = managedQuery(ObservationPhoto.CONTENT_URI, 
-                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID}, 
-                    "_observation_id IN ("+StringUtils.join(obsIds, ',')+")", 
+                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
+                    "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NULL", 
                     null, 
                     ObservationPhoto._ID);
             if (opc.getCount() == 0) return;
@@ -242,12 +269,14 @@ public class ObservationListActivity extends ListActivity {
             while (!opc.isAfterLast()) {
                 Long obsId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
                 Long photoId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                String photoUrl = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
                                 photoId.toString(),
-                                orientationsByPhotoId.get(photoId)
+                                orientationsByPhotoId.get(photoId),
+                                null
                             });
                 }
                 opc.moveToNext();
@@ -268,23 +297,31 @@ public class ObservationListActivity extends ListActivity {
             if (photoInfo != null) {
                 if (photoInfo[0] == null || photoInfo[0].equals("null")) return view;
                 Long photoId = Long.parseLong(photoInfo[0]);
-                Integer orientation;
-                if (photoInfo[1] == null || photoInfo[1].equals("null")) {
-                    orientation = 0;
+                
+                if (photoInfo[2] != null) {
+                    // Online-only photo
+                    UrlImageViewHelper.setUrlDrawable(image, photoInfo[2]); 
+                    
                 } else {
-                    orientation = Integer.parseInt(photoInfo[1]);
+                    // Offline photo
+                    Integer orientation;
+                    if (photoInfo[1] == null || photoInfo[1].equals("null")) {
+                        orientation = 0;
+                    } else {
+                        orientation = Integer.parseInt(photoInfo[1]);
+                    }
+                    Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
+                            getContentResolver(), 
+                            photoId, 
+                            MediaStore.Images.Thumbnails.MICRO_KIND, 
+                            (BitmapFactory.Options) null);
+                    if (orientation != 0) {
+                        Matrix matrix = new Matrix();
+                        matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                        bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                    }
+                    image.setImageBitmap(bitmapImage);
                 }
-                Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
-                        getContentResolver(), 
-                        photoId, 
-                        MediaStore.Images.Thumbnails.MICRO_KIND, 
-                        (BitmapFactory.Options) null);
-                if (orientation != 0) {
-                    Matrix matrix = new Matrix();
-                    matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                    bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
-                }
-                image.setImageBitmap(bitmapImage);
                 
             } else {
                 

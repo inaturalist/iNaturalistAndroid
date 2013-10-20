@@ -59,7 +59,7 @@ public class Observation implements BaseColumns, Serializable {
     public SerializableJSONArray comments;
     public SerializableJSONArray identifications;
     
-    public List<String> photo_urls;
+    public List<ObservationPhoto> photos;
 
     public Timestamp _created_at_was;
     public Timestamp _synced_at_was;
@@ -363,12 +363,17 @@ public class Observation implements BaseColumns, Serializable {
         this.identifications = o.getJSONArray("identifications");
         
         try {
-            this.photo_urls = new ArrayList<String>();
+            this.photos = new ArrayList<ObservationPhoto>();
             JSONArray photos;
             photos = o.getJSONObject().getJSONArray("photos");
             for (int i = 0; i < photos.length(); i++) {
-                String imageUrl = ((JSONObject)photos.get(i)).getString("medium_url");
-                this.photo_urls.add(imageUrl);
+                BetterJSONObject json = new BetterJSONObject((JSONObject)photos.get(i));
+                ObservationPhoto photo = new ObservationPhoto(json);
+                photo.observation_id = o.getInt("id");
+                photo._observation_id = this._id;
+                photo._photo_id = photo.id;
+                photo.photo_id = photo.id;
+                this.photos.add(photo);
             }
         } catch (JSONException e) {
             e.printStackTrace();

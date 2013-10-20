@@ -1,8 +1,10 @@
 package org.inaturalist.android;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.markupartist.android.widget.ActionBar.IntentAction;
 import com.markupartist.android.widget.ActionBar.AbstractAction;
 import java.io.IOException;
+import java.net.URI;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -864,20 +866,11 @@ public class ObservationEditor extends Activity {
     }
 
     protected void updateImages() {
-        Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+        mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                 ObservationPhoto.PROJECTION, 
                 "_observation_id=?", 
                 new String[]{mObservation._id.toString()}, 
                 ObservationPhoto.DEFAULT_SORT_ORDER);
-        ArrayList<Integer> photoIds = new ArrayList<Integer>();
-        opCursor.moveToFirst();
-        while (opCursor.isAfterLast() == false) {
-            photoIds.add(opCursor.getInt(opCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID)));
-            opCursor.moveToNext();
-        }
-        mImageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
-                MediaStore.MediaColumns._ID + " IN ("+StringUtils.join(photoIds, ",")+")", null, null);
         mImageCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
     }
@@ -904,13 +897,30 @@ public class ObservationEditor extends Activity {
 
         public long getItemId(int position) {
             mCursor.moveToPosition(position);
-            return mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
+            return mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
         }
 
         public Uri getItemUri(int position) {
             mCursor.moveToPosition(position);
-            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
+            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+            String imageUrl = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            
+            if (imageUrl != null) {
+                // Online photo
+                return Uri.parse(imageUrl);
+            }
+            
+            // Offline (local storage) photo
             return ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageId);
+        }
+        
+        private Cursor findPhotoInStorage(Integer photoId) {
+            Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    new String[] {MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
+                    MediaStore.MediaColumns._ID + " = " + photoId, null, null);
+
+            imageCursor.moveToFirst();
+            return imageCursor;
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -919,19 +929,31 @@ public class ObservationEditor extends Activity {
             }
             ImageView imageView = new ImageView(mContext);
             mCursor.moveToPosition(position);
-            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
-            int orientation = mCursor.getInt(mCursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-            Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
-                    getContentResolver(), 
-                    imageId, 
-                    MediaStore.Images.Thumbnails.MINI_KIND, 
-                    (BitmapFactory.Options) null);
-            if (orientation != 0) {
-                Matrix matrix = new Matrix();
-                matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
+            int photoId = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+            String imageUrl = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            
+            if (imageUrl != null) {
+                // Online photo
+                UrlImageViewHelper.setUrlDrawable(imageView, imageUrl);
+            } else {
+                // Offline photo
+                Cursor pc = findPhotoInStorage(photoId);
+                
+                int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+                Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
+                        getContentResolver(), 
+                        photoId, 
+                        MediaStore.Images.Thumbnails.MINI_KIND, 
+                        (BitmapFactory.Options) null);
+                if (orientation != 0) {
+                    Matrix matrix = new Matrix();
+                    matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                    bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                }
+                imageView.setImageBitmap(bitmapImage);
             }
-            imageView.setImageBitmap(bitmapImage);
+            
             mViews.put(position, imageView);
             return imageView;
         }
