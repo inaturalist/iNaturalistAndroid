@@ -24,6 +24,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -114,6 +116,18 @@ public abstract class BaseProjectsTab extends Fragment {
         View v = inflater.inflate(R.layout.project_list, container, false);
         
         mProjectList = (ListView) v.findViewById(android.R.id.list);
+        mProjectList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                BetterJSONObject project = (BetterJSONObject) arg1.getTag();
+                
+                // Show project details
+                Intent intent = new Intent(getActivity(), ProjectDetails.class);
+                intent.putExtra("project", project);
+                startActivity(intent);  
+            }
+        });
+        
         mEmptyListLabel = (TextView) v.findViewById(android.R.id.empty);
         mEmptyListLabel.setText(R.string.loading_projects);
         
@@ -221,6 +235,8 @@ public abstract class BaseProjectsTab extends Fragment {
             projectName.setText(item.getString("title"));
             ImageView userPic = (ImageView) view.findViewById(R.id.project_pic);
             UrlImageViewHelper.setUrlDrawable(userPic, item.getString("icon_url"));
+            
+            view.setTag(item);
 
             return view;
         }

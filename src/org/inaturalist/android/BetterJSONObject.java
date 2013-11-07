@@ -25,9 +25,9 @@ import android.util.Log;
 
 public class BetterJSONObject implements Serializable {
 	public final static String TAG = "BetterJSONObject";
-	private JSONObject mJSONObject;
-	private DateFormat mDateTimeFormat; 
-	private DateFormat mDateFormat;
+	private transient JSONObject mJSONObject;
+	private transient DateFormat mDateTimeFormat; 
+	private transient DateFormat mDateFormat;
 	
 
 	public BetterJSONObject() {
@@ -128,4 +128,14 @@ public class BetterJSONObject implements Serializable {
 	        }
 	    }
 	}
+	
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeObject(mJSONObject.toString());
+    }
+
+    private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException, JSONException {
+        ois.defaultReadObject();
+        mJSONObject = new JSONObject((String) ois.readObject());
+    }	
 }

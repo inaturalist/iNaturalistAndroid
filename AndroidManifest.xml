@@ -35,6 +35,11 @@
             android:label="@string/app_name"
             android:name=".TaxonSearchActivity" >
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:name=".ProjectDetails" >
+        </activity>
          <activity
             android:configChanges="orientation"
             android:label="@string/app_name"

@@ -74,6 +74,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String TAXON_ID = "taxon_id";
     public static final String COMMENT_BODY = "comment_body";
     public static final String IDENTIFICATION_BODY = "id_body";
+    public static final String PROJECT_ID = "project_id";
+    public static final String CHECK_LIST_ID = "check_list_id";
+    public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
+    public static final String CHECK_LIST_RESULT = "check_list_result";
 
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
@@ -89,6 +93,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_GET_OBSERVATION = "get_observation";
+    public static String ACTION_GET_CHECK_LIST = "get_check_list";
+    public static String ACTION_JOIN_PROJECT = "join_project";
+    public static String ACTION_LEAVE_PROJECT = "leave_project";
     public static String ACTION_GET_JOINED_PROJECTS = "get_joined_projects";
     public static String ACTION_GET_NEARBY_PROJECTS = "get_nearby_projects";
     public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
@@ -191,7 +198,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  Intent reply = new Intent(ACTION_PROJECTS_RESULT);
                  reply.putExtra(PROJECTS_RESULT, projects);
                  sendBroadcast(reply);
-
+                 
+            } else if (action.equals(ACTION_GET_CHECK_LIST)) {
+                int id = intent.getExtras().getInt(CHECK_LIST_ID);
+                SerializableJSONArray checkList = getCheckList(id);
+                
+                Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
+                reply.putExtra(CHECK_LIST_RESULT, checkList);
+                sendBroadcast(reply);
+ 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 Observation observation = getObservation(id);
@@ -199,6 +214,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
                 sendBroadcast(reply);
+                
+            } else if (action.equals(ACTION_JOIN_PROJECT)) {
+                int id = intent.getExtras().getInt(PROJECT_ID);
+                joinProject(id);
+                
+            } else if (action.equals(ACTION_LEAVE_PROJECT)) {
+                int id = intent.getExtras().getInt(PROJECT_ID);
+                leaveProject(id);
+                
                 
             } else {
                 mIsSyncing = true;
@@ -465,6 +489,28 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         JSONArray json = get(url);
         return new SerializableJSONArray(json);
     }
+    
+    public void joinProject(int projectId) throws AuthenticationException {
+        post(String.format("%s/projects/%d/join", HOST, projectId), null);
+    } 
+    
+    public void leaveProject(int projectId) throws AuthenticationException {
+        delete(String.format("%s/projects/%d/leave", HOST, projectId), null);
+    } 
+    
+    private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
+        String url = String.format("%s/lists/%d.json", HOST, id);
+        
+        JSONArray json = get(url);
+       
+        try {
+            return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("listed_taxa"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new SerializableJSONArray();
+        }
+    }
+    
  
     private SerializableJSONArray getJoinedProjects() throws AuthenticationException {
         if (ensureCredentials() == false) {
@@ -478,7 +524,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         for (int i = 0; i < json.length(); i++) {
             try {
                 JSONObject obj = json.getJSONObject(i);
-                finalJson.put(obj.getJSONObject("project"));
+                JSONObject project = obj.getJSONObject("project");
+                project.put("joined", true);
+                finalJson.put(project);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
