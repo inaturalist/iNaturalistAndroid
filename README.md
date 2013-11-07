@@ -25,6 +25,7 @@ cd ../../
 # Get the FacebookSDK
 git clone git://github.com/facebook/facebook-android-sdk.git
 ./facebook-android-sdk/scripts/build_and_test.sh
+# Remove the file `facebook\libs\android-support-v4.jar` (since we have a newer copy of that file within our iNat project)
 
 # Get the Android-PullToRefresh library
 git clone git://github.com/budowski/Android-PullToRefresh.git
@@ -40,12 +41,15 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 
 1. Open menu `File / Import...`
 1. Choose `General / Existing Projects into Workspace`
-1. `Select root directory` as `path/to/your/workspace/facebook-android-sdk/facebook`
-1. Check the `FacebookSDK` project and click `Finish`
-1. Open menu `File / Import...`
-1. Choose `General / Existing Projects into Workspace`
 1. `Select root directory` as `path/to/your/workspace/INaturalistAndroid`
 1. Check the `INaturalistAndroid` project and click `Finish`
+1. Open menu `File / Import...`
+1. Choose `General / Existing Projects into Workspace`
+1. `Select root directory` as `path/to/your/workspace/facebook-android-sdk/facebook`
+1. Check the `FacebookSDK` project and click `Finish`
+1. Right-click the `FacebookSDK` project and select `Build Path` -> `Configure Build Path`
+1. Make sure that `android-support-v4.jar` does not appear (remove if so)
+1. `Add JARs` -> Select the `INaturalistAndroid` project -> `libs` folder -> `android-support-v4.jar`
 1. Open menu `File / Import...`
 1. Choose `General / Existing Projects into Workspace`
 1. `Select root directory` as `path/to/your/workspace/Android-PullToRefresh/library`
@@ -58,6 +62,6 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 1. Scroll down to the `Library` box and click `Add`
 1. Select the `actionbar-library` and `PullToRefresh-library` project and press OK
 1. Press OK to close the dialog
-
+1. Clean and rebuild the entire workspace (all imported projects)
 
 In theory it should build now!
