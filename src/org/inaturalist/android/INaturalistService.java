@@ -40,26 +40,37 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
+import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+
 import android.app.IntentService;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 
-public class INaturalistService extends IntentService {
+public class INaturalistService extends IntentService implements ConnectionCallbacks, OnConnectionFailedListener {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
 
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
+    public static final String PROJECTS_RESULT = "projects_result";
     public static final String TAXON_ID = "taxon_id";
     public static final String COMMENT_BODY = "comment_body";
     public static final String IDENTIFICATION_BODY = "id_body";
@@ -78,12 +89,16 @@ public class INaturalistService extends IntentService {
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_GET_OBSERVATION = "get_observation";
+    public static String ACTION_GET_JOINED_PROJECTS = "get_joined_projects";
+    public static String ACTION_GET_NEARBY_PROJECTS = "get_nearby_projects";
+    public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_AGREE_ID = "agree_id";
     public static String ACTION_ADD_COMMENT = "add_comment";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
     public static String ACTION_OBSERVATION_RESULT = "observation_result";
+    public static String ACTION_PROJECTS_RESULT = "projects_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -95,6 +110,8 @@ public class INaturalistService extends IntentService {
     private LoginType mLoginType;
 
     private boolean mIsSyncing;
+
+    private LocationClient mLocationClient;
     
 	public enum LoginType {
 	    PASSWORD,
@@ -116,12 +133,15 @@ public class INaturalistService extends IntentService {
         app = (INaturalistApp) getApplicationContext();
         String action = intent.getAction();
         mPassive = action.equals(ACTION_PASSIVE_SYNC);
+        
 
         try {
             if (action.equals(ACTION_NEARBY)) {
                 getNearbyObservations(intent);
+                
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
+                
             } else if (action.equals(ACTION_AGREE_ID)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
@@ -138,13 +158,47 @@ public class INaturalistService extends IntentService {
                 String body = intent.getStringExtra(COMMENT_BODY);
                 addComment(observationId, body);
                 
+             } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
+                 int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+                 // If Google Play services is available
+                 if (ConnectionResult.SUCCESS == resultCode) {
+                     // Use Google Location Services to determine location
+                     mLocationClient = new LocationClient(getApplicationContext(), this, this);
+                     mLocationClient.connect();
+                     
+                     // Only once we're connected - we'll call getNearByProjects()
+                     
+                 } else {
+                     // Use GPS for the location
+                     SerializableJSONArray projects = getNearByProjects(false);
+
+                     Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                     reply.putExtra(PROJECTS_RESULT, projects);
+                     sendBroadcast(reply);
+                 }
+                 
+              } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
+                 SerializableJSONArray projects = getFeaturedProjects();
+
+                 Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                 reply.putExtra(PROJECTS_RESULT, projects);
+                 sendBroadcast(reply);
+                
+             } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
+                 SerializableJSONArray projects = getJoinedProjects();
+
+                 Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                 reply.putExtra(PROJECTS_RESULT, projects);
+                 sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 Observation observation = getObservation(id);
                 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
-                sendBroadcast(reply); 
+                sendBroadcast(reply);
                 
             } else {
                 mIsSyncing = true;
@@ -367,7 +421,73 @@ public class INaturalistService extends IntentService {
                 String.format(getString(R.string.posted_new_x_photos), createdCount),
                 getString(R.string.sync_complete));
     }
+    private SerializableJSONArray getNearByProjects(Location location) throws AuthenticationException {
+        if (location == null) {
+            // No location found - return an empty result
+            Log.e(TAG, "Current location is null");
+            return new SerializableJSONArray();
+        }
 
+        double lat  = location.getLatitude();
+        double lon  = location.getLongitude();
+
+        String url = HOST + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
+
+        Log.e(TAG, url);
+
+        JSONArray json = get(url);
+        return new SerializableJSONArray(json);
+    }
+    
+    private SerializableJSONArray getNearByProjects(boolean useLocationServices) throws AuthenticationException {
+           
+        if (useLocationServices) {
+            Location location = mLocationClient.getLastLocation();
+            
+            return getNearByProjects(location);
+        } else {
+            // Use GPS alone to determine location
+            LocationManager locationManager = (LocationManager)app.getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, false);
+            Location location = locationManager.getLastKnownLocation(provider);
+            
+            return getNearByProjects(location);
+        }
+    }
+
+    private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+        String url = HOST + "/projects.json?featured=true";
+        
+        JSONArray json = get(url);
+        return new SerializableJSONArray(json);
+    }
+ 
+    private SerializableJSONArray getJoinedProjects() throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+        String url = HOST + "/projects/user/" + mLogin + ".json";
+        
+        JSONArray json = get(url, true);
+        JSONArray finalJson = new JSONArray();
+        
+        for (int i = 0; i < json.length(); i++) {
+            try {
+                JSONObject obj = json.getJSONObject(i);
+                finalJson.put(obj.getJSONObject("project"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return new SerializableJSONArray(finalJson);
+    }
+    
+    
     private void getUserObservations(int maxCount) throws AuthenticationException {
         if (ensureCredentials() == false) {
             return;
@@ -808,5 +928,57 @@ public class INaturalistService extends IntentService {
 
     private class AuthenticationException extends Exception {
         private static final long serialVersionUID = 1L;
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult arg0) {
+        Log.e(TAG, "onConnectionFailed: " + (arg0 != null ? arg0.toString() : "null"));
+        
+        // Try using the GPS for the location
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SerializableJSONArray projects;
+                try {
+                    projects = getNearByProjects(false);
+                } catch (AuthenticationException e) {
+                    projects = new SerializableJSONArray();
+                    e.printStackTrace();
+                }
+
+                Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                reply.putExtra(PROJECTS_RESULT, projects);
+                sendBroadcast(reply);               
+            }
+        });
+        thread.start();
+    }
+
+    @Override
+    public void onConnected(Bundle arg0) {
+        Log.i(TAG, "onConnected: " + (arg0 != null ? arg0.toString() : "null"));
+        
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SerializableJSONArray projects;
+                try {
+                    projects = getNearByProjects(true);
+                } catch (AuthenticationException e) {
+                    projects = new SerializableJSONArray();
+                    e.printStackTrace();
+                }
+
+                Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                reply.putExtra(PROJECTS_RESULT, projects);
+                sendBroadcast(reply);
+            }
+        });
+        thread.start();
+    }
+
+    @Override
+    public void onDisconnected() {
+        Log.e(TAG, "onDisconnected");
     }
 }

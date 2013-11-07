@@ -11,6 +11,10 @@ import org.json.JSONException;
 
 public class SerializableJSONArray implements Serializable {
     private transient JSONArray jsonArray;
+    
+    public SerializableJSONArray() {
+        this.jsonArray = new JSONArray();
+    }
 
     public SerializableJSONArray(JSONArray jsonArray) {
         this.jsonArray = jsonArray;

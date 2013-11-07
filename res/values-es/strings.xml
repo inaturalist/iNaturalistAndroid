@@ -66,6 +66,8 @@
     <string name="settings">Configuración</string>
     <string name="settings_description">Iniciar/cerrar sesión</string>
     <string name="processing">Procesando...</string>
+    <string name="projects">Projects</string>
+    <string name="projects_description">Projects</string>
     
     <string name="delete_photo">Borrar foto</string>
     <string name="menu">Menú</string>
@@ -115,4 +117,9 @@
     <string name="change">Change</string>
     <string name="no_taxon_found">No taxon found</string>
     <string name="enter_taxon_name">Enter taxon name</string>
+    <string name="no_projects">No projects found!</string>
+    <string name="loading_projects">Loading projects...</string>
+    <string name="joined_projects">Joined Projects</string>
+    <string name="nearby_projects">Nearby Projects</string>
+    <string name="featured_projects">Featured Projects</string>
 </resources>
