@@ -60,9 +60,11 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 public class INaturalistService extends IntentService implements ConnectionCallbacks, OnConnectionFailedListener {
     // How many observations should we initially download for the user
@@ -71,6 +73,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String PROJECTS_RESULT = "projects_result";
+    public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
     public static final String COMMENT_BODY = "comment_body";
     public static final String IDENTIFICATION_BODY = "id_body";
@@ -99,6 +102,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_JOINED_PROJECTS = "get_joined_projects";
     public static String ACTION_GET_NEARBY_PROJECTS = "get_nearby_projects";
     public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
+    public static String ACTION_ADD_OBSERVATION_TO_PROJECT = "add_observation_to_project";
+    public static String ACTION_REMOVE_OBSERVATION_FROM_PROJECT = "remove_observation_from_project";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_AGREE_ID = "agree_id";
@@ -117,8 +122,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private LoginType mLoginType;
 
     private boolean mIsSyncing;
+    
+    private Handler mHandler;
 
     private LocationClient mLocationClient;
+
+    private ArrayList<SerializableJSONArray> mProjectObservations;
     
 	public enum LoginType {
 	    PASSWORD,
@@ -129,6 +138,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     public INaturalistService() {
         super("INaturalistService");
+        
+        mHandler = new Handler();
     }
 
     @Override
@@ -147,7 +158,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 getNearbyObservations(intent);
                 
             } else if (action.equals(ACTION_FIRST_SYNC)) {
+                saveJoinedProjects();
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
+                postProjectObservations();
                 
             } else if (action.equals(ACTION_AGREE_ID)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -193,10 +206,24 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  sendBroadcast(reply);
                 
              } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
-                 SerializableJSONArray projects = getJoinedProjects();
+                 SerializableJSONArray projects = getJoinedProjectsOffline();
 
                  Intent reply = new Intent(ACTION_PROJECTS_RESULT);
                  reply.putExtra(PROJECTS_RESULT, projects);
+                 sendBroadcast(reply);
+                 
+            } else if (action.equals(ACTION_REMOVE_OBSERVATION_FROM_PROJECT)) {
+                 int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+                 int projectId = intent.getExtras().getInt(PROJECT_ID);
+                 BetterJSONObject result = removeObservationFromProject(observationId, projectId);
+
+            } else if (action.equals(ACTION_ADD_OBSERVATION_TO_PROJECT)) {
+                 int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+                 int projectId = intent.getExtras().getInt(PROJECT_ID);
+                 BetterJSONObject result = addObservationToProject(observationId, projectId);
+
+                 Intent reply = new Intent(ADD_OBSERVATION_TO_PROJECT_RESULT);
+                 reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
                  sendBroadcast(reply);
                  
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
@@ -252,10 +279,145 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     private void syncObservations() throws AuthenticationException {
         deleteObservations(); // Delete locally-removed observations
+        saveJoinedProjects();
         getUserObservations(0); // First, download remote observations (new/updated)
         postObservations(); // Next, update local-to-remote observations
         postPhotos();
+        postProjectObservations();
+        
+        
 //        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
+    }
+    
+    private void postProjectObservations() throws AuthenticationException {
+        // First, delete any project-observations that were deleted by the user
+        Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, 
+                ProjectObservation.PROJECTION, 
+                "is_deleted = 1",
+                null, 
+                ProjectObservation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            ProjectObservation projectObservation = new ProjectObservation(c);
+            removeObservationFromProject(projectObservation.observation_id, projectObservation.project_id);
+            c.moveToNext();
+        }
+
+        // Now it's safe to delete all of the project-observations locally
+        getContentResolver().delete(ProjectObservation.CONTENT_URI, "is_deleted = 1", null);
+        
+        
+        // Next, add new project observations
+        c = getContentResolver().query(ProjectObservation.CONTENT_URI, 
+                ProjectObservation.PROJECTION, 
+                "is_new = 1",
+                null, 
+                ProjectObservation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            ProjectObservation projectObservation = new ProjectObservation(c);
+            BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
+            
+            SerializableJSONArray errors = result.getJSONArray("errors");
+            
+            if (errors != null) {
+                // Couldn't add the observation to the project (probably didn't pass validation)
+                String error;
+                try {
+                    error = errors.getJSONArray().getString(0);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    c.moveToNext();
+                    continue;
+                }
+                
+                Cursor c2 = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = '"+projectObservation.observation_id+"'", null, Observation.DEFAULT_SORT_ORDER);
+                c2.moveToFirst();
+                Observation observation = new Observation(c2);
+                c2.close();
+                
+                c2 = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+projectObservation.project_id+"'", null, Project.DEFAULT_SORT_ORDER);
+                c2.moveToFirst();
+                Project project = new Project(c2);
+                c2.close();
+                
+                final String errorMessage = String.format(getString(R.string.failed_to_add_obs_to_project), observation.species_guess, project.title, error);
+
+                // Notify user
+                app.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
+                        getString(R.string.syncing_observations), 
+                        errorMessage,
+                        getString(R.string.syncing));
+                
+                // Display toast in this main thread handler (since otherwise it won't get displayed)
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Toast doesn't support longer periods of display - this is a workaround
+                        for (int i = 0; i < 3; i++) {
+                            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+            } else {
+                // Unmark as new
+                projectObservation.is_new = false;
+                ContentValues cv = projectObservation.getContentValues();
+                getContentResolver().update(projectObservation.getUri(), cv, null, null);
+            }
+            
+            c.moveToNext();
+        }
+        
+        // Finally, retrieve all project observations
+        for (int j = 0; j < mProjectObservations.size(); j++) {
+            JSONArray projectObservations = mProjectObservations.get(j).getJSONArray();
+            
+            for (int i = 0; i < projectObservations.length(); i++) {
+                JSONObject jsonProjectObservation;
+                try {
+                    jsonProjectObservation = projectObservations.getJSONObject(i);
+                    ProjectObservation projectObservation = new ProjectObservation(new BetterJSONObject(jsonProjectObservation));
+                    ContentValues cv = projectObservation.getContentValues();
+                    getContentResolver().insert(ProjectObservation.CONTENT_URI, cv);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+    
+    private void saveJoinedProjects() throws AuthenticationException {
+        SerializableJSONArray projects = getJoinedProjects();
+        
+        if (projects != null) {
+            JSONArray arr = projects.getJSONArray();
+            
+            try {
+            // First, delete all joined projects
+            getContentResolver().delete(Project.CONTENT_URI, null, null);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+                return;
+            }
+            
+            // Next, add the new joined projects
+            for (int i = 0; i < arr.length(); i++) {
+                try {
+                    JSONObject jsonProject = arr.getJSONObject(i);
+                    Project project = new Project(new BetterJSONObject(jsonProject));
+                    ContentValues cv = project.getContentValues();
+                    getContentResolver().insert(Project.CONTENT_URI, cv);
+                    
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
     
     private void deleteObservations() throws AuthenticationException {
@@ -492,11 +654,66 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     public void joinProject(int projectId) throws AuthenticationException {
         post(String.format("%s/projects/%d/join", HOST, projectId), null);
+        
+        try {
+            JSONArray result = get(String.format("%s/projects/%d.json", HOST, projectId));
+            BetterJSONObject jsonProject = new BetterJSONObject(result.getJSONObject(0));
+            Project project = new Project(jsonProject);
+            
+            // Add joined project locally
+            ContentValues cv = project.getContentValues();
+            getContentResolver().insert(Project.CONTENT_URI, cv);
+            
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     } 
     
     public void leaveProject(int projectId) throws AuthenticationException {
         delete(String.format("%s/projects/%d/leave", HOST, projectId), null);
+        
+        // Remove locally saved project (because we left it)
+        getContentResolver().delete(Project.CONTENT_URI, "(id IS NOT NULL) and (id = "+projectId+")", null);
     } 
+    
+    
+    private BetterJSONObject removeObservationFromProject(int observationId, int projectId) throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+
+        String url = String.format("%s/projects/%d/remove.json?observation_id=%d", HOST, projectId, observationId);
+        JSONArray json = delete(url, null);
+       
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new BetterJSONObject();
+        }
+    }
+    
+    
+    private BetterJSONObject addObservationToProject(int observationId, int projectId) throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+
+        String url = HOST + "/project_observations.json";
+        
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("project_observation[observation_id]", String.valueOf(observationId)));
+        params.add(new BasicNameValuePair("project_observation[project_id]", String.valueOf(projectId)));
+        JSONArray json = post(url, params);
+       
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new BetterJSONObject();
+        }
+    }
+ 
     
     private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
         String url = String.format("%s/lists/%d.json", HOST, id);
@@ -511,6 +728,32 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
     
+    
+    private SerializableJSONArray getJoinedProjectsOffline() {
+        JSONArray projects = new JSONArray();
+        
+        Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, null, null, Project.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        int index = 0;
+        
+        while (c.isAfterLast() == false) {
+            Project project = new Project(c);
+            JSONObject jsonProject = project.toJSONObject();
+            try {
+                jsonProject.put("joined", true);
+                projects.put(index, jsonProject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            
+            c.moveToNext();
+            index++;
+        }
+        c.close();
+        
+        return new SerializableJSONArray(projects);
+    }
  
     private SerializableJSONArray getJoinedProjects() throws AuthenticationException {
         if (ensureCredentials() == false) {
@@ -544,12 +787,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         
         long lastSync = mPreferences.getLong("last_sync_time", 0);
         Timestamp lastSyncTS = new Timestamp(lastSync);
-        url += String.format("?updated_since=%s&order_by=date_added&order=desc", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
+        url += String.format("?updated_since=%s&order_by=date_added&order=desc&extra=projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
         
         if (maxCount > 0) {
             // Retrieve only a certain number of observations
             url += String.format("&per_page=%d&page=1", maxCount);
         }
+        
+        mProjectObservations = new ArrayList<SerializableJSONArray>();
         
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return; }
@@ -670,6 +915,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             JSONArray json = null;
             switch (response.getStatusLine().getStatusCode()) {
             //switch (response.getStatusCode()) {
+            case HttpStatus.SC_UNPROCESSABLE_ENTITY:
+                // Validation error - still need to return response
+                Log.e(TAG, response.getStatusLine().toString());
             case HttpStatus.SC_OK:
                 try {
                     json = new JSONArray(content);
@@ -865,13 +1113,18 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         HashMap<Integer,Observation> jsonObservationsById = new HashMap<Integer,Observation>();
         Observation observation;
         Observation jsonObservation;
-
+        
         BetterJSONObject o;
         for (int i = 0; i < json.length(); i++) {
             try {
                 o = new BetterJSONObject(json.getJSONObject(i));
                 ids.add(o.getInt("id"));
                 jsonObservationsById.put(o.getInt("id"), new Observation(o));
+                
+                if (isUser) {
+                    // Save the project observations aside (will be later used in the syncing of project observations)
+                    mProjectObservations.add(o.getJSONArray("project_observations"));
+                }
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }

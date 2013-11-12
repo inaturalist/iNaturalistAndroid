@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.markupartist.android.widget.ActionBar;
@@ -80,6 +81,7 @@ public class ObservationEditor extends Activity {
     private ProgressBar mLocationProgressView;
     private ImageButton mLocationRefreshButton;
     private ImageButton mLocationStopRefreshButton;
+    private Button mProjectSelector;
     private Uri mFileUri;
     private Observation mObservation;
     private LocationManager mLocationManager;
@@ -97,6 +99,7 @@ public class ObservationEditor extends Activity {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
+    private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -253,6 +256,17 @@ public class ObservationEditor extends Activity {
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
         mObservationCommentsIds = (Button) findViewById(R.id.observation_id_count);
+        mProjectSelector = (Button) findViewById(R.id.select_projects);
+        
+        mProjectSelector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ObservationEditor.this, ProjectSelectorActivity.class);
+                intent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
+                startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
+            }
+        });
         
         mTopActionBar.setHomeAction(new BackAction());
         mTopActionBar.addAction(new TakePhotoAction());
@@ -368,6 +382,25 @@ public class ObservationEditor extends Activity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0); 
+        
+        
+        // Get IDs of project-observations
+        Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+                "(observation_id = " + mObservation.id + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
+                null, ProjectObservation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+
+        mProjectIds = new ArrayList<Integer>();
+
+        while (c.isAfterLast() == false) {
+            ProjectObservation projectObservation = new ProjectObservation(c);
+            mProjectIds.add(projectObservation.project_id);
+
+            c.moveToNext();
+        }
+        c.close();
+
     }
 
     @Override
@@ -524,6 +557,9 @@ public class ObservationEditor extends Activity {
                 Log.e(TAG, "failed to save observation:" + e);
             }
         }
+        
+        saveProjects();
+        
         app.checkSyncNeeded();
     }
 
@@ -633,6 +669,7 @@ public class ObservationEditor extends Activity {
             mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
         }
     };
+    private ArrayList<Integer> mProjectIds;
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -780,12 +817,71 @@ public class ObservationEditor extends Activity {
     /**
      * MISC
      */
+    
+    
+    private void saveProjects() {
+        String joinedIds = StringUtils.join(mProjectIds, ",");
+
+        // First, mark for deletion any projects that are no longer associated with this observation
+        Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+                "(observation_id = " + mObservation.id + ") AND (project_id NOT IN (" + joinedIds + "))",
+                null, ProjectObservation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+
+        while (c.isAfterLast() == false) {
+            ProjectObservation projectObservation = new ProjectObservation(c);
+            projectObservation.is_deleted = true;
+            getContentResolver().update(projectObservation.getUri(), projectObservation.getContentValues(), null, null);
+            c.moveToNext();
+        }
+        c.close();
+
+
+        // Next, unmark for deletion any project-observations which were re-added
+        c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+                "(observation_id = " + mObservation.id + ") AND (project_id IN (" + joinedIds + "))",
+                null, ProjectObservation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+
+        ArrayList<Integer> existingIds = new ArrayList<Integer>();
+
+        while (c.isAfterLast() == false) {
+            ProjectObservation projectObservation = new ProjectObservation(c);
+            projectObservation.is_deleted = false;
+            existingIds.add(projectObservation.project_id);
+            getContentResolver().update(projectObservation.getUri(), projectObservation.getContentValues(), null, null);
+            c.moveToNext();
+        }
+        c.close();
+
+        // Finally, add new project-observation records
+        ArrayList<Integer> newIds = (ArrayList<Integer>) CollectionUtils.subtract(mProjectIds, existingIds);
+
+        for (int i = 0; i < newIds.size(); i++) {
+            int projectId = newIds.get(i);
+            ProjectObservation projectObservation = new ProjectObservation();
+            projectObservation.project_id = projectId;
+            projectObservation.observation_id = mObservation.id;
+            projectObservation.is_new = true;
+            projectObservation.is_deleted = false;
+
+            getContentResolver().insert(ProjectObservation.CONTENT_URI, projectObservation.getContentValues());
+        }
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == PROJECT_SELECTOR_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<Integer> projectIds = data.getIntegerArrayListExtra(ProjectSelectorActivity.PROJECT_IDS);
+                mProjectIds = projectIds;
+            }
+        } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Image captured and saved to mFileUri specified in the Intent
                 Toast.makeText(this, getString(R.string.image_saved), Toast.LENGTH_LONG).show();

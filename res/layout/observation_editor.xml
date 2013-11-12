@@ -298,7 +298,17 @@
             android:gravity="top"
             android:hint="@string/brief_description"
             android:imeOptions="actionDone" />
+        
+   <Button
+    	android:id="@+id/select_projects"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/projects"
+        />
+
+        
     </LinearLayout>
+    
 
 </ScrollView>
 <!--

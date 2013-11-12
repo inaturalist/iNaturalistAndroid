@@ -92,6 +92,7 @@ public class Observation implements BaseColumns, Serializable {
     public Integer user_id_was;
     public String user_login_was;
     public Boolean is_deleted_was;
+    public SerializableJSONArray projects;
 
 
     public static final String TAG = "Observation";
@@ -381,6 +382,8 @@ public class Observation implements BaseColumns, Serializable {
 
         this.comments_count = o.getInteger("comments_count");
         this.identifications_count = o.getInteger("identifications_count");
+        
+        this.projects = o.getJSONArray("project_observations");
     }
 
     @Override
