@@ -385,8 +385,9 @@ public class ObservationEditor extends Activity {
         
         
         // Get IDs of project-observations
+        int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
         Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-                "(observation_id = " + mObservation.id + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
+                "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
                 null, ProjectObservation.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
@@ -821,10 +822,12 @@ public class ObservationEditor extends Activity {
     
     private void saveProjects() {
         String joinedIds = StringUtils.join(mProjectIds, ",");
+        
+        int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
 
         // First, mark for deletion any projects that are no longer associated with this observation
         Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-                "(observation_id = " + mObservation.id + ") AND (project_id NOT IN (" + joinedIds + "))",
+                "(observation_id = " + obsId + ") AND (project_id NOT IN (" + joinedIds + "))",
                 null, ProjectObservation.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
@@ -840,7 +843,7 @@ public class ObservationEditor extends Activity {
 
         // Next, unmark for deletion any project-observations which were re-added
         c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-                "(observation_id = " + mObservation.id + ") AND (project_id IN (" + joinedIds + "))",
+                "(observation_id = " + obsId + ") AND (project_id IN (" + joinedIds + "))",
                 null, ProjectObservation.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
@@ -863,7 +866,7 @@ public class ObservationEditor extends Activity {
             int projectId = newIds.get(i);
             ProjectObservation projectObservation = new ProjectObservation();
             projectObservation.project_id = projectId;
-            projectObservation.observation_id = mObservation.id;
+            projectObservation.observation_id = obsId;
             projectObservation.is_new = true;
             projectObservation.is_deleted = false;
 

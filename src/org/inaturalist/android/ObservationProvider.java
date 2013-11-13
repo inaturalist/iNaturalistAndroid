@@ -355,6 +355,14 @@ public class ObservationProvider extends ContentProvider {
                 cv.put(ObservationPhoto.OBSERVATION_ID, values.getAsInteger(Observation.ID));
                 db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
             }
+            
+            // update foreign key in project_observations
+            if ((count > 0) && (values.containsKey(Observation.ID)) && (values.get(Observation.ID) != null)) {
+                ContentValues cv = new ContentValues();
+                cv.put(ProjectObservation.OBSERVATION_ID, values.getAsInteger(Observation.ID));
+                db.update(ProjectObservation.TABLE_NAME, cv, ProjectObservation.OBSERVATION_ID + "=" + id, null);
+            }
+            
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             count = db.update(ObservationPhoto.TABLE_NAME, values, where, whereArgs);

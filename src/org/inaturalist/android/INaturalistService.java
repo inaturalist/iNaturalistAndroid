@@ -316,7 +316,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 ProjectObservation.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
+        int h = 0;
         while (c.isAfterLast() == false) {
+            h++;
+            Log.e("A", "i:" + h);
             ProjectObservation projectObservation = new ProjectObservation(c);
             BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
             
