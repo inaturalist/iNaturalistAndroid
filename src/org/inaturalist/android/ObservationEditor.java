@@ -134,10 +134,12 @@ public class ObservationEditor extends FragmentActivity {
     private static final int ONE_MINUTE = 60 * 1000;
     
     private static final int TAXON_SEARCH_REQUEST_CODE = 301;
+    public static final String SPECIES_GUESS = "species_guess";
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private CheckBox mIdPlease;
     private Spinner mGeoprivacy;
+    private String mSpeciesGuess;
         
     
     private class ProjectFieldViewer {
@@ -767,6 +769,8 @@ public class ObservationEditor extends FragmentActivity {
         mProjectSelector = (Button) findViewById(R.id.select_projects);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         
+        
+       
         mProjectSelector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -804,10 +808,13 @@ public class ObservationEditor extends FragmentActivity {
             }
         });
         
+        mSpeciesGuess = intent.getStringExtra(SPECIES_GUESS);
 
         registerForContextMenu(mGallery);
 
         initUi();
+        
+
         
         RelativeLayout commentWrapper = (RelativeLayout) findViewById(R.id.commentCountWrapper);
         TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
@@ -991,6 +998,11 @@ public class ObservationEditor extends FragmentActivity {
         if (mObservation == null) {
             mObservation = new Observation(mCursor);
         }
+        
+        if ((mSpeciesGuess != null) && (mObservation.species_guess == null)) {
+            mObservation.species_guess = mSpeciesGuess;
+        }
+
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
             mObservation.observed_on = new Timestamp(System.currentTimeMillis());

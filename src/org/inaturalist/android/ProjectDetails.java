@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -241,7 +242,7 @@ public class ProjectDetails extends Activity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) { 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.taxon_item, parent, false); 
+            final View view = inflater.inflate(R.layout.taxon_item, parent, false); 
             BetterJSONObject item = null;
             try {
                 item = new BetterJSONObject(mItems.get(position).getJSONObject("taxon"));
@@ -255,6 +256,17 @@ public class ProjectDetails extends Activity {
             taxonName.setText(item.getString("name"));
             ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
             UrlImageViewHelper.setUrlDrawable(taxonPic, item.getString("photo_url"));
+            
+            Button addObservation = (Button) view.findViewById(R.id.add_observation);
+            addObservation.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BetterJSONObject item = (BetterJSONObject) view.getTag();
+                    Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, ProjectDetails.this, ObservationEditor.class);
+                    intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", item.getString("name"), item.getString("unique_name")));
+                    startActivity(intent);
+                }
+            });
 
             view.setTag(item);
 
