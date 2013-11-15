@@ -24,7 +24,7 @@ public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
     private static final int DATABASE_VERSION = 5;
-    private static final String[] TABLE_NAMES = new String[]{Observation.TABLE_NAME, ObservationPhoto.TABLE_NAME, Project.TABLE_NAME, ProjectObservation.TABLE_NAME};
+    private static final String[] TABLE_NAMES = new String[]{Observation.TABLE_NAME, ObservationPhoto.TABLE_NAME, Project.TABLE_NAME, ProjectObservation.TABLE_NAME, ProjectField.TABLE_NAME, ProjectFieldValue.TABLE_NAME};
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
 
@@ -39,6 +39,10 @@ public class ObservationProvider extends ContentProvider {
         URI_MATCHER.addURI(Project.AUTHORITY, "projects/#", Project.PROJECT_ID_URI_CODE);
         URI_MATCHER.addURI(ProjectObservation.AUTHORITY, "project_observations", ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE);
         URI_MATCHER.addURI(ProjectObservation.AUTHORITY, "project_observations/#", ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE);
+        URI_MATCHER.addURI(ProjectField.AUTHORITY, "project_fields", ProjectField.PROJECT_FIELDS_URI_CODE);
+        URI_MATCHER.addURI(ProjectField.AUTHORITY, "project_fields/#", ProjectField.PROJECT_FIELD_ID_URI_CODE);
+        URI_MATCHER.addURI(ProjectFieldValue.AUTHORITY, "project_field_values", ProjectFieldValue.PROJECT_FIELD_VALUES_URI_CODE);
+        URI_MATCHER.addURI(ProjectFieldValue.AUTHORITY, "project_field_values/#", ProjectFieldValue.PROJECT_FIELD_VALUE_ID_URI_CODE);
     }
 
     /**
@@ -56,6 +60,8 @@ public class ObservationProvider extends ContentProvider {
             db.execSQL(ObservationPhoto.sqlCreate());
             db.execSQL(Project.sqlCreate());
             db.execSQL(ProjectObservation.sqlCreate());
+            db.execSQL(ProjectField.sqlCreate());
+            db.execSQL(ProjectFieldValue.sqlCreate());
         }
 
         @Override
@@ -128,6 +134,28 @@ public class ObservationProvider extends ContentProvider {
             qb.appendWhere(ProjectObservation._ID + "=" + uri.getPathSegments().get(1));
             orderBy = TextUtils.isEmpty(sortOrder) ? ProjectObservation.DEFAULT_SORT_ORDER : sortOrder;
             break;
+        case ProjectField.PROJECT_FIELDS_URI_CODE:
+            qb.setTables(ProjectField.TABLE_NAME);
+            qb.setProjectionMap(ProjectField.PROJECTION_MAP);
+            orderBy = TextUtils.isEmpty(sortOrder) ? ProjectField.DEFAULT_SORT_ORDER : sortOrder;
+            break;
+        case ProjectField.PROJECT_FIELD_ID_URI_CODE:
+            qb.setTables(ProjectField.TABLE_NAME);
+            qb.setProjectionMap(ProjectField.PROJECTION_MAP);
+            qb.appendWhere(ProjectField._ID + "=" + uri.getPathSegments().get(1));
+            orderBy = TextUtils.isEmpty(sortOrder) ? ProjectField.DEFAULT_SORT_ORDER : sortOrder;
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUES_URI_CODE:
+            qb.setTables(ProjectFieldValue.TABLE_NAME);
+            qb.setProjectionMap(ProjectFieldValue.PROJECTION_MAP);
+            orderBy = TextUtils.isEmpty(sortOrder) ? ProjectFieldValue.DEFAULT_SORT_ORDER : sortOrder;
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUE_ID_URI_CODE:
+            qb.setTables(ProjectFieldValue.TABLE_NAME);
+            qb.setProjectionMap(ProjectField.PROJECTION_MAP);
+            qb.appendWhere(ProjectFieldValue._ID + "=" + uri.getPathSegments().get(1));
+            orderBy = TextUtils.isEmpty(sortOrder) ? ProjectFieldValue.DEFAULT_SORT_ORDER : sortOrder;
+            break;
              
         default:
             throw new IllegalArgumentException("Unknown URI " + uri);
@@ -156,6 +184,12 @@ public class ObservationProvider extends ContentProvider {
 
         case ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE:
             return ProjectObservation.CONTENT_ITEM_TYPE;
+            
+        case ProjectField.PROJECT_FIELD_ID_URI_CODE:
+            return ProjectField.CONTENT_ITEM_TYPE;
+            
+        case ProjectFieldValue.PROJECT_FIELD_VALUE_ID_URI_CODE:
+            return ProjectFieldValue.CONTENT_ITEM_TYPE;
             
         default:
             throw new IllegalArgumentException("Unknown URI " + uri);
@@ -199,6 +233,22 @@ public class ObservationProvider extends ContentProvider {
             tableName = ProjectObservation.TABLE_NAME;
             contentUri = ProjectObservation.CONTENT_URI;
             break;
+        case ProjectField.PROJECT_FIELDS_URI_CODE:
+            tableName = ProjectField.TABLE_NAME;
+            contentUri = ProjectField.CONTENT_URI;
+            break;
+        case ProjectField.PROJECT_FIELD_ID_URI_CODE:
+            tableName = ProjectField.TABLE_NAME;
+            contentUri = ProjectField.CONTENT_URI;
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUES_URI_CODE:
+            tableName = ProjectFieldValue.TABLE_NAME;
+            contentUri = ProjectFieldValue.CONTENT_URI;
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUE_ID_URI_CODE:
+            tableName = ProjectFieldValue.TABLE_NAME;
+            contentUri = ProjectFieldValue.CONTENT_URI;
+            break;
             
         default:
             throw new IllegalArgumentException("Unknown URI " + uri);
@@ -221,7 +271,8 @@ public class ObservationProvider extends ContentProvider {
             values.put(Observation._UPDATED_AT, values.getAsLong(Observation._SYNCED_AT));
             values.put(Observation._CREATED_AT, values.getAsLong(Observation._SYNCED_AT));
         } else if ((uriCode != Project.PROJECTS_URI_CODE) && (uriCode != Project.PROJECT_ID_URI_CODE) &&
-                (uriCode != ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE) && (uriCode != ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE)) {
+                (uriCode != ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE) && (uriCode != ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE) &&
+                (uriCode != ProjectField.PROJECT_FIELDS_URI_CODE) && (uriCode != ProjectField.PROJECT_FIELD_ID_URI_CODE)) {
             values.put(Observation._CREATED_AT, now);
             values.put(Observation._UPDATED_AT, now);
         }
@@ -288,6 +339,26 @@ public class ObservationProvider extends ContentProvider {
             count = db.delete(ProjectObservation.TABLE_NAME, Project._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
+        case ProjectField.PROJECT_FIELDS_URI_CODE:
+            count = db.delete(ProjectField.TABLE_NAME, where, whereArgs);
+            contentUri = ProjectField.CONTENT_URI;
+            break;
+        case ProjectField.PROJECT_FIELD_ID_URI_CODE:
+            id = uri.getPathSegments().get(1);
+            contentUri = ProjectField.CONTENT_URI;
+            count = db.delete(ProjectField.TABLE_NAME, Project._ID + "=" + id
+                    + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUES_URI_CODE:
+            count = db.delete(ProjectFieldValue.TABLE_NAME, where, whereArgs);
+            contentUri = ProjectFieldValue.CONTENT_URI;
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUE_ID_URI_CODE:
+            id = uri.getPathSegments().get(1);
+            contentUri = ProjectFieldValue.CONTENT_URI;
+            count = db.delete(ProjectFieldValue.TABLE_NAME, Project._ID + "=" + id
+                    + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            break;
             
             
         default:
@@ -334,7 +405,8 @@ public class ObservationProvider extends ContentProvider {
             // if synced at is being set, updated at should *always* match exactly
             values.put(Observation._UPDATED_AT, values.getAsLong(Observation._SYNCED_AT));
         } else if ((uriCode != Project.PROJECTS_URI_CODE) && (uriCode != Project.PROJECT_ID_URI_CODE) &&
-                (uriCode != ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE) && (uriCode != ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE)) {
+                (uriCode != ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE) && (uriCode != ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE) &&
+                (uriCode != ProjectField.PROJECT_FIELDS_URI_CODE) && (uriCode != ProjectField.PROJECT_FIELD_ID_URI_CODE)) {
             values.put(Observation._UPDATED_AT, System.currentTimeMillis());
         }
         
@@ -356,11 +428,15 @@ public class ObservationProvider extends ContentProvider {
                 db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
             }
             
-            // update foreign key in project_observations
+            // update foreign key in project_observations / project_field_values
             if ((count > 0) && (values.containsKey(Observation.ID)) && (values.get(Observation.ID) != null)) {
                 ContentValues cv = new ContentValues();
                 cv.put(ProjectObservation.OBSERVATION_ID, values.getAsInteger(Observation.ID));
                 db.update(ProjectObservation.TABLE_NAME, cv, ProjectObservation.OBSERVATION_ID + "=" + id, null);
+                
+                cv = new ContentValues();
+                cv.put(ProjectFieldValue.OBSERVATION_ID, values.getAsInteger(Observation.ID));
+                db.update(ProjectFieldValue.TABLE_NAME, cv, ProjectFieldValue.OBSERVATION_ID + "=" + id, null);
             }
             
             break;
@@ -394,7 +470,27 @@ public class ObservationProvider extends ContentProvider {
             count = db.update(ProjectObservation.TABLE_NAME, values, ProjectObservation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
-            
+        case ProjectField.PROJECT_FIELDS_URI_CODE:
+            count = db.update(ProjectField.TABLE_NAME, values, where, whereArgs);
+            contentUri = ProjectField.CONTENT_URI;
+            break;
+        case ProjectField.PROJECT_FIELD_ID_URI_CODE:
+            id = uri.getPathSegments().get(1);
+            contentUri = ProjectField.CONTENT_URI;
+            count = db.update(ProjectField.TABLE_NAME, values, ProjectField._ID + "=" + id
+                    + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUES_URI_CODE:
+            count = db.update(ProjectFieldValue.TABLE_NAME, values, where, whereArgs);
+            contentUri = ProjectFieldValue.CONTENT_URI;
+            break;
+        case ProjectFieldValue.PROJECT_FIELD_VALUE_ID_URI_CODE:
+            id = uri.getPathSegments().get(1);
+            contentUri = ProjectFieldValue.CONTENT_URI;
+            count = db.update(ProjectFieldValue.TABLE_NAME, values, ProjectFieldValue._ID + "=" + id
+                    + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            break;
+ 
         default:
             throw new IllegalArgumentException("Unknown URI " + uri);
         }

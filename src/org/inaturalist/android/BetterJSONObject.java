@@ -53,6 +53,10 @@ public class BetterJSONObject implements Serializable {
 	}
 	
 	
+	public boolean has(String name) {
+	    return mJSONObject.has(name);
+	}
+	
 	public JSONObject getJSONObject(String name) {
 	    try {
 	        return mJSONObject.getJSONObject(name);

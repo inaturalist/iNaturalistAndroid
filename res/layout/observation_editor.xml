@@ -306,6 +306,14 @@
         android:text="@string/projects"
         />
 
+   <TableLayout
+    	android:id="@+id/project_fields"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        >
+       
+   </TableLayout>
         
     </LinearLayout>
     

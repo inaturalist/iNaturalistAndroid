@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -81,6 +82,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String CHECK_LIST_ID = "check_list_id";
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
     public static final String CHECK_LIST_RESULT = "check_list_result";
+    public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
+    public static final String TAXON_RESULT = "taxon_result";
 
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
@@ -94,6 +97,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         android.os.Build.PRODUCT + ")";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
+    public static String ACTION_GET_TAXON = "get_taxon";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_GET_OBSERVATION = "get_observation";
     public static String ACTION_GET_CHECK_LIST = "get_check_list";
@@ -129,6 +133,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     private ArrayList<SerializableJSONArray> mProjectObservations;
     
+    private Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>> mProjectFieldValues;
+    
 	public enum LoginType {
 	    PASSWORD,
 	    GOOGLE,
@@ -160,6 +166,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 saveJoinedProjects();
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
+                syncObservationFields();
                 postProjectObservations();
                 
             } else if (action.equals(ACTION_AGREE_ID)) {
@@ -173,6 +180,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 String body = intent.getStringExtra(IDENTIFICATION_BODY);
                 addIdentification(observationId, taxonId, body);
                 
+             } else if (action.equals(ACTION_GET_TAXON)) {
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                BetterJSONObject taxon = getTaxon(taxonId);
+                
+                Intent reply = new Intent(ACTION_GET_TAXON_RESULT);
+                reply.putExtra(TAXON_RESULT, taxon);
+                sendBroadcast(reply);
+
              } else if (action.equals(ACTION_ADD_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
@@ -282,6 +297,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         saveJoinedProjects();
         getUserObservations(0); // First, download remote observations (new/updated)
         postObservations(); // Next, update local-to-remote observations
+        syncObservationFields();
         postPhotos();
         postProjectObservations();
         
@@ -289,6 +305,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 //        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
     }
     
+    private BetterJSONObject getTaxon(int id) throws AuthenticationException {
+        String url = String.format("%s/taxa/%d.json", HOST, id);
+
+        JSONArray json = get(url);
+        if (json == null || json.length() == 0) { return null; }
+        
+        JSONObject res;
+        
+        try {
+            res = (JSONObject) json.get(0);
+        } catch (JSONException e) {
+            return null;
+        }
+        
+        return new BetterJSONObject(res);
+    }
+ 
     private void postProjectObservations() throws AuthenticationException {
         // First, delete any project-observations that were deleted by the user
         Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, 
@@ -316,10 +349,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 ProjectObservation.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
-        int h = 0;
         while (c.isAfterLast() == false) {
-            h++;
-            Log.e("A", "i:" + h);
             ProjectObservation projectObservation = new ProjectObservation(c);
             BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
             
@@ -655,6 +685,33 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         return new SerializableJSONArray(json);
     }
     
+    private void addProjectFields(JSONArray jsonFields) {
+        int projectId = -1;
+        ArrayList<ProjectField> projectFields = new ArrayList<ProjectField>();
+        
+        for (int i = 0; i < jsonFields.length(); i++) {
+            try {
+                BetterJSONObject jsonField = new BetterJSONObject(jsonFields.getJSONObject(i));
+                ProjectField field = new ProjectField(jsonField);
+                projectId = field.project_id;
+                projectFields.add(field);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        if (projectId != -1) {
+            // First, delete all previous project fields (for that project)
+            getContentResolver().delete(ProjectField.CONTENT_URI, "(project_id IS NOT NULL) and (project_id = "+projectId+")", null);
+
+            // Next, re-add all project fields
+            for (int i = 0; i < projectFields.size(); i++) {
+                ProjectField field = projectFields.get(i);
+                getContentResolver().insert(ProjectField.CONTENT_URI, field.getContentValues());
+            }
+        }
+    }
+    
     public void joinProject(int projectId) throws AuthenticationException {
         post(String.format("%s/projects/%d/join", HOST, projectId), null);
         
@@ -666,6 +723,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             // Add joined project locally
             ContentValues cv = project.getContentValues();
             getContentResolver().insert(Project.CONTENT_URI, cv);
+            
+            // Save project fields
+            addProjectFields(jsonProject.getJSONArray("project_observation_fields").getJSONArray());
             
         } catch (JSONException e) {
             e.printStackTrace();
@@ -773,6 +833,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 JSONObject project = obj.getJSONObject("project");
                 project.put("joined", true);
                 finalJson.put(project);
+                
+                // Save project fields
+                addProjectFields(project.getJSONArray("project_observation_fields"));
+                
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -798,10 +862,126 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
         
         mProjectObservations = new ArrayList<SerializableJSONArray>();
+        mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
         
         JSONArray json = get(url);
-        if (json == null || json.length() == 0) { return; }
-        syncJson(json, true);
+        if (json != null && json.length() > 0) {
+            syncJson(json, true);
+        }
+    }
+    
+    private void syncObservationFields() throws AuthenticationException {
+        
+        // First, remotely update the observation fields which were modified
+        
+        Cursor c = getContentResolver().query(ProjectFieldValue.CONTENT_URI, 
+                ProjectFieldValue.PROJECTION, 
+                "_updated_at > _synced_at AND _synced_at IS NOT NULL", 
+                null, 
+                ProjectFieldValue.DEFAULT_SORT_ORDER);
+        
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            ProjectFieldValue localField = new ProjectFieldValue(c);
+            
+            if (!mProjectFieldValues.containsKey(Integer.valueOf(localField.observation_id))) {
+                // Need to retrieve remote observation fields to see how to sync the fields
+                JSONArray jsonResult = get(HOST + "/observations/" + localField.observation_id + ".json");
+
+                Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
+                
+                try {
+                    JSONArray jsonFields = jsonResult.getJSONObject(0).getJSONArray("observation_field_values");
+
+                    for (int j = 0; j < jsonFields.length(); j++) {
+                        JSONObject jsonField = jsonFields.getJSONObject(j);
+                        JSONObject observationField = jsonField.getJSONObject("observation_field");
+                        int id = observationField.optInt("id", jsonField.getInt("observation_field_id"));
+                        fields.put(id, new ProjectFieldValue(new BetterJSONObject(jsonField)));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mProjectFieldValues.put(localField.observation_id, fields);
+            }
+            
+            Hashtable<Integer, ProjectFieldValue> fields = mProjectFieldValues.get(Integer.valueOf(localField.observation_id));
+            
+            boolean shouldOverwriteRemote = false;
+            ProjectFieldValue remoteField = null;
+            
+            if (!fields.containsKey(Integer.valueOf(localField.field_id))) {
+                // No remote field - add it
+                shouldOverwriteRemote = true;
+            } else {
+                remoteField = fields.get(Integer.valueOf(localField.field_id));
+                
+                if (remoteField.updated_at.before(localField._updated_at)) {
+                    shouldOverwriteRemote = true;
+                }
+            }
+            
+            if (shouldOverwriteRemote) {
+                // Overwrite remote value
+                ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("observation_field_value[observation_id]", Integer.valueOf(localField.observation_id).toString()));
+                params.add(new BasicNameValuePair("observation_field_value[observation_field_id]", Integer.valueOf(localField.field_id).toString()));
+                params.add(new BasicNameValuePair("observation_field_value[value]", localField.value));
+                post(HOST + "/observation_field_values.json", params);
+                
+            } else {
+                // Overwrite local value
+                localField.created_at = remoteField.created_at;
+                localField.id = remoteField.id;
+                localField.observation_id = remoteField.observation_id;
+                localField.field_id = remoteField.field_id;
+                localField.value = remoteField.value;
+                localField.updated_at = remoteField.updated_at;
+            }
+            
+            ContentValues cv = localField.getContentValues();
+            cv.put(ProjectFieldValue._SYNCED_AT, System.currentTimeMillis());
+            getContentResolver().update(localField.getUri(), cv, null, null);
+            
+            fields.remove(Integer.valueOf(localField.field_id));
+
+            c.moveToNext();
+        }
+        c.close();
+        
+        // Next, add any new observation fields
+        for (Hashtable<Integer, ProjectFieldValue> fields : mProjectFieldValues.values()) {
+            for (ProjectFieldValue field : fields.values()) {
+                ContentValues cv = field.getContentValues();
+                cv.put(ProjectFieldValue._SYNCED_AT, System.currentTimeMillis());
+                getContentResolver().insert(ProjectFieldValue.CONTENT_URI, cv);
+                
+                c = getContentResolver().query(ProjectField.CONTENT_URI, ProjectField.PROJECTION,
+                        "field_id = " + field.field_id, null, Project.DEFAULT_SORT_ORDER);
+                if (c.getCount() == 0) {
+                    // This observation has a non-project custom field - add it as well
+                    addProjectField(field.field_id);
+                }
+                c.close();
+ 
+            }
+        }
+
+    }
+    
+    private void addProjectField(int fieldId) throws AuthenticationException {
+        try {
+            JSONArray result = get(String.format("%s/observation_fields/%d.json", HOST, fieldId));
+            BetterJSONObject jsonObj;
+            jsonObj = new BetterJSONObject(result.getJSONObject(0));
+            ProjectField field = new ProjectField(jsonObj);
+            
+            getContentResolver().insert(ProjectField.CONTENT_URI, field.getContentValues());
+            
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
     
     private void getNearbyObservations(Intent intent) throws AuthenticationException {
@@ -1127,6 +1307,17 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 if (isUser) {
                     // Save the project observations aside (will be later used in the syncing of project observations)
                     mProjectObservations.add(o.getJSONArray("project_observations"));
+                    
+                    // Save project field values
+                    Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
+                    JSONArray jsonFields = o.getJSONArray("observation_field_values").getJSONArray();
+                    
+                    for (int j = 0; j < jsonFields.length(); j++) {
+                        BetterJSONObject field = new BetterJSONObject(jsonFields.getJSONObject(j));
+                        fields.put(field.getJSONObject("observation_field").getInt("id"), new ProjectFieldValue(field));
+                    }
+                    
+                    mProjectFieldValues.put(o.getInt("id"), fields);
                 }
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());

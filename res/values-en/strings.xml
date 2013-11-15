@@ -127,4 +127,5 @@
     <string name="loading_check_list">Loading Check List...</string>
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
 </resources>

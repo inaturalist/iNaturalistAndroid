@@ -14,12 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class IdentificationActivity extends Activity {
-	public static final String TAXON_ID = "taxon_id";
-	public static final String ID_NAME = "id_name";
-	public static final String TAXON_NAME = "taxon_name";
     public static final String ID_REMARKS = "id_remarks";
-    public static final String ID_PIC_URL = "id_url";
     protected static final int TAXON_SEARCH_REQUEST_CODE = 301;
+    public static final String TAXON_ID = "taxon_id";
     private ActionBar mTopActionBar;
     private MultilineEditText mRemarks;
     private int mTaxonId = 0;
@@ -46,6 +43,7 @@ public class IdentificationActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.new_identification);
  
         mRemarks = (MultilineEditText) findViewById(R.id.remarks);
@@ -93,10 +91,10 @@ public class IdentificationActivity extends Activity {
 
         if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                mTaxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);
-                mTaxonName.setText(data.getStringExtra(IdentificationActivity.TAXON_NAME));
-                mIdName.setText(data.getStringExtra(IdentificationActivity.ID_NAME));
-                UrlImageViewHelper.setUrlDrawable(mIdPic, data.getStringExtra(IdentificationActivity.ID_PIC_URL));
+                mTaxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
+                mTaxonName.setText(data.getStringExtra(TaxonSearchActivity.TAXON_NAME));
+                mIdName.setText(data.getStringExtra(TaxonSearchActivity.ID_NAME));
+                UrlImageViewHelper.setUrlDrawable(mIdPic, data.getStringExtra(TaxonSearchActivity.ID_PIC_URL));
             } else {
                 if (mTaxonId == 0) {
                     // User never selected a taxon (even once) - close this window as well

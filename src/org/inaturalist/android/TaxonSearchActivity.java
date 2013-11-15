@@ -37,7 +37,15 @@ import android.widget.TextView;
 public class TaxonSearchActivity extends ListActivity {
     private static final String LOG_TAG = "TaxonSearchActivity";
     
+    public static final String TAXON_ID = "taxon_id";
+	public static final String ID_NAME = "id_name";
+	public static final String TAXON_NAME = "taxon_name";
+    public static final String ID_PIC_URL = "id_url";
+    public static final String FIELD_ID = "field_id";
+    
     private TaxonAutoCompleteAdapter mAdapter;
+
+    private int mFieldId;
 
 
     private ArrayList<JSONObject> autocomplete(String input) {
@@ -172,6 +180,9 @@ public class TaxonSearchActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.taxon_search);
         
+        Intent intent = getIntent();
+        mFieldId = intent.getIntExtra(FIELD_ID, 0);
+        
         ImageButton backButton = (ImageButton) findViewById(R.id.back);
         backButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -192,10 +203,11 @@ public class TaxonSearchActivity extends ListActivity {
                 try {
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putInt(IdentificationActivity.TAXON_ID, item.getInt("id"));
-                    bundle.putString(IdentificationActivity.ID_NAME, item.getString("name"));
-                    bundle.putString(IdentificationActivity.TAXON_NAME, item.getString("iconic_taxon_name"));
-                    bundle.putString(IdentificationActivity.ID_PIC_URL, item.getString("image_url"));
+                    bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
+                    bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("name"));
+                    bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("iconic_taxon_name"));
+                    bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
+                    bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
                     intent.putExtras(bundle);
 
                     setResult(RESULT_OK, intent);
