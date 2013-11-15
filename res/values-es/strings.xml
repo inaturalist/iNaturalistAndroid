@@ -130,4 +130,18 @@
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
+    <string name="id_please">Need ID Help</string>
+    <string name="geoprivacy">Geoprivacy</string>
+    <string-array name="geoprivacy_items">
+	    <item></item>
+	    <item>Open</item>
+	    <item>Obscured</item>
+	    <item>Private</item>
+    </string-array> 
+    <string-array name="geoprivacy_values">
+	    <item></item>
+	    <item>open</item>
+	    <item>obscured</item>
+	    <item>private</item>
+    </string-array>
 </resources>

@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -72,6 +73,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Gallery;
@@ -134,6 +136,8 @@ public class ObservationEditor extends FragmentActivity {
     private static final int TAXON_SEARCH_REQUEST_CODE = 301;
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
+    private CheckBox mIdPlease;
+    private Spinner mGeoprivacy;
         
     
     private class ProjectFieldViewer {
@@ -740,6 +744,9 @@ public class ObservationEditor extends FragmentActivity {
             mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
         }
 
+        
+        mIdPlease = (CheckBox) findViewById(R.id.id_please);
+        mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
         mSaveButton = (Button) findViewById(R.id.save_observation);
@@ -1031,9 +1038,29 @@ public class ObservationEditor extends FragmentActivity {
         } else {
             mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
         }
+        
+        List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
+        String selectedValue = values.get(mGeoprivacy.getSelectedItemPosition());
+
+        if (!selectedValue.equals("")) {
+            mObservation.geoprivacy = selectedValue;
+        }
+
+        mObservation.id_please = mIdPlease.isChecked();
+
     }
 
     private void observationToUi() {
+        List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
+        
+        if (mObservation.geoprivacy != null) {
+            mGeoprivacy.setSelection(values.indexOf(mObservation.geoprivacy));
+        } else {
+            mGeoprivacy.setSelection(values.indexOf(""));
+        }
+        
+        mIdPlease.setChecked(mObservation.id_please);
+        
         mSpeciesGuessTextView.setText(mObservation.species_guess);
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {

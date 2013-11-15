@@ -299,6 +299,32 @@
             android:hint="@string/brief_description"
             android:imeOptions="actionDone" />
         
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+       >
+       <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/geoprivacy"
+           />
+	   <Spinner 
+	    	android:id="@+id/geoprivacy"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:entries="@array/geoprivacy_items"
+	        android:entryValues="@array/geoprivacy_values"
+	       />
+   </LinearLayout>
+   
+   <CheckBox 
+    	android:id="@+id/id_please"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/id_please"
+       />
+   
    <Button
     	android:id="@+id/select_projects"
         android:layout_width="match_parent"
