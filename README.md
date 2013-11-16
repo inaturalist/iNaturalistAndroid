@@ -49,6 +49,7 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 1. Check the `FacebookSDK` project and click `Finish`
 1. Right-click the `FacebookSDK` project and select `Build Path` -> `Configure Build Path`
 1. Make sure that `android-support-v4.jar` does not appear (remove if so)
+1. Copy the `android-support-v4.jar` file to your `INaturalistAndroid\libs` folder (from `/android-sdk/extras/android/support/v4`)
 1. `Add JARs` -> Select the `INaturalistAndroid` project -> `libs` folder -> `android-support-v4.jar`
 1. Open menu `File / Import...`
 1. Choose `General / Existing Projects into Workspace`
