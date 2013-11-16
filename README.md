@@ -51,6 +51,9 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 1. Make sure that `android-support-v4.jar` does not appear (remove if so)
 1. Copy the `android-support-v4.jar` file to your `INaturalistAndroid\libs` folder (from `/android-sdk/extras/android/support/v4`)
 1. `Add JARs` -> Select the `INaturalistAndroid` project -> `libs` folder -> `android-support-v4.jar`
+1. Install Google Play Services SDK (as specified in `http://developer.android.com/google/play-services/setup.html`) using the SDK Manager
+1. Copy the `google-play-services.jar` file to your `INaturalistAndroid\libs` folder (from `/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs`)
+1. `Add JARs` -> Select the `INaturalistAndroid` project -> `libs` folder -> `google-play-services.jar`
 1. Open menu `File / Import...`
 1. Choose `General / Existing Projects into Workspace`
 1. `Select root directory` as `path/to/your/workspace/Android-PullToRefresh/library`
