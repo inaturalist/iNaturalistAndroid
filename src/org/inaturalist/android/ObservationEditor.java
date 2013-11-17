@@ -626,14 +626,8 @@ public class ObservationEditor extends FragmentActivity {
 
         @Override
         public void performAction(View view) {
-            // create Intent to take a picture and return control to the calling application
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
             mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri); // set the image file name
-
-            // start the image capture Intent
-            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            MenuActivity.openImageIntent(ObservationEditor.this, mFileUri, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
 
     }    
@@ -1501,17 +1495,42 @@ public class ObservationEditor extends FragmentActivity {
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                // Image captured and saved to mFileUri specified in the Intent
-                Toast.makeText(this, getString(R.string.image_saved), Toast.LENGTH_LONG).show();
-                updateImageOrientation(mFileUri);
-                createObservationPhotoForPhoto(mFileUri);
+                final boolean isCamera;
+                if(data == null) {
+                    isCamera = true;
+                } else {
+                    final String action = data.getAction();
+                    if(action == null) {
+                        isCamera = false;
+                    } else {
+                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    }
+                }
+
+                Uri selectedImageUri;
+                if(isCamera) {
+                    selectedImageUri = mFileUri;
+                } else {
+                    selectedImageUri = data == null ? null : data.getData();
+                }
+
+                Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
+
+                if (isCamera) {
+                    // Image captured and saved to mFileUri specified in the Intent
+                    Toast.makeText(this, getString(R.string.image_saved), Toast.LENGTH_LONG).show();
+                }
+                
+                updateImageOrientation(selectedImageUri);
+                createObservationPhotoForPhoto(selectedImageUri);
                 updateImages();
+                
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
                 // Image capture failed, advise user
                 Toast.makeText(this,  String.format(getString(R.string.something_went_wrong), mFileUri.toString()), Toast.LENGTH_LONG).show();
-                Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + data.getData());
+                Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
             }
             mFileUri = null; // don't let this hang around
             
