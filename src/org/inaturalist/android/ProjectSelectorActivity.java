@@ -1,6 +1,8 @@
 package org.inaturalist.android;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.inaturalist.android.ProjectSelectorActivity.ProjectAdapter;
@@ -70,6 +72,17 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
                     e.printStackTrace();
                 }
             }
+            
+            Collections.sort(mProjects, new Comparator<JSONObject>() {
+                @Override
+                public int compare(JSONObject lhs, JSONObject rhs) {
+                    try {
+                        return lhs.getString("title").compareTo(rhs.getString("title"));
+                    } catch (JSONException e) {
+                        return 0;
+                    }
+                }
+            });
 
             if (projectList.length() > 0) {
                 mLoadingProjects.setVisibility(View.GONE);

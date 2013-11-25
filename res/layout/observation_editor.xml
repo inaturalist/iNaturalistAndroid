@@ -329,9 +329,18 @@
     	android:id="@+id/select_projects"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/projects"
+        android:text="@string/select_projects"
         />
 
+  <TableLayout
+    	android:id="@+id/projects"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        >
+   </TableLayout>
+   
+   
    <TableLayout
     	android:id="@+id/project_fields"
         android:layout_width="fill_parent"

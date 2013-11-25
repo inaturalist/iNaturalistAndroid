@@ -204,8 +204,8 @@ public class TaxonSearchActivity extends ListActivity {
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
                     bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
-                    bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("name"));
-                    bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("iconic_taxon_name"));
+                    bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("unique_name"));
+                    bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
                     bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
                     bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
                     intent.putExtras(bundle);

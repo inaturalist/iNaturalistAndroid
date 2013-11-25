@@ -466,6 +466,7 @@ public class INaturalistPrefsActivity extends Activity {
 		mPrefEditor.remove("credentials");
 		mPrefEditor.remove("password");
 		mPrefEditor.remove("login_type");
+        mPrefEditor.remove("last_sync_time");
 		mPrefEditor.commit();
 		toggle();
 	}

@@ -55,6 +55,7 @@ public class CommentsIdsActivity extends ListActivity {
 
     private int mNewComments = 0;
     private int mNewIds = 0;
+    private int mTaxonId;
 	
 	private class ObservationReceiver extends BroadcastReceiver {
 	    @Override
@@ -111,6 +112,7 @@ public class CommentsIdsActivity extends ListActivity {
         
         
         mObservationId = getIntent().getIntExtra(INaturalistService.OBSERVATION_ID, 0);
+        mTaxonId = getIntent().getIntExtra(INaturalistService.TAXON_ID, 0);
         
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         mLogin = prefs.getString("username", null);
@@ -259,6 +261,10 @@ public class CommentsIdsActivity extends ListActivity {
         private List<JSONObject> mItems;
         private Context mContext;
         
+        public boolean isEnabled(int position) { 
+            return false; 
+        }  
+        
         public CommentsIdsAdapter(Context context, List<JSONObject> objects) {
             super(context, R.layout.comment_id_item, objects);
             
@@ -311,6 +317,22 @@ public class CommentsIdsActivity extends ListActivity {
                     TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
                     idTaxonName.setText(item.getJSONObject("taxon").getString("iconic_taxon_name"));
                     
+                    Boolean isCurrent = item.getBoolean("current");
+                    if ((isCurrent == null) || (!isCurrent)) {
+                        // An outdated identification - show as faded-out
+                        idName.setTextColor(idName.getTextColors().withAlpha(100));
+                        idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(100));
+                        postedOn.setTextColor(idTaxonName.getTextColors().withAlpha(100));
+                        idPic.setAlpha(100);
+                        userPic.setAlpha(100);
+                    } else {
+                        idName.setTextColor(idName.getTextColors().withAlpha(255));
+                        idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(255));
+                        postedOn.setTextColor(idTaxonName.getTextColors().withAlpha(255));
+                        idPic.setAlpha(255);
+                        userPic.setAlpha(255);
+                    }
+                    
                     final Button agree = (Button) view.findViewById(R.id.id_agree);
                     agree.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -331,8 +353,8 @@ public class CommentsIdsActivity extends ListActivity {
                         }
                     });
                     
-                    if (username.equalsIgnoreCase(mLogin)) {
-                        // Can't agree on our on identification
+                    if ((username.equalsIgnoreCase(mLogin)) || (mTaxonId == item.getInt("taxon_id").intValue())) {
+                        // Can't agree on our on identification or when the identification is the current one
                         agree.setVisibility(View.INVISIBLE);
                     }
                 }

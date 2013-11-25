@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -254,6 +255,7 @@ public class ProjectDetails extends Activity {
             idName.setText(item.getString("unique_name"));
             TextView taxonName = (TextView) view.findViewById(R.id.taxon_name);
             taxonName.setText(item.getString("name"));
+            taxonName.setTypeface(null, Typeface.ITALIC);
             ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
             UrlImageViewHelper.setUrlDrawable(taxonPic, item.getString("photo_url"));
             

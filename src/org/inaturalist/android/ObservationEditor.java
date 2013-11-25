@@ -24,6 +24,9 @@ import java.util.Map.Entry;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.markupartist.android.widget.ActionBar;
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
@@ -45,6 +48,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -140,7 +144,77 @@ public class ObservationEditor extends FragmentActivity {
     private CheckBox mIdPlease;
     private Spinner mGeoprivacy;
     private String mSpeciesGuess;
+    private TableLayout mProjectsTable;
+    private ProjectReceiver mProjectReceiver;
         
+    
+    private ArrayList<JSONObject> mProjects = null;
+
+    private class ProjectReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            JSONArray projectList = ((SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT)).getJSONArray();
+            mProjects = new ArrayList<JSONObject>();
+
+            for (int i = 0; i < projectList.length(); i++) {
+                try {
+                    mProjects.add(projectList.getJSONObject(i));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            Collections.sort(mProjects, new Comparator<JSONObject>() {
+                @Override
+                public int compare(JSONObject lhs, JSONObject rhs) {
+                    try {
+                        return lhs.getString("title").compareTo(rhs.getString("title"));
+                    } catch (JSONException e) {
+                        return 0;
+                    }
+                }
+            });
+
+            refreshProjectList();
+        }
+    }
+
+    private void refreshProjectList() {
+        mProjectsTable.removeAllViews();
+
+        if (mProjects == null) {
+            return;
+        }
+
+        for (JSONObject project : mProjects) {
+            int projectId;
+            try {
+                projectId = project.getInt("id");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                continue;
+            }
+
+            if (mProjectIds.contains(Integer.valueOf(projectId))) {
+                // Observation was added to current project
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.project_selector_item, mProjectsTable, false); 
+                BetterJSONObject item = new BetterJSONObject(project);
+
+                TextView projectName = (TextView) view.findViewById(R.id.project_name);
+                projectName.setText(item.getString("title"));
+                ImageView userPic = (ImageView) view.findViewById(R.id.project_pic);
+                UrlImageViewHelper.setUrlDrawable(userPic, item.getString("icon_url"));
+
+                ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
+                projectSelected.setVisibility(View.GONE);
+                
+                mProjectsTable.addView(view);
+            }
+        }
+    }
+
+
     
     private class ProjectFieldViewer {
         private ProjectField mField;
@@ -269,6 +343,7 @@ public class ObservationEditor extends FragmentActivity {
             }
         }
         
+     
         private class TaxonReceiver extends BroadcastReceiver {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -286,8 +361,9 @@ public class ObservationEditor extends FragmentActivity {
                 }
 
                 UrlImageViewHelper.setUrlDrawable(mTaxonPic, taxon.getString("image_url"));
-                mIdName.setText(taxon.getString("name"));
-                mIdTaxonName.setText(taxon.getString("iconic_taxon_name"));
+                mIdName.setText(taxon.getString("unique_name"));
+                mIdTaxonName.setText(taxon.getString("name"));
+                mIdTaxonName.setTypeface(null, Typeface.ITALIC);
             }
         }
 
@@ -386,6 +462,7 @@ public class ObservationEditor extends FragmentActivity {
             UrlImageViewHelper.setUrlDrawable(mTaxonPic, idImageUrl);
             mIdName.setText(idName);
             mIdTaxonName.setText(taxonName);
+            mIdTaxonName.setTypeface(null, Typeface.ITALIC);
         }
         
         public View getView() {
@@ -402,6 +479,7 @@ public class ObservationEditor extends FragmentActivity {
             mTaxonPic = (ImageView) row.findViewById(R.id.taxon_pic);
             mIdName = (TextView) row.findViewById(R.id.id_name);
             mIdTaxonName = (TextView) row.findViewById(R.id.id_taxon_name);
+            mIdTaxonName.setTypeface(null, Typeface.ITALIC);
             mChangeTaxon = (Button) row.findViewById(R.id.id_change);
             
             mFieldName.setText(mField.name);
@@ -762,6 +840,7 @@ public class ObservationEditor extends FragmentActivity {
         mObservationCommentsIds = (Button) findViewById(R.id.observation_id_count);
         mProjectSelector = (Button) findViewById(R.id.select_projects);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
+        mProjectsTable = (TableLayout) findViewById(R.id.projects);
         
         
        
@@ -783,6 +862,7 @@ public class ObservationEditor extends FragmentActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ObservationEditor.this, CommentsIdsActivity.class);
                 intent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                intent.putExtra(INaturalistService.TAXON_ID, mObservation.taxon_id);
                 startActivityForResult(intent, COMMENTS_IDS_REQUEST_CODE);
                 
                 // Get the observation's IDs/comments
@@ -915,6 +995,13 @@ public class ObservationEditor extends FragmentActivity {
         c.close();
 
         refreshProjectFields();
+        
+        mProjectReceiver = new ProjectReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_PROJECTS_RESULT);
+        registerReceiver(mProjectReceiver, filter);  
+        
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
+        startService(serviceIntent);  
     }
 
     @Override
@@ -1492,6 +1579,7 @@ public class ObservationEditor extends FragmentActivity {
                 mProjectIds = projectIds;
                 
                 refreshProjectFields();
+                refreshProjectList();
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {

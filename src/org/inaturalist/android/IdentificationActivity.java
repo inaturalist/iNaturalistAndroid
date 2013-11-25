@@ -6,6 +6,7 @@ import com.markupartist.android.widget.ActionBar.AbstractAction;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -93,6 +94,7 @@ public class IdentificationActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 mTaxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
                 mTaxonName.setText(data.getStringExtra(TaxonSearchActivity.TAXON_NAME));
+                mTaxonName.setTypeface(null, Typeface.ITALIC);
                 mIdName.setText(data.getStringExtra(TaxonSearchActivity.ID_NAME));
                 UrlImageViewHelper.setUrlDrawable(mIdPic, data.getStringExtra(TaxonSearchActivity.ID_PIC_URL));
             } else {
