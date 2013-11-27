@@ -53,6 +53,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.ExifInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -860,6 +862,11 @@ public class ObservationEditor extends FragmentActivity {
         mObservationCommentsIds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+
                 Intent intent = new Intent(ObservationEditor.this, CommentsIdsActivity.class);
                 intent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                 intent.putExtra(INaturalistService.TAXON_ID, mObservation.taxon_id);
@@ -1930,4 +1937,11 @@ public class ObservationEditor extends FragmentActivity {
         }
 
     }
+    
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }	
+
 }

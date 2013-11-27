@@ -59,9 +59,10 @@ public class ProjectDetails extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            JSONArray checkList = ((SerializableJSONArray) intent.getSerializableExtra(INaturalistService.CHECK_LIST_RESULT)).getJSONArray();
+            SerializableJSONArray checkListSerializable = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.CHECK_LIST_RESULT);
+            JSONArray checkList = (checkListSerializable == null ? new SerializableJSONArray() : checkListSerializable).getJSONArray();
             mCheckList = new ArrayList<JSONObject>();
-
+            
             for (int i = 0; i < checkList.length(); i++) {
                 try {
                     mCheckList.add(checkList.getJSONObject(i));
@@ -245,14 +246,17 @@ public class ProjectDetails extends Activity {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View view = inflater.inflate(R.layout.taxon_item, parent, false); 
             BetterJSONObject item = null;
+            BetterJSONObject defaultName = null;
             try {
                 item = new BetterJSONObject(mItems.get(position).getJSONObject("taxon"));
+                defaultName = new BetterJSONObject(item.getJSONObject("default_name"));
             } catch (JSONException e) {
                 e.printStackTrace();
+                return view;
             }
 
             TextView idName = (TextView) view.findViewById(R.id.id_name);
-            idName.setText(item.getString("unique_name"));
+            idName.setText(defaultName.getString("name"));
             TextView taxonName = (TextView) view.findViewById(R.id.taxon_name);
             taxonName.setText(item.getString("name"));
             taxonName.setTypeface(null, Typeface.ITALIC);
@@ -260,12 +264,13 @@ public class ProjectDetails extends Activity {
             UrlImageViewHelper.setUrlDrawable(taxonPic, item.getString("photo_url"));
             
             Button addObservation = (Button) view.findViewById(R.id.add_observation);
+            final BetterJSONObject defaultName2 = defaultName;
             addObservation.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     BetterJSONObject item = (BetterJSONObject) view.getTag();
                     Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, ProjectDetails.this, ObservationEditor.class);
-                    intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", item.getString("name"), item.getString("unique_name")));
+                    intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", item.getString("name"), defaultName2.getString("name")));
                     startActivity(intent);
                 }
             });

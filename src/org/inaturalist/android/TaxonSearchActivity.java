@@ -18,6 +18,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -116,7 +117,7 @@ public class TaxonSearchActivity extends ListActivity {
         @Override
         public String getItem(int index) {
             try {
-                return resultList.get(index).getString("iconic_taxon_name");
+                return resultList.get(index).getString("name");
             } catch (JSONException e) {
                 return "";
             }
@@ -161,9 +162,11 @@ public class TaxonSearchActivity extends ListActivity {
                 ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                 UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"));
                 TextView idName = (TextView) view.findViewById(R.id.id_name);
-                idName.setText(item.getString("name"));
+                idName.setText(item.getString("unique_name"));
                 TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
-                idTaxonName.setText(item.getString("iconic_taxon_name"));
+                idTaxonName.setText(item.getString("name"));
+                idTaxonName.setTypeface(null, Typeface.ITALIC);
+
                 view.setTag(item);
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.inaturalist.android.BaseProjectsTab.ProjectsAdapter;
@@ -45,6 +46,11 @@ public abstract class BaseProjectsTab extends Fragment {
             JSONArray projects = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName())).getJSONArray();
             mProjects = new ArrayList<JSONObject>();
             
+            if (projects == null) {
+                loadProjectsIntoUI();
+                return;
+            }
+            
             for (int i = 0; i < projects.length(); i++) {
                 try {
                     mProjects.add(projects.getJSONObject(i));
@@ -52,6 +58,18 @@ public abstract class BaseProjectsTab extends Fragment {
                     e.printStackTrace();
                 }
             }
+            
+            Collections.sort(mProjects, new Comparator<JSONObject>() {
+                @Override
+                public int compare(JSONObject lhs, JSONObject rhs) {
+                    try {
+                        return lhs.getString("title").compareTo(rhs.getString("title"));
+                    } catch (JSONException e) {
+                        return 0;
+                    }
+                }
+            });
+ 
             
             
             loadProjectsIntoUI();

@@ -782,6 +782,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = String.format("%s/lists/%d.json", HOST, id);
         
         JSONArray json = get(url);
+        
+        if (json == null) {
+            return null;
+        }
        
         try {
             return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("listed_taxa"));
@@ -826,6 +830,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         
         JSONArray json = get(url, true);
         JSONArray finalJson = new JSONArray();
+        
+        if (json == null) {
+            return null;
+        }
         
         for (int i = 0; i < json.length(); i++) {
             try {

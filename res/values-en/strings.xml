@@ -130,6 +130,8 @@
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
     <string name="id_please">Need ID Help</string>
     <string name="select_projects">Select Projects</string>
+    <string name="observation_deleted">Couldn\'t load comments/IDs - observation was probably deleted on website</string>
+    <string name="not_connected">You must be connected to the Internet in order to do that!</string>
     <string name="geoprivacy">Geoprivacy</string>
     <string-array name="geoprivacy_items">
 	    <item></item>

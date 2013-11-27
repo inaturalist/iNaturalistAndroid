@@ -26,12 +26,13 @@ public class SerializableJSONArray implements Serializable {
 
     private void writeObject(ObjectOutputStream oos) throws IOException {
         oos.defaultWriteObject();
-        oos.writeObject(jsonArray.toString());
+        oos.writeObject(jsonArray != null ? jsonArray.toString() : null);
     }
 
     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException, JSONException {
         ois.defaultReadObject();
-        jsonArray = new JSONArray((String) ois.readObject());
+        String data = (String) ois.readObject();
+        jsonArray = (data != null ? new JSONArray(data) : null);
     }
 }
 

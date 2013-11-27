@@ -24,6 +24,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,6 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ObservationListActivity extends ListActivity {
 	public static String TAG = "INAT";
@@ -45,6 +48,12 @@ public class ObservationListActivity extends ListActivity {
 	private PullToRefreshListView mPullRefreshListView;
 	
 	private SyncCompleteReceiver mSyncCompleteReceiver;
+	
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}	
 	
     private class SyncCompleteReceiver extends BroadcastReceiver {
         @Override
@@ -100,6 +109,28 @@ public class ObservationListActivity extends ListActivity {
         mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                if (!isNetworkAvailable()) {
+                    Thread t = (new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mPullRefreshListView.onRefreshComplete();
+                                }
+                            });
+                        }
+                    }));
+                    t.start();
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+                
                 // Start sync
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
@@ -165,6 +196,11 @@ public class ObservationListActivity extends ListActivity {
         	startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), this, ObservationEditor.class));
             return true;
         case R.id.observations_menu_sync:
+            if (!isNetworkAvailable()) {
+                Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                return true;
+            }
+
             Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, this, INaturalistService.class);
             startService(serviceIntent);
             return true;
@@ -205,6 +241,7 @@ public class ObservationListActivity extends ListActivity {
         public void getPhotoInfo() {
             Cursor c = getCursor();
             if (c.getCount() == 0) return;
+            
             c.moveToFirst();
             ArrayList<Long> obsIds = new ArrayList<Long>();
             ArrayList<Long> photoIds = new ArrayList<Long>();
@@ -289,6 +326,9 @@ public class ObservationListActivity extends ListActivity {
             if (c.getCount() == 0) {
                 return view;
             }
+            
+            getPhotoInfo();
+            
             ImageView image = (ImageView) view.findViewById(R.id.image);
             c.moveToPosition(position);
             Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));

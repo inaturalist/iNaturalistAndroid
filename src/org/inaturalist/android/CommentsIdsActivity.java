@@ -24,6 +24,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.LinearGradient;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -56,11 +57,23 @@ public class CommentsIdsActivity extends ListActivity {
     private int mNewComments = 0;
     private int mNewIds = 0;
     private int mTaxonId;
+    private Button mAddComment;
+    private Button mAddId;
 	
 	private class ObservationReceiver extends BroadcastReceiver {
 	    @Override
 	    public void onReceive(Context context, Intent intent) {
 	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+	        
+	        if (observation == null) {
+	            // Couldn't retrieve observation details (probably deleted)
+	            TextView message = (TextView) findViewById(android.R.id.empty);
+	            message.setText(R.string.observation_deleted);
+	            return;
+	        } else {
+	            mAddComment.setEnabled(true);
+	            mAddId.setEnabled(true);
+	        }
 	        
 	        JSONArray comments = observation.comments.getJSONArray();
 	        JSONArray ids = observation.identifications.getJSONArray();
@@ -86,10 +99,10 @@ public class CommentsIdsActivity extends ListActivity {
                 public int compare(JSONObject lhs, JSONObject rhs) {
                     BetterJSONObject o1 = new BetterJSONObject(lhs);
                     BetterJSONObject o2 = new BetterJSONObject(rhs);
-                    Timestamp date1 = o1.getTimestamp("updated_at");
-                    Timestamp date2 = o2.getTimestamp("updated_at");
+                    Timestamp date1 = o1.getTimestamp("created_at");
+                    Timestamp date2 = o2.getTimestamp("created_at");
                     
-                    return date2.compareTo(date1);
+                    return date1.compareTo(date2);
                 }
             });
 	        
@@ -122,22 +135,25 @@ public class CommentsIdsActivity extends ListActivity {
         Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
         registerReceiver(mObservationReceiver, filter);  
         
-        Button addComment = (Button) findViewById(R.id.add_comment);
-        addComment.setOnClickListener(new View.OnClickListener() {
+        mAddComment = (Button) findViewById(R.id.add_comment);
+        mAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showInputDialog();
             }
         });
         
-        Button addId = (Button) findViewById(R.id.add_id);
-        addId.setOnClickListener(new View.OnClickListener() {
+        mAddId = (Button) findViewById(R.id.add_id);
+        mAddId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CommentsIdsActivity.this, IdentificationActivity.class);
                 startActivityForResult(intent, NEW_ID_REQUEST_CODE);
             }
         });
+        
+        mAddComment.setEnabled(false);
+        mAddId.setEnabled(false);
  
     }
     
@@ -313,9 +329,12 @@ public class CommentsIdsActivity extends ListActivity {
                     ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                     UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"));
                     TextView idName = (TextView) view.findViewById(R.id.id_name);
-                    idName.setText(item.getJSONObject("taxon").getString("name"));
+                    // TODO
+                    //idName.setText(item.getJSONObject("taxon").getString("unique_name"));
+                    idName.setText(item.getJSONObject("taxon").getString("iconic_taxon_name"));
                     TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
-                    idTaxonName.setText(item.getJSONObject("taxon").getString("iconic_taxon_name"));
+                    idTaxonName.setText(item.getJSONObject("taxon").getString("name"));
+                    idTaxonName.setTypeface(null, Typeface.ITALIC);
                     
                     Boolean isCurrent = item.getBoolean("current");
                     if ((isCurrent == null) || (!isCurrent)) {
