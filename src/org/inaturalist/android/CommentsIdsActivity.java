@@ -321,6 +321,9 @@ public class CommentsIdsActivity extends ListActivity {
                     
                     comment.setText(item.getString("body"));
                     
+                    postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
+                    userPic.setAlpha(255);
+                    
                 } else {
                     // Identification
                     comment.setVisibility(View.GONE);
@@ -329,9 +332,7 @@ public class CommentsIdsActivity extends ListActivity {
                     ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                     UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"));
                     TextView idName = (TextView) view.findViewById(R.id.id_name);
-                    // TODO
-                    //idName.setText(item.getJSONObject("taxon").getString("unique_name"));
-                    idName.setText(item.getJSONObject("taxon").getString("iconic_taxon_name"));
+                    idName.setText(item.getJSONObject("taxon").getJSONObject("common_name").getString("name"));
                     TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
                     idTaxonName.setText(item.getJSONObject("taxon").getString("name"));
                     idTaxonName.setTypeface(null, Typeface.ITALIC);
@@ -341,13 +342,13 @@ public class CommentsIdsActivity extends ListActivity {
                         // An outdated identification - show as faded-out
                         idName.setTextColor(idName.getTextColors().withAlpha(100));
                         idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(100));
-                        postedOn.setTextColor(idTaxonName.getTextColors().withAlpha(100));
+                        postedOn.setTextColor(postedOn.getTextColors().withAlpha(100));
                         idPic.setAlpha(100);
                         userPic.setAlpha(100);
                     } else {
                         idName.setTextColor(idName.getTextColors().withAlpha(255));
                         idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(255));
-                        postedOn.setTextColor(idTaxonName.getTextColors().withAlpha(255));
+                        postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
                         idPic.setAlpha(255);
                         userPic.setAlpha(255);
                     }

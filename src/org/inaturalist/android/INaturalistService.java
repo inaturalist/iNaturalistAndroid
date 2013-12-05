@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -134,6 +135,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private ArrayList<SerializableJSONArray> mProjectObservations;
     
     private Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>> mProjectFieldValues;
+
+    private Header[] mResponseHeaders = null;
     
 	public enum LoginType {
 	    PASSWORD,
@@ -488,7 +491,41 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
         params.add(new BasicNameValuePair("identification[body]", body));
         
-        post(HOST + "/identifications.json", params);
+        JSONArray arrayResult = post(HOST + "/identifications.json", params);
+        
+        if (arrayResult != null) {
+            BetterJSONObject result;
+            try {
+                result = new BetterJSONObject(arrayResult.getJSONObject(0));
+                JSONObject jsonObservation = result.getJSONObject("observation");
+                Observation remoteObservation = new Observation(new BetterJSONObject(jsonObservation));
+                
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+                        Observation.PROJECTION, 
+                        "id = "+ remoteObservation.id, null, Observation.DEFAULT_SORT_ORDER);
+
+                // update local observation
+                c.moveToFirst();
+                if (c.isAfterLast() == false) {
+                    Observation observation = new Observation(c);
+                    boolean isModified = observation.merge(remoteObservation); 
+                    ContentValues cv = observation.getContentValues();
+                    if (observation._updated_at.before(remoteObservation.updated_at)) {
+                        // Remote observation is newer (and thus has overwritten the local one) - update its
+                        // sync at time so we won't update the remote servers later on (since we won't
+                        // accidently consider this an updated record)
+                        cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                    }
+                    if (isModified) {
+                        // Only update the DB if needed
+                        getContentResolver().update(observation.getUri(), cv, null, null);
+                    }
+                }
+                c.close();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
    
     
@@ -1122,6 +1159,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                         Log.e(TAG, "Failed to create JSONObject, JSONException: " + e2.toString());
                     }
                 }
+                
+                mResponseHeaders = response.getAllHeaders();
+                
                 return json;
             case HttpStatus.SC_UNAUTHORIZED:
                 throw new AuthenticationException();
@@ -1392,18 +1432,26 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
                     opcv.put(ObservationPhoto._ID, photo.id);
                     getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
+                    getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                 }
             }
         }
 
 
-            /* Doesn't work since we use a updated_since parameter that returns only partial results - so non-deleted
-         observations won't be returned if they weren't updated recently
         if (isUser) {
-            // Delete any local observations which were deleted remotely by the user
-            getContentResolver().delete(Observation.CONTENT_URI, "(id IS NOT NULL) and (id NOT IN ("+joinedIds+"))", null);
+            if (mResponseHeaders != null) {
+                // Delete any local observations which were deleted remotely by the user
+                for (Header header : mResponseHeaders) {
+                    if (!header.getName().equalsIgnoreCase("X-Deleted-Observations")) continue;
+                    
+                    String deletedIds = header.getValue().trim();
+                    getContentResolver().delete(Observation.CONTENT_URI, "(id IN ("+deletedIds+"))", null);
+                    break;
+                }
+                
+                mResponseHeaders = null;
+            }
         }
-             */
     }
     
     private ArrayList<NameValuePair> paramsForObservation(Observation observation) {
