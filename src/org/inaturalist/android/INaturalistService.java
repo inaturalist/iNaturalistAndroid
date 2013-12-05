@@ -1432,7 +1432,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
                     opcv.put(ObservationPhoto._ID, photo.id);
                     getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
-                    getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                 }
             }
         }
