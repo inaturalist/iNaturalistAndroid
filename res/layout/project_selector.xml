@@ -14,7 +14,7 @@
     >
     <ImageButton
 	    android:id="@+id/back"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    android:layout_centerVertical="true"
 	    android:singleLine="true"
 	    android:src="@drawable/back"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
 	    android:layout_weight="1"
 	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    style="@style/ActionBarItem"
 	    android:padding="0dp"
         >
@@ -49,7 +49,7 @@
     
     <ImageButton
 	    android:id="@+id/save"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    android:layout_centerVertical="true"
 	    android:singleLine="true"
 	    android:src="@drawable/save_observation"

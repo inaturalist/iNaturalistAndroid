@@ -107,7 +107,7 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
         super.onCreate(savedInstanceState);
         
         mProjectReceiver = new ProjectReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_PROJECTS_RESULT);
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         registerReceiver(mProjectReceiver, filter);  
         
         final Intent intent = getIntent();

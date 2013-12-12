@@ -4,11 +4,14 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.inaturalist.android.ProjectDetails.CheckListAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
@@ -18,7 +21,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -34,70 +43,51 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class ProjectDetails extends Activity {    
+public class ProjectDetails extends SherlockFragmentActivity {
     
-    private ImageButton mBackButton;
     private Button mJoinLeaveProject;
     private TextView mProjectTitle;
-    private TextView mProjectDetailsChecklist;
-    private ImageView mProjectIcon;
-    private TextView mProjectDescription;
-    private ScrollView mProjectDescriptionContainer;
-    private ListView mProjectTaxa;
     
     private INaturalistApp mApp;
     private BetterJSONObject mProject;
 
-    private boolean mShowChecklist = false;
-    private RelativeLayout mProjectChecklistContainer;
-    private CheckListReceiver mCheckListReceiver;
-    private TextView mProjectTaxaEmpty;
+    private TabsAdapter mTabsAdapter;
+    private ViewPager mViewPager;
 
-    private class CheckListReceiver extends BroadcastReceiver {
-        private CheckListAdapter mAdapter;
-        private ArrayList<JSONObject> mCheckList;
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            SerializableJSONArray checkListSerializable = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.CHECK_LIST_RESULT);
-            JSONArray checkList = (checkListSerializable == null ? new SerializableJSONArray() : checkListSerializable).getJSONArray();
-            mCheckList = new ArrayList<JSONObject>();
-            
-            for (int i = 0; i < checkList.length(); i++) {
-                try {
-                    mCheckList.add(checkList.getJSONObject(i));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (checkList.length() > 0) {
-                mProjectTaxaEmpty.setVisibility(View.GONE);
-                mProjectTaxa.setVisibility(View.VISIBLE);
-                
-                mAdapter = new CheckListAdapter(ProjectDetails.this, mCheckList);
-                mProjectTaxa.setAdapter(mAdapter);
-                
-            } else {
-                mProjectTaxaEmpty.setText(R.string.no_check_list);
-                mProjectTaxaEmpty.setVisibility(View.VISIBLE);
-                mProjectTaxa.setVisibility(View.GONE);
-            }
-            
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
         }
-    }
-
+        return super.onOptionsItemSelected(item);
+    } 
+ 
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        mCheckListReceiver = new CheckListReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_CHECK_LIST_RESULT);
-        registerReceiver(mCheckListReceiver, filter);  
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowCustomEnabled(true);
+        
+       
+        LayoutInflater li = LayoutInflater.from(this);
+        View customView = li.inflate(R.layout.project_details_action_bar, null);
+        actionBar.setCustomView(customView);
         
         final Intent intent = getIntent();
         setContentView(R.layout.project_details);
+        
+        // Add the tabs
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mTabsAdapter = new TabsAdapter(this, actionBar, mViewPager);
+
         
         if (mApp == null) {
             mApp = (INaturalistApp)getApplicationContext();
@@ -108,57 +98,26 @@ public class ProjectDetails extends Activity {
         } else {
             mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
         }
+        
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ProjectDetailsAbout.KEY_PROJECT, mProject);
+        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.about),
+                ProjectDetailsAbout.class, bundle);
+        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.check_list),
+                ProjectDetailsCheckList.class, bundle); 
 
-        mBackButton = (ImageButton) findViewById(R.id.back);
-        mJoinLeaveProject = (Button) findViewById(R.id.join_leave_project);
-        mProjectTitle = (TextView) findViewById(R.id.project_title);
-        mProjectIcon = (ImageView) findViewById(R.id.project_pic);
-        mProjectDescription = (TextView) findViewById(R.id.project_description);
-        mProjectDescriptionContainer = (ScrollView) findViewById(R.id.project_description_container);
-        mProjectDetailsChecklist = (TextView) findViewById(R.id.project_details_taxa);
-        mProjectTaxaEmpty = (TextView) findViewById(R.id.project_taxa_empty);
-        mProjectChecklistContainer = (RelativeLayout) findViewById(R.id.project_check_list_container);
-        mProjectTaxa = (ListView) findViewById(R.id.project_check_list);
-        
-        mProjectDetailsChecklist.setPaintFlags(mProjectDetailsChecklist.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        mProjectDetailsChecklist.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mShowChecklist) {
-                    mProjectDescriptionContainer.setVisibility(View.GONE);
-                    mProjectChecklistContainer.setVisibility(View.VISIBLE);
-                    mProjectDetailsChecklist.setText(R.string.project_details);
-                } else {
-                    mProjectDescriptionContainer.setVisibility(View.VISIBLE);
-                    mProjectChecklistContainer.setVisibility(View.GONE);
-                    mProjectDetailsChecklist.setText(R.string.project_taxa);
-                }
-                
-                mShowChecklist = !mShowChecklist;
-            }
-        });
-        
-        mProjectChecklistContainer.setVisibility(View.GONE);
-        
-        mBackButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mJoinLeaveProject = (Button) customView.findViewById(R.id.join_leave_project);
+        mProjectTitle = (TextView) customView.findViewById(R.id.project_title);
         
         mProjectTitle.setText(mProject.getString("title"));
-        UrlImageViewHelper.setUrlDrawable(mProjectIcon, mProject.getString("icon_url"));
-        String description = mProject.getString("description");
-        description = description.replace("\n", "\n<br>");
-        mProjectDescription.setText(Html.fromHtml(description));
-        mProjectDescription.setMovementMethod(LinkMovementMethod.getInstance()); 
         
         Boolean isJoined = mProject.getBoolean("joined");
         if ((isJoined != null) && (isJoined == true)) {
             mJoinLeaveProject.setText(R.string.leave);
+            mJoinLeaveProject.setBackgroundResource(R.drawable.actionbar_leave_btn);
         } else {
             mJoinLeaveProject.setText(R.string.join);
+            mJoinLeaveProject.setBackgroundResource(R.drawable.actionbar_join_btn);
         }
         
         mJoinLeaveProject.setOnClickListener(new OnClickListener() {
@@ -212,72 +171,6 @@ public class ProjectDetails extends Activity {
         super.onResume();
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
-        }
-    }
-
-    public class CheckListAdapter extends ArrayAdapter<JSONObject> {
-
-        private List<JSONObject> mItems;
-        private Context mContext;
-
-        public CheckListAdapter(Context context, List<JSONObject> objects) {
-            super(context, R.layout.taxon_item, objects);
-
-            mItems = objects;
-            mContext = context;
-        }
-
-        public void addItemAtBeginning(JSONObject newItem) {
-            mItems.add(0, newItem);
-        }
-
-        @Override
-        public int getCount() {
-            return mItems.size();
-        }
-
-        @Override
-        public JSONObject getItem(int index) {
-            return mItems.get(index);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) { 
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View view = inflater.inflate(R.layout.taxon_item, parent, false); 
-            BetterJSONObject item = null;
-            BetterJSONObject defaultName = null;
-            try {
-                item = new BetterJSONObject(mItems.get(position).getJSONObject("taxon"));
-                defaultName = new BetterJSONObject(item.getJSONObject("default_name"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return view;
-            }
-
-            TextView idName = (TextView) view.findViewById(R.id.id_name);
-            idName.setText(defaultName.getString("name"));
-            TextView taxonName = (TextView) view.findViewById(R.id.taxon_name);
-            taxonName.setText(item.getString("name"));
-            taxonName.setTypeface(null, Typeface.ITALIC);
-            ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
-            UrlImageViewHelper.setUrlDrawable(taxonPic, item.getString("photo_url"));
-            
-            Button addObservation = (Button) view.findViewById(R.id.add_observation);
-            final BetterJSONObject defaultName2 = defaultName;
-            addObservation.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    BetterJSONObject item = (BetterJSONObject) view.getTag();
-                    Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, ProjectDetails.this, ObservationEditor.class);
-                    intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", item.getString("name"), defaultName2.getString("name")));
-                    startActivity(intent);
-                }
-            });
-
-            view.setTag(item);
-
-            return view;
         }
     }
 

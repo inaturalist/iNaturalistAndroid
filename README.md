@@ -30,8 +30,10 @@ git clone git://github.com/facebook/facebook-android-sdk.git
 # Get the Android-PullToRefresh library
 git clone git://github.com/budowski/Android-PullToRefresh.git
 
-# Get the Android-ActionBar library
-git clone git://github.com/johannilsson/android-actionbar.git
+# Get the ActionBarSherlock library
+wget https://api.github.com/repos/JakeWharton/ActionBarSherlock/zipball/4.4.0
+# Extract only the `actionbarsherlock` folder
+# Remove the file `actionbarsherlock\libs\android-support-v4.jar` (since we have a newer copy of that file within our iNat project)
 
 # Copy the example config file and add your own API keys etc
 cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/values/config.xml
@@ -59,12 +61,12 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 1. `Select root directory` as `path/to/your/workspace/Android-PullToRefresh/library`
 1. Check the `library` project and click `Finish`
 1. Choose `General / Existing Projects into Workspace`
-1. `Select root directory` as `path/to/your/workspace/android-actionbar/actionbar`
-1. Check the `android-actionbar-library` project and click `Finish`
+1. `Select root directory` as `path/to/your/workspace/actionbarsherlock`
+1. Check the `actionbarsherlock` project and click `Finish`
 1. Right-click the `iNaturalistAndroid` project and select `Properties`
 1. Go to `Android` tab
 1. Scroll down to the `Library` box and click `Add`
-1. Select the `actionbar-library` and `PullToRefresh-library` project and press OK
+1. Select the ``actionbarsherlock and `PullToRefresh-library` project and press OK
 1. Press OK to close the dialog
 1. Clean and rebuild the entire workspace (all imported projects)
 

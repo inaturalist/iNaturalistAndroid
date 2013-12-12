@@ -8,7 +8,7 @@ public class FeaturedProjectsTab extends BaseProjectsTab {
     
     @Override
     protected String getFilterResultName() {
-        return INaturalistService.ACTION_PROJECTS_RESULT;
+        return INaturalistService.ACTION_FEATURED_PROJECTS_RESULT;
     }
     
     @Override

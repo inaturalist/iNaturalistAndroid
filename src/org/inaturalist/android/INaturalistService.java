@@ -115,7 +115,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_ADD_COMMENT = "add_comment";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
     public static String ACTION_OBSERVATION_RESULT = "observation_result";
-    public static String ACTION_PROJECTS_RESULT = "projects_result";
+    public static String ACTION_JOINED_PROJECTS_RESULT = "joined_projects_result";
+    public static String ACTION_NEARBY_PROJECTS_RESULT = "nearby_projects_result";
+    public static String ACTION_FEATURED_PROJECTS_RESULT = "featured_projects_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -211,7 +213,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                      // Use GPS for the location
                      SerializableJSONArray projects = getNearByProjects(false);
 
-                     Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                     Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
                      reply.putExtra(PROJECTS_RESULT, projects);
                      sendBroadcast(reply);
                  }
@@ -219,14 +221,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
               } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
                  SerializableJSONArray projects = getFeaturedProjects();
 
-                 Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                 Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
                  reply.putExtra(PROJECTS_RESULT, projects);
                  sendBroadcast(reply);
                 
              } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
                  SerializableJSONArray projects = getJoinedProjectsOffline();
 
-                 Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
                  reply.putExtra(PROJECTS_RESULT, projects);
                  sendBroadcast(reply);
                  
@@ -1496,7 +1498,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     e.printStackTrace();
                 }
 
-                Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
                 reply.putExtra(PROJECTS_RESULT, projects);
                 sendBroadcast(reply);               
             }
@@ -1519,7 +1521,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     e.printStackTrace();
                 }
 
-                Intent reply = new Intent(ACTION_PROJECTS_RESULT);
+                Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
                 reply.putExtra(PROJECTS_RESULT, projects);
                 sendBroadcast(reply);
             }

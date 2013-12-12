@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
 	    android:layout_weight="1"
 	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    style="@style/ActionBarItem"
 	    android:padding="0dp"
         >
@@ -24,7 +24,7 @@
 		    android:id="@+id/add_comment"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:background="@drawable/actionbar_btn"
+		    android:background="@drawable/actionbar_join_btn"
 		    style="@style/ActionBarItem"
 		    />
 	      
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
 	    android:layout_weight="1"
 	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    style="@style/ActionBarItem"
 	    android:padding="0dp"
         >
@@ -64,7 +64,7 @@
 		    android:id="@+id/add_id"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:background="@drawable/actionbar_btn"
+		    android:background="@drawable/actionbar_join_btn"
 		    style="@style/ActionBarItem"
 		    />
 	      

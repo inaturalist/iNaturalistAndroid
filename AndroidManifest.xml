@@ -4,7 +4,7 @@
     android:versionCode="2"
     android:versionName="1.2" >
 
-    <uses-sdk android:minSdkVersion="10" />
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -39,11 +39,17 @@
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:name=".ProjectDetails" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".ProjectsActivity" /> 
         </activity>
          <activity
             android:configChanges="orientation"
-            android:label="@string/app_name"
-            android:name=".ProjectsActivity" >
+            android:label="@string/projects"
+            android:name=".ProjectsActivity">
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".MenuActivity" /> 
         </activity>
         
         <activity

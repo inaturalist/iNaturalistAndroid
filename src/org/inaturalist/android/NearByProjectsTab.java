@@ -8,7 +8,7 @@ public class NearByProjectsTab extends BaseProjectsTab {
     
     @Override
     protected String getFilterResultName() {
-        return INaturalistService.ACTION_PROJECTS_RESULT;
+        return INaturalistService.ACTION_NEARBY_PROJECTS_RESULT;
     }
     
     @Override

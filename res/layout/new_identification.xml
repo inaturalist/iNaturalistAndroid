@@ -6,21 +6,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
     
-  <com.markupartist.android.widget.ActionBar
-      android:id="@+id/top_actionbar"
-	  app:title="@string/add_id"
-	  style="@style/ActionBar"
-	  android:layout_alignParentTop="true"
-   />  
-        
- 
 <LinearLayout
     android:id="@+id/bottom_actionbar"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/actionbar_height"
     android:orientation="horizontal"
     android:layout_alignParentBottom="true"
-    android:background="@drawable/actionbar_btn"
+    android:background="@drawable/actionbar_join_btn"
     android:padding="0dp"
     >
    
@@ -32,7 +24,7 @@
 		    android:id="@+id/save_id"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:background="@drawable/actionbar_btn"
+		    android:background="@drawable/actionbar_join_btn"
 		    style="@style/ActionBarItem"
 		    />
 	      
@@ -70,7 +62,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     android:layout_above="@id/bottom_actionbar"
-    android:layout_below="@id/top_actionbar"
     >
 
    

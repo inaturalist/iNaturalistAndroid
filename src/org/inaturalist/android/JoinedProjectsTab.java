@@ -8,7 +8,7 @@ public class JoinedProjectsTab extends BaseProjectsTab {
     
     @Override
     protected String getFilterResultName() {
-        return INaturalistService.ACTION_PROJECTS_RESULT;
+        return INaturalistService.ACTION_JOINED_PROJECTS_RESULT;
     }
     
     @Override

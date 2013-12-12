@@ -1,8 +1,7 @@
 package org.inaturalist.android;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-import com.markupartist.android.widget.ActionBar;
-import com.markupartist.android.widget.ActionBar.AbstractAction;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,8 +12,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.actionbarsherlock.app.ActionBar;;
 
-public class IdentificationActivity extends Activity {
+public class IdentificationActivity extends SherlockActivity {
     public static final String ID_REMARKS = "id_remarks";
     protected static final int TAXON_SEARCH_REQUEST_CODE = 301;
     public static final String TAXON_ID = "taxon_id";
@@ -26,20 +26,6 @@ public class IdentificationActivity extends Activity {
     private TextView mIdName;
     private ImageView mIdPic;
 
-     private class BackAction extends AbstractAction {
-
-        public BackAction() {
-            super(R.drawable.back);
-        }
-
-        @Override
-        public void performAction(View view) {
-            finish();
-        }
-
-    }
-   
-    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,8 +35,10 @@ public class IdentificationActivity extends Activity {
  
         mRemarks = (MultilineEditText) findViewById(R.id.remarks);
         
-        mTopActionBar = (ActionBar) findViewById(R.id.top_actionbar);
-        mTopActionBar.setHomeAction(new BackAction());
+        
+        mTopActionBar = getSupportActionBar();
+        mTopActionBar.setHomeButtonEnabled(true);
+        mTopActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME);
         
         mTaxonName = (TextView) findViewById(R.id.id_taxon_name);
         mIdName = (TextView) findViewById(R.id.id_name);

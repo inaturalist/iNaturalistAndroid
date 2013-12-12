@@ -1,8 +1,6 @@
 package org.inaturalist.android;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-import com.markupartist.android.widget.ActionBar.IntentAction;
-import com.markupartist.android.widget.ActionBar.AbstractAction;
 import java.io.IOException;
 import java.net.URI;
 import java.sql.Timestamp;
@@ -28,7 +26,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.markupartist.android.widget.ActionBar;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
 
 import android.app.Activity;
@@ -65,9 +68,6 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -96,7 +96,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class ObservationEditor extends FragmentActivity {
+public class ObservationEditor extends SherlockFragmentActivity {
     private final static String TAG = "INAT: ObservationEditor";
     private Uri mUri;
     private Cursor mCursor;
@@ -692,62 +692,7 @@ public class ObservationEditor extends FragmentActivity {
  
     }
     
-    @Override
-    public void onBackPressed() {
-        BackAction action = new BackAction();
-        action.performAction(null);
-    }
-    
-    private class TakePhotoAction extends AbstractAction {
-
-        public TakePhotoAction() {
-            super(R.drawable.take_photo);
-        }
-
-        @Override
-        public void performAction(View view) {
-            mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-            MenuActivity.openImageIntent(ObservationEditor.this, mFileUri, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-        }
-
-    }    
-
-    
-    private class BackAction extends AbstractAction {
-
-        public BackAction() {
-            super(R.drawable.back);
-        }
-
-        @Override
-        public void performAction(View view) {
-            Observation observationCopy = new Observation(mCursor);
-            uiToObservation();
-            if (!mObservation.isDirty()) {
-                // User hasn't changed anything - no need to display confirmation dialog
-                mCanceled = true;
-                finish();
-                return;
-            }
-            
-            // Restore the old observation (since uiToObservation has overwritten it)
-            mObservation = observationCopy;
-            
-            // Display a confirmation dialog
-            confirm(ObservationEditor.this, R.string.edit_observation, R.string.discard_changes, 
-                    R.string.yes, R.string.no, 
-                    new Runnable() { public void run() {
-                        // Get back to the observations list (consider this as canceled)
-                        mCanceled = true;
-                        Intent intent = ObservationListActivity.createIntent(ObservationEditor.this);
-                        startActivity(intent);
-                        finish();
-                    }}, 
-                    null);
-        }
-
-    }    
-
+   
     /**
      * LIFECYCLE CALLBACKS
      */
@@ -836,7 +781,7 @@ public class ObservationEditor extends FragmentActivity {
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
         mLocationRefreshButton = (ImageButton) findViewById(R.id.locationRefreshButton);
         mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
-        mTopActionBar = (ActionBar) findViewById(R.id.top_actionbar);
+        mTopActionBar = getSupportActionBar();
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
         mObservationCommentsIds = (Button) findViewById(R.id.observation_id_count);
@@ -856,8 +801,17 @@ public class ObservationEditor extends FragmentActivity {
             }
         });
         
-        mTopActionBar.setHomeAction(new BackAction());
-        mTopActionBar.addAction(new TakePhotoAction());
+        mTopActionBar.setHomeButtonEnabled(true);
+        mTopActionBar.setDisplayShowCustomEnabled(true);
+        mTopActionBar.setCustomView(R.layout.observation_editor_top_action_bar);
+        ImageButton takePhoto = (ImageButton) mTopActionBar.getCustomView().findViewById(R.id.take_photo);
+        takePhoto.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+                MenuActivity.openImageIntent(ObservationEditor.this, mFileUri, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+        });
         
         mObservationCommentsIds.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1004,12 +958,55 @@ public class ObservationEditor extends FragmentActivity {
         refreshProjectFields();
         
         mProjectReceiver = new ProjectReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_PROJECTS_RESULT);
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         registerReceiver(mProjectReceiver, filter);  
         
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
         startService(serviceIntent);  
     }
+    
+    @Override
+    public void onBackPressed() {
+        onBack();
+    }
+    
+    private boolean onBack() {
+        Observation observationCopy = new Observation(mCursor);
+        uiToObservation();
+        if (!mObservation.isDirty()) {
+            // User hasn't changed anything - no need to display confirmation dialog
+            mCanceled = true;
+            finish();
+            return true;
+        }
+
+        // Restore the old observation (since uiToObservation has overwritten it)
+        mObservation = observationCopy;
+
+        // Display a confirmation dialog
+        confirm(ObservationEditor.this, R.string.edit_observation, R.string.discard_changes, 
+                R.string.yes, R.string.no, 
+                new Runnable() { public void run() {
+                    // Get back to the observations list (consider this as canceled)
+                    mCanceled = true;
+                    Intent intent = ObservationListActivity.createIntent(ObservationEditor.this);
+                    startActivity(intent);
+                    finish();
+                }}, 
+                null);
+
+        return false;
+    }
+
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            return onBack();
+        }
+        return true;
+    } 
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -1260,10 +1257,11 @@ public class ObservationEditor extends FragmentActivity {
      * MENUS
      */
 
+    /*
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.gallery_menu, menu);
     }
 
@@ -1278,6 +1276,7 @@ public class ObservationEditor extends FragmentActivity {
             return super.onContextItemSelected(item);
         }
     }
+    */
 
     /** Create a file Uri for saving an image or video */
     private Uri getOutputMediaFileUri(int type){

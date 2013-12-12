@@ -117,9 +117,9 @@
     <string name="enter_taxon_name">Enter taxon name</string>
     <string name="no_projects">No projects found!</string>
     <string name="loading_projects">Loading projects...</string>
-    <string name="joined_projects">Joined Projects</string>
-    <string name="nearby_projects">Nearby Projects</string>
-    <string name="featured_projects">Featured Projects</string>
+    <string name="joined_projects">Joined</string>
+    <string name="nearby_projects">Nearby</string>
+    <string name="featured_projects">Featured</string>
     <string name="project_details">Project Details</string>
     <string name="leave">Leave</string>
     <string name="join">Join</string>
@@ -132,6 +132,9 @@
     <string name="select_projects">Select Projects</string>
     <string name="observation_deleted">Couldn\'t load comments/IDs - observation was probably deleted on website</string>
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
+    <string name="search_projects">Search projects...</string>
+    <string name="about">About</string>
+    <string name="check_list">Check list</string>
     <string name="geoprivacy">Geoprivacy</string>
     <string-array name="geoprivacy_items">
 	    <item></item>

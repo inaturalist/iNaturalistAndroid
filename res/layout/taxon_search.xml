@@ -12,7 +12,7 @@
 	    <ImageButton
 	        android:id="@+id/back"
 	        android:src="@drawable/back"
-		    android:background="@drawable/actionbar_btn"
+		    android:background="@drawable/actionbar_join_btn"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginRight="10dp"

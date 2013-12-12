@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.content.BroadcastReceiver;
@@ -20,6 +21,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,9 +35,10 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public abstract class BaseProjectsTab extends Fragment {
+public abstract class BaseProjectsTab extends SherlockFragment {
 
     private ProjectsAdapter mAdapter;
     private ArrayList<JSONObject> mProjects = null;
@@ -43,6 +46,8 @@ public abstract class BaseProjectsTab extends Fragment {
     private class ProjectsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "GOT " + getFilterResultName());
+            
             JSONArray projects = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName())).getJSONArray();
             mProjects = new ArrayList<JSONObject>();
             
@@ -81,10 +86,13 @@ public abstract class BaseProjectsTab extends Fragment {
         mAdapter = new ProjectsAdapter(getActivity(), mProjects);
         mProjectList.setAdapter(mAdapter);
 
+        mProgressBar.setVisibility(View.GONE);
+        
         if (mProjects.size() > 0) {
             mEmptyListLabel.setVisibility(View.GONE);
             mSearchText.setEnabled(true);
         } else {
+            mEmptyListLabel.setVisibility(View.VISIBLE);
             mEmptyListLabel.setText(R.string.no_projects);
             mSearchText.setEnabled(false);
         }       
@@ -95,7 +103,8 @@ public abstract class BaseProjectsTab extends Fragment {
     private ListView mProjectList;
     private ProjectsReceiver mProjectsReceiver;
     private TextView mEmptyListLabel;
-    private EditText mSearchText; 	
+    private EditText mSearchText;
+    private ProgressBar mProgressBar; 	
     
     /*
      * Methods that should be overriden by subclasses
@@ -115,7 +124,7 @@ public abstract class BaseProjectsTab extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        Log.i(TAG, "onCreate");
+        Log.i(TAG, "onCreate - " + getActionName() + ":" + getClass().getName());
         
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
@@ -127,7 +136,7 @@ public abstract class BaseProjectsTab extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG, "onCreateView: " + (mProjects != null ? mProjects.toString() : "null"));
+        Log.i(TAG, "onCreateView: " + getActionName() + ":" + getClass().getName() + (mProjects != null ? mProjects.toString() : "null"));
         
         mProjects = null;
         
@@ -146,15 +155,18 @@ public abstract class BaseProjectsTab extends Fragment {
             }
         });
         
+        
+        mProgressBar = (ProgressBar) v.findViewById(R.id.progress);
+        
         mEmptyListLabel = (TextView) v.findViewById(android.R.id.empty);
-        mEmptyListLabel.setText(R.string.loading_projects);
+        mEmptyListLabel.setVisibility(View.GONE);
         
         mSearchText = (EditText) v.findViewById(R.id.search_filter);
         mSearchText.setEnabled(false);
         mSearchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mAdapter.getFilter().filter(s);
+                if (mAdapter != null) mAdapter.getFilter().filter(s);
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -251,12 +263,27 @@ public abstract class BaseProjectsTab extends Fragment {
 
             TextView projectName = (TextView) view.findViewById(R.id.project_name);
             projectName.setText(item.getString("title"));
-            ImageView userPic = (ImageView) view.findViewById(R.id.project_pic);
-            UrlImageViewHelper.setUrlDrawable(userPic, item.getString("icon_url"));
+            ImageView projectPic = (ImageView) view.findViewById(R.id.project_pic);
+            String iconUrl = item.getString("icon_url");
+            if ((iconUrl == null) || (iconUrl.length() == 0)) {
+                projectPic.setVisibility(View.GONE);
+            } else {
+                projectPic.setVisibility(View.VISIBLE);
+                UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl);
+            }
+            TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
+            projectDescription.setText(getShortDescription(item.getString("description")));
             
             view.setTag(item);
 
             return view;
+        }
+        
+        private String getShortDescription(String description) {
+            // Strip HTML tags
+            String noHTML = Html.fromHtml(description).toString();
+            
+            return noHTML;
         }
     }
     

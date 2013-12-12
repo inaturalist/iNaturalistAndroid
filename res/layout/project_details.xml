@@ -6,61 +6,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
     
-  <LinearLayout
-    android:id="@+id/top_actionbar"
-    android:layout_width="fill_parent"
-    android:layout_height="@dimen/actionbar_height"
-    android:orientation="horizontal"
-    >
-    <ImageButton
-	    android:id="@+id/back"
-	    android:background="@drawable/actionbar_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/back"
-	    style="@style/ActionBarItem"
-	    />
-    
-    <RelativeLayout
-        android:layout_width="wrap_content"
-	    android:layout_weight="1"
-	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_btn"
-	    style="@style/ActionBarItem"
-	    android:padding="0dp"
-        >
-	      <LinearLayout
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-   	        android:layout_centerInParent="true"
-	          >
-	      <TextView 
-	          android:text="@string/project_details"
-   		      android:layout_width="wrap_content"
-		      android:layout_height="wrap_content"
-		      android:paddingLeft="3dp"
-		      android:textSize="18dp"
-		      android:layout_gravity="center_vertical"
-	          />
-	      </LinearLayout>
-	        
-    </RelativeLayout>
-    
-    <Button
-	    android:id="@+id/join_leave_project"
-	    android:background="@drawable/actionbar_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:text="@string/join"
-	    style="@style/ActionBarItem"
-	    />
- 
-</LinearLayout>
-
-
-        
- 
+    <android.support.v4.view.ViewPager
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     />
+  
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="48dp"
@@ -93,20 +44,6 @@
     </LinearLayout>
 </LinearLayout>
     
-
-<ScrollView
-    android:id="@+id/project_description_container"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    >
-
-    <TextView 
-        android:id="@+id/project_description"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="my description"
-        />
-</ScrollView>
 
 <RelativeLayout
     android:id="@+id/project_check_list_container"

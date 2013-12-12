@@ -6,14 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
     
-  <com.markupartist.android.widget.ActionBar
-      android:id="@+id/top_actionbar"
-	  app:title="@string/edit_observation"
-	  style="@style/ActionBar"
-	  android:layout_alignParentTop="true"
-   />  
-        
- 
 <LinearLayout
     android:id="@+id/bottom_actionbar"
     android:layout_width="fill_parent"
@@ -23,7 +15,7 @@
     >
     <ImageButton
 	    android:id="@+id/delete_observation"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    android:layout_centerVertical="true"
 	    android:singleLine="true"
 	    android:src="@drawable/delete_observation"
@@ -34,7 +26,7 @@
         android:layout_width="wrap_content"
 	    android:layout_weight="1"
 	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    style="@style/ActionBarItem"
 	    android:padding="0dp"
         >
@@ -42,7 +34,7 @@
 		    android:id="@+id/save_observation"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:background="@drawable/actionbar_btn"
+		    android:background="@drawable/actionbar_join_btn"
 		    style="@style/ActionBarItem"
 		    />
 	      
@@ -74,7 +66,7 @@
     
     <ImageButton
 	    android:id="@+id/view_on_inat"
-	    android:background="@drawable/actionbar_btn"
+	    android:background="@drawable/actionbar_join_btn"
 	    android:layout_centerVertical="true"
 	    android:singleLine="true"
 	    android:src="@drawable/ic_menu_new_window"
@@ -86,7 +78,7 @@
 	        android:id="@+id/observation_comments"
  		    android:layout_width="wrap_content"
 		    android:layout_height="45dip"
-		    android:background="@drawable/actionbar_btn"
+		    android:background="@drawable/actionbar_join_btn"
 		    style="@style/ActionBarItem"       
             android:padding="0dp"
         >
@@ -95,7 +87,7 @@
             android:padding="0dp"
             android:id="@+id/observation_id_count"
             style="@style/ActionBarItem"
-            android:background="@drawable/actionbar_btn" />
+            android:background="@drawable/actionbar_join_btn" />
 
       <RelativeLayout
            android:id="@+id/commentCountWrapper"
@@ -130,7 +122,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
     android:layout_above="@id/bottom_actionbar"
-    android:layout_below="@id/top_actionbar"
     >
 
    
@@ -354,10 +345,4 @@
     
 
 </ScrollView>
-<!--
-  <com.markupartist.android.widget.ActionBar
-      android:id="@+id/bottom_actionbar"
-	  style="@style/ActionBar"
-   />  
-  -->
 </RelativeLayout>
