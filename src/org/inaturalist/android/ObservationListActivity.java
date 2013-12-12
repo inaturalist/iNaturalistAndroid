@@ -7,6 +7,11 @@ import java.util.HashMap;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -29,10 +34,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -42,7 +45,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ObservationListActivity extends ListActivity {
+public class ObservationListActivity extends SherlockListActivity {
 	public static String TAG = "INAT";
 	
 	private PullToRefreshListView mPullRefreshListView;
@@ -80,12 +83,16 @@ public class ObservationListActivity extends ListActivity {
         }
     }
 
-    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         
         Intent intent = getIntent();
         if (intent.getData() == null) {
@@ -171,7 +178,7 @@ public class ObservationListActivity extends ListActivity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.observations_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -191,6 +198,11 @@ public class ObservationListActivity extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+
         case R.id.observations_menu_add:
             // Launch activity to insert a new item
         	startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), this, ObservationEditor.class));
@@ -413,7 +425,6 @@ public class ObservationListActivity extends ListActivity {
             }
             
             
-            LinearLayout commentWrapper = (LinearLayout) view.findViewById(R.id.countWrapper);
             TextView commentIdCountText = (TextView) view.findViewById(R.id.commentIdCount);
             Long commentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.COMMENTS_COUNT));
             Long idCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
@@ -424,15 +435,17 @@ public class ObservationListActivity extends ListActivity {
             
             if (totalCount == 0) {
                 // No comments/IDs - don't display the indicator
-                commentWrapper.setVisibility(View.INVISIBLE);
+                commentIdCountText.setVisibility(View.INVISIBLE);
             } else {
-                commentWrapper.setVisibility(View.VISIBLE);
+                commentIdCountText.setVisibility(View.VISIBLE);
                 commentIdCountText.setText(totalCount.toString());
                 
                 if ((lastCommentsCount == null) || (lastCommentsCount != commentsCount) ||
                         (lastIdCount == null) || (lastIdCount != idCount)) {
                     // There are unread comments/IDs
-                    commentWrapper.setBackgroundResource(R.drawable.id_comment_count_highlighted);
+                    commentIdCountText.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+                } else {
+                    commentIdCountText.setBackgroundResource(R.drawable.comments_ids_background);
                 }
             }
  
