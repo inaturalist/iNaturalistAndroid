@@ -12,6 +12,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.ListActivity;
@@ -20,22 +23,29 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient.CustomViewCallback;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class TaxonSearchActivity extends ListActivity {
+public class TaxonSearchActivity extends SherlockListActivity {
     private static final String LOG_TAG = "TaxonSearchActivity";
     
     public static final String TAXON_ID = "taxon_id";
@@ -47,6 +57,8 @@ public class TaxonSearchActivity extends ListActivity {
     private TaxonAutoCompleteAdapter mAdapter;
 
     private int mFieldId;
+
+    private ProgressBar mProgress;
 
 
     private ArrayList<JSONObject> autocomplete(String input) {
@@ -122,6 +134,21 @@ public class TaxonSearchActivity extends ListActivity {
                 return "";
             }
         }
+        
+        private void toggleLoading(final boolean isLoading) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (isLoading) {
+                        getListView().setVisibility(View.GONE);
+                        mProgress.setVisibility(View.VISIBLE);
+                    } else {
+                        mProgress.setVisibility(View.GONE);
+                        getListView().setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
 
         @Override
         public Filter getFilter() {
@@ -129,14 +156,20 @@ public class TaxonSearchActivity extends ListActivity {
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint) {
                     FilterResults filterResults = new FilterResults();
+                    
                     if (constraint != null) {
+                        toggleLoading(true);
+                        
                         // Retrieve the autocomplete results.
                         resultList = autocomplete(constraint.toString());
-
+                        
                         // Assign the data to the FilterResults
                         filterResults.values = resultList;
                         filterResults.count = resultList.size();
                     }
+                    
+                    toggleLoading(false);
+                    
                     return filterResults;
                 }
 
@@ -177,52 +210,77 @@ public class TaxonSearchActivity extends ListActivity {
 
     } 
     
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            setResult(RESULT_CANCELED);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    } 
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowCustomEnabled(true);
+        
+        LayoutInflater li = LayoutInflater.from(this);
+        View customView = li.inflate(R.layout.taxon_search_action_bar, null);
+        actionBar.setCustomView(customView);
+       
         setContentView(R.layout.taxon_search);
         
         Intent intent = getIntent();
         mFieldId = intent.getIntExtra(FIELD_ID, 0);
         
-        ImageButton backButton = (ImageButton) findViewById(R.id.back);
-        backButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CANCELED);
-                finish();
-            }
-        });
-
+        mProgress = (ProgressBar) findViewById(R.id.progress);
+        mProgress.setVisibility(View.GONE);
+        
         mAdapter = new TaxonAutoCompleteAdapter(getApplicationContext(), R.layout.taxon_result_item);
-        AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.search_text);
-        autoCompView.setAdapter(mAdapter);
-        autoCompView.setOnItemClickListener(new OnItemClickListener() {
+        EditText autoCompView = (EditText) customView.findViewById(R.id.search_text);
+        
+        autoCompView.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
-                // TODO Auto-generated method stub
-                JSONObject item = (JSONObject) view.getTag();
-                try {
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
-                    bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("unique_name"));
-                    bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
-                    bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
-                    bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
-                    intent.putExtras(bundle);
-
-                    setResult(RESULT_OK, intent);
-                    finish();
-
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mAdapter != null) mAdapter.getFilter().filter(s);
             }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void afterTextChanged(Editable s) { }
         });
 
-        //setListAdapter(mAdapter);
+
+        setListAdapter(mAdapter);
     }
+    
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        JSONObject item = (JSONObject) v.getTag();
+        try {
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
+            bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("unique_name"));
+            bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
+            bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
+            bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
+            intent.putExtras(bundle);
+
+            setResult(RESULT_OK, intent);
+            finish();
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+ 
 }
