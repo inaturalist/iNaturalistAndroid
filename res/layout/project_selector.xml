@@ -6,61 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
     
-  <LinearLayout
-    android:id="@+id/top_actionbar"
-    android:layout_width="fill_parent"
-    android:layout_height="@dimen/actionbar_height"
-    android:orientation="horizontal"
-    >
-    <ImageButton
-	    android:id="@+id/back"
-	    android:background="@drawable/actionbar_join_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/back"
-	    style="@style/ActionBarItem"
-	    />
-    
-    <RelativeLayout
-        android:layout_width="wrap_content"
-	    android:layout_weight="1"
-	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_join_btn"
-	    style="@style/ActionBarItem"
-	    android:padding="0dp"
-        >
-	      <LinearLayout
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-   	        android:layout_centerInParent="true"
-	          >
-	      <TextView 
-	          android:text="@string/projects"
-   		      android:layout_width="wrap_content"
-		      android:layout_height="wrap_content"
-		      android:paddingLeft="3dp"
-		      android:textSize="18dp"
-		      android:layout_gravity="center_vertical"
-	          />
-	      </LinearLayout>
-	        
-    </RelativeLayout>
-    
-    <ImageButton
-	    android:id="@+id/save"
-	    android:background="@drawable/actionbar_join_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/save_observation"
-	    style="@style/ActionBarItem"
-	    />
- 
-</LinearLayout>
-
-
-        
- 
 <RelativeLayout
     android:id="@+id/project_list_container"
     android:layout_width="fill_parent"

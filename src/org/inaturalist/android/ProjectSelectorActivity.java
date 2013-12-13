@@ -10,6 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
@@ -21,6 +24,7 @@ import android.database.Cursor;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -39,12 +43,11 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class ProjectSelectorActivity extends Activity implements OnItemClickListener {    
+public class ProjectSelectorActivity extends SherlockActivity implements OnItemClickListener {    
     
     private static final String TAG = "INAT:ProjectSelectorActivity";
     public static final String PROJECT_IDS = "project_ids";
     
-    private ImageButton mBackButton;
     private ImageButton mSaveButton;
     
     private TextView mLoadingProjects;
@@ -100,12 +103,35 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
             
         }
     }
-
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            setResult(RESULT_CANCELED);
+            finish();
+            
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    } 
+ 
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowCustomEnabled(true);
+        
+        LayoutInflater li = LayoutInflater.from(this);
+        View customView = li.inflate(R.layout.project_selector_action_bar, null);
+        actionBar.setCustomView(customView);
+
+ 
         mProjectReceiver = new ProjectReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         registerReceiver(mProjectReceiver, filter);  
@@ -125,8 +151,7 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
             mObservationProjects = savedInstanceState.getIntegerArrayList(INaturalistService.PROJECT_ID);
         }
 
-        mBackButton = (ImageButton) findViewById(R.id.back);
-        mSaveButton = (ImageButton) findViewById(R.id.save);
+        mSaveButton = (ImageButton) customView.findViewById(R.id.save);
         
         mSaveButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -143,15 +168,6 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
         
         mLoadingProjects = (TextView) findViewById(R.id.project_list_empty);
         mProjectList = (ListView) findViewById(R.id.project_list);
-        
-        mBackButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CANCELED);
-                finish();
-            }
-        });
-        
         
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
         startService(serviceIntent);  
@@ -211,6 +227,10 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
 
             TextView projectName = (TextView) view.findViewById(R.id.project_name);
             projectName.setText(item.getString("title"));
+            TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
+            // Strip HTML tags
+            String noHTML = Html.fromHtml(item.getString("description")).toString();
+            projectDescription.setText(noHTML);
             ImageView userPic = (ImageView) view.findViewById(R.id.project_pic);
             UrlImageViewHelper.setUrlDrawable(userPic, item.getString("icon_url"));
             
@@ -218,11 +238,13 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
             
             int projectId = item.getInt("id");
             if (mObservationProjects.contains(Integer.valueOf(projectId))) {
-                projectSelected.setImageResource(R.drawable.project_selected);
+                projectSelected.setImageResource(R.drawable.ic_action_accept);
                 projectName.setTypeface(Typeface.DEFAULT_BOLD);
+                projectDescription.setTypeface(Typeface.DEFAULT_BOLD);
             } else {
-                projectSelected.setImageResource(R.drawable.project_unselected);
+                projectSelected.setImageResource(android.R.color.transparent);
                 projectName.setTypeface(Typeface.DEFAULT);
+                projectDescription.setTypeface(Typeface.DEFAULT);
             }
             
             view.setTag(item);
@@ -237,17 +259,20 @@ public class ProjectSelectorActivity extends Activity implements OnItemClickList
         BetterJSONObject project = (BetterJSONObject) view.getTag();
         Integer projectId = Integer.valueOf(project.getInt("id"));
         
+        TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
         ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
         TextView projectName = (TextView) view.findViewById(R.id.project_name);
         
         if (mObservationProjects.contains(projectId)) {
             mObservationProjects.remove(projectId);
-            projectSelected.setImageResource(R.drawable.project_unselected);
+            projectSelected.setImageResource(android.R.color.transparent);
             projectName.setTypeface(Typeface.DEFAULT);
+            projectDescription.setTypeface(Typeface.DEFAULT);
         } else {
             mObservationProjects.add(projectId);
-            projectSelected.setImageResource(R.drawable.project_selected);
+            projectSelected.setImageResource(R.drawable.ic_action_accept);
             projectName.setTypeface(Typeface.DEFAULT_BOLD);
+            projectDescription.setTypeface(Typeface.DEFAULT_BOLD);
         }
     }
 
