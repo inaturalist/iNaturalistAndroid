@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:padding="7dp"
+    >
     
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
 	    android:layout_width="0dp"
 	    android:layout_weight="1"
 	    android:layout_height="wrap_content" >
 	    
         <TextView 
+		    android:id="@+id/field_name"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:id="@+id/field_name"
 		    android:text="Field name"
+		    style="@android:style/TextAppearance.Medium"
+            />
+        
+       <TextView 
+		    android:id="@+id/field_description"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Field very long description"
             />
         
     </LinearLayout>
@@ -42,63 +52,66 @@
        <RelativeLayout
             android:visibility="gone"
 		    android:id="@+id/date_container"
+            android:background="@drawable/actionbar_btn"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content" >
-		    <ImageButton
+		    <ImageView
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:id="@+id/set_date"
-			    android:src="@drawable/calendar"
-			    android:layout_alignParentRight="true"
-	            />	    
+			    android:src="@drawable/ic_action_go_to_today"
+			    android:layout_alignParentLeft="true"
+			    android:layout_centerVertical="true"
+			    android:layout_marginRight="4dp"
+	            />
 		    <TextView 
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
 			    android:id="@+id/date"
-			    android:layout_toLeftOf="@id/set_date"
+			    android:layout_toRightOf="@id/set_date"
 			    android:layout_centerVertical="true"
 			    android:textAppearance="@android:style/TextAppearance.Large"
 			    android:text="24/10/2013"
 	            />
 	    </RelativeLayout>
 	    
-        <LinearLayout
-            android:visibility="gone"
+        <RelativeLayout
+            android:visibility="visible"
 	        android:id="@+id/taxon_container"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" >
+            android:background="@drawable/actionbar_btn"
+            android:layout_height="wrap_content">
 
            <ImageView
 		        android:id="@+id/taxon_pic"
-		        android:layout_width="48dp"
-		        android:layout_height="48dp"
+		        android:layout_width="55dp"
+		        android:layout_height="55dp"
+		        android:layout_alignParentLeft="true"
+		        android:layout_centerVertical="true"
+		        android:layout_marginRight="5dp"
 		        android:src="@drawable/iconic_taxon_unknown" />
 		
 	        <LinearLayout
 	            android:layout_width="wrap_content"
-	            android:layout_height="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_toRightOf="@id/taxon_pic"
+		        android:layout_centerVertical="true"
 	            android:orientation="vertical" >
 	
 	            <TextView
 	                android:id="@+id/id_name"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
+                    style="@android:style/TextAppearance.Medium"
 	                android:text="@string/loading" />
 	
 	            <TextView
 	                android:id="@+id/id_taxon_name"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="" />
+	                android:text="Taxon Name" />
 	        </LinearLayout>
-	        
-            <Button
-	            android:id="@+id/id_change"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/change" />
-	    </LinearLayout>
+	    </RelativeLayout>
 
     </LinearLayout>
 

@@ -31,9 +31,14 @@ git clone git://github.com/facebook/facebook-android-sdk.git
 git clone git://github.com/budowski/Android-PullToRefresh.git
 
 # Get the ActionBarSherlock library
-wget https://api.github.com/repos/JakeWharton/ActionBarSherlock/zipball/4.4.0
+wget https://codeload.github.com/JakeWharton/ActionBarSherlock/legacy.zip/4.4.0
 # Extract only the `actionbarsherlock` folder
 # Remove the file `actionbarsherlock\libs\android-support-v4.jar` (since we have a newer copy of that file within our iNat project)
+
+# Get the Android Switch Backport library
+wget https://github.com/BoD/android-switch-backport/archive/master.zip
+# Extract only the `library` folder
+
 
 # Copy the example config file and add your own API keys etc
 cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/values/config.xml
@@ -57,16 +62,21 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 1. Copy the `google-play-services.jar` file to your `INaturalistAndroid\libs` folder (from `/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs`)
 1. `Add JARs` -> Select the `INaturalistAndroid` project -> `libs` folder -> `google-play-services.jar`
 1. Open menu `File / Import...`
-1. Choose `General / Existing Projects into Workspace`
+1. Choose `General / Existing Existing Android Code into Workspace`
 1. `Select root directory` as `path/to/your/workspace/Android-PullToRefresh/library`
 1. Check the `library` project and click `Finish`
-1. Choose `General / Existing Projects into Workspace`
+1. Open menu `File / Import...`
+1. Choose `General / Existing Android Code into Workspace`
 1. `Select root directory` as `path/to/your/workspace/actionbarsherlock`
 1. Check the `actionbarsherlock` project and click `Finish`
+1. Open menu `File / Import...`
+1. Choose `General / Existing Android Code into Workspace`
+1. `Select root directory` as `path/to/your/workspace/android-switch-backport`
+1. Check the `android-switch-backport` project and click `Finish`
 1. Right-click the `iNaturalistAndroid` project and select `Properties`
 1. Go to `Android` tab
 1. Scroll down to the `Library` box and click `Add`
-1. Select the ``actionbarsherlock and `PullToRefresh-library` project and press OK
+1. Select the `actionbarsherlock` , `PullToRefresh-library` and `android-switch-backport` projects and press OK
 1. Press OK to close the dialog
 1. Clean and rebuild the entire workspace (all imported projects)
 

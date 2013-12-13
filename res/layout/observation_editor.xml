@@ -6,115 +6,78 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
     
-<LinearLayout
+<RelativeLayout
     android:id="@+id/bottom_actionbar"
     android:layout_width="fill_parent"
-    android:layout_height="@dimen/actionbar_height"
+    android:layout_height="@dimen/abs__action_bar_default_height"
     android:orientation="horizontal"
     android:layout_alignParentBottom="true"
+    android:background="#767676"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     >
-    <ImageButton
-	    android:id="@+id/delete_observation"
-	    android:background="@drawable/actionbar_join_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/delete_observation"
-	    style="@style/ActionBarItem"
-	    />
     
-    <RelativeLayout
+   <TextView
+	    android:id="@+id/save_observation"
+	    android:background="@drawable/actionbar_btn"
+	    android:gravity="center_vertical"
+	    android:layout_centerVertical="true"
+	    android:layout_alignParentLeft="true"
+	    android:singleLine="true"
+	    android:drawableLeft="@drawable/ic_action_save"
+	    android:text="@string/save_observation"
         android:layout_width="wrap_content"
-	    android:layout_weight="1"
-	    android:layout_height="fill_parent"
-	    android:background="@drawable/actionbar_join_btn"
-	    style="@style/ActionBarItem"
-	    android:padding="0dp"
-        >
-	      <Button
-		    android:id="@+id/save_observation"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:background="@drawable/actionbar_join_btn"
-		    style="@style/ActionBarItem"
-		    />
-	      
-	      <LinearLayout
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-   	        android:layout_centerInParent="true"
-	          >
-   	      <ImageView 
-	          android:src="@drawable/save_observation"
-   		      android:layout_width="wrap_content"
-		      android:layout_height="wrap_content"
-	          />
-
-	      <TextView 
-			  android:id="@+id/save_observation_label"
-	          android:text="@string/save"
-   		      android:layout_width="wrap_content"
-		      android:layout_height="wrap_content"
-		      android:paddingLeft="3dp"
-		      android:textSize="18dp"
-		      android:layout_gravity="center_vertical"
-	          />
-	      
-	      </LinearLayout>
-	        
-    </RelativeLayout>
-    
-    <ImageButton
-	    android:id="@+id/view_on_inat"
-	    android:background="@drawable/actionbar_join_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/ic_menu_new_window"
-	    style="@style/ActionBarItem"
+        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance.Medium"
+        android:padding="5dp"
 	    />
  
-   
-    <RelativeLayout
-	        android:id="@+id/observation_comments"
- 		    android:layout_width="wrap_content"
-		    android:layout_height="45dip"
-		    android:background="@drawable/actionbar_join_btn"
-		    style="@style/ActionBarItem"       
-            android:padding="0dp"
-        >
-
-        <Button
-            android:padding="0dp"
-            android:id="@+id/observation_id_count"
-            style="@style/ActionBarItem"
-            android:background="@drawable/actionbar_join_btn" />
-
-      <RelativeLayout
-           android:id="@+id/commentCountWrapper"
-           android:layout_width="wrap_content"
-           android:layout_height="fill_parent"
-           android:background="@drawable/id_comment_count"
-           android:layout_centerInParent="true"
-           >
-            
-            <TextView
-               android:id="@+id/observationCommentIdCount"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:gravity="center"
-               android:layout_centerHorizontal="true"
-               android:paddingTop="5dp"
-               android:singleLine="true"
-               android:text="30"
-               android:textColor="#666"
-               android:textSize="17sp" />
-            
-
-       </RelativeLayout>
     
-    </RelativeLayout>
+ 
+      <TextView
+          android:id="@+id/commentIdCount"
+          android:layout_marginRight="8dp"
+          android:layout_alignParentRight="true"
+	      android:layout_centerVertical="true"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/comments_ids_background"
+          android:padding="5dp"
+          android:layout_marginLeft="10dp"
+          android:gravity="center"
+          android:singleLine="true"
+          android:text="30"
+          android:textColor="#ffffff"
+ 	      style="@android:style/TextAppearance.Medium" />
+      
+    <ImageButton
+	    android:id="@+id/view_on_inat"
+	    android:background="@drawable/actionbar_btn"
+	    android:layout_centerVertical="true"
+	    android:singleLine="true"
+	    android:src="@drawable/action"
+	    android:layout_toLeftOf="@id/commentIdCount"
+	    android:layout_width="32dp"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="10dp"
+	    android:padding="5dp"
+	    android:scaleType="fitCenter"
+	    />
+ 
+     <ImageButton
+	    android:id="@+id/delete_observation"
+	    android:background="@drawable/actionbar_btn"
+	    android:layout_centerVertical="true"
+	    android:layout_toLeftOf="@id/view_on_inat"
+	    android:singleLine="true"
+	    android:src="@drawable/ic_action_discard"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:padding="5dp"
+	    />
     
-</LinearLayout>
+ 
+</RelativeLayout>
 
 
 
@@ -159,19 +122,21 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            >
 
             <Button
                 android:id="@+id/observed_on"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="2dp"
                 android:layout_weight="0.5"
+                android:layout_gravity="fill_vertical"
                 android:text="@string/set_date" />
 
             <Button
                 android:id="@+id/time_observed_at"
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
                 android:layout_weight="0.5"
@@ -262,13 +227,16 @@
                     android:padding="5dp"
                     android:visibility="gone" />
 
-                <ImageButton
+                <TextView
                     android:id="@+id/locationRefreshButton"
                     android:layout_width="120dp"
                     android:layout_height="60dp"
                     android:layout_margin="0dp"
                     android:layout_marginBottom="0dp"
-                    android:src="@android:drawable/ic_menu_compass" />
+                    style="@android:style/Widget.Holo.Button"
+                    android:text="@string/gps"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@drawable/ic_action_location_searching" />
 
                 <ImageButton
                     android:id="@+id/locationStopRefreshButton"
@@ -295,27 +263,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
        >
-       <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/geoprivacy"
-           />
-	   <Spinner 
-	    	android:id="@+id/geoprivacy"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:entries="@array/geoprivacy_items"
-	        android:entryValues="@array/geoprivacy_values"
-	       />
-   </LinearLayout>
+  </LinearLayout>
    
-   <CheckBox 
-    	android:id="@+id/id_please"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/id_please"
-       />
-   
+  
    <Button
     	android:id="@+id/select_projects"
         android:layout_width="match_parent"
@@ -323,12 +273,63 @@
         android:text="@string/select_projects"
         />
 
+   
+  
   <TableLayout
     	android:id="@+id/projects"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="*"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         >
+   </TableLayout>
+   
+   <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+ 	    android:layout_marginBottom="7dp"
+ 	    android:layout_marginTop="7dp"
+        android:stretchColumns="*">
+            
+        <TableRow
+            >
+         <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/id_please"
+	        style="@android:style/TextAppearance.Medium"
+		    android:layout_marginLeft="7dp"
+           />
+		   <org.jraf.android.backport.switchwidget.Switch
+		    	android:id="@+id/id_please"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="left"
+    	        android:layout_marginRight="7dp"
+		        />    
+			 
+       </TableRow>
+       
+        <TableRow
+            >
+         <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/geoprivacy"
+	        style="@android:style/TextAppearance.Medium"
+		    android:layout_marginLeft="7dp"
+           />
+   	     <Spinner 
+	    	android:id="@+id/geoprivacy"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:entries="@array/geoprivacy_items"
+	        android:entryValues="@array/geoprivacy_values"
+  	        android:layout_marginRight="7dp"
+	       />
+       </TableRow> 
+      
    </TableLayout>
    
    

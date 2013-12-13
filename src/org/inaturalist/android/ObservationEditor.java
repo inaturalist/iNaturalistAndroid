@@ -22,6 +22,7 @@ import java.util.Map.Entry;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jraf.android.backport.switchwidget.Switch;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,8 +51,10 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -63,6 +66,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -103,7 +107,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private Cursor mImageCursor;
     private TextView mSpeciesGuessTextView;
     private TextView mDescriptionTextView;
-    private Button mSaveButton;
+    private TextView mSaveButton;
     private TextView mObservedOnStringTextView;
     private Button mObservedOnButton;
     private Button mTimeObservedAtButton;
@@ -112,7 +116,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private TextView mLongitudeView;
     private TextView mAccuracyView;
     private ProgressBar mLocationProgressView;
-    private ImageButton mLocationRefreshButton;
+    private TextView mLocationRefreshButton;
     private ImageButton mLocationStopRefreshButton;
     private Button mProjectSelector;
     private Uri mFileUri;
@@ -128,7 +132,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
     private ImageButton mViewOnInat;
-    private Button mObservationCommentsIds;
+    private TextView mObservationCommentsIds;
     private TableLayout mProjectFieldsTable;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -143,37 +147,33 @@ public class ObservationEditor extends SherlockFragmentActivity {
     public static final String SPECIES_GUESS = "species_guess";
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
-    private CheckBox mIdPlease;
+    private Switch mIdPlease;
     private Spinner mGeoprivacy;
     private String mSpeciesGuess;
     private TableLayout mProjectsTable;
     private ProjectReceiver mProjectReceiver;
         
     
-    private ArrayList<JSONObject> mProjects = null;
+    private ArrayList<BetterJSONObject> mProjects = null;
 
     private class ProjectReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             JSONArray projectList = ((SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT)).getJSONArray();
-            mProjects = new ArrayList<JSONObject>();
+            mProjects = new ArrayList<BetterJSONObject>();
 
             for (int i = 0; i < projectList.length(); i++) {
                 try {
-                    mProjects.add(projectList.getJSONObject(i));
+                    mProjects.add(new BetterJSONObject(projectList.getJSONObject(i)));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
 
-            Collections.sort(mProjects, new Comparator<JSONObject>() {
+            Collections.sort(mProjects, new Comparator<BetterJSONObject>() {
                 @Override
-                public int compare(JSONObject lhs, JSONObject rhs) {
-                    try {
-                        return lhs.getString("title").compareTo(rhs.getString("title"));
-                    } catch (JSONException e) {
-                        return 0;
-                    }
+                public int compare(BetterJSONObject lhs, BetterJSONObject rhs) {
+                    return lhs.getString("title").compareTo(rhs.getString("title"));
                 }
             });
 
@@ -188,28 +188,32 @@ public class ObservationEditor extends SherlockFragmentActivity {
             return;
         }
 
-        for (JSONObject project : mProjects) {
-            int projectId;
-            try {
-                projectId = project.getInt("id");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                continue;
-            }
+        for (BetterJSONObject project : mProjects) {
+            Integer projectId = project.getInt("id");
+            
+            if (projectId == null) continue;
 
             if (mProjectIds.contains(Integer.valueOf(projectId))) {
                 // Observation was added to current project
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View view = inflater.inflate(R.layout.project_selector_item, mProjectsTable, false); 
-                BetterJSONObject item = new BetterJSONObject(project);
+                BetterJSONObject item = project;
 
                 TextView projectName = (TextView) view.findViewById(R.id.project_name);
                 projectName.setText(item.getString("title"));
+                TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
+                // Strip HTML tags
+                String noHTML = Html.fromHtml(item.getString("description")).toString();
+                projectDescription.setText(noHTML);
                 ImageView userPic = (ImageView) view.findViewById(R.id.project_pic);
                 UrlImageViewHelper.setUrlDrawable(userPic, item.getString("icon_url"));
 
                 ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
                 projectSelected.setVisibility(View.GONE);
+                
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) projectName.getLayoutParams();
+                params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 1);
+                projectName.setLayoutParams(params);
                 
                 mProjectsTable.addView(view);
             }
@@ -229,15 +233,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
         private EditText mEditText;
         private Spinner mSpinner;
         private RelativeLayout mDateContainer;
-        private ImageButton mSetDate;
+        private ImageView mSetDate;
         private TextView mDate;
-        private LinearLayout mTaxonContainer;
+        private RelativeLayout mTaxonContainer;
         private ImageView mTaxonPic;
         private TextView mIdName;
         private TextView mIdTaxonName;
-        private Button mChangeTaxon;
         private ArrayAdapter<String> mSpinnerAdapter;
         private TaxonReceiver mTaxonReceiver;
+        private TextView mFieldDescription;
         
         private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
             
@@ -280,6 +284,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 if (!mIsCanceled) {
                     mDate.setText(String.format("%02d:%02d", mHour, mMinute));
                 }
+                
+                dismiss();
             }
 
             @Override
@@ -336,6 +342,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 if (!mIsCanceled) {
                     mDate.setText(String.format("%d-%02d-%02d", mYear, mMonth + 1, mDay));
                 }
+                
+                dismiss();
             }
 
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -472,19 +480,24 @@ public class ObservationEditor extends SherlockFragmentActivity {
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             
             mFieldName = (TextView) row.findViewById(R.id.field_name);
+            mFieldDescription = (TextView) row.findViewById(R.id.field_description);
             mEditText = (EditText) row.findViewById(R.id.edit_text);
             mSpinner = (Spinner) row.findViewById(R.id.spinner);
             mDateContainer = (RelativeLayout) row.findViewById(R.id.date_container);
-            mSetDate = (ImageButton) row.findViewById(R.id.set_date);
+            mSetDate = (ImageView) row.findViewById(R.id.set_date);
             mDate = (TextView) row.findViewById(R.id.date);
-            mTaxonContainer = (LinearLayout) row.findViewById(R.id.taxon_container);
+            mTaxonContainer = (RelativeLayout) row.findViewById(R.id.taxon_container);
             mTaxonPic = (ImageView) row.findViewById(R.id.taxon_pic);
             mIdName = (TextView) row.findViewById(R.id.id_name);
             mIdTaxonName = (TextView) row.findViewById(R.id.id_taxon_name);
             mIdTaxonName.setTypeface(null, Typeface.ITALIC);
-            mChangeTaxon = (Button) row.findViewById(R.id.id_change);
             
             mFieldName.setText(mField.name);
+            mFieldDescription.setText(mField.description);
+            
+            if (mField.is_required) {
+                mFieldName.setTextColor(0xFFFF2F92);
+            }
             
             if ((mField.data_type.equals("text")) && (mField.allowed_values != null) && (!mField.allowed_values.equals(""))) {
                 mSpinner.setVisibility(View.VISIBLE);
@@ -512,7 +525,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 } else {
                     mDate.setText("");
                 }
-                mSetDate.setOnClickListener(new OnClickListener() {
+                mDateContainer.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DialogFragment newFragment = new DatePickerFragment();
@@ -523,7 +536,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             } else if (mField.data_type.equals("time")) {
                 mDateContainer.setVisibility(View.VISIBLE);
                 mDate.setText(mFieldValue.value);
-                mSetDate.setOnClickListener(new OnClickListener() {
+                mSetDate.setImageResource(R.drawable.ic_action_time);
+                mDateContainer.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DialogFragment newFragment = new TimePickerFragment();
@@ -540,7 +554,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 } else {
                     mDate.setText("");
                 }
-                mSetDate.setOnClickListener(new OnClickListener() {
+                mDateContainer.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         showDateTimeDialog();
@@ -566,8 +580,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     startService(serviceIntent);
                 } else {
                     mIdName.setText("");
+                    mIdTaxonName.setText("");
                 }
-                mChangeTaxon.setOnClickListener(new OnClickListener() {
+                mTaxonContainer.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
@@ -763,14 +778,17 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
 
             mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
+            mProjects = (ArrayList<BetterJSONObject>) savedInstanceState.getSerializable("mProjects");
+            mProjectIds = savedInstanceState.getIntegerArrayList("mProjectIds");
+            mProjectFieldValues = (Hashtable<Integer, ProjectFieldValue>) savedInstanceState.getSerializable("mProjectFieldValues");
         }
 
         
-        mIdPlease = (CheckBox) findViewById(R.id.id_please);
+        mIdPlease = (Switch) findViewById(R.id.id_please);
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
-        mSaveButton = (Button) findViewById(R.id.save_observation);
+        mSaveButton = (TextView) findViewById(R.id.save_observation);
         mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
         mObservedOnButton = (Button) findViewById(R.id.observed_on);
         mTimeObservedAtButton = (Button) findViewById(R.id.time_observed_at);
@@ -779,12 +797,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mLongitudeView = (TextView) findViewById(R.id.longitude);
         mAccuracyView = (TextView) findViewById(R.id.accuracy);
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
-        mLocationRefreshButton = (ImageButton) findViewById(R.id.locationRefreshButton);
+        mLocationRefreshButton = (TextView) findViewById(R.id.locationRefreshButton);
         mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
         mTopActionBar = getSupportActionBar();
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
-        mObservationCommentsIds = (Button) findViewById(R.id.observation_id_count);
+        mObservationCommentsIds = (TextView) findViewById(R.id.commentIdCount);
         mProjectSelector = (Button) findViewById(R.id.select_projects);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         mProjectsTable = (TableLayout) findViewById(R.id.projects);
@@ -803,7 +821,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
         mTopActionBar.setHomeButtonEnabled(true);
         mTopActionBar.setDisplayShowCustomEnabled(true);
+        mTopActionBar.setDisplayHomeAsUpEnabled(true);
         mTopActionBar.setCustomView(R.layout.observation_editor_top_action_bar);
+        mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#767676")));
         ImageButton takePhoto = (ImageButton) mTopActionBar.getCustomView().findViewById(R.id.take_photo);
         takePhoto.setOnClickListener(new OnClickListener() {
             @Override
@@ -851,18 +871,16 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
 
         
-        RelativeLayout commentWrapper = (RelativeLayout) findViewById(R.id.commentCountWrapper);
-        TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
         Integer totalCount = (mObservation.comments_count == null ? 0 : mObservation.comments_count) +
                 (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
         if ((mObservation.identifications_count != null) && (mObservation.identifications_count > 0)) totalCount--; // Don't count our own ID
-        commentIdCountText.setText(totalCount.toString());
+        mObservationCommentsIds.setText(totalCount.toString());
 
         if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
             if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
                     (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
                 // There are unread comments/IDs
-                commentWrapper.setBackgroundResource(R.drawable.id_comment_count_highlighted);
+                mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
             }
         }
 
@@ -937,23 +955,25 @@ public class ObservationEditor extends SherlockFragmentActivity {
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0); 
         
         
-        // Get IDs of project-observations
-        int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
-        Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-                "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
-                null, ProjectObservation.DEFAULT_SORT_ORDER);
-
-        c.moveToFirst();
-
-        mProjectIds = new ArrayList<Integer>();
-
-        while (c.isAfterLast() == false) {
-            ProjectObservation projectObservation = new ProjectObservation(c);
-            mProjectIds.add(projectObservation.project_id);
-
-            c.moveToNext();
+        if (mProjectIds == null) {
+            // Get IDs of project-observations
+            int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+            Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+                    "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
+                    null, ProjectObservation.DEFAULT_SORT_ORDER);
+    
+            c.moveToFirst();
+    
+            mProjectIds = new ArrayList<Integer>();
+    
+            while (c.isAfterLast() == false) {
+                ProjectObservation projectObservation = new ProjectObservation(c);
+                mProjectIds.add(projectObservation.project_id);
+    
+                c.moveToNext();
+            }
+            c.close();
         }
-        c.close();
 
         refreshProjectFields();
         
@@ -961,8 +981,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         registerReceiver(mProjectReceiver, filter);  
         
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
-        startService(serviceIntent);  
+        if (mProjects == null) {
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
+            startService(serviceIntent);  
+        } else {
+            refreshProjectList();
+        }
     }
     
     @Override
@@ -1016,6 +1040,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (mUri != null) { outState.putString("mUri", mUri.toString()); }
         uiToObservation();
         outState.putSerializable("mObservation", mObservation);
+        outState.putSerializable("mProjects", mProjects);
+        outState.putIntegerArrayList("mProjectIds", mProjectIds);
+        uiToProjectFieldValues();
+        outState.putSerializable("mProjectFieldValues", mProjectFieldValues);
     }
 
     @Override
@@ -1100,8 +1128,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
         if (mObservation.id == null) {
             // Unsynced observation - don't allow adding new comments/ids
-            RelativeLayout container = (RelativeLayout) findViewById(R.id.observation_comments);
-            container.setVisibility(View.GONE);
+            mObservationCommentsIds.setVisibility(View.GONE);
+            mViewOnInat.setVisibility(View.GONE);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mDeleteButton.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 1);
+            mDeleteButton.setLayoutParams(params);
         }
         
         updateUi();
@@ -1138,8 +1169,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
         String selectedValue = values.get(mGeoprivacy.getSelectedItemPosition());
-
-        if (!selectedValue.equals("")) {
+        if ((mObservation.geoprivacy != null) || (mGeoprivacy.getSelectedItemPosition() != 0)) {
             mObservation.geoprivacy = selectedValue;
         }
 
@@ -1153,7 +1183,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (mObservation.geoprivacy != null) {
             mGeoprivacy.setSelection(values.indexOf(mObservation.geoprivacy));
         } else {
-            mGeoprivacy.setSelection(values.indexOf(""));
+            mGeoprivacy.setSelection(0);
         }
         
         mIdPlease.setChecked(mObservation.id_please);
@@ -1641,13 +1671,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
             getContentResolver().update(mUri, cv, null, null);
 
-            RelativeLayout commentWrapper = (RelativeLayout) findViewById(R.id.commentCountWrapper);
-            commentWrapper.setBackgroundResource(R.drawable.id_comment_count);
+            mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background);
             
-            TextView commentIdCountText = (TextView) findViewById(R.id.observationCommentIdCount);
             Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
             if ((mObservation.identifications_count != null) && (mObservation.identifications_count > 0)) totalCount--; // Don't count our own ID
-            commentIdCountText.setText(totalCount.toString());
+            mObservationCommentsIds.setText(totalCount.toString());
         }
     }
 
@@ -1934,7 +1962,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             // Add field viewer to table
             mProjectFieldsTable.addView(fieldViewer.getView());
         }
-
+        
     }
     
     private boolean isNetworkAvailable() {
