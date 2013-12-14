@@ -1,30 +1,47 @@
 package org.inaturalist.android;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.actionbarsherlock.app.ActionBar;;
+import com.actionbarsherlock.view.MenuItem;
 
 public class IdentificationActivity extends SherlockActivity {
     public static final String ID_REMARKS = "id_remarks";
     protected static final int TAXON_SEARCH_REQUEST_CODE = 301;
     public static final String TAXON_ID = "taxon_id";
     private ActionBar mTopActionBar;
-    private MultilineEditText mRemarks;
+    private EditText mRemarks;
     private int mTaxonId = 0;
     
     private TextView mTaxonName;
     private TextView mIdName;
     private ImageView mIdPic;
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+            setResult(RESULT_CANCELED);
+            finish();
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	} 
+
 
     /** Called when the activity is first created. */
     @Override
@@ -33,18 +50,21 @@ public class IdentificationActivity extends SherlockActivity {
         
         setContentView(R.layout.new_identification);
  
-        mRemarks = (MultilineEditText) findViewById(R.id.remarks);
+        mRemarks = (EditText) findViewById(R.id.remarks);
         
         
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setHomeButtonEnabled(true);
-        mTopActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME);
+        mTopActionBar.setDisplayShowCustomEnabled(true);
+        mTopActionBar.setDisplayHomeAsUpEnabled(true);
+        mTopActionBar.setCustomView(R.layout.add_id_top_action_bar);
+        mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#767676")));
         
         mTaxonName = (TextView) findViewById(R.id.id_taxon_name);
         mIdName = (TextView) findViewById(R.id.id_name);
         mIdPic = (ImageView) findViewById(R.id.id_pic);
         
-        Button saveId = (Button) findViewById(R.id.save_id);
+        View saveId = (View) mTopActionBar.getCustomView().findViewById(R.id.save_id);
         saveId.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +80,7 @@ public class IdentificationActivity extends SherlockActivity {
         });
         
         
-        Button changeId = (Button) findViewById(R.id.id_change);
+        View changeId = (View) findViewById(R.id.id_change);
         changeId.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

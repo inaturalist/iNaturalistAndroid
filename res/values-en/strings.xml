@@ -138,6 +138,7 @@
     <string name="check_list">Check list</string>
     <string name="gps">GPS</string>
     <string name="geoprivacy">Geoprivacy</string>
+    <string name="comments_ids">Comments and Identifications</string>
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
 	    <item>Obscured</item>

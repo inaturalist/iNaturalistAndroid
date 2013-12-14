@@ -807,6 +807,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         params.add(new BasicNameValuePair("project_observation[observation_id]", String.valueOf(observationId)));
         params.add(new BasicNameValuePair("project_observation[project_id]", String.valueOf(projectId)));
         JSONArray json = post(url, params);
+        
+        if (json == null) {
+            return new BetterJSONObject();
+        }
        
         try {
             return new BetterJSONObject(json.getJSONObject(0));

@@ -136,6 +136,7 @@
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
     <string name="search_projects">Search projects...</string>
     <string name="save_observation">Save observation</string>
+    <string name="comments_ids">Comments and Identifications</string>
     <string name="gps">GPS</string>
     <string name="about">About</string>
     <string name="check_list">Check list</string>

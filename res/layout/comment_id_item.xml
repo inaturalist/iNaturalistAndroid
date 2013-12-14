@@ -1,37 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical"
+    android:padding="8dp">
     
-    <TableRow >
-
+     
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        >
+        
     <ImageView
         android:id="@+id/user_pic"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginRight="5dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
         android:src="@drawable/actionbar_back_indicator" />
 	
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/id_layout"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/user_pic"
+        >
 
         <ImageView
             android:id="@+id/id_pic"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginRight="5dp"
+	        android:layout_centerVertical="true"
+	        android:layout_alignParentLeft="true"
             android:src="@drawable/actionbar_back_indicator" />
-
+        
+        <Button
+            android:id="@+id/id_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:text="@string/agree" />
+        
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_toRightOf="@id/id_pic"
+	        android:layout_toLeftOf="@id/id_agree"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/id_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Medium"
                 android:text="TextView" />
 
             <TextView
@@ -41,34 +67,27 @@
                 android:text="TextView" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/id_agree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/agree" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/comment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:maxLines="3"
-        android:lines="3"
+        android:maxLines="4"
+        android:ellipsize="end"
         android:singleLine="false" 
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/user_pic"
         />
 
-	</TableRow>
+ </RelativeLayout>
 	
-	<TableRow>
-	    <View></View>
-        <TextView
-        android:id="@+id/posted_on"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Published on ..." />
-        
-
-	</TableRow>
-	
-</TableLayout>
+ <TextView
+       android:id="@+id/posted_on"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="5dp"
+       android:text="Published on ..." />
+ 
+</LinearLayout>

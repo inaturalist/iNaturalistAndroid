@@ -12,6 +12,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.AlertDialog;
@@ -23,9 +26,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,10 +42,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-public class CommentsIdsActivity extends ListActivity {
+public class CommentsIdsActivity extends SherlockListActivity {
     public static final String NEW_COMMENTS = "new_comments";
     public static final String NEW_IDS = "new_ids";
     protected static final int NEW_ID_REQUEST_CODE = 202;
@@ -60,15 +68,23 @@ public class CommentsIdsActivity extends ListActivity {
     private Button mAddComment;
     private Button mAddId;
 	
+    private ArrayList<BetterJSONObject> mCommentsIds;
+    private ProgressBar mProgress;
+    private TextView mNoComments;
+    
 	private class ObservationReceiver extends BroadcastReceiver {
-	    @Override
+
+        @Override
 	    public void onReceive(Context context, Intent intent) {
 	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
 	        
 	        if (observation == null) {
 	            // Couldn't retrieve observation details (probably deleted)
-	            TextView message = (TextView) findViewById(android.R.id.empty);
-	            message.setText(R.string.observation_deleted);
+	            mNoComments.setText(R.string.observation_deleted);
+	            mCommentsIds = new ArrayList<BetterJSONObject>();
+	            loadResultsIntoUI();
+	            View bottomBar = findViewById(R.id.bottom_bar);
+	            bottomBar.setVisibility(View.GONE);
 	            return;
 	        } else {
 	            mAddComment.setEnabled(true);
@@ -77,16 +93,16 @@ public class CommentsIdsActivity extends ListActivity {
 	        
 	        JSONArray comments = observation.comments.getJSONArray();
 	        JSONArray ids = observation.identifications.getJSONArray();
-	        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
+	        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
 	        
 	        try {
 	            for (int i = 0; i < comments.length(); i++) {
-	                JSONObject comment = comments.getJSONObject(i);
+	                BetterJSONObject comment = new BetterJSONObject(comments.getJSONObject(i));
 	                comment.put("type", "comment");
 	                results.add(comment);
 	            }
 	            for (int i = 0; i < ids.length(); i++) {
-	                JSONObject id = ids.getJSONObject(i);
+	                BetterJSONObject id = new BetterJSONObject(ids.getJSONObject(i));
 	                id.put("type", "identification");
 	                results.add(id);
 	            }
@@ -94,35 +110,56 @@ public class CommentsIdsActivity extends ListActivity {
 	            e.printStackTrace();
 	        }
 	        
-	        Collections.sort(results, new Comparator<JSONObject>() {
+	        Collections.sort(results, new Comparator<BetterJSONObject>() {
                 @Override
-                public int compare(JSONObject lhs, JSONObject rhs) {
-                    BetterJSONObject o1 = new BetterJSONObject(lhs);
-                    BetterJSONObject o2 = new BetterJSONObject(rhs);
-                    Timestamp date1 = o1.getTimestamp("created_at");
-                    Timestamp date2 = o2.getTimestamp("created_at");
+                public int compare(BetterJSONObject lhs, BetterJSONObject rhs) {
+                    Timestamp date1 = lhs.getTimestamp("created_at");
+                    Timestamp date2 = rhs.getTimestamp("created_at");
                     
                     return date1.compareTo(date2);
                 }
             });
 	        
+	        mCommentsIds = results;
 	        mAdapter = new CommentsIdsAdapter(CommentsIdsActivity.this, results);
 	        setListAdapter(mAdapter);
 	        
-	        TextView loadingComments = (TextView) findViewById(android.R.id.empty);
-	        loadingComments.setText(R.string.no_comments);
+	        loadResultsIntoUI();
 	    }
 	} 	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        onBackPressed();
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	} 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("mCommentsIds", mCommentsIds);
+    }
 
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#767676")));
+
+        
         setContentView(R.layout.comments_ids_list);
         
-        TextView loadingComments = (TextView) findViewById(android.R.id.empty);
-        loadingComments.setText(R.string.loading_comments);
-        
+        mNoComments = (TextView) findViewById(android.R.id.empty);
+        mProgress = (ProgressBar) findViewById(R.id.progress);
         
         mObservationId = getIntent().getIntExtra(INaturalistService.OBSERVATION_ID, 0);
         mTaxonId = getIntent().getIntExtra(INaturalistService.TAXON_ID, 0);
@@ -152,9 +189,40 @@ public class CommentsIdsActivity extends ListActivity {
             }
         });
         
-        mAddComment.setEnabled(false);
-        mAddId.setEnabled(false);
+       
+        if (savedInstanceState != null) {
+            mCommentsIds = (ArrayList<BetterJSONObject>) savedInstanceState.getSerializable("mCommentsIds");
+            mAdapter = new CommentsIdsAdapter(CommentsIdsActivity.this, mCommentsIds);
+            setListAdapter(mAdapter);
+        }
  
+        loadResultsIntoUI();
+    }
+    
+    private void loadResultsIntoUI() {
+        if (mCommentsIds == null) {
+            mProgress.setVisibility(View.VISIBLE);
+            getListView().setVisibility(View.GONE);
+            mNoComments.setVisibility(View.GONE);
+            
+            mAddComment.setEnabled(false);
+            mAddId.setEnabled(false);
+            
+        }  else if (mCommentsIds.size() == 0) {
+            mProgress.setVisibility(View.GONE);
+            getListView().setVisibility(View.GONE);
+            mNoComments.setVisibility(View.VISIBLE);
+            
+            mAddComment.setEnabled(true);
+            mAddId.setEnabled(true);
+        } else {
+            mProgress.setVisibility(View.GONE);
+            getListView().setVisibility(View.VISIBLE);
+            mNoComments.setVisibility(View.GONE);
+            
+            mAddComment.setEnabled(true);
+            mAddId.setEnabled(true);
+        }
     }
     
     @Override
@@ -272,23 +340,23 @@ public class CommentsIdsActivity extends ListActivity {
         super.onStop();
     }
     
-    public class CommentsIdsAdapter extends ArrayAdapter<JSONObject> {
+    public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> {
 
-        private List<JSONObject> mItems;
+        private List<BetterJSONObject> mItems;
         private Context mContext;
         
         public boolean isEnabled(int position) { 
             return false; 
         }  
         
-        public CommentsIdsAdapter(Context context, List<JSONObject> objects) {
+        public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects) {
             super(context, R.layout.comment_id_item, objects);
             
             mItems = objects;
             mContext = context;
         }
         
-        public void addItemAtBeginning(JSONObject newItem) {
+        public void addItemAtBeginning(BetterJSONObject newItem) {
             mItems.add(0, newItem);
         }
         
@@ -297,11 +365,11 @@ public class CommentsIdsActivity extends ListActivity {
             Resources res = getResources();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.comment_id_item, parent, false); 
-            final BetterJSONObject item = new BetterJSONObject(mItems.get(position));
+            final BetterJSONObject item = mItems.get(position);
             
             try {
                 TextView comment = (TextView) view.findViewById(R.id.comment);
-                LinearLayout idLayout = (LinearLayout) view.findViewById(R.id.id_layout);
+                RelativeLayout idLayout = (RelativeLayout) view.findViewById(R.id.id_layout);
                 
                 TextView postedOn = (TextView) view.findViewById(R.id.posted_on);
                 String username = item.getJSONObject("user").getString("login");

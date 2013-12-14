@@ -61,12 +61,12 @@
  
         <activity
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="@string/comments_ids"
             android:name=".CommentsIdsActivity" >
         </activity>
          <activity
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="@string/add_id"
             android:name=".IdentificationActivity" >
         </activity>
         <activity
