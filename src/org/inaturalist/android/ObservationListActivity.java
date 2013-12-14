@@ -78,7 +78,11 @@ public class ObservationListActivity extends SherlockListActivity {
         
         if (mSyncCompleteReceiver != null) {
             Log.i(TAG, "Unregistering ACTION_SYNC_COMPLETE");
-            unregisterReceiver(mSyncCompleteReceiver);
+            try {
+                unregisterReceiver(mSyncCompleteReceiver);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
             mSyncCompleteReceiver = null;
         }
     }
@@ -102,7 +106,7 @@ public class ObservationListActivity extends SherlockListActivity {
         mSyncCompleteReceiver = new SyncCompleteReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
         Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
-        registerReceiver(mSyncCompleteReceiver, filter);  
+        registerReceiver(mSyncCompleteReceiver, filter);
         
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
         
@@ -186,12 +190,6 @@ public class ObservationListActivity extends SherlockListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        
-        mSyncCompleteReceiver = new SyncCompleteReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
-        Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
-        registerReceiver(mSyncCompleteReceiver, filter);  
- 
     }
 
     

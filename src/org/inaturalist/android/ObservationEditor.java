@@ -357,6 +357,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         private class TaxonReceiver extends BroadcastReceiver {
             @Override
             public void onReceive(Context context, Intent intent) {
+                unregisterReceiver(mTaxonReceiver);
+                
                 BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
                 
                 if (taxon == null) {
@@ -1049,6 +1051,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        
+        if (mProjectReceiver != null) {
+            try {
+                unregisterReceiver(mProjectReceiver);  
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+        }
+        
         stopGetLocation();
         uiToProjectFieldValues();
         if (isFinishing()) {

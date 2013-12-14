@@ -110,6 +110,8 @@ public class ProjectDetailsCheckList extends Fragment {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            getActivity().unregisterReceiver(mCheckListReceiver);
+            
             SerializableJSONArray checkListSerializable = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.CHECK_LIST_RESULT);
             JSONArray checkList = (checkListSerializable == null ? new SerializableJSONArray() : checkListSerializable).getJSONArray();
             mCheckList = new ArrayList<JSONObject>();

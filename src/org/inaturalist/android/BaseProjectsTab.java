@@ -48,6 +48,8 @@ public abstract class BaseProjectsTab extends SherlockFragment {
         public void onReceive(Context context, Intent intent) {
             Log.i(TAG, "GOT " + getFilterResultName());
             
+            getActivity().unregisterReceiver(mProjectsReceiver);
+            
             JSONArray projects = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName())).getJSONArray();
             mProjects = new ArrayList<JSONObject>();
             
@@ -291,14 +293,7 @@ public abstract class BaseProjectsTab extends SherlockFragment {
     @Override
     public void onStop() {
         Log.i(TAG, "onStop");
-        
-        try {
-            //getActivity().unregisterReceiver(mProjectsReceiver);  
-        } catch (Exception exc) {
-            // In case the receiver wasn't registered
-            exc.printStackTrace();
-        }
-        
+       
         super.onStop();
     }
 

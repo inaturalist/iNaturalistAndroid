@@ -72,10 +72,26 @@ public class CommentsIdsActivity extends SherlockListActivity {
     private ProgressBar mProgress;
     private TextView mNoComments;
     
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (mObservationReceiver != null) {
+            try {
+                unregisterReceiver(mObservationReceiver);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+        }
+    }
+	    
+   
 	private class ObservationReceiver extends BroadcastReceiver {
 
         @Override
 	    public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mObservationReceiver);  
+
 	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
 	        
 	        if (observation == null) {
@@ -125,6 +141,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
 	        setListAdapter(mAdapter);
 	        
 	        loadResultsIntoUI();
+
 	    }
 	} 	
 	
@@ -249,6 +266,8 @@ public class CommentsIdsActivity extends SherlockListActivity {
                 }
 
                 // Refresh the comment/id list
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                registerReceiver(mObservationReceiver, filter);  
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, CommentsIdsActivity.this, INaturalistService.class);
                 serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
                 startService(serviceIntent2);
@@ -294,6 +313,8 @@ public class CommentsIdsActivity extends SherlockListActivity {
                 }
                 
                 // Refresh the comment/id list
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                registerReceiver(mObservationReceiver, filter);  
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, CommentsIdsActivity.this, INaturalistService.class);
                 serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
                 startService(serviceIntent2);

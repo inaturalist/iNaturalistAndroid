@@ -68,6 +68,8 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
             JSONArray projectList = ((SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT)).getJSONArray();
             mProjects = new ArrayList<JSONObject>();
 
+            unregisterReceiver(mProjectReceiver);
+
             for (int i = 0; i < projectList.length(); i++) {
                 try {
                     mProjects.add(projectList.getJSONObject(i));
@@ -183,6 +185,15 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
     @Override
     protected void onPause() {
         super.onPause();
+        
+        if (mProjectReceiver != null) {
+            try {
+                unregisterReceiver(mProjectReceiver);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+        }
+
     }
 
     @Override
