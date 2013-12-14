@@ -121,6 +121,19 @@ public abstract class BaseProjectsTab extends SherlockFragment {
     /** What result param name should be used when communicating with the iNat service (e.g. PROJECTS_RESULT) */
     abstract protected String getFilterResultParamName();
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        try {
+            if (mProjectsReceiver != null) {
+                getActivity().unregisterReceiver(mProjectsReceiver);
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

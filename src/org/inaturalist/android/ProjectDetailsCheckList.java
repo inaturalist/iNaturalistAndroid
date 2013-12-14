@@ -144,6 +144,19 @@ public class ProjectDetailsCheckList extends Fragment {
   
     
     @Override
+    public void onPause() {
+        super.onPause();
+        
+        try {
+            if (mCheckListReceiver != null) {
+                getActivity().unregisterReceiver(mCheckListReceiver);
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+    }
+    
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.project_details_check_list, container, false);
         

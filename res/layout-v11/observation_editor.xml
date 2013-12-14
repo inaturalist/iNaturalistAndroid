@@ -233,7 +233,7 @@
                     android:layout_height="60dp"
                     android:layout_margin="0dp"
                     android:layout_marginBottom="0dp"
-                    style="@android:style/Widget.Button"
+                    style="@android:style/Widget.Holo.Button"
                     android:text="@string/gps"
                     android:gravity="center_vertical"
                     android:drawableLeft="@drawable/ic_action_location_searching" />

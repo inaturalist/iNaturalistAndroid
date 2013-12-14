@@ -20,7 +20,6 @@ import android.view.View;
 import android.content.Context;
 
 public class ProjectsActivity extends SherlockFragmentActivity {
-    private FragmentTabHost mTabHost;
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     
@@ -30,14 +29,9 @@ public class ProjectsActivity extends SherlockFragmentActivity {
 
         setContentView(R.layout.projects);
         
-        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mViewPager = (ViewPager) findViewById(R.id.pager);
         
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) { 
-            setupUI();
-        } else {
-            setupUIOldAndroid();
-        }
+        setupUI();
     }
     
     @Override
@@ -51,27 +45,8 @@ public class ProjectsActivity extends SherlockFragmentActivity {
         return super.onOptionsItemSelected(item);
     } 
     
-    private void setupUIOldAndroid() {
-        mViewPager.setVisibility(View.GONE);
-        // TODO
-        //mTabHost.setup(this, getSupportFragmentManager(), R.id.tabFrameLayout);
-
-        mTabHost.addTab(
-                mTabHost.newTabSpec("joined").setIndicator(getString(R.string.joined_projects),
-                        getResources().getDrawable(android.R.drawable.star_on)),
-                        JoinedProjectsTab.class, null);
-        mTabHost.addTab(
-                mTabHost.newTabSpec("nearby").setIndicator(getString(R.string.nearby_projects),
-                        getResources().getDrawable(android.R.drawable.star_on)),
-                        NearByProjectsTab.class, null);
-        mTabHost.addTab(
-                mTabHost.newTabSpec("featured").setIndicator(getString(R.string.featured_projects),
-                        getResources().getDrawable(android.R.drawable.star_on)),
-                        FeaturedProjectsTab.class, null);
-    }
-    
+   
     private void setupUI() {
-        //mTabHost.setVisibility(View.GONE);
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setHomeButtonEnabled(true);
