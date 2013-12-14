@@ -59,15 +59,16 @@ public class MenuActivity extends ListActivity {
         MENU_ITEMS.add(map);
         
         map = new HashMap<String,String>();
-        map.put("title", getString(R.string.settings));
-        map.put("description", getString(R.string.settings_description));
-        MENU_ITEMS.add(map);
-        
-        map = new HashMap<String,String>();
         map.put("title", getString(R.string.projects));
         map.put("description", getString(R.string.projects_description));
         MENU_ITEMS.add(map);
         
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.settings));
+        map.put("description", getString(R.string.settings_description));
+        MENU_ITEMS.add(map);
+        
+       
         SimpleAdapter adapter = new SimpleAdapter(this, 
                 (List<? extends Map<String, ?>>) MENU_ITEMS, 
                 R.layout.menu_item,

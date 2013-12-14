@@ -14,10 +14,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
@@ -35,7 +38,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.VisibleRegion;
 
-public class INaturalistMapActivity extends FragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener {
+public class INaturalistMapActivity extends SherlockFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener {
     public final static String TAG = "INaturalistMapActivity";
     private GoogleMap mMap;
     private Circle mCircle;
@@ -43,10 +46,16 @@ public class INaturalistMapActivity extends FragmentActivity implements OnMarker
     private ActivityHelper mHelper;
     private HashMap<String, Observation> mMarkerObservations;
     private INaturalistApp mApp;
+    
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.map);
     }
 
@@ -79,7 +88,7 @@ public class INaturalistMapActivity extends FragmentActivity implements OnMarker
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.map_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -87,6 +96,9 @@ public class INaturalistMapActivity extends FragmentActivity implements OnMarker
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+         case android.R.id.home:
+            finish();
+            return true;
         case R.id.add:
             // Launch activity to insert a new item
             startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditor.class));
