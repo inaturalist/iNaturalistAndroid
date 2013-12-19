@@ -227,16 +227,23 @@
                     android:padding="5dp"
                     android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/locationRefreshButton"
-                    android:layout_width="120dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="0dp"
-                    android:layout_marginBottom="0dp"
-                    style="@android:style/Widget.Button"
-                    android:text="@string/gps"
-                    android:gravity="center_vertical"
-                    android:drawableLeft="@drawable/ic_action_location_searching" />
+                <RelativeLayout
+	                    android:id="@+id/locationRefreshButton"
+ 	                    android:layout_width="120dp"
+	                    android:layout_height="60dp"
+	                    android:layout_margin="0dp"
+	                    android:layout_marginBottom="0dp"                   
+	                    style="@android:style/Widget.Button"
+                    >
+	                <TextView
+	                    android:layout_centerInParent="true"
+ 	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:text="@string/gps"
+	                    android:gravity="center"
+	                    style="@android:style/TextAppearance.Medium"
+	                    android:drawableLeft="@drawable/ic_action_location_searching" />
+                </RelativeLayout>
 
                 <ImageButton
                     android:id="@+id/locationStopRefreshButton"

@@ -110,26 +110,27 @@ public class TaxonSearchActivity extends SherlockListActivity {
     
     
     private class TaxonAutoCompleteAdapter extends ArrayAdapter<String> implements Filterable {
-        private ArrayList<JSONObject> resultList;
+        private ArrayList<JSONObject> mResultList;
         private Context mContext;
+        private String mCurrentSearchString;
 
         public TaxonAutoCompleteAdapter(Context context, int resourceId) {
             super(context, resourceId, new ArrayList<String>());
             
             mContext = context;
             
-            resultList = new ArrayList<JSONObject>();
+            mResultList = new ArrayList<JSONObject>();
         }
 
         @Override
         public int getCount() {
-            return resultList.size();
+            return mResultList.size();
         }
 
         @Override
         public String getItem(int index) {
             try {
-                return resultList.get(index).getString("name");
+                return mResultList.get(index).getString("name");
             } catch (JSONException e) {
                 return "";
             }
@@ -158,14 +159,27 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     FilterResults filterResults = new FilterResults();
                     
                     if (constraint != null) {
-                        toggleLoading(true);
-                        
-                        // Retrieve the autocomplete results.
-                        resultList = autocomplete(constraint.toString());
-                        
-                        // Assign the data to the FilterResults
-                        filterResults.values = resultList;
-                        filterResults.count = resultList.size();
+                        if (constraint.length() == 0) {
+                            filterResults.values = new ArrayList<JSONObject>();
+                            filterResults.count = 0;
+                            
+                        } else {
+                            toggleLoading(true);
+
+                            // Retrieve the autocomplete results.
+                            ArrayList<JSONObject> results;
+                            mCurrentSearchString = (String) constraint;
+                            results = autocomplete(constraint.toString());
+
+                            if (!constraint.equals(mCurrentSearchString)) {
+                                // In the meanwhile, new searches were initiated by the user - ignore this result
+                                return null;
+                            }
+
+                            // Assign the data to the FilterResults
+                            filterResults.values = results;
+                            filterResults.count = results.size();
+                        }
                     }
                     
                     toggleLoading(false);
@@ -176,9 +190,14 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
                     if (results != null && results.count > 0) {
+                        mResultList = (ArrayList<JSONObject>) results.values;
                         notifyDataSetChanged();
                     }
                     else {
+                        if (results != null) {
+                            mResultList = (ArrayList<JSONObject>) results.values;
+                        }
+                        
                         notifyDataSetInvalidated();
                     }
                 }};
@@ -189,7 +208,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.taxon_result_item, parent, false); 
-            JSONObject item = resultList.get(position);
+            JSONObject item = mResultList.get(position);
             
             try {
                 ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);

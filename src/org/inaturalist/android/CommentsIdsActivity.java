@@ -96,7 +96,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
 	        
 	        if (observation == null) {
 	            // Couldn't retrieve observation details (probably deleted)
-	            mNoComments.setText(R.string.observation_deleted);
+	            mNoComments.setText(R.string.could_not_load_comments);
 	            mCommentsIds = new ArrayList<BetterJSONObject>();
 	            loadResultsIntoUI();
 	            View bottomBar = findViewById(R.id.bottom_bar);
@@ -458,13 +458,13 @@ public class CommentsIdsActivity extends SherlockListActivity {
                                 e.printStackTrace();
                             }
                             
-                            agree.setVisibility(View.INVISIBLE);
+                            agree.setVisibility(View.GONE);
                         }
                     });
                     
                     if ((username.equalsIgnoreCase(mLogin)) || (mTaxonId == item.getInt("taxon_id").intValue())) {
                         // Can't agree on our on identification or when the identification is the current one
-                        agree.setVisibility(View.INVISIBLE);
+                        agree.setVisibility(View.GONE);
                     }
                 }
             } catch (JSONException e) {

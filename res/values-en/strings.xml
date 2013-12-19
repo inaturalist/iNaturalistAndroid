@@ -130,7 +130,7 @@
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
     <string name="id_please">Need ID help?</string>
     <string name="select_projects">Select Projects</string>
-    <string name="observation_deleted">Couldn\'t load comments/IDs - observation was probably deleted on website</string>
+    <string name="could_not_load_comments">Couldn\'t load comments/IDs - observation was probably deleted on website</string>
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
     <string name="search_projects">Search projects...</string>
     <string name="save_observation">Save observation</string>
@@ -139,6 +139,8 @@
     <string name="gps">GPS</string>
     <string name="geoprivacy">Geoprivacy</string>
     <string name="comments_ids">Comments and Identifications</string>
+    <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
+    <string name="view_on_inat_confirmation">View this observation in a browser?</string>
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
 	    <item>Obscured</item>

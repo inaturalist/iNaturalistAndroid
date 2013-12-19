@@ -11,13 +11,12 @@
 	    android:layout_weight="1"
 	    android:layout_height="wrap_content" >
 	    
-        <TextView 
-		    android:id="@+id/field_name"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Field name"
-		    style="@android:style/TextAppearance.Medium"
-            />
+        <TextView
+            android:id="@+id/field_name"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Field name" />
         
        <TextView 
 		    android:id="@+id/field_description"
@@ -40,19 +39,22 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:id="@+id/edit_text"
+		    android:paddingTop="0dp"
             />
         
-        <Spinner 
+        <Spinner
             android:visibility="gone"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:id="@+id/spinner"
+		    android:paddingTop="0dp"
             />
         
        <RelativeLayout
             android:visibility="gone"
 		    android:id="@+id/date_container"
             android:background="@drawable/actionbar_btn"
+		    android:paddingTop="0dp"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content" >
 		    <ImageView
@@ -80,6 +82,7 @@
 	        android:id="@+id/taxon_container"
             android:layout_width="fill_parent"
             android:background="@drawable/actionbar_btn"
+		    android:paddingTop="0dp"
             android:layout_height="wrap_content">
 
            <ImageView

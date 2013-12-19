@@ -25,6 +25,7 @@
 		    android:drawableLeft="@drawable/ic_action_chat"
 		    android:background="@drawable/actionbar_btn"
 	        android:textColor="#ffffff"
+	        android:gravity="left|center_vertical"
 		    />
 	      
  	      <Button
@@ -36,6 +37,7 @@
 		    android:drawableLeft="@drawable/ic_action_labels"
 		    android:background="@drawable/actionbar_btn"
 	        android:textColor="#ffffff"
+	        android:gravity="left|center_vertical"
 		    />
      
     </LinearLayout>

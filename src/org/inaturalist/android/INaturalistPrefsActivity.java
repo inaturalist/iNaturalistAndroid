@@ -44,7 +44,7 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final int REQUEST_CODE_ADD_ACCOUNT = 0x1001;
     
-    private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
+    private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
     
 	private LinearLayout mSignInLayout;
 	private LinearLayout mSignOutLayout;
@@ -359,7 +359,11 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 		}
 
 	    protected void onPostExecute(String result) {
-	        mProgressDialog.dismiss();
+	        try {
+	            mProgressDialog.dismiss();
+	        } catch (Exception exc) {
+	            // Ignore
+	        }
 			if (result != null) {
 				Toast.makeText(mActivity, getString(R.string.signed_in), Toast.LENGTH_SHORT).show();
 			} else {
@@ -472,9 +476,10 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	        }
 	        AccountManager.get(this).getAuthToken(account, 
 	                GOOGLE_AUTH_TOKEN_TYPE,
-	                true,
+	                null,
+	                INaturalistPrefsActivity.this,
 	                cb, 
-	                null); 
+	                null);
 
 	    } else {
 	        // "Regular" login

@@ -116,7 +116,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private TextView mLongitudeView;
     private TextView mAccuracyView;
     private ProgressBar mLocationProgressView;
-    private TextView mLocationRefreshButton;
+    private View mLocationRefreshButton;
     private ImageButton mLocationStopRefreshButton;
     private Button mProjectSelector;
     private Uri mFileUri;
@@ -497,6 +497,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mFieldName.setText(mField.name);
             mFieldDescription.setText(mField.description);
             
+            if ((mField.description == null) || (mField.description.length() == 0)) {
+                mFieldDescription.setVisibility(View.GONE);
+            } else {
+                mFieldDescription.setVisibility(View.VISIBLE);
+            }
+            
             if (mField.is_required) {
                 mFieldName.setTextColor(0xFFFF2F92);
             }
@@ -799,7 +805,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mLongitudeView = (TextView) findViewById(R.id.longitude);
         mAccuracyView = (TextView) findViewById(R.id.accuracy);
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
-        mLocationRefreshButton = (TextView) findViewById(R.id.locationRefreshButton);
+        mLocationRefreshButton = (View) findViewById(R.id.locationRefreshButton);
         mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
         mTopActionBar = getSupportActionBar();
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
@@ -859,9 +865,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mViewOnInat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(INaturalistService.HOST + "/observations/"+mObservation.id));
-                startActivity(i);
+                // Display a confirmation dialog
+                confirm(ObservationEditor.this, R.string.edit_observation, R.string.view_on_inat_confirmation, 
+                        R.string.yes, R.string.no, 
+                        new Runnable() { public void run() {
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(INaturalistService.HOST + "/observations/"+mObservation.id));
+                            startActivity(i);
+                        }}, 
+                        null);
             }
         });
         
@@ -890,9 +902,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delete((mObservation == null) || (mObservation.id == null));
-                Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
-                finish();
+                // Display a confirmation dialog
+                confirm(ObservationEditor.this, R.string.edit_observation, R.string.delete_confirmation, 
+                        R.string.yes, R.string.no, 
+                        new Runnable() { public void run() {
+                            delete((mObservation == null) || (mObservation.id == null));
+                            Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }}, 
+                        null);
             }
         });
 
