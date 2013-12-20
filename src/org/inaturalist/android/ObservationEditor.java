@@ -75,6 +75,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -888,7 +890,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         Integer totalCount = (mObservation.comments_count == null ? 0 : mObservation.comments_count) +
                 (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
         if ((mObservation.identifications_count != null) && (mObservation.identifications_count > 0)) totalCount--; // Don't count our own ID
-        mObservationCommentsIds.setText(totalCount.toString());
+        refreshCommentsIdSize(totalCount);
 
         if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
             if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
@@ -1704,8 +1706,31 @@ public class ObservationEditor extends SherlockFragmentActivity {
             
             Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
             if ((mObservation.identifications_count != null) && (mObservation.identifications_count > 0)) totalCount--; // Don't count our own ID
-            mObservationCommentsIds.setText(totalCount.toString());
+            refreshCommentsIdSize(totalCount);
         }
+    }
+    
+    private void refreshCommentsIdSize(Integer value) {
+        ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
+        // Make sure the height and width of the rectangle are the same (i.e. a square)
+        observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int dimension = mObservationCommentsIds.getHeight();
+                ViewGroup.LayoutParams params = mObservationCommentsIds.getLayoutParams();
+                
+                if (dimension > mObservationCommentsIds.getWidth()) {
+                    // Only resize if there's enough room
+                    params.width = dimension;
+                    mObservationCommentsIds.setLayoutParams(params);
+                }
+                
+                ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
+                observer.removeOnGlobalLayoutListener(this); 
+            }
+        });
+        
+        mObservationCommentsIds.setText(value.toString());
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {

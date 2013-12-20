@@ -278,7 +278,7 @@ public class ObservationProvider extends ContentProvider {
         }
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        Log.e("DEBUG", "T: " + tableName + "; values: " + values.toString());
+        Log.d(TAG, "Insert: " + tableName + "; values: " + values.toString());
         long rowId = db.insert(tableName, BaseColumns._ID, values);
         if (rowId > 0) {
             Uri newUri = ContentUris.withAppendedId(contentUri, rowId);
@@ -419,6 +419,7 @@ public class ObservationProvider extends ContentProvider {
         case Observation.OBSERVATION_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
             contentUri = Observation.CONTENT_URI;
+            Log.d(TAG, "Update " + Observation.TABLE_NAME + "; " + values.toString());
             count = db.update(Observation.TABLE_NAME, values, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             
@@ -426,6 +427,7 @@ public class ObservationProvider extends ContentProvider {
             if (count > 0 && values.containsKey(Observation.ID)) {
                 ContentValues cv = new ContentValues();
                 cv.put(ObservationPhoto.OBSERVATION_ID, values.getAsInteger(Observation.ID));
+                Log.d(TAG, "Update " + ObservationPhoto.TABLE_NAME + "; " + cv.toString());
                 db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
             }
             
@@ -433,6 +435,7 @@ public class ObservationProvider extends ContentProvider {
             if ((count > 0) && (values.containsKey(Observation.ID)) && (values.get(Observation.ID) != null)) {
                 ContentValues cv = new ContentValues();
                 cv.put(ProjectObservation.OBSERVATION_ID, values.getAsInteger(Observation.ID));
+                Log.d(TAG, "Update observation from " + id + "to " + values.getAsInteger(Observation.ID));
                 db.update(ProjectObservation.TABLE_NAME, cv, ProjectObservation.OBSERVATION_ID + "=" + id, null);
                 
                 cv = new ContentValues();
@@ -448,6 +451,7 @@ public class ObservationProvider extends ContentProvider {
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
             contentUri = ObservationPhoto.CONTENT_URI;
+            Log.d(TAG, "Update " + ObservationPhoto.TABLE_NAME + "; " + values.toString());
             count = db.update(ObservationPhoto.TABLE_NAME, values, ObservationPhoto._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;

@@ -373,11 +373,17 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 
                 Cursor c2 = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = '"+projectObservation.observation_id+"'", null, Observation.DEFAULT_SORT_ORDER);
                 c2.moveToFirst();
+                if (c2.getCount() == 0) {
+                    break;
+                }
                 Observation observation = new Observation(c2);
                 c2.close();
                 
                 c2 = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+projectObservation.project_id+"'", null, Project.DEFAULT_SORT_ORDER);
                 c2.moveToFirst();
+                if (c2.getCount() == 0) {
+                    break;
+                }
                 Project project = new Project(c2);
                 c2.close();
                 
@@ -1090,6 +1096,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 //                url));
         
         HttpRequestBase request;
+        
+        Log.d(TAG, String.format("URL: %s - %s (%s)", method, url, (params != null ? params.toString() : "null")));
         
         if (method.equalsIgnoreCase("post")) {
             request = new HttpPost(url);

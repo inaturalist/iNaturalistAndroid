@@ -38,6 +38,8 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -436,8 +438,6 @@ public class ObservationListActivity extends SherlockListActivity {
                 commentIdCountText.setVisibility(View.INVISIBLE);
             } else {
                 commentIdCountText.setVisibility(View.VISIBLE);
-                commentIdCountText.setText(totalCount.toString());
-                
                 if ((lastCommentsCount == null) || (lastCommentsCount != commentsCount) ||
                         (lastIdCount == null) || (lastIdCount != idCount)) {
                     // There are unread comments/IDs
@@ -445,6 +445,9 @@ public class ObservationListActivity extends SherlockListActivity {
                 } else {
                     commentIdCountText.setBackgroundResource(R.drawable.comments_ids_background);
                 }
+                
+                refreshCommentsIdSize(commentIdCountText, totalCount);
+                
             }
  
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
@@ -461,6 +464,30 @@ public class ObservationListActivity extends SherlockListActivity {
             
             return view;
         }
+        
+        private void refreshCommentsIdSize(final TextView view, Long value) {
+            ViewTreeObserver observer = view.getViewTreeObserver();
+            // Make sure the height and width of the rectangle are the same (i.e. a square)
+            observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    int dimension = view.getHeight();
+                    ViewGroup.LayoutParams params = view.getLayoutParams();
+
+                    if (dimension > view.getWidth()) {
+                        // Only resize if there's enough room
+                        params.width = dimension;
+                        view.setLayoutParams(params);
+                    }
+
+                    ViewTreeObserver observer = view.getViewTreeObserver();
+                    observer.removeOnGlobalLayoutListener(this); 
+                }
+            });
+
+            view.setText(value.toString());
+        }
+ 
         
     }
 }
