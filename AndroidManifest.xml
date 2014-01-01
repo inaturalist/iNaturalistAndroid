@@ -39,6 +39,15 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
+            android:name=".TutorialActivity" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".MenuActivity" /> 
+        </activity>
+        
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
             android:name=".ProjectDetails" >
            	<meta-data
 	            android:name="android.support.PARENT_ACTIVITY"

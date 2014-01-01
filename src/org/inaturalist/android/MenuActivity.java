@@ -10,6 +10,7 @@ import android.app.ListActivity;
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
@@ -104,6 +105,17 @@ public class MenuActivity extends ListActivity {
                 openImageIntent(MenuActivity.this, mPhotoUri, SELECT_IMAGE_REQUEST_CODE);
             }
         });
+        
+        // See if we need to display the tutorial (only for the first time using the app)
+        SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        boolean firstTime = preferences.getBoolean("first_time", true);
+        
+        if (firstTime) {
+            Intent intent = new Intent(this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.putExtra("first_time", true);
+            startActivity(intent);
+            preferences.edit().putBoolean("first_time", false).apply();
+        }
     }
     
     public static void openImageIntent(Activity activity, Uri captureImageOutputFile, int requestCode) {

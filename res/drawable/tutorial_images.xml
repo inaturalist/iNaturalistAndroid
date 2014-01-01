@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:drawable="@drawable/iconic_taxon_animalia" />
+    <item android:drawable="@drawable/iconic_taxon_aves" />
+    <item android:drawable="@drawable/iconic_taxon_chromista" />
+    <item android:drawable="@drawable/iconic_taxon_fungi" />
+    
+</layer-list>

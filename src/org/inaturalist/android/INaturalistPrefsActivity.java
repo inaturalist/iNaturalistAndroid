@@ -22,6 +22,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -73,6 +74,7 @@ public class INaturalistPrefsActivity extends SherlockActivity {
             onSessionStateChange(session, state, exception);
         }
     };
+    private TextView mHelp;
     
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
 //        Log.d(TAG, "onSessionStateChange: " + session.toString() + ":" + state.toString());
@@ -161,6 +163,17 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    mSignInButton = (Button) findViewById(R.id.signInButton);
 	    mSignOutButton = (Button) findViewById(R.id.signOutButton);
 	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
+	    mHelp = (TextView) findViewById(R.id.tutorial_link);
+	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG); 
+	    
+	    mHelp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(INaturalistPrefsActivity.this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("first_time", false);
+                startActivity(intent);
+            }
+        });
 	    
         mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);
         mGoogleLogin = (Button) findViewById(R.id.google_login_button);

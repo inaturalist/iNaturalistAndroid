@@ -143,6 +143,10 @@
     <string name="about">About</string>
     <string name="check_list">Check list</string>
     <string name="geoprivacy">Geoprivacy</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="finish">Finish</string>
+    <string name="tutorial_link">Help with iNaturalist</string>
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
 	    <item>Obscured</item>
