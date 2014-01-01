@@ -141,12 +141,17 @@ public abstract class BaseProjectsTab extends SherlockFragment {
         
         Log.i(TAG, "onCreate - " + getActionName() + ":" + getClass().getName());
         
+
+    }
+    
+    @Override
+    public void onResume() {
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
         Log.i(TAG, "Registering " + getFilterResultName());
         getActivity().registerReceiver(mProjectsReceiver, filter);  
         
-
+        super.onResume();
     }
 
     @Override

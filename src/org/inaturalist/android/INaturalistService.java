@@ -700,6 +700,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         Log.e(TAG, url);
 
         JSONArray json = get(url);
+        
+        // Determine which projects are already joined
+        for (int i = 0; i < json.length(); i++) {
+            Cursor c;
+            try {
+                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
+                c.moveToFirst();
+                if (c.getCount() > 0) {
+                    json.getJSONObject(i).put("joined", true);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                continue;
+            }
+
+        }
+
         return new SerializableJSONArray(json);
     }
     
@@ -727,6 +744,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = HOST + "/projects.json?featured=true";
         
         JSONArray json = get(url);
+        
+        // Determine which projects are already joined
+        for (int i = 0; i < json.length(); i++) {
+            Cursor c;
+            try {
+                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
+                c.moveToFirst();
+                if (c.getCount() > 0) {
+                    json.getJSONObject(i).put("joined", true);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                continue;
+            }
+
+        }
+
         return new SerializableJSONArray(json);
     }
     
