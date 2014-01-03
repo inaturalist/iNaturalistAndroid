@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    >
+    
+    <TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+        android:id="@+id/in_parternship"
+        android:text="@string/in_partnership_with"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        style="@android:style/TextAppearance.Medium"
+        />
+    
+    <LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/in_parternship"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        >
+        
+        <ImageView 
+	   	    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/iconic_taxon_actinopterygii"
+           />
+        
+        <ImageView 
+	   	    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/iconic_taxon_actinopterygii"
+           />
+        
+    </LinearLayout>
+
+</RelativeLayout>

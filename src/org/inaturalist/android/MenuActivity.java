@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -69,6 +70,15 @@ public class MenuActivity extends ListActivity {
         map.put("description", getString(R.string.settings_description));
         MENU_ITEMS.add(map);
         
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.about_link));
+        map.put("description", getString(R.string.about_link));
+        MENU_ITEMS.add(map);
+        
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.attend_link));
+        map.put("description", getString(R.string.attend_link));
+        MENU_ITEMS.add(map);
        
         SimpleAdapter adapter = new SimpleAdapter(this, 
                 (List<? extends Map<String, ?>>) MENU_ITEMS, 
@@ -78,6 +88,8 @@ public class MenuActivity extends ListActivity {
         ListView lv = getListView();
         LinearLayout header = (LinearLayout) getLayoutInflater().inflate(R.layout.menu_header, lv, false);
         lv.addHeaderView(header, null, false);
+        RelativeLayout footer = (RelativeLayout) getLayoutInflater().inflate(R.layout.menu_footer, lv, false);
+        lv.addFooterView(footer, null, false);
         setListAdapter(adapter);
         
         if  (savedInstanceState != null) {
@@ -224,6 +236,13 @@ public class MenuActivity extends ListActivity {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.projects))) {
             startActivity(new Intent(this, ProjectsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+        } else if (title.equals(getString(R.string.about_link))) {
+            startActivity(new Intent(this, AboutTPWDActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+        } else if (title.equals(getString(R.string.attend_link))) {
+            String url = "http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/texas_nature_trackers/workshops/";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i); 
         }
     }
 }

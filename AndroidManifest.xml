@@ -117,6 +117,10 @@
                 <data android:mimeType="vnd.android.cursor.dir/vnd.google.projectobservation" />
             </intent-filter>
         </activity>
+         <activity
+            android:label="@string/app_name"
+            android:name=".AboutTPWDActivity" >
+        </activity>
         <activity
             android:configChanges="orientation"
             android:label="@string/settings"

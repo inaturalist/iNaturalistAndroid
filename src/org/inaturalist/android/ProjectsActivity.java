@@ -48,18 +48,13 @@ public class ProjectsActivity extends SherlockFragmentActivity {
    
     private void setupUI() {
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Add the tabs
         mTabsAdapter = new TabsAdapter(this, actionBar, mViewPager);
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.joined_projects),
-                JoinedProjectsTab.class, null);
-        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.nearby_projects),
-                NearByProjectsTab.class, null); 
-        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.featured_projects),
-                FeaturedProjectsTab.class, null); 
+                GroupProjectsTab.class, null);
     }
     
 }

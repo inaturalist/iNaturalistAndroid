@@ -27,6 +27,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -153,8 +155,11 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
 	    mPrefEditor = mPreferences.edit();
 	    mHelper = new ActivityHelper(this);
-	    
-	    
+
+	    TextView credits = (TextView) findViewById(R.id.credits_text);
+	    credits.setText(Html.fromHtml(credits.getText().toString()));
+	    credits.setMovementMethod(LinkMovementMethod.getInstance()); 
+
 	    mSignInLayout = (LinearLayout) findViewById(R.id.signIn);
 	    mSignOutLayout = (LinearLayout) findViewById(R.id.signOut);
 	    mUsernameTextView = (TextView) findViewById(R.id.username);

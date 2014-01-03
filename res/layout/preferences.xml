@@ -142,6 +142,30 @@
                 />
             
         </RelativeLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            >
+            
+            <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+                android:text="@string/credits"
+                style="@android:style/TextAppearance.Medium"
+                />
+            
+             <TextView 
+                android:id="@+id/credits_text"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+                android:text="@string/credits_text"
+                />
+            
+        </LinearLayout>
+        
     </LinearLayout>
 
 </ScrollView>

@@ -156,5 +156,13 @@
 	    <item>private</item>
     </string-array> 
     
+    <string name="credits">Credits</string>
+    <string name="credits_text"><Data><![CDATA[ This app was developed by the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/">TPWD Wildlife Diversity Program</a> and built in collaboration with <a href="http://www.natureserve.org/">NatureServe</a> and iNaturalist, LLC ]]> </Data></string>
+    <string name="about_link">About Texas Nature Trackers</string>
+    <string name="attend_link">Attend a TNT Workshop</string>
+    <string name="about_header">About the TPWD</string>
+    <string name="about_sub_header">Texas Nature Trackers Program</string>
+    <string name="about_text"><Data><![CDATA[ More than ever, people are interested in watching and learning about Texas wildlife. Texas Parks and Wildlife Department offers Texans the opportunity to do just that while making valuable contributions to the conservation of animal and plant species. Texas Nature Trackers, associated with the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/master_naturalist/">Texas Master Naturalist Program</a>, is a citizen-science program that engages volunteers of all ages and interest levels in gathering scientific data on species of concern in Texas. <br/><br/> With the Texas Nature Trackers program, you can gather data about various species throughout the state, whether you’re on public or private property. Botanists and biologists use this data to better understand the status and management needs of various species. Our goal is to enable long-term conservation of these species and appreciation among Texas citizens. For more information, visit the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/texas_nature_trackers/">Texas Nature Trackers website</a>. <br/><br/> To add an observation, please select the Project that best fits your observation. <br/><br/>Disclosure: By submit ting an observation, you agree to allow TPWD to use your data for the highest and best conservation use. ]]> </Data></string>
+    <string name="in_partnership_with">In Partnership With</string>
     
 </resources>

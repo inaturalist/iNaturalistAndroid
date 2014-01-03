@@ -71,6 +71,9 @@ import android.widget.Toast;
 public class INaturalistService extends IntentService implements ConnectionCallbacks, OnConnectionFailedListener {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
+    
+    // The group ID being used when displaying projects
+    private static final String GROUP_ID = "TPWD";
 
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
@@ -107,6 +110,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_JOINED_PROJECTS = "get_joined_projects";
     public static String ACTION_GET_NEARBY_PROJECTS = "get_nearby_projects";
     public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
+    public static String ACTION_GET_GROUP_PROJECTS = "get_group_projects";
     public static String ACTION_ADD_OBSERVATION_TO_PROJECT = "add_observation_to_project";
     public static String ACTION_REMOVE_OBSERVATION_FROM_PROJECT = "remove_observation_from_project";
     public static String ACTION_SYNC = "sync";
@@ -118,6 +122,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_JOINED_PROJECTS_RESULT = "joined_projects_result";
     public static String ACTION_NEARBY_PROJECTS_RESULT = "nearby_projects_result";
     public static String ACTION_FEATURED_PROJECTS_RESULT = "featured_projects_result";
+    public static String ACTION_GROUP_PROJECTS_RESULT = "group_projects_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -217,6 +222,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                      reply.putExtra(PROJECTS_RESULT, projects);
                      sendBroadcast(reply);
                  }
+                 
+             } else if (action.equals(ACTION_GET_GROUP_PROJECTS)) {
+                 SerializableJSONArray projects = getGroupProjects(GROUP_ID);
+
+                 Intent reply = new Intent(ACTION_GROUP_PROJECTS_RESULT);
+                 reply.putExtra(PROJECTS_RESULT, projects);
+                 sendBroadcast(reply);
+                
                  
               } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
                  SerializableJSONArray projects = getFeaturedProjects();
@@ -736,6 +749,34 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             return getNearByProjects(location);
         }
     }
+    
+    private SerializableJSONArray getGroupProjects(String groupID) throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+        String url = HOST + "/projects.json?group=" + groupID;
+
+        JSONArray json = get(url);
+
+        // Determine which projects are already joined
+        for (int i = 0; i < json.length(); i++) {
+            Cursor c;
+            try {
+                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
+                c.moveToFirst();
+                if (c.getCount() > 0) {
+                    json.getJSONObject(i).put("joined", true);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                continue;
+            }
+
+        }
+
+        return new SerializableJSONArray(json);
+    }
+
 
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         if (ensureCredentials() == false) {

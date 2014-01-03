@@ -1,11 +1,14 @@
 package org.inaturalist.android;
 
+import java.util.regex.Pattern;
+
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +44,9 @@ public class ProjectDetailsAbout extends Fragment {
             description = description.replace("\n", "\n<br>");
             projectDescription.setText(Html.fromHtml(description));
             projectDescription.setMovementMethod(LinkMovementMethod.getInstance()); 
+            
+            Pattern urlMatcher = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+            Linkify.addLinks(projectDescription, urlMatcher, null); 
         }
         
         return v;
