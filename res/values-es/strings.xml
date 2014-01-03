@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="acc">Prec</string>
-    <string name="app_name">iNaturalist</string>
+    <string name="app_name">Texas Nature Trackers</string>
     <string name="google_login">  Iniciar sesión con Google</string>
     <string name="email_address">Dirección de correo electrónico</string>
     <string name="observations_menu_add">Añadir</string>
@@ -146,7 +146,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
-    <string name="tutorial_link">Help with iNaturalist</string>
+    <string name="tutorial_link">Help with Texas Nature Trackers</string>
     <string name="credits">Credits</string>
     <string name="credits_text"><Data><![CDATA[ This app was developed by the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/">TPWD Wildlife Diversity Program</a> and built in collaboration with <a href="http://www.natureserve.org/">NatureServe</a> and iNaturalist, LLC ]]> </Data></string>
     <string name="about_link">About Texas Nature Trackers</string>

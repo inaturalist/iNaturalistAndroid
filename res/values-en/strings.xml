@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="acc">Acc</string>
-    <string name="app_name">iNaturalist</string>
+    <string name="app_name">Texas Nature Trackers</string>
     <string name="google_login">Login with Google</string>
     <string name="email_address">Email Address</string>
     <string name="observations_menu_add">Add</string>
@@ -144,7 +144,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
-    <string name="tutorial_link">Help with iNaturalist</string>
+    <string name="tutorial_link">Help with Texas Nature Trackers</string>
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
 	    <item>Obscured</item>
