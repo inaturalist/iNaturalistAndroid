@@ -127,6 +127,7 @@ public abstract class BaseProjectsTab extends SherlockFragment {
 
         try {
             if (mProjectsReceiver != null) {
+                Log.i(TAG, "unregisterReceiver " + getFilterResultName());
                 getActivity().unregisterReceiver(mProjectsReceiver);
             }
         } catch (Exception exc) {
@@ -196,6 +197,7 @@ public abstract class BaseProjectsTab extends SherlockFragment {
         
         if (mProjects == null) {
             // Get the user's projects
+            Log.i(TAG, "Calling " + getActionName());
             Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
             getActivity().startService(serviceIntent);  
         } else {

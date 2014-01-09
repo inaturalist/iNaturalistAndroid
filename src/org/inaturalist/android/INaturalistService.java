@@ -163,6 +163,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String action = intent.getAction();
         mPassive = action.equals(ACTION_PASSIVE_SYNC);
         
+        
+        Log.d(TAG, "Service: " + action);
 
         try {
             if (action.equals(ACTION_NEARBY)) {
