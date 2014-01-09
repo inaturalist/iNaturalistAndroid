@@ -1726,7 +1726,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 }
                 
                 ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
-                observer.removeOnGlobalLayoutListener(this); 
+                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                    observer.removeGlobalOnLayoutListener(this);
+                } else {
+                    observer.removeOnGlobalLayoutListener(this);
+                }  
+
             }
         });
         
