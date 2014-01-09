@@ -23,10 +23,9 @@ public class TutorialFragment extends SherlockFragment {
         
         ImageView imageView = (ImageView) v.findViewById(R.id.tutorial_image);
  
-        LayerDrawable tutorialImages = (LayerDrawable) getResources().getDrawable(R.drawable.tutorial_images);
-        Drawable image = tutorialImages.getDrawable(index);
-        
-        imageView.setImageDrawable(image);
+        String[] images = getResources().getStringArray(R.array.tutorial_images);
+        int resID = getResources().getIdentifier("@drawable/" + images[index] , "drawable", getActivity().getApplicationContext().getPackageName());
+        imageView.setImageResource(resID);
         
         return v;
     }

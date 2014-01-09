@@ -31,8 +31,8 @@ public class TutorialActivity extends SherlockFragmentActivity {
         public TutorialAdapter(SherlockFragmentActivity context) {
             super(context.getSupportFragmentManager());
             mContext = context;
-            LayerDrawable tutorialImages = (LayerDrawable) getResources().getDrawable(R.drawable.tutorial_images);
-            mCount = tutorialImages.getNumberOfLayers();
+            String[] images = getResources().getStringArray(R.array.tutorial_images);
+            mCount = images.length;
         }
 
         @Override
@@ -50,8 +50,6 @@ public class TutorialActivity extends SherlockFragmentActivity {
 
         @Override
         public void onPageScrollStateChanged(int arg0) {
-            // TODO Auto-generated method stub
-            
         }
 
         @Override
