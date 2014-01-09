@@ -147,6 +147,14 @@
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
     <string name="tutorial_link">Help with iNaturalist</string>
+    <string-array name="tutorial_images">
+	    <item>tutorial1</item>
+	    <item>tutorial2</item>
+	    <item>tutorial3</item>
+	    <item>tutorial4</item>
+	    <item>tutorial5</item>
+    </string-array> 
+    
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
 	    <item>Obscured</item>
@@ -157,4 +165,5 @@
 	    <item>obscured</item>
 	    <item>private</item>
     </string-array>
+   
 </resources>
