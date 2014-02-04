@@ -48,6 +48,14 @@
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".GuidesActivity" /> 
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:name=".GuideTaxonActivity" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".GuidesDetails" /> 
+        </activity>
         
         <activity
             android:configChanges="orientation"

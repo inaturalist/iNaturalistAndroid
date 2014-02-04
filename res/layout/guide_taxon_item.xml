@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="100dp"
+    android:layout_height="100dp">
     
     <ImageView
         android:id="@+id/taxon_pic"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/iconic_taxon_reptilia"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/iconic_taxon_unknown"
         android:layout_centerInParent="true"
         />
 	
@@ -16,8 +16,9 @@
        android:id="@+id/id_name"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
-       android:background="#55444444"
+       android:layout_alignBottom="@id/taxon_pic"
+       android:background="#55AAAAAA"
+       android:textColor="#ffffff"
        android:padding="5dp"
        android:maxLines="1"
        android:ellipsize="end"

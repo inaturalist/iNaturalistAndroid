@@ -129,9 +129,18 @@ public class GuideDetails extends SherlockActivity {
             TextView idName = (TextView) view.findViewById(R.id.id_name);
             idName.setText(item.getString("display_name"));
 
-            // TODO
-            //ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
-            //UrlImageViewHelper.setUrlDrawable(taxonPic, item.getString("photo_url"));
+            ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
+            SerializableJSONArray guidePhotos = item.getJSONArray("guide_photos");
+            
+            if (guidePhotos.getJSONArray().length() > 0) {
+            	JSONObject guidePhoto;
+            	try {
+            		guidePhoto = guidePhotos.getJSONArray().getJSONObject(0);
+            		UrlImageViewHelper.setUrlDrawable(taxonPic, guidePhoto.getJSONObject("photo").getString("square_url"));
+            	} catch (JSONException e) {
+            		e.printStackTrace();
+            	}
+            }
             
             view.setTag(item);
 
@@ -241,6 +250,12 @@ public class GuideDetails extends SherlockActivity {
         	@Override
         	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         		BetterJSONObject taxon = (BetterJSONObject) arg1.getTag();
+
+        		// Show taxon details
+        		Intent intent = new Intent(GuideDetails.this, GuideTaxonActivity.class);
+        		intent.putExtra("taxon", taxon);
+        		startActivity(intent);  
+
         	}
         });
  
@@ -273,4 +288,10 @@ public class GuideDetails extends SherlockActivity {
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("guide", mGuide);
+    }
+
+ 
 }

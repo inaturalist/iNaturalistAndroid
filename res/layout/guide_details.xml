@@ -39,11 +39,11 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_below="@id/search_filter"
-        android:columnWidth="90dp"
+        android:columnWidth="100dp"
         android:numColumns="auto_fit"
         android:verticalSpacing="3dp"
         android:horizontalSpacing="3dp"
-        android:stretchMode="columnWidth"
+        android:stretchMode="spacingWidth"
         android:gravity="center"
         />
     
