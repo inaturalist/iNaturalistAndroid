@@ -17,6 +17,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.annotation.TargetApi;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
@@ -286,6 +287,8 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 onlinePc.moveToNext();
             }
+            
+            onlinePc.close();
 
             
             Cursor opc = managedQuery(ObservationPhoto.CONTENT_URI, 
@@ -305,7 +308,7 @@ public class ObservationListActivity extends SherlockListActivity {
                     "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
                     null, 
                     null);
-            if (pc.getCount() == 0) return;
+            if (pc.getCount() == 0) { opc.close(); return; }
             HashMap<Long,String> orientationsByPhotoId = new HashMap<Long,String>();
             pc.moveToFirst();
             while (!pc.isAfterLast()) {
@@ -314,6 +317,8 @@ public class ObservationListActivity extends SherlockListActivity {
                         pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION)));
                 pc.moveToNext();
             }
+            
+            pc.close();
             
             opc.moveToFirst();
             while (!opc.isAfterLast()) {
@@ -331,6 +336,8 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 opc.moveToNext();
             }
+            
+            opc.close();
         }
         
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -470,7 +477,8 @@ public class ObservationListActivity extends SherlockListActivity {
             ViewTreeObserver observer = view.getViewTreeObserver();
             // Make sure the height and width of the rectangle are the same (i.e. a square)
             observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-                @Override
+                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+				@Override
                 public void onGlobalLayout() {
                     int dimension = view.getHeight();
                     ViewGroup.LayoutParams params = view.getLayoutParams();
