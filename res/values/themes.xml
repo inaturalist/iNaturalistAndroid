@@ -4,5 +4,4 @@
     <style name="Theme" parent="Theme.Sherlock">
         <item name="switchStyle">@style/Widget.Holo.CompoundButton.Switch</item>
     </style>
-
 </resources>

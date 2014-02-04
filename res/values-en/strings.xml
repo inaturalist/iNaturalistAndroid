@@ -99,7 +99,6 @@
     
     <string name="pull_to_sync">Pull to sync...</string>
     <string name="release_to_sync">Release to sync...</string>
-    <string name="syncing">Syncing...</string>
     <string name="edit_observation">Edit Observation</string>
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="yes">Yes</string>
@@ -116,6 +115,7 @@
     <string name="no_taxon_found">No taxon found</string>
     <string name="enter_taxon_name">Enter taxon name</string>
     <string name="no_projects">No projects found!</string>
+    <string name="no_guides">No guides found!</string>
     <string name="loading_projects">Loading projects...</string>
     <string name="joined_projects">Joined</string>
     <string name="nearby_projects">Nearby</string>
@@ -133,6 +133,7 @@
     <string name="could_not_load_comments">Couldn\'t load comments/IDs - observation was probably deleted on website</string>
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
     <string name="search_projects">Search projects...</string>
+    <string name="search_guides">Search guides...</string>
     <string name="save_observation">Save observation</string>
     <string name="about">About</string>
     <string name="check_list">Check list</string>
@@ -145,6 +146,14 @@
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
     <string name="tutorial_link">Help with iNaturalist</string>
+    <string name="guides">Guides</string>
+    <string name="guides_description">Guides</string>
+    <string name="my_guides">Yours</string>
+    <string name="nearby_guides">Nearby</string>
+    <string name="all_guides">All</string>
+    <string name="no_taxa">No taxa found for this guide!</string>
+    <string name="search_taxa">Search taxa...</string>
+ 
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
 	    <item>tutorial2</item>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+    
+    <EditText 
+        android:id="@+id/search_filter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_taxa"
+        android:layout_alignParentTop="true"
+        />
+
+   <ProgressBar
+	    android:id="@+id/progress"
+	    style="?android:attr/progressBarStyleLarge"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="30dp"
+        android:gravity="center"
+	    /> 
+    
+    <TextView
+        android:id="@+id/guide_taxa_empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="30dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:text="@string/no_taxa" />
+
+      <GridView
+        android:id="@+id/taxa_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/search_filter"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="3dp"
+        android:horizontalSpacing="3dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        />
+    
+</RelativeLayout>

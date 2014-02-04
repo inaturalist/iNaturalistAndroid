@@ -71,7 +71,10 @@ import android.widget.Toast;
 public class INaturalistService extends IntentService implements ConnectionCallbacks, OnConnectionFailedListener {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
-
+    
+    private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
+    
+    
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String PROJECTS_RESULT = "projects_result";
@@ -109,15 +112,26 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
     public static String ACTION_ADD_OBSERVATION_TO_PROJECT = "add_observation_to_project";
     public static String ACTION_REMOVE_OBSERVATION_FROM_PROJECT = "remove_observation_from_project";
+    public static String ACTION_GET_ALL_GUIDES = "get_all_guides";
+    public static String ACTION_GET_MY_GUIDES = "get_my_guides";
+    public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
+    public static String ACTION_TAXA_FOR_GUIDE = "get_taxa_for_guide";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_AGREE_ID = "agree_id";
+    public static String ACTION_GUIDE_ID = "guide_id";
     public static String ACTION_ADD_COMMENT = "add_comment";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
     public static String ACTION_OBSERVATION_RESULT = "observation_result";
     public static String ACTION_JOINED_PROJECTS_RESULT = "joined_projects_result";
     public static String ACTION_NEARBY_PROJECTS_RESULT = "nearby_projects_result";
     public static String ACTION_FEATURED_PROJECTS_RESULT = "featured_projects_result";
+    public static String ACTION_ALL_GUIDES_RESULT = "all_guides_results";
+    public static String ACTION_MY_GUIDES_RESULT = "my_guides_results";
+    public static String ACTION_NEAR_BY_GUIDES_RESULT = "near_by_guides_results";
+    public static String ACTION_TAXA_FOR_GUIDES_RESULT = "taxa_for_guides_results";
+    public static String GUIDES_RESULT = "guides_result";
+    public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -199,7 +213,50 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
                 addComment(observationId, body);
+
+             } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
+                int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
+                SerializableJSONArray taxa = getTaxaForGuide(guideId);
+
+                Intent reply = new Intent(ACTION_TAXA_FOR_GUIDES_RESULT);
+                reply.putExtra(TAXA_GUIDE_RESULT, taxa);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
+                SerializableJSONArray guides = getAllGuides();
                 
+                Intent reply = new Intent(ACTION_ALL_GUIDES_RESULT);
+                reply.putExtra(GUIDES_RESULT, guides);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_MY_GUIDES)) {
+                SerializableJSONArray guides = getMyGuides();
+                
+                Intent reply = new Intent(ACTION_MY_GUIDES_RESULT);
+                reply.putExtra(GUIDES_RESULT, guides);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_NEAR_BY_GUIDES)) {
+                 int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+                 // If Google Play services is available
+                 if (ConnectionResult.SUCCESS == resultCode) {
+                     // Use Google Location Services to determine location
+                     mLocationClient = new LocationClient(getApplicationContext(), this, this);
+                     mLocationClient.connect();
+                     
+                     // Only once we're connected - we'll call getNearByGuides()
+                     mGetLocationForProjects = false;
+                     
+                 } else {
+                     // Use GPS for the location
+                     SerializableJSONArray guides = getNearByGuides(false);
+
+                     Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
+                     reply.putExtra(GUIDES_RESULT, guides);
+                     sendBroadcast(reply);
+                 }
+               
              } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
                  int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
@@ -210,6 +267,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                      mLocationClient.connect();
                      
                      // Only once we're connected - we'll call getNearByProjects()
+                     mGetLocationForProjects = true;
                      
                  } else {
                      // Use GPS for the location
@@ -687,6 +745,83 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 String.format(getString(R.string.posted_new_x_photos), createdCount),
                 getString(R.string.sync_complete));
     }
+
+    private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+        String url = HOST + "/guide_taxa.json?guide_id=" + guideId.toString();
+        
+        JSONArray json = get(url);
+        
+        try {
+			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("guide_taxa"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return new SerializableJSONArray();
+		}
+    }
+    
+    
+    private SerializableJSONArray getAllGuides() throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+        String url = HOST + "/guides.json";
+        
+        JSONArray json = get(url);
+        
+        return new SerializableJSONArray(json);
+    }
+    
+    private SerializableJSONArray getMyGuides() throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return null;
+        }
+        String url = HOST + "/guides.json?by=you";
+        
+        JSONArray json = get(url, true);
+        
+        return new SerializableJSONArray(json);
+    }
+
+    private SerializableJSONArray getNearByGuides(boolean useLocationServices) throws AuthenticationException {
+           
+        if (useLocationServices) {
+            Location location = mLocationClient.getLastLocation();
+            
+            return getNearByGuides(location);
+        } else {
+            // Use GPS alone to determine location
+            LocationManager locationManager = (LocationManager)app.getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, false);
+            Location location = locationManager.getLastKnownLocation(provider);
+            
+            return getNearByGuides(location);
+        }
+    }
+
+    private SerializableJSONArray getNearByGuides(Location location) throws AuthenticationException {
+        if (location == null) {
+            // No location found - return an empty result
+            Log.e(TAG, "Current location is null");
+            return new SerializableJSONArray();
+        }
+
+        double lat  = location.getLatitude();
+        double lon  = location.getLongitude();
+
+        String url = HOST + String.format("/guides.json?latitude=%s&longitude=%s", lat, lon);
+
+        Log.e(TAG, url);
+
+        JSONArray json = get(url);
+        
+        return new SerializableJSONArray(json);
+    }
+    
+    
     private SerializableJSONArray getNearByProjects(Location location) throws AuthenticationException {
         if (location == null) {
             // No location found - return an empty result
@@ -1540,15 +1675,19 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             public void run() {
                 SerializableJSONArray projects;
                 try {
-                    projects = getNearByProjects(false);
+                	if (mGetLocationForProjects) {
+                		projects = getNearByProjects(false);
+                	} else {
+                		projects = getNearByGuides(false);
+                	}
                 } catch (AuthenticationException e) {
                     projects = new SerializableJSONArray();
                     e.printStackTrace();
                 }
 
-                Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                reply.putExtra(PROJECTS_RESULT, projects);
-                sendBroadcast(reply);               
+                Intent reply = new Intent(mGetLocationForProjects ? ACTION_NEARBY_PROJECTS_RESULT: ACTION_NEAR_BY_GUIDES_RESULT);
+                reply.putExtra(mGetLocationForProjects ? PROJECTS_RESULT : GUIDES_RESULT, projects);
+                sendBroadcast(reply);
             }
         });
         thread.start();
@@ -1563,14 +1702,18 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             public void run() {
                 SerializableJSONArray projects;
                 try {
-                    projects = getNearByProjects(true);
+                	if (mGetLocationForProjects) {
+                		projects = getNearByProjects(true);
+                	} else {
+                		projects = getNearByGuides(true);
+                	}
                 } catch (AuthenticationException e) {
                     projects = new SerializableJSONArray();
                     e.printStackTrace();
                 }
 
-                Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                reply.putExtra(PROJECTS_RESULT, projects);
+                Intent reply = new Intent(mGetLocationForProjects ? ACTION_NEARBY_PROJECTS_RESULT : ACTION_NEAR_BY_GUIDES_RESULT);
+                reply.putExtra(mGetLocationForProjects ? PROJECTS_RESULT : GUIDES_RESULT, projects);
                 sendBroadcast(reply);
             }
         });

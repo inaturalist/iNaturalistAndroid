@@ -101,7 +101,6 @@
     
     <string name="pull_to_sync">Pull to sync...</string>
     <string name="release_to_sync">Release to sync...</string>
-    <string name="syncing">Syncing...</string>
     <string name="edit_observation">Edit Observation</string>
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="yes">Yes</string>
@@ -147,6 +146,15 @@
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
     <string name="tutorial_link">Help with iNaturalist</string>
+    <string name="guides">Guides</string>
+    <string name="guides_description">Guides</string>
+    <string name="my_guides">Yours</string>
+    <string name="nearby_guides">Nearby</string>
+    <string name="all_guides">All</string>
+    <string name="no_taxa">No taxa found for this guide!</string>
+    <string name="search_taxa">Search taxa...</string>
+ 
+ 
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
 	    <item>tutorial2</item>
