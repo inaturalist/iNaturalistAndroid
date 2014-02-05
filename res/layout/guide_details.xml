@@ -33,17 +33,16 @@
         android:layout_centerInParent="true"
         android:text="@string/no_taxa" />
 
-      <GridView
+      <org.inaturalist.android.GridViewExtended
         android:id="@+id/taxa_grid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_below="@id/search_filter"
-        android:columnWidth="100dp"
-        android:numColumns="auto_fit"
+        android:numColumns="3"
         android:verticalSpacing="3dp"
         android:horizontalSpacing="3dp"
-        android:stretchMode="none"
+        android:stretchMode="columnWidth"
         android:gravity="center"
         />
     

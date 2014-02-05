@@ -7,10 +7,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.text.Editable;
@@ -28,11 +31,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class GuideDetails extends SherlockActivity {
@@ -43,7 +48,7 @@ public class GuideDetails extends SherlockActivity {
 	private BetterJSONObject mGuide;
 	public ArrayList<JSONObject> mTaxa;
 	private ProgressBar mProgress;
-	private GridView mGuideTaxaGrid;
+	private GridViewExtended mGuideTaxaGrid;
 	private TextView mTaxaEmpty;
 
 	private GuideTaxaReceiver mTaxaGuideReceiver;
@@ -118,7 +123,7 @@ public class GuideDetails extends SherlockActivity {
             return mItems.get(index);
         }
 
-        @Override
+		@Override
         public View getView(int position, View convertView, ViewGroup parent) { 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View view = inflater.inflate(R.layout.guide_taxon_item, parent, false); 
@@ -130,13 +135,28 @@ public class GuideDetails extends SherlockActivity {
             idName.setText(item.getString("display_name"));
 
             ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
+            
+            taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
+            		mGuideTaxaGrid.getColumnWidth(),
+            		mGuideTaxaGrid.getColumnWidth()
+            		));
+            
             SerializableJSONArray guidePhotos = item.getJSONArray("guide_photos");
             
             if (guidePhotos.getJSONArray().length() > 0) {
             	JSONObject guidePhoto;
             	try {
             		guidePhoto = guidePhotos.getJSONArray().getJSONObject(0);
-            		UrlImageViewHelper.setUrlDrawable(taxonPic, guidePhoto.getJSONObject("photo").getString("square_url"));
+            		UrlImageViewHelper.setUrlDrawable(taxonPic, guidePhoto.getJSONObject("photo").getString("small_url"), new UrlImageViewCallback() {
+						@Override
+						public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url,
+								boolean loadedFromCache) {
+							imageView.setLayoutParams(new RelativeLayout.LayoutParams(
+									mGuideTaxaGrid.getColumnWidth(),
+									mGuideTaxaGrid.getColumnWidth()
+									));
+						}
+					});
             	} catch (JSONException e) {
             		e.printStackTrace();
             	}
@@ -245,7 +265,7 @@ public class GuideDetails extends SherlockActivity {
 
         mProgress = (ProgressBar) findViewById(R.id.progress);
         mTaxaEmpty = (TextView) findViewById(R.id.guide_taxa_empty);
-        mGuideTaxaGrid = (GridView) findViewById(R.id.taxa_grid);
+        mGuideTaxaGrid = (GridViewExtended) findViewById(R.id.taxa_grid);
         mGuideTaxaGrid.setOnItemClickListener(new OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

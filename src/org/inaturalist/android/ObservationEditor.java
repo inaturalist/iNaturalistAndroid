@@ -250,7 +250,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             
             private boolean mIsCanceled;
             private int mHour, mMinute;
-
+            
             @Override
             public Dialog onCreateDialog(Bundle savedInstanceState) {
                 String currentHour = mDate.getText().toString();
@@ -1036,8 +1036,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 new Runnable() { public void run() {
                     // Get back to the observations list (consider this as canceled)
                     mCanceled = true;
-                    Intent intent = ObservationListActivity.createIntent(ObservationEditor.this);
-                    startActivity(intent);
                     finish();
                 }}, 
                 null);
