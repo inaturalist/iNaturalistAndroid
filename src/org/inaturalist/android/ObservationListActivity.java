@@ -65,6 +65,7 @@ public class ObservationListActivity extends SherlockListActivity {
     private class SyncCompleteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+        	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
             mPullRefreshListView.onRefreshComplete();
         }
     } 	
@@ -77,8 +78,8 @@ public class ObservationListActivity extends SherlockListActivity {
     
     
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         
         if (mSyncCompleteReceiver != null) {
             Log.i(TAG, "Unregistering ACTION_SYNC_COMPLETE");
@@ -111,7 +112,7 @@ public class ObservationListActivity extends SherlockListActivity {
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
         Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
         registerReceiver(mSyncCompleteReceiver, filter);
-        
+ 
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
         
         
@@ -191,11 +192,6 @@ public class ObservationListActivity extends SherlockListActivity {
         return super.onCreateOptionsMenu(menu);
     }
     
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
