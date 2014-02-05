@@ -631,7 +631,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    put(HOST + "/observations/" + observation.id + ".json", paramsForObservation(observation))
+                    put(HOST + "/observations/" + observation.id + ".json?extra=observation_photos", paramsForObservation(observation))
             );
             c.moveToNext();
         }
@@ -652,7 +652,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    post(HOST + "/observations.json", paramsForObservation(observation))
+                    post(HOST + "/observations.json?extra=observation_photos", paramsForObservation(observation))
             );
             c.moveToNext();
         }
@@ -1084,7 +1084,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         
         long lastSync = mPreferences.getLong("last_sync_time", 0);
         Timestamp lastSyncTS = new Timestamp(lastSync);
-        url += String.format("?updated_since=%s&order_by=date_added&order=desc&extra=projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
+        url += String.format("?updated_since=%s&order_by=date_added&order=desc&extra=observation_photos,projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
         
         if (maxCount > 0) {
             // Retrieve only a certain number of observations
@@ -1220,8 +1220,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         Double maxx = extras.getDouble("maxx");
         Double miny = extras.getDouble("miny");
         Double maxy = extras.getDouble("maxy");
-        String url = HOST + "/observations.json?";
-        url += "swlat="+miny;
+        String url = HOST + "/observations.json?extra=observation_photos";
+        url += "&swlat="+miny;
         url += "&nelat="+maxy;
         url += "&swlng="+minx;
         url += "&nelng="+maxx;
