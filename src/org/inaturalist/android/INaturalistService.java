@@ -139,7 +139,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private String mCredentials;
     private SharedPreferences mPreferences;
     private boolean mPassive;
-    private INaturalistApp app;
+    private INaturalistApp mApp;
     private LoginType mLoginType;
 
     private boolean mIsSyncing;
@@ -173,7 +173,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mLogin = mPreferences.getString("username", null);
         mCredentials = mPreferences.getString("credentials", null);
         mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.PASSWORD.toString()));
-        app = (INaturalistApp) getApplicationContext();
+        mApp = (INaturalistApp) getApplicationContext();
         String action = intent.getAction();
         mPassive = action.equals(ACTION_PASSIVE_SYNC);
         
@@ -333,6 +333,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 
             } else {
                 mIsSyncing = true;
+                mApp.setIsSyncing(mIsSyncing);
                 syncObservations();
                
                 // Update last sync time
@@ -347,6 +348,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         } finally {
             if (mIsSyncing) {
                 mIsSyncing = false;
+                mApp.setIsSyncing(mIsSyncing);
                 
                 Log.i(TAG, "Sending ACTION_SYNC_COMPLETE");
                 
@@ -450,7 +452,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 final String errorMessage = String.format(getString(R.string.failed_to_add_obs_to_project), observation.species_guess, project.title, error);
 
                 // Notify user
-                app.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
+                mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
                         getString(R.string.syncing_observations), 
                         errorMessage,
                         getString(R.string.syncing));
@@ -615,14 +617,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 null, 
                 Observation.DEFAULT_SORT_ORDER);
         int updatedCount = c.getCount();
-        app.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
+        mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
                 getString(R.string.syncing_observations), 
                 String.format(getString(R.string.syncing_x_observations), c.getCount()),
                 getString(R.string.syncing));
         // for each observation PUT to /observations/:id
         c.moveToFirst();
         while (c.isAfterLast() == false) {
-            app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
                     getString(R.string.updating_observations), 
                     String.format(getString(R.string.updating_x_observations), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
@@ -643,7 +645,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         // for each observation POST to /observations/
         c.moveToFirst();
         while (c.isAfterLast() == false) {
-            app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
                     getString(R.string.posting_observations), 
                     String.format(getString(R.string.posting_x_observations), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
@@ -656,7 +658,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
         c.close();
         
-        app.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+        mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
                 getString(R.string.observation_sync_complete), 
                 String.format(getString(R.string.observation_sync_status), createdCount, updatedCount),
                 getString(R.string.sync_complete));
@@ -695,7 +697,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         ContentValues cv;
         c.moveToFirst();
         while (c.isAfterLast() == false) {
-            app.notify(SYNC_PHOTOS_NOTIFICATION, 
+            mApp.notify(SYNC_PHOTOS_NOTIFICATION, 
                     getString(R.string.posting_photos), 
                     String.format(getString(R.string.posting_x_photos), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
@@ -740,7 +742,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             c.moveToNext();
         }
         c.close();
-        app.notify(SYNC_PHOTOS_NOTIFICATION, 
+        mApp.notify(SYNC_PHOTOS_NOTIFICATION, 
                 getString(R.string.photo_sync_complete), 
                 String.format(getString(R.string.posted_new_x_photos), createdCount),
                 getString(R.string.sync_complete));
@@ -793,7 +795,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             return getNearByGuides(location);
         } else {
             // Use GPS alone to determine location
-            LocationManager locationManager = (LocationManager)app.getSystemService(Context.LOCATION_SERVICE);
+            LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();
             String provider = locationManager.getBestProvider(criteria, false);
             Location location = locationManager.getLastKnownLocation(provider);
@@ -865,7 +867,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             return getNearByProjects(location);
         } else {
             // Use GPS alone to determine location
-            LocationManager locationManager = (LocationManager)app.getSystemService(Context.LOCATION_SERVICE);
+            LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();
             String provider = locationManager.getBestProvider(criteria, false);
             Location location = locationManager.getLastKnownLocation(provider);
@@ -1223,7 +1225,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         url += "&nelat="+maxy;
         url += "&swlng="+minx;
         url += "&nelng="+maxx;
-        JSONArray json = get(url, app.loggedIn());
+        JSONArray json = get(url, mApp.loggedIn());
         Intent reply = new Intent(ACTION_NEARBY);
         reply.putExtra("minx", minx);
         reply.putExtra("maxx", maxx);
@@ -1383,7 +1385,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 mLogin == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
                 null, getBaseContext(), INaturalistPrefsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        app.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null, intent);
+        mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null, intent);
     }
     
     public static boolean verifyCredentials(String credentials) {
