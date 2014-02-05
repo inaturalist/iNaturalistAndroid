@@ -93,7 +93,7 @@ public class ProjectDetailsCheckList extends Fragment {
                 public void onClick(View v) {
                     BetterJSONObject item = (BetterJSONObject) view.getTag();
                     Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, getActivity(), ObservationEditor.class);
-                    intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", item.getString("name"), defaultName2.getString("name")));
+                    intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", defaultName2.getString("name"), item.getString("name")));
                     startActivity(intent);
                 }
             });

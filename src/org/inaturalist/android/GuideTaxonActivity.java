@@ -98,7 +98,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         case R.id.add_taxon:
         	// Add a new observation with the specified taxon
         	Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditor.class);
-        	intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", mTaxon.getString("name"), mTaxon.getString("display_name")));
+        	intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", mTaxon.getString("display_name"), mTaxon.getString("name")));
         	startActivity(intent);
 
         	return true;
@@ -123,7 +123,7 @@ public class GuideTaxonActivity extends SherlockActivity {
     public void loadTaxonPage(Integer taxonId) {
     	mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
 
-    	mWebView.loadUrl(TAXON_URL + taxonId.toString(), getAuthHeaders());
+    	mWebView.loadUrl(TAXON_URL + taxonId.toString() + ".xml", getAuthHeaders());
     }
 
     @Override

@@ -43,7 +43,7 @@
         android:numColumns="auto_fit"
         android:verticalSpacing="3dp"
         android:horizontalSpacing="3dp"
-        android:stretchMode="spacingWidth"
+        android:stretchMode="none"
         android:gravity="center"
         />
     
