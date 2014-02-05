@@ -266,7 +266,7 @@ public class ObservationListActivity extends SherlockListActivity {
             
             
             // Add any online-only photos
-            Cursor onlinePc = managedQuery(ObservationPhoto.CONTENT_URI, 
+            Cursor onlinePc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                     new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
                     "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NOT NULL", 
                     null, 
@@ -289,9 +289,9 @@ public class ObservationListActivity extends SherlockListActivity {
             }
             
             onlinePc.close();
-
             
-            Cursor opc = managedQuery(ObservationPhoto.CONTENT_URI, 
+            
+            Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                     new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
                     "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NULL", 
                     null, 
@@ -303,12 +303,12 @@ public class ObservationListActivity extends SherlockListActivity {
                 opc.moveToNext();
             }
             
-            Cursor pc = managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
+            Cursor pc = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
                     new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
                     "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
                     null, 
                     null);
-            if (pc.getCount() == 0) { opc.close(); return; }
+            if (pc.getCount() == 0) { pc.close(); opc.close(); return; }
             HashMap<Long,String> orientationsByPhotoId = new HashMap<Long,String>();
             pc.moveToFirst();
             while (!pc.isAfterLast()) {
@@ -338,6 +338,7 @@ public class ObservationListActivity extends SherlockListActivity {
             }
             
             opc.close();
+            
         }
         
         public View getView(int position, View convertView, ViewGroup parent) {
