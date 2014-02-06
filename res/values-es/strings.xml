@@ -153,6 +153,8 @@
     <string name="all_guides">All</string>
     <string name="no_taxa">No taxa found for this guide!</string>
     <string name="search_taxa">Search taxa...</string>
+    <string name="no_internet_guides">Guides require an Internet connection</string>
+    <string name="no_internet_projects">Projects require an Internet connection</string>
  
  
     <string-array name="tutorial_images">

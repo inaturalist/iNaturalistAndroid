@@ -17,6 +17,8 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.content.Context;
 
 public class GuidesActivity extends SherlockFragmentActivity {

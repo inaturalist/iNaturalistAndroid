@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/iconic_taxon_unknown"
         android:layout_centerInParent="true"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         />
 	
 

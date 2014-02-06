@@ -19,4 +19,7 @@ public abstract class BaseProjectsTab extends BaseTab {
     	return getResources().getString(R.string.no_projects);
     }
 
+    protected String getNoInternetText() {
+    	return getResources().getString(R.string.no_internet_projects);
+    }
 }

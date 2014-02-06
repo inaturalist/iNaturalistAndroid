@@ -18,6 +18,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -27,6 +29,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -95,10 +99,23 @@ public abstract class BaseTab extends SherlockFragment {
             mSearchText.setEnabled(true);
         } else {
             mEmptyListLabel.setVisibility(View.VISIBLE);
-            mEmptyListLabel.setText(getNoItemsFoundText());
+            
+            if (!isNetworkAvailable()) {
+            	// No projects due to no Internet connection
+            	mEmptyListLabel.setText(getNoInternetText());
+            } else {
+            	mEmptyListLabel.setText(getNoItemsFoundText());
+            }
+
             mSearchText.setEnabled(false);
         }       
     }
+    
+    private boolean isNetworkAvailable() {
+    	ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+    	NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+    	return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    } 
 
     private static final String TAG = "INAT";
 
@@ -129,6 +146,9 @@ public abstract class BaseTab extends SherlockFragment {
 
     /** Returns the text to display when no projects/guides are found */
     abstract protected String getNoItemsFoundText();
+
+    /** Returns the text to display when no Internet connection is available */
+    abstract protected String getNoInternetText();
 
     @Override
     public void onPause() {
@@ -201,6 +221,12 @@ public abstract class BaseTab extends SherlockFragment {
             @Override
             public void afterTextChanged(Editable s) { }
         });
+        
+        
+        // Hide keyboard
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); 
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mSearchText.getWindowToken(), 0); 
         
         if (mProjects == null) {
             // Get the user's projects

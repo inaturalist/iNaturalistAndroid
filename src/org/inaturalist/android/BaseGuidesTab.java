@@ -19,4 +19,7 @@ public abstract class BaseGuidesTab extends BaseTab {
     	return getResources().getString(R.string.no_guides);
     }
 
+    protected String getNoInternetText() {
+    	return getResources().getString(R.string.no_internet_guides);
+    }
 }

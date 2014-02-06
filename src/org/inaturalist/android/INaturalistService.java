@@ -840,6 +840,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         JSONArray json = get(url);
         
+        if (json == null) {
+        	return new SerializableJSONArray();
+        }
+        
         // Determine which projects are already joined
         for (int i = 0; i < json.length(); i++) {
             Cursor c;
@@ -883,6 +887,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = HOST + "/projects.json?featured=true";
         
         JSONArray json = get(url);
+        
+        if (json == null) {
+        	return new SerializableJSONArray();
+        }
+ 
         
         // Determine which projects are already joined
         for (int i = 0; i < json.length(); i++) {
