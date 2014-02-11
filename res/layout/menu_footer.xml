@@ -26,16 +26,40 @@
         >
         
         <ImageView 
-	   	    android:layout_width="wrap_content"
+	   	    android:layout_width="0dp"
+	   	    android:layout_weight="1"
 		    android:layout_height="wrap_content"
-		    android:src="@drawable/iconic_taxon_actinopterygii"
+		    android:maxHeight="100dp"
+		    android:adjustViewBounds="true"
+		    android:src="@drawable/tpw_1024"
+		    android:layout_gravity="center"
            />
+
+             <LinearLayout
+             	android:layout_width="0dp"
+             	android:layout_height="fill_parent"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                >
         
-        <ImageView 
-	   	    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:src="@drawable/iconic_taxon_actinopterygii"
-           />
+                <ImageView 
+                       android:layout_width="wrap_content"
+                       android:layout_height="0dp"
+                       android:layout_weight="2"
+                       android:adjustViewBounds="true"
+                       android:src="@drawable/natureserve_logo_inline"
+                       android:layout_gravity="center_horizontal"
+                   />
+                <ImageView 
+                       android:layout_width="wrap_content"
+                       android:layout_height="0dp"
+                       android:layout_weight="1"
+                       android:adjustViewBounds="true"
+                       android:src="@drawable/inat_logo_5"
+                       android:layout_gravity="center_horizontal"
+                   />
+
+        	</LinearLayout>
         
     </LinearLayout>
 

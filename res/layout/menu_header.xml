@@ -6,12 +6,13 @@
 
     <ImageView
         android:id="@+id/user_pic"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:maxHeight="50dp"
-        android:src="@drawable/logo_text" >
+        android:maxHeight="100dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/tnt_1200" >
     </ImageView>
 
     <LinearLayout

@@ -42,15 +42,20 @@
       	    >
 		    <ImageView
 			    android:layout_height="wrap_content"
-			    android:layout_width="wrap_content"
+			    android:layout_width="0dp"
+			    android:layout_weight="1"
 			    android:paddingRight="8dp"
-			    android:src="@drawable/iconic_taxon_actinopterygii"
+			    android:src="@drawable/tpw_1024"
+			    android:adjustViewBounds="true"
 			    />
    		    <ImageView
 			    android:layout_height="wrap_content"
-			    android:layout_width="wrap_content"
+			    android:layout_width="0dp"
+			    android:layout_weight="2"
 			    android:paddingRight="8dp"
-			    android:src="@drawable/iconic_taxon_actinopterygii"
+			    android:src="@drawable/tnt_1200"
+			    android:adjustViewBounds="true"
+			    android:layout_gravity="center_vertical"
 			    />
 	    </LinearLayout>
 	    
