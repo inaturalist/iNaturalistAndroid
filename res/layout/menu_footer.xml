@@ -49,6 +49,8 @@
                        android:adjustViewBounds="true"
                        android:src="@drawable/natureserve_logo_inline"
                        android:layout_gravity="center_horizontal"
+                       android:background="#ffffff"
+                       android:layout_marginBottom="10dp"
                    />
                 <ImageView 
                        android:layout_width="wrap_content"
