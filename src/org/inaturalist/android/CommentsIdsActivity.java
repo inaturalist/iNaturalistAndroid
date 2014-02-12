@@ -257,6 +257,11 @@ public class CommentsIdsActivity extends SherlockListActivity {
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
                 startService(serviceIntent);
+                
+                
+                // Show a loading progress until the new comments/IDs are loaded
+	            mCommentsIds = null;
+	            loadResultsIntoUI();
 
                 try {
                     Thread.sleep(1000);

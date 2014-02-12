@@ -899,8 +899,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
             if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
                     (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
-            	Integer count = (mObservation.comments_count == null ? 0 : mObservation.comments_count) + (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
-            	if (count > 0) {
+            	if (totalCount > 0) {
             		// There are unread comments/IDs
             		mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
             	}
