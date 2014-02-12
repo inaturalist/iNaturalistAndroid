@@ -35,6 +35,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -246,7 +247,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         private TaxonReceiver mTaxonReceiver;
         private TextView mFieldDescription;
         
-        private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        @SuppressLint("ValidFragment")
+		private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
             
             private boolean mIsCanceled;
             private int mHour, mMinute;
@@ -299,7 +301,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }        
     
 
-        private class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @SuppressLint("ValidFragment")
+		private class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
             
             private boolean mIsCanceled;
             private int mYear, mMonth, mDay;
@@ -896,8 +899,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
             if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
                     (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
-                // There are unread comments/IDs
-                mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+            	Integer count = (mObservation.comments_count == null ? 0 : mObservation.comments_count) + (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
+            	if (count > 0) {
+            		// There are unread comments/IDs
+            		mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+            	}
             }
         }
 
@@ -1713,7 +1719,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
         // Make sure the height and width of the rectangle are the same (i.e. a square)
         observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-            @Override
+            @SuppressLint("NewApi")
+			@Override
             public void onGlobalLayout() {
                 int dimension = mObservationCommentsIds.getHeight();
                 ViewGroup.LayoutParams params = mObservationCommentsIds.getLayoutParams();
