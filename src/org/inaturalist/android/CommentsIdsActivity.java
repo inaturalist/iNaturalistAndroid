@@ -32,7 +32,9 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.Html;
 import android.text.InputType;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -274,7 +276,8 @@ public class CommentsIdsActivity extends SherlockListActivity {
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
                 registerReceiver(mObservationReceiver, filter);  
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, CommentsIdsActivity.this, INaturalistService.class);
-                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+                //serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, 521210);
                 startService(serviceIntent2);
 
                 // Ask for a sync (to update the id count)
@@ -413,7 +416,8 @@ public class CommentsIdsActivity extends SherlockListActivity {
                     comment.setVisibility(View.VISIBLE);
                     idLayout.setVisibility(View.GONE);
                     
-                    comment.setText(item.getString("body"));
+                    comment.setText(Html.fromHtml(item.getString("body")));
+                    comment.setMovementMethod(LinkMovementMethod.getInstance()); 
                     
                     postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
                     userPic.setAlpha(255);
@@ -426,7 +430,11 @@ public class CommentsIdsActivity extends SherlockListActivity {
                     ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                     UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"));
                     TextView idName = (TextView) view.findViewById(R.id.id_name);
-                    idName.setText(item.getJSONObject("taxon").getJSONObject("common_name").getString("name"));
+                    if (!item.getJSONObject("taxon").isNull("common_name")) {
+                    	idName.setText(item.getJSONObject("taxon").getJSONObject("common_name").getString("name"));
+                    } else {
+                    	idName.setText(item.getJSONObject("taxon").getString("name"));
+                    }
                     TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
                     idTaxonName.setText(item.getJSONObject("taxon").getString("name"));
                     idTaxonName.setTypeface(null, Typeface.ITALIC);
