@@ -276,8 +276,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
                 registerReceiver(mObservationReceiver, filter);  
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, CommentsIdsActivity.this, INaturalistService.class);
-                //serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
-                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, 521210);
+                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
                 startService(serviceIntent2);
 
                 // Ask for a sync (to update the id count)
