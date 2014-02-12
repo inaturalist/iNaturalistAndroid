@@ -95,7 +95,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String MEDIA_HOST = HOST;
     public static String USER_AGENT = "iNaturalist/" + INaturalistApp.VERSION + " (" +
         "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
-        "SDK " + android.os.Build.VERSION.SDK + "; " +
+        "SDK " + android.os.Build.VERSION.SDK_INT + "; " +
         android.os.Build.DEVICE + " " +
         android.os.Build.MODEL + " " + 
         android.os.Build.PRODUCT + ")";

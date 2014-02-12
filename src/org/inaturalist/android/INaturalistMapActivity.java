@@ -140,7 +140,11 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
                 if (!mMarkerObservations.isEmpty()) {
                     LatLngBounds.Builder builder = new LatLngBounds.Builder();
                     for (Observation o: mMarkerObservations.values()) {
-                        builder.include(new LatLng(o.latitude, o.longitude));
+                        if (o.private_latitude != null && o.private_longitude != null) {
+                            builder.include(new LatLng(o.private_latitude, o.private_longitude));
+                        } else {
+                            builder.include(new LatLng(o.latitude, o.longitude));
+                        }
                     }
                     final LatLngBounds bounds = builder.build();
                     mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
@@ -159,10 +163,11 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
 
     private void reloadObservations() {
         if (mMap == null) return;
-        String where = "id IS NULL";
+        String where = "is_deleted != 1 AND (id IS NULL";
         if (mApp.loggedIn()) {
             where += " OR user_login = '" + mApp.currentUserLogin() + "'";
         }
+        where += ")";
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
                 where, // selection 
                 null, // selectionArgs
@@ -181,7 +186,7 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
             return;
         }
         LatLng latLng;
-        if (o.private_latitude != null && mApp.currentUserLogin() == o.user_login) {
+        if (o.private_latitude != null && mApp.currentUserLogin().equalsIgnoreCase(o.user_login)) {
             latLng = new LatLng(o.private_latitude, o.private_longitude);
         } else {
             latLng = new LatLng(o.latitude, o.longitude);

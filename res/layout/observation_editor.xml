@@ -1,356 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-    
-<RelativeLayout
-    android:id="@+id/bottom_actionbar"
-    android:layout_width="fill_parent"
-    android:layout_height="@dimen/abs__action_bar_default_height"
-    android:orientation="horizontal"
-    android:layout_alignParentBottom="true"
-    android:background="#767676"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    >
-    
-   <TextView
-	    android:id="@+id/save_observation"
-	    android:background="@drawable/actionbar_btn"
-	    android:gravity="center_vertical"
-	    android:layout_centerVertical="true"
-	    android:layout_alignParentLeft="true"
-	    android:singleLine="true"
-	    android:drawableLeft="@drawable/ic_action_save"
-	    android:text="@string/save_observation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@android:style/TextAppearance.Medium"
-        android:padding="5dp"
-	    />
- 
-    
- 
-      <TextView
-          android:id="@+id/commentIdCount"
-          android:layout_marginRight="8dp"
-          android:layout_marginLeft="10dp"
-          android:layout_alignParentRight="true"
-	      android:layout_centerVertical="true"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="@drawable/comments_ids_background"
-          android:padding="5dp"
-          android:gravity="center"
-          android:singleLine="true"
-          android:text="30"
-          android:textColor="#ffffff"
- 	      style="@android:style/TextAppearance.Medium" />
-      
-    <ImageButton
-	    android:id="@+id/view_on_inat"
-	    android:background="@drawable/actionbar_btn"
-	    android:layout_centerVertical="true"
-	    android:singleLine="true"
-	    android:src="@drawable/action"
-	    android:layout_toLeftOf="@id/commentIdCount"
-	    android:layout_width="32dp"
-	    android:layout_height="wrap_content"
-	    android:layout_marginLeft="10dp"
-	    android:padding="5dp"
-	    android:scaleType="fitCenter"
-	    />
- 
-     <ImageButton
-	    android:id="@+id/delete_observation"
-	    android:background="@drawable/actionbar_btn"
-	    android:layout_centerVertical="true"
-	    android:layout_toLeftOf="@id/view_on_inat"
-	    android:singleLine="true"
-	    android:src="@drawable/ic_action_discard"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:padding="5dp"
-	    />
-    
- 
-</RelativeLayout>
 
-
-
-<ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:layout_above="@id/bottom_actionbar"
-    >
-
-   
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <RelativeLayout
+        android:id="@+id/bottom_actionbar"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="@dimen/abs__action_bar_default_height"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="#111111" >
 
-       
-        <Gallery
-            android:id="@+id/gallery"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/save_observation"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:spacing="5dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/actionbar_btn"
+            android:drawableLeft="@drawable/ic_action_save"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="@string/save_observation" />
 
-        <EditText
-            android:id="@+id/speciesGuess"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="3dp"
-            android:hint="@string/species_guess_hint"
-            android:imeOptions="actionDone"
-            android:singleLine="true" >
-
-            <requestFocus />
-        </EditText>
-
-        <EditText
-            android:id="@+id/observed_on_string"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/commentIdCount"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/comments_ids_background"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="30"
+            android:textColor="#ffffff" />
+
+        <ImageButton
+            android:id="@+id/view_on_inat"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/commentIdCount"
+            android:background="@drawable/actionbar_btn"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:singleLine="true"
+            android:src="@drawable/action" />
+
+        <ImageButton
+            android:id="@+id/delete_observation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/view_on_inat"
+            android:background="@drawable/actionbar_btn"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:src="@drawable/ic_action_discard" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/bottom_actionbar"
+        android:background="#ffff0000" >
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical"
+            android:background="#ffff0000" >
 
-            <Button
-                android:id="@+id/observed_on"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="0.5"
-                android:layout_gravity="fill_vertical"
-                android:text="@string/set_date" />
-
-            <Button
-                android:id="@+id/time_observed_at"
-                android:layout_width="0dp"
+            <Gallery
+                android:id="@+id/gallery"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_weight="0.5"
-                android:text="@string/set_time" />
-        </LinearLayout>
+                android:spacing="5dp" />
 
-        <LinearLayout
-            android:id="@+id/location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp" >
+            <EditText
+                android:id="@+id/speciesGuess"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="3dp"
+                android:hint="@string/species_guess_hint"
+                android:imeOptions="actionDone"
+                android:singleLine="true" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/observed_on_string"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/observed_on"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="fill_vertical"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="0.5"
+                    android:text="@string/set_date" />
+
+                <Button
+                    android:id="@+id/time_observed_at"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.5"
+                    android:text="@string/set_time" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TableLayout
+                    android:id="@+id/locationAttributes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:orientation="vertical" >
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingRight="5dp"
+                            android:text="Lat"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/latitude"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/unknown" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="5dp"
+                            android:text="Lon"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/longitude"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/unknown" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/acc"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/accuracy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/unknown" />
+                    </TableRow>
+                </TableLayout>
+
+                <LinearLayout
+                    android:id="@+id/locationActions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <ProgressBar
+                        android:id="@+id/locationProgress"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <RelativeLayout
+                        android:id="@+id/locationRefreshButton"
+                        style="@android:style/Widget.Button"
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="0dp"
+                        android:layout_marginBottom="0dp" >
+
+                        <TextView
+                            style="@android:style/TextAppearance.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableLeft="@drawable/ic_action_location_searching"
+                            android:gravity="center"
+                            android:text="@string/gps" />
+                    </RelativeLayout>
+
+                    <ImageButton
+                        android:id="@+id/locationStopRefreshButton"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <org.inaturalist.android.MultilineEditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:hint="@string/brief_description"
+                android:imeOptions="actionDone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/select_projects"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/select_projects" />
 
             <TableLayout
-                android:id="@+id/locationAttributes"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:orientation="vertical" >
+                android:id="@+id/projects"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:stretchColumns="*" >
+            </TableLayout>
 
-                <TableRow
-                    android:id="@+id/tableRow1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="7dp"
+                android:stretchColumns="*" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:paddingRight="5dp"
-                        android:text="Lat"
-                        android:textStyle="bold" />
+                <TableRow>
 
                     <TextView
-                        android:id="@+id/latitude"
+                        style="@android:style/TextAppearance.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/unknown" />
+                        android:layout_marginLeft="7dp"
+                        android:text="@string/id_please" />
+
+                    <org.jraf.android.backport.switchwidget.Switch
+                        android:id="@+id/id_please"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginRight="7dp" />
                 </TableRow>
 
-                <TableRow
-                    android:id="@+id/tableRow2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                <TableRow>
 
                     <TextView
+                        style="@android:style/TextAppearance.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingRight="5dp"
-                        android:text="Lon"
-                        android:textStyle="bold" />
+                        android:layout_marginLeft="7dp"
+                        android:text="@string/geoprivacy" />
 
-                    <TextView
-                        android:id="@+id/longitude"
-                        android:layout_width="wrap_content"
+                    <Spinner
+                        android:id="@+id/geoprivacy"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/unknown" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/acc"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/accuracy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/unknown" />
+                        android:layout_marginRight="7dp"
+                        android:entries="@array/geoprivacy_items"
+                        android:entryValues="@array/geoprivacy_values" />
                 </TableRow>
             </TableLayout>
 
-            <LinearLayout
-                android:id="@+id/locationActions"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" >
-
-                <ProgressBar
-                    android:id="@+id/locationProgress"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <RelativeLayout
-	                    android:id="@+id/locationRefreshButton"
- 	                    android:layout_width="120dp"
-	                    android:layout_height="60dp"
-	                    android:layout_margin="0dp"
-	                    android:layout_marginBottom="0dp"                   
-	                    style="@android:style/Widget.Button"
-                    >
-	                <TextView
-	                    android:layout_centerInParent="true"
- 	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:text="@string/gps"
-	                    android:gravity="center"
-	                    style="@android:style/TextAppearance.Medium"
-	                    android:drawableLeft="@drawable/ic_action_location_searching" />
-                </RelativeLayout>
-
-                <ImageButton
-                    android:id="@+id/locationStopRefreshButton"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel"
-                    android:visibility="gone" />
-            </LinearLayout>
+            <TableLayout
+                android:id="@+id/project_fields"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*" >
+            </TableLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <org.inaturalist.android.MultilineEditText
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_weight="1"
-            android:gravity="top"
-            android:hint="@string/brief_description"
-            android:imeOptions="actionDone" />
-        
-   <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-       >
-  </LinearLayout>
-   
-  
-   <Button
-    	android:id="@+id/select_projects"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/select_projects"
-        />
-
-   
-  
-  <TableLayout
-    	android:id="@+id/projects"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        >
-   </TableLayout>
-   
-   <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
- 	    android:layout_marginBottom="7dp"
- 	    android:layout_marginTop="7dp"
-        android:stretchColumns="*">
-            
-        <TableRow
-            >
-         <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/id_please"
-	        style="@android:style/TextAppearance.Medium"
-		    android:layout_marginLeft="7dp"
-           />
-		   <org.jraf.android.backport.switchwidget.Switch
-		    	android:id="@+id/id_please"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_gravity="left"
-    	        android:layout_marginRight="7dp"
-		        />    
-			 
-       </TableRow>
-       
-        <TableRow
-            >
-         <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/geoprivacy"
-	        style="@android:style/TextAppearance.Medium"
-		    android:layout_marginLeft="7dp"
-           />
-   	     <Spinner 
-	    	android:id="@+id/geoprivacy"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:entries="@array/geoprivacy_items"
-	        android:entryValues="@array/geoprivacy_values"
-  	        android:layout_marginRight="7dp"
-	       />
-       </TableRow> 
-      
-   </TableLayout>
-   
-   
-   <TableLayout
-    	android:id="@+id/project_fields"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*"
-        >
-       
-   </TableLayout>
-        
-    </LinearLayout>
-    
-
-</ScrollView>
 </RelativeLayout>

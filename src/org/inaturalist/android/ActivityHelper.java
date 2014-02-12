@@ -54,6 +54,7 @@ public class ActivityHelper {
         if (title == null) { title = ""; }
         if (msg == null) { msg = mContext.getString(R.string.loading); }
         mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
+        mProgressDialog.setCancelable(true);
     }
 
     public void loading(String msg) {
@@ -62,6 +63,10 @@ public class ActivityHelper {
 
     public void loading() {
         loading(null, null);
+    }
+    
+    public boolean isLoading() {
+        return mProgressDialog != null && mProgressDialog.isShowing();
     }
 
     public void stopLoading() {
