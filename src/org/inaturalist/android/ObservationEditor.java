@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.xml.transform.URIResolver;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jraf.android.backport.switchwidget.Switch;
@@ -35,6 +37,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -64,6 +67,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -246,7 +251,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         private TaxonReceiver mTaxonReceiver;
         private TextView mFieldDescription;
         
-        private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+        @SuppressLint("ValidFragment")
+		private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
             
             private boolean mIsCanceled;
             private int mHour, mMinute;
@@ -299,7 +305,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }        
     
 
-        private class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @SuppressLint("ValidFragment")
+		private class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
             
             private boolean mIsCanceled;
             private int mYear, mMonth, mDay;
@@ -759,6 +766,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     finish();
                     return;
                 }
+                mFileUri = getPath(this, mFileUri);
                 mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
                 if (mUri == null) {
                     Log.e(TAG, "Failed to insert new observation into " + uri);
@@ -840,6 +848,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             @Override
             public void onClick(View v) {
                 mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+                mFileUri = getPath(ObservationEditor.this, mFileUri);
                 MenuActivity.openImageIntent(ObservationEditor.this, mFileUri, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -896,8 +905,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
             if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
                     (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
-                // There are unread comments/IDs
-                mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+            	if (totalCount > 0) {
+            		// There are unread comments/IDs
+            		mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+            	}
             }
         }
 
@@ -1666,6 +1677,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     selectedImageUri = mFileUri;
                 } else {
                     selectedImageUri = data == null ? null : data.getData();
+                    selectedImageUri = getPath(this, selectedImageUri);
                 }
 
                 Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
@@ -1713,7 +1725,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
         // Make sure the height and width of the rectangle are the same (i.e. a square)
         observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-            @Override
+            @SuppressLint("NewApi")
+			@Override
             public void onGlobalLayout() {
                 int dimension = mObservationCommentsIds.getHeight();
                 ViewGroup.LayoutParams params = mObservationCommentsIds.getLayoutParams();
@@ -1750,11 +1763,141 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
     
     private void deletePhoto(int position) {
-        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-        Long photoId = adapter.getItemId(position);
-        getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_photo_id = " + photoId, null);
-        updateImages();
+    	GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+    	Long photoId = adapter.getItemId(position);
+    	getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_photo_id = " + photoId, null);
+    	updateImages();
     }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    public static boolean isExternalStorageDocument(Uri uri) {
+    	return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public static boolean isDownloadsDocument(Uri uri) {
+    	return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+    	return "com.android.providers.media.documents".equals(uri.getAuthority());
+    } 
+    
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context The context.
+     * @param uri The Uri to query.
+     * @param selection (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    public static String getDataColumn(Context context, Uri uri, String selection,
+    		String[] selectionArgs) {
+
+    	Cursor cursor = null;
+    	final String column = "_data";
+    	final String[] projection = {
+    			column
+    	};
+
+    	try {
+    		cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+    				null);
+    		if (cursor != null && cursor.moveToFirst()) {
+    			final int column_index = cursor.getColumnIndexOrThrow(column);
+    			return cursor.getString(column_index);
+    		}
+    	} finally {
+    		if (cursor != null)
+    			cursor.close();
+    	}
+    	return null;
+    } 
+    
+    /**
+     * Get a file path from a Uri. This will get the the path for Storage Access
+     * Framework Documents, as well as the _data field for the MediaStore and
+     * other file-based ContentProviders.
+     *
+     * @param context The context.
+     * @param uri The Uri to query.
+     * @author paulburke
+     */
+    @SuppressLint("NewApi")
+	private Uri getPath(final Context context, final Uri uri) {
+
+    	final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+    	// DocumentProvider
+    	if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+    		// ExternalStorageProvider
+    		if (isExternalStorageDocument(uri)) {
+    			final String docId = DocumentsContract.getDocumentId(uri);
+    			final String[] split = docId.split(":");
+    			final String type = split[0];
+
+    			if ("primary".equalsIgnoreCase(type)) {
+    				return Uri.parse(Environment.getExternalStorageDirectory() + "/" + split[1]);
+    			}
+
+    		}
+    		// DownloadsProvider
+    		else if (isDownloadsDocument(uri)) {
+
+    			final String id = DocumentsContract.getDocumentId(uri);
+    			final Uri contentUri = ContentUris.withAppendedId(
+    					Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+    			return contentUri;
+    		}
+    		// MediaProvider
+    		else if (isMediaDocument(uri)) {
+    			final String docId = DocumentsContract.getDocumentId(uri);
+    			final String[] split = docId.split(":");
+    			final String type = split[0];
+
+    			Uri contentUri = null;
+    			if ("image".equals(type)) {
+    				contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+    			} else if ("video".equals(type)) {
+    				contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+    			} else if ("audio".equals(type)) {
+    				contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+    			}
+
+    			final String selection = "_id=?";
+    			final String[] selectionArgs = new String[] {
+    					split[1]
+    			};
+
+
+    			return ContentUris.withAppendedId(contentUri, Long.valueOf(split[1]));
+    		}
+    	}
+    	// MediaStore (and general)
+    	else if ("content".equalsIgnoreCase(uri.getScheme())) {
+    		return uri;
+    	}
+    	// File
+    	else if ("file".equalsIgnoreCase(uri.getScheme())) {
+    		return uri;
+    	}
+
+    	return null;
+    }
+    
 
     private void updateImageOrientation(Uri uri) {
         String[] projection = {

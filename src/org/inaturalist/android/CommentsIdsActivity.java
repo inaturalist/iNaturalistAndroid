@@ -32,7 +32,9 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.Html;
 import android.text.InputType;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -257,6 +259,11 @@ public class CommentsIdsActivity extends SherlockListActivity {
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
                 startService(serviceIntent);
+                
+                
+                // Show a loading progress until the new comments/IDs are loaded
+	            mCommentsIds = null;
+	            loadResultsIntoUI();
 
                 try {
                     Thread.sleep(1000);
@@ -408,7 +415,8 @@ public class CommentsIdsActivity extends SherlockListActivity {
                     comment.setVisibility(View.VISIBLE);
                     idLayout.setVisibility(View.GONE);
                     
-                    comment.setText(item.getString("body"));
+                    comment.setText(Html.fromHtml(item.getString("body")));
+                    comment.setMovementMethod(LinkMovementMethod.getInstance()); 
                     
                     postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
                     userPic.setAlpha(255);
@@ -421,7 +429,11 @@ public class CommentsIdsActivity extends SherlockListActivity {
                     ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                     UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"));
                     TextView idName = (TextView) view.findViewById(R.id.id_name);
-                    idName.setText(item.getJSONObject("taxon").getJSONObject("common_name").getString("name"));
+                    if (!item.getJSONObject("taxon").isNull("common_name")) {
+                    	idName.setText(item.getJSONObject("taxon").getJSONObject("common_name").getString("name"));
+                    } else {
+                    	idName.setText(item.getJSONObject("taxon").getString("name"));
+                    }
                     TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
                     idTaxonName.setText(item.getJSONObject("taxon").getString("name"));
                     idTaxonName.setTypeface(null, Typeface.ITALIC);
