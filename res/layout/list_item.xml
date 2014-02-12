@@ -1,54 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    >
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+   <ImageView
+         android:id="@+id/image"
+         android:layout_width="75dp"
+         android:layout_height="75dp"
+         android:layout_margin="5dp"
+         android:src="@drawable/iconic_taxon_unknown"
+         android:layout_alignParentLeft="true"
+         android:layout_centerVertical="true"
+         />
+   
+   <LinearLayout
+        android:id="@+id/rightObsPart"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" >
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="100px"
-            android:layout_height="100px"
-            android:layout_margin="5dp"
-            android:src="@drawable/iconic_taxon_unknown" >
-
-        </ImageView>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/speciesGuess"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/unknown_species"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="species guess"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/subContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/no_description"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:singleLine="true"
-                android:text="sub stuff"
-                android:textColor="#666"
-                android:textSize="14sp" />
-        </LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="8dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        >
+        
+         <TextView
+             android:id="@+id/dateObserved"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:gravity="right"
+             android:layout_gravity="right"
+             android:paddingBottom="5dp"
+             android:singleLine="true"
+             android:text="05/07/2010"
+             android:textColor="#666"
+             android:textSize="13sp" />
+         
+      <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         >
+         
+          <TextView
+              android:id="@+id/commentIdCount"
+              android:layout_alignParentRight="true"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@drawable/comments_ids_background"
+              android:padding="5dp"
+              android:layout_marginLeft="6dp"
+              android:gravity="center"
+              android:singleLine="true"
+              android:text="30"
+              android:textColor="#ffffff"
+              android:textSize="13sp" />
+          
+          <ImageView 
+		          android:id="@+id/syncRequired"
+		          android:layout_width="23dp"
+		          android:layout_height="23dp"
+		          android:src="@drawable/ic_action_refresh"
+		          android:layout_toLeftOf="@id/commentIdCount"
+		          android:layout_centerVertical="true"
+		          />
+          
+ 
+     </RelativeLayout>
+     
     </LinearLayout>
 
-</LinearLayout>
+ 
+   <LinearLayout
+           android:id="@+id/linearLayout2"
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:orientation="vertical"
+           android:layout_toRightOf="@id/image"
+           android:layout_toLeftOf="@id/rightObsPart"
+	       android:layout_centerVertical="true"
+           >
+
+           <TextView
+               android:id="@+id/speciesGuess"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:hint="@string/unknown_species"
+               android:paddingLeft="10dp"
+               android:paddingTop="10dp"
+               android:paddingRight="10dp"
+               android:paddingBottom="5dp"
+               android:singleLine="true"
+               android:text="species guess"
+               style="@android:style/TextAppearance.Medium"
+               />
+
+           <TextView
+               android:id="@+id/subContent"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:hint="@string/no_description"
+               android:paddingLeft="10dp"
+               android:paddingRight="10dp"
+               android:singleLine="true"
+               android:text="sub stuff"
+               android:textColor="#666"
+               android:textSize="14sp" />
+   </LinearLayout>
+   
+</RelativeLayout>

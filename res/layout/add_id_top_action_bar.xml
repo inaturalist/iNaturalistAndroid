@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <TextView 
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:text="@string/add_id"
+           style="@android:style/TextAppearance.Medium"
+           android:layout_alignParentLeft="true"
+           android:layout_centerVertical="true"
+           android:id="@+id/title"
+        />
+    
+   <ImageButton android:src="@drawable/ic_action_save"
+       			 android:layout_marginRight="8dp"
+       			 android:padding="5dp"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:scaleType="centerInside"
+                 android:id="@+id/save_id"
+                 android:background="@drawable/actionbar_btn"
+                 android:layout_alignParentRight="true"
+		         android:layout_centerVertical="true" />
+    
+
+</RelativeLayout>

@@ -4,11 +4,12 @@
     android:versionCode="3"
     android:versionName="1.3" >
 
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -23,9 +24,13 @@
         android:required="true"/>
 
     <application
+        android:theme="@style/Theme.Sherlock"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:name=".INaturalistApp" >
+        
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" /> 
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/gmaps2_api_key" />
@@ -33,12 +38,91 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
-            android:name=".ObservationListActivity" >
+            android:name=".TutorialActivity" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".MenuActivity" /> 
         </activity>
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
+            android:name=".GuideDetails" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".GuidesActivity" /> 
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:name=".GuideTaxonActivity" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".GuidesDetails" /> 
+        </activity>
+        
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:name=".ProjectDetails" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".ProjectsActivity" /> 
+        </activity>
+         <activity
+            android:configChanges="orientation"
+            android:label="@string/projects"
+            android:name=".ProjectsActivity">
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".MenuActivity" /> 
+        </activity>
+  		<activity
+            android:configChanges="orientation"
+            android:label="@string/guides"
+            android:name=".GuidesActivity">
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".MenuActivity" /> 
+        </activity>
+        
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:name=".ProjectSelectorActivity" >
+        </activity>
+ 
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/comments_ids"
+            android:name=".CommentsIdsActivity" >
+        </activity>
+         <activity
+            android:configChanges="orientation"
+            android:label="@string/add_id"
+            android:name=".IdentificationActivity" >
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:name=".TaxonSearchActivity" >
+        </activity>
+ 
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/observations"
+            android:name=".ObservationListActivity" >
+   	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".MenuActivity" /> 
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:theme="@style/Theme"  
             android:name=".ObservationEditor" >
+           	<meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value=".ObservationListActivity" /> 
             <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />
@@ -50,11 +134,15 @@
                 <data android:mimeType="vnd.android.cursor.dir/vnd.google.observation" />
                 <data android:mimeType="vnd.android.cursor.item/vnd.google.observation_photo" />
                 <data android:mimeType="vnd.android.cursor.dir/vnd.google.observation_photo" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.google.inatproject" />
+                <data android:mimeType="vnd.android.cursor.dir/vnd.google.inatproject" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.google.projectobservation" />
+                <data android:mimeType="vnd.android.cursor.dir/vnd.google.projectobservation" />
             </intent-filter>
         </activity>
         <activity
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="@string/settings"
             android:name=".INaturalistPrefsActivity" >
         </activity>
         <activity android:name="com.facebook.LoginActivity"
@@ -73,17 +161,17 @@
         </activity>
         <activity
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="@string/map"
             android:name=".INaturalistMapActivity" >
         </activity>
         <activity
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="@string/updates"
             android:name=".WebActivity" >
         </activity>
 
         <provider
-            android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo"
+            android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo;org.inaturalist.android.project;org.inaturalist.android.project_observation;org.inaturalist.android.project_field;org.inaturalist.android.project_field_value"
             android:name=".ObservationProvider" >
         </provider>
 

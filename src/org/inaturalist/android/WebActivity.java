@@ -4,6 +4,12 @@ import java.util.HashMap;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,13 +18,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.Window;
 import android.webkit.*;
 
-public class WebActivity extends Activity {
+public class WebActivity extends SherlockActivity {
     private static String TAG = "WebActivity";
     private static String HOME_URL = INaturalistService.HOST + "/home";
     private WebView mWebView;
@@ -28,8 +31,14 @@ public class WebActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         requestWindowFeature(Window.FEATURE_PROGRESS);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         app = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.web);
         helper = new ActivityHelper(this);
@@ -98,7 +107,7 @@ public class WebActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.web_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -106,6 +115,9 @@ public class WebActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+        case android.R.id.home:
+            finish();
+            return true;
         case R.id.menu:
             startActivity(new Intent(this, MenuActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             return true;

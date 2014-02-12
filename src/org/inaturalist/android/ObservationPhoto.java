@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -27,6 +28,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public Integer photo_id;
     public Integer position;
     public Timestamp updated_at;
+    public String photo_url;
 
     public Timestamp _created_at_was;
     public Integer _observation_id_was;
@@ -57,6 +59,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public static final String _SYNCED_AT = "_synced_at";
     public static final String _UPDATED_AT = "_updated_at";
     public static final String CREATED_AT = "created_at";
+    public static final String PHOTO_URL = "photo_url";
     public static final String ID = "id";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String PHOTO_ID = "photo_id";
@@ -76,7 +79,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         ObservationPhoto.OBSERVATION_ID,
         ObservationPhoto.PHOTO_ID,
         ObservationPhoto.POSITION,
-        ObservationPhoto.UPDATED_AT
+        ObservationPhoto.UPDATED_AT,
+        ObservationPhoto.PHOTO_URL
     };
 
     static {
@@ -93,6 +97,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ObservationPhoto.PHOTO_ID, ObservationPhoto.PHOTO_ID);
         PROJECTION_MAP.put(ObservationPhoto.POSITION, ObservationPhoto.POSITION);
         PROJECTION_MAP.put(ObservationPhoto.UPDATED_AT, ObservationPhoto.UPDATED_AT);
+        PROJECTION_MAP.put(ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_URL);
 
     }
 
@@ -124,7 +129,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.position_was = this.position;
         this.updated_at = bc.getTimestamp(UPDATED_AT);
         this.updated_at_was = this.updated_at;
-
+        this.photo_url = bc.getString(PHOTO_URL);
     }
 
     public ObservationPhoto(BetterJSONObject o) {
@@ -150,7 +155,16 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.position_was = this.position;
         this.updated_at = o.getTimestamp("updated_at");
         this.updated_at_was = this.updated_at;
-
+        
+        if (o.has("medium_url")) {
+        	this.photo_url = o.getString("medium_url");
+        } else {
+        	try {
+				this.photo_url = o.getJSONObject("photo").getString("medium_url");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+        }
     }
 
     @Override
@@ -212,6 +226,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         cv.put(OBSERVATION_ID, observation_id);
         cv.put(PHOTO_ID, photo_id);
         cv.put(POSITION, position);
+        cv.put(PHOTO_URL, photo_url);
         if (updated_at != null) { cv.put(UPDATED_AT, updated_at.getTime()); }
 
         return cv;
@@ -239,7 +254,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
                 + "observation_id INTEGER,"
                 + "photo_id INTEGER,"
                 + "position INTEGER,"
-                + "updated_at INTEGER"
+                + "updated_at INTEGER,"
+                + "photo_url TEXT"
                 + ");";
     }
 

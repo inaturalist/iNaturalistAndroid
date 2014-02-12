@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    >
+    
+    <Button 
+        android:id="@+id/join_leave_project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/join"
+        android:background="@drawable/actionbar_join_btn"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ffffff"
+        android:padding="5dp"
+        />
+    
+    <TextView 
+        android:id="@+id/project_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_toLeftOf="@id/join_leave_project"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        style="@android:style/TextAppearance.Medium"
+        android:singleLine="true"
+        android:ellipsize="end"
+        />
+
+</RelativeLayout>

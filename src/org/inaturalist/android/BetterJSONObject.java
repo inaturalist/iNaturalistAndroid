@@ -6,6 +6,9 @@
 
 package org.inaturalist.android;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -13,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,10 +25,11 @@ import android.util.Log;
 
 public class BetterJSONObject implements Serializable {
 	public final static String TAG = "BetterJSONObject";
-	private JSONObject mJSONObject;
-	private DateFormat mDateTimeFormat; 
-	private DateFormat mDateFormat;
+	private transient JSONObject mJSONObject;
+	private transient DateFormat mDateTimeFormat; 
+	private transient DateFormat mDateFormat;
 	
+
 	public BetterJSONObject() {
 	    this(new JSONObject());
 	}
@@ -37,6 +42,27 @@ public class BetterJSONObject implements Serializable {
 	
 	public JSONObject getJSONObject() {
 	    return mJSONObject;
+	}
+	
+	public SerializableJSONArray getJSONArray(String name) {
+	    try {
+	        return new SerializableJSONArray(mJSONObject.getJSONArray(name));
+	    } catch (JSONException e) {
+	        return null;
+	    }
+	}
+	
+	
+	public boolean has(String name) {
+	    return mJSONObject.has(name);
+	}
+	
+	public JSONObject getJSONObject(String name) {
+	    try {
+	        return mJSONObject.getJSONObject(name);
+	    } catch (JSONException e) {
+	        return null;
+	    }
 	}
 	
 	public Object get(String name) {
@@ -106,4 +132,14 @@ public class BetterJSONObject implements Serializable {
 	        }
 	    }
 	}
+	
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeObject(mJSONObject.toString());
+    }
+
+    private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException, JSONException {
+        ois.defaultReadObject();
+        mJSONObject = new JSONObject((String) ois.readObject());
+    }	
 }

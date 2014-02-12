@@ -24,6 +24,7 @@ public class INaturalistApp extends Application {
     private final static String TAG = "INAT: Application";
     private SharedPreferences mPrefs;
     private NotificationManager mNotificationManager;
+	private boolean mIsSyncing = false;
     public static Integer VERSION = 1;
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a z");
@@ -43,12 +44,16 @@ public class INaturalistApp extends Application {
         return INaturalistApp.context;
     }
     
+    public void setIsSyncing(boolean isSyncing) {
+    	mIsSyncing  = isSyncing;
+    }
+    
     public void checkSyncNeeded() {
         Cursor oCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
                 "_synced_at IS NULL OR (_updated_at > _synced_at)", null, Observation.DEFAULT_SORT_ORDER);
         Cursor opCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, 
                 "_synced_at IS NULL OR (_updated_at > _synced_at)", null, ObservationPhoto.DEFAULT_SORT_ORDER);
-        if (oCursor.getCount() == 0 && opCursor.getCount() == 0) {
+        if (!mIsSyncing) {
             mNotificationManager.cancel(SYNC_NOTIFICATION);
         } else {
             Resources res = getResources();

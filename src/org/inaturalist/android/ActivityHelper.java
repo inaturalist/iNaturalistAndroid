@@ -66,7 +66,12 @@ public class ActivityHelper {
 
     public void stopLoading() {
         if (mProgressDialog != null) {
-            mProgressDialog.dismiss();
+        	try {
+        		mProgressDialog.dismiss();
+        	} catch (Exception exc) {
+        		// Nothing to do here
+        		exc.printStackTrace();
+        	}
         }
     }
     

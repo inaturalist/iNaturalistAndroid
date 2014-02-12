@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent">
 	
-    <ListView
-        android:id="@android:id/list"
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/observations_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"/>
@@ -16,6 +15,8 @@
         android:layout_height="fill_parent"
         android:padding="30dp"
         android:gravity="center"
+        android:layout_centerInParent="true"
+        style="@android:style/TextAppearance.Medium"
         android:text="@string/no_observations_yet" />
 
-</LinearLayout>
+</RelativeLayout>

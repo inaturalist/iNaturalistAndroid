@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -46,6 +50,16 @@ public class Observation implements BaseColumns, Serializable {
     public String user_agent;
     public Integer user_id;
     public String user_login;
+    public Integer comments_count;
+    public Integer identifications_count;
+    public Integer last_comments_count;
+    public Integer last_identifications_count;
+    public Boolean is_deleted;
+    
+    public SerializableJSONArray comments;
+    public SerializableJSONArray identifications;
+    
+    public List<ObservationPhoto> photos;
 
     public Timestamp _created_at_was;
     public Timestamp _synced_at_was;
@@ -77,6 +91,8 @@ public class Observation implements BaseColumns, Serializable {
     public String user_agent_was;
     public Integer user_id_was;
     public String user_login_was;
+    public Boolean is_deleted_was;
+    public SerializableJSONArray projects;
 
 
     public static final String TAG = "Observation";
@@ -88,7 +104,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/observations");
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.google.observation";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.google.observation";
-    public static final String DEFAULT_SORT_ORDER = "observed_on DESC, _id DESC";
+    public static final String DEFAULT_SORT_ORDER = "_created_at DESC, created_at DESC, _id DESC";
     public static final String _CREATED_AT = "_created_at";
     public static final String _SYNCED_AT = "_synced_at";
     public static final String _UPDATED_AT = "_updated_at";
@@ -119,6 +135,11 @@ public class Observation implements BaseColumns, Serializable {
     public static final String USER_AGENT = "user_agent";
     public static final String USER_ID = "user_id";
     public static final String USER_LOGIN = "user_login";
+    public static final String COMMENTS_COUNT = "comments_count";
+    public static final String IDENTIFICATIONS_COUNT = "identifications_count";
+    public static final String LAST_COMMENTS_COUNT = "last_comments_count";
+    public static final String LAST_IDENTIFICATIONS_COUNT = "last_identifications_count";
+    public static final String IS_DELETED = "is_deleted";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -152,7 +173,12 @@ public class Observation implements BaseColumns, Serializable {
         Observation.UPDATED_AT,
         Observation.USER_AGENT,
         Observation.USER_ID,
-        Observation.USER_LOGIN
+        Observation.USER_LOGIN,
+        Observation.IDENTIFICATIONS_COUNT,
+        Observation.COMMENTS_COUNT,
+        Observation.LAST_COMMENTS_COUNT,
+        Observation.LAST_IDENTIFICATIONS_COUNT,
+        Observation.IS_DELETED,
     };
 
     static {
@@ -188,7 +214,11 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.USER_AGENT, Observation.USER_AGENT);
         PROJECTION_MAP.put(Observation.USER_ID, Observation.USER_ID);
         PROJECTION_MAP.put(Observation.USER_LOGIN, Observation.USER_LOGIN);
-
+        PROJECTION_MAP.put(Observation.IDENTIFICATIONS_COUNT, Observation.IDENTIFICATIONS_COUNT);
+        PROJECTION_MAP.put(Observation.COMMENTS_COUNT, Observation.COMMENTS_COUNT);
+        PROJECTION_MAP.put(Observation.LAST_IDENTIFICATIONS_COUNT, Observation.LAST_IDENTIFICATIONS_COUNT);
+        PROJECTION_MAP.put(Observation.LAST_COMMENTS_COUNT, Observation.LAST_COMMENTS_COUNT);
+        PROJECTION_MAP.put(Observation.IS_DELETED, Observation.IS_DELETED);
     }
 
     public Observation() {}
@@ -257,6 +287,13 @@ public class Observation implements BaseColumns, Serializable {
         this.user_id_was = this.user_id;
         this.user_login = bc.getString(USER_LOGIN);
         this.user_login_was = this.user_login;
+        this.is_deleted = bc.getBoolean(IS_DELETED);
+        this.is_deleted_was = this.is_deleted;
+        
+        this.comments_count = bc.getInteger(COMMENTS_COUNT);
+        this.identifications_count = bc.getInteger(IDENTIFICATIONS_COUNT);
+        this.last_comments_count = bc.getInteger(LAST_COMMENTS_COUNT);
+        this.last_identifications_count = bc.getInteger(LAST_IDENTIFICATIONS_COUNT);
 
     }
 
@@ -321,7 +358,32 @@ public class Observation implements BaseColumns, Serializable {
         this.user_id_was = this.user_id;
         this.user_login = o.getString("user_login");
         this.user_login_was = this.user_login;
+        this.is_deleted_was = this.is_deleted;
+        
+        this.comments = o.getJSONArray("comments");
+        this.identifications = o.getJSONArray("identifications");
+        
+        try {
+            this.photos = new ArrayList<ObservationPhoto>();
+            JSONArray photos;
+            photos = o.getJSONObject().getJSONArray("observation_photos");
+            for (int i = 0; i < photos.length(); i++) {
+                BetterJSONObject json = new BetterJSONObject((JSONObject)photos.get(i));
+                ObservationPhoto photo = new ObservationPhoto(json);
+                photo.observation_id = o.getInt("id");
+                photo._observation_id = this._id;
+                
+                photo._photo_id = photo.photo_id;
+                this.photos.add(photo);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        this.comments_count = o.getInteger("comments_count");
+        this.identifications_count = o.getInteger("identifications_count");
+        
+        this.projects = o.getJSONArray("project_observations");
     }
 
     @Override
@@ -361,6 +423,8 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("user_agent", user_agent);
         bo.put("user_id", user_id);
         bo.put("user_login", user_login);
+        bo.put("identifications_count", identifications_count);
+        bo.put("comment_count", comments_count);
 
         return bo.getJSONObject();
     }
@@ -373,7 +437,8 @@ public class Observation implements BaseColumns, Serializable {
         }
     }
 
-    public void merge(Observation observation) {
+    // Returns true if observation was modified because of the merge
+    public boolean merge(Observation observation) {
         if (this._updated_at.before(observation.updated_at)) {
             // overwrite
             this.created_at = observation.created_at;
@@ -403,37 +468,45 @@ public class Observation implements BaseColumns, Serializable {
             this.user_agent = observation.user_agent;
             this.user_id = observation.user_id;
             this.user_login = observation.user_login;
+            this.comments_count = observation.comments_count;
+            this.identifications_count = observation.identifications_count;
 
+            return true;
         } else {
             // set if null
-            if (this.created_at == null) { this.created_at = observation.created_at; }
-            if (this.description == null) { this.description = observation.description; }
-            if (this.geoprivacy == null) { this.geoprivacy = observation.geoprivacy; }
-            if (this.iconic_taxon_id == null) { this.iconic_taxon_id = observation.iconic_taxon_id; }
-            if (this.iconic_taxon_name == null) { this.iconic_taxon_name = observation.iconic_taxon_name; }
-            if (this.id == null) { this.id = observation.id; }
-            if (this.id_please == null) { this.id_please = observation.id_please; }
-            if (this.latitude == null) { this.latitude = observation.latitude; }
-            if (this.longitude == null) { this.longitude = observation.longitude; }
-            if (this.observed_on == null) { this.observed_on = observation.observed_on; }
-            if (this.observed_on_string == null) { this.observed_on_string = observation.observed_on_string; }
-            if (this.out_of_range == null) { this.out_of_range = observation.out_of_range; }
-            if (this.place_guess == null) { this.place_guess = observation.place_guess; }
-            if (this.positional_accuracy == null) { this.positional_accuracy = observation.positional_accuracy; }
-            if (this.positioning_device == null) { this.positioning_device = observation.positioning_device; }
-            if (this.positioning_method == null) { this.positioning_method = observation.positioning_method; }
-            if (this.private_latitude == null) { this.private_latitude = observation.private_latitude; }
-            if (this.private_longitude == null) { this.private_longitude = observation.private_longitude; }
-            if (this.private_positional_accuracy == null) { this.private_positional_accuracy = observation.private_positional_accuracy; }
-            if (this.quality_grade == null) { this.quality_grade = observation.quality_grade; }
-            if (this.species_guess == null) { this.species_guess = observation.species_guess; }
-            if (this.taxon_id == null) { this.taxon_id = observation.taxon_id; }
-            if (this.time_observed_at == null) { this.time_observed_at = observation.time_observed_at; }
-            if (this.updated_at == null) { this.updated_at = observation.updated_at; }
-            if (this.user_agent == null) { this.user_agent = observation.user_agent; }
-            if (this.user_id == null) { this.user_id = observation.user_id; }
-            if (this.user_login == null) { this.user_login = observation.user_login; }
+            boolean isModified = false;
+            
+            if ((this.created_at == null) && (observation.created_at != null)) { this.created_at = observation.created_at; isModified = true; }
+            if ((this.description == null) && (observation.description != null)) { this.description = observation.description; isModified = true; }
+            if ((this.geoprivacy == null) && (observation.geoprivacy != null)) { this.geoprivacy = observation.geoprivacy; isModified = true; }
+            if ((this.iconic_taxon_id == null) && (observation.iconic_taxon_id != null)) { this.iconic_taxon_id = observation.iconic_taxon_id; isModified = true; }
+            if ((this.iconic_taxon_name == null) && (observation.iconic_taxon_name != null)) { this.iconic_taxon_name = observation.iconic_taxon_name; isModified = true; }
+            if ((this.id == null) && (observation.id != null)) { this.id = observation.id; isModified = true; }
+            if ((this.id_please == null) && (observation.id_please != null)) { this.id_please = observation.id_please; isModified = true; }
+            if ((this.latitude == null) && (observation.latitude != null)) { this.latitude = observation.latitude; isModified = true; }
+            if ((this.longitude == null) && (observation.longitude != null)) { this.longitude = observation.longitude; isModified = true; }
+            if ((this.observed_on == null) && (observation.observed_on != null)) { this.observed_on = observation.observed_on; isModified = true; }
+            if ((this.observed_on_string == null) && (observation.observed_on_string != null)) { this.observed_on_string = observation.observed_on_string; isModified = true; }
+            if ((this.out_of_range == null) && (observation.out_of_range != null)) { this.out_of_range = observation.out_of_range; isModified = true; }
+            if ((this.place_guess == null) && (observation.place_guess != null)) { this.place_guess = observation.place_guess; isModified = true; }
+            if ((this.positional_accuracy == null) && (observation.positional_accuracy != null)) { this.positional_accuracy = observation.positional_accuracy; isModified = true; }
+            if ((this.positioning_device == null) && (observation.positioning_device != null)) { this.positioning_device = observation.positioning_device; isModified = true; }
+            if ((this.positioning_method == null) && (observation.positioning_method != null)) { this.positioning_method = observation.positioning_method; isModified = true; }
+            if ((this.private_latitude == null) && (observation.private_latitude != null)) { this.private_latitude = observation.private_latitude; isModified = true; }
+            if ((this.private_longitude == null) && (observation.private_longitude != null)) { this.private_longitude = observation.private_longitude; isModified = true; }
+            if ((this.private_positional_accuracy == null) && (observation.private_positional_accuracy != null)) { this.private_positional_accuracy = observation.private_positional_accuracy; isModified = true; }
+            if ((this.quality_grade == null) && (observation.quality_grade != null)) { this.quality_grade = observation.quality_grade; isModified = true; }
+            if ((this.species_guess == null) && (observation.species_guess != null)) { this.species_guess = observation.species_guess; isModified = true; }
+            if ((this.taxon_id == null) && (observation.taxon_id != null)) { this.taxon_id = observation.taxon_id; isModified = true; }
+            if ((this.time_observed_at == null) && (observation.time_observed_at != null)) { this.time_observed_at = observation.time_observed_at; isModified = true; }
+            if ((this.updated_at == null) && (observation.updated_at != null)) { this.updated_at = observation.updated_at; isModified = true; }
+            if ((this.user_agent == null) && (observation.user_agent != null)) { this.user_agent = observation.user_agent; isModified = true; }
+            if ((this.user_id == null) && (observation.user_id != null)) { this.user_id = observation.user_id; isModified = true; }
+            if ((this.user_login == null) && (observation.user_login != null)) { this.user_login = observation.user_login; isModified = true; }
+            if ((this.comments_count == null) && (observation.comments_count != null)) { this.comments_count = observation.comments_count; isModified = true; }
+            if ((this.identifications_count == null) && (observation.identifications_count != null)) { this.identifications_count = observation.identifications_count; isModified = true; }
 
+            return isModified;
         }
     }
 
@@ -466,6 +539,11 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(USER_AGENT, user_agent);
         cv.put(USER_ID, user_id);
         cv.put(USER_LOGIN, user_login);
+        cv.put(COMMENTS_COUNT, comments_count);
+        cv.put(IDENTIFICATIONS_COUNT, identifications_count);
+        cv.put(LAST_COMMENTS_COUNT, last_comments_count);
+        cv.put(LAST_IDENTIFICATIONS_COUNT, last_identifications_count);
+        cv.put(IS_DELETED, is_deleted);
 
         return cv;
     }
@@ -527,7 +605,14 @@ public class Observation implements BaseColumns, Serializable {
                 + "updated_at INTEGER,"
                 + "user_agent TEXT,"
                 + "user_id INTEGER,"
-                + "user_login TEXT"
+                + "user_login TEXT,"
+                + "comments_count INTEGER,"
+                + "identifications_count INTEGER,"
+                + "last_comments_count INTEGER,"
+                + "last_identifications_count INTEGER,"
+                + "activity_viewed_at INTEGER,"
+                + "last_activity_at INTEGER,"
+                + "is_deleted INTEGER"
                 + ");";
     }
 
@@ -561,6 +646,7 @@ public class Observation implements BaseColumns, Serializable {
     public boolean user_agent_changed() { return !String.valueOf(user_agent).equals(String.valueOf(user_agent_was)); }
     public boolean user_id_changed() { return !String.valueOf(user_id).equals(String.valueOf(user_id_was)); }
     public boolean user_login_changed() { return !String.valueOf(user_login).equals(String.valueOf(user_login_was)); }
+    public boolean is_deleted_changed() { return is_deleted != is_deleted_was; }
 
 
     public boolean isDirty() {
@@ -594,6 +680,7 @@ public class Observation implements BaseColumns, Serializable {
         if (user_agent_changed()) { return true; }
         if (user_id_changed()) { return true; }
         if (user_login_changed()) { return true; }
+        if (is_deleted_changed()) { return true; }
 
         return false;
     }

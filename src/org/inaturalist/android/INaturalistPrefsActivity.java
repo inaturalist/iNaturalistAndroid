@@ -3,6 +3,9 @@ package org.inaturalist.android;
 import java.util.ArrayList;
 import org.inaturalist.android.INaturalistService.LoginType;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.Session.StatusCallback;
@@ -19,6 +22,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,14 +38,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class INaturalistPrefsActivity extends Activity {
+public class INaturalistPrefsActivity extends SherlockActivity {
 	private static final String TAG = "INaturalistPrefsActivity";
 	public static final String REAUTHENTICATE_ACTION = "reauthenticate_action";
 	
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final int REQUEST_CODE_ADD_ACCOUNT = 0x1001;
     
-    private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
+    private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
     
 	private LinearLayout mSignInLayout;
 	private LinearLayout mSignOutLayout;
@@ -70,6 +74,7 @@ public class INaturalistPrefsActivity extends Activity {
             onSessionStateChange(session, state, exception);
         }
     };
+    private TextView mHelp;
     
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
 //        Log.d(TAG, "onSessionStateChange: " + session.toString() + ":" + state.toString());
@@ -102,9 +107,27 @@ public class INaturalistPrefsActivity extends Activity {
           }).show(); 
     }
 	
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+         case android.R.id.home:
+            finish();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+
 		
 //		try {
 //		    Log.d("KeyHash:", "ENTER");
@@ -140,6 +163,17 @@ public class INaturalistPrefsActivity extends Activity {
 	    mSignInButton = (Button) findViewById(R.id.signInButton);
 	    mSignOutButton = (Button) findViewById(R.id.signOutButton);
 	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
+	    mHelp = (TextView) findViewById(R.id.tutorial_link);
+	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG); 
+	    
+	    mHelp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(INaturalistPrefsActivity.this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("first_time", false);
+                startActivity(intent);
+            }
+        });
 	    
         mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);
         mGoogleLogin = (Button) findViewById(R.id.google_login_button);
@@ -338,7 +372,11 @@ public class INaturalistPrefsActivity extends Activity {
 		}
 
 	    protected void onPostExecute(String result) {
-	        mProgressDialog.dismiss();
+	        try {
+	            mProgressDialog.dismiss();
+	        } catch (Exception exc) {
+	            // Ignore
+	        }
 			if (result != null) {
 				Toast.makeText(mActivity, getString(R.string.signed_in), Toast.LENGTH_SHORT).show();
 			} else {
@@ -371,6 +409,10 @@ public class INaturalistPrefsActivity extends Activity {
 			mPrefEditor.putString("login_type", mLoginType.toString());
 			mPrefEditor.commit();
 			toggle();
+			
+			// Run the first observation sync
+			Intent serviceIntent = new Intent(INaturalistService.ACTION_FIRST_SYNC, null, INaturalistPrefsActivity.this, INaturalistService.class);
+			startService(serviceIntent);
 	    }
 
 	}
@@ -447,9 +489,10 @@ public class INaturalistPrefsActivity extends Activity {
 	        }
 	        AccountManager.get(this).getAuthToken(account, 
 	                GOOGLE_AUTH_TOKEN_TYPE,
-	                true,
+	                null,
+	                INaturalistPrefsActivity.this,
 	                cb, 
-	                null); 
+	                null);
 
 	    } else {
 	        // "Regular" login
@@ -462,6 +505,7 @@ public class INaturalistPrefsActivity extends Activity {
 		mPrefEditor.remove("credentials");
 		mPrefEditor.remove("password");
 		mPrefEditor.remove("login_type");
+        mPrefEditor.remove("last_sync_time");
 		mPrefEditor.commit();
 		toggle();
 	}
