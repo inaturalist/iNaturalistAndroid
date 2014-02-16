@@ -56,6 +56,9 @@ public class ObservationListActivity extends SherlockListActivity {
 	
 	private SyncCompleteReceiver mSyncCompleteReceiver;
 	
+	private int mLastIndex;
+	private int mLastTop;
+	
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -183,6 +186,24 @@ public class ObservationListActivity extends SherlockListActivity {
                 new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
                 new int[] { R.id.speciesGuess, R.id.subContent });
         setListAdapter(adapter);
+    }
+    
+    @Override
+    public void onPause() {
+        // save last position of list so we can resume there later
+        // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
+        ListView lv = mPullRefreshListView.getRefreshableView();
+        mLastIndex = lv.getFirstVisiblePosition();
+        View v = lv.getChildAt(0);
+        mLastTop = (v == null) ? 0 : v.getTop();
+        super.onPause();
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        ListView lv = mPullRefreshListView.getRefreshableView();
+        lv.setSelectionFromTop(mLastIndex, mLastTop);
     }
     
     @Override
