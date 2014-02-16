@@ -94,7 +94,8 @@
                 android:layout_margin="3dp"
                 android:hint="@string/species_guess_hint"
                 android:imeOptions="actionDone"
-                android:singleLine="true" >
+                android:singleLine="true"
+                android:inputType="text|textCapSentences" >
 
                 <requestFocus />
             </EditText>
@@ -248,7 +249,8 @@
                 android:layout_weight="1"
                 android:gravity="top"
                 android:hint="@string/brief_description"
-                android:imeOptions="actionDone" />
+                android:imeOptions="actionDone"
+                android:inputType="text|textMultiLine|textCapSentences" />
 
             <LinearLayout
                 android:layout_width="match_parent"
