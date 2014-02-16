@@ -104,7 +104,8 @@ public class Observation implements BaseColumns, Serializable {
     public static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/observations");
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.google.observation";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.google.observation";
-    public static final String DEFAULT_SORT_ORDER = "_created_at DESC, created_at DESC, _id DESC";
+    public static final String DEFAULT_SORT_ORDER = "CASE WHEN id IS NULL THEN _created_at ELSE created_at END DESC";
+    public static final String SYNC_ORDER = "_created_at ASC";
     public static final String _CREATED_AT = "_created_at";
     public static final String _SYNCED_AT = "_synced_at";
     public static final String _UPDATED_AT = "_updated_at";

@@ -45,6 +45,7 @@
               android:id="@+id/commentIdCount"
               android:layout_alignParentRight="true"
               android:layout_width="wrap_content"
+              android:minWidth="23dp"
               android:layout_height="wrap_content"
               android:background="@drawable/comments_ids_background"
               android:padding="5dp"

@@ -272,13 +272,16 @@ public class ObservationListActivity extends SherlockListActivity {
                 Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
                 Long photoId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
                 String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
                                     photoId.toString(),
                                     null,
-                                    photoUrl
+                                    photoUrl,
+                                    null,
+                                    null
                             });
                 }
                 onlinePc.moveToNext();
@@ -288,7 +291,14 @@ public class ObservationListActivity extends SherlockListActivity {
             
             
             Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
-                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
+                    new String[]{
+                        ObservationPhoto._ID, 
+                        ObservationPhoto._OBSERVATION_ID, 
+                        ObservationPhoto._PHOTO_ID, 
+                        ObservationPhoto.PHOTO_URL,
+                        ObservationPhoto._UPDATED_AT,
+                        ObservationPhoto._SYNCED_AT
+                    }, 
                     "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NULL", 
                     null, 
                     ObservationPhoto._ID);
@@ -320,6 +330,8 @@ public class ObservationListActivity extends SherlockListActivity {
             while (!opc.isAfterLast()) {
                 Long obsId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
                 Long photoId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                Long syncedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._SYNCED_AT));
+                Long updatedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._UPDATED_AT));
                 String photoUrl = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
@@ -327,7 +339,9 @@ public class ObservationListActivity extends SherlockListActivity {
                             new String[] {
                                 photoId.toString(),
                                 orientationsByPhotoId.get(photoId),
-                                null
+                                null,
+                                updatedAt.toString(),
+                                syncedAt.toString()
                             });
                 }
                 opc.moveToNext();
@@ -381,7 +395,6 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 
             } else {
-                
                 String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
                 if (iconicTaxonName == null) {
                     image.setImageResource(R.drawable.iconic_taxon_unknown);
@@ -457,10 +470,27 @@ public class ObservationListActivity extends SherlockListActivity {
  
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
             Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
+            Boolean syncNeeded = (syncedAt == null) || (updatedAt > syncedAt); 
+            
+            // if there's a photo and it is local
+            if (syncNeeded == false && 
+                    photoInfo != null && 
+                    photoInfo[2] == null &&  
+                    photoInfo[3] != null) {
+                if (photoInfo[4] == null) {
+                    syncNeeded = true;
+                } else {
+                    Long photoSyncedAt = Long.parseLong(photoInfo[4]);
+                    Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
+                    if (photoUpdatedAt > photoSyncedAt) {
+                        syncNeeded = true;
+                    }
+                }
+            }
             
             ImageView needToSync = (ImageView) view.findViewById(R.id.syncRequired);
             
-            if ((syncedAt == null) || (updatedAt > syncedAt)) {
+            if (syncNeeded) {
                 // This observations needs to be synced
                 needToSync.setVisibility(View.VISIBLE);
             } else {

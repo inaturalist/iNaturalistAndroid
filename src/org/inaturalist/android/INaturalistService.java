@@ -615,7 +615,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Observation.PROJECTION, 
                 "_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '"+mLogin+"'", 
                 null, 
-                Observation.DEFAULT_SORT_ORDER);
+                Observation.SYNC_ORDER);
         int updatedCount = c.getCount();
         mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
                 getString(R.string.syncing_observations), 
@@ -640,7 +640,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         // query observations where _synced_at IS NULL
         c = getContentResolver().query(Observation.CONTENT_URI, 
                 Observation.PROJECTION, 
-                "id IS NULL", null, Observation.DEFAULT_SORT_ORDER);
+                "id IS NULL", null, Observation.SYNC_ORDER);
         int createdCount = c.getCount();
         // for each observation POST to /observations/
         c.moveToFirst();

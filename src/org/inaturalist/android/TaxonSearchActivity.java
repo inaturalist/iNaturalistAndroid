@@ -209,16 +209,28 @@ public class TaxonSearchActivity extends SherlockListActivity {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.taxon_result_item, parent, false); 
             JSONObject item = mResultList.get(position);
+            JSONObject defaultName;
+            String displayName;
+            try {
+                displayName = item.getString("unique_name");
+            } catch (JSONException e2) {
+                displayName = "unknown";
+            }
+            try {
+                defaultName = item.getJSONObject("default_name");
+                displayName = defaultName.getString("name");
+            } catch (JSONException e1) {
+                // alas
+            }
             
             try {
                 ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                 UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"));
                 TextView idName = (TextView) view.findViewById(R.id.id_name);
-                idName.setText(item.getString("unique_name"));
+                idName.setText(displayName);
                 TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
                 idTaxonName.setText(item.getString("name"));
                 idTaxonName.setTypeface(null, Typeface.ITALIC);
-
                 view.setTag(item);
             } catch (JSONException e) {
                 e.printStackTrace();

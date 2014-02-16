@@ -73,15 +73,13 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/bottom_actionbar"
-        android:background="#ffff0000" >
+        android:layout_above="@id/bottom_actionbar">
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#ffff0000" >
+            android:orientation="vertical">
 
             <Gallery
                 android:id="@+id/gallery"
