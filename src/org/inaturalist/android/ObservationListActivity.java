@@ -28,8 +28,10 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -58,6 +60,7 @@ public class ObservationListActivity extends SherlockListActivity {
 	
 	private int mLastIndex;
 	private int mLastTop;
+	private ActionBar mTopActionBar;
 	
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -101,9 +104,12 @@ public class ObservationListActivity extends SherlockListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
         
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        // TODO make this have an Add button
+        mTopActionBar = getSupportActionBar();
+        mTopActionBar.setHomeButtonEnabled(true);
+        mTopActionBar.setDisplayHomeAsUpEnabled(true);
+        mTopActionBar.setCustomView(R.layout.observation_list_top_action_bar);
+        mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#111111")));
 
         
         Intent intent = getIntent();
@@ -469,17 +475,20 @@ public class ObservationListActivity extends SherlockListActivity {
             Long idCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
             Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
             Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
-            Long totalCount = commentsCount + idCount;
 //            String speciesGuess = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
 //            Log.d(TAG, speciesGuess + ": commentsCount: " + commentsCount);
-            
+            Long taxonId = c.getLong(c.getColumnIndexOrThrow(Observation.TAXON_ID));
+            if (taxonId != 0 && idCount > 0) {
+                idCount--;
+            }
+            Long totalCount = commentsCount + idCount;
             if (totalCount == 0) {
                 // No comments/IDs - don't display the indicator
                 commentIdCountText.setVisibility(View.INVISIBLE);
             } else {
                 commentIdCountText.setVisibility(View.VISIBLE);
-                if ((lastCommentsCount == null) || (lastCommentsCount != commentsCount) ||
-                        (lastIdCount == null) || (lastIdCount != idCount)) {
+                if ((lastCommentsCount == null) || (lastCommentsCount < commentsCount) ||
+                        (lastIdCount == null) || (lastIdCount < idCount)) {
                     // There are unread comments/IDs
                     commentIdCountText.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
                 } else {
@@ -487,7 +496,6 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 
                 refreshCommentsIdSize(commentIdCountText, totalCount);
-                
             }
  
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));

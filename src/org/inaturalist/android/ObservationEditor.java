@@ -1711,12 +1711,16 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background);
             
             Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
-            if ((mObservation.identifications_count != null) && (mObservation.identifications_count > 0)) totalCount--; // Don't count our own ID
             refreshCommentsIdSize(totalCount);
         }
     }
     
     private void refreshCommentsIdSize(Integer value) {
+        if (mObservation.identifications_count != null && 
+                mObservation.identifications_count > 0 && 
+                mObservation.taxon_id != null) {
+            value--; // Don't count our own ID
+        }
         ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
         // Make sure the height and width of the rectangle are the same (i.e. a square)
         observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
