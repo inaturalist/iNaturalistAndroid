@@ -55,6 +55,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Criteria;
@@ -1588,6 +1590,24 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 // accidently consider this an updated record)
                 cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
             }
+                
+            // Add any new photos that were added remotely
+            for (int j = 0; j < jsonObservation.photos.size(); j++) {
+                ObservationPhoto photo = jsonObservation.photos.get(j);
+                photo._observation_id = jsonObservation._id;
+
+                ContentValues opcv = photo.getContentValues();
+                opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
+                opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
+                opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
+                opcv.put(ObservationPhoto._ID, photo.id);
+                try {
+                        getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
+                } catch(SQLException ex) {
+                        // Happens when the photo already exists - ignore
+                }
+            }
+
             if (isModified) {
                 // Only update the DB if needed
                 getContentResolver().update(observation.getUri(), cv, null, null);

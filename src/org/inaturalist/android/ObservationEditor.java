@@ -956,7 +956,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 Uri uri = ((GalleryCursorAdapter) g.getAdapter()).getItemUri(position);
                 Log.d(TAG, "uri: " + uri);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(uri, MediaStore.Images.Media.CONTENT_TYPE);
+                intent.setDataAndType(uri, "image/*");
                 try {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
@@ -1923,8 +1923,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
     protected void updateImages() {
         mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                 ObservationPhoto.PROJECTION, 
-                "_observation_id=?", 
-                new String[]{mObservation._id.toString()}, 
+                "_observation_id=? or observation_id=?", 
+                new String[]{mObservation._id.toString(), mObservation.id.toString()}, 
                 ObservationPhoto.DEFAULT_SORT_ORDER);
         mImageCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
@@ -1990,6 +1990,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             
             if (imageUrl != null) {
                 // Online photo
+            	imageView.setLayoutParams(new Gallery.LayoutParams(400, 400));
                 UrlImageViewHelper.setUrlDrawable(imageView, imageUrl);
             } else {
                 // Offline photo
