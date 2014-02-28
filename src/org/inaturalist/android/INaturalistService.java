@@ -537,15 +537,21 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Observation.DEFAULT_SORT_ORDER);
         
        // for each observation DELETE to /observations/:id
+        ArrayList<Integer> obsIds = new ArrayList<Integer>();
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             Observation observation = new Observation(c);
             delete(HOST + "/observations/" + observation.id + ".json", null);
+            obsIds.add(observation.id);
             c.moveToNext();
         }
         
         // Now it's safe to delete all of the observations locally
         getContentResolver().delete(Observation.CONTENT_URI, "is_deleted = 1", null);
+        // Delete associated project-fields and photos
+        int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+        int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
     }
     
     private void agreeIdentification(int observationId, int taxonId) throws AuthenticationException {
