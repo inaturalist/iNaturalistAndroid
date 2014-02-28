@@ -1114,6 +1114,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         JSONArray json = get(url);
         if (json != null && json.length() > 0) {
             syncJson(json, true);
+        } else {
+        	if (mResponseHeaders != null) {
+        		// Delete any local observations which were deleted remotely by the user
+        		for (Header header : mResponseHeaders) {
+        			if (!header.getName().equalsIgnoreCase("X-Deleted-Observations")) continue;
+
+        			String deletedIds = header.getValue().trim();
+        			getContentResolver().delete(Observation.CONTENT_URI, "(id IN ("+deletedIds+"))", null);
+        			// Delete associated project-fields and photos
+        			int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+        			int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+        			int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+        			break;
+        		}
+
+        		mResponseHeaders = null;
+        	}
         }
     }
     
@@ -1667,6 +1684,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     
                     String deletedIds = header.getValue().trim();
                     getContentResolver().delete(Observation.CONTENT_URI, "(id IN ("+deletedIds+"))", null);
+        			// Delete associated project-fields and photos
+        			int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+        			int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+        			int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+ 
                     break;
                 }
                 
