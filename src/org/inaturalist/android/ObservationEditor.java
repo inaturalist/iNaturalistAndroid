@@ -165,6 +165,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private ArrayList<BetterJSONObject> mProjects = null;
     
 	private boolean mProjectFieldsUpdated = false;
+	private boolean mDeleted = false;
 
     private class ProjectReceiver extends BroadcastReceiver {
         @Override
@@ -1097,11 +1098,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
         stopGetLocation();
         uiToProjectFieldValues();
         if (isFinishing()) {
-            if (isDeleteable()) {
-                delete(true);
-            } else if (!mCanceled) {
-                save();
-            }
+        	
+        	if (!mDeleted) {
+        		if (isDeleteable()) {
+        			delete(true);
+        		} else if (!mCanceled) {
+        			save();
+        		}
+        	}
         }
     }
     
@@ -1333,6 +1337,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             cv.put(Observation.IS_DELETED, 1);
             getContentResolver().update(mUri, cv, null, null);
         }
+        
+        mDeleted = true;
         
         app.checkSyncNeeded();
     }
