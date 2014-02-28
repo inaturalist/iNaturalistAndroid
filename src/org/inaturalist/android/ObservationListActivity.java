@@ -18,7 +18,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.annotation.TargetApi;
-import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -29,7 +28,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -43,9 +41,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -104,13 +102,19 @@ public class ObservationListActivity extends SherlockListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
         
-        // TODO make this have an Add button
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setHomeButtonEnabled(true);
         mTopActionBar.setDisplayHomeAsUpEnabled(true);
+        mTopActionBar.setDisplayShowCustomEnabled(true);
         mTopActionBar.setCustomView(R.layout.observation_list_top_action_bar);
         mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#111111")));
-
+        TextView addButton = (TextView) mTopActionBar.getCustomView().findViewById(R.id.add);
+        addButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
+            }
+        });
         
         Intent intent = getIntent();
         if (intent.getData() == null) {
@@ -123,8 +127,6 @@ public class ObservationListActivity extends SherlockListActivity {
         registerReceiver(mSyncCompleteReceiver, filter);
  
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
-        
-        
         mPullRefreshListView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_sync));
         mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_sync));
         mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.syncing));
