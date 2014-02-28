@@ -163,6 +163,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
     
     private ArrayList<BetterJSONObject> mProjects = null;
+    
+	private boolean mProjectFieldsUpdated = false;
 
     private class ProjectReceiver extends BroadcastReceiver {
         @Override
@@ -800,6 +802,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mProjects = (ArrayList<BetterJSONObject>) savedInstanceState.getSerializable("mProjects");
             mProjectIds = savedInstanceState.getIntegerArrayList("mProjectIds");
             mProjectFieldValues = (Hashtable<Integer, ProjectFieldValue>) savedInstanceState.getSerializable("mProjectFieldValues");
+            mProjectFieldsUpdated = savedInstanceState.getBoolean("mProjectFieldsUpdated");
         }
 
         
@@ -1076,6 +1079,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         outState.putIntegerArrayList("mProjectIds", mProjectIds);
         uiToProjectFieldValues();
         outState.putSerializable("mProjectFieldValues", mProjectFieldValues);
+        outState.putBoolean("mProjectFieldsUpdated", mProjectFieldsUpdated);
     }
 
     @Override
@@ -1126,11 +1130,18 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 fieldValue = new ProjectFieldValue();
                 fieldValue.field_id = field.field_id;
                 fieldValue.observation_id = obsId;
+                
+                mProjectFieldsUpdated = true;
             }
             
             // Overwrite value
-            fieldValue.value = fieldViewer.getValue();
-            mProjectFieldValues.put(field.field_id, fieldValue);
+            String newValue = fieldViewer.getValue();
+            if ((newValue != null) && (!newValue.equals(fieldValue.value))) {
+            	mProjectFieldsUpdated = true;
+
+            	fieldValue.value = newValue;
+            	mProjectFieldValues.put(field.field_id, fieldValue);
+            }
         }
     }
 
@@ -1284,7 +1295,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         uiToObservation();
-        if (mObservation.isDirty()) {
+        
+        boolean updatedProjects = saveProjects();
+        saveProjectFields();
+        
+        if ((mObservation.isDirty()) || (mProjectFieldsUpdated) || (updatedProjects)) {
             try {
                 ContentValues cv = mObservation.getContentValues();
                 if (mObservation.latitude_changed()) {
@@ -1297,8 +1312,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
         }
         
-        saveProjects();
-        saveProjectFields();
         
         app.checkSyncNeeded();
         
@@ -1565,6 +1578,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
      */
     
     private void saveProjectFields() {
+
         for (ProjectFieldValue fieldValue : mProjectFieldValues.values()) {
             if (fieldValue.value == null) {
                 continue;
@@ -1584,7 +1598,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
      
    
-    private void saveProjects() {
+    private boolean saveProjects() {
+    	Boolean updatedProjects = false; // Indicates whether or not *any* projects were changed
         String joinedIds = StringUtils.join(mProjectIds, ",");
         
         int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
@@ -1597,6 +1612,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         c.moveToFirst();
 
         while (c.isAfterLast() == false) {
+        	updatedProjects = true;
             ProjectObservation projectObservation = new ProjectObservation(c);
             projectObservation.is_deleted = true;
             getContentResolver().update(projectObservation.getUri(), projectObservation.getContentValues(), null, null);
@@ -1616,6 +1632,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
         while (c.isAfterLast() == false) {
             ProjectObservation projectObservation = new ProjectObservation(c);
+            if (projectObservation.is_deleted == true) {
+            	updatedProjects = true;
+            }
             projectObservation.is_deleted = false;
             existingIds.add(projectObservation.project_id);
             getContentResolver().update(projectObservation.getUri(), projectObservation.getContentValues(), null, null);
@@ -1627,6 +1646,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         ArrayList<Integer> newIds = (ArrayList<Integer>) CollectionUtils.subtract(mProjectIds, existingIds);
 
         for (int i = 0; i < newIds.size(); i++) {
+        	updatedProjects = true;
             int projectId = newIds.get(i);
             ProjectObservation projectObservation = new ProjectObservation();
             projectObservation.project_id = projectId;
@@ -1636,7 +1656,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
             getContentResolver().insert(ProjectObservation.CONTENT_URI, projectObservation.getContentValues());
         }
-
+        
+        return updatedProjects;
     }
 
     @Override
