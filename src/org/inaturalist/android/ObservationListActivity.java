@@ -254,17 +254,21 @@ public class ObservationListActivity extends SherlockListActivity {
             
             c.moveToFirst();
             ArrayList<Long> obsIds = new ArrayList<Long>();
+            ArrayList<Long> obsExternalIds = new ArrayList<Long>();
             ArrayList<Long> photoIds = new ArrayList<Long>();
             while (!c.isAfterLast()) {
                 obsIds.add(c.getLong(c.getColumnIndexOrThrow(Observation._ID)));
+                try {
+                	obsExternalIds.add(c.getLong(c.getColumnIndexOrThrow(Observation.ID)));
+                } catch (Exception exc) { }
                 c.moveToNext();
             }
             
-            
+ 
             // Add any online-only photos
             Cursor onlinePc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                     new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
-                    "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NOT NULL", 
+                    "(_observation_id IN ("+StringUtils.join(obsIds, ',')+") OR observation_id IN ("+StringUtils.join(obsExternalIds, ',')+")  )  AND photo_url IS NOT NULL", 
                     null, 
                     ObservationPhoto._ID);
             onlinePc.moveToFirst();
@@ -349,8 +353,15 @@ public class ObservationListActivity extends SherlockListActivity {
             ImageView image = (ImageView) view.findViewById(R.id.image);
             c.moveToPosition(position);
             Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+            Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
             
             String[] photoInfo = mPhotoInfo.get(obsId);
+            
+            if (photoInfo == null) {
+            	// Try getting the external observation photo info
+            	photoInfo = mPhotoInfo.get(externalObsId);
+            }
+
             if (photoInfo != null) {
                 if (photoInfo[0] == null || photoInfo[0].equals("null")) return view;
                 Long photoId = Long.parseLong(photoInfo[0]);
