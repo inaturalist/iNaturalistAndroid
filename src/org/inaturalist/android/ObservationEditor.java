@@ -1922,11 +1922,19 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
 
     protected void updateImages() {
-        mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
-                ObservationPhoto.PROJECTION, 
-                "_observation_id=? or observation_id=?", 
-                new String[]{mObservation._id.toString(), mObservation.id.toString()}, 
-                ObservationPhoto.DEFAULT_SORT_ORDER);
+    	if (mObservation.id != null) {
+    		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+    				ObservationPhoto.PROJECTION, 
+    				"_observation_id=? or observation_id=?", 
+    				new String[]{mObservation._id.toString(), mObservation.id.toString()}, 
+    				ObservationPhoto.DEFAULT_SORT_ORDER);
+    	} else {
+     		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+    				ObservationPhoto.PROJECTION, 
+    				"_observation_id=?", 
+    				new String[]{mObservation._id.toString()}, 
+    				ObservationPhoto.DEFAULT_SORT_ORDER);   		
+    	}
         mImageCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
     }
