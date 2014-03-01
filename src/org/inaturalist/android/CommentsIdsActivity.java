@@ -372,6 +372,8 @@ public class CommentsIdsActivity extends SherlockListActivity {
 
         private List<BetterJSONObject> mItems;
         private Context mContext;
+        private ArrayList<Boolean> mAgreeing;
+    
         
         public boolean isEnabled(int position) { 
             return false; 
@@ -381,6 +383,8 @@ public class CommentsIdsActivity extends SherlockListActivity {
             super(context, R.layout.comment_id_item, objects);
             
             mItems = objects;
+            mAgreeing = new ArrayList<Boolean>();
+            while (mAgreeing.size() < mItems.size()) mAgreeing.add(false);
             mContext = context;
         }
         
@@ -389,10 +393,10 @@ public class CommentsIdsActivity extends SherlockListActivity {
         }
         
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) { 
+        public View getView(final int position, View convertView, ViewGroup parent) { 
             Resources res = getResources();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.comment_id_item, parent, false); 
+            final View view = inflater.inflate(R.layout.comment_id_item, parent, false); 
             final BetterJSONObject item = mItems.get(position);
             
             try {
@@ -455,10 +459,15 @@ public class CommentsIdsActivity extends SherlockListActivity {
                     }
                     
                     final Button agree = (Button) view.findViewById(R.id.id_agree);
+                    final ProgressBar loading = (ProgressBar) view.findViewById(R.id.loading);
                     agree.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             try {
+                            	// After calling the agree API - we'll refresh the comment/ID list
+                            	IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                            	registerReceiver(mObservationReceiver, filter);  
+ 
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, CommentsIdsActivity.this, INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
                                 serviceIntent.putExtra(INaturalistService.TAXON_ID, item.getJSONObject("taxon").getInt("id"));
@@ -471,12 +480,23 @@ public class CommentsIdsActivity extends SherlockListActivity {
                             }
                             
                             agree.setVisibility(View.GONE);
+                            loading.setVisibility(View.VISIBLE);
+                            mAgreeing.set(position, true);
                         }
                     });
+                    
+                    if ((mAgreeing.get(position) != null) && (mAgreeing.get(position) == true)) {
+                    	agree.setVisibility(View.GONE);
+                    	loading.setVisibility(View.VISIBLE);
+                    } else {
+                    	agree.setVisibility(View.VISIBLE);
+                    	loading.setVisibility(View.GONE);
+                    }
                     
                     if ((username.equalsIgnoreCase(mLogin)) || (mTaxonId == item.getInt("taxon_id").intValue())) {
                         // Can't agree on our on identification or when the identification is the current one
                         agree.setVisibility(View.GONE);
+                        loading.setVisibility(View.GONE);
                     }
                 }
             } catch (JSONException e) {
