@@ -52,6 +52,10 @@ import android.widget.TextView;
 public class CommentsIdsActivity extends SherlockListActivity {
     public static final String NEW_COMMENTS = "new_comments";
     public static final String NEW_IDS = "new_ids";
+    public static final String TAXON_ID = "taxon_id";
+    public static final String SPECIES_GUESS = "species_guess";
+    public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
+
     protected static final int NEW_ID_REQUEST_CODE = 202;
 
     public static String TAG = "INAT";
@@ -67,6 +71,10 @@ public class CommentsIdsActivity extends SherlockListActivity {
     private int mNewComments = 0;
     private int mNewIds = 0;
     private int mTaxonId;
+    private String mIconicTaxonName;
+    private String mSpeciesGuess;
+
+
     private Button mAddComment;
     private Button mAddId;
 	
@@ -345,27 +353,30 @@ public class CommentsIdsActivity extends SherlockListActivity {
     
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putInt(NEW_COMMENTS, mNewComments);
-        bundle.putInt(NEW_IDS, mNewIds);
-        intent.putExtras(bundle);
-        
-        setResult(RESULT_OK, intent);
-        
+    	setResult();
+       
         super.onBackPressed();
     }
     
     @Override
     public void onStop() {
-        Intent intent = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putInt(NEW_COMMENTS, mNewComments);
-        bundle.putInt(NEW_IDS, mNewIds);
-        intent.putExtras(bundle);
-        
-        setResult(RESULT_OK, intent);
+    	setResult();
+
         super.onStop();
+    }
+    
+    private void setResult() {
+    	Intent intent = new Intent();
+    	Bundle bundle = new Bundle();
+    	bundle.putInt(NEW_COMMENTS, mNewComments);
+    	bundle.putInt(NEW_IDS, mNewIds);
+    	bundle.putInt(TAXON_ID, mTaxonId);
+    	if (mIconicTaxonName != null) bundle.putString(ICONIC_TAXON_NAME, mIconicTaxonName);
+    	if (mSpeciesGuess != null) bundle.putString(SPECIES_GUESS, mSpeciesGuess);
+    	
+    	intent.putExtras(bundle);
+
+    	setResult(RESULT_OK, intent);
     }
     
     public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> {
@@ -373,7 +384,6 @@ public class CommentsIdsActivity extends SherlockListActivity {
         private List<BetterJSONObject> mItems;
         private Context mContext;
         private ArrayList<Boolean> mAgreeing;
-    
         
         public boolean isEnabled(int position) { 
             return false; 
@@ -466,7 +476,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
                             try {
                             	// After calling the agree API - we'll refresh the comment/ID list
                             	IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                            	registerReceiver(mObservationReceiver, filter);  
+                            	registerReceiver(mObservationReceiver, filter);
  
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, CommentsIdsActivity.this, INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
@@ -474,6 +484,11 @@ public class CommentsIdsActivity extends SherlockListActivity {
                                 startService(serviceIntent);
                                 
                                 mNewIds++;
+                                
+                                mTaxonId = item.getInt("taxon_id");
+                                mIconicTaxonName = item.getJSONObject("taxon").getString("iconic_taxon_name");
+                                mSpeciesGuess = item.getJSONObject("taxon").getJSONObject("common_name").getString("name");
+
                             } catch (JSONException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
