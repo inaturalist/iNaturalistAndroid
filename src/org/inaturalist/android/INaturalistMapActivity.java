@@ -163,11 +163,11 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
 
     private void reloadObservations() {
         if (mMap == null) return;
-        String where = "is_deleted != 1 AND (id IS NULL";
-        if (mApp.loggedIn()) {
+        String where = "(_synced_at IS NULL";
+        if (mApp.currentUserLogin() != null) {
             where += " OR user_login = '" + mApp.currentUserLogin() + "'";
         }
-        where += ")";
+        where += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
                 where, // selection 
                 null, // selectionArgs

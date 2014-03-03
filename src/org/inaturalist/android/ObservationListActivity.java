@@ -182,7 +182,6 @@ public class ObservationListActivity extends SherlockListActivity {
         if (login != null) {
             conditions += " OR user_login = '" + login + "'";
         }
-        
         conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         
         Cursor cursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
