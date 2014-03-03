@@ -45,6 +45,18 @@
             android:layout_marginLeft="5dp"
             android:text="@string/agree" />
         
+        <ProgressBar
+  	      android:id="@+id/loading"
+  	      style="?android:attr/progressBarStyle"
+  	      android:layout_width="wrap_content"
+  	      android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_alignParentRight="true"
+          android:layout_marginLeft="5dp"
+          android:visibility="gone"
+	      /> 
+        
+        
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

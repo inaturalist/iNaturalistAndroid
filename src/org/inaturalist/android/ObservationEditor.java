@@ -1729,6 +1729,16 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.identifications_count += data.getIntExtra(CommentsIdsActivity.NEW_IDS, 0);
             mObservation.last_comments_count = mObservation.comments_count;
             mObservation.last_identifications_count = mObservation.identifications_count;
+            mObservation.taxon_id = data.getIntExtra(CommentsIdsActivity.TAXON_ID, 0);
+            
+            String speciesGuess = data.getStringExtra(CommentsIdsActivity.SPECIES_GUESS);
+            if (speciesGuess != null) {
+            	mSpeciesGuess = speciesGuess;
+            	mObservation.species_guess = speciesGuess;
+            	mSpeciesGuessTextView.setText(mSpeciesGuess);
+            }
+            String iconicTaxonName = data.getStringExtra(CommentsIdsActivity.ICONIC_TAXON_NAME);
+            if (iconicTaxonName != null) mObservation.iconic_taxon_name = iconicTaxonName;
 
             // Only update the last_comments/id_count fields
             ContentValues cv = mObservation.getContentValues();

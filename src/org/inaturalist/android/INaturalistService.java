@@ -195,7 +195,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             } else if (action.equals(ACTION_AGREE_ID)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                agreeIdentification(observationId, taxonId);
+                JSONObject result = agreeIdentification(observationId, taxonId);
+                
+                if (result != null) {
+                	// Reload the observation at the end (need to refresh comment/ID list)
+                	Observation observation = getObservation(observationId);
+
+                	Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                	reply.putExtra(OBSERVATION_RESULT, observation);
+                	sendBroadcast(reply);
+                }
                 
             } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -554,12 +563,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
     }
     
-    private void agreeIdentification(int observationId, int taxonId) throws AuthenticationException {
+    private JSONObject agreeIdentification(int observationId, int taxonId) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
         
-        post(HOST + "/identifications.json", params);
+        JSONArray result = post(HOST + "/identifications.json", params);
+        
+        if (result != null) {
+        	try {
+				return result.getJSONObject(0);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
+        } else {
+        	return null;
+        }
     }
     
     
