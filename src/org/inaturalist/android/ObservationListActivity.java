@@ -71,6 +71,7 @@ public class ObservationListActivity extends SherlockListActivity {
         public void onReceive(Context context, Intent intent) {
         	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
             mPullRefreshListView.onRefreshComplete();
+            mPullRefreshListView.refreshDrawableState();
         }
     } 	
   
@@ -298,7 +299,7 @@ public class ObservationListActivity extends SherlockListActivity {
                     new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
                     "(_observation_id IN ("+StringUtils.join(obsIds, ',')+") OR observation_id IN ("+StringUtils.join(obsExternalIds, ',')+")  )  AND photo_url IS NOT NULL", 
                     null, 
-                    ObservationPhoto._ID);
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
             onlinePc.moveToFirst();
             while (!onlinePc.isAfterLast()) {
                 Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
@@ -487,8 +488,6 @@ public class ObservationListActivity extends SherlockListActivity {
             Long idCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
             Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
             Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
-//            String speciesGuess = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
-//            Log.d(TAG, speciesGuess + ": commentsCount: " + commentsCount);
             Long taxonId = c.getLong(c.getColumnIndexOrThrow(Observation.TAXON_ID));
             if (taxonId != 0 && idCount > 0) {
                 idCount--;

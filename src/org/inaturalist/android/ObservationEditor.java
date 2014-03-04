@@ -1250,18 +1250,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (mObservation.positional_accuracy != null) {
             mAccuracyView.setText(mObservation.positional_accuracy.toString());
         }
-        Integer totalCount = (mObservation.comments_count == null ? 0 : mObservation.comments_count) +
-                (mObservation.identifications_count == null ? 0 : mObservation.identifications_count);
-        refreshCommentsIdSize(totalCount);
-
-        if ((mObservation.comments_count != null) || (mObservation.identifications_count != null)) {
-            if ((mObservation.last_comments_count == null) || (mObservation.last_comments_count != mObservation.comments_count) ||
-                    (mObservation.last_identifications_count == null) || (mObservation.last_identifications_count != mObservation.identifications_count)) {
-                if (totalCount > 0) {
-                    // There are unread comments/IDs
-                    mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
-                }
-            }
+        
+        refreshCommentsIdSize(mObservation.updatesCount());
+        if (mObservation.unviewedUpdates()) {
+            mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
         }
     }
 
@@ -1753,11 +1745,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
     
     private void refreshCommentsIdSize(Integer value) {
-        if (mObservation.identifications_count != null && 
-                mObservation.identifications_count > 0 && 
-                mObservation.taxon_id != null) {
-            value--; // Don't count our own ID
-        }
         ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
         // Make sure the height and width of the rectangle are the same (i.e. a square)
         observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -1969,8 +1956,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
     				ObservationPhoto.PROJECTION, 
     				"_observation_id=?", 
     				new String[]{mObservation._id.toString()}, 
-    				ObservationPhoto.DEFAULT_SORT_ORDER);   		
+    				ObservationPhoto.DEFAULT_SORT_ORDER);
     	}
+    	Log.d(TAG, "mImageCursor.getCount(): " + mImageCursor.getCount());
         mImageCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
     }

@@ -437,9 +437,20 @@ public class CommentsIdsActivity extends SherlockListActivity {
                     
                 } else {
                     // Identification
-                    comment.setVisibility(View.GONE);
                     idLayout.setVisibility(View.VISIBLE);
-                    
+                    String body = item.getString("body");
+                    if (body != null && body.length() > 0) {
+                        comment.setText(Html.fromHtml(body));
+                        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams)comment.getLayoutParams();
+                        layoutParams.setMargins(
+                                layoutParams.leftMargin, 
+                                layoutParams.topMargin + 25, 
+                                layoutParams.rightMargin, 
+                                layoutParams.bottomMargin);
+                        comment.setLayoutParams(layoutParams);
+                    } else {
+                        comment.setVisibility(View.GONE);
+                    }
                     ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                     UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"));
                     TextView idName = (TextView) view.findViewById(R.id.id_name);
