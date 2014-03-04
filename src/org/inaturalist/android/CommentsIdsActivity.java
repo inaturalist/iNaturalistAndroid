@@ -261,6 +261,10 @@ public class CommentsIdsActivity extends SherlockListActivity {
                 // Add the ID
                 Integer taxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);
                 String idRemarks = data.getStringExtra(IdentificationActivity.ID_REMARKS);
+                
+                mTaxonId = taxonId;
+                mIconicTaxonName = data.getStringExtra(IdentificationActivity.ICONIC_TAXON_NAME);
+                mSpeciesGuess = data.getStringExtra(IdentificationActivity.SPECIES_GUESS);
             
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_IDENTIFICATION, null, CommentsIdsActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
@@ -304,7 +308,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
         // Set up the input
         final EditText input = new EditText(this);
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
         builder.setView(input);
 
