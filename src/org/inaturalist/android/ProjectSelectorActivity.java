@@ -4,29 +4,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import org.inaturalist.android.ProjectSelectorActivity.ProjectAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.Cursor;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.text.Editable;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,12 +28,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class ProjectSelectorActivity extends SherlockActivity implements OnItemClickListener {    
@@ -52,6 +45,7 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
     
     private TextView mLoadingProjects;
     private ListView mProjectList;
+    private EditText mSearchText;
     
     private INaturalistApp mApp;
     private int mObservationId;
@@ -171,9 +165,23 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         mLoadingProjects = (TextView) findViewById(R.id.project_list_empty);
         mProjectList = (ListView) findViewById(R.id.project_list);
         
+        mSearchText = (EditText) findViewById(R.id.search_filter);
+        mSearchText.setHint(R.string.search_projects);
+        mSearchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mProjectReceiver != null && mProjectReceiver.mAdapter != null) {
+                    mProjectReceiver.mAdapter.getFilter().filter(s);
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+        
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
         startService(serviceIntent);  
-        
     }
 
     @Override
@@ -204,16 +212,51 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         }
     }
 
-    public class ProjectAdapter extends ArrayAdapter<JSONObject> {
+    public class ProjectAdapter extends ArrayAdapter<JSONObject> implements Filterable {
 
         private List<JSONObject> mItems;
+        private List<JSONObject> mOriginalItems;
         private Context mContext;
+        private Filter mFilter;
 
         public ProjectAdapter(Context context, List<JSONObject> objects) {
             super(context, R.layout.project_selector_item, objects);
 
             mItems = objects;
+            mOriginalItems = new ArrayList<JSONObject>(mItems);
             mContext = context;
+            
+            mFilter = new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence constraint) {
+                    FilterResults filterResults = new FilterResults();
+                    if (constraint != null) {
+                        // Retrieve the autocomplete results.
+                        String search = constraint.toString().toLowerCase();
+                        ArrayList<JSONObject> results = new ArrayList<JSONObject>(mOriginalItems.size());
+                        for (JSONObject item : mOriginalItems) {
+                            try {
+                                if (item.getString("title").toLowerCase().indexOf(search) > -1) {
+                                    results.add(item);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } 
+
+                        // Assign the data to the FilterResults
+                        filterResults.values = results;
+                        filterResults.count = results.size();
+                    }
+                    return filterResults;
+                }
+
+                @Override
+                protected void publishResults(CharSequence constraint, FilterResults results) {
+                    mItems = (List<JSONObject>) results.values;
+                    notifyDataSetChanged();
+                }
+            };
         }
 
         public void addItemAtBeginning(JSONObject newItem) {
@@ -228,6 +271,11 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         @Override
         public JSONObject getItem(int index) {
             return mItems.get(index);
+        }
+        
+        @Override
+        public Filter getFilter() {
+            return mFilter;
         }
 
         @Override

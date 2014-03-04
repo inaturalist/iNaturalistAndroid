@@ -308,7 +308,7 @@ public abstract class BaseTab extends SherlockFragment {
         @Override
         public Filter getFilter() {
             return mFilter;
-        }  
+        }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) { 
