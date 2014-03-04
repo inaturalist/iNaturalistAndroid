@@ -958,7 +958,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 Gallery g = (Gallery) parent;
                 Uri uri = ((GalleryCursorAdapter) g.getAdapter()).getItemUri(position);
-                Log.d(TAG, "uri: " + uri);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(uri, "image/*");
                 try {
@@ -1958,7 +1957,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     				new String[]{mObservation._id.toString()}, 
     				ObservationPhoto.DEFAULT_SORT_ORDER);
     	}
-    	Log.d(TAG, "mImageCursor.getCount(): " + mImageCursor.getCount());
         mImageCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
     }
@@ -2028,21 +2026,24 @@ public class ObservationEditor extends SherlockFragmentActivity {
             } else {
                 // Offline photo
                 Cursor pc = findPhotoInStorage(photoId);
-                
-                int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-                Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
-                        getContentResolver(), 
-                        photoId, 
-                        MediaStore.Images.Thumbnails.MINI_KIND, 
-                        (BitmapFactory.Options) null);
-                if (orientation != 0) {
-                    Matrix matrix = new Matrix();
-                    matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                    bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                if (pc.getCount() == 0) {
+                    // photo has been deleted, delete the corresponding db row
+                    getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = " + imageId, null);
+                } else {
+                    int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+                    Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
+                            getContentResolver(), 
+                            photoId, 
+                            MediaStore.Images.Thumbnails.MINI_KIND, 
+                            (BitmapFactory.Options) null);
+                    if (orientation != 0) {
+                        Matrix matrix = new Matrix();
+                        matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                        bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                    }
+                    imageView.setImageBitmap(bitmapImage);
                 }
-                imageView.setImageBitmap(bitmapImage);
             }
-            
             mViews.put(position, imageView);
             return imageView;
         }

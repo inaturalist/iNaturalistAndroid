@@ -1635,21 +1635,54 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
                 
             // Add any new photos that were added remotely
+            ArrayList<Integer> observationPhotoIds = new ArrayList<Integer>();
+            ArrayList<Integer> existingObservationPhotoIds = new ArrayList<Integer>();
+            Cursor pc = getContentResolver().query(
+                    ObservationPhoto.CONTENT_URI, 
+                    ObservationPhoto.PROJECTION, 
+                    "observation_id = "+observation.id, 
+                    null, null);
+            pc.moveToFirst();
+            while(pc.isAfterLast() == false) {
+                int photoId = pc.getInt(pc.getColumnIndexOrThrow(ObservationPhoto.ID));
+                if (photoId != 0) {
+                    existingObservationPhotoIds.add(photoId);
+                }
+                pc.moveToNext();
+            }
+            pc.close();
             for (int j = 0; j < jsonObservation.photos.size(); j++) {
                 ObservationPhoto photo = jsonObservation.photos.get(j);
                 photo._observation_id = jsonObservation._id;
-
+                observationPhotoIds.add(photo.id);
+                if (existingObservationPhotoIds.contains(photo.id)) {
+                    Log.d(TAG, "photo " + photo.id + " has already been added, skipping...");
+                    continue;
+                }
                 ContentValues opcv = photo.getContentValues();
-                opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
+                // So we won't re-add this photo as though it was a local photo
+                opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                 opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
                 opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
-                opcv.put(ObservationPhoto._ID, photo.id);
+                opcv.put(ObservationPhoto.ID, photo.id);
                 try {
-                        getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
+                    getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                 } catch(SQLException ex) {
-                        // Happens when the photo already exists - ignore
+                    // Happens when the photo already exists - ignore
                 }
             }
+            
+            // Delete photos that were synced but weren't present in the remote response, 
+            // indicating they were deleted elsewhere
+            String joinedPhotoIds = StringUtils.join(observationPhotoIds, ",");
+            String where = "observation_id = " + observation.id + " AND id IS NOT NULL";
+            if (joinedPhotoIds.length() > 0) {
+                where += " AND id NOT in (" + joinedPhotoIds + ")";
+            }
+            getContentResolver().delete(
+                    ObservationPhoto.CONTENT_URI, 
+                    where, 
+                    null);
 
             if (isModified) {
                 // Only update the DB if needed
