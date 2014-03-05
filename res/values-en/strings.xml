@@ -155,6 +155,8 @@
     <string name="search_taxa">Search taxa...</string>
     <string name="no_internet_guides">Guides require an Internet connection</string>
     <string name="no_internet_projects">Projects require an Internet connection</string>
+    <string name="import_metadata">Import metadata?</string>
+    <string name="import_metadata_desc">Do you want to set the date, time, and location of this observation from the photo\'s metadata?</string>
 
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>

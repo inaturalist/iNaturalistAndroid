@@ -1,6 +1,8 @@
 package org.inaturalist.android;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.sql.Timestamp;
@@ -829,8 +831,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mProjectSelector = (Button) findViewById(R.id.select_projects);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         mProjectsTable = (TableLayout) findViewById(R.id.projects);
-        
-        
        
         mProjectSelector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -980,15 +980,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
             Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
                     "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
                     null, ProjectObservation.DEFAULT_SORT_ORDER);
-    
             c.moveToFirst();
-    
             mProjectIds = new ArrayList<Integer>();
-    
             while (c.isAfterLast() == false) {
                 ProjectObservation projectObservation = new ProjectObservation(c);
                 mProjectIds.add(projectObservation.project_id);
-    
                 c.moveToNext();
             }
             c.close();
@@ -1246,7 +1242,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (mObservation.longitude != null) {
             mLongitudeView.setText(mObservation.longitude.toString());
         }
-        if (mObservation.positional_accuracy != null) {
+        if (mObservation.positional_accuracy == null) {
+            mAccuracyView.setText("");
+        } else {
             mAccuracyView.setText(mObservation.positional_accuracy.toString());
         }
         
@@ -1674,7 +1672,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;
-                if(data == null) {
+                if (data == null) {
                     isCamera = true;
                 } else {
                     final String action = data.getAction();
@@ -1703,6 +1701,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 updateImageOrientation(selectedImageUri);
                 createObservationPhotoForPhoto(selectedImageUri);
                 updateImages();
+                if (!isCamera) {
+                    promptImportPhotoMetadata(selectedImageUri);
+                }
                 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
@@ -1782,6 +1783,47 @@ public class ObservationEditor extends SherlockFragmentActivity {
             cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
         }
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
+    }
+    
+    private void promptImportPhotoMetadata(Uri photoUri) {
+        final Uri uri = photoUri;
+        confirm(ObservationEditor.this, R.string.import_metadata, R.string.import_metadata_desc, 
+                R.string.yes, R.string.no, 
+                new Runnable() { public void run() {
+                    importPhotoMetadata(uri);
+                }}, 
+                null);
+    }
+    
+    private void importPhotoMetadata(Uri photoUri) {
+        String imgFilePath = imageFilePathFromUri(photoUri);
+        try {
+            ExifInterface exif = new ExifInterface(imgFilePath);
+            float[] latLng = new float[2];
+            uiToObservation();
+            if (exif.getLatLong(latLng)) {
+                stopGetLocation();
+                mObservation.latitude = (double) latLng[0];
+                mObservation.longitude = (double) latLng[1];
+                mObservation.positional_accuracy = null;
+            }
+            String datetime = exif.getAttribute(ExifInterface.TAG_DATETIME);
+            if (datetime != null) {
+                SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
+                try {
+                    Date date = exifDateFormat.parse(datetime);
+                    Timestamp timestamp = new Timestamp(date.getTime());
+                    mObservation.observed_on = timestamp;
+                    mObservation.time_observed_at = timestamp;
+                    mObservation.observed_on_string = app.formatDatetime(timestamp);
+                } catch (ParseException e) {
+                    Log.d(TAG, "Failed to parse " + datetime + ": " + e);
+                }
+            }
+            observationToUi();
+        } catch (IOException e) {
+            Log.e(TAG, "couldn't find " + imgFilePath);
+        }
     }
     
     private void deletePhoto(int position) {
@@ -1922,14 +1964,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     
 
     private void updateImageOrientation(Uri uri) {
-        String[] projection = {
-                MediaStore.MediaColumns._ID,
-                MediaStore.Images.ImageColumns.ORIENTATION,
-                MediaStore.Images.Media.DATA
-        };
-        Cursor c = getContentResolver().query(uri, projection, null, null, null);
-        c.moveToFirst();
-        String imgFilePath = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+        String imgFilePath = imageFilePathFromUri(uri);
         ContentValues values = new ContentValues();
         try {
             ExifInterface exif = new ExifInterface(imgFilePath);
@@ -1938,9 +1973,26 @@ public class ObservationEditor extends SherlockFragmentActivity {
                             ExifInterface.ORIENTATION_NORMAL));
             values.put(MediaStore.Images.ImageColumns.ORIENTATION, degrees);
             getContentResolver().update(uri, values, null, null);
+            
+            String lat = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+            String d = exif.getAttribute(ExifInterface.TAG_DATETIME);
+            Log.d(TAG, "lat: " + lat + ", d: " + d);
         } catch (IOException e) {
             Log.e(TAG, "couldn't find " + imgFilePath);
         }
+    }
+    
+    private String imageFilePathFromUri(Uri uri) {
+        String[] projection = {
+                MediaStore.MediaColumns._ID,
+                MediaStore.Images.ImageColumns.ORIENTATION,
+                MediaStore.Images.Media.DATA
+        };
+        Cursor c = getContentResolver().query(uri, projection, null, null, null);
+        c.moveToFirst();
+        String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+        c.close();
+        return path;
     }
 
     protected void updateImages() {
