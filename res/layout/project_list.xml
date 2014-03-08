@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/search_projects"
         android:layout_alignParentTop="true"
+        android:singleLine="true"
+        android:lines="1"
         />
 
    <ProgressBar

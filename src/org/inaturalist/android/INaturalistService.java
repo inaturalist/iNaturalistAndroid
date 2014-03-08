@@ -777,13 +777,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
         String url = HOST + "/guide_taxa.json?guide_id=" + guideId.toString();
-        
         JSONArray json = get(url);
-        
         try {
 			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("guide_taxa"));
 		} catch (JSONException e) {
@@ -794,9 +789,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     
     private SerializableJSONArray getAllGuides() throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
         String url = HOST + "/guides.json";
         
         JSONArray json = get(url);
@@ -816,10 +808,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private SerializableJSONArray getNearByGuides(boolean useLocationServices) throws AuthenticationException {
-           
         if (useLocationServices) {
             Location location = mLocationClient.getLastLocation();
-            
             return getNearByGuides(location);
         } else {
             // Use GPS alone to determine location
@@ -827,7 +817,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             Criteria criteria = new Criteria();
             String provider = locationManager.getBestProvider(criteria, false);
             Location location = locationManager.getLastKnownLocation(provider);
-            
             return getNearByGuides(location);
         }
     }
@@ -1407,6 +1396,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             case HttpStatus.SC_UNAUTHORIZED:
                 throw new AuthenticationException();
             case HttpStatus.SC_GONE:
+                Log.e(TAG, "GONE: " + response.getStatusLine().toString());
                 // TODO create notification that informs user some observations have been deleted on the server, 
                 // click should take them to an activity that lets them decide whether to delete them locally 
                 // or post them as new observations
