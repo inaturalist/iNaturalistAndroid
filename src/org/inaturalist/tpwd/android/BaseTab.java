@@ -1,11 +1,11 @@
-package org.inaturalist.android;
+package org.inaturalist.tpwd.android;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.inaturalist.android.BaseTab.ProjectsAdapter;
+import org.inaturalist.tpwd.android.BaseTab.ProjectsAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
