@@ -139,8 +139,14 @@
     <string name="delete_confirmation">¿Está seguro de que desea eliminar esta observación?</string>
     <string name="view_on_inat_confirmation">Ver esta observación en un navegador?</string>
     <string name="gps">GPS</string>
-
-    <string name="tutorial_link">Ayuda con Texas Nature Trackers</string>
+<<<<<<< HEAD
+    <string name="about">About</string>
+    <string name="check_list">Check list</string>
+    <string name="geoprivacy">Geoprivacy</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="finish">Finish</string>
+    <string name="tutorial_link">Help with Texas Nature Trackers</string>
     <string name="credits">Credits</string>
     <string name="credits_text"><Data><![CDATA[ This app was developed by the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/">TPWD Wildlife Diversity Program</a> and built in collaboration with <a href="http://www.natureserve.org/">NatureServe</a> and iNaturalist, LLC ]]> </Data></string>
     <string name="about_link">About Texas Nature Trackers</string>
@@ -149,13 +155,14 @@
     <string name="about_sub_header">Texas Nature Trackers Program</string>
     <string name="about_text"><Data><![CDATA[ More than ever, people are interested in watching and learning about Texas wildlife. Texas Parks and Wildlife Department offers Texans the opportunity to do just that while making valuable contributions to the conservation of animal and plant species. Texas Nature Trackers, associated with the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/master_naturalist/">Texas Master Naturalist Program</a>, is a citizen-science program that engages volunteers of all ages and interest levels in gathering scientific data on species of concern in Texas. <br/><br/> With the Texas Nature Trackers program, you can gather data about various species throughout the state, whether you’re on public or private property. Botanists and biologists use this data to better understand the status and management needs of various species. Our goal is to enable long-term conservation of these species and appreciation among Texas citizens. For more information, visit the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/texas_nature_trackers/">Texas Nature Trackers website</a>. <br/><br/> To add an observation, please select the Project that best fits your observation. <br/><br/>Disclosure: By submit ting an observation, you agree to allow TPWD to use your data for the highest and best conservation use. ]]> </Data></string>
     <string name="in_partnership_with">In Partnership With</string>
-
+=======
     <string name="about">Acerca</string>
     <string name="check_list">Lista de verificación</string>
     <string name="geoprivacy">Geoprivacidad</string>
     <string name="next">Siguiente</string>
     <string name="previous">Anterior</string>
     <string name="finish">Terminar</string>
+    <string name="tutorial_link">Ayuda con iNaturalist</string>
     <string name="guides">Guías</string>
     <string name="guides_description">Guías</string>
     <string name="my_guides">Suyo</string>
@@ -168,6 +175,7 @@
     <string name="import_metadata">Importar metadatos?</string>
     <string name="import_metadata_desc">¿Quieres configurar la fecha, hora y lugar de esta observación de los metadatos de la foto?</string>
  
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
 	    <item>tutorial2</item>

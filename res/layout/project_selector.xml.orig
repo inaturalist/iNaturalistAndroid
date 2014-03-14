@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.tpwd.android"
+=======
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.android"
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >

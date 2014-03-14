@@ -115,6 +115,7 @@
     <string name="no_taxon_found">No taxon found</string>
     <string name="enter_taxon_name">Enter taxon name</string>
     <string name="no_projects">No projects found!</string>
+    <string name="no_guides">No guides found!</string>
     <string name="loading_projects">Loading projects...</string>
     <string name="joined_projects">Joined</string>
     <string name="nearby_projects">Nearby</string>
@@ -132,6 +133,7 @@
     <string name="could_not_load_comments">Couldn\'t load comments/IDs - observation was probably deleted on website</string>
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
     <string name="search_projects">Search projects...</string>
+    <string name="search_guides">Search guides...</string>
     <string name="save_observation">Save observation</string>
     <string name="about">About</string>
     <string name="check_list">Check list</string>
@@ -143,7 +145,10 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
+<<<<<<< HEAD
     <string name="tutorial_link">Help with Texas Nature Trackers</string>
+=======
+    <string name="tutorial_link">Help with iNaturalist</string>
     <string name="guides">Guides</string>
     <string name="guides_description">Guides</string>
     <string name="my_guides">Yours</string>
@@ -156,6 +161,7 @@
     <string name="import_metadata">Import metadata?</string>
     <string name="import_metadata_desc">Do you want to set the date, time, and location of this observation from the photo\'s metadata?</string>
 
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
 	    <item>tutorial2</item>

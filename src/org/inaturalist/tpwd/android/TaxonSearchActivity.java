@@ -52,6 +52,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
     public static final String TAXON_ID = "taxon_id";
 	public static final String ID_NAME = "id_name";
 	public static final String TAXON_NAME = "taxon_name";
+	public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     public static final String ID_PIC_URL = "id_url";
     public static final String FIELD_ID = "field_id";
     
@@ -210,16 +211,28 @@ public class TaxonSearchActivity extends SherlockListActivity {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.taxon_result_item, parent, false); 
             JSONObject item = mResultList.get(position);
+            JSONObject defaultName;
+            String displayName;
+            try {
+                displayName = item.getString("unique_name");
+            } catch (JSONException e2) {
+                displayName = "unknown";
+            }
+            try {
+                defaultName = item.getJSONObject("default_name");
+                displayName = defaultName.getString("name");
+            } catch (JSONException e1) {
+                // alas
+            }
             
             try {
                 ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                 UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"));
                 TextView idName = (TextView) view.findViewById(R.id.id_name);
-                idName.setText(item.getString("unique_name"));
+                idName.setText(displayName);
                 TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
                 idTaxonName.setText(item.getString("name"));
                 idTaxonName.setTypeface(null, Typeface.ITALIC);
-
                 view.setTag(item);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -290,6 +303,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
             bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
             bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("unique_name"));
             bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
+            bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
             bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
             bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
             intent.putExtras(bundle);

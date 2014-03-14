@@ -24,7 +24,7 @@ import android.webkit.*;
 
 public class WebActivity extends SherlockActivity {
     private static String TAG = "WebActivity";
-    private static String HOME_URL = INaturalistService.HOST + "/home";
+    private static String HOME_URL = INaturalistService.HOST + "/home.mobile";
     private WebView mWebView;
     private INaturalistApp app;
     private ActivityHelper helper;

@@ -3,91 +3,106 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp">
-    
-     
+    android:padding="10dp" >
+
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        >
-        
-    <ImageView
-        android:id="@+id/user_pic"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginRight="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/actionbar_back_indicator" />
-	
-    <RelativeLayout
-        android:id="@+id/id_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/user_pic"
-        >
+        android:layout_height="fill_parent" >
 
         <ImageView
-            android:id="@+id/id_pic"
+            android:id="@+id/user_pic"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginRight="5dp"
-	        android:layout_alignParentTop="true"
-	        android:layout_alignParentLeft="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
             android:src="@drawable/actionbar_back_indicator" />
-        
-        <Button
-            android:id="@+id/id_agree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="5dp"
-            android:text="@string/agree" />
-        
+
         <LinearLayout
+            android:layout_alignParentTop="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-	        android:layout_centerVertical="true"
-	        android:layout_toRightOf="@id/id_pic"
-	        android:layout_toLeftOf="@id/id_agree"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/user_pic" >
+
+            <RelativeLayout
+                android:id="@+id/id_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/id_pic"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/actionbar_back_indicator" />
+
+                <Button
+                    android:id="@+id/id_agree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/agree" />
+
+                <ProgressBar
+                    android:id="@+id/loading"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/id_agree"
+                    android:layout_toRightOf="@id/id_pic"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/id_name"
+                        style="@android:style/TextAppearance.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/id_taxon_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/id_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/comment"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                style="@android:style/TextAppearance.Medium"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/id_taxon_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1000"
+                android:singleLine="false"
+                android:lineSpacingMultiplier="1.2"
+                android:autoLink="web"
+                android:linksClickable="true"
                 android:text="TextView" />
         </LinearLayout>
-
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/comment"
+        android:id="@+id/posted_on"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:maxLines="4"
-        android:ellipsize="end"
-        android:singleLine="false" 
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/user_pic"
-        />
+        android:layout_marginTop="5dp"
+        android:alpha="0.5"
+        android:text="Published on ..." />
 
- </RelativeLayout>
-	
- <TextView
-       android:id="@+id/posted_on"
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="5dp"
-       android:text="Published on ..." />
- 
 </LinearLayout>

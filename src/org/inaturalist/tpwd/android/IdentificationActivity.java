@@ -23,10 +23,12 @@ public class IdentificationActivity extends SherlockActivity {
     public static final String ID_REMARKS = "id_remarks";
     protected static final int TAXON_SEARCH_REQUEST_CODE = 301;
     public static final String TAXON_ID = "taxon_id";
+    public static final String SPECIES_GUESS = "species_guess";
+    public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     private ActionBar mTopActionBar;
     private EditText mRemarks;
     private int mTaxonId = 0;
-    
+    private String mIconicTaxonName;
     private TextView mTaxonName;
     private TextView mIdName;
     private ImageView mIdPic;
@@ -73,6 +75,8 @@ public class IdentificationActivity extends SherlockActivity {
                 Bundle bundle = new Bundle();
                 bundle.putInt(TAXON_ID, mTaxonId);
                 bundle.putString(ID_REMARKS, mRemarks.getText().toString());
+                bundle.putString(SPECIES_GUESS, mIdName.getText().toString());
+                bundle.putString(ICONIC_TAXON_NAME, mIconicTaxonName);
                 intent.putExtras(bundle);
 
                 setResult(RESULT_OK, intent);
@@ -102,6 +106,7 @@ public class IdentificationActivity extends SherlockActivity {
         if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 mTaxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
+                mIconicTaxonName = data.getStringExtra(TaxonSearchActivity.ICONIC_TAXON_NAME);
                 mTaxonName.setText(data.getStringExtra(TaxonSearchActivity.TAXON_NAME));
                 mTaxonName.setTypeface(null, Typeface.ITALIC);
                 mIdName.setText(data.getStringExtra(TaxonSearchActivity.ID_NAME));

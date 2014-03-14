@@ -52,7 +52,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/observation_photos");
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.google.observation_photo";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.google.observation_photo";
-    public static final String DEFAULT_SORT_ORDER = "_id DESC";
+    public static final String DEFAULT_SORT_ORDER = "position ASC, id ASC, _id ASC";
     public static final String _CREATED_AT = "_created_at";
     public static final String _OBSERVATION_ID = "_observation_id";
     public static final String _PHOTO_ID = "_photo_id";
@@ -155,7 +155,17 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.position_was = this.position;
         this.updated_at = o.getTimestamp("updated_at");
         this.updated_at_was = this.updated_at;
-        this.photo_url = o.getString("medium_url");
+        
+        String photoUrlSize = "medium_url";
+        if (o.has(photoUrlSize)) {
+        	this.photo_url = o.getString(photoUrlSize);
+        } else {
+        	try {
+				this.photo_url = o.getJSONObject("photo").getString(photoUrlSize);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+        }
     }
 
     @Override

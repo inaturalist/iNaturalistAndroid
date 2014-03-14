@@ -18,7 +18,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
-import android.app.ListActivity;
+import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -28,8 +28,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.LinearGradient;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -41,9 +42,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -56,6 +57,10 @@ public class ObservationListActivity extends SherlockListActivity {
 	
 	private SyncCompleteReceiver mSyncCompleteReceiver;
 	
+	private int mLastIndex;
+	private int mLastTop;
+	private ActionBar mTopActionBar;
+	
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -65,7 +70,9 @@ public class ObservationListActivity extends SherlockListActivity {
     private class SyncCompleteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+        	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
             mPullRefreshListView.onRefreshComplete();
+            mPullRefreshListView.refreshDrawableState();
         }
     } 	
   
@@ -77,8 +84,8 @@ public class ObservationListActivity extends SherlockListActivity {
     
     
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         
         if (mSyncCompleteReceiver != null) {
             Log.i(TAG, "Unregistering ACTION_SYNC_COMPLETE");
@@ -97,10 +104,19 @@ public class ObservationListActivity extends SherlockListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
         
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
+        mTopActionBar = getSupportActionBar();
+        mTopActionBar.setHomeButtonEnabled(true);
+        mTopActionBar.setDisplayHomeAsUpEnabled(true);
+        mTopActionBar.setDisplayShowCustomEnabled(true);
+        mTopActionBar.setCustomView(R.layout.observation_list_top_action_bar);
+        mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#111111")));
+        TextView addButton = (TextView) mTopActionBar.getCustomView().findViewById(R.id.add);
+        addButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
+            }
+        });
         
         Intent intent = getIntent();
         if (intent.getData() == null) {
@@ -111,10 +127,8 @@ public class ObservationListActivity extends SherlockListActivity {
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
         Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
         registerReceiver(mSyncCompleteReceiver, filter);
-        
+ 
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
-        
-        
         mPullRefreshListView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_sync));
         mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_sync));
         mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.syncing));
@@ -170,7 +184,6 @@ public class ObservationListActivity extends SherlockListActivity {
         if (login != null) {
             conditions += " OR user_login = '" + login + "'";
         }
-        
         conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         
         Cursor cursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
@@ -185,17 +198,30 @@ public class ObservationListActivity extends SherlockListActivity {
     }
     
     @Override
+    public void onPause() {
+        // save last position of list so we can resume there later
+        // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
+        ListView lv = mPullRefreshListView.getRefreshableView();
+        mLastIndex = lv.getFirstVisiblePosition();
+        View v = lv.getChildAt(0);
+        mLastTop = (v == null) ? 0 : v.getTop();
+        super.onPause();
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        ListView lv = mPullRefreshListView.getRefreshableView();
+        lv.setSelectionFromTop(mLastIndex, mLastTop);
+    }
+    
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.observations_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
     
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -258,39 +284,55 @@ public class ObservationListActivity extends SherlockListActivity {
             
             c.moveToFirst();
             ArrayList<Long> obsIds = new ArrayList<Long>();
+            ArrayList<Long> obsExternalIds = new ArrayList<Long>();
             ArrayList<Long> photoIds = new ArrayList<Long>();
             while (!c.isAfterLast()) {
                 obsIds.add(c.getLong(c.getColumnIndexOrThrow(Observation._ID)));
+                try {
+                	obsExternalIds.add(c.getLong(c.getColumnIndexOrThrow(Observation.ID)));
+                } catch (Exception exc) { }
                 c.moveToNext();
             }
             
-            
+ 
             // Add any online-only photos
-            Cursor onlinePc = managedQuery(ObservationPhoto.CONTENT_URI, 
+            Cursor onlinePc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                     new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
-                    "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NOT NULL", 
+                    "(_observation_id IN ("+StringUtils.join(obsIds, ',')+") OR observation_id IN ("+StringUtils.join(obsExternalIds, ',')+")  )  AND photo_url IS NOT NULL", 
                     null, 
-                    ObservationPhoto._ID);
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
             onlinePc.moveToFirst();
             while (!onlinePc.isAfterLast()) {
                 Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
                 Long photoId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
                 String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
                                     photoId.toString(),
                                     null,
-                                    photoUrl
+                                    photoUrl,
+                                    null,
+                                    null
                             });
                 }
                 onlinePc.moveToNext();
             }
-
             
-            Cursor opc = managedQuery(ObservationPhoto.CONTENT_URI, 
-                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
+            onlinePc.close();
+            
+            
+            Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+                    new String[]{
+                        ObservationPhoto._ID, 
+                        ObservationPhoto._OBSERVATION_ID, 
+                        ObservationPhoto._PHOTO_ID, 
+                        ObservationPhoto.PHOTO_URL,
+                        ObservationPhoto._UPDATED_AT,
+                        ObservationPhoto._SYNCED_AT
+                    }, 
                     "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NULL", 
                     null, 
                     ObservationPhoto._ID);
@@ -301,12 +343,12 @@ public class ObservationListActivity extends SherlockListActivity {
                 opc.moveToNext();
             }
             
-            Cursor pc = managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
+            Cursor pc = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
                     new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
                     "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
                     null, 
                     null);
-            if (pc.getCount() == 0) return;
+            if (pc.getCount() == 0) { pc.close(); opc.close(); return; }
             HashMap<Long,String> orientationsByPhotoId = new HashMap<Long,String>();
             pc.moveToFirst();
             while (!pc.isAfterLast()) {
@@ -316,10 +358,14 @@ public class ObservationListActivity extends SherlockListActivity {
                 pc.moveToNext();
             }
             
+            pc.close();
+            
             opc.moveToFirst();
             while (!opc.isAfterLast()) {
                 Long obsId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
                 Long photoId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                Long syncedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._SYNCED_AT));
+                Long updatedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._UPDATED_AT));
                 String photoUrl = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
@@ -327,11 +373,16 @@ public class ObservationListActivity extends SherlockListActivity {
                             new String[] {
                                 photoId.toString(),
                                 orientationsByPhotoId.get(photoId),
-                                null
+                                null,
+                                updatedAt.toString(),
+                                syncedAt.toString()
                             });
                 }
                 opc.moveToNext();
             }
+            
+            opc.close();
+            
         }
         
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -346,8 +397,15 @@ public class ObservationListActivity extends SherlockListActivity {
             ImageView image = (ImageView) view.findViewById(R.id.image);
             c.moveToPosition(position);
             Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+            Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
             
             String[] photoInfo = mPhotoInfo.get(obsId);
+            
+            if (photoInfo == null) {
+            	// Try getting the external observation photo info
+            	photoInfo = mPhotoInfo.get(externalObsId);
+            }
+
             if (photoInfo != null) {
                 if (photoInfo[0] == null || photoInfo[0].equals("null")) return view;
                 Long photoId = Long.parseLong(photoInfo[0]);
@@ -378,7 +436,6 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 
             } else {
-                
                 String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
                 if (iconicTaxonName == null) {
                     image.setImageResource(R.drawable.iconic_taxon_unknown);
@@ -432,16 +489,18 @@ public class ObservationListActivity extends SherlockListActivity {
             Long idCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
             Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
             Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
+            Long taxonId = c.getLong(c.getColumnIndexOrThrow(Observation.TAXON_ID));
+            if (taxonId != 0 && idCount > 0) {
+                idCount--;
+            }
             Long totalCount = commentsCount + idCount;
-            if (idCount > 0) totalCount--; // Don't count our own ID
-            
             if (totalCount == 0) {
                 // No comments/IDs - don't display the indicator
                 commentIdCountText.setVisibility(View.INVISIBLE);
             } else {
                 commentIdCountText.setVisibility(View.VISIBLE);
-                if ((lastCommentsCount == null) || (lastCommentsCount != commentsCount) ||
-                        (lastIdCount == null) || (lastIdCount != idCount)) {
+                if ((lastCommentsCount == null) || (lastCommentsCount < commentsCount) ||
+                        (lastIdCount == null) || (lastIdCount < idCount)) {
                     // There are unread comments/IDs
                     commentIdCountText.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
                 } else {
@@ -449,15 +508,31 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 
                 refreshCommentsIdSize(commentIdCountText, totalCount);
-                
             }
  
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
             Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
+            Boolean syncNeeded = (syncedAt == null) || (updatedAt > syncedAt); 
+            
+            // if there's a photo and it is local
+            if (syncNeeded == false && 
+                    photoInfo != null && 
+                    photoInfo[2] == null &&  
+                    photoInfo[3] != null) {
+                if (photoInfo[4] == null) {
+                    syncNeeded = true;
+                } else {
+                    Long photoSyncedAt = Long.parseLong(photoInfo[4]);
+                    Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
+                    if (photoUpdatedAt > photoSyncedAt) {
+                        syncNeeded = true;
+                    }
+                }
+            }
             
             ImageView needToSync = (ImageView) view.findViewById(R.id.syncRequired);
             
-            if ((syncedAt == null) || (updatedAt > syncedAt)) {
+            if (syncNeeded) {
                 // This observations needs to be synced
                 needToSync.setVisibility(View.VISIBLE);
             } else {
@@ -471,7 +546,8 @@ public class ObservationListActivity extends SherlockListActivity {
             ViewTreeObserver observer = view.getViewTreeObserver();
             // Make sure the height and width of the rectangle are the same (i.e. a square)
             observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-                @Override
+                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+				@Override
                 public void onGlobalLayout() {
                     int dimension = view.getHeight();
                     ViewGroup.LayoutParams params = view.getLayoutParams();

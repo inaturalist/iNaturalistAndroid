@@ -59,7 +59,7 @@
            android:isScrollContainer="true"
            android:gravity="top"
            android:hint="@string/remarks"
-           android:inputType="textMultiLine"
+           android:inputType="text|textCapSentences"
            android:scrollbars="vertical"
            android:imeOptions="actionDone" />
 	

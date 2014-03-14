@@ -309,13 +309,11 @@ public class ObservationProvider extends ContentProvider {
             delete(ObservationPhoto.CONTENT_URI, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
-            deleteAssociatedImages(where);
             count = db.delete(ObservationPhoto.TABLE_NAME, where, whereArgs);
             contentUri = ObservationPhoto.CONTENT_URI;
             break;
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
-            deleteAssociatedImages("_id = "+id);
             contentUri = ObservationPhoto.CONTENT_URI;
             count = db.delete(ObservationPhoto.TABLE_NAME, ObservationPhoto._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
@@ -371,6 +369,8 @@ public class ObservationProvider extends ContentProvider {
         return count;
     }
     
+    // Deletes photo files from local storage. Probably not a good idea, but leaving 
+    // it here for now in case we want to bring it back as an option
     private void deleteAssociatedImages(String where) {
         Cursor c = query(ObservationPhoto.CONTENT_URI, 
                 new String[] {ObservationPhoto._ID, ObservationPhoto._PHOTO_ID}, 

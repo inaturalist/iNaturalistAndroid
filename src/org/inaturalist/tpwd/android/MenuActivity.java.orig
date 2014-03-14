@@ -56,6 +56,14 @@ public class MenuActivity extends ListActivity {
         map.put("title", getString(R.string.projects));
         map.put("description", getString(R.string.projects_description));
         MENU_ITEMS.add(map);
+
+        // Only show guides only for Android 4+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                map = new HashMap<String,String>();
+                map.put("title", getString(R.string.guides));
+                map.put("description", getString(R.string.guides_description));
+                MENU_ITEMS.add(map);
+        }
         
         map = new HashMap<String,String>();
         map.put("title", getString(R.string.map));
@@ -238,6 +246,7 @@ public class MenuActivity extends ListActivity {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.projects))) {
             startActivity(new Intent(this, ProjectsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+<<<<<<< HEAD:src/org/inaturalist/tpwd/android/MenuActivity.java
         } else if (title.equals(getString(R.string.about_link))) {
             startActivity(new Intent(this, AboutTPWDActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.attend_link))) {
@@ -245,6 +254,10 @@ public class MenuActivity extends ListActivity {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i); 
+=======
+        } else if (title.equals(getString(R.string.guides))) {
+            startActivity(new Intent(this, GuidesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84:src/org/inaturalist/android/MenuActivity.java
         }
     }
 }

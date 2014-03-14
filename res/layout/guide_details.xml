@@ -10,10 +10,8 @@
         android:id="@+id/search_filter"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search_projects"
+        android:hint="@string/search_taxa"
         android:layout_alignParentTop="true"
-        android:singleLine="true"
-        android:lines="1"
         />
 
    <ProgressBar
@@ -27,20 +25,25 @@
 	    /> 
     
     <TextView
-        android:id="@android:id/empty"
+        android:id="@+id/guide_taxa_empty"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:padding="30dp"
         android:gravity="center"
         android:layout_centerInParent="true"
-        android:text="@string/no_projects" />
+        android:text="@string/no_taxa" />
 
-      <ListView
-        android:id="@android:id/list"
+      <org.inaturalist.android.GridViewExtended
+        android:id="@+id/taxa_grid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_below="@id/search_filter"
+        android:numColumns="3"
+        android:verticalSpacing="3dp"
+        android:horizontalSpacing="3dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
         />
     
 </RelativeLayout>

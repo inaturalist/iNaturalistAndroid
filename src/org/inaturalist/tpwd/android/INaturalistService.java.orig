@@ -75,13 +75,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
     
+<<<<<<< HEAD:src/org/inaturalist/tpwd/android/INaturalistService.java
     // The group ID being used when displaying projects
     private static final String GROUP_ID = "TPWD";
 
-    
+=======
     private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
     
     
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84:src/org/inaturalist/android/INaturalistService.java
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String PROJECTS_RESULT = "projects_result";
@@ -134,13 +136,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_JOINED_PROJECTS_RESULT = "joined_projects_result";
     public static String ACTION_NEARBY_PROJECTS_RESULT = "nearby_projects_result";
     public static String ACTION_FEATURED_PROJECTS_RESULT = "featured_projects_result";
+<<<<<<< HEAD:src/org/inaturalist/tpwd/android/INaturalistService.java
     public static String ACTION_GROUP_PROJECTS_RESULT = "group_projects_result";
+=======
     public static String ACTION_ALL_GUIDES_RESULT = "all_guides_results";
     public static String ACTION_MY_GUIDES_RESULT = "my_guides_results";
     public static String ACTION_NEAR_BY_GUIDES_RESULT = "near_by_guides_results";
     public static String ACTION_TAXA_FOR_GUIDES_RESULT = "taxa_for_guides_results";
     public static String GUIDES_RESULT = "guides_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84:src/org/inaturalist/android/INaturalistService.java
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;

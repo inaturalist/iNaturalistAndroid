@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.tpwd.android"
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.android"
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -241,7 +246,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <org.inaturalist.tpwd.android.MultilineEditText
+            <org.inaturalist.android.MultilineEditText
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -326,4 +331,107 @@
         </LinearLayout>
     </ScrollView>
 
+<<<<<<< HEAD
+        <org.inaturalist.tpwd.android.MultilineEditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:hint="@string/brief_description"
+            android:imeOptions="actionDone" />
+        
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+       >
+  </LinearLayout>
+   
+  
+   <Button
+    	android:id="@+id/select_projects"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/select_projects"
+        />
+
+   
+  
+  <TableLayout
+    	android:id="@+id/projects"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        >
+   </TableLayout>
+   
+   <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+ 	    android:layout_marginBottom="7dp"
+ 	    android:layout_marginTop="7dp"
+        android:stretchColumns="*">
+            
+        <TableRow
+            >
+         <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/id_please"
+	        style="@android:style/TextAppearance.Medium"
+		    android:layout_marginLeft="7dp"
+           />
+		   <org.jraf.android.backport.switchwidget.Switch
+		    	android:id="@+id/id_please"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="left"
+    	        android:layout_marginRight="7dp"
+		        />    
+			 
+       </TableRow>
+       
+        <TableRow
+            >
+         <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/geoprivacy"
+	        style="@android:style/TextAppearance.Medium"
+		    android:layout_marginLeft="7dp"
+           />
+   	     <Spinner 
+	    	android:id="@+id/geoprivacy"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:entries="@array/geoprivacy_items"
+	        android:entryValues="@array/geoprivacy_values"
+  	        android:layout_marginRight="7dp"
+	       />
+       </TableRow> 
+      
+   </TableLayout>
+   
+   
+   <TableLayout
+    	android:id="@+id/project_fields"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        >
+       
+   </TableLayout>
+        
+    </LinearLayout>
+    
+
+</ScrollView>
 </RelativeLayout>
+=======
+</RelativeLayout>
+>>>>>>> 0695cefe6f452a8fc8edb1a010eca682ae57ef84

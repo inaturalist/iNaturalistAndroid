@@ -4,7 +4,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 import org.inaturalist.tpwd.android.R;
 
@@ -55,6 +58,7 @@ public class ActivityHelper {
         if (title == null) { title = ""; }
         if (msg == null) { msg = mContext.getString(R.string.loading); }
         mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
+        mProgressDialog.setCancelable(true);
     }
 
     public void loading(String msg) {
@@ -64,10 +68,19 @@ public class ActivityHelper {
     public void loading() {
         loading(null, null);
     }
+    
+    public boolean isLoading() {
+        return mProgressDialog != null && mProgressDialog.isShowing();
+    }
 
     public void stopLoading() {
         if (mProgressDialog != null) {
-            mProgressDialog.dismiss();
+        	try {
+        		mProgressDialog.dismiss();
+        	} catch (Exception exc) {
+        		// Nothing to do here
+        		exc.printStackTrace();
+        	}
         }
     }
     
