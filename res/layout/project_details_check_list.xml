@@ -3,30 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
-    
-	<ListView
-	    android:id="@+id/project_check_list"
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    />
-	
+    android:padding="10dp" >
+
+    <EditText
+        android:id="@+id/search_filter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:hint="@string/search_taxa"
+        android:lines="1"
+        android:singleLine="true" />
+
+    <ListView
+        android:id="@+id/project_check_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/search_filter" />
+
     <ProgressBar
-	    android:id="@+id/progress"
-	    style="?android:attr/progressBarStyleLarge"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="30dp"
         android:gravity="center"
-	    /> 
-   	    
-	<TextView 
-	    android:id="@+id/project_taxa_empty"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/loading_check_list"
-	    android:layout_centerInParent="true"
-	    />
+        android:padding="30dp" />
+
+    <TextView
+        android:id="@+id/project_taxa_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/loading_check_list" />
 
 </RelativeLayout>

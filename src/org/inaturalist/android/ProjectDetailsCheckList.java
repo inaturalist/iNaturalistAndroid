@@ -2,13 +2,12 @@ package org.inaturalist.android;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +15,9 @@ import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,29 +26,75 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class ProjectDetailsCheckList extends Fragment {
+public class ProjectDetailsCheckList extends SherlockFragment {
+    public static String TAG = "ProjectDetailsCheckList";
     public static final String KEY_PROJECT = "project";
     private BetterJSONObject mProject;
     private ProgressBar mProgress;
     private TextView mProjectTaxaEmpty;
     private ListView mProjectTaxa;
     private CheckListReceiver mCheckListReceiver;
+    private EditText mSearchText;
+    private CheckListAdapter mAdapter;
     
     private class CheckListAdapter extends ArrayAdapter<JSONObject> {
 
         private List<JSONObject> mItems;
         private Context mContext;
+        private List<JSONObject> mOriginalItems;
+        private Filter mFilter;
 
         public CheckListAdapter(Context context, List<JSONObject> objects) {
             super(context, R.layout.taxon_item, objects);
 
             mItems = objects;
             mContext = context;
+            mOriginalItems = new ArrayList<JSONObject>(mItems);
+            
+            mFilter = new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence constraint) {
+                    FilterResults filterResults = new FilterResults();
+                    if (constraint != null) {
+                        // Retrieve the autocomplete results.
+                        String search = constraint.toString().toLowerCase();
+                        ArrayList<JSONObject> results = new ArrayList<JSONObject>(mOriginalItems.size());
+                        for (JSONObject item : mOriginalItems) {
+                            try {
+                                BetterJSONObject taxon = new BetterJSONObject(item.getJSONObject("taxon"));
+                                if (taxon.getString("name").toLowerCase().indexOf(search) > -1) {
+                                    results.add(item);
+                                } else {
+                                    BetterJSONObject defaultName = new BetterJSONObject(taxon.getJSONObject("default_name"));
+                                    if (defaultName.getString("name").toLowerCase().indexOf(search) > -1) {
+                                        results.add(item);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } 
+
+                        // Assign the data to the FilterResults
+                        filterResults.values = results;
+                        filterResults.count = results.size();
+                    }
+                    return filterResults;
+                }
+
+                @Override
+                protected void publishResults(CharSequence constraint, FilterResults results) {
+                    mItems = (List<JSONObject>) results.values;
+                    notifyDataSetChanged();
+                }
+            };
         }
 
         public void addItemAtBeginning(JSONObject newItem) {
@@ -62,6 +109,11 @@ public class ProjectDetailsCheckList extends Fragment {
         @Override
         public JSONObject getItem(int index) {
             return mItems.get(index);
+        }
+        
+        @Override
+        public Filter getFilter() {
+            return mFilter;
         }
 
         @Override
@@ -105,7 +157,6 @@ public class ProjectDetailsCheckList extends Fragment {
     }
     
     private class CheckListReceiver extends BroadcastReceiver {
-        private CheckListAdapter mAdapter;
         private ArrayList<JSONObject> mCheckList;
 
         @Override
@@ -129,16 +180,13 @@ public class ProjectDetailsCheckList extends Fragment {
             if (checkList.length() > 0) {
                 mProjectTaxaEmpty.setVisibility(View.GONE);
                 mProjectTaxa.setVisibility(View.VISIBLE);
-                
                 mAdapter = new CheckListAdapter(getActivity(), mCheckList);
-                mProjectTaxa.setAdapter(mAdapter);
-                
+                mProjectTaxa.setAdapter(mAdapter);             
             } else {
                 mProjectTaxaEmpty.setText(R.string.no_check_list);
                 mProjectTaxaEmpty.setVisibility(View.VISIBLE);
                 mProjectTaxa.setVisibility(View.GONE);
             }
-            
         }
     }
   
@@ -177,6 +225,21 @@ public class ProjectDetailsCheckList extends Fragment {
         if (bundle != null) {
             mProject = (BetterJSONObject) bundle.getSerializable(KEY_PROJECT);
         }
+        
+        mSearchText = (EditText) v.findViewById(R.id.search_filter);
+        mSearchText.setHint(R.string.search_taxa);
+        mSearchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mAdapter != null) {
+                    mAdapter.getFilter().filter(s);
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
         
         return v;
     }
