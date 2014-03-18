@@ -167,6 +167,9 @@
     <string name="no_internet_projects">Los proyectos requieren una conexión a Internet</string>
     <string name="import_metadata">Importar metadatos?</string>
     <string name="import_metadata_desc">¿Quieres configurar la fecha, hora y lugar de esta observación de los metadatos de la foto?</string>
+    <string name="terms_of_service">Términos de servicio</string>
+    <string name="decline">Rechazar</string>
+    <string name="accept">Aceptar</string>
  
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>

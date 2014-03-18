@@ -33,6 +33,7 @@ public class MenuActivity extends ListActivity {
     List<Map> MENU_ITEMS;
     static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
     static final int SELECT_IMAGE_REQUEST_CODE = 2;
+    static final int SHOW_TUTORIAL_REQUEST_CODE = 3;
     private Button mAddObservationButton;
     private Button mTakePictureButton;
     private Uri mPhotoUri;
@@ -127,7 +128,7 @@ public class MenuActivity extends ListActivity {
         if (firstTime) {
             Intent intent = new Intent(this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("first_time", true);
-            startActivity(intent);
+            startActivityForResult(intent, SHOW_TUTORIAL_REQUEST_CODE);
             preferences.edit().putBoolean("first_time", false).apply();
         }
     }
@@ -181,7 +182,18 @@ public class MenuActivity extends ListActivity {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
+        if (requestCode == SHOW_TUTORIAL_REQUEST_CODE) {
+            if (resultCode == RESULT_CANCELED) {
+            	// User declined the TOS - exit the app
+
+            	// Make sure the tutorial will show up again
+            	SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            	preferences.edit().putBoolean("first_time", true).apply();
+
+            	finish();
+            }
+ 
+        } else if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;
                 if(data == null) {
