@@ -77,6 +77,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     // The group ID being used when displaying projects
     private static final String GROUP_ID = "TPWD";
+    
+    // The project ID every observation will be added to by default
+    private static int DEFAULT_PROJECT_ID = 1756; // All Texas Nature project
 
     
     private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
@@ -695,7 +698,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    post(HOST + "/observations.json?extra=observation_photos", paramsForObservation(observation))
+                    post(String.format("%s/observations.json?extra=observation_photos&project_id=%d", HOST, DEFAULT_PROJECT_ID), paramsForObservation(observation))
             );
             c.moveToNext();
         }
