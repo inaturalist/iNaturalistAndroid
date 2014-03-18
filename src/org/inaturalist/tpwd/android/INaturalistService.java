@@ -100,7 +100,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String HOST = "https://www.inaturalist.org";
 //    public static String HOST = "http://10.0.2.2:3000";
     public static String MEDIA_HOST = HOST;
-    public static String USER_AGENT = "iNaturalist/" + INaturalistApp.VERSION + " (" +
+    public static String USER_AGENT = "iNaturalist-TPWD/" + INaturalistApp.VERSION + " (" +
         "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
         "SDK " + android.os.Build.VERSION.SDK_INT + "; " +
         android.os.Build.DEVICE + " " +
