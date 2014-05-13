@@ -35,7 +35,6 @@ public class MenuActivity extends ListActivity {
     static final int SELECT_IMAGE_REQUEST_CODE = 2;
     static final int SHOW_TUTORIAL_REQUEST_CODE = 3;
     private Button mAddObservationButton;
-    private Button mTakePictureButton;
     private Uri mPhotoUri;
     private INaturalistApp app;
     private ActivityHelper mHelper;
@@ -61,11 +60,6 @@ public class MenuActivity extends ListActivity {
         map = new HashMap<String,String>();
         map.put("title", getString(R.string.map));
         map.put("description", getString(R.string.map_description));
-        MENU_ITEMS.add(map);
-        
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.updates));
-        map.put("description", getString(R.string.updates_description));
         MENU_ITEMS.add(map);
         
         map = new HashMap<String,String>();
@@ -104,20 +98,11 @@ public class MenuActivity extends ListActivity {
         if (mHelper == null) { mHelper = new ActivityHelper(this);}
         
         mAddObservationButton = (Button) findViewById(R.id.add_observation);
-        mTakePictureButton = (Button) findViewById(R.id.take_picture);
         
         mAddObservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI));
-            }
-        });
-        
-        mTakePictureButton.setOnClickListener(new View.OnClickListener() {           
-            @Override
-            public void onClick(View v) {
-                mPhotoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
-                openImageIntent(MenuActivity.this, mPhotoUri, SELECT_IMAGE_REQUEST_CODE);
+                startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, MenuActivity.this, ObservationEditor.class));
             }
         });
         
@@ -244,8 +229,6 @@ public class MenuActivity extends ListActivity {
             startActivity(new Intent(this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.map))) {
             startActivity(new Intent(this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        } else if (title.equals(getString(R.string.updates))) {
-            startActivity(new Intent(this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.settings))) {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.projects))) {

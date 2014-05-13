@@ -4,23 +4,14 @@
     android:layout_height="match_parent"
     android:paddingTop="20dp"
     android:paddingBottom="20dp"
+    android:background="#9EA078"
     >
-    
-    <TextView 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-        android:id="@+id/in_parternship"
-        android:text="@string/in_partnership_with"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        style="@android:style/TextAppearance.Medium"
-        />
     
     <LinearLayout
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/in_parternship"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         >
@@ -31,7 +22,7 @@
 		    android:layout_height="wrap_content"
 		    android:maxHeight="100dp"
 		    android:adjustViewBounds="true"
-		    android:src="@drawable/tpw_1024"
+		    android:src="@drawable/tpwd_logo_white"
 		    android:layout_gravity="center"
            />
 
@@ -47,9 +38,8 @@
                        android:layout_height="0dp"
                        android:layout_weight="2"
                        android:adjustViewBounds="true"
-                       android:src="@drawable/natureserve_logo_inline"
+                       android:src="@drawable/natureserve_logo_white"
                        android:layout_gravity="center_horizontal"
-                       android:background="#ffffff"
                        android:layout_marginBottom="10dp"
                    />
                 <ImageView 
@@ -57,7 +47,7 @@
                        android:layout_height="0dp"
                        android:layout_weight="1"
                        android:adjustViewBounds="true"
-                       android:src="@drawable/inat_logo_5"
+                       android:src="@drawable/inat_logo_white"
                        android:layout_gravity="center_horizontal"
                    />
 

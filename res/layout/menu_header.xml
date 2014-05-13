@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#333333"
     android:orientation="vertical" >
 
     <ImageView
@@ -26,23 +25,18 @@
         <Button
             android:id="@+id/add_observation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="0.5"
-            android:drawableLeft="@android:drawable/ic_menu_add"
-            android:gravity="center_vertical"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="true"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:background="@drawable/menu_button_main"
             android:text="@string/add_observation" />
-
-        <Button
-            android:id="@+id/take_picture"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="fill_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="0.5"
-            android:drawableLeft="@android:drawable/ic_menu_camera"
-            android:gravity="center_vertical"
-            android:text="@string/take_picture" />
     </LinearLayout>
 
 </LinearLayout>
