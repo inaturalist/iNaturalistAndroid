@@ -88,18 +88,33 @@
                 android:layout_height="wrap_content"
                 android:spacing="5dp" />
 
-            <EditText
-                android:id="@+id/speciesGuess"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="3dp"
-                android:hint="@string/species_guess_hint"
-                android:imeOptions="actionDone"
-                android:singleLine="true"
-                android:inputType="text|textCapSentences" >
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+                    android:id="@+id/taxonSelector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/search"
+                    />
+                <EditText
+                    android:layout_toLeftOf="@id/taxonSelector"
+                    android:id="@+id/speciesGuess"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="3dp"
+                    android:hint="@string/species_guess_hint"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:inputType="text|textCapSentences" >
 
-                <requestFocus />
-            </EditText>
+                    <requestFocus />
+                </EditText>
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/observed_on_string"
