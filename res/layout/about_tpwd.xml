@@ -5,6 +5,17 @@
     android:background="#D8DAC8"
     android:padding="10dp">
     
+    <ScrollView
+    android:id="@+id/project_description_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    >
+
+    <RelativeLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    >
+
     <RelativeLayout
         android:id="@+id/about_top"
         android:layout_alignParentTop="true"
@@ -64,13 +75,6 @@
 	    
     </RelativeLayout>
     
-<ScrollView
-    android:id="@+id/project_description_container"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:layout_below="@id/about_top"
-    android:layout_marginTop="20dp"
-    >
 
     <TextView 
         android:id="@+id/about_text"
@@ -78,7 +82,10 @@
 	    android:layout_height="wrap_content"
 	    android:text="@string/about_text"
 	    android:textColor="#333333"
+        android:layout_below="@id/about_top"
+        android:layout_marginTop="20dp"
         />
+    </RelativeLayout>
 </ScrollView>
 
 
