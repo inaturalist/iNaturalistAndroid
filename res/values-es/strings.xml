@@ -190,4 +190,5 @@
 	    <item>privada</item>
     </string-array>
    
+    <string name="sync_x_observations">Sync %1$d observations</string>
 </resources>

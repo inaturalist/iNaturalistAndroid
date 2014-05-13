@@ -60,6 +60,8 @@ public class ObservationListActivity extends SherlockListActivity {
 	private int mLastIndex;
 	private int mLastTop;
 	private ActionBar mTopActionBar;
+
+	private TextView mSyncObservations;
 	
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -103,6 +105,32 @@ public class ObservationListActivity extends SherlockListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
+        
+        
+        mSyncObservations = (TextView) findViewById(R.id.sync_observations);
+        mSyncObservations.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+
+                Toast.makeText(getApplicationContext(), R.string.syncing_observations, Toast.LENGTH_LONG).show(); 
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                startService(serviceIntent);
+                
+                mSyncObservations.setVisibility(View.GONE);
+			}
+		});
+        
+        
+         // See if sync is required
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+
+       
+        refreshSyncBar();
         
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setHomeButtonEnabled(true);
@@ -175,7 +203,6 @@ public class ObservationListActivity extends SherlockListActivity {
         // Inform the list we provide context menus for items
         //getListView().setOnCreateContextMenuListener(this);
         
-        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         
         // Perform a managed query. The Activity will handle closing and requerying the cursor
@@ -213,7 +240,27 @@ public class ObservationListActivity extends SherlockListActivity {
         super.onResume();
         ListView lv = mPullRefreshListView.getRefreshableView();
         lv.setSelectionFromTop(mLastIndex, mLastTop);
+        
+        refreshSyncBar();
     }
+    
+    
+    /** Shows the sync required bottom bar, if needed */
+    private void refreshSyncBar() {
+    	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+    			Observation.PROJECTION, 
+    			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
+    			null, 
+    			Observation.SYNC_ORDER);
+    	int syncCount = c.getCount();
+    	c.close();
+
+    	if (syncCount > 0) {
+    		mSyncObservations.setText(String.format(getResources().getString(R.string.sync_x_observations), syncCount));
+    		mSyncObservations.setVisibility(View.VISIBLE);
+    	}
+    }
+
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

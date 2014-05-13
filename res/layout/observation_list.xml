@@ -19,4 +19,17 @@
         style="@android:style/TextAppearance.Medium"
         android:text="@string/no_observations_yet" />
 
+    <TextView
+        android:id="@+id/sync_observations"
+        android:background="#000000"
+        android:textColor="#B13427"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        style="@android:style/TextAppearance.Medium"
+        android:text="@string/sync_x_observations" />
+
 </RelativeLayout>
