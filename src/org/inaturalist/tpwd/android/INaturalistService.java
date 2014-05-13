@@ -1062,7 +1062,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             return null;
         }
 
-        String url = HOST + "/project_observations.json";
+        String url = HOST + "/project_observations.json?project_id=" + projectId;
         
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("project_observation[observation_id]", String.valueOf(observationId)));

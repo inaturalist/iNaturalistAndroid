@@ -94,9 +94,10 @@
                 >
                 <ImageView
                     android:id="@+id/taxonSelector"
-                    android:layout_width="wrap_content"
+                    android:layout_width="24dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
+                    android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/search"

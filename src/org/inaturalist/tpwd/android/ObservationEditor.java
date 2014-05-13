@@ -244,6 +244,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         	intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
         	intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
         	startActivityForResult(intent, MANDATORY_PROJECT_SELECTOR_REQUEST_CODE);
+        	mIntent.putExtra(SHOW_PROJECT_SELECTOR, false);
         }
         
     }
