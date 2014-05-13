@@ -258,6 +258,8 @@ public class ObservationListActivity extends SherlockListActivity {
     	if (syncCount > 0) {
     		mSyncObservations.setText(String.format(getResources().getString(R.string.sync_x_observations), syncCount));
     		mSyncObservations.setVisibility(View.VISIBLE);
+    	} else {
+    		mSyncObservations.setVisibility(View.GONE);
     	}
     }
 

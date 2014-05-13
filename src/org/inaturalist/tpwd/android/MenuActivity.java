@@ -10,10 +10,14 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.ComponentName;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +42,7 @@ public class MenuActivity extends ListActivity {
     private Uri mPhotoUri;
     private INaturalistApp app;
     private ActivityHelper mHelper;
+	private Button mSyncObservationsButton;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,6 +111,27 @@ public class MenuActivity extends ListActivity {
             }
         });
         
+        mSyncObservationsButton = (Button) findViewById(R.id.sync_observations);
+
+        mSyncObservationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+
+                Toast.makeText(getApplicationContext(), R.string.syncing_observations, Toast.LENGTH_LONG).show(); 
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, MenuActivity.this, INaturalistService.class);
+                startService(serviceIntent);
+ 
+            }
+        });
+        
+        refreshSyncButton();
+        
+
         // See if we need to display the tutorial (only for the first time using the app)
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         boolean firstTime = preferences.getBoolean("first_time", true);
@@ -117,7 +143,30 @@ public class MenuActivity extends ListActivity {
             preferences.edit().putBoolean("first_time", false).apply();
         }
     }
-    
+
+    /** Shows the sync observations button, if needed */
+    private void refreshSyncButton() {
+    	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+    			Observation.PROJECTION, 
+    			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
+    			null, 
+    			Observation.SYNC_ORDER);
+    	int syncCount = c.getCount();
+    	c.close();
+
+    	if (syncCount > 0) {
+    		mSyncObservationsButton.setVisibility(View.VISIBLE);
+    	} else {
+    		mSyncObservationsButton.setVisibility(View.GONE);
+    	}
+    }
+
+ 	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}	
+	   
     public static void openImageIntent(Activity activity, Uri captureImageOutputFile, int requestCode) {
 
         // Camera
@@ -152,6 +201,8 @@ public class MenuActivity extends ListActivity {
     public void onResume() {
         super.onResume();
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
+
+        refreshSyncButton();
     }
     
     @Override

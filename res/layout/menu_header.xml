@@ -19,7 +19,7 @@
         android:id="@+id/actions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center_vertical" >
 
         <Button
@@ -37,6 +37,24 @@
             android:textStyle="bold"
             android:background="@drawable/menu_button_main"
             android:text="@string/add_observation" />
+
+        <Button
+            android:id="@+id/sync_observations"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:background="@drawable/menu_button_main"
+            android:text="@string/sync_observations" />
     </LinearLayout>
 
 </LinearLayout>

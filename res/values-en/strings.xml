@@ -27,6 +27,7 @@
     <string name="signed_in_failed">Sign in failed!</string>
     <string name="username_cannot_be_blank">Username and password cannot be blank</string>
     <string name="syncing_observations">Syncing observations...</string>
+    <string name="sync_observations">Sync observations</string>
     <string name="syncing_x_observations">Syncing %1$d observations...</string>
     <string name="syncing">Syncing...</string>
     <string name="updating_observations">Updating observations...</string>
