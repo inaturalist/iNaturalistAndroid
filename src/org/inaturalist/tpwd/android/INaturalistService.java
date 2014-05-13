@@ -1130,7 +1130,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (ensureCredentials() == false) {
             return null;
         }
-        String url = HOST + "/projects/user/" + mLogin + ".json";
+        // Only retrieve TPWD-related projects (don't show all of the user's joined projects)
+        String url = HOST + "/projects.json?group=" + GROUP_ID;
         
         JSONArray json = get(url, true);
         JSONArray finalJson = new JSONArray();
@@ -1142,7 +1143,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         for (int i = 0; i < json.length(); i++) {
             try {
                 JSONObject obj = json.getJSONObject(i);
-                JSONObject project = obj.getJSONObject("project");
+                JSONObject project = obj;
                 project.put("joined", true);
                 finalJson.put(project);
                 

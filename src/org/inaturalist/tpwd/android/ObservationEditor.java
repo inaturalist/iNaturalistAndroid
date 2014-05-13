@@ -149,6 +149,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
+    private static final int MANDATORY_PROJECT_SELECTOR_REQUEST_CODE = 103;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -157,6 +158,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private static final int PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE = 301;
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
     public static final String SPECIES_GUESS = "species_guess";
+	public static final String SHOW_PROJECT_SELECTOR = "show_project_selector";
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Switch mIdPlease;
@@ -171,6 +173,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 	private boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
 	private ImageView mTaxonSelector;
+	private Intent mIntent;
 
     private class ProjectReceiver extends BroadcastReceiver {
         @Override
@@ -234,6 +237,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mProjectsTable.addView(view);
             }
         }
+        
+        
+        if ((mIntent != null) && (mIntent.getBooleanExtra(SHOW_PROJECT_SELECTOR, false))) {
+        	Intent intent = new Intent(ObservationEditor.this, ProjectSelectorActivity.class);
+        	intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
+        	intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
+        	startActivityForResult(intent, MANDATORY_PROJECT_SELECTOR_REQUEST_CODE);
+        }
+        
     }
 
 
@@ -748,7 +760,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (mHelper == null) {
             mHelper = new ActivityHelper(this);
         }
-
+        
         if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
@@ -813,6 +825,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
         
         
+        mIntent = intent;
+
         mTaxonSelector = (ImageView) findViewById(R.id.taxonSelector);
         
         mTaxonSelector.setOnClickListener(new OnClickListener() {
@@ -856,6 +870,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
         });
         
+        
+       
         mTopActionBar.setHomeButtonEnabled(true);
         mTopActionBar.setDisplayShowCustomEnabled(true);
         mTopActionBar.setDisplayHomeAsUpEnabled(true);
@@ -1004,6 +1020,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             c.close();
         }
 
+       
+        
         refreshProjectFields();
         
         mProjectReceiver = new ProjectReceiver();
@@ -1016,6 +1034,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else {
             refreshProjectList();
         }
+        
+        
+       
     }
     
     @Override
@@ -1689,13 +1710,26 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     viewer.onTaxonSearchResult(data);
                 }
             }
-        } else if (requestCode == PROJECT_SELECTOR_REQUEST_CODE) {
+        } else if ((requestCode == PROJECT_SELECTOR_REQUEST_CODE) || (requestCode == MANDATORY_PROJECT_SELECTOR_REQUEST_CODE)) {
             if (resultCode == RESULT_OK) {
                 ArrayList<Integer> projectIds = data.getIntegerArrayListExtra(ProjectSelectorActivity.PROJECT_IDS);
                 mProjectIds = projectIds;
+                if (requestCode == MANDATORY_PROJECT_SELECTOR_REQUEST_CODE) {
+                	if ((mProjectIds == null) || (mProjectIds.size() == 0)) {
+                		// User *must* select a project
+                		setResult(RESULT_CANCELED);
+                		finish();
+                		return;
+                	}
+                }
                 
                 refreshProjectFields();
                 refreshProjectList();
+
+            } else if (requestCode == MANDATORY_PROJECT_SELECTOR_REQUEST_CODE) {
+            	// User *must* select a project
+                setResult(RESULT_CANCELED);
+            	finish();
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {

@@ -108,6 +108,7 @@ public class ProjectDetails extends SherlockFragmentActivity {
                 ProjectDetailsCheckList.class, bundle); 
 
         mJoinLeaveProject = (Button) customView.findViewById(R.id.join_leave_project);
+        mJoinLeaveProject.setVisibility(View.INVISIBLE);
         mProjectTitle = (TextView) customView.findViewById(R.id.project_title);
         
         mProjectTitle.setText(mProject.getString("title"));

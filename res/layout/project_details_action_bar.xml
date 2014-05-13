@@ -17,14 +17,14 @@
         android:layout_marginLeft="10dp"
         android:textColor="#ffffff"
         android:padding="5dp"
+        android:visibility="gone"
         />
     
     <TextView 
         android:id="@+id/project_title"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:layout_toLeftOf="@id/join_leave_project"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         style="@android:style/TextAppearance.Medium"
