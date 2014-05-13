@@ -1385,6 +1385,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mObservedOnStringTextView.setText(app.formatDate(date));
                 mObservedOnButton.setText(app.shortFormatDate(date));
             }
+            
+            mObservation.observed_on = date;
         }
     };
 
@@ -1415,6 +1417,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
             mObservedOnStringTextView.setText(app.formatDatetime(datetime));
             mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
+            
+            mObservation.time_observed_at = refDate;
         }
     };
     private ArrayList<Integer> mProjectIds;
