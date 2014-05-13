@@ -161,7 +161,7 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 
                 // Start sync
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
             }
         });

@@ -97,8 +97,8 @@
     <string name="unknown_species">Unknown species</string>
     <string name="no_description">No description</string>
     
-    <string name="pull_to_sync">Pull to sync...</string>
-    <string name="release_to_sync">Release to sync...</string>
+    <string name="pull_to_sync">Pull to download new observations...</string>
+    <string name="release_to_sync">Release to download new observations...</string>
     <string name="edit_observation">Edit Observation</string>
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="yes">Yes</string>
