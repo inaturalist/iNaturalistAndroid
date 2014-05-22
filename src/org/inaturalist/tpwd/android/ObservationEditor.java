@@ -149,7 +149,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
-    private static final int MANDATORY_PROJECT_SELECTOR_REQUEST_CODE = 103;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -158,7 +157,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private static final int PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE = 301;
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
     public static final String SPECIES_GUESS = "species_guess";
-	public static final String SHOW_PROJECT_SELECTOR = "show_project_selector";
+    public static final String OBSERVATION_PROJECT = "observation_project";
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Switch mIdPlease;
@@ -236,15 +235,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 
                 mProjectsTable.addView(view);
             }
-        }
-        
-        
-        if ((mIntent != null) && (mIntent.getBooleanExtra(SHOW_PROJECT_SELECTOR, false))) {
-        	Intent intent = new Intent(ObservationEditor.this, ProjectSelectorActivity.class);
-        	intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
-        	intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
-        	startActivityForResult(intent, MANDATORY_PROJECT_SELECTOR_REQUEST_CODE);
-        	mIntent.putExtra(SHOW_PROJECT_SELECTOR, false);
         }
         
     }
@@ -1004,22 +994,33 @@ public class ObservationEditor extends SherlockFragmentActivity {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0); 
         
-        
+
         if (mProjectIds == null) {
-            // Get IDs of project-observations
-            int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
-            Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-                    "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
-                    null, ProjectObservation.DEFAULT_SORT_ORDER);
-            c.moveToFirst();
-            mProjectIds = new ArrayList<Integer>();
-            while (c.isAfterLast() == false) {
-                ProjectObservation projectObservation = new ProjectObservation(c);
-                mProjectIds.add(projectObservation.project_id);
-                c.moveToNext();
-            }
-            c.close();
+        	if ((intent != null) && (intent.hasExtra(OBSERVATION_PROJECT))) {
+        		Integer projectId = intent.getIntExtra(OBSERVATION_PROJECT, 0);
+        		mProjectIds = new ArrayList<Integer>();
+        		mProjectIds.add(projectId);
+
+        	} else {
+        		// Get IDs of project-observations
+        		int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+        		Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+        				"(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
+        				null, ProjectObservation.DEFAULT_SORT_ORDER);
+        		c.moveToFirst();
+        		mProjectIds = new ArrayList<Integer>();
+        		while (c.isAfterLast() == false) {
+        			ProjectObservation projectObservation = new ProjectObservation(c);
+        			mProjectIds.add(projectObservation.project_id);
+        			c.moveToNext();
+        		}
+        		c.close();
+        	}
         }
+        
+
+        refreshProjectFields();
+        refreshProjectList();
 
        
         
@@ -1711,26 +1712,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     viewer.onTaxonSearchResult(data);
                 }
             }
-        } else if ((requestCode == PROJECT_SELECTOR_REQUEST_CODE) || (requestCode == MANDATORY_PROJECT_SELECTOR_REQUEST_CODE)) {
+        } else if (requestCode == PROJECT_SELECTOR_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 ArrayList<Integer> projectIds = data.getIntegerArrayListExtra(ProjectSelectorActivity.PROJECT_IDS);
                 mProjectIds = projectIds;
-                if (requestCode == MANDATORY_PROJECT_SELECTOR_REQUEST_CODE) {
-                	if ((mProjectIds == null) || (mProjectIds.size() == 0)) {
-                		// User *must* select a project
-                		setResult(RESULT_CANCELED);
-                		finish();
-                		return;
-                	}
-                }
-                
+               
                 refreshProjectFields();
                 refreshProjectList();
-
-            } else if (requestCode == MANDATORY_PROJECT_SELECTOR_REQUEST_CODE) {
-            	// User *must* select a project
-                setResult(RESULT_CANCELED);
-            	finish();
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {

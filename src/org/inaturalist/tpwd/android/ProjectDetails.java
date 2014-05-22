@@ -102,11 +102,11 @@ public class ProjectDetails extends SherlockFragmentActivity {
         
         Bundle bundle = new Bundle();
         bundle.putSerializable(ProjectDetailsAbout.KEY_PROJECT, mProject);
-        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.about),
-                ProjectDetailsAbout.class, bundle);
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.check_list),
                 ProjectDetailsCheckList.class, bundle); 
-
+        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.about),
+                ProjectDetailsAbout.class, bundle);
+        
         mJoinLeaveProject = (Button) customView.findViewById(R.id.join_leave_project);
         mJoinLeaveProject.setVisibility(View.INVISIBLE);
         mProjectTitle = (TextView) customView.findViewById(R.id.project_title);

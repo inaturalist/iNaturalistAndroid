@@ -84,7 +84,7 @@
     <string name="add_photo">Add photo</string>
     <string name="save">Save</string>
     <string name="no_observations_yet">No observations yet!</string>
-    <string name="sign_in_to_inat">Sign in to your iNaturalist account</string>
+    <string name="sign_in_to_inat">TPWD is partnering with iNaturalist to bring you this app. Simply create an iNat account, and TPWD will receive your submission.</string>
     <string name="sign_in">Sign in</string>
     <string name="or">or</string>
     <string name="create_new_account">Create new account</string>
@@ -190,4 +190,5 @@
     <string name="accept">Accept</string>
     
     <string name="sync_x_observations">Sync %1$d observations</string>
+    <string name="sync">Sync</string>
 </resources>

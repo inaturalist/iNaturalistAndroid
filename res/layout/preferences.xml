@@ -71,6 +71,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#333333"
                 android:hint="@string/username" >
 
                 <requestFocus />
@@ -81,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
+                android:textColor="#333333"
                 android:inputType="textPassword" />
 
             <Button

@@ -192,4 +192,5 @@
    
     <string name="sync_x_observations">Sync %1$d observations</string>
     <string name="sync_observations">Sync observations</string>
+    <string name="sync">Sincronizar</string>
 </resources>

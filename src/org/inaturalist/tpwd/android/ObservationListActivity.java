@@ -142,7 +142,18 @@ public class ObservationListActivity extends SherlockListActivity {
         addButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
+            	Intent intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class);
+            	// Automatically add each observation to this default project
+            	intent.putExtra(ObservationEditor.OBSERVATION_PROJECT, INaturalistService.DEFAULT_PROJECT_ID);
+            	startActivity(intent);
+            }
+        });
+
+        TextView syncButton = (TextView) mTopActionBar.getCustomView().findViewById(R.id.sync);
+        syncButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	mSyncObservations.performClick();
             }
         });
         

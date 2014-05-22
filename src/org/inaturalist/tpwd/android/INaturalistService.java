@@ -79,7 +79,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private static final String GROUP_ID = "TPWD";
     
     // The project ID every observation will be added to by default
-    private static int DEFAULT_PROJECT_ID = 1756; // All Texas Nature project
+    public static int DEFAULT_PROJECT_ID = 1756; // All Texas Nature project
 
     
     private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
@@ -926,9 +926,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     private SerializableJSONArray getGroupProjects(String groupID) throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
         String url = HOST + "/projects.json?group=" + groupID;
 
         JSONArray json = get(url);
@@ -954,9 +951,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
 
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
         String url = HOST + "/projects.json?featured=true";
         
         JSONArray json = get(url);
