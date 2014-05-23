@@ -45,7 +45,9 @@ import android.view.ViewTreeObserver;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -149,14 +151,7 @@ public class ObservationListActivity extends SherlockListActivity {
             }
         });
 
-        TextView syncButton = (TextView) mTopActionBar.getCustomView().findViewById(R.id.sync);
-        syncButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            	mSyncObservations.performClick();
-            }
-        });
-        
+       
         Intent intent = getIntent();
         if (intent.getData() == null) {
             intent.setData(Observation.CONTENT_URI);
@@ -456,8 +451,8 @@ public class ObservationListActivity extends SherlockListActivity {
             
             ImageView image = (ImageView) view.findViewById(R.id.image);
             c.moveToPosition(position);
-            Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
-            Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
+            final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+            final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
             
             String[] photoInfo = mPhotoInfo.get(obsId);
             
@@ -549,15 +544,20 @@ public class ObservationListActivity extends SherlockListActivity {
             Long idCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
             Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
             Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
-            Long taxonId = c.getLong(c.getColumnIndexOrThrow(Observation.TAXON_ID));
+            final Long taxonId = c.getLong(c.getColumnIndexOrThrow(Observation.TAXON_ID));
             if (taxonId != 0 && idCount > 0) {
                 idCount--;
             }
             Long totalCount = commentsCount + idCount;
+            RelativeLayout clickCatcher = (RelativeLayout) view.findViewById(R.id.commentsIdClickCatcher);
+
             if (totalCount == 0) {
                 // No comments/IDs - don't display the indicator
                 commentIdCountText.setVisibility(View.INVISIBLE);
+                
+                clickCatcher.setClickable(false);
             } else {
+                clickCatcher.setClickable(true);
                 commentIdCountText.setVisibility(View.VISIBLE);
                 if ((lastCommentsCount == null) || (lastCommentsCount < commentsCount) ||
                         (lastIdCount == null) || (lastIdCount < idCount)) {
@@ -568,8 +568,27 @@ public class ObservationListActivity extends SherlockListActivity {
                 }
                 
                 refreshCommentsIdSize(commentIdCountText, totalCount);
+
+                clickCatcher.setOnClickListener(new OnClickListener() {
+                	@Override
+                	public void onClick(View v) {
+                		// Show the comments/IDs for the observation
+                		Intent intent = new Intent(ObservationListActivity.this, CommentsIdsActivity.class);
+                		intent.putExtra(INaturalistService.OBSERVATION_ID, externalObsId.intValue());
+                		intent.putExtra(INaturalistService.TAXON_ID, taxonId.intValue());
+                		startActivity(intent);
+
+                		// Get the observation's IDs/comments
+                		Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationListActivity.this, INaturalistService.class);
+                		serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, externalObsId.intValue());
+                		startService(serviceIntent);
+
+                	}
+                });           
+               
             }
- 
+            
+
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
             Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
             Boolean syncNeeded = (syncedAt == null) || (updatedAt > syncedAt); 

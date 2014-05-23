@@ -26,7 +26,7 @@
     <string name="signed_in">Signed in!</string>
     <string name="signed_in_failed">Sign in failed!</string>
     <string name="username_cannot_be_blank">Username and password cannot be blank</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observations">Refreshing observations...</string>
     <string name="sync_observations">Sync observations</string>
     <string name="syncing_x_observations">Syncing %1$d observations...</string>
     <string name="syncing">Syncing...</string>
@@ -98,8 +98,8 @@
     <string name="unknown_species">Unknown species</string>
     <string name="no_description">No description</string>
     
-    <string name="pull_to_sync">Pull for new observations...</string>
-    <string name="release_to_sync">Release for new observations...</string>
+    <string name="pull_to_sync">Pull to refresh...</string>
+    <string name="release_to_sync">Release to refresh...</string>
     <string name="edit_observation">Edit Observation</string>
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="yes">Yes</string>
