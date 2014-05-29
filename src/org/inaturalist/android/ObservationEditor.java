@@ -151,9 +151,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private static final int TIME_DIALOG_ID = 1;
     private static final int ONE_MINUTE = 60 * 1000;
     
-    private static final int TAXON_SEARCH_REQUEST_CODE = 301;
+    private static final int PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE = 301;
+    private static final int TAXON_SEARCH_REQUEST_CODE = 302;
     public static final String SPECIES_GUESS = "species_guess";
-    
+    public static final String OBSERVATION_PROJECT = "observation_project";   
+
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Switch mIdPlease;
     private Spinner mGeoprivacy;
@@ -166,6 +168,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
     
 	private boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
+	private ImageView mTaxonSelector;
+	private Intent mIntent;
 
     private class ProjectReceiver extends BroadcastReceiver {
         @Override
@@ -608,7 +612,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
                         intent.putExtra(TaxonSearchActivity.FIELD_ID, mField.field_id);
-                        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+                        startActivityForResult(intent, PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE);
                     }
                 });
 
@@ -807,6 +811,18 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         
+        mIntent = intent;
+
+        mTaxonSelector = (ImageView) findViewById(R.id.taxonSelector);
+        
+        mTaxonSelector.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
+				startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+			}
+		});        
+
         mIdPlease = (Switch) findViewById(R.id.id_please);
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
@@ -1671,6 +1687,16 @@ public class ObservationEditor extends SherlockFragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
         
         if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                String iconicTaxonName = data.getStringExtra(TaxonSearchActivity.ICONIC_TAXON_NAME);
+                String taxonName = data.getStringExtra(TaxonSearchActivity.TAXON_NAME);
+                String idName = data.getStringExtra(TaxonSearchActivity.ID_NAME);
+            	String speciesGuess = String.format("%s (%s)", idName, taxonName);
+            	mSpeciesGuess = speciesGuess;
+            	mObservation.species_guess = speciesGuess;
+            	mSpeciesGuessTextView.setText(mSpeciesGuess);
+            }
+        } else if (requestCode == PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Notify the project fields that we returned from a taxon search
                 for (ProjectFieldViewer viewer : mProjectFieldViewers) {
