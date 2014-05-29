@@ -37,12 +37,16 @@
              android:textSize="13sp" />
          
       <RelativeLayout
+         android:clickable="true"
+         android:id="@+id/commentsIdClickCatcher"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          >
          
           <TextView
               android:id="@+id/commentIdCount"
+              android:clickable="false"
+              android:focusable="false"
               android:layout_alignParentRight="true"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -57,6 +61,8 @@
           
           <ImageView 
 		          android:id="@+id/syncRequired"
+                  android:clickable="false"
+                  android:focusable="false"
 		          android:layout_width="23dp"
 		          android:layout_height="23dp"
 		          android:src="@drawable/ic_action_refresh"
