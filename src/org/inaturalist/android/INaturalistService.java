@@ -112,6 +112,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_JOINED_PROJECTS = "get_joined_projects";
     public static String ACTION_GET_NEARBY_PROJECTS = "get_nearby_projects";
     public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
+    public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
     public static String ACTION_ADD_OBSERVATION_TO_PROJECT = "add_observation_to_project";
     public static String ACTION_REMOVE_OBSERVATION_FROM_PROJECT = "remove_observation_from_project";
     public static String ACTION_GET_ALL_GUIDES = "get_all_guides";
@@ -340,7 +341,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             } else if (action.equals(ACTION_LEAVE_PROJECT)) {
                 int id = intent.getExtras().getInt(PROJECT_ID);
                 leaveProject(id);
-                
+
+            } else if (action.equals(ACTION_PULL_OBSERVATIONS)) {
+            	// Download observations without uploading any new ones
+                mIsSyncing = true;
+                mApp.setIsSyncing(mIsSyncing);
+                getUserObservations(0);
+
+                 // Update last sync time
+                long lastSync = System.currentTimeMillis();
+                mPreferences.edit().putLong("last_sync_time", lastSync).commit();
                 
             } else {
                 mIsSyncing = true;
@@ -777,13 +787,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
         String url = HOST + "/guide_taxa.json?guide_id=" + guideId.toString();
-        
         JSONArray json = get(url);
-        
         try {
 			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("guide_taxa"));
 		} catch (JSONException e) {
@@ -794,9 +799,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     
     private SerializableJSONArray getAllGuides() throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
         String url = HOST + "/guides.json";
         
         JSONArray json = get(url);
