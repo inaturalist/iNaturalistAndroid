@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="acc">Prec</string>
+    <string name="app_name">iNaturalist</string>
+    <string name="google_login">Hasi saioa Google-rekin</string>
+    <string name="email_address">Posta elektronikoko helbidea</string>
+    <string name="observations_menu_add">Gehitu</string>
+    <string name="observations_menu_sync">Sinkronizatu</string>
+    <string name="delete_observation">Behaketa ezabatu</string>
+    <string name="observation_deleted">Behaketa ezabatuta</string>
+    <string name="species_guess_hint">Espeziearen izena...</string>
+    
+    <string name="ok">ADOS</string>
+    <string name="cancel">Utzi</string>
+    <string name="loading">Kargatzen...</string>
+    <string name="sync_required">Sinkronizazioa behar du</string>
+    <string name="sync_required_message">%1$d behaketa, %2$d argazki sinkronizatzeko</string>
+    <string name="street">Kalea</string>
+    <string name="satellite">Satelitea</string>
+    <string name="couldnt_load_nearby_observations">Hurbileko behaketak ezin izan dira kargatu: %1$s</string>
+    <string name="found_observations">%1$d behaketa topatu dira</string>
+    <string name="ready_to_signup">Erregistratzeko prest?</string>
+    <string name="about_to_signup">iNaturalist bisitatzeko puntuan zaude, bertan kontu berria sortu ahal izango duzu. Kontua baieztatzen duzunean jasoko duzun baieztapen-mezuaren estekan klikatuta, hona itzuli ahal izango duzu erabiltzaile-izena eta pasahitza jartzeko.</string>
+    <string name="username_invalid">Erabiltzaile-izena edo pasahitza ez da baliagarria, mesedez, hasi saioa berriro.</string>
+    <string name="signed_in_as">Honela hasitako saioa: %1$s</string>
+    <string name="signing_in">Saioa hasten...</string>
+    <string name="signed_in">Hasitako saioa!</string>
+    <string name="signed_in_failed">Hutsegitea saioa hastean!</string>
+    <string name="username_cannot_be_blank">Erabiltzaile-izenak eta pasahitzak ezin dute hutsik egon</string>
+    <string name="syncing_observations">Behaketak sinkronizatzen...</string>
+    <string name="syncing_x_observations">%1$d behaketa sinkronizatzen...</string>
+    <string name="syncing">Sinkronizatzen...</string>
+    <string name="updating_observations">Behaketak eguneratzen...</string>
+    <string name="updating_x_observations">Dauden %2$d behaketetatik %1$d eguneratzen...</string>
+    <string name="posting_observations">Behaketa berriak argitaratzen...</string>
+    <string name="posting_x_observations">%2$d behaketa berritatik %1$d argitaratzen...</string>
+    <string name="observation_sync_complete">Behaketen sinkronizazioa eginda</string>
+    <string name="observation_sync_status">%1$d berriak, %2$d eguneratuak.</string>
+    <string name="sync_complete">Sinkronizazioa eginda!</string>
+    <string name="posting_photos">Argazki berriak argitaratzen...</string>
+    <string name="posting_x_photos">%2$d argazki berritatik %1$d argitaratzen...</string>
+    <string name="photo_sync_complete">Argazkien sinkronizazioa eginda</string>
+    <string name="posted_new_x_photos">%1$d argazki berri argitaratuta.</string>
+    <string name="error_couldnt_connect_to_server">Ezin izan da zerbitzariarekin kontaktatu.</string>
+    <string name="please_sign_in">Mesedez, hasi saioa</string>
+    <string name="please_sign_in_description">Mesedez, hasi saioa zure NaturaLista kontuan edo beste bat erregistratu.</string>
+    
+    <string name="photo_not_specified">Espezifikatu gabeko argazkia</string>
+    <string name="set_date">Data finkatu</string>
+    <string name="set_time">Ordua finkatu</string>
+    <string name="image_saved">Irudia gordeta</string>
+    <string name="something_went_wrong">Hara, zerbait gaizki joan da: %1$s</string>
+    <string name="close">Itxi</string>
+    <string name="edit">Editatu</string>
+    <string name="current_position">Uneko posizioa</string>
+    <string name="you_are_here">Hemen zaude!</string>
+    <string name="oh_no">O, ez! %1$s</string>
+    <string name="need_to_login">Saioa hasi behar duzu taula ikusteko. Saioa hasi nahi duzu orain?</string>
+    
+    <string name="observations">Behaketak</string>
+    <string name="observations_description">Behaketen zerrenda</string>
+    <string name="map">Mapa</string>
+    <string name="map_description">Behaketen mapa</string>
+    <string name="updates">Taula</string>
+    <string name="updates_description">iNaturalist-en jarraitzen duzun jendearen berriak</string>
+    <string name="settings">Ezarpenak</string>
+    <string name="settings_description">Hasi/itxi saioa</string>
+    <string name="processing">Prozesatzen...</string>
+    <string name="projects">Proiektuak</string>
+    <string name="projects_description">Proiektuak</string>
+    
+    <string name="delete_photo">Argazkia ezabatu</string>
+    <string name="menu">Menua</string>
+    <string name="layers">Geruzak</string>
+    <string name="my_location">Nire kokapena</string>
+    <string name="nearby_observations">Ohar hurbilak</string>
+    <string name="add">Gehitu</string>
+    <string name="view_on_inat">Ikusi NaturaLista-n</string>
+    <string name="reload">Freskatu</string>
+    <string name="view_in_browser">Nabigatzailean ikusi</string>
+    <string name="view">Ikusi</string>
+    
+    <string name="add_observation">Oharra gehitu</string>
+    <string name="take_picture">Argazkia atera</string>
+    <string name="add_photo">Argazkia gehitu</string>
+    <string name="save">Gorde</string>
+    <string name="no_observations_yet">Oraindik ez dago behaketarik!</string>
+    <string name="sign_in_to_inat">Hasi saioa zure iNaturalist kontuan</string>
+    <string name="sign_in">Hasi saioa</string>
+    <string name="or">edo</string>
+    <string name="create_new_account">Sortu kontu berria</string>
+    <string name="signed_in_as_plain">Honela hasitako saioa:</string>
+    <string name="signed_out">Saioa itxi</string>
+    
+    <string name="username">Erabiltzailearen izena</string>
+    <string name="password">Pasahitza</string>
+    <string name="unknown">Ezezaguna</string>
+    <string name="brief_description">Deskribapen laburra...</string>
+    <string name="unknown_species">Espezie ezezaguna</string>
+    <string name="no_description">Deskribapenik gabe</string>
+    
+    <string name="pull_to_sync">Sinkronizatzeko sakatu...</string>
+    <string name="release_to_sync">Sinkronizatzeko askatu...</string>
+    <string name="edit_observation">Behaketa editatu</string>
+    <string name="discard_changes">Ziur al zaude gordegabeko aldaketak deuseztatu nahi dituzula?</string>
+    <string name="yes">Bai</string>
+    <string name="no">Ez</string>
+    <string name="agree">Ados?</string>
+    <string name="no_comments">Azalpen/Identifikaziorik gabe oraingoz</string>
+    <string name="posted_by">%1$s  %2$s …-rengatik egina</string>
+    <string name="you">zu</string>
+    <string name="loading_comments">Azalpenak eta behaketak kargatzen</string>
+    <string name="add_comment">Azalpenak gehitu</string>
+    <string name="add_id">Identifikazioak gehitu</string>
+    <string name="remarks">Behaketak...</string>
+    <string name="change">Aldaketa</string>
+    <string name="no_taxon_found">Taxonik ez da aurkitu</string>
+    <string name="enter_taxon_name">Taxonaren izena idatzi</string>
+    <string name="no_projects">Proiekturik ez da aurkitu!</string>
+    <string name="no_guides">Gidarik ez da aurkitu!</string>
+    <string name="loading_projects">Proiktuak kargatu...</string>
+    <string name="joined_projects">Izena emanda</string>
+    <string name="nearby_projects">Hurbilak</string>
+    <string name="featured_projects">Nabarmenak</string>
+    <string name="project_details">Proiektuaren xehetasunak</string>
+    <string name="leave">Utzi</string>
+    <string name="join">Izena eman ezazu</string>
+    <string name="project_taxa">Proiektuaren zerrenda</string>
+    <string name="loading_check_list">Zerrenda kargatzen...</string>
+    <string name="no_check_list">Taxonik ez zerrendan!</string>
+    <string name="failed_to_add_obs_to_project">Proiektuan azalpenak gehitzean errorea \'%1$s\' \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Eremuarentzat baliodun balorea sartu mesedez \'%1s\'</string>
+    <string name="id_please">ID laguntza behar duzu??</string>
+    <string name="select_projects">Proiektuak hautatu</string>
+    <string name="could_not_load_comments">Azalpenak/IDak ezin izan dira kargatu - Baliteke behaketa web horritik ezabatu izana </string>
+    <string name="not_connected">Interneten konektatuta egon behar da hau egiteko!</string>
+    <string name="search_projects">Proiektuak bilatu...</string>
+    <string name="search_guides">Gidak bilatu...</string>
+    <string name="save_observation">Behaketa gorde</string>
+    <string name="about">Gutun-azala</string>
+    <string name="check_list">Zerrenda</string>
+    <string name="gps">GPS</string>
+    <string name="geoprivacy">Geopribatutasuna</string>
+    <string name="comments_ids">Oharrak eta identifikazioak</string>
+    <string name="delete_confirmation">Ziur al zaude behaketa hau ezabatu nahi duzula?</string>
+    <string name="view_on_inat_confirmation">Behaketa hau nabigatzale batetan ikusi?</string>
+    <string name="next">Hurrengoa</string>
+    <string name="previous">Aurrekoa</string>
+    <string name="finish">Bukatu</string>
+    <string name="tutorial_link">iNaturalist-en laguntza</string>
+    <string name="guides">Gidak</string>
+    <string name="guides_description">Gidak</string>
+    <string name="my_guides">Zureak</string>
+    <string name="nearby_guides">Hurbilak</string>
+    <string name="all_guides">Denak</string>
+    <string name="no_taxa">Taxonik ez da aurkitu gida honetan!</string>
+    <string name="search_taxa">Taxonak bilatzen...</string>
+    <string name="no_internet_guides">Gidek  interneteko konexioa behar dute</string>
+    <string name="no_internet_projects">Proiektuek interneteko konexioa behar dute</string>
+    <string name="import_metadata">Metadatuak inportatu?</string>
+    <string name="import_metadata_desc">Irudiaren data, ordua eta kokalekua bere metadatuetatik jarri nahi dituzu?</string>
+    <string-array name="tutorial_images">
+    <item>tutorial1</item>
+    <item>tutorial2</item>
+    <item>tutorial3</item>
+    <item>tutorial4</item>
+    <item>tutorial5</item>
+    </string-array>
+    
+    <string-array name="geoprivacy_items">
+    <item>Open</item>
+    <item>Obscured</item>
+    <item>Private</item>
+    </string-array>
+    <string-array name="geoprivacy_values">
+    <item>open</item>
+    <item>obscured</item>
+    <item>private</item>
+    </string-array>
+</resources>

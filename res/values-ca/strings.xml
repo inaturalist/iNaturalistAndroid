@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="acc">Prec</string>
+    <string name="app_name">iNaturalist</string>
+    <string name="google_login">Inicia sessió amb Google</string>
+    <string name="email_address">Adreça de correu electrònic</string>
+    <string name="observations_menu_add">Afegeix</string>
+    <string name="observations_menu_sync">Sincronitza</string>
+    <string name="delete_observation">Esborra observació</string>
+    <string name="observation_deleted">Observació esborrada</string>
+    <string name="species_guess_hint">Nom de l\'espècie...</string>
+    
+    <string name="ok">D\'acord</string>
+    <string name="cancel">Cancel·la</string>
+    <string name="loading">Carregant...</string>
+    <string name="sync_required">Requereix sincronització</string>
+    <string name="sync_required_message">%1$d observacions, %2$d fotos que cal sincronitzar</string>
+    <string name="street">Carrer</string>
+    <string name="satellite">Satèl·lit</string>
+    <string name="couldnt_load_nearby_observations">No s\'han pogut carregar les observacions següents: %1$s</string>
+    <string name="found_observations">S\'han trobat %1$d observacions</string>
+    <string name="ready_to_signup">Preparat per registrar-te?</string>
+    <string name="about_to_signup">Estàs a punt de visitar iNaturalist, on podràs crear un nou compte. Quan hagis confirmat el teu compte fent clic a l\'enllaç que t’hem enviat al correu electrònic, podràs tornar a aquesta pàgina per introduir el teu nom d\'usuari i la teva contrasenya.</string>
+    <string name="username_invalid">Nom d\'usuari o contrasenya no vàlids, si us plau, inicia sessió una altra vegada.</string>
+    <string name="signed_in_as">Sessió iniciada com a %1$s</string>
+    <string name="signing_in">Iniciant sessió...</string>
+    <string name="signed_in">Sessió iniciada!</string>
+    <string name="signed_in_failed">Error en iniciar la sessió!</string>
+    <string name="username_cannot_be_blank">No pots deixar ni el nom d\'usuari ni la contrasenya en blanc</string>
+    <string name="syncing_observations">Sincronitzant observacions...</string>
+    <string name="syncing_x_observations">Sincronitzant %1$d observacions...</string>
+    <string name="syncing">Sincronitzant...</string>
+    <string name="updating_observations">Actualitzant observacions...</string>
+    <string name="updating_x_observations">Actualitzant %1$d de %2$d observacions existents...</string>
+    <string name="posting_observations">Publicant noves observacions...</string>
+    <string name="posting_x_observations">Publicant %1$d de %2$d noves observacions...</string>
+    <string name="observation_sync_complete">Sincronització d\'observacions finalitzada</string>
+    <string name="observation_sync_status">%1$d de noves, %2$d d’actualitzades.</string>
+    <string name="sync_complete">Sincronització finalitzada!</string>
+    <string name="posting_photos">Publicant fotos noves...</string>
+    <string name="posting_x_photos">Publicant %1$d de %2$d fotos noves...</string>
+    <string name="photo_sync_complete">Sincronització de fotos finalitzada</string>
+    <string name="posted_new_x_photos">Publicades %1$d fotos noves.</string>
+    <string name="error_couldnt_connect_to_server">No s\'ha pogut connectar amb el servidor.</string>
+    <string name="please_sign_in">Si us plau, inicia sessió</string>
+    <string name="please_sign_in_description">Si us plau, inicia sessió al teu compte de NaturaLista o registra’n un de nou.</string>
+    
+    <string name="photo_not_specified">Foto no especificada</string>
+    <string name="set_date">Estableix data</string>
+    <string name="set_time">Estableix hora</string>
+    <string name="image_saved">Imatge desada</string>
+    <string name="something_went_wrong">Hi ha hagut algun problema: %1$s</string>
+    <string name="close">Tanca</string>
+    <string name="edit">Edita</string>
+    <string name="current_position">Posició actual</string>
+    <string name="you_are_here">Ets aquí!</string>
+    <string name="oh_no">Oh, no! %1$s</string>
+    <string name="need_to_login">Has d\'iniciar sessió per veure el teu tauler. Vols iniciar sessió ara?</string>
+    
+    <string name="observations">Observacions</string>
+    <string name="observations_description">Llista d\'observacions</string>
+    <string name="map">Mapa</string>
+    <string name="map_description">Mapa d\'observacions</string>
+    <string name="updates">Tauler</string>
+    <string name="updates_description">Novetats dels usuaris que segueixes a iNaturalist</string>
+    <string name="settings">Configuració</string>
+    <string name="settings_description">Inicia/tanca sessió</string>
+    <string name="processing">Processant...</string>
+    <string name="projects">Projectes</string>
+    <string name="projects_description">Projectes</string>
+    
+    <string name="delete_photo">Esborra foto</string>
+    <string name="menu">Menú</string>
+    <string name="layers">Capes</string>
+    <string name="my_location">La meva ubicació</string>
+    <string name="nearby_observations">Observacions properes</string>
+    <string name="add">Afegeix</string>
+    <string name="view_on_inat">Mostra a NaturaLista</string>
+    <string name="reload">Actualitza</string>
+    <string name="view_in_browser">Mostra en el navegador</string>
+    <string name="view">Mostra</string>
+    
+    <string name="add_observation">Afegeix observació</string>
+    <string name="take_picture">Fes una foto</string>
+    <string name="add_photo">Afegeix foto</string>
+    <string name="save">Desa</string>
+    <string name="no_observations_yet">Encara no hi ha observacions!</string>
+    <string name="sign_in_to_inat">Inicia sessió al teu compte d\'iNaturalist</string>
+    <string name="sign_in">Inicia sessió</string>
+    <string name="or">o</string>
+    <string name="create_new_account">Crea un compte nou</string>
+    <string name="signed_in_as_plain">Sessió iniciada com a</string>
+    <string name="signed_out">Tanca la sessió</string>
+    
+    <string name="username">Nom d\'usuari</string>
+    <string name="password">Contrasenya</string>
+    <string name="unknown">Desconegut</string>
+    <string name="brief_description">Breu descripció...</string>
+    <string name="unknown_species">Espècie desconeguda</string>
+    <string name="no_description">Sense descripció</string>
+    
+    <string name="pull_to_sync">Prem per sicnronitzar...</string>
+    <string name="release_to_sync">Deixa anar per sincronitzar...</string>
+    <string name="edit_observation">Edita l\'Observació</string>
+    <string name="discard_changes">Segur que vols descartar els canvis no desats?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="agree">D\'acord?</string>
+    <string name="no_comments">Sense comentaris/identificacions encara</string>
+    <string name="posted_by">Fet per %1$s el %2$s</string>
+    <string name="you">tu</string>
+    <string name="loading_comments">Carregant comentaris i identificacions...</string>
+    <string name="add_comment">Afegir comentari</string>
+    <string name="add_id">Afegir identificació</string>
+    <string name="remarks">Observacions...</string>
+    <string name="change">Canvi</string>
+    <string name="no_taxon_found">Cap tàxon trobat</string>
+    <string name="enter_taxon_name">Escriu el nom del tàxon</string>
+    <string name="no_projects">Cap projecte trobat!</string>
+    <string name="no_guides">Cap guia trobada!</string>
+    <string name="loading_projects">Carregant projectes...</string>
+    <string name="joined_projects">Inscrit</string>
+    <string name="nearby_projects">Propers</string>
+    <string name="featured_projects">Destacats</string>
+    <string name="project_details">Detalls del Projecte</string>
+    <string name="leave">Abandona</string>
+    <string name="join">Inscriu-te</string>
+    <string name="project_taxa">Llista del projecte</string>
+    <string name="loading_check_list">Carregant llist...</string>
+    <string name="no_check_list">Cap tàxon a la llista!</string>
+    <string name="failed_to_add_obs_to_project">Error afegint observacions \'%1$s\' al projecte \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Sisplau, entra un valor vàlid pel camp \'%1s\'</string>
+    <string name="id_please">Necessites ajuda ID?</string>
+    <string name="select_projects">Selecciona Projectes</string>
+    <string name="could_not_load_comments">No s\'han pogut carregar comentaris/IDs – probablement l\'observació s\'ha esborrat del web</string>
+    <string name="not_connected">Cal estar connectat a Internet per poder fer això!</string>
+    <string name="search_projects">Cerca projectes...</string>
+    <string name="search_guides">Cerca guies...</string>
+    <string name="save_observation">Desa l\'observació</string>
+    <string name="about">Sobre</string>
+    <string name="check_list">Llista</string>
+    <string name="gps">GPS</string>
+    <string name="geoprivacy">Geoprivacitat</string>
+    <string name="comments_ids">Comentaris i Identificacions</string>
+    <string name="delete_confirmation">Segur que vols esborrar aquesta observació?</string>
+    <string name="view_on_inat_confirmation">Visualitzar aquesta observació en un navegador?</string>
+    <string name="next">Següent</string>
+    <string name="previous">Anterior</string>
+    <string name="finish">Acabar</string>
+    <string name="tutorial_link">Ajuda de l\'iNaturalist</string>
+    <string name="guides">Guies</string>
+    <string name="guides_description">Guies</string>
+    <string name="my_guides">Teves</string>
+    <string name="nearby_guides">Properes</string>
+    <string name="all_guides">Totes</string>
+    <string name="no_taxa">Cap tàxon trobat en aquesta guia!</string>
+    <string name="search_taxa">Cercant taxons...</string>
+    <string name="no_internet_guides">Les Guies requereixen una connexió a Internet</string>
+    <string name="no_internet_projects">Els Projectes requereixen una connexió a Internet</string>
+    <string name="import_metadata">Importar metadades?</string>
+    <string name="import_metadata_desc">Vols establir la data, l\'hora, i la localització de la imatge a partir de les seves metadades?</string>
+    <string-array name="tutorial_images">
+    <item>tutorial1</item>
+    <item>tutorial2</item>
+    <item>tutorial3</item>
+    <item>tutorial4</item>
+    <item>tutorial5</item>
+    </string-array>
+     
+    <string-array name="geoprivacy_items">
+    <item>Open</item>
+    <item>Obscured</item>
+    <item>Private</item>
+    </string-array>
+    <string-array name="geoprivacy_values">
+    <item>open</item>
+    <item>obscured</item>
+    <item>private</item>
+    </string-array>    
+</resources>
