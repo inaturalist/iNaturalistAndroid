@@ -614,6 +614,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mTaxonContainer.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                    	if (!isNetworkAvailable()) {
+                    		Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    		return;
+                    	}
+
                         Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
                         intent.putExtra(TaxonSearchActivity.FIELD_ID, mField.field_id);
                         startActivityForResult(intent, PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE);
@@ -823,6 +828,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mTaxonSelector.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+
 				Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
 				intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
 				startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);

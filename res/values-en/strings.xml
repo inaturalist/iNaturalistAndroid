@@ -29,7 +29,7 @@
     <string name="syncing_observations">Refreshing observations...</string>
     <string name="sync_observations">Sync observations</string>
     <string name="syncing_x_observations">Syncing %1$d observations...</string>
-    <string name="syncing">Syncing...</string>
+    <string name="syncing">Refreshing...</string>
     <string name="updating_observations">Updating observations...</string>
     <string name="updating_x_observations">Updating %1$d of %2$d existing observations...</string>
     <string name="posting_observations">Posting new observations...</string>
