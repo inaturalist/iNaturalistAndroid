@@ -119,6 +119,9 @@ public class MenuActivity extends ListActivity {
                 if (!isNetworkAvailable()) {
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
                     return;
+                } else if (!isLoggedIn()) {
+                    Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
+                    return;
                 }
 
                 Toast.makeText(getApplicationContext(), R.string.syncing_observations, Toast.LENGTH_LONG).show(); 
@@ -293,4 +296,10 @@ public class MenuActivity extends ListActivity {
             startActivity(i); 
         }
     }
+
+    private boolean isLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
+    }
+
 }

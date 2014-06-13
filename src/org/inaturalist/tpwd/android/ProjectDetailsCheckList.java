@@ -154,7 +154,7 @@ public class ProjectDetailsCheckList extends Fragment {
 
             mProgress.setVisibility(View.GONE);
             
-            if (checkList.length() > 0) {
+            if (mCheckList.size() > 0) {
                 mProjectTaxaEmpty.setVisibility(View.GONE);
                 mProjectTaxa.setVisibility(View.VISIBLE);
                 

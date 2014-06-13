@@ -501,7 +501,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     @Override
                     public void run() {
                         // Toast doesn't support longer periods of display - this is a workaround
-                        for (int i = 0; i < 3; i++) {
+                        for (int i = 0; i < 1; i++) {
                             Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
                         }
                     }
@@ -929,11 +929,25 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = HOST + "/projects.json?group=" + groupID;
 
         JSONArray json = get(url);
+        
+        if (json == null) {
+        	return getGroupProjectsOffline(groupID);
+        }
 
         // Determine which projects are already joined
         for (int i = 0; i < json.length(); i++) {
+        	
             Cursor c;
             try {
+            	BetterJSONObject jsonProject = new BetterJSONObject(json.getJSONObject(i));
+            	Project project = new Project(jsonProject);
+
+            	// Add group project locally
+            	ContentValues cv = project.getContentValues();
+            	if (getContentResolver().update(Project.CONTENT_URI, cv, "id = " + project.id, null) == 0 ) {
+                    getContentResolver().insert(Project.CONTENT_URI, cv);
+            	}
+
                 c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
                 c.moveToFirst();
                 if (c.getCount() > 0) {
@@ -1077,7 +1091,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
  
     
     private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
-        String url = String.format("%s/lists/%d.json", HOST, id);
+        String url = String.format("%s/lists/%d.json?rank=species&order_by=observations_count", HOST, id);
         
         JSONArray json = get(url);
         
@@ -1093,6 +1107,31 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
     
+    private SerializableJSONArray getGroupProjectsOffline(String groupId) {
+        JSONArray projects = new JSONArray();
+        
+        Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "group_id = ?", new String[] { groupId }, Project.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        int index = 0;
+        
+        while (c.isAfterLast() == false) {
+            Project project = new Project(c);
+            JSONObject jsonProject = project.toJSONObject();
+            try {
+                jsonProject.put("joined", true);
+                projects.put(index, jsonProject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            
+            c.moveToNext();
+            index++;
+        }
+        c.close();
+        
+        return new SerializableJSONArray(projects);
+    }
     
     private SerializableJSONArray getJoinedProjectsOffline() {
         JSONArray projects = new JSONArray();
@@ -1298,6 +1337,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         try {
             JSONArray result = get(String.format("%s/observation_fields/%d.json", HOST, fieldId));
             BetterJSONObject jsonObj;
+            
+            if (result == null) return;
+            
             jsonObj = new BetterJSONObject(result.getJSONObject(0));
             ProjectField field = new ProjectField(jsonObj);
             
@@ -1483,7 +1525,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null, intent);
     }
     
-    public static boolean verifyCredentials(String credentials) {
+    public static String verifyCredentials(String credentials) {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
         String url = HOST + "/observations/new.json";
@@ -1496,20 +1538,42 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return true;
+            	
+            	// Next, find the iNat username (since we currently only have email address)
+            	request = new HttpGet(HOST + "/users/edit.json");
+                request.setHeader("Authorization", "Basic "+credentials);
+
+            	response = client.execute(request);
+            	entity = response.getEntity();
+            	content = EntityUtils.toString(entity);
+
+            	if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+            		return null;
+            	}
+
+            	JSONObject json = new JSONObject(content);
+            	if (!json.has("login")) {
+            		return null;
+            	}
+
+            	String username = json.getString("login");
+
+            	return username;
             } else {
                 Log.e(TAG, "Authentication failed: " + content);
-                return false;
+                return null;
             }
         }
         catch (IOException e) {
             request.abort();
             Log.w(TAG, "Error for URL " + url, e);
-        }
-        return false;
+        } catch (JSONException e) {
+			e.printStackTrace();
+		}
+        return null;
     }
 
-    public static boolean verifyCredentials(String username, String password) {
+    public static String verifyCredentials(String username, String password) {
         String credentials = Base64.encodeToString(
                 (username + ":" + password).getBytes(), Base64.URL_SAFE|Base64.NO_WRAP
                 );

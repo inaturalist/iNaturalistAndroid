@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="acc">Prec</string>
-    <string name="app_name">Texas Nature Trackers</string>
+    <string name="app_name">NatureTrackrs</string>
     <string name="google_login">  Iniciar sesión con Google</string>
     <string name="email_address">Dirección de correo electrónico</string>
     <string name="observations_menu_add">Añadir</string>
@@ -193,4 +193,7 @@
     <string name="sync_x_observations">Sync %1$d observations</string>
     <string name="sync_observations">Sync observations</string>
     <string name="sync">Sincronizar</string>
+    <string name="sign_out_alert">Are you sure? This will delete all you observations on this device until you sign back in. It will not affect any observations you’ve uploaded to iNaturalist.</string>
+    
+    <string name="facebook_sign_in">Sign in with Facebook</string>
 </resources>

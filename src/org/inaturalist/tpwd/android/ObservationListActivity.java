@@ -101,6 +101,11 @@ public class ObservationListActivity extends SherlockListActivity {
             mSyncCompleteReceiver = null;
         }
     }
+    
+    private boolean isLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
+    }
 
     /** Called when the activity is first created. */
     @Override
@@ -115,6 +120,9 @@ public class ObservationListActivity extends SherlockListActivity {
 			public void onClick(View v) {
                 if (!isNetworkAvailable()) {
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                } else if (!isLoggedIn()) {
+                    Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
                     return;
                 }
 
@@ -172,7 +180,7 @@ public class ObservationListActivity extends SherlockListActivity {
         mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                if (!isNetworkAvailable()) {
+                if (!isNetworkAvailable() || !isLoggedIn()) {
                     Thread t = (new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -190,7 +198,11 @@ public class ObservationListActivity extends SherlockListActivity {
                         }
                     }));
                     t.start();
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    if (!isNetworkAvailable()) {
+                        Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    } else if (!isLoggedIn()) {
+                        Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
+                    }
                     return;
                 }
                 

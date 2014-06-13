@@ -824,6 +824,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
+				intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
 				startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
 			}
 		});

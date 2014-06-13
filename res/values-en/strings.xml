@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="acc">Acc</string>
-    <string name="app_name">Texas Nature Trackers</string>
+    <string name="app_name">NatureTrackrs</string>
     <string name="google_login">Login with Google</string>
     <string name="email_address">Email Address</string>
     <string name="observations_menu_add">Add</string>
@@ -42,7 +42,7 @@
     <string name="photo_sync_complete">Photo sync complete</string>
     <string name="posted_new_x_photos">Posted %1$d new photos.</string>
     <string name="error_couldnt_connect_to_server">Couldn\'t connect to server.</string>
-    <string name="please_sign_in">Please sign in</string>
+    <string name="please_sign_in">Please sign in to submit observations</string>
     <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
     
     <string name="photo_not_specified">Photo not specified</string>
@@ -182,8 +182,9 @@
     <string name="attend_link">Attend a TNT Workshop</string>
     <string name="about_header">About the TPWD</string>
     <string name="about_sub_header">Texas Nature Trackers Program</string>
-    <string name="about_text"><Data><![CDATA[ More than ever, people are interested in watching and learning about Texas wildlife. Texas Parks and Wildlife Department offers Texans the opportunity to do just that while making valuable contributions to the conservation of animal and plant species. Texas Nature Trackers, associated with the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/master_naturalist/">Texas Master Naturalist Program</a>, is a citizen-science program that engages volunteers of all ages and interest levels in gathering scientific data on species of concern in Texas. <br/><br/> With the Texas Nature Trackers program, you can gather data about various species throughout the state, whether you’re on public or private property. Botanists and biologists use this data to better understand the status and management needs of various species. Our goal is to enable long-term conservation of these species and appreciation among Texas citizens. For more information, visit the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/texas_nature_trackers/">Texas Nature Trackers website</a>. <br/><br/> To add an observation, please select the Project that best fits your observation. <br/><br/>Disclosure: By submitting an observation, you agree to allow TPWD to use your data for the highest and best conservation use. ]]> </Data></string>
+    <string name="about_text"><Data><![CDATA[ More than ever, people are interested in watching and learning about Texas wildlife. Texas Parks and Wildlife Department offers Texans the opportunity to do just that while making valuable contributions to the conservation of animal and plant species. Texas Nature Trackers, associated with the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/master_naturalist/">Texas Master Naturalist Program</a>, is a citizen-science program that engages volunteers of all ages and interest levels in gathering scientific data on species of concern in Texas. <br/><br/> With the Texas Nature Trackers program, you can gather data about various species throughout the state, whether you’re on public or private property. Botanists and biologists use this data to better understand the status and management needs of various species. Our goal is to enable long-term conservation of these species and appreciation among Texas citizens. For more information, visit the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/texas_nature_trackers/">Texas Nature Trackers website</a>. <br/><br/> To add an observation, please select the Project that best fits your observation. <br/><br/>Terms: Observations submitted through this app are posted on iNaturalist.org and are visible to the public. If you don’t want the location to be made public, set Geoprivacy to “Private” or “Obscured” when adding an observation. ]]> </Data></string>
     <string name="in_partnership_with">In Partnership With</string>
+    <string name="sign_out_alert">Are you sure? This will delete all you observations on this device until you sign back in. It will not affect any observations you’ve uploaded to iNaturalist.</string>
     
     <string name="terms_of_service">Terms of Service</string>
     <string name="decline">Decline</string>
@@ -191,4 +192,5 @@
     
     <string name="sync_x_observations">Sync %1$d observations</string>
     <string name="sync">Sync</string>
+    <string name="facebook_sign_in">Sign in with Facebook</string>
 </resources>

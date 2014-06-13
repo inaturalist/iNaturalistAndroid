@@ -261,7 +261,7 @@
             <org.inaturalist.tpwd.android.MultilineEditText
                 android:id="@+id/description"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="140dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
@@ -275,21 +275,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
             </LinearLayout>
-
-            <Button
-                android:id="@+id/select_projects"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/select_projects" />
-
-            <TableLayout
-                android:id="@+id/projects"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:stretchColumns="*" >
-            </TableLayout>
 
             <TableLayout
                 android:layout_width="fill_parent"
@@ -333,6 +318,22 @@
                         android:entryValues="@array/geoprivacy_values" />
                 </TableRow>
             </TableLayout>
+
+            <Button
+                android:id="@+id/select_projects"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/select_projects" />
+
+            <TableLayout
+                android:id="@+id/projects"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:stretchColumns="*" >
+            </TableLayout>
+
 
             <TableLayout
                 android:id="@+id/project_fields"

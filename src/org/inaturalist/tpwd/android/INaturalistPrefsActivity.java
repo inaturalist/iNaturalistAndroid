@@ -227,7 +227,14 @@ public class INaturalistPrefsActivity extends SherlockActivity {
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				signOut();
+                mHelper.confirm(getString(R.string.signed_out), 
+                        getString(R.string.sign_out_alert),
+                        new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        	signOut();
+                        }
+                });
 			}
 		});
         
@@ -353,8 +360,9 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 			
 			// TODO - Support for OAuth2 login with Google/Facebook
 			if (mLoginType == LoginType.PASSWORD) {
-			    Boolean result = INaturalistService.verifyCredentials(mUsername, mPassword);
-			    if (result) {
+			    String result = INaturalistService.verifyCredentials(mUsername, mPassword);
+			    if (result != null) {
+                    mUsername = result;
 			        return "true";
 			    } else {
 			        return null;

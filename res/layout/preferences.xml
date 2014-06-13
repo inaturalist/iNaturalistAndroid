@@ -17,11 +17,13 @@
         android:layout_height="match_parent">
 
 	        <com.facebook.widget.LoginButton
+                xmlns:fb="http://schemas.android.com/apk/res-auto"
 	            android:id="@+id/facebook_login_button"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_centerHorizontal="true"
 	            android:layout_marginTop="5dp"
+	            fb:login_text="@string/facebook_sign_in"
 	            android:gravity="center_vertical|center_horizontal" />
 	        
         </RelativeLayout>

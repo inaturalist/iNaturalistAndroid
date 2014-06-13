@@ -82,6 +82,8 @@
 	    android:layout_height="wrap_content"
 	    android:text="@string/about_text"
 	    android:textColor="#333333"
+	    android:textSize="18dp"
+	    android:textStyle="bold"
         android:layout_below="@id/about_top"
         android:layout_marginTop="20dp"
         />

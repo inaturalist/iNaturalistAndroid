@@ -8,43 +8,33 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import org.inaturalist.tpwd.android.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.MenuItem;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient.CustomViewCallback;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.MenuItem;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class TaxonSearchActivity extends SherlockListActivity {
     private static final String LOG_TAG = "TaxonSearchActivity";
@@ -55,6 +45,8 @@ public class TaxonSearchActivity extends SherlockListActivity {
 	public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     public static final String ID_PIC_URL = "id_url";
     public static final String FIELD_ID = "field_id";
+
+	public static final String SPECIES_GUESS = "species_guess";
     
     private TaxonAutoCompleteAdapter mAdapter;
 
@@ -64,7 +56,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
 
 
     private ArrayList<JSONObject> autocomplete(String input) {
-        ArrayList<JSONObject> resultList = null;
+        ArrayList<JSONObject> resultList = new ArrayList<JSONObject>();
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
@@ -84,10 +76,10 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 jsonResults.append(buff, 0, read);
             }
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Error processing Places API URL", e);
+            Log.e(LOG_TAG, "Error processing Taxon API URL", e);
             return resultList;
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error connecting to Places API", e);
+            Log.e(LOG_TAG, "Error connecting to Taxon API", e);
             return resultList;
         } finally {
             if (conn != null) {
@@ -289,6 +281,15 @@ public class TaxonSearchActivity extends SherlockListActivity {
             @Override
             public void afterTextChanged(Editable s) { }
         });
+        
+        String initialSearch = intent.getStringExtra(SPECIES_GUESS);
+        
+        if ((initialSearch != null) && (initialSearch.trim().length() > 0)) {
+        	autoCompView.setText(initialSearch);
+        	autoCompView.setSelection(initialSearch.length());
+        } else {
+        	autoCompView.setText("");
+        }
 
 
         setListAdapter(mAdapter);
@@ -301,7 +302,23 @@ public class TaxonSearchActivity extends SherlockListActivity {
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
-            bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("unique_name"));
+            
+            String displayName;
+            try {
+            	displayName = item.getString("unique_name");
+            } catch (JSONException e2) {
+            	displayName = "unknown";
+            }
+            try {
+            	JSONObject defaultName = item.getJSONObject("default_name");
+            	displayName = defaultName.getString("name");
+            } catch (JSONException e1) {
+            	// alas
+            }
+
+            
+            //bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("unique_name"));
+            bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
             bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
             bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
             bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
