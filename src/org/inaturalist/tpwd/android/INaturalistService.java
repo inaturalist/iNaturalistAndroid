@@ -461,7 +461,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             
             SerializableJSONArray errors = result.getJSONArray("errors");
             
-            if (errors != null) {
+            if ((errors != null) && (!result.has("existing"))) {
                 // Couldn't add the observation to the project (probably didn't pass validation)
                 String error;
                 try {

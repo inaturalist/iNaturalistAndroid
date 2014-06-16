@@ -1,5 +1,7 @@
 package org.inaturalist.tpwd.android;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import org.inaturalist.tpwd.android.R;
 import org.inaturalist.tpwd.android.INaturalistService.LoginType;
@@ -23,6 +25,10 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -195,6 +201,26 @@ public class INaturalistPrefsActivity extends SherlockActivity {
         ArrayList<String> permissions = new ArrayList<String>();
         permissions.add("email");
         mFacebookLoginButton.setReadPermissions(permissions);
+        
+        
+       PackageInfo info;
+try {
+    info = getPackageManager().getPackageInfo("org.inaturalist.tpwd.android", PackageManager.GET_SIGNATURES);
+    for (Signature signature : info.signatures) {
+        MessageDigest md;
+        md = MessageDigest.getInstance("SHA");
+        md.update(signature.toByteArray());
+        String something = new String(Base64.encode(md.digest(), 0));
+        //String something = new String(Base64.encodeBytes(md.digest()));
+        Log.e("hash key", something);
+    }
+} catch (NameNotFoundException e1) {
+    Log.e("name not found", e1.toString());
+} catch (NoSuchAlgorithmException e) {
+    Log.e("no such an algorithm", e.toString());
+} catch (Exception e) {
+    Log.e("exception", e.toString());
+} 
         
         mFacebookLoginButton.setSessionStatusCallback(new StatusCallback() {
             @Override

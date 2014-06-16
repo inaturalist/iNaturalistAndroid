@@ -173,7 +173,7 @@ public class ObservationListActivity extends SherlockListActivity {
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
         mPullRefreshListView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_sync));
         mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_sync));
-        mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.syncing));
+        mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.refreshing));
         mPullRefreshListView.setReleaseRatio(2.5f);
         
         // Set a listener to be invoked when the list should be refreshed.
