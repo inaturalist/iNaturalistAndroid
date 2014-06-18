@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="acc">Prec</string>
+    <string name="app_name">iNaturalist</string>
+    <string name="google_login">Iniciar sesión con Google</string>
+    <string name="email_address">Dirección de correo electrónico</string>
+    <string name="observations_menu_add">Añadir</string>
+    <string name="observations_menu_sync">Sincronizar</string>
+    <string name="delete_observation">Borrar observación</string>
+    <string name="observation_deleted">Observación borrada</string>
+    <string name="species_guess_hint">Nombre de la especie...</string>
+    
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="loading">Cargando...</string>
+    <string name="sync_required">Requiere sincronización</string>
+    <string name="sync_required_message">%1$d observaciones, %2$d fotos para sincronizar</string>
+    <string name="street">Calle</string>
+    <string name="satellite">Satélite</string>
+    <string name="couldnt_load_nearby_observations">No se han podido cargar las observaciones cercanas: %1$s</string>
+    <string name="found_observations">Se han encontrado %1$d observaciones</string>
+    <string name="ready_to_signup">¿Preparado para registrarse?</string>
+    <string name="about_to_signup">Está a punto de visitar iNaturalist, donde podrá crear una cuenta nueva. En cuanto haya confirmado su cuenta haciendo clic en el enlace del email de confirmación que recibirá, podrá volver aquí para introducir su nombre de usuario y su contraseña.</string>
+    <string name="username_invalid">Nombre de usuario o contraseña no válidos, por favor inicie sesión de nuevo.</string>
+    <string name="signed_in_as">Sesión iniciada como %1$s</string>
+    <string name="signing_in">Iniciando sesión...</string>
+    <string name="signed_in">¡Sesión iniciada!</string>
+    <string name="signed_in_failed">¡Fallo al iniciar la sesión!</string>
+    <string name="username_cannot_be_blank">Ni el nombre de usuario ni la contraseña pueden permanecer en blanco</string>
+    <string name="syncing_observations">Sincronizando observaciones...</string>
+    <string name="syncing_x_observations">Sincronizando %1$d observaciones...</string>
+    <string name="syncing">Sincronizando...</string>
+    <string name="updating_observations">Actualizando observaciones...</string>
+    <string name="updating_x_observations">Actualizando %1$d de %2$d observaciones existentes...</string>
+    <string name="posting_observations">Publicando observaciones nuevas...</string>
+    <string name="posting_x_observations">Publicando %1$d de %2$d observaciones nuevas...</string>
+    <string name="observation_sync_complete">Sincronización de observaciones completada</string>
+    <string name="observation_sync_status">%1$d nuevas, %2$d actualizadas.</string>
+    <string name="sync_complete">¡Sincronización completada!</string>
+    <string name="posting_photos">Publicando fotos nuevas...</string>
+    <string name="posting_x_photos">Publicando %1$d de %2$d fotos nuevas...</string>
+    <string name="photo_sync_complete">Sincronización de fotos completada</string>
+    <string name="posted_new_x_photos">Publicadas %1$d fotos nuevas.</string>
+    <string name="error_couldnt_connect_to_server">No se ha podido conectar con el servidor.</string>
+    <string name="please_sign_in">Por favor, inicie sesión</string>
+    <string name="please_sign_in_description">Por favor, inicie sesión en su cuenta de NaturaLista o registre una nueva.</string>
+    
+    <string name="photo_not_specified">Foto no especificada</string>
+    <string name="set_date">Establecer fecha</string>
+    <string name="set_time">Establecer hora</string>
+    <string name="image_saved">Imagen guardada</string>
+    <string name="something_went_wrong">Vaya, algo ha ido mal: %1$s</string>
+    <string name="close">Cerrar</string>
+    <string name="edit">Editar</string>
+    <string name="current_position">Posición actual</string>
+    <string name="you_are_here">¡Está aquí!</string>
+    <string name="oh_no">¡Oh, no! %1$s</string>
+    <string name="need_to_login">Tiene que iniciar sesión para ver su tablero. ¿Quiere iniciar sesión ahora?</string>
+    
+    <string name="observations">Observaciones</string>
+    <string name="observations_description">Lista de observaciones</string>
+    <string name="map">Mapa</string>
+    <string name="map_description">Mapa de observaciones</string>
+    <string name="updates">Tablero</string>
+    <string name="updates_description">Novedades de la gente a la que sigue en iNaturalist</string>
+    <string name="settings">Configuración</string>
+    <string name="settings_description">Iniciar/cerrar sesión</string>
+    <string name="processing">Procesando...</string>
+    <string name="projects">Proyectos</string>
+    <string name="projects_description">Proyectos</string>
+    
+    <string name="delete_photo">Borrar foto</string>
+    <string name="menu">Menú</string>
+    <string name="layers">Capas</string>
+    <string name="my_location">Mi ubicación</string>
+    <string name="nearby_observations">Observaciones cercanas</string>
+    <string name="add">Añadir</string>
+    <string name="view_on_inat">Ver en NaturaLista</string>
+    <string name="reload">Refrescar</string>
+    <string name="view_in_browser">Ver en el navegador</string>
+    <string name="view">Ver</string>
+    
+    <string name="add_observation">Añadir observación</string>
+    <string name="take_picture">Tomar una foto</string>
+    <string name="add_photo">Añadir foto</string>
+    <string name="save">Guardar</string>
+    <string name="no_observations_yet">¡Aún no hay observaciones!</string>
+    <string name="sign_in_to_inat">Inicie sesión en su cuenta de iNaturalist</string>
+    <string name="sign_in">Inicie sesión</string>
+    <string name="or">o</string>
+    <string name="create_new_account">Cree una cuenta nueva</string>
+    <string name="signed_in_as_plain">Sesión iniciada como</string>
+    <string name="signed_out">Cerrar sesión</string>
+    
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="unknown">Desconocido</string>
+    <string name="brief_description">Descripción breve...</string>
+    <string name="unknown_species">Especie desconocida</string>
+    <string name="no_description">Sin descripción</string>
+        
+    <string name="pull_to_sync">Pulsa para sincronizar...</string>
+    <string name="release_to_sync">Suelta para sincronizar...</string>
+    <string name="edit_observation">Edita la Observación</string>
+    <string name="discard_changes">¿Seguro que quieres descartar los cambios no guardados?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="agree">De acuerdo?</string>
+    <string name="no_comments">Sin comentarios/identificaciones todavía</string>
+    <string name="posted_by">Hecho por %1$s el %2$s</string>
+    <string name="you">tu</string>
+    <string name="loading_comments">Cargando comentarios e identificaciones...</string>
+    <string name="add_comment">Añadir comentarios</string>
+    <string name="add_id">Añadir identificaciones</string>
+    <string name="remarks">Observaciones...</string>
+    <string name="change">Cambio</string>
+    <string name="no_taxon_found">Ningún taxón encontrado</string>
+    <string name="enter_taxon_name">Escribe el nombre del taxón</string>
+    <string name="no_projects">Ningún proyecto encontrado!</string>
+    <string name="no_guides">Ninguna guía encontrada!</string>
+    <string name="loading_projects">Cargando proyectos...</string>
+    <string name="joined_projects">Inscrito</string>
+    <string name="nearby_projects">Cercanos</string>
+    <string name="featured_projects">Destacados</string>
+    <string name="project_details">Detalles del Proyecto</string>
+    <string name="leave">Abandona</string>
+    <string name="join">Inscríbete</string>
+    <string name="project_taxa">Lista del proyecto</string>
+    <string name="loading_check_list">Cargando lista...</string>
+    <string name="no_check_list">Ningún taxón en la lista!</string>
+    <string name="failed_to_add_obs_to_project">Error añadiendo observaciones \'%1$s\' en el proyecto \'%2$s\': %3$s</string>
+    <string name="invalid_project_field">Por favor, entra un valor válido para el campo \'%1s\'</string>
+    <string name="id_please">¿Necesitas ayuda ID?</string>
+    <string name="select_projects">Selecciona Proyectos</string>
+    <string name="could_not_load_comments">No se han podido cargar comentarios/IDs - probablemente la observación se ha borrado del sitio web</string>
+    <string name="not_connected">Hace falta estar conectado a Internet para poder hacer esto!</string>
+    <string name="search_projects">Busca proyectos...</string>
+    <string name="search_guides">Busca guías...</string>
+    <string name="save_observation">Guarda observación</string>
+    <string name="about">Sobre</string>
+    <string name="check_list">Lista</string>
+    <string name="gps">GPS</string>
+    <string name="geoprivacy">Geoprivacidad</string>
+    <string name="comments_ids">Comentarios e Identificaciones</string>
+    <string name="delete_confirmation">¿Segur que quieres borrar esta observación?</string>
+    <string name="view_on_inat_confirmation">¿Visualizar esta observación en un navegador?</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="finish">Acabar</string>
+    <string name="tutorial_link">Ayuda de iNaturalist</string>
+    <string name="guides">Guías</string>
+    <string name="guides_description">Guías</string>
+    <string name="my_guides">Tuyas</string>
+    <string name="nearby_guides">Cercanas</string>
+    <string name="all_guides">Todas</string>
+    <string name="no_taxa">Ningún taxón encontrado en esta guía!</string>
+    <string name="search_taxa">Buscando taxones...</string>
+    <string name="no_internet_guides">Las Guías requieren una conexión a Internet</string>
+    <string name="no_internet_projects">Los Proyectos requieren una conexión a  Internet</string>
+    <string name="import_metadata">Importar metadatos?</string>
+    <string name="import_metadata_desc">¿Quieres establecer la fecha, la hora, y la localización de la imágen a partir de sus metadatos?</string>
+    <string-array name="tutorial_images">
+    <item>tutorial1</item>
+    <item>tutorial2</item>
+    <item>tutorial3</item>
+    <item>tutorial4</item>
+    <item>tutorial5</item>
+    </string-array>
+    
+    <string-array name="geoprivacy_items">
+    <item>Open</item>
+    <item>Obscured</item>
+    <item>Private</item>
+    </string-array>
+    <string-array name="geoprivacy_values">
+    <item>open</item>
+    <item>obscured</item>
+    <item>private</item>
+    </string-array>
+</resources>
