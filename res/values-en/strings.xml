@@ -145,7 +145,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
-    <string name="tutorial_link">Help with Texas Nature Trackers</string>
+    <string name="tutorial_link">Launch Tutorial</string>
     <string name="guides">Guides</string>
     <string name="guides_description">Guides</string>
     <string name="my_guides">Yours</string>
@@ -161,6 +161,8 @@
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
 	    <item>tutorial2</item>
+	    <item>tutorial2_2</item>
+	    <item>tutorial2_3</item>
 	    <item>tutorial3</item>
 	    <item>tutorial4</item>
 	    <item>tutorial5</item>

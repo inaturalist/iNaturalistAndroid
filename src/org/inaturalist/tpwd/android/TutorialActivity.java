@@ -147,16 +147,9 @@ public class TutorialActivity extends SherlockFragmentActivity {
     			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     			builder
     			.setTitle(R.string.terms_of_service)
-    			.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+    			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
     				public void onClick(DialogInterface dialog, int id) {
     					setResult(RESULT_OK);
-    					finish();
-    				}
-    			})
-    			.setNegativeButton(R.string.decline,  new DialogInterface.OnClickListener() {
-    				public void onClick(DialogInterface dialog, int id) {
-    					// Notify caller that we should close the app
-    					setResult(RESULT_CANCELED);
     					finish();
     				}
     			})

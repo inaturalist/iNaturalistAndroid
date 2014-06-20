@@ -22,7 +22,7 @@
 		    android:layout_height="wrap_content"
 		    android:maxHeight="100dp"
 		    android:adjustViewBounds="true"
-		    android:src="@drawable/tpwd_logo_white"
+		    android:src="@drawable/tpwd_logo_bw"
 		    android:layout_gravity="center"
            />
 

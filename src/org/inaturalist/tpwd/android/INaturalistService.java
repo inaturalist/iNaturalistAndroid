@@ -953,6 +953,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 if (c.getCount() > 0) {
                     json.getJSONObject(i).put("joined", true);
                 }
+                
+                
+                // Save project fields
+                addProjectFields(jsonProject.getJSONArray("project_observation_fields").getJSONArray());
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 continue;
