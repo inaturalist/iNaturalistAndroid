@@ -1096,7 +1096,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
  
     
     private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
-        String url = String.format("%s/lists/%d.json?rank=species&order_by=observations_count", HOST, id);
+        String url = String.format("%s/lists/%d.json?rank=leaves&order_by=observations_count", HOST, id);
         
         JSONArray json = get(url);
         
