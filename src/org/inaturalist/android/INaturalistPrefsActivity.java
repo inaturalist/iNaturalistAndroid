@@ -34,6 +34,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +64,7 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     private LoginButton mFacebookLoginButton;
     private Button mGoogleLogin;
 	private View mFBSeparator;
+	private RadioGroup rbPreferredLocaleSelector;
 	
     private UiLifecycleHelper mUiHelper;
     
@@ -165,6 +168,7 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
 	    mHelp = (TextView) findViewById(R.id.tutorial_link);
 	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG); 
+	    rbPreferredLocaleSelector = (RadioGroup)findViewById(R.id.radioLang);
 	    
 	    mHelp.setOnClickListener(new OnClickListener() {
             @Override
@@ -245,6 +249,44 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    	signOut();
 	    	mHelper.alert(getString(R.string.username_invalid));
 	    }
+	    
+	    updateRadioButtonState();
+	}
+	
+	private void updateRadioButtonState(){
+		String pref_locale = mPreferences.getString("pref_locale", "");
+		if(pref_locale.equalsIgnoreCase("eu")){
+			rbPreferredLocaleSelector.check(R.id.rbDeviceEu);
+		}else if(pref_locale.equalsIgnoreCase("gl")){
+			rbPreferredLocaleSelector.check(R.id.rbDeviceGl);
+		}else{
+			rbPreferredLocaleSelector.check(R.id.rbDeviceLang);
+		}
+	}
+	
+	public void onRadioButtonClicked(View view){
+	    boolean checked = ((RadioButton) view).isChecked();	    	    
+	    switch(view.getId()) {
+	        case R.id.rbDeviceEu:
+	            if (checked){	            	
+	            	mPrefEditor.putString("pref_locale", "eu");
+	            	mPrefEditor.commit();	            	
+	            }
+	            break;
+	        case R.id.rbDeviceGl:
+	            if (checked){
+	            	mPrefEditor.putString("pref_locale", "gl");
+	            	mPrefEditor.commit();	            	
+	            }
+	            break;
+	        default:
+	        	if(checked){
+	        		mPrefEditor.putString("pref_locale", "");
+	            	mPrefEditor.commit();	            	
+	        	}
+	        	break;
+	    }
+	    Toast.makeText(getApplicationContext(), getString(R.string.language_restart), Toast.LENGTH_LONG).show();
 	}
 	
 	@Override
