@@ -64,11 +64,14 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     private LoginButton mFacebookLoginButton;
     private Button mGoogleLogin;
 	private View mFBSeparator;
-	private RadioGroup rbPreferredLocaleSelector;
+	private RadioGroup rbPreferredLocaleSelector;	
+	private INaturalistApp mApp;
 	
     private UiLifecycleHelper mUiHelper;
     
     private String mGoogleUsername;
+    
+    private int formerSelectedRadioButton;
     
 
     private Session.StatusCallback mCallback = new Session.StatusCallback() {
@@ -127,6 +130,10 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		if (mApp == null) {
+            mApp = (INaturalistApp) getApplicationContext();
+        }
+		
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -167,8 +174,12 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    mSignOutButton = (Button) findViewById(R.id.signOutButton);
 	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
 	    mHelp = (TextView) findViewById(R.id.tutorial_link);
-	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG); 
+	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+	    
 	    rbPreferredLocaleSelector = (RadioGroup)findViewById(R.id.radioLang);
+	    
+	    RadioButton rbDeviceLanguage = (RadioButton)findViewById(R.id.rbDeviceLang);
+	    rbDeviceLanguage.setText( rbDeviceLanguage.getText() + " (" + mApp.getFormattedDeviceLocale() + ")" );
 	    
 	    mHelp.setOnClickListener(new OnClickListener() {
             @Override
@@ -257,36 +268,63 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 		String pref_locale = mPreferences.getString("pref_locale", "");
 		if(pref_locale.equalsIgnoreCase("eu")){
 			rbPreferredLocaleSelector.check(R.id.rbDeviceEu);
+			formerSelectedRadioButton = R.id.rbDeviceEu;
 		}else if(pref_locale.equalsIgnoreCase("gl")){
 			rbPreferredLocaleSelector.check(R.id.rbDeviceGl);
+			formerSelectedRadioButton = R.id.rbDeviceGl;
 		}else{
 			rbPreferredLocaleSelector.check(R.id.rbDeviceLang);
+			formerSelectedRadioButton = R.id.rbDeviceLang;
 		}
 	}
 	
-	public void onRadioButtonClicked(View view){
-	    boolean checked = ((RadioButton) view).isChecked();	    	    
-	    switch(view.getId()) {
-	        case R.id.rbDeviceEu:
-	            if (checked){	            	
-	            	mPrefEditor.putString("pref_locale", "eu");
-	            	mPrefEditor.commit();	            	
+	public void onRadioButtonClicked(View view){		
+	    final boolean checked = ((RadioButton) view).isChecked();
+	    final int selectedRadioButtonId = view.getId();	    	    
+	    //Toast.makeText(getApplicationContext(), getString(R.string.language_restart), Toast.LENGTH_LONG).show();
+	    
+	    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+	        @Override
+	        public void onClick(DialogInterface dialog, int which) {
+	            switch (which){
+	            case DialogInterface.BUTTON_POSITIVE:
+	            	switch(selectedRadioButtonId) {
+		    	        case R.id.rbDeviceEu:
+		    	            if (checked){	            	
+		    	            	mPrefEditor.putString("pref_locale", "eu");
+		    	            	mPrefEditor.commit();	            	
+		    	            }
+		    	            break;
+		    	        case R.id.rbDeviceGl:
+		    	            if (checked){
+		    	            	mPrefEditor.putString("pref_locale", "gl");
+		    	            	mPrefEditor.commit();	            	
+		    	            }
+		    	            break;
+		    	        default:
+		    	        	if(checked){
+		    	        		mPrefEditor.putString("pref_locale", "");
+		    	            	mPrefEditor.commit();	            	
+		    	        	}
+		    	        	break;
+		    	    }
+	            	formerSelectedRadioButton = selectedRadioButtonId;
+	            	mApp.applyLocaleSettings();
+	        	    mApp.restart();
+	                break;
+
+	            case DialogInterface.BUTTON_NEGATIVE:
+	                //No button clicked
+	            	rbPreferredLocaleSelector.check(formerSelectedRadioButton);	            	
+	                break;
 	            }
-	            break;
-	        case R.id.rbDeviceGl:
-	            if (checked){
-	            	mPrefEditor.putString("pref_locale", "gl");
-	            	mPrefEditor.commit();	            	
-	            }
-	            break;
-	        default:
-	        	if(checked){
-	        		mPrefEditor.putString("pref_locale", "");
-	            	mPrefEditor.commit();	            	
-	        	}
-	        	break;
-	    }
-	    Toast.makeText(getApplicationContext(), getString(R.string.language_restart), Toast.LENGTH_LONG).show();
+	        }
+	    };
+
+	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setMessage(getString(R.string.language_restart))
+	    	.setPositiveButton(getString(R.string.restart_now), dialogClickListener)
+	        .setNegativeButton(getString(R.string.cancel), dialogClickListener).show();	    	    	   
 	}
 	
 	@Override

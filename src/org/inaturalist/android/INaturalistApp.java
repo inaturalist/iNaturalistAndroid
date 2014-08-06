@@ -35,25 +35,46 @@ public class INaturalistApp extends Application {
     private static Integer SYNC_NOTIFICATION = 3;
     private static Context context;
     private Locale locale = null;
+    private Locale deviceLocale = null;
     
     @Override
     public void onCreate() {
         super.onCreate();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
-        
-        SharedPreferences settings = getPrefs();
+        deviceLocale = getResources().getConfiguration().locale;
+        applyLocaleSettings();
+    }
+    
+    public String getFormattedDeviceLocale(){
+    	if(deviceLocale!=null){
+    		return deviceLocale.getDisplayLanguage();
+    	}    	
+    	return "";
+    }
+    
+    public void applyLocaleSettings(){
+    	SharedPreferences settings = getPrefs();
 
         Configuration config = getBaseContext().getResources().getConfiguration();
-
+        
         String lang = settings.getString("pref_locale", "");
         if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
         {
-            locale = new Locale(lang);
-            Locale.setDefault(locale);
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            locale = new Locale(lang);            
+        }else{        	
+        	locale = deviceLocale;
         }
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+    
+    public void restart(){
+    	Intent i = getBaseContext().getPackageManager()
+	             .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+	    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	    startActivity(i);
     }
     
     @Override

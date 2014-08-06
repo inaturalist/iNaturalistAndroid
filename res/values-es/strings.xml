@@ -158,10 +158,11 @@
     <string name="import_metadata">Importar metadatos?</string>
     <string name="import_metadata_desc">¿Quieres configurar la fecha, hora y lugar de esta observación de los metadatos de la foto?</string>
     <string name="language_settings">Opciones de idioma</string>
-    <string name="locale_gl">Galego</string>
+    <string name="locale_gl">Gallego</string>
     <string name="locale_eu">Euskera</string>
     <string name="use_device_language_settings">Usar las opciones de idioma del terminal</string>
     <string name="language_restart">Opciones de idioma cambiadas. Por favor reinicie el terminal para ver los cambios.</string>
+    <string name="restart_now">Restart now</string>
  
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>

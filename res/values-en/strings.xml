@@ -158,10 +158,11 @@
     <string name="import_metadata">Import metadata?</string>
     <string name="import_metadata_desc">Do you want to set the date, time, and location of this observation from the photo\'s metadata?</string>
     <string name="language_settings">Language settings</string>
-    <string name="locale_gl">Galego</string>
-    <string name="locale_eu">Euskera</string>
+    <string name="locale_gl">Galician</string>
+    <string name="locale_eu">Basque</string>
     <string name="use_device_language_settings">Use device language settings</string>
     <string name="language_restart">Language settings changed. Please restart the app for the changes to take place.</string>
+    <string name="restart_now">Restart now</string>
 
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
