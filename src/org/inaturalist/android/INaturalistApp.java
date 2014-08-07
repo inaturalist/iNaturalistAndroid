@@ -14,9 +14,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
@@ -32,12 +34,59 @@ public class INaturalistApp extends Application {
     public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("h:mm a z");
     private static Integer SYNC_NOTIFICATION = 3;
     private static Context context;
+    private Locale locale = null;
+    private Locale deviceLocale = null;
     
     @Override
     public void onCreate() {
         super.onCreate();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
+        deviceLocale = getResources().getConfiguration().locale;
+        applyLocaleSettings();
+    }
+    
+    public String getFormattedDeviceLocale(){
+    	if(deviceLocale!=null){
+    		return deviceLocale.getDisplayLanguage();
+    	}    	
+    	return "";
+    }
+    
+    public void applyLocaleSettings(){
+    	SharedPreferences settings = getPrefs();
+
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        
+        String lang = settings.getString("pref_locale", "");
+        if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
+        {
+            locale = new Locale(lang);            
+        }else{        	
+        	locale = deviceLocale;
+        }
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+    
+    public void restart(){
+    	Intent i = getBaseContext().getPackageManager()
+	             .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+	    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	    startActivity(i);
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+    	super.onConfigurationChanged(newConfig);
+    	Configuration config = new Configuration(newConfig); 
+    	if (locale != null)
+        {
+    		config.locale = locale;
+            Locale.setDefault(locale);
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        }
     }
     
     public static Context getAppContext() {
