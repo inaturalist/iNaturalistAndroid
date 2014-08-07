@@ -159,6 +159,12 @@
     <string name="no_internet_projects">Els Projectes requereixen una connexió a Internet</string>
     <string name="import_metadata">Importar metadades?</string>
     <string name="import_metadata_desc">Vols establir la data, l\'hora, i la localització de la imatge a partir de les seves metadades?</string>
+    <string name="language_settings">Opcions d\'idioma</string>
+    <string name="locale_gl">Gallego</string>
+    <string name="locale_eu">Euskera</string>
+    <string name="use_device_language_settings">Usar opcions d\'idioma del terminal.</string>
+    <string name="language_restart">Opcions d\'idioma canviades. Si us plau reinicia l\'aplicació per veure els canvis.</string>
+    <string name="restart_now">Reinicia ara</string>
     <string-array name="tutorial_images">
     <item>tutorial1</item>
     <item>tutorial2</item>
