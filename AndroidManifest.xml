@@ -90,6 +90,10 @@
             android:label="@string/app_name"
             android:name=".ProjectSelectorActivity" >
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:name=".AboutSHEDDActivity" >
+        </activity>
  
         <activity
             android:configChanges="orientation"
