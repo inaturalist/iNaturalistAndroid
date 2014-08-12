@@ -73,6 +73,8 @@ import android.widget.Toast;
 public class INaturalistService extends IntentService implements ConnectionCallbacks, OnConnectionFailedListener {
     // The project ID every observation will be added to by default
     public static int DEFAULT_PROJECT_ID = 2415; // SHEDD Project
+    public static int DEFAULT_GUIDE_ID = 338; // Great Lakes Fishes Field Guide
+    public static String DEFAULT_GUIDE_TITLE = "Great Lakes Fishes";
 
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;

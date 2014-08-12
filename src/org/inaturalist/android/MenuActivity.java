@@ -227,7 +227,12 @@ public class MenuActivity extends ListActivity {
         } else if (title.equals(getString(R.string.settings))) {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.guides))) {
-            startActivity(new Intent(this, GuidesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            Intent intent = new Intent(this, GuideDetails.class);
+            BetterJSONObject guide = new BetterJSONObject();
+            guide.put("id", INaturalistService.DEFAULT_GUIDE_ID);
+            guide.put("title", INaturalistService.DEFAULT_GUIDE_TITLE);
+            intent.putExtra("guide", guide);
+            startActivity(intent);
         }
     }
 }
