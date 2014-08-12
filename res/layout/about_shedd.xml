@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D8DAC8"
+    android:padding="10dp">
+    
+    <ScrollView
+    android:id="@+id/project_description_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    >
+
+    <RelativeLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    >
+
+    <RelativeLayout
+        android:id="@+id/about_top"
+        android:layout_alignParentTop="true"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginBottom="10dp"
+	    >
+	    
+       	<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/about_header"
+		    android:id="@+id/about_header"
+		    style="@android:style/TextAppearance.Large"
+		    android:layout_centerHorizontal="true"
+		    android:layout_alignParentTop="true"
+            android:textColor="#333333"
+	        />    
+	        
+       	<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/about_sub_header"
+		    android:id="@+id/about_sub_header"
+		    style="@android:style/TextAppearance.Medium"
+		    android:layout_centerHorizontal="true"
+		    android:layout_below="@id/about_header"
+            android:textColor="#333333"
+	        />    
+        
+       	<LinearLayout
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"
+		    android:layout_centerHorizontal="true"
+		    android:layout_below="@id/about_sub_header"
+		    android:orientation="horizontal"
+		    android:layout_marginTop="20dp"
+      	    >
+		    <ImageView
+			    android:layout_height="wrap_content"
+			    android:layout_width="0dp"
+			    android:layout_weight="1"
+			    android:paddingRight="8dp"
+			    android:src="@drawable/fish_finder_logo_blue"
+			    android:adjustViewBounds="true"
+			    />
+   		    <ImageView
+			    android:layout_height="wrap_content"
+			    android:layout_width="0dp"
+			    android:layout_weight="2"
+			    android:paddingRight="8dp"
+			    android:src="@drawable/logo_text"
+			    android:adjustViewBounds="true"
+			    android:layout_gravity="center_vertical"
+			    />
+	    </LinearLayout>
+	    
+    </RelativeLayout>
+    
+
+    <TextView 
+        android:id="@+id/about_text"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/about_text"
+	    android:textColor="#333333"
+	    android:textSize="18dp"
+	    android:textStyle="bold"
+        android:layout_below="@id/about_top"
+        android:layout_marginTop="20dp"
+        />
+    </RelativeLayout>
+</ScrollView>
+
+
+</RelativeLayout>

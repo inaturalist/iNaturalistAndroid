@@ -64,15 +64,15 @@ public class MenuActivity extends ListActivity {
         MENU_ITEMS.add(map);
         
         map = new HashMap<String,String>();
-        map.put("title", getString(R.string.updates));
-        map.put("description", getString(R.string.updates_description));
-        MENU_ITEMS.add(map);
-        
-        map = new HashMap<String,String>();
         map.put("title", getString(R.string.settings));
         map.put("description", getString(R.string.settings_description));
         MENU_ITEMS.add(map);
-        
+
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.about_menu));
+        map.put("description", getString(R.string.about_menu_description));
+        MENU_ITEMS.add(map);
+            
        
         SimpleAdapter adapter = new SimpleAdapter(this, 
                 (List<? extends Map<String, ?>>) MENU_ITEMS, 
@@ -222,10 +222,10 @@ public class MenuActivity extends ListActivity {
             startActivity(new Intent(this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.map))) {
             startActivity(new Intent(this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        } else if (title.equals(getString(R.string.updates))) {
-            startActivity(new Intent(this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.settings))) {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+        } else if (title.equals(getString(R.string.about_menu))) {
+            startActivity(new Intent(this, AboutSHEDDActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.guides))) {
             Intent intent = new Intent(this, GuideDetails.class);
             BetterJSONObject guide = new BetterJSONObject();
