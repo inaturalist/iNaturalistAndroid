@@ -71,6 +71,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class INaturalistService extends IntentService implements ConnectionCallbacks, OnConnectionFailedListener {
+    // The project ID every observation will be added to by default
+    public static int DEFAULT_PROJECT_ID = 2415; // SHEDD Project
+
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
     
@@ -187,6 +190,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 getNearbyObservations(intent);
                 
             } else if (action.equals(ACTION_FIRST_SYNC)) {
+                joinProject(DEFAULT_PROJECT_ID); // Make sure user is always part of the default project
                 saveJoinedProjects();
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
                 syncObservationFields();
@@ -680,7 +684,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    post(HOST + "/observations.json?extra=observation_photos", paramsForObservation(observation))
+                    post(HOST + "/observations.json?extra=observation_photos&project_id=" + DEFAULT_PROJECT_ID, paramsForObservation(observation))
             );
             c.moveToNext();
         }
@@ -1263,7 +1267,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         Double maxx = extras.getDouble("maxx");
         Double miny = extras.getDouble("miny");
         Double maxy = extras.getDouble("maxy");
-        String url = HOST + "/observations.json?extra=observation_photos";
+        String url = HOST + "/observations/project/" + DEFAULT_PROJECT_ID + ".json?extra=observation_photos";
         url += "&swlat="+miny;
         url += "&nelat="+maxy;
         url += "&swlng="+minx;
