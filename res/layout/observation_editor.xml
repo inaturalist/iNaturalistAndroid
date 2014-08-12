@@ -258,11 +258,6 @@
                 android:orientation="horizontal" >
             </LinearLayout>
 
-            <Button
-                android:id="@+id/select_projects"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="@string/select_projects" />
 
             <TableLayout
                 android:id="@+id/projects"

@@ -50,11 +50,6 @@ public class MenuActivity extends ListActivity {
         map.put("description", getString(R.string.observations_description));
         MENU_ITEMS.add(map);
         
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.projects));
-        map.put("description", getString(R.string.projects_description));
-        MENU_ITEMS.add(map);
-
         // Only show guides only for Android 4+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 map = new HashMap<String,String>();
@@ -231,8 +226,6 @@ public class MenuActivity extends ListActivity {
             startActivity(new Intent(this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.settings))) {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        } else if (title.equals(getString(R.string.projects))) {
-            startActivity(new Intent(this, ProjectsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.guides))) {
             startActivity(new Intent(this, GuidesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         }

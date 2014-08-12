@@ -128,7 +128,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private ProgressBar mLocationProgressView;
     private View mLocationRefreshButton;
     private ImageButton mLocationStopRefreshButton;
-    private Button mProjectSelector;
     private Uri mFileUri;
     private Observation mObservation;
     private LocationManager mLocationManager;
@@ -828,20 +827,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
         mObservationCommentsIds = (TextView) findViewById(R.id.commentIdCount);
-        mProjectSelector = (Button) findViewById(R.id.select_projects);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         mProjectsTable = (TableLayout) findViewById(R.id.projects);
        
-        mProjectSelector.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ObservationEditor.this, ProjectSelectorActivity.class);
-                intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
-                intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
-                startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
-            }
-        });
-        
         mTopActionBar.setHomeButtonEnabled(true);
         mTopActionBar.setDisplayShowCustomEnabled(true);
         mTopActionBar.setDisplayHomeAsUpEnabled(true);
