@@ -3,25 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="5dp" >
+    android:background="@android:color/transparent"
+    android:layout_gravity="center"
+    android:padding="7dp" >
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="menu item"
+        android:background="@drawable/menu_item_bg"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center_vertical" 
+        android:textAllCaps="true"
+        android:gravity="center" 
+        android:layout_centerHorizontal="true"
         android:paddingLeft="6dip" 
+        android:paddingRight="6dip" 
         android:minHeight="?android:attr/listPreferredItemHeight" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeight"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_right_angle_quotation_mark_ornament" />
 
 </RelativeLayout>

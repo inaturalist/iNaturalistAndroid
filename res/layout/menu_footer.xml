@@ -3,16 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:paddingTop="10dp"
     android:background="@android:color/transparent">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center" 
+        android:layout_gravity="center_horizontal"
+        android:text="@string/powered_by"
+        android:paddingBottom="4dip" 
+        android:textColor="#000000"
+        />
 
     <ImageView
-        android:id="@+id/user_pic"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top"
         android:adjustViewBounds="true"
         android:layout_margin="10dp"
-        android:src="@drawable/fish_finder_transparent" >
+        android:src="@drawable/inat_logo_black" >
     </ImageView>
 
 </LinearLayout>

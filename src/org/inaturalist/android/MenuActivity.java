@@ -20,6 +20,7 @@ import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -31,8 +32,6 @@ public class MenuActivity extends ListActivity {
     List<Map> MENU_ITEMS;
     static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
     static final int SELECT_IMAGE_REQUEST_CODE = 2;
-    private Button mAddObservationButton;
-    private Button mTakePictureButton;
     private Uri mPhotoUri;
     private INaturalistApp app;
     private ActivityHelper mHelper;
@@ -40,11 +39,18 @@ public class MenuActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.menu);
         
         MENU_ITEMS = new ArrayList<Map>();
         Map<String,String> map;
+
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.add_observation));
+        map.put("description", getString(R.string.add_observation));
+        MENU_ITEMS.add(map);
         
+       
         map = new HashMap<String,String>();
         map.put("title", getString(R.string.observations));
         map.put("description", getString(R.string.observations_description));
@@ -82,6 +88,9 @@ public class MenuActivity extends ListActivity {
         ListView lv = getListView();
         LinearLayout header = (LinearLayout) getLayoutInflater().inflate(R.layout.menu_header, lv, false);
         lv.addHeaderView(header, null, false);
+        LinearLayout footer = (LinearLayout) getLayoutInflater().inflate(R.layout.menu_footer, lv, false);
+        lv.addFooterView(footer, null, false);
+ 
         setListAdapter(adapter);
         
         if  (savedInstanceState != null) {
@@ -91,24 +100,6 @@ public class MenuActivity extends ListActivity {
         
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
         if (mHelper == null) { mHelper = new ActivityHelper(this);}
-        
-        mAddObservationButton = (Button) findViewById(R.id.add_observation);
-        mTakePictureButton = (Button) findViewById(R.id.take_picture);
-        
-        mAddObservationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI));
-            }
-        });
-        
-        mTakePictureButton.setOnClickListener(new View.OnClickListener() {           
-            @Override
-            public void onClick(View v) {
-                mPhotoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
-                openImageIntent(MenuActivity.this, mPhotoUri, SELECT_IMAGE_REQUEST_CODE);
-            }
-        });
         
         // See if we need to display the tutorial (only for the first time using the app)
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -226,6 +217,8 @@ public class MenuActivity extends ListActivity {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.about_menu))) {
             startActivity(new Intent(this, AboutSHEDDActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+        } else if (title.equals(getString(R.string.add_observation))) {
+        	startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI));
         } else if (title.equals(getString(R.string.guides))) {
             Intent intent = new Intent(this, GuideDetails.class);
             BetterJSONObject guide = new BetterJSONObject();
