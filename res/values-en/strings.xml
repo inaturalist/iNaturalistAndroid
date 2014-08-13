@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="acc">Acc</string>
-    <string name="app_name">iNaturalist</string>
+    <string name="app_name">Great Lakes Fish Finder</string>
     <string name="google_login">Login with Google</string>
     <string name="email_address">Email Address</string>
     <string name="observations_menu_add">Add</string>
@@ -42,7 +42,7 @@
     <string name="posted_new_x_photos">Posted %1$d new photos.</string>
     <string name="error_couldnt_connect_to_server">Couldn\'t connect to server.</string>
     <string name="please_sign_in">Please sign in</string>
-    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
+    <string name="please_sign_in_description">Please sign in to your Fish Finder account or sign up for a new one.</string>
     
     <string name="photo_not_specified">Photo not specified</string>
     <string name="set_date">Set date</string>
@@ -83,7 +83,7 @@
     <string name="add_photo">Add photo</string>
     <string name="save">Save</string>
     <string name="no_observations_yet">No observations yet!</string>
-    <string name="sign_in_to_inat">Sign in to your iNaturalist account</string>
+    <string name="sign_in_to_inat">Sign in to your Fish Finder account</string>
     <string name="sign_in">Sign in</string>
     <string name="or">or</string>
     <string name="create_new_account">Create new account</string>
@@ -145,7 +145,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
-    <string name="tutorial_link">Help with iNaturalist</string>
+    <string name="tutorial_link">Help with Great Lakes Fish Finder</string>
     <string name="guides">Guide to Great Lake Fishes</string>
     <string name="guides_description">Guides</string>
     <string name="about_menu">About this app</string>
@@ -187,7 +187,7 @@
     </string-array> 
     
     
-    <string name="about_text"><Data><![CDATA[ More than ever, people are interested in watching and learning about Texas wildlife. Texas Parks and Wildlife Department offers Texans the opportunity to do just that while making valuable contributions to the conservation of animal and plant species. Texas Nature Trackers, associated with the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/master_naturalist/">Texas Master Naturalist Program</a>, is a citizen-science program that engages volunteers of all ages and interest levels in gathering scientific data on species of concern in Texas. <br/><br/> With the Texas Nature Trackers program, you can gather data about various species throughout the state, whether you’re on public or private property. Botanists and biologists use this data to better understand the status and management needs of various species. Our goal is to enable long-term conservation of these species and appreciation among Texas citizens. For more information, visit the <a href="http://www.tpwd.state.tx.us/huntwild/wild/wildlife_diversity/texas_nature_trackers/">Texas Nature Trackers website</a>. <br/><br/> To add an observation, please select the Project that best fits your observation. <br/><br/>Terms: Observations submitted through this app are posted on <a href="http://www.inaturalist.org">iNaturalist.org</a> and are visible to the public. If you don’t want the location to be made public, set Geoprivacy to “Private” or “Obscured” when adding an observation. ]]> </Data></string>
+    <string name="about_text"><Data><![CDATA[ Summary will go here ... ]]> </Data></string>
     <string name="about_header">About the App</string>
     <string name="about_sub_header">About the Great Lakes Fish Finder</string>
     <string name="powered_by">Powered by</string>

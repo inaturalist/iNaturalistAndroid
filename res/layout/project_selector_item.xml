@@ -37,6 +37,7 @@
        android:layout_toLeftOf="@id/project_pic"
        android:layout_toRightOf="@id/project_selected"
        android:layout_alignParentTop="true"
+       android:textColor="#000000"
        />
 
     <TextView

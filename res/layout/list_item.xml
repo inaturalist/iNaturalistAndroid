@@ -86,6 +86,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:singleLine="true"
+            android:textColor="#000000"
             android:text="species guess" />
 
         <TextView

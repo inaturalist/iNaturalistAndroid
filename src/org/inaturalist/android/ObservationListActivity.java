@@ -29,6 +29,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -132,7 +133,7 @@ public class ObservationListActivity extends SherlockListActivity {
         mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_sync));
         mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.syncing));
         mPullRefreshListView.setReleaseRatio(2.5f);
-        
+
         // Set a listener to be invoked when the list should be refreshed.
         mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override

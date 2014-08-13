@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical" >
     
   
@@ -36,12 +37,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@android:style/TextAppearance.Medium"
+                android:textColor="#000000"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/id_taxon_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:text="TextView" />
         </LinearLayout>
 
@@ -61,6 +64,7 @@
            android:hint="@string/remarks"
            android:inputType="text|textCapSentences"
            android:scrollbars="vertical"
+           android:textColor="#000000"
            android:imeOptions="actionDone" />
 	
 </RelativeLayout>

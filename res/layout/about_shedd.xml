@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D8DAC8"
+    android:background="#FFFFFF"
     android:padding="10dp">
     
     <ScrollView
@@ -67,7 +67,7 @@
 			    android:layout_width="0dp"
 			    android:layout_weight="2"
 			    android:paddingRight="8dp"
-			    android:src="@drawable/logo_text"
+			    android:src="@drawable/inat_logo_black"
 			    android:adjustViewBounds="true"
 			    android:layout_gravity="center_vertical"
 			    />

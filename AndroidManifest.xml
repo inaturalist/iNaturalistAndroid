@@ -25,7 +25,7 @@
 
     <application
         android:theme="@style/Theme.Sherlock"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/fish_finder_logo"
         android:label="@string/app_name"
         android:name=".INaturalistApp" >
         

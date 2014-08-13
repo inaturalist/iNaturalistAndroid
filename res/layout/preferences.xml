@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -60,12 +62,14 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/sign_in_to_inat"
+                android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:hint="@string/username" >
 
                 <requestFocus />
@@ -76,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
+                android:textColor="#000000"
                 android:inputType="textPassword" />
 
             <Button
@@ -91,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:gravity="center"
+                android:textColor="#000000"
                 android:text="@string/or" />
 
             <Button
@@ -114,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/signed_in_as_plain"
+                android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Button
@@ -135,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/language_settings"
+                android:textColor="#000000"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
@@ -147,6 +155,7 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:onClick="onRadioButtonClicked"
+                    android:textColor="#000000"
 	                android:text="@string/use_device_language_settings" />
 
 	            <RadioButton
@@ -154,6 +163,7 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:onClick="onRadioButtonClicked"
+                    android:textColor="#000000"
 	                android:text="@string/locale_eu" />
 
 	            <RadioButton
@@ -161,6 +171,7 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:onClick="onRadioButtonClicked"
+                    android:textColor="#000000"
 	                android:text="@string/locale_gl" />
 	                
             </RadioGroup>
@@ -177,6 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:textColor="#000000"
                 android:text="@string/tutorial_link" />
         </RelativeLayout>
 
