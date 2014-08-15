@@ -186,10 +186,17 @@
 	    <item>private</item>
     </string-array> 
     
-    
-    <string name="about_text"><Data><![CDATA[ Summary will go here ... ]]> </Data></string>
-    <string name="about_header">About the App</string>
-    <string name="about_sub_header">About the Great Lakes Fish Finder</string>
+   
+   
+    <string name="about_text_1"><Data><![CDATA[The Great Lakes Fish Finder is an interactive field guide. Look up and identify fishes, submit sightings and join a community of Great Lakes enthusiasts to help you classify your finds. The Great Lakes Fish Finder is an initiative of Shedd Aquarium\'s Daniel P. Haerther Center for Conservation and Research. ]]> </Data></string>
+    <string name="about_text_2"><Data><![CDATA[Snap a picture with the app and submit it for help determining which species you\'ve found. ]]> </Data></string>
+    <string name="about_text_3"><Data><![CDATA[Log the fish that you\'ve found to keep a record of all of the amazing species you\'ve discovered! ]]> </Data></string>
+    <string name="about_text_4"><Data><![CDATA[The Great Lakes Fish Finder data informs scientific studies and learning tools. Sightings you submit may help identify and combat the spread of invasive species that threaten our lakes. ]]> </Data></string>
+    <string name="about_identify">Identify</string>
+    <string name="about_keep_track">Keep Track</string>
+    <string name="about_make_difference">Make a Difference</string>
     <string name="powered_by">Powered by</string>
+
+    <string name="credits">Designed and built by iNaturalist.org in partnership with Shedd Aquarium. Guide content © Shedd Aquarium.</string>
    
 </resources>

@@ -35,9 +35,11 @@ public class AboutSHEDDActivity extends SherlockActivity {
 
 	    setContentView(R.layout.about_shedd);
 	    
+	    /*
 	    TextView about = (TextView) findViewById(R.id.about_text);
 	    about.setText(Html.fromHtml(about.getText().toString()));
 	    about.setMovementMethod(LinkMovementMethod.getInstance()); 
+	    */
 	}
 	
 }

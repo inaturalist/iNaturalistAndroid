@@ -192,6 +192,14 @@
                 android:text="@string/tutorial_link" />
         </RelativeLayout>
 
+        <TextView
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp"
+            android:text="@string/credits" />
+ 
     </LinearLayout>
 
 </ScrollView>
