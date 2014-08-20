@@ -129,6 +129,14 @@ public class ObservationListActivity extends SherlockListActivity {
         mSyncObservations.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                } else if (!isLoggedIn()) {
+                    Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+
                 Toast.makeText(getApplicationContext(), R.string.syncing_observations, Toast.LENGTH_LONG).show(); 
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
@@ -175,7 +183,7 @@ public class ObservationListActivity extends SherlockListActivity {
         mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                if (!isNetworkAvailable()) {
+                if (!isNetworkAvailable() || !isLoggedIn()) {
                     Thread t = (new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -193,7 +201,11 @@ public class ObservationListActivity extends SherlockListActivity {
                         }
                     }));
                     t.start();
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    if (!isNetworkAvailable()) {
+                        Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    } else if (!isLoggedIn()) {
+                        Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
+                    }
                     return;
                 }
                 
@@ -253,6 +265,11 @@ public class ObservationListActivity extends SherlockListActivity {
       
         refreshSyncBar();
     }
+    
+    private boolean isLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
+    } 
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

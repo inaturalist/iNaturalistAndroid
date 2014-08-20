@@ -162,7 +162,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         } else {
         	try {
 				this.photo_url = o.getJSONObject("photo").getString(photoUrlSize);
-			} catch (JSONException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
         }
