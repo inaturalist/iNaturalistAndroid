@@ -105,6 +105,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_GET_TAXON = "get_taxon";
     public static String ACTION_FIRST_SYNC = "first_sync";
+    public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
     public static String ACTION_GET_OBSERVATION = "get_observation";
     public static String ACTION_GET_CHECK_LIST = "get_check_list";
     public static String ACTION_JOIN_PROJECT = "join_project";
@@ -341,7 +342,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 int id = intent.getExtras().getInt(PROJECT_ID);
                 leaveProject(id);
                 
-                
+            } else if (action.equals(ACTION_PULL_OBSERVATIONS)) {
+            	// Download observations without uploading any new ones
+                mIsSyncing = true;
+                mApp.setIsSyncing(mIsSyncing);
+                getUserObservations(0);
+
+                 // Update last sync time
+                long lastSync = System.currentTimeMillis();
+                mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+                 
             } else {
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
