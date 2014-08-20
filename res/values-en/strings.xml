@@ -97,6 +97,12 @@
     <string name="unknown_species">Unknown species</string>
     <string name="no_description">No description</string>
     
+    <string name="pull_to_refresh">Pull to refresh...</string>
+    <string name="release_to_refresh">Release to refresh...</string>
+    <string name="refreshing">Refreshing...</string>
+    <string name="sync_x_observations">Sync %1$d observations</string>
+    <string name="sync_observations">Sync Observations</string>
+
     <string name="pull_to_sync">Pull to sync...</string>
     <string name="release_to_sync">Release to sync...</string>
     <string name="edit_observation">Edit Observation</string>

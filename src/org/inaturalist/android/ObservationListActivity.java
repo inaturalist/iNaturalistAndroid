@@ -60,6 +60,8 @@ public class ObservationListActivity extends SherlockListActivity {
 	private int mLastIndex;
 	private int mLastTop;
 	private ActionBar mTopActionBar;
+
+	private TextView mSyncObservations;
 	
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -98,11 +100,55 @@ public class ObservationListActivity extends SherlockListActivity {
         }
     }
 
+    /** Shows the sync required bottom bar, if needed */
+    private void refreshSyncBar() {
+    	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+    			Observation.PROJECTION, 
+    			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
+    			null, 
+    			Observation.SYNC_ORDER);
+    	int syncCount = c.getCount();
+    	c.close();
+
+    	if (syncCount > 0) {
+    		mSyncObservations.setText(String.format(getResources().getString(R.string.sync_x_observations), syncCount));
+    		mSyncObservations.setVisibility(View.VISIBLE);
+    	} else {
+    		mSyncObservations.setVisibility(View.GONE);
+    	}
+    }
+    
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
+        
+        
+        mSyncObservations = (TextView) findViewById(R.id.sync_observations);
+        mSyncObservations.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                } else if (!isLoggedIn()) {
+                    Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+
+                Toast.makeText(getApplicationContext(), R.string.syncing_observations, Toast.LENGTH_LONG).show(); 
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                startService(serviceIntent);
+                
+                mSyncObservations.setVisibility(View.GONE);
+			}
+		});        
+        
+              
+        refreshSyncBar(); 
         
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setHomeButtonEnabled(true);
@@ -129,16 +175,16 @@ public class ObservationListActivity extends SherlockListActivity {
         registerReceiver(mSyncCompleteReceiver, filter);
  
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
-        mPullRefreshListView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_sync));
-        mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_sync));
-        mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.syncing));
+        mPullRefreshListView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_refresh));
+        mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_refresh));
+        mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.refreshing));
         mPullRefreshListView.setReleaseRatio(2.5f);
 
         // Set a listener to be invoked when the list should be refreshed.
         mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                if (!isNetworkAvailable()) {
+                if (!isNetworkAvailable() || !isLoggedIn()) {
                     Thread t = (new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -156,12 +202,16 @@ public class ObservationListActivity extends SherlockListActivity {
                         }
                     }));
                     t.start();
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    if (!isNetworkAvailable()) {
+                        Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    } else if (!isLoggedIn()) {
+                        Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
+                    }
                     return;
                 }
                 
                 // Start sync
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
             }
         });
@@ -213,7 +263,14 @@ public class ObservationListActivity extends SherlockListActivity {
         super.onResume();
         ListView lv = mPullRefreshListView.getRefreshableView();
         lv.setSelectionFromTop(mLastIndex, mLastTop);
+      
+        refreshSyncBar();
     }
+    
+    private boolean isLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
+    } 
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
