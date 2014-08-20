@@ -156,6 +156,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>> mProjectFieldValues;
 
     private Header[] mResponseHeaders = null;
+
+	private JSONArray mResponseErrors;
     
 	public enum LoginType {
 	    PASSWORD,
@@ -441,9 +443,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             ProjectObservation projectObservation = new ProjectObservation(c);
             BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
             
-            SerializableJSONArray errors = result.getJSONArray("errors");
+            if (mResponseErrors != null) {
+                SerializableJSONArray errors = new SerializableJSONArray(mResponseErrors);
             
-            if (errors != null) {
                 // Couldn't add the observation to the project (probably didn't pass validation)
                 String error;
                 try {
@@ -1402,7 +1404,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 
                 mResponseHeaders = response.getAllHeaders();
                 
+                try {
+                	JSONObject result = json.getJSONObject(0);
+					if (result.has("errors")) {
+						// Error response
+						Log.e(TAG, "Got an error response: " + result.get("errors").toString());
+						mResponseErrors = result.getJSONArray("errors");
+						return null;
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+                
+                mResponseErrors = null;
+                
+                
                 return json;
+
             case HttpStatus.SC_UNAUTHORIZED:
                 throw new AuthenticationException();
             case HttpStatus.SC_GONE:
