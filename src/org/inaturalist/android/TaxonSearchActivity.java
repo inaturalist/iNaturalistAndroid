@@ -54,6 +54,9 @@ public class TaxonSearchActivity extends SherlockListActivity {
 	public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     public static final String ID_PIC_URL = "id_url";
     public static final String FIELD_ID = "field_id";
+
+    public static final String SPECIES_GUESS = "species_guess";
+    
     
     private TaxonAutoCompleteAdapter mAdapter;
 
@@ -289,6 +292,14 @@ public class TaxonSearchActivity extends SherlockListActivity {
             public void afterTextChanged(Editable s) { }
         });
 
+        String initialSearch = intent.getStringExtra(SPECIES_GUESS);
+        
+        if ((initialSearch != null) && (initialSearch.trim().length() > 0)) {
+        	autoCompView.setText(initialSearch);
+        	autoCompView.setSelection(initialSearch.length());
+        } else {
+        	autoCompView.setText("");
+        }
 
         setListAdapter(mAdapter);
     }
