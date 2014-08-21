@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.inaturalist.android"
+    package="org.inaturalist.shedd.android"
     android:versionCode="6"
     android:versionName="1.3.2" >
 
@@ -15,9 +15,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
     <permission
-        android:name="org.inaturalist.android.permission.MAPS_RECEIVE"
+        android:name="org.inaturalist.shedd.android.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>
-    <uses-permission android:name="org.inaturalist.android.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="org.inaturalist.shedd.android.permission.MAPS_RECEIVE"/>
     
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -26,8 +26,8 @@
     <application
         android:theme="@style/Theme.Sherlock"
         android:icon="@drawable/fish_finder_logo"
-        android:label="@string/app_name"
-        android:name=".INaturalistApp" >
+        android:label="@string/app_icon_name"
+        android:name="org.inaturalist.shedd.android.INaturalistApp" >
         
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" /> 
 
@@ -38,7 +38,7 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
-            android:name=".TutorialActivity" >
+            android:name="org.inaturalist.shedd.android.TutorialActivity" >
            	<meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".MenuActivity" /> 
@@ -46,7 +46,7 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
-            android:name=".GuideDetails" >
+            android:name="org.inaturalist.shedd.android.GuideDetails" >
            	<meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".GuidesActivity" /> 
@@ -54,7 +54,7 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
-            android:name=".GuideTaxonActivity" >
+            android:name="org.inaturalist.shedd.android.GuideTaxonActivity" >
            	<meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".GuidesDetails" /> 
@@ -63,7 +63,7 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
-            android:name=".ProjectDetails" >
+            android:name="org.inaturalist.shedd.android.ProjectDetails" >
            	<meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".ProjectsActivity" /> 
@@ -71,7 +71,7 @@
          <activity
             android:configChanges="orientation"
             android:label="@string/projects"
-            android:name=".ProjectsActivity">
+            android:name="org.inaturalist.shedd.android.ProjectsActivity">
 	        <meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".MenuActivity" /> 
@@ -79,7 +79,7 @@
   		<activity
             android:configChanges="orientation"
             android:label="@string/guides"
-            android:name=".GuidesActivity">
+            android:name="org.inaturalist.shedd.android.GuidesActivity">
 	        <meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".MenuActivity" /> 
@@ -88,33 +88,34 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
-            android:name=".ProjectSelectorActivity" >
+            android:name="org.inaturalist.shedd.android.ProjectSelectorActivity" >
         </activity>
         <activity
             android:configChanges="orientation"
-            android:name=".AboutSHEDDActivity" >
+            android:label="@string/app_name"
+            android:name="org.inaturalist.shedd.android.AboutSHEDDActivity" >
         </activity>
  
         <activity
             android:configChanges="orientation"
             android:label="@string/comments_ids"
-            android:name=".CommentsIdsActivity" >
+            android:name="org.inaturalist.shedd.android.CommentsIdsActivity" >
         </activity>
          <activity
             android:configChanges="orientation"
             android:label="@string/add_id"
-            android:name=".IdentificationActivity" >
+            android:name="org.inaturalist.shedd.android.IdentificationActivity" >
         </activity>
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
-            android:name=".TaxonSearchActivity" >
+            android:name="org.inaturalist.shedd.android.TaxonSearchActivity" >
         </activity>
  
         <activity
             android:configChanges="orientation"
             android:label="@string/observations"
-            android:name=".ObservationListActivity" >
+            android:name="org.inaturalist.shedd.android.ObservationListActivity" >
    	        <meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".MenuActivity" /> 
@@ -123,7 +124,7 @@
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:theme="@style/Theme"  
-            android:name=".ObservationEditor" >
+            android:name="org.inaturalist.shedd.android.ObservationEditor" >
            	<meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".ObservationListActivity" /> 
@@ -147,7 +148,7 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/settings"
-            android:name=".INaturalistPrefsActivity" >
+            android:name="org.inaturalist.shedd.android.INaturalistPrefsActivity" >
         </activity>
         <activity android:name="com.facebook.LoginActivity"
           android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -155,8 +156,8 @@
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
             android:configChanges="orientation"
-            android:label="@string/app_name"
-            android:name=".MenuActivity" >
+            android:label="@string/app_icon_name"
+            android:name="org.inaturalist.shedd.android.MenuActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -166,20 +167,20 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/map"
-            android:name=".INaturalistMapActivity" >
+            android:name="org.inaturalist.shedd.android.INaturalistMapActivity" >
         </activity>
         <activity
             android:configChanges="orientation"
             android:label="@string/updates"
-            android:name=".WebActivity" >
+            android:name="org.inaturalist.shedd.android.WebActivity" >
         </activity>
 
         <provider
-            android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo;org.inaturalist.android.project;org.inaturalist.android.project_observation;org.inaturalist.android.project_field;org.inaturalist.android.project_field_value"
-            android:name=".ObservationProvider" >
+            android:authorities="org.inaturalist.shedd.android.observation;org.inaturalist.shedd.android.observation_photo;org.inaturalist.shedd.android.project;org.inaturalist.shedd.android.project_observation;org.inaturalist.shedd.android.project_field;org.inaturalist.shedd.android.project_field_value"
+            android:name="org.inaturalist.shedd.android.ObservationProvider" >
         </provider>
 
-        <service android:name=".INaturalistService" />
+        <service android:name="org.inaturalist.shedd.android.INaturalistService" />
     </application>
 
 </manifest>

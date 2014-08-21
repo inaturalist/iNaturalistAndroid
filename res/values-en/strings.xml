@@ -2,6 +2,7 @@
 <resources>
     <string name="acc">Acc</string>
     <string name="app_name">Great Lakes Fish Finder</string>
+    <string name="app_icon_name">FishFinder</string>
     <string name="google_login">Login with Google</string>
     <string name="email_address">Email Address</string>
     <string name="observations_menu_add">Add</string>

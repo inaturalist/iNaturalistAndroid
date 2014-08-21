@@ -31,7 +31,7 @@ import android.widget.TimePicker;
 import android.widget.ViewSwitcher;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TimePicker.OnTimeChangedListener;
-import org.inaturalist.android.R;
+import org.inaturalist.shedd.android.R;
 
 public class DateTimePicker extends RelativeLayout implements View.OnClickListener, OnDateChangedListener, OnTimeChangedListener {
 

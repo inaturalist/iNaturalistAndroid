@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.android"
+    xmlns:app="http://schemas.android.com/apk/res/org.inaturalist.shedd.android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
@@ -258,7 +258,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <org.inaturalist.android.MultilineEditText
+            <org.inaturalist.shedd.android.MultilineEditText
                 android:textColor="#000000"
                 android:id="@+id/description"
                 android:layout_width="match_parent"
