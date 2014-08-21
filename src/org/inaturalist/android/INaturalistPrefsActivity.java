@@ -427,8 +427,9 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 			
 			// TODO - Support for OAuth2 login with Google/Facebook
 			if (mLoginType == LoginType.PASSWORD) {
-			    Boolean result = INaturalistService.verifyCredentials(mUsername, mPassword);
-			    if (result) {
+			    String result = INaturalistService.verifyCredentials(mUsername, mPassword);
+			    if (result != null) {
+			    	mUsername = result;
 			        return "true";
 			    } else {
 			        return null;

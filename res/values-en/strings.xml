@@ -83,7 +83,7 @@
     <string name="add_photo">Add photo</string>
     <string name="save">Save</string>
     <string name="no_observations_yet">No observations yet!</string>
-    <string name="sign_in_to_inat">Sign in to your Fish Finder account</string>
+    <string name="sign_in_to_inat">Sign in to your iNaturalist account</string>
     <string name="sign_in">Sign in</string>
     <string name="or">or</string>
     <string name="create_new_account">Create new account</string>
@@ -152,7 +152,7 @@
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
     <string name="tutorial_link">Help with Great Lakes Fish Finder</string>
-    <string name="guides">Guide to Great Lake Fishes</string>
+    <string name="guides">Guide to Great Lakes Fishes</string>
     <string name="guides_description">Guides</string>
     <string name="about_menu">About this app</string>
     <string name="about_menu_description">About this app</string>

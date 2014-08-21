@@ -975,7 +975,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     public void joinProject(int projectId) throws AuthenticationException {
-        post(String.format("%s/projects/%d/join", HOST, projectId), null);
+        post(String.format("%s/projects/%d/join.json", HOST, projectId), null);
         
         try {
             JSONArray result = get(String.format("%s/projects/%d.json", HOST, projectId));
@@ -1411,13 +1411,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 mResponseHeaders = response.getAllHeaders();
                 
                 try {
-                	JSONObject result = json.getJSONObject(0);
-					if (result.has("errors")) {
-						// Error response
-						Log.e(TAG, "Got an error response: " + result.get("errors").toString());
-						mResponseErrors = result.getJSONArray("errors");
-						return null;
-					}
+                	if (json != null) {
+                		JSONObject result = json.getJSONObject(0);
+                		if ((result != null) && (result.has("errors"))) {
+                			// Error response
+                			Log.e(TAG, "Got an error response: " + result.get("errors").toString());
+                			mResponseErrors = result.getJSONArray("errors");
+                			return null;
+                		}
+                	}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -1466,7 +1468,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null, intent);
     }
     
-    public static boolean verifyCredentials(String credentials) {
+    public static String verifyCredentials(String credentials) {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
         String url = HOST + "/observations/new.json";
@@ -1479,20 +1481,42 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return true;
+            	// Next, find the iNat username (since we currently only have email address)
+            	request = new HttpGet(HOST + "/users/edit.json");
+                request.setHeader("Authorization", "Basic "+credentials);
+
+            	response = client.execute(request);
+            	entity = response.getEntity();
+            	content = EntityUtils.toString(entity);
+
+            	if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+            		return null;
+            	}
+
+            	JSONObject json = new JSONObject(content);
+            	if (!json.has("login")) {
+            		return null;
+            	}
+
+            	String username = json.getString("login");
+
+                return username;
             } else {
                 Log.e(TAG, "Authentication failed: " + content);
-                return false;
+                return null;
             }
         }
         catch (IOException e) {
             request.abort();
             Log.w(TAG, "Error for URL " + url, e);
-        }
-        return false;
+        } catch (JSONException e) {
+			e.printStackTrace();
+            Log.w(TAG, "Error for URL " + url, e);
+		}
+        return null;
     }
 
-    public static boolean verifyCredentials(String username, String password) {
+    public static String verifyCredentials(String username, String password) {
         String credentials = Base64.encodeToString(
                 (username + ":" + password).getBytes(), Base64.URL_SAFE|Base64.NO_WRAP
                 );
