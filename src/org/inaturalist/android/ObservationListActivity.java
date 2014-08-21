@@ -126,7 +126,6 @@ public class ObservationListActivity extends SherlockListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
         
-        
         mSyncObservations = (TextView) findViewById(R.id.sync_observations);
         mSyncObservations.setOnClickListener(new OnClickListener() {
 			@Override
