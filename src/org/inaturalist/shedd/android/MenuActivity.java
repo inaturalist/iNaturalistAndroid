@@ -251,7 +251,8 @@ public class MenuActivity extends ListActivity {
         } else if (title.equals(getString(R.string.about_menu))) {
             startActivity(new Intent(this, AboutSHEDDActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.add_observation))) {
-        	startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI));
+        	Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditor.class);
+        	startActivity(intent);
         } else if (title.equals(getString(R.string.guides))) {
             Intent intent = new Intent(this, GuideDetails.class);
             BetterJSONObject guide = new BetterJSONObject();
