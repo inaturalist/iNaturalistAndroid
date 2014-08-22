@@ -1535,6 +1535,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         
         postParams.add(new BasicNameValuePair("format", "json"));
         postParams.add(new BasicNameValuePair("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id)));
+        
+        Log.d(TAG, "Client ID: " + INaturalistApp.getAppContext().getString(R.string.oauth_client_id));
+        Log.d(TAG, "FB App Id: " + INaturalistApp.getAppContext().getString(R.string.facebook_app_id));
+
         if (authType == LoginType.FACEBOOK) {
             grantType = "facebook";
         } else {

@@ -137,7 +137,7 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
         }
