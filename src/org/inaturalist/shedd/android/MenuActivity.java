@@ -66,10 +66,13 @@ public class MenuActivity extends ListActivity {
         map.put("description", getString(R.string.observations_description));
         MENU_ITEMS.add(map);
         
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.guides));
-        map.put("description", getString(R.string.guides_description));
-        MENU_ITEMS.add(map);
+        // Only show guides only for Android 4+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			map = new HashMap<String,String>();
+			map.put("title", getString(R.string.guides));
+			map.put("description", getString(R.string.guides_description));
+			MENU_ITEMS.add(map);
+		}
         
         map = new HashMap<String,String>();
         map.put("title", getString(R.string.map));
