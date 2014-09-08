@@ -108,7 +108,8 @@ public class MenuActivity extends ListActivity {
         mAddObservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI));
+            	Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, MenuActivity.this, ObservationEditor.class);
+            	startActivity(intent);
             }
         });
         
