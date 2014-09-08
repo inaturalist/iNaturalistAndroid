@@ -148,6 +148,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
+    private static final int LOCATION_CHOOSER_REQUEST_CODE = 103;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -959,7 +960,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mLocationRefreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
+                intent.putExtra(LocationChooserActivity.LONGITUDE, mObservation.longitude);
+                intent.putExtra(LocationChooserActivity.LATITUDE, mObservation.latitude);
+ 
+                startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
+ 
                 getLocation();
+
             }
         });
 
@@ -1506,9 +1514,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         mLocationRequestedAt = System.currentTimeMillis();
-        mLocationProgressView.setVisibility(View.VISIBLE);
-        mLocationRefreshButton.setVisibility(View.GONE);
-        mLocationStopRefreshButton.setVisibility(View.VISIBLE);
+        //mLocationProgressView.setVisibility(View.VISIBLE);
+        //mLocationRefreshButton.setVisibility(View.GONE);
+        //mLocationStopRefreshButton.setVisibility(View.VISIBLE);
     }
 
     private void handleNewLocation(Location location) {
@@ -1528,9 +1536,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
 
     private void stopGetLocation() {
-        mLocationProgressView.setVisibility(View.GONE);
-        mLocationRefreshButton.setVisibility(View.VISIBLE);
-        mLocationStopRefreshButton.setVisibility(View.GONE);
+        //mLocationProgressView.setVisibility(View.GONE);
+        //mLocationRefreshButton.setVisibility(View.VISIBLE);
+        //mLocationStopRefreshButton.setVisibility(View.GONE);
         if (mLocationManager != null && mLocationListener != null) {
             mLocationManager.removeUpdates(mLocationListener);
         }
@@ -1670,8 +1678,19 @@ public class ObservationEditor extends SherlockFragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+         if (requestCode == LOCATION_CHOOSER_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+            	stopGetLocation();
+            	
+                double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
+                double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
+                mLatitudeView.setText(Double.toString(latitude));
+                mLongitudeView.setText(Double.toString(longitude));
+                mObservation.latitude = latitude;
+                mObservation.longitude = longitude;
         
-        if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
+            }
+         } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 String iconicTaxonName = data.getStringExtra(TaxonSearchActivity.ICONIC_TAXON_NAME);
                 String taxonName = data.getStringExtra(TaxonSearchActivity.TAXON_NAME);

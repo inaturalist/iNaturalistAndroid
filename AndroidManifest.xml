@@ -166,6 +166,11 @@
         </activity>
         <activity
             android:configChanges="orientation"
+            android:label="@string/choose_location"
+            android:name=".LocationChooserActivity" >
+        </activity>
+        <activity
+            android:configChanges="orientation"
             android:label="@string/updates"
             android:name=".WebActivity" >
         </activity>
