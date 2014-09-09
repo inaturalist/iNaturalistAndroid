@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+<RelativeLayout
+    android:id="@+id/mapContainer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+    android:layout_height="fill_parent"
+    >
+    <fragment 
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <View
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="wrap_content"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".4"
+            android:layout_height="wrap_content"
+            android:src="@drawable/crosshairs" />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+</RelativeLayout>

@@ -9,13 +9,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,11 +50,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.VisibleRegion;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.Projection;
 
 public class LocationChooserActivity extends SherlockFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener, OnMapClickListener, LocationListener {
     public final static String TAG = "INaturalistMapActivity";
 	protected static final String LATITUDE = "latitude";
 	protected static final String LONGITUDE = "longitude";
+	protected static final String ACCURACY = "accuracy";
     private GoogleMap mMap;
     private Circle mCircle;
     private NearbyObservationsReceiver mNearbyReceiver;
@@ -61,7 +72,8 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
 	private double mLongitude;
 	private boolean mZoomToLocation = false;
 	private LocationManager mLocationManager;
-    
+	private double mAccuracy;
+	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +85,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
 
         mLongitude = getIntent().getDoubleExtra(LONGITUDE, 0);
         mLatitude = getIntent().getDoubleExtra(LATITUDE, 0);
+        mAccuracy = getIntent().getDoubleExtra(ACCURACY, 0);
 
         if ((mLongitude != 0) && (mLatitude != 0) && (savedInstanceState == null)) {
         	mZoomToLocation = true;
@@ -90,9 +103,30 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
             @Override
             public void onClick(View v) {
             	Bundle bundle = new Bundle();
+            	
+            	float currentZoom = mMap.getCameraPosition().zoom;
+            	
+            	DisplayMetrics metrics = new DisplayMetrics();
+            	getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            	int screenWidth = metrics.widthPixels;
+            	
+            	//////////////
+                double equatorLength = 40075004; // in meters
+                double metersPerPixel = equatorLength / 256;
+                int zoomLevel = 1;
+                while (zoomLevel < currentZoom) {
+                    metersPerPixel /= 2;
+                    ++zoomLevel;
+                }
+                double accuracy = (double) ((screenWidth * 0.4 * 0.5) * metersPerPixel);
+                Log.e(TAG, "Meters per radius = " + accuracy + "; zoom = " + zoomLevel);
+            	
+            	////////////
 
             	bundle.putDouble(LATITUDE, mPreviousMarker.getPosition().latitude);
             	bundle.putDouble(LONGITUDE, mPreviousMarker.getPosition().longitude);
+            	bundle.putDouble(ACCURACY, accuracy);
 
             	Intent resultIntent = new Intent();
             	resultIntent.putExtras(bundle);
@@ -109,7 +143,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         }
 
 
-        setContentView(R.layout.map);
+        setContentView(R.layout.location_chooser);
     }
 
     @Override 
@@ -137,12 +171,34 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         	.icon(BitmapDescriptorFactory.fromResource(R.drawable.mm_34_golden_rod));
         	mPreviousMarker = mMap.addMarker(opts);
         	mAddButton.setVisibility(View.VISIBLE);
+        	
+        	int zoom = 15;
+
+        	if (mAccuracy > 0) {
+            	DisplayMetrics metrics = new DisplayMetrics();
+            	getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            	int screenWidth = metrics.widthPixels;
+            	
+                double equatorLength = 40075004; // in meters
+                double widthInPixels = screenWidth * 0.4 * 0.5;
+                double metersPerPixel = equatorLength / 256;
+                int zoomLevel = 1;
+                while ((metersPerPixel * widthInPixels) > mAccuracy) {
+                    metersPerPixel /= 2;
+                    ++zoomLevel;
+                    Log.e(TAG, "\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + mAccuracy);
+                }
+                Log.e(TAG, "Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
+                zoom = zoomLevel;
+        	}
+        	
 
         	if (mZoomToLocation) {
-        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom));
         		mZoomToLocation = false;
         	} else {
-        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15), 1, null);
+        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
         	}
         } else {
 

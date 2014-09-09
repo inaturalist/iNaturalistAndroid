@@ -100,6 +100,7 @@ import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -960,14 +961,44 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mLocationRefreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
-                intent.putExtra(LocationChooserActivity.LONGITUDE, mObservation.longitude);
-                intent.putExtra(LocationChooserActivity.LATITUDE, mObservation.latitude);
- 
-                startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
- 
-                getLocation();
+            	AlertDialog.Builder builder = new AlertDialog.Builder(ObservationEditor.this);
+            	// Set the adapter
+            	String[] items = {
+            			getResources().getString(R.string.get_current_location),
+            			getResources().getString(R.string.edit_location)
+                };
+            	builder.setAdapter(
+            			new ArrayAdapter<String>(ObservationEditor.this,
+            					android.R.layout.simple_list_item_1, items), null);
 
+            	final AlertDialog alertDialog = builder.create();
+            	
+            	ListView listView = alertDialog.getListView();
+            	listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            		@Override
+            		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            			alertDialog.dismiss();
+            			
+            			if (position == 0) {
+            				// Get current location
+            				getLocation();
+
+            				mLocationProgressView.setVisibility(View.VISIBLE);
+            				mLocationRefreshButton.setVisibility(View.GONE);
+            				mLocationStopRefreshButton.setVisibility(View.VISIBLE);
+            			} else {
+            				// Edit location
+            				Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
+            				intent.putExtra(LocationChooserActivity.LONGITUDE, mObservation.longitude);
+            				intent.putExtra(LocationChooserActivity.LATITUDE, mObservation.latitude);
+            				intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
+
+            				startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
+            			}
+            		}
+            	});	
+
+            	alertDialog.show();
             }
         });
 
@@ -1536,9 +1567,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
 
     private void stopGetLocation() {
-        //mLocationProgressView.setVisibility(View.GONE);
-        //mLocationRefreshButton.setVisibility(View.VISIBLE);
-        //mLocationStopRefreshButton.setVisibility(View.GONE);
+        mLocationProgressView.setVisibility(View.GONE);
+        mLocationRefreshButton.setVisibility(View.VISIBLE);
+        mLocationStopRefreshButton.setVisibility(View.GONE);
+
         if (mLocationManager != null && mLocationListener != null) {
             mLocationManager.removeUpdates(mLocationListener);
         }
@@ -1684,11 +1716,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
             	
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
+                double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
                 mLatitudeView.setText(Double.toString(latitude));
                 mLongitudeView.setText(Double.toString(longitude));
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
-        
+                mObservation.positional_accuracy = (int) Math.ceil(accuracy);
+                mAccuracyView.setText(mObservation.positional_accuracy.toString());
             }
          } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {

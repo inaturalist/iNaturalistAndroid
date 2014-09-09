@@ -171,6 +171,9 @@
     <string name="restart_now">Restart now</string>
     <string name="choose_location">Choose Location</string>
 
+    <string name="get_current_location">Get current location</string>
+    <string name="edit_location">Edit location</string>
+
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
 	    <item>tutorial2</item>
