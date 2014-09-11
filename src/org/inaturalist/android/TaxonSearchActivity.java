@@ -311,7 +311,20 @@ public class TaxonSearchActivity extends SherlockListActivity {
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
             bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
-            bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("unique_name"));
+
+            String displayName;
+            try {
+            	displayName = item.getString("unique_name");
+            } catch (JSONException e2) {
+            	displayName = "unknown";
+            }
+            try {
+            	JSONObject defaultName = item.getJSONObject("default_name");
+            	displayName = defaultName.getString("name");
+            } catch (JSONException e1) {
+            	// alas
+            }
+            bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
             bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
             bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
             bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
