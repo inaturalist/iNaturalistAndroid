@@ -285,13 +285,19 @@ public class MenuActivity extends ListActivity {
  	
     /** Shows the sync observations button, if needed */
     private void refreshSyncButton() {
-    	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
-    			Observation.PROJECTION, 
-    			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
-    			null, 
-    			Observation.SYNC_ORDER);
-    	int syncCount = c.getCount();
-    	c.close();
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String login = prefs.getString("username", null);
+        int syncCount = 0;
+
+        if (login != null) {
+        	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+        			Observation.PROJECTION, 
+        			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL)) AND user_login = '" + login + "'", 
+        			null, 
+        			Observation.SYNC_ORDER);
+        	syncCount = c.getCount();
+        	c.close();
+        }
 
     	if (syncCount > 0) {
     		mSyncObservationsButton.setVisibility(View.VISIBLE);

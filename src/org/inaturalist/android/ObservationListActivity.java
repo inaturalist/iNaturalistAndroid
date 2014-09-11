@@ -102,13 +102,19 @@ public class ObservationListActivity extends SherlockListActivity {
 
     /** Shows the sync required bottom bar, if needed */
     private void refreshSyncBar() {
-    	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
-    			Observation.PROJECTION, 
-    			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
-    			null, 
-    			Observation.SYNC_ORDER);
-    	int syncCount = c.getCount();
-    	c.close();
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String login = prefs.getString("username", null);
+        int syncCount = 0;
+
+        if (login != null) {
+        	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+        			Observation.PROJECTION, 
+        			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL)) AND user_login = '" + login + "'", 
+        			null, 
+        			Observation.SYNC_ORDER);
+        	syncCount = c.getCount();
+        	c.close();
+        }
 
     	if (syncCount > 0) {
     		mSyncObservations.setText(String.format(getResources().getString(R.string.sync_x_observations), syncCount));
