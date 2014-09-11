@@ -190,6 +190,7 @@
 	<string name="language_restart">Language settings changed. Please restart the app for the changes to take place.</string>
 	<string name="restart_now">Restart now</string>
     <string name="choose_location">Choose Location</string>
+    <string name="done">Done</string>
     
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
