@@ -19,11 +19,14 @@ import android.accounts.AccountManagerFuture;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Paint;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -198,6 +201,11 @@ public class INaturalistPrefsActivity extends SherlockActivity {
         mGoogleLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                }
+
                 signIn(LoginType.GOOGLE, null, null);
             }
         });
@@ -209,8 +217,11 @@ public class INaturalistPrefsActivity extends SherlockActivity {
         mFacebookLoginButton.setSessionStatusCallback(new StatusCallback() {
             @Override
             public void call(Session session, SessionState state, Exception exception) {
-//                Log.d(TAG, "onSessionStateChange: " + state.toString());
-                if ((state == SessionState.OPENED) || (state == SessionState.OPENED_TOKEN_UPDATED)) {
+                Log.d(TAG, "onSessionStateChange: " + state.toString());
+                if ((state == SessionState.CLOSED_LOGIN_FAILED) && (!isNetworkAvailable())) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    return;
+                } else if ((state == SessionState.OPENED) || (state == SessionState.OPENED_TOKEN_UPDATED)) {
                     String username = mPreferences.getString("username", null);
                     if (username == null) {
                         // First time login
@@ -602,4 +613,11 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 
 		toggle();
 	}
+	
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}	
+
 }
