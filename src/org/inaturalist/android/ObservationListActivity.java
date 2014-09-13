@@ -582,6 +582,11 @@ public class ObservationListActivity extends SherlockListActivity {
                 clickCatcher.setOnClickListener(new OnClickListener() {
                 	@Override
                 	public void onClick(View v) {
+                		if (!isNetworkAvailable()) {
+                			Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                			return;
+                		}
+
                 		// Show the comments/IDs for the observation
                 		Intent intent = new Intent(ObservationListActivity.this, CommentsIdsActivity.class);
                 		intent.putExtra(INaturalistService.OBSERVATION_ID, externalObsId.intValue());
