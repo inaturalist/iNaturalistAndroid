@@ -20,6 +20,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -62,6 +63,8 @@ public class ObservationListActivity extends SherlockListActivity {
 	private ActionBar mTopActionBar;
 
 	private TextView mSyncObservations;
+
+	private static final int COMMENTS_IDS_REQUEST_CODE = 100;
 	
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -331,7 +334,7 @@ public class ObservationListActivity extends SherlockListActivity {
     }
     
     private class ObservationCursorAdapter extends SimpleCursorAdapter {
-        private HashMap<Long, String[]> mPhotoInfo = new HashMap<Long, String[]>();
+		private HashMap<Long, String[]> mPhotoInfo = new HashMap<Long, String[]>();
         
         public ObservationCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
             super(context, layout, c, from, to);
@@ -583,7 +586,7 @@ public class ObservationListActivity extends SherlockListActivity {
                 		Intent intent = new Intent(ObservationListActivity.this, CommentsIdsActivity.class);
                 		intent.putExtra(INaturalistService.OBSERVATION_ID, externalObsId.intValue());
                 		intent.putExtra(INaturalistService.TAXON_ID, taxonId.intValue());
-                		startActivity(intent);
+                		startActivityForResult(intent, COMMENTS_IDS_REQUEST_CODE);
 
                 		// Get the observation's IDs/comments
                 		Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationListActivity.this, INaturalistService.class);
@@ -656,4 +659,46 @@ public class ObservationListActivity extends SherlockListActivity {
  
         
     }
+    
+     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == COMMENTS_IDS_REQUEST_CODE) {
+            int observationId = data.getIntExtra(INaturalistService.OBSERVATION_ID, 0);
+            
+         	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+        			Observation.PROJECTION, 
+        			"id = " + observationId, 
+        			null, 
+        			Observation.SYNC_ORDER);
+        	int count = c.getCount();
+        	if (count == 0) return;
+        	
+        	Observation observation = new Observation(c);
+
+        	c.close();
+            
+        	
+            // We know that the user now viewed all of the comments needed to be viewed (no new comments/ids)
+            observation.comments_count += data.getIntExtra(CommentsIdsActivity.NEW_COMMENTS, 0);
+            observation.identifications_count += data.getIntExtra(CommentsIdsActivity.NEW_IDS, 0);
+            observation.last_comments_count = observation.comments_count;
+            observation.last_identifications_count = observation.identifications_count;
+            observation.taxon_id = data.getIntExtra(CommentsIdsActivity.TAXON_ID, 0);
+            
+            String speciesGuess = data.getStringExtra(CommentsIdsActivity.SPECIES_GUESS);
+            if (speciesGuess != null) {
+            	observation.species_guess = speciesGuess;
+            }
+            String iconicTaxonName = data.getStringExtra(CommentsIdsActivity.ICONIC_TAXON_NAME);
+            if (iconicTaxonName != null) observation.iconic_taxon_name = iconicTaxonName;
+
+            // Only update the last_comments/id_count fields
+            ContentValues cv = observation.getContentValues();
+            cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+            int updated = getContentResolver().update(observation.getUri(), cv, null, null);
+        }
+ 
+     }
 }
