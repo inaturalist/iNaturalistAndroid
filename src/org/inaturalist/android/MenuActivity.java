@@ -260,6 +260,11 @@ public class MenuActivity extends ListActivity {
         } else if (title.equals(getString(R.string.map))) {
             startActivity(new Intent(this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.updates))) {
+        	if (!isNetworkAvailable()) {
+        		Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+        		return;
+        	}
+ 
             startActivity(new Intent(this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         } else if (title.equals(getString(R.string.settings))) {
             startActivity(new Intent(this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
