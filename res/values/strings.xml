@@ -192,7 +192,9 @@
     <string name="choose_location">Choose Location</string>
     <string name="done">Done</string>
     <string name="please_sign_in_via_settings">Please sign-in via settings screen in order to view your projects</string>
-    
+    <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">Contact support</a>]]></string>
+    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
+
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
 	    <item>tutorial2</item>

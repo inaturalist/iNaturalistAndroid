@@ -151,7 +151,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
-    <string name="tutorial_link">Help with iNaturalist</string>
+    <string name="tutorial_link">Launch tutorial</string>
     <string name="guides">Guides</string>
     <string name="guides_description">Guides</string>
     <string name="my_guides">Yours</string>
@@ -177,6 +177,9 @@
     <string name="get_current_location">Get current location</string>
     <string name="edit_location">Edit location</string>
     <string name="please_sign_in_via_settings">Please sign-in via settings screen in order to view your projects</string>
+
+    <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">Contact support</a>]]></string>
+    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
 
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>

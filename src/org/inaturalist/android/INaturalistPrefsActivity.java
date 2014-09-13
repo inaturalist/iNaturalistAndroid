@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
@@ -31,6 +32,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -85,6 +88,8 @@ public class INaturalistPrefsActivity extends SherlockActivity {
         }
     };
     private TextView mHelp;
+	private TextView mContactSupport;
+	private TextView mVersion;
     
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
 //        Log.d(TAG, "onSessionStateChange: " + session.toString() + ":" + state.toString());
@@ -179,6 +184,19 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    mSignUpButton = (Button) findViewById(R.id.signUpButton);
 	    mHelp = (TextView) findViewById(R.id.tutorial_link);
 	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+	    
+	    
+	    mContactSupport = (TextView) findViewById(R.id.contact_support);
+	    mContactSupport.setText(Html.fromHtml(mContactSupport.getText().toString()));
+	    mContactSupport.setMovementMethod(LinkMovementMethod.getInstance()); 
+	    
+	    mVersion = (TextView) findViewById(R.id.version);
+	    try {
+			mVersion.setText(String.format("Version %s", getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+			mVersion.setText("");
+		}
 	    
 	    rbPreferredLocaleSelector = (RadioGroup)findViewById(R.id.radioLang);
 	    
