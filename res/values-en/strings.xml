@@ -176,6 +176,7 @@
 
     <string name="get_current_location">Get current location</string>
     <string name="edit_location">Edit location</string>
+    <string name="please_sign_in_via_settings">Please sign-in via settings screen in order to view your projects</string>
 
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
