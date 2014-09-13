@@ -15,5 +15,15 @@ public class JoinedProjectsTab extends BaseProjectsTab {
     protected String getFilterResultParamName() {
         return INaturalistService.PROJECTS_RESULT;
     }
+    
+    @Override
+    protected boolean requiresLogin() {
+        return true;
+    }
  
+ 
+    @Override
+    protected String getUserLoginRequiredText() {
+    	return getResources().getString(R.string.please_sign_in_via_settings);
+    }
 }

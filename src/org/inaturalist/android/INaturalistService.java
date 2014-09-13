@@ -303,7 +303,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  sendBroadcast(reply);
                 
              } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
-                 SerializableJSONArray projects = getJoinedProjectsOffline();
+                 SerializableJSONArray projects = null;
+            	 if (mCredentials != null) {
+            		 projects = getJoinedProjectsOffline();
+            	 }
 
                  Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
                  reply.putExtra(PROJECTS_RESULT, projects);

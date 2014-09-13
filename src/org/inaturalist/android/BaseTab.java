@@ -111,7 +111,11 @@ public abstract class BaseTab extends SherlockFragment {
             if (!isNetworkAvailable()) {
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
+            } else if (requiresLogin()) {
+            	// Required user login
+            	mEmptyListLabel.setText(getUserLoginRequiredText());
             } else {
+            	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoItemsFoundText());
             }
 
@@ -157,6 +161,12 @@ public abstract class BaseTab extends SherlockFragment {
 
     /** Returns the text to display when no Internet connection is available */
     abstract protected String getNoInternetText();
+
+    /** Whether or not the tab requires user login (e.g. for "Joined projects") */
+    protected boolean requiresLogin() { return false; }
+
+    /** Returns the text to display when a user login is required */
+    protected String getUserLoginRequiredText() { return getResources().getString(R.string.please_sign_in); }
 
     @Override
     public void onPause() {
