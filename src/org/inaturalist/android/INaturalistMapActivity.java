@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -117,6 +119,11 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
             finish();
             return true;
         case R.id.nearby:
+        	if (!isNetworkAvailable()) {
+        		Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+        		return true;
+        	}
+
             reloadNearbyObservations();
             return true;
         default:
@@ -353,4 +360,11 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
         // TODO make a decent infowindow, replace this alert with a modal fragment
         showObservationDialog(marker);
     }
+
+ 	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}	
+ 
 }
