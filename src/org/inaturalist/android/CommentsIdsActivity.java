@@ -375,6 +375,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
     	bundle.putInt(NEW_COMMENTS, mNewComments);
     	bundle.putInt(NEW_IDS, mNewIds);
     	bundle.putInt(TAXON_ID, mTaxonId);
+    	bundle.putInt(INaturalistService.OBSERVATION_ID, mObservationId);
     	if (mIconicTaxonName != null) bundle.putString(ICONIC_TAXON_NAME, mIconicTaxonName);
     	if (mSpeciesGuess != null) bundle.putString(SPECIES_GUESS, mSpeciesGuess);
     	
