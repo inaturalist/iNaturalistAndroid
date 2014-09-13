@@ -176,8 +176,38 @@
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:text="@string/tutorial_link" />
+
+            <TextView
+                android:id="@+id/contact_support"
+                style="@android:style/TextAppearance.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tutorial_link"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/contact_support" />
+
+            <TextView
+                android:id="@+id/credits"
+                style="@android:style/TextAppearance.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/contact_support"
+                android:layout_marginTop="30dp"
+                android:text="@string/credits" />
+
+            <TextView
+                android:id="@+id/version"
+                style="@android:style/TextAppearance.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/credits"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="Version 1.2.3" />
+
         </RelativeLayout>
 
     </LinearLayout>
