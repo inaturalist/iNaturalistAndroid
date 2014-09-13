@@ -54,7 +54,15 @@ public abstract class BaseTab extends SherlockFragment {
             
             getActivity().unregisterReceiver(mProjectsReceiver);
             
-            JSONArray projects = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName())).getJSONArray();
+            SerializableJSONArray serializableArray = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName()));
+            
+            if (serializableArray == null) {
+            	mProjects = new ArrayList<JSONObject>();
+            	loadProjectsIntoUI();
+            	return;
+            }
+
+            JSONArray projects = serializableArray.getJSONArray();
             mProjects = new ArrayList<JSONObject>();
             
             if (projects == null) {

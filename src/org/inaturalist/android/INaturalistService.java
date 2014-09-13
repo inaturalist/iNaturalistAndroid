@@ -244,7 +244,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_MY_GUIDES)) {
-                SerializableJSONArray guides = getMyGuides();
+            	 SerializableJSONArray guides = null;
+            	 if (mCredentials != null) {
+            		 guides = getMyGuides();
+            	 }
                 
                 Intent reply = new Intent(ACTION_MY_GUIDES_RESULT);
                 reply.putExtra(GUIDES_RESULT, guides);
