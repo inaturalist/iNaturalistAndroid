@@ -292,7 +292,7 @@ public class MenuActivity extends ListActivity {
         if (login != null) {
         	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
         			Observation.PROJECTION, 
-        			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL)) AND user_login = '" + login + "'", 
+        			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
         			null, 
         			Observation.SYNC_ORDER);
         	syncCount = c.getCount();
