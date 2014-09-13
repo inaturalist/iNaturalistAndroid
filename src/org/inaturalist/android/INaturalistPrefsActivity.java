@@ -22,6 +22,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -582,12 +583,23 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	}
 	
 	private void signOut() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String login = prefs.getString("username", null);
+
 		mPrefEditor.remove("username");
 		mPrefEditor.remove("credentials");
 		mPrefEditor.remove("password");
 		mPrefEditor.remove("login_type");
         mPrefEditor.remove("last_sync_time");
 		mPrefEditor.commit();
+		
+		int count1 = getContentResolver().delete(Observation.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL)) AND user_login = '" + login + "'", null);
+		int count2 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
+        int count3 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "(is_new = 1) OR (is_deleted = 1)", null);
+        int count4 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
+
+		Log.d(TAG, String.format("Deleted %d / %d / %d/ %d unsynced observations", count1, count2, count3, count4));
+
 		toggle();
 	}
 }
