@@ -913,9 +913,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
         String url = HOST + "/projects.json?featured=true";
         
         JSONArray json = get(url);
