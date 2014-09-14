@@ -59,7 +59,13 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            JSONArray projectList = ((SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT)).getJSONArray();
+        	SerializableJSONArray serializableArray = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT);
+            JSONArray projectList = new JSONArray();
+            
+            if (serializableArray != null) {
+            	serializableArray.getJSONArray();
+            }
+
             mProjects = new ArrayList<JSONObject>();
 
             unregisterReceiver(mProjectReceiver);

@@ -176,8 +176,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private class ProjectReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            JSONArray projectList = ((SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT)).getJSONArray();
             mProjects = new ArrayList<BetterJSONObject>();
+        	SerializableJSONArray serializableArray = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT);
+            JSONArray projectList = new JSONArray();
+        	
+        	if (serializableArray != null) {
+        		projectList = serializableArray.getJSONArray();
+        	}
 
             for (int i = 0; i < projectList.length(); i++) {
                 try {
