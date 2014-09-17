@@ -123,7 +123,8 @@ public class MenuActivity extends ListActivity {
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
                     return;
                 } else if (!isLoggedIn()) {
-                    Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
+                	// User not logged-in - redirect to settings screen
+                	startActivity(new Intent(MenuActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                     return;
                 }
 
@@ -290,19 +291,15 @@ public class MenuActivity extends ListActivity {
  	
     /** Shows the sync observations button, if needed */
     private void refreshSyncButton() {
-        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-        String login = prefs.getString("username", null);
         int syncCount = 0;
 
-        if (login != null) {
-        	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
-        			Observation.PROJECTION, 
-        			"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
-        			null, 
-        			Observation.SYNC_ORDER);
-        	syncCount = c.getCount();
-        	c.close();
-        }
+        Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+        		Observation.PROJECTION, 
+        		"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
+        		null, 
+        		Observation.SYNC_ORDER);
+        syncCount = c.getCount();
+        c.close();
 
     	if (syncCount > 0) {
     		mSyncObservationsButton.setVisibility(View.VISIBLE);
