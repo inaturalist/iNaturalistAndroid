@@ -807,18 +807,37 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     
     private SerializableJSONArray getAllGuides() throws AuthenticationException {
-        String url = HOST + "/guides.json";
+        String url = HOST + "/guides.json?per_page=200&page=";
         
-        JSONArray json = get(url);
+        JSONArray results = new JSONArray();
+
+        // Results are paginated - make sure to retrieve them all
         
-        return new SerializableJSONArray(json);
+        int page = 1;
+        JSONArray currentResults = get(url + page);
+        
+        while ((currentResults != null) && (currentResults.length() > 0)) {
+        	// Append current results
+        	for (int i = 0; i < currentResults.length(); i++) {
+        		try {
+					results.put(currentResults.get(i));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+        	}
+
+        	page++;
+            currentResults = get(url + page);
+        }
+        
+        return new SerializableJSONArray(results);
     }
     
     private SerializableJSONArray getMyGuides() throws AuthenticationException {
         if (ensureCredentials() == false) {
             return null;
         }
-        String url = HOST + "/guides.json?by=you";
+        String url = HOST + "/guides.json?by=you&per_page=200";
         
         JSONArray json = get(url, true);
         
@@ -849,7 +868,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         double lat  = location.getLatitude();
         double lon  = location.getLongitude();
 
-        String url = HOST + String.format("/guides.json?latitude=%s&longitude=%s", lat, lon);
+        String url = HOST + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
 
         Log.e(TAG, url);
 
