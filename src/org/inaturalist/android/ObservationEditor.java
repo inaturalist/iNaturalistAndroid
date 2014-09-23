@@ -1216,7 +1216,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.time_observed_at = mObservation.observed_on;
             mObservation.observed_on_string = app.formatDatetime(mObservation.time_observed_at);
             if (mObservation.latitude == null && mCurrentLocation == null) {
-                //getLocation();
+                getLocation();
             }
         }
         
