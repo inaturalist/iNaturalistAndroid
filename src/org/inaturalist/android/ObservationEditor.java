@@ -471,7 +471,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             
             if ((mField.data_type.equals("numeric")) && (!mEditText.getText().toString().equals("")))  {
                 try {
-                    int value = Integer.valueOf(mEditText.getText().toString());
+                    float value = Float.valueOf(mEditText.getText().toString());
                 } catch (Exception exc) {
                     // Invalid number
                     return false;
