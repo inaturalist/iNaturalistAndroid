@@ -991,7 +991,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     public void joinProject(int projectId) throws AuthenticationException {
-        post(String.format("%s/projects/%d/join", HOST, projectId), null);
+        post(String.format("%s/projects/%d/join.json", HOST, projectId), null);
         
         try {
             JSONArray result = get(String.format("%s/projects/%d.json", HOST, projectId));

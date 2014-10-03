@@ -109,6 +109,7 @@ public class ProjectDetails extends SherlockFragmentActivity {
                 		public void onClick (DialogInterface dialog, int buttonId) {
                 			// Leave the project
                 			mJoinLeaveProject.setText(R.string.join);
+                			mJoinLeaveProject.setBackgroundResource(R.drawable.actionbar_join_btn);
                 			mProject.put("joined", false);
 
                 			Intent serviceIntent = new Intent(INaturalistService.ACTION_LEAVE_PROJECT, null, ProjectDetails.this, INaturalistService.class);
@@ -122,6 +123,7 @@ public class ProjectDetails extends SherlockFragmentActivity {
 
                 } else {
                     mJoinLeaveProject.setText(R.string.leave);
+                    mJoinLeaveProject.setBackgroundResource(R.drawable.actionbar_leave_btn);
                     mProject.put("joined", true);
                     
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_JOIN_PROJECT, null, ProjectDetails.this, INaturalistService.class);

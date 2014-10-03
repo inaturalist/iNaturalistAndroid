@@ -223,7 +223,7 @@ public abstract class BaseTab extends SherlockFragment {
         mProjectList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
-                BetterJSONObject project = (BetterJSONObject) arg1.getTag();
+                BetterJSONObject project = new BetterJSONObject(mAdapter.getItem(index));
                 
                 onItemSelected(project, index);
             }
