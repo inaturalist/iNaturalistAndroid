@@ -328,6 +328,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
                 int id = intent.getExtras().getInt(CHECK_LIST_ID);
+                id = 57284;
                 SerializableJSONArray checkList = getCheckList(id);
                 
                 Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
@@ -1061,7 +1062,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
  
     
     private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
-        String url = String.format("%s/lists/%d.json?per_page=100", HOST, id);
+        String url = String.format("%s/lists/%d.json?per_page=50", HOST, id);
         
         JSONArray json = get(url);
         
