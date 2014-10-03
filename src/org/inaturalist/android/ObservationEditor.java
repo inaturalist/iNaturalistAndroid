@@ -158,6 +158,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private static final int PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE = 301;
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
     public static final String SPECIES_GUESS = "species_guess";
+	public static final String OBSERVATION_PROJECT = "observation_project";
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Switch mIdPlease;
@@ -1036,19 +1037,26 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
         
         if (mProjectIds == null) {
-            // Get IDs of project-observations
-            int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
-            Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-                    "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
-                    null, ProjectObservation.DEFAULT_SORT_ORDER);
-            c.moveToFirst();
-            mProjectIds = new ArrayList<Integer>();
-            while (c.isAfterLast() == false) {
-                ProjectObservation projectObservation = new ProjectObservation(c);
-                mProjectIds.add(projectObservation.project_id);
-                c.moveToNext();
-            }
-            c.close();
+        	if ((intent != null) && (intent.hasExtra(OBSERVATION_PROJECT))) {
+        		Integer projectId = intent.getIntExtra(OBSERVATION_PROJECT, 0);
+        		mProjectIds = new ArrayList<Integer>();
+        		mProjectIds.add(projectId);
+
+        	} else {
+        		// Get IDs of project-observations
+        		int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+        		Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+        				"(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
+        				null, ProjectObservation.DEFAULT_SORT_ORDER);
+        		c.moveToFirst();
+        		mProjectIds = new ArrayList<Integer>();
+        		while (c.isAfterLast() == false) {
+        			ProjectObservation projectObservation = new ProjectObservation(c);
+        			mProjectIds.add(projectObservation.project_id);
+        			c.moveToNext();
+        		}
+        		c.close();
+        	}
         }
 
         refreshProjectFields();

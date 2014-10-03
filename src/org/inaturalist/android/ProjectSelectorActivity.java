@@ -63,9 +63,9 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
             JSONArray projectList = new JSONArray();
             
             if (serializableArray != null) {
-            	serializableArray.getJSONArray();
+            	projectList = serializableArray.getJSONArray();
             }
-
+            
             mProjects = new ArrayList<JSONObject>();
 
             unregisterReceiver(mProjectReceiver);
