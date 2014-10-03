@@ -7,7 +7,7 @@
         android:id="@+id/taxon_pic"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:src="@drawable/actionbar_back_indicator"
+        android:src="@drawable/iconic_taxon_unknown"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:paddingRight="10dp"
