@@ -151,7 +151,7 @@ public abstract class BaseTab extends SherlockFragment {
     abstract protected String getFilterResultParamName();
 
     /** When an item (project/guide) is clicked */
-    abstract protected void onItemSelected(BetterJSONObject item);
+    abstract protected void onItemSelected(BetterJSONObject item, int index);
 
     /** Returns the search filter EditText hint */
     abstract protected String getSearchFilterTextHint();
@@ -201,6 +201,15 @@ public abstract class BaseTab extends SherlockFragment {
         
         super.onResume();
     }
+    
+    /**
+     * Updates an existing project (in memory)
+     * @param index
+     * @param project
+     */
+    protected void updateProject(int index, BetterJSONObject project) {
+    	mAdapter.updateItem(index, project.getJSONObject());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -213,10 +222,10 @@ public abstract class BaseTab extends SherlockFragment {
         mProjectList = (ListView) v.findViewById(android.R.id.list);
         mProjectList.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
                 BetterJSONObject project = (BetterJSONObject) arg1.getTag();
                 
-                onItemSelected(project);
+                onItemSelected(project, index);
             }
         });
         
@@ -266,6 +275,10 @@ public abstract class BaseTab extends SherlockFragment {
         private List<JSONObject> mOriginalItems;
         private Context mContext;
         private Filter mFilter;
+        
+        public void updateItem(int index, JSONObject object) {
+        	mItems.set(index, object);
+        }
 
         public ProjectsAdapter(Context context, List<JSONObject> objects) {
             super(context, R.layout.project_item, objects);

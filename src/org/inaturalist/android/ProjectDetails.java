@@ -4,6 +4,9 @@ import org.json.JSONException;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -96,12 +99,26 @@ public class ProjectDetails extends SherlockFragmentActivity {
             public void onClick(View v) {
                 Boolean isJoined = mProject.getBoolean("joined");
                 if ((isJoined != null) && (isJoined == true)) {
-                    mJoinLeaveProject.setText(R.string.join);
-                    mProject.put("joined", false);
-                    
-                    Intent serviceIntent = new Intent(INaturalistService.ACTION_LEAVE_PROJECT, null, ProjectDetails.this, INaturalistService.class);
-                    serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-                    startService(serviceIntent);
+                	AlertDialog.Builder dialog = new AlertDialog.Builder(ProjectDetails.this);
+                	dialog.setTitle(R.string.leave_project);
+                	dialog.setMessage(R.string.leave_project_confirmation);
+                	dialog.setCancelable (false);
+                	dialog.setNegativeButton(R.string.no, null);
+                	dialog.setPositiveButton(R.string.yes,
+                			new DialogInterface.OnClickListener () {
+                		public void onClick (DialogInterface dialog, int buttonId) {
+                			// Leave the project
+                			mJoinLeaveProject.setText(R.string.join);
+                			mProject.put("joined", false);
+
+                			Intent serviceIntent = new Intent(INaturalistService.ACTION_LEAVE_PROJECT, null, ProjectDetails.this, INaturalistService.class);
+                			serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
+                			startService(serviceIntent);
+                		}
+                	});
+                	dialog.setIcon (android.R.drawable.ic_dialog_alert);
+                	dialog.show();
+
 
                 } else {
                     mJoinLeaveProject.setText(R.string.leave);
@@ -145,5 +162,15 @@ public class ProjectDetails extends SherlockFragmentActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+    	Intent intent = new Intent();
+    	Bundle bundle = new Bundle();
+    	bundle.putSerializable("project", mProject);
+    	intent.putExtras(bundle);
 
+    	setResult(RESULT_OK, intent);      
+        super.onBackPressed();
+    }
+ 
 }
