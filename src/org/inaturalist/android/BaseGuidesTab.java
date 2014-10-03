@@ -3,7 +3,7 @@ package org.inaturalist.android;
 import android.content.Intent;
 
 public abstract class BaseGuidesTab extends BaseTab {
-    protected void onItemSelected(BetterJSONObject item) {
+    protected void onItemSelected(BetterJSONObject item, int index) {
     	// Show guide details
     	Intent intent = new Intent(getActivity(), GuideDetails.class);
     	intent.putExtra("guide", item);

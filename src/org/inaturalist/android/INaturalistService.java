@@ -1011,7 +1011,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     } 
     
     public void leaveProject(int projectId) throws AuthenticationException {
-        delete(String.format("%s/projects/%d/leave", HOST, projectId), null);
+        delete(String.format("%s/projects/%d/leave.json", HOST, projectId), null);
         
         // Remove locally saved project (because we left it)
         getContentResolver().delete(Project.CONTENT_URI, "(id IS NOT NULL) and (id = "+projectId+")", null);
