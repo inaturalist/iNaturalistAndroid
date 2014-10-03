@@ -328,7 +328,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
                 int id = intent.getExtras().getInt(CHECK_LIST_ID);
-                id = 57284;
                 SerializableJSONArray checkList = getCheckList(id);
                 
                 Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
