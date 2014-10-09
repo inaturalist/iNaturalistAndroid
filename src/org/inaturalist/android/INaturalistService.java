@@ -42,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
@@ -1740,10 +1741,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             if (joinedPhotoIds.length() > 0) {
                 where += " AND id NOT in (" + joinedPhotoIds + ")";
             }
-            getContentResolver().delete(
+            int deleteCount = getContentResolver().delete(
                     ObservationPhoto.CONTENT_URI, 
                     where, 
                     null);
+            
+            if (deleteCount > 0) {
+            	Crashlytics.log(1, TAG, String.format("Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
+            			deleteCount, observation.id, joinedPhotoIds));
+            }
 
             if (isModified) {
                 // Only update the DB if needed
