@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import com.crashlytics.android.Crashlytics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,7 @@ public class MenuActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		Crashlytics.start(this);
         setContentView(R.layout.menu);
         
         MENU_ITEMS = new ArrayList<Map>();
