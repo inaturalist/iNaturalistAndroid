@@ -78,6 +78,7 @@ cp iNaturalistAndroid/res/values/config.xml.example iNaturalistAndroid/res/value
 1. Scroll down to the `Library` box and click `Add`
 1. Select the `actionbarsherlock` , `PullToRefresh-library` and `android-switch-backport` projects and press OK
 1. Press OK to close the dialog
+1. Install Crashlytics for Android (follow instructions): http://download.crashlytics.com/android/eclipse/
 1. Clean and rebuild the entire workspace (all imported projects)
 
 In theory it should build now!
