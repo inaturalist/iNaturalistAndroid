@@ -128,7 +128,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
 
         @Override
         public int getCount() {
-            return mResultList.size();
+            return (mResultList != null ? mResultList.size() : 0);
         }
 
         @Override
