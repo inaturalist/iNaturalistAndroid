@@ -1428,13 +1428,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 mResponseHeaders = response.getAllHeaders();
                 
                 try {
-                	JSONObject result = json.getJSONObject(0);
-					if (result.has("errors")) {
-						// Error response
-						Log.e(TAG, "Got an error response: " + result.get("errors").toString());
-						mResponseErrors = result.getJSONArray("errors");
-						return null;
-					}
+                	if (json != null) {
+                        JSONObject result = json.getJSONObject(0);
+                        if (result.has("errors")) {
+                            // Error response
+                            Log.e(TAG, "Got an error response: " + result.get("errors").toString());
+                            mResponseErrors = result.getJSONArray("errors");
+                            return null;
+                        }
+                	}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
