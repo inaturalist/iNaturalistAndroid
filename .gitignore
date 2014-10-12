@@ -3,3 +3,4 @@ bin
 libs
 res/values/config.xml
 gen
+res/values/com_crashlytics_export_strings.xml
