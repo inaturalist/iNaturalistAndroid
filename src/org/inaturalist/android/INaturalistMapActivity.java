@@ -79,6 +79,8 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
  
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (mMap == null) return super.onPrepareOptionsMenu(menu);
+
         MenuItem layersItem = menu.findItem(R.id.layers);
         if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
             layersItem.setTitle(R.string.street);
