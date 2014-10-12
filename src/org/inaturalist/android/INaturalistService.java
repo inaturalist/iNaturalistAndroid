@@ -181,6 +181,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.PASSWORD.toString()));
         mApp = (INaturalistApp) getApplicationContext();
         String action = intent.getAction();
+        
+        if (action == null) return;
+        
         mPassive = action.equals(ACTION_PASSIVE_SYNC);
         
         
