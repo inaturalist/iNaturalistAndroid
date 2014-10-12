@@ -1196,22 +1196,24 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 // Need to retrieve remote observation fields to see how to sync the fields
                 JSONArray jsonResult = get(HOST + "/observations/" + localField.observation_id + ".json");
 
-                Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
-                
-                try {
-                    JSONArray jsonFields = jsonResult.getJSONObject(0).getJSONArray("observation_field_values");
+                if (jsonResult != null) {
+                	Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
 
-                    for (int j = 0; j < jsonFields.length(); j++) {
-                        JSONObject jsonField = jsonFields.getJSONObject(j);
-                        JSONObject observationField = jsonField.getJSONObject("observation_field");
-                        int id = observationField.optInt("id", jsonField.getInt("observation_field_id"));
-                        fields.put(id, new ProjectFieldValue(new BetterJSONObject(jsonField)));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                	try {
+                		JSONArray jsonFields = jsonResult.getJSONObject(0).getJSONArray("observation_field_values");
+
+                		for (int j = 0; j < jsonFields.length(); j++) {
+                			JSONObject jsonField = jsonFields.getJSONObject(j);
+                			JSONObject observationField = jsonField.getJSONObject("observation_field");
+                			int id = observationField.optInt("id", jsonField.getInt("observation_field_id"));
+                			fields.put(id, new ProjectFieldValue(new BetterJSONObject(jsonField)));
+                		}
+                	} catch (JSONException e) {
+                		e.printStackTrace();
+                	}
+
+                	mProjectFieldValues.put(localField.observation_id, fields);
                 }
-
-                mProjectFieldValues.put(localField.observation_id, fields);
             }
             
             Hashtable<Integer, ProjectFieldValue> fields = mProjectFieldValues.get(Integer.valueOf(localField.observation_id));
