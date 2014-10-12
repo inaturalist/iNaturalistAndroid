@@ -1109,7 +1109,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (ensureCredentials() == false) {
             return null;
         }
-        String url = HOST + "/projects/user/" + mLogin + ".json";
+        String url = HOST + "/projects/user/" + Uri.encode(mLogin) + ".json";
         
         JSONArray json = get(url, true);
         JSONArray finalJson = new JSONArray();
@@ -1141,7 +1141,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (ensureCredentials() == false) {
             return;
         }
-        String url = HOST + "/observations/" + mLogin + ".json";
+        String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json";
         
         long lastSync = mPreferences.getLong("last_sync_time", 0);
         Timestamp lastSyncTS = new Timestamp(lastSync);
