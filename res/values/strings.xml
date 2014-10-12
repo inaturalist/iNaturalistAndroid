@@ -194,6 +194,16 @@
     <string name="please_sign_in_via_settings">Please sign-in via settings screen in order to view your projects</string>
     <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">Contact support</a>]]></string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
+    <string name="leave_project">Leave Project</string>
+    <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
+    <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
+    <string name="edit_location">Edit Location</string>
+    <string name="get_current_location">Get current location</string>
+    <string name="pull_to_refresh">Pull to refresh...</string>
+    <string name="release_to_refresh">Release to refresh...</string>
+    <string name="refreshing">Refreshing...</string>
+    <string name="sync_x_observations">Sync %1$d observations</string>
+    <string name="sync_observations">Sync Observations</string>
 
     <string-array name="tutorial_images">
 	    <item>tutorial1</item>
