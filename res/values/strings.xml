@@ -226,4 +226,5 @@
 	    <item>private</item>
     </string-array> 
    
+    <string name="alert_sign_out">Are you sure you want to sign out? Local observations will be deleted once you sign out</string>
 </resources>

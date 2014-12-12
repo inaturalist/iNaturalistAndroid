@@ -280,7 +280,14 @@ public class INaturalistPrefsActivity extends SherlockActivity {
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				signOut();
+                mHelper.confirm(getString(R.string.signed_out), 
+                        getString(R.string.alert_sign_out),
+                        new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    	signOut();
+                    }
+                });
 			}
 		});
         
