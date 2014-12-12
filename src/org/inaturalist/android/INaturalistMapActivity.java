@@ -23,6 +23,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
@@ -49,6 +50,19 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
     private HashMap<String, Observation> mMarkerObservations;
     private INaturalistApp mApp;
     
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();		
+		FlurryAgent.onEndSession(this);
+	}	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

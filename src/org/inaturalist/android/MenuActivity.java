@@ -1,6 +1,8 @@
 package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
+import com.flurry.android.FlurryAgent;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +44,20 @@ public class MenuActivity extends ListActivity {
     private INaturalistApp app;
     private ActivityHelper mHelper;
 	private Button mSyncObservationsButton;
+	
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();		
+		FlurryAgent.onEndSession(this);
+	}	
     
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -37,6 +37,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
@@ -56,6 +57,21 @@ public class GuideDetails extends SherlockActivity {
 	private EditText mSearchText;
 
 	public TaxaListAdapter mAdapter;
+	
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();		
+		FlurryAgent.onEndSession(this);
+	}	
+
 	
 	private class TaxaListAdapter extends ArrayAdapter<JSONObject> {
 
