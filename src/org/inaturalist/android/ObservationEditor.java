@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.io.File;
@@ -173,6 +174,20 @@ public class ObservationEditor extends SherlockFragmentActivity {
 	private boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
 	private ImageView mTaxonSelector;
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();		
+		FlurryAgent.onEndSession(this);
+	}	
 
     private class ProjectReceiver extends BroadcastReceiver {
         @Override

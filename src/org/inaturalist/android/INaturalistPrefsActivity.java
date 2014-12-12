@@ -11,6 +11,7 @@ import com.facebook.SessionState;
 import com.facebook.Session.StatusCallback;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.LoginButton;
+import com.flurry.android.FlurryAgent;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -80,6 +81,19 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     
     private int formerSelectedRadioButton;
     
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();		
+		FlurryAgent.onEndSession(this);
+	}	
 
     private Session.StatusCallback mCallback = new Session.StatusCallback() {
         @Override

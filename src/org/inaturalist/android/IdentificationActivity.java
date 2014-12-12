@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 
 public class IdentificationActivity extends SherlockActivity {
     public static final String ID_REMARKS = "id_remarks";
@@ -31,6 +32,20 @@ public class IdentificationActivity extends SherlockActivity {
     private TextView mTaxonName;
     private TextView mIdName;
     private ImageView mIdPic;
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();		
+		FlurryAgent.onEndSession(this);
+	}	
     
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {

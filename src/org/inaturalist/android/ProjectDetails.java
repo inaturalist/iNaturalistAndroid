@@ -4,6 +4,7 @@ import org.json.JSONException;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -27,6 +28,20 @@ public class ProjectDetails extends SherlockFragmentActivity {
 
     private TabsAdapter mTabsAdapter;
     private ViewPager mViewPager;
+
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+	@Override
+	protected void onStop()
+	{
+		super.onStop();		
+		FlurryAgent.onEndSession(this);
+	}	
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

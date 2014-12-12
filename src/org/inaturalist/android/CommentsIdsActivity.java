@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.AlertDialog;
@@ -81,6 +82,15 @@ public class CommentsIdsActivity extends SherlockListActivity {
     private ArrayList<BetterJSONObject> mCommentsIds;
     private ProgressBar mProgress;
     private TextView mNoComments;
+    
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+	}
+
+
     
     @Override
     protected void onPause() {
@@ -367,6 +377,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
     	setResult();
 
         super.onStop();
+		FlurryAgent.onEndSession(this);
     }
     
     private void setResult() {
