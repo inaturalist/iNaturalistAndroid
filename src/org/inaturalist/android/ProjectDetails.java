@@ -34,6 +34,7 @@ public class ProjectDetails extends SherlockFragmentActivity {
 	{
 		super.onStart();
 		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+		FlurryAgent.logEvent(this.getClass().getSimpleName());
 	}
 
 	@Override
