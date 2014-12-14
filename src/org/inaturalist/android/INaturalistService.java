@@ -850,7 +850,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     private SerializableJSONArray getNearByGuides(boolean useLocationServices) throws AuthenticationException {
         if (useLocationServices) {
-            Location location = mLocationClient.getLastLocation();
+        	Location location;
+        	try {
+        		location = mLocationClient.getLastLocation();
+        	} catch (IllegalStateException ex) {
+        		ex.printStackTrace();
+        		return new SerializableJSONArray();
+        	}
+
             return getNearByGuides(location);
         } else {
             // Use GPS alone to determine location
@@ -924,8 +931,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private SerializableJSONArray getNearByProjects(boolean useLocationServices) throws AuthenticationException {
            
         if (useLocationServices) {
-            Location location = mLocationClient.getLastLocation();
-            
+        	Location location;
+        	try {
+        		location = mLocationClient.getLastLocation();
+         	} catch (IllegalStateException ex) {
+        		ex.printStackTrace();
+        		return new SerializableJSONArray();
+        	}
+           
             return getNearByProjects(location);
         } else {
             // Use GPS alone to determine location
