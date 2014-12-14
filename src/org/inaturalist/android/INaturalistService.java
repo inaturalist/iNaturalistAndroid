@@ -761,7 +761,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     null, 
                     MediaStore.Images.Media.DEFAULT_SORT_ORDER);
             
-            if (pc.getCount() == 0) {
+            if (pc == null) {
+            	continue;
+            } else if (pc.getCount() == 0) {
                 // photo has been deleted, destroy the ObservationPhoto
                 getContentResolver().delete(op.getUri(), null, null);
                 continue;
