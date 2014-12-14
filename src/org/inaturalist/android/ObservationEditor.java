@@ -830,7 +830,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
             mProjects = (ArrayList<BetterJSONObject>) savedInstanceState.getSerializable("mProjects");
             mProjectIds = savedInstanceState.getIntegerArrayList("mProjectIds");
-            mProjectFieldValues = (Hashtable<Integer, ProjectFieldValue>) savedInstanceState.getSerializable("mProjectFieldValues");
+            mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) savedInstanceState.getSerializable("mProjectFieldValues");
             mProjectFieldsUpdated = savedInstanceState.getBoolean("mProjectFieldsUpdated");
         }
 
@@ -1503,7 +1503,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     };
     private ArrayList<Integer> mProjectIds;
     private Hashtable<Integer, ProjectField> mProjectFields;
-    private Hashtable<Integer, ProjectFieldValue> mProjectFieldValues = null;
+    private HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -2291,7 +2291,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         
         if (mProjectFieldValues == null) {
             // Get project field values
-            mProjectFieldValues = new Hashtable<Integer, ProjectFieldValue>();
+            mProjectFieldValues = new HashMap<Integer, ProjectFieldValue>();
             
             Cursor c = getContentResolver().query(ProjectFieldValue.CONTENT_URI, ProjectFieldValue.PROJECTION,
                     "(observation_id = " + obsId + ")",
