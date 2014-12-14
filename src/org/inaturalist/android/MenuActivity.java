@@ -50,6 +50,7 @@ public class MenuActivity extends ListActivity {
 	{
 		super.onStart();
 		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+		FlurryAgent.onPageView();
 	}
 
 	@Override
