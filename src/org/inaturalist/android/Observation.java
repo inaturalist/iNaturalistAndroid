@@ -690,7 +690,7 @@ public class Observation implements BaseColumns, Serializable {
     public Integer updatesCount() {
         Integer idCount = this.identifications_count;
         // assume that one of the IDs is the owner's. Not entirely safe, but often is
-        if (this.taxon_id != null && this.taxon_id != 0 && idCount > 0) {
+        if (this.taxon_id != null && this.taxon_id != 0 && idCount != null && idCount > 0) {
             idCount--;
         }
         Integer c = this.comments_count == null ? 0 : this.comments_count + idCount;

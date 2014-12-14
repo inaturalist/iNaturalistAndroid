@@ -94,6 +94,9 @@ public class ObservationListActivity extends SherlockListActivity {
         	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
             mPullRefreshListView.onRefreshComplete();
             mPullRefreshListView.refreshDrawableState();
+            
+            ObservationCursorAdapter adapter = (ObservationCursorAdapter) getListAdapter();
+            adapter.refreshCursor();
         }
     } 	
   
@@ -354,6 +357,20 @@ public class ObservationListActivity extends SherlockListActivity {
             getPhotoInfo();
         }
         
+        public void refreshCursor() {
+        	SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        	String login = prefs.getString("username", null);
+        	String conditions = "(_synced_at IS NULL";
+        	if (login != null) {
+        		conditions += " OR user_login = '" + login + "'";
+        	}
+        	conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
+
+        	Cursor cursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
+        			conditions, null, Observation.DEFAULT_SORT_ORDER);
+        	changeCursor(cursor);
+        }
+        
         /**
          * Retrieves photo ids and orientations for photos associated with the listed observations.
          */
@@ -446,6 +463,7 @@ public class ObservationListActivity extends SherlockListActivity {
                 Long syncedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._SYNCED_AT));
                 Long updatedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._UPDATED_AT));
                 String photoUrl = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
