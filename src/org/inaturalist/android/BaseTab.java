@@ -367,6 +367,8 @@ public abstract class BaseTab extends SherlockFragment {
         
         private String getShortDescription(String description) {
             // Strip HTML tags
+        	if (description == null) return "";
+        	
             String noHTML = Html.fromHtml(description).toString();
             
             return noHTML;
