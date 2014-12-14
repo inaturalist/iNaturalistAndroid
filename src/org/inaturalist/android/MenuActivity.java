@@ -258,7 +258,7 @@ public class MenuActivity extends ListActivity {
                 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
-                getContentResolver().delete(mPhotoUri, null, null);
+            	if (mPhotoUri != null) getContentResolver().delete(mPhotoUri, null, null);
                 
             } else {
                 // Image capture failed, advise user
