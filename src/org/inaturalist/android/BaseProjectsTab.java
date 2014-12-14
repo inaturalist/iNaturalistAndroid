@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 public abstract class BaseProjectsTab extends BaseTab {
 	private static final int PROJECT_REQUEST_CODE = 101;
@@ -23,7 +24,8 @@ public abstract class BaseProjectsTab extends BaseTab {
          if (requestCode == PROJECT_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 BetterJSONObject project = (BetterJSONObject) data.getSerializableExtra("project");
-                updateProject(mIndex, project);
+                
+                if (project != null) updateProject(mIndex, project);
             }
          }
     }
