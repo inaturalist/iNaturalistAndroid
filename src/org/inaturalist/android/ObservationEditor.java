@@ -1784,23 +1784,18 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 final boolean isCamera;
                 if (data == null) {
                     isCamera = true;
-                    	Log.e("AAA", "CAMERA 1");
                 } else {
                     final String action = data.getAction();
                     if(action == null) {
                         isCamera = false;
                     } else {
                         isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    	Log.e("AAA", "CAMERA 3 -" + action);
                     }
                 }
-
-                Log.e("AAA", "CAMERA " + isCamera);
 
                 Uri selectedImageUri;
                 if(isCamera) {
                     selectedImageUri = mFileUri;
-                Log.e("AAA", "mFileUri " + mFileUri);
                 } else {
                     selectedImageUri = data == null ? null : data.getData();
                     selectedImageUri = getPath(this, selectedImageUri);
@@ -1814,7 +1809,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 }
                 
                 updateImageOrientation(selectedImageUri);
-                createObservationPhotoForPhoto(selectedImageUri);
+                Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
+                
+                if (createdUri == null) {
+                	mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
+                	mFileUri = null;
+                	return;
+                }
+
                 updateImages();
                 if (!isCamera) {
                     promptImportPhotoMetadata(selectedImageUri);
@@ -1890,8 +1892,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         ObservationPhoto op = new ObservationPhoto();
-        Log.e("AAA", "URI: " + photoUri.toString());
-        Long photoId = ContentUris.parseId(photoUri);
+        Long photoId;
+        try {
+        	photoId = ContentUris.parseId(photoUri);
+        } catch (Exception exc) {
+        	// Not a supported media type (e.g. Google Drive)
+        	exc.printStackTrace();
+        	return null;
+        }
+
         ContentValues cv = op.getContentValues();
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
@@ -2021,8 +2030,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     @SuppressLint("NewApi")
 	private Uri getPath(final Context context, final Uri uri) {
     	
-    	Log.e("AAA", "getPath: " + uri.toString());
-
     	final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
     	// DocumentProvider
@@ -2071,19 +2078,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
     			return ContentUris.withAppendedId(contentUri, Long.valueOf(split[1]));
     		}
     	}
+
     	// MediaStore (and general)
-    	else if ("content".equalsIgnoreCase(uri.getScheme())) {
+    	if ("content".equalsIgnoreCase(uri.getScheme())) {
     		return uri;
     	}
     	// File
     	else if ("file".equalsIgnoreCase(uri.getScheme())) {
     		return uri;
     	}
-    	
-    	Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
-    	cursor.moveToFirst();   
-    	String path = cursor.getString(0);
-    	cursor.close();	
     	
     	return null;
     }
@@ -2116,10 +2119,17 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private String imageFilePathFromUri(Uri uri) {
         String[] projection = {
                 MediaStore.MediaColumns._ID,
-                MediaStore.Images.ImageColumns.ORIENTATION,
                 MediaStore.Images.Media.DATA
         };
-        Cursor c = getContentResolver().query(uri, projection, null, null, null);
+        
+
+        Cursor c;
+        try {
+        	c = getContentResolver().query(uri, projection, null, null, null);
+        } catch (Exception exc) {
+        	exc.printStackTrace();
+        	return null;
+        }
         
         if (c == null) {
         	return null;
@@ -2129,17 +2139,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
         c.close();
         
-        if (path == null) {
-        	if(uri != null && "content".equals(uri.getScheme()))  {
-        		Cursor cursor = this.getContentResolver().query(uri, new String[] { android.provider.MediaStore.Files.FileColumns.DATA }, null, null, null);
-        		cursor.moveToFirst();   
-        		path = cursor.getString(0);
-        		cursor.close();
-        	} else {
-        		path = uri.getPath();
-        	}
-        }
-        Log.e("AAA", "PATH:" + path);
         return path;
     }
 
