@@ -206,6 +206,8 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
     }
     
     private void addObservation(Observation o) {
+    	if (o == null) return;
+    	
         if (o.private_latitude == null && o.latitude == null) {
             return;
         }
