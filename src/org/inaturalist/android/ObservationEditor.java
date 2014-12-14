@@ -180,6 +180,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 	{
 		super.onStart();
 		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+		FlurryAgent.onPageView();
 	}
 
 	@Override
@@ -1760,6 +1761,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             	String speciesGuess = String.format("%s (%s)", idName, taxonName);
             	mSpeciesGuess = speciesGuess;
             	mObservation.species_guess = speciesGuess;
+                mObservation.taxon_id = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
             	mSpeciesGuessTextView.setText(mSpeciesGuess);
             }
         } else if (requestCode == PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE) {
