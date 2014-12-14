@@ -1913,6 +1913,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
     
     private void importPhotoMetadata(Uri photoUri) {
         String imgFilePath = imageFilePathFromUri(photoUri);
+        
+        if (imgFilePath == null) return;
+        
         try {
             ExifInterface exif = new ExifInterface(imgFilePath);
             float[] latLng = new float[2];
@@ -2088,6 +2091,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
     private void updateImageOrientation(Uri uri) {
         String imgFilePath = imageFilePathFromUri(uri);
+        
+        if (imgFilePath == null) return;
+        
         ContentValues values = new ContentValues();
         try {
             ExifInterface exif = new ExifInterface(imgFilePath);
@@ -2114,6 +2120,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 MediaStore.Images.Media.DATA
         };
         Cursor c = getContentResolver().query(uri, projection, null, null, null);
+        
+        if (c == null) {
+        	return null;
+        }
+
         c.moveToFirst();
         String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
         c.close();
