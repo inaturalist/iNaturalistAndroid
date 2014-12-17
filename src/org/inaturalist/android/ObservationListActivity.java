@@ -53,7 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ObservationListActivity extends SherlockListActivity {
-	public static String TAG = "INAT";
+	public static String TAG = "INAT:ObservationListActivity";
 	
 	private PullToRefreshListView mPullRefreshListView;
 	
@@ -358,7 +358,8 @@ public class ObservationListActivity extends SherlockListActivity {
             getPhotoInfo();
         }
         
-        public void refreshCursor() {
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+		public void refreshCursor() {
         	SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         	String login = prefs.getString("username", null);
         	String conditions = "(_synced_at IS NULL";
@@ -366,10 +367,16 @@ public class ObservationListActivity extends SherlockListActivity {
         		conditions += " OR user_login = '" + login + "'";
         	}
         	conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
-
-        	Cursor cursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
+        	
+        	Cursor newCursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
         			conditions, null, Observation.DEFAULT_SORT_ORDER);
-        	changeCursor(cursor);
+
+        	if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD){
+        		Cursor oldCursor = swapCursor(newCursor);
+        		if (!oldCursor.isClosed()) oldCursor.close();
+        	} else {
+        		changeCursor(newCursor);
+        	}
         }
         
         /**
@@ -404,7 +411,7 @@ public class ObservationListActivity extends SherlockListActivity {
                 Long photoId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
                 String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 
-                if (!mPhotoInfo.containsKey(obsId)) {
+                //if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
@@ -414,7 +421,7 @@ public class ObservationListActivity extends SherlockListActivity {
                                     null,
                                     null
                             });
-                }
+                //}
                 onlinePc.moveToNext();
             }
             
@@ -465,7 +472,7 @@ public class ObservationListActivity extends SherlockListActivity {
                 Long updatedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._UPDATED_AT));
                 String photoUrl = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
 
-                if (!mPhotoInfo.containsKey(obsId)) {
+                //if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
@@ -475,7 +482,7 @@ public class ObservationListActivity extends SherlockListActivity {
                                 updatedAt.toString(),
                                 syncedAt.toString()
                             });
-                }
+                //}
                 opc.moveToNext();
             }
             
