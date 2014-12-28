@@ -184,7 +184,7 @@
     <string name="leave_project">Leave Project</string>
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
 
-    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you've uploaded to iNaturalist.</string>
+    <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but at the moment we do not support uploading photos from Google Drive, Dropbox, etc.\nPlease download the photos to your local phone storage and try again.</string>
 
     <string-array name="tutorial_images">
