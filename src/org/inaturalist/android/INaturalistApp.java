@@ -12,8 +12,11 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -42,12 +45,11 @@ public class INaturalistApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
         deviceLocale = getResources().getConfiguration().locale;
         applyLocaleSettings();
-        
-        updateUIAccordingToCountry();
     }
 
  	/**
@@ -72,26 +74,83 @@ public class INaturalistApp extends Application {
 		catch (Exception e) { }
 		return null;
 	}	
+	
+	/** The types of inat network memebers */
+	public enum InaturalistNetworkMember {
+		INATURLIST,
+		NATURALISTA
+	}
+	
+	/** Returns the set inat network member */
+	public InaturalistNetworkMember getInaturalistNetworkMember() {
+    	SharedPreferences settings = getPrefs();
+        String networkMemberString = settings.getString("pref_network_member", InaturalistNetworkMember.INATURLIST.toString());
+        
+        return InaturalistNetworkMember.valueOf(networkMemberString);
+	}
 	   
- 	private void updateUIAccordingToCountry() {
-		String country = getUserCountry(this);
+	
+	/** Set the inat network member */
+	public void setInaturalistNetworkMember(InaturalistNetworkMember memberNetwork) {
+    	SharedPreferences settings = getPrefs();
+    	Editor settingsEditor = settings.edit();
+
+    	settingsEditor.putString("pref_network_member", memberNetwork.toString());
+    	settingsEditor.apply();
+	}
+
+ 	private void updateUIAccordingToNetworkMember() {
+ 		InaturalistNetworkMember networkMember = getInaturalistNetworkMember();
 		String newLocale;
-		Log.d(TAG, "Detected country: " + country);
-		
-		if (country.equals("mx")) {
-			// Mexico
-			newLocale = "es";
-		} else {
+		Resources res = getBaseContext().getResources();
+ 		
+ 		if (networkMember == InaturalistNetworkMember.NATURALISTA) {
+ 			newLocale = "es";
+ 		} else {
 			// Default - USA
 			newLocale = "en";
-		}
+ 		}
 
 		// Change locale settings in the app
-		Resources res = getBaseContext().getResources();
 		DisplayMetrics dm = res.getDisplayMetrics();
 		android.content.res.Configuration conf = res.getConfiguration();
 		conf.locale = new Locale(newLocale);
 		res.updateConfiguration(conf, dm);		
+		
+    	SharedPreferences settings = getPrefs();
+    	Editor settingsEditor = settings.edit();
+		settingsEditor.putString("pref_locale", newLocale);
+		settingsEditor.apply();
+		
+		restart();
+ 	}
+	
+ 	public void detectUserCountryAndUpdateNetwork(Context context) {
+ 		ActivityHelper helper;
+        helper = new ActivityHelper(context);
+
+		Resources res = getBaseContext().getResources();
+		String country = getUserCountry(this);
+		Log.d(TAG, "Detected country: " + country);
+		
+		country = "mx";
+		if (country.equals("mx")) {
+			// Don't ask the user again to switch to NATURALISTA if they've done so in the past
+			if (getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) return;
+			
+			// Mexico
+			helper.confirm(
+					res.getString(R.string.alert_title_use_naturalista),
+					res.getString(R.string.alert_message_use_naturalista),
+					new OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							setInaturalistNetworkMember(InaturalistNetworkMember.NATURALISTA);
+							updateUIAccordingToNetworkMember();
+						}
+					});
+		}
+
 	}
    
     

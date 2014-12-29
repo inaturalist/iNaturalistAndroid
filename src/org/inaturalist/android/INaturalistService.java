@@ -38,6 +38,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
+import org.inaturalist.android.INaturalistApp.InaturalistNetworkMember;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -774,6 +775,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             String imgFilePath = pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
             params.add(new BasicNameValuePair("file", imgFilePath));
             
+            if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+            	params.add(new BasicNameValuePair("URI", "Mexico"));
+            }
+            
             // TODO LATER resize the image for upload, maybe a 1024px jpg
             JSONArray response = post(MEDIA_HOST + "/observation_photos.json", params);
             try {
@@ -813,7 +818,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     
     private SerializableJSONArray getAllGuides() throws AuthenticationException {
-        String url = HOST + "/guides.json?per_page=200&page=";
+        String url = HOST + "/guides.json?";
+        
+        
+        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+        	url += "URI=Mexico&";
+        }
+        
+        url += "per_page=200&page=";
         
         JSONArray results = new JSONArray();
 
@@ -844,6 +856,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             return null;
         }
         String url = HOST + "/guides.json?by=you&per_page=200";
+        
+        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+        	url += "&URI=Mexico";
+        }
+ 
         
         JSONArray json = get(url, true);
         
@@ -882,6 +899,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         double lon  = location.getLongitude();
 
         String url = HOST + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
+        
+        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+        	url += "&URI=Mexico";
+        }
+ 
 
         Log.e(TAG, url);
 
@@ -902,6 +924,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         double lon  = location.getLongitude();
 
         String url = HOST + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
+        
+        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+        	url += "&URI=Mexico";
+        }
+
 
         Log.e(TAG, url);
 
@@ -955,6 +982,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         String url = HOST + "/projects.json?featured=true";
+        
+        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+        	url += "&URI=Mexico";
+        }
+
         
         JSONArray json = get(url);
         
@@ -1842,6 +1874,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private ArrayList<NameValuePair> paramsForObservation(Observation observation) {
         ArrayList<NameValuePair> params = observation.getParams();
         params.add(new BasicNameValuePair("ignore_photos", "true"));
+
+        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+        	params.add(new BasicNameValuePair("URI", "Mexico"));
+        }
+
         return params;
     }
     
