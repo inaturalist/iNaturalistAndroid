@@ -8,6 +8,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import org.inaturalist.android.INaturalistApp.InaturalistNetworkMember;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,6 +65,8 @@ public class TaxonSearchActivity extends SherlockListActivity {
     private int mFieldId;
 
     private ProgressBar mProgress;
+    
+    private INaturalistApp mApp;
 
 	@Override
 	protected void onStart()
@@ -72,7 +75,12 @@ public class TaxonSearchActivity extends SherlockListActivity {
 		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
 		FlurryAgent.logEvent(this.getClass().getSimpleName());
 	}
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mApp == null) { mApp = (INaturalistApp) getApplicationContext(); }
+    }
+ 
 	@Override
 	protected void onStop()
 	{
@@ -89,7 +97,11 @@ public class TaxonSearchActivity extends SherlockListActivity {
         try {
             StringBuilder sb = new StringBuilder(INaturalistService.HOST + "/taxa/search.json");
             sb.append("?q=");
-            sb.append(URLEncoder.encode(input, "utf8"));
+            
+            if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
+            	sb.append(URLEncoder.encode(input, "utf8"));
+            	sb.append("&lexicon=Spanish");
+            }
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
@@ -277,6 +289,8 @@ public class TaxonSearchActivity extends SherlockListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        if (mApp == null) { mApp = (INaturalistApp) getApplicationContext(); }
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

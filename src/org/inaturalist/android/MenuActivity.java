@@ -125,6 +125,10 @@ public class MenuActivity extends ListActivity {
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
         if (mHelper == null) { mHelper = new ActivityHelper(this);}
         
+        
+        app.detectUserCountryAndUpdateNetwork(this);
+        
+        
         mAddObservationButton = (Button) findViewById(R.id.add_observation);
         mTakePictureButton = (Button) findViewById(R.id.take_picture);
         
