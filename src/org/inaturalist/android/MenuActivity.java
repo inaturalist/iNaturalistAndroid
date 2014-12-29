@@ -45,6 +45,8 @@ public class MenuActivity extends ListActivity {
     private ActivityHelper mHelper;
 	private Button mSyncObservationsButton;
 	
+	
+
 	@Override
 	protected void onStart()
 	{
@@ -52,6 +54,8 @@ public class MenuActivity extends ListActivity {
 		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
 		FlurryAgent.logEvent(this.getClass().getSimpleName());
 	}
+	
+	
 
 	@Override
 	protected void onStop()

@@ -19,6 +19,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
@@ -44,7 +46,54 @@ public class INaturalistApp extends Application {
         INaturalistApp.context = getApplicationContext();
         deviceLocale = getResources().getConfiguration().locale;
         applyLocaleSettings();
+        
+        updateUIAccordingToCountry();
     }
+
+ 	/**
+	 * Get ISO 3166-1 alpha-2 country code for this device (or null if not available)
+	 * @param context Context reference to get the TelephonyManager instance from
+	 * @return country code or null
+	 */
+	public static String getUserCountry(Context context) {
+		try {
+			final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+			final String simCountry = tm.getSimCountryIso();
+			if (simCountry != null && simCountry.length() == 2) { // SIM country code is available
+				return simCountry.toLowerCase(Locale.US);
+			}
+			else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
+				String networkCountry = tm.getNetworkCountryIso();
+				if (networkCountry != null && networkCountry.length() == 2) { // network country code is available
+					return networkCountry.toLowerCase(Locale.US);
+				}
+			}
+		}
+		catch (Exception e) { }
+		return null;
+	}	
+	   
+ 	private void updateUIAccordingToCountry() {
+		String country = getUserCountry(this);
+		String newLocale;
+		Log.d(TAG, "Detected country: " + country);
+		
+		if (country.equals("mx")) {
+			// Mexico
+			newLocale = "es";
+		} else {
+			// Default - USA
+			newLocale = "en";
+		}
+
+		// Change locale settings in the app
+		Resources res = getBaseContext().getResources();
+		DisplayMetrics dm = res.getDisplayMetrics();
+		android.content.res.Configuration conf = res.getConfiguration();
+		conf.locale = new Locale(newLocale);
+		res.updateConfiguration(conf, dm);		
+	}
+   
     
     public String getFormattedDeviceLocale(){
     	if(deviceLocale!=null){
