@@ -1,6 +1,8 @@
 package org.inaturalist.android;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
 import org.inaturalist.android.INaturalistService.LoginType;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -64,7 +66,8 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     private LoginButton mFacebookLoginButton;
     private Button mGoogleLogin;
 	private View mFBSeparator;
-	private RadioGroup rbPreferredLocaleSelector;	
+	private RadioGroup rbPreferredLocaleSelector;
+
 	private INaturalistApp mApp;
 	
     private UiLifecycleHelper mUiHelper;
@@ -176,11 +179,9 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    mHelp = (TextView) findViewById(R.id.tutorial_link);
 	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 	    
-	    rbPreferredLocaleSelector = (RadioGroup)findViewById(R.id.radioLang);
-	    
-	    RadioButton rbDeviceLanguage = (RadioButton)findViewById(R.id.rbDeviceLang);
-	    rbDeviceLanguage.setText( rbDeviceLanguage.getText() + " (" + mApp.getFormattedDeviceLocale() + ")" );
-	    
+
+	    makeLanguageRadioButtons();
+
 	    mHelp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,68 +264,84 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    
 	    updateRadioButtonState();
 	}
-	
+    public void makeLanguageRadioButtons()
+    {
+        rbPreferredLocaleSelector = (RadioGroup)findViewById(R.id.radioLang);
+
+        String[] locales = LocaleHelper.SupportedLocales;
+        for (int i=0; i < locales.length; i++) {
+            RadioButton rb = new RadioButton(this);
+            final int selectedButton = i;
+            final Activity context = this;
+            rb.setText(new Locale(locales[i]).getDisplayLanguage());
+            rb.setOnClickListener (new OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           PromptUserToConfirmSelection(context, selectedButton);
+                                       }
+                                   });
+           rbPreferredLocaleSelector.addView(rb, i);
+        }
+    }
+
+    private void PromptUserToConfirmSelection(Activity context, int index) {
+        final int selectedButton = index;
+        final String locale = LocaleHelper.SupportedLocales[index];
+        final Activity thisActivity = context;
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        mPrefEditor.putString("pref_locale", locale);
+                        mPrefEditor.commit();
+                        formerSelectedRadioButton = selectedButton;
+                        mApp.applyLocaleSettings();
+                        mApp.restart();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        rbPreferredLocaleSelector.check(rbPreferredLocaleSelector.getChildAt(formerSelectedRadioButton).getId());
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
+           builder.setMessage(getString(R.string.language_restart))
+                .setPositiveButton(getString(R.string.restart_now), dialogClickListener)
+                .setNegativeButton(getString(R.string.cancel), dialogClickListener).show();
+
+
+     }
 	private void updateRadioButtonState(){
 		String pref_locale = mPreferences.getString("pref_locale", "");
-		if(pref_locale.equalsIgnoreCase("eu")){
-			rbPreferredLocaleSelector.check(R.id.rbDeviceEu);
-			formerSelectedRadioButton = R.id.rbDeviceEu;
-		}else if(pref_locale.equalsIgnoreCase("gl")){
-			rbPreferredLocaleSelector.check(R.id.rbDeviceGl);
-			formerSelectedRadioButton = R.id.rbDeviceGl;
-		}else{
-			rbPreferredLocaleSelector.check(R.id.rbDeviceLang);
-			formerSelectedRadioButton = R.id.rbDeviceLang;
-		}
-	}
-	
-	public void onRadioButtonClicked(View view){		
-	    final boolean checked = ((RadioButton) view).isChecked();
-	    final int selectedRadioButtonId = view.getId();	    	    
-	    //Toast.makeText(getApplicationContext(), getString(R.string.language_restart), Toast.LENGTH_LONG).show();
-	    
-	    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-	        @Override
-	        public void onClick(DialogInterface dialog, int which) {
-	            switch (which){
-	            case DialogInterface.BUTTON_POSITIVE:
-	            	switch(selectedRadioButtonId) {
-		    	        case R.id.rbDeviceEu:
-		    	            if (checked){	            	
-		    	            	mPrefEditor.putString("pref_locale", "eu");
-		    	            	mPrefEditor.commit();	            	
-		    	            }
-		    	            break;
-		    	        case R.id.rbDeviceGl:
-		    	            if (checked){
-		    	            	mPrefEditor.putString("pref_locale", "gl");
-		    	            	mPrefEditor.commit();	            	
-		    	            }
-		    	            break;
-		    	        default:
-		    	        	if(checked){
-		    	        		mPrefEditor.putString("pref_locale", "");
-		    	            	mPrefEditor.commit();	            	
-		    	        	}
-		    	        	break;
-		    	    }
-	            	formerSelectedRadioButton = selectedRadioButtonId;
-	            	mApp.applyLocaleSettings();
-	        	    mApp.restart();
-	                break;
+        String[] supportedLocales = LocaleHelper.SupportedLocales;
 
-	            case DialogInterface.BUTTON_NEGATIVE:
-	                //No button clicked
-	            	rbPreferredLocaleSelector.check(formerSelectedRadioButton);	            	
-	                break;
-	            }
-	        }
-	    };
+        // if no preference is set, find app default
+        if (pref_locale.equalsIgnoreCase("")) {
+            String defaultLocale = LocaleHelper.getDefaultLocale();
+            for (int i = 0; i < supportedLocales.length; i++) {
+                if (supportedLocales[i].equalsIgnoreCase(defaultLocale)) {
+                    RadioButton rb = (RadioButton) rbPreferredLocaleSelector.getChildAt(i);
+                    rb.setChecked(true);
+                    formerSelectedRadioButton = i;
+                    return;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < supportedLocales.length; i++) {
+                if (pref_locale.equalsIgnoreCase(supportedLocales[i])) {
+                    RadioButton rb = (RadioButton) rbPreferredLocaleSelector.getChildAt(i);
+                    rb.setChecked(true);
+                    formerSelectedRadioButton = i;
+                    return;
+                }
+            }
+        }
 
-	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setMessage(getString(R.string.language_restart))
-	    	.setPositiveButton(getString(R.string.restart_now), dialogClickListener)
-	        .setNegativeButton(getString(R.string.cancel), dialogClickListener).show();	    	    	   
 	}
 	
 	@Override
