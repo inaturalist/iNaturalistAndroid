@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import java.util.ArrayList;
+
 import org.inaturalist.android.INaturalistService.LoginType;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -25,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
@@ -72,7 +74,7 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     private LoginButton mFacebookLoginButton;
     private Button mGoogleLogin;
 	private View mFBSeparator;
-	private RadioGroup rbPreferredLocaleSelector;	
+	private RadioGroup rbPreferredNetworkSelector;	
 	private INaturalistApp mApp;
 	
     private UiLifecycleHelper mUiHelper;
@@ -213,10 +215,22 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 			mVersion.setText("");
 		}
 	    
-	    rbPreferredLocaleSelector = (RadioGroup)findViewById(R.id.radioLang);
+	    // Add the iNat network settings
+	    rbPreferredNetworkSelector = (RadioGroup)findViewById(R.id.radioNetworks);
 	    
-	    RadioButton rbDeviceLanguage = (RadioButton)findViewById(R.id.rbDeviceLang);
-	    rbDeviceLanguage.setText( rbDeviceLanguage.getText() + " (" + mApp.getFormattedDeviceLocale() + ")" );
+	    String[] networks = mApp.getINatNetworks();
+	    for (int i = 0; i < networks.length; i++) {
+	    	RadioButton radioButton = new RadioButton(this);
+	    	radioButton.setText(mApp.getStringResourceByName("network_" + networks[i]));
+	    	radioButton.setId(i);
+	    	radioButton.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					onRadioButtonClicked(v);
+				}
+			});
+            rbPreferredNetworkSelector.addView(radioButton);
+	    }
 	    
 	    mHelp.setOnClickListener(new OnClickListener() {
             @Override
@@ -317,49 +331,35 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	}
 	
 	private void updateRadioButtonState(){
-		String pref_locale = mPreferences.getString("pref_locale", "");
-		if(pref_locale.equalsIgnoreCase("eu")){
-			rbPreferredLocaleSelector.check(R.id.rbDeviceEu);
-			formerSelectedRadioButton = R.id.rbDeviceEu;
-		}else if(pref_locale.equalsIgnoreCase("gl")){
-			rbPreferredLocaleSelector.check(R.id.rbDeviceGl);
-			formerSelectedRadioButton = R.id.rbDeviceGl;
-		}else{
-			rbPreferredLocaleSelector.check(R.id.rbDeviceLang);
-			formerSelectedRadioButton = R.id.rbDeviceLang;
-		}
+	    String[] networks = mApp.getINatNetworks();
+		String network = mApp.getInaturalistNetworkMember();
+
+	    for (int i = 0; i < networks.length; i++) {
+	    	if (networks[i].equals(network)) {
+	    		rbPreferredNetworkSelector.check(i);
+	    		formerSelectedRadioButton = i;
+	    		break;
+	    	}
+	    }
 	}
 	
 	public void onRadioButtonClicked(View view){		
 	    final boolean checked = ((RadioButton) view).isChecked();
 	    final int selectedRadioButtonId = view.getId();	    	    
-	    //Toast.makeText(getApplicationContext(), getString(R.string.language_restart), Toast.LENGTH_LONG).show();
 	    
 	    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 	        @Override
 	        public void onClick(DialogInterface dialog, int which) {
+	        	String[] networks = mApp.getINatNetworks();
+
 	            switch (which){
 	            case DialogInterface.BUTTON_POSITIVE:
-	            	switch(selectedRadioButtonId) {
-		    	        case R.id.rbDeviceEu:
-		    	            if (checked){	            	
-		    	            	mPrefEditor.putString("pref_locale", "eu");
-		    	            	mPrefEditor.commit();	            	
-		    	            }
-		    	            break;
-		    	        case R.id.rbDeviceGl:
-		    	            if (checked){
-		    	            	mPrefEditor.putString("pref_locale", "gl");
-		    	            	mPrefEditor.commit();	            	
-		    	            }
-		    	            break;
-		    	        default:
-		    	        	if(checked){
-		    	        		mPrefEditor.putString("pref_locale", "");
-		    	            	mPrefEditor.commit();	            	
-		    	        	}
-		    	        	break;
-		    	    }
+	            	if (checked) {	            	
+	            		mApp.setInaturalistNetworkMember(networks[selectedRadioButtonId]);
+	            		mPrefEditor.putString("pref_locale", mApp.getStringResourceByName("inat_network_language_" + networks[selectedRadioButtonId]));
+	            		mPrefEditor.commit();
+	            	}            	
+
 	            	formerSelectedRadioButton = selectedRadioButtonId;
 	            	mApp.applyLocaleSettings();
 	        	    mApp.restart();
@@ -367,14 +367,14 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 
 	            case DialogInterface.BUTTON_NEGATIVE:
 	                //No button clicked
-	            	rbPreferredLocaleSelector.check(formerSelectedRadioButton);	            	
+	            	rbPreferredNetworkSelector.check(formerSelectedRadioButton);	            	
 	                break;
 	            }
 	        }
 	    };
 
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setMessage(getString(R.string.language_restart))
+	    builder.setMessage(getString(R.string.network_restart))
 	    	.setPositiveButton(getString(R.string.restart_now), dialogClickListener)
 	        .setNegativeButton(getString(R.string.cancel), dialogClickListener).show();	    	    	   
 	}

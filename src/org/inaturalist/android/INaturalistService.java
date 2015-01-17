@@ -38,7 +38,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.EntityUtils;
-import org.inaturalist.android.INaturalistApp.InaturalistNetworkMember;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -682,11 +681,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    put(HOST + "/observations/" + observation.id + ".json?extra=observation_photos", paramsForObservation(observation))
+                    put(HOST + "/observations/" + observation.id + ".json?extra=observation_photos", paramsForObservation(observation, false))
             );
             c.moveToNext();
         }
         c.close();
+
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
         // query observations where _synced_at IS NULL
         c = getContentResolver().query(Observation.CONTENT_URI, 
@@ -694,6 +696,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 "id IS NULL", null, Observation.SYNC_ORDER);
         int createdCount = c.getCount();
         // for each observation POST to /observations/
+
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
@@ -703,7 +706,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    post(HOST + "/observations.json?extra=observation_photos", paramsForObservation(observation))
+                    post("https://" + inatHost + "/observations.json?extra=observation_photos", paramsForObservation(observation, true))
             );
             c.moveToNext();
         }
@@ -775,12 +778,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             String imgFilePath = pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
             params.add(new BasicNameValuePair("file", imgFilePath));
             
-            if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-            	params.add(new BasicNameValuePair("URI", "Mexico"));
-            }
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+            params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
             
             // TODO LATER resize the image for upload, maybe a 1024px jpg
-            JSONArray response = post(MEDIA_HOST + "/observation_photos.json", params);
+            JSONArray response = post("https://" + inatHost + "/observation_photos.json", params);
             try {
                 if (response == null || response.length() != 1) {
                     break;
@@ -818,14 +821,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     
     private SerializableJSONArray getAllGuides() throws AuthenticationException {
-        String url = HOST + "/guides.json?";
+    	String inatNetwork = mApp.getInaturalistNetworkMember();
+    	String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
+        String url = "https://" + inatHost + "/guides.json?";
         
-        
-        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-        	url += "URI=Mexico&";
-        }
-        
-        url += "per_page=200&page=";
+        url += "site_id=" + mApp.getStringResourceByName("inat_site_id_" + inatNetwork) + "&per_page=200&page=";
         
         JSONArray results = new JSONArray();
 
@@ -855,13 +856,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (ensureCredentials() == false) {
             return null;
         }
-        String url = HOST + "/guides.json?by=you&per_page=200";
+
         
-        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-        	url += "&URI=Mexico";
-        }
- 
-        
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+       
+        String url = "https://" + inatHost + "/guides.json?by=you&per_page=200&site_id=" + mApp.getStringResourceByName("inat_site_id_" + inatNetwork);
         JSONArray json = get(url, true);
         
         return new SerializableJSONArray(json);
@@ -898,13 +898,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         double lat  = location.getLatitude();
         double lon  = location.getLongitude();
 
-        String url = HOST + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
-        
-        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-        	url += "&URI=Mexico";
-        }
- 
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
+        String url = "https://" + inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200&site_id=%s", lat, lon, mApp.getStringResourceByName("inat_site_id_" + inatNetwork));
         Log.e(TAG, url);
 
         JSONArray json = get(url);
@@ -923,13 +920,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         double lat  = location.getLatitude();
         double lon  = location.getLongitude();
 
-        String url = HOST + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
+        String url = "https://" + inatHost + String.format("/projects.json?latitude=%s&longitude=%s&site_id=%s", lat, lon, mApp.getStringResourceByName("inat_site_id_" + inatNetwork));
         
-        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-        	url += "&URI=Mexico";
-        }
-
-
         Log.e(TAG, url);
 
         JSONArray json = get(url);
@@ -981,12 +976,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
-        String url = HOST + "/projects.json?featured=true";
-        
-        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-        	url += "&URI=Mexico";
-        }
-
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+        String url = "https://" + inatHost + "/projects.json?featured=true&site_id=" + mApp.getStringResourceByName("inat_site_id_" + inatNetwork);
         
         JSONArray json = get(url);
         
@@ -1871,12 +1863,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
     
-    private ArrayList<NameValuePair> paramsForObservation(Observation observation) {
+    private ArrayList<NameValuePair> paramsForObservation(Observation observation, boolean isPOST) {
         ArrayList<NameValuePair> params = observation.getParams();
         params.add(new BasicNameValuePair("ignore_photos", "true"));
 
-        if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-        	params.add(new BasicNameValuePair("URI", "Mexico"));
+        if (isPOST) {
+        	String inatNetwork = mApp.getInaturalistNetworkMember();
+        	params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
         }
 
         return params;

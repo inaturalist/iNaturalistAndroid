@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 
 public class ActivityHelper {
     private static String TAG = "ActivityHelper";
@@ -31,6 +32,28 @@ public class ActivityHelper {
         alert.show();
     }
 
+    
+    public void confirm(View title, String msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setCustomTitle(title);
+        builder.setMessage(msg);
+        builder.setNegativeButton(R.string.cancel, cancelListener)
+            .setPositiveButton(R.string.ok, okListener);
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+    
+     public void confirm(String title, String msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(title);
+        builder.setMessage(msg);
+        builder.setNegativeButton(R.string.cancel, cancelListener)
+            .setPositiveButton(R.string.ok, okListener);
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+   
+    
     public void confirm(String title, String msg, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(title);

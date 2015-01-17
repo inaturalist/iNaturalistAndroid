@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="acc">Prec</string>
-    <string name="app_name">iNaturalist</string>
+    <string name="app_name">Naturalista</string>
     <string name="google_login">  Iniciar sesión con Google</string>
     <string name="email_address">Dirección de correo electrónico</string>
     <string name="observations_menu_add">Añadir</string>

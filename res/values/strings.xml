@@ -229,6 +229,14 @@
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but at the moment we do not support uploading photos from Google Drive, Dropbox, etc.\nPlease download the photos to your local phone storage and try again.</string>
 
-    <string name="alert_title_use_naturalista">Use Naturalista?</string>
     <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
+    <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
+
+    <string name="alert_title_use">Use</string>
+
+    <string name="inat_network_settings">iNaturalist Network Settings</string>
+    <string name="network_inaturalist">iNaturalist</string>
+    <string name="network_naturalista">NaturaLista</string>
+    <string name="network_naturewatchnz">NatureWatch</string>
+	<string name="network_restart">Network settings changed. Please restart the app for the changes to take place.</string>
 </resources>
