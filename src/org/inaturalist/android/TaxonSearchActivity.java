@@ -8,7 +8,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import org.inaturalist.android.INaturalistApp.InaturalistNetworkMember;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -97,11 +96,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
         try {
             StringBuilder sb = new StringBuilder(INaturalistService.HOST + "/taxa/search.json");
             sb.append("?q=");
-            
-            if (mApp.getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) {
-            	sb.append(URLEncoder.encode(input, "utf8"));
-            	sb.append("&lexicon=Spanish");
-            }
+            sb.append(URLEncoder.encode(input, "utf8"));
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
@@ -113,6 +108,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
             while ((read = in.read(buff)) != -1) {
                 jsonResults.append(buff, 0, read);
             }
+
         } catch (MalformedURLException e) {
             Log.e(LOG_TAG, "Error processing Places API URL", e);
             return resultList;
@@ -242,17 +238,39 @@ public class TaxonSearchActivity extends SherlockListActivity {
             View view = inflater.inflate(R.layout.taxon_result_item, parent, false); 
             JSONObject item = mResultList.get(position);
             JSONObject defaultName;
-            String displayName;
+            String displayName = null;
+
+            // Get the taxon display name according to configuration of the current iNat network
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
             try {
-                displayName = item.getString("unique_name");
-            } catch (JSONException e2) {
-                displayName = "unknown";
-            }
-            try {
-                defaultName = item.getJSONObject("default_name");
-                displayName = defaultName.getString("name");
-            } catch (JSONException e1) {
-                // alas
+				JSONArray taxonNames = item.getJSONArray("taxon_names");
+				for (int i = 0; i < taxonNames.length(); i++) {
+					JSONObject taxonName = taxonNames.getJSONObject(i);
+					String lexicon = taxonName.getString("lexicon");
+					if (lexicon.equals(networkLexicon)) {
+						// Found the appropriate lexicon for the taxon
+						displayName = taxonName.getString("name");
+						break;
+					}
+				}
+			} catch (JSONException e3) {
+				e3.printStackTrace();
+			}
+
+            if (displayName == null) {
+            	// Couldn't extract the display name from the taxon names list - use the default one
+            	try {
+            		displayName = item.getString("unique_name");
+            	} catch (JSONException e2) {
+            		displayName = "unknown";
+            	}
+            	try {
+            		defaultName = item.getJSONObject("default_name");
+            		displayName = defaultName.getString("name");
+            	} catch (JSONException e1) {
+            		// alas
+            	}
             }
             
             try {
@@ -342,18 +360,40 @@ public class TaxonSearchActivity extends SherlockListActivity {
             Bundle bundle = new Bundle();
             bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
 
-            String displayName;
+            String displayName = null;
+            // Get the taxon display name according to configuration of the current iNat network
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
             try {
-            	displayName = item.getString("unique_name");
-            } catch (JSONException e2) {
-            	displayName = "unknown";
+				JSONArray taxonNames = item.getJSONArray("taxon_names");
+				for (int i = 0; i < taxonNames.length(); i++) {
+					JSONObject taxonName = taxonNames.getJSONObject(i);
+					String lexicon = taxonName.getString("lexicon");
+					if (lexicon.equals(networkLexicon)) {
+						// Found the appropriate lexicon for the taxon
+						displayName = taxonName.getString("name");
+						break;
+					}
+				}
+			} catch (JSONException e3) {
+				e3.printStackTrace();
+			}
+
+            if (displayName == null) {
+            	// Couldn't extract the display name from the taxon names list - use the default one
+            	try {
+            		displayName = item.getString("unique_name");
+            	} catch (JSONException e2) {
+            		displayName = "unknown";
+            	}
+            	try {
+            		JSONObject defaultName = item.getJSONObject("default_name");
+            		displayName = defaultName.getString("name");
+            	} catch (JSONException e1) {
+            		// alas
+            	}
             }
-            try {
-            	JSONObject defaultName = item.getJSONObject("default_name");
-            	displayName = defaultName.getString("name");
-            } catch (JSONException e1) {
-            	// alas
-            }
+            
             bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
             bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
             bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));

@@ -7,6 +7,7 @@ import java.util.Locale;
 import org.inaturalist.android.R;
 import org.inaturalist.android.INaturalistService.LoginType;
 
+import android.app.Activity;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -25,7 +26,10 @@ import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ImageView;
 
 public class INaturalistApp extends Application {
     private final static String TAG = "INAT: Application";
@@ -75,48 +79,44 @@ public class INaturalistApp extends Application {
 		return null;
 	}	
 	
-	/** The types of inat network memebers */
-	public enum InaturalistNetworkMember {
-		INATURLIST,
-		NATURALISTA
-	}
-	
+
 	/** Returns the set inat network member */
-	public InaturalistNetworkMember getInaturalistNetworkMember() {
+	public String getInaturalistNetworkMember() {
     	SharedPreferences settings = getPrefs();
-        String networkMemberString = settings.getString("pref_network_member", InaturalistNetworkMember.INATURLIST.toString());
-        
-        return InaturalistNetworkMember.valueOf(networkMemberString);
+        return settings.getString("pref_network_member", null);
 	}
 	   
 	
 	/** Set the inat network member */
-	public void setInaturalistNetworkMember(InaturalistNetworkMember memberNetwork) {
+	public void setInaturalistNetworkMember(String memberNetwork) {
     	SharedPreferences settings = getPrefs();
     	Editor settingsEditor = settings.edit();
 
-    	settingsEditor.putString("pref_network_member", memberNetwork.toString());
+    	settingsEditor.putString("pref_network_member", memberNetwork);
     	settingsEditor.apply();
 	}
 
  	private void updateUIAccordingToNetworkMember() {
- 		InaturalistNetworkMember networkMember = getInaturalistNetworkMember();
+ 		String networkMember = getInaturalistNetworkMember();
 		String newLocale;
 		Resources res = getBaseContext().getResources();
+		
+		newLocale = getStringResourceByName("inat_network_language_" + networkMember);
  		
- 		if (networkMember == InaturalistNetworkMember.NATURALISTA) {
- 			newLocale = "es";
- 		} else {
-			// Default - USA
-			newLocale = "en";
- 		}
-
+		
 		// Change locale settings in the app
 		DisplayMetrics dm = res.getDisplayMetrics();
 		android.content.res.Configuration conf = res.getConfiguration();
-		conf.locale = new Locale(newLocale);
-		res.updateConfiguration(conf, dm);		
-		
+		String parts[] = newLocale.split("-r");
+		if (parts.length > 1) {
+			// Language + country code
+            conf.locale = new Locale(parts[0], parts[1]);
+		} else {
+			// Just the language code
+            conf.locale = new Locale(newLocale);
+		}
+		res.updateConfiguration(conf, dm);			
+
     	SharedPreferences settings = getPrefs();
     	Editor settingsEditor = settings.edit();
 		settingsEditor.putString("pref_locale", newLocale);
@@ -126,29 +126,60 @@ public class INaturalistApp extends Application {
  	}
 	
  	public void detectUserCountryAndUpdateNetwork(Context context) {
+ 		// Don't ask the user again to switch to another network (if he's been asked before)
+ 		if (getInaturalistNetworkMember() != null) return;
+
  		ActivityHelper helper;
         helper = new ActivityHelper(context);
 
 		Resources res = getBaseContext().getResources();
+		
+		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);	
+		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
+		
 		String country = getUserCountry(this);
 		Log.d(TAG, "Detected country: " + country);
 		
-		country = "mx";
-		if (country.equals("mx")) {
-			// Don't ask the user again to switch to NATURALISTA if they've done so in the past
-			if (getInaturalistNetworkMember() == InaturalistNetworkMember.NATURALISTA) return;
+
+        final String[] inatNetworks = getINatNetworks();
+        String detectedNetwork = inatNetworks[0]; // Select default iNaturalist network
+		for (int i = 0; i < inatNetworks.length; i++) {
+			if (country.equalsIgnoreCase(getStringResourceByName("inat_country_" + inatNetworks[i]))) {
+				detectedNetwork = inatNetworks[i];
+				break;
+			}
+		}
+		
+        // Don't ask the user again to switch if it's the default iNat network
+		if (!detectedNetwork.equals(inatNetworks[0])) {
+			// Set the logo in the title bar according to network type
+			String logoName = getStringResourceByName("inat_logo_" + detectedNetwork);
+			String packageName = getPackageName();
+			int resId = getResources().getIdentifier(logoName, "drawable", packageName);
+			titleBarLogo.setImageResource(resId);
 			
-			// Mexico
+			final String selectedNetwork = detectedNetwork;
 			helper.confirm(
-					res.getString(R.string.alert_title_use_naturalista),
-					res.getString(R.string.alert_message_use_naturalista),
+					titleBarView,
+					getStringResourceByName("alert_message_use_" + detectedNetwork),
 					new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							setInaturalistNetworkMember(InaturalistNetworkMember.NATURALISTA);
+							setInaturalistNetworkMember(selectedNetwork);
 							updateUIAccordingToNetworkMember();
 						}
+					},
+					new OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// Set default iNaturalist network
+							setInaturalistNetworkMember(inatNetworks[0]);
+						}
 					});
+		} else {
+			// Set default iNaturalist network
+			setInaturalistNetworkMember(inatNetworks[0]);
 		}
 
 	}
@@ -161,6 +192,21 @@ public class INaturalistApp extends Application {
     	return "";
     }
     
+    public String[] getINatNetworks() {
+        Resources res = getResources();
+        return res.getStringArray(R.array.inat_networks);
+    }
+    
+    public String getStringResourceByName(String aString) {
+    	String packageName = getPackageName();
+    	int resId = getResources().getIdentifier(aString, "string", packageName);
+    	if (resId == 0) {
+    		return aString;
+    	} else {
+    		return getString(resId);
+    	}
+    } 
+    
     public void applyLocaleSettings(){
     	SharedPreferences settings = getPrefs();
 
@@ -169,7 +215,14 @@ public class INaturalistApp extends Application {
         String lang = settings.getString("pref_locale", "");
         if (! "".equals(lang) && ! config.locale.getLanguage().equals(lang))
         {
-            locale = new Locale(lang);            
+        	String parts[] = lang.split("-r");
+        	if (parts.length > 1) {
+        		// Language + country code
+        		locale = new Locale(parts[0], parts[1]);
+        	} else {
+        		// Just the language code
+        		locale = new Locale(lang);
+        	}
         }else{        	
         	locale = deviceLocale;
         }

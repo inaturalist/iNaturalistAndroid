@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <!--  The various iNaturalist networks (note that these values are used to load other configurations
+    	and strings: For example, inat_country_naturlista, inat_country_naturewatchnz, ... -->
+    <string-array name="inat_networks">
+        <item>inaturalist</item> <!--  iNaturalist must be first -->
+        <item>naturalista</item>
+        <item>naturewatchnz</item>
+    </string-array>
+    
+    <!-- The locale to use for each network type - this affects both strings and images used -->
+    <string name="inat_network_language_inaturalist">en</string>
+    <string name="inat_network_language_naturalista">es</string>
+    <string name="inat_network_language_naturewatchnz">en-rNZ</string>
+
+    <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
+    <string name="inat_country_inaturalist"></string> <!-- Empty - any country -->
+    <string name="inat_country_naturalista">mx</string> <!-- Mexico -->
+    <string name="inat_country_naturewatchnz">nz</string> <!-- New Zealand -->
+
+    <!-- The domain endpoint to use for each network type - used when adding new observations -->
+    <string name="inat_host_inaturalist">www.inaturalist.org</string>
+    <string name="inat_host_naturalista">conabio.inaturalist.org</string>
+    <string name="inat_host_naturewatchnz">naturewatch.org.nz</string>
+
+    <!-- The site id parameter to use for each network type - used when adding new observations -->
+    <string name="inat_site_id_inaturalist">1</string>
+    <string name="inat_site_id_naturalista">2</string>
+    <string name="inat_site_id_naturewatchnz">3</string>
+
+    <!-- The lexicon name to use for each network type - used when searching for taxa (so we'll
+    	know which display name to use for the results) -->
+    <string name="inat_lexicon_inaturalist">English</string>
+    <string name="inat_lexicon_naturalista">Spanish</string>
+    <string name="inat_lexicon_naturewatchnz">English</string>
+    
+     <!-- The logo drawable name to use for each network type - used when displaying the swtich-network
+     	dialog - in the title bar logo -->
+    <string name="inat_logo_inaturalist">logo_text</string>
+    <string name="inat_logo_naturalista">logo_naturalista</string>
+    <string name="inat_logo_naturewatchnz">logo_naturewatchnz</string>   
+</resources>

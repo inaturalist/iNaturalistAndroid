@@ -134,35 +134,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="@string/language_settings"
+                android:text="@string/inat_network_settings"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-        		android:id="@+id/radioLang"
+        		android:id="@+id/radioNetworks"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content" >
-                
-	            <RadioButton
-	                android:id="@+id/rbDeviceLang"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:onClick="onRadioButtonClicked"
-	                android:text="@string/use_device_language_settings" />
-
-	            <RadioButton
-	                android:id="@+id/rbDeviceEu"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:onClick="onRadioButtonClicked"
-	                android:text="@string/locale_eu" />
-
-	            <RadioButton
-	                android:id="@+id/rbDeviceGl"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:onClick="onRadioButtonClicked"
-	                android:text="@string/locale_gl" />
-	                
+                <!-- Content will be added here dynamically -->
             </RadioGroup>
         </LinearLayout>
 
