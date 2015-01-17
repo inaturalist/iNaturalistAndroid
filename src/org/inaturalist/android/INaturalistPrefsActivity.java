@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 

@@ -8,7 +8,9 @@ iNaturalistAndroid is an Android app for [iNaturalist.org](http://www.inaturalis
 
 ```bash
 cd path/to/your/workspace
-git clone git@github.com:inaturalist/iNaturalistAndroid.git
+git clone REPO_PATH
+# e.g. git clone git@github.com:inaturalist/iNaturalistAndroid.git, though it will be different 
+# if you're working on your own fork
 
 # Get the JAR deps
 mkdir iNaturalistAndroid/libs/
