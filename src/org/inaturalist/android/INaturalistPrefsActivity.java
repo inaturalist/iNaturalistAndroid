@@ -76,13 +76,16 @@ public class INaturalistPrefsActivity extends SherlockActivity {
     private Button mGoogleLogin;
 	private View mFBSeparator;
 	private RadioGroup rbPreferredNetworkSelector;	
+	private RadioGroup rbPreferredLocaleSelector;
 	private INaturalistApp mApp;
 	
     private UiLifecycleHelper mUiHelper;
     
     private String mGoogleUsername;
     
+    private int formerSelectedNetworkRadioButton;
     private int formerSelectedRadioButton;
+    
     
 	@Override
 	protected void onStart()
@@ -227,11 +230,13 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    	radioButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					onRadioButtonClicked(v);
+					onINatNetworkRadioButtonClicked(v);
 				}
 			});
             rbPreferredNetworkSelector.addView(radioButton);
 	    }
+	    
+	   makeLanguageRadioButtons(); 
 	    
 	    mHelp.setOnClickListener(new OnClickListener() {
             @Override
@@ -328,23 +333,24 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    	mHelper.alert(getString(R.string.username_invalid));
 	    }
 	    
+	    updateINatNetworkRadioButtonState();
 	    updateRadioButtonState();
 	}
 	
-	private void updateRadioButtonState(){
+	private void updateINatNetworkRadioButtonState(){
 	    String[] networks = mApp.getINatNetworks();
 		String network = mApp.getInaturalistNetworkMember();
 
 	    for (int i = 0; i < networks.length; i++) {
 	    	if (networks[i].equals(network)) {
 	    		rbPreferredNetworkSelector.check(i);
-	    		formerSelectedRadioButton = i;
+	    		formerSelectedNetworkRadioButton = i;
 	    		break;
 	    	}
 	    }
 	}
 	
-	public void onRadioButtonClicked(View view){		
+	public void onINatNetworkRadioButtonClicked(View view){		
 	    final boolean checked = ((RadioButton) view).isChecked();
 	    final int selectedRadioButtonId = view.getId();	    	    
 	    
@@ -361,14 +367,14 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	            		mPrefEditor.commit();
 	            	}            	
 
-	            	formerSelectedRadioButton = selectedRadioButtonId;
+	            	formerSelectedNetworkRadioButton = selectedRadioButtonId;
 	            	mApp.applyLocaleSettings();
 	        	    mApp.restart();
 	                break;
 
 	            case DialogInterface.BUTTON_NEGATIVE:
 	                //No button clicked
-	            	rbPreferredNetworkSelector.check(formerSelectedRadioButton);	            	
+	            	rbPreferredNetworkSelector.check(formerSelectedNetworkRadioButton);	            	
 	                break;
 	            }
 	        }
@@ -659,6 +665,87 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}	
+
+
+	public void makeLanguageRadioButtons()
+	{
+		rbPreferredLocaleSelector = (RadioGroup)findViewById(R.id.radioLang);
+
+		String[] locales = LocaleHelper.SupportedLocales;
+		for (int i=0; i < locales.length; i++) {
+			RadioButton rb = new RadioButton(this);
+			final int selectedButton = i;
+			final Activity context = this;
+			rb.setText(new Locale(locales[i]).getDisplayLanguage());
+			rb.setOnClickListener (new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					PromptUserToConfirmSelection(context, selectedButton);
+				}
+			});
+			rbPreferredLocaleSelector.addView(rb, i);
+		}
+	}
+
+	private void PromptUserToConfirmSelection(Activity context, int index) {
+		final int selectedButton = index;
+		final String locale = LocaleHelper.SupportedLocales[index];
+		final Activity thisActivity = context;
+		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				switch (which) {
+				case DialogInterface.BUTTON_POSITIVE:
+					mPrefEditor.putString("pref_locale", locale);
+					mPrefEditor.commit();
+					formerSelectedRadioButton = selectedButton;
+					mApp.applyLocaleSettings();
+					mApp.restart();
+					break;
+
+				case DialogInterface.BUTTON_NEGATIVE:
+					//No button clicked
+					rbPreferredLocaleSelector.check(rbPreferredLocaleSelector.getChildAt(formerSelectedRadioButton).getId());
+					break;
+				}
+			}
+		};
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
+		builder.setMessage(getString(R.string.language_restart))
+		.setPositiveButton(getString(R.string.restart_now), dialogClickListener)
+		.setNegativeButton(getString(R.string.cancel), dialogClickListener).show();
+
+
+	}
+	private void updateRadioButtonState(){
+		String pref_locale = mPreferences.getString("pref_locale", "");
+		String[] supportedLocales = LocaleHelper.SupportedLocales;
+
+		// if no preference is set, find app default
+		if (pref_locale.equalsIgnoreCase("")) {
+			String defaultLocale = LocaleHelper.getDefaultLocale();
+			for (int i = 0; i < supportedLocales.length; i++) {
+				if (supportedLocales[i].equalsIgnoreCase(defaultLocale)) {
+					RadioButton rb = (RadioButton) rbPreferredLocaleSelector.getChildAt(i);
+					rb.setChecked(true);
+					formerSelectedRadioButton = i;
+					return;
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < supportedLocales.length; i++) {
+				if (pref_locale.equalsIgnoreCase(supportedLocales[i])) {
+					RadioButton rb = (RadioButton) rbPreferredLocaleSelector.getChildAt(i);
+					rb.setChecked(true);
+					formerSelectedRadioButton = i;
+					return;
+				}
+			}
+		}
+
 	}	
 
 }
