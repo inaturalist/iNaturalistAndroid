@@ -7,11 +7,22 @@
         <item>naturalista</item>
         <item>naturewatchnz</item>
     </string-array>
+
+    <!-- The names of the iNat networks -->
+    <string name="network_inaturalist">iNaturalist</string>
+    <string name="network_naturalista">NaturaLista</string>
+    <string name="network_naturewatchnz">NatureWatch</string>   
+   
+    <!-- The dialog content asking the user to switch to another iNat network -->
+    <!-- No message for default iNaturalist network (since we don't ask the user in that case) -->
+    <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
+    <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
     
     <!-- The locale to use for each network type - this affects both strings and images used -->
     <string name="inat_network_language_inaturalist">en</string>
     <string name="inat_network_language_naturalista">es</string>
-    <string name="inat_network_language_naturewatchnz">en-rNZ</string>
+    <string name="inat_network_language_naturewatchnz">en</string>
+    
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
     <string name="inat_country_inaturalist"></string> <!-- Empty - any country -->
@@ -34,8 +45,7 @@
     <string name="inat_lexicon_naturalista">Spanish</string>
     <string name="inat_lexicon_naturewatchnz">English</string>
     
-     <!-- The logo drawable name to use for each network type - used when displaying the swtich-network
-     	dialog - in the title bar logo -->
+     <!-- The logo drawable name to use for each network type -->
     <string name="inat_logo_inaturalist">logo_text</string>
     <string name="inat_logo_naturalista">logo_naturalista</string>
     <string name="inat_logo_naturewatchnz">logo_naturewatchnz</string>   

@@ -28,6 +28,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -70,6 +71,7 @@ public class MenuActivity extends ListActivity {
 		Crashlytics.start(this);
         setContentView(R.layout.menu);
         
+       
         MENU_ITEMS = new ArrayList<Map>();
         Map<String,String> map;
         
@@ -128,6 +130,18 @@ public class MenuActivity extends ListActivity {
         
         app.detectUserCountryAndUpdateNetwork(this);
         
+        String detectedNetwork = app.getInaturalistNetworkMember();
+        if (detectedNetwork != null) {
+        	// Set the logo in the title bar according to network type
+        	String logoName = app.getStringResourceByName("inat_logo_" + detectedNetwork);
+        	String packageName = getPackageName();
+        	int resId = getResources().getIdentifier(logoName, "drawable", packageName);
+        	ImageView titleBarLogo = (ImageView) findViewById(R.id.logo);
+        	titleBarLogo.setImageResource(resId);
+        	setTitle(app.getStringResourceByName("network_" + detectedNetwork));
+        }
+
+ 
         
         mAddObservationButton = (Button) findViewById(R.id.add_observation);
         mTakePictureButton = (Button) findViewById(R.id.take_picture);

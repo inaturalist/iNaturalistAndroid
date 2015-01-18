@@ -123,6 +123,28 @@
                 android:text="@string/signed_out" />
         </LinearLayout>
 
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvLanguageSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/language_settings"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+        		android:id="@+id/radioLang"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+            </RadioGroup>
+        </LinearLayout>        
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
