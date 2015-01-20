@@ -40,10 +40,12 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -353,12 +355,11 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	public void onINatNetworkRadioButtonClicked(View view){		
 	    final boolean checked = ((RadioButton) view).isChecked();
 	    final int selectedRadioButtonId = view.getId();	    	    
+	    final String[] networks = mApp.getINatNetworks();
 	    
 	    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 	        @Override
 	        public void onClick(DialogInterface dialog, int which) {
-	        	String[] networks = mApp.getINatNetworks();
-
 	            switch (which){
 	            case DialogInterface.BUTTON_POSITIVE:
 	            	if (checked) {	            	
@@ -381,9 +382,21 @@ public class INaturalistPrefsActivity extends SherlockActivity {
 	    };
 
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setMessage(getString(R.string.network_restart))
-	    	.setPositiveButton(getString(R.string.restart_now), dialogClickListener)
-	        .setNegativeButton(getString(R.string.cancel), dialogClickListener).show();	    	    	   
+	    builder.setMessage(mApp.getStringResourceByName("alert_message_use_" + networks[selectedRadioButtonId]))
+	    	.setPositiveButton(getString(R.string.ok), dialogClickListener)
+	        .setNegativeButton(getString(R.string.cancel), dialogClickListener);
+	    
+		LayoutInflater inflater = getLayoutInflater();
+		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);	
+		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
+	
+	    String logoName = mApp.getStringResourceByName("inat_logo_" + networks[selectedRadioButtonId]);
+	    String packageName = getPackageName();
+	    int resId = getResources().getIdentifier(logoName, "drawable", packageName);
+	    titleBarLogo.setImageResource(resId);
+
+	    builder.setCustomTitle(titleBarView);
+	    builder.show();
 	}
 	
 	@Override

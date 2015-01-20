@@ -16,6 +16,16 @@
         android:layout_alignParentLeft="true"
         />
     
+    <ImageView
+        android:id="@+id/title_bar_logo"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/title_bar_text1"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_text" />
+
     <TextView 
         android:id="@+id/title_bar_text2"
         android:text="\?"
@@ -24,19 +34,7 @@
         android:paddingLeft="5dp"
         style="@android:style/TextAppearance.Holo.DialogWindowTitle"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/title_bar_logo"
         />
 
-    <ImageView 
-        android:id="@+id/title_bar_logo"
-        android:src="@drawable/logo_text"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:scaleType="fitXY"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/title_bar_text1"
-        android:layout_toLeftOf="@id/title_bar_text2"
-        />
-
- 
 </RelativeLayout>

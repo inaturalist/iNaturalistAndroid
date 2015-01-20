@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -54,7 +55,16 @@ public abstract class BaseTab extends SherlockFragment {
             
             getActivity().unregisterReceiver(mProjectsReceiver);
             
-            SerializableJSONArray serializableArray = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName()));
+            Boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            
+            SerializableJSONArray serializableArray;
+            if (!isSharedOnApp) {
+            	serializableArray = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName()));
+            } else {
+            	// Get results from app context
+            	serializableArray = (SerializableJSONArray) mApp.getServiceResult(getFilterResultName());
+            	mApp.setServiceResult(getFilterResultName(), null); // Clear data afterwards
+            }
             
             if (serializableArray == null) {
             	mProjects = new ArrayList<JSONObject>();
@@ -135,7 +145,8 @@ public abstract class BaseTab extends SherlockFragment {
     private ProjectsReceiver mProjectsReceiver;
     private TextView mEmptyListLabel;
     private EditText mSearchText;
-    private ProgressBar mProgressBar; 	
+    private ProgressBar mProgressBar;
+	private INaturalistApp mApp; 	
     
     /*
      * Methods that should be overriden by subclasses
@@ -216,6 +227,7 @@ public abstract class BaseTab extends SherlockFragment {
         Log.i(TAG, "onCreateView: " + getActionName() + ":" + getClass().getName() + (mProjects != null ? mProjects.toString() : "null"));
         
         mProjects = null;
+        mApp = (INaturalistApp) getActivity().getApplication();
         
         View v = inflater.inflate(R.layout.project_list, container, false);
         

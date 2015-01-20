@@ -1,8 +1,11 @@
 package org.inaturalist.android;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.inaturalist.android.R;
 import org.inaturalist.android.INaturalistService.LoginType;
@@ -55,6 +58,21 @@ public class INaturalistApp extends Application {
         deviceLocale = getResources().getConfiguration().locale;
         applyLocaleSettings();
     }
+    
+    
+    /* Used for accessing iNat service results - since passing large amounts of intent data
+     * is impossible (for example, returning a huge list of projects/guides won't work via intents)
+     */
+    private Map<String, Serializable> mServiceResults = new HashMap<String, Serializable>();
+
+    public void setServiceResult(String key, Serializable value) {
+    	mServiceResults.put(key,  value);
+    }
+    
+    public Serializable getServiceResult(String key) {
+    	return mServiceResults.get(key);
+    }
+   
 
  	/**
 	 * Get ISO 3166-1 alpha-2 country code for this device (or null if not available)
@@ -62,13 +80,14 @@ public class INaturalistApp extends Application {
 	 * @return country code or null
 	 */
 	public static String getUserCountry(Context context) {
+ 		ActivityHelper helper;
+        helper = new ActivityHelper(context);
 		try {
 			final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 			final String simCountry = tm.getSimCountryIso();
 			if (simCountry != null && simCountry.length() == 2) { // SIM country code is available
 				return simCountry.toLowerCase(Locale.US);
-			}
-			else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
+			} else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
 				String networkCountry = tm.getNetworkCountryIso();
 				if (networkCountry != null && networkCountry.length() == 2) { // network country code is available
 					return networkCountry.toLowerCase(Locale.US);
@@ -76,6 +95,7 @@ public class INaturalistApp extends Application {
 			}
 		}
 		catch (Exception e) { }
+
 		return null;
 	}	
 	
@@ -138,11 +158,18 @@ public class INaturalistApp extends Application {
 		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);	
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
 		
-		String country = getUserCountry(this);
+		String country = getUserCountry(context);
 		Log.d(TAG, "Detected country: " + country);
 		
-
         final String[] inatNetworks = getINatNetworks();
+
+		if (country == null) {
+			// Couldn't detect country - set default iNat network
+			setInaturalistNetworkMember(inatNetworks[0]);
+			return;
+		}
+		
+
         String detectedNetwork = inatNetworks[0]; // Select default iNaturalist network
 		for (int i = 0; i < inatNetworks.length; i++) {
 			if (country.equalsIgnoreCase(getStringResourceByName("inat_country_" + inatNetworks[i]))) {

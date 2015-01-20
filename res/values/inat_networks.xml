@@ -14,7 +14,7 @@
     <string name="network_naturewatchnz">NatureWatch</string>   
    
     <!-- The dialog content asking the user to switch to another iNat network -->
-    <!-- No message for default iNaturalist network (since we don't ask the user in that case) -->
+    <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
     <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
     

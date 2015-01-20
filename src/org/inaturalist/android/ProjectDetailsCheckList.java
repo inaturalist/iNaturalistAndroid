@@ -204,16 +204,10 @@ public class ProjectDetailsCheckList extends SherlockFragment {
 
             mProgress.setVisibility(View.GONE);
             
-            if (checkList.length() > 0) {
-                mProjectTaxaEmpty.setVisibility(View.GONE);
-                mProjectTaxa.setVisibility(View.VISIBLE);
-                mAdapter = new CheckListAdapter(getActivity(), mCheckList);
-                mProjectTaxa.setAdapter(mAdapter);             
-            } else {
-                mProjectTaxaEmpty.setText(R.string.no_check_list);
-                mProjectTaxaEmpty.setVisibility(View.VISIBLE);
-                mProjectTaxa.setVisibility(View.GONE);
-            }
+            mProjectTaxaEmpty.setVisibility(View.GONE);
+            mProjectTaxa.setVisibility(View.VISIBLE);
+            mAdapter = new CheckListAdapter(getActivity(), mCheckList);
+            mProjectTaxa.setAdapter(mAdapter);             
         }
     }
   

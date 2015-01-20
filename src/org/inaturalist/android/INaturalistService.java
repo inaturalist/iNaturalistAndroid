@@ -78,6 +78,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
     
     
+    public static final String IS_SHARED_ON_APP = "is_shared_on_app";
+
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String PROJECTS_RESULT = "projects_result";
@@ -236,15 +238,17 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
                 SerializableJSONArray taxa = getTaxaForGuide(guideId);
 
+                mApp.setServiceResult(ACTION_TAXA_FOR_GUIDES_RESULT, taxa);
                 Intent reply = new Intent(ACTION_TAXA_FOR_GUIDES_RESULT);
-                reply.putExtra(TAXA_GUIDE_RESULT, taxa);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
                 SerializableJSONArray guides = getAllGuides();
                 
+                mApp.setServiceResult(ACTION_ALL_GUIDES_RESULT, guides);
                 Intent reply = new Intent(ACTION_ALL_GUIDES_RESULT);
-                reply.putExtra(GUIDES_RESULT, guides);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_MY_GUIDES)) {
@@ -826,7 +830,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         String url = "https://" + inatHost + "/guides.json?";
         
-        url += "site_id=" + mApp.getStringResourceByName("inat_site_id_" + inatNetwork) + "&per_page=200&page=";
+        url += "per_page=200&page=";
         
         JSONArray results = new JSONArray();
 
@@ -861,7 +865,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
        
-        String url = "https://" + inatHost + "/guides.json?by=you&per_page=200&site_id=" + mApp.getStringResourceByName("inat_site_id_" + inatNetwork);
+        String url = "https://" + inatHost + "/guides.json?by=you&per_page=200";
         JSONArray json = get(url, true);
         
         return new SerializableJSONArray(json);
@@ -901,7 +905,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "https://" + inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200&site_id=%s", lat, lon, mApp.getStringResourceByName("inat_site_id_" + inatNetwork));
+        String url = "https://" + inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
         Log.e(TAG, url);
 
         JSONArray json = get(url);
@@ -923,7 +927,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "https://" + inatHost + String.format("/projects.json?latitude=%s&longitude=%s&site_id=%s", lat, lon, mApp.getStringResourceByName("inat_site_id_" + inatNetwork));
+        String url = "https://" + inatHost + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
         
         Log.e(TAG, url);
 
@@ -978,7 +982,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = "https://" + inatHost + "/projects.json?featured=true&site_id=" + mApp.getStringResourceByName("inat_site_id_" + inatNetwork);
+        String url = "https://" + inatHost + "/projects.json?featured=true";
         
         JSONArray json = get(url);
         
