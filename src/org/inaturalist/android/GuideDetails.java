@@ -176,6 +176,9 @@ public class GuideDetails extends SherlockActivity {
 					});
             	} catch (JSONException e) {
             		e.printStackTrace();
+            	} catch (Exception e) {
+            		// Could happen if user scrolls really fast and there a LOT of thumbnails being downloaded at once (too many threads at once)
+            		e.printStackTrace();
             	}
             }
             
@@ -191,7 +194,17 @@ public class GuideDetails extends SherlockActivity {
         public void onReceive(Context context, Intent intent) {
             unregisterReceiver(mTaxaGuideReceiver);
             
-            SerializableJSONArray taxaSerializable = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.TAXA_GUIDE_RESULT);
+            SerializableJSONArray taxaSerializable;
+            
+            Boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            
+            if (!isSharedOnApp) {
+            	taxaSerializable = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.TAXA_GUIDE_RESULT);
+            } else {
+            	// Get results from app context
+            	taxaSerializable = (SerializableJSONArray) mApp.getServiceResult(INaturalistService.ACTION_TAXA_FOR_GUIDES_RESULT);
+            	mApp.setServiceResult(INaturalistService.TAXA_GUIDE_RESULT, null); // Clear data afterwards
+            }
             JSONArray taxa = (taxaSerializable == null ? new SerializableJSONArray() : taxaSerializable).getJSONArray();
             mTaxa = new ArrayList<JSONObject>();
             
