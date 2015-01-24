@@ -317,13 +317,17 @@ public class INaturalistPrefsActivity extends SherlockActivity {
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            	final String inatNetwork = mApp.getInaturalistNetworkMember();
+
                 mHelper.confirm(getString(R.string.ready_to_signup), 
-                        getString(R.string.about_to_signup),
+                		mApp.getStringResourceByName("inat_sign_up_" + inatNetwork),
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                    	String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
                         Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(INaturalistService.HOST + "/users/new"));
+                        i.setData(Uri.parse("http://" + inatHost + "/users/new"));
                         startActivity(i);
                     }
                 });
