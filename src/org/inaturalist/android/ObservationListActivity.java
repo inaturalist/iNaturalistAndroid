@@ -18,7 +18,10 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -39,6 +42,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +70,8 @@ public class ObservationListActivity extends SherlockListActivity {
 	private TextView mSyncObservations;
 
 	private static final int COMMENTS_IDS_REQUEST_CODE = 100;
+
+	private static final int OBSERVATION_LIST_LOADER = 0x01;
 	
 	@Override
 	protected void onStart()
@@ -250,7 +256,7 @@ public class ObservationListActivity extends SherlockListActivity {
         
         // Inform the list we provide context menus for items
         //getListView().setOnCreateContextMenuListener(this);
-        
+		
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         
@@ -262,7 +268,11 @@ public class ObservationListActivity extends SherlockListActivity {
         }
         conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         
+        /*
         Cursor cursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
+        		conditions, null, Observation.DEFAULT_SORT_ORDER);
+        		*/
+        Cursor cursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION, 
         		conditions, null, Observation.DEFAULT_SORT_ORDER);
 
         // Used to map notes entries from the database to views
@@ -273,7 +283,8 @@ public class ObservationListActivity extends SherlockListActivity {
         setListAdapter(adapter);
     }
     
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public void onPause() {
         // save last position of list so we can resume there later
         // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
@@ -281,6 +292,17 @@ public class ObservationListActivity extends SherlockListActivity {
         mLastIndex = lv.getFirstVisiblePosition();
         View v = lv.getChildAt(0);
         mLastTop = (v == null) ? 0 : v.getTop();
+        
+        
+        ObservationCursorAdapter adapter = (ObservationCursorAdapter) getListAdapter();
+        adapter.notifyDataSetInvalidated();
+        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD){
+        	Cursor oldCursor = adapter.swapCursor(null);
+        	if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
+        } else {
+        	adapter.changeCursor(null);
+        }
+
         super.onPause();
     }
     
@@ -291,6 +313,9 @@ public class ObservationListActivity extends SherlockListActivity {
         lv.setSelectionFromTop(mLastIndex, mLastTop);
       
         refreshSyncBar();
+        
+        ObservationCursorAdapter adapter = (ObservationCursorAdapter) getListAdapter();
+        adapter.refreshCursor();
     }
     
     private boolean isLoggedIn() {
@@ -368,12 +393,16 @@ public class ObservationListActivity extends SherlockListActivity {
         	}
         	conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         	
+        	/*
         	Cursor newCursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
+        			conditions, null, Observation.DEFAULT_SORT_ORDER);
+        			*/
+        	Cursor newCursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION, 
         			conditions, null, Observation.DEFAULT_SORT_ORDER);
 
         	if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD){
         		Cursor oldCursor = swapCursor(newCursor);
-        		if (!oldCursor.isClosed()) oldCursor.close();
+        		if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
         	} else {
         		changeCursor(newCursor);
         	}
@@ -745,4 +774,5 @@ public class ObservationListActivity extends SherlockListActivity {
         }
  
      }
+
 }
