@@ -268,10 +268,6 @@ public class ObservationListActivity extends SherlockListActivity {
         }
         conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         
-        /*
-        Cursor cursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
-        		conditions, null, Observation.DEFAULT_SORT_ORDER);
-        		*/
         Cursor cursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION, 
         		conditions, null, Observation.DEFAULT_SORT_ORDER);
 
@@ -393,10 +389,6 @@ public class ObservationListActivity extends SherlockListActivity {
         	}
         	conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         	
-        	/*
-        	Cursor newCursor = managedQuery(getIntent().getData(), Observation.PROJECTION, 
-        			conditions, null, Observation.DEFAULT_SORT_ORDER);
-        			*/
         	Cursor newCursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION, 
         			conditions, null, Observation.DEFAULT_SORT_ORDER);
 
