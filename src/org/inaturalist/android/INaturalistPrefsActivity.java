@@ -7,6 +7,7 @@ import org.inaturalist.android.INaturalistService.LoginType;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.facebook.Session;
 import com.facebook.SessionState;
@@ -53,7 +54,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class INaturalistPrefsActivity extends SherlockActivity {
+public class INaturalistPrefsActivity extends SherlockFragmentActivity {
 	private static final String TAG = "INaturalistPrefsActivity";
 	public static final String REAUTHENTICATE_ACTION = "reauthenticate_action";
 	

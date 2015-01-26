@@ -6,6 +6,7 @@ import org.inaturalist.android.INaturalistService.LoginType;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -22,7 +23,7 @@ import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.*;
 
-public class WebActivity extends SherlockActivity {
+public class WebActivity extends SherlockFragmentActivity {
     private static String TAG = "WebActivity";
     private static String HOME_URL = INaturalistService.HOST + "/home.mobile";
     private WebView mWebView;
