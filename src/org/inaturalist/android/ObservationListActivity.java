@@ -8,6 +8,7 @@ import java.util.HashMap;
 import org.apache.commons.lang3.StringUtils;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -49,6 +50,8 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -56,7 +59,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ObservationListActivity extends SherlockListActivity {
+public class ObservationListActivity extends SherlockFragmentActivity implements OnItemClickListener {
 	public static String TAG = "INAT:ObservationListActivity";
 	
 	private PullToRefreshListView mPullRefreshListView;
@@ -68,6 +71,10 @@ public class ObservationListActivity extends SherlockListActivity {
 	private ActionBar mTopActionBar;
 
 	private TextView mSyncObservations;
+
+	private ListView mListView;
+
+	private ObservationCursorAdapter mAdapter;
 
 	private static final int COMMENTS_IDS_REQUEST_CODE = 100;
 
@@ -102,7 +109,7 @@ public class ObservationListActivity extends SherlockListActivity {
             mPullRefreshListView.onRefreshComplete();
             mPullRefreshListView.refreshDrawableState();
             
-            ObservationCursorAdapter adapter = (ObservationCursorAdapter) getListAdapter();
+            ObservationCursorAdapter adapter = mAdapter;
             adapter.refreshCursor();
         }
     } 	
@@ -276,7 +283,13 @@ public class ObservationListActivity extends SherlockListActivity {
                 this, R.layout.list_item, cursor,
                 new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
                 new int[] { R.id.speciesGuess, R.id.subContent });
-        setListAdapter(adapter);
+        
+        mListView = (ListView) findViewById(android.R.id.list);
+        mAdapter = adapter;
+        
+        mListView.setEmptyView(findViewById(android.R.id.empty));
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(this);
     }
     
     @SuppressLint("NewApi")
@@ -290,7 +303,7 @@ public class ObservationListActivity extends SherlockListActivity {
         mLastTop = (v == null) ? 0 : v.getTop();
         
         
-        ObservationCursorAdapter adapter = (ObservationCursorAdapter) getListAdapter();
+        ObservationCursorAdapter adapter = mAdapter;
         adapter.notifyDataSetInvalidated();
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD){
         	Cursor oldCursor = adapter.swapCursor(null);
@@ -310,7 +323,7 @@ public class ObservationListActivity extends SherlockListActivity {
       
         refreshSyncBar();
         
-        ObservationCursorAdapter adapter = (ObservationCursorAdapter) getListAdapter();
+        ObservationCursorAdapter adapter = mAdapter;
         adapter.refreshCursor();
     }
     
@@ -357,7 +370,7 @@ public class ObservationListActivity extends SherlockListActivity {
     }
     
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
+    public void onItemClick(AdapterView<?> l, View v, int position, long id) {
         Uri uri = ContentUris.withAppendedId(getIntent().getData(), id);
         
         String action = getIntent().getAction();
