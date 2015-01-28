@@ -23,7 +23,7 @@ import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.*;
 
-public class WebActivity extends SherlockFragmentActivity {
+public class WebActivity extends BaseFragmentActivity {
     private static String TAG = "WebActivity";
     private static String HOME_URL = INaturalistService.HOST + "/home.mobile";
     private WebView mWebView;
@@ -58,6 +58,7 @@ public class WebActivity extends SherlockFragmentActivity {
 
         app = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.web);
+        onDrawerCreate(savedInstanceState);
         helper = new ActivityHelper(this);
         mWebView = (WebView) findViewById(R.id.webview);
 
@@ -132,12 +133,6 @@ public class WebActivity extends SherlockFragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            finish();
-            return true;
-        case R.id.menu:
-            startActivity(new Intent(this, MenuActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-            return true;
         case R.id.reload:
             mWebView.reload();
             return true;

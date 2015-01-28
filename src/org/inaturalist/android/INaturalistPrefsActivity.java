@@ -5,10 +5,6 @@ import java.util.Locale;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.Session.StatusCallback;
@@ -54,7 +50,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class INaturalistPrefsActivity extends SherlockFragmentActivity {
+public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	private static final String TAG = "INaturalistPrefsActivity";
 	public static final String REAUTHENTICATE_ACTION = "reauthenticate_action";
 	
@@ -147,18 +143,6 @@ public class INaturalistPrefsActivity extends SherlockFragmentActivity {
     }
 	
     
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-         case android.R.id.home:
-            finish();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
-    
-    
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -167,10 +151,6 @@ public class INaturalistPrefsActivity extends SherlockFragmentActivity {
             mApp = (INaturalistApp) getApplicationContext();
         }
 		
-		ActionBar actionBar = getSupportActionBar();
-		actionBar.setHomeButtonEnabled(true);
-		actionBar.setDisplayHomeAsUpEnabled(true);
-
 		
 //		try {
 //		    Log.d("KeyHash:", "ENTER");
@@ -192,6 +172,8 @@ public class INaturalistPrefsActivity extends SherlockFragmentActivity {
         mUiHelper.onCreate(savedInstanceState);
         
 	    setContentView(R.layout.preferences);
+	    
+	    onDrawerCreate(savedInstanceState);
 	    
 	    mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
 	    mPrefEditor = mPreferences.edit();

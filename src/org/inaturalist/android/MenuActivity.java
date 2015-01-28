@@ -136,15 +136,15 @@ public class MenuActivity extends ListActivity {
         	String logoName = app.getStringResourceByName("inat_logo_" + detectedNetwork);
         	String packageName = getPackageName();
         	int resId = getResources().getIdentifier(logoName, "drawable", packageName);
-        	ImageView titleBarLogo = (ImageView) findViewById(R.id.logo);
+        	ImageView titleBarLogo = (ImageView) findViewById(R.id.menu_logo);
         	titleBarLogo.setImageResource(resId);
         	setTitle(app.getStringResourceByName("network_" + detectedNetwork));
         }
 
  
         
-        mAddObservationButton = (Button) findViewById(R.id.add_observation);
-        mTakePictureButton = (Button) findViewById(R.id.take_picture);
+        mAddObservationButton = (Button) findViewById(R.id.menu_add_observation);
+        mTakePictureButton = (Button) findViewById(R.id.menu_take_picture);
         
         mAddObservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +155,7 @@ public class MenuActivity extends ListActivity {
         });
         
         
-        mSyncObservationsButton = (Button) findViewById(R.id.sync_observations);
+        mSyncObservationsButton = (Button) findViewById(R.id.menu_sync_observations);
 
         mSyncObservationsButton.setOnClickListener(new View.OnClickListener() {
             @Override

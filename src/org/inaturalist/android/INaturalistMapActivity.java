@@ -41,7 +41,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.VisibleRegion;
 
-public class INaturalistMapActivity extends SherlockFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener {
+public class INaturalistMapActivity extends BaseFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener {
     public final static String TAG = "INaturalistMapActivity";
     private GoogleMap mMap;
     private Circle mCircle;
@@ -69,11 +69,8 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
         setContentView(R.layout.map);
+	    onDrawerCreate(savedInstanceState);
     }
 
     @Override 
@@ -115,9 +112,6 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-         case android.R.id.home:
-            finish();
-            return true;
         case R.id.add:
             // Launch activity to insert a new item
             startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditor.class));
@@ -130,10 +124,6 @@ public class INaturalistMapActivity extends SherlockFragmentActivity implements 
                 mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 item.setTitle(R.string.street);
             }
-            return true;
-        case R.id.menu:
-            startActivity(new Intent(this, MenuActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-            finish();
             return true;
         case R.id.nearby:
         	if (!isNetworkAvailable()) {

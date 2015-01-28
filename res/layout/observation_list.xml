@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-	
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/observations_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"/>
-        
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="30dp"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        style="@android:style/TextAppearance.Medium"
-        android:text="@string/no_observations_yet" />
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/sync_observations"
-        android:background="#000000"
-        android:textColor="#FFFFFF"
+    <!-- Main content view -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"
-        style="@android:style/TextAppearance.Medium"
-        android:text="@string/sync_x_observations" />
-</RelativeLayout>
+        android:layout_height="fill_parent">
+        
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/observations_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"/>
+            
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            style="@android:style/TextAppearance.Medium"
+            android:text="@string/no_observations_yet" />
+
+        <TextView
+            android:id="@+id/sync_observations"
+            android:background="#000000"
+            android:textColor="#FFFFFF"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            style="@android:style/TextAppearance.Medium"
+            android:text="@string/sync_x_observations" />
+        
+    </RelativeLayout>
+
+    <!-- Side menu (navigation drawer) -->
+    <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
+
+</android.support.v4.widget.DrawerLayout>
