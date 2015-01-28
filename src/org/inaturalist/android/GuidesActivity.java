@@ -22,7 +22,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.content.Context;
 
-public class GuidesActivity extends SherlockFragmentActivity {
+public class GuidesActivity extends BaseFragmentActivity {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     
@@ -46,22 +46,12 @@ public class GuidesActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.guides);
+        onDrawerCreate(savedInstanceState);
         
         mViewPager = (ViewPager) findViewById(R.id.pager);
         
         setupUI();
     }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        // Respond to the action bar's Up/Home button
-        case android.R.id.home:
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    } 
     
    
     private void setupUI() {

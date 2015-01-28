@@ -20,7 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.content.Context;
 
-public class ProjectsActivity extends SherlockFragmentActivity {
+public class ProjectsActivity extends BaseFragmentActivity {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     
@@ -44,29 +44,17 @@ public class ProjectsActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.projects);
+	    onDrawerCreate(savedInstanceState);
         
         mViewPager = (ViewPager) findViewById(R.id.pager);
         
         setupUI();
     }
     
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        // Respond to the action bar's Up/Home button
-        case android.R.id.home:
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    } 
-    
-   
+  
     private void setupUI() {
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Add the tabs
         mTabsAdapter = new TabsAdapter(this, actionBar, mViewPager);

@@ -5,12 +5,12 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/menu_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginBottom="0dp"
         android:gravity="center"
-        android:maxHeight="50dp"
         android:src="@drawable/logo_text" >
     </ImageView>
 
@@ -18,25 +18,29 @@
         android:id="@+id/actions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="0dp"
+        android:layout_marginTop="0dp"
         android:gravity="center_vertical" >
 
         <Button
-            android:id="@+id/add_observation"
+            android:id="@+id/menu_add_observation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
             android:layout_weight="0.5"
             android:drawableLeft="@android:drawable/ic_menu_add"
             android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
             android:text="@string/add_observation" />
 
         <Button
-            android:id="@+id/take_picture"
+            android:id="@+id/menu_take_picture"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="fill_vertical"
-            android:layout_marginLeft="2dp"
             android:layout_weight="0.5"
             android:drawableLeft="@android:drawable/ic_menu_camera"
             android:gravity="center_vertical"
@@ -44,7 +48,7 @@
     </LinearLayout>
 
         <Button
-            android:id="@+id/sync_observations"
+            android:id="@+id/menu_sync_observations"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"

@@ -1,216 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:facebook="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <com.facebook.widget.LoginButton
-                android:id="@+id/facebook_login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical|center_horizontal" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:id="@+id/google_login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/google"
-                android:drawablePadding="5dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="@string/google_login" />
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/facebook_login_button_separator"
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="#CCC" />
+    <!-- Main content view -->
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:facebook="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
         <LinearLayout
-            android:id="@+id/signIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/sign_in_to_inat"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/username" >
-
-                <requestFocus />
-            </EditText>
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
-
-            <Button
-                android:id="@+id/signInButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/sign_in" />
-
-            <TextView
-                android:id="@+id/orLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:gravity="center"
-                android:text="@string/or" />
-
-            <Button
-                android:id="@+id/signUpButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/create_new_account" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/signOut"
+            android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:padding="5dp" >
 
-            <TextView
-                android:id="@+id/signOutLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/signed_in_as_plain"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <Button
-                android:id="@+id/signOutButton"
+                <com.facebook.widget.LoginButton
+                    android:id="@+id/facebook_login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical|center_horizontal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/google_login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:drawableLeft="@drawable/google"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/google_login" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/facebook_login_button_separator"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#CCC" />
+
+            <LinearLayout
+                android:id="@+id/signIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/signed_out" />
-        </LinearLayout>
+                android:orientation="vertical" >
 
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/sign_in_to_inat"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvLanguageSettings"
-                android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/username" >
+
+                    <requestFocus />
+                </EditText>
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
+
+                <Button
+                    android:id="@+id/signInButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/sign_in" />
+
+                <TextView
+                    android:id="@+id/orLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/or" />
+
+                <Button
+                    android:id="@+id/signUpButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/create_new_account" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/signOut"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/language_settings"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:orientation="vertical"
+                android:visibility="gone" >
 
-            <RadioGroup
-        		android:id="@+id/radioLang"
-        		android:layout_width="wrap_content"
-        		android:layout_height="wrap_content" >
-            </RadioGroup>
-        </LinearLayout>        
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/signOutLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/signed_in_as_plain"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvLanguageSettings"
-                android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/signOutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signed_out" />
+            </LinearLayout>
+
+            
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/inat_network_settings"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <RadioGroup
-        		android:id="@+id/radioNetworks"
-        		android:layout_width="wrap_content"
-        		android:layout_height="wrap_content" >
-                <!-- Content will be added here dynamically -->
-            </RadioGroup>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" >
-
-            <TextView
-                android:id="@+id/tutorial_link"
-                style="@android:style/TextAppearance.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/tutorial_link" />
-
-            <TextView
-                android:id="@+id/contact_support"
-                style="@android:style/TextAppearance.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tutorial_link"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:text="@string/contact_support" />
-
-            <TextView
-                android:id="@+id/credits"
-                style="@android:style/TextAppearance.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/contact_support"
-                android:layout_marginTop="30dp"
-                android:text="@string/credits" />
-
-            <TextView
-                android:id="@+id/version"
-                style="@android:style/TextAppearance.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/credits"
                 android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:text="Version 1.2.3" />
+                android:orientation="vertical" >
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tvLanguageSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/language_settings"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    </LinearLayout>
+                <RadioGroup
+                    android:id="@+id/radioLang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                </RadioGroup>
+            </LinearLayout>        
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical" >
 
-</ScrollView>
+                <TextView
+                    android:id="@+id/tvLanguageSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/inat_network_settings"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <RadioGroup
+                    android:id="@+id/radioNetworks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <!-- Content will be added here dynamically -->
+                </RadioGroup>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" >
+
+                <TextView
+                    android:id="@+id/tutorial_link"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/tutorial_link" />
+
+                <TextView
+                    android:id="@+id/contact_support"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tutorial_link"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/contact_support" />
+
+                <TextView
+                    android:id="@+id/credits"
+                    style="@android:style/TextAppearance.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/contact_support"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/credits" />
+
+                <TextView
+                    android:id="@+id/version"
+                    style="@android:style/TextAppearance.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/credits"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="Version 1.2.3" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Side menu (navigation drawer) -->
+    <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
+
+</android.support.v4.widget.DrawerLayout>
