@@ -204,7 +204,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         INaturalistApp app = (INaturalistApp)(getApplication());
         String detectedNetwork = app.getInaturalistNetworkMember();
         if (detectedNetwork != null) {
-        	setTitle(app.getStringResourceByName("network_" + detectedNetwork) + " - " + getTitle());
+        	setTitle(app.getStringResourceByName("network_" + detectedNetwork) + " - " + getString(R.string.observations));
         }
         
         Intent intent = getIntent();
