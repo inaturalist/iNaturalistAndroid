@@ -7,9 +7,6 @@
     android:background="#000000"
     >
     
-    <!-- Header -->
-    <include android:id="@+id/header" layout="@layout/menu_header" />
-
     <!-- Side menu items -->
     <ListView android:id="@+id/menu_items"
         android:layout_width="match_parent"

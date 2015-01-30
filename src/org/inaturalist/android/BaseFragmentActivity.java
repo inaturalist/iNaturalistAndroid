@@ -8,33 +8,19 @@ import java.util.Map;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 
-import android.app.Activity;
-import android.content.ComponentName;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.provider.MediaStore;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.DrawerLayout.DrawerListener;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -57,12 +43,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 
     private List<Map> MENU_ITEMS;
 	private ActionBarDrawerToggle mDrawerToggle;
-	private Uri mPhotoUri;
 	private INaturalistApp app;
 	private ActivityHelper mHelper;
-	private Button mAddObservationButton;
-	private Button mTakePictureButton;
-	private Button mSyncObservationsButton;
 
 	public void onDrawerCreate(Bundle savedInstanceState) {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -84,76 +66,11 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 
         buildSideMenu();
         
-        if  (savedInstanceState != null) {
-            String photoUri = savedInstanceState.getString("mFileUri");
-            if (photoUri != null) {mPhotoUri = Uri.parse(photoUri);}
-        }
-        
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
         if (mHelper == null) { mHelper = new ActivityHelper(this);}
         
  
         app.detectUserCountryAndUpdateNetwork(this);
-        
-        String detectedNetwork = app.getInaturalistNetworkMember();
-        if (detectedNetwork != null) {
-        	// Set the logo in the title bar according to network type
-        	String logoName = app.getStringResourceByName("inat_logo_" + detectedNetwork);
-        	String packageName = getPackageName();
-        	int resId = getResources().getIdentifier(logoName, "drawable", packageName);
-        	ImageView titleBarLogo = (ImageView) findViewById(R.id.menu_logo);
-        	titleBarLogo.setImageResource(resId);
-        	setTitle(app.getStringResourceByName("network_" + detectedNetwork) + " - " + getTitle());
-        }
-
- 
-        
-        mAddObservationButton = (Button) findViewById(R.id.menu_add_observation);
-        mTakePictureButton = (Button) findViewById(R.id.menu_take_picture);
-        
-        mAddObservationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            	Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
-            	startActivity(intent);
-        		mDrawerLayout.closeDrawer(mSideMenu);
-            }
-        });
-        
-        
-        mSyncObservationsButton = (Button) findViewById(R.id.menu_sync_observations);
-
-        mSyncObservationsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isNetworkAvailable()) {
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
-                    return;
-                } else if (!isLoggedIn()) {
-                	// User not logged-in - redirect to settings screen
-                	startActivity(new Intent(BaseFragmentActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-                    return;
-                }
-
-                Toast.makeText(getApplicationContext(), R.string.syncing_observations, Toast.LENGTH_LONG).show(); 
-
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, BaseFragmentActivity.this, INaturalistService.class);
-                startService(serviceIntent);
-        		mDrawerLayout.closeDrawer(mSideMenu);
- 
-            }
-        });        
-        
-        mTakePictureButton.setOnClickListener(new View.OnClickListener() {           
-            @Override
-            public void onClick(View v) {
-                mPhotoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
-                openImageIntent(BaseFragmentActivity.this, mPhotoUri, SELECT_IMAGE_REQUEST_CODE);
-        		mDrawerLayout.closeDrawer(mSideMenu);
-            }
-        });
-        
-        refreshSyncButton(); 
         
         // See if we need to display the tutorial (only for the first time using the app)
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -262,7 +179,6 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         	if (mDrawerLayout.isDrawerOpen(mSideMenu)) {
         		mDrawerLayout.closeDrawer(mSideMenu);
         	} else {
-        		refreshSyncButton();
         		mDrawerLayout.openDrawer(mSideMenu);
         	}
         	return true;
@@ -289,125 +205,17 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}	
  	
-    private boolean isLoggedIn() {
-        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-        return prefs.getString("username", null) != null;
-    }    
 
-    public static void openImageIntent(Activity activity, Uri captureImageOutputFile, int requestCode) {
-
-        // Camera
-        final List<Intent> cameraIntents = new ArrayList<Intent>();
-        final Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        final PackageManager packageManager = activity.getPackageManager();
-        final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
-        for(ResolveInfo res : listCam) {
-            final String packageName = res.activityInfo.packageName;
-            final Intent intent = new Intent(captureIntent);
-            intent.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
-            intent.setPackage(packageName);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, captureImageOutputFile);
-            cameraIntents.add(intent);
-        }
-
-        // File system
-        final Intent galleryIntent = new Intent();
-        galleryIntent.setType("image/*");
-        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-
-        // Chooser of filesystem options.
-        final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Source");
-
-        // Add the camera options
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[]{}));
-
-        activity.startActivityForResult(chooserIntent, requestCode);
-    }
-
-    /** Shows the sync observations button, if needed */
-    private void refreshSyncButton() {
-        int syncCount = 0;
-
-        Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
-        		Observation.PROJECTION, 
-        		"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
-        		null, 
-        		Observation.SYNC_ORDER);
-        syncCount = c.getCount();
-        c.close();
-
-    	if (syncCount > 0) {
-    		mSyncObservationsButton.setVisibility(View.VISIBLE);
-    	} else {
-    		mSyncObservationsButton.setVisibility(View.GONE);
-    	}
-    } 	
-    
-    
     @Override
     protected void onResume() {
         super.onResume();
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
-
-        refreshSyncButton();
     }
     
     @Override
     protected void onPause() {
         super.onPause();
         mHelper.stopLoading();
-    }
-    
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mPhotoUri != null) { outState.putString("mFileUri", mPhotoUri.toString()); }
-    }
-    
-    
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SELECT_IMAGE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                final boolean isCamera;
-                if(data == null) {
-                    isCamera = true;
-                } else {
-                    final String action = data.getAction();
-                    if(action == null) {
-                        isCamera = false;
-                    } else {
-                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    }
-                }
-
-                Uri selectedImageUri;
-                if(isCamera) {
-                    selectedImageUri = mPhotoUri;
-                } else {
-                    selectedImageUri = data == null ? null : data.getData();
-                }
-                
-                Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
-                
-                mHelper.loading(getString(R.string.processing));
-                Intent intent = new Intent(Intent.ACTION_INSERT, ObservationPhoto.CONTENT_URI, this, ObservationEditor.class);
-                intent.putExtra("photoUri", selectedImageUri);
-                startActivity(intent);
-                
-            } else if (resultCode == RESULT_CANCELED) {
-                // User cancelled the image capture
-            	if (mPhotoUri != null) getContentResolver().delete(mPhotoUri, null, null);
-                
-            } else {
-                // Image capture failed, advise user
-                Toast.makeText(this, String.format(getString(R.string.something_went_wrong), mPhotoUri.toString()), Toast.LENGTH_LONG).show();
-                Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
-                getContentResolver().delete(mPhotoUri, null, null);
-            }
-  
-            mPhotoUri = null; // don't let this hang around
-        }
     }
     
 }
