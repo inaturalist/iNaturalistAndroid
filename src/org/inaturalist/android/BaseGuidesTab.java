@@ -22,4 +22,11 @@ public abstract class BaseGuidesTab extends BaseTab {
     protected String getNoInternetText() {
     	return getResources().getString(R.string.no_internet_guides);
     }
+
+    protected String getSearchUrl() {
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
+        return "http://" + inatHost + "/guides/search.json";
+    }
 }
