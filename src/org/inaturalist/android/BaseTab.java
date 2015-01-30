@@ -409,8 +409,16 @@ public abstract class BaseTab extends SherlockFragment {
 
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
-                    mItems = (List<JSONObject>) results.values;
-                    notifyDataSetChanged();
+                    if (results != null && results.count > 0) {
+                        mItems = (List<JSONObject>) results.values;
+                        notifyDataSetChanged();
+                    } else {
+                        if (results != null) {
+                            mItems = (ArrayList<JSONObject>) results.values;
+                        }
+                        
+                        notifyDataSetInvalidated();
+                    }
                 }
             };
 
@@ -422,7 +430,7 @@ public abstract class BaseTab extends SherlockFragment {
         
         @Override
         public int getCount() {
-            return mItems.size();
+            return (mItems != null ? mItems.size() : 0);
         }
         
         @Override
