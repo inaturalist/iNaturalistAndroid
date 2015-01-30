@@ -202,11 +202,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         });
         
         INaturalistApp app = (INaturalistApp)(getApplication());
-        String detectedNetwork = app.getInaturalistNetworkMember();
-        if (detectedNetwork != null) {
-        	setTitle(app.getStringResourceByName("network_" + detectedNetwork) + " - " + getString(R.string.observations));
-        }
-        
+       
         Intent intent = getIntent();
         if (intent.getData() == null) {
             intent.setData(Observation.CONTENT_URI);
@@ -346,35 +342,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         return prefs.getString("username", null) != null;
     } 
     
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.observations_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.observations_menu_add:
-            // Launch activity to insert a new item
-        	startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), this, ObservationEditor.class));
-            return true;
-        case R.id.observations_menu_sync:
-            if (!isNetworkAvailable()) {
-                Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
-                return true;
-            }
-
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, this, INaturalistService.class);
-            startService(serviceIntent);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
-    
+   
     @Override
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
         Uri uri = ContentUris.withAppendedId(getIntent().getData(), id);

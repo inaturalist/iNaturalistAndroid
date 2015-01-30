@@ -258,6 +258,7 @@ public class GuideDetails extends SherlockActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
         
         final Intent intent = getIntent();
 

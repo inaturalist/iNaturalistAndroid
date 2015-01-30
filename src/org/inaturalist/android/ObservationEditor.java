@@ -892,6 +892,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mTopActionBar.setDisplayHomeAsUpEnabled(true);
         mTopActionBar.setCustomView(R.layout.observation_editor_top_action_bar);
         mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#111111")));
+        mTopActionBar.setIcon(android.R.color.transparent);
         ImageButton takePhoto = (ImageButton) mTopActionBar.getCustomView().findViewById(R.id.take_photo);
         takePhoto.setOnClickListener(new OnClickListener() {
             @Override

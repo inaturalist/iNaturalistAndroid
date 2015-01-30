@@ -128,6 +128,7 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
         
         LayoutInflater li = LayoutInflater.from(this);
         View customView = li.inflate(R.layout.project_selector_action_bar, null);

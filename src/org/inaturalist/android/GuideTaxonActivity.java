@@ -56,6 +56,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
         
         mApp = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.web);

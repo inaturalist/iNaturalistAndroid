@@ -55,6 +55,7 @@ public class WebActivity extends BaseFragmentActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
 
         app = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.web);

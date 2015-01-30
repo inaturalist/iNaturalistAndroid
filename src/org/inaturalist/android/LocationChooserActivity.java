@@ -77,6 +77,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
 
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(R.layout.location_chooser_top_action_bar);
