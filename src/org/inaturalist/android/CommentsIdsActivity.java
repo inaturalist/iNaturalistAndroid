@@ -193,6 +193,7 @@ public class CommentsIdsActivity extends SherlockListActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#767676")));
+        actionBar.setIcon(android.R.color.transparent);
 
         
         setContentView(R.layout.comments_ids_list);

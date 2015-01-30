@@ -66,6 +66,7 @@ public class ProjectDetails extends SherlockFragmentActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
         
        
         LayoutInflater li = LayoutInflater.from(this);

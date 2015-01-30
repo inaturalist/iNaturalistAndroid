@@ -101,6 +101,7 @@ public class TutorialActivity extends SherlockFragmentActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        actionBar.setIcon(android.R.color.transparent);
         
        mAdapter = new TutorialAdapter(this);
        mViewPager.setAdapter(mAdapter);
