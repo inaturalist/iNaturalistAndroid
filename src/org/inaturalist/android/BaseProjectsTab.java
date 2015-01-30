@@ -41,4 +41,11 @@ public abstract class BaseProjectsTab extends BaseTab {
     protected String getNoInternetText() {
     	return getResources().getString(R.string.no_internet_projects);
     }
+    
+    protected String getSearchUrl() {
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
+        return "http://" + inatHost + "/projects/search.json";
+    }
 }

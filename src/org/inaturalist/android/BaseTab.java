@@ -1,5 +1,11 @@
 package org.inaturalist.android;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -146,7 +152,7 @@ public abstract class BaseTab extends SherlockFragment {
     private TextView mEmptyListLabel;
     private EditText mSearchText;
     private ProgressBar mProgressBar;
-	private INaturalistApp mApp; 	
+	protected INaturalistApp mApp; 	
     
     /*
      * Methods that should be overriden by subclasses
@@ -178,6 +184,9 @@ public abstract class BaseTab extends SherlockFragment {
 
     /** Returns the text to display when a user login is required */
     protected String getUserLoginRequiredText() { return getResources().getString(R.string.please_sign_in); }
+    
+    /** Returns the URL to be used when searching for projects/guides */
+    abstract protected String getSearchUrl();
 
     @Override
     public void onPause() {
@@ -281,12 +290,78 @@ public abstract class BaseTab extends SherlockFragment {
         return v;
     }
 
+
+    private ArrayList<JSONObject> autocomplete(String input) {
+    	// Retrieve the autocomplete results.
+    	String search = input.toString().toLowerCase();
+
+    	ArrayList<JSONObject> resultList = null;
+
+    	HttpURLConnection conn = null;
+    	StringBuilder jsonResults = new StringBuilder();
+    	try {
+    		StringBuilder sb = new StringBuilder(getSearchUrl());
+    		sb.append("?q=");
+    		sb.append(URLEncoder.encode(search, "utf8"));
+
+    		URL url = new URL(sb.toString());
+    		conn = (HttpURLConnection) url.openConnection();
+    		InputStreamReader in = new InputStreamReader(conn.getInputStream());
+
+    		// Load the results into a StringBuilder
+    		int read;
+    		char[] buff = new char[1024];
+    		while ((read = in.read(buff)) != -1) {
+    			jsonResults.append(buff, 0, read);
+    		}
+
+    	} catch (MalformedURLException e) {
+    		Log.e(TAG, "Error processing searc API URL", e);
+    	} catch (IOException e) {
+    		Log.e(TAG, "Error connecting to search API", e);
+    	} finally {
+    		if (conn != null) {
+    			conn.disconnect();
+    		}
+    	}
+
+    	try {
+    		JSONArray predsJsonArray = new JSONArray(jsonResults.toString());
+
+    		// Extract the Place descriptions from the results
+    		resultList = new ArrayList<JSONObject>(predsJsonArray.length());
+    		for (int i = 0; i < predsJsonArray.length(); i++) {
+    			resultList.add(predsJsonArray.getJSONObject(i));
+    		}
+    	} catch (JSONException e) {
+    		Log.e(TAG, "Cannot process JSON results", e);
+    	}
+
+    	return resultList;
+    }
+
+    private void toggleLoading(final boolean isLoading) {
+    	getActivity().runOnUiThread(new Runnable() {
+    		@Override
+    		public void run() {
+    			if (isLoading) {
+    				mProjectList.setVisibility(View.GONE);
+    				mProgressBar.setVisibility(View.VISIBLE);
+    			} else {
+    				mProgressBar.setVisibility(View.GONE);
+    				mProjectList.setVisibility(View.VISIBLE);
+    			}
+    		}
+    	});
+    }
+
     public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filterable {
 
         private List<JSONObject> mItems;
         private List<JSONObject> mOriginalItems;
         private Context mContext;
         private Filter mFilter;
+		protected String mCurrentSearchString;
         
         public void updateItem(int index, JSONObject object) {
         	mItems.set(index, object);
@@ -304,23 +379,31 @@ public abstract class BaseTab extends SherlockFragment {
                 protected FilterResults performFiltering(CharSequence constraint) {
                     FilterResults filterResults = new FilterResults();
                     if (constraint != null) {
-                        // Retrieve the autocomplete results.
-                        String search = constraint.toString().toLowerCase();
-                        ArrayList<JSONObject> results = new ArrayList<JSONObject>(mOriginalItems.size());
-                        for (JSONObject item : mOriginalItems) {
-                            try {
-                                if (item.getString("title").toLowerCase().indexOf(search) > -1) {
-                                    results.add(item);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        } 
+                        if (constraint.length() == 0) {
+                            filterResults.values = new ArrayList<JSONObject>();
+                            filterResults.count = 0;
+                            
+                        } else {
+                            toggleLoading(true);
 
-                        // Assign the data to the FilterResults
-                        filterResults.values = results;
-                        filterResults.count = results.size();
+                            // Retrieve the autocomplete results.
+                            ArrayList<JSONObject> results;
+                            mCurrentSearchString = (String) constraint;
+                            results = autocomplete(constraint.toString());
+
+                            if (!constraint.equals(mCurrentSearchString)) {
+                                // In the meanwhile, new searches were initiated by the user - ignore this result
+                                return null;
+                            }
+
+                            // Assign the data to the FilterResults
+                            filterResults.values = results;
+                            filterResults.count = results.size();
+                        }
                     }
+                    
+                    toggleLoading(false);
+                    
                     return filterResults;
                 }
 
@@ -352,6 +435,7 @@ public abstract class BaseTab extends SherlockFragment {
         public Filter getFilter() {
             return mFilter;
         }
+
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) { 
