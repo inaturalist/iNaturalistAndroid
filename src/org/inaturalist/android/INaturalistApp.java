@@ -159,7 +159,6 @@ public class INaturalistApp extends Application {
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
 		
 		String country = getUserCountry(context);
-		country = "mx";
 		Log.d(TAG, "Detected country: " + country);
 		
         final String[] inatNetworks = getINatNetworks();
