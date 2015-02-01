@@ -22,7 +22,20 @@ public class TutorialFragment extends SherlockFragment {
         
         ImageView imageView = (ImageView) v.findViewById(R.id.tutorial_image);
  
-        String[] images = getResources().getStringArray(R.array.tutorial_images);
+       INaturalistApp app = (INaturalistApp) getActivity().getApplicationContext();
+       String inatNetwork = app.getInaturalistNetworkMember();
+            
+       String[] images;
+
+       if (inatNetwork == null) {
+    	   // No network selected - use default tutorial images
+    	   images = getResources().getStringArray(R.array.tutorial_images);
+       } else {
+    	   // Use network specific tutorial images
+    	   String imagesArrayName = app.getStringResourceByName("inat_tutorial_images_" + inatNetwork);
+    	   images = app.getStringArrayResourceByName(imagesArrayName);
+       }
+
         int resID = getResources().getIdentifier("@drawable/" + images[index] , "drawable", getActivity().getApplicationContext().getPackageName());
         imageView.setImageResource(resID);
         
