@@ -159,6 +159,7 @@ public class INaturalistApp extends Application {
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
 		
 		String country = getUserCountry(context);
+		country = "mx";
 		Log.d(TAG, "Detected country: " + country);
 		
         final String[] inatNetworks = getINatNetworks();
@@ -223,6 +224,17 @@ public class INaturalistApp extends Application {
         Resources res = getResources();
         return res.getStringArray(R.array.inat_networks);
     }
+    
+    public String[] getStringArrayResourceByName(String aString) {
+    	String packageName = getPackageName();
+    	int resId = getResources().getIdentifier(aString, "array", packageName);
+    	if (resId == 0) {
+    		return new String[] { aString };
+    	} else {
+    		return getResources().getStringArray(resId);
+    	}
+    } 
+    
     
     public String getStringResourceByName(String aString) {
     	String packageName = getPackageName();

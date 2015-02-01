@@ -70,8 +70,6 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         if (mHelper == null) { mHelper = new ActivityHelper(this);}
         
  
-        app.detectUserCountryAndUpdateNetwork(this);
-        
         // See if we need to display the tutorial (only for the first time using the app)
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         boolean firstTime = preferences.getBoolean("first_time", true);
@@ -80,7 +78,6 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             Intent intent = new Intent(this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("first_time", true);
             startActivity(intent);
-            preferences.edit().putBoolean("first_time", false).apply();
         }       
 	}
 	

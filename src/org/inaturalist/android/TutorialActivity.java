@@ -3,9 +3,12 @@ package org.inaturalist.android;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +16,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -47,7 +52,20 @@ public class TutorialActivity extends SherlockFragmentActivity {
         public TutorialAdapter(SherlockFragmentActivity context) {
             super(context.getSupportFragmentManager());
             mContext = context;
-            String[] images = getResources().getStringArray(R.array.tutorial_images);
+            
+            
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            
+            String[] images;
+            
+            if (inatNetwork == null) {
+            	// No network selected - use default tutorial images
+            	images = getResources().getStringArray(R.array.tutorial_images);
+            } else {
+            	// Use network specific tutorial images
+            	String imagesArrayName = mApp.getStringResourceByName("inat_tutorial_images_" + inatNetwork);
+            	images = mApp.getStringArrayResourceByName(imagesArrayName);
+            }
             mCount = images.length;
         }
 
@@ -72,9 +90,12 @@ public class TutorialActivity extends SherlockFragmentActivity {
         public void onPageScrolled(int arg0, float arg1, int arg2) {
         }
 
-        @Override
+        @SuppressLint("NewApi")
+		@Override
         public void onPageSelected(int arg0) {
-            invalidateOptionsMenu();
+        	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        		invalidateOptionsMenu();
+        	}
         }
         
     }
@@ -84,6 +105,7 @@ public class TutorialActivity extends SherlockFragmentActivity {
 
     private TutorialAdapter mAdapter;
     private ViewPager mViewPager;
+	private INaturalistApp mApp;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,23 +125,37 @@ public class TutorialActivity extends SherlockFragmentActivity {
         }
         actionBar.setIcon(android.R.color.transparent);
         
+       mApp = (INaturalistApp) getApplicationContext();
        mAdapter = new TutorialAdapter(this);
        mViewPager.setAdapter(mAdapter);
        mViewPager.setOnPageChangeListener(mAdapter);
-       
 
+       mApp.detectUserCountryAndUpdateNetwork(this);
+        
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    	if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+    		SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        	preferences.edit().putBoolean("first_time", false).apply();
+    	}
+    	return super.onKeyDown(keyCode, event);
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+    	SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+
         switch (item.getItemId()) {
         // Respond to the action bar's Up/Home button
         case android.R.id.home:
+        	preferences.edit().putBoolean("first_time", false).apply();
             finish();
             return true;
         case ACTION_NEXT:
             if (mViewPager.getCurrentItem() == mAdapter.getCount() - 1) {
                 // Pressed the finish button
+                preferences.edit().putBoolean("first_time", false).apply();
                 finish();
                 return true;
             }

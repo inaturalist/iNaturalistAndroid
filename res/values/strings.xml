@@ -214,7 +214,24 @@
 	    <item>tutorial5</item>
 	    <item>tutorial6</item>
     </string-array> 
+
+    <string-array name="tutorial_images_naturalista">
+	    <item>tutorial1_naturalista</item>
+	    <item>tutorial2</item>
+	    <item>tutorial3</item>
+	    <item>tutorial4</item>
+	    <item>tutorial5</item>
+	    <item>tutorial6</item>
+    </string-array> 
     
+    <string-array name="tutorial_images_naturewatchnz">
+	    <item>tutorial1_naturewatch</item>
+	    <item>tutorial2</item>
+	    <item>tutorial3</item>
+	    <item>tutorial4</item>
+	    <item>tutorial5</item>
+	    <item>tutorial6</item>
+    </string-array> 
     
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
