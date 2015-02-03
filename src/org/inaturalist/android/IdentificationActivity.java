@@ -79,6 +79,7 @@ public class IdentificationActivity extends SherlockActivity {
         mTopActionBar.setCustomView(R.layout.add_id_top_action_bar);
         mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#767676")));
         mTopActionBar.setIcon(android.R.color.transparent);
+        mTopActionBar.setLogo(R.drawable.up_icon);
         
         mTaxonName = (TextView) findViewById(R.id.id_taxon_name);
         mIdName = (TextView) findViewById(R.id.id_name);

@@ -318,6 +318,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
         LayoutInflater li = LayoutInflater.from(this);
         View customView = li.inflate(R.layout.taxon_search_action_bar, null);
         actionBar.setCustomView(customView);
+        actionBar.setLogo(R.drawable.up_icon);
        
         setContentView(R.layout.taxon_search);
         

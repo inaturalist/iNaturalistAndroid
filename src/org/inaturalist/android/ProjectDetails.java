@@ -72,6 +72,7 @@ public class ProjectDetails extends SherlockFragmentActivity {
         LayoutInflater li = LayoutInflater.from(this);
         View customView = li.inflate(R.layout.project_details_action_bar, null);
         actionBar.setCustomView(customView);
+        actionBar.setLogo(R.drawable.up_icon);
         
         final Intent intent = getIntent();
         setContentView(R.layout.project_details);
