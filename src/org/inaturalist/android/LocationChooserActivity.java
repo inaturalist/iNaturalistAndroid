@@ -81,6 +81,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
 
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(R.layout.location_chooser_top_action_bar);
+        actionBar.setLogo(R.drawable.up_icon);
         mAddButton = (TextView) actionBar.getCustomView().findViewById(R.id.add);
         mAddButton.setOnClickListener(new OnClickListener() {
             @Override

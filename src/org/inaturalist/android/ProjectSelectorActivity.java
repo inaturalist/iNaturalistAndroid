@@ -133,6 +133,7 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         LayoutInflater li = LayoutInflater.from(this);
         View customView = li.inflate(R.layout.project_selector_action_bar, null);
         actionBar.setCustomView(customView);
+        actionBar.setLogo(R.drawable.up_icon);
 
  
         mProjectReceiver = new ProjectReceiver();
