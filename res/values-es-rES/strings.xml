@@ -171,6 +171,8 @@
     <item>tutorial3</item>
     <item>tutorial4</item>
     <item>tutorial5</item>
+    <item>tutorial6</item>
+    <item>tutorial7</item>
     </string-array>
     
     <string-array name="geoprivacy_items">
