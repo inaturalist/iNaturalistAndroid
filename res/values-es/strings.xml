@@ -120,7 +120,7 @@
   <string name="com_facebook_requesterror_permissions">Esta aplicación no tiene permiso para hacer eso. Para cambiar los permisos, intenta volver a iniciar la sesión en la aplicación.</string>
   <string name="pull_to_sync">Tire para sincronizar...</string>
   <string name="release_to_sync">Suelte para sincronizar...</string>
-  <string name="edit_observation">Editar observación</string>
+  <string name="edit_observation">Edita observación</string>
   <string name="discard_changes">¿Está seguro de que desea descartar los cambios no guardados?</string>
   <string name="yes">Si</string>
   <string name="no">No</string>
@@ -129,8 +129,8 @@
   <string name="posted_by">Publicado por %1$s el %2$s</string>
   <string name="you">usted</string>
   <string name="loading_comments">Cargando los comentarios y las identificaciones...</string>
-  <string name="add_comment">Añadir comentario</string>
-  <string name="add_id">Añadir identificación</string>
+  <string name="add_comment">Añade comentario</string>
+  <string name="add_id">Añade identificación</string>
   <string name="remarks">Notas...</string>
   <string name="change">Cambiar</string>
   <string name="no_taxon_found">No se encontraron resultados.</string>
@@ -149,24 +149,24 @@
   <string name="no_check_list">No hay taxones enlistados!</string>
   <string name="failed_to_add_obs_to_project">No se pudo agregar observación \'%1$s\' al proyecto \'%2$s\': %3$s</string>
   <string name="invalid_project_field">Por favor, introduzca un valor válido para el campo \'%1s\'</string>
-  <string name="id_please">¿Necesita ayuda?</string>
+  <string name="id_please">¿Necesitas ayuda?</string>
   <string name="select_projects">Seleccionar los proyectos</string>
   <string name="could_not_load_comments">No se pudo cargar los comentarios - observación fue probablemente eliminará en la web</string>
   <string name="not_connected">Es necesario estar conectado a Internet con el fin de hacer eso!</string>
   <string name="search_projects">Buscar proyectos...</string>
   <string name="search_guides">Buscar guías...</string>
-  <string name="save_observation">Guardar observación</string>
+  <string name="save_observation">Guarda observación</string>
   <string name="about">Acerca</string>
   <string name="check_list">Lista de verificación</string>
   <string name="gps">GPS</string>
   <string name="geoprivacy">Geoprivacidad</string>
-  <string name="comments_ids">Comentarios e Identificaciones</string>
+  <string name="comments_ids">Comentarios e identificaciones</string>
   <string name="delete_confirmation">¿Está seguro de que desea eliminar esta observación?</string>
   <string name="view_on_inat_confirmation">Ver esta observación en un navegador?</string>
   <string name="next">Siguiente</string>
   <string name="previous">Anterior</string>
   <string name="finish">Terminar</string>
-  <string name="tutorial_link">Ayuda con Naturalista</string>
+  <string name="tutorial_link">Iniciar tutorial</string>
   <string name="guides">Guías</string>
   <string name="guides_description">Guías</string>
   <string name="my_guides">Suyo</string>
@@ -188,7 +188,7 @@
   <string name="choose_location">Elegir ubicación</string>
   <string name="done">Hecho</string>
   <string name="please_sign_in_via_settings">Por favor conectate por la pantalla de configuración para poder ver tus proyectos</string>
-  <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org"> Contacta soporte</a>]]></string>
+  <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org"> Contactar apoyo</a>]]></string>
   <string name="credits">Diseñado y construido por iNaturalist.org con el apoyo de la Academia de Ciencias de California</string>
   <string name="leave_project">Deja el proyecto</string>
   <string name="leave_project_confirmation">¿Estás seguro de que deseas abandonar este proyecto?</string>
@@ -208,6 +208,10 @@
     <item>tutorial5</item>
     <item>tutorial6</item>
     <item>tutorial7</item>
+  </string-array>
+  <string-array name="id_please_items">
+    <item>SÍ</item>
+    <item>NO</item>
   </string-array>
   <string-array name="geoprivacy_items">
     <item>Abierta</item>
