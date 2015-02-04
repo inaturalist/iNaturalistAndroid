@@ -207,6 +207,7 @@
     <item>tutorial4</item>
     <item>tutorial5</item>
     <item>tutorial6</item>
+    <item>tutorial7</item>
   </string-array>
   <string-array name="geoprivacy_items">
     <item>Abierta</item>
@@ -223,4 +224,9 @@
   <string name="alert_title_use">Usar</string>
   <string name="inat_network_settings">Configuración de red de Naturalista</string>
   <string name="network_restart">Cambiar los parámetros de red. Reinicia la aplicación para que los cambios ocurran.</string>
+  
+    <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
+    <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
+    <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
+  
 </resources>
