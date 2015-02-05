@@ -212,7 +212,8 @@
 	    <item>private</item>
     </string-array> 
     
-      <string name="alert_message_use_inaturalist">Red principal de iNaturalist.  Selecciona OK para que tu aplicación sea parte de la red global de iNaturalist.</string>
-      <string name="alert_message_use_naturalista">NaturaLista de CONABIO es miembro en México de la red de iNaturalist. Selecciona OK para compartir datos y situar tu experiencia localmente.</string>
-      <string name="alert_message_use_naturewatchnz">NatureWatch es miembro en Nueva Zelandia de la red de iNaturalist. Selecciona OK para compartir datos y situar tu experiencia localmente.</string>
+      <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
+      <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
+      <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
+
 </resources>
