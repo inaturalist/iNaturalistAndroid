@@ -855,6 +855,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
 		});        
 
         mIdPlease = (Switch) findViewById(R.id.id_please);
+        String[] options = getResources().getStringArray(R.array.id_please_items);
+        mIdPlease.setTextOn(options[0]);
+        mIdPlease.setTextOff(options[1]);
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
