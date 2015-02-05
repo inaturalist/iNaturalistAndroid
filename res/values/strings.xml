@@ -256,4 +256,8 @@
     <string name="inat_network_settings">iNaturalist Network Settings</string>
 
 	<string name="network_restart">Network settings changed. Please restart the app for the changes to take place.</string>
+    <string-array name="id_please_items">
+      <item>YES</item>
+      <item>NO</item>
+    </string-array>
 </resources>
