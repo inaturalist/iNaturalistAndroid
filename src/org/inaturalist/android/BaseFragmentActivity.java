@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.crashlytics.android.Crashlytics;
 
 import android.content.Context;
 import android.content.Intent;
@@ -47,6 +48,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 	private ActivityHelper mHelper;
 
 	public void onDrawerCreate(Bundle savedInstanceState) {
+		Crashlytics.start(this);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mSideMenu = (LinearLayout) findViewById(R.id.left_drawer);
         mListView = (ListView) findViewById(R.id.menu_items);
@@ -78,7 +80,9 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             Intent intent = new Intent(this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("first_time", true);
             startActivity(intent);
-        }       
+        } else {
+        	app.detectUserCountryAndUpdateNetwork(this);
+        }
 	}
 	
 	private void buildSideMenu() {
