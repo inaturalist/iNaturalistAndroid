@@ -163,7 +163,6 @@ public class INaturalistApp extends Application {
 		
         final String[] inatNetworks = getINatNetworks();
 
-        country = null;
 		if (country == null) {
 			// Couldn't detect country - set default iNat network
 			setInaturalistNetworkMember(inatNetworks[0]);
