@@ -314,7 +314,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         
         ObservationCursorAdapter adapter = mAdapter;
         adapter.notifyDataSetInvalidated();
-        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB){
         	Cursor oldCursor = adapter.swapCursor(null);
         	if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
         } else {
@@ -379,7 +379,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         	Cursor newCursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION, 
         			conditions, null, Observation.DEFAULT_SORT_ORDER);
 
-        	if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.GINGERBREAD){
+        	if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB){
         		Cursor oldCursor = swapCursor(newCursor);
         		if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
         	} else {
