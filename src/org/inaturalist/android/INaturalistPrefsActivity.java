@@ -358,6 +358,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	            	formerSelectedNetworkRadioButton = selectedRadioButtonId;
 	            	mApp.applyLocaleSettings();
 	        	    mApp.restart();
+					finish();
 	                break;
 
 	            case DialogInterface.BUTTON_NEGATIVE:
@@ -702,6 +703,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 					formerSelectedRadioButton = selectedButton;
 					mApp.applyLocaleSettings();
 					mApp.restart();
+					finish();
 					break;
 
 				case DialogInterface.BUTTON_NEGATIVE:
