@@ -260,4 +260,14 @@
       <item>YES</item>
       <item>NO</item>
     </string-array>
+    
+    <string name="explore">Explore</string>
+    <string name="explore_description">Explore observations around you</string>
+
+    <string-array name="explore_view_types">
+      <item>Map</item>
+      <item>Grid</item>
+      <item>List</item>
+    </string-array>
+ 
 </resources>

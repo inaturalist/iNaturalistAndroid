@@ -108,8 +108,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         }
         
         map = new HashMap<String,String>();
-        map.put("title", getString(R.string.map));
-        map.put("description", getString(R.string.map_description));
+        map.put("title", getString(R.string.explore));
+        map.put("description", getString(R.string.explore_description));
         MENU_ITEMS.add(map);
         
         map = new HashMap<String,String>();
@@ -139,7 +139,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         		String title = item.get("title");
         		if (title.equals(getString(R.string.observations))) {
         			startActivityIfNew(new Intent(BaseFragmentActivity.this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        		} else if (title.equals(getString(R.string.map))) {
+        		} else if (title.equals(getString(R.string.explore))) {
         			startActivityIfNew(new Intent(BaseFragmentActivity.this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
         		} else if (title.equals(getString(R.string.updates))) {
         			if (!isNetworkAvailable()) {
