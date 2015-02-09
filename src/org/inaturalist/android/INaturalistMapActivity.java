@@ -10,14 +10,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -47,6 +50,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     private ActivityHelper mHelper;
     private HashMap<String, Observation> mMarkerObservations;
     private INaturalistApp mApp;
+	private ActionBar mTopActionBar;
     
 	@Override
 	protected void onStart()
@@ -69,6 +73,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         
         setContentView(R.layout.map);
 	    onDrawerCreate(savedInstanceState);
+
+        mTopActionBar = getSupportActionBar();
+        mTopActionBar.setDisplayShowCustomEnabled(true);
+        mTopActionBar.setCustomView(R.layout.explore_action_bar);
     }
 
     @Override 
@@ -87,26 +95,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         super.onPause();
     }
  
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if (mMap == null) return super.onPrepareOptionsMenu(menu);
-
-        MenuItem layersItem = menu.findItem(R.id.layers);
-        if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
-            layersItem.setTitle(R.string.street);
-        } else {
-            layersItem.setTitle(R.string.satellite);
-        }
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.map_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
