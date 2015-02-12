@@ -1,4 +1,5 @@
 package org.inaturalist.android;
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.inaturalist.android.R;
 
@@ -16,8 +17,20 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -51,6 +64,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     private HashMap<String, Observation> mMarkerObservations;
     private INaturalistApp mApp;
 	private ActionBar mTopActionBar;
+	private ListView mSearchResults;
+	private EditText mSearchText;
+	private View mSearchBar;
+	private View mSearchToggle;
+	private View mSearchBarBackground;
     
 	@Override
 	protected void onStart()
@@ -77,6 +95,85 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setDisplayShowCustomEnabled(true);
         mTopActionBar.setCustomView(R.layout.explore_action_bar);
+        
+        mSearchBar = (View)findViewById(R.id.search_bar);
+        mSearchBarBackground = (View)findViewById(R.id.search_bar_background);
+        mSearchBarBackground.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mSearchToggle.performClick();
+			}
+		});
+        
+        mSearchToggle = (View) mTopActionBar.getCustomView().findViewById(R.id.search);
+        mSearchToggle.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mSearchBar.getVisibility() == View.GONE) {
+					mSearchBar.setVisibility(View.VISIBLE);
+					mSearchBarBackground.setVisibility(View.VISIBLE);
+				} else {
+					mSearchBar.setVisibility(View.GONE);
+					mSearchBarBackground.setVisibility(View.GONE);
+					mSearchText.clearFocus();
+					InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(mSearchText.getWindowToken(), 0);
+					mSearchText.setText("");
+				}
+			}
+		});
+        
+        
+        mSearchResults = (ListView)findViewById(R.id.search_results);
+        prepareSearchResults("");
+
+        mSearchText = (EditText)findViewById(R.id.search_filter);
+        mSearchText.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) { }
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+			@Override
+			public void afterTextChanged(Editable s) {
+				prepareSearchResults(s.toString());
+			}
+		});
+    }
+    
+    private void prepareSearchResults(String text) {
+    	String[] results;
+    	
+    	if (text.length() == 0) {
+    		results = getResources().getStringArray(R.array.explore_results_empty);
+    	} else {
+    		results = getResources().getStringArray(R.array.explore_results_with_text);
+    		for (int i = 0; i < results.length; i++) {
+    			results[i] = String.format(results[i], text);
+    		}
+    	}
+    	
+    	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results) {
+               @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View row;
+
+                    if (null == convertView) {
+                    	LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    	row = inflater.inflate(android.R.layout.simple_list_item_1, null);
+                    } else {
+                    	row = convertView;
+                    }
+
+                    TextView tv = (TextView) row.findViewById(android.R.id.text1);
+                    tv.setTextColor(Color.BLACK);
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
+                    tv.setText(Html.fromHtml(getItem(position)));
+
+                    return row;
+                }    		
+    	};
+    	mSearchResults.setAdapter(adapter);
+    	
     }
 
     @Override 
