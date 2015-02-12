@@ -270,4 +270,20 @@
       <item>List</item>
     </string-array>
  
-</resources>
+    <string name="restricted_to_current_map_area">Restricted to current map area</string>
+    <string name="search">Search</string>
+
+    <string-array name="explore_results_empty">
+      <item><![CDATA[<i>Find observations near me</i>]]></item>
+      <item><![CDATA[<i>Find my observations</i>]]></item>
+    </string-array>
+
+    <string-array name="explore_results_with_text">
+      <item><![CDATA[Find <b>critters</b> named \'<i>%1$s</i>\']]></item>
+      <item><![CDATA[Find <b>people</b> named \'<i>%1$s</i>\']]></item>
+      <item><![CDATA[Find <b>locations</b> named \'<i>%1$s</i>\']]></item>
+      <item><![CDATA[Find <b>projects</b> named \'<i>%1$s</i>\']]></item>
+    </string-array>
+
+ </resources>
+

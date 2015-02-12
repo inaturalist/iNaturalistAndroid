@@ -6,12 +6,145 @@
     android:layout_height="match_parent">
 
     <!-- Main content view -->
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        >
+   
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            >
 
+             <!-- The various filters -->
+             <LinearLayout
+                android:id="@+id/filtersContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                
+                <RelativeLayout
+                    android:id="@+id/activeFilters"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:background="#8B8BA1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    >
+                   <ImageButton android:src="@drawable/ic_action_remove"
+                             android:id="@+id/cancelFilters"
+                             android:layout_height="wrap_content"
+                             android:layout_width="24dp"
+                             android:scaleType="centerInside"
+                             android:layout_alignParentRight="true"
+                             android:layout_marginRight="8dp"
+                             android:layout_marginLeft="8dp"
+                             android:background="@android:color/transparent"
+                             android:layout_centerVertical="true" />
+                    
+                    <TextView 
+                        android:id="@+id/filterName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:text="Named 'bobobo' and seen by 'coco' in places named 'shlomo' and some more text"
+                        android:textSize="13dp"
+                        android:layout_centerVertical="true" 
+                        android:layout_toLeftOf="@id/cancelFilters"
+                        />
+                           
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/restricToMap"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:background="#D8D8D8"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    >
+                   <ImageButton android:src="@drawable/ic_action_remove"
+                             android:id="@+id/cancelRestrictToCurrentMap"
+                             android:layout_height="wrap_content"
+                             android:layout_width="24dp"
+                             android:scaleType="centerInside"
+                             android:layout_alignParentRight="true"
+                             android:layout_marginRight="8dp"
+                             android:layout_marginLeft="8dp"
+                             android:background="@android:color/transparent"
+                             android:layout_centerVertical="true" />
+                    
+                    <TextView 
+                        android:id="@+id/restricToMapDescription"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:text="@string/restricted_to_current_map_area"
+                        android:textSize="13dp"
+                        android:layout_centerVertical="true" 
+                        android:layout_toLeftOf="@id/cancelRestrictToCurrentMap"
+                        />
+ 
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+    
+        </LinearLayout>
+        
+        <!--  Background that covers content areas (map/grid/list) when search bar is visible -->
+        <View
+            android:id="@+id/search_bar_background"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#99000000"
+            android:visibility="gone"
+            />
+        
+        <!-- The search bar area -->
+        <LinearLayout
+            android:id="@+id/search_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            >
+            <EditText 
+                android:id="@+id/search_filter"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="@string/search"
+                android:background="#000000"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
+                />
+            <ListView
+                android:id="@+id/search_results"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:divider="#CCCCCC"
+                android:dividerHeight="1dip"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+    
     <!-- Side menu (navigation drawer) -->
     <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
 
