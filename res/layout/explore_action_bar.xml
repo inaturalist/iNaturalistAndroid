@@ -38,5 +38,16 @@
                  android:layout_alignParentRight="true"
 		         android:layout_centerVertical="true" />
     
-
+    <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+       			android:layout_marginRight="-10dp"
+       			android:layout_marginTop="8dp"
+       			android:layout_marginBottom="4dp"
+                android:id="@+id/loading"
+                android:visibility="gone"
+                android:layout_alignParentRight="true" />
+ 
 </RelativeLayout>
