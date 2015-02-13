@@ -27,6 +27,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -69,6 +71,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private View mSearchBar;
 	private View mSearchToggle;
 	private View mSearchBarBackground;
+	protected String mCurrentSearch;
+	protected int mSearchType;
+	private View mActiveFilters;
+	private View mRestricToMap;
+	private View mRefreshView;
+	private View mLoading;
+	private boolean mShowToast;
     
 	@Override
 	protected void onStart()
@@ -91,7 +100,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         
         setContentView(R.layout.map);
 	    onDrawerCreate(savedInstanceState);
-
+	    
+	    mCurrentSearch = "";
+	    mSearchType = 0;
+	    
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setDisplayShowCustomEnabled(true);
         mTopActionBar.setCustomView(R.layout.explore_action_bar);
@@ -104,6 +116,15 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				mSearchToggle.performClick();
 			}
 		});
+
+        mRefreshView = (View) mTopActionBar.getCustomView().findViewById(R.id.refresh);
+        mRefreshView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				loadObservations();
+			}
+		});
+        mLoading = (View) mTopActionBar.getCustomView().findViewById(R.id.loading);
         
         mSearchToggle = (View) mTopActionBar.getCustomView().findViewById(R.id.search);
         mSearchToggle.setOnClickListener(new OnClickListener() {
@@ -123,8 +144,19 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			}
 		});
         
-        
         mSearchResults = (ListView)findViewById(R.id.search_results);
+        mSearchResults.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
+				mCurrentSearch = mSearchText.getText().toString();
+				mSearchType = index;
+
+				mSearchToggle.performClick();
+            	mShowToast = true;
+				loadObservations();
+			}
+		});
+
         prepareSearchResults("");
 
         mSearchText = (EditText)findViewById(R.id.search_filter);
@@ -138,6 +170,31 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				prepareSearchResults(s.toString());
 			}
 		});
+
+        mActiveFilters = (View)findViewById(R.id.active_filters);
+        mRestricToMap = (View)findViewById(R.id.restric_to_map);
+        
+    }
+    
+    // Loads observations according to current search criteria
+    private void loadObservations() {
+    	if (mSearchText.length() == 0) {
+    		switch (mSearchType) {
+    		case 0:
+    			// Find observations near me
+    			reloadNearbyObservations();
+    			mActiveFilters.setVisibility(View.GONE);
+    			mRestricToMap.setVisibility(View.GONE);
+    			break;
+    		case 1:
+    			// Find my observations
+    			loadMyObservations();
+    			mActiveFilters.setVisibility(View.GONE);
+    			mRestricToMap.setVisibility(View.GONE);
+    			break;
+
+    		}
+    	}
     }
     
     private void prepareSearchResults(String text) {
@@ -183,12 +240,21 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
         }
+        mNearbyReceiver = new NearbyObservationsReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_NEARBY);
+        registerReceiver(mNearbyReceiver, filter);
+        
         setUpMapIfNeeded();
-        reloadObservations();
+        //reloadObservations();
     }
 
     @Override
     public void onPause() {
+    	try {
+    		unregisterReceiver(mNearbyReceiver);
+    	} catch (Exception exc) {
+    		exc.printStackTrace();
+    	}
         super.onPause();
     }
  
@@ -230,10 +296,21 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 // The Map is verified. It is now safe to manipulate the map.
-                reloadObservations();
+                //reloadObservations();
                 mMap.setMyLocationEnabled(true);
                 mMap.setOnMarkerClickListener(this);
                 mMap.setOnInfoWindowClickListener(this);
+                
+                mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
+                	@Override
+                	public void onCameraChange(CameraPosition arg0) {
+                		mShowToast = false;
+                		loadObservations();
+                	}
+                });
+
+
+
                 if (!mMarkerObservations.isEmpty()) {
                     LatLngBounds.Builder builder = new LatLngBounds.Builder();
                     for (Observation o: mMarkerObservations.values()) {
@@ -244,6 +321,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                         }
                     }
                     final LatLngBounds bounds = builder.build();
+
+                   /*
                     mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
                         @Override
                         public void onCameraChange(CameraPosition arg0) {
@@ -253,13 +332,15 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                             mMap.setOnCameraChangeListener(null);
                         }
                     });
+                    */
                 }
             }
         }
     }
 
-    private void reloadObservations() {
+    private void loadMyObservations() {
         if (mMap == null) return;
+        showLoading();
         String where = "(_synced_at IS NULL";
         if (mApp.currentUserLogin() != null) {
             where += " OR user_login = '" + mApp.currentUserLogin() + "'";
@@ -276,6 +357,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             addObservation(new Observation(c));
             c.moveToNext();
         }
+        if (mShowToast) {
+        	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
+        	mShowToast = false;
+        }
+        hideLoading();
     }
     
     private void addObservation(Observation o) {
@@ -301,12 +387,19 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mMarkerObservations.put(m.getId(), o);
     }
     
+    private void showLoading() {
+    	mRefreshView.setVisibility(View.GONE);
+    	mLoading.setVisibility(View.VISIBLE);
+    }
+    
+    private void hideLoading() {
+    	mRefreshView.setVisibility(View.VISIBLE);
+    	mLoading.setVisibility(View.GONE);
+    }
+ 
     private void reloadNearbyObservations() {
-       mHelper.loading(); 
-       mNearbyReceiver = new NearbyObservationsReceiver();
-       IntentFilter filter = new IntentFilter(INaturalistService.ACTION_NEARBY);
-       registerReceiver(mNearbyReceiver, filter);
-       
+       showLoading();
+      
        Intent serviceIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
        VisibleRegion vr = mMap.getProjection().getVisibleRegion();
        serviceIntent.putExtra("minx", vr.farLeft.longitude);
@@ -320,7 +413,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         
         @Override
         public void onReceive(Context context, Intent intent) {
-            mHelper.stopLoading();
+            hideLoading();
             Bundle extras = intent.getExtras();
             String error = extras.getString("error");
             if (error != null) {
@@ -341,8 +434,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 addObservation(new Observation(c));
                 c.moveToNext();
             }
-            Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
-            unregisterReceiver(mNearbyReceiver);
+            if (mShowToast) {
+            	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
+            	mShowToast = false;
+            }
         }
     }
 

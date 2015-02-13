@@ -26,7 +26,7 @@
                 >
                 
                 <RelativeLayout
-                    android:id="@+id/activeFilters"
+                    android:id="@+id/active_filters"
                     android:layout_width="fill_parent"
                     android:layout_height="60dp"
                     android:background="#8B8BA1"
@@ -34,6 +34,7 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
+                    android:visibility="gone"
                     >
                    <ImageButton android:src="@drawable/ic_action_remove"
                              android:id="@+id/cancelFilters"
@@ -60,7 +61,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/restricToMap"
+                    android:id="@+id/restric_to_map"
                     android:layout_width="fill_parent"
                     android:layout_height="60dp"
                     android:background="#D8D8D8"
@@ -68,6 +69,7 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
+                    android:visibility="gone"
                     >
                    <ImageButton android:src="@drawable/ic_action_remove"
                              android:id="@+id/cancelRestrictToCurrentMap"
