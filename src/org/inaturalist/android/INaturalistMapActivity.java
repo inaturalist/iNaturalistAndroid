@@ -1,9 +1,15 @@
 package org.inaturalist.android;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import org.inaturalist.android.R;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -30,7 +36,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +64,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.VisibleRegion;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class INaturalistMapActivity extends BaseFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener {
     public final static String TAG = "INaturalistMapActivity";
@@ -78,6 +87,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private View mRefreshView;
 	private View mLoading;
 	private boolean mShowToast;
+	
+	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
+	private final static int FIND_MY_OBSERVATIONS = 1;
+	private final static int FIND_CRITTERS = 0;
+	private final static int FIND_PEOPLE = 1;
+	private final static int FIND_LOCATIONS = 2;
+	private final static int FIND_PROJECTS = 3;
     
 	@Override
 	protected void onStart()
@@ -178,21 +194,27 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     
     // Loads observations according to current search criteria
     private void loadObservations() {
+    	mActiveFilters.setVisibility(View.GONE);
+    	mRestricToMap.setVisibility(View.GONE);
+
     	if (mSearchText.length() == 0) {
     		switch (mSearchType) {
-    		case 0:
+    		case FIND_NEAR_BY_OBSERVATIONS:
     			// Find observations near me
     			reloadNearbyObservations();
-    			mActiveFilters.setVisibility(View.GONE);
-    			mRestricToMap.setVisibility(View.GONE);
     			break;
-    		case 1:
+    		case FIND_MY_OBSERVATIONS:
     			// Find my observations
     			loadMyObservations();
-    			mActiveFilters.setVisibility(View.GONE);
-    			mRestricToMap.setVisibility(View.GONE);
     			break;
 
+    		}
+    	} else {
+    		switch (mSearchType) {
+    		case FIND_CRITTERS:
+    			// Find critters by name
+    			reloadNearbyObservations();
+    			break;
     		}
     	}
     }
@@ -553,5 +575,90 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}	
+ 	
+ 	public interface DialogChooserCallbacks {
+ 		/** Returns an array of title, sub title, image URL for the input JSON object */
+ 		String[] getItem(JSONObject object);
+ 		/** When an item was selected from the list */
+ 		void onItemSelected(JSONObject object);
+ 	}
+
+ 	/** Helper class for creating a pop up dialog with a list of results and a cancel button */
+ 	private class DialogChooser {
+ 		private DialogChooserCallbacks mCallbacks;
+ 		private String mTitle;
+ 		private JSONArray mResults;
+ 		private Dialog mDialog;
+		private ListView mResultsList;
+		private Button mCancel;
+
+		private DialogChooser(int title, DialogChooserCallbacks callbacks, JSONArray results) {
+			mCallbacks = callbacks;
+			mTitle = getResources().getString(title);
+			mResults = results;
+			
+			mDialog = new Dialog(INaturalistMapActivity.this);
+			mDialog.setTitle(mTitle);
+			mDialog.setContentView(R.layout.dialog_chooser);
+			
+			mResultsList = (ListView) mDialog.findViewById(R.id.search_results);
+			
+			List<JSONObject> res = null;
+			ArrayAdapter<JSONObject> adapter = new ArrayAdapter<JSONObject>(INaturalistMapActivity.this, R.layout.dialog_chooser_result_item, res) {
+               @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View row;
+
+                    if (null == convertView) {
+                    	LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    	row = inflater.inflate(R.layout.dialog_chooser_result_item, null);
+                    } else {
+                    	row = convertView;
+                    }
+                    
+                    JSONObject object;
+					try {
+						object = mResults.getJSONObject(position);
+					} catch (JSONException e) {
+						e.printStackTrace();
+						return row;
+					}
+
+                    String[] values = mCallbacks.getItem(object);
+
+                    TextView title = (TextView) row.findViewById(R.id.title);
+                    TextView subtitle = (TextView) row.findViewById(R.id.subtitle);
+                    ImageView image = (ImageView) row.findViewById(R.id.pic);
+
+                    title.setText(values[0]);
+                    subtitle.setText(values[1]);
+                    UrlImageViewHelper.setUrlDrawable(image, values[2]);
+
+                    return row;
+               }    		
+			};
+
+			mResultsList.setAdapter(adapter);
+			mResultsList.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+					try {
+						mCallbacks.onItemSelected(mResults.getJSONObject(position));
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+			mCancel = (Button) mDialog.findViewById(R.id.cancel);
+			mCancel.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					mDialog.cancel();
+				}
+			});
+		}
+ 		
+ 	}
  
 }
