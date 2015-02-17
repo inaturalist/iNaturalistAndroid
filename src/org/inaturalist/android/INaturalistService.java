@@ -1351,6 +1351,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         url += "&nelat="+maxy;
         url += "&swlng="+minx;
         url += "&nelng="+maxx;
+        
+        if (extras.containsKey("taxon_id")) {
+        	url += "&taxon_id=" + extras.getInt("taxon_id");
+        }
+
         JSONArray json = get(url, mApp.loggedIn());
         Intent reply = new Intent(ACTION_NEARBY);
         reply.putExtra("minx", minx);
