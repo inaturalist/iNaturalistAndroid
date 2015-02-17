@@ -37,7 +37,7 @@
                     android:visibility="gone"
                     >
                    <ImageButton android:src="@drawable/ic_action_remove"
-                             android:id="@+id/cancelFilters"
+                             android:id="@+id/cancel_filters"
                              android:layout_height="wrap_content"
                              android:layout_width="24dp"
                              android:scaleType="centerInside"
@@ -48,14 +48,14 @@
                              android:layout_centerVertical="true" />
                     
                     <TextView 
-                        android:id="@+id/filterName"
+                        android:id="@+id/filter_name"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"
                         android:text="Named 'bobobo' and seen by 'coco' in places named 'shlomo' and some more text"
                         android:textSize="13dp"
                         android:layout_centerVertical="true" 
-                        android:layout_toLeftOf="@id/cancelFilters"
+                        android:layout_toLeftOf="@id/cancel_filters"
                         />
                            
                 </RelativeLayout>
@@ -72,7 +72,7 @@
                     android:visibility="gone"
                     >
                    <ImageButton android:src="@drawable/ic_action_remove"
-                             android:id="@+id/cancelRestrictToCurrentMap"
+                             android:id="@+id/cancel_restrict_to_current_map"
                              android:layout_height="wrap_content"
                              android:layout_width="24dp"
                              android:scaleType="centerInside"
@@ -90,7 +90,7 @@
                         android:text="@string/restricted_to_current_map_area"
                         android:textSize="13dp"
                         android:layout_centerVertical="true" 
-                        android:layout_toLeftOf="@id/cancelRestrictToCurrentMap"
+                        android:layout_toLeftOf="@id/cancel_restrict_to_current_map"
                         />
  
                 </RelativeLayout>
@@ -135,6 +135,7 @@
                 android:maxLines="1"
                 android:lines="1"
                 android:singleLine="true"
+                android:imeOptions="actionSearch"
                 />
             <ListView
                 android:id="@+id/search_results"

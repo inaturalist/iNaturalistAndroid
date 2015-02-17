@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
     
-    <ListView
-        android:id="@+id/search_results"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:divider="#CCCCCC"
-        android:dividerHeight="1dip"
-        />
-
     <Button
         android:id="@+id/cancel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
+        android:layout_alignParentBottom="true"
         />
 
-</LinearLayout>
+    <ListView
+        android:id="@+id/search_results"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:divider="#777777"
+        android:dividerHeight="1dip"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/cancel"
+        android:layout_marginBottom="5dp"
+        />
+
+</RelativeLayout>

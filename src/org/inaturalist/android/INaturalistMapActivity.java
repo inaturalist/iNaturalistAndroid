@@ -1,4 +1,10 @@
 package org.inaturalist.android;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,10 +34,12 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -86,7 +94,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private View mRestricToMap;
 	private View mRefreshView;
 	private View mLoading;
-	private boolean mShowToast;
+	private boolean mActiveSearch;
+	protected Integer mTaxonId;
+	protected String mTaxonName;
+	private View mCancelFilters;
+	private View mCancelRestricToMap;
+	private TextView mActiveFiltersDescription;
 	
 	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
 	private final static int FIND_MY_OBSERVATIONS = 1;
@@ -119,6 +132,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    
 	    mCurrentSearch = "";
 	    mSearchType = 0;
+	    mTaxonId = null;
 	    
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setDisplayShowCustomEnabled(true);
@@ -137,6 +151,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mRefreshView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				mActiveSearch = false;
 				loadObservations();
 			}
 		});
@@ -166,9 +181,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			public void onItemClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
 				mCurrentSearch = mSearchText.getText().toString();
 				mSearchType = index;
+				
+				mTaxonId = null;
 
 				mSearchToggle.performClick();
-            	mShowToast = true;
+            	mActiveSearch = true;
 				loadObservations();
 			}
 		});
@@ -186,18 +203,52 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				prepareSearchResults(s.toString());
 			}
 		});
+        mSearchText.setOnEditorActionListener(
+        		new EditText.OnEditorActionListener() {
+        			@Override
+        			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        				final boolean isEnterEvent = event != null
+        						&& event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
+        				final boolean isEnterUpEvent = isEnterEvent && event.getAction() == KeyEvent.ACTION_UP;
+        				final boolean isEnterDownEvent = isEnterEvent && event.getAction() == KeyEvent.ACTION_DOWN;
+
+        				if (actionId == EditorInfo.IME_ACTION_SEARCH || isEnterUpEvent ) {
+        					// Do your action here
+        					mSearchResults.performItemClick(null, 0, 0);
+        					return true;
+        				} else if (isEnterDownEvent) {
+        					// Capture this event to receive ACTION_UP
+        					return true;
+        				} else {
+        					// We do not care on other actions
+        					return false;
+        				}
+        			}
+        		});
 
         mActiveFilters = (View)findViewById(R.id.active_filters);
+        mActiveFiltersDescription = (TextView)findViewById(R.id.filter_name);
         mRestricToMap = (View)findViewById(R.id.restric_to_map);
         
+        mCancelFilters = (View)findViewById(R.id.cancel_filters);
+        mCancelRestricToMap = (View)findViewById(R.id.cancel_restrict_to_current_map);
+        
+        mCancelFilters.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				// Clear out all filters
+				mCurrentSearch = "";
+				mTaxonId = null;
+				mSearchType = FIND_NEAR_BY_OBSERVATIONS;
+
+				refreshActiveFilters();
+				loadObservations();
+			}
+		});
     }
     
     // Loads observations according to current search criteria
     private void loadObservations() {
-    	mActiveFilters.setVisibility(View.GONE);
-    	mRestricToMap.setVisibility(View.GONE);
-
-    	if (mSearchText.length() == 0) {
+    	if (mCurrentSearch.length() == 0) {
     		switch (mSearchType) {
     		case FIND_NEAR_BY_OBSERVATIONS:
     			// Find observations near me
@@ -213,7 +264,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     		switch (mSearchType) {
     		case FIND_CRITTERS:
     			// Find critters by name
-    			reloadNearbyObservations();
+    			if (mActiveSearch) {
+    				// Show search dialog for critters first
+    				loadCritters();
+    			} else {
+    				reloadNearbyObservations();
+    			}
     			break;
     		}
     	}
@@ -326,7 +382,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
                 	@Override
                 	public void onCameraChange(CameraPosition arg0) {
-                		mShowToast = false;
+                		mActiveSearch = false;
                 		loadObservations();
                 	}
                 });
@@ -379,9 +435,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             addObservation(new Observation(c));
             c.moveToNext();
         }
-        if (mShowToast) {
+        if (mActiveSearch) {
         	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
-        	mShowToast = false;
+        	mActiveSearch = false;
         }
         hideLoading();
     }
@@ -428,6 +484,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
        serviceIntent.putExtra("maxx", vr.farRight.longitude);
        serviceIntent.putExtra("miny", vr.nearLeft.latitude);
        serviceIntent.putExtra("maxy", vr.farRight.latitude);
+       if (mTaxonId != null) serviceIntent.putExtra("taxon_id", mTaxonId.intValue());
        startService(serviceIntent);
     }
     
@@ -447,18 +504,26 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             Double miny = extras.getDouble("miny");
             Double maxy = extras.getDouble("maxy");
             String where = "(latitude BETWEEN "+miny+" AND "+maxy+") AND (longitude BETWEEN "+minx+" AND "+maxx+")"; 
+            if (mTaxonId != null) {
+            	where += " AND (taxon_id = " + mTaxonId + ")";
+            }
+
             Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
                     where, // selection 
                     null,
                     Observation.DEFAULT_SORT_ORDER);
+
+            mMap.clear();
+            mMarkerObservations.clear();
+
             c.moveToFirst();
             while (c.isAfterLast() == false) {
                 addObservation(new Observation(c));
                 c.moveToNext();
             }
-            if (mShowToast) {
+            if (mActiveSearch) {
             	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
-            	mShowToast = false;
+            	mActiveSearch = false;
             }
         }
     }
@@ -592,7 +657,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 		private ListView mResultsList;
 		private Button mCancel;
 
-		private DialogChooser(int title, DialogChooserCallbacks callbacks, JSONArray results) {
+		private DialogChooser(int title, JSONArray results, DialogChooserCallbacks callbacks) {
 			mCallbacks = callbacks;
 			mTitle = getResources().getString(title);
 			mResults = results;
@@ -603,7 +668,14 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			
 			mResultsList = (ListView) mDialog.findViewById(R.id.search_results);
 			
-			List<JSONObject> res = null;
+			List<JSONObject> res = new ArrayList<JSONObject>(mResults.length());
+			for (int i = 0; i < mResults.length(); i++) {
+				try {
+					res.add(mResults.getJSONObject(i));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
 			ArrayAdapter<JSONObject> adapter = new ArrayAdapter<JSONObject>(INaturalistMapActivity.this, R.layout.dialog_chooser_result_item, res) {
                @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
@@ -643,6 +715,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 					try {
+						mDialog.cancel();
 						mCallbacks.onItemSelected(mResults.getJSONObject(position));
 					} catch (JSONException e) {
 						e.printStackTrace();
@@ -658,7 +731,193 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				}
 			});
 		}
+		
+		public void show() {
+			mDialog.show();
+		}
+		
+		public void cancel() {
+			mDialog.cancel();
+		}
  		
  	}
+ 	
+ 	
+ 	private JSONArray findTaxa(String search) {
+ 		HttpURLConnection conn = null;
+ 		StringBuilder jsonResults = new StringBuilder();
+ 		try {
+ 			StringBuilder sb = new StringBuilder(INaturalistService.HOST + "/taxa/search.json");
+ 			sb.append("?q=");
+ 			sb.append(URLEncoder.encode(search, "utf8"));
+
+ 			URL url = new URL(sb.toString());
+ 			conn = (HttpURLConnection) url.openConnection();
+ 			InputStreamReader in = new InputStreamReader(conn.getInputStream());
+
+ 			// Load the results into a StringBuilder
+ 			int read;
+ 			char[] buff = new char[1024];
+ 			while ((read = in.read(buff)) != -1) {
+ 				jsonResults.append(buff, 0, read);
+ 			}
+
+ 		} catch (MalformedURLException e) {
+ 			Log.e(TAG, "Error processing Places API URL", e);
+ 			return null;
+ 		} catch (IOException e) {
+ 			Log.e(TAG, "Error connecting to Places API", e);
+ 			return null;
+ 		} finally {
+ 			if (conn != null) {
+ 				conn.disconnect();
+ 			}
+ 		}
+
+ 		try {
+ 			JSONArray predsJsonArray = new JSONArray(jsonResults.toString());
+ 			return predsJsonArray;
+
+ 		} catch (JSONException e) {
+ 			Log.e(TAG, "Cannot process JSON results", e);
+ 		}
+
+ 		return null;
+
+ 	}
  
+ 	
+ 	private void loadCritters() {
+ 		mHelper.loading(getResources().getString(R.string.searching_for_critters));
+
+ 		new Thread(new Runnable() {
+ 			@Override
+ 			public void run() {	
+ 				final JSONArray results = findTaxa(mCurrentSearch);
+ 				mHelper.stopLoading();
+
+ 				if ((results == null) || (results.length() == 0)) {
+ 					runOnUiThread(new Runnable() {
+ 						@Override
+ 						public void run() {
+ 							mHelper.alert(getResources().getString(R.string.no_critters_found));
+ 						}
+ 					});
+ 					return;
+ 				} else {
+ 					runOnUiThread(new Runnable() {
+ 						@Override
+ 						public void run() {
+ 							showCritterChooserDialog(results);
+ 						}
+ 					});
+ 				}
+
+ 			}
+ 		}).start();
+		
+ 	}
+ 	
+ 	
+ 	private void showCritterChooserDialog(JSONArray results) {
+ 		DialogChooser chooser = new DialogChooser(R.string.which_critter, results, new DialogChooserCallbacks() {
+ 			@Override
+ 			public void onItemSelected(JSONObject item) {
+ 				try {
+					int taxonId = item.getInt("id");
+					mTaxonId = taxonId;
+					String taxonName = item.getString("name");
+					String idName = getTaxonName(item);
+					mTaxonName = String.format("%s (%s)", idName, taxonName);
+
+    				reloadNearbyObservations();
+    				refreshActiveFilters();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+ 			}
+
+ 			@Override
+ 			public String[] getItem(JSONObject item) {
+ 				String displayName = getTaxonName(item);
+
+ 				try {
+ 					return new String[] {
+ 							displayName,
+ 							item.getString("name"),
+ 							item.getString("image_url")
+ 					};
+ 				} catch (JSONException e) {
+ 					e.printStackTrace();
+ 					return new String[] { "", "", "" };
+ 				}
+ 			}
+ 		});
+ 		
+ 		chooser.show();
+
+ 	}
+ 	
+ 	
+ 	// Refreshes the active filters bar
+ 	private void refreshActiveFilters() {
+ 		String filterText = "";
+ 		
+ 		if (mTaxonId != null) {
+ 			filterText = String.format(getResources().getString(R.string.named), mTaxonName);
+ 		}
+ 		
+ 		if (filterText.length() > 0) {
+ 			filterText = Character.toUpperCase(filterText.charAt(0)) + filterText.substring(1); // Upper case first letter
+ 			mActiveFiltersDescription.setText(filterText);
+ 			mActiveFilters.setVisibility(View.VISIBLE);
+ 		} else {
+ 			mActiveFilters.setVisibility(View.GONE);
+ 		}
+ 		
+ 	}
+ 	
+ 	
+ 	// Utility function for retrieving the Taxon's name
+ 	private String getTaxonName(JSONObject item) {
+ 		JSONObject defaultName;
+ 		String displayName = null;
+
+
+ 		// Get the taxon display name according to configuration of the current iNat network
+ 		String inatNetwork = mApp.getInaturalistNetworkMember();
+ 		String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
+ 		try {
+ 			JSONArray taxonNames = item.getJSONArray("taxon_names");
+ 			for (int i = 0; i < taxonNames.length(); i++) {
+ 				JSONObject taxonName = taxonNames.getJSONObject(i);
+ 				String lexicon = taxonName.getString("lexicon");
+ 				if (lexicon.equals(networkLexicon)) {
+ 					// Found the appropriate lexicon for the taxon
+ 					displayName = taxonName.getString("name");
+ 					break;
+ 				}
+ 			}
+ 		} catch (JSONException e3) {
+ 			e3.printStackTrace();
+ 		}
+
+ 		if (displayName == null) {
+ 			// Couldn't extract the display name from the taxon names list - use the default one
+ 			try {
+ 				displayName = item.getString("unique_name");
+ 			} catch (JSONException e2) {
+ 				displayName = "unknown";
+ 			}
+ 			try {
+ 				defaultName = item.getJSONObject("default_name");
+ 				displayName = defaultName.getString("name");
+ 			} catch (JSONException e1) {
+ 				// alas
+ 			}
+ 		}
+
+ 		return displayName;
+
+ 	}
 }

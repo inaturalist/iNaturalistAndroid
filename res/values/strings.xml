@@ -285,5 +285,13 @@
       <item><![CDATA[Find <b>projects</b> named \'<i>%1$s</i>\']]></item>
     </string-array>
 
+    <string name="searching_for_critters">Searching for critters...</string>
+    <string name="no_critters_found">No such critters found</string>
+    <string name="which_critter">Which critter?</string>
+    <string name="and">and</string>
+    <string name="named">named \'%1$s\'</string>
+    <string name="seen_by">seen by \'%1$s\'</string>
+    <string name="seen_at">seen at \'%1$s\'</string>
+    <string name="in_project">in project \'%1$s\'</string>
  </resources>
 
