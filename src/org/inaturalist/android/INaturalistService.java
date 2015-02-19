@@ -1346,7 +1346,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         Double maxx = extras.getDouble("maxx");
         Double miny = extras.getDouble("miny");
         Double maxy = extras.getDouble("maxy");
-        String url = HOST + "/observations.json?extra=observation_photos";
+
+        String url = HOST;
+        if (extras.containsKey("username")) {
+        	url = HOST + "/observations/" + extras.getString("username") + ".json?extra=observation_photos";
+        } else {
+        	url = HOST + "/observations.json?extra=observation_photos";
+        }
+
         url += "&swlat="+miny;
         url += "&nelat="+maxy;
         url += "&swlng="+minx;

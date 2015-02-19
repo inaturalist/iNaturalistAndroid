@@ -288,6 +288,11 @@
     <string name="searching_for_critters">Searching for critters...</string>
     <string name="no_critters_found">No such critters found</string>
     <string name="which_critter">Which critter?</string>
+    
+    <string name="searching_for_people">Searching for people...</string>
+    <string name="no_person_found">No such person found</string>
+    <string name="which_person">Which person?</string>
+    
     <string name="and">and</string>
     <string name="named">named \'%1$s\'</string>
     <string name="seen_by">seen by \'%1$s\'</string>

@@ -100,6 +100,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private View mCancelFilters;
 	private View mCancelRestricToMap;
 	private TextView mActiveFiltersDescription;
+
+	private String mUsername;
+	private String mFullName;
 	
 	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
 	private final static int FIND_MY_OBSERVATIONS = 1;
@@ -133,6 +136,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    mCurrentSearch = "";
 	    mSearchType = 0;
 	    mTaxonId = null;
+	    mUsername = null;
 	    
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setDisplayShowCustomEnabled(true);
@@ -182,8 +186,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				mCurrentSearch = mSearchText.getText().toString();
 				mSearchType = index;
 				
-				mTaxonId = null;
-
 				mSearchToggle.performClick();
             	mActiveSearch = true;
 				loadObservations();
@@ -238,6 +240,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				// Clear out all filters
 				mCurrentSearch = "";
 				mTaxonId = null;
+				mUsername = null;
 				mSearchType = FIND_NEAR_BY_OBSERVATIONS;
 
 				refreshActiveFilters();
@@ -261,16 +264,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
     		}
     	} else {
-    		switch (mSearchType) {
-    		case FIND_CRITTERS:
-    			// Find critters by name
-    			if (mActiveSearch) {
-    				// Show search dialog for critters first
-    				loadCritters();
-    			} else {
-    				reloadNearbyObservations();
-    			}
-    			break;
+    		// Find critters/people/projects/locations by name
+    		if (mActiveSearch) {
+    			// Show search dialog for critters/people/... first
+    			findByName(mSearchType);
+    		} else {
+    			reloadNearbyObservations();
     		}
     	}
     }
@@ -485,6 +484,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
        serviceIntent.putExtra("miny", vr.nearLeft.latitude);
        serviceIntent.putExtra("maxy", vr.farRight.latitude);
        if (mTaxonId != null) serviceIntent.putExtra("taxon_id", mTaxonId.intValue());
+       if (mUsername != null) serviceIntent.putExtra("username", mUsername);
        startService(serviceIntent);
     }
     
@@ -507,6 +507,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             if (mTaxonId != null) {
             	where += " AND (taxon_id = " + mTaxonId + ")";
             }
+            if (mUsername != null) {
+            	where += " AND (user_login = '" + mUsername + "')";
+            }
+
 
             Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
                     where, // selection 
@@ -743,12 +747,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  	}
  	
  	
- 	private JSONArray findTaxa(String search) {
+ 	private JSONArray find(String type, String search) {
  		HttpURLConnection conn = null;
  		StringBuilder jsonResults = new StringBuilder();
  		try {
- 			StringBuilder sb = new StringBuilder(INaturalistService.HOST + "/taxa/search.json");
- 			sb.append("?q=");
+ 			StringBuilder sb = new StringBuilder(INaturalistService.HOST + "/" + type + "/search.json?per_page=25&q=");
  			sb.append(URLEncoder.encode(search, "utf8"));
 
  			URL url = new URL(sb.toString());
@@ -786,21 +789,41 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
  	}
  
- 	
- 	private void loadCritters() {
- 		mHelper.loading(getResources().getString(R.string.searching_for_critters));
+ 
+ 	private void findByName(final int type) {
+ 		int loading = 0;
+ 		final int noResults;
+ 		final String typeName;
+ 		
+ 		switch (type) {
+ 		case FIND_CRITTERS:
+ 			loading = R.string.searching_for_critters;
+ 			noResults = R.string.no_critters_found;
+ 			typeName = "taxa";
+ 			break;
+ 		case FIND_PEOPLE:
+ 			loading = R.string.searching_for_people;
+ 			noResults = R.string.no_person_found;
+ 			typeName = "people";
+ 			break;
+ 		default:
+ 			noResults = 0;
+ 			typeName = "";
+ 		}
+
+ 		mHelper.loading(getResources().getString(loading));
 
  		new Thread(new Runnable() {
  			@Override
  			public void run() {	
- 				final JSONArray results = findTaxa(mCurrentSearch);
+ 				final JSONArray results = find(typeName, mCurrentSearch);
  				mHelper.stopLoading();
 
  				if ((results == null) || (results.length() == 0)) {
  					runOnUiThread(new Runnable() {
  						@Override
  						public void run() {
- 							mHelper.alert(getResources().getString(R.string.no_critters_found));
+ 							mHelper.alert(getResources().getString(noResults));
  						}
  					});
  					return;
@@ -808,7 +831,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  					runOnUiThread(new Runnable() {
  						@Override
  						public void run() {
- 							showCritterChooserDialog(results);
+ 							showChooserDialog(type, results);
  						}
  					});
  				}
@@ -819,16 +842,34 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  	}
  	
  	
- 	private void showCritterChooserDialog(JSONArray results) {
- 		DialogChooser chooser = new DialogChooser(R.string.which_critter, results, new DialogChooserCallbacks() {
+ 	private void showChooserDialog(final int type, JSONArray results) {
+ 		int title = 0;
+ 		switch (type) {
+ 		case FIND_CRITTERS:
+ 			title = R.string.which_critter;
+ 			break;
+ 		case FIND_PEOPLE:
+ 			title = R.string.which_person;
+ 			break;
+ 		}
+
+ 		DialogChooser chooser = new DialogChooser(title, results, new DialogChooserCallbacks() {
  			@Override
  			public void onItemSelected(JSONObject item) {
  				try {
-					int taxonId = item.getInt("id");
-					mTaxonId = taxonId;
-					String taxonName = item.getString("name");
-					String idName = getTaxonName(item);
-					mTaxonName = String.format("%s (%s)", idName, taxonName);
+					switch (type) {
+					case FIND_CRITTERS:
+						mTaxonId = item.getInt("id");
+						String taxonName = item.getString("name");
+						String idName = getTaxonName(item);
+						mTaxonName = String.format("%s (%s)", idName, taxonName);
+						break;
+
+					case FIND_PEOPLE:
+						mUsername = item.getString("login");
+						mFullName = (!item.has("name") || item.isNull("name")) ? null : item.getString("name");
+						break;
+					}
 
     				reloadNearbyObservations();
     				refreshActiveFilters();
@@ -839,18 +880,40 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
  			@Override
  			public String[] getItem(JSONObject item) {
- 				String displayName = getTaxonName(item);
-
  				try {
- 					return new String[] {
- 							displayName,
- 							item.getString("name"),
- 							item.getString("image_url")
- 					};
+ 					switch (type) {
+ 					case FIND_CRITTERS:
+ 						String displayName = getTaxonName(item);
+
+ 						return new String[] {
+ 								displayName,
+ 								item.getString("name"),
+ 								item.getString("image_url")
+ 						};
+
+ 					case FIND_PEOPLE:
+ 						String title;
+ 						String subtitle;
+
+ 						if ((!item.has("name")) || (item.isNull("name")) || (item.getString("name").length() == 0)) {
+ 							title = item.getString("login");
+ 							subtitle = "";
+ 						} else {
+ 							title = item.getString("name");
+ 							subtitle = item.getString("login");
+ 						}
+ 						return new String[] {
+ 								title,
+ 								subtitle,
+ 								item.getString("icon_url")
+ 						};
+ 					}
+
  				} catch (JSONException e) {
  					e.printStackTrace();
- 					return new String[] { "", "", "" };
  				}
+
+ 				return new String[] { "", "", "" };
  			}
  		});
  		
@@ -865,6 +928,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		
  		if (mTaxonId != null) {
  			filterText = String.format(getResources().getString(R.string.named), mTaxonName);
+ 		}
+  		if (mUsername != null) {
+  			if (filterText.length() > 0) filterText += " " + getResources().getString(R.string.and) + " ";
+ 			filterText += String.format(getResources().getString(R.string.seen_by), ((mFullName != null) && (mFullName.length() > 0) ? mFullName : mUsername));
  		}
  		
  		if (filterText.length() > 0) {
