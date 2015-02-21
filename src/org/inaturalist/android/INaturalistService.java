@@ -1354,13 +1354,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         	url = HOST + "/observations.json?extra=observation_photos";
         }
 
-        url += "&swlat="+miny;
-        url += "&nelat="+maxy;
-        url += "&swlng="+minx;
-        url += "&nelng="+maxx;
-        
-        if (extras.containsKey("taxon_id")) {
+       if (extras.containsKey("taxon_id")) {
         	url += "&taxon_id=" + extras.getInt("taxon_id");
+        }
+        if (extras.containsKey("location_id")) {
+        	url += "&place_id=" + extras.getInt("location_id");
+        } else {
+        	url += "&swlat="+miny;
+        	url += "&nelat="+maxy;
+        	url += "&swlng="+minx;
+        	url += "&nelng="+maxx;
         }
 
         JSONArray json = get(url, mApp.loggedIn());
@@ -1374,6 +1377,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         } else {
             syncJson(json, false);
         }
+        mApp.setServiceResult(ACTION_NEARBY, new SerializableJSONArray(json));
         sendBroadcast(reply);
     }
 
