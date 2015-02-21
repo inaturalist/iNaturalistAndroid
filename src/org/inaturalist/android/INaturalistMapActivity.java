@@ -100,9 +100,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private View mCancelFilters;
 	private View mCancelRestricToMap;
 	private TextView mActiveFiltersDescription;
-
 	private String mUsername;
 	private String mFullName;
+	private String mLocationName;
+	private Integer mLocationId;
 	
 	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
 	private final static int FIND_MY_OBSERVATIONS = 1;
@@ -137,6 +138,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    mSearchType = 0;
 	    mTaxonId = null;
 	    mUsername = null;
+	    mLocationId = null;
 	    
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setDisplayShowCustomEnabled(true);
@@ -241,6 +243,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				mCurrentSearch = "";
 				mTaxonId = null;
 				mUsername = null;
+				mLocationId = null;
 				mSearchType = FIND_NEAR_BY_OBSERVATIONS;
 
 				refreshActiveFilters();
@@ -485,6 +488,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
        serviceIntent.putExtra("maxy", vr.farRight.latitude);
        if (mTaxonId != null) serviceIntent.putExtra("taxon_id", mTaxonId.intValue());
        if (mUsername != null) serviceIntent.putExtra("username", mUsername);
+       if (mLocationId != null) serviceIntent.putExtra("location_id", mLocationId.intValue());
        startService(serviceIntent);
     }
     
@@ -499,6 +503,25 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 mHelper.alert(String.format(getString(R.string.couldnt_load_nearby_observations), error));
                 return;
             }
+
+            mMap.clear();
+            mMarkerObservations.clear();
+            
+            SerializableJSONArray resultsJSON = (SerializableJSONArray) mApp.getServiceResult(INaturalistService.ACTION_NEARBY);
+            JSONArray results = resultsJSON.getJSONArray();
+            
+            for (int i = 0; i < results.length(); i++) {
+            	BetterJSONObject json;
+				try {
+					json = new BetterJSONObject(results.getJSONObject(i));
+					Observation obs = new Observation(json);
+					addObservation(obs);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+            }
+            
+            /*
             Double minx = extras.getDouble("minx");
             Double maxx = extras.getDouble("maxx");
             Double miny = extras.getDouble("miny");
@@ -516,17 +539,18 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                     where, // selection 
                     null,
                     Observation.DEFAULT_SORT_ORDER);
+                    */
 
-            mMap.clear();
-            mMarkerObservations.clear();
 
+            /*
             c.moveToFirst();
             while (c.isAfterLast() == false) {
                 addObservation(new Observation(c));
                 c.moveToNext();
             }
+            */
             if (mActiveSearch) {
-            	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
+            	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), results.length()), Toast.LENGTH_SHORT).show();
             	mActiveSearch = false;
             }
         }
@@ -806,6 +830,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  			noResults = R.string.no_person_found;
  			typeName = "people";
  			break;
+ 		case FIND_LOCATIONS:
+ 			loading = R.string.searching_for_places;
+ 			noResults = R.string.no_place_found;
+ 			typeName = "places";
+ 			break;
  		default:
  			noResults = 0;
  			typeName = "";
@@ -851,6 +880,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		case FIND_PEOPLE:
  			title = R.string.which_person;
  			break;
+ 		case FIND_LOCATIONS:
+ 			title = R.string.which_place;
+ 			break;
  		}
 
  		DialogChooser chooser = new DialogChooser(title, results, new DialogChooserCallbacks() {
@@ -868,6 +900,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 					case FIND_PEOPLE:
 						mUsername = item.getString("login");
 						mFullName = (!item.has("name") || item.isNull("name")) ? null : item.getString("name");
+						break;
+
+					case FIND_LOCATIONS:
+						mLocationName = item.getString("display_name");
+						mLocationId = item.getInt("id");
 						break;
 					}
 
@@ -907,6 +944,14 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  								subtitle,
  								item.getString("icon_url")
  						};
+ 					case FIND_LOCATIONS:
+ 						return new String[] {
+ 								item.getString("display_name"),
+ 								item.isNull("place_type_name") ? "" : item.getString("place_type_name"),
+ 								null
+ 						};
+
+
  					}
 
  				} catch (JSONException e) {
@@ -932,6 +977,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
   		if (mUsername != null) {
   			if (filterText.length() > 0) filterText += " " + getResources().getString(R.string.and) + " ";
  			filterText += String.format(getResources().getString(R.string.seen_by), ((mFullName != null) && (mFullName.length() > 0) ? mFullName : mUsername));
+ 		}
+   		if (mLocationId != null) {
+  			if (filterText.length() > 0) filterText += " " + getResources().getString(R.string.and) + " ";
+ 			filterText += String.format(getResources().getString(R.string.seen_at), mLocationName);
  		}
  		
  		if (filterText.length() > 0) {
