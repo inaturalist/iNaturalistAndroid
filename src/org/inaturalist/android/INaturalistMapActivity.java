@@ -104,6 +104,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private String mFullName;
 	private String mLocationName;
 	private Integer mLocationId;
+	private String mProjectName;
+	private Integer mProjectId;
 	
 	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
 	private final static int FIND_MY_OBSERVATIONS = 1;
@@ -139,6 +141,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    mTaxonId = null;
 	    mUsername = null;
 	    mLocationId = null;
+	    mProjectId = null;
 	    
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setDisplayShowCustomEnabled(true);
@@ -242,6 +245,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				// Clear out all filters
 				mCurrentSearch = "";
 				mTaxonId = null;
+				mProjectId = null;
 				mUsername = null;
 				mLocationId = null;
 				mSearchType = FIND_NEAR_BY_OBSERVATIONS;
@@ -489,6 +493,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
        if (mTaxonId != null) serviceIntent.putExtra("taxon_id", mTaxonId.intValue());
        if (mUsername != null) serviceIntent.putExtra("username", mUsername);
        if (mLocationId != null) serviceIntent.putExtra("location_id", mLocationId.intValue());
+       if (mProjectId != null) serviceIntent.putExtra("project_id", mProjectId.intValue());
        startService(serviceIntent);
     }
     
@@ -835,6 +840,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  			noResults = R.string.no_place_found;
  			typeName = "places";
  			break;
+ 		case FIND_PROJECTS:
+ 			loading = R.string.searching_for_projects;
+ 			noResults = R.string.no_project_found;
+ 			typeName = "projects";
+ 			break;
  		default:
  			noResults = 0;
  			typeName = "";
@@ -883,6 +893,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		case FIND_LOCATIONS:
  			title = R.string.which_place;
  			break;
+ 		case FIND_PROJECTS:
+ 			title = R.string.which_project;
+ 			break;
  		}
 
  		DialogChooser chooser = new DialogChooser(title, results, new DialogChooserCallbacks() {
@@ -905,6 +918,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 					case FIND_LOCATIONS:
 						mLocationName = item.getString("display_name");
 						mLocationId = item.getInt("id");
+						break;
+
+					case FIND_PROJECTS:
+						mProjectName = item.getString("title");
+						mProjectId = item.getInt("id");
 						break;
 					}
 
@@ -951,6 +969,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  								null
  						};
 
+ 					case FIND_PROJECTS:
+ 						return new String[] {
+ 								item.getString("title"),
+ 								String.format(getResources().getString(R.string.observed_taxa), item.getInt("observed_taxa_count")),
+ 								item.getString("icon_url")
+ 						};
 
  					}
 
@@ -981,6 +1005,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
    		if (mLocationId != null) {
   			if (filterText.length() > 0) filterText += " " + getResources().getString(R.string.and) + " ";
  			filterText += String.format(getResources().getString(R.string.seen_at), mLocationName);
+ 		}
+   		if (mProjectId != null) {
+  			if (filterText.length() > 0) filterText += " " + getResources().getString(R.string.and) + " ";
+ 			filterText += String.format(getResources().getString(R.string.in_project), mProjectName);
  		}
  		
  		if (filterText.length() > 0) {
