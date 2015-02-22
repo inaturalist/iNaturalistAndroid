@@ -1365,6 +1365,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         	url += "&swlng="+minx;
         	url += "&nelng="+maxx;
         }
+        
+        if (extras.containsKey("project_id")) {
+        	url += "&projects[]=" + extras.getInt("project_id");
+        }
 
         JSONArray json = get(url, mApp.loggedIn());
         Intent reply = new Intent(ACTION_NEARBY);

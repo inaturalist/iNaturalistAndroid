@@ -297,6 +297,11 @@
     <string name="no_place_found">No such place found</string>
     <string name="which_place">Which place?</string>
 
+    <string name="searching_for_projects">Searching for projects...</string>
+    <string name="no_project_found">No such project found</string>
+    <string name="which_project">Which project?</string>
+    <string name="observed_taxa">%1$d observed taxa</string>
+
     <string name="and">and</string>
     <string name="named">named \'%1$s\'</string>
     <string name="seen_by">seen by \'%1$s\'</string>
