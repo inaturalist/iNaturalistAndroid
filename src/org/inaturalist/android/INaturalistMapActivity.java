@@ -136,12 +136,30 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         setContentView(R.layout.map);
 	    onDrawerCreate(savedInstanceState);
 	    
-	    mCurrentSearch = "";
-	    mSearchType = 0;
-	    mTaxonId = null;
-	    mUsername = null;
-	    mLocationId = null;
-	    mProjectId = null;
+	    if (savedInstanceState != null) {
+	    	mCurrentSearch = savedInstanceState.getString("mCurrentSearch");
+	    	mSearchType = savedInstanceState.getInt("mSearchType");
+
+	    	mTaxonId = (Integer) savedInstanceState.getSerializable("mTaxonId");
+	    	mTaxonName = savedInstanceState.getString("mTaxonName");
+
+	    	mUsername = savedInstanceState.getString("mUsername");
+	    	mFullName = savedInstanceState.getString("mFullName");
+
+	    	mLocationId = (Integer) savedInstanceState.getSerializable("mLocationId");
+	    	mLocationName = savedInstanceState.getString("mLocationName");
+
+	    	mProjectId = (Integer) savedInstanceState.getSerializable("mProjectId");
+	    	mProjectName = savedInstanceState.getString("mProjectName");
+
+	    } else {
+	    	mCurrentSearch = "";
+	    	mSearchType = 0;
+	    	mTaxonId = null;
+	    	mUsername = null;
+	    	mLocationId = null;
+	    	mProjectId = null;
+	    }
 	    
         mTopActionBar = getSupportActionBar();
         mTopActionBar.setDisplayShowCustomEnabled(true);
@@ -329,8 +347,32 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         registerReceiver(mNearbyReceiver, filter);
         
         setUpMapIfNeeded();
-        //reloadObservations();
+        loadObservations();
+        refreshActiveFilters();
     }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Save away the original text, so we still have it if the activity
+        // needs to be killed while paused.
+        outState.putString("mCurrentSearch", mCurrentSearch);
+        outState.putInt("mSearchType", mSearchType);
+
+        outState.putSerializable("mTaxonId", mTaxonId);
+        outState.putString("mTaxonName", mTaxonName);
+
+        outState.putString("mUsername", mUsername);
+        outState.putString("mFullName", mFullName);
+
+        outState.putSerializable("mLocationId", mLocationId);
+        outState.putString("mLocationName", mLocationName);
+
+        outState.putSerializable("mProjectId", mProjectId);
+        outState.putString("mProjectName", mProjectName);
+
+    }
+
+    
 
     @Override
     public void onPause() {
