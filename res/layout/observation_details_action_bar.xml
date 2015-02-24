@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/title"
+        style="@android:style/TextAppearance.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="@string/details" />
+
+    
+     <ImageButton
+        android:id="@+id/view_on_inat"
+        android:layout_width="32dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/actionbar_btn"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:singleLine="true"
+        android:src="@drawable/action" />
+   
+     <ImageButton
+        android:id="@+id/view_comments"
+        android:layout_width="32dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/view_on_inat"
+        android:background="@drawable/actionbar_btn"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:singleLine="true"
+        android:src="@drawable/comments" />
+ 
+</RelativeLayout>

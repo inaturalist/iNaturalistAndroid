@@ -108,7 +108,7 @@ public class ActivityHelper {
     
     public int observationColor(Observation o) {
         if (o.iconic_taxon_name== null) {
-            return Color.BLACK;
+            return Color.WHITE;
         } else if (o.iconic_taxon_name.equals("Animalia") || 
                 o.iconic_taxon_name.equals("Actinopterygii") ||
                 o.iconic_taxon_name.equals("Amphibia") || 
@@ -129,7 +129,7 @@ public class ActivityHelper {
         } else if (o.iconic_taxon_name.equals("Chromista")) {
             return Color.parseColor("#993300");
         } else {
-            return Color.BLACK;
+            return Color.WHITE;
         }
     }
 }

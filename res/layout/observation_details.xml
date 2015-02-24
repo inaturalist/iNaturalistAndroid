@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/id_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        style="@android:style/TextAppearance.Medium"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/id_taxon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/id_pic"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/actinopterygii_large" />
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+         <ImageView
+            android:id="@+id/user_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/actionbar_back_indicator" />
+         
+         
+         <RelativeLayout
+            android:id="@+id/observed_on"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+             >
+             <TextView 
+                android:id="@+id/observed_on_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Small"
+                android:text="22/02/15"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                 />
+
+             <TextView 
+                android:id="@+id/observed_on_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Small"
+                android:text="14:32"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/observed_on_date"
+                 />
+        </RelativeLayout>
+
+        <TextView 
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="myuser"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/user_pic"
+            android:layout_toLeftOf="@id/observed_on"
+            android:textStyle="bold"
+             />
+
+        <ImageView 
+            android:id="@+id/location_image"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/location"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/user_name"
+            android:layout_toRightOf="@id/user_pic"
+             />
+
+        <TextView 
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Some location, San Francisco, CA"
+            android:layout_toRightOf="@id/location_image"
+            android:layout_toLeftOf="@id/observed_on"
+            android:layout_below="@id/user_name"
+            android:textSize="10dp"
+             />
+
+        <TextView 
+            android:id="@+id/accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="191m accuracy"
+            android:layout_toRightOf="@id/location_image"
+            android:layout_toLeftOf="@id/observed_on"
+            android:layout_below="@id/location"
+            android:textSize="8dp"
+            android:textColor="#999999"
+             />
+
+
+
+       
+    </RelativeLayout>
+ 
+</LinearLayout>
