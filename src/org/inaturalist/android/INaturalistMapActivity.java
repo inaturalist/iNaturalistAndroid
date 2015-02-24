@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -80,7 +81,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     private Circle mCircle;
     private NearbyObservationsReceiver mNearbyReceiver;
     private ActivityHelper mHelper;
-    private HashMap<String, Observation> mMarkerObservations;
+    private HashMap<String, JSONObject> mMarkerObservations;
     private INaturalistApp mApp;
 	private ActionBar mTopActionBar;
 	private ListView mSearchResults;
@@ -415,7 +416,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     
     private void setUpMapIfNeeded() {
         if (mMarkerObservations == null) {
-            mMarkerObservations = new HashMap<String, Observation>();
+            mMarkerObservations = new HashMap<String, JSONObject>();
         }
         if (mMap == null) {
             mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -438,6 +439,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
 
                 if (!mMarkerObservations.isEmpty()) {
+                   /*
                     LatLngBounds.Builder builder = new LatLngBounds.Builder();
                     for (Observation o: mMarkerObservations.values()) {
                         if (o.private_latitude != null && o.private_longitude != null) {
@@ -448,7 +450,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                     }
                     final LatLngBounds bounds = builder.build();
 
-                   /*
                     mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
                         @Override
                         public void onCameraChange(CameraPosition arg0) {
@@ -480,7 +481,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mMap.clear();
         mMarkerObservations.clear();
         while (c.isAfterLast() == false) {
-            addObservation(new Observation(c));
+            try {
+				addObservation(new Observation(c).toJSONObject());
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
             c.moveToNext();
         }
         if (mActiveSearch) {
@@ -490,25 +495,23 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         hideLoading();
     }
     
-    private void addObservation(Observation o) {
+    private void addObservation(JSONObject o) throws JSONException {
     	if (o == null) return;
     	
-        if (o.private_latitude == null && o.latitude == null) {
+        if ((!o.has("private_latitude") || o.isNull("private_latitude")) && (!o.has("latitude") || o.isNull("latitude"))) {
             return;
         }
+
         LatLng latLng;
-        if (o.private_latitude != null && mApp.currentUserLogin().equalsIgnoreCase(o.user_login)) {
-            latLng = new LatLng(o.private_latitude, o.private_longitude);
+        if ((o.has("private_latitude") && !o.isNull("private_latitude")) && mApp.currentUserLogin().equalsIgnoreCase(o.getString("user_login"))) {
+            latLng = new LatLng(o.getDouble("private_latitude"), o.getDouble("private_longitude"));
         } else {
-            latLng = new LatLng(o.latitude, o.longitude);
+            latLng = new LatLng(o.getDouble("latitude"), o.getDouble("longitude"));
         }
         MarkerOptions opts = new MarkerOptions()
             .position(latLng)
-            .title(o.species_guess)
+            //.title(o.getString("species_guess"))
             .icon(observationIcon(o));
-        if (o.description != null && o.description.length() > 0) {
-            opts.snippet(o.description);
-        }
         Marker m = mMap.addMarker(opts);
         mMarkerObservations.put(m.getId(), o);
     }
@@ -560,9 +563,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             for (int i = 0; i < results.length(); i++) {
             	BetterJSONObject json;
 				try {
-					json = new BetterJSONObject(results.getJSONObject(i));
-					Observation obs = new Observation(json);
-					addObservation(obs);
+					addObservation(results.getJSONObject(i));
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -605,12 +606,19 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        setAccuracyCircle(marker);
+        JSONObject o = mMarkerObservations.get(marker.getId());
+
+    	Intent intent = new Intent(this, ObservationDetails.class);
+    	intent.putExtra("observation", o.toString());
+    	startActivity(intent);  
+
+        //setAccuracyCircle(marker);
         return false;
     }
     
     private void setAccuracyCircle(Marker marker) {
-        Observation o = mMarkerObservations.get(marker.getId());
+    	/*
+        JSONObject o = mMarkerObservations.get(marker.getId());
         if (o == null || (o.positional_accuracy == null && o.geoprivacy == null)) {
             if (mCircle != null) { mCircle.setVisible(false); }
             return;
@@ -640,11 +648,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             mCircle.setStrokeColor(strokeColor);
         }
         mCircle.setVisible(true);
+        */
     }
     
     private void showObservationDialog(Marker marker) {
+    	/*
         marker.hideInfoWindow();
-        Observation observation = mMarkerObservations.get(marker.getId());
+        JSONObject observation = mMarkerObservations.get(marker.getId());
         final Uri observationUri = observation.getUri();
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle(observation.species_guess)
@@ -674,29 +684,39 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             });
         }
         dialog.show();
+        */
     }
     
-    private BitmapDescriptor observationIcon(Observation o) {
-        if (o.iconic_taxon_name == null) {
+    private BitmapDescriptor observationIcon(JSONObject o) {
+        if (!o.has("iconic_taxon_name") || o.isNull("iconic_taxon_name")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
-        } else if (o.iconic_taxon_name.equals("Animalia") || 
-                o.iconic_taxon_name.equals("Actinopterygii") ||
-                o.iconic_taxon_name.equals("Amphibia") || 
-                o.iconic_taxon_name.equals("Reptilia") || 
-                o.iconic_taxon_name.equals("Aves") || 
-                o.iconic_taxon_name.equals("Mammalia")) {
+        }
+        String iconic_taxon_name;
+		try {
+			iconic_taxon_name = o.getString("iconic_taxon_name");
+		} catch (JSONException e) {
+			e.printStackTrace();
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
+		}
+        
+        if (iconic_taxon_name.equals("Animalia") || 
+                iconic_taxon_name.equals("Actinopterygii") ||
+                iconic_taxon_name.equals("Amphibia") || 
+                iconic_taxon_name.equals("Reptilia") || 
+                iconic_taxon_name.equals("Aves") || 
+                iconic_taxon_name.equals("Mammalia")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dodger_blue);
-        } else if (o.iconic_taxon_name.equals("Insecta") || 
-                o.iconic_taxon_name.equals("Arachnida") ||
-                o.iconic_taxon_name.equals("Mollusca")) {
+        } else if (iconic_taxon_name.equals("Insecta") || 
+                iconic_taxon_name.equals("Arachnida") ||
+                iconic_taxon_name.equals("Mollusca")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_orange_red);
-        } else if (o.iconic_taxon_name.equals("Protozoa")) {
+        } else if (iconic_taxon_name.equals("Protozoa")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dark_magenta);
-        } else if (o.iconic_taxon_name.equals("Plantae")) {
+        } else if (iconic_taxon_name.equals("Plantae")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_inat_green);
-        } else if (o.iconic_taxon_name.equals("Fungi")) {
+        } else if (iconic_taxon_name.equals("Fungi")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_hot_pink);
-        } else if (o.iconic_taxon_name.equals("Chromista")) {
+        } else if (iconic_taxon_name.equals("Chromista")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_chromista_brown);
         } else {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
@@ -707,7 +727,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     @Override
     public void onInfoWindowClick(Marker marker) {
         // TODO make a decent infowindow, replace this alert with a modal fragment
-        showObservationDialog(marker);
+        //showObservationDialog(marker);
     }
 
  	private boolean isNetworkAvailable() {

@@ -307,5 +307,9 @@
     <string name="seen_by">seen by \'%1$s\'</string>
     <string name="seen_at">seen at \'%1$s\'</string>
     <string name="in_project">in project \'%1$s\'</string>
+
+    <string name="details">Details</string>
+
+    <string name="accuracy">%1$dm accuracy</string>
  </resources>
 
