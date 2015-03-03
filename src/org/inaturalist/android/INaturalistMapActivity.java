@@ -22,9 +22,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -49,6 +53,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,10 +63,17 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMapLoadedCallback;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -75,7 +88,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.VisibleRegion;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
-public class INaturalistMapActivity extends BaseFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener {
+public class INaturalistMapActivity extends BaseFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener, OnTabChangeListener {
     public final static String TAG = "INaturalistMapActivity";
     private GoogleMap mMap;
     private Circle mCircle;
@@ -108,6 +121,16 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private String mProjectName;
 	private Integer mProjectId;
 	
+	private LocationClient mLocationClient;
+	private double mMinx;
+	private double mMaxx;
+	private double mMiny;
+	private double mMaxy;
+	private float mZoom;
+	private Intent mServiceIntent;
+	private TabHost mTabHost;
+	
+	private final static int NO_SEARCH = -1;
 	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
 	private final static int FIND_MY_OBSERVATIONS = 1;
 	private final static int FIND_CRITTERS = 0;
@@ -153,9 +176,14 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    	mProjectId = (Integer) savedInstanceState.getSerializable("mProjectId");
 	    	mProjectName = savedInstanceState.getString("mProjectName");
 
+	    	mMinx = savedInstanceState.getDouble("minx");
+	    	mMaxx = savedInstanceState.getDouble("maxx");
+	    	mMiny = savedInstanceState.getDouble("miny");
+	    	mMaxy = savedInstanceState.getDouble("maxy");
+	    	mZoom = savedInstanceState.getFloat("zoom");
 	    } else {
 	    	mCurrentSearch = "";
-	    	mSearchType = 0;
+	    	mSearchType = NO_SEARCH;
 	    	mTaxonId = null;
 	    	mUsername = null;
 	    	mLocationId = null;
@@ -273,19 +301,58 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				loadObservations();
 			}
 		});
+        
+        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+        mTabHost.setup();
+
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("map").setIndicator(getString(R.string.map)));
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("grid").setIndicator(getString(R.string.grid)));
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("list").setIndicator(getString(R.string.list)));
+
+        mTabHost.setOnTabChangedListener(this);
+
     }
+    
+    @Override
+    public void onTabChanged(String arg0) {
+    	// TODO Auto-generated method stub
+
+    }
+
+     // Method to add a TabHost
+    private static void AddTab(INaturalistMapActivity activity, TabHost tabHost, TabHost.TabSpec tabSpec) {
+        tabSpec.setContent(new MyTabFactory(activity));
+        tabHost.addTab(tabSpec);
+    }
+
+   
     
     // Loads observations according to current search criteria
     private void loadObservations() {
     	if (mCurrentSearch.length() == 0) {
     		switch (mSearchType) {
+    		case NO_SEARCH:
+    			mSearchType = FIND_NEAR_BY_OBSERVATIONS;
+    			getCurrentLocationAndLoadNearbyObservations();
+    			break;
+
     		case FIND_NEAR_BY_OBSERVATIONS:
     			// Find observations near me
-    			reloadNearbyObservations();
+    			if (mActiveSearch) {
+    				// Find out current location
+    				getCurrentLocationAndLoadNearbyObservations();
+    			} else {
+    				// Load near by observations according to current map coordinates
+    				reloadObservations();
+    			}
     			break;
     		case FIND_MY_OBSERVATIONS:
     			// Find my observations
     			loadMyObservations();
+    			if (mActiveSearch) {
+    				refreshActiveFilters();
+    			}
+
     			break;
 
     		}
@@ -295,7 +362,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     			// Show search dialog for critters/people/... first
     			findByName(mSearchType);
     		} else {
-    			reloadNearbyObservations();
+    			reloadObservations();
     		}
     	}
     }
@@ -371,6 +438,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         outState.putSerializable("mProjectId", mProjectId);
         outState.putString("mProjectName", mProjectName);
 
+        VisibleRegion vr = mMap.getProjection().getVisibleRegion();
+        outState.putDouble("minx", vr.farLeft.longitude);
+        outState.putDouble("maxx", vr.farRight.longitude);
+        outState.putDouble("miny", vr.nearLeft.latitude);
+        outState.putDouble("maxy", vr.farRight.latitude);
+
     }
 
     
@@ -407,7 +480,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         		return true;
         	}
 
-            reloadNearbyObservations();
+            reloadObservations();
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -427,6 +500,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 mMap.setMyLocationEnabled(true);
                 mMap.setOnMarkerClickListener(this);
                 mMap.setOnInfoWindowClickListener(this);
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 
                 mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
                 	@Override
@@ -436,63 +510,41 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 	}
                 });
 
-
-
-                if (!mMarkerObservations.isEmpty()) {
-                   /*
-                    LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                    for (Observation o: mMarkerObservations.values()) {
-                        if (o.private_latitude != null && o.private_longitude != null) {
-                            builder.include(new LatLng(o.private_latitude, o.private_longitude));
-                        } else {
-                            builder.include(new LatLng(o.latitude, o.longitude));
-                        }
-                    }
-                    final LatLngBounds bounds = builder.build();
-
-                    mMap.setOnCameraChangeListener(new OnCameraChangeListener() {
-                        @Override
-                        public void onCameraChange(CameraPosition arg0) {
-                            // Move camera.
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50));
-                            // Remove listener to prevent position reset on camera move.
-                            mMap.setOnCameraChangeListener(null);
-                        }
-                    });
-                    */
+                if ((mMiny != 0) && (mMinx != 0) && (mMaxy != 0) && (mMaxx != 0)) {
+                	mMap.setOnMapLoadedCallback(new OnMapLoadedCallback() {
+                		@Override
+                		public void onMapLoaded() {
+                			LatLngBounds bounds = new LatLngBounds(new LatLng(mMiny, mMinx), new LatLng(mMaxy, mMaxx));
+                			mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+                		}
+                	});
                 }
+
+
             }
+            
         }
+        
+        
     }
+
 
     private void loadMyObservations() {
         if (mMap == null) return;
-        showLoading();
-        String where = "(_synced_at IS NULL";
-        if (mApp.currentUserLogin() != null) {
-            where += " OR user_login = '" + mApp.currentUserLogin() + "'";
-        }
-        where += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
-        Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
-                where, // selection 
-                null, // selectionArgs
-                Observation.DEFAULT_SORT_ORDER);
-        c.moveToFirst();
-        mMap.clear();
-        mMarkerObservations.clear();
-        while (c.isAfterLast() == false) {
-            try {
-				addObservation(new Observation(c).toJSONObject());
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-            c.moveToNext();
-        }
-        if (mActiveSearch) {
-        	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), c.getCount()), Toast.LENGTH_SHORT).show();
-        	mActiveSearch = false;
-        }
-        hideLoading();
+        
+        
+	    SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+	    String username = preferences.getString("username", null);
+	    
+	    if (username == null) {
+	    	Toast.makeText(getApplicationContext(), R.string.must_login_to_show_my_observations, Toast.LENGTH_LONG).show();
+	    	return;
+	    }
+	    
+	    mUsername = username;
+	    mSearchType = FIND_PEOPLE;
+ 		reloadObservations();
+       
     }
     
     private void addObservation(JSONObject o) throws JSONException {
@@ -526,20 +578,25 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     	mLoading.setVisibility(View.GONE);
     }
  
-    private void reloadNearbyObservations() {
+    private void reloadObservations() {
        showLoading();
+       
+       if (mServiceIntent != null) {
+    	   stopService(mServiceIntent);
+       }
       
-       Intent serviceIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
+       mServiceIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
        VisibleRegion vr = mMap.getProjection().getVisibleRegion();
-       serviceIntent.putExtra("minx", vr.farLeft.longitude);
-       serviceIntent.putExtra("maxx", vr.farRight.longitude);
-       serviceIntent.putExtra("miny", vr.nearLeft.latitude);
-       serviceIntent.putExtra("maxy", vr.farRight.latitude);
-       if (mTaxonId != null) serviceIntent.putExtra("taxon_id", mTaxonId.intValue());
-       if (mUsername != null) serviceIntent.putExtra("username", mUsername);
-       if (mLocationId != null) serviceIntent.putExtra("location_id", mLocationId.intValue());
-       if (mProjectId != null) serviceIntent.putExtra("project_id", mProjectId.intValue());
-       startService(serviceIntent);
+       mServiceIntent.putExtra("minx", vr.farLeft.longitude);
+       mServiceIntent.putExtra("maxx", vr.farRight.longitude);
+       mServiceIntent.putExtra("miny", vr.nearLeft.latitude);
+       mServiceIntent.putExtra("maxy", vr.farRight.latitude);
+       mServiceIntent.putExtra("zoom", mMap.getCameraPosition().zoom);
+       if (mTaxonId != null) mServiceIntent.putExtra("taxon_id", mTaxonId.intValue());
+       if (mUsername != null) mServiceIntent.putExtra("username", mUsername);
+       if (mLocationId != null) mServiceIntent.putExtra("location_id", mLocationId.intValue());
+       if (mProjectId != null) mServiceIntent.putExtra("project_id", mProjectId.intValue());
+       startService(mServiceIntent);
     }
     
     private class NearbyObservationsReceiver extends BroadcastReceiver {
@@ -561,7 +618,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             JSONArray results = resultsJSON.getJSONArray();
             
             for (int i = 0; i < results.length(); i++) {
-            	BetterJSONObject json;
 				try {
 					addObservation(results.getJSONObject(i));
 				} catch (JSONException e) {
@@ -569,34 +625,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				}
             }
             
-            /*
-            Double minx = extras.getDouble("minx");
-            Double maxx = extras.getDouble("maxx");
-            Double miny = extras.getDouble("miny");
-            Double maxy = extras.getDouble("maxy");
-            String where = "(latitude BETWEEN "+miny+" AND "+maxy+") AND (longitude BETWEEN "+minx+" AND "+maxx+")"; 
-            if (mTaxonId != null) {
-            	where += " AND (taxon_id = " + mTaxonId + ")";
-            }
-            if (mUsername != null) {
-            	where += " AND (user_login = '" + mUsername + "')";
-            }
-
-
-            Cursor c = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
-                    where, // selection 
-                    null,
-                    Observation.DEFAULT_SORT_ORDER);
-                    */
-
-
-            /*
-            c.moveToFirst();
-            while (c.isAfterLast() == false) {
-                addObservation(new Observation(c));
-                c.moveToNext();
-            }
-            */
             if (mActiveSearch) {
             	Toast.makeText(getApplicationContext(), String.format(getString(R.string.found_observations), results.length()), Toast.LENGTH_SHORT).show();
             	mActiveSearch = false;
@@ -988,7 +1016,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 						break;
 					}
 
-    				reloadNearbyObservations();
+    				reloadObservations();
     				refreshActiveFilters();
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -1126,4 +1154,72 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		return displayName;
 
  	}
+ 	
+ 	private void getCurrentLocationAndLoadNearbyObservations() {
+ 		int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+ 		// If Google Play services is available
+ 		if (ConnectionResult.SUCCESS == resultCode) {
+ 			// Use Google Location Services to determine location
+ 			mLocationClient = new LocationClient(getApplicationContext(), new ConnectionCallbacks() {
+				@Override
+				public void onDisconnected() {
+				}
+				@Override
+				public void onConnected(Bundle arg0) {
+					loadNearbyObservations();
+				}
+			}, new OnConnectionFailedListener() {
+				@Override
+				public void onConnectionFailed(ConnectionResult arg0) {
+					// Couldn't connect to client - load by GPS
+					loadNearbyObservations();
+				}
+			});
+ 			mLocationClient.connect();
+ 		} else {
+ 			// Use GPS for the location
+ 			loadNearbyObservations();
+ 			
+ 		}
+
+ 	}
+ 	
+ 	private void loadNearbyObservations() {
+ 		Location currentLocation = getLastLocation();
+
+ 		double latitude = currentLocation.getLatitude();
+ 		double longitude = currentLocation.getLongitude();
+ 		LatLng latLng = new LatLng(latitude, longitude);
+
+ 		// Showing the current location in Google Map
+ 		mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+ 		// Zoom in the Google Map
+ 		mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+ 		
+ 		reloadObservations();
+ 	}
+ 	
+ 	private Location getLastLocation() {
+ 		Location location;
+
+ 		if ((mLocationClient != null) && (mLocationClient.isConnected())) {
+ 			// Use location client for the latest location
+ 			try {
+ 				location = mLocationClient.getLastLocation();
+ 			} catch (IllegalStateException ex) {
+ 				ex.printStackTrace();
+ 				return null;
+ 			}
+ 		} else {
+ 			// Use GPS for current location
+ 			LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
+ 			Criteria criteria = new Criteria();
+ 			String provider = locationManager.getBestProvider(criteria, false);
+ 			location = locationManager.getLastKnownLocation(provider);
+ 		}
+ 		
+ 		return location;
+ 	}
+
 }

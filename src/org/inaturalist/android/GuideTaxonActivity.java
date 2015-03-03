@@ -24,11 +24,13 @@ import android.webkit.*;
 
 public class GuideTaxonActivity extends SherlockActivity {
     private static String TAG = "GuideTaxonActivity";
-    private static String TAXON_URL = INaturalistService.HOST + "/guide_taxa/";
+    private static String GUIDE_TAXON_URL = INaturalistService.HOST + "/guide_taxa/%d.xml";
+    private static String TAXON_URL = INaturalistService.HOST + "/taxa/%d";
     private WebView mWebView;
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 	private BetterJSONObject mTaxon;
+	private boolean mGuideTaxon;
 
 	@Override
 	protected void onStart()
@@ -67,11 +69,13 @@ public class GuideTaxonActivity extends SherlockActivity {
         
         if (savedInstanceState == null) {
         	mTaxon = (BetterJSONObject) intent.getSerializableExtra("taxon");
+        	mGuideTaxon = intent.getBooleanExtra("guide_taxon", true);
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable("taxon");
+        	mGuideTaxon = savedInstanceState.getBoolean("guide_taxon", true);
         }
 
-        actionBar.setTitle(mTaxon.getString("display_name"));
+        actionBar.setTitle(mTaxon.has("display_name") ? mTaxon.getString("display_name") : mTaxon.getJSONObject("common_name").optString("name"));
 
         mWebView.getSettings().setJavaScriptEnabled(true);
 
@@ -116,7 +120,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         case R.id.add_taxon:
         	// Add a new observation with the specified taxon
         	Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditor.class);
-        	intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", mTaxon.getString("display_name"), mTaxon.getString("name")));
+        	intent.putExtra(ObservationEditor.SPECIES_GUESS, String.format("%s (%s)", mTaxon.has("display_name") ? mTaxon.getString("display_name") : mTaxon.getJSONObject("common_name").optString("name"), mTaxon.getString("name")));
         	startActivity(intent);
 
         	return true;
@@ -141,12 +145,20 @@ public class GuideTaxonActivity extends SherlockActivity {
     public void loadTaxonPage(Integer taxonId) {
     	mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
 
-    	mWebView.loadUrl(TAXON_URL + taxonId.toString() + ".xml", getAuthHeaders());
+    	String url;
+    	
+    	if (mGuideTaxon) {
+    		url = String.format(GUIDE_TAXON_URL, taxonId);
+    	} else {
+    		url = String.format(TAXON_URL, taxonId);
+    	}
+    	mWebView.loadUrl(url, getAuthHeaders());
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("taxon", mTaxon);
+        outState.putBoolean("guide_taxon", mGuideTaxon);
     }
 
     @Override

@@ -264,12 +264,6 @@
     <string name="explore">Explore</string>
     <string name="explore_description">Explore observations around you</string>
 
-    <string-array name="explore_view_types">
-      <item>Map</item>
-      <item>Grid</item>
-      <item>List</item>
-    </string-array>
- 
     <string name="restricted_to_current_map_area">Restricted to current map area</string>
     <string name="search">Search</string>
 
@@ -311,5 +305,15 @@
     <string name="details">Details</string>
 
     <string name="accuracy">%1$dm accuracy</string>
+    
+    <string name="must_login_to_show_my_observations">You must be logged in to view your observations</string>
+    <string name="observation_photos">Observation Photos</string>
+    <string name="must_login_to_add_comment">You must be logged in to add comments</string>
+    <string name="must_login_to_add_id">You must be logged in to add identifications</string>
+
+    <string name="map">Map</string>
+    <string name="grid">Grid</string>
+    <string name="list">List</string>
+
  </resources>
 

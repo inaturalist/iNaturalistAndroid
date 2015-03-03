@@ -147,6 +147,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private boolean mPassive;
     private INaturalistApp mApp;
     private LoginType mLoginType;
+    
+    private boolean mIsStopped = false;
 
     private boolean mIsSyncing;
     
@@ -161,6 +163,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private Header[] mResponseHeaders = null;
 
 	private JSONArray mResponseErrors;
+
+	private String mNearByObservationsUrl;
     
 	public enum LoginType {
 	    PASSWORD,
@@ -1370,6 +1374,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         	url += "&projects[]=" + extras.getInt("project_id");
         }
 
+        mNearByObservationsUrl = url;
+
         JSONArray json = get(url, mApp.loggedIn());
         Intent reply = new Intent(ACTION_NEARBY);
         reply.putExtra("minx", minx);
@@ -1379,10 +1385,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (json == null) {
             reply.putExtra("error", getString(R.string.couldnt_load_nearby_observations));
         } else {
-            syncJson(json, false);
+            //syncJson(json, false);
         }
-        mApp.setServiceResult(ACTION_NEARBY, new SerializableJSONArray(json));
-        sendBroadcast(reply);
+        
+        if (!mIsStopped && url.equalsIgnoreCase(mNearByObservationsUrl)) {
+        	// Only send the reply if a new near by observations request hasn't been made yet
+        	mApp.setServiceResult(ACTION_NEARBY, new SerializableJSONArray(json));
+        	sendBroadcast(reply);
+        }
     }
 
     private JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
@@ -1553,6 +1563,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null, intent);
     }
     
+   
     public static String verifyCredentials(String credentials) {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
@@ -1978,5 +1989,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     @Override
     public void onDisconnected() {
         Log.e(TAG, "onDisconnected");
+    }
+    
+    @Override
+    public void onDestroy() {
+    	mIsStopped = true;
+    	super.onDestroy();
     }
 }

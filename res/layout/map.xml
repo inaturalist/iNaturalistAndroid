@@ -10,8 +10,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         >
+
+        
+        
+        <TabHost
+            android:layout_alignParentTop="true"
+            android:id="@android:id/tabhost"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0" />
+
+                </LinearLayout>
+        </TabHost>
+
+        
+        
+        
+        
    
         <LinearLayout
+            android:layout_below="@android:id/tabhost"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
@@ -99,6 +134,7 @@
             </LinearLayout>
 
             <fragment
+                android:layout_below="@android:id/tabhost"
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="fill_parent"
