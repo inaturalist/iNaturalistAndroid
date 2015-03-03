@@ -1,12 +1,20 @@
 package org.inaturalist.android;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import uk.co.senab.photoview.HackyViewPager;
+import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -16,29 +24,57 @@ import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager.LayoutParams;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.webkit.*;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ObservationDetails extends SherlockActivity {
-    private static String TAG = "ObservationDetails";
+public class ObservationDetails extends SherlockActivity implements CommentsIdsAdapter.OnIDAdded {
+    protected static final int NEW_ID_REQUEST_CODE = 0x100;
+
+	private static String TAG = "ObservationDetails";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 	private JSONObject mObservation;
+	private ObservationReceiver mObservationReceiver;
+	private TextView mNoComments;
+	private ProgressBar mProgress;
+    private ArrayList<BetterJSONObject> mCommentsIds;
+	private Button mAddComment;
+	private Button mAddId;
+	public String mLogin;
+	private ListView mCommentsIdsList;
 
 	@Override
 	protected void onStart()
@@ -107,23 +143,7 @@ public class ObservationDetails extends SherlockActivity {
 			}
 		});
         
-        View viewComments = (View) actionBar.getCustomView().findViewById(R.id.view_comments);
-        viewComments.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ObservationDetails.this, CommentsIdsActivity.class);
-				intent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
-				intent.putExtra(INaturalistService.TAXON_ID, mObservation.optInt("taxon_id"));
-				startActivity(intent);
-
-				// Get the observation's IDs/comments
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationDetails.this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
-                startService(serviceIntent);
-			}
-		});
-
-        
+       
         TextView idName = (TextView) findViewById(R.id.id_name);
         TextView taxonName = (TextView) findViewById(R.id.id_taxon_name);
         idName.setTextColor(mHelper.observationColor(new Observation(new BetterJSONObject(mObservation))));
@@ -141,34 +161,41 @@ public class ObservationDetails extends SherlockActivity {
         }
         
         ImageView idPic = (ImageView) findViewById(R.id.id_pic);
-
-
         JSONArray photos = mObservation.optJSONArray("observation_photos");
         if ((photos != null) && (photos.length() > 0)) {
         	// Show photo
         	JSONObject photo = photos.optJSONObject(0);
         	JSONObject innerPhoto = photo.optJSONObject("photo");
         	String photoUrl = innerPhoto.optString("large_url");
-        	UrlImageViewHelper.setUrlDrawable(idPic, photoUrl, observationIcon(mObservation));
+        	UrlImageViewHelper.setUrlDrawable(idPic, photoUrl, ObservationPhotosViewer.observationIcon(mObservation));
         } else {
         	// Show taxon icon
-        	idPic.setImageResource(observationIcon(mObservation));
+        	idPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation));
         }
-        
-        
+
+        idPic.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(ObservationDetails.this, ObservationPhotosViewer.class);
+				intent.putExtra("observation", mObservation.toString());
+				startActivity(intent);  
+			}
+		});
+
         ImageView userPic = (ImageView) findViewById(R.id.user_pic);
-        if (true) {
-        	String photoUrl = "http://www.inaturalist.org/attachments/users/icons/" + mObservation.optInt("user_id") + "-thumb.jpg";
-        	UrlImageViewHelper.setUrlDrawable(userPic, photoUrl, R.drawable.usericon);
-        } else {
-        	userPic.setImageResource(R.drawable.usericon);
-        }
+        String photoUrl = "http://www.inaturalist.org/attachments/users/icons/" + mObservation.optInt("user_id") + "-thumb.jpg";
+        UrlImageViewHelper.setUrlDrawable(userPic, photoUrl, R.drawable.usericon);
+
         TextView userName = (TextView) findViewById(R.id.user_name);
         userName.setText(mObservation.optString("user_login"));
         
         TextView location = (TextView) findViewById(R.id.location);
-        location.setText(mObservation.optString("place_guess",
-        		mObservation.optString("longitude") + ", " + mObservation.optString("latitude") ));
+        if (!mObservation.isNull("place_guess")) {
+        	location.setText(mObservation.optString("place_guess",
+        			mObservation.optString("longitude") + ", " + mObservation.optString("latitude") ));
+        } else {
+        	location.setText(mObservation.optString("longitude") + ", " + mObservation.optString("latitude"));
+        }
 
         TextView accuracy = (TextView) findViewById(R.id.accuracy);
         if (!mObservation.isNull("positional_accuracy")) {
@@ -189,6 +216,55 @@ public class ObservationDetails extends SherlockActivity {
         	observedOnDate.setText(mObservation.optString("observed_on", ""));
         	observedOnTime.setText("");
         }
+        
+        
+        mNoComments = (TextView) findViewById(android.R.id.empty);
+        mProgress = (ProgressBar) findViewById(R.id.progress);
+        
+        mAddComment = (Button) findViewById(R.id.add_comment);
+        mAddComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	if (mLogin == null) {
+            		Toast.makeText(getApplicationContext(), R.string.must_login_to_add_comment, Toast.LENGTH_LONG).show(); 
+            		return;
+            	}
+
+                showInputDialog();
+            }
+        });
+        
+        mAddId = (Button) findViewById(R.id.add_id);
+        mAddId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	if (mLogin == null) {
+            		Toast.makeText(getApplicationContext(), R.string.must_login_to_add_id, Toast.LENGTH_LONG).show(); 
+            		return;
+            	}
+
+                Intent intent = new Intent(ObservationDetails.this, IdentificationActivity.class);
+                startActivityForResult(intent, NEW_ID_REQUEST_CODE);
+            }
+        });
+        
+ 
+        // Get the observation's IDs/comments
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationDetails.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+        startService(serviceIntent);
+
+        mObservationReceiver = new ObservationReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+        Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+        registerReceiver(mObservationReceiver, filter);  
+
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        mLogin = prefs.getString("username", null);
+        
+        mCommentsIdsList = (ListView)findViewById(R.id.comments_ids_list);
+
+        loadResultsIntoUI();
     }
 
 
@@ -297,53 +373,217 @@ public class ObservationDetails extends SherlockActivity {
  		return displayName;
 
  	}
+	
+    @Override
+    protected void onPause() {
+        super.onPause();
 
- 	private int observationIcon(JSONObject o) {
-        if (!o.has("iconic_taxon_name") || o.isNull("iconic_taxon_name")) {
-            return R.drawable.unknown_large;
+        if (mObservationReceiver != null) {
+            try {
+                unregisterReceiver(mObservationReceiver);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
         }
-        String iconicTaxonName;
+    }
+	
+	private class ObservationReceiver extends BroadcastReceiver {
+
+        private CommentsIdsAdapter mAdapter;
+
+		@Override
+	    public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mObservationReceiver);  
+
+	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+	        
+	        if (observation == null) {
+	            // Couldn't retrieve observation details (probably deleted)
+	            mNoComments.setText(R.string.could_not_load_comments);
+	            mCommentsIds = new ArrayList<BetterJSONObject>();
+	            loadResultsIntoUI();
+	            View bottomBar = findViewById(R.id.bottom_bar);
+	            bottomBar.setVisibility(View.GONE);
+	            return;
+	        } else {
+	            mAddComment.setEnabled(true);
+	            mAddId.setEnabled(true);
+	        }
+	        
+	        JSONArray comments = observation.comments.getJSONArray();
+	        JSONArray ids = observation.identifications.getJSONArray();
+	        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
+	        
+	        try {
+	            for (int i = 0; i < comments.length(); i++) {
+	                BetterJSONObject comment = new BetterJSONObject(comments.getJSONObject(i));
+	                comment.put("type", "comment");
+	                results.add(comment);
+	            }
+	            for (int i = 0; i < ids.length(); i++) {
+	                BetterJSONObject id = new BetterJSONObject(ids.getJSONObject(i));
+	                id.put("type", "identification");
+	                results.add(id);
+	            }
+	        } catch (JSONException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        Collections.sort(results, new Comparator<BetterJSONObject>() {
+                @Override
+                public int compare(BetterJSONObject lhs, BetterJSONObject rhs) {
+                    Timestamp date1 = lhs.getTimestamp("created_at");
+                    Timestamp date2 = rhs.getTimestamp("created_at");
+                    
+                    return date1.compareTo(date2);
+                }
+            });
+	        
+	        mCommentsIds = results;
+	        int taxonId = (observation.taxon_id == null ? 0 : observation.taxon_id);
+            mAdapter = new CommentsIdsAdapter(ObservationDetails.this, results, taxonId, ObservationDetails.this);
+            mCommentsIdsList.setAdapter(mAdapter);
+	        
+	        loadResultsIntoUI();
+	    }
+
+	}
+
+	@Override
+	public void onIdentificationAdded(BetterJSONObject taxon) {
 		try {
-			iconicTaxonName = o.getString("iconic_taxon_name");
+			// After calling the agree API - we'll refresh the comment/ID list
+			IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+			registerReceiver(mObservationReceiver, filter);
+
+			Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, ObservationDetails.this, INaturalistService.class);
+			serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+			serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.getJSONObject("taxon").getInt("id"));
+			startService(serviceIntent);
+
 		} catch (JSONException e) {
 			e.printStackTrace();
-            return R.drawable.unknown_large;
 		}
-        
-		if (iconicTaxonName == null) {
-			return R.drawable.unknown_large;
-		} else if (iconicTaxonName.equals("Animalia")) {
-			return R.drawable.animalia_large;
-		} else if (iconicTaxonName.equals("Plantae")) {
-			return R.drawable.plantae_large;
-		} else if (iconicTaxonName.equals("Chromista")) {
-			return R.drawable.chromista_large;
-		} else if (iconicTaxonName.equals("Fungi")) {
-			return R.drawable.fungi_large;
-		} else if (iconicTaxonName.equals("Protozoa")) {
-			return R.drawable.protozoa_large;
-		} else if (iconicTaxonName.equals("Actinopterygii")) {
-			return R.drawable.actinopterygii_large;
-		} else if (iconicTaxonName.equals("Amphibia")) {
-			return R.drawable.amphibia_large;
-		} else if (iconicTaxonName.equals("Reptilia")) {
-			return R.drawable.reptilia_large;
-		} else if (iconicTaxonName.equals("Aves")) {
-			return R.drawable.aves_large;
-		} else if (iconicTaxonName.equals("Mammalia")) {
-			return R.drawable.mammalia_large;
-		} else if (iconicTaxonName.equals("Mollusca")) {
-			return R.drawable.mollusca_large;
-		} else if (iconicTaxonName.equals("Insecta")) {
-			return R.drawable.insecta_large;
-		} else if (iconicTaxonName.equals("Arachnida")) {
-			return R.drawable.arachnida_large;
-		} else {
-			return R.drawable.unknown_large;
-		}
-
-
+	
+	} 	
+	
+    private void loadResultsIntoUI() {
+        if (mCommentsIds == null) {
+            mProgress.setVisibility(View.VISIBLE);
+            mCommentsIdsList.setVisibility(View.GONE);
+            mNoComments.setVisibility(View.GONE);
+            
+            mAddComment.setEnabled(false);
+            mAddId.setEnabled(false);
+            
+        }  else if (mCommentsIds.size() == 0) {
+            mProgress.setVisibility(View.GONE);
+            mCommentsIdsList.setVisibility(View.GONE);
+            mNoComments.setVisibility(View.VISIBLE);
+            
+            mAddComment.setEnabled(true);
+            mAddId.setEnabled(true);
+        } else {
+            mProgress.setVisibility(View.GONE);
+            mCommentsIdsList.setVisibility(View.VISIBLE);
+            mNoComments.setVisibility(View.GONE);
+            
+            mAddComment.setEnabled(true);
+            mAddId.setEnabled(true);
+        }
     }
+ 
+    private void showInputDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.add_comment);
 
+        // Set up the input
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() { 
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String comment = input.getText().toString();
+                
+                // Add the comment
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, ObservationDetails.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+                serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
+                startService(serviceIntent);
+                
+    			mCommentsIds = null;
+    			loadResultsIntoUI();
+                
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                
+                // Refresh the comment/id list
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                registerReceiver(mObservationReceiver, filter);  
+                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationDetails.this, INaturalistService.class);
+                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+                startService(serviceIntent2);
+                
+                // Ask for a sync (to update the comment count)
+                Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC, null, ObservationDetails.this, INaturalistService.class);
+                startService(serviceIntent3);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();        
+    }
+    
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	super.onActivityResult(requestCode, resultCode, data);
+
+    	if (requestCode == NEW_ID_REQUEST_CODE) {
+    		if (resultCode == RESULT_OK) {
+    			// Add the ID
+    			Integer taxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);
+    			String idRemarks = data.getStringExtra(IdentificationActivity.ID_REMARKS);
+
+    			Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_IDENTIFICATION, null, ObservationDetails.this, INaturalistService.class);
+    			serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+    			serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
+    			serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
+    			startService(serviceIntent);
+
+
+    			// Show a loading progress until the new comments/IDs are loaded
+    			mCommentsIds = null;
+    			loadResultsIntoUI();
+
+    			try {
+    				Thread.sleep(1000);
+    			} catch (InterruptedException e) {
+    				e.printStackTrace();
+    			}
+
+    			// Refresh the comment/id list
+    			IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+    			registerReceiver(mObservationReceiver, filter);  
+    			Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationDetails.this, INaturalistService.class);
+    			serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+    			startService(serviceIntent2);
+
+    		}
+    	}
+    }
 
 }

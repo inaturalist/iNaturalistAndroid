@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    >
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
+    
     <TextView
         android:id="@+id/id_name"
         android:layout_width="wrap_content"
@@ -10,6 +17,7 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:layout_alignParentTop="true"
         style="@android:style/TextAppearance.Medium"
         android:text="TextView" />
 
@@ -19,21 +27,26 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:layout_below="@id/id_name"
         android:text="TextView" />
 
     <ImageView
         android:id="@+id/id_pic"
+        android:layout_below="@id/id_taxon_name"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="170dp"
         android:layout_marginTop="10dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/actinopterygii_large" />
+        android:src="@drawable/actinopterygii_large"
+         />
 
     <RelativeLayout
+        android:id="@+id/observation_details"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_below="@id/id_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
          <ImageView
@@ -61,17 +74,19 @@
                 android:text="22/02/15"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
+                 android:gravity="right"
                  />
 
-             <TextView 
-                android:id="@+id/observed_on_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@android:style/TextAppearance.Small"
-                android:text="14:32"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/observed_on_date"
-                 />
+             <TextView
+                 android:id="@+id/observed_on_time"
+                 style="@android:style/TextAppearance.Small"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_below="@id/observed_on_date"
+                 android:gravity="right"
+                 android:text="14:32 AM MDT" />
+
         </RelativeLayout>
 
         <TextView 
@@ -118,10 +133,90 @@
             android:textSize="8dp"
             android:textColor="#999999"
              />
+        
+        
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/accuracy"
+            android:background="?android:attr/listDivider"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            />
 
-
-
-       
     </RelativeLayout>
- 
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+	    android:layout_height="@dimen/abs__action_bar_default_height"
+        android:layout_alignParentBottom="true"
+	    android:paddingLeft="5dp"
+	    android:paddingRight="5dp"
+	    android:background="#767676"
+        >
+        
+	      <Button
+		    android:id="@+id/add_comment"
+	        android:layout_width="wrap_content"
+		    android:layout_weight="1"
+		    android:layout_height="fill_parent"
+		    android:text="@string/add_comment"
+		    android:drawableLeft="@drawable/ic_action_chat"
+		    android:background="@drawable/actionbar_btn"
+	        android:textColor="#ffffff"
+	        android:gravity="left|center_vertical"
+		    />
+	      
+ 	      <Button
+		    android:id="@+id/add_id"
+	        android:layout_width="wrap_content"
+		    android:layout_weight="1"
+		    android:layout_height="fill_parent"
+		    android:text="@string/add_id"
+		    android:drawableLeft="@drawable/ic_action_labels"
+		    android:background="@drawable/actionbar_btn"
+	        android:textColor="#ffffff"
+	        android:gravity="left|center_vertical"
+		    />
+     
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_above="@id/bottom_bar"
+        android:layout_below="@id/observation_details"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        >
+        <ListView
+            android:id="@+id/comments_ids_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+         
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="30dp"
+            android:gravity="center"
+            /> 
+            
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            style="@android:style/TextAppearance.Medium"
+            android:text="@string/no_comments" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+ </ScrollView>

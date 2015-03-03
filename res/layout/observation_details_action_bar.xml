@@ -27,18 +27,4 @@
         android:singleLine="true"
         android:src="@drawable/action" />
    
-     <ImageButton
-        android:id="@+id/view_comments"
-        android:layout_width="32dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@id/view_on_inat"
-        android:background="@drawable/actionbar_btn"
-        android:padding="5dp"
-        android:scaleType="fitCenter"
-        android:singleLine="true"
-        android:src="@drawable/comments" />
- 
 </RelativeLayout>
