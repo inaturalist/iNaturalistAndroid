@@ -415,8 +415,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         registerReceiver(mNearbyReceiver, filter);
         
         setUpMapIfNeeded();
-        loadObservations();
-        refreshActiveFilters();
+        if (mSearchType != NO_SEARCH) {
+        	loadObservations();
+        	refreshActiveFilters();
+        }
     }
     
     @Override
@@ -518,6 +520,17 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 			mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
                 		}
                 	});
+                } else {
+                	mMap.setOnMapLoadedCallback(new OnMapLoadedCallback() {
+                		@Override
+                		public void onMapLoaded() {
+                			if (mSearchType == NO_SEARCH) {
+                				loadObservations();
+                				refreshActiveFilters();
+                			}
+                		}
+                	});
+
                 }
 
 
@@ -1047,10 +1060,16 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  							title = item.getString("name");
  							subtitle = item.getString("login");
  						}
+ 						String url;
+ 						if (!item.isNull("icon_url")) {
+ 							url = item.getString("icon_url");
+ 						} else {
+ 							url = "http://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
+ 						}
  						return new String[] {
  								title,
  								subtitle,
- 								item.getString("icon_url")
+ 								url
  						};
  					case FIND_LOCATIONS:
  						return new String[] {
@@ -1159,7 +1178,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
  		// If Google Play services is available
- 		if (ConnectionResult.SUCCESS == resultCode) {
+ 		if ((ConnectionResult.SUCCESS == resultCode) && ((mLocationClient == null) || (!mLocationClient.isConnected())))  {
  			// Use Google Location Services to determine location
  			mLocationClient = new LocationClient(getApplicationContext(), new ConnectionCallbacks() {
 				@Override
@@ -1188,16 +1207,21 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  	private void loadNearbyObservations() {
  		Location currentLocation = getLastLocation();
 
+
  		double latitude = currentLocation.getLatitude();
  		double longitude = currentLocation.getLongitude();
- 		LatLng latLng = new LatLng(latitude, longitude);
+ 		final LatLng latLng = new LatLng(latitude, longitude);
 
- 		// Showing the current location in Google Map
- 		mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
- 		// Zoom in the Google Map
- 		mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+ 		CameraPosition camPos = new CameraPosition.Builder()
+             .target(latLng)
+             .zoom(12)
+             .build();
+
+ 		CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
+ 		mMap.moveCamera(camUpdate);
  		
  		reloadObservations();
+
  	}
  	
  	private Location getLastLocation() {

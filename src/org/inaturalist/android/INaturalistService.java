@@ -80,6 +80,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
+    public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String PROJECTS_RESULT = "projects_result";
@@ -125,6 +126,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_AGREE_ID = "agree_id";
+    public static String ACTION_REMOVE_ID = "remove_id";
     public static String ACTION_GUIDE_ID = "guide_id";
     public static String ACTION_ADD_COMMENT = "add_comment";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
@@ -218,7 +220,20 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 	reply.putExtra(OBSERVATION_RESULT, observation);
                 	sendBroadcast(reply);
                 }
-                
+ 
+            } else if (action.equals(ACTION_REMOVE_ID)) {
+                int id = intent.getIntExtra(IDENTIFICATION_ID, 0);
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                JSONObject result = removeIdentification(id);
+
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
+ 
+              
             } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
@@ -612,6 +627,22 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
     
+    private JSONObject removeIdentification(int identificationId) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        JSONArray result = delete(HOST + "/identifications/" + identificationId + ".json", null);
+        
+        if (result != null) {
+        	try {
+				return result.getJSONObject(0);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
+        } else {
+        	return null;
+        }
+    }
+ 
     
      private void addIdentification(int observationId, int taxonId, String body) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1373,6 +1404,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (extras.containsKey("project_id")) {
         	url += "&projects[]=" + extras.getInt("project_id");
         }
+        
+        Log.d(TAG, "Near by observations URL: " + url);
 
         mNearByObservationsUrl = url;
 

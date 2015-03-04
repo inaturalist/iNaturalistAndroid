@@ -43,6 +43,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.webkit.*;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ObservationPhotosViewer extends SherlockActivity {
@@ -152,28 +154,32 @@ public class ObservationPhotosViewer extends SherlockActivity {
 
  		@Override
  		public View instantiateItem(ViewGroup container, int position) {
- 			ImageView imageView = new ImageView(container.getContext());
 
  			String imageUrl = mImages.get(position);
-
- 			container.addView(imageView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+ 			View layout = (View) getLayoutInflater().inflate(R.layout.observation_photo, null, false);
+ 			container.addView(layout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+ 			ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
+ 			final ProgressBar loading = (ProgressBar) layout.findViewById(R.id.id_pic_loading);
 
  			if (imageUrl == null) {
  				// Show a default taxon image
  				imageView.setImageResource(mDefaultTaxonIcon);
  			} else {
+ 				loading.setVisibility(View.VISIBLE);
+ 				imageView.setVisibility(View.INVISIBLE);
  				final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
  				// Show a photo
  				UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
 					@Override
-					public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url,
-							boolean loadedFromCache) {
+					public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+						loading.setVisibility(View.GONE);
+						imageView.setVisibility(View.VISIBLE);
 						attacher.update();
 					}
 				});
  			}
 
- 			return imageView;
+ 			return layout;
  		}
 
  		@Override

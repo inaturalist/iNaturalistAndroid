@@ -41,6 +41,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 	public static interface OnIDAdded {
 		public void onIdentificationAdded(BetterJSONObject taxon);
+		public void onIdentificationRemoved(BetterJSONObject taxon);
 	};
 
 	public boolean isEnabled(int position) { 
@@ -77,7 +78,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			RelativeLayout idLayout = (RelativeLayout) view.findViewById(R.id.id_layout);
 
 			TextView postedOn = (TextView) view.findViewById(R.id.posted_on);
-			String username = item.getJSONObject("user").getString("login");
+			final String username = item.getJSONObject("user").getString("login");
 			Timestamp postDate = item.getTimestamp("updated_at");
 			SimpleDateFormat format = new SimpleDateFormat("LLL d, yyyy");
 			postedOn.setText(String.format(res.getString(R.string.posted_by),
@@ -147,29 +148,58 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				agree.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						mOnIDAddedCb.onIdentificationAdded(item);
-
-						mTaxonId = item.getInt("taxon_id");
+						if ((mLogin != null) && (username.equalsIgnoreCase(mLogin))) {
+							mOnIDAddedCb.onIdentificationRemoved(item);
+						} else {
+							mOnIDAddedCb.onIdentificationAdded(item);
+							mTaxonId = item.getInt("taxon_id");
+						}
 
 						agree.setVisibility(View.GONE);
 						loading.setVisibility(View.VISIBLE);
 						mAgreeing.set(position, true);
 					}
 				});
+				
+				loading.setVisibility(View.GONE);
+				
+				// See if there's ID of the same taxon before this one
+				int currentTaxonId = item.getInt("taxon_id");
+				boolean foundPreviousSameTaxon = false;
+				for (int i = 0; i < position; i++) {
+					BetterJSONObject taxon = mItems.get(i);
+					Integer taxonId = taxon.getInt("taxon_id");
+					if ((taxonId != null) && (taxonId == currentTaxonId)) {
+						foundPreviousSameTaxon = true;
+						break;
+					}
+				}
+				
+				if (!foundPreviousSameTaxon) {
+					// First taxon id of its kind - show agree button
+					agree.setVisibility(View.VISIBLE);
+				} else {
+					// Second (or more) taxon id of its kind - don't show agree button
+					agree.setVisibility(View.GONE);
+				}
+
+				if ((mLogin != null) && (username.equalsIgnoreCase(mLogin))) {
+					agree.setText(R.string.remove);
+					agree.setVisibility(View.VISIBLE);
+				} else {
+					agree.setText(R.string.agree);
+				}
 
 				if ((mAgreeing.get(position) != null) && (mAgreeing.get(position) == true)) {
 					agree.setVisibility(View.GONE);
 					loading.setVisibility(View.VISIBLE);
-				} else {
-					agree.setVisibility(View.VISIBLE);
-					loading.setVisibility(View.GONE);
 				}
 
-				if ((mLogin == null) || (username.equalsIgnoreCase(mLogin)) || (mTaxonId == item.getInt("taxon_id").intValue())) {
-					// Can't agree on our on identification or when the identification is the current one or when we're not logged in
+				if (mLogin == null) {
+					// Can't agree if not logged in
 					agree.setVisibility(View.GONE);
-					loading.setVisibility(View.GONE);
 				}
+
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

@@ -28,25 +28,43 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_below="@id/id_name"
+        android:textStyle="italic"
         android:text="TextView" />
 
-    <ImageView
-        android:id="@+id/id_pic"
-        android:layout_below="@id/id_taxon_name"
-        android:layout_width="fill_parent"
-        android:layout_height="170dp"
-        android:layout_marginTop="10dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/actinopterygii_large"
-         />
+    <RelativeLayout
+            android:id="@+id/id_pic_container"
+            android:layout_below="@id/id_taxon_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+        >
+        <ImageView
+            android:id="@+id/id_pic"
+            android:layout_width="fill_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/actinopterygii_large"
+             />
+        <ProgressBar
+            android:id="@+id/id_pic_loading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="30dp"
+            android:gravity="center"
+            android:visibility="gone"
+            /> 
+     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/observation_details"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_below="@id/id_pic"
+        android:layout_below="@id/id_pic_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
          <ImageView

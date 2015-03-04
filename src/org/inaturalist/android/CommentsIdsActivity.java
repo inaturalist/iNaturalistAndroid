@@ -377,7 +377,20 @@ public class CommentsIdsActivity extends SherlockListActivity implements Comment
     	setResult(RESULT_OK, intent);
     }
 
+	@Override
+	public void onIdentificationRemoved(BetterJSONObject taxon) {
+		// After calling the remove API - we'll refresh the comment/ID list
+		IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+		registerReceiver(mObservationReceiver, filter);
 
+		Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, CommentsIdsActivity.this, INaturalistService.class);
+		serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
+		serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
+		startService(serviceIntent);
+
+		mNewIds--;
+	} 	
+	
 
 	@Override
 	public void onIdentificationAdded(BetterJSONObject item) {

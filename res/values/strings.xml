@@ -273,15 +273,15 @@
     </string-array>
 
     <string-array name="explore_results_with_text">
-      <item><![CDATA[Find <b>critters</b> named \'<i>%1$s</i>\']]></item>
+      <item><![CDATA[Find <b>organisms</b> named \'<i>%1$s</i>\']]></item>
       <item><![CDATA[Find <b>people</b> named \'<i>%1$s</i>\']]></item>
       <item><![CDATA[Find <b>locations</b> named \'<i>%1$s</i>\']]></item>
       <item><![CDATA[Find <b>projects</b> named \'<i>%1$s</i>\']]></item>
     </string-array>
 
-    <string name="searching_for_critters">Searching for critters...</string>
-    <string name="no_critters_found">No such critters found</string>
-    <string name="which_critter">Which critter?</string>
+    <string name="searching_for_critters">Searching for organisms...</string>
+    <string name="no_critters_found">No such organisms found</string>
+    <string name="which_critter">Which organism?</string>
     
     <string name="searching_for_people">Searching for people...</string>
     <string name="no_person_found">No such person found</string>
@@ -315,5 +315,6 @@
     <string name="grid">Grid</string>
     <string name="list">List</string>
 
+    <string name="remove">Remove?</string>
  </resources>
 
