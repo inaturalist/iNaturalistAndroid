@@ -75,7 +75,17 @@ public class GuideTaxonActivity extends SherlockActivity {
         	mGuideTaxon = savedInstanceState.getBoolean("guide_taxon", true);
         }
 
-        actionBar.setTitle(mTaxon.has("display_name") ? mTaxon.getString("display_name") : mTaxon.getJSONObject("common_name").optString("name"));
+        String title = "";
+        if (mTaxon.has("display_name") && !mTaxon.getJSONObject().isNull("display_name")) {
+        	title = mTaxon.getString("display_name");
+        } else {
+        	if (mTaxon.has("common_name") && !mTaxon.getJSONObject().isNull("common_name")) {
+        		title = mTaxon.getJSONObject("common_name").optString("name", "");
+        	} else {
+        		title = mTaxon.getJSONObject().optString("name", "");
+        	}
+        }
+        actionBar.setTitle(title);
 
         mWebView.getSettings().setJavaScriptEnabled(true);
 

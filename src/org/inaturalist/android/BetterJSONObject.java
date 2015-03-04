@@ -28,6 +28,7 @@ public class BetterJSONObject implements Serializable {
 	private transient JSONObject mJSONObject;
 	private transient DateFormat mDateTimeFormat; 
 	private transient DateFormat mDateFormat;
+	private SimpleDateFormat mDateTimeFormat2;
 	
 
 	public BetterJSONObject() {
@@ -38,6 +39,7 @@ public class BetterJSONObject implements Serializable {
 		mJSONObject = o;
 		mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+		mDateTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZZZ");
 	}
 	
 	public JSONObject getJSONObject() {
@@ -113,9 +115,13 @@ public class BetterJSONObject implements Serializable {
 			date = mDateTimeFormat.parse(value);
 		} catch (ParseException e) {
 			try {
-				date =  mDateFormat.parse(value);
-			} catch (ParseException e2) {
-				return null;
+				date = mDateTimeFormat2.parse(value);
+			} catch (ParseException e1) {
+				try {
+					date =  mDateFormat.parse(value);
+				} catch (ParseException e2) {
+					return null;
+				}
 			}
 		}
 		return new Timestamp(date.getTime());

@@ -4,26 +4,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-
-import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import uk.co.senab.photoview.HackyViewPager;
-import uk.co.senab.photoview.PhotoView;
-import uk.co.senab.photoview.PhotoViewAttacher;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
@@ -36,21 +24,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager.LayoutParams;
 import android.text.InputType;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.webkit.*;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -147,11 +126,17 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         TextView idName = (TextView) findViewById(R.id.id_name);
         TextView taxonName = (TextView) findViewById(R.id.id_taxon_name);
         idName.setTextColor(mHelper.observationColor(new Observation(new BetterJSONObject(mObservation))));
-        JSONObject taxon = mObservation.optJSONObject("taxon");
+        final JSONObject taxon = mObservation.optJSONObject("taxon");
         
         if (taxon != null) {
-        	idName.setText(getTaxonName(taxon));
-        	taxonName.setText(taxon.optString("name", ""));
+        	String idNameString = getTaxonName(taxon);
+        	if (idNameString != null) {
+        		idName.setText(idNameString);
+        		taxonName.setText(taxon.optString("name", ""));
+        	} else {
+        		idName.setText(taxon.optString("name", getResources().getString(R.string.unknown)));
+        		taxonName.setText("");
+        	}
         } else {
         	String idNameStr = mObservation.isNull("species_guess") ?
         			getResources().getString(R.string.unknown) :
@@ -160,27 +145,50 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         	taxonName.setText("");
         }
         
-        ImageView idPic = (ImageView) findViewById(R.id.id_pic);
+        if (taxon != null) {
+        	idName.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(ObservationDetails.this, GuideTaxonActivity.class);
+					intent.putExtra("taxon", new BetterJSONObject(taxon));
+					intent.putExtra("guide_taxon", false);
+					startActivity(intent);
+				}
+			});
+        }
+        
+        final ImageView idPic = (ImageView) findViewById(R.id.id_pic);
+        final ProgressBar idPicLoading = (ProgressBar) findViewById(R.id.id_pic_loading);
         JSONArray photos = mObservation.optJSONArray("observation_photos");
         if ((photos != null) && (photos.length() > 0)) {
         	// Show photo
         	JSONObject photo = photos.optJSONObject(0);
         	JSONObject innerPhoto = photo.optJSONObject("photo");
         	String photoUrl = innerPhoto.optString("large_url");
-        	UrlImageViewHelper.setUrlDrawable(idPic, photoUrl, ObservationPhotosViewer.observationIcon(mObservation));
+        	idPic.setVisibility(View.INVISIBLE);
+        	idPicLoading.setVisibility(View.VISIBLE);
+        	UrlImageViewHelper.setUrlDrawable(idPic, photoUrl, ObservationPhotosViewer.observationIcon(mObservation), new UrlImageViewCallback() {
+				@Override
+				public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+					idPic.setVisibility(View.VISIBLE);
+					idPicLoading.setVisibility(View.GONE);
+				}
+			});
+
+        	idPic.setOnClickListener(new OnClickListener() {
+        		@Override
+        		public void onClick(View v) {
+        			Intent intent = new Intent(ObservationDetails.this, ObservationPhotosViewer.class);
+        			intent.putExtra("observation", mObservation.toString());
+        			startActivity(intent);  
+        		}
+        	});
+
+
         } else {
         	// Show taxon icon
         	idPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation));
         }
-
-        idPic.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ObservationDetails.this, ObservationPhotosViewer.class);
-				intent.putExtra("observation", mObservation.toString());
-				startActivity(intent);  
-			}
-		});
 
         ImageView userPic = (ImageView) findViewById(R.id.user_pic);
         String photoUrl = "http://www.inaturalist.org/attachments/users/icons/" + mObservation.optInt("user_id") + "-thumb.jpg";
@@ -354,7 +362,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
  			try {
  				displayName = item.getString("unique_name");
  			} catch (JSONException e2) {
- 				displayName = getResources().getString(R.string.unknown);
+ 				displayName = null;
  			}
  			try {
  				defaultName = item.getJSONObject("default_name");
@@ -365,7 +373,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
  				if (commonName != null) {
  					displayName = commonName.optString("name");
  				} else {
- 					displayName = getResources().getString(R.string.unknown);
+ 					displayName = null;
  				}
  			}
  		}
@@ -452,7 +460,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 	@Override
 	public void onIdentificationAdded(BetterJSONObject taxon) {
 		try {
-			// After calling the agree API - we'll refresh the comment/ID list
+			// After calling the added ID API - we'll refresh the comment/ID list
 			IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
 			registerReceiver(mObservationReceiver, filter);
 
@@ -464,7 +472,19 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-	
+
+	}
+
+	@Override
+	public void onIdentificationRemoved(BetterJSONObject taxon) {
+		// After calling the remove API - we'll refresh the comment/ID list
+		IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+		registerReceiver(mObservationReceiver, filter);
+
+		Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, ObservationDetails.this, INaturalistService.class);
+		serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+		serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
+		startService(serviceIntent);
 	} 	
 	
     private void loadResultsIntoUI() {
