@@ -125,7 +125,13 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				}
 				TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
 				idTaxonName.setText(item.getJSONObject("taxon").getString("name"));
-				idTaxonName.setTypeface(null, Typeface.ITALIC);
+				
+				String rank = item.getJSONObject("taxon").optString("rank", null);
+				if (rank != null) {
+					if ((rank.equalsIgnoreCase("genus")) || (rank.equalsIgnoreCase("species"))) {
+						idTaxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+					}
+				}
 
 				Boolean isCurrent = item.getBoolean("current");
 				if ((isCurrent == null) || (!isCurrent)) {
@@ -174,9 +180,28 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 						break;
 					}
 				}
+
+				boolean didNotIdThisBefore = true;
+				for (int i = 0; i < mItems.size(); i++) {
+					if (mLogin == null) break;
+					if (i == position) continue;
+
+					BetterJSONObject taxon = mItems.get(i);
+
+					if ((taxon.getJSONObject("user").getString("login").equalsIgnoreCase(mLogin))) {
+						Integer taxonId = taxon.getInt("taxon_id");
+						if ((taxonId != null) && (taxonId == currentTaxonId)) {
+							// Agreed on the current taxon type before
+							didNotIdThisBefore = false;
+							break;
+						}
+						
+					}
+				}
 				
-				if (!foundPreviousSameTaxon) {
-					// First taxon id of its kind - show agree button
+				if (!foundPreviousSameTaxon && didNotIdThisBefore) {
+					// First taxon id of its kind AND the current user didn't ID this taxon before -
+					// show agree button
 					agree.setVisibility(View.VISIBLE);
 				} else {
 					// Second (or more) taxon id of its kind - don't show agree button
@@ -186,6 +211,11 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				if ((mLogin != null) && (username.equalsIgnoreCase(mLogin))) {
 					agree.setText(R.string.remove);
 					agree.setVisibility(View.VISIBLE);
+
+					if ((isCurrent == null) || (!isCurrent)) {
+						// Faded IDs should not have a "Remove" button
+						agree.setVisibility(View.GONE);
+					}
 				} else {
 					agree.setText(R.string.agree);
 				}

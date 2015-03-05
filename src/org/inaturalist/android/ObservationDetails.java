@@ -24,16 +24,21 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -100,6 +105,13 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         	e.printStackTrace();
         }
 
+        View title = (View) actionBar.getCustomView().findViewById(R.id.title);
+        title.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				finish();
+			}
+		});
 
         View viewOnInat = (View) actionBar.getCustomView().findViewById(R.id.view_on_inat);
         viewOnInat.setOnClickListener(new OnClickListener() {
@@ -136,6 +148,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         	} else {
         		idName.setText(taxon.optString("name", getResources().getString(R.string.unknown)));
         		taxonName.setText("");
+        		idName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
         	}
         } else {
         	String idNameStr = mObservation.isNull("species_guess") ?
@@ -155,6 +168,13 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 					startActivity(intent);
 				}
 			});
+        	
+        	String rank = (taxon.isNull("rank") ? null : taxon.optString("rank", null));
+        	if (rank != null) {
+        		if ((rank.equalsIgnoreCase("genus")) || (rank.equalsIgnoreCase("species"))) {
+        			taxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+        		}
+        	}
         }
         
         final ImageView idPic = (ImageView) findViewById(R.id.id_pic);
@@ -164,7 +184,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         	// Show photo
         	JSONObject photo = photos.optJSONObject(0);
         	JSONObject innerPhoto = photo.optJSONObject("photo");
-        	String photoUrl = innerPhoto.optString("large_url");
+        	String photoUrl = innerPhoto.optString("original_url");
         	idPic.setVisibility(View.INVISIBLE);
         	idPicLoading.setVisibility(View.VISIBLE);
         	UrlImageViewHelper.setUrlDrawable(idPic, photoUrl, ObservationPhotosViewer.observationIcon(mObservation), new UrlImageViewCallback() {
@@ -451,8 +471,15 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 	        int taxonId = (observation.taxon_id == null ? 0 : observation.taxon_id);
             mAdapter = new CommentsIdsAdapter(ObservationDetails.this, results, taxonId, ObservationDetails.this);
             mCommentsIdsList.setAdapter(mAdapter);
-	        
 	        loadResultsIntoUI();
+
+	        Handler handler = new Handler();
+	        handler.postDelayed(new Runnable() {
+	        	@Override
+	        	public void run() {
+	        		setListViewHeightBasedOnItems(mCommentsIdsList);
+	        	}
+	        }, 100);
 	    }
 
 	}
@@ -606,4 +633,44 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
     	}
     }
 
+    
+    /**
+     * Sets ListView height dynamically based on the height of the items.   
+     *
+     * @param listView to be resized
+     * @return true if the listView is successfully resized, false otherwise
+     */
+    public boolean setListViewHeightBasedOnItems(ListView listView) {
+
+    	ListAdapter listAdapter = listView.getAdapter();
+    	if (listAdapter != null) {
+
+    		int numberOfItems = listAdapter.getCount();
+
+    		// Get total height of all items.
+    		int totalItemsHeight = 0;
+    		for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+    			View item = listAdapter.getView(itemPos, null, listView);
+    			item.measure(MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
+    			totalItemsHeight += item.getMeasuredHeight();
+    		}
+
+    		// Get total height of all item dividers.
+    		int totalDividersHeight = listView.getDividerHeight() * 
+    				(numberOfItems - 1);
+
+    		// Set list height.
+    		ViewGroup.LayoutParams params = listView.getLayoutParams();
+    		int paddingHeight = (int)getResources().getDimension(R.dimen.abs__action_bar_default_height);
+    		params.height = totalItemsHeight + totalDividersHeight + paddingHeight;
+    		listView.setLayoutParams(params);
+    		listView.requestLayout();
+
+    		return true;
+
+    	} else {
+    		return false;
+    	}
+
+    } 
 }

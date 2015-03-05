@@ -49,7 +49,10 @@ import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailed
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 
+import android.annotation.SuppressLint;
 import android.app.IntentService;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -1218,7 +1221,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     
-    private void getUserObservations(int maxCount) throws AuthenticationException {
+    @SuppressLint("NewApi")
+	private void getUserObservations(int maxCount) throws AuthenticationException {
         if (ensureCredentials() == false) {
             return;
         }
@@ -1236,6 +1240,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
         
+        Log.e("AAA", "SYNC URL: " + url);
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE); 
+        ClipData clip = ClipData.newPlainText("label", url);
+        clipboard.setPrimaryClip(clip);
+
         JSONArray json = get(url);
         if (json != null && json.length() > 0) {
             syncJson(json, true);
