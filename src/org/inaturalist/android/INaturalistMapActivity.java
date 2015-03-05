@@ -129,6 +129,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private float mZoom;
 	private Intent mServiceIntent;
 	private TabHost mTabHost;
+	private View mSearchToggle2;
 	
 	private final static int NO_SEARCH = -1;
 	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
@@ -230,12 +231,19 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				}
 			}
 		});
-        
+        mSearchToggle2 = (View) mTopActionBar.getCustomView().findViewById(R.id.middle_bar);
+        mSearchToggle2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mSearchToggle.performClick();
+			}
+        });
+	       
         mSearchResults = (ListView)findViewById(R.id.search_results);
         mSearchResults.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
-				mCurrentSearch = mSearchText.getText().toString();
+				mCurrentSearch = mSearchText.getText().toString().trim();
 				mSearchType = index;
 				
 				mSearchToggle.performClick();

@@ -37,5 +37,13 @@
                 android:id="@+id/loading"
                 android:visibility="gone"
                 android:layout_alignParentRight="true" />
+    
+    
+    <View android:id="@+id/middle_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toLeftOf="@id/refresh"
+        android:layout_toRightOf="@id/search"
+        />
  
 </RelativeLayout>
