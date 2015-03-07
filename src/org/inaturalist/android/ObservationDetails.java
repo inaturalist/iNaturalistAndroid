@@ -184,7 +184,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         	// Show photo
         	JSONObject photo = photos.optJSONObject(0);
         	JSONObject innerPhoto = photo.optJSONObject("photo");
-        	String photoUrl = innerPhoto.optString("original_url");
+        	String photoUrl = innerPhoto.has("original_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("large_url");
         	idPic.setVisibility(View.INVISIBLE);
         	idPicLoading.setVisibility(View.VISIBLE);
         	UrlImageViewHelper.setUrlDrawable(idPic, photoUrl, ObservationPhotosViewer.observationIcon(mObservation), new UrlImageViewCallback() {
@@ -393,7 +393,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
  				if (commonName != null) {
  					displayName = commonName.optString("name");
  				} else {
- 					displayName = null;
+ 					displayName = item.optString("name");
  				}
  			}
  		}

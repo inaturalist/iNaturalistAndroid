@@ -1390,6 +1390,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         Double maxx = extras.getDouble("maxx");
         Double miny = extras.getDouble("miny");
         Double maxy = extras.getDouble("maxy");
+        Boolean clearMapLimit = extras.getBoolean("clear_map_limit", false);
 
         String url = HOST;
         if (extras.containsKey("username")) {
@@ -1403,7 +1404,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
         if (extras.containsKey("location_id")) {
         	url += "&place_id=" + extras.getInt("location_id");
-        } else {
+        } else if (!clearMapLimit) {
         	url += "&swlat="+miny;
         	url += "&nelat="+maxy;
         	url += "&swlng="+minx;
