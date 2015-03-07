@@ -316,5 +316,7 @@
     <string name="list">List</string>
 
     <string name="remove">Remove?</string>
+
+    <string name="no_observations_found">No observations found</string>
  </resources>
 

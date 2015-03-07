@@ -134,7 +134,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
  					if (photo != null) {
  						JSONObject innerPhoto = photo.optJSONObject("photo");
  						if (innerPhoto != null) {
- 							String photoUrl = innerPhoto.optString("original_url");
+ 							String photoUrl = innerPhoto.has("original_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("large_url");
  							if (photoUrl != null) {
  								mImages.add(photoUrl);
  							}

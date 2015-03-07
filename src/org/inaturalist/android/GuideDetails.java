@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -140,6 +141,7 @@ public class GuideDetails extends SherlockActivity {
             return mItems.get(index);
         }
 
+		@SuppressLint("NewApi")
 		@Override
         public View getView(int position, View convertView, ViewGroup parent) { 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

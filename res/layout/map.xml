@@ -133,12 +133,57 @@
 
             </LinearLayout>
 
-            <fragment
-                android:layout_below="@android:id/tabhost"
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+            <RelativeLayout
+                android:id="@+id/map_container"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="fill_parent"
+                >
+     
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </RelativeLayout>
+            
+            
+            <RelativeLayout
+                android:id="@+id/grid_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+                   <ProgressBar
+                        android:id="@+id/loading_observations_grid"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="30dp"
+                        android:gravity="center"
+                        /> 
+                    
+                    <TextView
+                        android:id="@+id/observations_grid_empty"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:padding="30dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:text="@string/no_observations_found" />
+
+                      <org.inaturalist.android.GridViewExtended
+                        android:id="@+id/observations_grid"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical"
+                        android:numColumns="3"
+                        android:verticalSpacing="3dp"
+                        android:horizontalSpacing="3dp"
+                        android:stretchMode="columnWidth"
+                        android:gravity="center"
+                        />
+ 
+            </RelativeLayout>
     
         </LinearLayout>
         
