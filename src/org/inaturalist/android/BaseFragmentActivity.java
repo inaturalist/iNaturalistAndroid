@@ -93,7 +93,12 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         map.put("title", getString(R.string.observations));
         map.put("description", getString(R.string.observations_description));
         MENU_ITEMS.add(map);
-        
+
+        map = new HashMap<String,String>();
+        map.put("title", getString(R.string.explore));
+        map.put("description", getString(R.string.explore_description));
+        MENU_ITEMS.add(map);
+
         map = new HashMap<String,String>();
         map.put("title", getString(R.string.projects));
         map.put("description", getString(R.string.projects_description));
@@ -107,11 +112,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
                 MENU_ITEMS.add(map);
         }
         
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.explore));
-        map.put("description", getString(R.string.explore_description));
-        MENU_ITEMS.add(map);
-        
+       
         map = new HashMap<String,String>();
         map.put("title", getString(R.string.updates));
         map.put("description", getString(R.string.updates_description));
