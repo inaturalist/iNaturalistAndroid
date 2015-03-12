@@ -98,6 +98,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
     public static final String TAXON_RESULT = "taxon_result";
 
+	public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
+
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
 //    public static String HOST = "http://10.0.2.2:3000";
@@ -1240,11 +1242,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
         
-        Log.e("AAA", "SYNC URL: " + url);
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE); 
-        ClipData clip = ClipData.newPlainText("label", url);
-        clipboard.setPrimaryClip(clip);
-
         JSONArray json = get(url);
         if (json != null && json.length() > 0) {
             syncJson(json, true);
@@ -1391,6 +1388,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         Double miny = extras.getDouble("miny");
         Double maxy = extras.getDouble("maxy");
         Boolean clearMapLimit = extras.getBoolean("clear_map_limit", false);
+        Integer page = extras.getInt("page", 0);
 
         String url = HOST;
         if (extras.containsKey("username")) {
@@ -1398,6 +1396,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         } else {
         	url = HOST + "/observations.json?extra=observation_photos";
         }
+        
+        url += "&page=" + page + "&per_page=" + NEAR_BY_OBSERVATIONS_PER_PAGE;
 
        if (extras.containsKey("taxon_id")) {
         	url += "&taxon_id=" + extras.getInt("taxon_id");

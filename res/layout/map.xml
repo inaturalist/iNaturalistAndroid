@@ -185,6 +185,40 @@
  
             </RelativeLayout>
     
+            <RelativeLayout
+                android:id="@+id/list_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+                   <ProgressBar
+                        android:id="@+id/loading_observations_list"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="30dp"
+                        android:gravity="center"
+                        /> 
+                    
+                    <TextView
+                        android:id="@+id/observations_list_empty"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:padding="30dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:text="@string/no_observations_found" />
+
+                      <ListView
+                        android:id="@+id/observations_list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        />
+ 
+            </RelativeLayout>
+ 
         </LinearLayout>
         
         <!--  Background that covers content areas (map/grid/list) when search bar is visible -->
