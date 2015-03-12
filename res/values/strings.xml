@@ -318,5 +318,8 @@
     <string name="remove">Remove?</string>
 
     <string name="no_observations_found">No observations found</string>
+
+    <string name="id_please_tag">ID Please</string>
+    <string name="research_tag">Research</string>
  </resources>
 

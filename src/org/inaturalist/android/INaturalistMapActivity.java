@@ -6,10 +6,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 
 import org.inaturalist.android.R;
 import org.json.JSONArray;
@@ -48,6 +50,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -137,12 +141,20 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private View mSearchToggle2;
 	private View mGridContainer;
 	private View mMapContainer;
+	private View mListContainer;
 	private String mViewType;
 	private ProgressBar mLoadingObservationsGrid;
+	private ProgressBar mLoadingObservationsList;
 	private TextView mObservationsGridEmpty;
+	private TextView mObservationsListEmpty;
 	private GridViewExtended mObservationsGrid;
+	private ListView mObservationsList;
 	private ObservationGridAdapter mGridAdapter;
 	private boolean mClearMapLimit;
+	private List<JSONObject> mObservations;
+	private int mPage;
+	private boolean mIsLoading;
+	private ObservationListAdapter mListAdapter;
 	
 	private final static int NO_SEARCH = -1;
 	private final static int FIND_NEAR_BY_OBSERVATIONS = 0;
@@ -155,6 +167,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private final static String VIEW_TYPE_MAP = "map";
 	private final static String VIEW_TYPE_GRID = "grid";
 	private final static String VIEW_TYPE_LIST = "list";
+	
+	private final static String ID_PLEASE_TAG_TEXT_COLOR = "#85743D";
+	private final static String ID_PLEASE_TAG_BACKGROUND_COLOR = "#FFEE91";
+	private final static String RESEARCH_TAG_TEXT_COLOR = "#529214";
+	private final static String RESEARCH_TAG_BACKGROUND_COLOR = "#DCEEA3";
+
     
 	@Override
 	protected void onStart()
@@ -177,7 +195,15 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         
         setContentView(R.layout.map);
 	    onDrawerCreate(savedInstanceState);
-	    
+
+	    mLoadingObservationsList = (ProgressBar) findViewById(R.id.loading_observations_list);
+	    mObservationsListEmpty = (TextView) findViewById(R.id.observations_list_empty);
+	    mObservationsList = (ListView) findViewById(R.id.observations_list);
+
+	    mLoadingObservationsGrid = (ProgressBar) findViewById(R.id.loading_observations_grid);
+	    mObservationsGridEmpty = (TextView) findViewById(R.id.observations_grid_empty);
+	    mObservationsGrid = (GridViewExtended) findViewById(R.id.observations_grid);
+
 	    if (savedInstanceState != null) {
 	    	mCurrentSearch = savedInstanceState.getString("mCurrentSearch");
 	    	mSearchType = savedInstanceState.getInt("mSearchType");
@@ -201,6 +227,34 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    	mMiny = savedInstanceState.getDouble("miny");
 	    	mMaxy = savedInstanceState.getDouble("maxy");
 	    	mZoom = savedInstanceState.getFloat("zoom");
+
+	    	mPage = savedInstanceState.getInt("mPage");
+	    	mIsLoading = false;
+
+	    	try {
+				JSONArray arr = new JSONArray(savedInstanceState.getString("mObservations"));
+				if (mObservations == null) {
+					mObservations = new ArrayList<JSONObject>();
+				}
+				mObservations.clear();
+				for (int i = 0; i < arr.length(); i++) {
+					mObservations.add(arr.getJSONObject(i));
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+	    	
+	    	mLoadingObservationsGrid.setVisibility(View.GONE);
+	    	mLoadingObservationsList.setVisibility(View.GONE);
+
+	    	if (mObservations.size() == 0) {
+	    		mObservationsGridEmpty.setVisibility(View.VISIBLE);
+	    		mObservationsListEmpty.setVisibility(View.VISIBLE);
+	    	} else {
+	    		mObservationsGridEmpty.setVisibility(View.GONE);
+	    		mObservationsListEmpty.setVisibility(View.GONE);
+	    	}
+
 	    } else {
 	    	mCurrentSearch = "";
 	    	mSearchType = NO_SEARCH;
@@ -210,6 +264,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    	mProjectId = null;
 	    	mViewType = VIEW_TYPE_MAP;
 	    	mClearMapLimit = false;
+	    	mPage = 0;
+	    	mIsLoading = false;
 	    }
 	    
         mTopActionBar = getSupportActionBar();
@@ -230,6 +286,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			@Override
 			public void onClick(View arg0) {
 				mActiveSearch = false;
+				mPage = 0;
 				loadObservations();
 			}
 		});
@@ -320,6 +377,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			@Override
 			public void onClick(View arg0) {
 				mClearMapLimit = true;
+				mPage = 0;
 
 				refreshActiveFilters();
 				loadObservations();
@@ -335,6 +393,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				mUsername = null;
 				mLocationId = null;
 				mSearchType = FIND_NEAR_BY_OBSERVATIONS;
+				mPage = 0;
 
 				refreshActiveFilters();
 				loadObservations();
@@ -351,11 +410,20 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mTabHost.setOnTabChangedListener(this);
         
         mGridContainer = findViewById(R.id.grid_container);
+        mListContainer = findViewById(R.id.list_container);
         mMapContainer = findViewById(R.id.map_container);
+        
+        mObservationsList.setOnItemClickListener(new OnItemClickListener() {
+        	@Override
+        	public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
+        		JSONObject item = (JSONObject) view.getTag();
+        		Intent intent = new Intent(INaturalistMapActivity.this, ObservationDetails.class);
+        		intent.putExtra("observation", item.toString());
+        		startActivity(intent);  
+        	}
+        });
 
-        mLoadingObservationsGrid = (ProgressBar) findViewById(R.id.loading_observations_grid);
-        mObservationsGridEmpty = (TextView) findViewById(R.id.observations_grid_empty);
-        mObservationsGrid = (GridViewExtended) findViewById(R.id.observations_grid);
+
         mObservationsGrid.setOnItemClickListener(new OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
@@ -365,6 +433,39 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         		startActivity(intent);  
         	}
         });
+
+        mObservationsList.setOnScrollListener(new OnScrollListener() {
+        	@Override
+        	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        		if((firstVisibleItem + visibleItemCount >= totalItemCount) && (totalItemCount > 0)) {
+        			// End has been reached - load more observations
+        			if ((mObservations != null) && (!mIsLoading) && (mPage >= 0)) {
+        				mPage++;
+        				reloadObservations();
+        			}
+        		}
+        	}
+
+        	@Override
+        	public void onScrollStateChanged(AbsListView view, int scrollState){ }
+        }); 
+
+        
+        mObservationsGrid.setOnScrollListener(new OnScrollListener() {
+        	@Override
+        	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        		if((firstVisibleItem + visibleItemCount >= totalItemCount) && (totalItemCount > 0)) {
+        			// End has been reached - load more observations
+        			if ((mObservations != null) && (!mIsLoading) && (mPage >= 0)) {
+        				mPage++;
+        				reloadObservations();
+        			}
+        		}
+        	}
+
+        	@Override
+        	public void onScrollStateChanged(AbsListView view, int scrollState){ }
+        }); 
 
 
     }
@@ -381,12 +482,14 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     		mTabHost.setCurrentTab(0);
     		mMapContainer.setVisibility(View.VISIBLE);
     		mGridContainer.setVisibility(View.GONE);
+    		mListContainer.setVisibility(View.GONE);
 
     		if (mClearMapLimit) {
     			// Switched back from other view type, after the user removed the "restrict-to-current-map-area"
     			// filter - now we reset that filter and need to reload the observations
     			mClearMapLimit = false;
     			mActiveSearch = false;
+    			mPage = 0;
     			loadObservations();
     		}
 
@@ -394,8 +497,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     		mTabHost.setCurrentTab(1);
     		mMapContainer.setVisibility(View.GONE);
     		mGridContainer.setVisibility(View.VISIBLE);
+    		mListContainer.setVisibility(View.GONE);
 
     	} else if (mViewType.equals(VIEW_TYPE_LIST)) {
+    		mTabHost.setCurrentTab(2);
+    		mMapContainer.setVisibility(View.GONE);
+    		mGridContainer.setVisibility(View.GONE);
+    		mListContainer.setVisibility(View.VISIBLE);
     	}
     	
     	refreshActiveFilters();
@@ -498,8 +606,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         registerReceiver(mNearbyReceiver, filter);
         
         setUpMapIfNeeded();
+       
         if (mSearchType != NO_SEARCH) {
-        	loadObservations();
+	    	loadExistingObservations(true);
         	refreshActiveFilters();
         	refreshViewType();
         }
@@ -532,6 +641,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         outState.putDouble("miny", vr.nearLeft.latitude);
         outState.putDouble("maxy", vr.farRight.latitude);
 
+        JSONArray arr = new JSONArray(mObservations);
+        outState.putSerializable("mObservations", arr.toString());
+
+        outState.putInt("mPage", mPage);
+
     }
 
     
@@ -546,35 +660,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         super.onPause();
     }
  
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.add:
-            // Launch activity to insert a new item
-            startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, this, ObservationEditor.class));
-            return true;
-        case R.id.layers:
-            if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                item.setTitle(R.string.satellite);
-            } else {
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                item.setTitle(R.string.street);
-            }
-            return true;
-        case R.id.nearby:
-        	if (!isNetworkAvailable()) {
-        		Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
-        		return true;
-        	}
-
-            reloadObservations();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
-    
     private void setUpMapIfNeeded() {
         if (mMarkerObservations == null) {
             mMarkerObservations = new HashMap<String, JSONObject>();
@@ -584,7 +669,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 // The Map is verified. It is now safe to manipulate the map.
-                //reloadObservations();
                 mMap.setMyLocationEnabled(true);
                 mMap.setOnMarkerClickListener(this);
                 mMap.setOnInfoWindowClickListener(this);
@@ -595,6 +679,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 	public void onCameraChange(CameraPosition arg0) {
                 		mClearMapLimit = false;
                 		mActiveSearch = false;
+                		mPage = 0;
                 		loadObservations();
                 	}
                 });
@@ -670,26 +755,42 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     }
     
     private void showLoading() {
+    	mIsLoading = true;
     	mRefreshView.setVisibility(View.GONE);
     	mLoading.setVisibility(View.VISIBLE);
     	
-    	mObservationsGrid.setVisibility(View.GONE);
-    	mObservationsGridEmpty.setVisibility(View.GONE);
-    	mLoadingObservationsGrid.setVisibility(View.VISIBLE);
+    	if (mPage == 0) {
+    		// Only hide the grid/list views if this is the first observations result page being fetched
+    		mObservationsGrid.setVisibility(View.GONE);
+    		mObservationsGridEmpty.setVisibility(View.GONE);
+    		mLoadingObservationsGrid.setVisibility(View.VISIBLE);
+    		mObservationsList.setVisibility(View.GONE);
+    		mLoadingObservationsList.setVisibility(View.VISIBLE);
+    		mObservationsListEmpty.setVisibility(View.GONE);
+    	}
     }
     
     private void hideLoading() {
+    	mIsLoading = false;
     	mRefreshView.setVisibility(View.VISIBLE);
     	mLoading.setVisibility(View.GONE);
 
     	mLoadingObservationsGrid.setVisibility(View.GONE);
+    	mLoadingObservationsList.setVisibility(View.GONE);
 
-    	if (mMarkerObservations.size() == 0) {
-    		mObservationsGrid.setVisibility(View.GONE);
-    		mObservationsGridEmpty.setVisibility(View.VISIBLE);
-    	} else {
-    		mObservationsGrid.setVisibility(View.VISIBLE);
-    		mObservationsGridEmpty.setVisibility(View.GONE);
+    	if (mPage == 0) {
+    		// Only re-show the grid/list views if this is the first observations result page being fetched
+    		if (mObservations.size() == 0) {
+    			mObservationsGrid.setVisibility(View.GONE);
+    			mObservationsGridEmpty.setVisibility(View.VISIBLE);
+    			mObservationsList.setVisibility(View.GONE);
+    			mObservationsListEmpty.setVisibility(View.VISIBLE);
+    		} else {
+    			mObservationsGrid.setVisibility(View.VISIBLE);
+    			mObservationsGridEmpty.setVisibility(View.GONE);
+    			mObservationsList.setVisibility(View.VISIBLE);
+    			mObservationsListEmpty.setVisibility(View.GONE);
+    		}
     	}
     }
  
@@ -707,6 +808,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
        mServiceIntent.putExtra("miny", vr.nearLeft.latitude);
        mServiceIntent.putExtra("maxy", vr.farRight.latitude);
        mServiceIntent.putExtra("zoom", mMap.getCameraPosition().zoom);
+       mServiceIntent.putExtra("page", mPage);
        if (mTaxonId != null) mServiceIntent.putExtra("taxon_id", mTaxonId.intValue());
        if (mUsername != null) mServiceIntent.putExtra("username", mUsername);
        if (mLocationId != null) mServiceIntent.putExtra("location_id", mLocationId.intValue());
@@ -737,7 +839,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             for (int i = 0; i < results.length(); i++) {
 				try {
 					JSONObject item = results.getJSONObject(i);
-					addObservation(item);
 					resultsArray.add(item);
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -749,11 +850,53 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             	mActiveSearch = false;
             }
             
-            mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, resultsArray);
-            mObservationsGrid.setAdapter(mGridAdapter);
+            if (mPage == 0) {
+            	mObservations = resultsArray;
+            	loadExistingObservations(true);
            
+            } else {
+            	// Append to existing observations list
+            	if (resultsArray.size() < INaturalistService.NEAR_BY_OBSERVATIONS_PER_PAGE) {
+            		// No more pages to fetch
+            		mPage = -1;
+            	} else {
+                    mObservations.addAll(resultsArray);
+                    for (int i = 0; i < resultsArray.size(); i++) {
+                        mGridAdapter.add(resultsArray.get(i));
+                        mListAdapter.add(resultsArray.get(i));
+                    }
+            	}
+            	loadExistingObservations(false);
+           
+            }
+            
             hideLoading();
         }
+    }
+    
+    private void loadExistingObservations(boolean refreshAdapters) {
+    	if ((refreshAdapters) || (mGridAdapter == null) || (mListAdapter == null)) {
+    		mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservations);
+    		mObservationsGrid.setAdapter(mGridAdapter);
+
+    		mListAdapter = new ObservationListAdapter(INaturalistMapActivity.this, mObservations);
+    		mObservationsList.setAdapter(mListAdapter);
+    	} else {
+    		mGridAdapter.notifyDataSetChanged();
+    		mListAdapter.notifyDataSetChanged();
+    	}
+
+    	mMap.clear();
+        mMarkerObservations.clear();
+    	for (int i = 0; i < mObservations.size(); i++) {
+    		JSONObject item = mObservations.get(i);
+    		try {
+				addObservation(item);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+    	}
+
     }
 
     @Override
@@ -1270,7 +1413,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  				}
  			}
  		} catch (JSONException e3) {
- 			e3.printStackTrace();
+ 			//e3.printStackTrace();
  		}
 
  		if (displayName == null) {
@@ -1468,4 +1611,141 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  			return view;
  		}
  	}
+ 	
+ 	
+ 	
+ 	private class ObservationListAdapter extends ArrayAdapter<JSONObject> {
+
+ 		private List<JSONObject> mItems;
+ 		private Context mContext;
+ 		private ArrayList<JSONObject> mOriginalItems;
+
+ 		public ObservationListAdapter(Context context, List<JSONObject> objects) {
+ 			super(context, R.layout.explore_list_item, objects);
+
+ 			mItems = objects;
+ 			mOriginalItems = new ArrayList<JSONObject>(mItems);
+ 			mContext = context;
+
+ 		}
+
+ 		public void addItemAtBeginning(JSONObject newItem) {
+ 			mItems.add(0, newItem);
+ 		}
+
+ 		@Override
+ 		public int getCount() {
+ 			return mItems.size();
+ 		}
+
+ 		@Override
+ 		public JSONObject getItem(int index) {
+ 			return mItems.get(index);
+ 		}
+
+ 		@SuppressLint("NewApi")
+		@Override
+ 		public View getView(int position, View convertView, ViewGroup parent) { 
+ 			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+ 			final View view = inflater.inflate(R.layout.explore_list_item, parent, false); 
+ 			JSONObject item = mItems.get(position);
+ 			
+ 			
+ 			TextView username = (TextView) view.findViewById(R.id.username);
+ 			username.setText(item.optString("user_login"));
+
+ 			TextView idName = (TextView) view.findViewById(R.id.id_name);
+ 			TextView taxonName = (TextView) view.findViewById(R.id.id_taxon_name);
+
+ 			idName.setTextColor(mHelper.observationColor(new Observation(new BetterJSONObject(item))));
+ 			final JSONObject taxon = item.optJSONObject("taxon");
+
+ 			if (taxon != null) {
+ 				String idNameString = getTaxonName(taxon);
+ 				if (idNameString != null) {
+ 					idName.setText(idNameString);
+ 					taxonName.setText(taxon.optString("name", ""));
+ 				} else {
+ 					idName.setText(taxon.optString("name", getResources().getString(R.string.unknown)));
+ 					taxonName.setText("");
+ 					idName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+ 				}
+
+ 				String rank = (taxon.isNull("rank") ? null : taxon.optString("rank", null));
+ 				if (rank != null) {
+ 					if ((rank.equalsIgnoreCase("genus")) || (rank.equalsIgnoreCase("species"))) {
+ 						taxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+ 					}
+ 				}
+
+ 			} else {
+ 				String idNameStr = item.isNull("species_guess") ?
+ 						getResources().getString(R.string.unknown) :
+ 							item.optString("species_guess", getResources().getString(R.string.unknown));
+ 						idName.setText(idNameStr);
+ 						taxonName.setText("");
+ 			}
+ 			
+
+ 			ImageView taxonPic = (ImageView) view.findViewById(R.id.image);
+
+ 			JSONArray observationPhotos;
+			try {
+				observationPhotos = item.getJSONArray("observation_photos");
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+				observationPhotos = new JSONArray();
+			}
+
+ 			if (observationPhotos.length() > 0) {
+ 				JSONObject observationPhoto;
+ 				try {
+ 					observationPhoto = observationPhotos.getJSONObject(0);
+ 					JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
+ 					String url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
+ 					UrlImageViewHelper.setUrlDrawable(taxonPic, url, ObservationPhotosViewer.observationIcon(item));
+ 				} catch (JSONException e) {
+ 					e.printStackTrace();
+ 				} catch (Exception e) {
+ 					// Could happen if user scrolls really fast and there a LOT of thumbnails being downloaded at once (too many threads at once)
+ 					e.printStackTrace();
+ 				}
+ 			}
+ 			
+ 			TextView observedOnDate = (TextView) view.findViewById(R.id.observed_on);
+ 			BetterJSONObject json = new BetterJSONObject(item);
+ 			Timestamp observedOn = json.getTimestamp("time_observed_at");
+
+ 			if (observedOn != null) {
+ 				observedOnDate.setText(mApp.formatDate(observedOn));
+ 			} else {
+ 				observedOnDate.setText(item.optString("observed_on", ""));
+ 			}
+ 			
+ 			
+ 			TextView tag = (TextView) view.findViewById(R.id.tag);
+ 			String qualityGrade = item.isNull("quality_grade") ? "" : item.optString("quality_grade", "");
+ 			
+ 			if (item.optBoolean("id_please", false)) {
+ 				tag.setText(R.string.id_please_tag);
+ 				tag.setTextColor(Color.parseColor(ID_PLEASE_TAG_TEXT_COLOR));
+ 				tag.setBackgroundColor(Color.parseColor(ID_PLEASE_TAG_BACKGROUND_COLOR));
+ 				tag.setVisibility(View.VISIBLE);
+
+ 			} else if (qualityGrade.equals("research")) {
+ 				tag.setText(R.string.research_tag);
+ 				tag.setTextColor(Color.parseColor(RESEARCH_TAG_TEXT_COLOR));
+ 				tag.setBackgroundColor(Color.parseColor(RESEARCH_TAG_BACKGROUND_COLOR));
+ 				tag.setVisibility(View.VISIBLE);
+
+ 			} else {
+ 				tag.setVisibility(View.INVISIBLE);
+ 			}
+
+
+ 			view.setTag(item);
+
+ 			return view;
+ 		}
+ 	} 	
 }
