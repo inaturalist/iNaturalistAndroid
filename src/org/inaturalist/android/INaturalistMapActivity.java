@@ -264,7 +264,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    	mProjectId = null;
 	    	mViewType = VIEW_TYPE_MAP;
 	    	mClearMapLimit = false;
-	    	mPage = 0;
+	    	mPage = 1;
 	    	mIsLoading = false;
 	    }
 	    
@@ -286,7 +286,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			@Override
 			public void onClick(View arg0) {
 				mActiveSearch = false;
-				mPage = 0;
+				mPage = 1;
 				loadObservations();
 			}
 		});
@@ -377,7 +377,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			@Override
 			public void onClick(View arg0) {
 				mClearMapLimit = true;
-				mPage = 0;
+				mPage = 1;
 
 				refreshActiveFilters();
 				loadObservations();
@@ -393,7 +393,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				mUsername = null;
 				mLocationId = null;
 				mSearchType = FIND_NEAR_BY_OBSERVATIONS;
-				mPage = 0;
+				mPage = 1;
 
 				refreshActiveFilters();
 				loadObservations();
@@ -439,7 +439,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         		if((firstVisibleItem + visibleItemCount >= totalItemCount) && (totalItemCount > 0)) {
         			// End has been reached - load more observations
-        			if ((mObservations != null) && (!mIsLoading) && (mPage >= 0)) {
+        			if ((mObservations != null) && (!mIsLoading) && (mPage >= 1)) {
         				mPage++;
         				reloadObservations();
         			}
@@ -456,7 +456,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         		if((firstVisibleItem + visibleItemCount >= totalItemCount) && (totalItemCount > 0)) {
         			// End has been reached - load more observations
-        			if ((mObservations != null) && (!mIsLoading) && (mPage >= 0)) {
+        			if ((mObservations != null) && (!mIsLoading) && (mPage >= 1)) {
         				mPage++;
         				reloadObservations();
         			}
@@ -489,7 +489,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     			// filter - now we reset that filter and need to reload the observations
     			mClearMapLimit = false;
     			mActiveSearch = false;
-    			mPage = 0;
+    			mPage = 1;
     			loadObservations();
     		}
 
@@ -679,7 +679,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 	public void onCameraChange(CameraPosition arg0) {
                 		mClearMapLimit = false;
                 		mActiveSearch = false;
-                		mPage = 0;
+                		mPage = 1;
                 		loadObservations();
                 	}
                 });
@@ -759,7 +759,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     	mRefreshView.setVisibility(View.GONE);
     	mLoading.setVisibility(View.VISIBLE);
     	
-    	if (mPage == 0) {
+    	if (mPage == 1) {
     		// Only hide the grid/list views if this is the first observations result page being fetched
     		mObservationsGrid.setVisibility(View.GONE);
     		mObservationsGridEmpty.setVisibility(View.GONE);
@@ -778,7 +778,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     	mLoadingObservationsGrid.setVisibility(View.GONE);
     	mLoadingObservationsList.setVisibility(View.GONE);
 
-    	if (mPage == 0) {
+    	if (mPage == 1) {
     		// Only re-show the grid/list views if this is the first observations result page being fetched
     		if (mObservations.size() == 0) {
     			mObservationsGrid.setVisibility(View.GONE);
@@ -850,7 +850,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             	mActiveSearch = false;
             }
             
-            if (mPage == 0) {
+            Log.e("AAA", "GOT " + mPage + ": " + resultsArray.size() + ": " + resultsArray.get(0).optInt("id"));
+            if (mPage == 1) {
             	mObservations = resultsArray;
             	loadExistingObservations(true);
            
@@ -861,10 +862,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             		mPage = -1;
             	} else {
                     mObservations.addAll(resultsArray);
-                    for (int i = 0; i < resultsArray.size(); i++) {
-                        mGridAdapter.add(resultsArray.get(i));
-                        mListAdapter.add(resultsArray.get(i));
-                    }
             	}
             	loadExistingObservations(false);
            
