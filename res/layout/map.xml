@@ -106,7 +106,7 @@
                     android:paddingRight="12dp"
                     android:visibility="gone"
                     >
-                   <ImageButton android:src="@drawable/ic_action_remove"
+                   <ImageButton android:src="@drawable/ic_action_cancel"
                              android:id="@+id/cancel_restrict_to_current_map"
                              android:layout_height="wrap_content"
                              android:layout_width="24dp"

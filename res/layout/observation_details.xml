@@ -124,7 +124,7 @@
             android:id="@+id/location_image"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/location"
+            android:src="@drawable/ic_action_place"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:layout_below="@id/user_name"
