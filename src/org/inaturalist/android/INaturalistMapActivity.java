@@ -402,10 +402,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
-
-        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_MAP).setIndicator(getString(R.string.map)));
-        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_GRID).setIndicator(getString(R.string.grid)));
-        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_LIST).setIndicator(getString(R.string.list)));
+        
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_MAP).setIndicator("", getResources().getDrawable(R.drawable.ic_action_map)));
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_GRID).setIndicator("", getResources().getDrawable(R.drawable.ic_action_view_as_grid)));
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_LIST).setIndicator("", getResources().getDrawable(R.drawable.ic_action_view_as_list)));
 
         mTabHost.setOnTabChangedListener(this);
         
@@ -850,7 +850,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             	mActiveSearch = false;
             }
             
-            Log.e("AAA", "GOT " + mPage + ": " + resultsArray.size() + ": " + resultsArray.get(0).optInt("id"));
             if (mPage == 1) {
             	mObservations = resultsArray;
             	loadExistingObservations(true);
