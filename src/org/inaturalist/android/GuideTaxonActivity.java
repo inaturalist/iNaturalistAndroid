@@ -24,8 +24,8 @@ import android.webkit.*;
 
 public class GuideTaxonActivity extends SherlockActivity {
     private static String TAG = "GuideTaxonActivity";
-    private static String GUIDE_TAXON_URL = INaturalistService.HOST + "/guide_taxa/%d.xml";
-    private static String TAXON_URL = INaturalistService.HOST + "/taxa/%d";
+    private static String GUIDE_TAXON_URL = "http://%s/guide_taxa/%d.xml";
+    private static String TAXON_URL = "http://%s/taxa/%d";
     private WebView mWebView;
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -157,10 +157,13 @@ public class GuideTaxonActivity extends SherlockActivity {
 
     	String url;
     	
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+    	
     	if (mGuideTaxon) {
-    		url = String.format(GUIDE_TAXON_URL, taxonId);
+    		url = String.format(GUIDE_TAXON_URL, inatHost, taxonId);
     	} else {
-    		url = String.format(TAXON_URL, taxonId);
+    		url = String.format(TAXON_URL, inatHost, taxonId);
     	}
     	mWebView.loadUrl(url, getAuthHeaders());
     }

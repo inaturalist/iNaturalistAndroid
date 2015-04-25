@@ -756,10 +756,33 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
         c.close();
         
-        mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
-                getString(R.string.observation_sync_complete), 
-                String.format(getString(R.string.observation_sync_status), createdCount, updatedCount),
-                getString(R.string.sync_complete));
+        c = getContentResolver().query(Observation.CONTENT_URI, 
+        		Observation.PROJECTION, 
+        		"id IS NULL", null, Observation.SYNC_ORDER);
+        int currentCreatedCount = c.getCount();
+        c.close();
+        c = getContentResolver().query(Observation.CONTENT_URI, 
+                Observation.PROJECTION, 
+                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '"+mLogin+"'", 
+                null, 
+                Observation.SYNC_ORDER);
+        int currentUpdatedCount = c.getCount();
+        c.close();
+
+        
+        if ((currentCreatedCount == 0) && (currentUpdatedCount == 0)) {
+        	// Sync completed successfully
+        	mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+        			getString(R.string.observation_sync_complete), 
+        			String.format(getString(R.string.observation_sync_status), createdCount, updatedCount),
+        			getString(R.string.sync_complete));
+        } else {
+        	// There was a problem with the sync process
+        	mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+        			getString(R.string.observation_sync_failed), 
+        			getString(R.string.not_all_observations_were_synced),
+        			getString(R.string.sync_failed));
+        }
     }
     
     
@@ -846,10 +869,26 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             c.moveToNext();
         }
         c.close();
-        mApp.notify(SYNC_PHOTOS_NOTIFICATION, 
-                getString(R.string.photo_sync_complete), 
-                String.format(getString(R.string.posted_new_x_photos), createdCount),
-                getString(R.string.sync_complete));
+        
+        c = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+        		ObservationPhoto.PROJECTION, 
+        		"_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
+        int currentCount = c.getCount();
+        c.close();
+
+        if (currentCount == 0) {
+        	// Sync completed successfully
+        	mApp.notify(SYNC_PHOTOS_NOTIFICATION, 
+        			getString(R.string.photo_sync_complete), 
+        			String.format(getString(R.string.posted_new_x_photos), createdCount),
+        			getString(R.string.sync_complete));
+        } else {
+        	// Sync failed
+        	mApp.notify(SYNC_PHOTOS_NOTIFICATION, 
+        			getString(R.string.photo_sync_failed), 
+        			getString(R.string.not_all_photos_were_synced),
+        			getString(R.string.sync_failed));
+        }
     }
 
     private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException {
