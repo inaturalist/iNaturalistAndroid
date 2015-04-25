@@ -90,6 +90,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -524,7 +525,24 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     		switch (mSearchType) {
     		case NO_SEARCH:
     			mSearchType = FIND_NEAR_BY_OBSERVATIONS;
-    			getCurrentLocationAndLoadNearbyObservations();
+    			
+    			String inatNetwork = mApp.getInaturalistNetworkMember();
+    			final String countryCoordinates = mApp.getStringResourceByName("inat_country_coordinates_" + inatNetwork);
+
+    			if ((countryCoordinates != null) && (countryCoordinates.length() > 0)) {
+    				// Change initial view according to the iNat network settings (e.g. show Mexico)
+    				String[] parts = countryCoordinates.split(",");
+    				mMinx = Double.valueOf(parts[1]); // swlng
+    				mMiny = Double.valueOf(parts[0]); // swlat
+    				mMaxx = Double.valueOf(parts[3]); // nelng
+    				mMaxy = Double.valueOf(parts[2]); // nelat
+
+    				LatLngBounds bounds = new LatLngBounds(new LatLng(mMiny, mMinx), new LatLng(mMaxy, mMaxx));
+    				mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+
+    			} else {
+    				getCurrentLocationAndLoadNearbyObservations();
+    			}
     			break;
 
     		case FIND_NEAR_BY_OBSERVATIONS:
@@ -903,81 +921,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     	intent.putExtra("observation", o.toString());
     	startActivity(intent);  
 
-        //setAccuracyCircle(marker);
         return false;
     }
     
-    private void setAccuracyCircle(Marker marker) {
-    	/*
-        JSONObject o = mMarkerObservations.get(marker.getId());
-        if (o == null || (o.positional_accuracy == null && o.geoprivacy == null)) {
-            if (mCircle != null) { mCircle.setVisible(false); }
-            return;
-        }
-        Integer acc = o.positional_accuracy;
-        if (acc == null) acc = 0;
-        // TODO this is not handling observations of threatened taxa by other people. 
-        // We're going to have to add another col to observations or make better use of 
-        // private_positional_accuracy for that.
-        if (mApp.currentUserLogin() != o.user_login && o.geoprivacy != null) {
-            acc += 10000;
-        }
-        int strokeColor = mHelper.observationColor(o);
-        int fillColor = Color.argb(70, Color.red(strokeColor), Color.green(strokeColor), Color.blue(strokeColor));
-        if (mCircle == null) {
-            CircleOptions circleOptions = new CircleOptions().
-                    center(marker.getPosition()).
-                    fillColor(fillColor).
-                    strokeColor(strokeColor).
-                    strokeWidth(2).
-                    radius(acc);
-            mCircle = mMap.addCircle(circleOptions);
-        } else {
-            mCircle.setCenter(marker.getPosition());
-            mCircle.setRadius(acc);
-            mCircle.setFillColor(fillColor);
-            mCircle.setStrokeColor(strokeColor);
-        }
-        mCircle.setVisible(true);
-        */
-    }
-    
-    private void showObservationDialog(Marker marker) {
-    	/*
-        marker.hideInfoWindow();
-        JSONObject observation = mMarkerObservations.get(marker.getId());
-        final Uri observationUri = observation.getUri();
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle(observation.species_guess)
-            .setMessage(observation.description)
-            .setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.cancel();
-                }
-            });
-        String login = mApp.currentUserLogin();
-        if (login != null && login.equals(observation.user_login)) {
-            dialog.setNeutralButton(getString(R.string.edit), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(Intent.ACTION_EDIT, observationUri)); 
-                }
-            });
-        } else if (observation.id != null) {
-            final Observation boundObservation = observation; 
-            dialog.setNeutralButton(getString(R.string.view), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(INaturalistService.HOST + "/observations/"+boundObservation.id));
-                    startActivity(i); 
-                }
-            });
-        }
-        dialog.show();
-        */
-    }
-    
+   
     private BitmapDescriptor observationIcon(JSONObject o) {
         if (!o.has("iconic_taxon_name") || o.isNull("iconic_taxon_name")) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
@@ -1013,12 +960,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
         }
         
-    }
-
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-        // TODO make a decent infowindow, replace this alert with a modal fragment
-        //showObservationDialog(marker);
     }
 
  	private boolean isNetworkAvailable() {
@@ -1128,7 +1069,67 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		
  	}
  	
- 	
+ 	private void getPlace(final int placeId) {
+ 		new Thread(new Runnable() {
+ 			@Override
+ 			public void run() {
+ 				HttpURLConnection conn = null;
+ 				StringBuilder jsonResults = new StringBuilder();
+ 				try {
+ 					String urlString = String.format("%s/places/%d.json", INaturalistService.HOST, placeId);
+ 					URL url = new URL(urlString.toString());
+ 					conn = (HttpURLConnection) url.openConnection();
+ 					InputStreamReader in = new InputStreamReader(conn.getInputStream());
+
+ 					// Load the results into a StringBuilder
+ 					int read;
+ 					char[] buff = new char[1024];
+ 					while ((read = in.read(buff)) != -1) {
+ 						jsonResults.append(buff, 0, read);
+ 					}
+
+ 				} catch (MalformedURLException e) {
+ 					Log.e(TAG, "Error processing Places API URL", e);
+ 					return;
+ 				} catch (IOException e) {
+ 					Log.e(TAG, "Error connecting to Places API", e);
+ 					return;
+ 				} finally {
+ 					if (conn != null) {
+ 						conn.disconnect();
+ 					}
+ 				}
+
+ 				try {
+ 					JSONObject place = new JSONObject(jsonResults.toString());
+ 					if (place != null) {
+ 						if (!place.isNull("swlat") && !place.isNull("swlat") && !place.isNull("swlat") && !place.isNull("swlat")) {
+ 							mMinx = Double.valueOf(place.getString("swlng"));
+ 							mMaxx = Double.valueOf(place.getString("nelng"));
+ 							mMiny = Double.valueOf(place.getString("swlat"));
+ 							mMaxy = Double.valueOf(place.getString("nelat"));
+
+ 							final LatLngBounds bounds = new LatLngBounds(new LatLng(mMiny, mMinx), new LatLng(mMaxy, mMaxx));
+ 							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+								}
+							});
+ 						}
+ 					}
+
+ 				} catch (JSONException e) {
+ 					Log.e(TAG, "Cannot process JSON result", e);
+ 				}
+
+ 				return;
+
+			}
+		}).start();
+
+ 	}
+ 
  	private JSONArray find(String type, String search) {
  		HttpURLConnection conn = null;
  		StringBuilder jsonResults = new StringBuilder();
@@ -1272,11 +1273,28 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 					case FIND_LOCATIONS:
 						mLocationName = item.getString("display_name");
 						mLocationId = item.getInt("id");
-						break;
+						if (!item.isNull("latitude") && !item.isNull("longitude")) {
+							if (!item.isNull("swlat") && !item.isNull("swlat") && !item.isNull("swlat") && !item.isNull("swlat")) {
+								mMinx = Double.valueOf(item.getString("swlng"));
+								mMaxx = Double.valueOf(item.getString("nelng"));
+								mMiny = Double.valueOf(item.getString("swlat"));
+								mMaxy = Double.valueOf(item.getString("nelat"));
+
+								LatLngBounds bounds = new LatLngBounds(new LatLng(mMiny, mMinx), new LatLng(mMaxy, mMaxx));
+								mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+							}
+						}
+                        break;
 
 					case FIND_PROJECTS:
 						mProjectName = item.getString("title");
 						mProjectId = item.getInt("id");
+						
+						if (!item.isNull("place_id")) {
+							// Project has a place associated to it - get its coordinates
+							int placeId = item.getInt("place_id");
+							getPlace(placeId);
+						}
 						break;
 					}
 
@@ -1743,5 +1761,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
  			return view;
  		}
- 	} 	
+ 	}
+
+	@Override
+	public void onInfoWindowClick(Marker arg0) {
+		// TODO Auto-generated method stub
+		
+	} 	
 }

@@ -111,6 +111,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             
             ObservationCursorAdapter adapter = mAdapter;
             adapter.refreshCursor();
+            refreshSyncBar();
         }
     } 	
   

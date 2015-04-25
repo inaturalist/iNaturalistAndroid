@@ -29,6 +29,11 @@
     <string name="inat_country_naturalista">mx</string> <!-- Mexico -->
     <string name="inat_country_naturewatchnz">nz</string> <!-- New Zealand -->
 
+    <!-- When opening the explore screen, these are the default coordinates (swlng,swlat,nelng,nelat) -->
+    <string name="inat_country_coordinates_inaturalist"></string> <!-- Empty - use user's current location instead -->
+    <string name="inat_country_coordinates_naturalista">14.54808,-117.123596,32.718319,-86.74501</string> <!-- Mexico -->
+    <string name="inat_country_coordinates_naturewatchnz">-50.85445,165.566357,-33.069679,178.559693</string> <!-- New Zealand -->
+
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">www.inaturalist.org</string>
     <string name="inat_host_naturalista">conabio.inaturalist.org</string>

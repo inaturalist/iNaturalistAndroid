@@ -321,5 +321,13 @@
 
     <string name="id_please_tag">ID Please</string>
     <string name="research_tag">Research</string>
+    
+    
+    <string name="sync_failed">Sync failed!</string>
+    <string name="observation_sync_failed">Observation sync failed!</string>
+    <string name="not_all_observations_were_synced">Not all observations were synced.</string>
+    <string name="photo_sync_failed">Photo sync failed!</string>
+    <string name="not_all_photos_were_synced">Not all photos were synced.</string>
+
  </resources>
 
