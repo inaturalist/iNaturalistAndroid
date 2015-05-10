@@ -140,6 +140,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     /** Shows the sync required bottom bar, if needed */
     private void refreshSyncBar() {
         int syncCount = 0;
+        int photoSyncCount = 0;
 
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
         		Observation.PROJECTION, 
@@ -148,13 +149,30 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         		Observation.SYNC_ORDER);
         syncCount = c.getCount();
         c.close();
+        
+        Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+        		new String[]{
+        		ObservationPhoto._ID, 
+        		ObservationPhoto._OBSERVATION_ID, 
+        		ObservationPhoto._PHOTO_ID, 
+        		ObservationPhoto.PHOTO_URL,
+        		ObservationPhoto._UPDATED_AT,
+        		ObservationPhoto._SYNCED_AT
+            }, 
+            "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
+            "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at))", 
+            null, 
+            ObservationPhoto._ID);
+        photoSyncCount = opc.getCount();
+        opc.close();
 
-    	if (syncCount > 0) {
-    		mSyncObservations.setText(String.format(getResources().getString(R.string.sync_x_observations), syncCount));
+    	if ((syncCount > 0) || (photoSyncCount > 0)) {
+    		mSyncObservations.setText(String.format(getResources().getString(R.string.sync_x_observations), (syncCount > 0 ? syncCount : photoSyncCount)));
     		mSyncObservations.setVisibility(View.VISIBLE);
     	} else {
     		mSyncObservations.setVisibility(View.GONE);
     	}
+    	
     }
     
     

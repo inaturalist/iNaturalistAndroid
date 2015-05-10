@@ -351,8 +351,8 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	            case DialogInterface.BUTTON_POSITIVE:
 	            	if (checked) {	            	
 	            		mApp.setInaturalistNetworkMember(networks[selectedRadioButtonId]);
-	            		mPrefEditor.putString("pref_locale", mApp.getStringResourceByName("inat_network_language_" + networks[selectedRadioButtonId]));
-	            		mPrefEditor.commit();
+	            		//mPrefEditor.putString("pref_locale", mApp.getStringResourceByName("inat_network_language_" + networks[selectedRadioButtonId]));
+	            		//mPrefEditor.commit();
 	            	}            	
 
 	            	formerSelectedNetworkRadioButton = selectedRadioButtonId;
@@ -675,17 +675,15 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 
 		String[] locales = LocaleHelper.SupportedLocales;
 		for (int i=0; i < locales.length; i++) {
-			RadioButton rb = new RadioButton(this);
+			RadioButton rb = (RadioButton) rbPreferredLocaleSelector.getChildAt(i);
 			final int selectedButton = i;
 			final Activity context = this;
-			rb.setText(new Locale(locales[i]).getDisplayLanguage());
 			rb.setOnClickListener (new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					PromptUserToConfirmSelection(context, selectedButton);
 				}
 			});
-			rbPreferredLocaleSelector.addView(rb, i);
 		}
 	}
 
@@ -727,15 +725,10 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 
 		// if no preference is set, find app default
 		if (pref_locale.equalsIgnoreCase("")) {
-			String defaultLocale = LocaleHelper.getDefaultLocale();
-			for (int i = 0; i < supportedLocales.length; i++) {
-				if (supportedLocales[i].equalsIgnoreCase(defaultLocale)) {
-					RadioButton rb = (RadioButton) rbPreferredLocaleSelector.getChildAt(i);
-					rb.setChecked(true);
-					formerSelectedRadioButton = i;
-					return;
-				}
-			}
+			// Use device locale
+			RadioButton rb = (RadioButton) rbPreferredLocaleSelector.getChildAt(0);
+			rb.setChecked(true);
+			formerSelectedRadioButton = 0;
 		}
 		else {
 			for (int i = 0; i < supportedLocales.length; i++) {
