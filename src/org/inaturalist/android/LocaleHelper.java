@@ -10,11 +10,8 @@ public class LocaleHelper {
     private static final String DefaultLocale = "en";
 
     // add locale codes here when they are complete in values
-    // Todo: what is es-Res?
     public static final String[] SupportedLocales = new String[] {
-            "en",
-            "ca",
-            "es",
+            "", // Use device locale
             "eu",
             "gl"
     };

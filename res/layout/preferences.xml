@@ -149,6 +149,27 @@
                     android:id="@+id/radioLang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/rbDeviceLang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="@string/use_device_language_settings" />
+
+                    <RadioButton
+                        android:id="@+id/rbDeviceEu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="@string/locale_eu" />
+
+                    <RadioButton
+                        android:id="@+id/rbDeviceGl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="@string/locale_gl" />
                 </RadioGroup>
             </LinearLayout>        
             

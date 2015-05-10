@@ -25,10 +25,11 @@ import android.webkit.*;
 
 public class WebActivity extends BaseFragmentActivity {
     private static String TAG = "WebActivity";
-    private static String HOME_URL = INaturalistService.HOST + "/home.mobile";
+    private static String HOME_URL = "http://%s/home.mobile";
     private WebView mWebView;
     private INaturalistApp app;
     private ActivityHelper helper;
+	private String mHomeUrl;
 
 	@Override
 	protected void onStart()
@@ -62,6 +63,11 @@ public class WebActivity extends BaseFragmentActivity {
         onDrawerCreate(savedInstanceState);
         helper = new ActivityHelper(this);
         mWebView = (WebView) findViewById(R.id.webview);
+        
+        
+        String inatNetwork = app.getInaturalistNetworkMember();
+        String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
+        mHomeUrl = String.format(HOME_URL, inatHost);
 
         mWebView.getSettings().setJavaScriptEnabled(true);
 
@@ -108,7 +114,7 @@ public class WebActivity extends BaseFragmentActivity {
                     WebBackForwardList webBackForwardList = mWebView.copyBackForwardList();
                     String historyUrl = webBackForwardList.getItemAtIndex(webBackForwardList.getCurrentIndex()-1).getUrl();
                     // weird bug shows a blank page when just going back to the first url in history
-                    if (historyUrl.equals(HOME_URL)) {
+                    if (historyUrl.equals(mHomeUrl)) {
                         mWebView.clearHistory();
                         goHome();
                     } else {
@@ -163,7 +169,7 @@ public class WebActivity extends BaseFragmentActivity {
     public void goHome() {
         if (app.loggedIn()) {
             mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
-            mWebView.loadUrl(HOME_URL, getAuthHeaders());
+            mWebView.loadUrl(mHomeUrl, getAuthHeaders());
         } else {
             helper.confirm(getString(R.string.need_to_login), new DialogInterface.OnClickListener() {
                 @Override
