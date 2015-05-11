@@ -1,8 +1,11 @@
 package org.inaturalist.android;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -16,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -1526,7 +1530,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             for (int i = 0; i < params.size(); i++) {
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
                     // If the key equals to "image", we use FileBody to transfer the data
-                    entity.addPart(params.get(i).getName(), new FileBody(new File (params.get(i).getValue())));
+                	
+                	// Resize image to max size of 2048x2048 before sending it to the server
+                	String filename = resizeImage(params.get(i).getValue());
+
+                    entity.addPart(params.get(i).getName(), new FileBody(new File (filename)));
                 } else {
                     // Normal string data
                     try {
@@ -1625,7 +1633,61 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         return null;
     }
 
-    private boolean ensureCredentials() throws AuthenticationException {
+    /**
+     * Resizes an image to max size of 2048x2048
+     * @param filename the image filename
+     * @return the reized image - or original image if smaller than 2048x2048
+     */
+    private String resizeImage(String filename) {
+    	BitmapFactory.Options options = new BitmapFactory.Options();
+    	InputStream is = null;
+    	try {
+			is = new FileInputStream(filename);
+			Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
+			is.close();
+			int originalHeight = options.outHeight;
+			int originalWidth = options.outWidth;
+			int newHeight, newWidth;
+			
+			
+			if (Math.max(originalHeight, originalWidth) < 2048) {
+				// Original file is smaller than 2048x2048 - no need to resize
+				return filename;
+			}
+			
+			// Resize but make sure we have the same width/height aspect ratio
+			if (originalHeight > originalWidth) {
+				newHeight = 2048;
+				newWidth = (int)(2048 * ((float)originalWidth / originalHeight));
+			} else {
+				newWidth = 2048;
+				newHeight = (int)(2048 * ((float)originalHeight / originalWidth));
+			}
+
+			Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
+			Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
+
+			Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+
+			// Save resized image
+			File imageFile = new File(getExternalCacheDir(), UUID.randomUUID().toString());
+			OutputStream os = new FileOutputStream(imageFile);
+			resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+			os.flush();
+			os.close();
+			
+			return imageFile.getAbsolutePath();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	return filename;
+	}
+
+	private boolean ensureCredentials() throws AuthenticationException {
         if (mCredentials != null) { return true; }
 
         // request login unless passive
