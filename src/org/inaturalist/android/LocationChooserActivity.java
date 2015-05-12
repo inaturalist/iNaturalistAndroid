@@ -190,6 +190,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     		outState.putDouble("longitude", mMap.getCameraPosition().target.longitude);
     		outState.putDouble("latitude", mMap.getCameraPosition().target.latitude);
     	}
+        super.onSaveInstanceState(outState);
     }
  
     @Override

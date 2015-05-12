@@ -116,6 +116,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("observation", mObservation.toString());
+        super.onSaveInstanceState(outState);
     }
  
     

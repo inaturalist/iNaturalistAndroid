@@ -668,6 +668,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
         outState.putInt("mPage", mPage);
 
+        super.onSaveInstanceState(outState);
     }
 
     

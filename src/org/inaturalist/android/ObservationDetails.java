@@ -310,6 +310,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("observation", mObservation.toString());
+        super.onSaveInstanceState(outState);
     }
  
     

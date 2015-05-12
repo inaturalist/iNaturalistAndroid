@@ -1152,6 +1152,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         uiToProjectFieldValues();
         outState.putSerializable("mProjectFieldValues", mProjectFieldValues);
         outState.putBoolean("mProjectFieldsUpdated", mProjectFieldsUpdated);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
