@@ -141,12 +141,14 @@ public class WebActivity extends BaseFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.reload:
-            mWebView.reload();
+        	if (mWebView != null) mWebView.reload();
             return true;
         case R.id.view:
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(mWebView.getUrl()));
-            startActivity(i);
+        	if (mWebView != null) {
+        		Intent i = new Intent(Intent.ACTION_VIEW);
+        		i.setData(Uri.parse(mWebView.getUrl()));
+        		startActivity(i);
+        	}
             return true;
         default:
             return super.onOptionsItemSelected(item);
