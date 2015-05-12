@@ -215,6 +215,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 			}
 		});        
         
+        if (savedInstanceState != null) {
+            mLastMessage = savedInstanceState.getString("mLastMessage");
+        }
+        
               
         refreshSyncBar(); 
         
@@ -367,7 +371,22 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         
         ObservationCursorAdapter adapter = mAdapter;
         adapter.refreshCursor();
+        
+        INaturalistApp app = (INaturalistApp)(getApplication());
+        if (app.getIsSyncing()) {
+        	// We're still syncing
+        	mHelper.stopLoading();
+        	if (mLastMessage != null) mHelper.loading(mLastMessage);
+        	app.setNotificationCallback(this);
+        }
     }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (mLastMessage != null) outState.putString("mLastMessage", mLastMessage);
+        super.onSaveInstanceState(outState);
+    }
+ 
     
     private boolean isLoggedIn() {
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);

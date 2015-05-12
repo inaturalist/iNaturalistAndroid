@@ -300,6 +300,9 @@ public class INaturalistApp extends Application {
     public void setIsSyncing(boolean isSyncing) {
     	mIsSyncing  = isSyncing;
     }
+    public boolean getIsSyncing() {
+    	return mIsSyncing;
+    }
     
     public void checkSyncNeeded() {
         Cursor oCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
