@@ -2140,7 +2140,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         	return null;
         }
         
-        if (c == null) {
+        if ((c == null) || (c.getCount() == 0)) {
         	return null;
         }
 
