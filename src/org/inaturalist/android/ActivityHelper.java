@@ -74,13 +74,16 @@ public class ActivityHelper {
     }
 
     public void loading(String title, String msg) {
-        if (mProgressDialog != null) {
-            mProgressDialog.dismiss();
-        }
         if (title == null) { title = ""; }
         if (msg == null) { msg = mContext.getString(R.string.loading); }
-        mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
-        mProgressDialog.setCancelable(true);
+
+        if (mProgressDialog != null) {
+            mProgressDialog.setTitle(title);
+            mProgressDialog.setMessage(msg);
+        } else {
+        	mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
+        	mProgressDialog.setCancelable(true);
+        }
     }
 
     public void loading(String msg) {
@@ -99,6 +102,7 @@ public class ActivityHelper {
         if (mProgressDialog != null) {
         	try {
         		mProgressDialog.dismiss();
+        		mProgressDialog = null;
         	} catch (Exception exc) {
         		// Nothing to do here
         		exc.printStackTrace();

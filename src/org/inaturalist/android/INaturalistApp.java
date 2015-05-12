@@ -49,6 +49,10 @@ public class INaturalistApp extends Application {
     private Locale locale = null;
     private Locale deviceLocale = null;
     
+    public interface INotificationCallback {
+    	public void onNotification(String title, String content);
+    }
+    
     @Override
     public void onCreate() {
         super.onCreate();
@@ -64,6 +68,7 @@ public class INaturalistApp extends Application {
      * is impossible (for example, returning a huge list of projects/guides won't work via intents)
      */
     private Map<String, Serializable> mServiceResults = new HashMap<String, Serializable>();
+	private INotificationCallback mNotificationCallback;
 
     public void setServiceResult(String key, Serializable value) {
     	mServiceResults.put(key,  value);
@@ -374,7 +379,14 @@ public class INaturalistApp extends Application {
         Notification notification = new Notification(R.drawable.ic_stat_inaturalist, ticker, System.currentTimeMillis());
         notification.setLatestEventInfo(getApplicationContext(), title, content, pendingIntent);
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        mNotificationManager.notify(id, notification);
+        //mNotificationManager.notify(id, notification);
+        if (mNotificationCallback != null) {
+        	mNotificationCallback.onNotification(title, content);
+        }
+    }
+    
+    public void setNotificationCallback(INotificationCallback callback) {
+    	mNotificationCallback = callback;
     }
     
     public String formatDate(Timestamp date) { return DATE_FORMAT.format(date); }
