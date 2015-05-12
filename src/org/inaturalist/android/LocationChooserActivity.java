@@ -186,8 +186,10 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putDouble("longitude", mMap.getCameraPosition().target.longitude);
-        outState.putDouble("latitude", mMap.getCameraPosition().target.latitude);
+    	if (mMap != null) {
+    		outState.putDouble("longitude", mMap.getCameraPosition().target.longitude);
+    		outState.putDouble("latitude", mMap.getCameraPosition().target.latitude);
+    	}
     }
  
     @Override
