@@ -233,7 +233,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    	mIsLoading = false;
 
 	    	try {
-				JSONArray arr = new JSONArray(savedInstanceState.getString("mObservations"));
+	    		String obsString = savedInstanceState.getString("mObservations");
+				JSONArray arr = new JSONArray();
+				if (obsString != null) arr = new JSONArray(obsString);
 				if (mObservations == null) {
 					mObservations = new ArrayList<JSONObject>();
 				}
@@ -659,8 +661,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         outState.putDouble("miny", vr.nearLeft.latitude);
         outState.putDouble("maxy", vr.farRight.latitude);
 
-        JSONArray arr = new JSONArray(mObservations);
-        outState.putSerializable("mObservations", arr.toString());
+        if (mObservations != null) {
+        	JSONArray arr = new JSONArray(mObservations);
+        	outState.putString("mObservations", arr.toString());
+        }
 
         outState.putInt("mPage", mPage);
 
