@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.commons.lang3.StringUtils;
+import org.inaturalist.android.INaturalistApp.INotificationCallback;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -59,7 +60,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ObservationListActivity extends BaseFragmentActivity implements OnItemClickListener {
+public class ObservationListActivity extends BaseFragmentActivity implements OnItemClickListener, INotificationCallback {
 	public static String TAG = "INAT:ObservationListActivity";
 	
 	private PullToRefreshListView mPullRefreshListView;
@@ -75,6 +76,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 	private ObservationCursorAdapter mAdapter;
 
 	private TextView mTitleBar;
+
+	private ActivityHelper mHelper;
+
+	private String mLastMessage;
 
 	private static final int COMMENTS_IDS_REQUEST_CODE = 100;
 
@@ -109,9 +114,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             mPullRefreshListView.onRefreshComplete();
             mPullRefreshListView.refreshDrawableState();
             
+            mHelper.stopLoading();
+
             ObservationCursorAdapter adapter = mAdapter;
             adapter.refreshCursor();
             refreshSyncBar();
+
+            Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show(); 
         }
     } 	
   
@@ -182,6 +191,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
         
+        mHelper = new ActivityHelper(this);
+        
         mSyncObservations = (TextView) findViewById(R.id.sync_observations);
         mSyncObservations.setOnClickListener(new OnClickListener() {
 			@Override
@@ -195,12 +206,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     return;
                 }
 
-                Toast.makeText(getApplicationContext(), R.string.syncing_observations, Toast.LENGTH_LONG).show(); 
-
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
                 
                 mSyncObservations.setVisibility(View.GONE);
+                
+                mHelper.loading(getResources().getString(R.string.syncing_observations));
 			}
 		});        
         
@@ -221,6 +232,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         });
         
         INaturalistApp app = (INaturalistApp)(getApplication());
+        
+        app.setNotificationCallback(this);
        
         Intent intent = getIntent();
         if (intent.getData() == null) {
@@ -772,5 +785,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         }
  
      }
+
+	@Override
+	public void onNotification(String title, final String content) {
+		Log.e("AAA", "onNotification: " + content);
+		mLastMessage = content;
+
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				mHelper.loading(content);
+			}
+		});
+	}
 
 }
