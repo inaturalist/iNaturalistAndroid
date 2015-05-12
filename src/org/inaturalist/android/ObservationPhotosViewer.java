@@ -88,7 +88,8 @@ public class ObservationPhotosViewer extends SherlockActivity {
 
         try {
         	if (savedInstanceState == null) {
-        		mObservation = new JSONObject(intent.getStringExtra("observation"));
+        		String observationString = intent.getStringExtra("observation");
+        		if (observationString != null) mObservation = new JSONObject(observationString);
         	} else {
         		mObservation = new JSONObject(savedInstanceState.getString("observation"));
         	}
