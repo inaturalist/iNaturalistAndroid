@@ -1488,25 +1488,26 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  	private void loadNearbyObservations() {
  		Location currentLocation = getLastLocation();
 
+ 		if (currentLocation != null) {
+ 			double latitude = currentLocation.getLatitude();
+ 			double longitude = currentLocation.getLongitude();
+ 			final LatLng latLng = new LatLng(latitude, longitude);
 
- 		double latitude = currentLocation.getLatitude();
- 		double longitude = currentLocation.getLongitude();
- 		final LatLng latLng = new LatLng(latitude, longitude);
+ 			CameraPosition camPos = new CameraPosition.Builder()
+ 			.target(latLng)
+ 			.zoom(12)
+ 			.build();
 
- 		CameraPosition camPos = new CameraPosition.Builder()
-             .target(latLng)
-             .zoom(12)
-             .build();
+ 			CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
+ 			mMap.moveCamera(camUpdate);
+ 		}
 
- 		CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
- 		mMap.moveCamera(camUpdate);
- 		
  		reloadObservations();
 
  	}
  	
  	private Location getLastLocation() {
- 		Location location;
+ 		Location location = null;
 
  		if ((mLocationClient != null) && (mLocationClient.isConnected())) {
  			// Use location client for the latest location
@@ -1514,9 +1515,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  				location = mLocationClient.getLastLocation();
  			} catch (IllegalStateException ex) {
  				ex.printStackTrace();
- 				return null;
  			}
- 		} else {
+ 		}
+
+ 		if (location == null) {
  			// Use GPS for current location
  			LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
  			Criteria criteria = new Criteria();
