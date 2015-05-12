@@ -196,6 +196,7 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(INaturalistService.OBSERVATION_ID, mObservationId);
         outState.putIntegerArrayList(INaturalistService.PROJECT_ID, mObservationProjects);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

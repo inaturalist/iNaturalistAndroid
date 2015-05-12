@@ -344,6 +344,7 @@ public class GuideDetails extends SherlockActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("guide", mGuide);
+        super.onSaveInstanceState(outState);
     }
 
  

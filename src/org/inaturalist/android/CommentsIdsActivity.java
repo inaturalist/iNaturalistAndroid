@@ -160,6 +160,7 @@ public class CommentsIdsActivity extends SherlockListActivity implements Comment
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("mCommentsIds", mCommentsIds);
+        super.onSaveInstanceState(outState);
     }
 
 	/** Called when the activity is first created. */

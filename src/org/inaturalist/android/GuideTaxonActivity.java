@@ -172,6 +172,7 @@ public class GuideTaxonActivity extends SherlockActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("taxon", mTaxon);
         outState.putBoolean("guide_taxon", mGuideTaxon);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

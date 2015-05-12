@@ -168,6 +168,7 @@ public class ProjectDetails extends SherlockFragmentActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("project", mProject);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
