@@ -228,7 +228,7 @@ public abstract class BaseTab extends SherlockFragment {
      * @param project
      */
     protected void updateProject(int index, BetterJSONObject project) {
-    	mAdapter.updateItem(index, project.getJSONObject());
+    	if (mAdapter != null) mAdapter.updateItem(index, project.getJSONObject());
     }
 
     @Override
