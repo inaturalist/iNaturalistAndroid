@@ -81,8 +81,13 @@ public class ActivityHelper {
             mProgressDialog.setTitle(title);
             mProgressDialog.setMessage(msg);
         } else {
-        	mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
-        	mProgressDialog.setCancelable(false);
+        	try {
+        		mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
+        		mProgressDialog.setCancelable(false);
+        	} catch (Exception exc) {
+        		exc.printStackTrace();
+        		mProgressDialog = null;
+        	}
         }
     }
 
