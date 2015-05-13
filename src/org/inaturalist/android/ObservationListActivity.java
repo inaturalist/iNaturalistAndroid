@@ -511,6 +511,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
                     null, 
                     null);
+            if (pc == null) { opc.close(); return; }
             if (pc.getCount() == 0) { pc.close(); opc.close(); return; }
             HashMap<Long,String> orientationsByPhotoId = new HashMap<Long,String>();
             pc.moveToFirst();
