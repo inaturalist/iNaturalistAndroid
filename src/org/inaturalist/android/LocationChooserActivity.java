@@ -196,10 +196,12 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem layersItem = menu.findItem(R.id.layers);
-        if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
-            layersItem.setTitle(R.string.street);
-        } else {
-            layersItem.setTitle(R.string.satellite);
+        if (mMap != null) {
+        	if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
+        		layersItem.setTitle(R.string.street);
+        	} else {
+        		layersItem.setTitle(R.string.satellite);
+        	}
         }
         return super.onPrepareOptionsMenu(menu);
     }
