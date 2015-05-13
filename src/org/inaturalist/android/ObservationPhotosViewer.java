@@ -199,6 +199,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
  	}	
 
  	public static int observationIcon(JSONObject o) {
+ 		if (o == null) return R.drawable.unknown_large;
  		if (!o.has("iconic_taxon_name") || o.isNull("iconic_taxon_name")) {
  			return R.drawable.unknown_large;
  		}
