@@ -1678,6 +1678,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 			
 			return imageFile.getAbsolutePath();
 
+		} catch (OutOfMemoryError e) {
+			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
