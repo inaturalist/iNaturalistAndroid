@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -1526,6 +1527,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         
         // POST params
         if (params != null) {
+        	Charset utf8Charset = Charset.forName("UTF-8");
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
             for (int i = 0; i < params.size(); i++) {
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
@@ -1538,7 +1540,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 } else {
                     // Normal string data
                     try {
-                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue()));
+                        entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue(), utf8Charset));
                     } catch (UnsupportedEncodingException e) {
                         Log.e(TAG, "failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
                     }
