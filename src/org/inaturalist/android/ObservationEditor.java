@@ -1768,7 +1768,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 String iconicTaxonName = data.getStringExtra(TaxonSearchActivity.ICONIC_TAXON_NAME);
                 String taxonName = data.getStringExtra(TaxonSearchActivity.TAXON_NAME);
                 String idName = data.getStringExtra(TaxonSearchActivity.ID_NAME);
-            	String speciesGuess = String.format("%s (%s)", idName, taxonName);
+            	String speciesGuess = String.format("%s", idName);
             	mSpeciesGuess = speciesGuess;
             	mObservation.species_guess = speciesGuess;
                 mObservation.taxon_id = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
