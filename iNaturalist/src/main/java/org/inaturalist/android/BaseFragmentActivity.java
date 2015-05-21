@@ -42,7 +42,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 	private LinearLayout mSideMenu;
 	private ListView mListView;
 
-    private List<Map> MENU_ITEMS;
+    private List<Map <String, ?>> MENU_ITEMS;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private INaturalistApp app;
 	private ActivityHelper mHelper;
@@ -86,7 +86,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 	}
 	
 	private void buildSideMenu() {
-        MENU_ITEMS = new ArrayList<Map>();
+        MENU_ITEMS = new ArrayList<Map <String, ?>>();
         Map<String,String> map;
         
         map = new HashMap<String,String>();
@@ -123,9 +123,9 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         map.put("description", getString(R.string.settings_description));
         MENU_ITEMS.add(map);
         
-       
+
         SimpleAdapter adapter = new SimpleAdapter(this, 
-                (List<? extends Map<String, ?>>) MENU_ITEMS, 
+                (List<? extends Map<String, ?>>) MENU_ITEMS,
                 R.layout.menu_item,
                 new String[] {"title"},
                 new int[] {R.id.title});

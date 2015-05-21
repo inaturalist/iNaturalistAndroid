@@ -284,7 +284,6 @@
   <string name="observation_photos">Photos de l\'observation</string>
   <string name="must_login_to_add_comment">Vous devez être connecté pour ajouter des commentaires</string>
   <string name="must_login_to_add_id">Vous devez être connecté pour ajouter des identifications</string>
-  <string name="map">Carte</string>
   <string name="grid">Grille</string>
   <string name="list">Liste</string>
   <string name="remove">Supprimer?</string>
