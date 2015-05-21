@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 
 import javax.xml.transform.URIResolver;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jraf.android.backport.switchwidget.Switch;
 import org.json.JSONArray;

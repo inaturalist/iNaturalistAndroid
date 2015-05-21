@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import com.crashlytics.android.Crashlytics;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -56,6 +57,7 @@ public class INaturalistApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Crashlytics.start(this);
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();

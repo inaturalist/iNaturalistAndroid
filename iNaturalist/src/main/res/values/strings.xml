@@ -311,7 +311,6 @@
     <string name="must_login_to_add_comment">You must be logged in to add comments</string>
     <string name="must_login_to_add_id">You must be logged in to add identifications</string>
 
-    <string name="map">Map</string>
     <string name="grid">Grid</string>
     <string name="list">List</string>
 

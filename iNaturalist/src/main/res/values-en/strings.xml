@@ -172,7 +172,6 @@
     <string name="choose_location">Choose Location</string>
     <string name="done">Done</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
-    <string name="edit_location">Edit Location</string>
 
     <string name="get_current_location">Get current location</string>
     <string name="edit_location">Edit location</string>
