@@ -1,6 +1,5 @@
 *.DS_Store
 bin
-libs
 iNaturalist/src/main/res/values/config.xml
 gen
 res/values/com_crashlytics_export_strings.xml
