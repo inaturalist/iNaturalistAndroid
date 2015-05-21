@@ -1,6 +1,10 @@
 *.DS_Store
 bin
 libs
-res/values/config.xml
+iNaturalist/src/main/res/values/config.xml
 gen
 res/values/com_crashlytics_export_strings.xml
+build
+.idea
+.gradle
+

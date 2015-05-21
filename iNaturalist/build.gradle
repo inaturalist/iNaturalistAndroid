@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        maven { url 'http://download.crashlytics.com/maven' }
+    }
+
+    dependencies {
+        classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'crashlytics'
+
+repositories {
+    maven { url 'http://download.crashlytics.com/maven' }
+}
+
+
+android {
+    compileSdkVersion 'Google Inc.:Google APIs:19'
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "org.inaturalist.android"
+        minSdkVersion 10
+        targetSdkVersion 15
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+dependencies {
+    compile project(':library')
+    compile project(':androidswitchbackport')
+    compile project(':urlImageViewHelper')
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    compile 'com.google.android.gms:play-services:5.+'
+    compile files('libs/FlurryAnalytics-4.2.0.jar')
+    compile 'org.apache.commons:commons-collections4:4.0'
+    compile 'org.apache.commons:commons-lang3:3.1'
+    compile 'org.apache.httpcomponents:httpmime:4.3.3'
+    compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    compile 'com.facebook.android:facebook-android-sdk:3.23.1'
+    compile 'com.loopj.android:android-async-http:1.4.7'
+    compile 'com.crashlytics.android:crashlytics:1.+'
+}
