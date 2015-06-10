@@ -372,7 +372,8 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    builder.setMessage(mApp.getStringResourceByName("alert_message_use_" + networks[selectedRadioButtonId]))
 	    	.setPositiveButton(getString(R.string.ok), dialogClickListener)
-	        .setNegativeButton(getString(R.string.cancel), dialogClickListener);
+	        .setNegativeButton(getString(R.string.cancel), dialogClickListener)
+            .setCancelable(false);
 	    
 		LayoutInflater inflater = getLayoutInflater();
 		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);	
