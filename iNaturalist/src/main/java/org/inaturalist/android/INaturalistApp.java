@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -8,7 +9,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.inaturalist.android.R;
 import org.inaturalist.android.INaturalistService.LoginType;
 
 import android.app.Activity;
@@ -25,14 +25,11 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 
 public class INaturalistApp extends Application {

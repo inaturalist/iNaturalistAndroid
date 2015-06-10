@@ -6,63 +6,65 @@
         <item>inaturalist</item> <!--  iNaturalist must be first -->
         <item>naturalista</item>
         <item>naturewatchnz</item>
+        <item>inaturalistcanada</item>
     </string-array>
 
     <!-- The names of the iNat networks -->
     <string name="network_inaturalist">iNaturalist</string>
     <string name="network_naturalista">NaturaLista</string>
-    <string name="network_naturewatchnz">NatureWatch</string>   
-   
-    <!-- The dialog content asking the user to switch to another iNat network -->
-    <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
-    <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
-    <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
-    
+    <string name="network_naturewatchnz">NatureWatch</string>
+    <string name="network_inaturalistcanada">iNaturalist Canada</string>
+
+
     <!-- The locale to use for each network type - this affects both strings and images used -->
     <string name="inat_network_language_inaturalist">en</string>
     <string name="inat_network_language_naturalista">es</string>
     <string name="inat_network_language_naturewatchnz">en</string>
-    
+    <string name="inat_network_language_inaturalistcanada">en</string>
+
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
     <string name="inat_country_inaturalist"></string> <!-- Empty - any country -->
     <string name="inat_country_naturalista">mx</string> <!-- Mexico -->
     <string name="inat_country_naturewatchnz">nz</string> <!-- New Zealand -->
+    <string name="inat_country_inaturalistcanada">ca</string> <!-- Canada -->
 
-    <!-- When opening the explore screen, these are the default coordinates (swlng,swlat,nelng,nelat) -->
+    <!-- When opening the explore screen, these are the default coordinates / bounding box to show
+     on the map (swlng,swlat,nelng,nelat): You can use http://isithackday.com/geoplanet-explorer/index.php to find
+       out the bounding box of countries/cities -->
     <string name="inat_country_coordinates_inaturalist"></string> <!-- Empty - use user's current location instead -->
     <string name="inat_country_coordinates_naturalista">14.54808,-117.123596,32.718319,-86.74501</string> <!-- Mexico -->
     <string name="inat_country_coordinates_naturewatchnz">-50.85445,165.566357,-33.069679,178.559693</string> <!-- New Zealand -->
+    <string name="inat_country_coordinates_inaturalistcanada">41.681019,-141.002701,83.110619,-52.620201</string> <!-- Canada -->
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">www.inaturalist.org</string>
     <string name="inat_host_naturalista">conabio.inaturalist.org</string>
     <string name="inat_host_naturewatchnz">naturewatch.org.nz</string>
+    <string name="inat_host_inaturalistcanada">www.inaturalist.ca</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>
     <string name="inat_site_id_naturalista">2</string>
     <string name="inat_site_id_naturewatchnz">3</string>
+    <string name="inat_site_id_inaturalistcanada">5</string>
 
     <!-- The lexicon name to use for each network type - used when searching for taxa (so we'll
     	know which display name to use for the results) -->
     <string name="inat_lexicon_inaturalist">English</string>
     <string name="inat_lexicon_naturalista">Spanish</string>
     <string name="inat_lexicon_naturewatchnz">English</string>
-    
+    <string name="inat_lexicon_inaturalistcanada">English</string>
+
     <!-- The logo drawable name to use for each network type -->
     <string name="inat_logo_inaturalist">logo_text</string>
     <string name="inat_logo_naturalista">logo_naturalista</string>
-    <string name="inat_logo_naturewatchnz">logo_naturewatchnz</string>   
-    
-    
-    <!-- The text shown in a dialog box when the user is about to sign up -->
-    <string name="inat_sign_up_inaturalist">You\'re about to visit iNaturalist.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
-    <string name="inat_sign_up_naturalista">Estás a punto de visitar NaturaLista, donde podrás registrar una cuenta nueva. En cuanto hayas confirmado tu cuenta haciendo clic en el enlace del email de confirmación que recibirás, podrás volver aquí para introducir tu nombre de usuario y tu contraseña.</string>
-    <string name="inat_sign_up_naturewatchnz">You\'re about to visit NatureWatchNz.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>      
-    
+    <string name="inat_logo_naturewatchnz">logo_naturewatchnz</string>
+    <string name="inat_logo_inaturalistcanada">logo_inaturalistcanada</string>
+
     <!-- The string array resource name that points to the localized tutorial images -->
     <string name="inat_tutorial_images_inaturalist">tutorial_images</string>
     <string name="inat_tutorial_images_naturalista">tutorial_images_naturalista</string>
-    <string name="inat_tutorial_images_naturewatchnz">tutorial_images_naturewatchnz</string>      
+    <string name="inat_tutorial_images_naturewatchnz">tutorial_images_naturewatchnz</string>
+    <string name="inat_tutorial_images_inaturalistcanada">tutorial_images_inaturalistcanada</string>
 </resources>
