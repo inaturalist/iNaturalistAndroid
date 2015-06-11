@@ -716,7 +716,8 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(thisActivity);
 		builder.setMessage(getString(R.string.language_restart))
 		.setPositiveButton(getString(R.string.restart_now), dialogClickListener)
-		.setNegativeButton(getString(R.string.cancel), dialogClickListener).show();
+		.setNegativeButton(getString(R.string.cancel), dialogClickListener)
+		.setCancelable(false).show();;
 
 
 	}
