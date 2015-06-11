@@ -15,14 +15,6 @@
     <string name="network_naturewatchnz">NatureWatch</string>
     <string name="network_inaturalistcanada">iNaturalist Canada</string>
 
-
-    <!-- The locale to use for each network type - this affects both strings and images used -->
-    <string name="inat_network_language_inaturalist">en</string>
-    <string name="inat_network_language_naturalista">es</string>
-    <string name="inat_network_language_naturewatchnz">en</string>
-    <string name="inat_network_language_inaturalistcanada">en</string>
-
-
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
     <string name="inat_country_inaturalist"></string> <!-- Empty - any country -->
     <string name="inat_country_naturalista">mx</string> <!-- Mexico -->

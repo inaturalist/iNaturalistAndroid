@@ -120,35 +120,6 @@ public class INaturalistApp extends Application {
     	settingsEditor.apply();
 	}
 
- 	private void updateUIAccordingToNetworkMember() {
- 		String networkMember = getInaturalistNetworkMember();
-		String newLocale;
-		Resources res = getBaseContext().getResources();
-		
-		newLocale = getStringResourceByName("inat_network_language_" + networkMember);
- 		
-		
-		// Change locale settings in the app
-		DisplayMetrics dm = res.getDisplayMetrics();
-		android.content.res.Configuration conf = res.getConfiguration();
-		String parts[] = newLocale.split("-r");
-		if (parts.length > 1) {
-			// Language + country code
-            conf.locale = new Locale(parts[0], parts[1]);
-		} else {
-			// Just the language code
-            conf.locale = new Locale(newLocale);
-		}
-		res.updateConfiguration(conf, dm);			
-
-    	SharedPreferences settings = getPrefs();
-    	Editor settingsEditor = settings.edit();
-		settingsEditor.putString("pref_locale", newLocale);
-		settingsEditor.apply();
-		
-		restart();
- 	}
-	
  	public void detectUserCountryAndUpdateNetwork(Context context) {
  		// Don't ask the user again to switch to another network (if he's been asked before)
  		if (getInaturalistNetworkMember() != null) return;
@@ -198,7 +169,7 @@ public class INaturalistApp extends Application {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							setInaturalistNetworkMember(selectedNetwork);
-							updateUIAccordingToNetworkMember();
+                            restart();
 						}
 					},
 					new OnClickListener() {
