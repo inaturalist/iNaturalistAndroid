@@ -200,33 +200,7 @@
   <string name="refreshing">Actualisation...</string>
   <string name="sync_x_observations">Synchroniser %1$d observations</string>
   <string name="sync_observations">Synchroniser les observations</string>
-  <string-array name="tutorial_images">
-    <item>tutoriel1</item>
-    <item>tutoriel2</item>
-    <item>tutoriel3</item>
-    <item>tutoriel4</item>
-    <item>tutoriel5</item>
-    <item>tutoriel6</item>
-    <item>tutoriel7</item>
-  </string-array>
-  <string-array name="tutorial_images_naturalista">
-    <item>tutoriel1_naturalista</item>
-    <item>tutoriel2_naturalista</item>
-    <item>tutoriel3_naturalista</item>
-    <item>tutoriel4_naturalista</item>
-    <item>tutoriel5_naturalista</item>
-    <item>tutoriel6_naturalista</item>
-    <item>tutoriel7_naturalista</item>
-  </string-array>
-  <string-array name="tutorial_images_naturewatchnz">
-    <item>tutoriel1_naturewatch</item>
-    <item>tutoriel2_naturewatch</item>
-    <item>tutoriel3_naturewatch</item>
-    <item>tutoriel4_naturewatch</item>
-    <item>tutoriel5_naturewatch</item>
-    <item>tutoriel6_naturewatch</item>
-    <item>tutoriel7_naturewatch</item>
-  </string-array>
+
   <string-array name="geoprivacy_items">
     <item>Ouvrir</item>
     <item>Obscurci</item>
@@ -293,7 +267,7 @@
 
 
   <!-- The dialog content asking the user to switch to another iNat network -->
-  <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
+  <string name="alert_message_use_inaturalist">Le principal réseau iNaturalist. En cliquant sur « oui » mettra votre application dans le cadre du réseau de iNaturalist mondiale.</string>
   <string name="alert_message_use_naturalista">CONABIO Naturalista est membre du réseau iNaturalist. Cliquez sur « oui » pour rendre votre expérience plus locale et partager les données en conséquence.</string>
   <string name="alert_message_use_naturewatchnz">NatureWatch est membre du réseau iNaturalist. Cliquez sur « oui » pour rendre votre expérience plus locale et partager les données en conséquence.</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada est membre du réseau iNaturalist. Cliquez sur « oui » pour rendre votre expérience plus locale et partager les données en conséquence.</string>

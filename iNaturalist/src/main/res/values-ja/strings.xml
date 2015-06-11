@@ -200,33 +200,6 @@
   <string name="refreshing">更新中...</string>
   <string name="sync_x_observations">%1$d 個の観察記録を同期</string>
   <string name="sync_observations">観察記録を同期</string>
-  <string-array name="tutorial_images">
-    <item>チュートリアル1</item>
-    <item>チュートリアル2</item>
-    <item>チュートリアル3</item>
-    <item>チュートリアル4</item>
-    <item>チュートリアル5</item>
-    <item>チュートリアル6</item>
-    <item>tutorial7</item>
-  </string-array>
-  <string-array name="tutorial_images_naturalista">
-    <item>tutorial1_naturalista</item>
-    <item>tutorial2_naturalista</item>
-    <item>tutorial3_naturalista</item>
-    <item>tutorial4_naturalista</item>
-    <item>tutorial5_naturalista</item>
-    <item>tutorial6_naturalista</item>
-    <item>tutorial7_naturalista</item>
-  </string-array>
-  <string-array name="tutorial_images_naturewatchnz">
-    <item>tutorial1_naturewatch</item>
-    <item>tutorial2_naturewatch</item>
-    <item>tutorial3_naturewatch</item>
-    <item>tutorial4_naturewatch</item>
-    <item>tutorial5_naturewatch</item>
-    <item>tutorial6_naturewatch</item>
-    <item>tutorial7_naturewatch</item>
-  </string-array>
   <string-array name="geoprivacy_items">
     <item>オープン</item>
     <item>不明瞭</item>

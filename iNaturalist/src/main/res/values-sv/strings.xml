@@ -200,33 +200,6 @@
   <string name="refreshing">Laddar om...</string>
   <string name="sync_x_observations">Synkronisera %1$d observationer</string>
   <string name="sync_observations">Synkronisera observationer</string>
-  <string-array name="tutorial_images">
-    <item>tutorial1</item>
-    <item>tutorial2</item>
-    <item>tutorial3</item>
-    <item>tutorial4</item>
-    <item>tutorial5</item>
-    <item>tutorial6</item>
-    <item>Tutorial 7</item>
-  </string-array>
-  <string-array name="tutorial_images_naturalista">
-    <item>Tutorial 1 - naturalista</item>
-    <item>Tutorial 2 - naturalista</item>
-    <item>Tutorial 3 - naturalista</item>
-    <item>Tutorial 4 - naturalista</item>
-    <item>Tutorial 5 - naturalista</item>
-    <item>Tutorial 6 - naturalista</item>
-    <item>Tutorial 7 - naturalista</item>
-  </string-array>
-  <string-array name="tutorial_images_naturewatchnz">
-    <item>Tutorial 1 - naturewatch</item>
-    <item>Tutorial 2 - naturewatch</item>
-    <item>Tutorial 3 - naturewatch</item>
-    <item>Tutorial 4 - naturewatch</item>
-    <item>Tutorial 5 - naturewatch</item>
-    <item>Tutorial 6 - naturewatch</item>
-    <item>Tutorial 7 - naturewatch</item>
-  </string-array>
   <string-array name="geoprivacy_items">
     <item>Öppna</item>
     <item>Dold</item>

@@ -250,15 +250,6 @@
     <string name="leave_project_confirmation">¿Estás seguro de que deseas abandonar este proyecto?</string>
     <string name="alert_sign_out">¿Estás seguro que deseas salir? Esto borrará todas tus observaciones en este dispositivo. No afectará a todas las observaciones que hayas subido a Naturalista.</string>
     <string name="alert_unsupported_media_type">Lo sentimos, pero por el momento que no somos partidarios de subir fotos de Google Drive, Dropbox, etc. Por favor descarga las fotos al almacenamiento local de tu teléfono y vuelve a intentarlo.</string>
-    <string-array name="tutorial_images">
-      <item>tutorial1</item>
-      <item>tutorial2</item>
-      <item>tutorial3</item>
-      <item>tutorial4</item>
-      <item>tutorial5</item>
-      <item>tutorial 6</item>
-      <item>Tutorial7</item>
-    </string-array>
     <string-array name="id_please_items">
       <item>SI</item>
       <item>NO</item>
