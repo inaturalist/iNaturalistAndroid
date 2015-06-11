@@ -165,16 +165,6 @@
     <string name="use_device_language_settings">Terminaleko hizkuntza aukerak erabili itzazu</string>
     <string name="language_restart">Hizkuntza aukerak aldatu dituzu. Aplikazioa berrabiarazi mesedez.</string>
     <string name="restart_now">Berrabiarazi orain</string>
-    <string-array name="tutorial_images">
-    <item>tutorial1</item>
-    <item>tutorial2</item>
-    <item>tutorial3</item>
-    <item>tutorial4</item>
-    <item>tutorial5</item>
-    <item>tutorial6</item>
-    <item>tutorial7</item>
-    </string-array>
-    
     <string-array name="geoprivacy_items">
     <item>Open</item>
     <item>Obscured</item>

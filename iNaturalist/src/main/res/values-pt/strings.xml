@@ -200,33 +200,6 @@
   <string name="refreshing">Atualizando...</string>
   <string name="sync_x_observations">Sincronizar %1$d observações</string>
   <string name="sync_observations">Sincronizar Observações</string>
-  <string-array name="tutorial_images">
-    <item>tutorial1</item>
-    <item>tutorial2</item>
-    <item>tutorial3</item>
-    <item>tutorial4</item>
-    <item>tutorial5</item>
-    <item>tutorial6</item>
-    <item>tutorial7</item>
-  </string-array>
-  <string-array name="tutorial_images_naturalista">
-    <item>tutorial1_naturalista</item>
-    <item>tutorial2_naturalista</item>
-    <item>tutorial3_naturalista</item>
-    <item>tutorial4_naturalista</item>
-    <item>tutorial5_naturalista</item>
-    <item>tutorial6_naturalista</item>
-    <item>tutorial7_naturalista</item>
-  </string-array>
-  <string-array name="tutorial_images_naturewatchnz">
-    <item>tutorial1_naturewatch</item>
-    <item>tutorial2_naturewatch</item>
-    <item>tutorial3_naturewatch</item>
-    <item>tutorial4_naturewatch</item>
-    <item>tutorial5_naturewatch</item>
-    <item>tutorial6_naturewatch</item>
-    <item>tutorial7_naturewatch</item>
-  </string-array>
   <string-array name="geoprivacy_items">
     <item>Aberta</item>
     <item>Oculta</item>
