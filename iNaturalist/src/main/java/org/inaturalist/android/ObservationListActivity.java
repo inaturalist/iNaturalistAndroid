@@ -808,7 +808,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
 	@Override
 	public void onNotification(String title, final String content) {
-		Log.e("AAA", "onNotification: " + content);
 		mLastMessage = content;
 
 		runOnUiThread(new Runnable() {
