@@ -44,7 +44,9 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -243,8 +245,17 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
             mGuideXmlFilename = intent.getStringExtra(INaturalistService.GUIDE_XML_RESULT);
 
-            if (mGuideXmlFilename != null) mGuideXml = new GuideXML(GuideDetails.this, mGuide.getInt("id").toString(), mGuideXmlFilename);
+            if (mGuideXmlFilename == null) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(GuideDetails.this);
+                builder.setTitle(R.string.error)
+                        .setMessage(R.string.could_not_retrieve_guide)
+                        .setNegativeButton(getString(R.string.ok), null)
+                        .show();
+                mProgress.setVisibility(View.GONE);
+                return;
+            }
 
+            mGuideXml = new GuideXML(GuideDetails.this, mGuide.getInt("id").toString(), mGuideXmlFilename);
             mTaxa = new ArrayList<GuideTaxonXML>();
             mAdapter = new TaxaListAdapter(GuideDetails.this, mTaxa);
             updateTaxaByFilter();
@@ -314,7 +325,8 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
         if (mGuideXml == null) return;
 
-        mDescription.setText(mGuideXml.getDescription());
+        mDescription.setText(Html.fromHtml(mGuideXml.getDescription()));
+        mDescription.setMovementMethod(LinkMovementMethod.getInstance());
         mEditorName.setText(mGuideXml.getCompiler());
         mLicense.setText(GuideXML.licenseToText(this, mGuideXml.getLicense()));
 

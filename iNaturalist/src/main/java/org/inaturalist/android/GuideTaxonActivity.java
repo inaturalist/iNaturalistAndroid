@@ -153,17 +153,26 @@ public class GuideTaxonActivity extends SherlockActivity {
 
             TextView photosAttr = (TextView) findViewById(R.id.attributions_photos);
 
-            if (photos.size() == 0) {
-                photosAttr.setVisibility(View.GONE);
-            }
-
 
             photosAttr.setText(Html.fromHtml(String.format(getResources().getString(R.string.photos), photosAttributions)));
             photosAttr.setMovementMethod(LinkMovementMethod.getInstance());
 
+
+            if ((photos.size() == 0) && (sections.size() == 0)) {
+                // Don't show the sources and attribution section at all
+                View sourcesSection = findViewById(R.id.sources_and_attrs_section);
+                sourcesSection.setVisibility(View.GONE);
+            }
+
             // Prepare photos gallery
             Gallery gallery = (Gallery) findViewById(R.id.gallery);
             gallery.setAdapter(new GalleryPhotoAdapter(this, photos));
+
+            if (photos.size() == 0) {
+                photosAttr.setVisibility(View.GONE);
+                gallery.setVisibility(View.GONE);
+            }
+
 
             gallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
