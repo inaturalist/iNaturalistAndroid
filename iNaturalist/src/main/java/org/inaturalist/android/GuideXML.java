@@ -88,6 +88,15 @@ public class GuideXML extends BaseGuideXMLParser {
         parseTags();
     }
 
+    /**
+     * Creates the root directory that will hold all offline guides
+     * @param context
+     */
+    public static void createOfflineGuidesDirectory(Context context) {
+        File offlineGuidesDir = new File(context.getExternalCacheDir() + OFFLINE_GUIDE_PATH);
+        offlineGuidesDir.mkdirs();
+    }
+
 
     /**
      * Returns all offline (downloaded) guides available

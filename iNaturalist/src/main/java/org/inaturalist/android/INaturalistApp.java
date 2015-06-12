@@ -70,6 +70,9 @@ public class INaturalistApp extends Application {
         INaturalistApp.context = getApplicationContext();
         deviceLocale = getResources().getConfiguration().locale;
         applyLocaleSettings();
+
+        // Create the root offline guides directory, if needed
+        GuideXML.createOfflineGuidesDirectory(this);
     }
     
     

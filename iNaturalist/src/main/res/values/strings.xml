@@ -373,5 +373,7 @@
     <string name="downloaded">Downloaded</string>
     <string name="delete_download">Delete download</string>
     <string name="re_download">Re-download</string>
+    <string name="error">Error</string>
+    <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
  </resources>
 

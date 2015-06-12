@@ -1,12 +1,14 @@
 package org.inaturalist.android;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -31,12 +33,14 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.params.ClientPNames;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
@@ -916,26 +920,22 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {
+        String url = HOST + "/guides/" + guideId.toString() + ".xml";
+
         try {
-            URL url = new URL(HOST + "/guides/" + guideId.toString() + ".xml");
-            URLConnection conection = url.openConnection();
-            conection.connect();
+            HttpClient httpClient = new DefaultHttpClient();
+            httpClient.getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+            HttpGet httpGet = new HttpGet(url);
+            HttpResponse response = null;
+            response = httpClient.execute(httpGet);
 
-            // Download the file
-            InputStream input = new BufferedInputStream(url.openStream(), 8192);
-
-            // Output stream
+            InputStream buffer = new BufferedInputStream(response.getEntity().getContent());
             File outputFile = File.createTempFile(guideId.toString() + ".xml", null, getBaseContext().getCacheDir());
             OutputStream output = new FileOutputStream(outputFile);
 
-            byte data[] = new byte[1024];
-
-            long total = 0;
             int count = 0;
-
-            // Write output data, chunk by chunk
-            while ((count = input.read(data)) != -1) {
-                total += count;
+            byte data[] = new byte[1024];
+            while ((count = buffer.read(data)) != -1) {
                 output.write(data, 0, count);
             }
 
@@ -944,16 +944,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
             // closing streams
             output.close();
-            input.close();
+            buffer.close();
 
             // Return the downloaded full file name
-            return outputFile.toString();
+            return outputFile.getAbsolutePath();
 
-        } catch (IOException exc) {
-            exc.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
-
 
     }
 
