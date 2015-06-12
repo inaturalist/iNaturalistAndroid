@@ -2,12 +2,21 @@ package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 
@@ -46,7 +55,8 @@ public class INaturalistApp extends Application {
     private static Context context;
     private Locale locale = null;
     private Locale deviceLocale = null;
-    
+    private OnDownloadFileProgress mDownloadCallback;
+
     public interface INotificationCallback {
     	public void onNotification(String title, String content);
     }
@@ -246,7 +256,7 @@ public class INaturalistApp extends Application {
     
     public void restart(){
     	Intent i = getBaseContext().getPackageManager()
-	             .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+	             .getLaunchIntentForPackage(getBaseContext().getPackageName());
 	    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	    startActivity(i);
     }
@@ -374,4 +384,63 @@ public class INaturalistApp extends Application {
         return f.format(date);
     }
     public String shortFormatTime(Timestamp date) { return SHORT_TIME_FORMAT.format(date); }
+
+
+    public interface OnDownloadFileProgress {
+        public boolean onDownloadProgress(long downloaded, long total, String downloadedFilename);
+        public void onDownloadError();
+    }
+
+    public void setDownloadCallback(OnDownloadFileProgress callback) {
+        mDownloadCallback = callback;
+    }
+
+    public void downloadFile(final String downloadUrl, final OnDownloadFileProgress callback) {
+        mDownloadCallback = callback;
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(downloadUrl);
+                    URLConnection connection = url.openConnection();
+                    connection.connect();
+                    final int fileSize = connection.getContentLength();
+
+                    // Download the file
+                    InputStream input = new BufferedInputStream(url.openStream(), 8192);
+
+                    // Output stream (temp file)
+                    File outputFile = File.createTempFile(UUID.randomUUID().toString(), null, getCacheDir());
+                    String outputFilename = outputFile.getAbsolutePath();
+                    OutputStream output = new FileOutputStream(outputFile);
+
+                    byte data[] = new byte[1024];
+
+                    long total = 0;
+                    int count = 0;
+
+                    // Write output data, chunk by chunk
+                    while ((count = input.read(data)) != -1) {
+                        total += count;
+                        output.write(data, 0, count);
+
+                        mDownloadCallback.onDownloadProgress(total, fileSize, outputFilename);
+                    }
+
+                    // flushing output
+                    output.flush();
+
+                    // closing streams
+                    output.close();
+                    input.close();
+
+                } catch (IOException exc) {
+                    exc.printStackTrace();
+                    mDownloadCallback.onDownloadError();
+                }
+
+            }
+        }).start();
+    }
 }

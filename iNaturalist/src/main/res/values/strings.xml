@@ -357,5 +357,21 @@
     <string name="inat_sign_up_naturewatchnz">You\'re about to visit NatureWatchNz.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
     <string name="inat_sign_up_inaturalistcanada">You\'re about to visit iNaturalist.ca, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
 
+    <string name="description">Description</string>
+    <string name="editor">Editor</string>
+    <string name="license">License</string>
+    <string name="download_for_offline_use">Download for offline use</string>
+    <string name="download_not_available">Download not available</string>
+    <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
+    <string name="download">Download</string>
+    <string name="failed_to_download_guide">Failed to download guide</string>
+    <string name="internet_connection_seems_to_be_offline">The Internet connection appears to be offline.</string>
+    <string name="downloading">Downloading...</string>
+    <string name="extracting">Extracting...</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="delete_download">Delete download</string>
+    <string name="re_download">Re-download</string>
  </resources>
 

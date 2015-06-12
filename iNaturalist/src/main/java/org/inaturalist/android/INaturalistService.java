@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
@@ -102,6 +104,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
     public static final String TAXON_RESULT = "taxon_result";
+    public static final String GUIDE_XML_RESULT = "guide_xml_result";
 
 	public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
 
@@ -148,6 +151,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_MY_GUIDES_RESULT = "my_guides_results";
     public static String ACTION_NEAR_BY_GUIDES_RESULT = "near_by_guides_results";
     public static String ACTION_TAXA_FOR_GUIDES_RESULT = "taxa_for_guides_results";
+    public static String ACTION_GUIDE_XML_RESULT = "guide_xml_result";
+    public static String ACTION_GUIDE_XML = "guide_xml";
     public static String GUIDES_RESULT = "guides_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
@@ -263,6 +268,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 String body = intent.getStringExtra(COMMENT_BODY);
                 addComment(observationId, body);
 
+            } else if (action.equals(ACTION_GUIDE_XML)) {
+                int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
+                String guideXMLFilename = getGuideXML(guideId);
+
+                if (guideXMLFilename == null) {
+                    // Failed to get the guide XML - try and find the offline version, if available
+                    GuideXML guideXml = new GuideXML(this, String.valueOf(guideId));
+
+                    if (guideXml.isGuideDownloaded()) {
+                        guideXMLFilename = guideXml.getOfflineGuideXmlFilePath();
+                    }
+                }
+
+                Intent reply = new Intent(ACTION_GUIDE_XML_RESULT);
+                reply.putExtra(GUIDE_XML_RESULT, guideXMLFilename);
+                sendBroadcast(reply);
+
              } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
                 int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
                 SerializableJSONArray taxa = getTaxaForGuide(guideId);
@@ -282,10 +304,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
              } else if (action.equals(ACTION_GET_MY_GUIDES)) {
             	 SerializableJSONArray guides = null;
-            	 if (mCredentials != null) {
-            		 guides = getMyGuides();
-            	 }
-                
+                guides = getMyGuides();
+
                 Intent reply = new Intent(ACTION_MY_GUIDES_RESULT);
                 reply.putExtra(GUIDES_RESULT, guides);
                 sendBroadcast(reply);
@@ -854,7 +874,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
             params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
             
-            // TODO LATER resize the image for upload, maybe a 1024px jpg
             JSONArray response = post("http://" + inatHost + "/observation_photos.json", params);
             try {
                 if (response == null || response.length() != 1) {
@@ -895,6 +914,49 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         			getString(R.string.sync_failed));
         }
     }
+
+    private String getGuideXML(Integer guideId) throws AuthenticationException {
+        try {
+            URL url = new URL(HOST + "/guides/" + guideId.toString() + ".xml");
+            URLConnection conection = url.openConnection();
+            conection.connect();
+
+            // Download the file
+            InputStream input = new BufferedInputStream(url.openStream(), 8192);
+
+            // Output stream
+            File outputFile = File.createTempFile(guideId.toString() + ".xml", null, getBaseContext().getCacheDir());
+            OutputStream output = new FileOutputStream(outputFile);
+
+            byte data[] = new byte[1024];
+
+            long total = 0;
+            int count = 0;
+
+            // Write output data, chunk by chunk
+            while ((count = input.read(data)) != -1) {
+                total += count;
+                output.write(data, 0, count);
+            }
+
+            // flushing output
+            output.flush();
+
+            // closing streams
+            output.close();
+            input.close();
+
+            // Return the downloaded full file name
+            return outputFile.toString();
+
+        } catch (IOException exc) {
+            exc.printStackTrace();
+            return null;
+        }
+
+
+    }
+
 
     private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException {
         String url = HOST + "/guide_taxa.json?guide_id=" + guideId.toString();
@@ -941,17 +1003,59 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     private SerializableJSONArray getMyGuides() throws AuthenticationException {
-        if (ensureCredentials() == false) {
-            return null;
-        }
-
-        
+        JSONArray json = null;
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-       
         String url = "http://" + inatHost + "/guides.json?by=you&per_page=200";
-        JSONArray json = get(url, true);
-        
+
+        if (mCredentials != null) {
+            try {
+                json = get(url, true);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+        }
+
+        if (json == null) {
+            json = new JSONArray();
+        }
+
+        // Build a list of result guide IDs
+        int i = 0;
+        List<String> guideIds = new ArrayList<String>();
+        while (i < json.length()) {
+            try {
+                JSONObject guide = json.getJSONObject(i);
+                guideIds.add(String.valueOf(guide.getInt("id")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
+
+        // Add any offline guides
+        List<GuideXML> offlineGuides = GuideXML.getAllOfflineGuides(this);
+        List<JSONObject> guidesJson = new ArrayList<JSONObject>();
+
+        for (GuideXML guide: offlineGuides) {
+            JSONObject guideJson = new JSONObject();
+            if (guideIds.contains(guide.getID())) {
+                // Guide already found in current guide results - no need to add it again
+                continue;
+            }
+
+            try {
+                guideJson.put("id", Integer.valueOf(guide.getID()));
+                guideJson.put("title", guide.getTitle());
+                guideJson.put("description", guide.getDescription());
+                // TODO - no support for "icon_url" (not found in XML file)
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            json.put(guideJson);
+        }
+
         return new SerializableJSONArray(json);
     }
 
