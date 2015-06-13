@@ -15,5 +15,10 @@ public class MyGuidesTab extends BaseGuidesTab {
     protected String getFilterResultParamName() {
         return INaturalistService.GUIDES_RESULT;
     }
- 
+
+    @Override
+    protected boolean recallServiceActionIfNoResults() {
+        // If the search filter returns no results - load up the default my guides + offline guides
+        return true;
+    }
 }

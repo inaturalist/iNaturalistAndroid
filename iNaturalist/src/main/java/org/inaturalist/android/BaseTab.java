@@ -58,9 +58,13 @@ public abstract class BaseTab extends SherlockFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.i(TAG, "GOT " + getFilterResultName());
-            
-            getActivity().unregisterReceiver(mProjectsReceiver);
-            
+
+            try {
+                getActivity().unregisterReceiver(mProjectsReceiver);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+
             Boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             
             SerializableJSONArray serializableArray;
@@ -116,6 +120,7 @@ public abstract class BaseTab extends SherlockFragment {
         mAdapter = new ProjectsAdapter(getActivity(), mProjects);
         mProjectList.setAdapter(mAdapter);
 
+        mProjectList.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
         
         if (mProjects.size() > 0) {
@@ -187,6 +192,10 @@ public abstract class BaseTab extends SherlockFragment {
     
     /** Returns the URL to be used when searching for projects/guides */
     abstract protected String getSearchUrl();
+
+    /** If true - in case the search filter returns no text, should re-call the original intent/action from
+     * the iNat service class */
+    abstract protected boolean recallServiceActionIfNoResults();
 
     @Override
     public void onPause() {
@@ -397,8 +406,26 @@ public abstract class BaseTab extends SherlockFragment {
                             }
 
                             // Assign the data to the FilterResults
+                            if (results == null) {
+                                results = new ArrayList<JSONObject>();
+                            }
+
                             filterResults.values = results;
                             filterResults.count = results.size();
+
+                        }
+
+                        if ((((ArrayList<JSONObject>)filterResults.values).size() == 0) && (recallServiceActionIfNoResults())) {
+                            // Re-call the service intent/action to retrieve some default results
+                            mProjectsReceiver = new ProjectsReceiver();
+                            IntentFilter filter = new IntentFilter(getFilterResultName());
+                            Log.i(TAG, "Registering " + getFilterResultName());
+                            getActivity().registerReceiver(mProjectsReceiver, filter);
+
+                            Log.i(TAG, "Re-Calling " + getActionName());
+                            Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
+                            getActivity().startService(serviceIntent);
+                            return filterResults;
                         }
                     }
                     

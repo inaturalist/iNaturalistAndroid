@@ -48,4 +48,8 @@ public abstract class BaseProjectsTab extends BaseTab {
 
         return "http://" + inatHost + "/projects/search.json";
     }
+
+    protected boolean recallServiceActionIfNoResults() {
+        return false;
+    }
 }
