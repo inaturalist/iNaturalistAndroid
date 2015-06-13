@@ -29,4 +29,8 @@ public abstract class BaseGuidesTab extends BaseTab {
 
         return "http://" + inatHost + "/guides/search.json";
     }
+
+    protected boolean recallServiceActionIfNoResults() {
+        return false;
+    }
 }

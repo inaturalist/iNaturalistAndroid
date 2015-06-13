@@ -76,7 +76,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 public class GuideDetails extends SherlockActivity implements INaturalistApp.OnDownloadFileProgress {
 
     private static final String TAG = "GuideDetails";
-    private static final double MAX_TAXA = 35; // Max number of taxa to show in the grid
+    private static final double MAX_TAXA = 100; // Max number of taxa to show in the grid
 
     private INaturalistApp mApp;
 	private BetterJSONObject mGuide;
@@ -189,7 +189,9 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             GuideTaxonXML item = mItems.get(position);
 
             TextView idName = (TextView) view.findViewById(R.id.id_name);
-            idName.setText(item.getDisplayName());
+            String name = item.getDisplayName();
+            if ((name == null) || (name.length() == 0)) name = item.getName();
+            idName.setText(name);
 
             ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
             
@@ -201,7 +203,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             List<GuideTaxonPhotoXML> photos = item.getPhotos();
             if (photos.size() == 0) {
                 // No photos - use default image
-                taxonPic.setImageResource(R.drawable.unknown_large);
+                taxonPic.setImageResource(R.drawable.iconic_taxon_unknown);
             } else {
 
                 if (mGuideXml.isGuideDownloaded()) {
@@ -216,7 +218,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                     UrlImageViewHelper.setUrlDrawable(
                             taxonPic,
                             url,
-                            R.drawable.unknown_large,
+                            R.drawable.iconic_taxon_unknown,
                             new UrlImageViewCallback() {
                                 @Override
                                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url,
@@ -284,7 +286,13 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             Set<String> currentTags = tags.get(sectionName);
 
             for (String tagName : currentTags) {
-                sideMenuItems.add(new GuideMenuTag(tagName, tagCounts.get(tagName)));
+                String tagTitle = tagName;
+                String[] parts = tagName.split("=", 2);
+                if (parts.length > 1) {
+                    // For display purposes, show only the tag value
+                    tagTitle = parts[1];
+                }
+                sideMenuItems.add(new GuideMenuTag(tagTitle, tagName, tagCounts.get(tagName)));
             }
         }
 
@@ -299,7 +307,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
                 // A tag was added/removed
 
-                String tagName = item.getText();
+                String tagName = ((GuideMenuTag)item).getValue();
 
                 if (mFilter.hasTag(tagName)) {
                     mFilter.removeTag(tagName);
@@ -535,11 +543,13 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
     private class GuideMenuTag implements  GuideMenuItem {
         private final String mTitle;
+        private final String mValue;
         private final int mCount;
 
-        public GuideMenuTag(String title, int count) {
+        public GuideMenuTag(String title, String value, int count) {
             mTitle = title;
             mCount = count;
+            mValue = value;
         }
         public boolean isSectionHeader() {
             return false;
@@ -550,6 +560,10 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
         public int getCount() {
             return mCount;
+        }
+
+        public String getValue() {
+            return mValue;
         }
     }
 
@@ -597,7 +611,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                 TextView tagCount = (TextView) view.findViewById(R.id.tagCount);
                 tagCount.setText(String.valueOf(((GuideMenuTag)item).getCount()));
 
-                if (mFilter.hasTag(item.getText())) {
+                if (mFilter.hasTag(((GuideMenuTag)item).getValue())) {
                     // Tag is checked on
                     view.setBackgroundColor(Color.parseColor("#006600"));
                     tagCount.setTextColor(Color.parseColor("#FFFFFF"));
