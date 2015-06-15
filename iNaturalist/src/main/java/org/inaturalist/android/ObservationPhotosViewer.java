@@ -98,7 +98,9 @@ public class ObservationPhotosViewer extends SherlockActivity {
         }
 
         mViewPager = (HackyViewPager) findViewById(R.id.id_pic_view_pager);
-        mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
+		if (mObservation != null) {
+			mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
+		}
     }
 
 

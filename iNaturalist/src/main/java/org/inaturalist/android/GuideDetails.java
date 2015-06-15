@@ -733,6 +733,11 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             mIsDownloading = savedInstanceState.getBoolean("isDownloading");
             mDownloadProgress = savedInstanceState.getInt("downloadProgress", 0);
         }
+
+        if (mGuide == null) {
+            finish();
+            return;
+        }
  
         actionBar.setTitle(mGuide.getString("title"));
         

@@ -100,7 +100,7 @@ public class GuideTaxonActivity extends SherlockActivity {
             mGuideXmlFilename = savedInstanceState.getString("guide_xml_filename");
         }
 
-        if (mGuideTaxon) {
+        if ((mGuideTaxon) && (mGuideXmlFilename != null)) {
             // Load guide taxon from XML
             mGuideXml = new GuideXML(this, mGuideId, mGuideXmlFilename);
             mGuideTaxonXml = mGuideXml.getTaxonById(mTaxonId);
