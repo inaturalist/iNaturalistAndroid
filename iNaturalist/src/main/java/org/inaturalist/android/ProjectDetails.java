@@ -101,6 +101,11 @@ public class ProjectDetails extends SherlockFragmentActivity {
 
         mJoinLeaveProject = (Button) customView.findViewById(R.id.join_leave_project);
         mProjectTitle = (TextView) customView.findViewById(R.id.project_title);
+
+        if (mProject == null) {
+            finish();
+            return;
+        }
         
         mProjectTitle.setText(mProject.getString("title"));
         

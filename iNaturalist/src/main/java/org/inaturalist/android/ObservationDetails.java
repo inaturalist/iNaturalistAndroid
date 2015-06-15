@@ -96,11 +96,19 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         Intent intent = getIntent();
 
         try {
+			String obsJson;
         	if (savedInstanceState == null) {
-        		mObservation = new JSONObject(intent.getStringExtra("observation"));
+				obsJson = intent.getStringExtra("observation");
         	} else {
-        		mObservation = new JSONObject(savedInstanceState.getString("observation"));
+        		obsJson = savedInstanceState.getString("observation");
         	}
+
+			if (obsJson == null) {
+				finish();
+				return;
+			}
+
+			mObservation = new JSONObject(obsJson);
         } catch (JSONException e) {
         	e.printStackTrace();
         }

@@ -779,6 +779,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
+            if (uri == null) {
+                Log.e(TAG, "Null URI from intent.getData");
+                finish();
+                return;
+            }
             switch (ObservationProvider.URI_MATCHER.match(uri)) {
             case Observation.OBSERVATION_ID_URI_CODE:
                 getIntent().setAction(Intent.ACTION_EDIT);
