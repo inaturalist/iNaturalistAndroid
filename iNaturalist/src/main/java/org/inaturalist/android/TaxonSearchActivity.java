@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +20,7 @@ import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.ListActivity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -240,15 +242,18 @@ public class TaxonSearchActivity extends SherlockListActivity {
             JSONObject defaultName;
             String displayName = null;
 
-            // Get the taxon display name according to configuration of the current iNat network
-            String inatNetwork = mApp.getInaturalistNetworkMember();
-            String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
+
+            // Get the taxon display name according to device locale
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            Locale deviceLocale = getResources().getConfiguration().locale;
+            String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
+
             try {
 				JSONArray taxonNames = item.getJSONArray("taxon_names");
 				for (int i = 0; i < taxonNames.length(); i++) {
 					JSONObject taxonName = taxonNames.getJSONObject(i);
 					String lexicon = taxonName.getString("lexicon");
-					if (lexicon.equals(networkLexicon)) {
+					if (lexicon.equals(deviceLexicon)) {
 						// Found the appropriate lexicon for the taxon
 						displayName = taxonName.getString("name");
 						break;
