@@ -98,19 +98,6 @@ public abstract class BaseTab extends SherlockFragment {
                 }
             }
             
-            Collections.sort(mProjects, new Comparator<JSONObject>() {
-                @Override
-                public int compare(JSONObject lhs, JSONObject rhs) {
-                    try {
-                        return lhs.getString("title").compareTo(rhs.getString("title"));
-                    } catch (JSONException e) {
-                        return 0;
-                    }
-                }
-            });
- 
-            
-            
             loadProjectsIntoUI();
 
         }
