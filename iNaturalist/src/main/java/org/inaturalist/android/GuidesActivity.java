@@ -5,12 +5,14 @@ import java.util.List;
 
 import com.flurry.android.FlurryAgent;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
 
 public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeListener, OnPageChangeListener {
     MyPageAdapter mPageAdapter;
@@ -100,6 +102,12 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
         GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("all_guides").setIndicator(getString(R.string.all_guides)));
         GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("my_guides").setIndicator(getString(R.string.my_guides)));
         GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_guides").setIndicator(getString(R.string.nearby_guides)));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            ((TextView) mTabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title)).setAllCaps(false);
+            ((TextView) mTabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title)).setAllCaps(false);
+            ((TextView) mTabHost.getTabWidget().getChildAt(2).findViewById(android.R.id.title)).setAllCaps(false);
+        }
 
         mTabHost.setOnTabChangedListener(this);
     }
