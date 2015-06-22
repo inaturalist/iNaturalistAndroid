@@ -908,7 +908,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             public void onClick(View v) {
                 mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
                 mFileUri = getPath(ObservationEditor.this, mFileUri);
-                ObservationEditor.openImageIntent(ObservationEditor.this, mFileUri, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                openImageIntent(ObservationEditor.this, mFileUri, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         });
         
@@ -2421,7 +2421,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }	
 
     
-    private static void openImageIntent(Activity activity, Uri captureImageOutputFile, int requestCode) {
+    private void openImageIntent(Activity activity, Uri captureImageOutputFile, int requestCode) {
 
         // Camera
         final List<Intent> cameraIntents = new ArrayList<Intent>();
@@ -2443,7 +2443,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
 
         // Chooser of filesystem options.
-        final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Source");
+        final Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_source));
 
         // Add the camera options
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[]{}));

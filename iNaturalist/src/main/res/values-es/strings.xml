@@ -277,4 +277,6 @@
     <string name="inat_sign_up_naturewatchnz">Estás a punto de visitar NatureWatchNz.org, donde podrás registrar una cuenta nueva. En cuanto hayas confirmado tu cuenta haciendo clic en el enlace del email de confirmación que recibirás, podrás volver aquí para introducir tu nombre de usuario y tu contraseña.</string>
     <string name="inat_sign_up_inaturalistcanada">Estás a punto de visitar iNan, donde podrás registrar una cuenta nueva. En cuanto hayas confirmado tu cuenta haciendo clic en el enlace del email de confirmación que recibirás, podrás volver aquí para introducir tu nombre de usuario y tu contraseña.</string>
 
+    <string name="select_source">Seleccionar origen</string>
+
 </resources>
