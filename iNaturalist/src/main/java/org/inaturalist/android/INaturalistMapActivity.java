@@ -10,6 +10,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+
+import android.app.NotificationManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 
@@ -1417,15 +1420,17 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		String displayName = null;
 
 
- 		// Get the taxon display name according to configuration of the current iNat network
- 		String inatNetwork = mApp.getInaturalistNetworkMember();
- 		String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
+		// Get the taxon display name according to device locale
+		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		Locale deviceLocale = getResources().getConfiguration().locale;
+		String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
+
  		try {
  			JSONArray taxonNames = item.getJSONArray("taxon_names");
  			for (int i = 0; i < taxonNames.length(); i++) {
  				JSONObject taxonName = taxonNames.getJSONObject(i);
  				String lexicon = taxonName.getString("lexicon");
- 				if (lexicon.equals(networkLexicon)) {
+ 				if (lexicon.equals(deviceLexicon)) {
  					// Found the appropriate lexicon for the taxon
  					displayName = taxonName.getString("name");
  					break;
