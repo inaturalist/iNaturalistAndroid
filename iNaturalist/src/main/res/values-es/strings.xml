@@ -30,7 +30,7 @@
   <string name="alert_title_use">Usar</string>
   <string name="inat_network_settings">Configuración de red de Naturalista</string>
   <string name="network_restart">Cambiar los parámetros de red. Reinicia la aplicación para que los cambios ocurran.</string>
-  <string name="explore">Explorar</string>
+  <string name="explore">Explorar Mapa</string>
   <string name="explore_description">Explorar las observaciones a tu alrededor</string>
   <string name="restricted_to_current_map_area">Restringido al área actual del mapa</string>
   <string name="search">Búsqueda</string>
