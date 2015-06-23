@@ -818,7 +818,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     
     private Observation getObservation(int id) throws AuthenticationException {
-        String url = String.format("%s/observations/%d.json", HOST, id);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+
+        String url = String.format("%s/observations/%d.json?locale=%s", HOST, id, deviceLanguage);
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return null; }
@@ -1571,6 +1575,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (extras.containsKey("project_id")) {
         	url += "&projects[]=" + extras.getInt("project_id");
         }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        url += "&locale=" + deviceLanguage;
+
         
         Log.d(TAG, "Near by observations URL: " + url);
 
