@@ -1815,7 +1815,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     selectedImageUri = mFileUri;
                 } else {
                     selectedImageUri = data == null ? null : data.getData();
-                    selectedImageUri = getPath(this, selectedImageUri);
+                    if (selectedImageUri == null) {
+                        selectedImageUri = mFileUri;
+                    } else {
+                        selectedImageUri = getPath(this, selectedImageUri);
+                    }
                 }
 
                 Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
