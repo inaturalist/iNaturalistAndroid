@@ -922,7 +922,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {
-        String url = HOST + "/guides/" + guideId.toString() + ".xml";
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+
+        String url = HOST + "/guides/" + guideId.toString() + ".xml?locale=" + deviceLanguage;
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
