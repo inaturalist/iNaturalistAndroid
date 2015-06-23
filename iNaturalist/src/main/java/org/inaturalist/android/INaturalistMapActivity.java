@@ -208,6 +208,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    mObservationsGridEmpty = (TextView) findViewById(R.id.observations_grid_empty);
 	    mObservationsGrid = (GridViewExtended) findViewById(R.id.observations_grid);
 
+		mObservations = new ArrayList<JSONObject>();
+
 	    if (savedInstanceState != null) {
 	    	mCurrentSearch = savedInstanceState.getString("mCurrentSearch");
 	    	mSearchType = savedInstanceState.getInt("mSearchType");
