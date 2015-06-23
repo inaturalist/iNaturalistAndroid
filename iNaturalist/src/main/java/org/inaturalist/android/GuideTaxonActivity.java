@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 
@@ -15,6 +16,7 @@ import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,8 +42,7 @@ import android.widget.TextView;
 
 public class GuideTaxonActivity extends SherlockActivity {
     private static String TAG = "GuideTaxonActivity";
-    private static String GUIDE_TAXON_URL = "http://%s/guide_taxa/%d.xml";
-    private static String TAXON_URL = "http://%s/taxa/%d";
+    private static String TAXON_URL = "http://%s/taxa/%d?locale=%s";
     private WebView mWebView;
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -301,8 +302,12 @@ public class GuideTaxonActivity extends SherlockActivity {
     	
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-    	
-        url = String.format(TAXON_URL, inatHost, taxonId);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+
+        url = String.format(TAXON_URL, inatHost, taxonId, deviceLanguage);
     	mWebView.loadUrl(url, getAuthHeaders());
     }
 
