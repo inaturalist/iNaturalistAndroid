@@ -207,7 +207,7 @@ public class GuideTaxonActivity extends SherlockActivity {
 
 
         String title = "";
-        if (mGuideTaxon) {
+        if ((mGuideTaxon) && (mGuideXmlFilename != null) && (mGuideTaxonXml != null)) {
             title = mGuideTaxonXml.getDisplayName();
             if ((title == null) || (title.length() == 0)) title = mGuideTaxonXml.getName();
         } else {
