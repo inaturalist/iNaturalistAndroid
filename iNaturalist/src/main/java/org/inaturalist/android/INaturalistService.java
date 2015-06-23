@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -62,6 +63,7 @@ import com.google.android.gms.location.LocationClient;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
+import android.app.NotificationManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentUris;
@@ -1295,7 +1297,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
  
     
     private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
-        String url = String.format("%s/lists/%d.json?per_page=50", HOST, id);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+
+        String url = String.format("%s/lists/%d.json?per_page=50&locale=%s", HOST, id, deviceLanguage);
         
         JSONArray json = get(url);
         
