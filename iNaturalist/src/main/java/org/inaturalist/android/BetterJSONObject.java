@@ -37,9 +37,13 @@ public class BetterJSONObject implements Serializable {
 	
 	public BetterJSONObject(JSONObject o) {
 		mJSONObject = o;
-		mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-		mDateTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZZZ");
+		initRegExIfNeeded();
+	}
+
+	private void initRegExIfNeeded() {
+		if (mDateFormat == null) mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		if (mDateTimeFormat == null) mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+		if (mDateTimeFormat2 == null) mDateTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZZZ");
 	}
 	
 	public JSONObject getJSONObject() {
@@ -108,6 +112,7 @@ public class BetterJSONObject implements Serializable {
 	}
 	
 	public Timestamp getTimestamp(String name) {
+		initRegExIfNeeded();
 		String value = getString(name);
 		if (value == null) { return null; }
 		Date date;
