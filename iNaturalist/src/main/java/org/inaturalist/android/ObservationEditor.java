@@ -2133,7 +2133,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             Log.d(TAG, "lat: " + lat + ", d: " + d);
         } catch (IOException e) {
             Log.e(TAG, "couldn't find " + imgFilePath);
-        } catch (UnsupportedOperationException e) {
+        } catch (Exception e) {
         	Log.e(TAG, "Couldn't update image orientation for path: " + uri);
             SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
             String username = pref.getString("username", null);
