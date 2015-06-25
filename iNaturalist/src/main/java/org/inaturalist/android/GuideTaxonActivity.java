@@ -211,6 +211,11 @@ public class GuideTaxonActivity extends SherlockActivity {
             title = mGuideTaxonXml.getDisplayName();
             if ((title == null) || (title.length() == 0)) title = mGuideTaxonXml.getName();
         } else {
+            if (mTaxon == null) {
+                finish();
+                return;
+            }
+
             if (mTaxon.has("display_name") && !mTaxon.getJSONObject().isNull("display_name")) {
                 title = mTaxon.getString("display_name");
             } else {
