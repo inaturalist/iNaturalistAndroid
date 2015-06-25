@@ -76,16 +76,20 @@ public class GuideXML extends BaseGuideXMLParser {
         }
         InputSource inputSource = new InputSource(fr);
 
+        mTagCounts = new HashMap<String, Integer>();
+        mTags = new HashMap<String, Set<String>>();
+
         try {
             // Read root node so we won't re-parse the XML file every time we evaluate an XPath
             XPath xpath = XPathFactory.newInstance().newXPath();
             setRootNode((Node) xpath.evaluate("/", inputSource, XPathConstants.NODE));
+
+            // Parse all taxon tags
+            parseTags();
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }
 
-        // Parse all taxon tags
-        parseTags();
     }
 
     /**
@@ -346,6 +350,10 @@ public class GuideXML extends BaseGuideXMLParser {
         ArrayList<Node> nodes = getNodesByXPath("//GuideTaxon/tag");
         Map<String, Set<String>> predicates = new HashMap<String, Set<String>>();
         Map<String, Integer> tagCounts = new HashMap<String, Integer>();
+
+        if (nodes == null) {
+            return;
+        }
 
         for (Node node: nodes) {
             String predicateName = getAttribute(node, "predicate");
