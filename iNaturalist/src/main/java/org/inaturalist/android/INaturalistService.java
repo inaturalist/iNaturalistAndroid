@@ -79,6 +79,7 @@ import android.graphics.BitmapFactory;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -1804,8 +1805,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 			resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
 			os.flush();
 			os.close();
-			
-			return imageFile.getAbsolutePath();
+
+            ExifInterface inputExif = new ExifInterface(filename);
+            int orientation = inputExif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            ExifInterface outputExif = new ExifInterface(imageFile.getAbsolutePath());
+            outputExif.setAttribute(ExifInterface.TAG_ORIENTATION, String.valueOf(orientation));
+            outputExif.saveAttributes();
+
+            return imageFile.getAbsolutePath();
 
 		} catch (OutOfMemoryError e) {
 			e.printStackTrace();
