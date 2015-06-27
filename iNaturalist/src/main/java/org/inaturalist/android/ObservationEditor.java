@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
@@ -55,6 +56,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
@@ -1813,7 +1815,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     selectedImageUri = mFileUri;
                 } else {
                     selectedImageUri = data == null ? null : data.getData();
-                    selectedImageUri = getPath(this, selectedImageUri);
+                    if (selectedImageUri == null) {
+                        selectedImageUri = mFileUri;
+                    } else {
+                        selectedImageUri = getPath(this, selectedImageUri);
+                    }
                 }
 
                 Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
@@ -2113,9 +2119,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (imgFilePath == null) return;
         
         ContentValues values = new ContentValues();
+        int degrees = -1;
         try {
             ExifInterface exif = new ExifInterface(imgFilePath);
-            int degrees = exifOrientationToDegrees(
+            degrees = exifOrientationToDegrees(
                     exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 
                             ExifInterface.ORIENTATION_NORMAL));
             values.put(MediaStore.Images.ImageColumns.ORIENTATION, degrees);
@@ -2126,8 +2133,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
             Log.d(TAG, "lat: " + lat + ", d: " + d);
         } catch (IOException e) {
             Log.e(TAG, "couldn't find " + imgFilePath);
-        } catch (UnsupportedOperationException e) {
+        } catch (Exception e) {
         	Log.e(TAG, "Couldn't update image orientation for path: " + uri);
+            SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            String username = pref.getString("username", null);
+            Crashlytics.log(Log.ERROR, TAG, String.format("Couldn't update image orientation for uri: %s; path: %s; username: %s; degress: %d; exception: %s",
+                    uri, imgFilePath, username, degrees, e));
+            Crashlytics.logException(e);
         }
     }
     
