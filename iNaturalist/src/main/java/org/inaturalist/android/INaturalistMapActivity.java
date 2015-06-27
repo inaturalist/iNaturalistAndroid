@@ -208,6 +208,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	    mObservationsGridEmpty = (TextView) findViewById(R.id.observations_grid_empty);
 	    mObservationsGrid = (GridViewExtended) findViewById(R.id.observations_grid);
 
+		mObservations = new ArrayList<JSONObject>();
+
 	    if (savedInstanceState != null) {
 	    	mCurrentSearch = savedInstanceState.getString("mCurrentSearch");
 	    	mSearchType = savedInstanceState.getInt("mSearchType");
@@ -658,11 +660,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         outState.putSerializable("mProjectId", mProjectId);
         outState.putString("mProjectName", mProjectName);
 
-        VisibleRegion vr = mMap.getProjection().getVisibleRegion();
-        outState.putDouble("minx", vr.farLeft.longitude);
-        outState.putDouble("maxx", vr.farRight.longitude);
-        outState.putDouble("miny", vr.nearLeft.latitude);
-        outState.putDouble("maxy", vr.farRight.latitude);
+		if (mMap != null) {
+			VisibleRegion vr = mMap.getProjection().getVisibleRegion();
+			outState.putDouble("minx", vr.farLeft.longitude);
+			outState.putDouble("maxx", vr.farRight.longitude);
+			outState.putDouble("miny", vr.nearLeft.latitude);
+			outState.putDouble("maxy", vr.farRight.latitude);
+		}
 
         if (mObservations != null) {
         	JSONArray arr = new JSONArray(mObservations);
