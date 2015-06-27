@@ -1468,6 +1468,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             
             boolean shouldOverwriteRemote = false;
             ProjectFieldValue remoteField = null;
+
+            if (fields == null) {
+                continue;
+            }
             
             if (!fields.containsKey(Integer.valueOf(localField.field_id))) {
                 // No remote field - add it
