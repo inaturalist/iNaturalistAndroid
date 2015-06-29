@@ -297,7 +297,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="extracting">Descomprimiendo...</string>
     <string name="downloaded">Descargada</string>
     <string name="delete_download">Borra la descarga</string>
-    <string name="re_download">Volver a descargar</string>
+    <string name="re_download">Vuelve a descargar</string>
     <string name="error">Error</string>
     <string name="could_not_retrieve_guide">No se pudieron mostrar los detalles de la guía - probablemente un error de red.</string>
     <string name="select_source">Selecciona foto</string>
