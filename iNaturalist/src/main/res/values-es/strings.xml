@@ -62,7 +62,7 @@
   <string name="seen_by">visto por \'%1$s\'</string>
   <string name="seen_at">visto en \'%1$s\'</string>
   <string name="in_project">en el proyecto \'%1$s\'</string>
-  <string name="details">detalles</string>
+  <string name="details">Detalles</string>
   <string name="accuracy">precisión %1$dm</string>
   <string name="must_login_to_show_my_observations">Debe estar conectado para enseñar observaciones</string>
   <string name="observation_photos">Fotos de observación</string>
