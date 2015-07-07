@@ -62,7 +62,7 @@
   <string name="seen_by">visto por \'%1$s\'</string>
   <string name="seen_at">visto en \'%1$s\'</string>
   <string name="in_project">en el proyecto \'%1$s\'</string>
-  <string name="details">detalles</string>
+  <string name="details">Detalles</string>
   <string name="accuracy">precisión %1$dm</string>
   <string name="must_login_to_show_my_observations">Debe estar conectado para enseñar observaciones</string>
   <string name="observation_photos">Fotos de observación</string>
@@ -193,7 +193,7 @@
     <string name="no_guides">¡No hay guías!</string>
     <string name="loading_projects">Cargando proyectos...</string>
     <string name="joined_projects">Unido</string>
-    <string name="nearby_projects">Cercanas</string>
+    <string name="nearby_projects">Cercanos</string>
     <string name="featured_projects">Destacados</string>
     <string name="project_details">Detalles del proyecto</string>
     <string name="leave">Salir</string>
@@ -287,7 +287,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descarga para el uso sin internet</string>
     <string name="download_not_available">Descarga no disponible</string>
-    <string name="guide_editor_must_enable_this_feature">El dueño de la guía debe habiliar esta opción.</string>
+    <string name="guide_editor_must_enable_this_feature">El dueño de la guía debe habilitar esta opción.</string>
     <string name="are_you_sure">¿Estás seguro?</string>
     <string name="download_guide_alert">Descargaras %1$s de datos, de esta forma podrás usar esta guía aún sin internet.</string>
     <string name="download">Descarga</string>
