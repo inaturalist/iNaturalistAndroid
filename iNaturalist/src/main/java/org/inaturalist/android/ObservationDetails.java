@@ -129,9 +129,12 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 				confirm(ObservationDetails.this, R.string.details, R.string.view_on_inat_confirmation, 
 						R.string.yes, R.string.no, 
 						new Runnable() { public void run() {
+							String inatNetwork = mApp.getInaturalistNetworkMember();
+							String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
 							Intent i = new Intent(Intent.ACTION_VIEW);
 							try {
-								i.setData(Uri.parse(INaturalistService.HOST + "/observations/" + mObservation.getInt("id")));
+								i.setData(Uri.parse("http://" + inatHost + "/observations/" + mObservation.getInt("id")));
 								startActivity(i);
 							} catch (JSONException e) {
 								e.printStackTrace();

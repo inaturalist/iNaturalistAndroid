@@ -942,8 +942,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 confirm(ObservationEditor.this, R.string.edit_observation, R.string.view_on_inat_confirmation, 
                         R.string.yes, R.string.no, 
                         new Runnable() { public void run() {
+                            String inatNetwork = app.getInaturalistNetworkMember();
+                            String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
+
                             Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(INaturalistService.HOST + "/observations/"+mObservation.id));
+                            i.setData(Uri.parse("http://" + inatHost + "/observations/"+mObservation.id));
                             startActivity(i);
                         }}, 
                         null);
