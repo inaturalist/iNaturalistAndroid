@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
 
+import io.fabric.sdk.android.Fabric;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -64,7 +65,7 @@ public class INaturalistApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Crashlytics.start(this);
+        Fabric.with(this, new Crashlytics());
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
