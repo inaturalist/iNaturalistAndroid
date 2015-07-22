@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="acc">Acc</string>
-    <string name="app_name">iNaturalist</string>
+    <string name="app_name">Go Wild Manitoba</string>
     <string name="google_login">Login with Google</string>
     <string name="email_address">Email Address</string>
     <string name="observations_menu_add">Add</string>
@@ -376,5 +376,12 @@
     <string name="error">Error</string>
     <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
     <string name="select_source">Select Source</string>
+
+    <string name="go_wild_manitoba">Go Wild Manitoba!</string>
+    <string name="harness_the_power">Harness the power of citizen science</string>
+    <string name="funding_assistance">Funding assistance provided by the Manitoba government</string>
+    <string name="about_text">People and communities that engage with nature are healthier, stronger, and more sustainable socially and environmentally. Contact with nature and wilderness offers a range of health benefits especially for children. Manitoba Conservation and Water Stewardship, along with other partners, offer Manitobians the opportunity to experience nature while making valuable contributions to the conservation of animal and plant species in the province. Go Wild!</string>
+    <string name="add_observations">Add Observations</string>
+    <string name="home">Home</string>
  </resources>
 

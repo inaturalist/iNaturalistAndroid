@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main content view -->
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:background="@drawable/main_header_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/main_header_bg_2" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ff096640"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+                <RelativeLayout
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:src="@drawable/manitoba_white"
+                        android:id="@+id/header_logo"
+                        />
+                    <TextView
+                        android:layout_toRightOf="@id/header_logo"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/go_wild_manitoba"
+                        android:textSize="33dp"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/main_header_bg" />
+        </LinearLayout>
+
+        <TextView
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/harness_the_power"
+             android:textSize="18dp"
+             android:textColor="#000000"
+             android:gravity="center"
+             android:paddingTop="10dp"
+             android:paddingBottom="10dp"
+             android:background="#ff81c63e"
+             />
+
+        <RelativeLayout
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+
+            <Button
+                android:id="@+id/add_observation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_button_bg"
+                android:text="@string/add_observations"
+                android:textColor="#FFFFFF"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                />
+            <Button
+                android:id="@+id/about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_button_bg"
+                android:text="@string/about"
+                android:textColor="#FFFFFF"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/add_observation"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_footer_bg">
+
+            <LinearLayout
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:src="@drawable/logo_natureserve"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/logo_text"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/funding_assistance"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
+    <!-- Side menu (navigation drawer) -->
+    <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
+
+</android.support.v4.widget.DrawerLayout>

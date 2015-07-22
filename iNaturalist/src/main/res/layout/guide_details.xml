@@ -40,7 +40,7 @@
             android:layout_centerInParent="true"
             android:text="@string/no_taxa" />
 
-          <org.inaturalist.android.GridViewExtended
+          <org.inaturalist.manitoba.android.GridViewExtended
             android:id="@+id/taxa_grid"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
