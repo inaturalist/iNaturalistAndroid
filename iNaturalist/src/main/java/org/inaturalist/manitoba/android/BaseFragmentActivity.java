@@ -79,7 +79,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             intent.putExtra("first_time", true);
             startActivity(intent);
         } else {
-        	app.detectUserCountryAndUpdateNetwork(this);
+            app.detectUserCountryAndUpdateNetwork(this);
         }
 	}
 	

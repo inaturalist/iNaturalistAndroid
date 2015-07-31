@@ -123,9 +123,9 @@ public class TutorialActivity extends SherlockFragmentActivity {
        mViewPager.setAdapter(mAdapter);
        mViewPager.setOnPageChangeListener(mAdapter);
 
-       mApp.detectUserCountryAndUpdateNetwork(this);
-        
+        mApp.detectUserCountryAndUpdateNetwork(this);
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
     	if ((keyCode == KeyEvent.KEYCODE_BACK)) {

@@ -85,11 +85,7 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
     private List<Fragment> getFragments(){
         List<Fragment> fList = new ArrayList<Fragment>();
 
-        JoinedProjectsTab f1 = new JoinedProjectsTab();
-        NearByProjectsTab f2 = new NearByProjectsTab();
         FeaturedProjectsTab f3 = new FeaturedProjectsTab();
-        fList.add(f1);
-        fList.add(f2);
         fList.add(f3);
 
         return fList;
@@ -100,15 +96,13 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("joined_projects").setIndicator(getString(R.string.joined_projects)));
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_projects").setIndicator(getString(R.string.nearby_projects)));
+        /*
         ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("featured_projects").setIndicator(getString(R.string.featured_projects)));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             ((TextView) mTabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title)).setAllCaps(false);
-            ((TextView) mTabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title)).setAllCaps(false);
-            ((TextView) mTabHost.getTabWidget().getChildAt(2).findViewById(android.R.id.title)).setAllCaps(false);
         }
+        */
 
         mTabHost.setOnTabChangedListener(this);
     }

@@ -142,7 +142,7 @@ public class INaturalistApp extends Application {
 		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
 		
-		String country = getUserCountry(context);
+		String country = null; // Disable country detection for Manitoba
 		Log.d(TAG, "Detected country: " + country);
 		
         final String[] inatNetworks = getINatNetworks();

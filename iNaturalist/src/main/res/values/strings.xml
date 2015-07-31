@@ -171,7 +171,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="finish">Finish</string>
-    <string name="tutorial_link">Help with iNaturalist</string>
+    <string name="tutorial_link">Help with Go Wild Manitoba</string>
     <string name="guides">Guides</string>
     <string name="guides_description">Guides</string>
     <string name="my_guides">Yours</string>
@@ -194,7 +194,7 @@
     <string name="done">Done</string>
     <string name="please_sign_in_via_settings">Please sign-in via settings screen in order to view your projects</string>
     <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">Contact support</a>]]></string>
-    <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
+    <string name="credits">This app was funded by the Manitoba Government and built in collaboration with NatureServe and iNaturalist</string>
     <string name="leave_project">Leave Project</string>
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>

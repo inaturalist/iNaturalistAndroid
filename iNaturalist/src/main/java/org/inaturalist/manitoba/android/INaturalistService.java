@@ -105,7 +105,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String TAXON_RESULT = "taxon_result";
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
 
+    // Default Manitoba group name
     private static final String GROUP_NAME = "Manitoba";
+    // The project ID every observation will be added to by default
+    public static int DEFAULT_PROJECT_ID = 4300; // All Manitoba Nature project
 
 	public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
 
@@ -776,7 +779,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    post("http://" + inatHost + "/observations.json?extra=observation_photos", paramsForObservation(observation, true))
+                    post("http://" + inatHost + "/observations.json?extra=observation_photos&project_id=" + DEFAULT_PROJECT_ID, paramsForObservation(observation, true))
             );
             c.moveToNext();
         }
@@ -1174,7 +1177,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = "http://" + inatHost + "/projects.json?featured=true&group=" + GROUP_NAME;
+        String url = "http://" + inatHost + "/projects.json?group=" + GROUP_NAME;
         
         JSONArray json = get(url);
         

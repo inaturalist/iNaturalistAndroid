@@ -1083,11 +1083,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         refreshProjectFields();
         
         mProjectReceiver = new ProjectReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_FEATURED_PROJECTS_RESULT);
         registerReceiver(mProjectReceiver, filter);  
         
         if (mProjects == null) {
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_FEATURED_PROJECTS, null, this, INaturalistService.class);
             startService(serviceIntent);  
         } else {
             refreshProjectList();

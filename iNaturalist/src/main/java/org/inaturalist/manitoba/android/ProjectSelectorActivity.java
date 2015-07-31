@@ -138,7 +138,7 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
 
  
         mProjectReceiver = new ProjectReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_FEATURED_PROJECTS_RESULT);
         registerReceiver(mProjectReceiver, filter);  
         
         final Intent intent = getIntent();
@@ -189,7 +189,7 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
             public void afterTextChanged(Editable s) { }
         });
         
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_FEATURED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
         startService(serviceIntent);  
     }
 
