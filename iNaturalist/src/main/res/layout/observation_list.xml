@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -32,20 +33,19 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <com.melnykov.fab.FloatingActionButton
                 android:id="@+id/add_observation"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
+                android:layout_gravity="right"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_gravity="right"
-                android:text="+"
-                android:textColor="#FFFFFF"
-                android:textSize="28dp"
-                android:background="@drawable/circular_button"
-                />
+                android:src="@drawable/ic_action_new"
+                fab:fab_colorNormal="@color/inatapptheme_color"
+                fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
+                fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
 
             <TextView
                 android:id="@+id/sync_observations"

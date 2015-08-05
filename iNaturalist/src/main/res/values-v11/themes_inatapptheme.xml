@@ -7,7 +7,7 @@
 
   <style name="_iNatAppTheme" parent="Theme.Sherlock.Light">
 
-    <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
+    <item name="switchStyle">@style/iNatAppThemeSwitch</item>
 
     <item name="android:editTextBackground">@drawable/inatapptheme_edit_text_holo_light</item>
 

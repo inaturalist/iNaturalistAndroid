@@ -418,9 +418,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
         
-        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_MAP).setIndicator("", getResources().getDrawable(R.drawable.ic_action_map)));
-        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_GRID).setIndicator("", getResources().getDrawable(R.drawable.ic_action_view_as_grid)));
-        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_LIST).setIndicator("", getResources().getDrawable(R.drawable.ic_action_view_as_list)));
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_MAP).setIndicator("", getResources().getDrawable(R.drawable.ic_map_black_24dp)));
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_GRID).setIndicator("", getResources().getDrawable(R.drawable.ic_view_module_black_24dp)));
+        INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_LIST).setIndicator("", getResources().getDrawable(R.drawable.ic_list_black_24dp)));
 
         mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));

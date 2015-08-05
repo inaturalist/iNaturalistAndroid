@@ -535,7 +535,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
             
             if (mField.is_required) {
-                mFieldName.setTextColor(0xFFFF2F92);
+                mFieldName.setTypeface(null, Typeface.BOLD);
             }
             
             if ((mField.data_type.equals("text")) && (mField.allowed_values != null) && (!mField.allowed_values.equals(""))) {
@@ -846,9 +846,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
 		});        
 
         mIdPlease = (Switch) findViewById(R.id.id_please);
-        String[] options = getResources().getStringArray(R.array.id_please_items);
-        mIdPlease.setTextOn(options[0]);
-        mIdPlease.setTextOff(options[1]);
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
