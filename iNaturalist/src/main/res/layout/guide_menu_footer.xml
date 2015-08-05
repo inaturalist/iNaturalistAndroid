@@ -29,7 +29,7 @@
         android:id="@+id/description"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#CCCCCC"
+        android:textColor="#000000"
         android:text="Some long description of the guide and some more lines regarding it."
         android:textSize="14dp"
         android:layout_marginLeft="5dp"
@@ -69,7 +69,7 @@
         <TextView
             android:id="@+id/editorName"
             android:text="username"
-            android:textColor="#ff76b870"
+            android:textColor="#ff36b859"
             android:textStyle="bold"
             android:textSize="14dp"
             android:layout_alignParentRight="true"
@@ -79,7 +79,7 @@
 
         <TextView
             android:text="@string/editor"
-            android:textColor="#CCCCCC"
+            android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="16dp"
             android:layout_alignParentLeft="true"
@@ -100,7 +100,7 @@
         <TextView
             android:id="@+id/license"
             android:text="some license"
-            android:textColor="#ff76b870"
+            android:textColor="#ff36b859"
             android:textStyle="bold"
             android:textSize="14dp"
             android:layout_alignParentRight="true"
@@ -110,7 +110,7 @@
 
         <TextView
             android:text="@string/license"
-            android:textColor="#CCCCCC"
+            android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="16dp"
             android:layout_alignParentLeft="true"
@@ -131,18 +131,18 @@
 
         <ImageView
             android:id="@+id/downloadGuideImage"
-            android:layout_width="35dp"
+            android:layout_width="46dp"
             android:layout_height="wrap_content"
             android:scaleType="fitStart"
-            android:src="@drawable/download_guide"
-            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_action_download"
+            android:layout_marginRight="0dp"
             android:layout_centerVertical="true"
             />
 
         <TextView
             android:id="@+id/downloadTitle"
             android:text="@string/download_for_offline_use"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="16dp"
             android:layout_alignParentRight="true"
@@ -154,7 +154,7 @@
         <TextView
             android:id="@+id/downloadSubtitle"
             android:text="1.71 MB"
-            android:textColor="#CCCCCC"
+            android:textColor="#ff7f7f7f"
             android:textSize="15dp"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@id/downloadGuideImage"
@@ -194,17 +194,17 @@
             <ProgressBar
                 style="?android:progressBarStyleHorizontal"
                 android:id="@+id/downloadingProgress"
-                android:text="@string/download_for_offline_use"
                 android:layout_alignParentLeft="true"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:max="100"
+                android:textColor="#000000"
                 />
 
             <TextView
                 android:id="@+id/downloadingSubtitle"
                 android:text="@string/downloading"
-                android:textColor="#CCCCCC"
+                android:textColor="#ff7f7f7f"
                 android:textSize="15dp"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/downloadingProgress"

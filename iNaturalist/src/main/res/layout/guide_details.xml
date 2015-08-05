@@ -60,7 +60,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:orientation="vertical"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:choiceMode="none"
         android:listSelector="@android:color/transparent"
         />

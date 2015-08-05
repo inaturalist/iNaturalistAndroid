@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="left"
     android:orientation="vertical"
-    android:background="#000000"
+    android:background="#fff3f3f3"
     >
     
     <!-- Side menu items -->

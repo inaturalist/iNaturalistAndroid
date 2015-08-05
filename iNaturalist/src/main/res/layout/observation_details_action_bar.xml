@@ -15,7 +15,7 @@
     
      <ImageButton
         android:id="@+id/view_on_inat"
-        android:layout_width="32dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
@@ -25,6 +25,6 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:singleLine="true"
-        android:src="@drawable/action" />
+        android:src="@drawable/ic_fa_share_square_o" />
    
 </RelativeLayout>

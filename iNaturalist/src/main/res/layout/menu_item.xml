@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="5dp" >
 
@@ -11,17 +11,18 @@
         android:layout_height="wrap_content"
         android:hint="menu item"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center_vertical" 
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
         android:paddingLeft="6dip" 
         android:minHeight="?android:attr/listPreferredItemHeight" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_right_angle_quotation_mark_ornament" />
+        android:layout_centerVertical="true"
+        android:src="@drawable/right_arrow_black" />
 
 </RelativeLayout>

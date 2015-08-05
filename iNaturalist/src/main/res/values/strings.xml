@@ -56,7 +56,7 @@
     <string name="oh_no">Oh no! %1$s</string>
     <string name="need_to_login">You need to log in to view your feed.  Log in now?</string>
     
-    <string name="observations">Observations</string>
+    <string name="observations">My Observations</string>
     <string name="observations_description">Observations list</string>
     <string name="map">Map</string>
     <string name="map_description">Observations map</string>

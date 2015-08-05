@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.flurry.android.FlurryAgent;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -95,6 +96,7 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
     }
 
     // Tabs Creation
+    @SuppressLint("NewApi")
     private void initialiseTabHost() {
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
@@ -108,6 +110,10 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
             ((TextView) mTabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title)).setAllCaps(false);
             ((TextView) mTabHost.getTabWidget().getChildAt(2).findViewById(android.R.id.title)).setAllCaps(false);
         }
+
+        mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+        mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+        mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
 
         mTabHost.setOnTabChangedListener(this);
     }

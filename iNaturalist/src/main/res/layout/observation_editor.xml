@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="#111111" >
+        android:background="@drawable/actionbar_background" >
 
         <TextView
             android:id="@+id/save_observation"
@@ -46,7 +46,7 @@
 
         <ImageButton
             android:id="@+id/view_on_inat"
-            android:layout_width="32dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
@@ -55,7 +55,7 @@
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
-            android:src="@drawable/action" />
+            android:src="@drawable/ic_fa_share_square_o" />
 
         <ImageButton
             android:id="@+id/delete_observation"
@@ -92,13 +92,13 @@
                 >
                 <ImageView
                     android:id="@+id/taxonSelector"
-                    android:layout_width="24dp"
+                    android:layout_width="38dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/search"
+                    android:src="@drawable/ic_fa_search"
                     />
  
                 <EditText
@@ -230,7 +230,7 @@
 
                     <RelativeLayout
                         android:id="@+id/locationRefreshButton"
-                        style="@android:style/Widget.Button"
+                        style="@style/ButtoniNatAppTheme"
                         android:layout_width="120dp"
                         android:layout_height="60dp"
                         android:layout_margin="0dp"

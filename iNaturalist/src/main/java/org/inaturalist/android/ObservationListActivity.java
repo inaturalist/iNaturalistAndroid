@@ -53,6 +53,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -190,51 +191,49 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.observation_list);
+
+        setTitle(R.string.observations);
         
         mHelper = new ActivityHelper(this);
         
         mSyncObservations = (TextView) findViewById(R.id.sync_observations);
         mSyncObservations.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 if (!isNetworkAvailable()) {
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return;
                 } else if (!isLoggedIn()) {
-                	// User not logged-in - redirect to settings screen
-                	startActivity(new Intent(ObservationListActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                    // User not logged-in - redirect to settings screen
+                    startActivity(new Intent(ObservationListActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                     return;
                 }
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
-                
+
                 mSyncObservations.setVisibility(View.GONE);
-                
+
                 mHelper.loading(getResources().getString(R.string.syncing_observations));
-			}
-		});        
+            }
+        });
         
         if (savedInstanceState != null) {
             mLastMessage = savedInstanceState.getString("mLastMessage");
         }
         
               
-        refreshSyncBar(); 
-        
+        refreshSyncBar();
+
         mTopActionBar = getSupportActionBar();
-        mTopActionBar.setDisplayShowCustomEnabled(true);
-        mTopActionBar.setCustomView(R.layout.observation_list_top_action_bar);
-        mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#111111")));
-        mTitleBar = (TextView) mTopActionBar.getCustomView().findViewById(R.id.action_bar_title);
-        TextView addButton = (TextView) mTopActionBar.getCustomView().findViewById(R.id.add);
+        Button addButton = (Button) findViewById(R.id.add_observation);
         addButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
             }
         });
-        
+
         INaturalistApp app = (INaturalistApp)(getApplication());
         
         app.setNotificationCallback(this);
@@ -330,11 +329,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mPullRefreshListView.setOnItemClickListener(this);
     }
     
-    public void setTitle(String title) {
-    	mTitleBar.setText(title);
-    }
 
-    
     @SuppressLint("NewApi")
 	@Override
     public void onPause() {

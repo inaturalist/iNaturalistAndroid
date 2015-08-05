@@ -204,6 +204,12 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 					idPic.setVisibility(View.VISIBLE);
 					idPicLoading.setVisibility(View.GONE);
 				}
+
+				@Override
+				public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+					// No post-processing of bitmap
+					return loadedBitmap;
+				}
 			});
 
         	idPic.setOnClickListener(new OnClickListener() {
@@ -223,7 +229,18 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 
         ImageView userPic = (ImageView) findViewById(R.id.user_pic);
         String photoUrl = "http://www.inaturalist.org/attachments/users/icons/" + mObservation.optInt("user_id") + "-thumb.jpg";
-        UrlImageViewHelper.setUrlDrawable(userPic, photoUrl, R.drawable.usericon);
+        UrlImageViewHelper.setUrlDrawable(userPic, photoUrl, R.drawable.usericon, new UrlImageViewCallback() {
+            @Override
+            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                // Nothing to do here
+            }
+
+            @Override
+            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                // Return a circular version of the profile picture
+                return ImageUtils.getCircleBitmap(loadedBitmap);
+            }
+        });
 
         TextView userName = (TextView) findViewById(R.id.user_name);
         userName.setText(mObservation.optString("user_login"));
@@ -233,7 +250,11 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         	location.setText(mObservation.optString("place_guess",
         			mObservation.optString("longitude") + ", " + mObservation.optString("latitude") ));
         } else {
-        	location.setText(mObservation.optString("longitude") + ", " + mObservation.optString("latitude"));
+            if (!mObservation.isNull("longitude")) {
+                location.setText(mObservation.optString("longitude") + ", " + mObservation.optString("latitude"));
+            } else {
+                location.setText("");
+            }
         }
 
         TextView accuracy = (TextView) findViewById(R.id.accuracy);
@@ -252,7 +273,11 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
         	observedOnDate.setText(mApp.formatDate(observedOn));
         	observedOnTime.setText(mApp.shortFormatTime(observedOn));
         } else {
-        	observedOnDate.setText(mObservation.optString("observed_on", ""));
+            if (!mObservation.isNull("observed_on")) {
+                observedOnDate.setText(mObservation.optString("observed_on", ""));
+            } else {
+                observedOnDate.setText("");
+            }
         	observedOnTime.setText("");
         }
         
@@ -335,7 +360,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
      * @param onPositiveClick runnable to call (in UI thread) if positive button pressed. Can be null
      * @param onNegativeClick runnable to call (in UI thread) if negative button pressed. Can be null
      */
-    public static final void confirm(
+    public final void confirm(
             final Activity activity, 
             final int title, 
             final int message,
@@ -343,26 +368,20 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
             final int negativeLabel,
             final Runnable onPositiveClick,
             final Runnable onNegativeClick) {
-
-        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
-        dialog.setTitle(title);
-        dialog.setMessage(message);
-        dialog.setCancelable (false);
-        dialog.setPositiveButton(positiveLabel,
-                new DialogInterface.OnClickListener () {
-            public void onClick (DialogInterface dialog, int buttonId) {
-                if (onPositiveClick != null) onPositiveClick.run();
-            }
-        });
-        dialog.setNegativeButton(negativeLabel,
-                new DialogInterface.OnClickListener () {
-            public void onClick (DialogInterface dialog, int buttonId) {
-                if (onNegativeClick != null) onNegativeClick.run();
-            }
-        });
-        dialog.setIcon (android.R.drawable.ic_dialog_alert);
-        dialog.show();
-
+        mHelper.confirm(getString(title), getString(message),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (onPositiveClick != null) onPositiveClick.run();
+                    }
+                },
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (onNegativeClick != null) onNegativeClick.run();
+                    }
+                },
+                positiveLabel, negativeLabel);
     }
 
  	// Utility function for retrieving the Taxon's name
@@ -553,60 +572,55 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
     }
  
     private void showInputDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.add_comment);
-
         // Set up the input
         final EditText input = new EditText(this);
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
-        builder.setView(input);
 
-        // Set up the buttons
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() { 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String comment = input.getText().toString();
-                
-                // Add the comment
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, ObservationDetails.this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
-                serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
-                startService(serviceIntent);
-                
-    			mCommentsIds = null;
-    			loadResultsIntoUI();
-                
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                
-                // Refresh the comment/id list
-                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                registerReceiver(mObservationReceiver, filter);  
-                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationDetails.this, INaturalistService.class);
-                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
-                startService(serviceIntent2);
-                
-                // Ask for a sync (to update the comment count)
-                Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC, null, ObservationDetails.this, INaturalistService.class);
-                startService(serviceIntent3);
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
 
-        builder.show();        
+        mHelper.confirm(R.string.add_comment, input,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String comment = input.getText().toString();
+
+                        // Add the comment
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, ObservationDetails.this, INaturalistService.class);
+                        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+                        serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
+                        startService(serviceIntent);
+
+                        mCommentsIds = null;
+                        loadResultsIntoUI();
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Refresh the comment/id list
+                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                        registerReceiver(mObservationReceiver, filter);
+                        Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationDetails.this, INaturalistService.class);
+                        serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
+                        startService(serviceIntent2);
+
+                        // Ask for a sync (to update the comment count)
+                        Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC, null, ObservationDetails.this, INaturalistService.class);
+                        startService(serviceIntent3);
+                    }
+                },
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
     }
-    
-    
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	super.onActivityResult(requestCode, resultCode, data);

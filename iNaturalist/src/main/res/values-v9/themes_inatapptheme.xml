@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="iNatAppTheme" parent="@style/_iNatAppTheme">
+
+    <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
+
+    <item name="android:textSelectHandleLeft">@drawable/inatapptheme_text_select_handle_left</item>
+    <item name="android:textSelectHandleRight">@drawable/inatapptheme_text_select_handle_right</item>
+    <item name="android:textSelectHandle">@drawable/inatapptheme_text_select_handle_middle</item>
+
+  </style>
+
+</resources>

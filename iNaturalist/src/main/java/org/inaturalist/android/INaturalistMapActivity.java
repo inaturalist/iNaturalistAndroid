@@ -39,6 +39,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
@@ -51,6 +52,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -193,7 +195,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 		FlurryAgent.onEndSession(this);
 	}	
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -331,9 +334,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			public void onItemClick(AdapterView<?> arg0, View arg1, int index, long arg3) {
 				mCurrentSearch = mSearchText.getText().toString().trim();
 				mSearchType = index;
-				
+
 				mSearchToggle.performClick();
-            	mActiveSearch = true;
+				mActiveSearch = true;
 				loadObservations();
 			}
 		});
@@ -343,9 +346,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mSearchText = (EditText)findViewById(R.id.search_filter);
         mSearchText.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) { }
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				prepareSearchResults(s.toString());
@@ -414,6 +421,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_MAP).setIndicator("", getResources().getDrawable(R.drawable.ic_action_map)));
         INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_GRID).setIndicator("", getResources().getDrawable(R.drawable.ic_action_view_as_grid)));
         INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_LIST).setIndicator("", getResources().getDrawable(R.drawable.ic_action_view_as_list)));
+
+        mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+        mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+        mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+
 
         mTabHost.setOnTabChangedListener(this);
         
@@ -985,6 +997,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		String[] getItem(JSONObject object);
  		/** When an item was selected from the list */
  		void onItemSelected(JSONObject object);
+        /** Whether or not should we display the image on the left as circular */
+        boolean isImageCircular();
  	}
 
  	/** Helper class for creating a pop up dialog with a list of results and a cancel button */
@@ -1002,9 +1016,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			mResults = results;
 			
 			mDialog = new Dialog(INaturalistMapActivity.this);
-			mDialog.setTitle(mTitle);
+            mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			mDialog.setContentView(R.layout.dialog_chooser);
-			
+            ((TextView)mDialog.findViewById(R.id.title)).setText(mTitle);
+
 			mResultsList = (ListView) mDialog.findViewById(R.id.search_results);
 			
 			List<JSONObject> res = new ArrayList<JSONObject>(mResults.length());
@@ -1043,7 +1058,23 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
                     title.setText(values[0]);
                     subtitle.setText(values[1]);
-                    UrlImageViewHelper.setUrlDrawable(image, values[2]);
+                    UrlImageViewHelper.setUrlDrawable(image, values[2], new UrlImageViewCallback() {
+						@Override
+						public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+							// Nothing to do here
+						}
+
+						@Override
+						public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            if (mCallbacks.isImageCircular()) {
+                                // Return a circular version of the profile picture
+                                return ImageUtils.getCircleBitmap(loadedBitmap);
+                            } else {
+                                // Return original, unmodified image
+                                return loadedBitmap;
+                            }
+						}
+					});
 
                     return row;
                }    		
@@ -1317,7 +1348,20 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				}
  			}
 
- 			@Override
+            @Override
+            public boolean isImageCircular() {
+                switch (type) {
+                    case FIND_PEOPLE:
+                        return true; // Return a circular image for users
+                    case FIND_CRITTERS:
+                    case FIND_LOCATIONS:
+                    case FIND_PROJECTS:
+                    default:
+                        return false;
+                }
+            }
+
+            @Override
  			public String[] getItem(JSONObject item) {
  				try {
  					switch (type) {
@@ -1626,7 +1670,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  									mObservationsGrid.getColumnWidth(),
  									mObservationsGrid.getColumnWidth()
  									));
- 						}
+						}
+
+						@Override
+						public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+							// No post-processing of bitmap
+							return loadedBitmap;
+						}
  					});
  				} catch (JSONException e) {
  					e.printStackTrace();
@@ -1746,13 +1796,21 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  			BetterJSONObject json = new BetterJSONObject(item);
  			Timestamp observedOn = json.getTimestamp("time_observed_at");
 
+            if (item.optString("user_login").equals("budowski")) {
+                int i = 0;
+                i++;
+            }
+
  			if (observedOn != null) {
  				observedOnDate.setText(mApp.formatDate(observedOn));
  			} else {
- 				observedOnDate.setText(item.optString("observed_on", ""));
+                if (!item.isNull("observed_on")) {
+                    observedOnDate.setText(item.optString("observed_on", ""));
+                } else {
+                    observedOnDate.setText("");
+                }
  			}
- 			
- 			
+
  			TextView tag = (TextView) view.findViewById(R.id.tag);
  			String qualityGrade = item.isNull("quality_grade") ? "" : item.optString("quality_grade", "");
  			

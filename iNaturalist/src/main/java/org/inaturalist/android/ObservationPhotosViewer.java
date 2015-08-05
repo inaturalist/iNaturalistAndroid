@@ -180,6 +180,12 @@ public class ObservationPhotosViewer extends SherlockActivity {
 						imageView.setVisibility(View.VISIBLE);
 						attacher.update();
 					}
+
+					@Override
+					public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+						// No post-processing of bitmap
+						return loadedBitmap;
+					}
 				});
  			}
 

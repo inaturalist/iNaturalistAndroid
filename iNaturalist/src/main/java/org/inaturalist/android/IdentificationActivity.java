@@ -77,7 +77,7 @@ public class IdentificationActivity extends SherlockActivity {
         mTopActionBar.setDisplayShowCustomEnabled(true);
         mTopActionBar.setDisplayHomeAsUpEnabled(true);
         mTopActionBar.setCustomView(R.layout.add_id_top_action_bar);
-        mTopActionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#767676")));
+        mTopActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
         mTopActionBar.setIcon(android.R.color.transparent);
         mTopActionBar.setLogo(R.drawable.up_icon);
         

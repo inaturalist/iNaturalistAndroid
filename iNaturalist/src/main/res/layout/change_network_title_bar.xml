@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="10dp"
-        style="@android:style/TextAppearance.DialogWindowTitle"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
+        android:textSize="22sp"
+        android:textColor="@color/inatapptheme_color"
         />
     
     <TextView 
@@ -22,9 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
-        style="@android:style/TextAppearance.DialogWindowTitle"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:textSize="22sp"
+        android:textColor="@color/inatapptheme_color"
         />
 
     <ImageView 

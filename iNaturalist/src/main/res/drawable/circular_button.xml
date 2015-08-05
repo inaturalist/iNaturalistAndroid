@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" >
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="@color/inatapptheme_color_highlighted"
+                android:endColor="@color/inatapptheme_color_highlighted"
+                android:angle="270" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true" >
+        <shape android:shape="oval">
+            <gradient
+                android:endColor="@color/inatapptheme_color_highlighted"
+                android:startColor="@color/inatapptheme_color_highlighted"
+                android:angle="270" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:endColor="@color/inatapptheme_color"
+                android:startColor="@color/inatapptheme_color"
+                android:angle="270" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+        </shape>
+    </item>
+</selector>

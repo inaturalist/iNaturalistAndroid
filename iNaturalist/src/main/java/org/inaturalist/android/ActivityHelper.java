@@ -9,7 +9,10 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class ActivityHelper {
     private static String TAG = "ActivityHelper";
@@ -32,45 +35,75 @@ public class ActivityHelper {
         alert.show();
     }
 
-    
-    public void confirm(View title, String msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setCustomTitle(title);
-        builder.setMessage(msg);
-        builder.setNegativeButton(R.string.cancel, cancelListener)
-            .setPositiveButton(R.string.ok, okListener);
-        AlertDialog alert = builder.create();
-        alert.show();
+    public void alert(int title, int msg) {
+        alert(mContext.getString(title), mContext.getString(msg));
     }
-    
-     public void confirm(String title, String msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+
+    public void alert(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setNegativeButton(R.string.cancel, cancelListener)
-            .setPositiveButton(R.string.ok, okListener);
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-   
-    
-    public void confirm(String title, String msg, DialogInterface.OnClickListener listener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle(title);
-        builder.setMessage(msg);
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            })
-            .setPositiveButton(R.string.ok, listener);
+        builder.setMessage(msg)
+        .setTitle(title)
+        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
         AlertDialog alert = builder.create();
         alert.show();
     }
 
-    public void confirm(String msg, DialogInterface.OnClickListener listener) {
-        confirm(null, msg, listener);
+    public void confirm(int titleRes, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+        confirm(mContext.getString(titleRes), msg, okListener, cancelListener);
+    }
+
+    public void confirm(String title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View titleBar = inflater.inflate(R.layout.dialog_title, null, false);
+        ((TextView)titleBar.findViewById(R.id.title)).setText(title);
+
+        confirm(titleBar, msg, okListener, cancelListener);
+    }
+
+
+    public void confirm(String title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, int okText, int cancelText) {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View titleBar = inflater.inflate(R.layout.dialog_title, null, false);
+        ((TextView)titleBar.findViewById(R.id.title)).setText(title);
+
+        confirm(titleBar, msg, okListener, cancelListener, okText, cancelText);
+    }
+
+
+    public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+        confirm(title, msg, okListener, cancelListener, R.string.ok, R.string.cancel);
+    }
+
+    public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, int okText, int cancelText) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_title_top_bar, null, false);
+        content.addView(title, 0);
+
+        if (msg instanceof Integer) {
+            msg = mContext.getString((Integer) msg);
+        }
+
+        TextView textContent;
+
+        if (msg instanceof String) {
+            textContent = (TextView) inflater.inflate(R.layout.dialog_message, null, false);
+            textContent.setText((String)msg);
+            content.addView(textContent, 2);
+        } else if (msg instanceof View) {
+            content.addView((View) msg, 2);
+        }
+        builder.setView(content);
+        builder.setPositiveButton(okText, okListener);
+        builder.setCancelable(false);
+        if (cancelListener != null) builder.setNegativeButton(cancelText, cancelListener);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public void loading(String title, String msg) {
@@ -117,7 +150,7 @@ public class ActivityHelper {
     
     public int observationColor(Observation o) {
         if (o.iconic_taxon_name== null) {
-            return Color.WHITE;
+            return Color.BLACK;
         } else if (o.iconic_taxon_name.equals("Animalia") || 
                 o.iconic_taxon_name.equals("Actinopterygii") ||
                 o.iconic_taxon_name.equals("Amphibia") || 

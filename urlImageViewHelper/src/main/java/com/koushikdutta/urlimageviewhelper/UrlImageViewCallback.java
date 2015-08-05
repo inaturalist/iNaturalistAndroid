@@ -26,4 +26,15 @@ public interface UrlImageViewCallback {
      * @param loadedFromCache This will indicate whether the load operation result came from cache, or was retrieved.
      */
     void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache);
+
+    /**
+     * Allows processing of the downloaded bitmap before being set to the image view
+     * @param imageView ImageView for the load request.
+     * @param loadedBitmap The bitmap that was loaded by the request.
+     *                          If the drawable failed to load, this will be null.
+     * @param url The url that was loaded.
+     * @param loadedFromCache This will indicate whether the load operation result came from cache, or was retrieved.
+     * @return The new bitmap
+     */
+    Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache);
 }

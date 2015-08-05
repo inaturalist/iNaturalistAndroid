@@ -510,8 +510,12 @@ public final class UrlImageViewHelper {
                 mPendingViews.remove(imageView);
                 if (drawable instanceof ZombieDrawable)
                     drawable = ((ZombieDrawable)drawable).clone(mResources);
-                else if (bitmap != null)
+                else if (bitmap != null) {
+                    if (callback != null) {
+                        bitmap = callback.onPreSetBitmap(imageView, bitmap, url, true);
+                    }
                     drawable = new ZombieDrawable(url, mResources, bitmap);
+                }
 
                 imageView.setImageDrawable(drawable);
             }
@@ -602,6 +606,9 @@ public final class UrlImageViewHelper {
                 Bitmap bitmap = loader.result;
                 Drawable usableResult = null;
                 if (bitmap != null) {
+                    if (callback != null) {
+                        bitmap = callback.onPreSetBitmap(imageView, bitmap, url, (imageView != null));
+                    }
                     usableResult = new ZombieDrawable(url, mResources, bitmap);
                 }
                 if (usableResult == null) {

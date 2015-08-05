@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="ButtoniNatAppTheme" parent="android:Widget.Holo.Light.Button">
+	  <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>
+  </style>
+
+  <style name="ImageButtoniNatAppTheme" parent="android:Widget.Holo.Light.ImageButton">
+	  <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>
+  </style>
+
+  <style name="SpinneriNatAppTheme" parent="android:Widget.Holo.Light.Spinner">
+      <item name="android:background">@drawable/inatapptheme_spinner_background_holo_light</item>
+      <item name="android:dropDownSelector">@drawable/inatapptheme_list_selector_holo_light</item>
+  </style>
+
+  <style name="ProgressBariNatAppTheme" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
+      <item name="android:progressDrawable">@drawable/inatapptheme_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/inatapptheme_progress_indeterminate_horizontal_holo_light</item>
+  </style>
+
+  <style name="ToggleiNatAppTheme" parent="android:Widget.Holo.Light.Button.Toggle">
+      <item name="android:background">@drawable/inatapptheme_btn_toggle_holo_light</item>
+  </style>
+
+</resources>

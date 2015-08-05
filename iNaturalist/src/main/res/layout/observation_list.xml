@@ -26,19 +26,41 @@
             style="@android:style/TextAppearance.Medium"
             android:text="@string/no_observations_yet" />
 
-        <TextView
-            android:id="@+id/sync_observations"
-            android:background="#000000"
-            android:textColor="#FFFFFF"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:gravity="center"
-            android:visibility="gone"
+        <LinearLayout
             android:layout_alignParentBottom="true"
-            style="@android:style/TextAppearance.Medium"
-            android:text="@string/sync_x_observations" />
-        
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/add_observation"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="right"
+                android:text="+"
+                android:textColor="#FFFFFF"
+                android:textSize="28dp"
+                android:background="@drawable/circular_button"
+                />
+
+            <TextView
+                android:id="@+id/sync_observations"
+                android:background="@color/inatapptheme_color"
+                android:textColor="#FFFFFF"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                style="@android:style/TextAppearance.Medium"
+                android:text="@string/sync_x_observations" />
+
+        </LinearLayout>
     </RelativeLayout>
 
     <!-- Side menu (navigation drawer) -->

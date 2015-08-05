@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="EditTextiNatAppTheme" parent="android:Widget.EditText">
+        <item name="android:background">@drawable/inatapptheme_edit_text_holo_light</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="CheckBoxiNatAppTheme" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/inatapptheme_btn_check_holo_light</item>
+    </style>
+
+    <style name="RadioButtoniNatAppTheme" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/inatapptheme_btn_radio_holo_light</item>
+    </style>
+
+    <style name="ButtoniNatAppTheme" parent="android:Widget.Button">
+        <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">64dip</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="ImageButtoniNatAppTheme" parent="android:Widget.ImageButton">
+        <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>
+    </style>
+
+    <style name="SpinneriNatAppTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/inatapptheme_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/inatapptheme_list_selector_holo_light</item>
+    </style>
+
+    <style name="SpinnerDropDownItemiNatAppTheme" parent="android:Widget.DropDownItem.Spinner">
+        <item name="android:checkMark">@drawable/inatapptheme_btn_radio_holo_light</item>
+    </style>
+    <style name="TabiNatAppTheme">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+        <item name="android:background">@drawable/inatapptheme_tab_indicator_holo</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">80dip</item>
+    </style>
+
+    <style name="TabTextiNatAppTheme">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <!-- v14 <item name="android:textAllCaps">true</item> -->
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:maxWidth">180dip</item>
+    </style>
+
+    <style name="ProgressBariNatAppTheme" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/inatapptheme_progress_horizontal_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/inatapptheme_progress_indeterminate_horizontal_holo_light</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
+
+    <style name="ToggleiNatAppTheme" parent="android:Widget.Button.Toggle">
+        <item name="android:background">@drawable/inatapptheme_btn_toggle_holo_light</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="ListViewiNatAppTheme" parent="android:Widget.ListView">
+        <item name="android:listSelector">@drawable/inatapptheme_list_selector_holo_light</item>
+    </style>
+
+    <style name="ListViewiNatAppTheme.White" parent="android:Widget.ListView.White">
+        <item name="android:listSelector">@drawable/inatapptheme_list_selector_holo_light</item>
+    </style>
+
+    <style name="SpinnerItemiNatAppTheme" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">#000000</item>
+    </style>
+
+</resources>

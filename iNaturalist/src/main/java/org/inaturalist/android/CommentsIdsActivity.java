@@ -61,8 +61,9 @@ public class CommentsIdsActivity extends SherlockListActivity implements Comment
     private ArrayList<BetterJSONObject> mCommentsIds;
     private ProgressBar mProgress;
     private TextView mNoComments;
-    
-	@Override
+    private ActivityHelper mHelper;
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -168,11 +169,12 @@ public class CommentsIdsActivity extends SherlockListActivity implements Comment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        mHelper = new ActivityHelper(this);
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#767676")));
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
         actionBar.setIcon(android.R.color.transparent);
 
         
@@ -295,57 +297,50 @@ public class CommentsIdsActivity extends SherlockListActivity implements Comment
     }
         
     private void showInputDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.add_comment);
-
         // Set up the input
         final EditText input = new EditText(this);
         // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
-        builder.setView(input);
 
-        // Set up the buttons
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() { 
+        mHelper.confirm(R.string.add_comment, input, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String comment = input.getText().toString();
-                
+
                 // Add the comment
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, CommentsIdsActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
                 serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
                 startService(serviceIntent);
-                
+
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                
+
                 // Refresh the comment/id list
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                registerReceiver(mObservationReceiver, filter);  
+                registerReceiver(mObservationReceiver, filter);
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, CommentsIdsActivity.this, INaturalistService.class);
                 serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservationId);
                 startService(serviceIntent2);
-                
+
                 // Ask for a sync (to update the comment count)
                 Intent serviceIntent3 = new Intent(INaturalistService.ACTION_SYNC, null, CommentsIdsActivity.this, INaturalistService.class);
                 startService(serviceIntent3);
-                
+
                 mNewComments++;
             }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        },
+        new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
-
-        builder.show();        
     }
     
     @Override

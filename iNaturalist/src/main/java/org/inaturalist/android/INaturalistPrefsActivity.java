@@ -34,12 +34,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
+import android.text.InputType;
 import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -120,26 +122,29 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 
     
     private void askForGoogleEmail() {
-      final EditText input = new EditText(INaturalistPrefsActivity.this);
-      new AlertDialog.Builder(INaturalistPrefsActivity.this)
-          .setTitle(R.string.google_login)
-          .setMessage(R.string.email_address)
-          .setView(input)
-          .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int whichButton) {
-                  String username = input.getText().toString(); 
-                  
-                  if (username.trim().length() == 0) {
-                      return;
-                  }
-                  
-                  signIn(LoginType.GOOGLE, username.trim().toLowerCase(), null);
-              }
-          }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int whichButton) {
-                  // Do nothing.
-              }
-          }).show(); 
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+
+        mHelper.confirm(R.string.email_address, input, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String username = input.getText().toString();
+
+                        if (username.trim().length() == 0) {
+                            return;
+                        }
+
+                        signIn(LoginType.GOOGLE, username.trim().toLowerCase(), null);
+                    }
+                },
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
     }
 	
     
@@ -286,14 +291,21 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-                mHelper.confirm(getString(R.string.signed_out), 
-                        getString(R.string.alert_sign_out),
-                        new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    	signOut();
-                    }
-                });
+                mHelper.confirm(getString(R.string.signed_out),
+						getString(R.string.alert_sign_out),
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								signOut();
+							}
+						},
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								dialogInterface.cancel();;
+							}
+						}
+				);
 			}
 		});
         
@@ -302,18 +314,24 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
             public void onClick(View v) {
             	final String inatNetwork = mApp.getInaturalistNetworkMember();
 
-                mHelper.confirm(getString(R.string.ready_to_signup), 
-                		mApp.getStringResourceByName("inat_sign_up_" + inatNetwork),
-                        new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    	String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+                mHelper.confirm(getString(R.string.ready_to_signup),
+						mApp.getStringResourceByName("inat_sign_up_" + inatNetwork),
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse("http://" + inatHost + "/users/new"));
-                        startActivity(i);
-                    }
-                });
+								Intent i = new Intent(Intent.ACTION_VIEW);
+								i.setData(Uri.parse("http://" + inatHost + "/users/new"));
+								startActivity(i);
+							}
+						},
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								dialogInterface.cancel();
+							}
+						});
             }
         });
         
@@ -369,23 +387,17 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	        }
 	    };
 
-	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setMessage(mApp.getStringResourceByName("alert_message_use_" + networks[selectedRadioButtonId]))
-	    	.setPositiveButton(getString(R.string.ok), dialogClickListener)
-	        .setNegativeButton(getString(R.string.cancel), dialogClickListener)
-            .setCancelable(false);
-	    
-		LayoutInflater inflater = getLayoutInflater();
-		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);	
+        LayoutInflater inflater = getLayoutInflater();
+		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
-	
+
 	    String logoName = mApp.getStringResourceByName("inat_logo_" + networks[selectedRadioButtonId]);
 	    String packageName = getPackageName();
 	    int resId = getResources().getIdentifier(logoName, "drawable", packageName);
 	    titleBarLogo.setImageResource(resId);
 
-	    builder.setCustomTitle(titleBarView);
-	    builder.show();
+        mHelper.confirm(titleBarView, mApp.getStringResourceByName("alert_message_use_" + networks[selectedRadioButtonId]),
+                dialogClickListener, dialogClickListener);
 	}
 	
 	@Override

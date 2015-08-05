@@ -42,8 +42,9 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
 	private boolean mZoomToLocation = false;
 	private LocationManager mLocationManager;
 	private double mAccuracy;
-	
-	@Override
+    private ActivityHelper mHelper;
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -62,6 +63,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mHelper = new ActivityHelper(this);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         
         //mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
@@ -214,26 +216,19 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     }
     
     private void onCancel() {
-    	AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-    	dialog.setTitle(R.string.edit_location);
-    	dialog.setMessage(R.string.discard_location_changes);
-    	dialog.setCancelable (false);
-    	dialog.setPositiveButton(R.string.yes,
-    			new DialogInterface.OnClickListener () {
-    		public void onClick (DialogInterface dialog, int buttonId) {
-    			setResult(RESULT_CANCELED);
-    			finish();
-    		}
-    	});
-    	dialog.setNegativeButton(R.string.no,
-    			new DialogInterface.OnClickListener () {
-    		public void onClick (DialogInterface dialog, int buttonId) {
-    		}
-    	});
-    	dialog.setIcon (android.R.drawable.ic_dialog_alert);
-    	dialog.show();
-
-
+        mHelper.confirm(getString(R.string.edit_location), getString(R.string.discard_location_changes),
+                new DialogInterface.OnClickListener () {
+                    public void onClick (DialogInterface dialog, int buttonId) {
+                        setResult(RESULT_CANCELED);
+                        finish();
+                    }
+                },
+                new DialogInterface.OnClickListener () {
+                    public void onClick (DialogInterface dialog, int buttonId) {
+                        dialog.cancel();
+                    }
+                },
+                R.string.yes, R.string.no);
     }
     
     

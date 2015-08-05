@@ -173,16 +173,22 @@ public class WebActivity extends BaseFragmentActivity {
             mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
             mWebView.loadUrl(mHomeUrl, getAuthHeaders());
         } else {
-            helper.confirm(getString(R.string.need_to_login), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Intent intent = new Intent(
-                            app.currentUserLogin() == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
+            helper.confirm(getString(R.string.error), getString(R.string.need_to_login), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(
+                                    app.currentUserLogin() == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION,
                                     null, getBaseContext(), INaturalistPrefsActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-            });
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    },
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
         }
     }
 }

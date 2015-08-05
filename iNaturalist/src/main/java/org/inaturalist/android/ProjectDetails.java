@@ -9,17 +9,22 @@ import com.flurry.android.FlurryAgent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.TextView;
 
-public class ProjectDetails extends SherlockFragmentActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProjectDetails extends SherlockFragmentActivity implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
     
     private Button mJoinLeaveProject;
     private TextView mProjectTitle;
@@ -27,10 +32,12 @@ public class ProjectDetails extends SherlockFragmentActivity {
     private INaturalistApp mApp;
     private BetterJSONObject mProject;
 
-    private TabsAdapter mTabsAdapter;
+    MyPageAdapter mPageAdapter;
     private ViewPager mViewPager;
+    private TabHost mTabHost;
+    private ActivityHelper mHelper;
 
-	@Override
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -60,9 +67,10 @@ public class ProjectDetails extends SherlockFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mHelper = new ActivityHelper(this);
         
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
@@ -78,10 +86,12 @@ public class ProjectDetails extends SherlockFragmentActivity {
         setContentView(R.layout.project_details);
         
         // Add the tabs
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mTabsAdapter = new TabsAdapter(this, actionBar, mViewPager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        
+        // Tab Initialization
+        initialiseTabHost();
+
+
         if (mApp == null) {
             mApp = (INaturalistApp)getApplicationContext();
         }
@@ -91,13 +101,13 @@ public class ProjectDetails extends SherlockFragmentActivity {
         } else {
             mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
         }
-        
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(ProjectDetailsAbout.KEY_PROJECT, mProject);
-        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.about),
-                ProjectDetailsAbout.class, bundle);
-        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.check_list),
-                ProjectDetailsCheckList.class, bundle); 
+
+        // Fragments and ViewPager Initialization
+        List<Fragment> fragments = getFragments();
+        mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+        mViewPager.setAdapter(mPageAdapter);
+        mViewPager.setOnPageChangeListener(this);
+
 
         mJoinLeaveProject = (Button) customView.findViewById(R.id.join_leave_project);
         mProjectTitle = (TextView) customView.findViewById(R.id.project_title);
@@ -123,27 +133,24 @@ public class ProjectDetails extends SherlockFragmentActivity {
             public void onClick(View v) {
                 Boolean isJoined = mProject.getBoolean("joined");
                 if ((isJoined != null) && (isJoined == true)) {
-                	AlertDialog.Builder dialog = new AlertDialog.Builder(ProjectDetails.this);
-                	dialog.setTitle(R.string.leave_project);
-                	dialog.setMessage(R.string.leave_project_confirmation);
-                	dialog.setCancelable (false);
-                	dialog.setNegativeButton(R.string.no, null);
-                	dialog.setPositiveButton(R.string.yes,
-                			new DialogInterface.OnClickListener () {
-                		public void onClick (DialogInterface dialog, int buttonId) {
-                			// Leave the project
-                			mJoinLeaveProject.setText(R.string.join);
-                			mJoinLeaveProject.setBackgroundResource(R.drawable.actionbar_join_btn);
-                			mProject.put("joined", false);
+                    mHelper.confirm(getString(R.string.leave_project), getString(R.string.leave_project_confirmation),
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int buttonId) {
+                                    // Leave the project
+                                    mJoinLeaveProject.setText(R.string.join);
+                                    mJoinLeaveProject.setBackgroundResource(R.drawable.actionbar_join_btn);
+                                    mProject.put("joined", false);
 
-                			Intent serviceIntent = new Intent(INaturalistService.ACTION_LEAVE_PROJECT, null, ProjectDetails.this, INaturalistService.class);
-                			serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-                			startService(serviceIntent);
-                		}
-                	});
-                	dialog.setIcon (android.R.drawable.ic_dialog_alert);
-                	dialog.show();
-
+                                    Intent serviceIntent = new Intent(INaturalistService.ACTION_LEAVE_PROJECT, null, ProjectDetails.this, INaturalistService.class);
+                                    serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
+                                    startService(serviceIntent);
+                                }
+                            }, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            }, R.string.yes, R.string.no);
 
                 } else {
                     mJoinLeaveProject.setText(R.string.leave);
@@ -199,5 +206,71 @@ public class ProjectDetails extends SherlockFragmentActivity {
     	setResult(RESULT_OK, intent);      
         super.onBackPressed();
     }
- 
+
+
+
+
+     // Method to add a TabHost
+    private static void AddTab(ProjectDetails activity, TabHost tabHost, TabHost.TabSpec tabSpec) {
+        tabSpec.setContent(new MyTabFactory(activity));
+        tabHost.addTab(tabSpec);
+    }
+
+    // Manages the Tab changes, synchronizing it with Pages
+    public void onTabChanged(String tag) {
+        int pos = this.mTabHost.getCurrentTab();
+        this.mViewPager.setCurrentItem(pos);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int arg0) {
+    }
+
+    // Manages the Page changes, synchronizing it with Tabs
+    @Override
+    public void onPageScrolled(int arg0, float arg1, int arg2) {
+        int pos = this.mViewPager.getCurrentItem();
+        this.mTabHost.setCurrentTab(pos);
+    }
+
+    @Override
+    public void onPageSelected(int arg0) {
+    }
+
+    private List<Fragment> getFragments(){
+        List<Fragment> fList = new ArrayList<Fragment>();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ProjectDetailsAbout.KEY_PROJECT, mProject);
+
+        ProjectDetailsAbout f1 = new ProjectDetailsAbout();
+        f1.setArguments(bundle);
+        ProjectDetailsCheckList f2 = new ProjectDetailsCheckList();
+        f2.setArguments(bundle);
+        fList.add(f1);
+        fList.add(f2);
+
+        return fList;
+    }
+
+    // Tabs Creation
+    private void initialiseTabHost() {
+        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+        mTabHost.setup();
+
+        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("about").setIndicator(getString(R.string.about)));
+        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("check_list").setIndicator(getString(R.string.check_list)));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            ((TextView) mTabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title)).setAllCaps(false);
+            ((TextView) mTabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title)).setAllCaps(false);
+        }
+
+        mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+        mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+
+
+        mTabHost.setOnTabChangedListener(this);
+    }
+
 }

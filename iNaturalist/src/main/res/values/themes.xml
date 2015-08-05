@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme" parent="Theme.Sherlock">
-        <item name="switchStyle">@style/Widget.Holo.CompoundButton.Switch</item>
+    <style name="Theme" parent="Theme.Sherlock.Light">
+        <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
     </style>
+
+
+  <style name="iNatAppTheme" parent="@style/_iNatAppTheme"/>
+
+    <style name="_iNatAppTheme" parent="Theme.Sherlock.Light">
+
+        <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
+
+        <item name="android:editTextStyle">@style/EditTextiNatAppTheme</item>
+
+        <item name="android:textColorHighlight">#99669900</item>
+
+        <item name="android:checkboxStyle">@style/CheckBoxiNatAppTheme</item>
+
+        <item name="android:radioButtonStyle">@style/RadioButtoniNatAppTheme</item>
+
+        <item name="android:buttonStyle">@style/ButtoniNatAppTheme</item>
+
+        <item name="android:imageButtonStyle">@style/ImageButtoniNatAppTheme</item>
+
+        <item name="android:spinnerStyle">@style/SpinneriNatAppTheme</item>
+
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemiNatAppTheme</item>
+
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBariNatAppTheme</item>
+
+        <item name="android:buttonStyleToggle">@style/ToggleiNatAppTheme</item>
+
+        <item name="android:listViewStyle">@style/ListViewiNatAppTheme</item>
+
+        <item name="android:listViewWhiteStyle">@style/ListViewiNatAppTheme.White</item>
+
+        <item name="android:spinnerItemStyle">@style/SpinnerItemiNatAppTheme</item>
+    </style>
+
 </resources>

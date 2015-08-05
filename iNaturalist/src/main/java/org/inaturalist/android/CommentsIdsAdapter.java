@@ -7,15 +7,17 @@ import java.util.List;
 
 import org.json.JSONException;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -32,7 +34,8 @@ import android.widget.TextView;
 
 public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implements OnClickListener {
 
-	private List<BetterJSONObject> mItems;
+    private final Handler mMainHandler;
+    private List<BetterJSONObject> mItems;
 	private Context mContext;
 	private ArrayList<Boolean> mAgreeing;
 	private String mLogin;
@@ -43,6 +46,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		public void onIdentificationAdded(BetterJSONObject taxon);
 		public void onIdentificationRemoved(BetterJSONObject taxon);
 	};
+
+
 
 	public boolean isEnabled(int position) { 
 		return false; 
@@ -60,6 +65,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 		SharedPreferences prefs = mContext.getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
 		mLogin = prefs.getString("username", null);
+
+        mMainHandler = new Handler(context.getMainLooper());
 	}
 
 	public void addItemAtBeginning(BetterJSONObject newItem) {
@@ -82,11 +89,22 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			Timestamp postDate = item.getTimestamp("updated_at");
 			SimpleDateFormat format = new SimpleDateFormat("LLL d, yyyy");
 			postedOn.setText(String.format(res.getString(R.string.posted_by),
-					(mLogin != null) && username.equalsIgnoreCase(mLogin) ? res.getString(R.string.you) : username,
-							format.format(postDate)));
+                    (mLogin != null) && username.equalsIgnoreCase(mLogin) ? res.getString(R.string.you) : username,
+                    format.format(postDate)));
 
-			ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
-			UrlImageViewHelper.setUrlDrawable(userPic, item.getJSONObject("user").getString("user_icon_url"), R.drawable.usericon);
+			final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
+			UrlImageViewHelper.setUrlDrawable(userPic, item.getJSONObject("user").getString("user_icon_url"), R.drawable.usericon, new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    // Nothing to do here
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    // Return a circular version of the profile picture
+                    return ImageUtils.getCircleBitmap(loadedBitmap);
+                }
+            });
 
 			if (item.getString("type").equals("comment")) {
 				// Comment
@@ -116,7 +134,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					comment.setVisibility(View.GONE);
 				}
 				ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
-				UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"));
+				UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"), R.drawable.iconic_taxon_unknown);
 				TextView idName = (TextView) view.findViewById(R.id.id_name);
 				if (!item.getJSONObject("taxon").isNull("common_name")) {
 					idName.setText(item.getJSONObject("taxon").getJSONObject("common_name").getString("name"));

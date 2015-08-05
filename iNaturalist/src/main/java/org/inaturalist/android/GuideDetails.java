@@ -113,6 +113,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
     private TextView mLicense;
     private int mDownloadProgress;
     private TextView mDownloadingSubtitle;
+    private ActivityHelper mHelper;
 
     @Override
 	protected void onStart()
@@ -228,6 +229,12 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                                             mGuideTaxaGrid.getColumnWidth()
                                     ));
                                 }
+
+                                @Override
+                                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                                    // No post-processing of bitmap
+                                    return loadedBitmap;
+                                }
                             });
                 }
             }
@@ -248,11 +255,18 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             mGuideXmlFilename = intent.getStringExtra(INaturalistService.GUIDE_XML_RESULT);
 
             if (mGuideXmlFilename == null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(GuideDetails.this);
-                builder.setTitle(R.string.error)
-                        .setMessage(R.string.could_not_retrieve_guide)
-                        .setNegativeButton(getString(R.string.ok), null)
-                        .show();
+                mHelper.confirm(R.string.error, R.string.could_not_retrieve_guide, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        },
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
                 mProgress.setVisibility(View.GONE);
                 return;
             }
@@ -350,7 +364,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             mDownloadTitle.setText(R.string.downloaded);
             SimpleDateFormat  formatter = new SimpleDateFormat();
             mDownloadSubtitle.setText(formatter.format(mGuideXml.getDownloadedGuideDate()));
-            mDownloadGuideImage.setImageResource(R.drawable.guide_downloaded);
+            mDownloadGuideImage.setImageResource(R.drawable.ic_fa_check);
 
             mDownloadGuide.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -363,28 +377,28 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             // Download not available
             mDownloadTitle.setText(R.string.download_not_available);
             mDownloadSubtitle.setText(R.string.guide_editor_must_enable_this_feature);
-            mDownloadGuideImage.setImageResource(R.drawable.download_guide);
+            mDownloadGuideImage.setImageResource(R.drawable.ic_action_download);
         } else {
             // Download is available
             mDownloadTitle.setText(R.string.download_for_offline_use);
             mDownloadSubtitle.setText(mGuideXml.getNgzFileSize());
-            mDownloadGuideImage.setImageResource(R.drawable.download_guide);
+            mDownloadGuideImage.setImageResource(R.drawable.ic_action_download);
 
             mDownloadGuide.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(GuideDetails.this);
-                    builder.setTitle(R.string.are_you_sure)
-                            .setMessage(String.format(getString(R.string.download_guide_alert), mGuideXml.getNgzFileSize()))
-                            .setNegativeButton(getString(R.string.cancel), null)
-                            .setPositiveButton(getString(R.string.download), new DialogInterface.OnClickListener() {
+                    mHelper.confirm(R.string.are_you_sure, String.format(getString(R.string.download_guide_alert), mGuideXml.getNgzFileSize()), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     downloadGuide();
                                 }
-                            })
-                            .show();
-
+                            },
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
                 }
             });
         }
@@ -440,11 +454,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(GuideDetails.this);
-                builder.setTitle(R.string.failed_to_download_guide)
-                        .setMessage(R.string.internet_connection_seems_to_be_offline)
-                        .setPositiveButton(getString(R.string.ok), null)
-                        .show();
+                mHelper.alert(R.string.failed_to_download_guide, R.string.internet_connection_seems_to_be_offline);
                 mGuideXml.deleteOfflineGuide();
                 refreshGuideSideMenu();
             }
@@ -704,6 +714,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         setContentView(R.layout.guide_details);
 
         mHandler = new Handler();
+        mHelper = new ActivityHelper(this);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mGuideMenu = (ListView) findViewById(R.id.guide_menu);
