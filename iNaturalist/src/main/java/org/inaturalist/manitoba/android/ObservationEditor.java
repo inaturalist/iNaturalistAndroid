@@ -1374,7 +1374,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         uiToObservation();
-        
+
+        if (!mProjectIds.contains(Integer.valueOf(INaturalistService.DEFAULT_PROJECT_ID))) {
+            // Add the All Manitoba Nature project by default, if not already selected by user.
+            mProjectIds.add(INaturalistService.DEFAULT_PROJECT_ID);
+        }
+
         boolean updatedProjects = saveProjects();
         saveProjectFields();
         

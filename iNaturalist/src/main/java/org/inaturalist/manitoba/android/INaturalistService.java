@@ -779,7 +779,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             observation = new Observation(c);
             handleObservationResponse(
                     observation,
-                    post("http://" + inatHost + "/observations.json?extra=observation_photos&project_id=" + DEFAULT_PROJECT_ID, paramsForObservation(observation, true))
+                    post("http://" + inatHost + "/observations.json?extra=observation_photos", paramsForObservation(observation, true))
             );
             c.moveToNext();
         }

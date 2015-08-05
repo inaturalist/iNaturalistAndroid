@@ -100,8 +100,8 @@
     <orderEntry type="library" exported="" name="bolts-android-1.1.4" level="project" />
     <orderEntry type="library" exported="" name="play-services-5.0.89" level="project" />
     <orderEntry type="library" exported="" name="actionbarsherlock-4.4.0" level="project" />
-    <orderEntry type="library" exported="" name="commons-lang3-3.1" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.7" level="project" />
+    <orderEntry type="library" exported="" name="commons-lang3-3.1" level="project" />
     <orderEntry type="module" module-name="library" exported="" />
     <orderEntry type="module" module-name="urlImageViewHelper" exported="" />
     <orderEntry type="module" module-name="androidswitchbackport" exported="" />
