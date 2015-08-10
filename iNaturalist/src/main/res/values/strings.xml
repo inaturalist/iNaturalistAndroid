@@ -375,5 +375,7 @@
     <string name="error">Error</string>
     <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
     <string name="select_source">Select Source</string>
+    <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s)</string>
+    <string name="send_email">Send email...</string>
  </resources>
 

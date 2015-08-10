@@ -23,6 +23,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -199,7 +201,26 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	    
 	    mContactSupport = (TextView) findViewById(R.id.contact_support);
 	    mContactSupport.setText(Html.fromHtml(mContactSupport.getText().toString()));
-	    mContactSupport.setMovementMethod(LinkMovementMethod.getInstance()); 
+		mContactSupport.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Get app version
+                try {
+                    PackageManager manager = INaturalistPrefsActivity.this.getPackageManager();
+                    PackageInfo info = manager.getPackageInfo(INaturalistPrefsActivity.this.getPackageName(), 0);
+
+                    // Open the email client
+                    Intent mailer = new Intent(Intent.ACTION_SEND);
+                    mailer.setType("message/rfc822");
+                    mailer.putExtra(Intent.EXTRA_EMAIL, new String[]{ getString(R.string.inat_support_email_address) });
+                    mailer.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode));
+                    startActivity(Intent.createChooser(mailer, getString(R.string.send_email)));
+                } catch (NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+	    //mContactSupport.setMovementMethod(LinkMovementMethod.getInstance());
 	    
 	    mVersion = (TextView) findViewById(R.id.version);
 	    try {
