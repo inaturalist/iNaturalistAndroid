@@ -250,7 +250,7 @@
                         android:id="@+id/locationStopRefreshButton"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:src="@drawable/ic_action_remove"
                         android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
