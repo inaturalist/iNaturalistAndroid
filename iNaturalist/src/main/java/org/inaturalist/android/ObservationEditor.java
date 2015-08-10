@@ -1269,6 +1269,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.observed_on_string = null; 
         } else {
             mObservation.observed_on_string = mObservedOnStringTextView.getText().toString();
+            mObservation.observed_on = mDateSetByUser;
+            mObservation.time_observed_at = mObservation.observed_on;
         }
         if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
             mObservation.latitude = null;
@@ -1316,6 +1318,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
         if (mObservation.observed_on_string != null) {
             mObservedOnStringTextView.setText(mObservation.observed_on_string);
+            mDateSetByUser = mObservation.observed_on;
         }
         if (mObservation.time_observed_at == null) {
             mTimeObservedAtButton.setText(getString(R.string.set_time));
@@ -1470,8 +1473,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mObservedOnStringTextView.setText(app.formatDate(date));
                 mObservedOnButton.setText(app.shortFormatDate(date));
             }
+
+            mDateSetByUser = date;
         }
     };
+
+    private Timestamp mDateSetByUser;
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hour, int minute) {
@@ -1500,6 +1507,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
             mObservedOnStringTextView.setText(app.formatDatetime(datetime));
             mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
+            mDateSetByUser = datetime;
         }
     };
     private ArrayList<Integer> mProjectIds;
