@@ -5,11 +5,13 @@ import java.util.Locale;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.Session.StatusCallback;
-import com.facebook.UiLifecycleHelper;
-import com.facebook.widget.LoginButton;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.flurry.android.FlurryAgent;
 
 import android.accounts.Account;
@@ -54,7 +56,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class INaturalistPrefsActivity extends BaseFragmentActivity {
+public class INaturalistPrefsActivity extends BaseFragmentActivity implements SignInTask.SignInTaskStatus {
 	private static final String TAG = "INaturalistPrefsActivity";
 	public static final String REAUTHENTICATE_ACTION = "reauthenticate_action";
 	
@@ -73,7 +75,6 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	private Button mSignUpButton;
 	private SharedPreferences mPreferences;
 	private SharedPreferences.Editor mPrefEditor;
-	private ProgressDialog mProgressDialog;
 	private ActivityHelper mHelper;
     private LoginButton mFacebookLoginButton;
     private Button mGoogleLogin;
@@ -82,15 +83,16 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	private RadioGroup rbPreferredLocaleSelector;
 	private INaturalistApp mApp;
 	
-    private UiLifecycleHelper mUiHelper;
-    
     private String mGoogleUsername;
-    
+
     private int formerSelectedNetworkRadioButton;
     private int formerSelectedRadioButton;
-    
-    
-	@Override
+    private AccessTokenTracker mAccessTokenTracker;
+    private AccessTokenTracker mFacebookAccessTokenTracker;
+    private CallbackManager mFacebookCallbackManager;
+
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -105,23 +107,9 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 		FlurryAgent.onEndSession(this);
 	}	
 
-    private Session.StatusCallback mCallback = new Session.StatusCallback() {
-        @Override
-        public void call(Session session, SessionState state, Exception exception) {
-            onSessionStateChange(session, state, exception);
-        }
-    };
     private TextView mHelp;
 	private TextView mContactSupport;
 	private TextView mVersion;
-    
-    private void onSessionStateChange(Session session, SessionState state, Exception exception) {
-//        Log.d(TAG, "onSessionStateChange: " + session.toString() + ":" + state.toString());
-        if ((state == SessionState.CLOSED) || (state == SessionState.CLOSED_LOGIN_FAILED)) {
-            signOut();
-        }
-    }
-
     
     private void askForGoogleEmail() {
         final EditText input = new EditText(this);
@@ -157,6 +145,16 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 		if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
         }
+
+        mAccessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if (currentAccessToken == null) {
+                    // Signed out by Facebook
+                    signOut();
+                }
+            }
+        };
 		
 		
 //		try {
@@ -175,9 +173,6 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 //		    Log.d("NoSuchAlgorithmException: ", e.toString());
 //		}	
 		
-        mUiHelper = new UiLifecycleHelper(this, mCallback);
-        mUiHelper.onCreate(savedInstanceState);
-        
 	    setContentView(R.layout.preferences);
 	    
 	    onDrawerCreate(savedInstanceState);
@@ -204,19 +199,22 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 		mContactSupport.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Get app version
-                try {
-                    PackageManager manager = INaturalistPrefsActivity.this.getPackageManager();
-                    PackageInfo info = manager.getPackageInfo(INaturalistPrefsActivity.this.getPackageName(), 0);
+                //startActivity(new Intent(INaturalistPrefsActivity.this, OnboardingActivity.class));
+                if (true) {
+                    // Get app version
+                    try {
+                        PackageManager manager = INaturalistPrefsActivity.this.getPackageManager();
+                        PackageInfo info = manager.getPackageInfo(INaturalistPrefsActivity.this.getPackageName(), 0);
 
-                    // Open the email client
-                    Intent mailer = new Intent(Intent.ACTION_SEND);
-                    mailer.setType("message/rfc822");
-                    mailer.putExtra(Intent.EXTRA_EMAIL, new String[]{ getString(R.string.inat_support_email_address) });
-                    mailer.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode));
-                    startActivity(Intent.createChooser(mailer, getString(R.string.send_email)));
-                } catch (NameNotFoundException e) {
-                    e.printStackTrace();
+                        // Open the email client
+                        Intent mailer = new Intent(Intent.ACTION_SEND);
+                        mailer.setType("message/rfc822");
+                        mailer.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
+                        mailer.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode));
+                        startActivity(Intent.createChooser(mailer, getString(R.string.send_email)));
+                    } catch (NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -266,7 +264,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
             @Override
             public void onClick(View v) {
                 if (!isNetworkAvailable()) {
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -274,26 +272,43 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
             }
         });
         
-        ArrayList<String> permissions = new ArrayList<String>();
-        permissions.add("email");
-        mFacebookLoginButton.setReadPermissions(permissions);
-        
-        mFacebookLoginButton.setSessionStatusCallback(new StatusCallback() {
+        mFacebookAccessTokenTracker = new AccessTokenTracker() {
             @Override
-            public void call(Session session, SessionState state, Exception exception) {
-                Log.d(TAG, "onSessionStateChange: " + state.toString());
-                if ((state == SessionState.CLOSED_LOGIN_FAILED) && (!isNetworkAvailable())) {
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
-                    return;
-                } else if ((state == SessionState.OPENED) || (state == SessionState.OPENED_TOKEN_UPDATED)) {
+            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
+                Log.e("AAA", "NEW ACCESS TOKEN: " + newToken);
+                if (newToken != null) {
                     String username = mPreferences.getString("username", null);
                     if (username == null) {
                         // First time login
-                        String accessToken = session.getAccessToken();
-//                        Log.d(TAG, "FB Login: " + accessToken);
-                        new SignInTask(INaturalistPrefsActivity.this).execute(null, accessToken, LoginType.FACEBOOK.toString());
+                        String accessToken = newToken.getToken();
+                        new SignInTask(INaturalistPrefsActivity.this, INaturalistPrefsActivity.this).execute(null, accessToken, LoginType.FACEBOOK.toString());
                     }
                 }
+            }
+        };
+
+        mFacebookCallbackManager = CallbackManager.Factory.create();
+
+        ArrayList<String> permissions = new ArrayList<String>();
+        permissions.add("email");
+        mFacebookLoginButton.setReadPermissions(permissions);
+
+        mFacebookLoginButton.registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+            }
+
+            @Override
+            public void onCancel() {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
             }
         });
         
@@ -426,21 +441,22 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	    super.onResume();
 	    
 	    mHelper = new ActivityHelper(this);
-        mUiHelper.onResume();
 	}
-	
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mUiHelper.onSaveInstanceState(outState);
     }
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (mFacebookCallbackManager != null) {
+            mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+
 //        Log.d(TAG, "onActivityResult " + requestCode + ":" + resultCode + ":" + data);
-        mUiHelper.onActivityResult(requestCode, resultCode, data);
-        
+
         if ((requestCode == REQUEST_CODE_ADD_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
             // User finished adding his account
             signIn(LoginType.GOOGLE, mGoogleUsername, null);
@@ -449,18 +465,6 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
             // User finished entering his password
             signIn(LoginType.GOOGLE, mGoogleUsername, null);
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mUiHelper.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mUiHelper.onDestroy();
     }
 
 
@@ -495,103 +499,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	    }
 	}
 	
-	private class SignInTask extends AsyncTask<String, Void, String> {
-		private String mUsername;
-		private String mPassword;
-		private LoginType mLoginType;
-		private Activity mActivity;
-		private boolean mInvalidated;
-		
-		public SignInTask(Activity activity) {
-			mActivity = activity;
-		}
-		
-		protected String doInBackground(String... pieces) {
-			mUsername = pieces[0];
-			mPassword = pieces[1];
-			mLoginType = LoginType.valueOf(pieces[2]);
-			if (pieces.length > 3) {
-			    mInvalidated = (pieces[3] == "invalidated");
-			} else {
-			    mInvalidated = false;
-			}
-			
-//			Log.d(TAG, String.format("Verifying credentials for %s login with %s:%s",
-//			        mLoginType.toString(), (mUsername != null ? mUsername : "<null>"), mPassword));
-			
-			// TODO - Support for OAuth2 login with Google/Facebook
-			if (mLoginType == LoginType.PASSWORD) {
-			    String result = INaturalistService.verifyCredentials(mUsername, mPassword);
-			    if (result != null) {
-			    	mUsername = result;
-			        return "true";
-			    } else {
-			        return null;
-			    }
-			} else {
-			    String[] results = INaturalistService.verifyCredentials(mPassword, mLoginType);
-			    
-			    if (results == null) {
-			        return null;
-			    }
-			    
-			    // Upgrade from FB/Google email to iNat username
-			    mUsername = results[1];
-			    
-			    return results[0];
-			}
-	    }
-		
-		protected void onPreExecute() {
-			mProgressDialog = ProgressDialog.show(mActivity, "", getString(R.string.signing_in), true);
-		}
 
-	    protected void onPostExecute(String result) {
-	        try {
-	            mProgressDialog.dismiss();
-	        } catch (Exception exc) {
-	            // Ignore
-	        }
-			if (result != null) {
-				Toast.makeText(mActivity, getString(R.string.signed_in), Toast.LENGTH_SHORT).show();
-			} else {
-				if (mLoginType == LoginType.FACEBOOK) {
-				    // Login failed - need to sign-out of Facebook as well
-				    Session session = Session.getActiveSession();
-				    session.closeAndClearTokenInformation();
-				} else if (mLoginType == LoginType.GOOGLE && !mInvalidated) {
-				    AccountManager.get(mActivity).invalidateAuthToken("com.google", mPassword);
-				    INaturalistPrefsActivity a = (INaturalistPrefsActivity) mActivity;
-				    a.signIn(LoginType.GOOGLE, mUsername, null, true);
-				    return;
-				}
-                mHelper.alert(getString(R.string.signed_in_failed));
-				return;
-			}
-			
-			mPrefEditor.putString("username", mUsername);
-			
-			String credentials;
-			if (mLoginType == LoginType.PASSWORD) {
-    			credentials = Base64.encodeToString(
-    					(mUsername + ":" + mPassword).getBytes(), Base64.URL_SAFE|Base64.NO_WRAP
-    			);
-			} else {
-			    credentials = result; // Access token
-			}
-			mPrefEditor.putString("credentials", credentials);
-			mPrefEditor.putString("password", mPassword);
-			mPrefEditor.putString("login_type", mLoginType.toString());
-			mPrefEditor.commit();
-			toggle();
-			
-			// Run the first observation sync
-			Intent serviceIntent = new Intent(INaturalistService.ACTION_FIRST_SYNC, null, INaturalistPrefsActivity.this, INaturalistService.class);
-			startService(serviceIntent);
-	    }
-
-	}
-	
 	public void signIn(LoginType loginType, String username, String password) {
 	    signIn(loginType, username, password, false);
 	}
@@ -644,7 +552,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 	                    final Intent authIntent = result.getParcelable(AccountManager.KEY_INTENT);
 	                    if (accountName != null && authToken != null) {
 //	                        Log.d(TAG, String.format("Token: %s", authToken));
-	                        new SignInTask(INaturalistPrefsActivity.this).execute(boundUsername, authToken, LoginType.GOOGLE.toString(), boundInvalidated);
+	                        new SignInTask(INaturalistPrefsActivity.this, INaturalistPrefsActivity.this).execute(boundUsername, authToken, LoginType.GOOGLE.toString(), boundInvalidated);
 
 	                    } else if (authIntent != null) {
 	                        int flags = authIntent.getFlags();
@@ -671,7 +579,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 
 	    } else {
 	        // "Regular" login
-	        new SignInTask(this).execute(username, password, LoginType.PASSWORD.toString());
+	        new SignInTask(this, this).execute(username, password, LoginType.PASSWORD.toString());
 	    }
 	}
 	
@@ -776,6 +684,11 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity {
 			}
 		}
 
-	}	
+	}
 
+	@Override
+	public void onLoginSuccessful() {
+		// Refresh the login controls
+		toggle();
+	}
 }

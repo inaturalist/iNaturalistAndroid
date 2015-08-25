@@ -377,5 +377,21 @@
     <string name="select_source">Select Source</string>
     <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s)</string>
     <string name="send_email">Send email...</string>
+    <string name="login_with">Log In with</string>
+    <string name="facebook">Facebook</string>
+    <string name="gplus">Google+</string>
+    <string name="email">Email</string>
+    <string name="sign_up_with">Sign Up with</string>
+    <string name="skip">Skip &gt;</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="min_6_chars">Min. 6 characters</string>
+    <string name="use_my_license"><![CDATA[Yes, license my content so scientists can use my data. <b>Learn More</b>]]></string>
+    <string name="content_licensing">Content Licensing</string>
+    <string name="content_licensing_description">Check this box if you want to apply a Create Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="username_or_email">Username or Email</string>
+    <string name="forgot">Forgot?</string>
+    <string name="or_login_with">Or Log In With:</string>
  </resources>
 

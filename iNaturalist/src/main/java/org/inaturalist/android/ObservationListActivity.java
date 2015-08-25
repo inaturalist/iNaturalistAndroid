@@ -85,8 +85,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 	private static final int COMMENTS_IDS_REQUEST_CODE = 100;
 
 	private static final int OBSERVATION_LIST_LOADER = 0x01;
-	
-	@Override
+    private INaturalistApp mApp;
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -195,7 +196,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         setTitle(R.string.observations);
         
         mHelper = new ActivityHelper(this);
-        
+
+        mApp = (INaturalistApp)getApplication();
+
+
+
         mSyncObservations = (TextView) findViewById(R.id.sync_observations);
         mSyncObservations.setOnClickListener(new OnClickListener() {
             @Override
@@ -222,7 +227,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             mLastMessage = savedInstanceState.getString("mLastMessage");
         }
         
-              
+        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String username = pref.getString("username", null);
+        if (username == null) {
+            if (!mApp.shownOnboarding()) {
+                // Show login/onboarding screen
+                mApp.setShownOnboarding(true);
+                //startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        }
+
         refreshSyncBar();
 
         mTopActionBar = getSupportActionBar();

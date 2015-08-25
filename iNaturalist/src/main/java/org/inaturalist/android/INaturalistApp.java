@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.FacebookSdk;
 
 import io.fabric.sdk.android.Fabric;
 import java.io.BufferedInputStream;
@@ -57,6 +58,15 @@ public class INaturalistApp extends Application {
     private Locale locale = null;
     private Locale deviceLocale = null;
     private OnDownloadFileProgress mDownloadCallback;
+    private boolean mOnboardingShownBefore = false;
+
+    public boolean shownOnboarding() {
+        return mOnboardingShownBefore;
+    }
+
+    public void setShownOnboarding(boolean value) {
+        mOnboardingShownBefore = true;
+    }
 
     public interface INotificationCallback {
     	public void onNotification(String title, String content);
@@ -66,6 +76,7 @@ public class INaturalistApp extends Application {
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();

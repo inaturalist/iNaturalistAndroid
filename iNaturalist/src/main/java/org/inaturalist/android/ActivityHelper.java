@@ -40,6 +40,13 @@ public class ActivityHelper {
     }
 
     public void alert(String title, String msg) {
+        confirm(title, msg, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        }, null);
+        /*
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setMessage(msg)
         .setTitle(title)
@@ -50,6 +57,7 @@ public class ActivityHelper {
         });
         AlertDialog alert = builder.create();
         alert.show();
+        */
     }
 
     public void confirm(int titleRes, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
