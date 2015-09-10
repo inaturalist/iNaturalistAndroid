@@ -799,6 +799,8 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                         // Call setSelection at the end because the ListView scrolling method is sometimes buggy
                         final int finalPosition = position;
                         mGuideMenuList.setOnScrollListener(new AbsListView.OnScrollListener() {
+                            int tryCount = 0;
+
                             @Override
                             public void onScrollStateChanged(final AbsListView view, final int scrollState) {
                                 if (scrollState == SCROLL_STATE_IDLE) {
@@ -806,11 +808,11 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                                         @Override
                                         public void run() {
                                             try {
-                                                Thread.sleep(100);
+                                                Thread.sleep(10);
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }
-                                            if (view.getFirstVisiblePosition() != finalPosition) {
+                                            if ((tryCount < 2) && (view.getFirstVisiblePosition() != finalPosition)) {
                                                 // Fix for scrolling bug
                                                 GuideDetails.this.runOnUiThread(new Runnable() {
                                                     @Override
@@ -818,8 +820,10 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                                                         view.setSelection(finalPosition);
                                                     }
                                                 });
+                                                tryCount++;
                                             } else {
                                                 view.setOnScrollListener(null);
+                                                tryCount = 0;
                                             }
                                         }
                                     }).start();
