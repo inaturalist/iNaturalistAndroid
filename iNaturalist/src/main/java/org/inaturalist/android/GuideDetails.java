@@ -1,28 +1,10 @@
 package org.inaturalist.android;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,14 +15,11 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
@@ -51,14 +30,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -96,7 +76,8 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
     private List<GuideTaxonXML> mTaxa;
     private DrawerLayout mDrawerLayout;
-    private ListView mGuideMenu;
+    private View mGuideMenu;
+    private ListView mGuideMenuList;
     private GuideMenuListAdapter mGuideMenuListAdapter;
 
     private Handler mHandler;
@@ -114,6 +95,11 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
     private int mDownloadProgress;
     private TextView mDownloadingSubtitle;
     private ActivityHelper mHelper;
+    private Button mRecommendedNextStep;
+    private List<GuideTaxonXML> mCurrentTaxaResults;
+    private List<GuideMenuItem> mSideMenuItems;
+    private String mRecommendedPrediate;
+    private ImageButton mReset;
 
     @Override
 	protected void onStart()
@@ -175,7 +161,6 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         }
 
 
-		@SuppressLint("NewApi")
 		@Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view;
@@ -310,29 +295,9 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             }
         }
 
+        mSideMenuItems = sideMenuItems;
         mGuideMenuListAdapter = new GuideMenuListAdapter(GuideDetails.this, mFilter, sideMenuItems);
-        mGuideMenu.setAdapter(mGuideMenuListAdapter);
-        mGuideMenu.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                GuideMenuItem item = (GuideMenuItem) view.getTag();
-                if (item == null) return;
-                if (item.isSectionHeader()) return;
-
-                // A tag was added/removed
-
-                String tagName = ((GuideMenuTag)item).getValue();
-
-                if (mFilter.hasTag(tagName)) {
-                    mFilter.removeTag(tagName);
-                } else {
-                    mFilter.addTag(tagName);
-                }
-
-                updateTaxaByFilter();
-                mGuideMenuListAdapter.notifyDataSetChanged();
-            }
-        });
+        mGuideMenuList.setAdapter(mGuideMenuListAdapter);
 
         refreshGuideSideMenu();
     }
@@ -401,6 +366,12 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                             });
                 }
             });
+        }
+
+        if ((mGuideXml.getAllTags() == null) || (mGuideXml.getAllTags().size() == 0)) {
+            // No tags for this guide - no need to show the reset / next recommended step buttons
+            View topBar = (View) findViewById(R.id.top_side_menu_bar);
+            topBar.setVisibility(View.GONE);
         }
     }
 
@@ -601,7 +572,6 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             return mItems.get(index);
         }
 
-		@SuppressLint("NewApi")
 		@Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -614,6 +584,21 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                 // Header section
                 view = inflater.inflate(R.layout.guide_menu_header, parent, false);
                 title = (TextView) view.findViewById(R.id.title);
+                if ((mRecommendedPrediate != null) && (itemText.equals(mRecommendedPrediate))) {
+                    // Current predicate is the recommended one
+                    view.setBackgroundResource(R.color.inatapptheme_color);
+                } else {
+                    List<String> tags = mFilter.getAllTags();
+                    for (String tag: tags) {
+                        String[] values = tag.split("=", 2);
+
+                        if (values[0].equals(itemText)) {
+                            // Current predicate has checked on tags - highlight it in green
+                            view.setBackgroundColor(Color.parseColor("#FF2D5228"));
+                            break;
+                        }
+                    }
+                }
             } else {
                 // Tag list item
                 GuideMenuTag guideMenuTag = (GuideMenuTag)item;
@@ -625,14 +610,23 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
                 if (mFilter.hasTag(guideMenuTag.getValue())) {
                     // Tag is checked on
-                    view.setBackgroundColor(Color.parseColor("#006600"));
-                    tagCount.setTextColor(Color.parseColor("#FFFFFF"));
+                    view.setBackgroundColor(Color.parseColor("#4C669900"));
+                    CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
+                    checkbox.setChecked(true);
                 }
 
 
                 ImageView photoIcon = (ImageView) view.findViewById(R.id.tag_photo);
                 final String[] values = guideMenuTag.getValue().split("=", 2);
-                final List<GuideTaxonPhotoXML> photos =  mGuideXml.getTagRepresentativePhoto(values[0], values[1]);
+                String predicateName, value;
+                if (values.length == 1) {
+                    predicateName = GuideXML.PREDICATE_TAGS;
+                    value = values[0];
+                } else {
+                    predicateName = values[0];
+                    value = values[1];
+                }
+                final List<GuideTaxonPhotoXML> photos =  mGuideXml.getTagRepresentativePhoto(predicateName, value);
 
                 if (photos == null) {
                     // No representative photo for the tag value
@@ -658,6 +652,28 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
             view.setTag(item);
 
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    GuideMenuItem item = (GuideMenuItem) view.getTag();
+                    if (item == null) return;
+                    if (item.isSectionHeader()) return;
+
+                    // A tag was added/removed
+
+                    String tagName = ((GuideMenuTag) item).getValue();
+
+                    if (mFilter.hasTag(tagName)) {
+                        mFilter.removeTag(tagName);
+                    } else {
+                        mFilter.addTag(tagName);
+                    }
+
+                    updateTaxaByFilter();
+                    mGuideMenuListAdapter.notifyDataSetChanged();
+                }
+            });
+
             return view;
         }
     }
@@ -668,6 +684,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         if ((mFilter == null) || (mGuideXml == null) || (mTaxa == null)) return;
 
         List<GuideTaxonXML> taxa = mGuideXml.getTaxa(mFilter);
+        mCurrentTaxaResults = taxa;
         mTaxa.clear();
         mTaxa.addAll(taxa.subList(0, (int)Math.min(taxa.size(), MAX_TAXA)));
         mAdapter.notifyDataSetChanged();
@@ -685,6 +702,14 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             mTaxaEmpty.setText(R.string.no_check_list);
             mTaxaEmpty.setVisibility(View.VISIBLE);
             mGuideTaxaGrid.setVisibility(View.GONE);
+        }
+
+        String nextPredicate = mGuideXml.getRecommendedPredicate(mFilter, mCurrentTaxaResults);
+        if (nextPredicate != null) {
+            mRecommendedNextStep.setEnabled(true);
+        } else {
+            // No recommended next step available
+            mRecommendedNextStep.setEnabled(false);
         }
     }
 
@@ -743,10 +768,105 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         mHelper = new ActivityHelper(this);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mGuideMenu = (ListView) findViewById(R.id.guide_menu);
+        mGuideMenuList = (ListView) findViewById(R.id.guide_menu_list);
+        mGuideMenu = findViewById(R.id.guide_menu);
 
         mFilter = new GuideTaxonFilter();
-        
+
+        mRecommendedNextStep = (Button) findViewById(R.id.recommended_next_step);
+        mRecommendedNextStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nextPredicate = mGuideXml.getRecommendedPredicate(mFilter, mCurrentTaxaResults);
+                mRecommendedPrediate = nextPredicate;
+
+                if (mRecommendedPrediate != null) {
+                    // Highlight the appropriate predicate (guide menu header)
+                    int position = -1;
+                    int i = 0;
+
+                    for (GuideMenuItem item : mSideMenuItems) {
+                        if (item instanceof GuideMenuSection) {
+                            if (item.getText().equals(mRecommendedPrediate)) {
+                                position = i;
+                                break;
+                            }
+                        }
+                        i++;
+                    }
+
+                    if (i > -1) {
+                        // Call setSelection at the end because the ListView scrolling method is sometimes buggy
+                        final int finalPosition = position;
+                        mGuideMenuList.setOnScrollListener(new AbsListView.OnScrollListener() {
+                            @Override
+                            public void onScrollStateChanged(final AbsListView view, final int scrollState) {
+                                if (scrollState == SCROLL_STATE_IDLE) {
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                Thread.sleep(100);
+                                            } catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                            }
+                                            if (view.getFirstVisiblePosition() != finalPosition) {
+                                                // Fix for scrolling bug
+                                                GuideDetails.this.runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        view.setSelection(finalPosition);
+                                                    }
+                                                });
+                                            } else {
+                                                view.setOnScrollListener(null);
+                                            }
+                                        }
+                                    }).start();
+
+
+
+                                }
+                            }
+
+                            @Override
+                            public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
+                                                 final int totalItemCount) {
+                            }
+                        });
+
+                        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                            mGuideMenuList.smoothScrollToPositionFromTop(position, 0, 300);
+                        } else {
+                            mGuideMenuList.setSelectionFromTop(position, 0);
+                        }
+
+
+                    }
+                }
+
+                mGuideMenuListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        mReset = (ImageButton) findViewById(R.id.reset_key);
+        mReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reset all tag selections
+                mRecommendedPrediate = null;
+                mFilter.clearTags();
+                mGuideMenuListAdapter.notifyDataSetChanged();
+                updateTaxaByFilter();
+
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    mGuideMenuList.smoothScrollToPositionFromTop(0, 0, 300);
+                } else {
+                    mGuideMenuList.setSelectionFromTop(0, 0);
+                }
+            }
+        });
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -769,6 +889,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
             mFilter.setTags(savedInstanceState.getStringArrayList("filterTags"));
             mIsDownloading = savedInstanceState.getBoolean("isDownloading");
             mDownloadProgress = savedInstanceState.getInt("downloadProgress", 0);
+            mRecommendedPrediate = savedInstanceState.getString("recommendedPredicate");
         }
 
         if (mGuide == null) {
@@ -863,7 +984,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
 
         mDownloadGuide = (View) footerView.findViewById(R.id.downloadGuide);
 
-        mGuideMenu.addFooterView(footerView);
+        mGuideMenuList.addFooterView(footerView);
 
         if (mIsDownloading) {
             refreshGuideSideMenu();
@@ -904,6 +1025,7 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         outState.putStringArrayList("filterTags", (ArrayList<String>) mFilter.getAllTags());
         outState.putBoolean("isDownloading", mIsDownloading);
         outState.putInt("downloadProgress", mDownloadProgress);
+        outState.putString("recommendedPredicate", mRecommendedPrediate);
         super.onSaveInstanceState(outState);
     }
 

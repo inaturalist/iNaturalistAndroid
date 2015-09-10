@@ -60,5 +60,4 @@
                 android:bottom="5dp" />
         </shape>
     </item>
-
 </selector>

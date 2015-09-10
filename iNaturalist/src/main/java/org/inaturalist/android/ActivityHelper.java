@@ -46,18 +46,6 @@ public class ActivityHelper {
                 dialogInterface.cancel();
             }
         }, null);
-        /*
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setMessage(msg)
-        .setTitle(title)
-        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-        */
     }
 
     public void confirm(int titleRes, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {

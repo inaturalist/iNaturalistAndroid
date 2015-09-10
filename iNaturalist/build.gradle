@@ -14,7 +14,6 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-
 android {
     compileSdkVersion 'Google Inc.:Google APIs:19'
     buildToolsVersion "22.0.1"

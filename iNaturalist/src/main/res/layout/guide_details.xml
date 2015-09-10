@@ -55,16 +55,52 @@
     </RelativeLayout>
 
     <!-- Side menu (taxa filter / guide details drawer) -->
-    <ListView android:id="@+id/guide_menu"
-        android:layout_width="270dp"
-        android:layout_height="match_parent"
+    <RelativeLayout
+        android:id="@+id/guide_menu"
         android:layout_gravity="right"
-        android:orientation="vertical"
-        android:background="#FFFFFF"
-        android:choiceMode="none"
-        android:listSelector="@android:color/transparent"
-        />
+        android:layout_width="270dp"
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:id="@+id/top_side_menu_bar"
+            android:padding="5dp"
+            android:background="#ffe0e0e2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/recommended_next_step"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="48dp"
+                android:layout_centerVertical="true"
+                android:text="@string/recommended_next_step"/>
+
+            <ImageButton
+                android:id="@+id/reset_key"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/recommended_next_step"
+                android:layout_alignBottom="@id/recommended_next_step"
+                android:src="@drawable/ic_refresh_black_24dp"
+                android:layout_marginRight="0dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
+        <ListView android:id="@+id/guide_menu_list"
+            android:layout_below="@id/top_side_menu_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:choiceMode="none"
+            android:listSelector="@android:color/transparent"
+            />
+
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>
 

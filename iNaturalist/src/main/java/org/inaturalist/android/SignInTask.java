@@ -18,6 +18,7 @@ import android.provider.Settings;
 import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -157,7 +158,11 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     }
 
     protected void onPreExecute() {
-        mProgressDialog = ProgressDialog.show(mActivity, "", mActivity.getString(R.string.signing_in), true);
+        try {
+            mProgressDialog = ProgressDialog.show(mActivity, "", mActivity.getString(R.string.signing_in), true);
+        } catch (WindowManager.BadTokenException exc) {
+            // Happens when the user rotates the phone while the login happens (and mActivity is no longer valid)
+        }
     }
 
     protected void onPostExecute(String result) {

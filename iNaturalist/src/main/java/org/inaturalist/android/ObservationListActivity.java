@@ -199,8 +199,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
         mApp = (INaturalistApp)getApplication();
 
-
-
         mSyncObservations = (TextView) findViewById(R.id.sync_observations);
         mSyncObservations.setOnClickListener(new OnClickListener() {
             @Override
