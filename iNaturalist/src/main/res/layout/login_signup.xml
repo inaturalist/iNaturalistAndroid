@@ -66,6 +66,8 @@
 
             <EditText
                 android:id="@+id/email"
+                android:textCursorDrawable="@drawable/cursor_white"
+                android:background="@android:color/transparent"
                 android:layout_width="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/email_icon"
@@ -100,6 +102,8 @@
 
             <EditText
                 android:id="@+id/password"
+                android:textCursorDrawable="@drawable/cursor_white"
+                android:background="@android:color/transparent"
                 android:layout_width="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/password_icon"
@@ -147,6 +151,8 @@
 
             <EditText
                 android:id="@+id/username"
+                android:textCursorDrawable="@drawable/cursor_white"
+                android:background="@android:color/transparent"
                 android:layout_width="fill_parent"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/username_icon"

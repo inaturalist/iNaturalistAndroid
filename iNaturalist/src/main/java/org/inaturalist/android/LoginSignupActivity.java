@@ -1,8 +1,10 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -24,6 +26,8 @@ import android.widget.ViewFlipper;
 
 import com.facebook.login.widget.LoginButton;
 import com.flurry.android.FlurryAgent;
+
+import org.json.JSONArray;
 
 public class LoginSignupActivity extends Activity implements SignInTask.SignInTaskStatus {
 
@@ -50,18 +54,39 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
     private SignInTask mSignInTask;
     private LoginButton mFacebookLoginButton;
 
-    @Override
-	protected void onStart() {
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
+    private UserRegisterReceiver mUserRegisterReceiver;
 
-	@Override
-	protected void onStop() {
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+        FlurryAgent.logEvent(this.getClass().getSimpleName());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
+
+
+    private class UserRegisterReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mUserRegisterReceiver);
+            mHelper.stopLoading();
+
+            boolean status = intent.getBooleanExtra(INaturalistService.REGISTER_USER_STATUS, false);
+            String error = intent.getStringExtra(INaturalistService.REGISTER_USER_ERROR);
+
+            if (!status) {
+                mHelper.alert(getString(R.string.could_not_register_user), error);
+            } else {
+                // Registration successful - login the user
+                mSignInTask.signIn(INaturalistService.LoginType.PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+            }
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -303,7 +328,24 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSignInTask.signIn(INaturalistService.LoginType.PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                if (!mIsSignup) {
+                    // Login
+                    mSignInTask.signIn(INaturalistService.LoginType.PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                } else {
+                    // Sign up
+                    mUserRegisterReceiver = new UserRegisterReceiver();
+                    IntentFilter filter = new IntentFilter(INaturalistService.ACTION_REGISTER_USER_RESULT);
+                    registerReceiver(mUserRegisterReceiver, filter);
+
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_REGISTER_USER, null, LoginSignupActivity.this, INaturalistService.class);
+                    serviceIntent.putExtra(INaturalistService.EMAIL, mEmail.getText().toString());
+                    serviceIntent.putExtra(INaturalistService.USERNAME, mUsername.getText().toString());
+                    serviceIntent.putExtra(INaturalistService.PASSWORD, mPassword.getText().toString());
+                    serviceIntent.putExtra(INaturalistService.LICENSE, (mUseCCLicense ? "CC-BY-NC" : "on"));
+                    startService(serviceIntent);
+
+                    mHelper.loading(getString(R.string.registering));
+                }
             }
         });
 
@@ -341,6 +383,19 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        try {
+            if (mUserRegisterReceiver != null) {
+                unregisterReceiver(mUserRegisterReceiver);
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
     }
 
 }

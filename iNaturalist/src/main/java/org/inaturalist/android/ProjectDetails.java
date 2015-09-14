@@ -9,6 +9,7 @@ import com.flurry.android.FlurryAgent;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -153,6 +154,12 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
                             }, R.string.yes, R.string.no);
 
                 } else {
+                    if (!isLoggedIn()) {
+                        // User not logged-in - redirect to onboarding screen
+                        startActivity(new Intent(ProjectDetails.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                        return;
+                    }
+
                     mJoinLeaveProject.setText(R.string.leave);
                     mJoinLeaveProject.setBackgroundResource(R.drawable.actionbar_leave_btn);
                     mProject.put("joined", true);
@@ -271,6 +278,11 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
 
 
         mTabHost.setOnTabChangedListener(this);
+    }
+
+    private boolean isLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
     }
 
 }

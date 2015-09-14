@@ -179,8 +179,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                 LoginManager.getInstance().logOut();
             } else if (mLoginType == INaturalistService.LoginType.GOOGLE && !mInvalidated) {
                 AccountManager.get(mActivity).invalidateAuthToken("com.google", mPassword);
-                INaturalistPrefsActivity a = (INaturalistPrefsActivity) mActivity;
-                a.signIn(INaturalistService.LoginType.GOOGLE, mUsername, null, true);
+                signIn(INaturalistService.LoginType.GOOGLE, mUsername, null, true);
                 return;
             }
             mHelper.alert(mActivity.getString(R.string.signed_in_failed));

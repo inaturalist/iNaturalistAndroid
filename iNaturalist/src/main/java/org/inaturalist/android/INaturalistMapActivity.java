@@ -576,6 +576,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     			break;
     		case FIND_MY_OBSERVATIONS:
     			// Find my observations
+				if (!isLoggedIn()) {
+					// User not logged-in - redirect to onboarding screen
+					startActivity(new Intent(INaturalistMapActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+					return;
+				}
+
     			loadMyObservations();
     			if (mActiveSearch) {
     				refreshActiveFilters();
@@ -1841,5 +1847,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	public void onInfoWindowClick(Marker arg0) {
 		// TODO Auto-generated method stub
 		
-	} 	
-}
+	}
+
+    private boolean isLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
+    }
+ }

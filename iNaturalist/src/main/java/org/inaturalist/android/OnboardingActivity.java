@@ -92,6 +92,7 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
             @Override
             public void onClick(View view) {
                 mSignInTask.pause();
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
@@ -126,6 +127,7 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
     public void onLoginSuccessful() {
         // Close this screen
         mSignInTask.pause();
+        setResult(RESULT_OK);
         finish();
     }
 
@@ -144,6 +146,7 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
             if (resultCode == RESULT_OK) {
                 // Successfully registered / logged-in from the sub-activity we've opened
                 mSignInTask.pause();
+                setResult(RESULT_OK);
                 finish();
             } else {
                 mSignInTask.resume();
@@ -153,6 +156,8 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
 
     public void onBackPressed(){
         mSignInTask.pause();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 
 }

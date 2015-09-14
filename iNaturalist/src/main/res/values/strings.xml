@@ -379,7 +379,7 @@
     <string name="gplus">Google+</string>
     <string name="email">Email</string>
     <string name="sign_up_with">Sign Up with</string>
-    <string name="skip">Skip &gt;</string>
+    <string name="skip">Skip  ›</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
@@ -392,5 +392,7 @@
     <string name="or_login_with">Or Log In With:</string>
     <string name="quantity">Qty</string>
     <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="registering">Registering...</string>
+    <string name="could_not_register_user">Couldn\'t register user</string>
  </resources>
 

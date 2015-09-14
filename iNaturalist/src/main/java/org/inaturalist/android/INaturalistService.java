@@ -112,6 +112,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
     public static final String TAXON_RESULT = "taxon_result";
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
+    public static final String EMAIL = "email";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String LICENSE = "license";
+    public static final String REGISTER_USER_ERROR = "error";
+    public static final String REGISTER_USER_STATUS = "status";
 
 	public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
 
@@ -123,6 +129,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         android.os.Build.DEVICE + " " +
         android.os.Build.MODEL + " " + 
         android.os.Build.PRODUCT + ")";
+    public static String ACTION_REGISTER_USER = "register_user";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_GET_TAXON = "get_taxon";
@@ -159,6 +166,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GUIDE_XML_RESULT = "guide_xml_result";
     public static String ACTION_GUIDE_XML = "guide_xml";
     public static String GUIDES_RESULT = "guides_result";
+    public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
@@ -191,7 +199,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 	public enum LoginType {
 	    PASSWORD,
 	    GOOGLE,
-	    FACEBOOK
+        LoginType, FACEBOOK
 	};
 
 
@@ -259,7 +267,20 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 String body = intent.getStringExtra(IDENTIFICATION_BODY);
                 addIdentification(observationId, taxonId, body);
-                
+
+            } else if (action.equals(ACTION_REGISTER_USER)) {
+                String email = intent.getStringExtra(EMAIL);
+                String password = intent.getStringExtra(PASSWORD);
+                String username = intent.getStringExtra(USERNAME);
+                String license = intent.getStringExtra(LICENSE);
+
+                String error = registerUser(email, password, username, license);
+
+                Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
+                reply.putExtra(REGISTER_USER_STATUS, error == null);
+                reply.putExtra(REGISTER_USER_ERROR, error);
+                sendBroadcast(reply);
+
              } else if (action.equals(ACTION_GET_TAXON)) {
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 BetterJSONObject taxon = getTaxon(taxonId);
@@ -721,7 +742,37 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
         }
     }
-   
+
+    // Registers a user - returns an error message in case of an error (null if successful)
+    private String registerUser(String email, String password, String username, String license) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("user[email]", email));
+        params.add(new BasicNameValuePair("user[login]", username));
+        params.add(new BasicNameValuePair("user[password]", password));
+        params.add(new BasicNameValuePair("user[password_confirmation]", password));
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        params.add(new BasicNameValuePair("user[site_id]", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
+        params.add(new BasicNameValuePair("user[preferred_observation_license]", license));
+        params.add(new BasicNameValuePair("user[preferred_photo_license]", license));
+        params.add(new BasicNameValuePair("user[preferred_sound_license]", license));
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        params.add(new BasicNameValuePair("user[locale]", deviceLanguage));
+
+        post(HOST + "/users.json", params, false);
+        if (mResponseErrors != null) {
+            // Couldn't create user
+            try {
+                return mResponseErrors.getString(0);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
     
     private void addComment(int observationId, String body) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1615,6 +1666,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     private JSONArray delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
         return request(url, "delete", params, true);
+    }
+
+    private JSONArray post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
+        return request(url, "post", params, authenticated);
     }
 
     private JSONArray post(String url, ArrayList<NameValuePair> params) throws AuthenticationException {

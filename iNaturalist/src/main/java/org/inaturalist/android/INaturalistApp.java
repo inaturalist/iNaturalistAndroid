@@ -85,6 +85,12 @@ public class INaturalistApp extends Application {
 
         // Create the root offline guides directory, if needed
         GuideXML.createOfflineGuidesDirectory(this);
+
+        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String username = pref.getString("username", null);
+        if (username != null) {
+            setShownOnboarding(true);
+        }
     }
     
     

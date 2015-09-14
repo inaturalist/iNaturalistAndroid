@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -355,6 +356,12 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
                     mHelper.confirm(R.string.are_you_sure, String.format(getString(R.string.download_guide_alert), mGuideXml.getNgzFileSize()), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (!isLoggedIn()) {
+                                        // User not logged-in - redirect to onboarding screen
+                                        startActivity(new Intent(GuideDetails.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                                        return;
+                                    }
+
                                     downloadGuide();
                                 }
                             },
@@ -1033,5 +1040,9 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         super.onSaveInstanceState(outState);
     }
 
- 
+    private boolean isLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
+    }
+
 }

@@ -90,8 +90,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:orientation="vertical"
         android:layout_above="@id/skip"
         android:layout_marginBottom="20dp"
@@ -107,19 +107,22 @@
             android:id="@+id/login_with_facebook"
             >
 
-            <ImageView
-                android:duplicateParentState="true"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/facebook_button_icon"
-                android:layout_marginLeft="5dp"
-                />
+            <RelativeLayout
+                android:layout_width="45dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:duplicateParentState="true"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/facebook_button_icon"
+                    android:layout_centerHorizontal="true"
+                    />
+            </RelativeLayout>
 
             <View
                 android:duplicateParentState="true"
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
                 android:background="#33FFFFFF" />
 
             <TextView
@@ -153,20 +156,22 @@
             android:clickable="true"
             android:id="@+id/login_with_gplus"
             >
-
-            <ImageView
-                android:duplicateParentState="true"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gplus_button_icon"
-                android:layout_marginLeft="5dp"
-                />
+            <RelativeLayout
+                android:layout_width="45dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:duplicateParentState="true"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/gplus_button_icon"
+                    android:layout_centerHorizontal="true"
+                    />
+            </RelativeLayout>
 
             <View
                 android:duplicateParentState="true"
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
                 android:background="#33FFFFFF" />
 
             <TextView
@@ -200,20 +205,22 @@
             android:clickable="true"
             android:id="@+id/sign_up_with_email"
             >
-
-            <ImageView
-                android:duplicateParentState="true"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/email_button_icon"
-                android:layout_marginLeft="5dp"
-                />
+            <RelativeLayout
+                android:layout_width="45dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:duplicateParentState="true"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/email_button_icon"
+                    android:layout_centerHorizontal="true"
+                    />
+            </RelativeLayout>
 
             <View
                 android:duplicateParentState="true"
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="10dp"
                 android:background="#33FFFFFF" />
 
             <TextView

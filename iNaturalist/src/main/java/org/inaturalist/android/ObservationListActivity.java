@@ -207,8 +207,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return;
                 } else if (!isLoggedIn()) {
-                    // User not logged-in - redirect to settings screen
-                    startActivity(new Intent(ObservationListActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                    // User not logged-in - redirect to onboarding screen
+                    startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                     return;
                 }
 
@@ -231,7 +231,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if (!mApp.shownOnboarding()) {
                 // Show login/onboarding screen
                 mApp.setShownOnboarding(true);
-                //startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             }
         }
 
