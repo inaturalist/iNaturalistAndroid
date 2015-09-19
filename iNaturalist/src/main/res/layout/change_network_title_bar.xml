@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingRight="10dp"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:textSize="22sp"
         android:textColor="@color/inatapptheme_color"
         />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:textSize="22sp"
         android:textColor="@color/inatapptheme_color"
         />
@@ -36,8 +36,8 @@
         android:layout_height="40dp"
         android:scaleType="fitXY"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/title_bar_text1"
-        android:layout_toLeftOf="@id/title_bar_text2"
+        android:layout_toEndOf="@id/title_bar_text1"
+        android:layout_toStartOf="@id/title_bar_text2"
         />
 
  

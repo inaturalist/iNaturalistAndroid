@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff2f3133"
+        android:paddingStart="10dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+        <TextView
+            android:textAllCaps="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:text="@string/description"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="Some long description of the guide and some more lines regarding it."
+        android:textSize="14dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff2f3133"
+        android:paddingStart="10dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+        <TextView
+            android:textAllCaps="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:text="@string/about"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/editorName"
+            android:text="username"
+            android:textColor="#ff36b859"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/editor"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/editorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/license"
+            android:text="some license"
+            android:textColor="#ff36b859"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/license"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/license"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/downloadGuide"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/downloadGuideImage"
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_action_download"
+            android:layout_marginEnd="0dp"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/downloadTitle"
+            android:text="@string/download_for_offline_use"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/downloadGuideImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/downloadSubtitle"
+            android:text="1.71 MB"
+            android:textColor="#ff7f7f7f"
+            android:textSize="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/downloadGuideImage"
+            android:layout_below="@id/downloadTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/downloadingGuide"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="10dp">
+
+
+        <ProgressBar
+            android:id="@+id/loadingSpinner"
+            style="?android:progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:indeterminate="true" />
+
+        <RelativeLayout
+            android:layout_toEndOf="@id/loadingSpinner"
+            android:layout_centerVertical="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                style="?android:progressBarStyleHorizontal"
+                android:id="@+id/downloadingProgress"
+                android:layout_alignParentStart="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/downloadingSubtitle"
+                android:text="@string/downloading"
+                android:textColor="#ff7f7f7f"
+                android:textSize="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/downloadingProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -217,7 +217,9 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mHelper.stopLoading();
+        if (mHelper != null) {
+            mHelper.stopLoading();
+        }
     }
-    
+
 }

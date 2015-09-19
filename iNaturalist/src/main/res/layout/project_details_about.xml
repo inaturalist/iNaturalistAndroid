@@ -14,7 +14,7 @@
 		    android:id="@+id/project_pic"
 		    android:layout_height="70dp"
 		    android:layout_width="70dp"
-		    android:layout_alignParentLeft="true"
+		    android:layout_alignParentStart="true"
 		    android:layout_centerVertical="true"
 		    android:paddingRight="8dp"
 		    />
@@ -25,7 +25,7 @@
 		    android:layout_height="wrap_content"
 		    android:text="Project title"
 		    style="@android:style/TextAppearance.Medium"
-		    android:layout_toRightOf="@id/project_pic"
+		    android:layout_toEndOf="@id/project_pic"
 		    android:layout_centerVertical="true"
 	        />
     </RelativeLayout>

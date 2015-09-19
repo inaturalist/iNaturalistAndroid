@@ -57,7 +57,7 @@
     <!-- Side menu (taxa filter / guide details drawer) -->
     <RelativeLayout
         android:id="@+id/guide_menu"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:layout_width="270dp"
         android:layout_height="match_parent">
 
@@ -69,11 +69,11 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/recommended_next_step"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:layout_marginLeft="48dp"
+                android:layout_marginStart="48dp"
                 android:layout_centerVertical="true"
                 android:text="@string/recommended_next_step"/>
 
@@ -84,8 +84,8 @@
                 android:layout_alignTop="@id/recommended_next_step"
                 android:layout_alignBottom="@id/recommended_next_step"
                 android:src="@drawable/ic_refresh_black_24dp"
-                android:layout_marginRight="0dp"
-                android:layout_alignParentLeft="true"
+                android:layout_marginEnd="0dp"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 />
 

@@ -76,9 +76,9 @@
                              android:layout_height="wrap_content"
                              android:layout_width="24dp"
                              android:scaleType="centerInside"
-                             android:layout_alignParentRight="true"
-                             android:layout_marginRight="8dp"
-                             android:layout_marginLeft="8dp"
+                             android:layout_alignParentEnd="true"
+                             android:layout_marginEnd="8dp"
+                             android:layout_marginStart="8dp"
                              android:background="@android:color/transparent"
                              android:layout_centerVertical="true" />
                     
@@ -90,7 +90,7 @@
                         android:text="Named 'bobobo' and seen by 'coco' in places named 'shlomo' and some more text"
                         android:textSize="13dp"
                         android:layout_centerVertical="true" 
-                        android:layout_toLeftOf="@id/cancel_filters"
+                        android:layout_toStartOf="@id/cancel_filters"
                         />
                            
                 </RelativeLayout>
@@ -111,9 +111,9 @@
                              android:layout_height="wrap_content"
                              android:layout_width="24dp"
                              android:scaleType="centerInside"
-                             android:layout_alignParentRight="true"
-                             android:layout_marginRight="8dp"
-                             android:layout_marginLeft="8dp"
+                             android:layout_alignParentEnd="true"
+                             android:layout_marginEnd="8dp"
+                             android:layout_marginStart="8dp"
                              android:background="@android:color/transparent"
                              android:layout_centerVertical="true" />
                     
@@ -125,7 +125,7 @@
                         android:text="@string/restricted_to_current_map_area"
                         android:textSize="13dp"
                         android:layout_centerVertical="true" 
-                        android:layout_toLeftOf="@id/cancel_restrict_to_current_map"
+                        android:layout_toStartOf="@id/cancel_restrict_to_current_map"
                         />
  
                 </RelativeLayout>

@@ -10,8 +10,8 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:id="@+id/content">
@@ -19,9 +19,9 @@
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
             android:clickable="false"
             android:focusable="false"
             android:duplicateParentState="false"
@@ -33,19 +33,19 @@
             android:text="10"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:textColor="#ff404040"
             android:textStyle="bold"
             android:textSize="19dp"
-            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
             android:gravity="center_horizontal"
             />
 
 
         <ImageView
             android:id="@+id/tag_photo"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="60dp"
             android:src="@drawable/ic_insert_photo_white_24dp"
             android:layout_centerVertical="true"
             android:scaleType="fitCenter"
@@ -55,12 +55,12 @@
 
         <TextView
             android:id="@+id/tagName"
-            android:layout_toRightOf="@id/checkbox"
+            android:layout_toEndOf="@id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/tag_photo"
-            android:layout_marginLeft="0dp"
+            android:layout_toStartOf="@id/tag_photo"
+            android:layout_marginStart="0dp"
             android:textColor="#000000"
             android:text="Some tag with multi line words and some more text to fit in multi line words and some more"
             android:textSize="19dp"
@@ -70,9 +70,9 @@
 
     <View
         android:id="@+id/column_separator"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="55dp"
-        android:layout_marginLeft="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="55dp"
+        android:layout_marginStart="10dp"
         android:background="#ffffff"
         android:layout_width="1dp"
         android:layout_height="match_parent"

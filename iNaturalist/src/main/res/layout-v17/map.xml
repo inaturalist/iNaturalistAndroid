@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main content view -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+
+
+        <TabHost
+            android:layout_alignParentTop="true"
+            android:id="@android:id/tabhost"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="0" />
+
+            </LinearLayout>
+        </TabHost>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_below="@android:id/tabhost"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            >
+
+            <!-- The various filters -->
+            <LinearLayout
+                android:id="@+id/filtersContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/active_filters"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:background="#8B8BA1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:visibility="gone"
+                    >
+                    <ImageButton android:src="@drawable/ic_action_remove"
+                        android:id="@+id/cancel_filters"
+                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:scaleType="centerInside"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@android:color/transparent"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/filter_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:text="Named 'bobobo' and seen by 'coco' in places named 'shlomo' and some more text"
+                        android:textSize="13dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/cancel_filters"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/restric_to_map"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:background="#D8D8D8"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:visibility="gone"
+                    >
+                    <ImageButton android:src="@drawable/ic_action_cancel"
+                        android:id="@+id/cancel_restrict_to_current_map"
+                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:scaleType="centerInside"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@android:color/transparent"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/restricToMapDescription"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:text="@string/restricted_to_current_map_area"
+                        android:textSize="13dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/cancel_restrict_to_current_map"
+                        />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/map_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/grid_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+                <ProgressBar
+                    android:id="@+id/loading_observations_grid"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="30dp"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/observations_grid_empty"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="30dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:text="@string/no_observations_found" />
+
+                <org.inaturalist.android.GridViewExtended
+                    android:id="@+id/observations_grid"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:numColumns="3"
+                    android:verticalSpacing="3dp"
+                    android:horizontalSpacing="3dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/list_container"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+                <ProgressBar
+                    android:id="@+id/loading_observations_list"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="30dp"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/observations_list_empty"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:padding="30dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:text="@string/no_observations_found" />
+
+                <ListView
+                    android:id="@+id/observations_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--  Background that covers content areas (map/grid/list) when search bar is visible -->
+        <View
+            android:id="@+id/search_bar_background"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#99000000"
+            android:visibility="gone"
+            />
+
+        <!-- The search bar area -->
+        <LinearLayout
+            android:id="@+id/search_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            >
+            <EditText
+                android:id="@+id/search_filter"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="@string/search"
+                android:background="#FFFFFF"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
+                />
+            <ListView
+                android:id="@+id/search_results"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:divider="#CCCCCC"
+                android:dividerHeight="1dip"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Side menu (navigation drawer) -->
+    <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
+
+</android.support.v4.widget.DrawerLayout>

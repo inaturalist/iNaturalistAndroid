@@ -64,8 +64,8 @@
     <RelativeLayout
         android:id="@+id/observation_details"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_below="@id/id_pic_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -73,9 +73,9 @@
             android:id="@+id/user_pic"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/actionbar_back_indicator" />
          
          
@@ -83,7 +83,7 @@
             android:id="@+id/observed_on"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
              >
              <TextView 
@@ -92,9 +92,9 @@
                 android:layout_height="wrap_content"
                 style="@android:style/TextAppearance.Small"
                 android:text="22/02/15"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                 android:gravity="right"
+                 android:gravity="end"
                  />
 
              <TextView
@@ -102,9 +102,9 @@
                  style="@android:style/TextAppearance.Small"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_alignParentRight="true"
+                 android:layout_alignParentEnd="true"
                  android:layout_below="@id/observed_on_date"
-                 android:gravity="right"
+                 android:gravity="end"
                  android:text="14:32 AM MDT" />
 
         </RelativeLayout>
@@ -115,8 +115,8 @@
             android:layout_height="wrap_content"
             android:text="myuser"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/user_pic"
-            android:layout_toLeftOf="@id/observed_on"
+            android:layout_toEndOf="@id/user_pic"
+            android:layout_toStartOf="@id/observed_on"
             android:textStyle="bold"
              />
 
@@ -128,7 +128,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:layout_below="@id/user_name"
-            android:layout_toRightOf="@id/user_pic"
+            android:layout_toEndOf="@id/user_pic"
              />
 
         <TextView 
@@ -136,8 +136,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Some location, San Francisco, CA"
-            android:layout_toRightOf="@id/location_image"
-            android:layout_toLeftOf="@id/observed_on"
+            android:layout_toEndOf="@id/location_image"
+            android:layout_toStartOf="@id/observed_on"
             android:layout_below="@id/user_name"
             android:textSize="10dp"
              />
@@ -147,8 +147,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="191m accuracy"
-            android:layout_toRightOf="@id/location_image"
-            android:layout_toLeftOf="@id/observed_on"
+            android:layout_toEndOf="@id/location_image"
+            android:layout_toStartOf="@id/observed_on"
             android:layout_below="@id/location"
             android:textSize="8dp"
             android:textColor="#999999"
@@ -220,10 +220,10 @@
 		    android:layout_weight="1"
 		    android:layout_height="fill_parent"
 		    android:text="@string/add_comment"
-		    android:drawableLeft="@drawable/ic_action_chat"
+		    android:drawableStart="@drawable/ic_action_chat"
 		    android:background="@drawable/actionbar_btn"
 	        android:textColor="#000000"
-	        android:gravity="left|center_vertical"
+	        android:gravity="start|center_vertical"
 		    />
 	      
  	      <Button
@@ -232,10 +232,10 @@
 		    android:layout_weight="1"
 		    android:layout_height="fill_parent"
 		    android:text="@string/add_id"
-		    android:drawableLeft="@drawable/ic_action_labels"
+		    android:drawableStart="@drawable/ic_action_labels"
 		    android:background="@drawable/actionbar_btn"
 	        android:textColor="#000000"
-	        android:gravity="left|center_vertical"
+	        android:gravity="start|center_vertical"
 		    />
      
     </LinearLayout>

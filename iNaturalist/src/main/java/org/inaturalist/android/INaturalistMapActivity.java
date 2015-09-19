@@ -841,31 +841,37 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     		}
     	}
     }
- 
-    private void reloadObservations() {
-       showLoading();
-       
-       if (mServiceIntent != null) {
-    	   stopService(mServiceIntent);
-       }
-      
-       mServiceIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
-       VisibleRegion vr = mMap.getProjection().getVisibleRegion();
-       mServiceIntent.putExtra("minx", vr.farLeft.longitude);
-       mServiceIntent.putExtra("maxx", vr.farRight.longitude);
-       mServiceIntent.putExtra("miny", vr.nearLeft.latitude);
-       mServiceIntent.putExtra("maxy", vr.farRight.latitude);
-       mServiceIntent.putExtra("zoom", mMap.getCameraPosition().zoom);
-       mServiceIntent.putExtra("page", mPage);
-       if (mTaxonId != null) mServiceIntent.putExtra("taxon_id", mTaxonId.intValue());
-       if (mUsername != null) mServiceIntent.putExtra("username", mUsername);
-       if (mLocationId != null) mServiceIntent.putExtra("location_id", mLocationId.intValue());
-       if (mProjectId != null) mServiceIntent.putExtra("project_id", mProjectId.intValue());
-       mServiceIntent.putExtra("clear_map_limit", mClearMapLimit);
 
-       startService(mServiceIntent);
+    private void reloadObservations() {
+        showLoading();
+
+        if (mServiceIntent != null) {
+            stopService(mServiceIntent);
+        }
+
+        mServiceIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
+
+        /* prevent crash on devices without Google services installed */
+        if (mMap == null) {
+            return;
+        }
+
+        VisibleRegion vr = mMap.getProjection().getVisibleRegion();
+        mServiceIntent.putExtra("minx", vr.farLeft.longitude);
+        mServiceIntent.putExtra("maxx", vr.farRight.longitude);
+        mServiceIntent.putExtra("miny", vr.nearLeft.latitude);
+        mServiceIntent.putExtra("maxy", vr.farRight.latitude);
+        mServiceIntent.putExtra("zoom", mMap.getCameraPosition().zoom);
+        mServiceIntent.putExtra("page", mPage);
+        if (mTaxonId != null) mServiceIntent.putExtra("taxon_id", mTaxonId.intValue());
+        if (mUsername != null) mServiceIntent.putExtra("username", mUsername);
+        if (mLocationId != null) mServiceIntent.putExtra("location_id", mLocationId.intValue());
+        if (mProjectId != null) mServiceIntent.putExtra("project_id", mProjectId.intValue());
+        mServiceIntent.putExtra("clear_map_limit", mClearMapLimit);
+
+        startService(mServiceIntent);
     }
-    
+
     private class NearbyObservationsReceiver extends BroadcastReceiver {
         
         @Override

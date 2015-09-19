@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,9 +42,10 @@ public class BetterJSONObject implements Serializable {
 	}
 
 	private void initRegExIfNeeded() {
-		if (mDateFormat == null) mDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		if (mDateTimeFormat == null) mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-		if (mDateTimeFormat2 == null) mDateTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZZZ");
+        if (mDateFormat == null) mDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        if (mDateTimeFormat == null) mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
+        if (mDateTimeFormat2 == null) mDateTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZZZ", Locale.US);
+
 	}
 	
 	public JSONObject getJSONObject() {

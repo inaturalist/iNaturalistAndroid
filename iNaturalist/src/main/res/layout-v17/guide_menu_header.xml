@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ff2f3133"
+    android:paddingStart="0dp"
+    android:paddingEnd="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/content">
+
+        <TextView
+            android:id="@+id/quantity"
+            android:textAllCaps="true"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:text="@string/quantity"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:textAllCaps="true"
+            android:layout_toStartOf="@id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="30dp"
+            android:text="Some header"
+            android:textSize="12dp"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/column_separator"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="55dp"
+        android:layout_marginStart="10dp"
+        android:background="#ffffff"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@id/content"
+        android:layout_alignBottom="@id/content"
+        />
+
+</RelativeLayout>

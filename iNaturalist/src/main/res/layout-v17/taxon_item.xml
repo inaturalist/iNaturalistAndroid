@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/taxon_pic"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/iconic_taxon_unknown"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:paddingEnd="10dp"
+        />
+
+    <Button
+        android:id="@+id/add_observation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toEndOf="@id/taxon_pic"
+        android:layout_toStartOf="@id/add_observation"
+        android:layout_centerVertical="true"
+        >
+
+        <TextView
+            android:id="@+id/id_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Medium"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/taxon_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

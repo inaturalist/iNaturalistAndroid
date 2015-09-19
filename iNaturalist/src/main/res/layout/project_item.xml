@@ -12,7 +12,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/actionbar_back_indicator"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:paddingLeft="8dp"
         />
@@ -23,8 +23,8 @@
        android:layout_height="wrap_content"
        style="@android:style/TextAppearance.Medium"
        android:text="TextView"
-       android:layout_toLeftOf="@id/project_pic"
-       android:layout_alignParentLeft="true"
+       android:layout_toStartOf="@id/project_pic"
+       android:layout_alignParentStart="true"
        />
 
     <TextView
@@ -34,8 +34,8 @@
        style="@android:style/TextAppearance.Small"
        android:text="Very long description "
        android:layout_below="@id/project_name"
-       android:layout_toLeftOf="@id/project_pic"
-       android:layout_alignParentLeft="true"
+       android:layout_toStartOf="@id/project_pic"
+       android:layout_alignParentStart="true"
        android:maxLines="3"
        android:ellipsize="end"
        />

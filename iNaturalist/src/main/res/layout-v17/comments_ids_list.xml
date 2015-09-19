@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/abs__action_bar_default_height"
+        android:layout_alignParentBottom="true"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:background="@drawable/actionbar_background"
+        >
+
+        <Button
+            android:id="@+id/add_comment"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:text="@string/add_comment"
+            android:drawableStart="@drawable/ic_action_chat"
+            android:background="@drawable/actionbar_btn"
+            android:textColor="#000000"
+            android:gravity="start|center_vertical"
+            />
+
+        <Button
+            android:id="@+id/add_id"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:text="@string/add_id"
+            android:drawableStart="@drawable/ic_action_labels"
+            android:background="@drawable/actionbar_btn"
+            android:textColor="#000000"
+            android:gravity="start|center_vertical"
+            />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_above="@id/bottom_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="30dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="30dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        style="@android:style/TextAppearance.Medium"
+        android:text="@string/no_comments" />
+
+</RelativeLayout>

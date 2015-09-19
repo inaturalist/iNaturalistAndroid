@@ -62,15 +62,15 @@
 			    android:layout_height="wrap_content"
 			    android:id="@+id/set_date"
 			    android:src="@drawable/ic_action_go_to_today"
-			    android:layout_alignParentLeft="true"
+			    android:layout_alignParentStart="true"
 			    android:layout_centerVertical="true"
-			    android:layout_marginRight="4dp"
+			    android:layout_marginEnd="4dp"
 	            />
 		    <TextView 
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
 			    android:id="@+id/date"
-			    android:layout_toRightOf="@id/set_date"
+			    android:layout_toEndOf="@id/set_date"
 			    android:layout_centerVertical="true"
 			    android:textAppearance="@android:style/TextAppearance.Large"
 			    android:text="24/10/2013"
@@ -89,15 +89,15 @@
 		        android:id="@+id/taxon_pic"
 		        android:layout_width="55dp"
 		        android:layout_height="55dp"
-		        android:layout_alignParentLeft="true"
+		        android:layout_alignParentStart="true"
 		        android:layout_centerVertical="true"
-		        android:layout_marginRight="5dp"
+		        android:layout_marginEnd="5dp"
 		        android:src="@drawable/iconic_taxon_unknown" />
 		
 	        <LinearLayout
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_toRightOf="@id/taxon_pic"
+	            android:layout_toEndOf="@id/taxon_pic"
 		        android:layout_centerVertical="true"
 	            android:orientation="vertical" >
 	

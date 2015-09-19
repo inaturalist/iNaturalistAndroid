@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/iconic_taxon_unknown" />
+
+     <TextView
+        android:id="@+id/id_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/image"
+        android:paddingTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_alignParentTop="true"
+        android:maxLines="1"
+        android:ellipsize="end"
+        style="@android:style/TextAppearance.Medium"
+        android:text="ID Name" />
+
+    <TextView
+        android:id="@+id/id_taxon_name"
+        android:layout_toEndOf="@id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_name"
+        android:text="ID Type" />
+
+   <TextView
+        android:id="@+id/tag"
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@id/image"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:paddingEnd="6dp"
+        android:paddingStart="6dp"
+        android:layout_below="@id/id_taxon_name"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
+        android:background="@android:color/white"
+        android:textAllCaps="true"
+        android:text="Research" />
+
+     <TextView
+        android:id="@+id/observed_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11/03/15"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+         />
+
+
+     <TextView
+        android:id="@+id/username"
+        android:layout_toStartOf="@id/observed_on"
+        android:layout_toEndOf="@id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:text="someuser" />
+
+
+</RelativeLayout>

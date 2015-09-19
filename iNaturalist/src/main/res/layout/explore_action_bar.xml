@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:text="@string/explore"
         style="@android:style/TextAppearance.Medium"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         />
     
@@ -19,20 +19,20 @@
                  android:scaleType="centerInside"
                  android:id="@+id/search"
                  android:background="@drawable/actionbar_btn"
-                 android:layout_alignParentRight="true"
-       			 android:layout_marginRight="8dp"
-                 android:layout_marginLeft="2dp"
+                 android:layout_alignParentEnd="true"
+       			 android:layout_marginEnd="8dp"
+                 android:layout_marginStart="2dp"
 		         android:layout_centerVertical="true" />
  
     <ImageButton android:src="@drawable/ic_action_refresh"
-       			 android:layout_marginRight="8dp"
+       			 android:layout_marginEnd="8dp"
        			 android:padding="5dp"
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
                  android:scaleType="centerInside"
                  android:id="@+id/refresh"
                  android:background="@drawable/actionbar_btn"
-                 android:layout_toLeftOf="@id/search"
+                 android:layout_toStartOf="@id/search"
 		         android:layout_centerVertical="true" />
     
     <ProgressBar
@@ -40,19 +40,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-       			android:layout_marginRight="-10dp"
+       			android:layout_marginEnd="-10dp"
        			android:layout_marginTop="8dp"
        			android:layout_marginBottom="4dp"
                 android:id="@+id/loading"
                 android:visibility="gone"
-                android:layout_toLeftOf="@id/search" />
+                android:layout_toStartOf="@id/search" />
 
     
     <View android:id="@+id/middle_bar"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_toLeftOf="@id/refresh"
-        android:layout_toRightOf="@id/search"
+        android:layout_toStartOf="@id/refresh"
+        android:layout_toEndOf="@id/search"
         />
  
 </RelativeLayout>

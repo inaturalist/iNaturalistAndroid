@@ -13,9 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_action_accept"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         />
    
     <ImageView
@@ -23,7 +23,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/actionbar_back_indicator"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:paddingLeft="8dp"
         />
@@ -34,8 +34,8 @@
        android:layout_height="wrap_content"
        style="@android:style/TextAppearance.Medium"
        android:text="TextView"
-       android:layout_toLeftOf="@id/project_pic"
-       android:layout_toRightOf="@id/project_selected"
+       android:layout_toStartOf="@id/project_pic"
+       android:layout_toEndOf="@id/project_selected"
        android:layout_alignParentTop="true"
        />
 
@@ -46,8 +46,8 @@
        style="@android:style/TextAppearance.Small"
        android:text="Very long description "
        android:layout_below="@id/project_name"
-       android:layout_alignLeft="@id/project_name"
-       android:layout_toLeftOf="@id/project_pic"
+       android:layout_alignStart="@id/project_name"
+       android:layout_toStartOf="@id/project_pic"
        android:maxLines="2"
        android:ellipsize="end"
        />

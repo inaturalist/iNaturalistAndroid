@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        >
+        <ImageView
+            android:id="@+id/project_pic"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingEnd="8dp"
+            />
+
+        <TextView
+            android:id="@+id/project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Project title"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_toEndOf="@id/project_pic"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/project_description_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <TextView
+            android:id="@+id/project_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="my description"
+            />
+    </ScrollView>
+
+
+</LinearLayout>

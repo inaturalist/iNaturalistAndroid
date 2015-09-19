@@ -7,11 +7,11 @@
         android:id="@+id/image"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/iconic_taxon_unknown" />
@@ -20,7 +20,7 @@
         android:id="@+id/rightObsPart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
         android:paddingRight="10dp" >
@@ -29,8 +29,8 @@
             android:id="@+id/dateObserved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right"
+            android:layout_gravity="end"
+            android:gravity="end"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:singleLine="true"
@@ -50,8 +50,8 @@
                 android:id="@+id/commentIdCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="6dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="6dp"
                 android:background="@drawable/comments_ids_background"
                 android:gravity="center"
                 android:minWidth="23dp"
@@ -68,7 +68,7 @@
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/commentIdCount"
+                android:layout_toStartOf="@id/commentIdCount"
                 android:src="@drawable/ic_action_refresh" />
         </RelativeLayout>
     </LinearLayout>
@@ -78,8 +78,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/rightObsPart"
-        android:layout_toRightOf="@id/image"
+        android:layout_toStartOf="@id/rightObsPart"
+        android:layout_toEndOf="@id/image"
         android:orientation="vertical" >
 
         <TextView
