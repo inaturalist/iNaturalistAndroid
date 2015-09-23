@@ -122,7 +122,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             adapter.refreshCursor();
             refreshSyncBar();
 
-            Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show(); 
+            if ((mLastMessage != null) && (mLastMessage.length() > 0)) {
+                Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
+            }
         }
     } 	
   
