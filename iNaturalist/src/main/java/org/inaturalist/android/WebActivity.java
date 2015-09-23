@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 
@@ -20,8 +21,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.webkit.*;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class WebActivity extends BaseFragmentActivity {
     private static String TAG = "WebActivity";
@@ -30,8 +34,12 @@ public class WebActivity extends BaseFragmentActivity {
     private INaturalistApp app;
     private ActivityHelper helper;
 	private String mHomeUrl;
+    private Button mLogin;
+    private TextView mNotLoggedIn;
 
-	@Override
+    private static final int REQUEST_CODE_LOGIN = 0x1000;
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -64,7 +72,19 @@ public class WebActivity extends BaseFragmentActivity {
         helper = new ActivityHelper(this);
         mWebView = (WebView) findViewById(R.id.webview);
         
-        
+        mLogin = (Button) findViewById(R.id.login);
+        mNotLoggedIn = (TextView) findViewById(R.id.not_logged_in);
+
+        mLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(WebActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP), REQUEST_CODE_LOGIN);
+            }
+        });
+
+        mLogin.setVisibility(View.GONE);
+        mNotLoggedIn.setVisibility(View.GONE);
+
         String inatNetwork = app.getInaturalistNetworkMember();
         String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
         mHomeUrl = String.format(HOME_URL, inatHost);
@@ -146,7 +166,7 @@ public class WebActivity extends BaseFragmentActivity {
         case R.id.view:
         	if (mWebView != null) {
         		Intent i = new Intent(Intent.ACTION_VIEW);
-        		i.setData(Uri.parse(mWebView.getUrl()));
+        		i.setData(Uri.parse(mWebView.getUrl() != null ? mWebView.getUrl() : mHomeUrl));
         		startActivity(i);
         	}
             return true;
@@ -170,25 +190,27 @@ public class WebActivity extends BaseFragmentActivity {
     
     public void goHome() {
         if (app.loggedIn()) {
+            mLogin.setVisibility(View.GONE);
+            mNotLoggedIn.setVisibility(View.GONE);
+            mWebView.setVisibility(View.VISIBLE);
+
             mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
             mWebView.loadUrl(mHomeUrl, getAuthHeaders());
         } else {
-            helper.confirm(getString(R.string.error), getString(R.string.need_to_login), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(
-                                    app.currentUserLogin() == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION,
-                                    null, getBaseContext(), INaturalistPrefsActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    },
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
+            mLogin.setVisibility(View.VISIBLE);
+            mNotLoggedIn.setVisibility(View.VISIBLE);
+            mWebView.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
+            // User logged-in - Refresh web view
+            goHome();
+        }
+    }
+
 }

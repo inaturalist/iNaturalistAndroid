@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -41,6 +42,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -53,6 +55,9 @@ public abstract class BaseTab extends SherlockFragment {
 
     private ProjectsAdapter mAdapter;
     private ArrayList<JSONObject> mProjects = null;
+    private Button mLogin;
+
+    private static final int REQUEST_CODE_LOGIN = 0x1000;
 
     private class ProjectsReceiver extends BroadcastReceiver {
         @Override
@@ -115,15 +120,17 @@ public abstract class BaseTab extends SherlockFragment {
             mSearchText.setEnabled(true);
         } else {
             mEmptyListLabel.setVisibility(View.VISIBLE);
-            
+            mProjectList.setVisibility(View.GONE);
+
             if (!isNetworkAvailable()) {
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
-            } else if (requiresLogin()) {
+            } else if (requiresLogin() && !mApp.loggedIn()) {
             	// Required user login
             	mEmptyListLabel.setText(getUserLoginRequiredText());
+                mLogin.setVisibility(View.VISIBLE);
             } else {
-            	// No projects due to no Internet connection
+            	// No projects found
             	mEmptyListLabel.setText(getNoItemsFoundText());
             }
 
@@ -235,6 +242,15 @@ public abstract class BaseTab extends SherlockFragment {
         mApp = (INaturalistApp) getActivity().getApplication();
         
         View v = inflater.inflate(R.layout.project_list, container, false);
+
+        mLogin = (Button) v.findViewById(R.id.login);
+        mLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getActivity(), OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP), REQUEST_CODE_LOGIN);
+            }
+        });
+        mLogin.setVisibility(View.GONE);
         
         mProjectList = (ListView) v.findViewById(android.R.id.list);
         mProjectList.setOnItemClickListener(new OnItemClickListener() {
@@ -404,14 +420,8 @@ public abstract class BaseTab extends SherlockFragment {
 
                         if ((((ArrayList<JSONObject>)filterResults.values).size() == 0) && (recallServiceActionIfNoResults())) {
                             // Re-call the service intent/action to retrieve some default results
-                            mProjectsReceiver = new ProjectsReceiver();
-                            IntentFilter filter = new IntentFilter(getFilterResultName());
-                            Log.i(TAG, "Registering " + getFilterResultName());
-                            getActivity().registerReceiver(mProjectsReceiver, filter);
+                            getProjects();
 
-                            Log.i(TAG, "Re-Calling " + getActionName());
-                            Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-                            getActivity().startService(serviceIntent);
                             return filterResults;
                         }
                     }
@@ -499,6 +509,31 @@ public abstract class BaseTab extends SherlockFragment {
         Log.i(TAG, "onStop");
        
         super.onStop();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
+            // User logged-in - Refresh list
+            mEmptyListLabel.setVisibility(View.GONE);
+            mLogin.setVisibility(View.GONE);
+
+            toggleLoading(true);
+            getProjects();
+        }
+    }
+
+    private void getProjects() {
+        mProjectsReceiver = new ProjectsReceiver();
+        IntentFilter filter = new IntentFilter(getFilterResultName());
+        Log.i(TAG, "Registering " + getFilterResultName());
+        getActivity().registerReceiver(mProjectsReceiver, filter);
+
+        Log.i(TAG, "Re-Calling " + getActionName());
+        Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
+        getActivity().startService(serviceIntent);
     }
 
 }

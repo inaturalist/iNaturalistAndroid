@@ -6,12 +6,36 @@
     android:layout_height="match_parent">
 
     <!-- Main content view -->
-    <WebView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/webview"
-        android:background="#FFFFFF"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </WebView>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/webview"
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </WebView>
+
+        <TextView
+            android:id="@+id/not_logged_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="@string/please_sign_in_for_updates" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/login_signup"
+            android:layout_below="@id/not_logged_in"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
 
     <!-- Side menu (navigation drawer) -->
     <include android:id="@+id/left_drawer" layout="@layout/side_menu" />

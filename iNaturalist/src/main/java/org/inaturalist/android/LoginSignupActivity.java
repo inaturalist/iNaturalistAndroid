@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
     private LoginButton mFacebookLoginButton;
 
     private UserRegisterReceiver mUserRegisterReceiver;
+    private TextView mTerms;
 
     @Override
     protected void onStart() {
@@ -250,6 +252,10 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
             }
         });
 
+        mTerms = (TextView) findViewById(R.id.terms);
+        mTerms.setText(Html.fromHtml(mTerms.getText().toString()));
+        mTerms.setMovementMethod(LinkMovementMethod.getInstance());
+
         mCheckbox = (ImageView) findViewById(R.id.checkbox);
         mCheckbox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -275,6 +281,8 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
             checkboxContainer.setVisibility(View.GONE);
             mUsername.setHint(R.string.username_or_email);
 
+            mTerms.setVisibility(View.GONE);
+
             View usernameContainer = (View) findViewById(R.id.username_container);
             ViewGroup parent = (ViewGroup)usernameContainer.getParent();
             parent.removeView(usernameContainer);
@@ -299,6 +307,7 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
             loginButtons.setVisibility(View.GONE);
             View loginWith = findViewById(R.id.login_with);
             loginWith.setVisibility(View.GONE);
+            mTerms.setVisibility(View.VISIBLE);
         }
         
         mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);

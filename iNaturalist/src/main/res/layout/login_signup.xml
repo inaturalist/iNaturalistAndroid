@@ -315,4 +315,16 @@
         android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/terms"
+        android:gravity="center_horizontal"
+        android:text="@string/by_using_inat_terms"
+        android:paddingBottom="7dp"
+        android:lines="2"
+        android:textColor="#aaffffff"
+        android:textSize="13dp"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

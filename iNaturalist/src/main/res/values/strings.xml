@@ -84,7 +84,7 @@
     <string name="save">Save</string>
     <string name="no_observations_yet">No observations yet!</string>
     <string name="sign_in_to_inat">Sign in to your iNaturalist account</string>
-    <string name="sign_in">Sign in</string>
+    <string name="sign_in">Log in</string>
     <string name="or">or</string>
     <string name="create_new_account">Create new account</string>
     <string name="signed_in_as_plain">Signed in as</string>
@@ -192,7 +192,7 @@
 	<string name="restart_now">Restart now</string>
     <string name="choose_location">Choose Location</string>
     <string name="done">Done</string>
-    <string name="please_sign_in_via_settings">Please sign-in via settings screen in order to view your projects</string>
+    <string name="please_sign_in_via_settings">You must be logged in to view your joined projects.</string>
     <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">Contact support</a>]]></string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
     <string name="leave_project">Leave Project</string>
@@ -394,5 +394,9 @@
     <string name="recommended_next_step">Recommended Next Step</string>
     <string name="registering">Registering...</string>
     <string name="could_not_register_user">Couldn\'t register user</string>
+    <string name="login_signup">Log In / Sign Up</string>
+    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
+    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
+    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="http://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="http://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
  </resources>
 

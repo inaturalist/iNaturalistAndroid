@@ -19,6 +19,8 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
     private static final int REQUEST_CODE_SIGNUP = 0x10000;
     private static final int REQUEST_CODE_LOGIN = 0x10001;
 
+    public static final String LOGIN = "login";
+
     private static String TAG = "OnboardingActivity";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -50,12 +52,27 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
         mApp = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.onboarding);
 
+        Intent intent = getIntent();
+
+        Boolean shouldLogin = false;
+        if (savedInstanceState == null) {
+            shouldLogin = intent.getBooleanExtra(LOGIN, false);
+        }
+
         mHelper = new ActivityHelper(this);
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
 	    mPrefEditor = mPreferences.edit();
 
         mBackgroundImage = (ViewFlipper) findViewById(R.id.background_image);
         mBackgroundImage.startFlipping();
+
+        View closeButton = (View) findViewById(R.id.close);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         View signUpWithEmail = findViewById(R.id.sign_up_with_email);
         signUpWithEmail.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +137,11 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
         });
 
         mSignInTask = new SignInTask(this, this, mFacebookLoginButton);
+
+        if (shouldLogin) {
+            // Show login screen
+            login.performClick();
+        }
 
     }
 

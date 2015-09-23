@@ -21,4 +21,14 @@ public class MyGuidesTab extends BaseGuidesTab {
         // If the search filter returns no results - load up the default my guides + offline guides
         return true;
     }
+
+    @Override
+    protected boolean requiresLogin() {
+        return true;
+    }
+
+    @Override
+    protected String getUserLoginRequiredText() {
+    	return getResources().getString(R.string.please_sign_in_via_settings_for_guides);
+    }
 }

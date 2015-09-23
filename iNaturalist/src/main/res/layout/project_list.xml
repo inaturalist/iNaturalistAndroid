@@ -28,12 +28,22 @@
     
     <TextView
         android:id="@android:id/empty"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="30dp"
         android:gravity="center"
         android:layout_centerInParent="true"
         android:text="@string/no_projects" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/login_signup"
+        android:layout_below="@android:id/empty"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        />
 
       <ListView
         android:id="@android:id/list"

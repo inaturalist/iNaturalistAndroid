@@ -41,6 +41,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	private LinearLayout mSignOutLayout;
 	private TextView mSignOutLabel;
 	private Button mSignInButton;
+	private Button mSignUpButton;
 	private Button mSignOutButton;
 	private SharedPreferences mPreferences;
 	private SharedPreferences.Editor mPrefEditor;
@@ -110,6 +111,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	    mSignOutLayout = (LinearLayout) findViewById(R.id.signOut);
 	    mSignOutLabel = (TextView) findViewById(R.id.signOutLabel);
 	    mSignInButton = (Button) findViewById(R.id.signInButton);
+		mSignUpButton = (Button) findViewById(R.id.signUpButton);
 	    mSignOutButton = (Button) findViewById(R.id.signOutButton);
 	    mHelp = (TextView) findViewById(R.id.tutorial_link);
 	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
@@ -177,12 +179,22 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	    toggle();
 	    
         mSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(INaturalistPrefsActivity.this, OnboardingActivity.class);
+                intent.putExtra(OnboardingActivity.LOGIN, true);
+
+                startActivityForResult(intent, REQUEST_CODE_LOGIN);
+            }
+        });
+
+		mSignUpButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				startActivityForResult(new Intent(INaturalistPrefsActivity.this, OnboardingActivity.class), REQUEST_CODE_LOGIN);
 			}
 		});
-        
+
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
