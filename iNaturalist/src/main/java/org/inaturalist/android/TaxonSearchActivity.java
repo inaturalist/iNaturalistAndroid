@@ -250,13 +250,15 @@ public class TaxonSearchActivity extends SherlockListActivity {
 
             try {
 				JSONArray taxonNames = item.getJSONArray("taxon_names");
+                int minPosition = Integer.MAX_VALUE;
 				for (int i = 0; i < taxonNames.length(); i++) {
 					JSONObject taxonName = taxonNames.getJSONObject(i);
 					String lexicon = taxonName.getString("lexicon");
-					if (lexicon.equals(deviceLexicon)) {
+                    Integer currentPosition = taxonName.getInt("position");
+					if ((lexicon.equals(deviceLexicon)) && (currentPosition < minPosition)) {
 						// Found the appropriate lexicon for the taxon
 						displayName = taxonName.getString("name");
-						break;
+                        minPosition = currentPosition;
 					}
 				}
 			} catch (JSONException e3) {
