@@ -1266,8 +1266,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
 
     private void uiToObservation() {
-        mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
-        mObservation.description = mDescriptionTextView.getText().toString();
+        if (((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0)) || (mObservation.species_guess != null)) mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+        if (((mObservation.description == null) && (mDescriptionTextView.getText().length() > 0)) || (mObservation.description != null)) mObservation.description = mDescriptionTextView.getText().toString();
         if (mObservedOnStringTextView.getText() == null || mObservedOnStringTextView.getText().length() == 0) {
             mObservation.observed_on_string = null; 
         } else {
