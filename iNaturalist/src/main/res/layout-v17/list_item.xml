@@ -17,6 +17,7 @@
         android:src="@drawable/iconic_taxon_unknown" />
 
     <LinearLayout
+        android:clickable="true"
         android:id="@+id/rightObsPart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,10 +40,9 @@
             android:textSize="13sp" />
 
         <RelativeLayout
-            android:clickable="true"
             android:id="@+id/commentsIdClickCatcher"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent" >
 
             <TextView
                 android:clickable="false"

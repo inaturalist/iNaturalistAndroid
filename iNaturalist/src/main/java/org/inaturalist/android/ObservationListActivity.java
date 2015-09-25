@@ -668,7 +668,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 idCount--;
             }
             Long totalCount = commentsCount + idCount;
-            RelativeLayout clickCatcher = (RelativeLayout) view.findViewById(R.id.commentsIdClickCatcher);
+            ViewGroup clickCatcher = (ViewGroup) view.findViewById(R.id.rightObsPart);
 
             if (totalCount == 0) {
                 // No comments/IDs - don't display the indicator
