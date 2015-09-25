@@ -1227,6 +1227,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else {
             mCursor.requery();
         }
+
         if (mObservation == null) {
             mObservation = new Observation(mCursor);
         }
@@ -1237,11 +1238,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
-            mObservation.observed_on = new Timestamp(System.currentTimeMillis());
-            mObservation.time_observed_at = mObservation.observed_on;
-            mObservation.observed_on_string = app.formatDatetime(mObservation.time_observed_at);
-            if (mObservation.latitude == null && mCurrentLocation == null) {
-                getLocation();
+            if (mObservation.observed_on == null) {
+                mObservation.observed_on = new Timestamp(System.currentTimeMillis());
+                mObservation.time_observed_at = mObservation.observed_on;
+                mObservation.observed_on_string = app.formatDatetime(mObservation.time_observed_at);
+                if (mObservation.latitude == null && mCurrentLocation == null) {
+                    getLocation();
+                }
             }
         }
         
@@ -1957,6 +1960,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     mObservation.observed_on = timestamp;
                     mObservation.time_observed_at = timestamp;
                     mObservation.observed_on_string = app.formatDatetime(timestamp);
+
+                    mObservedOnStringTextView.setText(app.formatDatetime(timestamp));
+                    mTimeObservedAtButton.setText(app.shortFormatTime(timestamp));
+                    mDateSetByUser = timestamp;
                 } catch (ParseException e) {
                     Log.d(TAG, "Failed to parse " + datetime + ": " + e);
                 }
