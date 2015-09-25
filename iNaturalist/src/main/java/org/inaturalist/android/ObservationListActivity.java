@@ -479,7 +479,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 Long photoId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
                 String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 
-                //if (!mPhotoInfo.containsKey(obsId)) {
+                if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
@@ -489,7 +489,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                                     null,
                                     null
                             });
-                //}
+                }
                 onlinePc.moveToNext();
             }
             
@@ -519,7 +519,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
                     "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
                     null, 
-                    null);
+                    "_ID");
             if (pc == null) { opc.close(); return; }
             if (pc.getCount() == 0) { pc.close(); opc.close(); return; }
             HashMap<Long,String> orientationsByPhotoId = new HashMap<Long,String>();
@@ -541,7 +541,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 Long updatedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._UPDATED_AT));
                 String photoUrl = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
 
-                //if (!mPhotoInfo.containsKey(obsId)) {
+                if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
@@ -551,7 +551,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                                 updatedAt.toString(),
                                 syncedAt.toString()
                             });
-                //}
+                }
                 opc.moveToNext();
             }
             
