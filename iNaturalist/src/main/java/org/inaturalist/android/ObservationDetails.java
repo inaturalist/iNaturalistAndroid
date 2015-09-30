@@ -254,6 +254,8 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
                 location.setText(mObservation.optString("longitude") + ", " + mObservation.optString("latitude"));
             } else {
                 location.setText("");
+				ImageView locationImage = (ImageView) findViewById(R.id.location_image);
+                locationImage.setVisibility(View.GONE);
             }
         }
 
