@@ -1330,9 +1330,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
         if (mObservation.latitude != null) {
             mLatitudeView.setText(mObservation.latitude.toString());
+        } else {
+            mLatitudeView.setText("");
         }
         if (mObservation.longitude != null) {
             mLongitudeView.setText(mObservation.longitude.toString());
+        } else {
+            mLongitudeView.setText("");
         }
         if (mObservation.positional_accuracy == null) {
             mAccuracyView.setText("");
@@ -1955,6 +1959,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 stopGetLocation();
                 mObservation.latitude = (double) latLng[0];
                 mObservation.longitude = (double) latLng[1];
+                mObservation.positional_accuracy = null;
+            } else {
+                // Nullify the GPS coordinates
+                mObservation.latitude = null;
+                mObservation.longitude = null;
                 mObservation.positional_accuracy = null;
             }
             String datetime = exif.getAttribute(ExifInterface.TAG_DATETIME);

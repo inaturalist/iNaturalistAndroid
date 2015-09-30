@@ -556,12 +556,12 @@ public class Observation implements BaseColumns, Serializable {
         if (geoprivacy != null) { params.add(new BasicNameValuePair("observation[geoprivacy]", geoprivacy.toString())); }
         if (iconic_taxon_id != null) { params.add(new BasicNameValuePair("observation[iconic_taxon_id]", iconic_taxon_id.toString())); }
         if (id_please != null) { params.add(new BasicNameValuePair("observation[id_please]", id_please.toString())); }
-        if (latitude != null) { params.add(new BasicNameValuePair("observation[latitude]", latitude.toString())); }
-        if (longitude != null) { params.add(new BasicNameValuePair("observation[longitude]", longitude.toString())); }
+        params.add(new BasicNameValuePair("observation[latitude]", latitude != null ? latitude.toString() : ""));
+        params.add(new BasicNameValuePair("observation[longitude]", longitude != null ? longitude.toString() : ""));
         if (observed_on_string != null) { params.add(new BasicNameValuePair("observation[observed_on_string]", observed_on_string.toString())); }
         if (out_of_range != null) { params.add(new BasicNameValuePair("observation[out_of_range]", out_of_range.toString())); }
         if (place_guess != null) { params.add(new BasicNameValuePair("observation[place_guess]", place_guess.toString())); }
-        if (positional_accuracy != null) { params.add(new BasicNameValuePair("observation[positional_accuracy]", positional_accuracy.toString())); }
+        params.add(new BasicNameValuePair("observation[positional_accuracy]", positional_accuracy != null ? positional_accuracy.toString() : ""));
         if (positioning_device != null) { params.add(new BasicNameValuePair("observation[positioning_device]", positioning_device.toString())); }
         if (positioning_method != null) { params.add(new BasicNameValuePair("observation[positioning_method]", positioning_method.toString())); }
         if (private_latitude != null) { params.add(new BasicNameValuePair("observation[private_latitude]", private_latitude.toString())); }
