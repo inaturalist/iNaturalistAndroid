@@ -1239,9 +1239,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
             if (mObservation.observed_on == null) {
-                mObservation.observed_on = new Timestamp(System.currentTimeMillis());
-                mObservation.time_observed_at = mObservation.observed_on;
-                mObservation.observed_on_string = app.formatDatetime(mObservation.time_observed_at);
+                mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
+                mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
+                mObservation.observed_on_string = mObservation.observed_on_string_was = app.formatDatetime(mObservation.time_observed_at);
                 if (mObservation.latitude == null && mCurrentLocation == null) {
                     getLocation();
                 }
@@ -1626,6 +1626,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (location.hasAccuracy()) {
             mAccuracyView.setText(Float.toString(location.getAccuracy()));
             mObservation.positional_accuracy = ((Float) location.getAccuracy()).intValue();
+        }
+
+        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+            mObservation.latitude_was = mObservation.latitude;
+            mObservation.longitude_was = mObservation.longitude;
+            mObservation.positional_accuracy_was = mObservation.positional_accuracy;
         }
     }
 
