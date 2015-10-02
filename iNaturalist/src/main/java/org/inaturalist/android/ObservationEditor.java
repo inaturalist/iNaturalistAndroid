@@ -1273,7 +1273,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else {
             mObservation.observed_on_string = mObservedOnStringTextView.getText().toString();
             mObservation.observed_on = mDateSetByUser;
-            mObservation.time_observed_at = mObservation.observed_on;
+            mObservation.time_observed_at = mTimeSetByUser;
         }
         if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
             mObservation.latitude = null;
@@ -1327,6 +1327,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mTimeObservedAtButton.setText(getString(R.string.set_time));
         } else {
             mTimeObservedAtButton.setText(app.shortFormatTime(mObservation.time_observed_at));
+            mTimeSetByUser = mObservation.time_observed_at;
         }
         if (mObservation.latitude != null) {
             mLatitudeView.setText(mObservation.latitude.toString());
@@ -1486,6 +1487,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     };
 
     private Timestamp mDateSetByUser;
+    private Timestamp mTimeSetByUser;
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hour, int minute) {
@@ -1514,7 +1516,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
             mObservedOnStringTextView.setText(app.formatDatetime(datetime));
             mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
-            mDateSetByUser = datetime;
+            mTimeSetByUser = datetime;
         }
     };
     private ArrayList<Integer> mProjectIds;
@@ -1979,6 +1981,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     mObservedOnStringTextView.setText(app.formatDatetime(timestamp));
                     mTimeObservedAtButton.setText(app.shortFormatTime(timestamp));
                     mDateSetByUser = timestamp;
+                    mTimeSetByUser = timestamp;
                 } catch (ParseException e) {
                     Log.d(TAG, "Failed to parse " + datetime + ": " + e);
                 }
