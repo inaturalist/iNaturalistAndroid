@@ -20,6 +20,7 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
     private static final int REQUEST_CODE_LOGIN = 0x10001;
 
     public static final String LOGIN = "login";
+    public static final String SHOW_SKIP = "show_skip";
 
     private static String TAG = "OnboardingActivity";
     private INaturalistApp mApp;
@@ -55,8 +56,10 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
         Intent intent = getIntent();
 
         Boolean shouldLogin = false;
+        Boolean showSkip = false;
         if (savedInstanceState == null) {
             shouldLogin = intent.getBooleanExtra(LOGIN, false);
+            showSkip = intent.getBooleanExtra(SHOW_SKIP, false);
         }
 
         mHelper = new ActivityHelper(this);
@@ -113,6 +116,9 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
                 finish();
             }
         });
+        if (!showSkip) {
+            skip.setVisibility(View.INVISIBLE);
+        }
 
         mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);
 

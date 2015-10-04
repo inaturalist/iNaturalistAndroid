@@ -319,8 +319,9 @@
     <TextView
         android:id="@+id/terms"
         android:gravity="center_horizontal"
+        android:textColorLink="#FFFFFF"
         android:text="@string/by_using_inat_terms"
-        android:paddingBottom="7dp"
+        android:paddingBottom="17dp"
         android:lines="2"
         android:textColor="#aaffffff"
         android:textSize="13dp"

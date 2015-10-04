@@ -233,7 +233,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if (!mApp.shownOnboarding()) {
                 // Show login/onboarding screen
                 mApp.setShownOnboarding(true);
-                startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                Intent intent = new Intent(this, OnboardingActivity.class);
+                intent.putExtra(OnboardingActivity.SHOW_SKIP, true);
+                startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             }
         }
 
