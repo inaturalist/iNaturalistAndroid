@@ -1,179 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<!-- Main content view -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-    <!-- Main content view -->
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:facebook="http://schemas.android.com/apk/res-auto"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
+            android:id="@+id/signIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <Button
+                android:id="@+id/signUpButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up" />
+            <Button
+                android:id="@+id/signInButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_in" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/signOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp" >
+            android:visibility="gone" >
 
+            <TextView
+                android:id="@+id/signOutLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/signed_in_as_plain"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <LinearLayout
-                android:id="@+id/signIn"
+            <Button
+                android:id="@+id/signOutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-                <Button
-                    android:id="@+id/signUpButton"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sign_up" />
-                <Button
-                    android:id="@+id/signInButton"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sign_in" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/signOut"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone" >
-
-                <TextView
-                    android:id="@+id/signOutLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/signed_in_as_plain"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <Button
-                    android:id="@+id/signOutButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/signed_out" />
-            </LinearLayout>
-
-            
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/tvLanguageSettings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/language_settings"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <RadioGroup
-                    android:id="@+id/radioLang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <RadioButton
-                        android:id="@+id/rbDeviceLang"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        android:text="@string/use_device_language_settings" />
-
-                    <RadioButton
-                        android:id="@+id/rbDeviceEu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        android:text="@string/locale_eu" />
-
-                    <RadioButton
-                        android:id="@+id/rbDeviceGl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-                        android:text="@string/locale_gl" />
-                </RadioGroup>
-            </LinearLayout>        
-            
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/tvNetworkSettings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/inat_network_settings"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <RadioGroup
-                    android:id="@+id/radioNetworks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-                    <!-- Content will be added here dynamically -->
-                </RadioGroup>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" >
-
-                <TextView
-                    android:id="@+id/tutorial_link"
-                    style="@android:style/TextAppearance.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/tutorial_link" />
-
-                <TextView
-                    android:id="@+id/contact_support"
-                    style="@android:style/TextAppearance.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tutorial_link"
-                    android:layout_marginTop="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/contact_support" />
-
-                <TextView
-                    android:id="@+id/credits"
-                    style="@android:style/TextAppearance.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/contact_support"
-                    android:layout_marginTop="30dp"
-                    android:text="@string/credits" />
-
-                <TextView
-                    android:id="@+id/version"
-                    style="@android:style/TextAppearance.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/credits"
-                    android:layout_marginTop="20dp"
-                    android:layout_centerHorizontal="true"
-                    android:text="Version 1.2.3" />
-
-            </RelativeLayout>
-
+                android:text="@string/signed_out" />
         </LinearLayout>
 
-    </ScrollView>
 
-    <!-- Side menu (navigation drawer) -->
-    <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" >
 
-</android.support.v4.widget.DrawerLayout>
+            <TextView
+                android:id="@+id/tvLanguageSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/language_settings"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioLang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/rbDeviceLang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/use_device_language_settings" />
+
+                <RadioButton
+                    android:id="@+id/rbDeviceEu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/locale_eu" />
+
+                <RadioButton
+                    android:id="@+id/rbDeviceGl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/locale_gl" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvNetworkSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/inat_network_settings"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioNetworks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                <!-- Content will be added here dynamically -->
+            </RadioGroup>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" >
+
+            <TextView
+                android:id="@+id/tutorial_link"
+                style="@android:style/TextAppearance.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/tutorial_link" />
+
+            <TextView
+                android:id="@+id/contact_support"
+                style="@android:style/TextAppearance.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tutorial_link"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/contact_support" />
+
+            <TextView
+                android:id="@+id/credits"
+                style="@android:style/TextAppearance.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/contact_support"
+                android:layout_marginTop="30dp"
+                android:text="@string/credits" />
+
+            <TextView
+                android:id="@+id/version"
+                style="@android:style/TextAppearance.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/credits"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="Version 1.2.3" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

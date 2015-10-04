@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Main content view -->
+    <RelativeLayout
+        android:id="@+id/drawer_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </RelativeLayout>
+
+    <!-- Side menu (navigation drawer) -->
+    <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
+
+</android.support.v4.widget.DrawerLayout>

@@ -301,6 +301,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
         if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
 			// Refresh login state
             toggle();
+			refreshUserDetails();
         }
     }
 
@@ -334,6 +335,8 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 		mPrefEditor.remove("password");
 		mPrefEditor.remove("login_type");
         mPrefEditor.remove("last_sync_time");
+		mPrefEditor.remove("observation_count");
+		mPrefEditor.remove("user_icon_url");
 		mPrefEditor.commit();
 		
 		int count1 = getContentResolver().delete(Observation.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
@@ -344,6 +347,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 		Log.d(TAG, String.format("Deleted %d / %d / %d / %d unsynced observations", count1, count2, count3, count4));
 
 		toggle();
+        refreshUserDetails();
 	}
 	
 	private boolean isNetworkAvailable() {

@@ -97,6 +97,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
+    public static final String USER = "user";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_RESULT = "observation_result";
@@ -148,6 +149,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_MY_GUIDES = "get_my_guides";
     public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
     public static String ACTION_TAXA_FOR_GUIDE = "get_taxa_for_guide";
+    public static String ACTION_GET_USER_DETAILS = "get_user_details";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_AGREE_ID = "agree_id";
@@ -163,6 +165,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_MY_GUIDES_RESULT = "my_guides_results";
     public static String ACTION_NEAR_BY_GUIDES_RESULT = "near_by_guides_results";
     public static String ACTION_TAXA_FOR_GUIDES_RESULT = "taxa_for_guides_results";
+    public static String ACTION_GET_USER_DETAILS_RESULT = "get_user_details_result";
     public static String ACTION_GUIDE_XML_RESULT = "guide_xml_result";
     public static String ACTION_GUIDE_XML = "guide_xml";
     public static String GUIDES_RESULT = "guides_result";
@@ -309,6 +312,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
                 Intent reply = new Intent(ACTION_GUIDE_XML_RESULT);
                 reply.putExtra(GUIDE_XML_RESULT, guideXMLFilename);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_USER_DETAILS)) {
+                BetterJSONObject user = getUserDetails();
+
+                Intent reply = new Intent(ACTION_GET_USER_DETAILS_RESULT);
+                reply.putExtra(USER, user);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
@@ -1016,6 +1026,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     }
 
+    private BetterJSONObject getUserDetails() throws AuthenticationException {
+        String url = HOST + "/users/edit.json";
+        JSONArray json = get(url, true);
+        try {
+			return new BetterJSONObject(json.getJSONObject(0));
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
 
     private SerializableJSONArray getTaxaForGuide(Integer guideId) throws AuthenticationException {
         String url = HOST + "/guide_taxa.json?guide_id=" + guideId.toString();

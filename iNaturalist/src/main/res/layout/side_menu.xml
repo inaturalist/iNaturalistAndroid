@@ -6,12 +6,219 @@
     android:orientation="vertical"
     android:background="#fff3f3f3"
     >
+
+    <RelativeLayout
+        android:id="@+id/menu_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/side_menu_header_background"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:clickable="true"
+        >
+
+        <ImageView
+            android:id="@+id/user_pic"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/usericon" />
+
+        <ImageView
+            android:id="@+id/right_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/user_pic"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_arrow_forward_white_24dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/user_details"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/right_arrow"
+            android:layout_toEndOf="@id/user_pic">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="#ffffff"
+                android:text="@string/not_logged_in"
+                android:paddingBottom="10dp"
+                />
+
+            <TextView
+                android:id="@+id/observation_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#bbffffff"
+                android:text="124 observations"
+                android:textAllCaps="true"
+                android:paddingBottom="8dp"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
     
-    <!-- Side menu items -->
-    <ListView android:id="@+id/menu_items"
+    <!-- Side menu -->
+    <ScrollView
+        android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:choiceMode="singleChoice"
-        />
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/menu_items"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/menu_explore"
+            android:background="@drawable/side_menu_item_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/menu_explore_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_explore_gray_24dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_marginLeft="25dp"
+                android:text="@string/explore"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_projects"
+            android:background="@drawable/side_menu_item_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/menu_projects_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_work_gray_24dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_marginLeft="25dp"
+                android:text="@string/projects"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/menu_guides"
+            android:background="@drawable/side_menu_item_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/menu_guides_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_book_gray_24dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_marginLeft="25dp"
+                android:text="@string/guides"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/menu_activity"
+            android:background="@drawable/side_menu_item_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/menu_activity_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_supervisor_account_gray_24dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_marginLeft="25dp"
+                android:text="@string/activity"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="#dbdbdb" />
+        <LinearLayout
+            android:id="@+id/menu_settings"
+            android:background="@drawable/side_menu_item_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/menu_settings_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_settings_gray_24dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -1,32 +1,35 @@
 package org.inaturalist.android;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.crashlytics.android.Crashlytics;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import io.fabric.sdk.android.Fabric;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -41,24 +44,53 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 
 	private DrawerLayout mDrawerLayout;
 	private LinearLayout mSideMenu;
-	private ListView mListView;
 
-    private List<Map <String, ?>> MENU_ITEMS;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private INaturalistApp app;
 	private ActivityHelper mHelper;
+    private UserDetailsReceiver mUserDetailsReceiver;
 
-	public void onDrawerCreate(Bundle savedInstanceState) {
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    private void moveDrawerToTop() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        DrawerLayout drawer = (DrawerLayout) inflater.inflate(R.layout.side_menu_decor, null); // "null" is important.
+
+        // HACK: "steal" the first child of decor view
+        ViewGroup decor = (ViewGroup) getWindow().getDecorView();
+        View child = decor.getChildAt(0);
+        decor.removeView(child);
+        ViewGroup container = (ViewGroup) drawer.findViewById(R.id.drawer_content); // This is the container we defined just now.
+        container.addView(child, 0);
+        drawer.findViewById(R.id.left_drawer).setPadding(0, getStatusBarHeight(), 0, 0);
+
+        // Make the drawer replace the first child
+        decor.addView(drawer);
+    }
+
+    public void onDrawerCreate(Bundle savedInstanceState) {
         Fabric.with(this, new Crashlytics());
+
+
+        moveDrawerToTop();
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mSideMenu = (LinearLayout) findViewById(R.id.left_drawer);
-        mListView = (ListView) findViewById(R.id.menu_items);
-        
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, 0, 0) {
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_menu_black_24dp, 0, 0) {
             public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
             }
 
             public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -84,93 +116,146 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         } else {
         	app.detectUserCountryAndUpdateNetwork(this);
         }
+
+        refreshUserDetails();
 	}
-	
-	private void buildSideMenu() {
-        MENU_ITEMS = new ArrayList<Map <String, ?>>();
-        Map<String,String> map;
-        
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.observations));
-        map.put("description", getString(R.string.observations_description));
-        MENU_ITEMS.add(map);
 
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.explore));
-        map.put("description", getString(R.string.explore_description));
-        MENU_ITEMS.add(map);
+    public void refreshUserDetails() {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String username = prefs.getString("username", null);
+        Integer obsCount = prefs.getInt("observation_count", -1);
+        String userIconUrl = prefs.getString("user_icon_url", null);
 
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.projects));
-        map.put("description", getString(R.string.projects_description));
-        MENU_ITEMS.add(map);
+        if (username != null) {
+            ((TextView)findViewById(R.id.username)).setText(username);
 
-        // Only show guides only for Android 4+
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            map = new HashMap<String,String>();
-            map.put("title", getString(R.string.guides));
-            map.put("description", getString(R.string.guides_description));
-            MENU_ITEMS.add(map);
+            if (obsCount == -1) {
+                // Get user details from the server
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
+                startService(serviceIntent);
+            }
+        } else {
+            ((TextView)findViewById(R.id.username)).setText(R.string.not_logged_in);
         }
 
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.updates));
-        map.put("description", getString(R.string.updates_description));
-        MENU_ITEMS.add(map);
-        
-        map = new HashMap<String,String>();
-        map.put("title", getString(R.string.settings));
-        map.put("description", getString(R.string.settings_description));
-        MENU_ITEMS.add(map);
-        
+        if (obsCount > -1) {
+            ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), obsCount));
+        } else {
+            String conditions = "(_synced_at IS NULL";
+            if (username != null) {
+                conditions += " OR user_login = '" + username + "'";
+            }
+            conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
 
-        SimpleAdapter adapter = new SimpleAdapter(this, 
-                (List<? extends Map<String, ?>>) MENU_ITEMS,
-                R.layout.menu_item,
-                new String[] {"title"},
-                new int[] {R.id.title});
-        ListView lv = mListView;
-        mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new OnItemClickListener() {
-        	@Override
-        	public void onItemClick(AdapterView parent, View view, int position, long id) {
-        		// Side menu item was selected
+            Cursor cursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, conditions, null, Observation.DEFAULT_SORT_ORDER);
 
-        		Map<String,String> item = (Map<String,String>) mListView.getItemAtPosition(position);
-        		String title = item.get("title");
-        		if (title.equals(getString(R.string.observations))) {
-        			startActivityIfNew(new Intent(BaseFragmentActivity.this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        		} else if (title.equals(getString(R.string.explore))) {
-        			startActivityIfNew(new Intent(BaseFragmentActivity.this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        		} else if (title.equals(getString(R.string.updates))) {
-        			if (!isNetworkAvailable()) {
-        				Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
-        				return;
-        			}
+            ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), cursor.getCount()));
 
-        			startActivityIfNew(new Intent(BaseFragmentActivity.this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        		} else if (title.equals(getString(R.string.settings))) {
-        			startActivityIfNew(new Intent(BaseFragmentActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        		} else if (title.equals(getString(R.string.projects))) {
-        			startActivityIfNew(new Intent(BaseFragmentActivity.this, ProjectsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        		} else if (title.equals(getString(R.string.guides))) {
-        			startActivityIfNew(new Intent(BaseFragmentActivity.this, GuidesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-        		}
-        	}
+            cursor.close();
+        }
 
-		}); 
-	}
-	
-	private void startActivityIfNew(Intent intent) {
-		if (intent.getComponent().getClassName().equals(this.getClass().getName())) {
-			// Activity is already loaded
-			mDrawerLayout.closeDrawer(mSideMenu);
-			return;
-		}
-		
-		startActivity(intent);
-		finish();
-	}
+        if (userIconUrl != null) {
+            UrlImageViewHelper.setUrlDrawable((ImageView)findViewById(R.id.user_pic), userIconUrl, R.drawable.usericon, new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    // Nothing to do here
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    // Return a circular version of the profile picture
+                    return ImageUtils.getCircleBitmap(loadedBitmap);
+                }
+            });
+
+        } else {
+            ((ImageView)findViewById(R.id.user_pic)).setImageResource(R.drawable.usericon);
+        }
+    }
+
+	private void buildSideMenu() {
+
+        // Only show guides only for Android 4+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            findViewById(R.id.menu_guides).setVisibility(View.GONE);
+        }
+
+        findViewById(R.id.menu_explore).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
+        findViewById(R.id.menu_projects).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, ProjectsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
+        findViewById(R.id.menu_guides).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, GuidesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
+        findViewById(R.id.menu_activity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
+        findViewById(R.id.menu_settings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
+
+        findViewById(R.id.menu_header).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, ObservationListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
+
+
+        if (INaturalistMapActivity.class.getName().equals(this.getClass().getName())) {
+            findViewById(R.id.menu_explore).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
+            ((ImageView)findViewById(R.id.menu_explore_icon)).setImageResource(R.drawable.ic_explore_black_24dp);
+        }
+        if (ProjectsActivity.class.getName().equals(this.getClass().getName())) {
+            findViewById(R.id.menu_projects).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
+            ((ImageView)findViewById(R.id.menu_projects_icon)).setImageResource(R.drawable.ic_work_black_24dp);
+        }
+        if (GuidesActivity.class.getName().equals(this.getClass().getName())) {
+            findViewById(R.id.menu_guides).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
+            ((ImageView)findViewById(R.id.menu_guides_icon)).setImageResource(R.drawable.ic_book_black_24dp);
+        }
+        if (WebActivity.class.getName().equals(this.getClass().getName())) {
+            findViewById(R.id.menu_activity).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
+            ((ImageView)findViewById(R.id.menu_activity_icon)).setImageResource(R.drawable.ic_supervisor_account_black_24dp);
+        }
+        if (INaturalistPrefsActivity.class.getName().equals(this.getClass().getName())) {
+            findViewById(R.id.menu_settings).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
+            ((ImageView)findViewById(R.id.menu_settings_icon)).setImageResource(R.drawable.ic_settings_black_24dp);
+        }
+    }
+
+    private void startActivityIfNew(Intent intent) {
+        if (intent.getComponent().getClassName().equals(this.getClass().getName())) {
+            // Activity is already loaded
+            mDrawerLayout.closeDrawer(mSideMenu);
+            return;
+        }
+
+        startActivity(intent);
+        finish();
+    }
 
 
     @Override
@@ -178,9 +263,9 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 
         if (item.getItemId() == android.R.id.home) {
 
-        	if (mDrawerLayout.isDrawerOpen(mSideMenu)) {
-        		mDrawerLayout.closeDrawer(mSideMenu);
-        	} else {
+            if (mDrawerLayout.isDrawerOpen(mSideMenu)) {
+                mDrawerLayout.closeDrawer(mSideMenu);
+            } else {
         		mDrawerLayout.openDrawer(mSideMenu);
         	}
         	return true;
@@ -193,6 +278,11 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
+
+        mUserDetailsReceiver = new UserDetailsReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
+        Log.i(TAG, "Registering ACTION_GET_USER_DETAILS_RESULT");
+        registerReceiver(mUserDetailsReceiver, filter);
     }
 
     @Override
@@ -212,6 +302,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
     protected void onResume() {
         super.onResume();
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
+        refreshUserDetails();
     }
     
     @Override
@@ -222,4 +313,24 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         }
     }
 
+    private class UserDetailsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "Got GET_USER_DETAILS_RESULT");
+            BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
+
+            if (user == null) {
+                return;
+            }
+
+            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            editor.putInt("observation_count", user.getInt("observations_count"));
+            editor.putString("user_icon_url", user.getString("user_icon_url"));
+            editor.apply();
+
+            refreshUserDetails();
+        }
+    }
 }

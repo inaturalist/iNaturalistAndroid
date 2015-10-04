@@ -398,5 +398,8 @@
     <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
     <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="http://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="http://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="activity">Activity</string>
+    <string name="not_logged_in">N/A</string>
+    <string name="observation_count">%1$d observations</string>
  </resources>
 

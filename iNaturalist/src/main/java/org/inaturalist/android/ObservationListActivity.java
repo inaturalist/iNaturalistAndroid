@@ -379,7 +379,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         lv.setSelectionFromTop(mLastIndex, mLastTop);
       
         refreshSyncBar();
-        
+
         ObservationCursorAdapter adapter = mAdapter;
         adapter.refreshCursor();
         

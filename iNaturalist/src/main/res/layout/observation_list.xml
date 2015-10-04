@@ -1,71 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Main content view -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <!-- Main content view -->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/observations_list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            android:id="@+id/observations_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"/>
-            
-        <TextView
-            android:id="@android:id/empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            style="@android:style/TextAppearance.Medium"
-            android:text="@string/no_observations_yet" />
+        android:layout_height="fill_parent"
+        android:orientation="vertical"/>
 
-        <LinearLayout
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="30dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        style="@android:style/TextAppearance.Medium"
+        android:text="@string/no_observations_yet" />
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/add_observation"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_add_white_24dp"
+            android:scaleType="fitCenter"
+            fab:fab_colorNormal="@color/inatapptheme_color"
+            fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
+            fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+
+        <TextView
+            android:id="@+id/sync_observations"
+            android:background="@color/inatapptheme_color"
+            android:textColor="#FFFFFF"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            style="@android:style/TextAppearance.Medium"
+            android:text="@string/sync_x_observations" />
 
-            <com.melnykov.fab.FloatingActionButton
-                android:id="@+id/add_observation"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="end"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:padding="14dp"
-                android:src="@drawable/ic_add_white_24dp"
-                android:scaleType="fitCenter"
-                fab:fab_colorNormal="@color/inatapptheme_color"
-                fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
-                fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+    </LinearLayout>
+</RelativeLayout>
 
-            <TextView
-                android:id="@+id/sync_observations"
-                android:background="@color/inatapptheme_color"
-                android:textColor="#FFFFFF"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:gravity="center"
-                android:visibility="gone"
-                android:layout_alignParentBottom="true"
-                style="@android:style/TextAppearance.Medium"
-                android:text="@string/sync_x_observations" />
 
-        </LinearLayout>
-    </RelativeLayout>
-
-    <!-- Side menu (navigation drawer) -->
-    <include android:id="@+id/left_drawer" layout="@layout/side_menu" />
-
-</android.support.v4.widget.DrawerLayout>

@@ -174,7 +174,7 @@
         </activity>
         <activity
             android:configChanges="orientation"
-            android:label="@string/updates"
+            android:label="@string/activity"
             android:name=".WebActivity" >
         </activity>
         <activity
