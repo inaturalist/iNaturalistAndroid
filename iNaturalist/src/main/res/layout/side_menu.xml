@@ -40,7 +40,7 @@
             android:src="@drawable/ic_arrow_forward_white_24dp"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/user_details"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
@@ -50,6 +50,8 @@
             android:layout_toEndOf="@id/user_pic">
 
             <TextView
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,10 +59,30 @@
                 android:textColor="#ffffff"
                 android:text="@string/not_logged_in"
                 android:paddingBottom="10dp"
+                android:visibility="invisible"
+                />
+
+            <Button
+                android:id="@+id/menu_login"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/login_signup"
+                android:lines="1"
+                android:textSize="12sp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="-5dp"
                 />
 
             <TextView
+                android:layout_alignParentLeft="true"
                 android:id="@+id/observation_count"
+                android:layout_below="@id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -70,7 +92,7 @@
                 android:paddingBottom="8dp"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </RelativeLayout>
@@ -99,10 +121,10 @@
             android:layout_height="60dp">
             <ImageView
                 android:id="@+id/menu_explore_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_explore_gray_24dp"
+                android:src="@drawable/ic_explore_black_24dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -125,10 +147,10 @@
             android:layout_height="60dp">
             <ImageView
                 android:id="@+id/menu_projects_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_work_gray_24dp"
+                android:src="@drawable/ic_work_black_24dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -150,10 +172,10 @@
             android:layout_height="60dp">
             <ImageView
                 android:id="@+id/menu_guides_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_book_gray_24dp"
+                android:src="@drawable/ic_book_black_24dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -175,10 +197,10 @@
             android:layout_height="60dp">
             <ImageView
                 android:id="@+id/menu_activity_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_supervisor_account_gray_24dp"
+                android:src="@drawable/ic_supervisor_account_black_24dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -204,10 +226,10 @@
             android:layout_height="60dp">
             <ImageView
                 android:id="@+id/menu_settings_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_settings_gray_24dp"
+                android:src="@drawable/ic_settings_black_24dp"
                 />
             <TextView
                 android:layout_width="wrap_content"

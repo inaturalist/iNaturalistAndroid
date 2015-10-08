@@ -36,6 +36,7 @@ import android.view.Window;
 import android.webkit.*;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,6 +54,8 @@ public class GuideTaxonActivity extends SherlockActivity {
     private GuideXML mGuideXml;
     private GuideTaxonXML mGuideTaxonXml;
     private String mGuideId;
+    private Button mLogin;
+    private TextView mNotLoggedIn;
 
     @Override
 	protected void onStart()
@@ -203,6 +206,11 @@ public class GuideTaxonActivity extends SherlockActivity {
         } else {
             setContentView(R.layout.web);
             mWebView = (WebView) findViewById(R.id.webview);
+            mLogin = (Button) findViewById(R.id.login);
+            mNotLoggedIn = (TextView) findViewById(R.id.not_logged_in);
+
+            mLogin.setVisibility(View.GONE);
+            mNotLoggedIn.setVisibility(View.GONE);
         }
 
 

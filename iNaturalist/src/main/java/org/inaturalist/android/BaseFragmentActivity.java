@@ -5,6 +5,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.crashlytics.android.Crashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import android.os.Build;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -27,6 +28,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -78,7 +80,6 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
     public void onDrawerCreate(Bundle savedInstanceState) {
         Fabric.with(this, new Crashlytics());
 
-
         moveDrawerToTop();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -99,6 +100,14 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setIcon(android.R.color.transparent);
 
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            ((ImageView)findViewById(R.id.menu_explore_icon)).setAlpha(0.54f);
+            ((ImageView)findViewById(R.id.menu_projects_icon)).setAlpha(0.54f);
+            ((ImageView)findViewById(R.id.menu_guides_icon)).setAlpha(0.54f);
+            ((ImageView)findViewById(R.id.menu_activity_icon)).setAlpha(0.54f);
+            ((ImageView)findViewById(R.id.menu_settings_icon)).setAlpha(0.54f);
+        }
+
         buildSideMenu();
         
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
@@ -118,6 +127,15 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         }
 
         refreshUserDetails();
+
+        ((Button)findViewById(R.id.menu_login)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // User not logged-in - redirect to onboarding screen
+                startActivity(new Intent(BaseFragmentActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
+
 	}
 
     public void refreshUserDetails() {
@@ -128,6 +146,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 
         if (username != null) {
             ((TextView)findViewById(R.id.username)).setText(username);
+            findViewById(R.id.menu_login).setVisibility(View.INVISIBLE);
+            findViewById(R.id.username).setVisibility(View.VISIBLE);
 
             if (obsCount == -1) {
                 // Get user details from the server
@@ -135,11 +155,16 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
                 startService(serviceIntent);
             }
         } else {
-            ((TextView)findViewById(R.id.username)).setText(R.string.not_logged_in);
+            findViewById(R.id.menu_login).setVisibility(View.VISIBLE);
+            findViewById(R.id.username).setVisibility(View.INVISIBLE);
         }
 
         if (obsCount > -1) {
-            ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), obsCount));
+            if (obsCount == 1) {
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_single), obsCount));
+            } else {
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), obsCount));
+            }
         } else {
             String conditions = "(_synced_at IS NULL";
             if (username != null) {
@@ -149,7 +174,12 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 
             Cursor cursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, conditions, null, Observation.DEFAULT_SORT_ORDER);
 
-            ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), cursor.getCount()));
+            int count = cursor.getCount();
+            if (count == 1) {
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_single), count));
+            } else {
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), count));
+            }
 
             cursor.close();
         }
@@ -226,23 +256,33 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
 
         if (INaturalistMapActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_explore).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
-            ((ImageView)findViewById(R.id.menu_explore_icon)).setImageResource(R.drawable.ic_explore_black_24dp);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                ((ImageView) findViewById(R.id.menu_explore_icon)).setAlpha(1.0f);
+            }
         }
         if (ProjectsActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_projects).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
-            ((ImageView)findViewById(R.id.menu_projects_icon)).setImageResource(R.drawable.ic_work_black_24dp);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                ((ImageView) findViewById(R.id.menu_projects_icon)).setAlpha(1.0f);
+            }
         }
         if (GuidesActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_guides).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
-            ((ImageView)findViewById(R.id.menu_guides_icon)).setImageResource(R.drawable.ic_book_black_24dp);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                ((ImageView) findViewById(R.id.menu_guides_icon)).setAlpha(1.0f);
+            }
         }
         if (WebActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_activity).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
-            ((ImageView)findViewById(R.id.menu_activity_icon)).setImageResource(R.drawable.ic_supervisor_account_black_24dp);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                ((ImageView) findViewById(R.id.menu_activity_icon)).setAlpha(1.0f);
+            }
         }
         if (INaturalistPrefsActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_settings).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
-            ((ImageView)findViewById(R.id.menu_settings_icon)).setImageResource(R.drawable.ic_settings_black_24dp);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                ((ImageView) findViewById(R.id.menu_settings_icon)).setAlpha(1.0f);
+            }
         }
     }
 

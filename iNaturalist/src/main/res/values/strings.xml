@@ -401,5 +401,6 @@
     <string name="activity">Activity</string>
     <string name="not_logged_in">N/A</string>
     <string name="observation_count">%1$d observations</string>
+    <string name="observation_count_single">%1$d observation</string>
  </resources>
 

@@ -209,6 +209,8 @@ public class WebActivity extends BaseFragmentActivity {
 
         if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
             // User logged-in - Refresh web view
+            mLogin.setVisibility(View.GONE);
+            mNotLoggedIn.setVisibility(View.GONE);
             goHome();
         }
     }

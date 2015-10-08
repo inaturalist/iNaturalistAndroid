@@ -43,6 +43,8 @@
         android:layout_below="@android:id/empty"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         />
 
       <ListView

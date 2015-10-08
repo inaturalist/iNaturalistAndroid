@@ -118,6 +118,9 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
         });
         if (!showSkip) {
             skip.setVisibility(View.INVISIBLE);
+        } else {
+            // Don't show both skip and the X (close) buttons together
+            closeButton.setVisibility(View.INVISIBLE);
         }
 
         mFacebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);
