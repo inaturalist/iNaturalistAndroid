@@ -1384,7 +1384,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         boolean updatedProjects = saveProjects();
         saveProjectFields();
         
-        if ((mObservation.isDirty()) || (mProjectFieldsUpdated) || (updatedProjects)) {
+        if ((Intent.ACTION_INSERT.equals(getIntent().getAction())) || (mObservation.isDirty()) || (mProjectFieldsUpdated) || (updatedProjects)) {
             try {
                 ContentValues cv = mObservation.getContentValues();
                 if (mObservation.latitude_changed()) {
@@ -1806,7 +1806,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;
-                if (data == null) {
+                if ((data == null) || (data.getScheme() == null)) {
                     isCamera = true;
                 } else {
                     final String action = data.getAction();
