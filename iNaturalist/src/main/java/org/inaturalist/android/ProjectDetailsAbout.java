@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.regex.Pattern;
 
 public class ProjectDetailsAbout extends Fragment {
     public static final String KEY_PROJECT = "project";
@@ -40,6 +43,7 @@ public class ProjectDetailsAbout extends Fragment {
             String description = mProject.getString("description");
             description = description.replace("\n", "\n<br>");
             projectDescription.setText(Html.fromHtml(description));
+            Linkify.addLinks(projectDescription, Pattern.compile("www\\..+"), "http://");
             projectDescription.setMovementMethod(LinkMovementMethod.getInstance()); 
         }
         
