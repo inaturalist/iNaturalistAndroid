@@ -1848,13 +1848,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 updateImages();
                 if (!isCamera) {
                     promptImportPhotoMetadata(selectedImageUri);
-                } else if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
-                    // Returned from camera AND it's a new observation
-                    if (mObservation.longitude == null) {
-                        // Got stopped in the middle of retrieving GPS coordinates - try again
-                        getLocation();
-                    }
-                }
+               }
                 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
@@ -1889,9 +1883,17 @@ public class ObservationEditor extends SherlockFragmentActivity {
             getContentResolver().update(mUri, cv, null, null);
 
             mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background);
-            
+
             Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
             refreshCommentsIdSize(totalCount);
+        }
+
+        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+            // Returned from activity AND it's a new observation
+            if (mObservation.longitude == null) {
+                // Got stopped in the middle of retrieving GPS coordinates - try again
+                getLocation();
+            }
         }
     }
     
