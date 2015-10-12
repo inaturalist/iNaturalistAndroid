@@ -5,6 +5,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.crashlytics.android.Crashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import android.os.Build;
 
 import io.fabric.sdk.android.Fabric;
@@ -17,10 +18,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -185,10 +184,11 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         }
 
         if (userIconUrl != null) {
-            UrlImageViewHelper.setUrlDrawable((ImageView)findViewById(R.id.user_pic), userIconUrl, R.drawable.usericon, new UrlImageViewCallback() {
+            UrlImageViewHelper.setUrlDrawable((ImageView)findViewById(R.id.user_pic), userIconUrl, new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    // Nothing to do here
+                    ((ImageView)findViewById(R.id.no_user_pic)).setVisibility(View.GONE);
+                    ((ImageView)findViewById(R.id.user_pic)).setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -199,7 +199,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             });
 
         } else {
-            ((ImageView)findViewById(R.id.user_pic)).setImageResource(R.drawable.usericon);
+            ((ImageView)findViewById(R.id.no_user_pic)).setVisibility(View.VISIBLE);
+            ((ImageView)findViewById(R.id.user_pic)).setVisibility(View.GONE);
         }
     }
 
@@ -294,6 +295,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         }
 
         startActivity(intent);
+        overridePendingTransition(R.anim.show, R.anim.hide);
         finish();
     }
 
