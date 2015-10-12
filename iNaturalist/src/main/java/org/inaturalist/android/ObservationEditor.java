@@ -1848,6 +1848,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 updateImages();
                 if (!isCamera) {
                     promptImportPhotoMetadata(selectedImageUri);
+                } else if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                    // Returned from camera AND it's a new observation
+                    if (mObservation.longitude == null) {
+                        // Got stopped in the middle of retrieving GPS coordinates - try again
+                        getLocation();
+                    }
                 }
                 
             } else if (resultCode == RESULT_CANCELED) {
