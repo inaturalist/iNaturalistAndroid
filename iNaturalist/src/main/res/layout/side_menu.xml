@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="270dp"
+    android:layout_width="290dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:orientation="vertical"
@@ -14,8 +14,8 @@
         android:background="@drawable/side_menu_header_background"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         android:clickable="true"
         >
 
@@ -87,7 +87,7 @@
             android:lines="1"
             android:textSize="12sp"
             android:paddingTop="0dp"
-            android:paddingBottom="0dp"
+            android:paddingBottom="2dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:height="25dp"
@@ -140,6 +140,7 @@
                 android:id="@+id/menu_explore_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginLeft="7dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_explore_black_24dp"
                 />
@@ -166,6 +167,7 @@
                 android:id="@+id/menu_projects_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginLeft="7dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_work_black_24dp"
                 />
@@ -191,6 +193,7 @@
                 android:id="@+id/menu_guides_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginLeft="7dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_book_black_24dp"
                 />
@@ -216,6 +219,7 @@
                 android:id="@+id/menu_activity_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginLeft="7dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_supervisor_account_black_24dp"
                 />
@@ -245,6 +249,7 @@
                 android:id="@+id/menu_settings_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginLeft="7dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_settings_black_24dp"
                 />
