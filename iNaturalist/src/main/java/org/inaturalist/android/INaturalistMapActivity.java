@@ -178,9 +178,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private final static String ID_PLEASE_TAG_BACKGROUND_COLOR = "#FFEE91";
 	private final static String RESEARCH_TAG_TEXT_COLOR = "#529214";
 	private final static String RESEARCH_TAG_BACKGROUND_COLOR = "#DCEEA3";
+    private int mObservationListIndex;
+    private int mObservationListOffset;
+    private int mObservationGridOffset;
+    private int mObservationGridIndex;
 
-    
-	@Override
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -254,6 +258,14 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+
+            if (mViewType.equals(VIEW_TYPE_LIST)) {
+                mObservationListIndex = savedInstanceState.getInt("mObservationListIndex");
+                mObservationListOffset = savedInstanceState.getInt("mObservationListOffset");
+            } else if (mViewType.equals(VIEW_TYPE_GRID)) {
+                mObservationGridIndex = savedInstanceState.getInt("mObservationGridIndex");
+                mObservationGridOffset = savedInstanceState.getInt("mObservationGridOffset");
+            }
 	    	
 	    	mLoadingObservationsGrid.setVisibility(View.GONE);
 	    	mLoadingObservationsList.setVisibility(View.GONE);
@@ -655,6 +667,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         	refreshActiveFilters();
         	refreshViewType();
         }
+
+        if (mViewType.equals(VIEW_TYPE_LIST)) {
+            mObservationsList.setSelectionFromTop(mObservationListIndex, mObservationListOffset);
+        } else if (mViewType.equals(VIEW_TYPE_GRID)) {
+            mObservationsGrid.setSelection(mObservationGridIndex);
+        }
     }
     
     @Override
@@ -692,6 +710,24 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         }
 
         outState.putInt("mPage", mPage);
+
+
+        if (mViewType.equals(VIEW_TYPE_LIST)) {
+            View firstVisibleRow = mObservationsList.getChildAt(0);
+            mObservationListOffset = firstVisibleRow.getTop() - mObservationsList.getPaddingTop();
+            mObservationListIndex = mObservationsList.getFirstVisiblePosition();
+
+            outState.putInt("mObservationListIndex", mObservationListIndex);
+            outState.putInt("mObservationListOffset", mObservationListOffset);
+
+		} else if (mViewType.equals(VIEW_TYPE_GRID)) {
+            View firstVisibleRow = mObservationsGrid.getChildAt(0);
+            mObservationGridOffset = firstVisibleRow.getTop() - mObservationsGrid.getPaddingTop();
+            mObservationGridIndex = mObservationsGrid.getFirstVisiblePosition();
+
+            outState.putInt("mObservationGridIndex", mObservationGridIndex);
+            outState.putInt("mObservationGridOffset", mObservationGridOffset);
+		}
 
         super.onSaveInstanceState(outState);
     }
