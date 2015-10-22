@@ -369,7 +369,8 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             SharedPreferences.Editor editor = prefs.edit();
 
             editor.putInt("observation_count", user.getInt("observations_count"));
-            editor.putString("user_icon_url", user.getString("user_icon_url"));
+            String iconUrl = user.has("medium_user_icon_url") ? user.getString("medium_user_icon_url") : user.getString("user_icon_url");
+            editor.putString("user_icon_url", iconUrl);
             editor.apply();
 
             refreshUserDetails();
