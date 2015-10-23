@@ -14,6 +14,7 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -23,6 +24,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.DialogInterface;
 import android.support.v4.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
@@ -246,7 +248,27 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         addButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
+                new BottomSheet.Builder(ObservationListActivity.this).sheet(R.menu.observation_list_menu).listener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent;
+                        switch (which) {
+                            case R.id.camera:
+                                intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class);
+                                intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
+                                startActivity(intent);
+                                break;
+                            case R.id.upload_photo:
+                                intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class);
+                                intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
+                                startActivity(intent);
+                                break;
+                            case R.id.text:
+                                startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
+                                break;
+                        }
+                    }
+                }).show();
             }
         });
 

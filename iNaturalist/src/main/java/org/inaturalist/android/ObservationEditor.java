@@ -104,6 +104,8 @@ import android.widget.Toast;
 
 public class ObservationEditor extends SherlockFragmentActivity {
     private final static String TAG = "INAT: ObservationEditor";
+    public final static String TAKE_PHOTO = "take_photo";
+    public final static String CHOOSE_PHOTO = "choose_photo";
     private Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
@@ -762,6 +764,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mHelper = new ActivityHelper(this);
         }
 
+
         if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
@@ -828,6 +831,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) savedInstanceState.getSerializable("mProjectFieldValues");
             mProjectFieldsUpdated = savedInstanceState.getBoolean("mProjectFieldsUpdated");
         }
+
 
         mTaxonSelector = (ImageView) findViewById(R.id.taxonSelector);
         
@@ -1087,6 +1091,32 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else {
             refreshProjectList();
         }
+
+
+        if (intent != null) {
+            if (intent.getBooleanExtra(TAKE_PHOTO, false)) {
+                // Immediately take a photo
+                mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+                mFileUri = getPath(ObservationEditor.this, mFileUri);
+
+                final Intent galleryIntent = new Intent();
+
+                galleryIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
+                this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+            } else if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
+                // Immediately choose an existing photo
+                mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+                mFileUri = getPath(ObservationEditor.this, mFileUri);
+
+                final Intent galleryIntent = new Intent();
+                galleryIntent.setType("image/*");
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+        }
+
     }
     
     @Override

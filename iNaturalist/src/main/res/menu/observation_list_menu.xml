@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/camera" android:title="@string/camera" android:icon="@drawable/ic_photo_camera_gray_24dp"/>
+    <item android:id="@+id/upload_photo" android:title="@string/upload_photo" android:icon="@drawable/ic_image_gray_24dp" />
+    <item android:id="@+id/text" android:title="@string/menu_text" android:icon="@drawable/ic_mode_edit_gray_24dp"/>
+</menu>

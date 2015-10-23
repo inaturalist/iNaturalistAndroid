@@ -402,5 +402,8 @@
     <string name="not_logged_in">N/A</string>
     <string name="observation_count">%1$d observations</string>
     <string name="observation_count_single">%1$d observation</string>
+    <string name="camera">Camera</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="menu_text">Text</string>
  </resources>
 

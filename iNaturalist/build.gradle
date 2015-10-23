@@ -15,13 +15,13 @@ repositories {
 }
 
 android {
-    compileSdkVersion 'Google Inc.:Google APIs:19'
+    compileSdkVersion 'Google Inc.:Google APIs:21'
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "org.inaturalist.android"
         minSdkVersion 10
-        targetSdkVersion 15
+        targetSdkVersion 21
     }
 
     buildTypes {
@@ -44,7 +44,7 @@ dependencies {
     compile project(':library')
     compile project(':androidswitchbackport')
     compile project(':urlImageViewHelper')
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:21.+'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.google.android.gms:play-services:5.+'
     compile files('libs/FlurryAnalytics-4.2.0.jar')
@@ -59,4 +59,5 @@ dependencies {
     }
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile "org.apache.sanselan:sanselan:0.97-incubator"
+    compile 'com.cocosw:bottomsheet:1.+@aar'
 }
