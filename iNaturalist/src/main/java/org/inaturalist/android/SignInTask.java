@@ -171,6 +171,11 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         } catch (Exception exc) {
             // Ignore
         }
+
+        if (mFacebookAccessTokenTracker != null) {
+            mFacebookAccessTokenTracker.stopTracking();
+        }
+
         if (result != null) {
             Toast.makeText(mActivity, mActivity.getString(R.string.signed_in), Toast.LENGTH_SHORT).show();
         } else {

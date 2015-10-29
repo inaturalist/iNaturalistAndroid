@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -85,8 +86,16 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
                 mHelper.alert(getString(R.string.could_not_register_user), error);
             } else {
                 // Registration successful - login the user
+                recreateSignInTaskIfNeeded();
                 mSignInTask.signIn(INaturalistService.LoginType.PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
             }
+        }
+    }
+
+    // Recreates a new instance of the sign in task if it finished running before (since an AsyncTask can only be run once).
+    private void recreateSignInTaskIfNeeded() {
+        if (mSignInTask.getStatus() == AsyncTask.Status.FINISHED) {
+            mSignInTask = new SignInTask(this, this, mFacebookLoginButton);
         }
     }
 
@@ -316,6 +325,7 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
         loginWithFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                recreateSignInTaskIfNeeded();
                 mFacebookLoginButton.performClick();
             }
         });
@@ -328,6 +338,7 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return;
                 }
+                recreateSignInTaskIfNeeded();
                 mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
             }
         });
@@ -339,6 +350,7 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
             public void onClick(View view) {
                 if (!mIsSignup) {
                     // Login
+                    recreateSignInTaskIfNeeded();
                     mSignInTask.signIn(INaturalistService.LoginType.PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
                 } else {
                     // Sign up
