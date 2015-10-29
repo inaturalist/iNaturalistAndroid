@@ -143,7 +143,8 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	    
 	    mVersion = (TextView) findViewById(R.id.version);
 	    try {
-			mVersion.setText(String.format("Version %s", getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+			PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+			mVersion.setText(String.format("Version %s (%d)", packageInfo.versionName, packageInfo.versionCode));
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 			mVersion.setText("");
