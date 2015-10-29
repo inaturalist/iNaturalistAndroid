@@ -301,5 +301,28 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="error">Error</string>
     <string name="could_not_retrieve_guide">No se pudieron mostrar los detalles de la guía - probablemente un error de red.</string>
     <string name="select_source">Selecciona foto</string>
-
+    <string name="activity">Actividad</string>
+    <string name="log_in">Inicia sesión</string>
+    <string name="sign_up">Regístrate</string>
+    <string name="please_sign_in_via_settings_for_guides">Por favor conéctate por la pantalla de configuración para poder ver guías.</string>
+    <string name="please_sign_in_for_updates">Por favor conéctate por la pantalla de configuración para poder ver las actualizaciones.</string>
+    <string name="login_with">Inicia sesión con</string>
+    <string name="or_login_with">o inicia sesión con:</string>
+    <string name="sign_up_with">Regístrate con</string>
+    <string name="already_have_account">¿Ya tienes una cuenta de NaturaLista?</string>
+    <string name="forgot">¿La olvidaste?</string>
+    <string name="username_or_email">Usuario o correo</string>
+    <string name="use_my_license"><![CDATA[Si, ¡doy licencia sobre mis fotos y observaciones para que los investigadores puedan utilizar mis datos!. <b>Aprende más</b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Al usar NaturaLista estás de acuerdo con las <b><a href="http://naturalista.conabio.gob.mx/pages/terms">Condiciones de servicio</a></b> y la <b><a href="http://naturalista.conabio.gob.mx/pages/privacy">Política de privacidad</a></b>]]></string>
+    <string name="min_6_chars">Min. 6 caracteres</string>
+    <string name="observation_count">%1$d observaciones</string>
+    <string name="observation_count_single">%1$d observación</string>
+    <string name="camera">Toma una foto</string>
+    <string name="upload_photo">Escoge una imágen</string>
+    <string name="menu_text">Sin foto</string>
+    <string name="registering">Registrando...</string>
+    <string name="could_not_register_user">¡Lo sentimos!, no se pudo registrar al usuario</string>
+    <string name="skip">Saltar  ›</string>
+    <string name="email">Correo</string>
+    <string name="send_email">Envia correo...</string>
 </resources>
