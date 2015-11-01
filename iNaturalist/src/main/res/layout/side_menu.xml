@@ -42,7 +42,7 @@
                 android:layout_height="fill_parent"
                 android:layout_centerInParent="true"
                 android:adjustViewBounds="true"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_person_white_24dp" />
         </RelativeLayout>
         <ImageView
