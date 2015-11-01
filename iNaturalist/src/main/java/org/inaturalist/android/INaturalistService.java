@@ -1043,6 +1043,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = HOST + "/users/edit.json";
         JSONArray json = get(url, true);
         try {
+            if (json == null) return null;
+            if (json.length() == 0) return null;
 			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -2011,7 +2013,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 			Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
 
 			// Save resized image
-			File imageFile = new File(getExternalCacheDir(), UUID.randomUUID().toString());
+			File imageFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
 			OutputStream os = new FileOutputStream(imageFile);
 			resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
 			os.flush();
