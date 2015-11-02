@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
+
+
+    <ImageButton
+        android:id="@+id/delete_photo"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
+        android:visibility="gone"
+        />
 
     <uk.co.senab.photoview.HackyViewPager
         android:id="@+id/id_pic_view_pager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_above="@id/delete_photo"
          />
 
-</LinearLayout>
+</RelativeLayout>

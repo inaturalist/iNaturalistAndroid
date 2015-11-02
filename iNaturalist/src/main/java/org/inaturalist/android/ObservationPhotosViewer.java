@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,12 +28,17 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
@@ -54,7 +60,20 @@ public class ObservationPhotosViewer extends SherlockActivity {
 	private JSONObject mObservation;
 	private HackyViewPager mViewPager;
 
-	@Override
+	public static final String IS_NEW_OBSERVATION = "is_new_observation";
+    public static final String OBSERVATION = "observation";
+    public static final String OBSERVATION_ID = "observation_id";
+    public static final String CURRENT_PHOTO_INDEX = "current_photo_index";
+
+    public static final String SET_DEFAULT_PHOTO_INDEX = "set_default_photo_index";
+    public static final String DELETE_PHOTO_INDEX = "delete_photo_index";
+
+    private boolean mIsNewObservation;
+    private int mObservationId;
+    private int mCurrentPhotoIndex;
+    private View mDeletePhoto;
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -83,41 +102,95 @@ public class ObservationPhotosViewer extends SherlockActivity {
 
         mApp = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.observation_photos);
+
+        mDeletePhoto = findViewById(R.id.delete_photo);
         
         Intent intent = getIntent();
 
         try {
         	if (savedInstanceState == null) {
-        		String observationString = intent.getStringExtra("observation");
-        		if (observationString != null) mObservation = new JSONObject(observationString);
+                mIsNewObservation = intent.getBooleanExtra(IS_NEW_OBSERVATION, false);
+                mCurrentPhotoIndex = intent.getIntExtra(CURRENT_PHOTO_INDEX, 0);
+
+                if (!mIsNewObservation) {
+                    String observationString = intent.getStringExtra(OBSERVATION);
+                    if (observationString != null) mObservation = new JSONObject(observationString);
+                } else {
+                    mObservationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                }
         	} else {
-        		mObservation = new JSONObject(savedInstanceState.getString("observation"));
+                mIsNewObservation = savedInstanceState.getBoolean("mIsNewObservation");
+        		if (!mIsNewObservation) {
+                    mObservation = new JSONObject(savedInstanceState.getString("observation"));
+                } else {
+                    mObservationId = savedInstanceState.getInt("mObservationId");
+                    mObservationId = savedInstanceState.getInt("mObservationId");
+                }
         	}
         } catch (JSONException e) {
         	e.printStackTrace();
         }
 
         mViewPager = (HackyViewPager) findViewById(R.id.id_pic_view_pager);
-		if (mObservation != null) {
-			mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
-		}
+		if ((mObservation != null) && (!mIsNewObservation)) {
+            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
+		} else if (mIsNewObservation) {
+            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId));
+            mViewPager.setCurrentItem(mCurrentPhotoIndex);
+
+            mDeletePhoto.setVisibility(View.VISIBLE);
+            mDeletePhoto.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent data = new Intent();
+                    data.putExtra(DELETE_PHOTO_INDEX, mViewPager.getCurrentItem());
+                    setResult(RESULT_OK, data);
+                    finish();
+                }
+            });
+        }
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            finish();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                setResult(RESULT_CANCELED);
+                finish();
+                return true;
+            case R.id.set_as_first:
+                Intent data = new Intent();
+                data.putExtra(SET_DEFAULT_PHOTO_INDEX, mViewPager.getCurrentItem());
+                setResult(RESULT_OK, data);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
-    
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (mIsNewObservation) {
+            MenuInflater inflater = getSupportMenuInflater();
+            inflater.inflate(R.menu.observation_photos_viewer_menu, menu);
+            return true;
+        } else {
+            return super.onCreateOptionsMenu(menu);
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("observation", mObservation.toString());
+        if (!mIsNewObservation) outState.putString("observation", mObservation.toString());
+        outState.putBoolean("mIsNewObservation", mIsNewObservation);
+        if (mIsNewObservation) {
+            outState.putInt("mObservationId", mObservationId);
+            mCurrentPhotoIndex = mViewPager.getCurrentItem();
+            outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
+        }
         super.onSaveInstanceState(outState);
     }
  
@@ -125,7 +198,41 @@ public class ObservationPhotosViewer extends SherlockActivity {
  	class IdPicsPagerAdapter extends PagerAdapter {
  		int mDefaultTaxonIcon;
  		List<String> mImages;
- 		
+        List<Integer> mImageIds;
+        boolean mIsOffline = false;
+
+        private Cursor findPhotoInStorage(Integer photoId) {
+            Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    new String[]{MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
+                    MediaStore.MediaColumns._ID + " = " + photoId, null, null);
+
+            imageCursor.moveToFirst();
+            return imageCursor;
+        }
+
+        // Load offline photos for a new observation
+        public IdPicsPagerAdapter(int observationId) {
+            mIsOffline = true;
+            mImageIds = new ArrayList<Integer>();
+            Cursor imageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                    ObservationPhoto.PROJECTION,
+                    "_observation_id=?",
+                    new String[]{String.valueOf(observationId)},
+                    "id ASC, _id ASC");
+
+            imageCursor.moveToFirst();
+
+            do {
+                int photoId = imageCursor.getInt(imageCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                Cursor pc = findPhotoInStorage(photoId);
+                if (pc.getCount() > 0) {
+                    mImageIds.add(photoId);
+                    pc.close();
+                }
+            } while (imageCursor.moveToNext());
+        }
+
+        // Load online photos for an existing observation
  		public IdPicsPagerAdapter(JSONObject observation) {
  			mImages = new ArrayList<String>();
  			mDefaultTaxonIcon = observationIcon(observation);
@@ -153,41 +260,67 @@ public class ObservationPhotosViewer extends SherlockActivity {
 
  		@Override
  		public int getCount() {
- 			return mImages.size();
+ 			return (mIsOffline ? mImageIds.size() : mImages.size());
  		}
 
  		@Override
  		public View instantiateItem(ViewGroup container, int position) {
-
- 			String imageUrl = mImages.get(position);
  			View layout = (View) getLayoutInflater().inflate(R.layout.observation_photo, null, false);
  			container.addView(layout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
  			ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
  			final ProgressBar loading = (ProgressBar) layout.findViewById(R.id.id_pic_loading);
 
- 			if (imageUrl == null) {
- 				// Show a default taxon image
- 				imageView.setImageResource(mDefaultTaxonIcon);
- 			} else {
- 				loading.setVisibility(View.VISIBLE);
- 				imageView.setVisibility(View.INVISIBLE);
- 				final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
- 				// Show a photo
- 				UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
-					@Override
-					public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-						loading.setVisibility(View.GONE);
-						imageView.setVisibility(View.VISIBLE);
-						attacher.update();
-					}
+            if (mIsOffline) {
+                // Offline photos
+                int photoId = mImageIds.get(position);
+                Cursor pc = findPhotoInStorage(photoId);
+                if (pc.getCount() > 0) {
+                    int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+                    Bitmap bitmapImage = null;
+                    try {
+                        bitmapImage = MediaStore.Images.Media.getBitmap(
+                                getContentResolver(),
+                                ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId));
+                        if (orientation != 0) {
+                            Matrix matrix = new Matrix();
+                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                        }
+                        imageView.setImageBitmap(bitmapImage);
+                        final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
+                        attacher.update();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                // Online photos
 
-					@Override
-					public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-						// No post-processing of bitmap
-						return loadedBitmap;
-					}
-				});
- 			}
+                String imageUrl = mImages.get(position);
+                if (imageUrl == null) {
+                    // Show a default taxon image
+                    imageView.setImageResource(mDefaultTaxonIcon);
+                } else {
+                    loading.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.INVISIBLE);
+                    final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
+                    // Show a photo
+                    UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
+                        @Override
+                        public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            loading.setVisibility(View.GONE);
+                            imageView.setVisibility(View.VISIBLE);
+                            attacher.update();
+                        }
+
+                        @Override
+                        public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            // No post-processing of bitmap
+                            return loadedBitmap;
+                        }
+                    });
+                }
+            }
 
  			return layout;
  		}

@@ -7,6 +7,10 @@
 	  <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>
   </style>
 
+  <style name="ActionBarText" parent="@android:style/TextAppearance">
+     <item name="android:textColor">#ffffff</item>
+  </style>
+
   <style name="ImageButtoniNatAppTheme" parent="android:Widget.Holo.Light.ImageButton">
 	  <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>
   </style>

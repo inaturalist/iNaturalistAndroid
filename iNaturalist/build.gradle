@@ -60,4 +60,5 @@ dependencies {
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile "org.apache.sanselan:sanselan:0.97-incubator"
     compile 'com.cocosw:bottomsheet:1.+@aar'
+    compile 'org.lucasr.twowayview:twowayview:0.1.4'
 }

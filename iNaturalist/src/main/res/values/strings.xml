@@ -405,5 +405,7 @@
     <string name="camera">Take Photo</string>
     <string name="upload_photo">Choose Image</string>
     <string name="menu_text">Skip Photo</string>
+    <string name="first">1st</string>
+    <string name="make_first">Make 1st</string>
  </resources>
 

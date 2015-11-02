@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="9dp"
+        android:background="#EDEDED"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/take_photo"
+            android:background="#4E4E4E"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="49dp"
+                android:background="#EDEDED"
+                android:layout_marginLeft="1dp"
+                android:src="@drawable/ic_add_black_24dp"
+                android:padding="10dp"
+                />
+        </RelativeLayout>
+
+        <org.lucasr.twowayview.TwoWayView
+            android:id="@+id/gallery"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/TwoWayView"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:drawSelectorOnTop="false"
+            tools:context=".ObservationEditor"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

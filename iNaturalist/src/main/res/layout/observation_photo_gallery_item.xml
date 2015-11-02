@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="50dp"
+    android:layout_height="75dp">
+
+    <ImageView
+        android:id="@+id/observation_photo"
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:src="@drawable/iconic_taxon_amphibia"
+        />
+
+    <RadioButton
+        android:id="@+id/observation_is_first"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="-7dp"
+        android:paddingLeft="-5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:text="@string/first"
+        android:textSize="10sp"
+        />
+
+</LinearLayout>

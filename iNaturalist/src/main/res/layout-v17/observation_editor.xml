@@ -80,11 +80,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Gallery
+            <org.lucasr.twowayview.TwoWayView
                 android:id="@+id/gallery"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/TwoWayView"
+                tools:context=".ObservationEditor"
+                android:drawSelectorOnTop="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spacing="5dp" />
+                android:layout_height="wrap_content" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

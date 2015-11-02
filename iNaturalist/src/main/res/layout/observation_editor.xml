@@ -80,11 +80,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Gallery
+            <org.lucasr.twowayview.TwoWayView
                 android:id="@+id/gallery"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/TwoWayView"
+                tools:context=".ObservationEditor"
+                android:drawSelectorOnTop="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spacing="5dp" />
+                android:layout_height="wrap_content" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -94,9 +97,9 @@
                     android:id="@+id/taxonSelector"
                     android:layout_width="38dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_fa_search"
                     />
