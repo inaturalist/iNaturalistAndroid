@@ -794,6 +794,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
         }
 
+        mIsConfirmation = false;
+
         if (mIsConfirmation) {
             setContentView(R.layout.observation_confirmation);
             setTitle(R.string.details);
