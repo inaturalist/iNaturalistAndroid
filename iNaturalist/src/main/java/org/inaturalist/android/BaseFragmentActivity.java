@@ -195,7 +195,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
                 public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                     // Return a circular version of the profile picture
                     Bitmap centerCrop = ImageUtils.centerCropBitmap(loadedBitmap);
-                    return ImageUtils.getCircleBitmap(loadedBitmap);
+                    return ImageUtils.getCircleBitmap(centerCrop);
                 }
             });
 

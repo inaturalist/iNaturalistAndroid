@@ -25,7 +25,7 @@ public class ImageUtils {
         if (bitmap.getWidth() == bitmap.getHeight()) {
             return bitmap;
 
-        } else  if (bitmap.getWidth() > bitmap.getHeight()) {
+        } else if (bitmap.getWidth() > bitmap.getHeight()) {
             output = Bitmap.createBitmap(
                     bitmap,
                     bitmap.getWidth() / 2 - bitmap.getHeight() / 2,
