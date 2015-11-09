@@ -407,5 +407,12 @@
     <string name="menu_text">Skip Photo</string>
     <string name="first">1st</string>
     <string name="make_first">Make 1st</string>
+    <string name="help_id_this_species">Help Me ID this Species</string>
+    <string name="notes">Notes</string>
+    <string name="coordinates">Lat: %1$f Lon: %2$f Acc. %3$d</string>
+    <string name="coordinates_no_acc">Lat: %1$s Lon: %2$s</string>
+    <string name="location_is">Location is</string>
+    <string name="is_captive">It is captive or cultivated</string>
+    <string name="location_visibility">Location Visibility</string>
  </resources>
 

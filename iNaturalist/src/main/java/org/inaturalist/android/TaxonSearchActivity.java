@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,6 +35,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebChromeClient.CustomViewCallback;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -59,8 +61,10 @@ public class TaxonSearchActivity extends SherlockListActivity {
     public static final String FIELD_ID = "field_id";
 
     public static final String SPECIES_GUESS = "species_guess";
-    
-    
+    public static final String SHOW_UNKNOWN = "show_unknown";
+    public static final int UNKNOWN_TAXON_ID = -1;
+
+
     private TaxonAutoCompleteAdapter mAdapter;
 
     private int mFieldId;
@@ -68,8 +72,9 @@ public class TaxonSearchActivity extends SherlockListActivity {
     private ProgressBar mProgress;
     
     private INaturalistApp mApp;
+    private boolean mShowUnknown;
 
-	@Override
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -221,11 +226,13 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 protected void publishResults(CharSequence constraint, FilterResults results) {
                     if (results != null && results.count > 0) {
                         mResultList = (ArrayList<JSONObject>) results.values;
+                        if (mShowUnknown) mResultList.add(0, null);
                         notifyDataSetChanged();
                     }
                     else {
                         if (results != null) {
                             mResultList = (ArrayList<JSONObject>) results.values;
+                            if (mShowUnknown) mResultList.add(0, null);
                         }
                         
                         notifyDataSetInvalidated();
@@ -242,6 +249,16 @@ public class TaxonSearchActivity extends SherlockListActivity {
             JSONObject defaultName;
             String displayName = null;
 
+            if (item == null) {
+                // It's the unknown taxon row (the first row)
+                ((ViewGroup)view.findViewById(R.id.taxon_result)).setVisibility(View.GONE);
+                ((ViewGroup)view.findViewById(R.id.unknown_taxon_result)).setVisibility(View.VISIBLE);
+                view.setTag(null);
+                return view;
+            } else {
+                ((ViewGroup)view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
+                ((ViewGroup)view.findViewById(R.id.unknown_taxon_result)).setVisibility(View.GONE);
+            }
 
             // Get the taxon display name according to device locale
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -308,7 +325,13 @@ public class TaxonSearchActivity extends SherlockListActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    } 
+    }
+
+   @Override
+   public void onBackPressed() {
+       setResult(RESULT_CANCELED);
+       finish();
+   }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -336,7 +359,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
         mProgress.setVisibility(View.GONE);
         
         mAdapter = new TaxonAutoCompleteAdapter(getApplicationContext(), R.layout.taxon_result_item);
-        EditText autoCompView = (EditText) customView.findViewById(R.id.search_text);
+        final EditText autoCompView = (EditText) customView.findViewById(R.id.search_text);
         
         autoCompView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -350,10 +373,20 @@ public class TaxonSearchActivity extends SherlockListActivity {
         });
 
         String initialSearch = intent.getStringExtra(SPECIES_GUESS);
-        
+        mShowUnknown = intent.getBooleanExtra(SHOW_UNKNOWN, false);
+
         if ((initialSearch != null) && (initialSearch.trim().length() > 0)) {
         	autoCompView.setText(initialSearch);
         	autoCompView.setSelection(initialSearch.length());
+            autoCompView.requestFocus();
+
+            (new Handler()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(autoCompView, InputMethodManager.SHOW_IMPLICIT);
+                }
+            }, 100);
         } else {
         	autoCompView.setText("");
         }
@@ -367,47 +400,55 @@ public class TaxonSearchActivity extends SherlockListActivity {
         try {
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
-            bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
 
-            String displayName = null;
-            // Get the taxon display name according to configuration of the current iNat network
-            String inatNetwork = mApp.getInaturalistNetworkMember();
-            String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
-            try {
-				JSONArray taxonNames = item.getJSONArray("taxon_names");
-				for (int i = 0; i < taxonNames.length(); i++) {
-					JSONObject taxonName = taxonNames.getJSONObject(i);
-					String lexicon = taxonName.getString("lexicon");
-					if (lexicon.equals(networkLexicon)) {
-						// Found the appropriate lexicon for the taxon
-						displayName = taxonName.getString("name");
-						break;
-					}
-				}
-			} catch (JSONException e3) {
-				e3.printStackTrace();
-			}
+            if (item != null) {
+                bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
 
-            if (displayName == null) {
-            	// Couldn't extract the display name from the taxon names list - use the default one
-            	try {
-            		displayName = item.getString("unique_name");
-            	} catch (JSONException e2) {
-            		displayName = "unknown";
-            	}
-            	try {
-            		JSONObject defaultName = item.getJSONObject("default_name");
-            		displayName = defaultName.getString("name");
-            	} catch (JSONException e1) {
-            		// alas
-            	}
+                String displayName = null;
+                // Get the taxon display name according to configuration of the current iNat network
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
+                try {
+                    JSONArray taxonNames = item.getJSONArray("taxon_names");
+                    for (int i = 0; i < taxonNames.length(); i++) {
+                        JSONObject taxonName = taxonNames.getJSONObject(i);
+                        String lexicon = taxonName.getString("lexicon");
+                        if (lexicon.equals(networkLexicon)) {
+                            // Found the appropriate lexicon for the taxon
+                            displayName = taxonName.getString("name");
+                            break;
+                        }
+                    }
+                } catch (JSONException e3) {
+                    e3.printStackTrace();
+                }
+
+                if (displayName == null) {
+                    // Couldn't extract the display name from the taxon names list - use the default one
+                    try {
+                        displayName = item.getString("unique_name");
+                    } catch (JSONException e2) {
+                        displayName = "unknown";
+                    }
+                    try {
+                        JSONObject defaultName = item.getJSONObject("default_name");
+                        displayName = defaultName.getString("name");
+                    } catch (JSONException e1) {
+                        // alas
+                    }
+                }
+
+                bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
+                bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
+                bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
+                bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
+                bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
+
+            } else {
+                // Unknown taxon
+                bundle.putInt(TaxonSearchActivity.TAXON_ID, UNKNOWN_TAXON_ID);
             }
-            
-            bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
-            bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
-            bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
-            bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
-            bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
+
             intent.putExtras(bundle);
 
             setResult(RESULT_OK, intent);

@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
     android:background="#ffffff"
-    android:layout_height="match_parent">
+    >
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="horizontal"
-        android:padding="9dp"
+        android:paddingTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
         android:background="#EDEDED"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:id="@+id/take_photo"
             android:background="#4E4E4E"
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:layout_width="48dp"
+            android:layout_height="48dp">
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="49dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
                 android:background="#EDEDED"
                 android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
                 android:src="@drawable/ic_add_black_24dp"
                 android:padding="10dp"
                 />
@@ -39,4 +47,369 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="8dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/species_guess_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_wallpaper_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:alpha="0.6"
+            />
+        
+        <EditText
+            android:id="@+id/speciesGuess"
+            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:hint="@string/species_guess_hint"
+            android:layout_toRightOf="@id/species_guess_icon"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/help_id_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_announcement_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:tint="#686868"
+            />
+
+
+        <org.jraf.android.backport.switchwidget.Switch
+            android:id="@+id/id_please"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/help_id_icon"
+            android:layout_toLeftOf="@id/id_please"
+            android:text="@string/help_id_this_species"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            />
+
+        <!--
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_compat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="25dp"
+            android:checked="false" />
+            -->
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/notes_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_assignment_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:tint="#686868"
+            />
+
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:minHeight="50dp"
+            android:inputType="textMultiLine"
+            android:layout_toRightOf="@id/notes_icon"
+            android:isScrollContainer="true"
+            android:hint="@string/notes"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/time_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_access_time_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:tint="#686868"
+            />
+
+
+        <TextView
+            android:id="@+id/observed_on"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/time_icon"
+            android:text="@string/set_date"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/time_observed_at"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/set_time"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/location_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_location_on_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:tint="#686868"
+            />
+
+        <ProgressBar
+            android:id="@+id/locationProgress"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="5dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/locationRefreshButton"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/location_icon"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/location_guess"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="N/A"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/coordinates"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/location_guess"
+                android:text="@string/coordinates"
+                android:layout_centerVertical="true"
+                android:textSize="12sp"
+                android:textColor="#929292"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/location_visibility_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_public_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:tint="#686868"
+            />
+
+        <RelativeLayout
+            android:id="@+id/locationVisibility"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/location_visibility_icon"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/location_visibility_description"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Location is public"
+                android:textSize="16sp"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/is_captive_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_nature_people_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:tint="#686868"
+            />
+
+
+        <TextView
+            android:id="@+id/is_captive"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/is_captive"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/is_captive_icon"
+            />
+
+        <CheckBox
+            android:id="@+id/is_captive_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/projects_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_work_black_24dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:tint="#686868"
+            />
+
+
+        <TextView
+            android:layout_toRightOf="@id/projects_icon"
+            android:id="@+id/select_projects"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/projects"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#dfdfdf"
+        />
+
 </LinearLayout>
+</ScrollView>
