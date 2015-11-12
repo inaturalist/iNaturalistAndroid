@@ -185,6 +185,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private ImageView mSpeciesGuessIcon;
     private String mPreviousTaxonSearch = "";
     private String mTaxonPicUrl;
+    private boolean mIsTaxonUnknown;
 
     @Override
 	protected void onStart()
@@ -914,11 +915,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     builder.setItems(getResources().getStringArray(R.array.geoprivacy_items), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            String[] names = getResources().getStringArray(R.array.geoprivacy_items);
-                            String[] values = getResources().getStringArray(R.array.geoprivacy_values);
-
-                            ((TextView)findViewById(R.id.location_visibility_description)).setText(getString(R.string.location_is) + " " + names[which]);
-                            mObservation.geoprivacy = values[which];
+                            mGeoprivacy.setSelection(which);
+                            updateObservationVisibilityDescription();
                         }
                     });
                     builder.show();
@@ -933,7 +931,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mDescriptionTextView = (TextView) findViewById(R.id.description);
         mSaveButton = (TextView) findViewById(R.id.save_observation);
         mObservedOnButton = (TextView) findViewById(R.id.observed_on);
-        mObservedOnStringTextView = mIsConfirmation ? mObservedOnButton : (TextView) findViewById(R.id.observed_on_string);
+        mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
         mTimeObservedAtButton = (TextView) findViewById(R.id.time_observed_at);
         mGallery = (TwoWayView) findViewById(R.id.gallery);
         float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
@@ -963,9 +961,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         });
 
         if (mIsConfirmation) {
-            ((TextView)findViewById(R.id.coordinates)).setVisibility(View.GONE);
+            findViewById(R.id.coordinates).setVisibility(View.GONE);
             if (mTaxonPicUrl != null) {
-                UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, mTaxonPicUrl, R.drawable.ic_wallpaper_black_24dp, new UrlImageViewCallback() {
+                UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, mTaxonPicUrl, R.drawable.ic_species_guess_black_24dp, new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
@@ -991,7 +989,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 public void afterTextChanged(Editable editable) {
                     String currentTaxonGuess = mSpeciesGuessTextView.getText().toString();
 
-                    if ((mWatchForSpeciesGuessChanges) && (!currentTaxonGuess.toString().equals(mPreviousTaxonSearch))) {
+                    if ((mWatchForSpeciesGuessChanges) && (!currentTaxonGuess.equals(mPreviousTaxonSearch)) &&
+                            (!currentTaxonGuess.equals("Unknown")) && (!currentTaxonGuess.equals(""))) {
                         Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
                         intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, currentTaxonGuess);
                         intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
@@ -1270,6 +1269,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
         }
 
+        if (mIsConfirmation) updateObservationVisibilityDescription();
     }
     
     @Override
@@ -1311,6 +1311,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
         switch (item.getItemId()) {
         case android.R.id.home:
             return onBack();
+        case R.id.save_observation:
+            uiToProjectFieldValues();
+            if (save()) {
+                finish();
+            }
+            return true;
         }
         return true;
     } 
@@ -1362,12 +1368,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
     
     private boolean validateProjectFields() {
-        for (ProjectFieldViewer fieldViewer : mProjectFieldViewers) {
-            ProjectField field = fieldViewer.getField();
-            
-            if (!fieldViewer.isValid()) {
-                Toast.makeText(this, String.format(getString(R.string.invalid_project_field), field.name), Toast.LENGTH_LONG).show();
-                return false;
+        if (!mIsConfirmation) {
+            for (ProjectFieldViewer fieldViewer : mProjectFieldViewers) {
+                ProjectField field = fieldViewer.getField();
+
+                if (!fieldViewer.isValid()) {
+                    Toast.makeText(this, String.format(getString(R.string.invalid_project_field), field.name), Toast.LENGTH_LONG).show();
+                    return false;
+                }
             }
         }
         
@@ -1454,19 +1462,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
 
     private void updateUi() {
-        if (!mIsConfirmation) {
-            observationToUi();
-        }
+        observationToUi();
 
         updateImages();
     }
 
     private void uiToObservation() {
-        if (mIsConfirmation) {
-            return;
-        }
-
-        if (((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0)) || (mObservation.species_guess != null)) mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+        if (((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
         if (((mObservation.description == null) && (mDescriptionTextView.getText().length() > 0)) || (mObservation.description != null)) mObservation.description = mDescriptionTextView.getText().toString();
         if (mObservedOnStringTextView.getText() == null || mObservedOnStringTextView.getText().length() == 0) {
             mObservation.observed_on_string = null; 
@@ -1475,6 +1477,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.observed_on = mDateSetByUser;
             mObservation.time_observed_at = mTimeSetByUser;
         }
+
         if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
             mObservation.latitude = null;
         } else {
@@ -1490,29 +1493,35 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else {
             mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
         }
-        
+
+        mObservation.id_please = mIdPlease.isChecked();
+
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
         String selectedValue = values.get(mGeoprivacy.getSelectedItemPosition());
         if ((mObservation.geoprivacy != null) || (mGeoprivacy.getSelectedItemPosition() != 0)) {
             mObservation.geoprivacy = selectedValue;
         }
+    }
 
-        mObservation.id_please = mIdPlease.isChecked();
-
+    private void updateObservationVisibilityDescription() {
+        List<String> names = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_items));
+        String selectedName = names.get(mGeoprivacy.getSelectedItemPosition());
+        ((TextView)findViewById(R.id.location_visibility_description)).setText(getString(R.string.location_is) + " " + selectedName);
     }
 
     private void observationToUi() {
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
-        
+
         if (mObservation.geoprivacy != null) {
             mGeoprivacy.setSelection(values.indexOf(mObservation.geoprivacy));
         } else {
             mGeoprivacy.setSelection(0);
         }
-        
+        if (mIsConfirmation) updateObservationVisibilityDescription();
+
         mIdPlease.setChecked(mObservation.id_please);
-        
-        mSpeciesGuessTextView.setText(mObservation.species_guess);
+
+        mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {
             mObservedOnButton.setText(getString(R.string.set_date));
@@ -1529,8 +1538,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mTimeObservedAtButton.setText(app.shortFormatTime(mObservation.time_observed_at));
             mTimeSetByUser = mObservation.time_observed_at;
         }
+
         if (mObservation.latitude != null) {
             mLatitudeView.setText(mObservation.latitude.toString());
+            if (mIsConfirmation) {
+                findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
+            }
         } else {
             mLatitudeView.setText("");
         }
@@ -1541,13 +1554,24 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
         if (mObservation.positional_accuracy == null) {
             mAccuracyView.setText("");
+
+            if (mIsConfirmation) {
+                findViewById(R.id.accuracy_prefix).setVisibility(View.GONE);
+                findViewById(R.id.accuracy).setVisibility(View.GONE);
+            }
         } else {
             mAccuracyView.setText(mObservation.positional_accuracy.toString());
+            if (mIsConfirmation) {
+                findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
+                findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
+            }
         }
-        
-        refreshCommentsIdSize(mObservation.updatesCount());
-        if (mObservation.unviewedUpdates()) {
-            mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+
+        if (!mIsConfirmation) {
+            refreshCommentsIdSize(mObservation.updatesCount());
+            if (mObservation.unviewedUpdates()) {
+                mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+            }
         }
     }
 
@@ -1716,7 +1740,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             if (datetime.getTime() > System.currentTimeMillis()) {
                 datetime = new Timestamp(System.currentTimeMillis());
             }
-            if (!mIsConfirmation) mObservedOnStringTextView.setText(app.formatDatetime(datetime));
+            mObservedOnStringTextView.setText(app.formatDatetime(datetime));
             mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
             mTimeSetByUser = datetime;
         }
@@ -1831,22 +1855,23 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mObservation.latitude = location.getLatitude();
         mObservation.longitude = location.getLongitude();
 
-        if (!mIsConfirmation) {
-            mLatitudeView.setText(Double.toString(location.getLatitude()));
-            mLongitudeView.setText(Double.toString(location.getLongitude()));
-        } else {
-            ((TextView)findViewById(R.id.coordinates)).setText(String.format(getString(R.string.coordinates_no_acc), mObservation.latitude, mObservation.longitude));
-            ((TextView)findViewById(R.id.coordinates)).setVisibility(View.VISIBLE);
+        mLatitudeView.setText(Double.toString(location.getLatitude()));
+        mLongitudeView.setText(Double.toString(location.getLongitude()));
+
+        if (mIsConfirmation) {
+            findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
         }
 
         if (location.hasAccuracy()) {
-            if (!mIsConfirmation) {
-                mAccuracyView.setText(Float.toString(location.getAccuracy()));
-            } else {
-                ((TextView)findViewById(R.id.coordinates)).setText(String.format(getString(R.string.coordinates), mObservation.latitude, mObservation.longitude, (int)location.getAccuracy()));
-                ((TextView)findViewById(R.id.coordinates)).setVisibility(View.VISIBLE);
-            }
+            mAccuracyView.setText(Float.toString(location.getAccuracy()));
             mObservation.positional_accuracy = ((Float) location.getAccuracy()).intValue();
+            if (mIsConfirmation) {
+                findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
+                findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
+            }
+        } else if (mIsConfirmation) {
+            findViewById(R.id.accuracy_prefix).setVisibility(View.GONE);
+            findViewById(R.id.accuracy).setVisibility(View.GONE);
         }
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
@@ -1893,6 +1918,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
      */
     
     private void saveProjectFields() {
+        if (mIsConfirmation) {
+            return;
+        }
 
         for (ProjectFieldValue fieldValue : mProjectFieldValues.values()) {
             if (fieldValue.value == null) {
@@ -2000,13 +2028,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mObservation.longitude = longitude;
                 mObservation.positional_accuracy = (int) Math.ceil(accuracy);
 
-                if (!mIsConfirmation) {
-                    mLatitudeView.setText(Double.toString(latitude));
-                    mLongitudeView.setText(Double.toString(longitude));
-                    mAccuracyView.setText(mObservation.positional_accuracy.toString());
-                } else {
-                    ((TextView)findViewById(R.id.coordinates)).setText(String.format(getString(R.string.coordinates), mObservation.latitude, mObservation.longitude, mObservation.positional_accuracy));
-                    ((TextView)findViewById(R.id.coordinates)).setVisibility(View.VISIBLE);
+                mLatitudeView.setText(Double.toString(latitude));
+                mLongitudeView.setText(Double.toString(longitude));
+                mAccuracyView.setText(mObservation.positional_accuracy.toString());
+                if (mIsConfirmation) {
+                    findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
+                    findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
+                    findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
                 }
             }
          } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
@@ -2020,14 +2048,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 if (taxonId == TaxonSearchActivity.UNKNOWN_TAXON_ID) {
                     mSpeciesGuess = null;
                     mObservation.species_guess = null;
-                    mObservation.taxon_id = 0;
+                    mObservation.taxon_id = null;
                     mSpeciesGuessTextView.setText("Unknown");
                     mPreviousTaxonSearch = "Unknown";
                     mTaxonPicUrl = null;
+                    mIsTaxonUnknown = true;
 
                     if (mIsConfirmation) {
                         ((EditText)mSpeciesGuessTextView).setSelection(mSpeciesGuessTextView.length());
-                        mSpeciesGuessIcon.setImageResource(R.drawable.ic_wallpaper_black_24dp);
+                        mSpeciesGuessIcon.setImageResource(R.drawable.ic_species_guess_black_24dp);
                         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                             mSpeciesGuessIcon.setAlpha(0.6f);
                         }
@@ -2044,7 +2073,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
                     if (mIsConfirmation) {
                         ((EditText)mSpeciesGuessTextView).setSelection(mSpeciesGuess.length());
-                        UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, idPicUrl, R.drawable.ic_wallpaper_black_24dp, new UrlImageViewCallback() {
+                        ((EditText)mSpeciesGuessTextView).clearFocus();
+                        UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, idPicUrl, R.drawable.ic_species_guess_black_24dp, new UrlImageViewCallback() {
                             @Override
                             public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {

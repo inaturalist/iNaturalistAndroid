@@ -59,7 +59,7 @@
             android:id="@+id/species_guess_icon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_wallpaper_black_24dp"
+            android:src="@drawable/ic_species_guess_black_24dp"
             android:layout_marginRight="16dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -162,6 +162,7 @@
 
 
         <EditText
+            android:id="@+id/description"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:minHeight="50dp"
@@ -197,6 +198,11 @@
             android:tint="#686868"
             />
 
+        <TextView
+            android:id="@+id/observed_on_string"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/observed_on"
@@ -263,20 +269,80 @@
                 android:id="@+id/location_guess"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="N/A"
+                android:text="@string/set_location"
                 android:textSize="16sp"
+                android:visibility="visible"
                 />
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/coordinates"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@id/location_guess"
-                android:text="@string/coordinates"
                 android:layout_centerVertical="true"
-                android:textSize="12sp"
-                android:textColor="#929292"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/coordinates_lat"
+                    android:textSize="12sp"
+                    android:textColor="#929292"
+                    android:layout_marginRight="2dp"
+                    />
+                <TextView
+                    android:id="@+id/latitude"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="12.34567890123"
+                    android:textSize="12sp"
+                    android:textColor="#929292"
+                    android:layout_marginRight="4dp"
+                    android:maxWidth="80dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/coordinates_lon"
+                    android:textSize="12sp"
+                    android:textColor="#929292"
+                    android:layout_marginRight="4dp"
+                    />
+                <TextView
+                    android:id="@+id/longitude"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#929292"
+                    android:layout_marginRight="4dp"
+                    android:text="12.34567890123"
+                    android:maxWidth="80dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    />
+                <TextView
+                    android:id="@+id/accuracy_prefix"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/coordinates_acc"
+                    android:textSize="12sp"
+                    android:textColor="#929292"
+                    android:layout_marginRight="2dp"
+                    />
+                <TextView
+                    android:id="@+id/accuracy"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#929292"
+                    android:text="34567890123"
+                    android:maxWidth="80dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    />
+
+            </LinearLayout>
 
         </RelativeLayout>
     </RelativeLayout>
@@ -316,10 +382,16 @@
                 android:id="@+id/location_visibility_description"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Location is public"
+                android:text="Location is open"
                 android:textSize="16sp"
                 />
-
+            <Spinner
+                android:id="@+id/geoprivacy"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/geoprivacy_items"
+                android:entryValues="@array/geoprivacy_values" />
         </RelativeLayout>
     </RelativeLayout>
     <View

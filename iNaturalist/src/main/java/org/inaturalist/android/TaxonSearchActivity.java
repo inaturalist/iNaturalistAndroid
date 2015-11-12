@@ -224,13 +224,13 @@ public class TaxonSearchActivity extends SherlockListActivity {
 
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
-                    if (results != null && results.count > 0) {
+                    if (results != null && results.count > 0 && results.values != null) {
                         mResultList = (ArrayList<JSONObject>) results.values;
                         if (mShowUnknown) mResultList.add(0, null);
                         notifyDataSetChanged();
                     }
                     else {
-                        if (results != null) {
+                        if ((results != null) && (results.values != null)) {
                             mResultList = (ArrayList<JSONObject>) results.values;
                             if (mShowUnknown) mResultList.add(0, null);
                         }
