@@ -6,6 +6,7 @@
 
     <RelativeLayout
         android:id="@+id/project_list_container"
+        android:background="#ffffff"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 

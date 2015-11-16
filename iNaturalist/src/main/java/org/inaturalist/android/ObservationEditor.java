@@ -806,7 +806,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
         }
 
-        mIsConfirmation = false;
+        //mIsConfirmation = false;
 
         if (mIsConfirmation) {
             setContentView(R.layout.observation_confirmation);
@@ -956,6 +956,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ObservationEditor.this, ProjectSelectorActivity.class);
                 intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
+                intent.putExtra(ProjectSelectorActivity.IS_CONFIRMATION, mIsConfirmation);
                 intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
                 startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
             }

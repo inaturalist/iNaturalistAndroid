@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="77"
+    android:versionCode="78"
     android:versionName="1.4.0" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
@@ -83,6 +83,7 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/app_name"
+            android:theme="@style/iNatAppThemeCustomActionBar"
             android:name=".ProjectSelectorActivity" >
         </activity>
  

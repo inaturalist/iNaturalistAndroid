@@ -9,13 +9,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -40,7 +44,8 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
     
     private static final String TAG = "INAT:ProjectSelectorActivity";
     public static final String PROJECT_IDS = "project_ids";
-    
+    public static final String IS_CONFIRMATION = "is_confirmation";
+
     private ImageButton mSaveButton;
     
     private TextView mLoadingProjects;
@@ -52,9 +57,11 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
     private ArrayList<Integer> mObservationProjects;
 
     private ProjectReceiver mProjectReceiver;
+    private boolean mIsConfirmation;
+    private ProjectAdapter mAdapter;
+    private ActivityHelper mHelper;
 
     private class ProjectReceiver extends BroadcastReceiver {
-        private ProjectAdapter mAdapter;
         private ArrayList<JSONObject> mProjects;
 
         @Override
@@ -109,33 +116,41 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        // Respond to the action bar's Up/Home button
-        case android.R.id.home:
-            setResult(RESULT_CANCELED);
-            finish();
-            
-            return true;
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                setResult(RESULT_CANCELED);
+                finish();
+
+                return true;
+
+            case R.id.save_projects:
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putIntegerArrayList(PROJECT_IDS, mObservationProjects);
+                intent.putExtras(bundle);
+
+                setResult(RESULT_OK, intent);
+                finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
-    } 
- 
-    
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (mIsConfirmation) {
+            MenuInflater inflater = getSupportMenuInflater();
+            inflater.inflate(R.menu.project_selector_menu, menu);
+        }
+
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-        
-        LayoutInflater li = LayoutInflater.from(this);
-        View customView = li.inflate(R.layout.project_selector_action_bar, null);
-        actionBar.setCustomView(customView);
-        actionBar.setLogo(R.drawable.up_icon);
 
- 
+        mHelper = new ActivityHelper(this);
         mProjectReceiver = new ProjectReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         registerReceiver(mProjectReceiver, filter);  
@@ -150,26 +165,48 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         if (savedInstanceState == null) {
             mObservationId = (int) intent.getIntExtra(INaturalistService.OBSERVATION_ID, 0);
             mObservationProjects = intent.getIntegerArrayListExtra(INaturalistService.PROJECT_ID);
+            mIsConfirmation = intent.getBooleanExtra(ProjectSelectorActivity.IS_CONFIRMATION, false);
         } else {
             mObservationId = (int) savedInstanceState.getInt(INaturalistService.OBSERVATION_ID, 0);
             mObservationProjects = savedInstanceState.getIntegerArrayList(INaturalistService.PROJECT_ID);
+            mIsConfirmation = savedInstanceState.getBoolean(ProjectSelectorActivity.IS_CONFIRMATION);
         }
 
-        mSaveButton = (ImageButton) customView.findViewById(R.id.save);
-        
-        mSaveButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putIntegerArrayList(PROJECT_IDS, mObservationProjects);
-                intent.putExtras(bundle); 
-                
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
-        
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
+
+        if (!mIsConfirmation) {
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            LayoutInflater li = LayoutInflater.from(this);
+            View customView = li.inflate(R.layout.project_selector_action_bar, null);
+            actionBar.setCustomView(customView);
+            actionBar.setLogo(R.drawable.up_icon);
+            mSaveButton = (ImageButton) customView.findViewById(R.id.save);
+
+            mSaveButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putIntegerArrayList(PROJECT_IDS, mObservationProjects);
+                    intent.putExtras(bundle);
+
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            });
+        } else {
+            actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.inatapptheme_color)));
+            actionBar.setLogo(R.drawable.ic_arrow_back_white_24dp);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setTitle(Html.fromHtml("<font color=\"#ffffff\">" + getString(R.string.select_projects) + "</font>"));
+        }
+
+
         mLoadingProjects = (TextView) findViewById(R.id.project_list_empty);
         mProjectList = (ListView) findViewById(R.id.project_list);
         
@@ -178,8 +215,8 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         mSearchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mProjectReceiver != null && mProjectReceiver.mAdapter != null) {
-                    mProjectReceiver.mAdapter.getFilter().filter(s);
+                if (mProjectReceiver != null && mAdapter != null) {
+                    mAdapter.getFilter().filter(s);
                 }
             }
             @Override
@@ -196,6 +233,7 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(INaturalistService.OBSERVATION_ID, mObservationId);
         outState.putIntegerArrayList(INaturalistService.PROJECT_ID, mObservationProjects);
+        outState.putBoolean(ProjectSelectorActivity.IS_CONFIRMATION, mIsConfirmation);
         super.onSaveInstanceState(outState);
     }
 
@@ -290,29 +328,68 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         @Override
         public View getView(int position, View convertView, ViewGroup parent) { 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.project_selector_item, parent, false); 
+            View view = inflater.inflate(mIsConfirmation ? R.layout.project_selector_confirmation_item : R.layout.project_selector_item, parent, false);
             BetterJSONObject item = new BetterJSONObject(mItems.get(position));
 
             TextView projectName = (TextView) view.findViewById(R.id.project_name);
             projectName.setText(item.getString("title"));
+
             TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
-            // Strip HTML tags
-            String noHTML = Html.fromHtml(item.getString("description")).toString();
-            projectDescription.setText(noHTML);
-            ImageView userPic = (ImageView) view.findViewById(R.id.project_pic);
-            UrlImageViewHelper.setUrlDrawable(userPic, item.getString("icon_url"));
-            
-            ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
+            final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
+            if (!mIsConfirmation) {
+                // Strip HTML tags
+                projectDescription.setText(noHTMLDescription);
+            }
+            ImageView projectPic = (ImageView) view.findViewById(R.id.project_pic);
+            String iconUrl = item.getString("icon_url");
+
+            if ((iconUrl != null) && (iconUrl.length() > 0)) {
+                projectPic.setVisibility(View.VISIBLE);
+                if (mIsConfirmation) {
+                    view.findViewById(R.id.project_pic_none).setVisibility(View.GONE);
+                }
+                UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl);
+            } else {
+                projectPic.setVisibility(View.GONE);
+                if (mIsConfirmation) {
+                    view.findViewById(R.id.project_pic_none).setVisibility(View.VISIBLE);
+                }
+            }
+
+            if (mIsConfirmation) {
+                ((ViewGroup)view.findViewById(R.id.project_pic_container)).setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mHelper.alert(noHTMLDescription);
+                    }
+                });
+            }
             
             int projectId = item.getInt("id");
             if (mObservationProjects.contains(Integer.valueOf(projectId))) {
-                projectSelected.setImageResource(R.drawable.ic_action_accept);
-                projectName.setTypeface(Typeface.DEFAULT_BOLD);
-                projectDescription.setTypeface(Typeface.DEFAULT_BOLD);
+                // Checked on
+                if (mIsConfirmation) {
+                    view.findViewById(R.id.project_selected_icon).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.project_unselected_icon).setVisibility(View.GONE);
+                    view.setBackgroundColor(Color.parseColor("#f1f6e8"));
+                } else {
+                    ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
+                    projectSelected.setImageResource(R.drawable.ic_action_accept);
+                    projectName.setTypeface(Typeface.DEFAULT_BOLD);
+                    projectDescription.setTypeface(Typeface.DEFAULT_BOLD);
+                }
             } else {
-                projectSelected.setImageResource(android.R.color.transparent);
-                projectName.setTypeface(Typeface.DEFAULT);
-                projectDescription.setTypeface(Typeface.DEFAULT);
+                // Checked off
+                if (mIsConfirmation) {
+                    view.findViewById(R.id.project_selected_icon).setVisibility(View.GONE);
+                    view.findViewById(R.id.project_unselected_icon).setVisibility(View.VISIBLE);
+                    view.setBackgroundColor(Color.parseColor("#ffffff"));
+                } else {
+                    ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
+                    projectSelected.setImageResource(android.R.color.transparent);
+                    projectName.setTypeface(Typeface.DEFAULT);
+                    projectDescription.setTypeface(Typeface.DEFAULT);
+                }
             }
             
             view.setTag(item);
@@ -327,22 +404,13 @@ public class ProjectSelectorActivity extends SherlockActivity implements OnItemC
         BetterJSONObject project = (BetterJSONObject) view.getTag();
         Integer projectId = Integer.valueOf(project.getInt("id"));
         
-        TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
-        ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
-        TextView projectName = (TextView) view.findViewById(R.id.project_name);
-        
         if (mObservationProjects.contains(projectId)) {
             mObservationProjects.remove(projectId);
-            projectSelected.setImageResource(android.R.color.transparent);
-            projectName.setTypeface(Typeface.DEFAULT);
-            projectDescription.setTypeface(Typeface.DEFAULT);
         } else {
             mObservationProjects.add(projectId);
-            projectSelected.setImageResource(R.drawable.ic_action_accept);
-            projectName.setTypeface(Typeface.DEFAULT_BOLD);
-            projectDescription.setTypeface(Typeface.DEFAULT_BOLD);
         }
-    }
 
+        mAdapter.notifyDataSetChanged();
+    }
 
 }
