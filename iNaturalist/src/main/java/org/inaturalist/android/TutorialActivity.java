@@ -19,6 +19,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -124,7 +125,7 @@ public class TutorialActivity extends SherlockFragmentActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         actionBar.setIcon(android.R.color.transparent);
-        
+
        mApp = (INaturalistApp) getApplicationContext();
        mAdapter = new TutorialAdapter(this);
        mViewPager.setAdapter(mAdapter);
@@ -182,7 +183,7 @@ public class TutorialActivity extends SherlockFragmentActivity {
                 (mViewPager.getCurrentItem() == mAdapter.getCount() - 1)
                 ? R.string.finish : R.string.next);
         item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
- 
+
         return true;
     }
 }

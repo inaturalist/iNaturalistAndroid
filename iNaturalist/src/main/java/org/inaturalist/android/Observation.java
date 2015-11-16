@@ -36,6 +36,7 @@ public class Observation implements BaseColumns, Serializable {
     public Timestamp observed_on;
     public String observed_on_string;
     public Boolean out_of_range;
+    public Boolean captive;
     public String place_guess;
     public Integer positional_accuracy;
     public String positioning_device;
@@ -77,6 +78,7 @@ public class Observation implements BaseColumns, Serializable {
     public Timestamp observed_on_was;
     public String observed_on_string_was;
     public Boolean out_of_range_was;
+    public Boolean captive_was;
     public String place_guess_was;
     public Integer positional_accuracy_was;
     public String positioning_device_was;
@@ -122,6 +124,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String OBSERVED_ON = "observed_on";
     public static final String OBSERVED_ON_STRING = "observed_on_string";
     public static final String OUT_OF_RANGE = "out_of_range";
+    public static final String CAPTIVE = "captive";
     public static final String PLACE_GUESS = "place_guess";
     public static final String POSITIONAL_ACCURACY = "positional_accuracy";
     public static final String POSITIONING_DEVICE = "positioning_device";
@@ -161,6 +164,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.OBSERVED_ON,
         Observation.OBSERVED_ON_STRING,
         Observation.OUT_OF_RANGE,
+        Observation.CAPTIVE,
         Observation.PLACE_GUESS,
         Observation.POSITIONAL_ACCURACY,
         Observation.POSITIONING_DEVICE,
@@ -201,6 +205,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.OBSERVED_ON, Observation.OBSERVED_ON);
         PROJECTION_MAP.put(Observation.OBSERVED_ON_STRING, Observation.OBSERVED_ON_STRING);
         PROJECTION_MAP.put(Observation.OUT_OF_RANGE, Observation.OUT_OF_RANGE);
+        PROJECTION_MAP.put(Observation.CAPTIVE, Observation.CAPTIVE);
         PROJECTION_MAP.put(Observation.PLACE_GUESS, Observation.PLACE_GUESS);
         PROJECTION_MAP.put(Observation.POSITIONAL_ACCURACY, Observation.POSITIONAL_ACCURACY);
         PROJECTION_MAP.put(Observation.POSITIONING_DEVICE, Observation.POSITIONING_DEVICE);
@@ -259,6 +264,8 @@ public class Observation implements BaseColumns, Serializable {
         this.observed_on_string_was = this.observed_on_string;
         this.out_of_range = bc.getBoolean(OUT_OF_RANGE);
         this.out_of_range_was = this.out_of_range;
+        this.captive = bc.getBoolean(CAPTIVE);
+        this.captive_was = this.captive;
         this.place_guess = bc.getString(PLACE_GUESS);
         this.place_guess_was = this.place_guess;
         this.positional_accuracy = bc.getInteger(POSITIONAL_ACCURACY);
@@ -330,6 +337,8 @@ public class Observation implements BaseColumns, Serializable {
         this.observed_on_string_was = this.observed_on_string;
         this.out_of_range = o.getBoolean("out_of_range");
         this.out_of_range_was = this.out_of_range;
+        this.captive = o.getBoolean("captive");
+        this.captive_was = this.captive;
         this.place_guess = o.getString("place_guess");
         this.place_guess_was = this.place_guess;
         this.positional_accuracy = o.getInteger("positional_accuracy");
@@ -410,6 +419,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
         bo.put("out_of_range", out_of_range);
+        bo.put("captive", captive);
         bo.put("place_guess", place_guess);
         bo.put("positional_accuracy", positional_accuracy);
         bo.put("positioning_device", positioning_device);
@@ -455,6 +465,7 @@ public class Observation implements BaseColumns, Serializable {
             this.observed_on = observation.observed_on;
             this.observed_on_string = observation.observed_on_string;
             this.out_of_range = observation.out_of_range;
+            this.captive = observation.captive;
             this.place_guess = observation.place_guess;
             this.positional_accuracy = observation.positional_accuracy;
             this.positioning_device = observation.positioning_device;
@@ -490,6 +501,7 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.observed_on == null) && (observation.observed_on != null)) { this.observed_on = observation.observed_on; isModified = true; }
             if ((this.observed_on_string == null) && (observation.observed_on_string != null)) { this.observed_on_string = observation.observed_on_string; isModified = true; }
             if ((this.out_of_range == null) && (observation.out_of_range != null)) { this.out_of_range = observation.out_of_range; isModified = true; }
+            if ((this.captive == null) && (observation.captive != null)) { this.captive = observation.captive; isModified = true; }
             if ((this.place_guess == null) && (observation.place_guess != null)) { this.place_guess = observation.place_guess; isModified = true; }
             if ((this.positional_accuracy == null) && (observation.positional_accuracy != null)) { this.positional_accuracy = observation.positional_accuracy; isModified = true; }
             if ((this.positioning_device == null) && (observation.positioning_device != null)) { this.positioning_device = observation.positioning_device; isModified = true; }
@@ -526,6 +538,7 @@ public class Observation implements BaseColumns, Serializable {
         if (observed_on != null) { cv.put(OBSERVED_ON, observed_on.getTime()); }
         cv.put(OBSERVED_ON_STRING, observed_on_string);
         cv.put(OUT_OF_RANGE, out_of_range);
+        cv.put(CAPTIVE, captive);
         cv.put(PLACE_GUESS, place_guess);
         cv.put(POSITIONAL_ACCURACY, positional_accuracy);
         cv.put(POSITIONING_DEVICE, positioning_device);
@@ -560,6 +573,7 @@ public class Observation implements BaseColumns, Serializable {
         params.add(new BasicNameValuePair("observation[longitude]", longitude != null ? longitude.toString() : ""));
         if (observed_on_string != null) { params.add(new BasicNameValuePair("observation[observed_on_string]", observed_on_string.toString())); }
         if (out_of_range != null) { params.add(new BasicNameValuePair("observation[out_of_range]", out_of_range.toString())); }
+        if (captive != null) { params.add(new BasicNameValuePair("observation[captive_flag]", captive.toString())); }
         if (place_guess != null) { params.add(new BasicNameValuePair("observation[place_guess]", place_guess.toString())); }
         params.add(new BasicNameValuePair("observation[positional_accuracy]", positional_accuracy != null ? positional_accuracy.toString() : ""));
         if (positioning_device != null) { params.add(new BasicNameValuePair("observation[positioning_device]", positioning_device.toString())); }
@@ -593,6 +607,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "observed_on INTEGER,"
                 + "observed_on_string TEXT,"
                 + "out_of_range INTEGER,"
+                + "captive INTEGER,"
                 + "place_guess TEXT,"
                 + "positional_accuracy INTEGER,"
                 + "positioning_device TEXT,"
@@ -633,6 +648,7 @@ public class Observation implements BaseColumns, Serializable {
     public boolean observed_on_changed() { return !String.valueOf(observed_on).equals(String.valueOf(observed_on_was)); }
     public boolean observed_on_string_changed() { return !String.valueOf(observed_on_string).equals(String.valueOf(observed_on_string_was)); }
     public boolean out_of_range_changed() { return !String.valueOf(out_of_range).equals(String.valueOf(out_of_range_was)); }
+    public boolean captive_changed() { return !String.valueOf(captive).equals(String.valueOf(captive_was)); }
     public boolean place_guess_changed() { return !String.valueOf(place_guess).equals(String.valueOf(place_guess_was)); }
     public boolean positional_accuracy_changed() { return !String.valueOf(positional_accuracy).equals(String.valueOf(positional_accuracy_was)); }
     public boolean positioning_device_changed() { return !String.valueOf(positioning_device).equals(String.valueOf(positioning_device_was)); }
@@ -667,6 +683,7 @@ public class Observation implements BaseColumns, Serializable {
         if (observed_on_changed()) { return true; }
         if (observed_on_string_changed()) { return true; }
         if (out_of_range_changed()) { return true; }
+        if (captive_changed()) { return true; }
         if (place_guess_changed()) { return true; }
         if (positional_accuracy_changed()) { return true; }
         if (positioning_device_changed()) { return true; }

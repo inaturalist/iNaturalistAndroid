@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -63,6 +64,8 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -97,6 +100,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -802,7 +806,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
         }
 
-        //mIsConfirmation = false;
+        mIsConfirmation = false;
 
         if (mIsConfirmation) {
             setContentView(R.layout.observation_confirmation);
@@ -910,16 +914,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
             findViewById(R.id.locationVisibility).setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ObservationEditor.this);
-                    builder.setTitle(R.string.location_visibility);
-                    builder.setItems(getResources().getStringArray(R.array.geoprivacy_items), new DialogInterface.OnClickListener() {
+                    mHelper.selection(getString(R.string.location_visibility), getResources().getStringArray(R.array.geoprivacy_items), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mGeoprivacy.setSelection(which);
                             updateObservationVisibilityDescription();
                         }
                     });
-                    builder.show();
                 }
             });
         }
@@ -1501,6 +1502,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if ((mObservation.geoprivacy != null) || (mGeoprivacy.getSelectedItemPosition() != 0)) {
             mObservation.geoprivacy = selectedValue;
         }
+
+        if (mIsConfirmation) {
+            boolean isCaptive = ((CheckBox)findViewById(R.id.is_captive_checkbox)).isChecked();
+            if ((mObservation.captive != null) || ((mObservation.captive == null) && (isCaptive))) {
+                mObservation.captive = isCaptive;
+            }
+        }
     }
 
     private void updateObservationVisibilityDescription() {
@@ -1571,6 +1579,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
             refreshCommentsIdSize(mObservation.updatesCount());
             if (mObservation.unviewedUpdates()) {
                 mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
+            }
+        } else {
+            ((CheckBox)findViewById(R.id.is_captive_checkbox)).setChecked(mObservation.captive);
+
+            if (mObservation.place_guess != null) {
+                ((TextView) findViewById(R.id.location_guess)).setText(mObservation.place_guess);
+            } else {
+                ((TextView) findViewById(R.id.location_guess)).setText(getString(R.string.set_location));
             }
         }
     }
@@ -1849,6 +1865,36 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
     }
 
+
+    private void guessLocation() {
+        if ((mObservation.latitude == null) || (mObservation.longitude == null)) {
+            return;
+        }
+
+        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(mObservation.latitude, mObservation.longitude, 1);
+            if((null != addresses) && (addresses.size() > 0)) {
+                Address address = addresses.get(0);
+                StringBuilder location = new StringBuilder();
+                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                    location.append(address.getAddressLine(i));
+                    location.append(" ");
+                }
+
+                if ((location != null) && (location.length() > 0)) {
+                    ((TextView) findViewById(R.id.location_guess)).setText(location);
+                    mObservation.place_guess = location.toString().trim();
+                } else {
+                    ((TextView) findViewById(R.id.location_guess)).setText(R.string.set_location);
+                    mObservation.place_guess = null;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setCurrentLocation(Location location) {
         mCurrentLocation = location;
 
@@ -1878,6 +1924,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.latitude_was = mObservation.latitude;
             mObservation.longitude_was = mObservation.longitude;
             mObservation.positional_accuracy_was = mObservation.positional_accuracy;
+        }
+
+        if (mIsConfirmation) {
+            guessLocation();
         }
     }
 
@@ -2035,6 +2085,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
                     findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
                     findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
+
+                    guessLocation();
                 }
             }
          } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
@@ -2070,6 +2122,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     mSpeciesGuessTextView.setText(mSpeciesGuess);
                     mPreviousTaxonSearch = mSpeciesGuess;
                     mTaxonPicUrl = idPicUrl;
+                    mIsTaxonUnknown = false;
 
                     if (mIsConfirmation) {
                         ((EditText)mSpeciesGuessTextView).setSelection(mSpeciesGuess.length());

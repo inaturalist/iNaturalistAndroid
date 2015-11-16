@@ -12,6 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class ActivityHelper {
@@ -47,6 +51,36 @@ public class ActivityHelper {
             }
         }, null);
     }
+
+    public void selection(String title, String[] items, final DialogInterface.OnClickListener onItemSelected) {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View titleBar = inflater.inflate(R.layout.dialog_title, null, false);
+        ((TextView)titleBar.findViewById(R.id.title)).setText(title);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+
+        ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_title_top_bar, null, false);
+        content.addView(titleBar, 0);
+        ListView listView = (ListView) inflater.inflate(R.layout.dialog_list, null, false);
+        listView.setAdapter(new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, items));
+
+        content.addView(listView, 2);
+
+        builder.setView(content);
+        builder.setCancelable(true);
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                alert.dismiss();
+                onItemSelected.onClick(alert, i);
+            }
+        });
+   }
+
 
     public void confirm(int titleRes, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
         confirm(mContext.getString(titleRes), msg, okListener, cancelListener);
