@@ -73,6 +73,8 @@
             android:hint="@string/species_guess_hint"
             android:layout_toRightOf="@id/species_guess_icon"
             android:layout_alignParentRight="true"
+            android:clickable="false"
+            android:focusable="false"
             />
     </RelativeLayout>
     <View

@@ -185,11 +185,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
 	private ImageView mTaxonSelector;
     private boolean mIsConfirmation;
     private boolean mPictureTaken;
-    private boolean mWatchForSpeciesGuessChanges;
     private ImageView mSpeciesGuessIcon;
     private String mPreviousTaxonSearch = "";
     private String mTaxonPicUrl;
     private boolean mIsTaxonUnknown;
+    private boolean mIsCustomTaxon;
 
     @Override
 	protected void onStart()
@@ -980,26 +980,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 });
             }
 
-            mWatchForSpeciesGuessChanges = true;
-            mSpeciesGuessTextView.addTextChangedListener(new TextWatcher() {
+            mSpeciesGuessTextView.setOnClickListener(new OnClickListener() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {  }
-
-                @Override
-                public void afterTextChanged(Editable editable) {
-                    String currentTaxonGuess = mSpeciesGuessTextView.getText().toString();
-
-                    if ((mWatchForSpeciesGuessChanges) && (!currentTaxonGuess.equals(mPreviousTaxonSearch)) &&
-                            (!currentTaxonGuess.equals("Unknown")) && (!currentTaxonGuess.equals(""))) {
-                        Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
-                        intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, currentTaxonGuess);
-                        intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
-                        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
-                        mWatchForSpeciesGuessChanges = false;
-                        mPreviousTaxonSearch = currentTaxonGuess;
-                    }
+                public void onClick(View view) {
+                    Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
+                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
+                    intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
+                    startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 }
             });
         }
@@ -2097,6 +2084,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 String idName = data.getStringExtra(TaxonSearchActivity.ID_NAME);
                 String idPicUrl = data.getStringExtra(TaxonSearchActivity.ID_PIC_URL);
                 Integer taxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
+                boolean isCustomTaxon = data.getBooleanExtra(TaxonSearchActivity.IS_CUSTOM, false);
 
                 if (taxonId == TaxonSearchActivity.UNKNOWN_TAXON_ID) {
                     mSpeciesGuess = null;
@@ -2106,9 +2094,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     mPreviousTaxonSearch = "Unknown";
                     mTaxonPicUrl = null;
                     mIsTaxonUnknown = true;
+                    mIsCustomTaxon = false;
 
                     if (mIsConfirmation) {
-                        ((EditText)mSpeciesGuessTextView).setSelection(mSpeciesGuessTextView.length());
                         mSpeciesGuessIcon.setImageResource(R.drawable.ic_species_guess_black_24dp);
                         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                             mSpeciesGuessIcon.setAlpha(0.6f);
@@ -2118,35 +2106,40 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     String speciesGuess = String.format("%s", idName);
                     mSpeciesGuess = speciesGuess;
                     mObservation.species_guess = speciesGuess;
-                    mObservation.taxon_id = taxonId;
-                    mWatchForSpeciesGuessChanges = false;
+                    mObservation.taxon_id = isCustomTaxon ? null : taxonId;
                     mSpeciesGuessTextView.setText(mSpeciesGuess);
                     mPreviousTaxonSearch = mSpeciesGuess;
-                    mTaxonPicUrl = idPicUrl;
+                    mTaxonPicUrl = isCustomTaxon ? null : idPicUrl;
                     mIsTaxonUnknown = false;
+                    mIsCustomTaxon = isCustomTaxon;
+                    mObservation.iconic_taxon_name = isCustomTaxon ? null : iconicTaxonName;
 
                     if (mIsConfirmation) {
-                        ((EditText)mSpeciesGuessTextView).setSelection(mSpeciesGuess.length());
                         ((EditText)mSpeciesGuessTextView).clearFocus();
-                        UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, idPicUrl, R.drawable.ic_species_guess_black_24dp, new UrlImageViewCallback() {
-                            @Override
-                            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-                                    mSpeciesGuessIcon.setAlpha(1.0f);
+                        if (!mIsCustomTaxon) {
+                            UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, mTaxonPicUrl, R.drawable.ic_species_guess_black_24dp, new UrlImageViewCallback() {
+                                @Override
+                                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                                        mSpeciesGuessIcon.setAlpha(1.0f);
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                                return loadedBitmap;
+                                @Override
+                                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                                    return loadedBitmap;
+                                }
+                            });
+                        } else {
+                            mSpeciesGuessIcon.setImageResource(R.drawable.iconic_taxon_unknown);
+                            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                                mSpeciesGuessIcon.setAlpha(1.0f);
                             }
-                        });
+                        }
                     }
                 }
 
             }
-
-            mWatchForSpeciesGuessChanges = true;
 
         } else if (requestCode == PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -2694,12 +2687,26 @@ public class ObservationEditor extends SherlockFragmentActivity {
                             photoId, 
                             MediaStore.Images.Thumbnails.MINI_KIND,
                             (BitmapFactory.Options) null);
-                    if (orientation != 0) {
-                        Matrix matrix = new Matrix();
-                        matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                        bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+
+                    if (bitmapImage == null) {
+                        // Couldn't retrieve the thumbnail - get the original image
+                        try {
+                            bitmapImage = MediaStore.Images.Media.getBitmap(
+                                    getContentResolver(),
+                                    ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    imageView.setImageBitmap(mIsConfirmation ? ImageUtils.centerCropBitmap(bitmapImage) : bitmapImage);
+
+                    if (bitmapImage != null) {
+                        if (orientation != 0) {
+                            Matrix matrix = new Matrix();
+                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                        }
+                        imageView.setImageBitmap(mIsConfirmation ? ImageUtils.centerCropBitmap(bitmapImage) : bitmapImage);
+                    }
                 }
             }
 

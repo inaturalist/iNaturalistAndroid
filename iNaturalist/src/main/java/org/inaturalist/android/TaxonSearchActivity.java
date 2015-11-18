@@ -18,33 +18,25 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
-import android.app.ListActivity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.WebChromeClient.CustomViewCallback;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -59,6 +51,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
 	public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     public static final String ID_PIC_URL = "id_url";
     public static final String FIELD_ID = "field_id";
+    public static final String IS_CUSTOM = "is_custom";
 
     public static final String SPECIES_GUESS = "species_guess";
     public static final String SHOW_UNKNOWN = "show_unknown";
@@ -97,6 +90,10 @@ public class TaxonSearchActivity extends SherlockListActivity {
 
     private ArrayList<JSONObject> autocomplete(String input) {
         ArrayList<JSONObject> resultList = null;
+
+        if (!isNetworkAvailable()) {
+            return new ArrayList<JSONObject>();
+        }
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
@@ -232,7 +229,20 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     else {
                         if ((results != null) && (results.values != null)) {
                             mResultList = (ArrayList<JSONObject>) results.values;
+                            if ((mResultList.size() == 0) && (mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
+                                // No results - add in the current search string as a custom observation
+                                JSONObject customObs = new JSONObject();
+                                try {
+                                    customObs.put("is_custom", true);
+                                    customObs.put("name", mCurrentSearchString);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                mResultList.add(customObs);
+                            }
+
                             if (mShowUnknown) mResultList.add(0, null);
+
                         }
                         
                         notifyDataSetInvalidated();
@@ -299,12 +309,20 @@ public class TaxonSearchActivity extends SherlockListActivity {
             
             try {
                 ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
-                UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"));
                 TextView idName = (TextView) view.findViewById(R.id.id_name);
-                idName.setText(displayName);
                 TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
-                idTaxonName.setText(item.getString("name"));
-                idTaxonName.setTypeface(null, Typeface.ITALIC);
+
+                if (item.optBoolean("is_custom", false)) {
+                    // Custom-named taxon
+                    idName.setText(item.getString("name"));
+                    idTaxonName.setVisibility(View.GONE);
+                    idPic.setImageResource(R.drawable.iconic_taxon_unknown);
+                } else {
+                    idName.setText(displayName);
+                    idTaxonName.setText(item.getString("name"));
+                    idTaxonName.setTypeface(null, Typeface.ITALIC);
+                    UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"));
+                }
                 view.setTag(item);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -402,8 +420,6 @@ public class TaxonSearchActivity extends SherlockListActivity {
             Bundle bundle = new Bundle();
 
             if (item != null) {
-                bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
-
                 String displayName = null;
                 // Get the taxon display name according to configuration of the current iNat network
                 String inatNetwork = mApp.getInaturalistNetworkMember();
@@ -438,10 +454,19 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     }
                 }
 
-                bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
-                bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
-                bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
-                bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
+                if (item.optBoolean("is_custom", false)) {
+                    // Custom named taxon
+                    bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("name"));
+                    bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, true);
+                } else {
+                    bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
+                    bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
+                    bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
+                    bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
+                    bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
+                    bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
+
+                }
                 bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
 
             } else {
@@ -459,5 +484,11 @@ public class TaxonSearchActivity extends SherlockListActivity {
             e.printStackTrace();
         }
     }
- 
+
+    private boolean isNetworkAvailable() {
+         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+     }
+
 }
