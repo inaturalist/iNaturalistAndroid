@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="7dp"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/field_name"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Field name" />
+
+        <TextView
+            android:id="@+id/field_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Field very long description"
+            android:textColor="#89000000"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+
+        <EditText
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_text"
+            android:paddingTop="0dp"
+            />
+
+        <Spinner
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:paddingTop="0dp"
+            />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/date_container"
+            android:background="@drawable/actionbar_btn"
+            android:paddingTop="0dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/set_date"
+                android:src="@drawable/ic_action_go_to_today"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date"
+                android:layout_toEndOf="@id/set_date"
+                android:layout_centerVertical="true"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:text="24/10/2013"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="visible"
+            android:id="@+id/taxon_container"
+            android:layout_width="fill_parent"
+            android:background="@drawable/actionbar_btn"
+            android:paddingTop="0dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/taxon_pic"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/iconic_taxon_unknown" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/taxon_pic"
+                android:layout_centerVertical="true"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/id_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@android:style/TextAppearance.Medium"
+                    android:text="@string/loading" />
+
+                <TextView
+                    android:id="@+id/id_taxon_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Taxon Name" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    </LinearLayout>
+</TableRow>
