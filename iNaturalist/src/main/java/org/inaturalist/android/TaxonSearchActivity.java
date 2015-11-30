@@ -17,10 +17,12 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -321,7 +323,17 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     idName.setText(displayName);
                     idTaxonName.setText(item.getString("name"));
                     idTaxonName.setTypeface(null, Typeface.ITALIC);
-                    UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"));
+                    UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"), new UrlImageViewCallback() {
+                        @Override
+                        public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap));
+                        }
+
+                        @Override
+                        public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            return loadedBitmap;
+                        }
+                    });
                 }
                 view.setTag(item);
             } catch (JSONException e) {

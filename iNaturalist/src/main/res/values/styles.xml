@@ -15,4 +15,9 @@
     <style name="TwoWayView">
         <item name="android:orientation">horizontal</item>
     </style>
+    <style name="SwitchTextStyle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

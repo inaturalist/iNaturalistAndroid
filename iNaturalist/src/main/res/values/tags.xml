@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="TAG_PROJECT" type="id" />
+    <item name="TAG_IS_CHECKED" type="id" />
+</resources>

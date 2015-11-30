@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.cocosw.bottomsheet.BottomSheet;
 import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -236,9 +237,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
 
     private void refreshProjectList() {
-        if (!mIsConfirmation) {
-            mProjectsTable.removeAllViews();
+        if (mIsConfirmation) {
+            return;
         }
+
+        mProjectsTable.removeAllViews();
 
         if (mProjects == null) {
             return;
@@ -691,6 +694,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         
         
         if (mProjectIds == null) {
@@ -733,34 +738,42 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if ((intent != null) && (!mPictureTaken)) {
             if (intent.getBooleanExtra(TAKE_PHOTO, false)) {
                 // Immediately take a photo
-                mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-                mFileUri = getPath(ObservationEditor.this, mFileUri);
-
-                final Intent galleryIntent = new Intent();
-
-                galleryIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
-                this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-
-                // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
-                mPictureTaken = true;
+                takePhoto();
 
             } else if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
                 // Immediately choose an existing photo
-                mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-                mFileUri = getPath(ObservationEditor.this, mFileUri);
-
-                final Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-
-                // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
-                mPictureTaken = true;
+                choosePhoto();
             }
         }
 
         if (mIsConfirmation) updateObservationVisibilityDescription();
+    }
+
+    private void takePhoto() {
+        mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+        mFileUri = getPath(ObservationEditor.this, mFileUri);
+
+        final Intent galleryIntent = new Intent();
+
+        galleryIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
+        this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+        // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
+        mPictureTaken = true;
+    }
+
+    private void choosePhoto() {
+        mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+        mFileUri = getPath(ObservationEditor.this, mFileUri);
+
+        final Intent galleryIntent = new Intent();
+        galleryIntent.setType("image/*");
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+        // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
+        mPictureTaken = true;
     }
     
     @Override
@@ -898,6 +911,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     fieldValue.value = newValue;
                     mProjectFieldValues.put(field.field_id, fieldValue);
                 }
+            }
+        } else {
+            for (int fieldId : mProjectFieldValues.keySet()) {
+                ProjectFieldValue fieldValue = mProjectFieldValues.get(fieldId);
+                fieldValue.observation_id = obsId;
+                mProjectFieldsUpdated = true;
             }
         }
     }
@@ -1458,10 +1477,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
      */
     
     private void saveProjectFields() {
-        if (mIsConfirmation) {
-            return;
-        }
-
         for (ProjectFieldValue fieldValue : mProjectFieldValues.values()) {
             if (fieldValue.value == null) {
                 continue;
@@ -1618,6 +1633,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
                     if (mIsConfirmation) {
                         ((EditText)mSpeciesGuessTextView).clearFocus();
+                        mDescriptionTextView.clearFocus();
+                        mDescriptionTextView.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
                         if (!mIsCustomTaxon) {
                             UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, mTaxonPicUrl, R.drawable.ic_species_guess_black_24dp, new UrlImageViewCallback() {
                                 @Override
@@ -1625,6 +1644,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                                     if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                                         mSpeciesGuessIcon.setAlpha(1.0f);
                                     }
+                                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap));
                                 }
 
                                 @Override
@@ -1652,13 +1672,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
         } else if (requestCode == PROJECT_SELECTOR_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                if (!mIsConfirmation) {
-                    ArrayList<Integer> projectIds = data.getIntegerArrayListExtra(ProjectSelectorActivity.PROJECT_IDS);
-                    mProjectIds = projectIds;
+                ArrayList<Integer> projectIds = data.getIntegerArrayListExtra(ProjectSelectorActivity.PROJECT_IDS);
+                HashMap<Integer, ProjectFieldValue> values = (HashMap<Integer, ProjectFieldValue>) data.getSerializableExtra(ProjectSelectorActivity.PROJECT_FIELDS);
+                mProjectIds = projectIds;
+                mProjectFieldValues = values;
 
-                    refreshProjectFields();
-                    refreshProjectList();
-                }
+                refreshProjectFields();
+                refreshProjectList();
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -2207,7 +2227,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                             matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
                             bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
                         }
-                        imageView.setImageBitmap(mIsConfirmation ? ImageUtils.centerCropBitmap(bitmapImage) : bitmapImage);
+                        imageView.setImageBitmap(mIsConfirmation ? ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)) : bitmapImage);
                     }
                 }
             }
@@ -2376,7 +2396,26 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }	
 
     
-    private void openImageIntent(Activity activity, Uri captureImageOutputFile, int requestCode) {
+    private void openImageIntent(final Activity activity, Uri captureImageOutputFile, int requestCode) {
+
+        if (mIsConfirmation) {
+            new BottomSheet.Builder(activity).sheet(R.menu.observation_confirmation_photo_menu).listener(new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent;
+                    switch (which) {
+                        case R.id.camera:
+                            takePhoto();
+                            break;
+                        case R.id.upload_photo:
+                            choosePhoto();
+                            break;
+                    }
+                }
+            }).show();
+
+            return;
+        }
 
         // Camera
         final List<Intent> cameraIntents = new ArrayList<Intent>();

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -122,9 +123,10 @@ public class ActivityHelper {
         TextView textContent;
 
         if (msg instanceof String) {
-            textContent = (TextView) inflater.inflate(R.layout.dialog_message, null, false);
+            ScrollView parentView = (ScrollView) inflater.inflate(R.layout.dialog_message, null, false);
+            textContent = (TextView) parentView.findViewById(R.id.text);
             textContent.setText((String)msg);
-            content.addView(textContent, 2);
+            content.addView(parentView, 2);
         } else if (msg instanceof View) {
             content.addView((View) msg, 2);
         }

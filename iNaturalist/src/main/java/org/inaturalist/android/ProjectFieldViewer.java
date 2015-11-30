@@ -77,6 +77,7 @@ public class ProjectFieldViewer {
     private ArrayAdapter<String> mSpinnerAdapter;
     private TaxonReceiver mTaxonReceiver;
     private TextView mFieldDescription;
+    private boolean mEditTextFocused;
 
     @SuppressLint("ValidFragment")
     private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
@@ -316,6 +317,17 @@ public class ProjectFieldViewer {
         mIdTaxonName.setTypeface(null, Typeface.ITALIC);
     }
 
+    public boolean isFocused() {
+        Log.e("AAA", "isFocused: " + mEditTextFocused + ":" + mEditText);
+        return mEditTextFocused;
+    }
+
+    public void setFocus() {
+        if (mEditText.getVisibility() == View.VISIBLE) {
+            mEditText.requestFocus();
+        }
+    }
+
     public View getView() {
         ViewGroup row = (ViewGroup) LayoutInflater.from(mContext).inflate(mIsConfirmation ? R.layout.project_field_confirmation : R.layout.project_field, null);
         row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -323,6 +335,16 @@ public class ProjectFieldViewer {
         mFieldName = (TextView) row.findViewById(R.id.field_name);
         mFieldDescription = (TextView) row.findViewById(R.id.field_description);
         mEditText = (EditText) row.findViewById(R.id.edit_text);
+        mEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean focused) {
+                if (focused) {
+                    Log.e("AAA", "ON FOCUS: " + mField.field_id + ":" + mField.name + ":" + focused + ":" + mEditText);
+                    mEditTextFocused = focused;
+                }
+            }
+        });
+
         mSpinner = (Spinner) row.findViewById(R.id.spinner);
         mDateContainer = (RelativeLayout) row.findViewById(R.id.date_container);
         mSetDate = (ImageView) row.findViewById(R.id.set_date);
