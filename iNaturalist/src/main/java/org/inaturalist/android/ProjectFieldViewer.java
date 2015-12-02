@@ -52,6 +52,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class ProjectFieldViewer {
     private static final String TAG = "ProjectFieldViewer";
@@ -77,7 +78,8 @@ public class ProjectFieldViewer {
     private ArrayAdapter<String> mSpinnerAdapter;
     private TaxonReceiver mTaxonReceiver;
     private TextView mFieldDescription;
-    private boolean mEditTextFocused;
+    private FocusedListener mFocusedListener;
+    private boolean mIsFocusing;
 
     @SuppressLint("ValidFragment")
     private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
@@ -317,15 +319,20 @@ public class ProjectFieldViewer {
         mIdTaxonName.setTypeface(null, Typeface.ITALIC);
     }
 
-    public boolean isFocused() {
-        Log.e("AAA", "isFocused: " + mEditTextFocused + ":" + mEditText);
-        return mEditTextFocused;
-    }
-
     public void setFocus() {
         if (mEditText.getVisibility() == View.VISIBLE) {
+            mIsFocusing = true;
             mEditText.requestFocus();
+            mEditText.setSelection(mEditText.getText().length());
         }
+    }
+    
+    public interface FocusedListener {
+        void onFocused();
+    }
+    
+    public void setOnFocusedListener(FocusedListener listener) {
+        mFocusedListener = listener;
     }
 
     public View getView() {
@@ -339,8 +346,13 @@ public class ProjectFieldViewer {
             @Override
             public void onFocusChange(View view, boolean focused) {
                 if (focused) {
-                    Log.e("AAA", "ON FOCUS: " + mField.field_id + ":" + mField.name + ":" + focused + ":" + mEditText);
-                    mEditTextFocused = focused;
+                    if (mFocusedListener != null) {
+                        if (mIsFocusing) {
+                            mIsFocusing = false;
+                        } else {
+                            mFocusedListener.onFocused();
+                        }
+                    }
                 }
             }
         });

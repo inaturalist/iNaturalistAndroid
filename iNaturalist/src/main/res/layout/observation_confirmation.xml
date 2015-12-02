@@ -479,9 +479,22 @@
             android:tint="#686868"
             />
 
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/project_count"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="0"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:gravity="right"
+            />
+
 
         <TextView
             android:layout_toRightOf="@id/projects_icon"
+            android:layout_toLeftOf="@id/project_count"
             android:id="@+id/select_projects"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"

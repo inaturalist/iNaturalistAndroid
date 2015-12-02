@@ -79,6 +79,9 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
     private boolean mShownSearchBox;
 
     private int mLastProjectFieldFocused = -1;
+    private int mLastProjectIdFocused = -1;
+    private int mLastProjectFieldIndex;
+    private int mLastProjectFieldTop;
 
     private class ProjectReceiver extends BroadcastReceiver {
         private ArrayList<JSONObject> mProjects;
@@ -174,6 +177,8 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
                 return true;
 
             case R.id.save_projects:
+                saveProjectFieldValues();
+
                 if (!validateProjectFields()) {
                     return false;
                 }
@@ -223,12 +228,13 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
             mObservationId = (int) intent.getIntExtra(INaturalistService.OBSERVATION_ID, 0);
             mObservationProjects = intent.getIntegerArrayListExtra(INaturalistService.PROJECT_ID);
             mIsConfirmation = intent.getBooleanExtra(ProjectSelectorActivity.IS_CONFIRMATION, false);
+            mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) intent.getSerializableExtra(ProjectSelectorActivity.PROJECT_FIELDS);
         } else {
             mObservationId = (int) savedInstanceState.getInt(INaturalistService.OBSERVATION_ID, 0);
             mObservationProjects = savedInstanceState.getIntegerArrayList(INaturalistService.PROJECT_ID);
             mIsConfirmation = savedInstanceState.getBoolean(ProjectSelectorActivity.IS_CONFIRMATION);
             mShownSearchBox = savedInstanceState.getBoolean("mShownSearchBox");
-            mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) savedInstanceState.getSerializable("mProjectFieldValues");
+            mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) savedInstanceState.getSerializable(ProjectSelectorActivity.PROJECT_FIELDS);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -301,7 +307,7 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
         outState.putBoolean("mShownSearchBox", mShownSearchBox);
 
         saveProjectFieldValues();
-        outState.putSerializable("mProjectFieldValues", mProjectFieldValues);
+        outState.putSerializable(PROJECT_FIELDS, mProjectFieldValues);
 
         super.onSaveInstanceState(outState);
     }
@@ -330,8 +336,6 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
 
     // Update project field values from UI
     private void saveProjectFieldValues() {
-        mLastProjectFieldFocused = -1;
-
         for (Integer projectId : mProjectFieldViewers.keySet()) {
             List<ProjectFieldViewer> viewers = mProjectFieldViewers.get(projectId);
             for (ProjectFieldViewer viewer : viewers) {
@@ -344,11 +348,6 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
                     mProjectFieldValues.put(fieldId, fieldValue);
                 }
                 fieldValue.value = newValue;
-
-                Log.e("AAA", "IS FOCUSED: " + fieldId + ":" + viewer.getField().name + ":" + viewer.isFocused());
-                if (viewer.isFocused()) {
-                    mLastProjectFieldFocused = fieldId;
-                }
             }
         }
     }
@@ -400,10 +399,6 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
             };
         }
 
-        public void addItemAtBeginning(JSONObject newItem) {
-            mItems.add(0, newItem);
-        }
-
         @Override
         public int getCount() {
             return mItems.size();
@@ -426,27 +421,6 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
             BetterJSONObject item = new BetterJSONObject(mItems.get(position));
 
             saveProjectFieldValues();
-
-            if (convertView != null) {
-                BetterJSONObject project = (BetterJSONObject) convertView.getTag(R.id.TAG_PROJECT);
-                int id = project.getInt("id");
-                boolean isChecked = mObservationProjects.contains(Integer.valueOf(id));
-                Log.e("AAA", position + ":" + id + ":" + (Boolean) convertView.getTag(R.id.TAG_IS_CHECKED) + " <==> want: " + item.getInt("id") + ":" + isChecked);
-
-                if (id == item.getInt("id")) {
-                    boolean isNewChecked = (Boolean) convertView.getTag(R.id.TAG_IS_CHECKED);
-                    if (isNewChecked == isChecked) {
-                        Log.e("AAA", "REUSING");
-
-                        focusProjectField();
-
-                        // Reusing the same view for the same project - return as is
-                        return convertView;
-                    }
-                }
-            } else {
-                Log.e("AAA", position + ": null");
-            }
 
             TextView projectName = (TextView) view.findViewById(R.id.project_name);
             final String projectTitle = item.getString("title");
@@ -520,9 +494,9 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
                         projectFieldsTable.setVisibility(View.GONE);
                     }
 
-                    for (ProjectField field : fields) {
+                    for (final ProjectField field : fields) {
                         ProjectFieldValue fieldValue = mProjectFieldValues.get(field.field_id);
-                        ProjectFieldViewer fieldViewer = new ProjectFieldViewer(ProjectSelectorActivity.this, field, fieldValue, true);
+                        final ProjectFieldViewer fieldViewer = new ProjectFieldViewer(ProjectSelectorActivity.this, field, fieldValue, true);
 
                         viewers.add(fieldViewer);
 
@@ -530,8 +504,19 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
                             view.findViewById(R.id.is_required).setVisibility(View.VISIBLE);
                         }
 
-                        View fieldView = fieldViewer.getView();
-                        projectFieldsTable.addView(fieldView);
+                        fieldViewer.setOnFocusedListener(new ProjectFieldViewer.FocusedListener() {
+                            @Override
+                            public void onFocused() {
+                                mLastProjectFieldFocused = field.field_id;
+                                mLastProjectIdFocused = projectId;
+
+                                mLastProjectFieldIndex = mProjectList.getFirstVisiblePosition();
+                                View v = mProjectList.getChildAt(0);
+                                mLastProjectFieldTop = (v == null) ? 0 : (v.getTop() - mProjectList.getPaddingTop());
+                            }
+                        });
+
+                        projectFieldsTable.addView(fieldViewer.getView());
                     }
 
                     focusProjectField();
@@ -561,18 +546,26 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
     }
 
     private void focusProjectField() {
-        for (List<ProjectFieldViewer> fields : mProjectFieldViewers.values()) {
+        if ((mLastProjectIdFocused == -1) || (mLastProjectFieldFocused == -1)) {
+            return;
+        }
+
+        for (final int projectId : mProjectFieldViewers.keySet()) {
+            List<ProjectFieldViewer> fields = mProjectFieldViewers.get(projectId);
             for (final ProjectFieldViewer fieldViewer : fields) {
                 final ProjectField field = fieldViewer.getField();
-                if (mLastProjectFieldFocused == field.field_id) {
+                if ((mLastProjectFieldFocused == field.field_id) && (mLastProjectIdFocused == projectId)) {
+                    mLastProjectIdFocused = -1;
+                    mLastProjectFieldFocused = -1;
+
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Log.e("AAA", "FOCUSING: " + field.field_id + ":" + field.name);
                             fieldViewer.setFocus();
+                            mProjectList.setSelectionFromTop(mLastProjectFieldIndex, mLastProjectFieldTop);
                         }
-                    }, 200);
+                    }, 5);
                 }
             }
         }

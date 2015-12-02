@@ -191,7 +191,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint) {
                     FilterResults filterResults = new FilterResults();
-                    
+
                     if (constraint != null) {
                         if (constraint.length() == 0) {
                             filterResults.values = new ArrayList<JSONObject>();
@@ -222,33 +222,50 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 }
 
                 @Override
-                protected void publishResults(CharSequence constraint, FilterResults results) {
-                    if (results != null && results.count > 0 && results.values != null) {
-                        mResultList = (ArrayList<JSONObject>) results.values;
-                        if (mShowUnknown) mResultList.add(0, null);
-                        notifyDataSetChanged();
-                    }
-                    else {
-                        if ((results != null) && (results.values != null)) {
-                            mResultList = (ArrayList<JSONObject>) results.values;
-                            if ((mResultList.size() == 0) && (mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
-                                // No results - add in the current search string as a custom observation
-                                JSONObject customObs = new JSONObject();
-                                try {
-                                    customObs.put("is_custom", true);
-                                    customObs.put("name", mCurrentSearchString);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                protected void publishResults(CharSequence constraint, final FilterResults results) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (results != null && results.count > 0 && results.values != null) {
+                                mResultList = (ArrayList<JSONObject>) results.values;
+                                if (mShowUnknown) mResultList.add(0, null);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        notifyDataSetChanged();
+                                    }
+                                });
+                            }
+                            else {
+                                if ((results != null) && (results.values != null)) {
+                                    mResultList = (ArrayList<JSONObject>) results.values;
+                                    if ((mResultList.size() == 0) && (mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
+                                        // No results - add in the current search string as a custom observation
+                                        JSONObject customObs = new JSONObject();
+                                        try {
+                                            customObs.put("is_custom", true);
+                                            customObs.put("name", mCurrentSearchString);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        mResultList.add(customObs);
+                                    }
+
+                                    if (mShowUnknown) mResultList.add(0, null);
+
                                 }
-                                mResultList.add(customObs);
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        notifyDataSetInvalidated();
+                                    }
+                                });
                             }
 
-                            if (mShowUnknown) mResultList.add(0, null);
-
                         }
-                        
-                        notifyDataSetInvalidated();
-                    }
+                    }).start();
+
                 }};
                 
                 return filter;
@@ -393,8 +410,14 @@ public class TaxonSearchActivity extends SherlockListActivity {
         
         autoCompView.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mAdapter != null) mAdapter.getFilter().filter(s);
+            public void onTextChanged(final CharSequence s, int start, int before, int count) {
+                Log.e("AAA", "TEXT CHANGE");
+                /*runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {*/
+                        if (mAdapter != null) mAdapter.getFilter().filter(s);
+                    /*}
+                });*/
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -417,8 +440,6 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     imm.showSoftInput(autoCompView, InputMethodManager.SHOW_IMPLICIT);
                 }
             }, 100);
-        } else {
-        	autoCompView.setText("");
         }
 
         setListAdapter(mAdapter);

@@ -190,6 +190,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private String mTaxonPicUrl;
     private boolean mIsTaxonUnknown;
     private boolean mIsCustomTaxon;
+    private TextView mProjectCount;
 
     @Override
 	protected void onStart()
@@ -238,6 +239,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
     private void refreshProjectList() {
         if (mIsConfirmation) {
+            mProjectCount.setText(String.valueOf(mProjectIds.size()));
             return;
         }
 
@@ -453,6 +455,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
         mObservationCommentsIds = (TextView) findViewById(R.id.commentIdCount);
         mProjectSelector = findViewById(R.id.select_projects);
+        mProjectCount = (TextView) findViewById(R.id.project_count);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         mProjectsTable = (TableLayout) findViewById(R.id.projects);
 
@@ -462,6 +465,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 Intent intent = new Intent(ObservationEditor.this, ProjectSelectorActivity.class);
                 intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
                 intent.putExtra(ProjectSelectorActivity.IS_CONFIRMATION, mIsConfirmation);
+                intent.putExtra(ProjectSelectorActivity.PROJECT_FIELDS, mProjectFieldValues);
                 intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
                 startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
             }
@@ -1679,6 +1683,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
                 refreshProjectFields();
                 refreshProjectList();
+
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
