@@ -325,4 +325,5 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="skip">Saltar  ›</string>
     <string name="email">Correo</string>
     <string name="send_email">Envia correo...</string>
+    <string name="login_signup">Inicia sesión / Regístrate</string>
 </resources>
