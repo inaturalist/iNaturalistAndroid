@@ -69,6 +69,8 @@ public class TaxonSearchActivity extends SherlockListActivity {
     private INaturalistApp mApp;
     private boolean mShowUnknown;
 
+    private long mLastTime = 0;
+
     @Override
 	protected void onStart()
 	{
@@ -93,6 +95,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
     private ArrayList<JSONObject> autocomplete(String input) {
         ArrayList<JSONObject> resultList = null;
 
+        logTime("autocomplete 1");
         if (!isNetworkAvailable()) {
             return new ArrayList<JSONObject>();
         }
@@ -127,6 +130,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
             }
         }
 
+        logTime("autocomplete 2");
         try {
             JSONArray predsJsonArray = new JSONArray(jsonResults.toString());
 
@@ -139,6 +143,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
             Log.e(LOG_TAG, "Cannot process JSON results", e);
         }
 
+        logTime("autocomplete 3");
         return resultList;
     } 
     
@@ -192,6 +197,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 protected FilterResults performFiltering(CharSequence constraint) {
                     FilterResults filterResults = new FilterResults();
 
+                    logTime("performFiltering 1");
                     if (constraint != null) {
                         if (constraint.length() == 0) {
                             filterResults.values = new ArrayList<JSONObject>();
@@ -215,7 +221,8 @@ public class TaxonSearchActivity extends SherlockListActivity {
                             filterResults.count = results.size();
                         }
                     }
-                    
+
+                    logTime("performFiltering 2");
                     toggleLoading(false);
                     
                     return filterResults;
@@ -272,6 +279,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
         }
         
         public View getView(int position, View convertView, ViewGroup parent) {
+            logTime("GetView 1 - " + position);
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.taxon_result_item, parent, false); 
             JSONObject item = mResultList.get(position);
@@ -343,7 +351,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"), new UrlImageViewCallback() {
                         @Override
                         public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap));
+                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
                         }
 
                         @Override
@@ -357,6 +365,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 e.printStackTrace();
             }
 
+            logTime("GetView 2 - " + position);
             return view;
         }
 
@@ -379,11 +388,18 @@ public class TaxonSearchActivity extends SherlockListActivity {
        setResult(RESULT_CANCELED);
        finish();
    }
+
+    private void logTime(String msg) {
+        Log.e("TaxonSearchActivity", (System.currentTimeMillis() - mLastTime) + ": " + msg);
+        mLastTime = System.currentTimeMillis();
+    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        logTime("onCreate 1");
+
         if (mApp == null) { mApp = (INaturalistApp) getApplicationContext(); }
 
         ActionBar actionBar = getSupportActionBar();
@@ -411,13 +427,8 @@ public class TaxonSearchActivity extends SherlockListActivity {
         autoCompView.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(final CharSequence s, int start, int before, int count) {
-                Log.e("AAA", "TEXT CHANGE");
-                /*runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {*/
-                        if (mAdapter != null) mAdapter.getFilter().filter(s);
-                    /*}
-                });*/
+                logTime("onTextChange");
+                if (mAdapter != null) mAdapter.getFilter().filter(s);
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -442,7 +453,9 @@ public class TaxonSearchActivity extends SherlockListActivity {
             }, 100);
         }
 
+        logTime("onCreate 2");
         setListAdapter(mAdapter);
+        logTime("onCreate 3");
     }
     
     @Override
