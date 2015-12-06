@@ -20,6 +20,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
+                android:drawableLeft="@drawable/ic_fa_search"
+                android:background="#EBEBEB"
+                android:padding="5dp"
                 android:hint="@string/search_projects" />
 
             <ListView

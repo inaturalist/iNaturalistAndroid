@@ -127,7 +127,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="#dfdfdf"
-        android:layout_marginLeft="64dp"
+        android:layout_marginLeft="76dp"
         android:layout_alignParentBottom="true"
         android:paddingRight="0dp"
         />

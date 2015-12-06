@@ -10,6 +10,41 @@
         android:src="@drawable/iconic_taxon_amphibia"
         />
 
+    <RelativeLayout
+        android:id="@+id/observation_is_first"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/is_first_on"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_check_circle_black_24dp"
+            android:background="#00ffffff"
+            android:tint="#74ac00"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:id="@+id/is_first_off"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:background="@drawable/circular_border"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="3dp"
+            />
+
+        <TextView
+            android:id="@+id/is_first_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:text="@string/first"
+            />
+    </RelativeLayout>
+    <!--
     <RadioButton
         android:id="@+id/observation_is_first"
         android:layout_marginTop="5dp"
@@ -20,5 +55,6 @@
         android:text="@string/first"
         android:textSize="10sp"
         />
+        -->
 
 </LinearLayout>

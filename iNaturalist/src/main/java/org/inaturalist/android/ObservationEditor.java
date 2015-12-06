@@ -149,6 +149,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private INaturalistApp app;
     private ActivityHelper mHelper;
     private boolean mCanceled = false;
+    private boolean mIsCaptive = false;
     
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
@@ -171,7 +172,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 	public static final String OBSERVATION_PROJECT = "observation_project";
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
-    private Switch mIdPlease;
+    private CompoundButton mIdPlease;
     private Spinner mGeoprivacy;
     private String mSpeciesGuess;
     private TableLayout mProjectsTable;
@@ -191,6 +192,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private boolean mIsTaxonUnknown;
     private boolean mIsCustomTaxon;
     private TextView mProjectCount;
+    private Long mFirstPositionPhotoId;
 
     @Override
 	protected void onStart()
@@ -398,6 +400,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mPictureTaken = savedInstanceState.getBoolean("mPictureTaken", false);
             mPreviousTaxonSearch = savedInstanceState.getString("mPreviousTaxonSearch");
             mTaxonPicUrl = savedInstanceState.getString("mTaxonPicUrl");
+            mIsCaptive = savedInstanceState.getBoolean("mIsCaptive", false);
+            mFirstPositionPhotoId = savedInstanceState.getLong("mFirstPositionPhotoId");
         }
 
 
@@ -430,9 +434,24 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     });
                 }
             });
+
+
+            findViewById(R.id.is_captive_checkbox).setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mIsCaptive = !mIsCaptive;
+                    if (mIsCaptive) {
+                        findViewById(R.id.is_captive_on_icon).setVisibility(View.VISIBLE);
+                        findViewById(R.id.is_captive_off_icon).setVisibility(View.GONE);
+                    } else {
+                        findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
+                        findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
+                    }
+                }
+            });
         }
 
-        mIdPlease = (Switch) findViewById(R.id.id_please);
+        mIdPlease = (CompoundButton) findViewById(R.id.id_please);
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
         mSpeciesGuessIcon = (ImageView) findViewById(R.id.species_guess_icon);
@@ -846,6 +865,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         outState.putBoolean("mPictureTaken", mPictureTaken);
         outState.putString("mPreviousTaxonSearch", mPreviousTaxonSearch);
         outState.putString("mTaxonPicUrl", mTaxonPicUrl);
+        outState.putBoolean("mIsCaptive", mIsCaptive);
+        outState.putLong("mFirstPositionPhotoId", mFirstPositionPhotoId != null ? mFirstPositionPhotoId : -1);
         super.onSaveInstanceState(outState);
     }
 
@@ -1017,9 +1038,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         if (mIsConfirmation) {
-            boolean isCaptive = ((CheckBox)findViewById(R.id.is_captive_checkbox)).isChecked();
-            if ((mObservation.captive != null) || ((mObservation.captive == null) && (isCaptive))) {
-                mObservation.captive = isCaptive;
+            if ((mObservation.captive != null) || ((mObservation.captive == null) && (mIsCaptive))) {
+                mObservation.captive = mIsCaptive;
             }
         }
     }
@@ -1094,7 +1114,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
             }
         } else {
-            ((CheckBox)findViewById(R.id.is_captive_checkbox)).setChecked(mObservation.captive);
+            mIsCaptive = mObservation.captive;
+            if (mIsCaptive) {
+                findViewById(R.id.is_captive_on_icon).setVisibility(View.VISIBLE);
+                findViewById(R.id.is_captive_off_icon).setVisibility(View.GONE);
+            } else {
+                findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
+                findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
+            }
 
             if (mObservation.place_guess != null) {
                 ((TextView) findViewById(R.id.location_guess)).setText(mObservation.place_guess);
@@ -1565,6 +1592,21 @@ public class ObservationEditor extends SherlockFragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (mIsConfirmation) {
+            (new Handler()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ((EditText) mSpeciesGuessTextView).clearFocus();
+                    mDescriptionTextView.clearFocus();
+
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (getCurrentFocus() != null)
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
+            }, 10);
+        }
+
 
         if (requestCode == OBSERVATION_PHOTOS_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -1638,7 +1680,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     if (mIsConfirmation) {
                         ((EditText)mSpeciesGuessTextView).clearFocus();
                         mDescriptionTextView.clearFocus();
-                        mDescriptionTextView.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
 
                         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
                         if (!mIsCustomTaxon) {
@@ -2151,6 +2192,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
         public void setAsFirstPhoto(int position) {
             Long photoId = getItemId(position);
+            mFirstPositionPhotoId = photoId;
+
 
             // Set current photo to be positioned first
             mCursor.moveToPosition(position);
@@ -2238,15 +2281,17 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
 
             if (mIsConfirmation) {
-                RadioButton isFirst = (RadioButton) container.findViewById(R.id.observation_is_first);
+                View isFirst = container.findViewById(R.id.observation_is_first);
                 Integer obsPhotoPosition = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto.POSITION));
 
                 if ((obsPhotoPosition != null) && (obsPhotoPosition == 0)) {
-                    isFirst.setChecked(true);
-                    isFirst.setText(R.string.first);
+                    container.findViewById(R.id.is_first_on).setVisibility(View.VISIBLE);
+                    container.findViewById(R.id.is_first_off).setVisibility(View.GONE);
+                    container.findViewById(R.id.is_first_text).setVisibility(View.VISIBLE);
                 } else {
-                    isFirst.setChecked(false);
-                    isFirst.setText("");
+                    container.findViewById(R.id.is_first_on).setVisibility(View.GONE);
+                    container.findViewById(R.id.is_first_off).setVisibility(View.VISIBLE);
+                    container.findViewById(R.id.is_first_text).setVisibility(View.GONE);
                 }
 
                 imageView.setOnClickListener(new OnClickListener() {
@@ -2261,14 +2306,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 });
 
                 isFirst.setTag(new Integer(position));
-                isFirst.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                isFirst.setOnClickListener(new OnClickListener() {
                     @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean value) {
-                        if (value) {
-                            int position = (Integer)compoundButton.getTag();
+                    public void onClick(View view) {
+                        Integer position = (Integer) view.getTag();
+                        Long photoId = getItemId(position);
 
+                        if ((mFirstPositionPhotoId == null) || (mFirstPositionPhotoId != photoId)) {
                             setAsFirstPhoto(position);
-
                         }
                     }
                 });

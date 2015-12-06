@@ -404,14 +404,14 @@ public class TaxonSearchActivity extends SherlockListActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setIcon(android.R.color.transparent);
         
         LayoutInflater li = LayoutInflater.from(this);
         View customView = li.inflate(R.layout.taxon_search_action_bar, null);
         actionBar.setCustomView(customView);
-        actionBar.setLogo(R.drawable.up_icon);
+        actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
        
         setContentView(R.layout.taxon_search);
         
@@ -470,15 +470,17 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 // Get the taxon display name according to configuration of the current iNat network
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
+                int taxonNamePosition = Integer.MAX_VALUE;
                 try {
                     JSONArray taxonNames = item.getJSONArray("taxon_names");
                     for (int i = 0; i < taxonNames.length(); i++) {
                         JSONObject taxonName = taxonNames.getJSONObject(i);
                         String lexicon = taxonName.getString("lexicon");
-                        if (lexicon.equals(networkLexicon)) {
+                        int currentTaxonNamePosition = taxonName.getInt("position");
+                        if ((lexicon.equals(networkLexicon)) && (currentTaxonNamePosition < taxonNamePosition)) {
                             // Found the appropriate lexicon for the taxon
                             displayName = taxonName.getString("name");
-                            break;
+                            taxonNamePosition = currentTaxonNamePosition;
                         }
                     }
                 } catch (JSONException e3) {

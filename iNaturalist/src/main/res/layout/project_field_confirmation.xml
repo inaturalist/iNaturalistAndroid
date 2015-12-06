@@ -12,6 +12,7 @@
 
     <LinearLayout
         android:orientation="vertical"
+        android:paddingRight="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -33,8 +34,8 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <RelativeLayout
+        android:paddingRight="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -44,7 +45,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_text"
-            android:paddingTop="0dp"
+            android:inputType="textMultiLine"
+            android:isScrollContainer="true"
+            android:maxWidth="100dp"
             />
 
         <Spinner
@@ -83,7 +86,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/taxon_container"
             android:layout_width="fill_parent"
             android:background="@drawable/actionbar_btn"
@@ -121,7 +124,7 @@
             </LinearLayout>
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     </LinearLayout>
 </TableRow>
