@@ -206,9 +206,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
 	@Override
 	protected void onStop()
 	{
-		super.onStop();		
+        // http://stackoverflow.com/questions/20776925/failed-binder-transaction-after-starting-an-activity#20803653
+        // Remove what could be a giant array for users with a lot of projects. If you don't,
+        // activities launched from this view (e.g. TaxonSearchActivity) are likely to experience a
+        // lag before interactivity due to a FAILED BINDER TRANSACTION
+        mProjects.removeAll(mProjects);
+        super.onStop();
 		FlurryAgent.onEndSession(this);
-	}	
+	}
 
     private class ProjectReceiver extends BroadcastReceiver {
         @Override
