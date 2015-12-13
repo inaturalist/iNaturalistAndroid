@@ -417,5 +417,6 @@
     <string name="coordinates_lon">Lon:</string>
     <string name="coordinates_acc">Acc. </string>
     <string name="required">* Required</string>
+    <string name="downloading_observations">Downloading observations...</string>
  </resources>
 

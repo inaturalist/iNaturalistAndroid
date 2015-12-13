@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.DialogInterface;
+import android.os.Handler;
 import android.support.v4.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
@@ -365,6 +366,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mPullRefreshListView.setEmptyView(findViewById(android.R.id.empty));
         mPullRefreshListView.setAdapter(mAdapter);
         mPullRefreshListView.setOnItemClickListener(this);
+
     }
     
 
@@ -412,6 +414,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         	if (mLastMessage != null) mHelper.loading(mLastMessage);
         	app.setNotificationCallback(this);
         }
+
+        (new Handler()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.downloading_observations), Toast.LENGTH_LONG).show();
+                }
+            }
+        }, 100);
     }
     
     @Override

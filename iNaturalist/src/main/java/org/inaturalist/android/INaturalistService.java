@@ -246,11 +246,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 getNearbyObservations(intent);
                 
             } else if (action.equals(ACTION_FIRST_SYNC)) {
+                mIsSyncing = true;
+                mApp.setIsSyncing(mIsSyncing);
+
                 saveJoinedProjects();
                 getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
                 syncObservationFields();
                 postProjectObservations();
-                
+
             } else if (action.equals(ACTION_AGREE_ID)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
@@ -460,6 +463,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             	// Download observations without uploading any new ones
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
+
                 getUserObservations(0);
 
                  // Update last sync time
