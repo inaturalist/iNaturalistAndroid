@@ -10,6 +10,11 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+
 /**
  * Various image utility methods
  */
@@ -52,8 +57,7 @@ public class ImageUtils {
      * @return
      */
     public static Bitmap getCircleBitmap(Bitmap bitmap) {
-        final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(output);
 
         final int color = Color.RED;
@@ -96,6 +100,92 @@ public class ImageUtils {
         canvas.drawBitmap(bitmap, rect, rect, paint);
 
         return output;
+    }
+
+
+    // Get max GL dimensions (width/height)
+    // Taken from: http://stackoverflow.com/a/26823209/1233767
+    private static void getMaxDimensions() {
+        // Safe minimum default size
+        final int IMAGE_MAX_BITMAP_DIMENSION = 2048;
+
+        if ((sMaxBitmapHeight > 0) && (sMaxBitmapWidth > 0)) {
+            // Already calculated max height/width - no need to recalculate
+            return;
+        }
+
+        // Get EGL Display
+        EGL10 egl = (EGL10) EGLContext.getEGL();
+        EGLDisplay display = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+
+        // Initialise
+        int[] version = new int[2];
+        egl.eglInitialize(display, version);
+
+        // Query total number of configurations
+        int[] totalConfigurations = new int[1];
+        egl.eglGetConfigs(display, null, 0, totalConfigurations);
+
+        // Query actual list configurations
+        EGLConfig[] configurationsList = new EGLConfig[totalConfigurations[0]];
+        egl.eglGetConfigs(display, configurationsList, totalConfigurations[0], totalConfigurations);
+
+        int[] textureWidth = new int[1];
+        int[] textureHeight = new int[1];
+        int maximumTextureWidth = 0, maximumTextureHeight = 0;
+
+        // Iterate through all the configurations to located the maximum texture size
+        for (int i = 0; i < totalConfigurations[0]; i++) {
+            egl.eglGetConfigAttrib(display, configurationsList[i], EGL10.EGL_MAX_PBUFFER_WIDTH, textureWidth);
+            egl.eglGetConfigAttrib(display, configurationsList[i], EGL10.EGL_MAX_PBUFFER_HEIGHT, textureHeight);
+
+            // Keep track of the maximum texture size
+            if (maximumTextureWidth < textureWidth[0])
+                maximumTextureWidth = textureWidth[0];
+            if (maximumTextureHeight < textureHeight[0])
+                maximumTextureHeight = textureHeight[0];
+        }
+
+        // Release
+        egl.eglTerminate(display);
+
+        // Return largest texture size found, or default
+        sMaxBitmapWidth = Math.max(maximumTextureWidth, IMAGE_MAX_BITMAP_DIMENSION);
+        sMaxBitmapHeight = Math.max(maximumTextureHeight, IMAGE_MAX_BITMAP_DIMENSION);
+    }
+
+    private static int sMaxBitmapHeight = 0, sMaxBitmapWidth = 0;
+
+    // Scales down the bitmap only the bitmap is larger than GL limits
+    public static Bitmap scaleDownBitmapIfNeeded(Context context, Bitmap photo) {
+        getMaxDimensions();
+
+        if (photo.getHeight() > sMaxBitmapHeight) {
+            return scaleDownBitmap(context, photo, sMaxBitmapHeight, true);
+        } else if (photo.getWidth() > sMaxBitmapWidth) {
+            return scaleDownBitmap(context, photo, sMaxBitmapWidth, false);
+        } else {
+            // No problem - return as-is
+            return photo;
+        }
+    }
+
+    public static Bitmap scaleDownBitmap(Context context, Bitmap photo, int newDimension, boolean isHeight) {
+        final float densityMultiplier = context.getResources().getDisplayMetrics().density;
+
+        int h;
+        int w;
+        if (isHeight) {
+            h = (int) (newDimension * densityMultiplier);
+            w = (int) (h * photo.getWidth() / ((double) photo.getHeight()));
+        } else {
+            w = (int) (newDimension * densityMultiplier);
+            h = (int) (w * photo.getHeight() / ((double) photo.getWidth()));
+        }
+
+        photo = Bitmap.createScaledBitmap(photo, w, h, true);
+
+        return photo;
     }
 
 }

@@ -286,6 +286,8 @@ public class ObservationPhotosViewer extends SherlockActivity {
                             matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
                             bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
                         }
+                        // Scale down the image if it's too big for the GL renderer
+                        bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);
                         imageView.setImageBitmap(bitmapImage);
                         final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
                         attacher.update();
@@ -315,7 +317,8 @@ public class ObservationPhotosViewer extends SherlockActivity {
 
                         @Override
                         public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                            // No post-processing of bitmap
+                            // Scale down the image if it's too big for the GL renderer
+                            loadedBitmap = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, loadedBitmap);
                             return loadedBitmap;
                         }
                     });

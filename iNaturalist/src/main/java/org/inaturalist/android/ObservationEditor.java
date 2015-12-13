@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -778,6 +779,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
         final Intent galleryIntent = new Intent();
 
+        Crashlytics.log(Log.ERROR, TAG, "takePhoto: " + mFileUri);
+
         galleryIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
         this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -1139,7 +1142,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (mCursor == null) { return true; }
         Cursor c = getContentResolver().query(mUri, new String[] {Observation._ID}, null, null, null);
         if (c.getCount() == 0) { return true; }
-        if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
+        //if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
 
         if (!mIsConfirmation) {
             if (mSpeciesGuessTextView.length() == 0
@@ -1191,6 +1194,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (deleteLocal) {
             try {
                 getContentResolver().delete(mUri, null, null);
+
+                if (mImageCursor != null && mImageCursor.getCount() > 0) {
+                    // Delete any observation photos taken with it
+                    getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
+                }
             } catch (NullPointerException e) {
                 Log.e(TAG, "Failed to delete observation: " + e);
             }
@@ -1727,8 +1735,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+            int random = (new Random()).nextInt();
+            Crashlytics.log(Log.ERROR, TAG, "onActivityResult: " + random + ": CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE: " + resultCode);
+
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;
+
+                Crashlytics.log(Log.ERROR, TAG, "onActivityResult:  " + random + ": data: " + (data == null ? "null" : data) + "; scheme: " + (data == null ? "null" : data.getScheme()) + "; action: " + (data == null ? "null" : data.getAction()));
+
                 if ((data == null) || (data.getScheme() == null)) {
                     isCamera = true;
                 } else {
@@ -1739,6 +1754,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                         isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     }
                 }
+
+                Crashlytics.log(Log.ERROR, TAG, "onActivityResult: " + random + ": isCamera: " + isCamera);
 
                 Uri selectedImageUri;
                 if(isCamera) {
@@ -1752,6 +1769,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     }
                 }
 
+                Crashlytics.log(Log.ERROR, TAG, "onActivityResult: " + random + ": mFileUri: " + mFileUri + "; selectedImageUri: " + selectedImageUri);
                 Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
 
                 if (isCamera) {
@@ -1761,7 +1779,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 
                 updateImageOrientation(selectedImageUri);
                 Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
-                
+
+                Crashlytics.log(Log.ERROR, TAG, "onActivityResult:  " + random + ": createdUri: " + createdUri);
+
                 if (createdUri == null) {
                 	mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
                 	mFileUri = null;
@@ -1770,10 +1790,15 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
                 updateImages();
                 if (!isCamera) {
-                    if (!mIsConfirmation) {
-                        promptImportPhotoMetadata(selectedImageUri);
-                    }
+                    promptImportPhotoMetadata(selectedImageUri);
                }
+
+                try {
+                    Crashlytics.logException(new Exception("takePhoto"));
+                    Crashlytics.getInstance().crash();
+                } catch (Exception exc) {
+
+                }
                 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
@@ -1853,14 +1878,18 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         ObservationPhoto op = new ObservationPhoto();
-        Long photoId;
+        Long photoId = null;
+        int random = (new Random()).nextInt();
         try {
         	photoId = ContentUris.parseId(photoUri);
         } catch (Exception exc) {
         	// Not a supported media type (e.g. Google Drive)
         	exc.printStackTrace();
+            Crashlytics.log(Log.ERROR, TAG, "createObservationPhotoForPhoto: " + random + ": photoUri: " + photoUri + ": error: " + exc);
         	return null;
         }
+
+        Crashlytics.log(Log.ERROR, TAG, "createObservationPhotoForPhoto: " + random + ": photoId: " + photoId);
 
         ContentValues cv = op.getContentValues();
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);

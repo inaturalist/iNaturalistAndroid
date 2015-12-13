@@ -458,7 +458,8 @@
             android:id="@+id/is_captive_checkbox"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="20dp"
+            android:paddingLeft="40dp"
+            android:layout_width="60dp"
             android:layout_height="20dp">
             <ImageView
                 android:id="@+id/is_captive_on_icon"
