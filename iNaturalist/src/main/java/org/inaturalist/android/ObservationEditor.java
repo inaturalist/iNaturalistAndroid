@@ -210,9 +210,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         // Remove what could be a giant array for users with a lot of projects. If you don't,
         // activities launched from this view (e.g. TaxonSearchActivity) are likely to experience a
         // lag before interactivity due to a FAILED BINDER TRANSACTION
-        mProjects.removeAll(mProjects);
+        if (mProjects != null) {
+            mProjects.removeAll(mProjects);
+        }
         super.onStop();
-		FlurryAgent.onEndSession(this);
+        FlurryAgent.onEndSession(this);
 	}
 
     private class ProjectReceiver extends BroadcastReceiver {
