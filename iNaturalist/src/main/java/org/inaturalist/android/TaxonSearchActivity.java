@@ -179,18 +179,24 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     if (isLoading) {
                         mProgress.setVisibility(View.VISIBLE);
 
-                        // While we're waiting for results to load, show the string the user is
-                        // typing as the first result (just with an unknown taxon type)
-                        mResultList = new ArrayList<JSONObject>();
-                        JSONObject customObs = new JSONObject();
-                        try {
-                            customObs.put("is_custom", true);
-                            customObs.put("name", mCurrentSearchString);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if (isNetworkAvailable()) {
+                            // While we're waiting for results to load, show the string the user is
+                            // typing as the first result (just with an unknown taxon type)
+                            if (mResultList == null) {
+                                mResultList = new ArrayList<JSONObject>();
+                            } else {
+                                mResultList.clear();
+                            }
+                            JSONObject customObs = new JSONObject();
+                            try {
+                                customObs.put("is_custom", true);
+                                customObs.put("name", mCurrentSearchString);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            mResultList.add(customObs);
+                            notifyDataSetChanged();
                         }
-                        mResultList.add(customObs);
-                        notifyDataSetChanged();
 
                     } else {
                         mProgress.setVisibility(View.GONE);
