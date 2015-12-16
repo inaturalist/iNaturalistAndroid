@@ -1426,28 +1426,40 @@ public class ObservationEditor extends SherlockFragmentActivity {
             return;
         }
 
-        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(mObservation.latitude, mObservation.longitude, 1);
-            if((null != addresses) && (addresses.size() > 0)) {
-                Address address = addresses.get(0);
-                StringBuilder location = new StringBuilder();
-                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-                    location.append(address.getAddressLine(i));
-                    location.append(" ");
-                }
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-                if ((location != null) && (location.length() > 0)) {
-                    ((TextView) findViewById(R.id.location_guess)).setText(location);
-                    mObservation.place_guess = location.toString().trim();
-                } else {
-                    ((TextView) findViewById(R.id.location_guess)).setText(R.string.set_location);
-                    mObservation.place_guess = null;
+                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(mObservation.latitude, mObservation.longitude, 1);
+                    if((null != addresses) && (addresses.size() > 0)) {
+                        Address address = addresses.get(0);
+                        final StringBuilder location = new StringBuilder();
+                        for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                            location.append(address.getAddressLine(i));
+                            location.append(" ");
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if ((location != null) && (location.length() > 0)) {
+                                    ((TextView) findViewById(R.id.location_guess)).setText(location);
+                                    mObservation.place_guess = location.toString().trim();
+                                } else {
+                                    ((TextView) findViewById(R.id.location_guess)).setText(R.string.set_location);
+                                    mObservation.place_guess = null;
+                                }
+                            }
+                        });
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        })).start();
     }
 
     private void setCurrentLocation(Location location) {
@@ -1482,7 +1494,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         if (mIsConfirmation) {
-            guessLocation();
+            if (isNetworkAvailable()) {
+                guessLocation();
+            }
         }
     }
 
@@ -1652,7 +1666,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
                     findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
 
-                    guessLocation();
+                    if (isNetworkAvailable()) {
+                        guessLocation();
+                    }
+
                 }
             }
          } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
