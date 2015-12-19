@@ -259,6 +259,8 @@
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@id/observed_on"
+            android:layout_toEndOf="@id/observed_on"
             android:text="@string/set_time"
             android:layout_centerVertical="true"
             android:textSize="16sp"
