@@ -32,6 +32,7 @@
             android:visibility="visible"
             android:layout_centerVertical="true"
             android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="3dp"
             />
 
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:text="@string/first"
             />
     </RelativeLayout>
@@ -49,6 +51,7 @@
         android:id="@+id/observation_is_first"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="-7dp"
+        android:layout_marginStart="-7dp"
         android:paddingLeft="-5dp"
         android:layout_width="fill_parent"
         android:layout_height="20dp"
