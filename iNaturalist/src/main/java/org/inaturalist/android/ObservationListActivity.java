@@ -59,6 +59,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -118,7 +119,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
             mPullRefreshListView.onRefreshComplete();
             mPullRefreshListView.refreshDrawableState();
-            
+
             mHelper.stopLoading();
 
             ObservationCursorAdapter adapter = mAdapter;
@@ -157,6 +158,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     private void refreshSyncBar() {
         int syncCount = 0;
         int photoSyncCount = 0;
+
+        if (mApp.getAutoSync()) {
+            // Auto sync is on - no need for manual sync
+            mSyncObservations.setVisibility(View.GONE);
+            return;
+        }
 
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
         		Observation.PROJECTION, 
@@ -367,6 +374,22 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mPullRefreshListView.setAdapter(mAdapter);
         mPullRefreshListView.setOnItemClickListener(this);
 
+
+        if (app.getAutoSync() && !app.getIsSyncing()) {
+            Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))",
+                    null,
+                    Observation.SYNC_ORDER);
+            int syncCount = c.getCount();
+            c.close();
+
+            // Trigger a sync
+            if (syncCount > 0) {
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                startService(serviceIntent);
+            }
+        }
     }
     
 
@@ -411,7 +434,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         if (app.getIsSyncing()) {
         	// We're still syncing
         	mHelper.stopLoading();
-        	if (mLastMessage != null) mHelper.loading(mLastMessage);
+        	if ((mLastMessage != null) && (!mApp.getAutoSync())) mHelper.loading(mLastMessage);
         	app.setNotificationCallback(this);
         }
 
@@ -448,8 +471,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             // the user.  The have clicked on one, so return it now.
             setResult(RESULT_OK, new Intent().setData(uri));
         } else {
-            // Launch activity to view/edit the currently selected item
-            startActivity(new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class));
+            if (!mAdapter.isLocked(uri)) {
+                // Launch activity to view/edit the currently selected item
+                startActivity(new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class));
+            }
         }
     }
     
@@ -487,6 +512,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
          */
         public void getPhotoInfo() {
             Cursor c = getCursor();
+            int originalPosition = c.getPosition();
             if (c.getCount() == 0) return;
             
             c.moveToFirst();
@@ -500,13 +526,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 } catch (Exception exc) { }
                 c.moveToNext();
             }
-            
- 
+
+            c.moveToPosition(originalPosition);
+
             // Add any online-only photos
-            Cursor onlinePc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
-                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL}, 
-                    "(_observation_id IN ("+StringUtils.join(obsIds, ',')+") OR observation_id IN ("+StringUtils.join(obsExternalIds, ',')+")  )  AND photo_url IS NOT NULL", 
-                    null, 
+            Cursor onlinePc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL},
+                    "(_observation_id IN (" + StringUtils.join(obsIds, ',') + ") OR observation_id IN (" + StringUtils.join(obsExternalIds, ',') + ")  )  AND photo_url IS NOT NULL",
+                    null,
                     ObservationPhoto.DEFAULT_SORT_ORDER);
             onlinePc.moveToFirst();
             while (!onlinePc.isAfterLast()) {
@@ -550,10 +577,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 opc.moveToNext();
             }
             
-            Cursor pc = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 
-                    new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION}, 
-                    "_ID IN ("+StringUtils.join(photoIds, ',')+")", 
-                    null, 
+            Cursor pc = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION},
+                    "_ID IN (" + StringUtils.join(photoIds, ',') + ")",
+                    null,
                     "_ID");
             if (pc == null) { opc.close(); return; }
             if (pc.getCount() == 0) { pc.close(); opc.close(); return; }
@@ -593,21 +620,32 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             opc.close();
             
         }
-        
+
+        public void refreshPhotoInfo() {
+            mPhotoInfo = new HashMap<Long, String[]>();
+            getPhotoInfo();
+        }
+
+        public void refreshPhotoInfo(long obsId) {
+            if (mPhotoInfo.containsKey(obsId)) mPhotoInfo.remove(obsId);
+        }
+
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = super.getView(position, convertView, parent);
             Cursor c = this.getCursor();
             if (c.getCount() == 0) {
                 return view;
             }
-            
-            getPhotoInfo();
-            
+
+
             ImageView image = (ImageView) view.findViewById(R.id.image);
             c.moveToPosition(position);
             Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
             final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
-            
+
+            refreshPhotoInfo(obsId);
+            getPhotoInfo();
+
             String[] photoInfo = mPhotoInfo.get(obsId);
             
             if (photoInfo == null) {
@@ -766,15 +804,111 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             }
             
             ImageView needToSync = (ImageView) view.findViewById(R.id.syncRequired);
-            
+            TextView subTitle = (TextView) view.findViewById(R.id.subContent);
+            TextView title = (TextView) view.findViewById(R.id.speciesGuess);
+            ProgressBar progress = (ProgressBar) view.findViewById(R.id.progress);
+            ViewGroup commentCatcher = (ViewGroup) view.findViewById(R.id.commentsIdClickCatcher);
+
+            String speciesGuess = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
+            title.setTextColor(Color.parseColor("#000000"));
+            subTitle.setTextColor(Color.parseColor("#666666"));
+            progress.setVisibility(View.GONE);
+            observedOn.setVisibility(View.VISIBLE);
+            commentCatcher.setVisibility(View.VISIBLE);
+
+            ImageView errorIcon = (ImageView) view.findViewById(R.id.error);
+            boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
+            if (hasErrors)  {
+                errorIcon.setVisibility(View.VISIBLE);
+                needToSync.setVisibility(View.GONE);
+                commentIdCountText.setVisibility(View.GONE);
+                view.setBackgroundColor(Color.parseColor("#F3D3DA"));
+                subTitle.setText(R.string.needs_your_attention);
+            } else {
+                errorIcon.setVisibility(View.GONE);
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            }
+
             if (syncNeeded) {
                 // This observations needs to be synced
                 needToSync.setVisibility(View.VISIBLE);
+
+                if (mApp.getObservationIdBeingSynced() == obsId) {
+                    // Observation is currently being uploaded
+                    subTitle.setText(R.string.uploading);
+                    view.setBackgroundColor(Color.parseColor("#76AA1B"));
+
+                    title.setTextColor(Color.parseColor("#ffffff"));
+                    subTitle.setTextColor(Color.parseColor("#ffffff"));
+
+                    if (speciesGuess == null) {
+                        title.setText(R.string.unknown_species);
+                    }
+
+                    progress.setVisibility(View.VISIBLE);
+                    observedOn.setVisibility(View.GONE);
+                    commentCatcher.setVisibility(View.GONE);
+                } else {
+                    // Observation is waiting to be uploaded
+                    if (!hasErrors) {
+                        subTitle.setText(R.string.waiting_to_upload);
+                        view.setBackgroundColor(Color.parseColor("#E3EDCD"));
+                    }
+                }
             } else {
                 needToSync.setVisibility(View.INVISIBLE);
+                if (!hasErrors)
+                    view.setBackgroundColor(Color.parseColor("#FFFFFF"));
             }
-            
+
+
             return view;
+        }
+
+        // Should the specified observation be locked for editing (e.g. it's currently being uploaded)
+        public boolean isLocked(Uri uri) {
+            Cursor c = managedQuery(uri, Observation.PROJECTION, null, null, null);
+            Observation obs = new Observation(c);
+
+            Integer obsId = obs._id;
+            String[] photoInfo = mPhotoInfo.get(obsId);
+            Timestamp syncedAt = obs._synced_at;
+            Timestamp updatedAt = obs._updated_at;
+            Boolean syncNeeded = (syncedAt == null) || (updatedAt.after(syncedAt));
+
+            // if there's a photo and it is local
+            if (syncNeeded == false &&
+                    photoInfo != null &&
+                    photoInfo[2] == null &&
+                    photoInfo[3] != null) {
+                if (photoInfo[4] == null) {
+                    syncNeeded = true;
+                } else {
+                    Long photoSyncedAt = Long.parseLong(photoInfo[4]);
+                    Long photoUpdatedAt = Long.parseLong(photoInfo[3]);
+                    if (photoUpdatedAt > photoSyncedAt) {
+                        syncNeeded = true;
+                    }
+                }
+            }
+
+
+            if (mApp.getObservationIdBeingSynced() == obsId) {
+                // Observation is currently being uploaded - is locked!
+                return true;
+            } else {
+                if (!syncNeeded) {
+                    // Item hasn't changed (shouldn't be locked)
+                    return false;
+                }
+
+                if (!mApp.getAutoSync() || !isNetworkAvailable()) {
+                    // Allow editing if not in auto sync mode or when network is not available
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         }
         
         private void refreshCommentsIdSize(final TextView view, Long value) {
@@ -855,11 +989,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 		mLastMessage = content;
 
 		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				mHelper.loading(content);
-			}
-		});
+            @Override
+            public void run() {
+                if (!mApp.getAutoSync()) {
+                    mHelper.loading(content);
+                }
+                mAdapter.refreshCursor();
+            }
+        });
 	}
 
 }

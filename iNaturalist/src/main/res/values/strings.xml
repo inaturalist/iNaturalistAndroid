@@ -418,5 +418,14 @@
     <string name="coordinates_acc">Acc. </string>
     <string name="required">* Required</string>
     <string name="downloading_observations">Downloading observations...</string>
+    <string name="no_thanks">No Thanks</string>
+    <string name="turn_on">Turn On</string>
+    <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
+    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
+    <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
+    <string name="waiting_to_upload">Waiting to upload...</string>
+    <string name="uploading">Uploading...</string>
+    <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
+    <string name="needs_your_attention">Needs your attention...</string>
  </resources>
 

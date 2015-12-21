@@ -15,12 +15,18 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
 import org.inaturalist.android.INaturalistService.LoginType;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Application;
@@ -59,6 +65,20 @@ public class INaturalistApp extends Application {
     private Locale deviceLocale = null;
     private OnDownloadFileProgress mDownloadCallback;
     private boolean mOnboardingShownBefore = false;
+
+    public static final int NO_OBSERVATION = -1;
+    private int mObservationIdBeingSynced = NO_OBSERVATION;
+
+    // The ID of the observation being currently synced
+
+    public int getObservationIdBeingSynced() {
+        return mObservationIdBeingSynced;
+    }
+
+    public void setObservationIdBeingSynced(int value) {
+        mObservationIdBeingSynced = value;
+    }
+
 
     public boolean shownOnboarding() {
         return mOnboardingShownBefore;
@@ -133,7 +153,80 @@ public class INaturalistApp extends Application {
 
 		return null;
 	}	
-	
+
+
+	public boolean getAutoSync() {
+    	SharedPreferences settings = getPrefs();
+        return settings.getBoolean("pref_auto_sync", true);
+	}
+
+    /** Whether or not auto sync settings has been set */
+    public boolean hasAutoSync() {
+    	SharedPreferences settings = getPrefs();
+        return settings.contains("pref_auto_sync");
+	}
+
+	public void setAutoSync(boolean value) {
+    	SharedPreferences settings = getPrefs();
+    	Editor settingsEditor = settings.edit();
+
+    	settingsEditor.putBoolean("pref_auto_sync", value);
+    	settingsEditor.apply();
+	}
+
+
+    public void setErrorsForObservation(int obsId, int projectId, JSONArray errors) {
+        SharedPreferences settings = getPrefs();
+        String errorsJson = settings.getString("pref_observation_errors", "{}");
+        Editor settingsEditor = settings.edit();
+
+        try {
+            JSONObject errorsByObservationId = new JSONObject(errorsJson);
+            if (!errorsByObservationId.has(String.valueOf(obsId))) {
+                errorsByObservationId.put(String.valueOf(obsId), new JSONObject());
+            }
+            JSONObject projectErrors = errorsByObservationId.getJSONObject(String.valueOf(obsId));
+
+            projectErrors.put(String.valueOf(projectId), errors);
+            settingsEditor.putString("pref_observation_errors", errorsByObservationId.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        settingsEditor.apply();
+    }
+
+    public JSONArray getErrorsForObservation(int obsId) {
+        SharedPreferences settings = getPrefs();
+        String errorsJson = settings.getString("pref_observation_errors", "{}");
+        try {
+            JSONObject errorsByObservationId = new JSONObject(errorsJson);
+            if (!errorsByObservationId.has(String.valueOf(obsId))) {
+                // No errors for that observation ID
+                return new JSONArray();
+            }
+
+            JSONObject errorsByProject = errorsByObservationId.getJSONObject(String.valueOf(obsId));
+            Iterator<String> keys = errorsByProject.keys();
+            JSONArray errors = new JSONArray();
+
+            while (keys.hasNext()) {
+                String projectId = keys.next();
+                JSONArray errorsForObservation = errorsByProject.getJSONArray(projectId);
+
+                for (int i = 0; i < errorsForObservation.length(); i++) {
+                    errors.put(errorsForObservation.getString(i));
+                }
+            }
+
+            return errors;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new JSONArray();
+        }
+    }
+
 
 	/** Returns the set inat network member */
 	public String getInaturalistNetworkMember() {

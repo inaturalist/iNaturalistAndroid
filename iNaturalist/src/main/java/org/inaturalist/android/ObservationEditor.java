@@ -618,6 +618,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
                                 public void run() {
                                     delete((mObservation == null) || (mObservation.id == null));
                                     Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
+                                    if (app.getAutoSync() && !app.getIsSyncing()) {
+                                        // Trigger a sync
+                                        Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationEditor.this, INaturalistService.class);
+                                        startService(serviceIntent);
+                                    }
+
                                     finish();
                                 }
                             },
@@ -1002,7 +1008,33 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mDeleteButton.setLayoutParams(params);
             }
         }
-        
+
+
+        if ((mObservation != null) && (!mIsConfirmation) && (mObservation.id != null)) {
+            // Display the errors for the observation, if any
+            JSONArray errors = app.getErrorsForObservation(mObservation.id);
+            TextView errorsDescription = (TextView) findViewById(R.id.errors);
+
+            if (errors.length() == 0) {
+                errorsDescription.setVisibility(View.GONE);
+            } else {
+                errorsDescription.setVisibility(View.VISIBLE);
+                StringBuilder errorsHtml = new StringBuilder();
+                try {
+                    for (int i = 0; i < errors.length(); i++) {
+                        errorsHtml.append("&#8226; ");
+                        errorsHtml.append(errors.getString(i));
+                        if (i < errors.length() - 1)
+                            errorsHtml.append("<br/>");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                errorsDescription.setText(Html.fromHtml(errorsHtml.toString()));
+            }
+        }
+
+
         updateUi();
     }
 
@@ -1147,7 +1179,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
     private final Boolean isDeleteable() {
         if (mCursor == null) { return true; }
-        Cursor c = getContentResolver().query(mUri, new String[] {Observation._ID}, null, null, null);
+        Cursor c = getContentResolver().query(mUri, new String[]{Observation._ID}, null, null, null);
         if (c.getCount() == 0) { return true; }
         //if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
 
@@ -1191,6 +1223,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
         
         app.checkSyncNeeded();
+
+        if (app.getAutoSync() && !app.getIsSyncing()) {
+            // Trigger a sync
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationEditor.this, INaturalistService.class);
+            startService(serviceIntent);
+        }
         
         return true;
     }

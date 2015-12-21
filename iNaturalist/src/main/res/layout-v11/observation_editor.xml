@@ -80,6 +80,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/errors"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Errors"
+                android:background="#F3D4DB"
+                android:textColor="#C8565F"
+                android:padding="10dp"
+                android:visibility="gone"
+                />
+
             <org.lucasr.twowayview.TwoWayView
                 android:id="@+id/gallery"
                 xmlns:tools="http://schemas.android.com/tools"

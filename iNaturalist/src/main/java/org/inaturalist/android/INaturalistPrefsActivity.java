@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import com.facebook.login.LoginManager;
 import com.flurry.android.FlurryAgent;
+import com.google.android.maps.MapActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,6 +23,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -48,6 +51,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	private ActivityHelper mHelper;
 	private RadioGroup rbPreferredNetworkSelector;
 	private RadioGroup rbPreferredLocaleSelector;
+	private CheckBox mAutoSync;
 	private INaturalistApp mApp;
 	
     private int formerSelectedNetworkRadioButton;
@@ -108,6 +112,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	    
 	    
 	    mSignInLayout = (LinearLayout) findViewById(R.id.signIn);
+		mAutoSync = (CheckBox) findViewById(R.id.auto_sync);
 	    mSignOutLayout = (LinearLayout) findViewById(R.id.signOut);
 	    mSignOutLabel = (TextView) findViewById(R.id.signOutLabel);
 	    mSignInButton = (Button) findViewById(R.id.signInButton);
@@ -115,7 +120,14 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	    mSignOutButton = (Button) findViewById(R.id.signOutButton);
 	    mHelp = (TextView) findViewById(R.id.tutorial_link);
 	    mHelp.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-	    
+
+		mAutoSync.setChecked(mApp.getAutoSync());
+        mAutoSync.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean value) {
+                mApp.setAutoSync(value);
+            }
+        });
 	    
 	    mContactSupport = (TextView) findViewById(R.id.contact_support);
 	    mContactSupport.setText(Html.fromHtml(mContactSupport.getText().toString()));

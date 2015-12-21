@@ -7,7 +7,7 @@
         android:id="@+id/image"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="5dp"
@@ -21,7 +21,7 @@
         android:id="@+id/rightObsPart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
         android:paddingRight="10dp" >
@@ -50,8 +50,8 @@
                 android:id="@+id/commentIdCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="6dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="6dp"
                 android:background="@drawable/comments_ids_background"
                 android:gravity="center"
                 android:minWidth="23dp"
@@ -68,8 +68,18 @@
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/commentIdCount"
+                android:layout_toLeftOf="@id/commentIdCount"
                 android:src="@drawable/ic_action_refresh" />
+            <ImageView
+                android:id="@+id/error"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:tint="#DA302E"
+                android:src="@drawable/ic_error_black_24dp" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -78,10 +88,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@id/rightObsPart"
-        android:layout_toEndOf="@id/image"
+        android:layout_toLeftOf="@id/rightObsPart"
+        android:layout_toRightOf="@id/image"
         android:orientation="vertical" >
 
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleLargeInverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            />
         <TextView
             android:id="@+id/speciesGuess"
             style="@android:style/TextAppearance.Medium"
@@ -92,6 +110,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:singleLine="true"
+            android:textColor="#ffffff"
             android:text="species guess" />
 
         <TextView
@@ -103,7 +122,7 @@
             android:paddingRight="10dp"
             android:singleLine="true"
             android:text="sub stuff"
-            android:textColor="#666"
+            android:textColor="#666666"
             android:textSize="14sp" />
     </LinearLayout>
 

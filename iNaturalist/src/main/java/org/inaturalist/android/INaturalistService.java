@@ -558,7 +558,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         while (c.isAfterLast() == false) {
             ProjectObservation projectObservation = new ProjectObservation(c);
             BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
-            
+
+            mApp.setObservationIdBeingSynced(projectObservation.observation_id);
+
             if (mResponseErrors != null) {
                 SerializableJSONArray errors = new SerializableJSONArray(mResponseErrors);
             
@@ -587,7 +589,21 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 }
                 Project project = new Project(c2);
                 c2.close();
-                
+
+                // Remember the errors for this observation (to be shown in the observation editor screen)
+                JSONArray formattedErrors = new JSONArray();
+                JSONArray unformattedErrors = errors.getJSONArray();
+
+                for (int i = 0; i < unformattedErrors.length(); i++) {
+                    try {
+                        formattedErrors.put(String.format(getString(R.string.failed_to_add_to_project), project.title, unformattedErrors.getString(i)));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                mApp.setErrorsForObservation(observation.id, project.id, formattedErrors);
+
                 final String errorMessage = String.format(getString(R.string.failed_to_add_obs_to_project), observation.species_guess, project.title, error);
 
                 // Notify user
@@ -612,11 +628,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 projectObservation.is_new = false;
                 ContentValues cv = projectObservation.getContentValues();
                 getContentResolver().update(projectObservation.getUri(), cv, null, null);
+
+                // Clean the errors for the observation
+                mApp.setErrorsForObservation(projectObservation.observation_id, projectObservation.project_id, new JSONArray());
             }
             
             c.moveToNext();
         }
-        
+
+        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+
         // Finally, retrieve all project observations
         for (int j = 0; j < mProjectObservations.size(); j++) {
             JSONArray projectObservations = mProjectObservations.get(j).getJSONArray();
@@ -831,6 +852,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     String.format(getString(R.string.updating_x_observations), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
             observation = new Observation(c);
+            mApp.setObservationIdBeingSynced(observation._id);
             handleObservationResponse(
                     observation,
                     put(HOST + "/observations/" + observation.id + ".json?extra=observation_photos", paramsForObservation(observation, false))
@@ -856,6 +878,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     String.format(getString(R.string.posting_x_observations), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
             observation = new Observation(c);
+            mApp.setObservationIdBeingSynced(observation._id);
             handleObservationResponse(
                     observation,
                     post("http://" + inatHost + "/observations.json?extra=observation_photos", paramsForObservation(observation, true))
@@ -877,10 +900,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         int currentUpdatedCount = c.getCount();
         c.close();
 
-        
+        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+
         if ((currentCreatedCount == 0) && (currentUpdatedCount == 0)) {
         	// Sync completed successfully
-        	mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+        	mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION,
         			getString(R.string.observation_sync_complete), 
         			String.format(getString(R.string.observation_sync_status), createdCount, updatedCount),
         			getString(R.string.sync_complete));
@@ -930,7 +954,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         ContentValues cv;
         c.moveToFirst();
         while (c.isAfterLast() == false) {
-            mApp.notify(SYNC_PHOTOS_NOTIFICATION, 
+            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
                     getString(R.string.posting_photos), 
                     String.format(getString(R.string.posting_x_photos), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
@@ -943,7 +967,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     null, 
                     null, 
                     MediaStore.Images.Media.DEFAULT_SORT_ORDER);
-            
+
+            mApp.setObservationIdBeingSynced(op._observation_id);
+
             if (pc == null) {
             	continue;
             } else if (pc.getCount() == 0) {
@@ -980,8 +1006,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             c.moveToNext();
         }
         c.close();
-        
-        c = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+
+        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+
+        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
         		ObservationPhoto.PROJECTION, 
         		"_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
@@ -1528,7 +1556,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             ProjectFieldValue localField = new ProjectFieldValue(c);
-            
+
+            mApp.setObservationIdBeingSynced(localField.observation_id);
+
             if (!mProjectFieldValues.containsKey(Integer.valueOf(localField.observation_id))) {
                 // Need to retrieve remote observation fields to see how to sync the fields
                 JSONArray jsonResult = get(HOST + "/observations/" + localField.observation_id + ".json");
@@ -1600,7 +1630,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             c.moveToNext();
         }
         c.close();
-        
+
+        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+
         // Next, add any new observation fields
         for (Hashtable<Integer, ProjectFieldValue> fields : mProjectFieldValues.values()) {
             for (ProjectFieldValue field : fields.values()) {

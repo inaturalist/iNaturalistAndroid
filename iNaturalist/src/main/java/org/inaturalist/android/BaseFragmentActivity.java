@@ -6,6 +6,7 @@ import com.crashlytics.android.Crashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.content.DialogInterface;
 import android.os.Build;
 
 import io.fabric.sdk.android.Fabric;
@@ -135,6 +136,22 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             }
         });
 
+        if (!app.hasAutoSync()) {
+            // Tell the user about the new auto sync feature
+            mHelper.confirm(getString(R.string.introducing_auto_sync), getString(R.string.turn_on_auto_sync), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // Turn off auto sync
+                    app.setAutoSync(false);
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // Turn on auto sync
+                    app.setAutoSync(true);
+                }
+            }, R.string.no_thanks, R.string.turn_on);
+        }
 	}
 
     public void refreshUserDetails() {
