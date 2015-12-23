@@ -12,7 +12,9 @@
         android:orientation="horizontal"
         android:paddingTop="8dp"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingBottom="8dp"
         android:background="#EDEDED"
         android:layout_width="fill_parent"
@@ -37,6 +39,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             style="@style/TwoWayView"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:drawSelectorOnTop="false"
@@ -48,7 +51,9 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="6dp"
         android:paddingBottom="8dp"
         android:layout_height="60dp">
@@ -59,7 +64,9 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_species_guess_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:alpha="0.6"
             />
@@ -70,7 +77,9 @@
             android:layout_width="wrap_content"
             android:hint="@string/species_guess_hint"
             android:layout_toRightOf="@id/species_guess_icon"
+            android:layout_toEndOf="@id/species_guess_icon"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:clickable="false"
             android:focusable="false"
             android:background="#00000000"
@@ -80,13 +89,16 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         android:background="#dfdfdf"
         />
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_height="60dp">
@@ -97,7 +109,9 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_announcement_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
             />
@@ -112,6 +126,7 @@
             android:textColor="#ffffff"
             app:switchTextAppearance="@style/SwitchTextStyle"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true" />
 
         <TextView
@@ -119,7 +134,9 @@
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/help_id_icon"
+            android:layout_toEndOf="@id/help_id_icon"
             android:layout_toLeftOf="@id/id_please"
+            android:layout_toStartOf="@id/id_please"
             android:text="@string/help_id_this_species"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -132,8 +149,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="25dp"
             android:checked="false" />
@@ -143,6 +162,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         android:background="#dfdfdf"
         />
 
@@ -150,7 +170,9 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_height="wrap_content">
@@ -161,7 +183,9 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_assignment_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
             />
@@ -174,6 +198,7 @@
             android:minHeight="50dp"
             android:inputType="textMultiLine"
             android:layout_toRightOf="@id/notes_icon"
+            android:layout_toEndOf="@id/notes_icon"
             android:isScrollContainer="true"
             android:hint="@string/notes"
             android:background="#00000000"
@@ -184,13 +209,16 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         android:background="#dfdfdf"
         />
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_height="60dp">
@@ -201,7 +229,9 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_access_time_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
             />
@@ -217,6 +247,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_toRightOf="@id/time_icon"
+            android:layout_toEndOf="@id/time_icon"
             android:text="@string/set_date"
             android:layout_centerVertical="true"
             android:textSize="16sp"
@@ -227,6 +258,9 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@id/observed_on"
+            android:layout_toEndOf="@id/observed_on"
             android:text="@string/set_time"
             android:layout_centerVertical="true"
             android:textSize="16sp"
@@ -238,12 +272,15 @@
         android:layout_height="1dp"
         android:background="#dfdfdf"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         />
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_height="60dp">
@@ -254,7 +291,9 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_location_on_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
             />
@@ -271,6 +310,7 @@
             android:id="@+id/locationRefreshButton"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/location_icon"
+            android:layout_toEndOf="@id/location_icon"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -299,6 +339,7 @@
                     android:textSize="12sp"
                     android:textColor="#929292"
                     android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     />
                 <TextView
                     android:id="@+id/latitude"
@@ -308,6 +349,7 @@
                     android:textSize="12sp"
                     android:textColor="#929292"
                     android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
                     android:maxWidth="80dp"
                     android:ellipsize="end"
                     android:lines="1"
@@ -319,6 +361,7 @@
                     android:textSize="12sp"
                     android:textColor="#929292"
                     android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
                     />
                 <TextView
                     android:id="@+id/longitude"
@@ -327,6 +370,7 @@
                     android:textSize="12sp"
                     android:textColor="#929292"
                     android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
                     android:text="12.34567890123"
                     android:maxWidth="80dp"
                     android:ellipsize="end"
@@ -340,6 +384,7 @@
                     android:textSize="12sp"
                     android:textColor="#929292"
                     android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     />
                 <TextView
                     android:id="@+id/accuracy"
@@ -362,12 +407,15 @@
         android:layout_height="1dp"
         android:background="#dfdfdf"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         />
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_height="60dp">
@@ -378,7 +426,9 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_public_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
             />
@@ -387,6 +437,7 @@
             android:id="@+id/locationVisibility"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/location_visibility_icon"
+            android:layout_toEndOf="@id/location_visibility_icon"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -411,13 +462,16 @@
         android:layout_height="1dp"
         android:background="#dfdfdf"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         />
 
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_height="60dp">
@@ -428,7 +482,9 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_nature_people_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
             />
@@ -442,6 +498,7 @@
             android:textSize="16sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/is_captive_icon"
+            android:layout_toEndOf="@id/is_captive_icon"
             />
 
         <!--
@@ -450,6 +507,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             />
             -->
@@ -457,8 +515,10 @@
         <RelativeLayout
             android:id="@+id/is_captive_checkbox"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:paddingLeft="40dp"
+            android:paddingStart="40dp"
             android:layout_width="60dp"
             android:layout_height="20dp">
             <ImageView
@@ -485,12 +545,15 @@
         android:layout_height="1dp"
         android:background="#dfdfdf"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         />
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_height="60dp">
@@ -501,13 +564,16 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_work_black_24dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:tint="#686868"
             />
 
         <TextView
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:id="@+id/project_count"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -515,13 +581,16 @@
             android:textSize="16sp"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:gravity="right"
             />
 
 
         <TextView
             android:layout_toRightOf="@id/projects_icon"
+            android:layout_toEndOf="@id/projects_icon"
             android:layout_toLeftOf="@id/project_count"
+            android:layout_toStartOf="@id/project_count"
             android:id="@+id/select_projects"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
@@ -536,6 +605,7 @@
         android:layout_height="1dp"
         android:background="#dfdfdf"
         android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         />
 
 </LinearLayout>
