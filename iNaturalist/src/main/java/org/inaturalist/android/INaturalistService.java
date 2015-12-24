@@ -497,17 +497,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
         }
     }
-    
+
     private void syncObservations() throws AuthenticationException {
         deleteObservations(); // Delete locally-removed observations
-        saveJoinedProjects();
         getUserObservations(0); // First, download remote observations (new/updated)
         postObservations(); // Next, update local-to-remote observations
+        saveJoinedProjects();
         syncObservationFields();
         postPhotos();
         postProjectObservations();
-        
-        
+
 //        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
     }
     
