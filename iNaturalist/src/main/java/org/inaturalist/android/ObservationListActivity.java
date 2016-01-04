@@ -782,7 +782,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 	}
                 });   
             }
- 
+
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
             Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
             Boolean syncNeeded = (syncedAt == null) || (updatedAt > syncedAt); 
@@ -802,7 +802,28 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     }
                 }
             }
-            
+
+            if (!syncNeeded) {
+                // See if it's an existing observation with a new photo:w
+
+                Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                        new String[]{
+                                ObservationPhoto._ID,
+                                ObservationPhoto._OBSERVATION_ID,
+                                ObservationPhoto._PHOTO_ID,
+                                ObservationPhoto.PHOTO_URL,
+                                ObservationPhoto._UPDATED_AT,
+                                ObservationPhoto._SYNCED_AT
+                        },
+                        "_observation_id = ? AND photo_url IS NULL AND _synced_at IS NULL",
+                        new String[] { String.valueOf(obsId) },
+                        ObservationPhoto._ID);
+                if (opc.getCount() > 0) {
+                    syncNeeded = true;
+                }
+                opc.close();
+            }
+
             ImageView needToSync = (ImageView) view.findViewById(R.id.syncRequired);
             TextView subTitle = (TextView) view.findViewById(R.id.subContent);
             TextView title = (TextView) view.findViewById(R.id.speciesGuess);
@@ -815,6 +836,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             progress.setVisibility(View.GONE);
             observedOn.setVisibility(View.VISIBLE);
             commentCatcher.setVisibility(View.VISIBLE);
+
 
             ImageView errorIcon = (ImageView) view.findViewById(R.id.error);
             boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
@@ -892,6 +914,25 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 }
             }
 
+            if (!syncNeeded) {
+                // See if it's an existing observation with a new photo:w
+                Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                        new String[]{
+                                ObservationPhoto._ID,
+                                ObservationPhoto._OBSERVATION_ID,
+                                ObservationPhoto._PHOTO_ID,
+                                ObservationPhoto.PHOTO_URL,
+                                ObservationPhoto._UPDATED_AT,
+                                ObservationPhoto._SYNCED_AT
+                        },
+                        "_observation_id = ? AND photo_url IS NULL AND _synced_at IS NULL",
+                        new String[] { String.valueOf(obsId) },
+                        ObservationPhoto._ID);
+                if (opc.getCount() > 0) {
+                    syncNeeded = true;
+                }
+                opc.close();
+            }
 
             if (mApp.getObservationIdBeingSynced() == obsId) {
                 // Observation is currently being uploaded - is locked!

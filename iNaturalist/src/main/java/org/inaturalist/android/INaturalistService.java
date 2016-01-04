@@ -948,7 +948,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (c.getCount() == 0) {
             return;
         }
-            
+
         // for each observation PUT to /observations/:id
         ContentValues cv;
         c.moveToFirst();
