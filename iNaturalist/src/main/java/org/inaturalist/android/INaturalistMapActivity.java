@@ -714,19 +714,26 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
         if (mViewType.equals(VIEW_TYPE_LIST)) {
             View firstVisibleRow = mObservationsList.getChildAt(0);
-            mObservationListOffset = firstVisibleRow.getTop() - mObservationsList.getPaddingTop();
-            mObservationListIndex = mObservationsList.getFirstVisiblePosition();
 
-            outState.putInt("mObservationListIndex", mObservationListIndex);
-            outState.putInt("mObservationListOffset", mObservationListOffset);
+			if (firstVisibleRow != null && mObservationsList != null) {
+				mObservationListOffset = firstVisibleRow.getTop() - mObservationsList.getPaddingTop();
+				mObservationListIndex = mObservationsList.getFirstVisiblePosition();
+
+				outState.putInt("mObservationListIndex", mObservationListIndex);
+				outState.putInt("mObservationListOffset", mObservationListOffset);
+			}
 
 		} else if (mViewType.equals(VIEW_TYPE_GRID)) {
             View firstVisibleRow = mObservationsGrid.getChildAt(0);
-            mObservationGridOffset = firstVisibleRow.getTop() - mObservationsGrid.getPaddingTop();
-            mObservationGridIndex = mObservationsGrid.getFirstVisiblePosition();
 
-            outState.putInt("mObservationGridIndex", mObservationGridIndex);
-            outState.putInt("mObservationGridOffset", mObservationGridOffset);
+			if (firstVisibleRow != null && mObservationsGrid != null) {
+
+				mObservationGridOffset = firstVisibleRow.getTop() - mObservationsGrid.getPaddingTop();
+				mObservationGridIndex = mObservationsGrid.getFirstVisiblePosition();
+
+				outState.putInt("mObservationGridIndex", mObservationGridIndex);
+				outState.putInt("mObservationGridOffset", mObservationGridOffset);
+			}
 		}
 
         super.onSaveInstanceState(outState);
