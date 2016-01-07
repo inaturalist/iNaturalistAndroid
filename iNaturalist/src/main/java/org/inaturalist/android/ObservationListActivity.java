@@ -126,6 +126,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             adapter.refreshCursor();
             refreshSyncBar();
 
+            if (mApp.loggedIn() && !mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+                // Show a "no observations" message
+                ((TextView)findViewById(android.R.id.empty)).setText(R.string.no_observations_yet);
+            }
+
+
             if ((mLastMessage != null) && (mLastMessage.length() > 0)) {
                 Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
             }
@@ -446,6 +452,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 }
             }
         }, 100);
+
+
+        if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+            // Show a "downloading ..." message instead of "no observations yet"
+            ((TextView)findViewById(android.R.id.empty)).setText(R.string.downloading_observations);
+        }
     }
     
     @Override
