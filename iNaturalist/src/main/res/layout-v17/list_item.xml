@@ -31,11 +31,11 @@
             android:id="@+id/progress"
             style="?android:attr/progressBarStyleLargeInverse"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone"
             android:indeterminate="true"
             android:indeterminateDrawable="@drawable/progress_white"
+            android:layout_height="35dp"
             />
         <TextView
             android:id="@+id/dateObserved"

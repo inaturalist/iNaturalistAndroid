@@ -12,8 +12,8 @@
         android:useLevel="false" >
 
     <size
-        android:height="55dip"
-        android:width="55dip" />
+        android:height="25dip"
+        android:width="25dip" />
 
     <gradient
         android:angle="0"
