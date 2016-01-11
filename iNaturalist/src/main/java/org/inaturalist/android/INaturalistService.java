@@ -498,6 +498,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
 
+
     private void syncObservations() throws AuthenticationException {
         deleteObservations(); // Delete locally-removed observations
         getUserObservations(0); // First, download remote observations (new/updated)
@@ -603,7 +604,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
                 mApp.setErrorsForObservation(observation.id, project.id, formattedErrors);
 
-                final String errorMessage = String.format(getString(R.string.failed_to_add_obs_to_project), observation.species_guess, project.title, error);
+                final String errorMessage = String.format(getString(R.string.failed_to_add_obs_to_project),
+                        observation.species_guess == null ? getString(R.string.unknown) : observation.species_guess, project.title, error);
 
                 // Notify user
                 mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
@@ -615,10 +617,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        // Toast doesn't support longer periods of display - this is a workaround
-                        for (int i = 0; i < 3; i++) {
-                            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
-                        }
+                        Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
                     }
                 });
 
