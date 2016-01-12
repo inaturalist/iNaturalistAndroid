@@ -124,7 +124,6 @@ public class ObservationPhotosViewer extends SherlockActivity {
                     mObservation = new JSONObject(savedInstanceState.getString("observation"));
                 } else {
                     mObservationId = savedInstanceState.getInt("mObservationId");
-                    mObservationId = savedInstanceState.getInt("mObservationId");
                 }
         	}
         } catch (JSONException e) {
@@ -184,7 +183,10 @@ public class ObservationPhotosViewer extends SherlockActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if (!mIsNewObservation) outState.putString("observation", mObservation.toString());
+        if (!mIsNewObservation && mObservation != null) {
+            outState.putString("observation", mObservation.toString());
+        }
+
         outState.putBoolean("mIsNewObservation", mIsNewObservation);
         if (mIsNewObservation) {
             outState.putInt("mObservationId", mObservationId);
