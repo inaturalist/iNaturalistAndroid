@@ -96,6 +96,7 @@ public class Observation implements BaseColumns, Serializable {
     public String user_login_was;
     public Boolean is_deleted_was;
     public SerializableJSONArray projects;
+    public String uuid;
 
 
     public static final String TAG = "Observation";
@@ -145,6 +146,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String LAST_COMMENTS_COUNT = "last_comments_count";
     public static final String LAST_IDENTIFICATIONS_COUNT = "last_identifications_count";
     public static final String IS_DELETED = "is_deleted";
+    public static final String UUID = "uuid";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -185,6 +187,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.LAST_COMMENTS_COUNT,
         Observation.LAST_IDENTIFICATIONS_COUNT,
         Observation.IS_DELETED,
+        Observation.UUID,
     };
 
     static {
@@ -207,6 +210,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.OUT_OF_RANGE, Observation.OUT_OF_RANGE);
         PROJECTION_MAP.put(Observation.CAPTIVE, Observation.CAPTIVE);
         PROJECTION_MAP.put(Observation.PLACE_GUESS, Observation.PLACE_GUESS);
+        PROJECTION_MAP.put(Observation.UUID, Observation.UUID);
         PROJECTION_MAP.put(Observation.POSITIONAL_ACCURACY, Observation.POSITIONAL_ACCURACY);
         PROJECTION_MAP.put(Observation.POSITIONING_DEVICE, Observation.POSITIONING_DEVICE);
         PROJECTION_MAP.put(Observation.POSITIONING_METHOD, Observation.POSITIONING_METHOD);
@@ -268,6 +272,7 @@ public class Observation implements BaseColumns, Serializable {
         this.captive_was = this.captive;
         this.place_guess = bc.getString(PLACE_GUESS);
         this.place_guess_was = this.place_guess;
+        this.uuid = bc.getString(UUID);
         this.positional_accuracy = bc.getInteger(POSITIONAL_ACCURACY);
         this.positional_accuracy_was = this.positional_accuracy;
         this.positioning_device = bc.getString(POSITIONING_DEVICE);
@@ -341,6 +346,7 @@ public class Observation implements BaseColumns, Serializable {
         this.captive_was = this.captive;
         this.place_guess = o.getString("place_guess");
         this.place_guess_was = this.place_guess;
+        this.uuid = o.getString("uuid");
         this.positional_accuracy = o.getInteger("positional_accuracy");
         this.positional_accuracy_was = this.positional_accuracy;
         this.positioning_device = o.getString("positioning_device");
@@ -421,6 +427,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("out_of_range", out_of_range);
         bo.put("captive", captive);
         bo.put("place_guess", place_guess);
+        bo.put("uuid", uuid);
         bo.put("positional_accuracy", positional_accuracy);
         bo.put("positioning_device", positioning_device);
         bo.put("positioning_method", positioning_method);
@@ -467,6 +474,7 @@ public class Observation implements BaseColumns, Serializable {
             this.out_of_range = observation.out_of_range;
             this.captive = observation.captive;
             this.place_guess = observation.place_guess;
+            this.uuid = observation.uuid;
             this.positional_accuracy = observation.positional_accuracy;
             this.positioning_device = observation.positioning_device;
             this.positioning_method = observation.positioning_method;
@@ -503,6 +511,7 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.out_of_range == null) && (observation.out_of_range != null)) { this.out_of_range = observation.out_of_range; isModified = true; }
             if ((this.captive == null) && (observation.captive != null)) { this.captive = observation.captive; isModified = true; }
             if ((this.place_guess == null) && (observation.place_guess != null)) { this.place_guess = observation.place_guess; isModified = true; }
+            if ((this.uuid == null) && (observation.uuid != null)) { this.uuid = observation.uuid; isModified = true; }
             if ((this.positional_accuracy == null) && (observation.positional_accuracy != null)) { this.positional_accuracy = observation.positional_accuracy; isModified = true; }
             if ((this.positioning_device == null) && (observation.positioning_device != null)) { this.positioning_device = observation.positioning_device; isModified = true; }
             if ((this.positioning_method == null) && (observation.positioning_method != null)) { this.positioning_method = observation.positioning_method; isModified = true; }
@@ -540,6 +549,7 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(OUT_OF_RANGE, out_of_range);
         cv.put(CAPTIVE, captive);
         cv.put(PLACE_GUESS, place_guess);
+        cv.put(UUID, uuid);
         cv.put(POSITIONAL_ACCURACY, positional_accuracy);
         cv.put(POSITIONING_DEVICE, positioning_device);
         cv.put(POSITIONING_METHOD, positioning_method);
@@ -575,6 +585,7 @@ public class Observation implements BaseColumns, Serializable {
         if (out_of_range != null) { params.add(new BasicNameValuePair("observation[out_of_range]", out_of_range.toString())); }
         if (captive != null) { params.add(new BasicNameValuePair("observation[captive_flag]", captive.toString())); }
         if (place_guess != null) { params.add(new BasicNameValuePair("observation[place_guess]", place_guess.toString())); }
+        if (uuid != null) { params.add(new BasicNameValuePair("observation[uuid]", uuid)); }
         params.add(new BasicNameValuePair("observation[positional_accuracy]", positional_accuracy != null ? positional_accuracy.toString() : ""));
         if (positioning_device != null) { params.add(new BasicNameValuePair("observation[positioning_device]", positioning_device.toString())); }
         if (positioning_method != null) { params.add(new BasicNameValuePair("observation[positioning_method]", positioning_method.toString())); }
@@ -609,6 +620,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "out_of_range INTEGER,"
                 + "captive INTEGER,"
                 + "place_guess TEXT,"
+                + "uuid TEXT,"
                 + "positional_accuracy INTEGER,"
                 + "positioning_device TEXT,"
                 + "positioning_method TEXT,"

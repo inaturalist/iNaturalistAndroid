@@ -27,6 +27,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -1071,6 +1072,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
         }
 
+        if (mObservation.uuid == null) {
+            mObservation.uuid = UUID.randomUUID().toString();
+        }
+
         mObservation.id_please = mIdPlease.isChecked();
 
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
@@ -1950,6 +1955,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             Crashlytics.log(Log.ERROR, TAG, "createObservationPhotoForPhoto: " + random + ": photoUri: " + photoUri + ": error: " + exc);
         	return null;
         }
+
+        op.uuid = UUID.randomUUID().toString();
 
         Crashlytics.log(Log.ERROR, TAG, "createObservationPhotoForPhoto: " + random + ": photoId: " + photoId);
 
