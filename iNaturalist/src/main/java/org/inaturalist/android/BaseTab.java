@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -74,7 +75,13 @@ public abstract class BaseTab extends SherlockFragment {
             
             SerializableJSONArray serializableArray;
             if (!isSharedOnApp) {
-            	serializableArray = ((SerializableJSONArray) intent.getSerializableExtra(getFilterResultParamName()));
+                Serializable sarr = intent.getSerializableExtra(getFilterResultParamName());
+                if (sarr instanceof SerializableJSONArray) {
+                    serializableArray = (SerializableJSONArray) sarr;
+                } else {
+                    Log.e(TAG, "Got invalid non array convertible response from server: " + sarr);
+                    serializableArray = null;
+                }
             } else {
             	// Get results from app context
             	serializableArray = (SerializableJSONArray) mApp.getServiceResult(getFilterResultName());
