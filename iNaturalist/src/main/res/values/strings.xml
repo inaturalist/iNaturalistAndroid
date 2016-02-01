@@ -427,5 +427,32 @@
     <string name="uploading">Uploading...</string>
     <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Needs your attention...</string>
+    <string name="observation">Observation</string>
+    <string name="share">Share</string>
+    <string name="unable_to_acquire_location">Unable to acquire location</string>
+    <string name="casual_grade">Casual Grade</string>
+    <string name="needs_id">Needs ID</string>
+    <string name="research_grade">Research Grade</string>
+    <string name="data_quality">Data Quality</string>
+    <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
+    <string name="included_in_projects">Included in %1$d projects</string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
+    <string name="agree2">Agree</string>
+    <string name="id_title">%1$s\'s ID • %2$s</string>
+    <string name="comment_title">%1$s • %2$s</string>
+    <string name="delete">Delete</string>
+    <string name="delete_id">Delete Identification</string>
+    <string name="delete_comment">Delete Comment</string>
+    <string name="delete_id_message">Are you sure you want to delete this identification?</string>
+    <string name="delete_comment_message">Are you sure you want to delete this comment?</string>
+    <string name="comment">Comment</string>
+    <string name="suggest_id">Suggest ID</string>
+    <string name="update_comment">Update Comment</string>
+    <string name="fave_this_observation">Fave This Observation</string>
+    <string name="faved">Faved</string>
  </resources>
 

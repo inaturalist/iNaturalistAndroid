@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="#ffffff">
+    <ImageView
+        android:id="@+id/user_pic"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_account_circle_black_24dp" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/user_pic"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="7dp"
+        android:text="username"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        />
+
+    <TextView
+        android:id="@+id/faved_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="7dp"
+        android:text="Feb 22, 2015"
+        android:textSize="15sp"
+        android:textColor="#7f7f7f"
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#DFDFDF"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        />
+</RelativeLayout>

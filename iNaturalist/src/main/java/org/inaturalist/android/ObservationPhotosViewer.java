@@ -64,6 +64,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
     public static final String OBSERVATION = "observation";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String CURRENT_PHOTO_INDEX = "current_photo_index";
+    public static final String READ_ONLY = "read_only";
 
     public static final String SET_DEFAULT_PHOTO_INDEX = "set_default_photo_index";
     public static final String DELETE_PHOTO_INDEX = "delete_photo_index";
@@ -72,6 +73,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
     private int mObservationId;
     private int mCurrentPhotoIndex;
     private View mDeletePhoto;
+    private boolean mReadOnly;
 
     @Override
 	protected void onStart()
@@ -118,6 +120,8 @@ public class ObservationPhotosViewer extends SherlockActivity {
                 } else {
                     mObservationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 }
+
+                mReadOnly = intent.getBooleanExtra(READ_ONLY, false);
         	} else {
                 mIsNewObservation = savedInstanceState.getBoolean("mIsNewObservation");
         		if (!mIsNewObservation) {
@@ -125,6 +129,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
                 } else {
                     mObservationId = savedInstanceState.getInt("mObservationId");
                 }
+                mReadOnly = savedInstanceState.getBoolean("mReadOnly");
         	}
         } catch (JSONException e) {
         	e.printStackTrace();
@@ -137,7 +142,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
             mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId));
             mViewPager.setCurrentItem(mCurrentPhotoIndex);
 
-            mDeletePhoto.setVisibility(View.VISIBLE);
+            if (!mReadOnly) mDeletePhoto.setVisibility(View.VISIBLE);
             mDeletePhoto.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -172,7 +177,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (mIsNewObservation) {
+        if (mIsNewObservation && !mReadOnly) {
             MenuInflater inflater = getSupportMenuInflater();
             inflater.inflate(R.menu.observation_photos_viewer_menu, menu);
             return true;
@@ -193,6 +198,9 @@ public class ObservationPhotosViewer extends SherlockActivity {
             mCurrentPhotoIndex = mViewPager.getCurrentItem();
             outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
         }
+
+        outState.putBoolean("mReadOnly", mReadOnly);
+
         super.onSaveInstanceState(outState);
     }
  

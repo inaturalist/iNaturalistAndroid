@@ -837,10 +837,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         } else {
             latLng = new LatLng(o.getDouble("latitude"), o.getDouble("longitude"));
         }
+        String iconicTaxonName = o.has("iconic_taxon_name") ? o.getString("iconic_taxon_name") : null;
+
         MarkerOptions opts = new MarkerOptions()
             .position(latLng)
             //.title(o.getString("species_guess"))
-            .icon(observationIcon(o));
+            .icon(INaturalistMapActivity.observationIcon(iconicTaxonName));
         Marker m = mMap.addMarker(opts);
         mMarkerObservations.put(m.getId(), o);
     }
@@ -1002,20 +1004,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
         return false;
     }
-    
-   
-    private BitmapDescriptor observationIcon(JSONObject o) {
-        if (!o.has("iconic_taxon_name") || o.isNull("iconic_taxon_name")) {
+
+
+	public static BitmapDescriptor observationIcon(String iconic_taxon_name) {
+        if (iconic_taxon_name == null) {
             return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
         }
-        String iconic_taxon_name;
-		try {
-			iconic_taxon_name = o.getString("iconic_taxon_name");
-		} catch (JSONException e) {
-			e.printStackTrace();
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
-		}
-        
+
         if (iconic_taxon_name.equals("Animalia") || 
                 iconic_taxon_name.equals("Actinopterygii") ||
                 iconic_taxon_name.equals("Amphibia") || 

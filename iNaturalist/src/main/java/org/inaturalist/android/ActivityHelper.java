@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -125,7 +126,7 @@ public class ActivityHelper {
         if (msg instanceof String) {
             ScrollView parentView = (ScrollView) inflater.inflate(R.layout.dialog_message, null, false);
             textContent = (TextView) parentView.findViewById(R.id.text);
-            textContent.setText((String)msg);
+            textContent.setText(Html.fromHtml((String)msg));
             content.addView(parentView, 2);
         } else if (msg instanceof View) {
             content.addView((View) msg, 2);

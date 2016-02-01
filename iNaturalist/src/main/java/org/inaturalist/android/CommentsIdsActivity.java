@@ -385,10 +385,20 @@ public class CommentsIdsActivity extends SherlockListActivity implements Comment
 		startService(serviceIntent);
 
 		mNewIds--;
-	} 	
-	
+	}
 
-	@Override
+    @Override
+    public void onCommentRemoved(BetterJSONObject comment) {
+
+    }
+
+    @Override
+    public void onCommentUpdated(BetterJSONObject comment) {
+
+    }
+
+
+    @Override
 	public void onIdentificationAdded(BetterJSONObject item) {
 
 		try {

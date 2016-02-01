@@ -545,9 +545,19 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 		serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
 		serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
 		startService(serviceIntent);
-	} 	
-	
-    private void loadResultsIntoUI() {
+	}
+
+	@Override
+	public void onCommentRemoved(BetterJSONObject comment) {
+
+	}
+
+	@Override
+	public void onCommentUpdated(BetterJSONObject comment) {
+
+	}
+
+	private void loadResultsIntoUI() {
         if (mCommentsIds == null) {
             mProgress.setVisibility(View.VISIBLE);
             mCommentsIdsList.setVisibility(View.GONE);

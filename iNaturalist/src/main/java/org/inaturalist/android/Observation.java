@@ -60,7 +60,8 @@ public class Observation implements BaseColumns, Serializable {
     
     public SerializableJSONArray comments;
     public SerializableJSONArray identifications;
-    
+    public SerializableJSONArray favorites;
+
     public List<ObservationPhoto> photos;
 
     public Timestamp _created_at_was;
@@ -379,7 +380,8 @@ public class Observation implements BaseColumns, Serializable {
         
         this.comments = o.getJSONArray("comments");
         this.identifications = o.getJSONArray("identifications");
-        
+        this.favorites = o.getJSONArray("faves");
+
         try {
             this.photos = new ArrayList<ObservationPhoto>();
             JSONArray photos;

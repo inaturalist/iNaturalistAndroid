@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="91"
-    android:versionName="1.4.0" >
+    android:versionCode="92"
+    android:versionName="1.4.1" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
 
@@ -109,7 +109,11 @@
             android:windowSoftInputMode="adjustResize"
             android:name=".LoginSignupActivity" >
         </activity>
-
+        <activity
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:name=".ObservationViewerActivity" >
+        </activity>
         <activity
             android:configChanges="orientation"
             android:screenOrientation="portrait"

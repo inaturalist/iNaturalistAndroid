@@ -485,7 +485,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         } else {
             if (!mAdapter.isLocked(uri)) {
                 // Launch activity to view/edit the currently selected item
-                startActivity(new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class));
+                //startActivity(new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class));
+                startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerActivity.class));
             }
         }
     }

@@ -113,6 +113,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String USER = "user";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String COMMENT_ID = "comment_id";
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
@@ -146,6 +147,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_REGISTER_USER = "register_user";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
+    public static String ACTION_ADD_FAVORITE = "add_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
@@ -169,6 +171,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_REMOVE_ID = "remove_id";
     public static String ACTION_GUIDE_ID = "guide_id";
     public static String ACTION_ADD_COMMENT = "add_comment";
+    public static String ACTION_UPDATE_COMMENT = "update_comment";
+    public static String ACTION_DELETE_COMMENT = "delete_comment";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
     public static String ACTION_OBSERVATION_RESULT = "observation_result";
     public static String ACTION_JOINED_PROJECTS_RESULT = "joined_projects_result";
@@ -279,8 +283,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
                 sendBroadcast(reply);
- 
-              
+
+             } else if (action.equals(ACTION_ADD_FAVORITE)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                addFavorite(observationId);
+
             } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
@@ -312,6 +319,38 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
                 addComment(observationId, body);
+
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_UPDATE_COMMENT)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                int commentId = intent.getIntExtra(COMMENT_ID, 0);
+                String body = intent.getStringExtra(COMMENT_BODY);
+                updateComment(commentId, observationId, body);
+
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_DELETE_COMMENT)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                int commentId = intent.getIntExtra(COMMENT_ID, 0);
+                deleteComment(commentId);
+
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GUIDE_XML)) {
                 int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
@@ -709,6 +748,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
         int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
     }
+
+
+    private JSONObject addFavorite(int observationId) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        JSONArray result = post(HOST + "/votes/vote/observation/" + observationId + ".json", null);
+
+        if (result != null) {
+        	try {
+				return result.getJSONObject(0);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
+        } else {
+        	return null;
+        }
+    }
     
     private JSONObject agreeIdentification(int observationId, int taxonId) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -819,7 +875,19 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
 
-    
+    private void updateComment(int commentId, int observationId, String body) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("comment[parent_id]", new Integer(observationId).toString()));
+        params.add(new BasicNameValuePair("comment[parent_type]", "Observation"));
+        params.add(new BasicNameValuePair("comment[body]", body));
+
+        put(HOST + "/comments/" + commentId + ".json", params);
+    }
+
+    private void deleteComment(int commentId) throws AuthenticationException {
+        delete(HOST + "/comments/" + commentId + ".json", null);
+    }
+
     private void addComment(int observationId, String body) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("comment[parent_id]", new Integer(observationId).toString()));

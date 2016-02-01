@@ -1,5 +1,7 @@
 buildscript {
     repositories {
+        maven { url "http://dl.bintray.com/populov/maven" }
+        mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
     }
 
@@ -11,6 +13,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 repositories {
+    maven { url "http://dl.bintray.com/populov/maven" }
+    mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
 }
 
@@ -64,4 +68,6 @@ dependencies {
     compile "org.apache.sanselan:sanselan:0.97-incubator"
     compile 'com.cocosw:bottomsheet:1.+@aar'
     compile 'org.lucasr.twowayview:twowayview:0.1.4'
+    compile 'com.viewpagerindicator:library:2.4.1'
+    compile 'joda-time:joda-time:2.4'
 }
