@@ -148,6 +148,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_ADD_FAVORITE = "add_favorite";
+    public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
@@ -287,6 +288,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
              } else if (action.equals(ACTION_ADD_FAVORITE)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 addFavorite(observationId);
+
+             } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                removeFavorite(observationId);
 
             } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -749,6 +754,22 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
     }
 
+
+    private JSONObject removeFavorite(int observationId) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        JSONArray result = delete(HOST + "/votes/unvote/observation/" + observationId + ".json", null);
+
+        if (result != null) {
+        	try {
+				return result.getJSONObject(0);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
+        } else {
+        	return null;
+        }
+    }
 
     private JSONObject addFavorite(int observationId) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1889,7 +1910,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             */
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
+            String content = entity != null ? EntityUtils.toString(entity) : null;
             
             Log.d(TAG, String.format("RESP: %s", content));
             

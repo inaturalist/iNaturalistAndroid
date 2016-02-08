@@ -82,10 +82,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ObservationViewerActivity extends SherlockFragmentActivity {
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 0x100;
     private static final int NEW_ID_REQUEST_CODE = 0x101;
+    private static final int REQUEST_CODE_LOGIN = 0x102;
 
     private static String TAG = "ObservationViewerActivity";
 
@@ -153,6 +155,24 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private ListView mFavoritesList;
     private ViewGroup mAddFavorite;
     private FavoritesAdapter mFavoritesAdapter;
+    private ViewGroup mRemoveFavorite;
+    private int mFavIndex;
+    private TextView mNoFavsMessage;
+    private TextView mNoActivityMessage;
+    private ViewGroup mNotesContainer;
+    private TextView mNotes;
+    private TextView mLoginToAddCommentId;
+    private Button mActivitySignUp;
+    private Button mActivityLogin;
+    private ViewGroup mActivityLoginSignUpButtons;
+    private TextView mLoginToAddFave;
+    private Button mFavesSignUp;
+    private Button mFavesLogin;
+    private ViewGroup mFavesLoginSignUpButtons;
+    private TextView mSyncToAddCommentsIds;
+    private TextView mSyncToAddFave;
+
+    private PhotosViewPagerAdapter mPhotosAdapter;
 
     @Override
 	protected void onStart() {
@@ -263,10 +283,12 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(ObservationViewerActivity.this, ObservationPhotosViewer.class);
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation._id);
-                    intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                     intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
                     intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
+
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
+                    intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                     startActivity(intent);
                 }
             });
@@ -299,40 +321,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         setContentView(R.layout.observation_viewer);
         mHelper = new ActivityHelper(this);
 
-        Intent intent = getIntent();
-
-
-		if (savedInstanceState == null) {
-			// Do some setup based on the action being performed.
-			Uri uri = intent.getData();
-			if (uri == null) {
-				Log.e(TAG, "Null URI from intent.getData");
-				finish();
-				return;
-			}
-
-			mUri = uri;
-		} else {
-            String obsUri = savedInstanceState.getString("mUri");
-            if (obsUri != null) {
-                mUri = Uri.parse(obsUri);
-            } else {
-                mUri = intent.getData();
-            }
-
-            mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
-            mIdCount = savedInstanceState.getInt("mIdCount");
-		}
-
-        if (mCursor == null) {
-            mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
-        } else {
-            mCursor.requery();
-        }
-
-        if (mObservation == null) {
-            mObservation = new Observation(mCursor);
-        }
+        reloadObservation(savedInstanceState);
 
         mTaxon = null;
 
@@ -375,6 +364,42 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mLoadingFavs = (ProgressBar) findViewById(R.id.loading_favorites);
         mFavoritesList = (ListView) findViewById(R.id.favorites_list);
         mAddFavorite = (ViewGroup) findViewById(R.id.add_favorite);
+        mRemoveFavorite = (ViewGroup) findViewById(R.id.remove_favorite);
+        mNoFavsMessage = (TextView) findViewById(R.id.no_favs);
+        mNoActivityMessage = (TextView) findViewById(R.id.no_activity);
+        mNotesContainer = (ViewGroup) findViewById(R.id.notes_container);
+        mNotes = (TextView) findViewById(R.id.notes);
+        mLoginToAddCommentId = (TextView) findViewById(R.id.login_to_add_comment_id);
+        mActivitySignUp = (Button) findViewById(R.id.activity_sign_up);
+        mActivityLogin = (Button) findViewById(R.id.activity_login);
+        mActivityLoginSignUpButtons = (ViewGroup) findViewById(R.id.activity_login_signup);
+        mLoginToAddFave = (TextView) findViewById(R.id.login_to_add_fave);
+        mFavesSignUp = (Button) findViewById(R.id.faves_sign_up);
+        mFavesLogin = (Button) findViewById(R.id.faves_login);
+        mFavesLoginSignUpButtons = (ViewGroup) findViewById(R.id.faves_login_signup);
+        mSyncToAddCommentsIds = (TextView) findViewById(R.id.sync_to_add_comments_ids);
+        mSyncToAddFave = (TextView) findViewById(R.id.sync_to_add_fave);
+
+        View.OnClickListener onLogin = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ObservationViewerActivity.this, OnboardingActivity.class);
+                intent.putExtra(OnboardingActivity.LOGIN, true);
+
+                startActivityForResult(intent, REQUEST_CODE_LOGIN);
+            }
+        };
+        View.OnClickListener onSignUp = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(ObservationViewerActivity.this, OnboardingActivity.class), REQUEST_CODE_LOGIN);
+            }
+        };
+
+        mActivityLogin.setOnClickListener(onLogin);
+		mActivitySignUp.setOnClickListener(onSignUp);
+        mFavesLogin.setOnClickListener(onLogin);
+        mFavesSignUp.setOnClickListener(onSignUp);
 
         mLocationPrivate.setOnClickListener(new OnClickListener() {
             @Override
@@ -392,21 +417,146 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         refreshDataQuality();
     }
 
+    private void reloadObservation(Bundle savedInstanceState) {
+
+        Intent intent = getIntent();
+
+		if (savedInstanceState == null) {
+			// Do some setup based on the action being performed.
+			Uri uri = intent.getData();
+			if (uri == null) {
+				Log.e(TAG, "Null URI from intent.getData");
+				finish();
+				return;
+			}
+
+			mUri = uri;
+		} else {
+            String obsUri = savedInstanceState.getString("mUri");
+            if (obsUri != null) {
+                mUri = Uri.parse(obsUri);
+            } else {
+                mUri = intent.getData();
+            }
+
+            mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
+            mIdCount = savedInstanceState.getInt("mIdCount");
+		}
+
+        if (mCursor == null) {
+            mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
+        } else {
+            mCursor.requery();
+        }
+
+        if (mObservation == null) {
+            mObservation = new Observation(mCursor);
+        }
+    }
+
+    private int getFavoritedByUsername(String username) {
+        for (int i = 0; i < mFavorites.size(); i++) {
+            BetterJSONObject currentFav = mFavorites.get(i);
+            BetterJSONObject user = new BetterJSONObject(currentFav.getJSONObject("user"));
+
+            if (user.getString("login").equals(username)) {
+                // Current user has favorited this observation
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     private void refreshFavorites() {
+        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        final String username = pref.getString("username", null);
+
+        if (username == null) {
+            // Not logged in
+            mAddFavorite.setVisibility(View.GONE);
+            mLoginToAddFave.setVisibility(View.VISIBLE);
+            mFavesLoginSignUpButtons.setVisibility(View.VISIBLE);
+            mLoadingFavs.setVisibility(View.GONE);
+            mFavoritesList.setVisibility(View.GONE);
+            mNoFavsMessage.setVisibility(View.GONE);
+            mSyncToAddFave.setVisibility(View.GONE);
+            return;
+        }
+
+        if (mObservation.id == null) {
+            // Observation not synced
+            mSyncToAddFave.setVisibility(View.VISIBLE);
+            mLoginToAddFave.setVisibility(View.GONE);
+            mFavesLoginSignUpButtons.setVisibility(View.GONE);
+            mLoadingFavs.setVisibility(View.GONE);
+            mFavoritesList.setVisibility(View.GONE);
+            mAddFavorite.setVisibility(View.GONE);
+            mRemoveFavorite.setVisibility(View.GONE);
+            mNoFavsMessage.setVisibility(View.GONE);
+            return;
+        }
+
+        mSyncToAddFave.setVisibility(View.GONE);
+        mLoginToAddFave.setVisibility(View.GONE);
+        mFavesLoginSignUpButtons.setVisibility(View.GONE);
+
         if (mFavorites == null) {
             // Still loading
             mLoadingFavs.setVisibility(View.VISIBLE);
             mFavoritesList.setVisibility(View.GONE);
             mAddFavorite.setVisibility(View.GONE);
+            mRemoveFavorite.setVisibility(View.GONE);
+            mNoFavsMessage.setVisibility(View.GONE);
             return;
         }
 
         mLoadingFavs.setVisibility(View.GONE);
         mFavoritesList.setVisibility(View.VISIBLE);
-        mAddFavorite.setVisibility(View.VISIBLE);
+
+        if (mFavorites.size() == 0) {
+            mNoFavsMessage.setVisibility(View.VISIBLE);
+        } else {
+            mNoFavsMessage.setVisibility(View.GONE);
+        }
+
+        mFavIndex = getFavoritedByUsername(username);
+
+        if (mFavIndex > -1) {
+            // User has favorited the observation
+            mAddFavorite.setVisibility(View.GONE);
+            mRemoveFavorite.setVisibility(View.VISIBLE);
+        } else {
+            mAddFavorite.setVisibility(View.VISIBLE);
+            mRemoveFavorite.setVisibility(View.GONE);
+        }
         
         mFavoritesAdapter = new FavoritesAdapter(this, mFavorites);
         mFavoritesList.setAdapter(mFavoritesAdapter);
+
+        mRemoveFavorite.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                startService(serviceIntent);
+
+                mFavIndex = getFavoritedByUsername(username);
+
+                if (mFavIndex > -1) mFavorites.remove(mFavIndex);
+                mFavoritesAdapter.notifyDataSetChanged();
+
+                mAddFavorite.setVisibility(View.VISIBLE);
+                mRemoveFavorite.setVisibility(View.GONE);
+
+                if (mFavorites.size() == 0) {
+                    mNoFavsMessage.setVisibility(View.VISIBLE);
+                } else {
+                    mNoFavsMessage.setVisibility(View.GONE);
+                }
+
+            }
+        });
 
         mAddFavorite.setOnClickListener(new OnClickListener() {
             @Override
@@ -414,16 +564,67 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                 startService(serviceIntent);
+
+                SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                String username = pref.getString("username", null);
+                String userIconUrl = pref.getString("user_icon_url", null);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
+                String dateStr = dateFormat.format(new Date());
+
+                BetterJSONObject newFav = new BetterJSONObject(String.format(
+                        "{ \"user\": { \"login\": \"%s\", \"user_icon_url\": \"%s\" }, \"created_at\": \"%s\" }",
+                        username, userIconUrl, dateStr));
+                mFavorites.add(newFav);
+                mFavoritesAdapter.notifyDataSetChanged();
+
+                mRemoveFavorite.setVisibility(View.VISIBLE);
+                mAddFavorite.setVisibility(View.GONE);
+
+                if (mFavorites.size() == 0) {
+                    mNoFavsMessage.setVisibility(View.VISIBLE);
+                } else {
+                    mNoFavsMessage.setVisibility(View.GONE);
+                }
+
             }
         });
     }
 
     private void refreshActivity() {
+        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String username = pref.getString("username", null);
+
+        if (username == null) {
+            // Not logged in
+            mActivityButtons.setVisibility(View.GONE);
+            mLoginToAddCommentId.setVisibility(View.VISIBLE);
+            mActivityLoginSignUpButtons.setVisibility(View.VISIBLE);
+            mLoadingActivity.setVisibility(View.GONE);
+            mCommentsIdsList.setVisibility(View.GONE);
+            mNoActivityMessage.setVisibility(View.GONE);
+            mSyncToAddCommentsIds.setVisibility(View.GONE);
+            return;
+        }
+
+        if (mObservation.id == null) {
+            // Observation not synced
+            mSyncToAddCommentsIds.setVisibility(View.VISIBLE);
+            mLoginToAddCommentId.setVisibility(View.GONE);
+            mActivityLoginSignUpButtons.setVisibility(View.GONE);
+            return;
+        }
+
+        mLoginToAddCommentId.setVisibility(View.GONE);
+        mActivityLoginSignUpButtons.setVisibility(View.GONE);
+        mSyncToAddCommentsIds.setVisibility(View.GONE);
+
         if (mCommentsIds == null) {
             // Still loading
             mLoadingActivity.setVisibility(View.VISIBLE);
             mCommentsIdsList.setVisibility(View.GONE);
             mActivityButtons.setVisibility(View.GONE);
+            mNoActivityMessage.setVisibility(View.GONE);
             return;
         }
 
@@ -431,7 +632,13 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mCommentsIdsList.setVisibility(View.VISIBLE);
         mActivityButtons.setVisibility(View.VISIBLE);
 
-        mAdapter = new CommentsIdsAdapter(this, mCommentsIds, mObservation.taxon_id, new CommentsIdsAdapter.OnIDAdded() {
+        if (mCommentsIds.size() == 0) {
+            mNoActivityMessage.setVisibility(View.VISIBLE);
+        } else {
+            mNoActivityMessage.setVisibility(View.GONE);
+        }
+
+        mAdapter = new CommentsIdsAdapter(this, mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
             @Override
             public void onIdentificationAdded(BetterJSONObject taxon) {
                 try {
@@ -571,14 +778,16 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mMap.getUiSettings().setAllGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                Log.e("AAA", "CLICK");
-            }
-        });
-
         if ((mObservation.latitude != null) && (mObservation.longitude != null)) {
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng latLng) {
+                    Intent intent = new Intent(ObservationViewerActivity.this, LocationDetailsActivity.class);
+                    intent.putExtra(LocationDetailsActivity.OBSERVATION, mObservation);
+                    startActivity(intent);
+                }
+            });
+
             LatLng latLng = new LatLng(mObservation.latitude, mObservation.longitude);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
@@ -590,7 +799,13 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
             // TODO: What if no place guess?
-            mLocationText.setText(mObservation.place_guess);
+            if ((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) {
+                mLocationText.setText(R.string.location_guess_unavailable);
+            } else{
+                mLocationText.setText(mObservation.place_guess);
+                mLocationText.setVisibility(View.GONE);
+            }
+
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
 
             if ((mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open"))) {
@@ -626,6 +841,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
         mInfoTabContainer.setVisibility(View.VISIBLE);
         mActivityTabContainer.setVisibility(View.GONE);
+        mFavoritesTabContainer.setVisibility(View.GONE);
 
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -744,8 +960,15 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
         mObservedOn.setText(formatObservedOn(mObservation.observed_on, mObservation.time_observed_at));
 
-        mPhotosViewPager.setAdapter(new PhotosViewPagerAdapter());
+        mPhotosAdapter = new PhotosViewPagerAdapter();
+        mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+
+        if (mPhotosAdapter.getCount() <= 1) {
+            mIndicator.setVisibility(View.GONE);
+        } else {
+            mIndicator.setVisibility(View.VISIBLE);
+        }
 
         mSharePhoto.setOnClickListener(new OnClickListener() {
             @Override
@@ -797,7 +1020,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mIdRow.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ObservationViewerActivity.this, GuideTaxonActivity.class);
+                if ((mTaxon == null) && ((mObservation.taxon_id == null) || (mObservation.taxon_id == 0))) {
+                    // No taxon - don't show the taxon details page
+                    return;
+                }
+
                 if (mTaxon == null) {
                     // Could't download the taxon details - use whatever we currently got
                     mTaxon = new JSONObject();
@@ -808,8 +1035,10 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                         e.printStackTrace();
                     }
                 }
+                Intent intent = new Intent(ObservationViewerActivity.this, GuideTaxonActivity.class);
                 intent.putExtra("taxon", new BetterJSONObject(mTaxon));
                 intent.putExtra("guide_taxon", false);
+                intent.putExtra("show_add", false);
                 startActivity(intent);
             }
         });
@@ -817,6 +1046,12 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mIdPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
         mIdName.setText(mObservation.species_guess);
         mTaxonicName.setVisibility(View.GONE);
+
+
+        if (mObservation.id == null) {
+            mSharePhoto.setVisibility(View.GONE);
+        }
+
 
         if (mObservation.taxon_id == null) {
             mIdName.setText(R.string.unknown_species);
@@ -889,6 +1124,13 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
             }
         });
+
+        if ((mObservation.description != null) && (mObservation.description.length() > 0)) {
+            mNotesContainer.setVisibility(View.VISIBLE);
+            mNotes.setText(mObservation.description);
+        } else {
+            mNotesContainer.setVisibility(View.GONE);
+        }
     }
 
     private JSONObject downloadJson(String uri) {
@@ -998,6 +1240,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
 	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
 
+
+            if (mObservation == null) {
+                reloadObservation(null);
+            }
+
 	        if (observation == null) {
 	            // Couldn't retrieve observation details (probably deleted)
 	            mCommentsIds = new ArrayList<BetterJSONObject>();
@@ -1053,26 +1300,43 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 	        int taxonId = (observation.taxon_id == null ? 0 : observation.taxon_id);
             refreshActivity();
             refreshFavorites();
+            resizeLists();
 
-	        Handler handler = new Handler();
-	        handler.postDelayed(new Runnable() {
-	        	@Override
-	        	public void run() {
-	        		int height = setListViewHeightBasedOnItems(mCommentsIdsList);
-
-                    View background = findViewById(R.id.comment_id_list_background);
-                    ViewGroup.LayoutParams params2 =  background.getLayoutParams();
-                    params2.height = height;
-                    background.requestLayout();
-
-                    setListViewHeightBasedOnItems(mFavoritesList);
-	        	}
-	        }, 100);
 
             refreshDataQuality();
 	    }
 
 	}
+
+    private void resizeLists() {
+        final Handler handler = new Handler();
+        if ((mCommentsIdsList.getVisibility() == View.VISIBLE) && (mCommentsIdsList.getWidth() == 0)) {
+            // UI not initialized yet - try later
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resizeLists();
+                }
+            }, 100);
+
+            return;
+        }
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int height = setListViewHeightBasedOnItems(mCommentsIdsList);
+
+                View background = findViewById(R.id.comment_id_list_background);
+                ViewGroup.LayoutParams params2 =  background.getLayoutParams();
+                params2.height = height;
+                background.requestLayout();
+
+                setListViewHeightBasedOnItems(mFavoritesList);
+            }
+        }, 100);
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1116,7 +1380,20 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     			startService(serviceIntent2);
 
     		}
-    	}
+    	} else if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
+            // Show a loading progress until the new comments/IDs are loaded
+            mCommentsIds = null;
+            mFavorites = null;
+            refreshActivity();
+            refreshFavorites();
+
+            // Refresh the comment/id list
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+            registerReceiver(mObservationReceiver, filter);
+            Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
+            serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            startService(serviceIntent2);
+        }
     }
 
     private void refreshProjectList() {
@@ -1134,8 +1411,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
      *
      * @param listView to be resized
      */
-    public int setListViewHeightBasedOnItems(ListView listView) {
-
+    public int setListViewHeightBasedOnItems(final ListView listView) {
     	ListAdapter listAdapter = listView.getAdapter();
     	if (listAdapter != null) {
 
@@ -1166,4 +1442,5 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     		return 0;
     	}
     }
+
 }

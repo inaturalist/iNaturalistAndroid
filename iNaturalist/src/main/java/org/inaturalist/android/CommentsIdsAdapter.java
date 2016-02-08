@@ -178,31 +178,33 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				}
 			};
 
-			moreMenu.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					if (loading.getVisibility() == View.VISIBLE) {
-						return;
+			if (moreMenu != null) {
+				moreMenu.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						if (loading.getVisibility() == View.VISIBLE) {
+							return;
+						}
+
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+							PopupMenu popup = new PopupMenu(getContext(), moreMenu);
+							popup.getMenuInflater().inflate(isComment && username.equalsIgnoreCase(mLogin) ? R.menu.comment_menu : R.menu.id_menu, popup.getMenu());
+							popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+								@Override
+								public boolean onMenuItemClick(android.view.MenuItem menuItem) {
+									onClick.onClick(null, menuItem.getItemId());
+									return true;
+								}
+							});
+
+							popup.show();
+						} else {
+							new BottomSheet.Builder((Activity) mContext).sheet(R.menu.id_menu).listener(onClick).show();
+						}
+
 					}
-
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-						PopupMenu popup = new PopupMenu(getContext(), moreMenu);
-						popup.getMenuInflater().inflate(isComment && username.equalsIgnoreCase(mLogin) ? R.menu.comment_menu : R.menu.id_menu, popup.getMenu());
-						popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-							@Override
-							public boolean onMenuItemClick(android.view.MenuItem menuItem) {
-								onClick.onClick(null, menuItem.getItemId());
-								return true;
-							}
-						});
-
-						popup.show();
-					} else {
-						new BottomSheet.Builder((Activity) mContext).sheet(R.menu.id_menu).listener(onClick).show();
-					}
-
-				}
-			});
+				});
+			}
 
 			if (item.getString("type").equals("comment")) {
 				// Comment
@@ -344,7 +346,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                     }
 				}
 
-                moreMenu.setVisibility(View.GONE);
+                if (moreMenu != null) moreMenu.setVisibility(View.GONE);
 
 				if ((mLogin != null) && (username.equalsIgnoreCase(mLogin))) {
 					if (!mIsNewLayout) {
@@ -352,7 +354,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                         agree.setVisibility(View.VISIBLE);
                     } else {
                         idAgreeLayout.setVisibility(View.GONE);
-                        moreMenu.setVisibility(View.VISIBLE);
+                        if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
                     }
 
 					if ((isCurrent == null) || (!isCurrent)) {
@@ -393,7 +395,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                             Intent intent = new Intent(mContext, GuideTaxonActivity.class);
                             BetterJSONObject originalTaxon = mItems.get(position);
                             JSONObject taxon = new JSONObject();
-                            // {"id":4931651,"observation_id":2630002,"taxon_id":10487,"user_id":13244,"body":null,"created_at":"2016-01-30T06:35:42.901-08:00","updated_at":"2016-01-30T06:35:42.901-08:00","current":true,"taxon_change_id":null,"user":{"id":13244,"login":"budowski","name":"","user_icon_url":"http:\/\/www.inaturalist.org\/attachments\/users\/icons\/13244-thumb.jpg?1446920133"},"taxon":{"id":10487,"name":"Dolichonyx oryzivorus","rank":"species","parent_id":10486,"source_id":13,"created_at":"2008-03-12T20:05:20.000-07:00","updated_at":"2015-03-23T19:44:42.492-07:00","iconic_taxon_id":3,"is_iconic":false,"name_provider":"ColNameProvider","observations_count":197,"listed_taxa_count":353,"rank_level":10,"unique_name":"bobolink","wikipedia_summary":"The <b>Bobolink<\/b> (<i>Dolichonyx oryzivorus<\/i>) is a small New World blackbird and the only member of genus <i>Dolichonyx<\/i>.","wikipedia_title":null,"ancestry":"48460\/1\/2\/355675\/3\/7251\/11989\/10486","conservation_status":10,"conservation_status_source_id":13,"conservation_status_source_identifier":106009753,"is_active":true,"default_name":{"id":13241,"name":"Bobolink","is_valid":true,"lexicon":"English"},"photo_url":"http:\/\/farm5.staticflickr.com\/4044\/4617275737_a902e4be9e_s.jpg","iconic_taxon_name":"Aves","conservation_status_name":"least_concern","image_url":"http:\/\/farm5.staticflickr.com\/4044\/4617275737_a902e4be9e_s.jpg","common_name":{"id":13241,"name":"Bobolink","is_valid":true,"lexicon":"English"},"taxon_photos":[{"id":12821,"taxon_id":10487,"photo_id":23109,"position":null,"created_at":null,"updated_at":null,"photo":{"id":23109,"user_id":null,"native_photo_id":"4617275737","square_url":"http:\/\/farm5.staticflickr.com\/4044\/4617275737_a902e4be9e_s.jpg","thumb_url":"http:\/\/farm5.staticflickr.com\/4044\/4617275737_a902e4be9e_t.jpg","small_url":"http:\/\/farm5.staticflickr.com\/4044\/4617275737_a902e4be9e_m.jpg","medium_url":"http:\/\/farm5.staticflickr.com\/4044\/4617275737_a902e4be9e.jpg","large_url":"http:\/\/farm5.staticflickr.com\/4044\/4617275737_a902e4be9e_b.jpg","created_at":"2011-02-15T19:02:02.000-08:00","updated_at":"2012-08-24T18:09:48.207-07:00","native_page_url":"http:\/\/www.flickr.com\/photos\/30979614@N07\/4617275737","native_username":"JanetandPhil","native_realname":"","license":3,"file_updated_at":null,"subtype":null,"native_original_image_url":null,"license_code":"CC-BY-NC-ND","attribution":"(c) JanetandPhil, some rights reserved (CC BY-NC-ND)"}},{"id":12822,"taxon_id":10487,"photo_id":23110,"position":null,"created_at":null,"updated_at":null,"photo":{"id":23110,"user_id":null,"native_photo_id":"3522379907","square_url":"http:\/\/farm4.staticflickr.com\/3622\/3522379907_50d20f174e_s.jpg","thumb_url":"http:\/\/farm4.staticflickr.com\/3622\/3522379907_50d20f174e_t.jpg","small_url":"http:\/\/farm4.staticflickr.com\/3622\/3522379907_50d20f174e_m.jpg","medium_url":"http:\/\/farm4.staticflickr.com\/3622\/3522379907_50d20f174e.jpg","large_url":null,"created_at":"2011-02-15T19:02:02.000-08:00","updated_at":"2012-08-24T18:09:48.360-07:00","native_page_url":"http:\/\/www.flickr.com\/photos\/7457894@N04\/3522379907","native_username":"jerryoldenettel","native_realname":"Jerry Oldenettel","license":1,"file_updated_at":null,"subtype":null,"native_original_image_url":null,"license_code":"CC-BY-NC-SA","attribution":"(c) Jerry Oldenettel, some rights reserved (CC BY-NC-SA)"}},{"id":12823,"taxon_id":10487,"photo_id":23111,"position":null,"created_at":null,"updated_at":null,"photo":{"id":23111,"user_id":null,"native_photo_id":"2767805139","square_url":"http:\/\/farm3.staticflickr.com\/2300\/2767805139_3dc233a835_s.jpg","thumb_url":"http:\/\/farm3.staticflickr.com\/2300\/2767805139_3dc233a835_t.jpg","small_url":"http:\/\/farm3.staticflickr.com\/2300\/2767805139_3dc233a835_m.jpg","medium_url":"http:\/\/farm3.staticflickr.com\/2300\/2767805139_3dc233a835.jpg","large_url":null,"created_at":"2011-02-15T19:02:02.000-08:00","updated_at":"2012-08-24T18:09:48.506-07:00","native_page_url":"http:\/\/www.flickr.com\/photos\/59323989@N00\/276780513
                             try {
                                 taxon.put("id", originalTaxon.getInt("taxon_id"));
                                 taxon.put("common_name", originalTaxon.getJSONObject("common_name"));
@@ -402,6 +403,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                             }
                             intent.putExtra("taxon", new BetterJSONObject(taxon));
                             intent.putExtra("guide_taxon", false);
+                            intent.putExtra("show_add", false);
                             mContext.startActivity(intent);
                         }
                     });
@@ -470,6 +472,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		Intent intent = new Intent(mContext, GuideTaxonActivity.class);
 		intent.putExtra("taxon", new BetterJSONObject(item.getJSONObject("taxon")));
 		intent.putExtra("guide_taxon", false);
+        intent.putExtra("show_add", false);
 		mContext.startActivity(intent);
 	}
 }

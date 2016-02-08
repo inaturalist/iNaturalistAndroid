@@ -63,6 +63,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
 	public static final String IS_NEW_OBSERVATION = "is_new_observation";
     public static final String OBSERVATION = "observation";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String CURRENT_PHOTO_INDEX = "current_photo_index";
     public static final String READ_ONLY = "read_only";
 
@@ -74,6 +75,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
     private int mCurrentPhotoIndex;
     private View mDeletePhoto;
     private boolean mReadOnly;
+    private int mObservationIdInternal;
 
     @Override
 	protected void onStart()
@@ -119,6 +121,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
                     if (observationString != null) mObservation = new JSONObject(observationString);
                 } else {
                     mObservationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                    mObservationIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, 0);
                 }
 
                 mReadOnly = intent.getBooleanExtra(READ_ONLY, false);
@@ -128,6 +131,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
                     mObservation = new JSONObject(savedInstanceState.getString("observation"));
                 } else {
                     mObservationId = savedInstanceState.getInt("mObservationId");
+                    mObservationIdInternal = savedInstanceState.getInt("mObservationIdInternal");
                 }
                 mReadOnly = savedInstanceState.getBoolean("mReadOnly");
         	}
@@ -139,7 +143,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
 		if ((mObservation != null) && (!mIsNewObservation)) {
             mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
 		} else if (mIsNewObservation) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId));
+            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId, mObservationIdInternal));
             mViewPager.setCurrentItem(mCurrentPhotoIndex);
 
             if (!mReadOnly) mDeletePhoto.setVisibility(View.VISIBLE);
@@ -195,6 +199,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
         outState.putBoolean("mIsNewObservation", mIsNewObservation);
         if (mIsNewObservation) {
             outState.putInt("mObservationId", mObservationId);
+            outState.putInt("mObservationIdInternal", mObservationIdInternal);
             mCurrentPhotoIndex = mViewPager.getCurrentItem();
             outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
         }
@@ -221,14 +226,16 @@ public class ObservationPhotosViewer extends SherlockActivity {
         }
 
         // Load offline photos for a new observation
-        public IdPicsPagerAdapter(int observationId) {
+        public IdPicsPagerAdapter(int observationId, int _observationId) {
             mIsOffline = true;
             mImageIds = new ArrayList<Integer>();
+            mImages = new ArrayList<String>();
+
             Cursor imageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
-                    "_observation_id=?",
-                    new String[]{String.valueOf(observationId)},
-                    "id ASC, _id ASC");
+                    "_observation_id=? or observation_id=?",
+                    new String[]{String.valueOf(_observationId), String.valueOf(observationId)},
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
 
             imageCursor.moveToFirst();
 
@@ -238,6 +245,13 @@ public class ObservationPhotosViewer extends SherlockActivity {
                 if (pc.getCount() > 0) {
                     mImageIds.add(photoId);
                     pc.close();
+                } else {
+                    String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                    if (imageUrl != null) {
+                        // Online photo
+                        mImages.add(imageUrl);
+                        mIsOffline = false;
+                    }
                 }
             } while (imageCursor.moveToNext());
         }

@@ -793,8 +793,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
         final Intent galleryIntent = new Intent();
 
-        Crashlytics.log(Log.ERROR, TAG, "takePhoto: " + mFileUri);
-
         galleryIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         galleryIntent.putExtra(MediaStore.EXTRA_OUTPUT, mFileUri);
         this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
@@ -1804,12 +1802,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 
             int random = (new Random()).nextInt();
-            Crashlytics.log(Log.ERROR, TAG, "onActivityResult: " + random + ": CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE: " + resultCode);
 
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;
-
-                Crashlytics.log(Log.ERROR, TAG, "onActivityResult:  " + random + ": data: " + (data == null ? "null" : data) + "; scheme: " + (data == null ? "null" : data.getScheme()) + "; action: " + (data == null ? "null" : data.getAction()));
 
                 if ((data == null) || (data.getScheme() == null)) {
                     isCamera = true;
@@ -1821,8 +1816,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                         isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     }
                 }
-
-                Crashlytics.log(Log.ERROR, TAG, "onActivityResult: " + random + ": isCamera: " + isCamera);
 
                 Uri selectedImageUri;
                 if(isCamera) {
@@ -1836,7 +1829,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     }
                 }
 
-                Crashlytics.log(Log.ERROR, TAG, "onActivityResult: " + random + ": mFileUri: " + mFileUri + "; selectedImageUri: " + selectedImageUri);
                 Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
 
                 if (isCamera) {
@@ -1846,8 +1838,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 
                 updateImageOrientation(selectedImageUri);
                 Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
-
-                Crashlytics.log(Log.ERROR, TAG, "onActivityResult:  " + random + ": createdUri: " + createdUri);
 
                 if (createdUri == null) {
                 	mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
@@ -1952,13 +1942,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
         } catch (Exception exc) {
         	// Not a supported media type (e.g. Google Drive)
         	exc.printStackTrace();
-            Crashlytics.log(Log.ERROR, TAG, "createObservationPhotoForPhoto: " + random + ": photoUri: " + photoUri + ": error: " + exc);
         	return null;
         }
 
         op.uuid = UUID.randomUUID().toString();
-
-        Crashlytics.log(Log.ERROR, TAG, "createObservationPhotoForPhoto: " + random + ": photoId: " + photoId);
 
         ContentValues cv = op.getContentValues();
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);

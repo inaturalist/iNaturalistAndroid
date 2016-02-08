@@ -35,7 +35,17 @@ public class BetterJSONObject implements Serializable {
 	public BetterJSONObject() {
 	    this(new JSONObject());
 	}
-	
+
+	public BetterJSONObject(String json) {
+		try {
+			mJSONObject = new JSONObject(json);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			mJSONObject = new JSONObject();
+		}
+		initRegExIfNeeded();
+	}
+
 	public BetterJSONObject(JSONObject o) {
 		mJSONObject = o;
 		initRegExIfNeeded();

@@ -56,6 +56,7 @@ public class GuideTaxonActivity extends SherlockActivity {
     private String mGuideId;
     private Button mLogin;
     private TextView mNotLoggedIn;
+    private boolean mShowAdd;
 
     @Override
 	protected void onStart()
@@ -96,12 +97,14 @@ public class GuideTaxonActivity extends SherlockActivity {
             mTaxonId = intent.getStringExtra("taxon_id");
             mGuideId = intent.getStringExtra("guide_id");
             mGuideXmlFilename = intent.getStringExtra("guide_xml_filename");
+            mShowAdd = intent.getBooleanExtra("show_add", true);
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable("taxon");
         	mGuideTaxon = savedInstanceState.getBoolean("guide_taxon", true);
             mGuideId = savedInstanceState.getString("guide_id");
             mTaxonId = savedInstanceState.getString("taxon_id");
             mGuideXmlFilename = savedInstanceState.getString("guide_xml_filename");
+            mShowAdd = savedInstanceState.getBoolean("show_add");
         }
 
         if ((mGuideTaxon) && (mGuideXmlFilename != null)) {
@@ -269,7 +272,9 @@ public class GuideTaxonActivity extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.guide_taxon_menu, menu);
+        if (mShowAdd) {
+            inflater.inflate(R.menu.guide_taxon_menu, menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -331,6 +336,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         outState.putString("taxon_id", mTaxonId);
         outState.putString("guide_id", mGuideId);
         outState.putString("guide_xml_filename", mGuideXmlFilename);
+        outState.putBoolean("show_add", mShowAdd);
         super.onSaveInstanceState(outState);
     }
 
