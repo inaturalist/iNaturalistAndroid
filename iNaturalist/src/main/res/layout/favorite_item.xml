@@ -2,7 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:paddingTop="0dp"
+    android:paddingLeft="18dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="0dp"
+    android:minHeight="42dp"
     android:background="#ffffff">
     <ImageView
         android:id="@+id/user_pic"
@@ -35,6 +39,7 @@
         android:text="Feb 22, 2015"
         android:textSize="15sp"
         android:textColor="#7f7f7f"
+        android:layout_marginRight="18dp"
         />
 
     <View

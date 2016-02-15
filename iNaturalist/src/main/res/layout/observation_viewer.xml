@@ -78,6 +78,29 @@
             android:paddingTop="15dp"
             android:paddingRight="15dp"
             />
+
+        <LinearLayout
+            android:id="@+id/no_photos"
+            android:layout_centerInParent="true"
+            android:layout_width="100dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/id_icon_big"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/iconic_taxon_unknown" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_photo"
+                android:layout_gravity="center"
+                android:textColor="#54000000"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
     </RelativeLayout>
     
     <RelativeLayout
@@ -110,14 +133,13 @@
                 android:text="Some name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/id_sub_name"
                 android:textSize="14sp"
                 android:textStyle="italic"
-                android:textColor="#cccccc"
+                android:textColor="#66000000"
                 android:text="Sub name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -238,6 +260,7 @@
             android:id="@+id/favorites_list"
             android:background="@android:color/transparent"
             android:dividerHeight="0dp"
+            android:divider="@android:color/transparent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
 
@@ -334,7 +357,7 @@
 
     <RelativeLayout
         android:id="@+id/activity_tab_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
@@ -348,7 +371,7 @@
             />
 
         <ListView
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/comment_id_list"
             android:background="@android:color/transparent"
             android:dividerHeight="28dp"
@@ -376,7 +399,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_alignParentTop="true"
             />
 
@@ -390,7 +413,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_alignParentTop="true"
             />
 
@@ -399,6 +422,7 @@
             android:layout_below="@id/login_to_add_comment_id"
             android:id="@+id/activity_login_signup"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:paddingBottom="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
@@ -429,7 +453,7 @@
             android:visibility="gone"
             android:id="@+id/activity_buttons"
             android:paddingTop="20dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:layout_below="@id/comment_id_list"
@@ -527,7 +551,7 @@
 
     <LinearLayout
         android:id="@+id/info_tab_content"
-        android:visibility="visible"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">

@@ -411,7 +411,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         View v = lv.getChildAt(0);
         mLastTop = (v == null) ? 0 : v.getTop();
         
-        
+
+        /*
         ObservationCursorAdapter adapter = mAdapter;
         adapter.notifyDataSetInvalidated();
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB){
@@ -420,6 +421,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         } else {
         	adapter.changeCursor(null);
         }
+        */
 
         super.onPause();
     }
@@ -485,7 +487,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         } else {
             if (!mAdapter.isLocked(uri)) {
                 // Launch activity to view/edit the currently selected item
-                //startActivity(new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class));
                 startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerActivity.class));
             }
         }

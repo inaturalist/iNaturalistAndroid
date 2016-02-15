@@ -51,7 +51,7 @@ public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
 	}
 
 	public FavoritesAdapter(Context context, List<BetterJSONObject> objects) {
-		super(context, R.layout.comment_id_item, objects);
+		super(context, R.layout.favorite_item, objects);
 
 		mItems = objects;
 		mContext = context;

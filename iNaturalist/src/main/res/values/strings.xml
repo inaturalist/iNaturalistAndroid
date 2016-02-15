@@ -457,11 +457,12 @@
     <string name="be_the_first_to_fave_this_obs">Be the first to fave this observation...</string>
     <string name="leave_a_comment">Leave a comment or suggest an identification...</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
+    <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
     <string name="location">Location</string>
-    <string name="location_guess_unavailable">N/A</string>
     <string name="login_in_to_add_comments_ids">Log In or Sign Up to leave a comment or suggest an identification...</string>
     <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
     <string name="sync_obs_to_see_favs">Sync this observation in order to see faves or faves it...</string>
     <string name="sync_obs_to_add_comments_ids">Sync this observation in order to see leave a comment or suggest an identification...</string>
+    <string name="no_photo">No Photo</string>
  </resources>
 

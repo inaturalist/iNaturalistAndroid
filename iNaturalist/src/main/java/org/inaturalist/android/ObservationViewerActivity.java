@@ -85,7 +85,6 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class ObservationViewerActivity extends SherlockFragmentActivity {
-    private static final int PROJECT_SELECTOR_REQUEST_CODE = 0x100;
     private static final int NEW_ID_REQUEST_CODE = 0x101;
     private static final int REQUEST_CODE_LOGIN = 0x102;
 
@@ -171,8 +170,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private ViewGroup mFavesLoginSignUpButtons;
     private TextView mSyncToAddCommentsIds;
     private TextView mSyncToAddFave;
+    private ImageView mIdPicBig;
+    private ViewGroup mNoPhotosContainer;
 
     private PhotosViewPagerAdapter mPhotosAdapter;
+    private ArrayList<BetterJSONObject> mProjects;
 
     @Override
 	protected void onStart() {
@@ -379,6 +381,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mFavesLoginSignUpButtons = (ViewGroup) findViewById(R.id.faves_login_signup);
         mSyncToAddCommentsIds = (TextView) findViewById(R.id.sync_to_add_comments_ids);
         mSyncToAddFave = (TextView) findViewById(R.id.sync_to_add_fave);
+        mNoPhotosContainer = (ViewGroup) findViewById(R.id.no_photos);
+        mIdPicBig = (ImageView) findViewById(R.id.id_icon_big);
 
         View.OnClickListener onLogin = new View.OnClickListener() {
             @Override
@@ -774,7 +778,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
     private void setupMap() {
         mMap.setMyLocationEnabled(false);
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mMap.getUiSettings().setAllGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
@@ -798,12 +802,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
-            // TODO: What if no place guess?
             if ((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) {
-                mLocationText.setText(R.string.location_guess_unavailable);
+                // No place guess - show coordinates instead
+                mLocationText.setText(String.format(getString(R.string.location_coords), mObservation.latitude, mObservation.longitude, mObservation.positional_accuracy));
             } else{
                 mLocationText.setText(mObservation.place_guess);
-                mLocationText.setVisibility(View.GONE);
             }
 
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
@@ -966,8 +969,15 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
         if (mPhotosAdapter.getCount() <= 1) {
             mIndicator.setVisibility(View.GONE);
+            mNoPhotosContainer.setVisibility(View.GONE);
+            if (mPhotosAdapter.getCount() == 0) {
+                // No photos at all
+                mNoPhotosContainer.setVisibility(View.VISIBLE);
+                mIdPicBig.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
+            }
         } else {
             mIndicator.setVisibility(View.VISIBLE);
+            mNoPhotosContainer.setVisibility(View.GONE);
         }
 
         mSharePhoto.setOnClickListener(new OnClickListener() {
@@ -1116,12 +1126,9 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mIncludedInProjectsContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ObservationViewerActivity.this, ProjectSelectorActivity.class);
-                intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
-                intent.putExtra(ProjectSelectorActivity.IS_CONFIRMATION, true);
-                intent.putExtra(ProjectSelectorActivity.PROJECT_FIELDS, new HashMap<Integer, ProjectFieldValue>());
-                intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
-                startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
+                Intent intent = new Intent(ObservationViewerActivity.this, ObservationProjectsViewer.class);
+                intent.putExtra(ObservationProjectsViewer.PROJECTS, mProjects);
+                startActivity(intent);
             }
         });
 
@@ -1254,15 +1261,21 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 	            return;
 	        }
 
+            JSONArray projects = observation.projects.getJSONArray();
 	        JSONArray comments = observation.comments.getJSONArray();
 	        JSONArray ids = observation.identifications.getJSONArray();
             JSONArray favs = observation.favorites.getJSONArray();
 	        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
             ArrayList<BetterJSONObject> favResults = new ArrayList<BetterJSONObject>();
+            ArrayList<BetterJSONObject> projectResults = new ArrayList<BetterJSONObject>();
 
             mIdCount = 0;
 
 	        try {
+                for (int i = 0; i < projects.length(); i++) {
+	                BetterJSONObject project = new BetterJSONObject(projects.getJSONObject(i));
+	                projectResults.add(project);
+	            }
 	            for (int i = 0; i < comments.length(); i++) {
 	                BetterJSONObject comment = new BetterJSONObject(comments.getJSONObject(i));
 	                comment.put("type", "comment");
@@ -1296,11 +1309,14 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
 	        mCommentsIds = results;
             mFavorites = favResults;
+            mProjects = projectResults;
 
 	        int taxonId = (observation.taxon_id == null ? 0 : observation.taxon_id);
             refreshActivity();
             refreshFavorites();
-            resizeLists();
+            resizeActivityList();
+            resizeFavList();
+            refreshProjectList();
 
 
             refreshDataQuality();
@@ -1308,14 +1324,36 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
 	}
 
-    private void resizeLists() {
+    private void resizeFavList() {
+        final Handler handler = new Handler();
+        if ((mFavoritesList.getVisibility() == View.VISIBLE) && (mFavoritesList.getWidth() == 0)) {
+            // UI not initialized yet - try later
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resizeFavList();
+                }
+            }, 100);
+
+            return;
+        }
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setListViewHeightBasedOnItems(mFavoritesList);
+            }
+        }, 100);
+    }
+
+    private void resizeActivityList() {
         final Handler handler = new Handler();
         if ((mCommentsIdsList.getVisibility() == View.VISIBLE) && (mCommentsIdsList.getWidth() == 0)) {
             // UI not initialized yet - try later
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    resizeLists();
+                    resizeActivityList();
                 }
             }, 100);
 
@@ -1331,8 +1369,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 ViewGroup.LayoutParams params2 =  background.getLayoutParams();
                 params2.height = height;
                 background.requestLayout();
-
-                setListViewHeightBasedOnItems(mFavoritesList);
             }
         }, 100);
 
@@ -1341,15 +1377,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PROJECT_SELECTOR_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                ArrayList<Integer> projectIds = data.getIntegerArrayListExtra(ProjectSelectorActivity.PROJECT_IDS);
-                HashMap<Integer, ProjectFieldValue> values = (HashMap<Integer, ProjectFieldValue>) data.getSerializableExtra(ProjectSelectorActivity.PROJECT_FIELDS);
-                mProjectIds = projectIds;
-
-                refreshProjectList();
-            }
-        } else if (requestCode == NEW_ID_REQUEST_CODE) {
+        if (requestCode == NEW_ID_REQUEST_CODE) {
     		if (resultCode == RESULT_OK) {
     			// Add the ID
     			Integer taxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);
@@ -1397,9 +1425,9 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     }
 
     private void refreshProjectList() {
-        if ((mProjectIds != null) && (mProjectIds.size() > 0)) {
+        if ((mProjects != null) && (mProjects.size() > 0)) {
             mIncludedInProjectsContainer.setVisibility(View.VISIBLE);
-            mIncludedInProjects.setText(String.format(getString(R.string.included_in_projects), mProjectIds.size()));
+            mIncludedInProjects.setText(String.format(getString(R.string.included_in_projects), mProjects.size()));
         } else {
             mIncludedInProjectsContainer.setVisibility(View.GONE);
         }
