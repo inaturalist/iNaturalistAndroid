@@ -206,6 +206,8 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:visibility="visible"
             android:layout_alignParentTop="true"
             />
@@ -371,7 +373,7 @@
             />
 
         <ListView
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/comment_id_list"
             android:background="@android:color/transparent"
             android:dividerHeight="28dp"
@@ -399,7 +401,9 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
-            android:visibility="gone"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:visibility="visible"
             android:layout_alignParentTop="true"
             />
 

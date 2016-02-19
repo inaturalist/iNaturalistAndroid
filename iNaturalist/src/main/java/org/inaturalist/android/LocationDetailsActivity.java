@@ -58,8 +58,8 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         mObservation = (Observation)getIntent().getSerializableExtra(OBSERVATION);
-        mLongitude = mObservation.longitude;
-        mLatitude = mObservation.latitude;
+        mLongitude = mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude;
+        mLatitude = mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude;
         mAccuracy = mObservation.positional_accuracy;
 
         if ((mLongitude != 0) && (mLatitude != 0) && (savedInstanceState == null)) {

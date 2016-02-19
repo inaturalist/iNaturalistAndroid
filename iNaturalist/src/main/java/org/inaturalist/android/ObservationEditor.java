@@ -126,6 +126,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private final static String TAG = "INAT: ObservationEditor";
     public final static String TAKE_PHOTO = "take_photo";
     public final static String CHOOSE_PHOTO = "choose_photo";
+    public static final int RESULT_DELETED = 0x1000;
     private Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
@@ -196,6 +197,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private boolean mIsCustomTaxon;
     private TextView mProjectCount;
     private Long mFirstPositionPhotoId;
+    private boolean mGettingLocation;
 
     @Override
 	protected void onStart()
@@ -374,6 +376,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mTaxonPicUrl = savedInstanceState.getString("mTaxonPicUrl");
             mIsCaptive = savedInstanceState.getBoolean("mIsCaptive", false);
             mFirstPositionPhotoId = savedInstanceState.getLong("mFirstPositionPhotoId");
+            mGettingLocation = savedInstanceState.getBoolean("mGettingLocation");
         }
 
 
@@ -538,14 +541,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                         if (position == 0) {
                             // Get current location
                             getLocation();
-
-                            mLocationProgressView.setVisibility(View.VISIBLE);
-                            mLocationRefreshButton.setVisibility(View.GONE);
                         } else {
                             // Edit location
                             Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
-                            intent.putExtra(LocationChooserActivity.LONGITUDE, mObservation.longitude);
-                            intent.putExtra(LocationChooserActivity.LATITUDE, mObservation.latitude);
+                            intent.putExtra(LocationChooserActivity.LONGITUDE, mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude);
+                            intent.putExtra(LocationChooserActivity.LATITUDE,  mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude);
                             intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
 
                             startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
@@ -656,6 +656,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (!mObservation.isDirty()) {
             // User hasn't changed anything - no need to display confirmation dialog
             mCanceled = true;
+            setResult(RESULT_CANCELED);
             finish();
             return true;
         }
@@ -670,6 +671,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     public void run() {
                         // Get back to the observations list (consider this as canceled)
                         mCanceled = true;
+                        setResult(RESULT_CANCELED);
                         finish();
                     }
                 },
@@ -687,12 +689,13 @@ public class ObservationEditor extends SherlockFragmentActivity {
             case R.id.save_observation:
                 uiToProjectFieldValues();
                 if (save()) {
+                    setResult(RESULT_OK);
                     finish();
                 }
                 return true;
             case R.id.delete_observation:
                 // Display a confirmation dialog
-                confirm(ObservationEditor.this, R.string.edit_observation, R.string.delete_confirmation,
+                confirm(ObservationEditor.this, R.string.delete_observation, R.string.delete_confirmation,
                         R.string.yes, R.string.no,
                         new Runnable() {
                             public void run() {
@@ -704,6 +707,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                                     startService(serviceIntent);
                                 }
 
+                                setResult(RESULT_DELETED);
                                 finish();
                             }
                         },
@@ -732,6 +736,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         outState.putString("mTaxonPicUrl", mTaxonPicUrl);
         outState.putBoolean("mIsCaptive", mIsCaptive);
         outState.putLong("mFirstPositionPhotoId", mFirstPositionPhotoId != null ? mFirstPositionPhotoId : -1);
+        outState.putBoolean("mGettingLocation", mGettingLocation);
         super.onSaveInstanceState(outState);
     }
 
@@ -795,6 +800,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.species_guess = mSpeciesGuess;
         }
 
+
+        if (mGettingLocation) {
+            getLocation();
+        }
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
             if (mObservation.observed_on == null) {
@@ -1172,6 +1181,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
     // Kicks of location service
     private void getLocation() {
+        if (mLocationListener != null) {
+            return;
+        }
+
+        mLocationProgressView.setVisibility(View.VISIBLE);
+        mLocationRefreshButton.setVisibility(View.GONE);
+        mGettingLocation = true;
+
         if (mLocationManager == null) {
             mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         }
@@ -1181,6 +1198,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mLocationListener = new LocationListener() {
                 public void onLocationChanged(Location location) {
                     // Called when a new location is found by the network location provider.
+
                     handleNewLocation(location);
                 }
 
@@ -1215,12 +1233,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
             // Log.d(TAG, "location request was old and location was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
         }
+
+        mLocationProgressView.setVisibility(View.GONE);
+        mLocationRefreshButton.setVisibility(View.VISIBLE);
     }
 
     private void stopGetLocation() {
-        mLocationProgressView.setVisibility(View.GONE);
-        mLocationRefreshButton.setVisibility(View.VISIBLE);
-
         if (mLocationManager != null && mLocationListener != null) {
             mLocationManager.removeUpdates(mLocationListener);
         }

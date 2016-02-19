@@ -87,6 +87,7 @@ import java.util.Locale;
 public class ObservationViewerActivity extends SherlockFragmentActivity {
     private static final int NEW_ID_REQUEST_CODE = 0x101;
     private static final int REQUEST_CODE_LOGIN = 0x102;
+    private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
 
     private static String TAG = "ObservationViewerActivity";
 
@@ -253,11 +254,17 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                     getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = " + imageId, null);
                 } else {
                     int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-                    Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
-                            getContentResolver(),
-                            photoId,
-                            MediaStore.Images.Thumbnails.MINI_KIND,
-                            (BitmapFactory.Options) null);
+
+                    Bitmap bitmapImage = null;
+                    try {
+                        MediaStore.Images.Thumbnails.getThumbnail(
+                                getContentResolver(),
+                                photoId,
+                                MediaStore.Images.Thumbnails.FULL_SCREEN_KIND,
+                                (BitmapFactory.Options) null);
+                    } catch (Exception exc) {
+                        // In case of unsupported thumbnail kind
+                    }
 
                     if (bitmapImage == null) {
                         // Couldn't retrieve the thumbnail - get the original image
@@ -792,7 +799,10 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 }
             });
 
-            LatLng latLng = new LatLng(mObservation.latitude, mObservation.longitude);
+            Log.e("AAA", "PRIVATE LAT: " + mObservation.private_latitude);
+            LatLng latLng = new LatLng(
+                    mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude,
+                    mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
             // Add the marker
@@ -1218,7 +1228,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             finish();
             return true;
         case R.id.edit_observation:
-            startActivity(new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class));
+            startActivityForResult(new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class), REQUEST_CODE_EDIT_OBSERVATION);
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -1377,7 +1387,13 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == NEW_ID_REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
+            if (resultCode == ObservationEditor.RESULT_DELETED) {
+                // User deleted the observation
+                finish();
+                return;
+            }
+        } if (requestCode == NEW_ID_REQUEST_CODE) {
     		if (resultCode == RESULT_OK) {
     			// Add the ID
     			Integer taxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);

@@ -204,12 +204,27 @@
             android:layout_height="40dp" />
     </LinearLayout>
 
+
+
+    <TextView
+        android:id="@+id/login_with"
+        android:layout_below="@id/fields_container"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="14dp"
+        android:textSize="16sp"
+        android:text="@string/or_login_with"
+        android:textColor="#88FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
     <LinearLayout
         android:id="@+id/login_buttons_container"
+        android:layout_below="@id/login_with"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -299,17 +314,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/login_with"
-        android:layout_above="@+id/login_buttons_container"
-        android:layout_marginBottom="14dp"
-        android:textSize="16sp"
-        android:text="@string/or_login_with"
-        android:textColor="#88FFFFFF"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebook_login_button"
         android:visibility="gone"
@@ -318,6 +322,7 @@
 
     <TextView
         android:id="@+id/terms"
+        android:visibility="gone"
         android:gravity="center_horizontal"
         android:textColorLink="#FFFFFF"
         android:text="@string/by_using_inat_terms"

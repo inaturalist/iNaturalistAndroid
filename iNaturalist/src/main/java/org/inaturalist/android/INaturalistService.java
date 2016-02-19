@@ -1607,7 +1607,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
         
-        JSONArray json = get(url);
+        JSONArray json = get(url, true);
         if (json != null && json.length() > 0) {
             syncJson(json, true);
         } else {
@@ -2349,8 +2349,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             try {
                 o = new BetterJSONObject(json.getJSONObject(i));
                 ids.add(o.getInt("id"));
-                jsonObservationsById.put(o.getInt("id"), new Observation(o));
-                
+
+                Observation obs = new Observation(o);
+                jsonObservationsById.put(o.getInt("id"), obs);
+
                 if (isUser) {
                     // Save the project observations aside (will be later used in the syncing of project observations)
                     mProjectObservations.add(o.getJSONArray("project_observations"));

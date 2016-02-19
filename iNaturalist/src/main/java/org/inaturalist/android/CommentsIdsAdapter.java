@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -28,6 +29,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -214,7 +216,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                 if (mIsNewLayout) idAgreeLayout.setVisibility(View.GONE);
 
 				comment.setText(Html.fromHtml(item.getString("body")));
-				comment.setMovementMethod(LinkMovementMethod.getInstance()); 
+				String url = "(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?";
+				Linkify.addLinks(comment, Pattern.compile(url), "http://");
+				Linkify.addLinks(comment, Pattern.compile("http://" + url), "http://");
+				comment.setMovementMethod(LinkMovementMethod.getInstance());
 
                 if (mIsNewLayout) {
                     postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
@@ -227,6 +232,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				String body = item.getString("body");
 				if (body != null && body.length() > 0) {
 					comment.setText(Html.fromHtml(body));
+					Linkify.addLinks(comment, Pattern.compile("www\\..+"), "http://");
+					comment.setMovementMethod(LinkMovementMethod.getInstance());
 
                     comment.setVisibility(View.VISIBLE);
 
