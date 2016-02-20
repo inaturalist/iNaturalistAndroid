@@ -5,7 +5,14 @@
 
     <style name="iNatAppTheme" parent="@style/_iNatAppTheme"/>
 
+    <!-- Styles -->
+    <style name="OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_vert_white_24dp</item>
+    </style>
+
     <style name="_iNatAppTheme" parent="Theme.Sherlock.Light">
+
+        <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
 
         <item name="switchStyle">@style/iNatAppThemeSwitch</item>
 

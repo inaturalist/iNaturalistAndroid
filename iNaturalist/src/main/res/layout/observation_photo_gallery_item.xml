@@ -7,7 +7,10 @@
         android:id="@+id/observation_photo"
         android:layout_height="50dp"
         android:layout_width="50dp"
-        android:src="@drawable/iconic_taxon_amphibia"
+        android:src="@drawable/abs__ic_search"
+        android:adjustViewBounds="false"
+        android:scaleType="fitCenter"
+        android:background="#5D5B5E"
         />
 
     <RelativeLayout

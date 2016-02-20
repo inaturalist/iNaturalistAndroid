@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+    android:background="#EEEEEE"
+    android:layout_height="fill_parent"
     android:layout_width="fill_parent">
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
@@ -11,7 +12,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
+        android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -52,7 +53,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="#cccccc"
+        android:background="#E9E9E9"
         android:layout_width="fill_parent"
         android:layout_height="217dp">
         <android.support.v4.view.ViewPager
@@ -89,6 +90,7 @@
                 android:id="@+id/id_icon_big"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:tint="#C3C3C3"
                 android:src="@drawable/iconic_taxon_unknown" />
 
             <TextView
@@ -106,9 +108,12 @@
     <RelativeLayout
         android:id="@+id/id_row"
         android:background="#FFFFFF"
-        android:padding="10dp"
         android:layout_width="fill_parent"
-        android:layout_height="65dp">
+        android:layout_height="65dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="10dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="10dp">
         <ImageView
             android:id="@+id/id_icon"
             android:layout_width="40dp"
@@ -116,8 +121,7 @@
             android:src="@drawable/iconic_taxon_unknown"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/id_pic_background"
-            android:layout_marginLeft="7dp" />
+            android:background="@drawable/id_pic_background" />
 
         <LinearLayout
             android:layout_centerVertical="true"
@@ -151,8 +155,7 @@
             android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_arrow_forward_gray_24dp"
-            android:layout_marginRight="5dp" />
+            android:src="@drawable/ic_arrow_forward_gray_24dp" />
         
     </RelativeLayout>
 
@@ -177,6 +180,7 @@
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:showDividers="none"
                 android:layout_weight="0" />
 
             <FrameLayout
@@ -191,7 +195,7 @@
 
     <LinearLayout
         android:id="@+id/favorites_tab_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -208,7 +212,7 @@
             android:paddingBottom="20dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_alignParentTop="true"
             />
 
@@ -223,7 +227,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="20dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_alignParentTop="true"
             />
 
@@ -233,6 +237,7 @@
             android:id="@+id/faves_login_signup"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <Button
@@ -264,6 +269,7 @@
             android:dividerHeight="0dp"
             android:divider="@android:color/transparent"
             android:layout_width="fill_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content" />
 
 
@@ -274,6 +280,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
+            android:visibility="gone"
             />
 
         <TextView
@@ -359,7 +366,7 @@
 
     <RelativeLayout
         android:id="@+id/activity_tab_content"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
@@ -561,7 +568,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:background="#D9D9D9"
+            android:background="#F1F1F1"
             android:id="@+id/notes_container"
             android:orientation="vertical"
             android:layout_width="fill_parent"
@@ -572,7 +579,7 @@
                 android:textSize="18sp"
                 android:textColor="#000000"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
@@ -584,14 +591,14 @@
                 android:text="a sdlkasj dlkasjlkdj aslkjd laksjd lkasj dalksj dlakjd aslkjdlkasjd laj dkaj dlasj dlkaj dasjlkdalkj alks lka dlkasldk aslkd alkd alks dlaksj dlkasjd alksj dlkas"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 />
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2px"
-                android:background="#cccccc"
+                android:layout_height="1px"
+                android:background="#1e000000"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"
                 />
@@ -599,7 +606,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:background="#D9D9D9"
+            android:background="#F1F1F1"
             android:layout_width="fill_parent"
             android:layout_height="230dp">
 
@@ -631,16 +638,20 @@
                 android:id="@+id/location_text"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
-                android:text="San Francisco, CA"
-                android:background="#F3F3F3"
-                android:textColor="#8F8F8F"
+                android:text="San Francisco, CA with some very long text that is multi line"
+                android:ellipsize="end"
+                android:lines="1"
+                android:background="@drawable/shadow_background"
+                android:textColor="#89000000"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:layout_marginBottom="35dp"
+                android:layout_marginBottom="25dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerVertical="true"
-                android:textStyle="bold"
-                android:padding="7dp"
+                android:paddingLeft="7dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:paddingRight="25dp"
                 android:gravity="center_vertical" />
 
             <ImageView
@@ -651,14 +662,21 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="33dp"
-                android:layout_marginBottom="42dp"
+                android:layout_marginBottom="34dp"
                 android:tint="#9A9A9A"
                 />
         </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#1e000000"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            />
 
         <RelativeLayout
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:paddingTop="10dp"
             android:layout_width="fill_parent"
             android:layout_height="146dp">
@@ -771,7 +789,7 @@
 
         <RelativeLayout
             android:id="@+id/data_quality_reason"
-            android:padding="10dp"
+            android:padding="16dp"
             android:background="#EAEAEA"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
@@ -801,16 +819,16 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="#cccccc"
+            android:background="#1e000000"
             />
         
         <RelativeLayout
             android:id="@+id/included_in_projects_container"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginLeft="22dp"
-            android:background="#FFFFFF"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/shadow_background"
             android:layout_width="fill_parent"
             android:layout_height="60dp">
 

@@ -155,7 +155,7 @@
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
     <string name="id_please">Need ID help?</string>
-    <string name="select_projects">Select Projects</string>
+    <string name="select_projects">Select from Joined Projects</string>
     <string name="could_not_load_comments">Couldn\'t load comments/IDs - observation was probably deleted on website</string>
     <string name="not_connected">You must be connected to the Internet in order to do that!</string>
     <string name="search_projects">Search projects...</string>

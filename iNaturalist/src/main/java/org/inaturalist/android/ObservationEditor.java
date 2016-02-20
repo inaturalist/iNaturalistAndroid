@@ -442,7 +442,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ObservationEditor.this, ProjectSelectorActivity.class);
                 intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
-                intent.putExtra(ProjectSelectorActivity.IS_CONFIRMATION, mIsConfirmation);
+                intent.putExtra(ProjectSelectorActivity.IS_CONFIRMATION, true);
                 intent.putExtra(ProjectSelectorActivity.PROJECT_FIELDS, mProjectFieldValues);
                 intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
                 startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
@@ -2091,7 +2091,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
             if (imageUrl != null) {
                 // Online photo
-            	imageView.setLayoutParams(new LinearLayout.LayoutParams(400, 400));
+            	imageView.setLayoutParams(new LinearLayout.LayoutParams(getResources().getDimensionPixelOffset(R.dimen.obs_viewer_photo_thumb_size), getResources().getDimensionPixelOffset(R.dimen.obs_viewer_photo_thumb_size)));
                 UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {

@@ -583,7 +583,17 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             ProjectObservation projectObservation = new ProjectObservation(c);
-            removeObservationFromProject(projectObservation.observation_id, projectObservation.project_id);
+
+            // Clean the errors for the observation
+            mApp.setErrorsForObservation(projectObservation.observation_id, projectObservation.project_id, new JSONArray());
+
+            try {
+                // Remove obs from project
+                removeObservationFromProject(projectObservation.observation_id, projectObservation.project_id);
+            } catch (Exception exc) {
+                // In case we're trying to delete a project-observation that wasn't synced yet
+            }
+
             c.moveToNext();
         }
 

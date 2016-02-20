@@ -313,6 +313,16 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        reloadObservation(null, true);
+        loadObservationIntoUI();
+        refreshDataQuality();
+        refreshProjectList();
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -330,7 +340,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         setContentView(R.layout.observation_viewer);
         mHelper = new ActivityHelper(this);
 
-        reloadObservation(savedInstanceState);
+        reloadObservation(savedInstanceState, false);
 
         mTaxon = null;
 
@@ -428,7 +438,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         refreshDataQuality();
     }
 
-    private void reloadObservation(Bundle savedInstanceState) {
+    private void reloadObservation(Bundle savedInstanceState, boolean forceReload) {
 
         Intent intent = getIntent();
 
@@ -460,7 +470,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mCursor.requery();
         }
 
-        if (mObservation == null) {
+        if ((mObservation == null) || (forceReload)) {
             mObservation = new Observation(mCursor);
         }
     }
@@ -785,7 +795,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
     private void setupMap() {
         mMap.setMyLocationEnabled(false);
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setAllGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
@@ -799,7 +809,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 }
             });
 
-            Log.e("AAA", "PRIVATE LAT: " + mObservation.private_latitude);
             LatLng latLng = new LatLng(
                     mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude,
                     mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude);
@@ -814,21 +823,34 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mUnknownLocationIcon.setVisibility(View.GONE);
             if ((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) {
                 // No place guess - show coordinates instead
-                mLocationText.setText(String.format(getString(R.string.location_coords), mObservation.latitude, mObservation.longitude, mObservation.positional_accuracy));
+                if (mObservation.positional_accuracy == null) {
+                    mLocationText.setText(String.format(getString(R.string.location_coords_no_acc),
+                            String.format("%.5f...", mObservation.latitude),
+                            String.format("%.5f...", mObservation.longitude)));
+                } else {
+                    mLocationText.setText(String.format(getString(R.string.location_coords),
+                            String.format("%.5f...", mObservation.latitude),
+                            String.format("%.5f...", mObservation.longitude),
+                            mObservation.positional_accuracy > 999 ? ">1 km" : String.format("%dm", (int) mObservation.positional_accuracy)));
+                }
             } else{
                 mLocationText.setText(mObservation.place_guess);
             }
 
+            mLocationText.setText("dasjkdl salkdj aslkjd laksj dlkasj dlkasj dlkasj dlkasj dlkjas ldkj aslkd jaslkj dlkasj dlkasj d");
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
 
             if ((mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open"))) {
                 mLocationPrivate.setVisibility(View.GONE);
+                mLocationText.setPadding(mLocationText.getPaddingLeft(), mLocationText.getPaddingTop(), getResources().getDimensionPixelOffset(R.dimen.location_text_padding_right_full), mLocationText.getPaddingBottom());
             } else if (mObservation.geoprivacy.equals("private")) {
                 mLocationPrivate.setVisibility(View.VISIBLE);
                 mLocationPrivate.setImageResource(R.drawable.ic_visibility_off_black_24dp);
+                mLocationText.setPadding(mLocationText.getPaddingLeft(), mLocationText.getPaddingTop(), getResources().getDimensionPixelOffset(R.dimen.location_text_padding_right_short), mLocationText.getPaddingBottom());
             } else if (mObservation.geoprivacy.equals("obscured")) {
                 mLocationPrivate.setVisibility(View.VISIBLE);
                 mLocationPrivate.setImageResource(R.drawable.ic_filter_tilt_shift_black_24dp);
+                mLocationText.setPadding(mLocationText.getPaddingLeft(), mLocationText.getPaddingTop(), getResources().getDimensionPixelOffset(R.dimen.location_text_padding_right_short), mLocationText.getPaddingBottom());
             }
         } else {
             // Unknown location
@@ -847,10 +869,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_COMMENTS_IDS).setIndicator("", getResources().getDrawable(R.drawable.ic_forum_tab)));
         addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_FAVS).setIndicator("", getResources().getDrawable(R.drawable.ic_star_tab)));
 
+        mTabHost.getTabWidget().setDividerDrawable(null);
+
         mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-
 
         mInfoTabContainer.setVisibility(View.VISIBLE);
         mActivityTabContainer.setVisibility(View.GONE);
@@ -1253,13 +1276,17 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mObservationReceiver);
+            try {
+                unregisterReceiver(mObservationReceiver);
+            } catch (Exception exc) {
+                // Continue
+            }
 
 	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
 
 
             if (mObservation == null) {
-                reloadObservation(null);
+                reloadObservation(null, false);
             }
 
 	        if (observation == null) {

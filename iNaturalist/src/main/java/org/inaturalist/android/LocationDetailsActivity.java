@@ -60,7 +60,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         mObservation = (Observation)getIntent().getSerializableExtra(OBSERVATION);
         mLongitude = mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude;
         mLatitude = mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude;
-        mAccuracy = mObservation.positional_accuracy;
+        mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
 
         if ((mLongitude != 0) && (mLatitude != 0) && (savedInstanceState == null)) {
         	mZoomToLocation = true;
@@ -81,7 +81,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
             mObservation = (Observation) savedInstanceState.getSerializable("observation");
         	mLongitude = mObservation.longitude;
         	mLatitude = mObservation.latitude;
-            mAccuracy = mObservation.positional_accuracy;
+            mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
         }
 
 
@@ -134,10 +134,16 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
         	}
 
-            mLocationCoordinates.setText(String.format(getString(R.string.location_coords),
-                    String.format("%.5f...", mLatitude),
-                    String.format("%.5f...", mLongitude),
-                    mAccuracy > 999 ? ">1 km" : String.format("%dm", (int)mAccuracy)));
+            if (mAccuracy == 0) {
+                 mLocationCoordinates.setText(String.format(getString(R.string.location_coords_no_acc),
+                        String.format("%.5f...", mLatitude),
+                        String.format("%.5f...", mLongitude)));
+            } else {
+                mLocationCoordinates.setText(String.format(getString(R.string.location_coords),
+                        String.format("%.5f...", mLatitude),
+                        String.format("%.5f...", mLongitude),
+                        mAccuracy > 999 ? ">1 km" : String.format("%dm", (int) mAccuracy)));
+            }
         } else {
 
         }
