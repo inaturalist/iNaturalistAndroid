@@ -2095,7 +2095,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-
                     }
 
                     @Override

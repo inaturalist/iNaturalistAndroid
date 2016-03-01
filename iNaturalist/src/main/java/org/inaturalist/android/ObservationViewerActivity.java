@@ -272,7 +272,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                             bitmapImage = MediaStore.Images.Media.getBitmap(
                                     getContentResolver(),
                                     ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId));
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -837,7 +837,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 mLocationText.setText(mObservation.place_guess);
             }
 
-            mLocationText.setText("dasjkdl salkdj aslkjd laksj dlkasj dlkasj dlkasj dlkasj dlkjas ldkj aslkd jaslkj dlkasj dlkasj d");
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
 
             if ((mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open"))) {
@@ -1470,7 +1469,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private void refreshProjectList() {
         if ((mProjects != null) && (mProjects.size() > 0)) {
             mIncludedInProjectsContainer.setVisibility(View.VISIBLE);
-            mIncludedInProjects.setText(String.format(getString(R.string.included_in_projects), mProjects.size()));
+            mIncludedInProjects.setText(String.format(getString(mProjects.size() > 1 ? R.string.included_in_projects : R.string.included_in_projects_singular), mProjects.size()));
         } else {
             mIncludedInProjectsContainer.setVisibility(View.GONE);
         }

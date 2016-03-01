@@ -247,8 +247,18 @@ public class ObservationProjectsViewer extends SherlockFragmentActivity {
                 view.findViewById(R.id.project_pic_none).setVisibility(View.VISIBLE);
             }
 
-            // No description - Hide the info button
-            view.findViewById(R.id.project_pic_info).setVisibility(View.GONE);
+            final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
+            if (noHTMLDescription.length() > 0) {
+                ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mHelper.alert(projectTitle, noHTMLDescription);
+                    }
+                });
+            } else {
+                // No description - Hide the info button
+                view.findViewById(R.id.project_pic_info).setVisibility(View.GONE);
+            }
 
             return view;
         }

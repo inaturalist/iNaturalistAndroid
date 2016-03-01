@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="220dp">
+            <ImageView
+                android:id="@+id/taxon_image"
+                android:src="@drawable/logo_text"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="220dp" />
+            <TextView
+                android:id="@+id/attributions_photos"
+                android:textSize="14dp"
+                android:textColor="#ffffff"
+                android:text="@string/photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#88000000"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/displayName"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Display name long" />
+
+        <TextView
+            android:id="@+id/name"
+            android:textSize="18dp"
+            android:textColor="#888888"
+            android:textStyle="italic"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Scientific Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Display name long" />
+
+
+        <LinearLayout
+            android:id="@+id/view_on_wikipedia"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@drawable/circular_button_gray"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_open_in_new_black_24dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_on_wikipedia"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:paddingLeft="7dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

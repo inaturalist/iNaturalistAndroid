@@ -1,11 +1,16 @@
 package org.inaturalist.android;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 import org.inaturalist.android.INaturalistService.LoginType;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -23,6 +28,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -44,7 +51,6 @@ import android.widget.TextView;
 public class GuideTaxonActivity extends SherlockActivity {
     private static String TAG = "GuideTaxonActivity";
     private static String TAXON_URL = "http://%s/taxa/%d?locale=%s";
-    private WebView mWebView;
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 	private BetterJSONObject mTaxon;
@@ -54,8 +60,6 @@ public class GuideTaxonActivity extends SherlockActivity {
     private GuideXML mGuideXml;
     private GuideTaxonXML mGuideTaxonXml;
     private String mGuideId;
-    private Button mLogin;
-    private TextView mNotLoggedIn;
     private boolean mShowAdd;
 
     @Override
@@ -82,10 +86,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         requestWindowFeature(Window.FEATURE_PROGRESS);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-        
+
         mApp = (INaturalistApp) getApplicationContext();
         mHelper = new ActivityHelper(this);
 
@@ -207,64 +208,129 @@ public class GuideTaxonActivity extends SherlockActivity {
 
 
         } else {
-            setContentView(R.layout.web);
-            mWebView = (WebView) findViewById(R.id.webview);
-            mLogin = (Button) findViewById(R.id.login);
-            mNotLoggedIn = (TextView) findViewById(R.id.not_logged_in);
-
-            mLogin.setVisibility(View.GONE);
-            mNotLoggedIn.setVisibility(View.GONE);
+            setContentView(R.layout.taxon);
         }
+
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(android.R.color.transparent);
 
 
         String title = "";
         if ((mGuideTaxon) && (mGuideXmlFilename != null) && (mGuideTaxonXml != null)) {
             title = mGuideTaxonXml.getDisplayName();
             if ((title == null) || (title.length() == 0)) title = mGuideTaxonXml.getName();
-        } else {
+       } else {
+
             if (mTaxon == null) {
                 finish();
                 return;
             }
 
-            if (mTaxon.has("display_name") && !mTaxon.getJSONObject().isNull("display_name")) {
-                title = mTaxon.getString("display_name");
-            } else {
-                if (mTaxon.has("common_name") && !mTaxon.getJSONObject().isNull("common_name")) {
-                    title = mTaxon.getJSONObject("common_name").optString("name", "");
-                } else {
-                    title = mTaxon.getJSONObject().optString("name", "");
+            TextView displayNameText = (TextView)findViewById(R.id.displayName);
+            TextView name = (TextView)findViewById(R.id.name);
+
+            String displayName = null;
+            // Get the taxon display name according to configuration of the current iNat network
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
+            int taxonNamePosition = Integer.MAX_VALUE;
+            try {
+                JSONArray taxonNames = mTaxon.getJSONObject().getJSONArray("taxon_names");
+                for (int i = 0; i < taxonNames.length(); i++) {
+                    JSONObject taxonName = taxonNames.getJSONObject(i);
+                    String lexicon = taxonName.getString("lexicon");
+                    int currentTaxonNamePosition = taxonName.getInt("position");
+                    if ((lexicon.equals(networkLexicon)) && (currentTaxonNamePosition < taxonNamePosition)) {
+                        // Found the appropriate lexicon for the taxon
+                        displayName = taxonName.getString("name");
+                        taxonNamePosition = currentTaxonNamePosition;
+                    }
+                }
+            } catch (JSONException e3) {
+                e3.printStackTrace();
+            }
+
+            if (displayName == null) {
+                // Couldn't extract the display name from the taxon names list - use the default one
+                try {
+                    displayName = mTaxon.getJSONObject().getString("unique_name");
+                } catch (JSONException e2) {
+                    displayName = "unknown";
+                }
+                try {
+                    JSONObject defaultName = mTaxon.getJSONObject().getJSONObject("default_name");
+                    displayName = defaultName.getString("name");
+                } catch (JSONException e1) {
+                    // alas
                 }
             }
-            mWebView.getSettings().setJavaScriptEnabled(true);
 
-            final Activity activity = this;
-            mWebView.setWebViewClient(new WebViewClient() {
-                public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                    mHelper.loading();
-                }
-                public void onPageFinished(WebView view, String url) {
-                    mHelper.stopLoading();
-                }
-                public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                    mHelper.stopLoading();
-                    mHelper.alert(String.format(getString(R.string.oh_no), description));
-                }
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    if (!mApp.loggedIn()) {
-                        return false;
+            displayNameText.setText(displayName);
+            try {
+                name.setText(mTaxon.getJSONObject().getString("name"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            title = getString(R.string.about_this_species);
+            actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+            actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+
+            ImageView taxonImage = (ImageView) findViewById(R.id.taxon_image);
+            String photoUrl = null;
+            JSONObject defaultPhoto = mTaxon.getJSONObject().optJSONObject("default_photo");
+            TextView photosAttr = (TextView) findViewById(R.id.attributions_photos);
+
+            if (defaultPhoto != null) {
+                photoUrl = defaultPhoto.optString("large_url");
+                photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo), defaultPhoto.optString("attribution"))));
+            } else {
+                photosAttr.setVisibility(View.GONE);
+            }
+
+            if ((photoUrl == null) || (photoUrl.length() == 0)) {
+                photoUrl = mTaxon.getJSONObject().optString("photo_url");
+            }
+            if (photoUrl != null) {
+                UrlImageViewHelper.setUrlDrawable(taxonImage, photoUrl);
+            } else {
+                taxonImage.setVisibility(View.GONE);
+            }
+
+            TextView description = (TextView) findViewById(R.id.description);
+            String descriptionText = mTaxon.getJSONObject().optString("wikipedia_summary", "");
+            description.setText(Html.fromHtml(descriptionText));
+
+            ViewGroup viewOnWiki = (ViewGroup) findViewById(R.id.view_on_wikipedia);
+            viewOnWiki.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    JSONObject taxonObj = mTaxon.getJSONObject();
+                    String obsUrl = null;
+                    try {
+                        String wikiTitle;
+                        if ((taxonObj.has("wikipedia_title")) && (taxonObj.optString("wikipedia_title").length() > 0)) {
+                            wikiTitle = taxonObj.optString("wikipedia_title");
+                        } else {
+                            wikiTitle = taxonObj.optString("name");
+                        }
+                        obsUrl = "https://en.wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
                     }
-                    mWebView.loadUrl(url, getAuthHeaders());
-                    return true;
+
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(obsUrl));
+                    startActivity(i);
                 }
             });
 
         }
+
         actionBar.setTitle(title);
 
-        if (!mGuideTaxon) {
-            loadTaxonPage(mTaxon.getInt("id"));
-        }
     }
 
 
@@ -300,34 +366,6 @@ public class GuideTaxonActivity extends SherlockActivity {
         }
     }
     
-    public HashMap<String,String> getAuthHeaders() {
-        HashMap<String,String> headers = new HashMap<String,String>();
-        if (!mApp.loggedIn()) {
-            return headers;
-        }
-        if (mApp.getLoginType() == LoginType.PASSWORD) {
-            headers.put("Authorization", "Basic " + mApp.getPrefs().getString("credentials", null));
-        } else {
-            headers.put("Authorization", "Bearer " + mApp.getPrefs().getString("credentials", null));
-        }
-        return headers;
-    }
-    
-    public void loadTaxonPage(Integer taxonId) {
-    	mWebView.getSettings().setUserAgentString(INaturalistService.USER_AGENT);
-
-    	String url;
-    	
-        String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
-
-        url = String.format(TAXON_URL, inatHost, taxonId, deviceLanguage);
-    	mWebView.loadUrl(url, getAuthHeaders());
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -339,24 +377,6 @@ public class GuideTaxonActivity extends SherlockActivity {
         outState.putBoolean("show_add", mShowAdd);
         super.onSaveInstanceState(outState);
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN){
-            switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                if ((!mGuideTaxon) && (mWebView.canGoBack() == true)) {
-                    mWebView.goBack();
-                } else {
-                    finish();
-                }
-                return true;
-            }
-
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
 
      public class GalleryPhotoAdapter extends BaseAdapter {
          private Context mContext;
