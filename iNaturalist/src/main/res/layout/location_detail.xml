@@ -16,7 +16,7 @@
         android:text="@string/location_coords"
         android:gravity="left"
         />
-    <fragment 
+    <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="fill_parent"

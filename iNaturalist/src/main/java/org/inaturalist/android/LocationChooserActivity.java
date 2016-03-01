@@ -5,10 +5,12 @@ import org.inaturalist.android.R;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,22 +29,25 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LocationChooserActivity extends SherlockFragmentActivity implements LocationListener {
     public final static String TAG = "INaturalistMapActivity";
 	protected static final String LATITUDE = "latitude";
 	protected static final String LONGITUDE = "longitude";
 	protected static final String ACCURACY = "accuracy";
+    protected static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     private GoogleMap mMap;
     private HashMap<String, Observation> mMarkerObservations;
     private INaturalistApp mApp;
-	private TextView mAddButton;
 	private double mLatitude;
 	private double mLongitude;
 	private boolean mZoomToLocation = false;
 	private LocationManager mLocationManager;
 	private double mAccuracy;
     private ActivityHelper mHelper;
+    private String mIconicTaxonName;
 
     @Override
 	protected void onStart()
@@ -71,6 +76,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         mLongitude = getIntent().getDoubleExtra(LONGITUDE, 0);
         mLatitude = getIntent().getDoubleExtra(LATITUDE, 0);
         mAccuracy = getIntent().getDoubleExtra(ACCURACY, 0);
+        mIconicTaxonName = getIntent().getStringExtra(ICONIC_TAXON_NAME);
 
         if ((mLongitude != 0) && (mLatitude != 0) && (savedInstanceState == null)) {
         	mZoomToLocation = true;
@@ -78,55 +84,19 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setIcon(android.R.color.transparent);
 
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setCustomView(R.layout.location_chooser_top_action_bar);
-        actionBar.setLogo(R.drawable.up_icon);
-        mAddButton = (TextView) actionBar.getCustomView().findViewById(R.id.add);
-        mAddButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            	Bundle bundle = new Bundle();
-            	
-            	float currentZoom = mMap.getCameraPosition().zoom;
-            	
-            	DisplayMetrics metrics = new DisplayMetrics();
-            	getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.inatapptheme_color)));
+        actionBar.setLogo(R.drawable.ic_arrow_back_white_24dp);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setTitle(Html.fromHtml("<font color=\"#ffffff\">" + getString(R.string.details) + "</font>"));
 
-            	int screenWidth = metrics.widthPixels;
-            	
-            	//////////////
-                double equatorLength = 40075004; // in meters
-                double metersPerPixel = equatorLength / 256;
-                int zoomLevel = 1;
-                while (zoomLevel < currentZoom) {
-                    metersPerPixel /= 2;
-                    ++zoomLevel;
-                }
-                double accuracy = (double) ((screenWidth * 0.4 * 0.5) * metersPerPixel);
-                Log.e(TAG, "Meters per radius = " + accuracy + "; zoom = " + zoomLevel);
-            	
-            	////////////
-
-            	bundle.putDouble(LATITUDE, mMap.getCameraPosition().target.latitude);
-            	bundle.putDouble(LONGITUDE, mMap.getCameraPosition().target.longitude);
-            	bundle.putDouble(ACCURACY, accuracy);
-
-            	Intent resultIntent = new Intent();
-            	resultIntent.putExtras(bundle);
-            	setResult(RESULT_OK, resultIntent);
-
-            	finish();
-            }
-        });
-        
-        
         if (savedInstanceState != null) {
         	mLongitude = savedInstanceState.getDouble("longitude");
         	mLatitude = savedInstanceState.getDouble("latitude");
+            mIconicTaxonName = savedInstanceState.getString("iconic_taxon_name");
         }
+
 
 
         setContentView(R.layout.location_chooser);
@@ -145,8 +115,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         
         if ((longitude != 0) && (latitude != 0)) {
         	LatLng location = new LatLng(latitude, longitude);
-        	mAddButton.setVisibility(View.VISIBLE);
-        	
+
         	int zoom = 15;
 
         	if (mAccuracy > 0) {
@@ -191,6 +160,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     	if (mMap != null) {
     		outState.putDouble("longitude", mMap.getCameraPosition().target.longitude);
     		outState.putDouble("latitude", mMap.getCameraPosition().target.latitude);
+            outState.putString("iconic_taxon_name", mIconicTaxonName);
     	}
         super.onSaveInstanceState(outState);
     }
@@ -245,21 +215,56 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-        	onCancel();
-       	
-            return true;
-        case R.id.layers:
-            if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                item.setTitle(R.string.satellite);
-            } else {
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                item.setTitle(R.string.street);
-            }
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                onCancel();
+
+                return true;
+            case R.id.save_location:
+                Bundle bundle = new Bundle();
+
+                float currentZoom = mMap.getCameraPosition().zoom;
+
+                DisplayMetrics metrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+                int screenWidth = metrics.widthPixels;
+
+                //////////////
+                double equatorLength = 40075004; // in meters
+                double metersPerPixel = equatorLength / 256;
+                int zoomLevel = 1;
+                while (zoomLevel < currentZoom) {
+                    metersPerPixel /= 2;
+                    ++zoomLevel;
+                }
+                double accuracy = (double) ((screenWidth * 0.4 * 0.5) * metersPerPixel);
+                Log.e(TAG, "Meters per radius = " + accuracy + "; zoom = " + zoomLevel);
+
+                ////////////
+
+                bundle.putDouble(LATITUDE, mMap.getCameraPosition().target.latitude);
+                bundle.putDouble(LONGITUDE, mMap.getCameraPosition().target.longitude);
+                bundle.putDouble(ACCURACY, accuracy);
+
+                Intent resultIntent = new Intent();
+                resultIntent.putExtras(bundle);
+                setResult(RESULT_OK, resultIntent);
+
+                finish();
+
+                return true;
+
+            case R.id.layers:
+                if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
+                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    item.setTitle(R.string.satellite);
+                } else {
+                    mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                    item.setTitle(R.string.street);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
     
@@ -283,6 +288,11 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
                         }
                     }
                 }
+
+                mMap.clear();
+                MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(INaturalistMapActivity.observationIcon(mIconicTaxonName));
+                Marker m = mMap.addMarker(opts);
+
             }
         }
     }

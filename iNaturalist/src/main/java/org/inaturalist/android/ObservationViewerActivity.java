@@ -799,7 +799,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mMap.getUiSettings().setAllGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
-        if ((mObservation.latitude != null) && (mObservation.longitude != null)) {
+        if (((mObservation.latitude != null) && (mObservation.longitude != null)) || ((mObservation.private_longitude != null) && (mObservation.private_longitude != null))) {
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
@@ -809,9 +809,13 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 }
             });
 
-            LatLng latLng = new LatLng(
-                    mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude,
-                    mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude);
+            Double lat, lon;
+            Integer acc;
+            lat = mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude;
+            lon = mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude;;
+            acc = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : mObservation.private_positional_accuracy;
+
+            LatLng latLng = new LatLng(lat, lon);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
             // Add the marker
@@ -823,15 +827,15 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mUnknownLocationIcon.setVisibility(View.GONE);
             if ((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) {
                 // No place guess - show coordinates instead
-                if (mObservation.positional_accuracy == null) {
+                if (acc == null) {
                     mLocationText.setText(String.format(getString(R.string.location_coords_no_acc),
-                            String.format("%.5f...", mObservation.latitude),
-                            String.format("%.5f...", mObservation.longitude)));
+                            String.format("%.5f...", lat),
+                            String.format("%.5f...", lon)));
                 } else {
                     mLocationText.setText(String.format(getString(R.string.location_coords),
-                            String.format("%.5f...", mObservation.latitude),
-                            String.format("%.5f...", mObservation.longitude),
-                            mObservation.positional_accuracy > 999 ? ">1 km" : String.format("%dm", (int) mObservation.positional_accuracy)));
+                            String.format("%.5f...", lat),
+                            String.format("%.5f...", lon),
+                            acc > 999 ? ">1 km" : String.format("%dm", (int) acc)));
                 }
             } else{
                 mLocationText.setText(mObservation.place_guess);
@@ -1062,21 +1066,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mIdRow.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((mTaxon == null) && ((mObservation.taxon_id == null) || (mObservation.taxon_id == 0))) {
+                if (mTaxon == null) {
                     // No taxon - don't show the taxon details page
                     return;
                 }
 
-                if (mTaxon == null) {
-                    // Could't download the taxon details - use whatever we currently got
-                    mTaxon = new JSONObject();
-                    try {
-                        mTaxon.put("id", mObservation.taxon_id);
-                        mTaxon.put("common_name", mObservation.species_guess);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
                 Intent intent = new Intent(ObservationViewerActivity.this, GuideTaxonActivity.class);
                 intent.putExtra("taxon", new BetterJSONObject(mTaxon));
                 intent.putExtra("guide_taxon", false);

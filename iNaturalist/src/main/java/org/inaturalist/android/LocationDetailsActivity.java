@@ -60,7 +60,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         mObservation = (Observation)getIntent().getSerializableExtra(OBSERVATION);
         mLongitude = mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude;
         mLatitude = mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude;
-        mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
+        mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : mObservation.private_positional_accuracy;
 
         if ((mLongitude != 0) && (mLatitude != 0) && (savedInstanceState == null)) {
         	mZoomToLocation = true;

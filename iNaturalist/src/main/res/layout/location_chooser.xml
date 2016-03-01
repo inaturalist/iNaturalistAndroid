@@ -24,7 +24,8 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_weight=".4"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/crosshairs" />
         <View
             android:layout_width="0dp"

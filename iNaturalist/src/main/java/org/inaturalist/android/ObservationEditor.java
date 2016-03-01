@@ -547,6 +547,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                             intent.putExtra(LocationChooserActivity.LONGITUDE, mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude);
                             intent.putExtra(LocationChooserActivity.LATITUDE,  mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude);
                             intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
+                            intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
 
                             startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
                         }
@@ -800,6 +801,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.species_guess = mSpeciesGuess;
         }
 
+
+        mLocationProgressView.setVisibility(View.GONE);
 
         if (mGettingLocation) {
             getLocation();
