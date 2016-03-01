@@ -18,17 +18,21 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -50,7 +54,6 @@ import android.widget.TextView;
 
 public class GuideTaxonActivity extends SherlockActivity {
     private static String TAG = "GuideTaxonActivity";
-    private static String TAXON_URL = "http://%s/taxa/%d?locale=%s";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 	private BetterJSONObject mTaxon;
@@ -61,21 +64,42 @@ public class GuideTaxonActivity extends SherlockActivity {
     private GuideTaxonXML mGuideTaxonXml;
     private String mGuideId;
     private boolean mShowAdd;
+    private boolean mDownloadTaxon;
+    private TaxonReceiver mTaxonReceiver;
 
     @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
+    protected void onStart()
+    {
+        super.onStart();
+        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+        FlurryAgent.logEvent(this.getClass().getSimpleName());
+    }
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
+
+
+    private class TaxonReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mTaxonReceiver);
+            findViewById(R.id.loading_taxon).setVisibility(View.GONE);
+            findViewById(R.id.taxon_details).setVisibility(View.VISIBLE);
+
+            BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
+
+            if (taxon == null) {
+                return;
+            }
+
+            mTaxon = taxon;
+            loadTaxon();
+        }
+    }
 
 
     @Override
@@ -99,6 +123,19 @@ public class GuideTaxonActivity extends SherlockActivity {
             mGuideId = intent.getStringExtra("guide_id");
             mGuideXmlFilename = intent.getStringExtra("guide_xml_filename");
             mShowAdd = intent.getBooleanExtra("show_add", true);
+            mDownloadTaxon = intent.getBooleanExtra("download_taxon", false);
+
+            if (mDownloadTaxon) {
+                // Get the taxon details
+                mTaxonReceiver = new TaxonReceiver();
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
+                Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
+                registerReceiver(mTaxonReceiver, filter);
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId != null ? mTaxonId : mTaxon.getInt("id"));
+                startService(serviceIntent);
+            }
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable("taxon");
         	mGuideTaxon = savedInstanceState.getBoolean("guide_taxon", true);
@@ -106,6 +143,7 @@ public class GuideTaxonActivity extends SherlockActivity {
             mTaxonId = savedInstanceState.getString("taxon_id");
             mGuideXmlFilename = savedInstanceState.getString("guide_xml_filename");
             mShowAdd = savedInstanceState.getBoolean("show_add");
+            mDownloadTaxon = savedInstanceState.getBoolean("download_taxon");
         }
 
         if ((mGuideTaxon) && (mGuideXmlFilename != null)) {
@@ -209,6 +247,11 @@ public class GuideTaxonActivity extends SherlockActivity {
 
         } else {
             setContentView(R.layout.taxon);
+
+            if (mDownloadTaxon) {
+                findViewById(R.id.loading_taxon).setVisibility(View.VISIBLE);
+                findViewById(R.id.taxon_details).setVisibility(View.GONE);
+            }
         }
 
         actionBar.setHomeButtonEnabled(true);
@@ -222,114 +265,134 @@ public class GuideTaxonActivity extends SherlockActivity {
             if ((title == null) || (title.length() == 0)) title = mGuideTaxonXml.getName();
        } else {
 
-            if (mTaxon == null) {
-                finish();
-                return;
+            if (!mDownloadTaxon) {
+                loadTaxon();
             }
-
-            TextView displayNameText = (TextView)findViewById(R.id.displayName);
-            TextView name = (TextView)findViewById(R.id.name);
-
-            String displayName = null;
-            // Get the taxon display name according to configuration of the current iNat network
-            String inatNetwork = mApp.getInaturalistNetworkMember();
-            String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
-            int taxonNamePosition = Integer.MAX_VALUE;
-            try {
-                JSONArray taxonNames = mTaxon.getJSONObject().getJSONArray("taxon_names");
-                for (int i = 0; i < taxonNames.length(); i++) {
-                    JSONObject taxonName = taxonNames.getJSONObject(i);
-                    String lexicon = taxonName.getString("lexicon");
-                    int currentTaxonNamePosition = taxonName.getInt("position");
-                    if ((lexicon.equals(networkLexicon)) && (currentTaxonNamePosition < taxonNamePosition)) {
-                        // Found the appropriate lexicon for the taxon
-                        displayName = taxonName.getString("name");
-                        taxonNamePosition = currentTaxonNamePosition;
-                    }
-                }
-            } catch (JSONException e3) {
-                e3.printStackTrace();
-            }
-
-            if (displayName == null) {
-                // Couldn't extract the display name from the taxon names list - use the default one
-                try {
-                    displayName = mTaxon.getJSONObject().getString("unique_name");
-                } catch (JSONException e2) {
-                    displayName = "unknown";
-                }
-                try {
-                    JSONObject defaultName = mTaxon.getJSONObject().getJSONObject("default_name");
-                    displayName = defaultName.getString("name");
-                } catch (JSONException e1) {
-                    // alas
-                }
-            }
-
-            displayNameText.setText(displayName);
-            try {
-                name.setText(mTaxon.getJSONObject().getString("name"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
             title = getString(R.string.about_this_species);
+
             actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
             actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
             actionBar.setDisplayHomeAsUpEnabled(false);
-
-            ImageView taxonImage = (ImageView) findViewById(R.id.taxon_image);
-            String photoUrl = null;
-            JSONObject defaultPhoto = mTaxon.getJSONObject().optJSONObject("default_photo");
-            TextView photosAttr = (TextView) findViewById(R.id.attributions_photos);
-
-            if (defaultPhoto != null) {
-                photoUrl = defaultPhoto.optString("large_url");
-                photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo), defaultPhoto.optString("attribution"))));
-            } else {
-                photosAttr.setVisibility(View.GONE);
-            }
-
-            if ((photoUrl == null) || (photoUrl.length() == 0)) {
-                photoUrl = mTaxon.getJSONObject().optString("photo_url");
-            }
-            if (photoUrl != null) {
-                UrlImageViewHelper.setUrlDrawable(taxonImage, photoUrl);
-            } else {
-                taxonImage.setVisibility(View.GONE);
-            }
-
-            TextView description = (TextView) findViewById(R.id.description);
-            String descriptionText = mTaxon.getJSONObject().optString("wikipedia_summary", "");
-            description.setText(Html.fromHtml(descriptionText));
-
-            ViewGroup viewOnWiki = (ViewGroup) findViewById(R.id.view_on_wikipedia);
-            viewOnWiki.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    JSONObject taxonObj = mTaxon.getJSONObject();
-                    String obsUrl = null;
-                    try {
-                        String wikiTitle;
-                        if ((taxonObj.has("wikipedia_title")) && (taxonObj.optString("wikipedia_title").length() > 0)) {
-                            wikiTitle = taxonObj.optString("wikipedia_title");
-                        } else {
-                            wikiTitle = taxonObj.optString("name");
-                        }
-                        obsUrl = "https://en.wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(obsUrl));
-                    startActivity(i);
-                }
-            });
-
         }
 
         actionBar.setTitle(title);
+
+    }
+
+    private void loadTaxon() {
+        if (mTaxon == null) {
+            finish();
+            return;
+        }
+
+        findViewById(R.id.loading_image).setVisibility(View.VISIBLE);
+
+        TextView displayNameText = (TextView)findViewById(R.id.displayName);
+        TextView name = (TextView)findViewById(R.id.name);
+
+        String displayName = null;
+        // Get the taxon display name according to configuration of the current iNat network
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
+        int taxonNamePosition = Integer.MAX_VALUE;
+        try {
+            JSONArray taxonNames = mTaxon.getJSONObject().getJSONArray("taxon_names");
+            for (int i = 0; i < taxonNames.length(); i++) {
+                JSONObject taxonName = taxonNames.getJSONObject(i);
+                String lexicon = taxonName.getString("lexicon");
+                int currentTaxonNamePosition = taxonName.getInt("position");
+                if ((lexicon.equals(networkLexicon)) && (currentTaxonNamePosition < taxonNamePosition)) {
+                    // Found the appropriate lexicon for the taxon
+                    displayName = taxonName.getString("name");
+                    taxonNamePosition = currentTaxonNamePosition;
+                }
+            }
+        } catch (JSONException e3) {
+            e3.printStackTrace();
+        }
+
+        if (displayName == null) {
+            // Couldn't extract the display name from the taxon names list - use the default one
+            try {
+                displayName = mTaxon.getJSONObject().getString("unique_name");
+            } catch (JSONException e2) {
+                displayName = "unknown";
+            }
+            try {
+                JSONObject defaultName = mTaxon.getJSONObject().getJSONObject("default_name");
+                displayName = defaultName.getString("name");
+            } catch (JSONException e1) {
+                // alas
+            }
+        }
+
+        displayNameText.setText(displayName);
+        try {
+            name.setText(mTaxon.getJSONObject().getString("name"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ImageView taxonImage = (ImageView) findViewById(R.id.taxon_image);
+        String photoUrl = null;
+        JSONObject defaultPhoto = mTaxon.getJSONObject().optJSONObject("default_photo");
+        TextView photosAttr = (TextView) findViewById(R.id.attributions_photos);
+
+        if (defaultPhoto != null) {
+            photoUrl = defaultPhoto.optString("large_url");
+            photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo), defaultPhoto.optString("attribution"))));
+        } else {
+            photosAttr.setVisibility(View.GONE);
+        }
+
+        if ((photoUrl == null) || (photoUrl.length() == 0)) {
+            photoUrl = mTaxon.getJSONObject().optString("photo_url");
+        }
+        if (photoUrl != null) {
+            findViewById(R.id.loading_image).setVisibility(View.VISIBLE);
+
+            UrlImageViewHelper.setUrlDrawable(taxonImage, photoUrl, new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    findViewById(R.id.loading_image).setVisibility(View.GONE);
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    return loadedBitmap;
+                }
+            });
+        } else {
+            findViewById(R.id.taxon_image_container).setVisibility(View.GONE);
+        }
+
+        TextView description = (TextView) findViewById(R.id.description);
+        String descriptionText = mTaxon.getJSONObject().optString("wikipedia_summary", "");
+        description.setText(Html.fromHtml(descriptionText));
+
+        ViewGroup viewOnWiki = (ViewGroup) findViewById(R.id.view_on_wikipedia);
+        viewOnWiki.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JSONObject taxonObj = mTaxon.getJSONObject();
+                String obsUrl = null;
+                try {
+                    String wikiTitle;
+                    if ((taxonObj.has("wikipedia_title")) && (!taxonObj.isNull("wikipedia_title")) && (taxonObj.optString("wikipedia_title").length() > 0)) {
+                        wikiTitle = taxonObj.optString("wikipedia_title");
+                    } else {
+                        wikiTitle = taxonObj.optString("name");
+                    }
+                    obsUrl = "https://en.wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(obsUrl));
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -375,6 +438,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         outState.putString("guide_id", mGuideId);
         outState.putString("guide_xml_filename", mGuideXmlFilename);
         outState.putBoolean("show_add", mShowAdd);
+        outState.putBoolean("download_taxon", mDownloadTaxon);
         super.onSaveInstanceState(outState);
     }
 

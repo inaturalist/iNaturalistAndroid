@@ -411,6 +411,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                             intent.putExtra("taxon", new BetterJSONObject(taxon));
                             intent.putExtra("guide_taxon", false);
                             intent.putExtra("show_add", false);
+							intent.putExtra("download_taxon", true);
                             mContext.startActivity(intent);
                         }
                     });
@@ -480,6 +481,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		intent.putExtra("taxon", new BetterJSONObject(item.getJSONObject("taxon")));
 		intent.putExtra("guide_taxon", false);
         intent.putExtra("show_add", false);
+		intent.putExtra("download_taxon", true);
 		mContext.startActivity(intent);
 	}
 }

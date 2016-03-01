@@ -176,6 +176,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 					Intent intent = new Intent(ObservationDetails.this, GuideTaxonActivity.class);
 					intent.putExtra("taxon", new BetterJSONObject(taxon));
 					intent.putExtra("guide_taxon", false);
+					intent.putExtra("download_taxon", true);
 					startActivity(intent);
 				}
 			});

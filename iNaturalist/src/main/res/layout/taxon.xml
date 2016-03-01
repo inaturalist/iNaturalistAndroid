@@ -4,14 +4,48 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        >
+        <RelativeLayout
+            android:id="@+id/loading_taxon"
+            android:visibility="gone"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
     <LinearLayout
+        android:id="@+id/taxon_details"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/taxon_image_container"
             android:layout_width="fill_parent"
             android:layout_height="220dp">
+            <ProgressBar
+                android:id="@+id/loading_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                />
+
             <ImageView
                 android:id="@+id/taxon_image"
                 android:src="@drawable/logo_text"
@@ -96,4 +130,6 @@
                 />
         </LinearLayout>
     </LinearLayout>
+
+    </RelativeLayout>
 </ScrollView>
