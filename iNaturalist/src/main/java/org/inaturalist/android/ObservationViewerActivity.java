@@ -176,6 +176,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
     private PhotosViewPagerAdapter mPhotosAdapter;
     private ArrayList<BetterJSONObject> mProjects;
+    private ImageView mIdArrow;
 
     @Override
 	protected void onStart() {
@@ -400,6 +401,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mSyncToAddFave = (TextView) findViewById(R.id.sync_to_add_fave);
         mNoPhotosContainer = (ViewGroup) findViewById(R.id.no_photos);
         mIdPicBig = (ImageView) findViewById(R.id.id_icon_big);
+        mIdArrow = (ImageView) findViewById(R.id.id_arrow);
 
         View.OnClickListener onLogin = new View.OnClickListener() {
             @Override
@@ -1091,7 +1093,10 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
         if (mObservation.taxon_id == null) {
             mIdName.setText(R.string.unknown_species);
+            mIdArrow.setVisibility(View.GONE);
         } else {
+            mIdArrow.setVisibility(View.VISIBLE);
+
             String inatNetwork = mApp.getInaturalistNetworkMember();
             String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
             final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json";

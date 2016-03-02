@@ -151,6 +151,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/id_arrow"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
