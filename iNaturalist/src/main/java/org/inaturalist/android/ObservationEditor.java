@@ -198,6 +198,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private TextView mProjectCount;
     private Long mFirstPositionPhotoId;
     private boolean mGettingLocation;
+    private ImageView mLocationIcon;
+    private TextView mLocationGuess;
+    private TextView mFindingCurrentLocation;
 
     @Override
 	protected void onStart()
@@ -436,6 +439,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mProjectCount = (TextView) findViewById(R.id.project_count);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         mProjectsTable = (TableLayout) findViewById(R.id.projects);
+        mLocationIcon = (ImageView) findViewById(R.id.location_icon);
+        mLocationGuess = (TextView) findViewById(R.id.location_guess);
+        mFindingCurrentLocation = (TextView) findViewById(R.id.finding_current_location);
 
         mProjectSelector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -965,9 +971,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         if (mObservation.place_guess != null) {
-            ((TextView) findViewById(R.id.location_guess)).setText(mObservation.place_guess);
+            mLocationGuess.setText(mObservation.place_guess);
         } else {
-            ((TextView) findViewById(R.id.location_guess)).setText(getString(R.string.set_location));
+            mLocationGuess.setText(getString(R.string.set_location));
         }
     }
 
@@ -1189,7 +1195,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         mLocationProgressView.setVisibility(View.VISIBLE);
+        mFindingCurrentLocation.setVisibility(View.VISIBLE);
         mLocationRefreshButton.setVisibility(View.GONE);
+        mLocationIcon.setVisibility(View.GONE);
+
         mGettingLocation = true;
 
         if (mLocationManager == null) {
@@ -1238,7 +1247,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
         mLocationProgressView.setVisibility(View.GONE);
+        mFindingCurrentLocation.setVisibility(View.GONE);
         mLocationRefreshButton.setVisibility(View.VISIBLE);
+        mLocationIcon.setVisibility(View.VISIBLE);
     }
 
     private void stopGetLocation() {
@@ -1272,10 +1283,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
                             @Override
                             public void run() {
                                 if ((location != null) && (location.length() > 0)) {
-                                    ((TextView) findViewById(R.id.location_guess)).setText(location);
+                                    mLocationGuess.setText(location);
                                     mObservation.place_guess = location.toString().trim();
                                 } else {
-                                    ((TextView) findViewById(R.id.location_guess)).setText(R.string.set_location);
+                                    mLocationGuess.setText(R.string.set_location);
                                     mObservation.place_guess = null;
                                 }
                             }
