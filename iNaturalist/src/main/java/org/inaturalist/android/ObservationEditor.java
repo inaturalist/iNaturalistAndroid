@@ -808,8 +808,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
 
-        mLocationProgressView.setVisibility(View.GONE);
-
         if (mGettingLocation) {
             getLocation();
         }
@@ -896,6 +894,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         String selectedValue = values.get(mGeoprivacy.getSelectedItemPosition());
         if ((mObservation.geoprivacy != null) || (mGeoprivacy.getSelectedItemPosition() != 0)) {
             mObservation.geoprivacy = selectedValue;
+
+            if (selectedValue.equals("private") || selectedValue.equals("obscured")) {
+                mObservation.private_longitude = mObservation.longitude;
+                mObservation.private_latitude = mObservation.latitude;
+            }
         }
 
         if ((mObservation.captive != null) || ((mObservation.captive == null) && (mIsCaptive))) {
@@ -1306,6 +1309,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mObservation.latitude = location.getLatitude();
         mObservation.longitude = location.getLongitude();
 
+        if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
+            mObservation.private_longitude = mObservation.longitude;
+            mObservation.private_latitude = mObservation.latitude;
+        }
+
         mLatitudeView.setText(Double.toString(location.getLatitude()));
         mLongitudeView.setText(Double.toString(location.getLongitude()));
 
@@ -1487,6 +1495,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
                 mObservation.positional_accuracy = (int) Math.ceil(accuracy);
+
+                if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
+                    mObservation.private_longitude = mObservation.longitude;
+                    mObservation.private_latitude = mObservation.latitude;
+                }
+
 
                 mLatitudeView.setText(Double.toString(latitude));
                 mLongitudeView.setText(Double.toString(longitude));
@@ -1773,6 +1787,12 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mObservation.longitude = null;
                 mObservation.positional_accuracy = null;
             }
+
+            if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
+                mObservation.private_longitude = mObservation.longitude;
+                mObservation.private_latitude = mObservation.latitude;
+            }
+
             String datetime = exif.getAttribute(ExifInterface.TAG_DATETIME);
             if (datetime != null) {
                 SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");

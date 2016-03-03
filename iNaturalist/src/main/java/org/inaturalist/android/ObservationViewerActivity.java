@@ -177,6 +177,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private PhotosViewPagerAdapter mPhotosAdapter;
     private ArrayList<BetterJSONObject> mProjects;
     private ImageView mIdArrow;
+    private ViewGroup mUnknownLocationContainer;
 
     @Override
 	protected void onStart() {
@@ -320,7 +321,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         loadObservationIntoUI();
         refreshDataQuality();
         refreshProjectList();
-
+        setupMap();
     }
 
     @Override
@@ -358,6 +359,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.location_map)).getMap();
         mLocationMapContainer = (ViewGroup) findViewById(R.id.location_map_container);
+        mUnknownLocationContainer = (ViewGroup) findViewById(R.id.unknown_location_container);
         mUnknownLocationIcon = (ImageView) findViewById(R.id.unknown_location);
         mLocationText = (TextView) findViewById(R.id.location_text);
         mLocationPrivate = (ImageView) findViewById(R.id.location_private);
@@ -801,7 +803,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mMap.getUiSettings().setAllGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
-        if (((mObservation.latitude != null) && (mObservation.longitude != null)) || ((mObservation.private_longitude != null) && (mObservation.private_longitude != null))) {
+        if (((mObservation.latitude != null) && (mObservation.longitude != null)) || ((mObservation.private_latitude != null) && (mObservation.private_longitude != null))) {
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
@@ -813,9 +815,10 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
             Double lat, lon;
             Integer acc;
-            lat = mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude;
-            lon = mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude;;
-            acc = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : mObservation.private_positional_accuracy;
+
+            lon = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open")) ? mObservation.private_longitude : mObservation.longitude;
+            lat = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
+            acc = mObservation.positional_accuracy;
 
             LatLng latLng = new LatLng(lat, lon);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
@@ -847,16 +850,15 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
             if ((mObservation.geoprivacy == null) || (mObservation.geoprivacy.equals("open"))) {
                 mLocationPrivate.setVisibility(View.GONE);
-                mLocationText.setPadding(mLocationText.getPaddingLeft(), mLocationText.getPaddingTop(), getResources().getDimensionPixelOffset(R.dimen.location_text_padding_right_full), mLocationText.getPaddingBottom());
             } else if (mObservation.geoprivacy.equals("private")) {
                 mLocationPrivate.setVisibility(View.VISIBLE);
                 mLocationPrivate.setImageResource(R.drawable.ic_visibility_off_black_24dp);
-                mLocationText.setPadding(mLocationText.getPaddingLeft(), mLocationText.getPaddingTop(), getResources().getDimensionPixelOffset(R.dimen.location_text_padding_right_short), mLocationText.getPaddingBottom());
             } else if (mObservation.geoprivacy.equals("obscured")) {
                 mLocationPrivate.setVisibility(View.VISIBLE);
                 mLocationPrivate.setImageResource(R.drawable.ic_filter_tilt_shift_black_24dp);
-                mLocationText.setPadding(mLocationText.getPaddingLeft(), mLocationText.getPaddingTop(), getResources().getDimensionPixelOffset(R.dimen.location_text_padding_right_short), mLocationText.getPaddingBottom());
             }
+
+            mUnknownLocationContainer.setVisibility(View.GONE);
         } else {
             // Unknown location
             mLocationMapContainer.setVisibility(View.GONE);
@@ -864,6 +866,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mLocationText.setText(R.string.unable_to_acquire_location);
             mLocationText.setGravity(View.TEXT_ALIGNMENT_CENTER);
             mLocationPrivate.setVisibility(View.GONE);
+            mUnknownLocationContainer.setVisibility(View.VISIBLE);
         }
     }
 
@@ -925,7 +928,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         int dataQuality = DATA_QUALITY_CASUAL_GRADE;
         int reasonText = 0;
 
-        if ((mObservation.longitude == null) || (mObservation.latitude == null)) {
+        if (((mObservation.latitude == null) && (mObservation.longitude == null)) && ((mObservation.private_latitude == null) && (mObservation.private_longitude == null))) {
             // No location
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
             reasonText = R.string.casual_grade_add_location;
