@@ -77,10 +77,12 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -136,7 +138,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 	private String mProjectName;
 	private Integer mProjectId;
 	
-	private LocationClient mLocationClient;
+	private GoogleApiClient mLocationClient;
 	private double mMinx;
 	private double mMaxx;
 	private double mMiny;
@@ -1569,21 +1571,27 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		// If Google Play services is available
  		if ((ConnectionResult.SUCCESS == resultCode) && ((mLocationClient == null) || (!mLocationClient.isConnected())))  {
  			// Use Google Location Services to determine location
- 			mLocationClient = new LocationClient(getApplicationContext(), new ConnectionCallbacks() {
-				@Override
-				public void onDisconnected() {
-				}
-				@Override
-				public void onConnected(Bundle arg0) {
-					loadNearbyObservations();
-				}
-			}, new OnConnectionFailedListener() {
-				@Override
-				public void onConnectionFailed(ConnectionResult arg0) {
-					// Couldn't connect to client - load by GPS
-					loadNearbyObservations();
-				}
-			});
+            mLocationClient = new GoogleApiClient.Builder(this)
+                    .addApi(LocationServices.API)
+                    .addConnectionCallbacks(new ConnectionCallbacks() {
+                        @Override
+                        public void onConnected(Bundle bundle) {
+                            loadNearbyObservations();
+                        }
+
+                        @Override
+                        public void onConnectionSuspended(int i) {
+
+                        }
+                    })
+                    .addOnConnectionFailedListener(new OnConnectionFailedListener() {
+                        @Override
+                        public void onConnectionFailed(ConnectionResult connectionResult) {
+                            // Couldn't connect to client - load by GPS
+                            loadNearbyObservations();
+                        }
+                    })
+                    .build();
  			mLocationClient.connect();
  		} else {
  			// Use GPS for the location
@@ -1620,7 +1628,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		if ((mLocationClient != null) && (mLocationClient.isConnected())) {
  			// Use location client for the latest location
  			try {
- 				location = mLocationClient.getLastLocation();
+ 				location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
  			} catch (IllegalStateException ex) {
  				ex.printStackTrace();
  			}

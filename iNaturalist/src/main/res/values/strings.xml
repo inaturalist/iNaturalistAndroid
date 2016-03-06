@@ -467,7 +467,7 @@
     <string name="no_photo">No Photo</string>
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
-    <string name="photo"><![CDATA[Photo: <b>%1$s</b>]]></string>
+    <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
  </resources>
 

@@ -255,29 +255,29 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/observed_on"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_toRightOf="@id/time_icon"
-            android:layout_toEndOf="@id/time_icon"
-            android:text="@string/set_date"
-            android:layout_centerVertical="true"
-            android:textSize="16sp"
-            />
-
-        <TextView
             android:id="@+id/time_observed_at"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@id/observed_on"
-            android:layout_toEndOf="@id/observed_on"
             android:text="@string/set_time"
             android:layout_centerVertical="true"
             android:textSize="16sp"
             android:layout_marginLeft="5dp"
             />
+
+        <TextView
+            android:id="@+id/observed_on"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/time_icon"
+            android:layout_toEndOf="@id/time_icon"
+            android:layout_toLeftOf="@id/time_observed_at"
+            android:text="@string/set_date"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            />
+
 
     </RelativeLayout>
     <View

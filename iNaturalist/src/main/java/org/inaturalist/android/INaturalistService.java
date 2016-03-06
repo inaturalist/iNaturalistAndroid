@@ -69,10 +69,11 @@ import org.json.JSONObject;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
-import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
@@ -205,7 +206,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     private Handler mHandler;
 
-    private LocationClient mLocationClient;
+    private GoogleApiClient mLocationClient;
 
     private ArrayList<SerializableJSONArray> mProjectObservations;
     
@@ -412,7 +413,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  // If Google Play services is available
                  if (ConnectionResult.SUCCESS == resultCode) {
                      // Use Google Location Services to determine location
-                     mLocationClient = new LocationClient(getApplicationContext(), this, this);
+                     mLocationClient = new GoogleApiClient.Builder(this)
+                             .addApi(LocationServices.API)
+                             .addConnectionCallbacks(this)
+                             .addOnConnectionFailedListener(this)
+                             .build();
                      mLocationClient.connect();
                      
                      // Only once we're connected - we'll call getNearByGuides()
@@ -433,7 +438,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  // If Google Play services is available
                  if (ConnectionResult.SUCCESS == resultCode) {
                      // Use Google Location Services to determine location
-                     mLocationClient = new LocationClient(getApplicationContext(), this, this);
+                     mLocationClient = new GoogleApiClient.Builder(this)
+                             .addApi(LocationServices.API)
+                             .addConnectionCallbacks(this)
+                             .addOnConnectionFailedListener(this)
+                             .build();
                      mLocationClient.connect();
                      
                      // Only once we're connected - we'll call getNearByProjects()
@@ -1286,7 +1295,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (useLocationServices) {
         	Location location;
         	try {
-        		location = mLocationClient.getLastLocation();
+        		location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
         	} catch (IllegalStateException ex) {
         		ex.printStackTrace();
         		return new SerializableJSONArray();
@@ -1372,7 +1381,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (useLocationServices) {
         	Location location;
         	try {
-        		location = mLocationClient.getLastLocation();
+        		location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
          	} catch (IllegalStateException ex) {
         		ex.printStackTrace();
         		return new SerializableJSONArray();
@@ -2614,10 +2623,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     @Override
-    public void onDisconnected() {
-        Log.e(TAG, "onDisconnected");
+    public void onConnectionSuspended(int i) {
+
     }
-    
+
     @Override
     public void onDestroy() {
     	mIsStopped = true;

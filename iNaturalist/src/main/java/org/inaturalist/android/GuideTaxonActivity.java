@@ -340,7 +340,8 @@ public class GuideTaxonActivity extends SherlockActivity {
 
         if (defaultPhoto != null) {
             photoUrl = defaultPhoto.optString("large_url");
-            photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo), defaultPhoto.optString("attribution"))));
+            photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo), defaultPhoto.optString("license_url"), defaultPhoto.optString("attribution"))));
+            photosAttr.setMovementMethod(LinkMovementMethod.getInstance());
         } else {
             photosAttr.setVisibility(View.GONE);
         }

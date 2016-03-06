@@ -1786,6 +1786,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 mObservation.latitude = null;
                 mObservation.longitude = null;
                 mObservation.positional_accuracy = null;
+                mObservation.private_longitude = mObservation.longitude;
+                mObservation.private_latitude = mObservation.latitude;
             }
 
             if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {

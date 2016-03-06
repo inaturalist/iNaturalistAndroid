@@ -49,31 +49,31 @@
             <ImageView
                 android:id="@+id/taxon_image"
                 android:src="@drawable/logo_text"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="220dp" />
             <TextView
                 android:id="@+id/attributions_photos"
-                android:textSize="14dp"
+                android:textSize="11sp"
                 android:textColor="#ffffff"
                 android:text="@string/photo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:layout_alignParentBottom="true"
                 android:background="#88000000"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:lines="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
                 />
 
         </RelativeLayout>
 
         <TextView
             android:id="@+id/displayName"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:textColor="#000000"
+            android:textSize="22dp"
+            android:textColor="#de000000"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:layout_marginTop="10dp"
@@ -83,8 +83,8 @@
 
         <TextView
             android:id="@+id/name"
-            android:textSize="18dp"
-            android:textColor="#888888"
+            android:textSize="15dp"
+            android:textColor="#66000000"
             android:textStyle="italic"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -114,6 +114,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_height="40dp">
             <ImageView
                 android:layout_width="wrap_content"
