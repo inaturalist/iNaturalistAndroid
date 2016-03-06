@@ -315,7 +315,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
                         imageView.setImageBitmap(bitmapImage);
                         final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
                         attacher.update();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
