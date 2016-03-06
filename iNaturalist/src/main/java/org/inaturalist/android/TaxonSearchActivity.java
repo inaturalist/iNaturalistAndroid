@@ -363,7 +363,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"), new UrlImageViewCallback() {
                         @Override
                         public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
+                            if (loadedBitmap != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
                         }
 
                         @Override
