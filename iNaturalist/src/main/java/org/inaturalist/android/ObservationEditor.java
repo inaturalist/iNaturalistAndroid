@@ -808,6 +808,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
 
+        mLocationProgressView.setVisibility(View.GONE);
+        mFindingCurrentLocation.setVisibility(View.GONE);
+        mLocationRefreshButton.setVisibility(View.VISIBLE);
+        mLocationIcon.setVisibility(View.VISIBLE);
+
         if (mGettingLocation) {
             getLocation();
         }
@@ -1191,7 +1196,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
      * Location
      */
 
-    // Kicks of location service
+    // Kicks off location service
     private void getLocation() {
         if (mLocationListener != null) {
             return;
@@ -1259,6 +1264,9 @@ public class ObservationEditor extends SherlockFragmentActivity {
         if (mLocationManager != null && mLocationListener != null) {
             mLocationManager.removeUpdates(mLocationListener);
         }
+
+        mLocationListener = null;
+        mGettingLocation = false;
     }
 
 
