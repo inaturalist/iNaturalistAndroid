@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/usericon" />
+            android:src="@drawable/ic_account_circle_black_24dp" />
 
         <TextView
             android:id="@+id/observed_on"

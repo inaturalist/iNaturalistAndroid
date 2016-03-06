@@ -773,28 +773,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 }
                 
                 refreshCommentsIdSize(commentIdCountText, totalCount);
-
-                clickCatcher.setOnClickListener(new OnClickListener() {
-                	@Override
-                	public void onClick(View v) {
-                		if (!isNetworkAvailable()) {
-                			Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
-                			return;
-                		}
-
-                		// Show the comments/IDs for the observation
-                		Intent intent = new Intent(ObservationListActivity.this, CommentsIdsActivity.class);
-                		intent.putExtra(INaturalistService.OBSERVATION_ID, externalObsId.intValue());
-                		intent.putExtra(INaturalistService.TAXON_ID, taxonId.intValue());
-                		startActivityForResult(intent, COMMENTS_IDS_REQUEST_CODE);
-
-                		// Get the observation's IDs/comments
-                		Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationListActivity.this, INaturalistService.class);
-                		serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, externalObsId.intValue());
-                		startService(serviceIntent);
-
-                	}
-                });   
             }
 
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));

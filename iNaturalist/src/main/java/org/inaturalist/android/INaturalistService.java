@@ -1789,7 +1789,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         	url = HOST + "/observations.json?extra=observation_photos";
         }
         
-        url += "captive=false&page=" + page + "&per_page=" + NEAR_BY_OBSERVATIONS_PER_PAGE;
+        url += "&captive=false&page=" + page + "&per_page=" + NEAR_BY_OBSERVATIONS_PER_PAGE;
 
        if (extras.containsKey("taxon_id")) {
         	url += "&taxon_id=" + extras.getInt("taxon_id");

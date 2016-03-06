@@ -451,8 +451,9 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         	@Override
         	public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
         		JSONObject item = (JSONObject) view.getTag();
-        		Intent intent = new Intent(INaturalistMapActivity.this, ObservationDetails.class);
-        		intent.putExtra("observation", item.toString());
+				Intent intent = new Intent(INaturalistMapActivity.this, ObservationViewerActivity.class);
+				intent.putExtra("observation", item.toString());
+				intent.putExtra("read_only", true);
         		startActivity(intent);  
         	}
         });
@@ -462,9 +463,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         	@Override
         	public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
         		JSONObject item = (JSONObject) view.getTag();
-        		Intent intent = new Intent(INaturalistMapActivity.this, ObservationDetails.class);
-        		intent.putExtra("observation", item.toString());
-        		startActivity(intent);  
+				Intent intent = new Intent(INaturalistMapActivity.this, ObservationViewerActivity.class);
+				intent.putExtra("observation", item.toString());
+				intent.putExtra("read_only", true);
+        		startActivity(intent);
         	}
         });
 
@@ -1000,9 +1002,10 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     public boolean onMarkerClick(Marker marker) {
         JSONObject o = mMarkerObservations.get(marker.getId());
 
-    	Intent intent = new Intent(this, ObservationDetails.class);
+    	Intent intent = new Intent(this, ObservationViewerActivity.class);
     	intent.putExtra("observation", o.toString());
-    	startActivity(intent);  
+		intent.putExtra("read_only", true);
+    	startActivity(intent);
 
         return false;
     }

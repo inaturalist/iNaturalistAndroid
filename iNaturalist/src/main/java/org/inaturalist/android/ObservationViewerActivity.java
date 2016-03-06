@@ -26,6 +26,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -82,6 +84,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class ObservationViewerActivity extends SherlockFragmentActivity {
@@ -178,6 +181,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private ArrayList<BetterJSONObject> mProjects;
     private ImageView mIdArrow;
     private ViewGroup mUnknownLocationContainer;
+    private boolean mReadOnly;
+    private String mObsJson;
 
     @Override
 	protected void onStart() {
@@ -194,28 +199,31 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
 
     private class PhotosViewPagerAdapter extends PagerAdapter {
-        private Cursor mImageCursor;
+        private Cursor mImageCursor = null;
 
         public PhotosViewPagerAdapter() {
-            if (mObservation.id != null) {
-                mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                        ObservationPhoto.PROJECTION,
-                        "_observation_id=? or observation_id=?",
-                        new String[]{mObservation._id.toString(), mObservation.id.toString()},
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
-            } else {
-                mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                        ObservationPhoto.PROJECTION,
-                        "_observation_id=?",
-                        new String[]{mObservation._id.toString()},
-                        ObservationPhoto.DEFAULT_SORT_ORDER);
+
+            if (!mReadOnly) {
+                if (mObservation.id != null) {
+                    mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                            ObservationPhoto.PROJECTION,
+                            "_observation_id=? or observation_id=?",
+                            new String[]{mObservation._id.toString(), mObservation.id.toString()},
+                            ObservationPhoto.DEFAULT_SORT_ORDER);
+                } else {
+                    mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                            ObservationPhoto.PROJECTION,
+                            "_observation_id=?",
+                            new String[]{mObservation._id.toString()},
+                            ObservationPhoto.DEFAULT_SORT_ORDER);
+                }
+                mImageCursor.moveToFirst();
             }
-            mImageCursor.moveToFirst();
         }
 
         @Override
         public int getCount() {
-            return mImageCursor.getCount();
+            return mReadOnly ? mObservation.photos.size() : mImageCursor.getCount();
         }
 
         @Override
@@ -234,15 +242,23 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            mImageCursor.moveToPosition(position);
+            if (!mReadOnly) mImageCursor.moveToPosition(position);
 
             ImageView imageView = new ImageView(ObservationViewerActivity.this);
             imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-            int imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
-            int photoId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
-            String imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            int imageId = 0;
+            int photoId = 0;
+            String imageUrl = null;
+
+            if (!mReadOnly) {
+                photoId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
+                imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            } else {
+                imageUrl = mObservation.photos.get(position).photo_url;
+            }
 
             if (imageUrl != null) {
                 // Online photo
@@ -294,12 +310,16 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(ObservationViewerActivity.this, ObservationPhotosViewer.class);
-                    intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
                     intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
 
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
-                    intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
+                    if (!mReadOnly) {
+                        intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObservation.id);
+                        intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObservation._id);
+                        intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
+                        intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
+                    } else {
+                        intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObsJson);
+                    }
                     startActivity(intent);
                 }
             });
@@ -450,9 +470,17 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 			// Do some setup based on the action being performed.
 			Uri uri = intent.getData();
 			if (uri == null) {
-				Log.e(TAG, "Null URI from intent.getData");
-				finish();
-				return;
+                String obsJson = intent.getStringExtra("observation");
+                mReadOnly = intent.getBooleanExtra("read_only", false);
+                mObsJson = obsJson;
+
+                if (obsJson == null) {
+                    Log.e(TAG, "Null URI from intent.getData");
+                    finish();
+                    return;
+                }
+
+                mObservation = new Observation(new BetterJSONObject(obsJson));
 			}
 
 			mUri = uri;
@@ -466,16 +494,59 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
             mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
             mIdCount = savedInstanceState.getInt("mIdCount");
+            mReadOnly = savedInstanceState.getBoolean("mReadOnly");
+            mObsJson = savedInstanceState.getString("mObsJson");
 		}
 
         if (mCursor == null) {
-            mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
+            if (!mReadOnly) mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
         } else {
             mCursor.requery();
         }
 
         if ((mObservation == null) || (forceReload)) {
-            mObservation = new Observation(mCursor);
+            if (!mReadOnly) mObservation = new Observation(mCursor);
+        }
+
+        if (mReadOnly) {
+            // The content description used to locate the overflow button
+            final String overflowDesc = getString(R.string.overflow_menu);
+            // The top-level window
+            final ViewGroup decor = (ViewGroup) getWindow().getDecorView();
+            // Wait a moment to ensure the overflow button can be located
+            decor.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // The List that contains the matching views
+                    final ArrayList<View> outViews = new ArrayList<>();
+                    // Traverse the view-hierarchy and locate the overflow button
+                    findViewsWithText(outViews, decor, overflowDesc);
+                    // Guard against any errors
+                    if (outViews.isEmpty()) {
+                        return;
+                    }
+                    // Do something with the view
+                    final ImageButton overflow = (ImageButton) outViews.get(0);
+                    overflow.setImageResource(R.drawable.ic_more_vert_black_24dp);
+                }
+
+            }, 1000);
+        }
+    }
+
+    static void findViewsWithText(List<View> outViews, ViewGroup parent, String targetDescription) {
+        if (parent == null || TextUtils.isEmpty(targetDescription)) {
+            return;
+        }
+        final int count = parent.getChildCount();
+        for (int i = 0; i < count; i++) {
+            final View child = parent.getChildAt(i);
+            final CharSequence desc = child.getContentDescription();
+            if (!TextUtils.isEmpty(desc) && targetDescription.equals(desc.toString())) {
+                outViews.add(child);
+            } else if (child instanceof ViewGroup && child.getVisibility() == View.VISIBLE) {
+                findViewsWithText(outViews, (ViewGroup) child, targetDescription);
+            }
         }
     }
 
@@ -983,11 +1054,20 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
 
     private void loadObservationIntoUI() {
-        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-        String username = pref.getString("username", null);
-        String userIconUrl = pref.getString("user_icon_url", null);
+        String userIconUrl = null;
 
-        mUserName.setText(mObservation.user_login);
+        if (mReadOnly) {
+            BetterJSONObject obs = new BetterJSONObject(mObsJson);
+            JSONObject userObj = obs.getJSONObject("user");
+            userIconUrl = userObj.has("user_icon_url") && !userObj.isNull("user_icon_url") ? userObj.optString("user_icon_url", null) : null;
+            mUserName.setText(userObj.optString("login"));
+        } else {
+            SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            String username = pref.getString("username", null);
+            userIconUrl = pref.getString("user_icon_url", null);
+            mUserName.setText(username);
+        }
+
         if (userIconUrl != null) {
             UrlImageViewHelper.setUrlDrawable(mUserPic, userIconUrl, new UrlImageViewCallback() {
                 @Override
@@ -1000,6 +1080,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                     return ImageUtils.getCircleBitmap(centerCrop);
                 }
             });
+        } else {
+            mUserPic.setImageResource(R.drawable.ic_account_circle_black_24dp);
         }
 
         mObservedOn.setText(formatObservedOn(mObservation.observed_on, mObservation.time_observed_at));
@@ -1262,7 +1344,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getSupportMenuInflater().inflate(R.menu.observation_viewer_menu, menu);
+        getSupportMenuInflater().inflate(mReadOnly ? R.menu.observation_viewer_read_only_menu : R.menu.observation_viewer_menu, menu);
         return true;
     }
     
@@ -1270,6 +1352,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("mObservation", mObservation);
         outState.putInt("mIdCount", mIdCount);
+        outState.putBoolean("mReadOnly", mReadOnly);
+        outState.putString("mObsJson", mObsJson);
         super.onSaveInstanceState(outState);
     }
 
