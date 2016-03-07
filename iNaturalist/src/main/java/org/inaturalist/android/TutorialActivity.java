@@ -103,6 +103,7 @@ public class TutorialActivity extends SherlockFragmentActivity {
 
     private static final int ACTION_PREVIOUS = 0x100;
     private static final int ACTION_NEXT = 0x101;
+    private static final int ACTION_SKIP = 0x102;
 
     private TutorialAdapter mAdapter;
     private ViewPager mViewPager;
@@ -153,6 +154,10 @@ public class TutorialActivity extends SherlockFragmentActivity {
         	preferences.edit().putBoolean("first_time", false).apply();
             finish();
             return true;
+        case ACTION_SKIP:
+            preferences.edit().putBoolean("first_time", false).apply();
+            finish();
+            return true;
         case ACTION_NEXT:
             if (mViewPager.getCurrentItem() == mAdapter.getCount() - 1) {
                 // Pressed the finish button
@@ -178,11 +183,16 @@ public class TutorialActivity extends SherlockFragmentActivity {
             MenuItem item = menu.add(Menu.NONE, ACTION_PREVIOUS, Menu.NONE, R.string.previous);
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         }
-        
-        MenuItem item2 = menu.add(Menu.NONE, ACTION_NEXT, Menu.NONE,
+
+        if ((mViewPager.getCurrentItem() < mAdapter.getCount() - 1)) {
+            MenuItem item2 = menu.add(Menu.NONE, ACTION_SKIP, Menu.NONE, R.string.skip2);
+            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        }
+
+        MenuItem item3 = menu.add(Menu.NONE, ACTION_NEXT, Menu.NONE,
                 (mViewPager.getCurrentItem() == mAdapter.getCount() - 1)
                 ? R.string.finish : R.string.next);
-        item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        item3.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return true;
     }
