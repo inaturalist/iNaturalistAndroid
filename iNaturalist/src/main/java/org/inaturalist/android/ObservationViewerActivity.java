@@ -8,14 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -28,7 +25,6 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
@@ -42,13 +38,11 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -71,19 +65,16 @@ import org.lucasr.twowayview.TwoWayView;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -92,15 +83,18 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private static final int REQUEST_CODE_LOGIN = 0x102;
     private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
 
+    public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
+
     private static String TAG = "ObservationViewerActivity";
 
     private static int DATA_QUALITY_CASUAL_GRADE = 0;
     private static int DATA_QUALITY_NEEDS_ID = 1;
-    private static int DATA_QUALITY_RESERCH_GRADE = 2;
+    private static int DATA_QUALITY_RESEARCH_GRADE = 2;
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 	private Observation mObservation;
+    private boolean mFlagAsCaptive;
 
     private Uri mUri;
     private Cursor mCursor;
@@ -496,6 +490,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mIdCount = savedInstanceState.getInt("mIdCount");
             mReadOnly = savedInstanceState.getBoolean("mReadOnly");
             mObsJson = savedInstanceState.getString("mObsJson");
+            mFlagAsCaptive = savedInstanceState.getBoolean("mFlagAsCaptive");
 		}
 
         if (mCursor == null) {
@@ -1011,7 +1006,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             // No photos
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
             reasonText = R.string.casual_grade_add_photo;
-        } else if (mObservation.captive) {
+        } else if (mObservation.captive || mFlagAsCaptive) {
             // Captive
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
             reasonText = R.string.casual_grade_captive;
@@ -1019,14 +1014,14 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             dataQuality = DATA_QUALITY_NEEDS_ID;
             reasonText = R.string.needs_id_more_ids;
         } else {
-            dataQuality = DATA_QUALITY_RESERCH_GRADE;
+            dataQuality = DATA_QUALITY_RESEARCH_GRADE;
         }
 
         // TODO - "Observation is casual grade because the community voted that they cannot identify it from the photo."
         // TODO - "Observation needs finer identifications from the community to become "Research Grade" status.
 
         int gray = Color.parseColor("#CBCBCB");
-        int green = Color.parseColor("#CBCBCB");
+        int green = Color.parseColor("#8DBA30");
         if (dataQuality == DATA_QUALITY_CASUAL_GRADE) {
             mNeedsIdLine.setBackgroundColor(gray);
             mResearchGradeLine.setBackgroundColor(gray);
@@ -1037,10 +1032,25 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mNeedsIdIcon.setImageResource(R.drawable.transparent);
             mResearchGradeIcon.setImageResource(R.drawable.transparent);
         } else if (dataQuality == DATA_QUALITY_NEEDS_ID) {
+            mNeedsIdLine.setBackgroundColor(green);
+            mResearchGradeLine.setBackgroundColor(green);
+            mNeedsIdText.setTextColor(green);
+            mNeedsIdIcon.setBackgroundResource(R.drawable.circular_border_thick_green);
+            mNeedsIdIcon.setImageResource(R.drawable.ic_done_black_24dp);
             mResearchGradeLine.setBackgroundColor(gray);
             mResearchGradeText.setTextColor(gray);
             mResearchGradeIcon.setBackgroundResource(R.drawable.circular_border_thick_gray);
             mResearchGradeIcon.setImageResource(R.drawable.transparent);
+        } else {
+            mNeedsIdLine.setBackgroundColor(green);
+            mResearchGradeLine.setBackgroundColor(green);
+            mNeedsIdText.setTextColor(green);
+            mNeedsIdIcon.setBackgroundResource(R.drawable.circular_border_thick_green);
+            mNeedsIdIcon.setImageResource(R.drawable.ic_done_black_24dp);
+            mResearchGradeLine.setBackgroundColor(green);
+            mResearchGradeText.setTextColor(green);
+            mResearchGradeIcon.setBackgroundResource(R.drawable.circular_border_thick_green);
+            mResearchGradeIcon.setImageResource(R.drawable.ic_done_black_24dp);
         }
 
 
@@ -1331,14 +1341,52 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case android.R.id.home:
-            finish();
+            prepareToExit();
             return true;
         case R.id.edit_observation:
             startActivityForResult(new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class), REQUEST_CODE_EDIT_OBSERVATION);
             return true;
+        case R.id.flag_captive:
+            mFlagAsCaptive = !mFlagAsCaptive;
+            refreshDataQuality();
+            return true;
         default:
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        prepareToExit();
+    }
+
+    private void prepareToExit() {
+        if (!mReadOnly || !mFlagAsCaptive) {
+            finish();
+            return;
+        }
+
+        // Ask the user if he really wants to mark observation as captive
+        mHelper.confirm(getString(R.string.flag_as_captive), getString(R.string.are_you_sure_you_want_to_flag_as_captive),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Flag as captive
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_FLAG_OBSERVATION_AS_CAPTIVE, null, ObservationViewerActivity.this, INaturalistService.class);
+                        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                        startService(serviceIntent);
+
+                        Toast.makeText(getApplicationContext(), R.string.observation_flagged_as_captive, Toast.LENGTH_LONG).show();
+                        setResult(RESULT_FLAGGED_AS_CAPTIVE);
+                        finish();
+                    }
+                },
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }, R.string.yes, R.string.no);
     }
 
     @Override
@@ -1347,13 +1395,23 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         getSupportMenuInflater().inflate(mReadOnly ? R.menu.observation_viewer_read_only_menu : R.menu.observation_viewer_menu, menu);
         return true;
     }
-    
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (mReadOnly) {
+            menu.findItem(R.id.flag_captive).setChecked(mFlagAsCaptive);
+        }
+        return true;
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("mObservation", mObservation);
         outState.putInt("mIdCount", mIdCount);
         outState.putBoolean("mReadOnly", mReadOnly);
         outState.putString("mObsJson", mObsJson);
+        outState.putBoolean("mFlagAsCaptive", mFlagAsCaptive);
         super.onSaveInstanceState(outState);
     }
 

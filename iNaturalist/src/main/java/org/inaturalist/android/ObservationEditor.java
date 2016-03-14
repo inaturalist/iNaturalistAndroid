@@ -901,8 +901,10 @@ public class ObservationEditor extends SherlockFragmentActivity {
             mObservation.geoprivacy = selectedValue;
 
             if (selectedValue.equals("private") || selectedValue.equals("obscured")) {
-                mObservation.private_longitude = mObservation.longitude;
-                mObservation.private_latitude = mObservation.latitude;
+                if ((mObservation.longitude != null) && (mObservation.latitude != null)) {
+                    mObservation.private_longitude = mObservation.longitude;
+                    mObservation.private_latitude = mObservation.latitude;
+                }
             }
         }
 

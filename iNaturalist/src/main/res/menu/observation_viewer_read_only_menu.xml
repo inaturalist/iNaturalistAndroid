@@ -3,6 +3,7 @@
     <item
         android:id="@+id/flag_captive"
         android:showAsAction="never"
+        android:checkable="true"
         android:title="@string/flag_as_captive"
         android:orderInCategory="0"/>
 

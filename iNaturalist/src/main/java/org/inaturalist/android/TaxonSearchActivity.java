@@ -102,9 +102,15 @@ public class TaxonSearchActivity extends SherlockListActivity {
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
-            StringBuilder sb = new StringBuilder(INaturalistService.HOST + "/taxa/search.json");
+            StringBuilder sb = new StringBuilder(INaturalistService.API_HOST + "/taxa/autocomplete");
             sb.append("?q=");
             sb.append(URLEncoder.encode(input, "utf8"));
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            Locale deviceLocale = getResources().getConfiguration().locale;
+            String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
+            sb.append("&locale=");
+            sb.append(deviceLocale);
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
@@ -130,7 +136,8 @@ public class TaxonSearchActivity extends SherlockListActivity {
         }
 
         try {
-            JSONArray predsJsonArray = new JSONArray(jsonResults.toString());
+            JSONObject resultsObject = new JSONObject(jsonResults.toString());
+            JSONArray predsJsonArray = resultsObject.getJSONArray("results");
 
             // Extract the Place descriptions from the results
             resultList = new ArrayList<JSONObject>(predsJsonArray.length());
@@ -290,6 +297,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
                 
                 return filter;
         }
+
         
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -310,42 +318,6 @@ public class TaxonSearchActivity extends SherlockListActivity {
             }
 
             // Get the taxon display name according to device locale
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
-
-            try {
-				JSONArray taxonNames = item.getJSONArray("taxon_names");
-                int minPosition = Integer.MAX_VALUE;
-				for (int i = 0; i < taxonNames.length(); i++) {
-					JSONObject taxonName = taxonNames.getJSONObject(i);
-					String lexicon = taxonName.getString("lexicon");
-                    Integer currentPosition = taxonName.getInt("position");
-					if ((lexicon.equals(deviceLexicon)) && (currentPosition < minPosition)) {
-						// Found the appropriate lexicon for the taxon
-						displayName = taxonName.getString("name");
-                        minPosition = currentPosition;
-					}
-				}
-			} catch (JSONException e3) {
-				e3.printStackTrace();
-			}
-
-            if (displayName == null) {
-            	// Couldn't extract the display name from the taxon names list - use the default one
-            	try {
-            		displayName = item.getString("unique_name");
-            	} catch (JSONException e2) {
-            		displayName = "unknown";
-            	}
-            	try {
-            		defaultName = item.getJSONObject("default_name");
-            		displayName = defaultName.getString("name");
-            	} catch (JSONException e1) {
-            		// alas
-            	}
-            }
-            
             try {
                 ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
                 TextView idName = (TextView) view.findViewById(R.id.id_name);
@@ -357,20 +329,25 @@ public class TaxonSearchActivity extends SherlockListActivity {
                     idTaxonName.setVisibility(View.GONE);
                     idPic.setImageResource(R.drawable.iconic_taxon_unknown);
                 } else {
-                    idName.setText(displayName);
+                    idName.setText(getTaxonName(item));
                     idTaxonName.setText(item.getString("name"));
                     idTaxonName.setTypeface(null, Typeface.ITALIC);
-                    UrlImageViewHelper.setUrlDrawable(idPic, item.getString("image_url"), new UrlImageViewCallback() {
-                        @Override
-                        public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                            if (loadedBitmap != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
-                        }
+                    if (item.has("default_photo") && !item.isNull("default_photo")) {
+                        JSONObject defaultPhoto = item.getJSONObject("default_photo");
+                        UrlImageViewHelper.setUrlDrawable(idPic, defaultPhoto.getString("square_url"), new UrlImageViewCallback() {
+                            @Override
+                            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                                if (loadedBitmap != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
+                            }
 
-                        @Override
-                        public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                            return loadedBitmap;
-                        }
-                    });
+                            @Override
+                            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                                return loadedBitmap;
+                            }
+                        });
+                    } else {
+                        idPic.setImageResource(R.drawable.iconic_taxon_unknown);
+                    }
                 }
                 view.setTag(item);
             } catch (JSONException e) {
@@ -467,51 +444,15 @@ public class TaxonSearchActivity extends SherlockListActivity {
             Bundle bundle = new Bundle();
 
             if (item != null) {
-                String displayName = null;
-                // Get the taxon display name according to configuration of the current iNat network
-                String inatNetwork = mApp.getInaturalistNetworkMember();
-                String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
-                int taxonNamePosition = Integer.MAX_VALUE;
-                try {
-                    JSONArray taxonNames = item.getJSONArray("taxon_names");
-                    for (int i = 0; i < taxonNames.length(); i++) {
-                        JSONObject taxonName = taxonNames.getJSONObject(i);
-                        String lexicon = taxonName.getString("lexicon");
-                        int currentTaxonNamePosition = taxonName.getInt("position");
-                        if ((lexicon.equals(networkLexicon)) && (currentTaxonNamePosition < taxonNamePosition)) {
-                            // Found the appropriate lexicon for the taxon
-                            displayName = taxonName.getString("name");
-                            taxonNamePosition = currentTaxonNamePosition;
-                        }
-                    }
-                } catch (JSONException e3) {
-                    e3.printStackTrace();
-                }
-
-                if (displayName == null) {
-                    // Couldn't extract the display name from the taxon names list - use the default one
-                    try {
-                        displayName = item.getString("unique_name");
-                    } catch (JSONException e2) {
-                        displayName = "unknown";
-                    }
-                    try {
-                        JSONObject defaultName = item.getJSONObject("default_name");
-                        displayName = defaultName.getString("name");
-                    } catch (JSONException e1) {
-                        // alas
-                    }
-                }
-
                 if (item.optBoolean("is_custom", false)) {
                     // Custom named taxon
                     bundle.putString(TaxonSearchActivity.ID_NAME, item.getString("name"));
                     bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, true);
                 } else {
-                    bundle.putString(TaxonSearchActivity.ID_NAME, displayName);
+                    bundle.putString(TaxonSearchActivity.ID_NAME, getTaxonName(item));
                     bundle.putString(TaxonSearchActivity.TAXON_NAME, item.getString("name"));
-                    bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.getString("iconic_taxon_name"));
-                    bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getString("image_url"));
+                    bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, item.optString("iconic_taxon_name"));
+                    if (item.has("default_photo") && !item.isNull("default_photo")) bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getJSONObject("default_photo").getString("square_url"));
                     bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
                     bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
 
@@ -540,4 +481,10 @@ public class TaxonSearchActivity extends SherlockListActivity {
          return activeNetworkInfo != null && activeNetworkInfo.isConnected();
      }
 
+
+    private String getTaxonName(JSONObject item) {
+        return item.optString("preferred_common_name",
+                item.optString("english_common_name",
+                        item.optString("matched_term")));
+    }
 }

@@ -139,6 +139,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
+    public static String API_HOST = "https://api.inaturalist.org/v1";
     public static String USER_AGENT = "iNaturalist/" + INaturalistApp.VERSION + " (" +
         "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
         "SDK " + android.os.Build.VERSION.SDK_INT + "; " +
@@ -154,6 +155,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
     public static String ACTION_GET_OBSERVATION = "get_observation";
+    public static String ACTION_FLAG_OBSERVATION_AS_CAPTIVE = "flag_observation_as_captive";
     public static String ACTION_GET_CHECK_LIST = "get_check_list";
     public static String ACTION_JOIN_PROJECT = "join_project";
     public static String ACTION_LEAVE_PROJECT = "leave_project";
@@ -495,7 +497,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
                 reply.putExtra(CHECK_LIST_RESULT, checkList);
                 sendBroadcast(reply);
- 
+
+            } else if (action.equals(ACTION_FLAG_OBSERVATION_AS_CAPTIVE)) {
+                int id = intent.getExtras().getInt(OBSERVATION_ID);
+                flagObservationAsCaptive(id);
+
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 Observation observation = getObservation(id);
@@ -1456,7 +1462,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
         }
     }
-    
+
+
+    public void flagObservationAsCaptive(int obsId) throws AuthenticationException {
+        post(String.format("%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), null);
+    }
+
     public void joinProject(int projectId) throws AuthenticationException {
         post(String.format("%s/projects/%d/join.json", HOST, projectId), null);
         

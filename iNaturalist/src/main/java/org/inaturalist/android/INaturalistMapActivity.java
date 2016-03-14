@@ -185,6 +185,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     private int mObservationGridOffset;
     private int mObservationGridIndex;
 
+	private static final int VIEW_OBSERVATION_REQUEST_CODE = 0x100;
 
     @Override
 	protected void onStart()
@@ -454,7 +455,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				Intent intent = new Intent(INaturalistMapActivity.this, ObservationViewerActivity.class);
 				intent.putExtra("observation", item.toString());
 				intent.putExtra("read_only", true);
-        		startActivity(intent);  
+				startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
         	}
         });
 
@@ -466,7 +467,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				Intent intent = new Intent(INaturalistMapActivity.this, ObservationViewerActivity.class);
 				intent.putExtra("observation", item.toString());
 				intent.putExtra("read_only", true);
-        		startActivity(intent);
+				startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
         	}
         });
 
@@ -1005,7 +1006,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     	Intent intent = new Intent(this, ObservationViewerActivity.class);
     	intent.putExtra("observation", o.toString());
 		intent.putExtra("read_only", true);
-    	startActivity(intent);
+    	startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
 
         return false;
     }
@@ -1908,4 +1909,16 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         return prefs.getString("username", null) != null;
     }
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == VIEW_OBSERVATION_REQUEST_CODE) {
+			if (resultCode == ObservationViewerActivity.RESULT_FLAGGED_AS_CAPTIVE) {
+				// Refresh the results (since the user flagged the result as captive)
+                loadObservations();
+				return;
+			}
+		}
+	}
  }
