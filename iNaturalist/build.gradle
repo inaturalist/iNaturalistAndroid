@@ -46,6 +46,7 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:multidex:1.0.0'
     compile project(':library')
     compile project(':androidswitchbackport')
     compile project(':urlImageViewHelper')

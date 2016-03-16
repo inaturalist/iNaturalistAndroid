@@ -42,6 +42,8 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -49,7 +51,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-public class INaturalistApp extends Application {
+public class INaturalistApp extends MultiDexApplication {
     private final static String TAG = "INAT: Application";
     private SharedPreferences mPrefs;
     private NotificationManager mNotificationManager;
@@ -90,6 +92,12 @@ public class INaturalistApp extends Application {
 
     public interface INotificationCallback {
     	public void onNotification(String title, String content);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
     
     @Override
