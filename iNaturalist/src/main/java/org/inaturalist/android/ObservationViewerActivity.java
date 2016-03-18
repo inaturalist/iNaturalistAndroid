@@ -868,8 +868,13 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setAllGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
+        Double lat, lon;
+        Integer acc;
+        lat = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
+        lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
+        acc = mObservation.positional_accuracy;
 
-        if (((mObservation.latitude != null) && (mObservation.longitude != null)) || ((mObservation.private_latitude != null) && (mObservation.private_longitude != null))) {
+        if (lat != null && lon != null) {
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
@@ -878,13 +883,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                     startActivity(intent);
                 }
             });
-
-            Double lat, lon;
-            Integer acc;
-
-            lon = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open")) ? mObservation.private_longitude : mObservation.longitude;
-            lat = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
-            acc = mObservation.positional_accuracy;
 
             LatLng latLng = new LatLng(lat, lon);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
