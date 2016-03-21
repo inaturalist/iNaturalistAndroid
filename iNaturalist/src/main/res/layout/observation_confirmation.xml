@@ -208,7 +208,7 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:minHeight="50dp"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textCapSentences"
             android:layout_toRightOf="@id/notes_icon"
             android:layout_toEndOf="@id/notes_icon"
             android:isScrollContainer="true"
