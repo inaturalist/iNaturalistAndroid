@@ -255,6 +255,18 @@ public class TaxonSearchActivity extends SherlockListActivity {
                         public void run() {
                             if (results != null && results.count > 0 && results.values != null) {
                                 mResultList = (ArrayList<JSONObject>) results.values;
+                                if ((mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
+                                    // Add in the current search string as a custom observation
+                                    JSONObject customObs = new JSONObject();
+                                    try {
+                                        customObs.put("is_custom", true);
+                                        customObs.put("name", mCurrentSearchString);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    mResultList.add(0, customObs);
+                                }
+
                                 if (mShowUnknown) mResultList.add(0, null);
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -262,12 +274,11 @@ public class TaxonSearchActivity extends SherlockListActivity {
                                         notifyDataSetChanged();
                                     }
                                 });
-                            }
-                            else {
+                            } else {
                                 if ((results != null) && (results.values != null)) {
                                     mResultList = (ArrayList<JSONObject>) results.values;
-                                    if ((mResultList.size() == 0) && (mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
-                                        // No results - add in the current search string as a custom observation
+                                    if ((mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
+                                        // Add in the current search string as a custom observation
                                         JSONObject customObs = new JSONObject();
                                         try {
                                             customObs.put("is_custom", true);

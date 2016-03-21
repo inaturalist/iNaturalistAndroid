@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,6 +48,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.cocosw.bottomsheet.BottomSheet;
+import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -86,6 +88,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
 
     private static String TAG = "ObservationViewerActivity";
+
+    public final static String SHOW_COMMENTS = "show_comments";
 
     private static int DATA_QUALITY_CASUAL_GRADE = 0;
     private static int DATA_QUALITY_NEEDS_ID = 1;
@@ -177,6 +181,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private ViewGroup mUnknownLocationContainer;
     private boolean mReadOnly;
     private String mObsJson;
+    private boolean mShowComments;
+    private int mCommentCount;
 
     @Override
 	protected void onStart() {
@@ -290,12 +296,23 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                     }
 
                     if (bitmapImage != null) {
-                        if (orientation != 0) {
-                            Matrix matrix = new Matrix();
-                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                        int newHeight = mPhotosViewPager.getMeasuredHeight();
+                        float ratio = ((float)bitmapImage.getWidth()) / bitmapImage.getHeight();
+                        int newWidth = (int) (newHeight * ratio);
+
+                        try {
+                            if (orientation != 0) {
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate((float) orientation, newWidth / 2, newHeight / 2);
+                                bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight, matrix, true);
+                            } else if (newHeight < bitmapImage.getHeight()) {
+                                bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight);
+                            }
+                            imageView.setImageBitmap(bitmapImage);
+                        } catch (OutOfMemoryError exception) {
+                            // Nothing we can do in this case...
+                            Crashlytics.logException(exception);
                         }
-                        imageView.setImageBitmap(bitmapImage);
                     }
                 }
             }
@@ -463,6 +480,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 		if (savedInstanceState == null) {
 			// Do some setup based on the action being performed.
 			Uri uri = intent.getData();
+            mShowComments = intent.getBooleanExtra(SHOW_COMMENTS, false);
 			if (uri == null) {
                 String obsJson = intent.getStringExtra("observation");
                 mReadOnly = intent.getBooleanExtra("read_only", false);
@@ -488,6 +506,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
             mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
             mIdCount = savedInstanceState.getInt("mIdCount");
+            mCommentCount = savedInstanceState.getInt("mCommentCount");
             mReadOnly = savedInstanceState.getBoolean("mReadOnly");
             mObsJson = savedInstanceState.getString("mObsJson");
             mFlagAsCaptive = savedInstanceState.getBoolean("mFlagAsCaptive");
@@ -706,6 +725,13 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             return;
         }
 
+        // Update observation comment/id count
+        mObservation.comments_count = mObservation.last_comments_count = mCommentCount;
+        mObservation.identifications_count = mObservation.last_identifications_count = mIdCount;
+        ContentValues cv = mObservation.getContentValues();
+        cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+        getContentResolver().update(mObservation.getUri(), cv, null, null);
+
         mLoginToAddCommentId.setVisibility(View.GONE);
         mActivityLoginSignUpButtons.setVisibility(View.GONE);
         mSyncToAddCommentsIds.setVisibility(View.GONE);
@@ -869,7 +895,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mMap.getUiSettings().setAllGesturesEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
-        if (((mObservation.latitude != null) && (mObservation.longitude != null)) || ((mObservation.private_latitude != null) && (mObservation.private_longitude != null))) {
+        Double lat, lon;
+        lon = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open")) ? mObservation.private_longitude : mObservation.longitude;
+        lat = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
+
+        if ((lon != null) && (lat != null)) {
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
@@ -879,11 +909,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 }
             });
 
-            Double lat, lon;
             Integer acc;
 
-            lon = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open")) ? mObservation.private_longitude : mObservation.longitude;
-            lat = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
             acc = mObservation.positional_accuracy;
 
             LatLng latLng = new LatLng(lat, lon);
@@ -900,12 +927,12 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 // No place guess - show coordinates instead
                 if (acc == null) {
                     mLocationText.setText(String.format(getString(R.string.location_coords_no_acc),
-                            String.format("%.5f...", lat),
-                            String.format("%.5f...", lon)));
+                            String.format("%.3f...", lat),
+                            String.format("%.3f...", lon)));
                 } else {
                     mLocationText.setText(String.format(getString(R.string.location_coords),
-                            String.format("%.5f...", lat),
-                            String.format("%.5f...", lon),
+                            String.format("%.3f...", lat),
+                            String.format("%.3f...", lon),
                             acc > 999 ? ">1 km" : String.format("%dm", (int) acc)));
                 }
             } else{
@@ -949,9 +976,16 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
 
-        mInfoTabContainer.setVisibility(View.VISIBLE);
-        mActivityTabContainer.setVisibility(View.GONE);
-        mFavoritesTabContainer.setVisibility(View.GONE);
+        if (mShowComments) {
+            mInfoTabContainer.setVisibility(View.GONE);
+            mActivityTabContainer.setVisibility(View.VISIBLE);
+            mFavoritesTabContainer.setVisibility(View.GONE);
+            mTabHost.setCurrentTab(1);
+        } else {
+            mInfoTabContainer.setVisibility(View.VISIBLE);
+            mActivityTabContainer.setVisibility(View.GONE);
+            mFavoritesTabContainer.setVisibility(View.GONE);
+        }
 
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -1409,6 +1443,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("mObservation", mObservation);
         outState.putInt("mIdCount", mIdCount);
+        outState.putInt("mCommentCount", mCommentCount);
         outState.putBoolean("mReadOnly", mReadOnly);
         outState.putString("mObsJson", mObsJson);
         outState.putBoolean("mFlagAsCaptive", mFlagAsCaptive);
@@ -1450,6 +1485,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             ArrayList<BetterJSONObject> projectResults = new ArrayList<BetterJSONObject>();
 
             mIdCount = 0;
+            mCommentCount = 0;
 
 	        try {
                 for (int i = 0; i < projects.length(); i++) {
@@ -1460,6 +1496,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 	                BetterJSONObject comment = new BetterJSONObject(comments.getJSONObject(i));
 	                comment.put("type", "comment");
 	                results.add(comment);
+                    mCommentCount++;
 	            }
 	            for (int i = 0; i < ids.length(); i++) {
 	                BetterJSONObject id = new BetterJSONObject(ids.getJSONObject(i));

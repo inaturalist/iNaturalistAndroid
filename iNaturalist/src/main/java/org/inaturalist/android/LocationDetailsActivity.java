@@ -6,8 +6,12 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -23,13 +27,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LocationDetailsActivity extends SherlockFragmentActivity implements LocationListener {
     public final static String TAG = "LocationDetailsActivity";
     protected static final String OBSERVATION = "observation";
     private GoogleMap mMap;
     private INaturalistApp mApp;
-	private double mLatitude;
-	private double mLongitude;
+	private Double mLatitude;
+	private Double mLongitude;
 	private boolean mZoomToLocation = false;
 	private LocationManager mLocationManager;
 	private double mAccuracy;
@@ -62,7 +69,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         mLatitude = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
         mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
 
-        if ((mLongitude != 0) && (mLatitude != 0) && (savedInstanceState == null)) {
+        if ((mLongitude != null) && (mLatitude != null) && (savedInstanceState == null)) {
         	mZoomToLocation = true;
         }
         
@@ -76,6 +83,28 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.location);
 
+        // The content description used to locate the overflow button
+        final String overflowDesc = getString(R.string.overflow_menu);
+        // The top-level window
+        final ViewGroup decor = (ViewGroup) getWindow().getDecorView();
+        // Wait a moment to ensure the overflow button can be located
+        decor.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // The List that contains the matching views
+                final ArrayList<View> outViews = new ArrayList<>();
+                // Traverse the view-hierarchy and locate the overflow button
+                findViewsWithText(outViews, decor, overflowDesc);
+                // Guard against any errors
+                if (outViews.isEmpty()) {
+                    return;
+                }
+                // Do something with the view
+                final ImageButton overflow = (ImageButton) outViews.get(0);
+                overflow.setImageResource(R.drawable.ic_more_vert_black_24dp);
+            }
+
+        }, 1000);
         
         if (savedInstanceState != null) {
             mObservation = (Observation) savedInstanceState.getSerializable("observation");
@@ -90,7 +119,21 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         mLocationCoordinates = (TextView) findViewById(R.id.location_coordinates);
     }
 
-
+    static void findViewsWithText(List<View> outViews, ViewGroup parent, String targetDescription) {
+        if (parent == null || TextUtils.isEmpty(targetDescription)) {
+            return;
+        }
+        final int count = parent.getChildCount();
+        for (int i = 0; i < count; i++) {
+            final View child = parent.getChildAt(i);
+            final CharSequence desc = child.getContentDescription();
+            if (!TextUtils.isEmpty(desc) && targetDescription.equals(desc.toString())) {
+                outViews.add(child);
+            } else if (child instanceof ViewGroup && child.getVisibility() == View.VISIBLE) {
+                findViewsWithText(outViews, (ViewGroup) child, targetDescription);
+            }
+        }
+    }
     @Override 
     public void onResume() {
         super.onResume();
@@ -99,10 +142,10 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         }
         setUpMapIfNeeded();
         
-        double longitude = mLongitude;
-        double latitude = mLatitude;
+        Double longitude = mLongitude;
+        Double latitude = mLatitude;
         
-        if ((longitude != 0) && (latitude != 0)) {
+        if ((longitude != null) && (latitude != null)) {
         	LatLng location = new LatLng(latitude, longitude);
 
         	int zoom = 15;

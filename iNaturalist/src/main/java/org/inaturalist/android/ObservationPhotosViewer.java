@@ -305,10 +305,17 @@ public class ObservationPhotosViewer extends SherlockActivity {
                         bitmapImage = MediaStore.Images.Media.getBitmap(
                                 getContentResolver(),
                                 ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId));
+
+                        int newHeight = mViewPager.getMeasuredHeight() * 2;
+                        float ratio = ((float)bitmapImage.getWidth()) / bitmapImage.getHeight();
+                        int newWidth = (int) (newHeight * ratio);
+
                         if (orientation != 0) {
                             Matrix matrix = new Matrix();
-                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                            matrix.setRotate((float) orientation, newWidth / 2, newHeight / 2);
+                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight, matrix, true);
+                        } else if (newHeight < bitmapImage.getHeight()) {
+                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight);
                         }
                         // Scale down the image if it's too big for the GL renderer
                         bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);

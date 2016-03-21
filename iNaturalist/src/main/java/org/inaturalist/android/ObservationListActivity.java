@@ -654,7 +654,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
             ImageView image = (ImageView) view.findViewById(R.id.image);
             c.moveToPosition(position);
-            Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+            final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
             final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
 
             refreshPhotoInfo(obsId);
@@ -773,6 +773,22 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 }
                 
                 refreshCommentsIdSize(commentIdCountText, totalCount);
+
+                clickCatcher.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!isNetworkAvailable()) {
+                            Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        // Show the comments/IDs for the observation
+                        Uri uri = ContentUris.withAppendedId(getIntent().getData(), obsId);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerActivity.class);
+                        intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
+                        startActivityForResult(intent, COMMENTS_IDS_REQUEST_CODE);
+                    }
+                });
             }
 
             Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
@@ -980,6 +996,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == COMMENTS_IDS_REQUEST_CODE) {
+            if (true) { return; }
             int observationId = data.getIntExtra(INaturalistService.OBSERVATION_ID, 0);
             
          	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 

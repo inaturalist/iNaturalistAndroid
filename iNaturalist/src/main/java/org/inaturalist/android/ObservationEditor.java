@@ -3,7 +3,6 @@ package org.inaturalist.android;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.cocosw.bottomsheet.BottomSheet;
-import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -1656,13 +1655,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
                     promptImportPhotoMetadata(selectedImageUri);
                }
 
-                try {
-                    Crashlytics.logException(new Exception("takePhoto"));
-                    Crashlytics.getInstance().crash();
-                } catch (Exception exc) {
-
-                }
-                
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
             } else {
@@ -1991,9 +1983,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         	Log.e(TAG, "Couldn't update image orientation for path: " + uri);
             SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
             String username = pref.getString("username", null);
-            Crashlytics.log(Log.ERROR, TAG, String.format("Couldn't update image orientation for uri: %s; path: %s; username: %s; degress: %d; exception: %s",
-                    uri, imgFilePath, username, degrees, e));
-            Crashlytics.logException(e);
         }
     }
     
