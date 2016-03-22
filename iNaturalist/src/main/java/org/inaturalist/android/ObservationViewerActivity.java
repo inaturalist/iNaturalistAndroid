@@ -725,13 +725,14 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             return;
         }
 
-        // Update observation comment/id count
+        // Update observation comment/id count for signed in users observations
         mObservation.comments_count = mObservation.last_comments_count = mCommentCount;
         mObservation.identifications_count = mObservation.last_identifications_count = mIdCount;
-        ContentValues cv = mObservation.getContentValues();
-        cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
-        getContentResolver().update(mObservation.getUri(), cv, null, null);
-
+        if (mObservation.getUri() != null) {
+            ContentValues cv = mObservation.getContentValues();
+            cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+            getContentResolver().update(mObservation.getUri(), cv, null, null);
+        }
         mLoginToAddCommentId.setVisibility(View.GONE);
         mActivityLoginSignUpButtons.setVisibility(View.GONE);
         mSyncToAddCommentsIds.setVisibility(View.GONE);
