@@ -1294,13 +1294,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if ((location != null) && (location.length() > 0)) {
-                                    mLocationGuess.setText(location);
-                                    mObservation.place_guess = location.toString().trim();
-                                } else {
-                                    mLocationGuess.setText(R.string.set_location);
-                                    mObservation.place_guess = null;
-                                }
+                                setPlaceGuess(location.toString());
                             }
                         });
 
@@ -1310,6 +1304,17 @@ public class ObservationEditor extends SherlockFragmentActivity {
                 }
             }
         })).start();
+    }
+
+    private void setPlaceGuess(String placeGuess) {
+        placeGuess = placeGuess.trim();
+        if ((placeGuess != null) && (placeGuess.length() > 0)) {
+            mLocationGuess.setText(placeGuess);
+            mObservation.place_guess = placeGuess;
+        } else {
+            mLocationGuess.setText(R.string.set_location);
+            mObservation.place_guess = null;
+        }
     }
 
     private void setCurrentLocation(Location location) {
@@ -1346,6 +1351,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
         if (isNetworkAvailable()) {
             guessLocation();
+        } else {
+            setPlaceGuess(null);
         }
     }
 
