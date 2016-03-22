@@ -65,6 +65,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lucasr.twowayview.TwoWayView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -278,35 +279,34 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                         MediaStore.Images.Thumbnails.getThumbnail(
                                 getContentResolver(),
                                 photoId,
-                                MediaStore.Images.Thumbnails.FULL_SCREEN_KIND,
+                                MediaStore.Images.Thumbnails.MINI_KIND,
                                 (BitmapFactory.Options) null);
                     } catch (Exception exc) {
                         // In case of unsupported thumbnail kind
                     }
 
+                    int newHeight = mPhotosViewPager.getMeasuredHeight();
+                    int newWidth = mPhotosViewPager.getMeasuredWidth();
+
                     if (bitmapImage == null) {
                         // Couldn't retrieve the thumbnail - get the original image
                         try {
-                            bitmapImage = MediaStore.Images.Media.getBitmap(
-                                    getContentResolver(),
-                                    ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId));
+                            bitmapImage = ImageUtils.decodeSampledBitmapFromUri(getContentResolver(),
+                                    ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId),
+                                    newWidth, newHeight);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
 
                     if (bitmapImage != null) {
-                        int newHeight = mPhotosViewPager.getMeasuredHeight();
-                        float ratio = ((float)bitmapImage.getWidth()) / bitmapImage.getHeight();
-                        int newWidth = (int) (newHeight * ratio);
-
-                        try {
+                       try {
                             if (orientation != 0) {
+                                int height = bitmapImage.getHeight();
+                                int width = bitmapImage.getWidth();
                                 Matrix matrix = new Matrix();
-                                matrix.setRotate((float) orientation, newWidth / 2, newHeight / 2);
-                                bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight, matrix, true);
-                            } else if (newHeight < bitmapImage.getHeight()) {
-                                bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight);
+                                matrix.setRotate((float) orientation, width, height);
+                                bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, width, height, matrix, true);
                             }
                             imageView.setImageBitmap(bitmapImage);
                         } catch (OutOfMemoryError exception) {

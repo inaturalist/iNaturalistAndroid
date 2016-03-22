@@ -302,21 +302,21 @@ public class ObservationPhotosViewer extends SherlockActivity {
                     int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
                     Bitmap bitmapImage = null;
                     try {
-                        bitmapImage = MediaStore.Images.Media.getBitmap(
-                                getContentResolver(),
-                                ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId));
+                        int newHeight = mViewPager.getMeasuredHeight();
+                        int newWidth = mViewPager.getMeasuredHeight();
 
-                        int newHeight = mViewPager.getMeasuredHeight() * 2;
-                        float ratio = ((float)bitmapImage.getWidth()) / bitmapImage.getHeight();
-                        int newWidth = (int) (newHeight * ratio);
+                        bitmapImage = ImageUtils.decodeSampledBitmapFromUri(getContentResolver(),
+                                ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId),
+                                newWidth, newHeight);
 
                         if (orientation != 0) {
                             Matrix matrix = new Matrix();
-                            matrix.setRotate((float) orientation, newWidth / 2, newHeight / 2);
-                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight, matrix, true);
-                        } else if (newHeight < bitmapImage.getHeight()) {
-                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, newWidth, newHeight);
+                            int height = bitmapImage.getHeight();
+                            int width = bitmapImage.getWidth();
+                            matrix.setRotate((float) orientation, width, height);
+                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, width, height, matrix, true);
                         }
+
                         // Scale down the image if it's too big for the GL renderer
                         bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);
                         imageView.setImageBitmap(bitmapImage);
