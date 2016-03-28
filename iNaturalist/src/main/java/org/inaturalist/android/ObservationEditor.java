@@ -1307,7 +1307,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
     }
 
     private void setPlaceGuess(String placeGuess) {
-        placeGuess = placeGuess.trim();
+        placeGuess = placeGuess != null ? placeGuess.trim() : null;
         if ((placeGuess != null) && (placeGuess.length() > 0)) {
             mLocationGuess.setText(placeGuess);
             mObservation.place_guess = placeGuess;

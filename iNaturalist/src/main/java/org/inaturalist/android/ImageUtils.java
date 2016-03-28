@@ -202,13 +202,18 @@ public class ImageUtils {
         int inSampleSize = 1;
 
         if (height > reqHeight || width > reqWidth) {
-            if (width > height) {
-                inSampleSize = Math.round((float)height / (float)reqHeight);
-            } else {
-                inSampleSize = Math.round((float)width / (float)reqWidth);
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
             }
         }
-        return inSampleSize;
+        return inSampleSize * 4;
     }
 
     public static Bitmap decodeSampledBitmapFromUri(ContentResolver contentResolver, Uri uri, int reqWidth, int reqHeight) {
@@ -227,6 +232,8 @@ public class ImageUtils {
 
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
+        // This decreases in-memory byte-storage per pixel
+        options.inPreferredConfig = Bitmap.Config.ALPHA_8;
         try {
             return BitmapFactory.decodeStream(contentResolver.openInputStream(uri), null, options);
         } catch (FileNotFoundException e) {

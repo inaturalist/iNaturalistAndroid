@@ -342,7 +342,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         TextView photosAttr = (TextView) findViewById(R.id.attributions_photos);
 
         if (defaultPhoto != null) {
-            photoUrl = defaultPhoto.optString("large_url");
+            photoUrl = defaultPhoto.optString("native_page_url");
             photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo), photoUrl, defaultPhoto.optString("attribution"))));
             photosAttr.setMovementMethod(LinkMovementMethod.getInstance());
             stripUnderlines(photosAttr);
