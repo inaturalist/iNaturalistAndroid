@@ -1529,6 +1529,8 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
                 if (isNetworkAvailable()) {
                     guessLocation();
+                } else {
+                    setPlaceGuess(null);
                 }
 
             }
@@ -1804,6 +1806,14 @@ public class ObservationEditor extends SherlockFragmentActivity {
             if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
                 mObservation.private_longitude = mObservation.longitude;
                 mObservation.private_latitude = mObservation.latitude;
+            }
+
+            if (mObservation.latitude_changed()) {
+                if (isNetworkAvailable()) {
+                    guessLocation();
+                } else {
+                    setPlaceGuess(null);
+                }
             }
 
             String datetime = exif.getAttribute(ExifInterface.TAG_DATETIME);
