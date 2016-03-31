@@ -484,6 +484,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 			if (uri == null) {
                 String obsJson = intent.getStringExtra("observation");
                 mReadOnly = intent.getBooleanExtra("read_only", false);
+                boolean reloadObs = intent.getBooleanExtra("reload", false);
                 mObsJson = obsJson;
 
                 if (obsJson == null) {
@@ -493,6 +494,20 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 }
 
                 mObservation = new Observation(new BetterJSONObject(obsJson));
+
+                if (reloadObs) {
+                    // Reload observation from server
+                    if ((mObservation.id != null) && (mObservationReceiver == null)) {
+                        mObservationReceiver = new ObservationReceiver();
+                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                        Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+                        registerReceiver(mObservationReceiver, filter);
+
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
+                        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                        startService(serviceIntent);
+                    }
+                }
 			}
 
 			mUri = uri;
@@ -1279,6 +1294,19 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         }
         c.close();
 
+        mProjects = new ArrayList<BetterJSONObject>();
+        for (int projectId: mProjectIds) {
+            c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION,
+                    "(id = " + projectId + ")", null, Project.DEFAULT_SORT_ORDER);
+            if (c.getCount() > 0) {
+                Project project = new Project(c);
+                BetterJSONObject projectJson = new BetterJSONObject();
+                projectJson.put("project", project.toJSONObject());
+                mProjects.add(projectJson);
+            }
+            c.close();
+        }
+
         refreshProjectList();
 
         mIncludedInProjectsContainer.setOnClickListener(new OnClickListener() {
@@ -1452,6 +1480,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
+            Log.e(TAG, "ObservationReceiver - OBSERVATION_RESULT");
             try {
                 unregisterReceiver(mObservationReceiver);
             } catch (Exception exc) {
@@ -1526,14 +1555,14 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mFavorites = favResults;
             mProjects = projectResults;
 
-	        int taxonId = (observation.taxon_id == null ? 0 : observation.taxon_id);
+            mObservation = observation;
+            loadObservationIntoUI();
+            setupMap();
             refreshActivity();
             refreshFavorites();
             resizeActivityList();
             resizeFavList();
             refreshProjectList();
-
-
             refreshDataQuality();
 	    }
 
@@ -1648,7 +1677,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private void refreshProjectList() {
         if ((mProjects != null) && (mProjects.size() > 0)) {
             mIncludedInProjectsContainer.setVisibility(View.VISIBLE);
-            mIncludedInProjects.setText(String.format(getString(mProjects.size() > 1 ? R.string.included_in_projects : R.string.included_in_projects_singular), mProjects.size()));
+            int count = mProjects.size();
+            mIncludedInProjects.setText(String.format(getString(count > 1 ? R.string.included_in_projects : R.string.included_in_projects_singular), count));
         } else {
             mIncludedInProjectsContainer.setVisibility(View.GONE);
         }

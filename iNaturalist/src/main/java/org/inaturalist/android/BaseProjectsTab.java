@@ -7,7 +7,20 @@ import android.util.Log;
 public abstract class BaseProjectsTab extends BaseTab {
 	private static final int PROJECT_REQUEST_CODE = 101;
 	private int mIndex;
-	
+
+
+    @Override
+    protected Boolean useNewItemLayout() {
+        // Use the new item layout
+        return true;
+    }
+
+    @Override
+    protected Boolean showSearchBar() {
+        // Don't show the search bar
+        return false;
+    }
+
     protected void onItemSelected(BetterJSONObject item, int index) {
     	// Show project details
     	Intent intent = new Intent(getActivity(), ProjectDetails.class);

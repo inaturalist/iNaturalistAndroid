@@ -132,6 +132,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String LICENSE = "license";
+    public static final String RESULTS = "results";
     public static final String REGISTER_USER_ERROR = "error";
     public static final String REGISTER_USER_STATUS = "status";
 
@@ -160,6 +161,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_JOIN_PROJECT = "join_project";
     public static String ACTION_LEAVE_PROJECT = "leave_project";
     public static String ACTION_GET_JOINED_PROJECTS = "get_joined_projects";
+    public static String ACTION_GET_JOINED_PROJECTS_ONLINE = "get_joined_projects_online";
     public static String ACTION_GET_NEARBY_PROJECTS = "get_nearby_projects";
     public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
     public static String ACTION_ADD_OBSERVATION_TO_PROJECT = "add_observation_to_project";
@@ -169,6 +171,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
     public static String ACTION_TAXA_FOR_GUIDE = "get_taxa_for_guide";
     public static String ACTION_GET_USER_DETAILS = "get_user_details";
+    public static String ACTION_GET_PROJECT_OBSERVATIONS = "get_project_observations";
+    public static String ACTION_GET_PROJECT_SPECIES = "get_project_species";
+    public static String ACTION_GET_PROJECT_OBSERVERS = "get_project_observers";
+    public static String ACTION_GET_PROJECT_IDENTIFIERS = "get_project_identifiers";
+    public static String ACTION_PROJECT_OBSERVATIONS_RESULT = "get_project_observations_result";
+    public static String ACTION_PROJECT_SPECIES_RESULT = "get_project_species_result";
+    public static String ACTION_PROJECT_OBSERVERS_RESULT = "get_project_observers_result";
+    public static String ACTION_PROJECT_IDENTIFIERS_RESULT = "get_project_identifiers_result";
     public static String ACTION_SYNC = "sync";
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_AGREE_ID = "agree_id";
@@ -313,6 +323,39 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
                 reply.putExtra(REGISTER_USER_STATUS, error == null);
                 reply.putExtra(REGISTER_USER_ERROR, error);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
+                int projectId = intent.getIntExtra(PROJECT_ID, 0);
+                SerializableJSONArray results = getProjectObservations(projectId);
+
+                mApp.setServiceResult(ACTION_PROJECT_OBSERVATIONS_RESULT, results);
+                Intent reply = new Intent(ACTION_PROJECT_OBSERVATIONS_RESULT);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
+                int projectId = intent.getIntExtra(PROJECT_ID, 0);
+                SerializableJSONArray results = getProjectIdentifiers(projectId);
+
+                Intent reply = new Intent(ACTION_PROJECT_IDENTIFIERS_RESULT);
+                reply.putExtra(RESULTS, results);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
+                int projectId = intent.getIntExtra(PROJECT_ID, 0);
+                SerializableJSONArray results = getProjectObservers(projectId);
+
+                Intent reply = new Intent(ACTION_PROJECT_OBSERVERS_RESULT);
+                reply.putExtra(RESULTS, results);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
+                int projectId = intent.getIntExtra(PROJECT_ID, 0);
+                SerializableJSONArray results = getProjectSpecies(projectId);
+
+                Intent reply = new Intent(ACTION_PROJECT_SPECIES_RESULT);
+                reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_TAXON)) {
@@ -465,7 +508,17 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
                  reply.putExtra(PROJECTS_RESULT, projects);
                  sendBroadcast(reply);
-                
+
+              } else if (action.equals(ACTION_GET_JOINED_PROJECTS_ONLINE)) {
+                 SerializableJSONArray projects = null;
+            	 if (mCredentials != null) {
+            		 projects = getJoinedProjects();
+            	 }
+
+                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
+                 reply.putExtra(PROJECTS_RESULT, projects);
+                 sendBroadcast(reply);
+
              } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
                  SerializableJSONArray projects = null;
             	 if (mCredentials != null) {
@@ -1028,7 +1081,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         			getString(R.string.sync_failed));
         }
     }
-    
+
     
     private Observation getObservation(int id) throws AuthenticationException {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -1193,6 +1246,51 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
+		}
+    }
+
+
+    private SerializableJSONArray getProjectObservations(int projectId) throws AuthenticationException {
+        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=200";
+        JSONArray json = get(url);
+        try {
+			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return new SerializableJSONArray();
+		}
+    }
+
+    private SerializableJSONArray getProjectSpecies(int projectId) throws AuthenticationException {
+        String url = API_HOST + "/observations/species_counts?project_id=" + projectId;
+        JSONArray json = get(url);
+        try {
+			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return new SerializableJSONArray();
+		}
+    }
+
+    private SerializableJSONArray getProjectObservers(int projectId) throws AuthenticationException {
+        String url = API_HOST + "/observations/observers?project_id=" + projectId;
+        JSONArray json = get(url);
+        try {
+			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return new SerializableJSONArray();
+		}
+    }
+
+    private SerializableJSONArray getProjectIdentifiers(int projectId) throws AuthenticationException {
+        String url = API_HOST + "/observations/identifiers?project_id=" + projectId;
+        JSONArray json = get(url);
+        try {
+			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return new SerializableJSONArray();
 		}
     }
 

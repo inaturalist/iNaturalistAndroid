@@ -474,5 +474,18 @@
     <string name="skip2">Skip</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+    <string name="do_you_agree_to_the_following">Do you agree to the following?</string>
+    <string name="terms">Terms</string>
+    <string name="observation_rules">Observation Rules</string>
+    <string name="couldnt_load_project_details">Couldn\'t load project details: %1$s</string>
+    <string name="project_observations">Observations</string>
+    <string name="project_species">Species</string>
+    <string name="project_people">People</string>
+    <string name="project_identifiers">Identifiers</string>
+    <string name="no_species_found">No species found</string>
+    <string name="no_people_found">No people found</string>
+    <string name="no_identifiers_found">No identifiers found</string>
+    <string name="rank">Rank</string>
+    <string name="identifications">Identifications</string>
  </resources>
 

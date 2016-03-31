@@ -1,48 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
-    
-    <RelativeLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_marginBottom="10dp"
-	    >
-	    <ImageView
-		    android:id="@+id/project_pic"
-		    android:layout_height="70dp"
-		    android:layout_width="70dp"
-		    android:layout_alignParentStart="true"
-		    android:layout_centerVertical="true"
-		    android:paddingRight="8dp"
-		    />
-	    
-       	<TextView 
-	        android:id="@+id/project_title"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Project title"
-		    style="@android:style/TextAppearance.Medium"
-		    android:layout_toEndOf="@id/project_pic"
-		    android:layout_centerVertical="true"
-	        />
-    </RelativeLayout>
-    
 <ScrollView
-    android:id="@+id/project_description_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
+    android:background="#F5F5F5"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/project_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Project title"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:id="@+id/project_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="my description"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            />
 
-    <TextView 
-        android:id="@+id/project_description"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="my description"
-        />
+        <LinearLayout
+            android:id="@+id/terms_container"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:background="#cccccc"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="1px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms"
+                android:textSize="14sp"
+                android:textColor="@color/inatapptheme_color"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+            <TextView
+                android:id="@+id/project_terms"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="my terms"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rules_container"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:background="#cccccc"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="1px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/observation_rules"
+                android:textSize="14sp"
+                android:textColor="@color/inatapptheme_color"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+            <TextView
+                android:id="@+id/project_rules"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="my rules"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>
-
-
-</LinearLayout>

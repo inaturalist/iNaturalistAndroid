@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.inaturalist.android.BaseTab.ProjectsAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,6 +58,7 @@ public abstract class BaseTab extends SherlockFragment {
     private Button mLogin;
 
     private static final int REQUEST_CODE_LOGIN = 0x1000;
+    private ActivityHelper mHelper;
 
     private class ProjectsReceiver extends BroadcastReceiver {
         @Override
@@ -109,7 +109,7 @@ public abstract class BaseTab extends SherlockFragment {
                     e.printStackTrace();
                 }
             }
-            
+
             loadProjectsIntoUI();
 
         }
@@ -185,6 +185,12 @@ public abstract class BaseTab extends SherlockFragment {
     /** Returns the text to display when no Internet connection is available */
     abstract protected String getNoInternetText();
 
+    /** Returns whether or not we should use the new item layout */
+    protected Boolean useNewItemLayout() { return false; }
+
+    /** Returns whether or not we should show the search bar */
+    protected Boolean showSearchBar() { return true; }
+
     /** Whether or not the tab requires user login (e.g. for "Joined projects") */
     protected boolean requiresLogin() { return false; }
 
@@ -218,8 +224,6 @@ public abstract class BaseTab extends SherlockFragment {
         super.onCreate(savedInstanceState);
         
         Log.i(TAG, "onCreate - " + getActionName() + ":" + getClass().getName());
-        
-
     }
     
     @Override
@@ -247,7 +251,8 @@ public abstract class BaseTab extends SherlockFragment {
         
         mProjects = null;
         mApp = (INaturalistApp) getActivity().getApplication();
-        
+        mHelper = new ActivityHelper(getActivity());
+
         View v = inflater.inflate(R.layout.project_list, container, false);
 
         mLogin = (Button) v.findViewById(R.id.login);
@@ -276,6 +281,9 @@ public abstract class BaseTab extends SherlockFragment {
         mEmptyListLabel.setVisibility(View.GONE);
         
         mSearchText = (EditText) v.findViewById(R.id.search_filter);
+        if (!showSearchBar()) {
+            mSearchText.setVisibility(View.GONE);
+        }
         mSearchText.setHint(getSearchFilterTextHint());
         mSearchText.setEnabled(false);
         mSearchText.addTextChangedListener(new TextWatcher() {
@@ -479,21 +487,46 @@ public abstract class BaseTab extends SherlockFragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) { 
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.project_item, parent, false); 
+            View view = inflater.inflate(useNewItemLayout() ? R.layout.observation_project_item : R.layout.project_item, parent, false);
             final BetterJSONObject item = new BetterJSONObject(mItems.get(position));
 
             TextView projectName = (TextView) view.findViewById(R.id.project_name);
-            projectName.setText(item.getString("title"));
+            final String projectTitle = item.getString("title");
+            projectName.setText(projectTitle);
             ImageView projectPic = (ImageView) view.findViewById(R.id.project_pic);
             String iconUrl = item.getString("icon_url");
             if ((iconUrl == null) || (iconUrl.length() == 0)) {
                 projectPic.setVisibility(View.GONE);
+
+                if (useNewItemLayout()) {
+                    view.findViewById(R.id.project_pic_none).setVisibility(View.VISIBLE);
+                }
             } else {
                 projectPic.setVisibility(View.VISIBLE);
                 UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl);
+
+                if (useNewItemLayout()) {
+                    view.findViewById(R.id.project_pic_none).setVisibility(View.GONE);
+                }
             }
-            TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
-            projectDescription.setText(getShortDescription(item.getString("description")));
+
+            if (useNewItemLayout()) {
+                final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
+                if (noHTMLDescription.length() > 0) {
+                    ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mHelper.alert(projectTitle, noHTMLDescription);
+                        }
+                    });
+                } else {
+                    // No description - Hide the info button
+                    view.findViewById(R.id.project_pic_info).setVisibility(View.GONE);
+                }
+            } else {
+                TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
+                projectDescription.setText(getShortDescription(item.getString("description")));
+            }
             
             view.setTag(item);
 

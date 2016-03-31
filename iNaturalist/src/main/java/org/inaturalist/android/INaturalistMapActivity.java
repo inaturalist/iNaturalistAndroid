@@ -976,7 +976,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     
     private void loadExistingObservations(boolean refreshAdapters) {
     	if ((refreshAdapters) || (mGridAdapter == null) || (mListAdapter == null)) {
-    		mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservations);
+    		mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservationsGrid.getColumnWidth(), mObservations);
     		mObservationsGrid.setAdapter(mGridAdapter);
 
     		mListAdapter = new ObservationListAdapter(INaturalistMapActivity.this, mObservations);
@@ -1649,112 +1649,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		return location;
  	}
 
- 	
- 	private class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
-
- 		private List<JSONObject> mItems;
- 		private Context mContext;
- 		private ArrayList<JSONObject> mOriginalItems;
-
- 		public ObservationGridAdapter(Context context, List<JSONObject> objects) {
- 			super(context, R.layout.guide_taxon_item, objects);
-
- 			mItems = objects;
- 			mOriginalItems = new ArrayList<JSONObject>(mItems);
- 			mContext = context;
-
- 		}
-
- 		public void addItemAtBeginning(JSONObject newItem) {
- 			mItems.add(0, newItem);
- 		}
-
- 		@Override
- 		public int getCount() {
- 			return mItems.size();
- 		}
-
- 		@Override
- 		public JSONObject getItem(int index) {
- 			return mItems.get(index);
- 		}
-
- 		@SuppressLint("NewApi")
-		@Override
- 		public View getView(int position, View convertView, ViewGroup parent) { 
- 			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
- 			final View view = inflater.inflate(R.layout.guide_taxon_item, parent, false); 
- 			JSONObject item = mItems.get(position);
-
- 			TextView idName = (TextView) view.findViewById(R.id.id_name);
- 			final JSONObject taxon = item.optJSONObject("taxon");
-
- 			if (taxon != null) {
- 				String idNameString = getTaxonName(taxon);
- 				if (idNameString != null) {
- 					idName.setText(idNameString);
- 				} else {
- 					idName.setText(getResources().getString(R.string.unknown));
- 				}
- 			} else {
- 				String idNameStr = item.isNull("species_guess") ?
- 						getResources().getString(R.string.unknown) :
- 							item.optString("species_guess", getResources().getString(R.string.unknown));
-                 idName.setText(idNameStr);
- 			}
-
-
- 			ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
-
- 			taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
- 					mObservationsGrid.getColumnWidth(),
- 					mObservationsGrid.getColumnWidth()
- 					));
-
- 			JSONArray observationPhotos;
-			try {
-				observationPhotos = item.getJSONArray("observation_photos");
-			} catch (JSONException e1) {
-				e1.printStackTrace();
-				observationPhotos = new JSONArray();
-			}
-
- 			if (observationPhotos.length() > 0) {
- 				JSONObject observationPhoto;
- 				try {
- 					observationPhoto = observationPhotos.getJSONObject(0);
- 					JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
- 					String url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
- 					UrlImageViewHelper.setUrlDrawable(taxonPic, url, ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
- 						@Override
- 						public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
- 							imageView.setLayoutParams(new RelativeLayout.LayoutParams(
- 									mObservationsGrid.getColumnWidth(),
- 									mObservationsGrid.getColumnWidth()
- 									));
-						}
-
-						@Override
-						public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-							// No post-processing of bitmap
-							return loadedBitmap;
-						}
- 					});
- 				} catch (JSONException e) {
- 					e.printStackTrace();
- 				} catch (Exception e) {
- 					// Could happen if user scrolls really fast and there a LOT of thumbnails being downloaded at once (too many threads at once)
- 					e.printStackTrace();
- 				}
- 			}
-
- 			view.setTag(item);
-
- 			return view;
- 		}
- 	}
- 	
- 	
  	
  	private class ObservationListAdapter extends ArrayAdapter<JSONObject> {
 

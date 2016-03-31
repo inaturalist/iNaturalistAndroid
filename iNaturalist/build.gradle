@@ -27,6 +27,8 @@ android {
         minSdkVersion 10
         targetSdkVersion 21
         multiDexEnabled true
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
     }
 
     buildTypes {

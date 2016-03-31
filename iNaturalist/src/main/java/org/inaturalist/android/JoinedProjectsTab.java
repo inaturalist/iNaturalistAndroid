@@ -3,7 +3,7 @@ package org.inaturalist.android;
 public class JoinedProjectsTab extends BaseProjectsTab {
     @Override
     protected String getActionName() {
-        return INaturalistService.ACTION_GET_JOINED_PROJECTS;
+        return INaturalistService.ACTION_GET_JOINED_PROJECTS_ONLINE;
     }
     
     @Override

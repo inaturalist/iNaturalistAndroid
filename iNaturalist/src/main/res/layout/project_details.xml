@@ -5,6 +5,103 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:id="@+id/project_top_bar"
+        android:background="#cccccc"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <ImageView
+            android:id="@+id/project_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/login_signup_back_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="21dp"
+            />
+        
+        <RelativeLayout
+            android:id="@+id/project_pic_container"
+            android:background="@drawable/project_details_border"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/back"
+            android:layout_width="64dp"
+            android:layout_height="64dp" >
+            <ImageView
+                android:id="@+id/project_pic"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/ic_work_black_24dp"
+                android:padding="2dp"
+                />
+            <ImageView
+                android:id="@+id/project_pic_none"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/ic_work_black_24dp"
+                android:background="#dbdbdb"
+                android:tint="#ffffff"
+                android:padding="10dp"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+        
+        <TextView
+            android:id="@+id/project_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Project Title"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/project_pic_container"
+            android:textColor="#ffffff"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            />
+
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_marginBottom="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/join_leave_project"
+                android:background="@drawable/circular_button_semi_transparent"
+                android:layout_width="100dp"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:text="@string/join"
+                android:textColor="@drawable/circular_button_text"
+                android:textSize="16sp"
+                android:layout_height="40dp" />
+
+            <Button
+                android:id="@+id/about_project"
+                android:background="@drawable/circular_button_semi_transparent"
+                android:layout_width="100dp"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:text="@string/about"
+                android:textColor="@drawable/circular_button_text"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
     <TabHost
         android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
@@ -28,13 +125,205 @@
                 android:layout_height="0dp"
                 android:layout_weight="0" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom" />
-
         </LinearLayout>
     </TabHost>
+
+    <RelativeLayout
+        android:id="@+id/identifiers_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <ProgressBar
+            android:id="@+id/loading_identifiers_list"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="30dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/identifiers_list_empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="@string/no_people_found" />
+
+        <RelativeLayout
+            android:id="@+id/identifiers_list_header"
+            android:background="#DCDCDC"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:text="@string/rank"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/identifications"
+                />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/identifiers_list"
+            android:layout_below="@id/identifiers_list_header"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/people_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <ProgressBar
+            android:id="@+id/loading_people_list"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="30dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/people_list_empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="@string/no_people_found" />
+
+        <RelativeLayout
+            android:id="@+id/people_list_header"
+            android:background="#DCDCDC"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:text="@string/rank"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/project_observations"
+                />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/people_list"
+            android:layout_below="@id/people_list_header"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/species_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"
+        >
+        <ProgressBar
+            android:id="@+id/loading_species_list"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="30dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/species_list_empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="@string/no_species_found" />
+
+        <ListView
+            android:id="@+id/species_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/grid_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"
+        >
+        <ProgressBar
+            android:id="@+id/loading_observations_grid"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="30dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/observations_grid_empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="@string/no_observations_found" />
+
+        <org.inaturalist.android.GridViewExtended
+            android:id="@+id/observations_grid"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:numColumns="3"
+            android:verticalSpacing="3dp"
+            android:horizontalSpacing="3dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+
 
 </LinearLayout>
