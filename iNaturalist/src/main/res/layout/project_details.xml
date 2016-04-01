@@ -89,6 +89,18 @@
                 android:layout_height="40dp" />
 
             <Button
+                android:id="@+id/project_news"
+                android:background="@drawable/circular_button_semi_transparent"
+                android:layout_width="100dp"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:text="@string/news"
+                android:textColor="@drawable/circular_button_text"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:layout_height="40dp" />
+
+             <Button
                 android:id="@+id/about_project"
                 android:background="@drawable/circular_button_semi_transparent"
                 android:layout_width="100dp"
@@ -99,6 +111,7 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="16sp"
                 android:layout_height="40dp" />
+
         </LinearLayout>
     </RelativeLayout>
 

@@ -430,7 +430,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		return view;
 	}
 
-    private String formatIdDate(Timestamp postDate) {
+    public static String formatIdDate(Timestamp postDate) {
         Duration difference = new Duration(postDate.getTime(), (new Date()).getTime());
         long days = difference.getStandardDays();
         long hours = difference.getStandardHours();

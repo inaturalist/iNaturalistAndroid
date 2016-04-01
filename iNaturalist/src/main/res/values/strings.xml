@@ -487,5 +487,10 @@
     <string name="no_identifiers_found">No identifiers found</string>
     <string name="rank">Rank</string>
     <string name="identifications">Identifications</string>
+    <string name="no_news_found">No news items found</string>
+    <string name="news">News</string>
+    <string name="article">Article</string>
+    <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
+    <string name="article_by">Article By</string>
  </resources>
 

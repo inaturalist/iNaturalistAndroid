@@ -171,11 +171,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
     public static String ACTION_TAXA_FOR_GUIDE = "get_taxa_for_guide";
     public static String ACTION_GET_USER_DETAILS = "get_user_details";
+    public static String ACTION_GET_PROJECT_NEWS = "get_project_news";
     public static String ACTION_GET_PROJECT_OBSERVATIONS = "get_project_observations";
     public static String ACTION_GET_PROJECT_SPECIES = "get_project_species";
     public static String ACTION_GET_PROJECT_OBSERVERS = "get_project_observers";
     public static String ACTION_GET_PROJECT_IDENTIFIERS = "get_project_identifiers";
     public static String ACTION_PROJECT_OBSERVATIONS_RESULT = "get_project_observations_result";
+    public static String ACTION_PROJECT_NEWS_RESULT = "get_project_news_result";
     public static String ACTION_PROJECT_SPECIES_RESULT = "get_project_species_result";
     public static String ACTION_PROJECT_OBSERVERS_RESULT = "get_project_observers_result";
     public static String ACTION_PROJECT_IDENTIFIERS_RESULT = "get_project_identifiers_result";
@@ -323,6 +325,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
                 reply.putExtra(REGISTER_USER_STATUS, error == null);
                 reply.putExtra(REGISTER_USER_ERROR, error);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_PROJECT_NEWS)) {
+                int projectId = intent.getIntExtra(PROJECT_ID, 0);
+                SerializableJSONArray results = getProjectNews(projectId);
+
+                Intent reply = new Intent(ACTION_PROJECT_NEWS_RESULT);
+                reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
@@ -1271,6 +1281,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 			return new SerializableJSONArray();
 		}
     }
+
+    private SerializableJSONArray getProjectNews(int projectId) throws AuthenticationException {
+        String url = HOST + "/projects/" + projectId + "/journal.json";
+        JSONArray json = get(url);
+        return new SerializableJSONArray(json);
+    }
+
 
     private SerializableJSONArray getProjectObservers(int projectId) throws AuthenticationException {
         String url = API_HOST + "/observations/observers?project_id=" + projectId;

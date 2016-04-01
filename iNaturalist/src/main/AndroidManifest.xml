@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="105"
+    android:versionCode="106"
     android:versionName="1.4.3" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
@@ -207,6 +207,14 @@
         <activity
             android:configChanges="orientation"
             android:name=".ProjectDetailsAbout" >
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:name=".ProjectNews" >
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:name=".NewsArticle" >
         </activity>
 
         <provider

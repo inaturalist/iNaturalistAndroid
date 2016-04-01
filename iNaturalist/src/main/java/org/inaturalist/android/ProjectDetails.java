@@ -58,6 +58,7 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
     private ActivityHelper mHelper;
     private View mBack;
     private Button mAboutProject;
+    private Button mProjectNews;
 
     private GridViewExtended mObservationsGrid;
     private ObservationGridAdapter mGridAdapter;
@@ -211,11 +212,21 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         mJoinLeaveProject = (Button) findViewById(R.id.join_leave_project);
         mProjectTitle = (TextView) findViewById(R.id.project_title);
         mAboutProject = (Button) findViewById(R.id.about_project);
+        mProjectNews = (Button) findViewById(R.id.project_news);
 
         if (mProject == null) {
             finish();
             return;
         }
+
+        mProjectNews.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProjectDetails.this, ProjectNews.class);
+                intent.putExtra("project", mProject);
+                startActivity(intent);
+            }
+        });
 
         mAboutProject.setOnClickListener(new OnClickListener() {
             @Override
@@ -302,16 +313,6 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
 
             }
         });
-        
-        try {
-            // Get the project's taxa list
-            int checkListId = mProject.getJSONObject("project_list").getInt("id");
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CHECK_LIST, null, ProjectDetails.this, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.CHECK_LIST_ID, checkListId);
-            startService(serviceIntent);  
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         
     }
 
@@ -481,7 +482,7 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
             Bundle extras = intent.getExtras();
             String error = extras.getString("error");
             if (error != null) {
-                mHelper.alert(String.format(getString(R.string.couldnt_load_nearby_observations), error));
+                mHelper.alert(String.format(getString(R.string.couldnt_load_project_details), error));
                 return;
             }
 
@@ -497,6 +498,11 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
 
             JSONArray results = resultsJSON.getJSONArray();
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
+
+            if (results == null) {
+                refreshViewState();
+                return;
+            }
 
             for (int i = 0; i < results.length(); i++) {
 				try {
