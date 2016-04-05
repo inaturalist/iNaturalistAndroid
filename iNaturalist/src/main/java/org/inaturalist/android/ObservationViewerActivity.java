@@ -1555,7 +1555,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mFavorites = favResults;
             mProjects = projectResults;
 
-            mObservation = observation;
             loadObservationIntoUI();
             setupMap();
             refreshActivity();
