@@ -184,6 +184,9 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private String mObsJson;
     private boolean mShowComments;
     private int mCommentCount;
+    private String mTaxonImage;
+    private String mTaxonIdName;
+    private String mTaxonName;
 
     @Override
 	protected void onStart() {
@@ -525,6 +528,9 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mReadOnly = savedInstanceState.getBoolean("mReadOnly");
             mObsJson = savedInstanceState.getString("mObsJson");
             mFlagAsCaptive = savedInstanceState.getBoolean("mFlagAsCaptive");
+            mTaxonName = savedInstanceState.getString("mTaxonName");
+            mTaxonIdName = savedInstanceState.getString("mTaxonIdName");
+            mTaxonImage = savedInstanceState.getString("mTaxonImage");
 		}
 
         if (mCursor == null) {
@@ -1239,44 +1245,14 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         } else {
             mIdArrow.setVisibility(View.VISIBLE);
 
-            String inatNetwork = mApp.getInaturalistNetworkMember();
-            String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-            final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json";
-
-            // Download the taxon image URL
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    final JSONObject taxon = downloadJson(idUrl);
-                    mTaxon = taxon;
-                    if (taxon != null) {
-                        try {
-                            final String imageUrl = taxon.getString("image_url");
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        UrlImageViewHelper.setUrlDrawable(mIdPic, imageUrl);
-
-                                        if (taxon.has("default_name")) {
-                                            mIdName.setText(taxon.getJSONObject("default_name").getString("name"));
-                                        } else if (taxon.has("common_name")) {
-                                            mIdName.setText(taxon.getJSONObject("common_name").getString("name"));
-                                        }
-                                        mTaxonicName.setText(taxon.getString("name"));
-                                        mTaxonicName.setVisibility(View.VISIBLE);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }).start();
+            if ((mTaxonName == null) || (mTaxonIdName == null) || (mTaxonImage == null)) {
+                downloadTaxon();
+            } else {
+                UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
+                mIdName.setText(mTaxonIdName);
+                mTaxonicName.setText(mTaxonName);
+                mTaxonicName.setVisibility(View.VISIBLE);
+            }
         }
 
         getCommentIdList();
@@ -1324,6 +1300,51 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         } else {
             mNotesContainer.setVisibility(View.GONE);
         }
+    }
+
+    private void downloadTaxon() {
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+        final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json";
+
+        // Download the taxon image URL
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final JSONObject taxon = downloadJson(idUrl);
+                mTaxon = taxon;
+                if (taxon != null) {
+                    try {
+                        final String imageUrl = taxon.getString("image_url");
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    mTaxonImage = imageUrl;
+                                    UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
+
+                                    if (taxon.has("default_name")) {
+                                        mTaxonIdName = taxon.getJSONObject("default_name").getString("name");
+                                    } else if (taxon.has("common_name")) {
+                                        mTaxonIdName = taxon.getJSONObject("common_name").getString("name");
+                                    }
+                                    mTaxonName = taxon.getString("name");
+
+                                    mIdName.setText(mTaxonIdName);
+                                    mTaxonicName.setText(mTaxonName);
+                                    mTaxonicName.setVisibility(View.VISIBLE);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     private JSONObject downloadJson(String uri) {
@@ -1473,6 +1494,11 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         outState.putBoolean("mReadOnly", mReadOnly);
         outState.putString("mObsJson", mObsJson);
         outState.putBoolean("mFlagAsCaptive", mFlagAsCaptive);
+
+        outState.putString("mTaxonIdName", mTaxonIdName);
+        outState.putString("mTaxonName", mTaxonName);
+        outState.putString("mTaxonImage", mTaxonImage);
+
         super.onSaveInstanceState(outState);
     }
 
