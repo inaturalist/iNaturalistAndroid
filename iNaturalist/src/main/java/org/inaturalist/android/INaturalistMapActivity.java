@@ -186,6 +186,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     private int mObservationGridIndex;
 
 	private static final int VIEW_OBSERVATION_REQUEST_CODE = 0x100;
+	private View mProjectInfo;
+    private BetterJSONObject mProject;
 
     @Override
 	protected void onStart()
@@ -374,33 +376,34 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			}
 		});
         mSearchText.setOnEditorActionListener(
-        		new EditText.OnEditorActionListener() {
-        			@Override
-        			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        				final boolean isEnterEvent = event != null
-        						&& event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
-        				final boolean isEnterUpEvent = isEnterEvent && event.getAction() == KeyEvent.ACTION_UP;
-        				final boolean isEnterDownEvent = isEnterEvent && event.getAction() == KeyEvent.ACTION_DOWN;
+				new EditText.OnEditorActionListener() {
+					@Override
+					public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+						final boolean isEnterEvent = event != null
+								&& event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
+						final boolean isEnterUpEvent = isEnterEvent && event.getAction() == KeyEvent.ACTION_UP;
+						final boolean isEnterDownEvent = isEnterEvent && event.getAction() == KeyEvent.ACTION_DOWN;
 
-        				if (actionId == EditorInfo.IME_ACTION_SEARCH || isEnterUpEvent ) {
-        					// Do your action here
-        					mSearchResults.performItemClick(null, 0, 0);
-        					return true;
-        				} else if (isEnterDownEvent) {
-        					// Capture this event to receive ACTION_UP
-        					return true;
-        				} else {
-        					// We do not care on other actions
-        					return false;
-        				}
-        			}
-        		});
+						if (actionId == EditorInfo.IME_ACTION_SEARCH || isEnterUpEvent) {
+							// Do your action here
+							mSearchResults.performItemClick(null, 0, 0);
+							return true;
+						} else if (isEnterDownEvent) {
+							// Capture this event to receive ACTION_UP
+							return true;
+						} else {
+							// We do not care on other actions
+							return false;
+						}
+					}
+				});
 
         mActiveFilters = (View)findViewById(R.id.active_filters);
         mActiveFiltersDescription = (TextView)findViewById(R.id.filter_name);
         mRestricToMap = (View)findViewById(R.id.restric_to_map);
         
         mCancelFilters = (View)findViewById(R.id.cancel_filters);
+		mProjectInfo = (View)findViewById(R.id.project_info);
         mCancelRestricToMap = (View)findViewById(R.id.cancel_restrict_to_current_map);
         
         mCancelRestricToMap.setOnClickListener(new OnClickListener() {
@@ -413,6 +416,21 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				loadObservations();
 			}
 		});
+
+		mProjectInfo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+                if ((mProjectId == null) || (mProject == null)) {
+                    return;
+                }
+
+                mProject.put("joined", INaturalistService.hasJoinedProject(INaturalistMapActivity.this, mProjectId));
+
+                Intent intent = new Intent(INaturalistMapActivity.this, ProjectDetails.class);
+                intent.putExtra("project", mProject);
+                startActivity(intent);
+			}
+		});
         
         mCancelFilters.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
@@ -420,6 +438,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				mCurrentSearch = "";
 				mTaxonId = null;
 				mProjectId = null;
+                mProject = null;
 				mUsername = null;
 				mLocationId = null;
 				mSearchType = FIND_NEAR_BY_OBSERVATIONS;
@@ -699,6 +718,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         outState.putString("mLocationName", mLocationName);
 
         outState.putSerializable("mProjectId", mProjectId);
+        outState.putSerializable("mProject", mProject);
         outState.putString("mProjectName", mProjectName);
 
 		if (mMap != null) {
@@ -1388,7 +1408,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 					case FIND_PROJECTS:
 						mProjectName = item.getString("title");
 						mProjectId = item.getInt("id");
-						
+                        mProject = new BetterJSONObject(item);
+
 						if (!item.isNull("place_id")) {
 							// Project has a place associated to it - get its coordinates
 							int placeId = item.getInt("place_id");
@@ -1506,6 +1527,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  			filterText = Character.toUpperCase(filterText.charAt(0)) + filterText.substring(1); // Upper case first letter
  			mActiveFiltersDescription.setText(filterText);
  			mActiveFilters.setVisibility(View.VISIBLE);
+
+            if (mProjectId != null) {
+                mProjectInfo.setVisibility(View.VISIBLE);
+            } else {
+                mProjectInfo.setVisibility(View.GONE);
+            }
  		} else {
  			mActiveFilters.setVisibility(View.GONE);
  		}

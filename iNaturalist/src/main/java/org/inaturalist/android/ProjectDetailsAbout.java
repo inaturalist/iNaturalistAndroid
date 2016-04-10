@@ -80,16 +80,14 @@ public class ProjectDetailsAbout extends SherlockFragmentActivity {
         String description = mProject.getString("description");
         description = description.replace("\n", "\n<br>");
         projectDescription.setText(Html.fromHtml(description));
-        //String url = "(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?";
-        String url = "(?:\\S+(?::\\S*)?)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?";
-        Linkify.addLinks(projectDescription, Pattern.compile(url), "http://");
+        Linkify.addLinks(projectDescription, Linkify.ALL);
         projectDescription.setMovementMethod(LinkMovementMethod.getInstance());
 
         String terms = mProject.getString("terms");
         if ((terms != null) && (terms.length() > 0)) {
             projectTermsContainer.setVisibility(View.VISIBLE);
             projectTerms.setText(Html.fromHtml(terms));
-            Linkify.addLinks(projectTerms, Pattern.compile(url), "http://");
+            Linkify.addLinks(projectTerms, Linkify.ALL);
             projectTerms.setMovementMethod(LinkMovementMethod.getInstance());
         } else {
             projectTermsContainer.setVisibility(View.GONE);
@@ -102,7 +100,7 @@ public class ProjectDetailsAbout extends SherlockFragmentActivity {
             String rulesFinal = StringUtils.join(rulesSplit, "<br/>&#8226; ");
             rulesFinal = "&#8226; " + rulesFinal;
             projectRules.setText(Html.fromHtml(rulesFinal));
-            Linkify.addLinks(projectRules, Pattern.compile(url), "http://");
+            Linkify.addLinks(projectRules, Linkify.ALL);
             projectRules.setMovementMethod(LinkMovementMethod.getInstance());
         } else {
             projectRulesContainer.setVisibility(View.GONE);

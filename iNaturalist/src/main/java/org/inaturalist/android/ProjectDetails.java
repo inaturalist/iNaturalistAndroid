@@ -19,6 +19,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,8 +37,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +96,11 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
     private ArrayList<JSONObject> mIdentifiers;
 
     private ProjectDetailsReceiver mProjectDetailsReceiver;
+
+    private int mTotalObservations;
+    private int mTotalSpecies;
+    private int mTotalObervers;
+    private int mTotalIdentifiers;
 
     @Override
 	protected void onStart()
@@ -194,12 +203,18 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
             mSpecies = loadListFromBundle(savedInstanceState, "mSpecies");
             mObservers = loadListFromBundle(savedInstanceState, "mObservers");
             mIdentifiers = loadListFromBundle(savedInstanceState, "mIdentifiers");
-        }
 
-        refreshViewState();
+            mTotalIdentifiers = savedInstanceState.getInt("mTotalIdentifiers");
+            mTotalObervers = savedInstanceState.getInt("mTotalObervers");
+            mTotalObservations = savedInstanceState.getInt("mTotalObservations");
+            mTotalSpecies = savedInstanceState.getInt("mTotalSpecies");
+        }
 
         // Tab Initialization
         initialiseTabHost();
+
+        refreshViewState();
+        refreshViewType();
 
         mBack = findViewById(R.id.back);
         mBack.setOnClickListener(new OnClickListener() {
@@ -243,15 +258,29 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         if ((iconUrl != null) && (iconUrl.length() > 0)) {
             projectPic.setVisibility(View.VISIBLE);
             findViewById(R.id.project_pic_none).setVisibility(View.GONE);
-            UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl);
+            UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl, new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    Log.e("AAA", "Bitmap: onLoaded REGULAR");
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    Log.e("AAA", "Bitmap: onPreSetBitmap REGULAR");
+                    return loadedBitmap;
+                }
+            });
+            Log.e("AAA", "Bitmap: setUrlDrawable");
             UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.project_bg), iconUrl, new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    Log.e("AAA", "Bitmap: onLoaded");
                     imageView.setImageBitmap(ImageUtils.blur(ProjectDetails.this, loadedBitmap.copy(loadedBitmap.getConfig(), true)));
                 }
 
                 @Override
                 public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    Log.e("AAA", "Bitmap: onPreSetBitmap");
                     return loadedBitmap;
                 }
             });
@@ -367,17 +396,16 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         saveListToBundle(outState, mSpecies, "mSpecies");
         saveListToBundle(outState, mObservers, "mObservers");
         saveListToBundle(outState, mIdentifiers, "mIdentifiers");
+        outState.putInt("mTotalIdentifiers", mTotalIdentifiers);
+        outState.putInt("mTotalObervers", mTotalObervers);
+        outState.putInt("mTotalObservations", mTotalObservations);
+        outState.putInt("mTotalSpecies", mTotalSpecies);
 
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onPause() {
-    	try {
-            if (mProjectDetailsReceiver != null) unregisterReceiver(mProjectDetailsReceiver);
-    	} catch (Exception exc) {
-    		exc.printStackTrace();
-    	}
         super.onPause();
     }
 
@@ -395,6 +423,8 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         filter.addAction(INaturalistService.ACTION_PROJECT_OBSERVATIONS_RESULT);
         filter.addAction(INaturalistService.ACTION_PROJECT_OBSERVERS_RESULT);
         registerReceiver(mProjectDetailsReceiver, filter);
+
+        refreshViewState();
     }
 
     @Override
@@ -429,19 +459,42 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         mPeopleContainer.setVisibility(View.GONE);
         mIdentifiersContainer.setVisibility(View.GONE);
 
+
+        TabWidget tabWidget = mTabHost.getTabWidget();
+        for (int i = 0; i < tabWidget.getChildCount(); i++) {
+            View tab = tabWidget.getChildAt(i);
+            TextView tabNameText = (TextView) tab.findViewById(R.id.tab_name);
+            View bottomLine = tab.findViewById(R.id.bottom_line);
+
+            tabNameText.setTypeface(null, Typeface.NORMAL);
+            tabNameText.setTextColor(Color.parseColor("#ACACAC"));
+            bottomLine.setVisibility(View.GONE);
+        }
+
+        int selectedTab = 0;
+
     	if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
-    		mTabHost.setCurrentTab(0);
+            selectedTab = 0;
     		mGridContainer.setVisibility(View.VISIBLE);
     	} else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
-            mTabHost.setCurrentTab(1);
+            selectedTab = 1;
             mSpeciesContainer.setVisibility(View.VISIBLE);
         } else if (mViewType.equals(VIEW_TYPE_OBSERVERS)) {
-            mTabHost.setCurrentTab(2);
+            selectedTab = 2;
             mPeopleContainer.setVisibility(View.VISIBLE);
         } else if (mViewType.equals(VIEW_TYPE_IDENTIFIERS)) {
-            mTabHost.setCurrentTab(3);
+            selectedTab = 3;
             mIdentifiersContainer.setVisibility(View.VISIBLE);
         }
+
+        mTabHost.setCurrentTab(selectedTab);
+        View tab = tabWidget.getChildAt(selectedTab);
+        TextView tabNameText = (TextView) tab.findViewById(R.id.tab_name);
+        View bottomLine = tab.findViewById(R.id.bottom_line);
+
+        tabNameText.setTypeface(null, Typeface.BOLD);
+        tabNameText.setTextColor(Color.parseColor("#000000"));
+        bottomLine.setVisibility(View.VISIBLE);
     }
 
 
@@ -450,17 +503,28 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_OBSERVATIONS).setIndicator(getString(R.string.project_observations)));
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_SPECIES).setIndicator(getString(R.string.project_species)));
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_OBSERVERS).setIndicator(getString(R.string.project_people)));
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_IDENTIFIERS).setIndicator(getString(R.string.project_identifiers)));
-
-        mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(3).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_OBSERVATIONS).setIndicator(
+                createTabContent(getString(R.string.project_observations), 1000)));
+        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_SPECIES).setIndicator(
+                createTabContent(getString(R.string.project_species), 2000)));
+        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_OBSERVERS).setIndicator(
+                createTabContent(getString(R.string.project_people), 3000)));
+        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_IDENTIFIERS).setIndicator(
+                createTabContent(getString(R.string.project_identifiers), 4000)));
 
         mTabHost.setOnTabChangedListener(this);
+    }
+
+    private View createTabContent(String tabName, int count) {
+        View view = LayoutInflater.from(this).inflate(R.layout.project_details_tab, null);
+        TextView countText = (TextView) view.findViewById(R.id.count);
+        TextView tabNameText = (TextView) view.findViewById(R.id.tab_name);
+
+        DecimalFormat formatter = new DecimalFormat("#,###,###");
+        countText.setText(formatter.format(count));
+        tabNameText.setText(tabName);
+
+        return view;
     }
 
     private boolean isLoggedIn() {
@@ -488,13 +552,17 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
 
 
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            BetterJSONObject resultsObject;
             SerializableJSONArray resultsJSON;
 
             if (isSharedOnApp) {
-                resultsJSON = (SerializableJSONArray) mApp.getServiceResult(intent.getAction());
+                resultsObject = (BetterJSONObject) mApp.getServiceResult(intent.getAction());
             } else {
-                resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
+                resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.RESULTS);
             }
+
+            resultsJSON = resultsObject.getJSONArray("results");
+            int totalResults = resultsObject.getInt("total_results");
 
             JSONArray results = resultsJSON.getJSONArray();
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
@@ -515,12 +583,16 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
 
             if (intent.getAction().equals(INaturalistService.ACTION_PROJECT_OBSERVATIONS_RESULT)) {
             	mObservations = resultsArray;
+                mTotalObservations = totalResults;
             } else if (intent.getAction().equals(INaturalistService.ACTION_PROJECT_SPECIES_RESULT)) {
             	mSpecies = resultsArray;
+                mTotalSpecies = totalResults;
             } else if (intent.getAction().equals(INaturalistService.ACTION_PROJECT_OBSERVERS_RESULT)) {
                 mObservers = resultsArray;
+                mTotalObervers = totalResults;
             } else if (intent.getAction().equals(INaturalistService.ACTION_PROJECT_IDENTIFIERS_RESULT)) {
                 mIdentifiers = resultsArray;
+                mTotalIdentifiers = totalResults;
             }
 
             refreshViewState();
@@ -528,11 +600,19 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
     }
 
     private void refreshViewState() {
+        TabWidget tabWidget = mTabHost.getTabWidget();
+        DecimalFormat formatter = new DecimalFormat("#,###,###");
+
         if (mObservations == null) {
+            ((TextView)tabWidget.getChildAt(0).findViewById(R.id.count)).setVisibility(View.GONE);
+            ((ProgressBar)tabWidget.getChildAt(0).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
             mLoadingObservationsGrid.setVisibility(View.VISIBLE);
             mObservationsGrid.setVisibility(View.GONE);
             mObservationsGridEmpty.setVisibility(View.GONE);
         } else {
+            ((TextView)tabWidget.getChildAt(0).findViewById(R.id.count)).setVisibility(View.VISIBLE);
+            ((ProgressBar)tabWidget.getChildAt(0).findViewById(R.id.loading)).setVisibility(View.GONE);
+            ((TextView)tabWidget.getChildAt(0).findViewById(R.id.count)).setText(formatter.format(mTotalObservations));
             mLoadingObservationsGrid.setVisibility(View.GONE);
 
             if (mObservations.size() == 0) {
@@ -541,16 +621,29 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
                 mObservationsGridEmpty.setVisibility(View.GONE);
             }
 
-            mGridAdapter = new ObservationGridAdapter(ProjectDetails.this, mObservationsGrid.getColumnWidth(), mObservations);
-            mObservationsGrid.setAdapter(mGridAdapter);
+            mObservationsGrid.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mObservationsGrid.getColumnWidth() > 0) {
+                        mGridAdapter = new ObservationGridAdapter(ProjectDetails.this, mObservationsGrid.getColumnWidth(), mObservations);
+                        mObservationsGrid.setAdapter(mGridAdapter);
+                    }
+                }
+            });
+
             mObservationsGrid.setVisibility(View.VISIBLE);
         }
 
         if (mSpecies == null) {
+            ((TextView)tabWidget.getChildAt(1).findViewById(R.id.count)).setVisibility(View.GONE);
+            ((ProgressBar)tabWidget.getChildAt(1).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
             mLoadingSpeciesList.setVisibility(View.VISIBLE);
             mSpeciesListEmpty.setVisibility(View.GONE);
             mSpeciesList.setVisibility(View.GONE);
         } else {
+            ((TextView)tabWidget.getChildAt(1).findViewById(R.id.count)).setVisibility(View.VISIBLE);
+            ((ProgressBar)tabWidget.getChildAt(1).findViewById(R.id.loading)).setVisibility(View.GONE);
+            ((TextView)tabWidget.getChildAt(1).findViewById(R.id.count)).setText(formatter.format(mTotalSpecies));
             mLoadingSpeciesList.setVisibility(View.GONE);
 
             if (mSpecies.size() == 0) {
@@ -565,11 +658,16 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         }
 
         if (mObservers == null) {
+            ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setVisibility(View.GONE);
+            ((ProgressBar)tabWidget.getChildAt(2).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
             mLoadingPeopleList.setVisibility(View.VISIBLE);
             mPeopleListEmpty.setVisibility(View.GONE);
             mPeopleList.setVisibility(View.GONE);
             mPeopleListHeader.setVisibility(View.GONE);
         } else {
+            ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setVisibility(View.VISIBLE);
+            ((ProgressBar)tabWidget.getChildAt(2).findViewById(R.id.loading)).setVisibility(View.GONE);
+            ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setText(formatter.format(mTotalObervers));
             mLoadingPeopleList.setVisibility(View.GONE);
 
             if (mObservers.size() == 0) {
@@ -585,11 +683,16 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         }
 
         if (mIdentifiers == null) {
+            ((TextView)tabWidget.getChildAt(3).findViewById(R.id.count)).setVisibility(View.GONE);
+            ((ProgressBar)tabWidget.getChildAt(3).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
             mLoadingIdentifiersList.setVisibility(View.VISIBLE);
             mIdentifiersListEmpty.setVisibility(View.GONE);
             mIdentifiersList.setVisibility(View.GONE);
             mIdentifiersListHeader.setVisibility(View.GONE);
         } else {
+            ((TextView)tabWidget.getChildAt(3).findViewById(R.id.count)).setVisibility(View.VISIBLE);
+            ((ProgressBar)tabWidget.getChildAt(3).findViewById(R.id.loading)).setVisibility(View.GONE);
+            ((TextView)tabWidget.getChildAt(3).findViewById(R.id.count)).setText(formatter.format(mTotalIdentifiers));
             mLoadingIdentifiersList.setVisibility(View.GONE);
 
             if (mIdentifiers.size() == 0) {

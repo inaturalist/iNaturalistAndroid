@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#F5F5F5"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingLeft="19dp"
+        android:paddingRight="19dp"
+        android:paddingBottom="10dp">
+
 
         <TextView
             android:id="@+id/article_title"
             android:text="Article Title"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -21,7 +25,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="13dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -29,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/article_by"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="#808080"
                 />
 
@@ -46,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="user_name"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="#808080"
                 android:textStyle="bold"
                 android:layout_marginLeft="3dp"
@@ -59,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Article body"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="19dp"
             android:textSize="14sp"
             />
 

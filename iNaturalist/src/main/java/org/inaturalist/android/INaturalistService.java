@@ -337,7 +337,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
              } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                SerializableJSONArray results = getProjectObservations(projectId);
+                BetterJSONObject results = getProjectObservations(projectId);
 
                 mApp.setServiceResult(ACTION_PROJECT_OBSERVATIONS_RESULT, results);
                 Intent reply = new Intent(ACTION_PROJECT_OBSERVATIONS_RESULT);
@@ -346,7 +346,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
              } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                SerializableJSONArray results = getProjectIdentifiers(projectId);
+                BetterJSONObject results = getProjectIdentifiers(projectId);
 
                 Intent reply = new Intent(ACTION_PROJECT_IDENTIFIERS_RESULT);
                 reply.putExtra(RESULTS, results);
@@ -354,7 +354,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
              } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                SerializableJSONArray results = getProjectObservers(projectId);
+                BetterJSONObject results = getProjectObservers(projectId);
 
                 Intent reply = new Intent(ACTION_PROJECT_OBSERVERS_RESULT);
                 reply.putExtra(RESULTS, results);
@@ -362,7 +362,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
              } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
-                SerializableJSONArray results = getProjectSpecies(projectId);
+                BetterJSONObject results = getProjectSpecies(projectId);
 
                 Intent reply = new Intent(ACTION_PROJECT_SPECIES_RESULT);
                 reply.putExtra(RESULTS, results);
@@ -1260,25 +1260,25 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
 
-    private SerializableJSONArray getProjectObservations(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
         String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=200";
         JSONArray json = get(url);
         try {
-			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return new SerializableJSONArray();
+			return new BetterJSONObject();
 		}
     }
 
-    private SerializableJSONArray getProjectSpecies(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException {
         String url = API_HOST + "/observations/species_counts?project_id=" + projectId;
         JSONArray json = get(url);
         try {
-			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return new SerializableJSONArray();
+			return new BetterJSONObject();
 		}
     }
 
@@ -1289,25 +1289,25 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
 
-    private SerializableJSONArray getProjectObservers(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectObservers(int projectId) throws AuthenticationException {
         String url = API_HOST + "/observations/observers?project_id=" + projectId;
         JSONArray json = get(url);
         try {
-			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return new SerializableJSONArray();
+			return new BetterJSONObject();
 		}
     }
 
-    private SerializableJSONArray getProjectIdentifiers(int projectId) throws AuthenticationException {
+    private BetterJSONObject getProjectIdentifiers(int projectId) throws AuthenticationException {
         String url = API_HOST + "/observations/identifiers?project_id=" + projectId;
         JSONArray json = get(url);
         try {
-			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("results"));
+			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return new SerializableJSONArray();
+			return new BetterJSONObject();
 		}
     }
 
@@ -1607,7 +1607,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         delete(String.format("%s/projects/%d/leave.json", HOST, projectId), null);
         
         // Remove locally saved project (because we left it)
-        getContentResolver().delete(Project.CONTENT_URI, "(id IS NOT NULL) and (id = "+projectId+")", null);
+        getContentResolver().delete(Project.CONTENT_URI, "(id IS NOT NULL) and (id = " + projectId + ")", null);
     } 
     
     
@@ -1672,6 +1672,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             e.printStackTrace();
             return new SerializableJSONArray();
         }
+    }
+
+    public static boolean hasJoinedProject(Context context, int projectId) {
+        Cursor c = context.getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = " + projectId, null, Project.DEFAULT_SORT_ORDER);
+        int count = c.getCount();
+        c.close();
+
+        return count > 0;
     }
     
     

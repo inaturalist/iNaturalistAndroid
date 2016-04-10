@@ -75,6 +75,18 @@
                     android:background="@android:color/transparent"
                     android:layout_centerVertical="true" />
 
+
+                <ImageButton android:src="@drawable/ic_info_white_24dp"
+                    android:id="@+id/project_info"
+                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:scaleType="centerInside"
+                    android:layout_toLeftOf="@id/cancel_filters"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@android:color/transparent"
+                    android:layout_centerVertical="true" />
+
                 <TextView
                     android:id="@+id/filter_name"
                     android:layout_width="fill_parent"
