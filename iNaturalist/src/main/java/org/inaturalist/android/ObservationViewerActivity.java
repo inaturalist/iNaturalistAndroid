@@ -26,6 +26,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
@@ -40,6 +41,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -603,6 +605,15 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         final String username = pref.getString("username", null);
 
+        TabWidget tabWidget = mTabHost.getTabWidget();
+
+        if ((mFavorites == null) || (mFavorites.size() == 0)) {
+            ((TextView) tabWidget.getChildAt(2).findViewById(R.id.count)).setVisibility(View.GONE);
+        } else {
+            ((TextView) tabWidget.getChildAt(2).findViewById(R.id.count)).setVisibility(View.VISIBLE);
+            ((TextView) tabWidget.getChildAt(2).findViewById(R.id.count)).setText(String.valueOf(mFavorites.size()));
+        }
+
         if (username == null) {
             // Not logged in
             mAddFavorite.setVisibility(View.GONE);
@@ -982,47 +993,75 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         }
     }
 
+    private View createTabContent(int tabIconResource) {
+        View view = LayoutInflater.from(this).inflate(R.layout.observation_viewer_tab, null);
+        TextView countText = (TextView) view.findViewById(R.id.count);
+        ImageView tabIcon = (ImageView) view.findViewById(R.id.tab_icon);
+
+        tabIcon.setImageResource(tabIconResource);
+
+        return view;
+    }
+
+
+
     private void setupTabs() {
         mTabHost.setup();
 
-        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_INFO).setIndicator("", getResources().getDrawable(R.drawable.ic_info_tab)));
-        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_COMMENTS_IDS).setIndicator("", getResources().getDrawable(R.drawable.ic_forum_tab)));
-        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_FAVS).setIndicator("", getResources().getDrawable(R.drawable.ic_star_tab)));
+        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_INFO).setIndicator(createTabContent(R.drawable.ic_info_black_48dp)));
+        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_COMMENTS_IDS).setIndicator(createTabContent(R.drawable.ic_forum_black_48dp)));
+        addTab(mTabHost, mTabHost.newTabSpec(VIEW_TYPE_FAVS).setIndicator(createTabContent(R.drawable.ic_star_black_48dp)));
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 
-        mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-
         if (mShowComments) {
-            mInfoTabContainer.setVisibility(View.GONE);
-            mActivityTabContainer.setVisibility(View.VISIBLE);
-            mFavoritesTabContainer.setVisibility(View.GONE);
             mTabHost.setCurrentTab(1);
+            refreshTabs(VIEW_TYPE_COMMENTS_IDS);
         } else {
-            mInfoTabContainer.setVisibility(View.VISIBLE);
-            mActivityTabContainer.setVisibility(View.GONE);
-            mFavoritesTabContainer.setVisibility(View.GONE);
+            mTabHost.setCurrentTab(0);
+            refreshTabs(VIEW_TYPE_INFO);
         }
 
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tag) {
-                mInfoTabContainer.setVisibility(View.GONE);
-                mActivityTabContainer.setVisibility(View.GONE);
-                mFavoritesTabContainer.setVisibility(View.GONE);
+                refreshTabs(tag);
 
-                if (tag.equals(VIEW_TYPE_INFO)) {
-                    mInfoTabContainer.setVisibility(View.VISIBLE);
-                } else if (tag.equals(VIEW_TYPE_COMMENTS_IDS)) {
-                    mActivityTabContainer.setVisibility(View.VISIBLE);
-                } else if (tag.equals(VIEW_TYPE_FAVS)) {
-                    mFavoritesTabContainer.setVisibility(View.VISIBLE);
-                }
             }
         });
 
+    }
+
+    private void refreshTabs(String tag) {
+        mInfoTabContainer.setVisibility(View.GONE);
+        mActivityTabContainer.setVisibility(View.GONE);
+        mFavoritesTabContainer.setVisibility(View.GONE);
+
+        TabWidget tabWidget = mTabHost.getTabWidget();
+        tabWidget.getChildAt(0).findViewById(R.id.bottom_line).setVisibility(View.GONE);
+        tabWidget.getChildAt(1).findViewById(R.id.bottom_line).setVisibility(View.GONE);
+        tabWidget.getChildAt(2).findViewById(R.id.bottom_line).setVisibility(View.GONE);
+
+        ((ImageView)tabWidget.getChildAt(0).findViewById(R.id.tab_icon)).setColorFilter(Color.parseColor("#757575"));
+        ((ImageView)tabWidget.getChildAt(1).findViewById(R.id.tab_icon)).setColorFilter(Color.parseColor("#757575"));
+        ((ImageView)tabWidget.getChildAt(2).findViewById(R.id.tab_icon)).setColorFilter(Color.parseColor("#757575"));
+        ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setTextColor(Color.parseColor("#757575"));
+
+        int i = 0;
+        if (tag.equals(VIEW_TYPE_INFO)) {
+            mInfoTabContainer.setVisibility(View.VISIBLE);
+            i = 0;
+        } else if (tag.equals(VIEW_TYPE_COMMENTS_IDS)) {
+            mActivityTabContainer.setVisibility(View.VISIBLE);
+            i = 1;
+        } else if (tag.equals(VIEW_TYPE_FAVS)) {
+            mFavoritesTabContainer.setVisibility(View.VISIBLE);
+            ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setTextColor(getResources().getColor(R.color.inatapptheme_color));
+            i = 2;
+        }
+
+        tabWidget.getChildAt(i).findViewById(R.id.bottom_line).setVisibility(View.VISIBLE);
+        ((ImageView)tabWidget.getChildAt(i).findViewById(R.id.tab_icon)).setColorFilter(getResources().getColor(R.color.inatapptheme_color));
     }
 
     private void addTab(TabHost tabHost, TabHost.TabSpec tabSpec) {
