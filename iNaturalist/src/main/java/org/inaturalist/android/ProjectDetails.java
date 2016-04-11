@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -258,29 +259,16 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         if ((iconUrl != null) && (iconUrl.length() > 0)) {
             projectPic.setVisibility(View.VISIBLE);
             findViewById(R.id.project_pic_none).setVisibility(View.GONE);
-            UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl, new UrlImageViewCallback() {
-                @Override
-                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    Log.e("AAA", "Bitmap: onLoaded REGULAR");
-                }
+            UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl);
 
-                @Override
-                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    Log.e("AAA", "Bitmap: onPreSetBitmap REGULAR");
-                    return loadedBitmap;
-                }
-            });
-            Log.e("AAA", "Bitmap: setUrlDrawable");
-            UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.project_bg), iconUrl, new UrlImageViewCallback() {
+            UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.project_bg), iconUrl + "?bg=1", new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    Log.e("AAA", "Bitmap: onLoaded");
                     imageView.setImageBitmap(ImageUtils.blur(ProjectDetails.this, loadedBitmap.copy(loadedBitmap.getConfig(), true)));
                 }
 
                 @Override
                 public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    Log.e("AAA", "Bitmap: onPreSetBitmap");
                     return loadedBitmap;
                 }
             });
