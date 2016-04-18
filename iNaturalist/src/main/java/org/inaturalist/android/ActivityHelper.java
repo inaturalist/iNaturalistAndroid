@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -127,6 +128,7 @@ public class ActivityHelper {
             ScrollView parentView = (ScrollView) inflater.inflate(R.layout.dialog_message, null, false);
             textContent = (TextView) parentView.findViewById(R.id.text);
             textContent.setText(Html.fromHtml((String)msg));
+            Linkify.addLinks(textContent, Linkify.ALL);
             content.addView(parentView, 2);
         } else if (msg instanceof View) {
             content.addView((View) msg, 2);

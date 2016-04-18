@@ -663,7 +663,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 
     			// Refresh the comment/id list
     			IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-    			registerReceiver(mObservationReceiver, filter);  
+    			registerReceiver(mObservationReceiver, filter);
     			Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationDetails.this, INaturalistService.class);
     			serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.optInt("id"));
     			startService(serviceIntent2);

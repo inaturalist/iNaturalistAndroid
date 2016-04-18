@@ -1070,7 +1070,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     }
 
     private void getCommentIdList() {
-        if (mObservation.id != null) {
+        if ((mObservation.id != null) && (mCommentsIds == null)) {
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
             Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
@@ -1157,6 +1157,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
     private void loadObservationIntoUI() {
         String userIconUrl = null;
+
 
         if (mReadOnly) {
             BetterJSONObject obs = new BetterJSONObject(mObsJson);
