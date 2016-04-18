@@ -20,6 +20,8 @@ import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 class ProjectNewsAdapter extends ArrayAdapter<String> {
     private ArrayList<JSONObject> mResultList;
@@ -31,6 +33,15 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
 
         mContext = context;
         mResultList = results;
+        Collections.sort(mResultList, new Comparator<JSONObject>() {
+            @Override
+            public int compare(JSONObject news1, JSONObject news2) {
+                BetterJSONObject news1json = new BetterJSONObject(news1);
+                BetterJSONObject news2json = new BetterJSONObject(news2);
+
+                return news2json.getTimestamp("updated_at").compareTo(news1json.getTimestamp("updated_at"));
+            }
+        });
         mProject = project;
     }
 
@@ -51,13 +62,17 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
             TextView newsTitle = (TextView) view.findViewById(R.id.news_title);
             TextView newsContent = (TextView) view.findViewById(R.id.news_content);
 
-            if (mProject.has("icon_url") && !mProject.isNull("icon_url")) {
-                UrlImageViewHelper.setUrlDrawable(projectPic, mProject.getString("icon_url"));
+            JSONObject project = mProject != null ? mProject : item.getJSONObject("parent");
+
+            if (project.has("icon_url") && !project.isNull("icon_url")) {
+                UrlImageViewHelper.setUrlDrawable(projectPic, project.getString("icon_url"));
             }
-            projectTitle.setText(mProject.getString("title"));
+            projectTitle.setText(project.optString("title", project.optString("name")));
 
             newsTitle.setText(item.getString("title"));
-            String noHTML = Html.fromHtml(item.getString("body")).toString();
+            String html = item.getString("body");
+            html = html.replaceAll("<img .+?>", ""); // Image tags do not get removed cleanly by toString
+            String noHTML = Html.fromHtml(html).toString().trim();
             newsContent.setText(noHTML);
             BetterJSONObject newsItem = new BetterJSONObject(item);
             newsDate.setText(CommentsIdsAdapter.formatIdDate(newsItem.getTimestamp("updated_at")));

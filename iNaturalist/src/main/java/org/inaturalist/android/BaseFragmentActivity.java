@@ -255,7 +255,10 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
                     return;
                 }
 
-                startActivityIfNew(new Intent(BaseFragmentActivity.this, WebActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                Intent intent = new Intent(BaseFragmentActivity.this, ProjectNews.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("is_user_feed", true);
+                startActivityIfNew(intent);
             }
         });
         findViewById(R.id.menu_settings).setOnClickListener(new View.OnClickListener() {
@@ -337,18 +340,22 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
+        if (mDrawerToggle != null) {
+            mDrawerToggle.syncState();
 
-        mUserDetailsReceiver = new UserDetailsReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
-        Log.i(TAG, "Registering ACTION_GET_USER_DETAILS_RESULT");
-        registerReceiver(mUserDetailsReceiver, filter);
+            mUserDetailsReceiver = new UserDetailsReceiver();
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
+            Log.i(TAG, "Registering ACTION_GET_USER_DETAILS_RESULT");
+            registerReceiver(mUserDetailsReceiver, filter);
+        }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        if (mDrawerToggle != null) {
+            mDrawerToggle.onConfigurationChanged(newConfig);
+        }
     }
     
     private boolean isNetworkAvailable() {
@@ -362,7 +369,9 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
     protected void onResume() {
         super.onResume();
         if (app == null) { app = (INaturalistApp) getApplicationContext(); }
-        refreshUserDetails();
+        if (mDrawerToggle != null) {
+            refreshUserDetails();
+        }
     }
     
     @Override

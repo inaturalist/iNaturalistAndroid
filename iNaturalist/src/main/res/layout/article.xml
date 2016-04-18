@@ -7,7 +7,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingTop="16dp"
         android:paddingLeft="19dp"
         android:paddingRight="19dp"
@@ -58,15 +58,20 @@
 
         </LinearLayout>
 
+        <WebView
+            android:id="@+id/article_content_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:padding="0dp"
+            />
         <TextView
             android:id="@+id/article_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Article body"
             android:layout_marginTop="19dp"
-            android:textSize="14sp"
+            android:padding="0dp"
             />
-
     </LinearLayout>
 
 </ScrollView>

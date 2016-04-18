@@ -492,5 +492,6 @@
     <string name="article">Article</string>
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
     <string name="article_by">Article By</string>
+    <string name="feed">Feed</string>
  </resources>
 

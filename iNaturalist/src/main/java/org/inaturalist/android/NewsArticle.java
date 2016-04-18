@@ -13,6 +13,7 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -34,6 +35,7 @@ import java.util.regex.Pattern;
 
 public class NewsArticle extends SherlockFragmentActivity {
     public static final String KEY_ARTICLE = "article";
+    public static final String KEY_IS_USER_FEED = "is_user_feed";
 
     private INaturalistApp mApp;
     private BetterJSONObject mArticle;
@@ -41,9 +43,11 @@ public class NewsArticle extends SherlockFragmentActivity {
     private ActivityHelper mHelper;
 
     private TextView mArticleTitle;
+    private WebView mArticleContentWeb;
     private TextView mArticleContent;
     private TextView mUsername;
     private ImageView mUserPic;
+    private boolean mIsUserFeed;
 
     @Override
 	protected void onStart()
@@ -92,6 +96,7 @@ public class NewsArticle extends SherlockFragmentActivity {
         actionBar.setTitle(R.string.article);
 
         mArticleTitle = (TextView) findViewById(R.id.article_title);
+        mArticleContentWeb = (WebView) findViewById(R.id.article_content_web);
         mArticleContent = (TextView) findViewById(R.id.article_content);
         mUsername = (TextView) findViewById(R.id.username);
         mUserPic = (ImageView) findViewById(R.id.user_pic);
@@ -102,8 +107,10 @@ public class NewsArticle extends SherlockFragmentActivity {
         
         if (savedInstanceState == null) {
             mArticle = (BetterJSONObject) intent.getSerializableExtra(KEY_ARTICLE);
+            mIsUserFeed = intent.getBooleanExtra(KEY_IS_USER_FEED, false);
         } else {
             mArticle = (BetterJSONObject) savedInstanceState.getSerializable(KEY_ARTICLE);
+            mIsUserFeed = savedInstanceState.getBoolean(KEY_IS_USER_FEED);
         }
 
         if (mArticle == null) {
@@ -112,9 +119,20 @@ public class NewsArticle extends SherlockFragmentActivity {
         }
 
         mArticleTitle.setText(mArticle.getString("title"));
-        mArticleContent.setText(Html.fromHtml(mArticle.getString("body")));
-        Linkify.addLinks(mArticleContent, Linkify.ALL);
-        mArticleContent.setMovementMethod(LinkMovementMethod.getInstance());
+
+        if (mIsUserFeed) {
+            mArticleContent.setVisibility(View.GONE);
+            mArticleContentWeb.setVisibility(View.VISIBLE);
+            mArticleContentWeb.setBackgroundColor(Color.TRANSPARENT);
+            mArticleContentWeb.setVerticalScrollBarEnabled(false);
+            String html = "<html><head><style type=\"text/css\">body { margin: 0; padding: 0; font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif; font-size: medium; }</style></head><body>";
+            mArticleContentWeb.loadDataWithBaseURL("", html + mArticle.getString("body") + "</body></html>", "text/html", "UTF-8", "");
+        } else {
+            mArticleContentWeb.setVisibility(View.GONE);
+            mArticleContent.setVisibility(View.VISIBLE);
+            mArticleContent.setText(Html.fromHtml(mArticle.getString("body")));
+            Linkify.addLinks(mArticleContent, Linkify.ALL);
+        }
 
         JSONObject user = mArticle.getJSONObject("user");
         mUsername.setText(user.optString("login"));
@@ -139,6 +157,7 @@ public class NewsArticle extends SherlockFragmentActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(KEY_ARTICLE, mArticle);
+        outState.putBoolean(KEY_IS_USER_FEED, mIsUserFeed);
 
         super.onSaveInstanceState(outState);
     }

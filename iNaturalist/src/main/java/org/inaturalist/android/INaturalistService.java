@@ -172,12 +172,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_TAXA_FOR_GUIDE = "get_taxa_for_guide";
     public static String ACTION_GET_USER_DETAILS = "get_user_details";
     public static String ACTION_GET_PROJECT_NEWS = "get_project_news";
+    public static String ACTION_GET_NEWS = "get_news";
     public static String ACTION_GET_PROJECT_OBSERVATIONS = "get_project_observations";
     public static String ACTION_GET_PROJECT_SPECIES = "get_project_species";
     public static String ACTION_GET_PROJECT_OBSERVERS = "get_project_observers";
     public static String ACTION_GET_PROJECT_IDENTIFIERS = "get_project_identifiers";
     public static String ACTION_PROJECT_OBSERVATIONS_RESULT = "get_project_observations_result";
     public static String ACTION_PROJECT_NEWS_RESULT = "get_project_news_result";
+    public static String ACTION_NEWS_RESULT = "get_news_result";
     public static String ACTION_PROJECT_SPECIES_RESULT = "get_project_species_result";
     public static String ACTION_PROJECT_OBSERVERS_RESULT = "get_project_observers_result";
     public static String ACTION_PROJECT_IDENTIFIERS_RESULT = "get_project_identifiers_result";
@@ -564,6 +566,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             } else if (action.equals(ACTION_FLAG_OBSERVATION_AS_CAPTIVE)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 flagObservationAsCaptive(id);
+
+            } else if (action.equals(ACTION_GET_NEWS)) {
+                SerializableJSONArray news = getNews();
+
+                Intent reply = new Intent(ACTION_NEWS_RESULT);
+                reply.putExtra(RESULTS, news);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
@@ -1281,6 +1290,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 			return new BetterJSONObject();
 		}
     }
+
+    private SerializableJSONArray getNews() throws AuthenticationException {
+        String url = HOST + "/posts/for_user.json";
+        JSONArray json = get(url, mCredentials != null); // If user is logged-in, returns his news (using an authenticated endpoint)
+        return new SerializableJSONArray(json);
+    }
+
 
     private SerializableJSONArray getProjectNews(int projectId) throws AuthenticationException {
         String url = HOST + "/projects/" + projectId + "/journal.json";
