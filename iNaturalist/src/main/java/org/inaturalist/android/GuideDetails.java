@@ -881,8 +881,9 @@ public class GuideDetails extends SherlockActivity implements INaturalistApp.OnD
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-        
+        actionBar.setLogo(R.drawable.ic_arrow_back);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+
         final Intent intent = getIntent();
 
         if (mApp == null) {

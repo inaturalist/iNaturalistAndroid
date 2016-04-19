@@ -258,9 +258,8 @@ public class GuideTaxonActivity extends SherlockActivity {
         }
 
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-
+        actionBar.setLogo(R.drawable.ic_arrow_back);
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         String title = "";
         if ((mGuideTaxon) && (mGuideXmlFilename != null) && (mGuideTaxonXml != null)) {
@@ -272,10 +271,6 @@ public class GuideTaxonActivity extends SherlockActivity {
                 loadTaxon();
             }
             title = getString(R.string.about_this_species);
-
-            actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
-            actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
-            actionBar.setDisplayHomeAsUpEnabled(false);
         }
 
         actionBar.setTitle(title);
@@ -342,7 +337,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         TextView photosAttr = (TextView) findViewById(R.id.attributions_photos);
 
         if (defaultPhoto != null) {
-            photoUrl = defaultPhoto.optString("native_page_url");
+            photoUrl = defaultPhoto.optString("medium_url");
             photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo), photoUrl, defaultPhoto.optString("attribution"))));
             photosAttr.setMovementMethod(LinkMovementMethod.getInstance());
             stripUnderlines(photosAttr);

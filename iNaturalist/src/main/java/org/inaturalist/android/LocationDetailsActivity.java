@@ -31,8 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationDetailsActivity extends SherlockFragmentActivity implements LocationListener {
-    public final static String TAG = "LocationDetailsActivity";
-    protected static final String OBSERVATION = "observation";
+    private final static String TAG = "LocationDetailsActivity";
+    public static final String OBSERVATION = "observation";
+    public static final String READ_ONLY = "read_only";
+
     private GoogleMap mMap;
     private INaturalistApp mApp;
 	private Double mLatitude;
@@ -42,6 +44,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
 	private double mAccuracy;
     private TextView mLocationCoordinates;
     private Observation mObservation;
+    private boolean mIsReadOnly;
 
     @Override
 	protected void onStart()
@@ -65,8 +68,9 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         mObservation = (Observation)getIntent().getSerializableExtra(OBSERVATION);
-        mLongitude = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open")) ? mObservation.private_longitude : mObservation.longitude;
-        mLatitude = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
+        mIsReadOnly = getIntent().getBooleanExtra(READ_ONLY, false);
+        mLongitude = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
+        mLatitude = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
         mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
 
         if ((mLongitude != null) && (mLatitude != null) && (savedInstanceState == null)) {
@@ -108,6 +112,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         
         if (savedInstanceState != null) {
             mObservation = (Observation) savedInstanceState.getSerializable("observation");
+            mIsReadOnly = savedInstanceState.getBoolean(READ_ONLY);
             mLongitude = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open")) ? mObservation.private_longitude : mObservation.longitude;
             mLatitude = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
             mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
@@ -201,6 +206,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("observation", mObservation);
+        outState.putBoolean(READ_ONLY, mIsReadOnly);
         super.onSaveInstanceState(outState);
     }
  
@@ -221,6 +227,10 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.choose_location_menu, menu);
+        if (mIsReadOnly) {
+            MenuItem save = menu.findItem(R.id.save_location);
+            save.setVisible(false);
+        }
         return super.onCreateOptionsMenu(menu);
     }
     

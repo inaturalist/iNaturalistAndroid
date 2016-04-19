@@ -12,7 +12,7 @@
 	        android:lines="1"
 	        android:singleLine="true"
             android:text=""
-            android:background="#DDDDDD"
+            android:background="#ffffff"
             android:padding="10dp"
 	        android:hint="@string/enter_taxon_name">
 	        <requestFocus />   

@@ -2,6 +2,9 @@
 
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+   <style name="iNatActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#ffffff</item>
+    </style>
 
   <style name="ButtoniNatAppTheme" parent="android:Widget.Holo.Light.Button">
 	  <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>

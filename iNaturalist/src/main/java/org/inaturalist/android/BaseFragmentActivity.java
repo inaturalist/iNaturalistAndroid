@@ -85,7 +85,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mSideMenu = (LinearLayout) findViewById(R.id.left_drawer);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_menu_black_24dp, 0, 0) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_menu, 0, 0) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
             }

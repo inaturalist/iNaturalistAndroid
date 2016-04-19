@@ -141,15 +141,11 @@ public class ProjectNews extends BaseFragmentActivity {
         if (!mIsUserFeed) {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setIcon(android.R.color.transparent);
-            actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
+            actionBar.setLogo(R.drawable.ic_arrow_back);
             actionBar.setDisplayHomeAsUpEnabled(false);
         } else {
             onDrawerCreate(savedInstanceState);
         }
-
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
-
 
         refreshViewState();
     }

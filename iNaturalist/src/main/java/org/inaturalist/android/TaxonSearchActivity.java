@@ -398,12 +398,11 @@ public class TaxonSearchActivity extends SherlockListActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-        
+
         LayoutInflater li = LayoutInflater.from(this);
         View customView = li.inflate(R.layout.taxon_search_action_bar, null);
         actionBar.setCustomView(customView);
-        actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
+        actionBar.setLogo(R.drawable.ic_arrow_back);
        
         setContentView(R.layout.taxon_search);
         

@@ -367,10 +367,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
-        actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
+        actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.observation);
 
@@ -939,6 +936,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 public void onMapClick(LatLng latLng) {
                     Intent intent = new Intent(ObservationViewerActivity.this, LocationDetailsActivity.class);
                     intent.putExtra(LocationDetailsActivity.OBSERVATION, mObservation);
+                    intent.putExtra(LocationDetailsActivity.READ_ONLY, true);
                     startActivity(intent);
                 }
             });

@@ -21,11 +21,9 @@
         <item name="android:textColor">#ff3c3f41</item>
     </style>
 
-
   <style name="iNatAppTheme" parent="@style/_iNatAppTheme"/>
 
     <style name="_iNatAppTheme" parent="Theme.Sherlock.Light">
-
         <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
 
         <item name="android:editTextStyle">@style/EditTextiNatAppTheme</item>

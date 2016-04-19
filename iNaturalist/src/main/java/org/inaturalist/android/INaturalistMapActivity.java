@@ -207,6 +207,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     @SuppressLint("NewApi")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.NoActionBarShadowTheme);
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.map);
@@ -460,6 +461,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
 
+		mTabHost.getTabWidget().setDividerDrawable(null);
 
         mTabHost.setOnTabChangedListener(this);
         

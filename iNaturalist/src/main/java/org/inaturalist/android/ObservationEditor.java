@@ -483,14 +483,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
         mTopActionBar.setHomeButtonEnabled(true);
         mTopActionBar.setDisplayHomeAsUpEnabled(true);
-        mTopActionBar.setIcon(android.R.color.transparent);
-
         View takePhoto;
 
-        mTopActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.inatapptheme_color)));
-        mTopActionBar.setLogo(R.drawable.ic_arrow_back_white_24dp);
+        mTopActionBar.setLogo(R.drawable.ic_arrow_back);
         mTopActionBar.setDisplayHomeAsUpEnabled(false);
-        mTopActionBar.setTitle(Html.fromHtml("<font color=\"#ffffff\">" + getString(R.string.details) + "</font>"));
+        mTopActionBar.setTitle(getString(R.string.details));
         takePhoto = findViewById(R.id.take_photo);
 
 
@@ -1061,27 +1058,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     /**
      * MENUS
      */
-
-    /*
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.gallery_menu, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-        switch (item.getItemId()) {
-        case R.id.delete:
-            Log.d(TAG, "selected delete from menu");
-            deletePhoto(info.position);
-        default:
-            return super.onContextItemSelected(item);
-        }
-    }
-    */
 
     /** Create a file Uri for saving an image or video */
     private Uri getOutputMediaFileUri(int type){

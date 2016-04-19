@@ -3,7 +3,7 @@
     <item
         android:id="@+id/save_location"
         android:title=""
-        android:icon="@drawable/ic_check_white_24dp"
+        android:icon="@drawable/ic_check_black_24dp"
         android:showAsAction="always" />
     <item
         android:id="@+id/layers"

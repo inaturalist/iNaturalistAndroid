@@ -37,6 +37,7 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.NoActionBarShadowTheme);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.guides);
@@ -105,15 +106,11 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
         GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("my_guides").setIndicator(getString(R.string.my_guides)));
         GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_guides").setIndicator(getString(R.string.nearby_guides)));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            ((TextView) mTabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title)).setAllCaps(false);
-            ((TextView) mTabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title)).setAllCaps(false);
-            ((TextView) mTabHost.getTabWidget().getChildAt(2).findViewById(android.R.id.title)).setAllCaps(false);
-        }
-
         mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+
+        mTabHost.getTabWidget().setDividerDrawable(null);
 
         mTabHost.setOnTabChangedListener(this);
     }

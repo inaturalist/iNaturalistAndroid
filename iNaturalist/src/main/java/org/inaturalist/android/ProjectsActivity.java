@@ -40,6 +40,7 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.NoActionBarShadowTheme);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.projects);

@@ -84,12 +84,9 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.inatapptheme_color)));
-        actionBar.setLogo(R.drawable.ic_arrow_back_white_24dp);
+        actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(Html.fromHtml("<font color=\"#ffffff\">" + getString(R.string.details) + "</font>"));
+        actionBar.setTitle(Html.fromHtml(getString(R.string.details)));
 
         if (savedInstanceState != null) {
         	mLongitude = savedInstanceState.getDouble("longitude");

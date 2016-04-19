@@ -88,10 +88,7 @@ public class NewsArticle extends SherlockFragmentActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
-        actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
+        actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.article);
 
