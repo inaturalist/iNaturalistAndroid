@@ -21,6 +21,13 @@ public abstract class BaseProjectsTab extends BaseTab {
         return false;
     }
 
+    @Override
+    protected Boolean noClickableInfo() {
+        // Don't allow clicking the project icon for more info
+        return true;
+    }
+
+
     protected void onItemSelected(BetterJSONObject item, int index) {
     	// Show project details
     	Intent intent = new Intent(getActivity(), ProjectDetails.class);

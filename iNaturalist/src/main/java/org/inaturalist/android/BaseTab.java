@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -187,6 +188,9 @@ public abstract class BaseTab extends SherlockFragment {
 
     /** Returns whether or not we should use the new item layout */
     protected Boolean useNewItemLayout() { return false; }
+
+    /** Returns whether or not we should allow clicking the project info icon for more info */
+    protected Boolean noClickableInfo() { return false; }
 
     /** Returns whether or not we should show the search bar */
     protected Boolean showSearchBar() { return true; }
@@ -507,12 +511,15 @@ public abstract class BaseTab extends SherlockFragment {
 
                 if (useNewItemLayout()) {
                     view.findViewById(R.id.project_pic_none).setVisibility(View.GONE);
+                    if (noClickableInfo()) {
+                        view.findViewById(R.id.project_pic_container).setBackgroundColor(Color.TRANSPARENT);
+                    }
                 }
             }
 
             if (useNewItemLayout()) {
                 final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
-                if (noHTMLDescription.length() > 0) {
+                if ((noHTMLDescription.length() > 0) && (!noClickableInfo())) {
                     ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

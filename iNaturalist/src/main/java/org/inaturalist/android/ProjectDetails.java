@@ -187,9 +187,9 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
             getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVATIONS);
-            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_IDENTIFIERS);
-            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVERS);
             getProjectDetails(INaturalistService.ACTION_GET_PROJECT_SPECIES);
+            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVERS);
+            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_IDENTIFIERS);
 
             mGridContainer.setVisibility(View.VISIBLE);
             mSpeciesContainer.setVisibility(View.GONE);
