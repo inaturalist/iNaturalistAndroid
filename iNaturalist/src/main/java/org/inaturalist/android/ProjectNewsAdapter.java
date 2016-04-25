@@ -22,6 +22,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class ProjectNewsAdapter extends ArrayAdapter<String> {
     private ArrayList<JSONObject> mResultList;
@@ -57,6 +59,7 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
 
         try {
             ImageView projectPic = (ImageView) view.findViewById(R.id.project_pic);
+            ImageView postPic = (ImageView) view.findViewById(R.id.post_pic);
             TextView projectTitle = (TextView) view.findViewById(R.id.project_title);
             TextView newsDate = (TextView) view.findViewById(R.id.news_date);
             TextView newsTitle = (TextView) view.findViewById(R.id.news_title);
@@ -71,11 +74,21 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
 
             newsTitle.setText(item.getString("title"));
             String html = item.getString("body");
+            String firstPhotoUrl = findFirstPhotoUrl(html);
             html = html.replaceAll("<img .+?>", ""); // Image tags do not get removed cleanly by toString
             String noHTML = Html.fromHtml(html).toString().trim();
             newsContent.setText(noHTML);
             BetterJSONObject newsItem = new BetterJSONObject(item);
             newsDate.setText(CommentsIdsAdapter.formatIdDate(newsItem.getTimestamp("updated_at")));
+
+            if (firstPhotoUrl != null) {
+                // Set the article photo
+                postPic.setVisibility(View.VISIBLE);
+                UrlImageViewHelper.setUrlDrawable(postPic, firstPhotoUrl);
+            } else {
+                // No article photo
+                postPic.setVisibility(View.GONE);
+            }
 
             view.setTag(item);
         } catch (JSONException e) {
@@ -83,6 +96,18 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
         }
 
         return view;
+    }
+
+    private String findFirstPhotoUrl(String html) {
+        // Find an <img> HTML tag and retrieve its "src" attribute
+        String regex = "<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(html);
+        if (m.find()) {
+            return m.group(1);
+        } else {
+            return null;
+        }
     }
 
 }

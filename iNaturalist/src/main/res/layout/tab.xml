@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="42dp">
+
+    <TextView
+        android:id="@+id/tab_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tab Title"
+        android:layout_centerInParent="true"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        />
+
+    <View
+        android:id="@+id/bottom_line"
+        android:background="@color/inatapptheme_color"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="3dp" />
+</RelativeLayout>

@@ -14,8 +14,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 public class ProjectsActivity extends BaseFragmentActivity implements OnTabChangeListener, OnPageChangeListener {
@@ -67,10 +70,31 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         tabHost.addTab(tabSpec);
     }
 
+    private View createTabContent(int titleRes) {
+        View view = LayoutInflater.from(this).inflate(R.layout.tab, null);
+        TextView tabTitle = (TextView) view.findViewById(R.id.tab_title);
+        tabTitle.setText(titleRes);
+
+        return view;
+    }
+
     // Manages the Tab changes, synchronizing it with Pages
     public void onTabChanged(String tag) {
         int pos = this.mTabHost.getCurrentTab();
         this.mViewPager.setCurrentItem(pos);
+
+        refreshTabs(pos);
+    }
+
+    private void refreshTabs(int pos) {
+        TabWidget tabWidget = mTabHost.getTabWidget();
+        for (int i = 0; i < 3; i++) {
+            tabWidget.getChildAt(i).findViewById(R.id.bottom_line).setVisibility(View.GONE);
+            ((TextView) tabWidget.getChildAt(i).findViewById(R.id.tab_title)).setTextColor(Color.parseColor("#84000000"));
+        }
+
+        tabWidget.getChildAt(pos).findViewById(R.id.bottom_line).setVisibility(View.VISIBLE);
+        ((TextView)tabWidget.getChildAt(pos).findViewById(R.id.tab_title)).setTextColor(Color.parseColor("#000000"));
     }
 
     @Override
@@ -107,17 +131,15 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("joined_projects").setIndicator(getString(R.string.joined_projects)));
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_projects").setIndicator(getString(R.string.nearby_projects)));
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("featured_projects").setIndicator(getString(R.string.featured_projects)));
-
-        mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
+        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("joined_projects").setIndicator(createTabContent(R.string.joined_projects)));
+        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_projects").setIndicator(createTabContent(R.string.nearby_projects)));
+        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("featured_projects").setIndicator(createTabContent(R.string.featured_projects)));
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 
         mTabHost.setOnTabChangedListener(this);
+
+        refreshTabs(0);
     }
   
 }
