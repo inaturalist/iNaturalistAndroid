@@ -546,8 +546,11 @@ public class ObservationEditor extends SherlockFragmentActivity {
                         } else {
                             // Edit location
                             Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
-                            intent.putExtra(LocationChooserActivity.LONGITUDE, mObservation.private_longitude != null ? mObservation.private_longitude : mObservation.longitude);
-                            intent.putExtra(LocationChooserActivity.LATITUDE,  mObservation.private_latitude != null ? mObservation.private_latitude : mObservation.latitude);
+                            Double lat, lon;
+                            lat = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
+                            lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
+                            intent.putExtra(LocationChooserActivity.LONGITUDE, lon);
+                            intent.putExtra(LocationChooserActivity.LATITUDE,  lat);
                             intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
                             intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
 
@@ -895,14 +898,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
         String selectedValue = values.get(mGeoprivacy.getSelectedItemPosition());
         if ((mObservation.geoprivacy != null) || (mGeoprivacy.getSelectedItemPosition() != 0)) {
             mObservation.geoprivacy = selectedValue;
-
-            if (selectedValue.equals("private") || selectedValue.equals("obscured")) {
-                if ((mObservation.longitude != null) && (mObservation.latitude != null)) {
-                    mObservation.private_longitude = mObservation.longitude;
-                    mObservation.private_latitude = mObservation.latitude;
-                }
-            }
-        }
+       }
 
         if ((mObservation.captive != null) || ((mObservation.captive == null) && (mIsCaptive))) {
             mObservation.captive = mIsCaptive;

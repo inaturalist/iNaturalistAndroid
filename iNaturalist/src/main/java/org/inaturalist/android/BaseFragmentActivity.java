@@ -136,7 +136,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             }
         });
 
-        if (!app.hasAutoSync()) {
+        if (!app.hasAutoSync() && app.loggedIn()) {
             // Tell the user about the new auto sync feature
             mHelper.confirm(getString(R.string.introducing_auto_sync), getString(R.string.turn_on_auto_sync), new DialogInterface.OnClickListener() {
                 @Override
@@ -151,6 +151,9 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
                     app.setAutoSync(true);
                 }
             }, R.string.no_thanks, R.string.turn_on);
+        } else if (!app.hasAutoSync()) {
+            // Default - set auto sync on
+            app.setAutoSync(true);
         }
 	}
 

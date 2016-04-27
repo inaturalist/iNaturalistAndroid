@@ -84,7 +84,17 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
             if (firstPhotoUrl != null) {
                 // Set the article photo
                 postPic.setVisibility(View.VISIBLE);
-                UrlImageViewHelper.setUrlDrawable(postPic, firstPhotoUrl);
+                UrlImageViewHelper.setUrlDrawable(postPic, firstPhotoUrl, new UrlImageViewCallback() {
+                    @Override
+                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    }
+
+                    @Override
+                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                        Bitmap centerCrop = ImageUtils.centerCropBitmap(loadedBitmap);
+                        return centerCrop;
+                    }
+                });
             } else {
                 // No article photo
                 postPic.setVisibility(View.GONE);

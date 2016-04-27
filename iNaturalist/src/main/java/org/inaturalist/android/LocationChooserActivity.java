@@ -91,6 +91,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         if (savedInstanceState != null) {
         	mLongitude = savedInstanceState.getDouble("longitude");
         	mLatitude = savedInstanceState.getDouble("latitude");
+            mAccuracy = savedInstanceState.getDouble("accuracy");
             mIconicTaxonName = savedInstanceState.getString("iconic_taxon_name");
         }
 
@@ -154,11 +155,10 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-    	if (mMap != null) {
-    		outState.putDouble("longitude", mMap.getCameraPosition().target.longitude);
-    		outState.putDouble("latitude", mMap.getCameraPosition().target.latitude);
-            outState.putString("iconic_taxon_name", mIconicTaxonName);
-    	}
+        outState.putDouble("longitude", mLongitude);
+        outState.putDouble("latitude", mLatitude);
+        outState.putDouble("accuracy", mAccuracy);
+        outState.putString("iconic_taxon_name", mIconicTaxonName);
         super.onSaveInstanceState(outState);
     }
  

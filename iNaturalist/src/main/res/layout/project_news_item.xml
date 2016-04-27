@@ -42,6 +42,7 @@
         android:id="@+id/post_pic"
         android:layout_width="62dp"
         android:layout_height="62dp"
+        android:scaleType="fitXY"
         android:layout_marginTop="12dp"
         android:layout_alignParentRight="true"
         android:layout_below="@id/project_pic"

@@ -122,7 +122,7 @@ public class NewsArticle extends SherlockFragmentActivity {
             mArticleContentWeb.setVisibility(View.VISIBLE);
             mArticleContentWeb.setBackgroundColor(Color.TRANSPARENT);
             mArticleContentWeb.setVerticalScrollBarEnabled(false);
-            String html = "<html><head><style type=\"text/css\">body { line-height: 24pt; margin: 0; padding: 0; font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif; font-size: medium; }</style></head><body>";
+            String html = "<html><head><style type=\"text/css\">body { line-height: 22pt; margin: 0; padding: 0; font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif; font-size: medium; }</style></head><body>";
             mArticleContentWeb.loadDataWithBaseURL("", html + mArticle.getString("body") + "</body></html>", "text/html", "UTF-8", "");
         } else {
             mArticleContentWeb.setVisibility(View.GONE);
