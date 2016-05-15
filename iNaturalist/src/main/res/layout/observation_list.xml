@@ -5,27 +5,39 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/observations_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"/>
-
     <TextView
-        android:id="@android:id/empty"
+        android:id="@+id/sync_observations"
+        android:background="@color/inatapptheme_color"
+        android:textColor="#FFFFFF"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="30dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
         android:gravity="center"
-        android:layout_centerInParent="true"
-        style="@android:style/TextAppearance.Medium"
-        android:text="@string/no_observations_yet" />
-
-    <LinearLayout
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
+        style="@android:style/TextAppearance.Medium"
+        android:text="@string/sync_x_observations" />
+
+    <RelativeLayout
+        android:layout_above="@id/sync_observations"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/observations_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"/>
+
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            style="@android:style/TextAppearance.Medium"
+            android:text="@string/no_observations_yet" />
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/add_observation"
@@ -42,21 +54,8 @@
             fab:fab_colorNormal="@color/inatapptheme_color"
             fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
             fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/sync_observations"
-            android:background="@color/inatapptheme_color"
-            android:textColor="#FFFFFF"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_alignParentBottom="true"
-            style="@android:style/TextAppearance.Medium"
-            android:text="@string/sync_x_observations" />
-
-    </LinearLayout>
 </RelativeLayout>
 
 

@@ -314,7 +314,6 @@ public class GuideTaxonActivity extends SherlockActivity {
             try {
                 displayName = mTaxon.getJSONObject().getString("unique_name");
             } catch (JSONException e2) {
-                displayName = "unknown";
             }
             try {
                 JSONObject defaultName = mTaxon.getJSONObject().getJSONObject("default_name");
@@ -322,18 +321,28 @@ public class GuideTaxonActivity extends SherlockActivity {
             } catch (JSONException e1) {
                 // alas
             }
+
+            if (displayName == null) {
+                displayName = mTaxon.getJSONObject().optString("preferred_common_name");
+            }
         }
 
-        displayNameText.setText(displayName);
-        try {
-            name.setText(mTaxon.getJSONObject().getString("name"));
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if ((displayName == null) || (displayName.length() == 0)) {
+            displayNameText.setText(mTaxon.getJSONObject().optString("name"));
+            name.setVisibility(View.GONE);
+        } else {
+            displayNameText.setText(displayName);
+            try {
+                name.setText(mTaxon.getJSONObject().getString("name"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
+        JSONObject itemJson = mTaxon.getJSONObject();
         ImageView taxonImage = (ImageView) findViewById(R.id.taxon_image);
         String photoUrl = null;
-        JSONObject defaultPhoto = mTaxon.getJSONObject().optJSONObject("default_photo");
+        JSONObject defaultPhoto = itemJson.isNull("default_photo") ? null : itemJson.optJSONObject("default_photo");
         TextView photosAttr = (TextView) findViewById(R.id.attributions_photos);
 
         if (defaultPhoto != null) {
@@ -346,7 +355,7 @@ public class GuideTaxonActivity extends SherlockActivity {
         }
 
         if ((photoUrl == null) || (photoUrl.length() == 0)) {
-            photoUrl = mTaxon.getJSONObject().optString("photo_url");
+            photoUrl = itemJson.isNull("photo_url") ? null : itemJson.optString("photo_url");
         }
         if (photoUrl != null) {
             findViewById(R.id.loading_image).setVisibility(View.VISIBLE);
@@ -363,11 +372,13 @@ public class GuideTaxonActivity extends SherlockActivity {
                 }
             });
         } else {
-            findViewById(R.id.taxon_image_container).setVisibility(View.GONE);
+            findViewById(R.id.loading_image).setVisibility(View.GONE);
+            taxonImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            taxonImage.setImageResource(ObservationPhotosViewer.observationIcon(itemJson));
         }
 
         TextView description = (TextView) findViewById(R.id.description);
-        String descriptionText = mTaxon.getJSONObject().optString("wikipedia_summary", "");
+        String descriptionText = itemJson.isNull("wikipedia_summary") ? "" : itemJson.optString("wikipedia_summary", "");
         description.setText(Html.fromHtml(descriptionText));
 
         ViewGroup viewOnWiki = (ViewGroup) findViewById(R.id.view_on_wikipedia);
@@ -383,6 +394,7 @@ public class GuideTaxonActivity extends SherlockActivity {
                     } else {
                         wikiTitle = taxonObj.optString("name");
                     }
+                    wikiTitle = wikiTitle.replace(" ", "_");
                     obsUrl = "https://en.wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();

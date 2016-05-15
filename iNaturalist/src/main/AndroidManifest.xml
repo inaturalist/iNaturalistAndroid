@@ -111,7 +111,6 @@
         </activity>
         <activity
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:name=".ObservationViewerActivity" >
         </activity>
         <activity

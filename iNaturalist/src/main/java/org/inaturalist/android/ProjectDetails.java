@@ -151,6 +151,19 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         mSpeciesList = (ListView) findViewById(R.id.species_list);
         mSpeciesContainer = (ViewGroup) findViewById(R.id.species_container);
 
+        mSpeciesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                JSONObject item = (JSONObject) view.getTag();
+                Intent intent = new Intent(ProjectDetails.this, GuideTaxonActivity.class);
+                intent.putExtra("taxon", new BetterJSONObject(item));
+                intent.putExtra("guide_taxon", false);
+                intent.putExtra("show_add", false);
+                intent.putExtra("download_taxon", true);
+                startActivity(intent);
+            }
+        });
+
         mLoadingPeopleList = (ProgressBar) findViewById(R.id.loading_people_list);
         mPeopleListEmpty = (TextView) findViewById(R.id.people_list_empty);
         mPeopleList = (ListView) findViewById(R.id.people_list);
@@ -163,7 +176,6 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
         mIdentifiersContainer = (ViewGroup) findViewById(R.id.identifiers_container);
         mIdentifiersListHeader = (ViewGroup) findViewById(R.id.identifiers_list_header);
 
-        /*
         mObservationsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
@@ -175,7 +187,6 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
                 startActivity(intent);
             }
         });
-        */
 
 
         if (mApp == null) {

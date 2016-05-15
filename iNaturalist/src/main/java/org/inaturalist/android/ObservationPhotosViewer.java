@@ -100,8 +100,8 @@ public class ObservationPhotosViewer extends SherlockActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-        actionBar.setLogo(R.drawable.up_icon);
+        actionBar.setLogo(R.drawable.ic_arrow_back);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.observation_photos);
 
         mApp = (INaturalistApp) getApplicationContext();
@@ -144,8 +144,6 @@ public class ObservationPhotosViewer extends SherlockActivity {
             mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
 		} else if (mIsNewObservation) {
             mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId, mObservationIdInternal));
-            mViewPager.setCurrentItem(mCurrentPhotoIndex);
-
             if (!mReadOnly) mDeletePhoto.setVisibility(View.VISIBLE);
             mDeletePhoto.setOnClickListener(new OnClickListener() {
                 @Override
@@ -157,6 +155,8 @@ public class ObservationPhotosViewer extends SherlockActivity {
                 }
             });
         }
+        mViewPager.setCurrentItem(mCurrentPhotoIndex);
+
     }
 
 
@@ -200,9 +200,10 @@ public class ObservationPhotosViewer extends SherlockActivity {
         if (mIsNewObservation) {
             outState.putInt("mObservationId", mObservationId);
             outState.putInt("mObservationIdInternal", mObservationIdInternal);
-            mCurrentPhotoIndex = mViewPager.getCurrentItem();
-            outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
         }
+
+        mCurrentPhotoIndex = mViewPager.getCurrentItem();
+        outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
 
         outState.putBoolean("mReadOnly", mReadOnly);
 

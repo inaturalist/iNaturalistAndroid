@@ -189,6 +189,8 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     private String mTaxonImage;
     private String mTaxonIdName;
     private String mTaxonName;
+    private String mActiveTab;
+    private boolean mReloadObs;
 
     @Override
 	protected void onStart() {
@@ -353,11 +355,12 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        reloadObservation(null, true);
         loadObservationIntoUI();
         refreshDataQuality();
         refreshProjectList();
         setupMap();
+        resizeActivityList();
+        resizeFavList();
     }
 
     @Override
@@ -376,8 +379,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         mHelper = new ActivityHelper(this);
 
         reloadObservation(savedInstanceState, false);
-
-        mTaxon = null;
 
         mUserName = (TextView) findViewById(R.id.user_name);
         mObservedOn = (TextView) findViewById(R.id.observed_on);
@@ -486,7 +487,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 			if (uri == null) {
                 String obsJson = intent.getStringExtra("observation");
                 mReadOnly = intent.getBooleanExtra("read_only", false);
-                boolean reloadObs = intent.getBooleanExtra("reload", false);
+                mReloadObs = intent.getBooleanExtra("reload", false);
                 mObsJson = obsJson;
 
                 if (obsJson == null) {
@@ -496,20 +497,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 }
 
                 mObservation = new Observation(new BetterJSONObject(obsJson));
-
-                if (reloadObs) {
-                    // Reload observation from server
-                    if ((mObservation.id != null) && (mObservationReceiver == null)) {
-                        mObservationReceiver = new ObservationReceiver();
-                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                        Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
-                        registerReceiver(mObservationReceiver, filter);
-
-                        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
-                        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                        startService(serviceIntent);
-                    }
-                }
 			}
 
 			mUri = uri;
@@ -530,7 +517,19 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mTaxonName = savedInstanceState.getString("mTaxonName");
             mTaxonIdName = savedInstanceState.getString("mTaxonIdName");
             mTaxonImage = savedInstanceState.getString("mTaxonImage");
-		}
+            try {
+                String taxonJson = savedInstanceState.getString("mTaxon");
+                if (taxonJson != null) mTaxon = new JSONObject(savedInstanceState.getString("mTaxon"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            mActiveTab = savedInstanceState.getString("mActiveTab");
+
+            mCommentsIds = loadListFromBundle(savedInstanceState, "mCommentsIds");
+            mFavorites = loadListFromBundle(savedInstanceState, "mFavorites");
+            mProjects = loadListFromBundle(savedInstanceState, "mProjects");
+        }
 
         if (mCursor == null) {
             if (!mReadOnly) mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
@@ -860,7 +859,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                             }
                         });
             }
-        }, true);
+        }, true, mReadOnly);
         mCommentsIdsList.setAdapter(mAdapter);
 
         mAddId.setOnClickListener(new OnClickListener() {
@@ -1012,12 +1011,22 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 
-        if (mShowComments) {
+        if ((mActiveTab == null) && (mShowComments)) {
             mTabHost.setCurrentTab(1);
             refreshTabs(VIEW_TYPE_COMMENTS_IDS);
         } else {
-            mTabHost.setCurrentTab(0);
-            refreshTabs(VIEW_TYPE_INFO);
+            if (mActiveTab == null) {
+                mTabHost.setCurrentTab(0);
+                refreshTabs(VIEW_TYPE_INFO);
+            } else {
+                int i = 0;
+                if (mActiveTab.equals(VIEW_TYPE_INFO)) i = 0;
+                if (mActiveTab.equals(VIEW_TYPE_COMMENTS_IDS)) i = 1;
+                if (mActiveTab.equals(VIEW_TYPE_FAVS)) i = 2;
+
+                mTabHost.setCurrentTab(i);
+                refreshTabs(mActiveTab);
+            }
         }
 
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -1031,6 +1040,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     }
 
     private void refreshTabs(String tag) {
+        mActiveTab = tag;
         mInfoTabContainer.setVisibility(View.GONE);
         mActivityTabContainer.setVisibility(View.GONE);
         mFavoritesTabContainer.setVisibility(View.GONE);
@@ -1161,6 +1171,9 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             BetterJSONObject obs = new BetterJSONObject(mObsJson);
             JSONObject userObj = obs.getJSONObject("user");
             userIconUrl = userObj.has("user_icon_url") && !userObj.isNull("user_icon_url") ? userObj.optString("user_icon_url", null) : null;
+            if (userIconUrl == null) {
+                userIconUrl = userObj.has("icon_url") && !userObj.isNull("icon_url") ? userObj.optString("icon_url", null) : null;
+            }
             mUserName.setText(userObj.optString("login"));
         } else {
             SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -1170,7 +1183,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         }
 
         if (userIconUrl != null) {
-            UrlImageViewHelper.setUrlDrawable(mUserPic, userIconUrl, new UrlImageViewCallback() {
+            UrlImageViewHelper.setUrlDrawable(mUserPic, userIconUrl, R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) { }
 
@@ -1295,30 +1308,32 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
         getCommentIdList();
 
-        // Get IDs of project-observations
-        int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
-        Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
-                "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
-                null, ProjectObservation.DEFAULT_SORT_ORDER);
-        mProjectIds = new ArrayList<Integer>();
-        while (c.isAfterLast() == false) {
-            ProjectObservation projectObservation = new ProjectObservation(c);
-            mProjectIds.add(projectObservation.project_id);
-            c.moveToNext();
-        }
-        c.close();
-
-        mProjects = new ArrayList<BetterJSONObject>();
-        for (int projectId: mProjectIds) {
-            c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION,
-                    "(id = " + projectId + ")", null, Project.DEFAULT_SORT_ORDER);
-            if (c.getCount() > 0) {
-                Project project = new Project(c);
-                BetterJSONObject projectJson = new BetterJSONObject();
-                projectJson.put("project", project.toJSONObject());
-                mProjects.add(projectJson);
+        if (!mReadOnly) {
+            // Get IDs of project-observations
+            int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
+            Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
+                    "(observation_id = " + obsId + ") AND ((is_deleted = 0) OR (is_deleted is NULL))",
+                    null, ProjectObservation.DEFAULT_SORT_ORDER);
+            mProjectIds = new ArrayList<Integer>();
+            while (c.isAfterLast() == false) {
+                ProjectObservation projectObservation = new ProjectObservation(c);
+                mProjectIds.add(projectObservation.project_id);
+                c.moveToNext();
             }
             c.close();
+
+            mProjects = new ArrayList<BetterJSONObject>();
+            for (int projectId : mProjectIds) {
+                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION,
+                        "(id = " + projectId + ")", null, Project.DEFAULT_SORT_ORDER);
+                if (c.getCount() > 0) {
+                    Project project = new Project(c);
+                    BetterJSONObject projectJson = new BetterJSONObject();
+                    projectJson.put("project", project.toJSONObject());
+                    mProjects.add(projectJson);
+                }
+                c.close();
+            }
         }
 
         refreshProjectList();
@@ -1536,8 +1551,46 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         outState.putString("mTaxonIdName", mTaxonIdName);
         outState.putString("mTaxonName", mTaxonName);
         outState.putString("mTaxonImage", mTaxonImage);
+        outState.putString("mTaxon", mTaxon != null ? mTaxon.toString() : null);
+
+        outState.putString("mActiveTab", mActiveTab);
+
+        saveListToBundle(outState, mCommentsIds, "mCommentsIds");
+        saveListToBundle(outState, mFavorites, "mFavorites");
+        saveListToBundle(outState, mProjects, "mProjects");
 
         super.onSaveInstanceState(outState);
+    }
+
+    private void saveListToBundle(Bundle outState, ArrayList<BetterJSONObject> list, String key) {
+        if (list != null) {
+            JSONArray arr = new JSONArray();
+            for (int i = 0; i < list.size(); i++) {
+                arr.put(list.get(i).getJSONObject().toString());
+            }
+            outState.putString(key, arr.toString());
+        }
+    }
+
+    private ArrayList<BetterJSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
+        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
+
+        String obsString = savedInstanceState.getString(key);
+        if (obsString != null) {
+            try {
+                JSONArray arr = new JSONArray(obsString);
+                for (int i = 0; i < arr.length(); i++) {
+                    results.add(new BetterJSONObject(arr.getString(i)));
+                }
+
+                return results;
+            } catch (JSONException exc) {
+                exc.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
 
     private class ObservationReceiver extends BroadcastReceiver {
@@ -1556,6 +1609,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
             if (mObservation == null) {
                 reloadObservation(null, false);
+                mObsJson = null;
             }
 
 	        if (observation == null) {
@@ -1619,6 +1673,12 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             mFavorites = favResults;
             mProjects = projectResults;
 
+            if (mReloadObs) {
+                // Reload entire observation details (not just the comments/favs)
+                mObservation = observation;
+                mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
+            }
+
             loadObservationIntoUI();
             setupMap();
             refreshActivity();
@@ -1673,7 +1733,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
                 int height = setListViewHeightBasedOnItems(mCommentsIdsList);
 
                 View background = findViewById(R.id.comment_id_list_background);
-                ViewGroup.LayoutParams params2 =  background.getLayoutParams();
+                ViewGroup.LayoutParams params2 = background.getLayoutParams();
                 params2.height = height;
                 background.requestLayout();
             }

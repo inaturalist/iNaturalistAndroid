@@ -54,8 +54,9 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 	private String mLogin;
 	private int mTaxonId;
 	private OnIDAdded mOnIDAddedCb;
+    private boolean mReadOnly;
 
-	public static interface OnIDAdded {
+    public static interface OnIDAdded {
 		public void onIdentificationAdded(BetterJSONObject taxon);
 		public void onIdentificationRemoved(BetterJSONObject taxon);
 		public void onCommentRemoved(BetterJSONObject comment);
@@ -69,12 +70,17 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 	}
 
 	public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb) {
-        this(context, objects, taxonId, onIDAddedCb, false);
+        this(context, objects, taxonId, onIDAddedCb, false, false);
 	}
 
-	public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean isNewLayout) {
+    public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean isNewLayout) {
+        this(context, objects, taxonId, onIDAddedCb, isNewLayout, false);
+    }
+
+	public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean isNewLayout, boolean readOnly) {
 		super(context, R.layout.comment_id_item, objects);
 
+        mReadOnly = readOnly;
 		mItems = objects;
 		mAgreeing = new ArrayList<Boolean>();
 		while (mAgreeing.size() < mItems.size()) mAgreeing.add(false);
@@ -419,7 +425,14 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                 }
 
 			}
-		} catch (JSONException e) {
+
+
+            if (moreMenu != null) {
+                if ((mLogin == null) || ((mLogin != null) && (!username.equalsIgnoreCase(mLogin)) && (mReadOnly))) {
+                    moreMenu.setVisibility(View.GONE);
+                }
+            }
+        } catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -116,6 +116,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String OBSERVATION_ID = "observation_id";
     public static final String COMMENT_ID = "comment_id";
     public static final String OBSERVATION_RESULT = "observation_result";
+    public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
@@ -576,10 +577,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
-                Observation observation = getObservation(id);
+                JSONObject observationJson = getObservationJson(id);
+                Observation observation = new Observation(new BetterJSONObject(observationJson));
                 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
                 sendBroadcast(reply);
                 
             } else if (action.equals(ACTION_JOIN_PROJECT)) {
@@ -1102,25 +1105,27 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     
-    private Observation getObservation(int id) throws AuthenticationException {
+    private JSONObject getObservationJson(int id) throws AuthenticationException {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
 
         String url = String.format("%s/observations/%d.json?locale=%s", HOST, id, deviceLanguage);
 
         JSONArray json = get(url);
-        if (json == null || json.length() == 0) { return null; }
-        
-        JSONObject observation;
-        
+        if (json == null || json.length() == 0) {
+            return null;
+        }
+
         try {
-            observation = (JSONObject) json.get(0);
+            return (JSONObject) json.get(0);
         } catch (JSONException e) {
             return null;
         }
-        
-        return new Observation(new BetterJSONObject(observation));
+    }
+
+    private Observation getObservation(int id) throws AuthenticationException {
+        return new Observation(new BetterJSONObject(getObservationJson(id)));
     }
     
     private void postPhotos() throws AuthenticationException {

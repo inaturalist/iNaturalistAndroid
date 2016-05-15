@@ -54,9 +54,16 @@ class TaxonAdapter extends ArrayAdapter<String> {
             ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
             TextView idName = (TextView) view.findViewById(R.id.id_name);
             TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
+            String commonName = item.optString("preferred_common_name", null);
 
-            idName.setText(item.getString("preferred_common_name"));
-            idTaxonName.setText(item.getString("name"));
+            if (commonName != null) {
+                idName.setText(commonName);
+                idTaxonName.setText(item.getString("name"));
+            } else {
+                idName.setText(item.getString("name"));
+                idTaxonName.setVisibility(View.GONE);
+            }
+
             idTaxonName.setTypeface(null, Typeface.ITALIC);
             if (item.has("default_photo") && !item.isNull("default_photo")) {
                 JSONObject defaultPhoto = item.getJSONObject("default_photo");
