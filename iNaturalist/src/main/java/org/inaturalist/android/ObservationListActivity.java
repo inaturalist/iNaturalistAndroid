@@ -8,12 +8,6 @@ import java.util.HashMap;
 import org.apache.commons.lang3.StringUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -48,6 +42,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.Loader;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -991,49 +986,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         
     }
     
-     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == COMMENTS_IDS_REQUEST_CODE) {
-            if (true) { return; }
-            int observationId = data.getIntExtra(INaturalistService.OBSERVATION_ID, 0);
-            
-         	Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
-        			Observation.PROJECTION, 
-        			"id = " + observationId, 
-        			null, 
-        			Observation.SYNC_ORDER);
-        	int count = c.getCount();
-        	if (count == 0) return;
-        	
-        	Observation observation = new Observation(c);
-
-        	c.close();
-            
-        	
-            // We know that the user now viewed all of the comments needed to be viewed (no new comments/ids)
-            observation.comments_count += data.getIntExtra(CommentsIdsActivity.NEW_COMMENTS, 0);
-            observation.identifications_count += data.getIntExtra(CommentsIdsActivity.NEW_IDS, 0);
-            observation.last_comments_count = observation.comments_count;
-            observation.last_identifications_count = observation.identifications_count;
-            observation.taxon_id = data.getIntExtra(CommentsIdsActivity.TAXON_ID, 0);
-            
-            String speciesGuess = data.getStringExtra(CommentsIdsActivity.SPECIES_GUESS);
-            if (speciesGuess != null) {
-            	observation.species_guess = speciesGuess;
-            }
-            String iconicTaxonName = data.getStringExtra(CommentsIdsActivity.ICONIC_TAXON_NAME);
-            if (iconicTaxonName != null) observation.iconic_taxon_name = iconicTaxonName;
-
-            // Only update the last_comments/id_count fields
-            ContentValues cv = observation.getContentValues();
-            cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
-            int updated = getContentResolver().update(observation.getUri(), cv, null, null);
-        }
- 
-     }
-
 	@Override
 	public void onNotification(String title, final String content) {
 		mLastMessage = content;

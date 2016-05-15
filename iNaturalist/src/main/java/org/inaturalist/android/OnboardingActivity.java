@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -15,9 +16,9 @@ import android.widget.ViewFlipper;
 import com.facebook.login.widget.LoginButton;
 import com.flurry.android.FlurryAgent;
 
-public class OnboardingActivity extends Activity implements SignInTask.SignInTaskStatus {
-    private static final int REQUEST_CODE_SIGNUP = 0x10000;
-    private static final int REQUEST_CODE_LOGIN = 0x10001;
+public class OnboardingActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
+    private static final int REQUEST_CODE_SIGNUP = 0x1000;
+    private static final int REQUEST_CODE_LOGIN = 0x1001;
 
     public static final String LOGIN = "login";
     public static final String SHOW_SKIP = "show_skip";
@@ -46,9 +47,9 @@ public class OnboardingActivity extends Activity implements SignInTask.SignInTas
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
 
         mApp = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.onboarding);

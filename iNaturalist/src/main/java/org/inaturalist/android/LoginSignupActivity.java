@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -31,7 +32,7 @@ import com.flurry.android.FlurryAgent;
 
 import org.json.JSONArray;
 
-public class LoginSignupActivity extends Activity implements SignInTask.SignInTaskStatus {
+public class LoginSignupActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
 
     private static String TAG = "LoginSignupActivity";
     private INaturalistApp mApp;
@@ -101,11 +102,11 @@ public class LoginSignupActivity extends Activity implements SignInTask.SignInTa
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
 
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         mApp = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.login_signup);

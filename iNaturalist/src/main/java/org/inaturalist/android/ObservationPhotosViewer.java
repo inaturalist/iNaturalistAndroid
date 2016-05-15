@@ -15,11 +15,6 @@ import uk.co.senab.photoview.HackyViewPager;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -41,8 +36,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.LayoutParams;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -53,7 +53,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ObservationPhotosViewer extends SherlockActivity {
+public class ObservationPhotosViewer extends AppCompatActivity {
     private static String TAG = "ObservationPhotosViewer";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -101,7 +101,6 @@ public class ObservationPhotosViewer extends SherlockActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.observation_photos);
 
         mApp = (INaturalistApp) getApplicationContext();
@@ -182,7 +181,7 @@ public class ObservationPhotosViewer extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (mIsNewObservation && !mReadOnly) {
-            MenuInflater inflater = getSupportMenuInflater();
+            MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.observation_photos_viewer_menu, menu);
             return true;
         } else {

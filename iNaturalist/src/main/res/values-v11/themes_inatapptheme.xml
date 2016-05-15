@@ -11,12 +11,13 @@
         <item name="android:contentDescription">@string/overflow_menu</item>
     </style>
 
-    <style name="_iNatAppTheme" parent="Theme.Sherlock.Light">
-        <item name="android:actionBarStyle">@style/iNatActionBar</item>
+    <style name="_iNatAppTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/iNatActionBar</item>
+        <item name="colorPrimary">#ffffff</item>
 
         <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
 
-        <item name="switchStyle">@style/iNatAppThemeSwitch</item>
+        <!--<item name="switchStyle">@style/iNatAppThemeSwitch</item>-->
 
         <item name="android:editTextBackground">@drawable/inatapptheme_edit_text_holo_light</item>
 

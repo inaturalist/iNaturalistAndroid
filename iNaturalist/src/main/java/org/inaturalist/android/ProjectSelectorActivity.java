@@ -9,13 +9,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,11 +20,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.projection.MediaProjection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -50,7 +48,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProjectSelectorActivity extends SherlockFragmentActivity implements OnItemClickListener {
+public class ProjectSelectorActivity extends AppCompatActivity implements OnItemClickListener {
     
     private static final String TAG = "INAT:ProjectSelectorActivity";
     public static final String PROJECT_IDS = "project_ids";
@@ -199,7 +197,7 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (mIsConfirmation) {
-            MenuInflater inflater = getSupportMenuInflater();
+            MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.project_selector_menu, menu);
         }
 
@@ -264,7 +262,7 @@ public class ProjectSelectorActivity extends SherlockFragmentActivity implements
             });
         } else {
             actionBar.setLogo(R.drawable.ic_arrow_back);
-            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(Html.fromHtml(getString(R.string.select_projects)));
         }
 

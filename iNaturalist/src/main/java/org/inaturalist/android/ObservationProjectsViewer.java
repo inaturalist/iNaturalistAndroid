@@ -9,10 +9,13 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -31,11 +34,6 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import org.json.JSONArray;
@@ -49,7 +47,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
-public class ObservationProjectsViewer extends SherlockFragmentActivity {
+public class ObservationProjectsViewer extends AppCompatActivity {
     
     private static final String TAG = "INAT:ObservationProjectsViewer";
     public static final String PROJECTS = "projects";
@@ -104,7 +102,6 @@ public class ObservationProjectsViewer extends SherlockFragmentActivity {
 
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
         actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.projects);
 
         mLoadingProjects = (TextView) findViewById(R.id.project_list_empty);

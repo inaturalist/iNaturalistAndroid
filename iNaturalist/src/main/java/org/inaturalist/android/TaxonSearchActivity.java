@@ -13,9 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -28,25 +25,31 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class TaxonSearchActivity extends SherlockListActivity {
+public class TaxonSearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private static final String LOG_TAG = "TaxonSearchActivity";
-    
+
     public static final String TAXON_ID = "taxon_id";
 	public static final String ID_NAME = "id_name";
 	public static final String TAXON_NAME = "taxon_name";
@@ -396,7 +399,7 @@ public class TaxonSearchActivity extends SherlockListActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
         LayoutInflater li = LayoutInflater.from(this);
@@ -444,10 +447,10 @@ public class TaxonSearchActivity extends SherlockListActivity {
         }
 
         setListAdapter(mAdapter);
+        getListView().setOnItemClickListener(this);
     }
-    
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
+
+    public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
         JSONObject item = (JSONObject) v.getTag();
         try {
             Intent intent = new Intent();
@@ -496,5 +499,28 @@ public class TaxonSearchActivity extends SherlockListActivity {
         return item.optString("preferred_common_name",
                 item.optString("english_common_name",
                         item.optString("matched_term")));
+    }
+
+
+    private ListView mListView;
+
+    protected ListView getListView() {
+        if (mListView == null) {
+            mListView = (ListView) findViewById(android.R.id.list);
+        }
+        return mListView;
+    }
+
+    protected void setListAdapter(ListAdapter adapter) {
+        getListView().setAdapter(adapter);
+    }
+
+    protected ListAdapter getListAdapter() {
+        ListAdapter adapter = getListView().getAdapter();
+        if (adapter instanceof HeaderViewListAdapter) {
+            return ((HeaderViewListAdapter)adapter).getWrappedAdapter();
+        } else {
+            return adapter;
+        }
     }
 }

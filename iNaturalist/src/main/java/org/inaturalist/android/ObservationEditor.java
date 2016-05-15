@@ -1,7 +1,5 @@
 package org.inaturalist.android;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -30,14 +28,9 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jraf.android.backport.switchwidget.Switch;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.lucasr.twowayview.TwoWayView;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
 
@@ -83,6 +76,8 @@ import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -90,6 +85,9 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -121,7 +119,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class ObservationEditor extends SherlockFragmentActivity {
+public class ObservationEditor extends AppCompatActivity {
     private final static String TAG = "INAT: ObservationEditor";
     public final static String TAKE_PHOTO = "take_photo";
     public final static String CHOOSE_PHOTO = "choose_photo";
@@ -141,7 +139,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private TextView mAccuracyView;
     private ProgressBar mLocationProgressView;
     private View mLocationRefreshButton;
-    private ImageButton mLocationStopRefreshButton;
     private View mProjectSelector;
     private Uri mFileUri;
     private Observation mObservation;
@@ -178,7 +175,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     private CompoundButton mIdPlease;
     private Spinner mGeoprivacy;
     private String mSpeciesGuess;
-    private TableLayout mProjectsTable;
     private ProjectReceiver mProjectReceiver;
         
     
@@ -186,7 +182,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
     
 	private boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
-	private ImageView mTaxonSelector;
     private boolean mIsConfirmation;
     private boolean mPictureTaken;
     private ImageView mSpeciesGuessIcon;
@@ -260,7 +255,7 @@ public class ObservationEditor extends SherlockFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
 
         if (mIsConfirmation) {
             inflater.inflate(R.menu.observation_confirmation_menu, menu);
@@ -382,8 +377,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         }
 
 
-        mTaxonSelector = (ImageView) findViewById(R.id.taxonSelector);
-
         findViewById(R.id.locationVisibility).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -429,7 +422,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mAccuracyView = (TextView) findViewById(R.id.accuracy);
         mLocationProgressView = (ProgressBar) findViewById(R.id.locationProgress);
         mLocationRefreshButton = (View) findViewById(R.id.locationRefreshButton);
-        mLocationStopRefreshButton = (ImageButton) findViewById(R.id.locationStopRefreshButton);
         mTopActionBar = getSupportActionBar();
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
@@ -437,7 +429,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         mProjectSelector = findViewById(R.id.select_projects);
         mProjectCount = (TextView) findViewById(R.id.project_count);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
-        mProjectsTable = (TableLayout) findViewById(R.id.projects);
         mLocationIcon = (ImageView) findViewById(R.id.location_icon);
         mLocationGuess = (TextView) findViewById(R.id.location_guess);
         mFindingCurrentLocation = (TextView) findViewById(R.id.finding_current_location);
@@ -486,7 +477,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
         View takePhoto;
 
         mTopActionBar.setLogo(R.drawable.ic_arrow_back);
-        mTopActionBar.setDisplayHomeAsUpEnabled(false);
         mTopActionBar.setTitle(getString(R.string.details));
         takePhoto = findViewById(R.id.take_photo);
 
@@ -1647,33 +1637,6 @@ public class ObservationEditor extends SherlockFragmentActivity {
             }
             mFileUri = null; // don't let this hang around
             
-        } else if (requestCode == COMMENTS_IDS_REQUEST_CODE) {
-            
-            // We know that the user now viewed all of the comments needed to be viewed (no new comments/ids)
-            mObservation.comments_count += data.getIntExtra(CommentsIdsActivity.NEW_COMMENTS, 0);
-            mObservation.identifications_count += data.getIntExtra(CommentsIdsActivity.NEW_IDS, 0);
-            mObservation.last_comments_count = mObservation.comments_count;
-            mObservation.last_identifications_count = mObservation.identifications_count;
-            mObservation.taxon_id = data.getIntExtra(CommentsIdsActivity.TAXON_ID, 0);
-            
-            String speciesGuess = data.getStringExtra(CommentsIdsActivity.SPECIES_GUESS);
-            if (speciesGuess != null) {
-            	mSpeciesGuess = speciesGuess;
-            	mObservation.species_guess = speciesGuess;
-            	mSpeciesGuessTextView.setText(mSpeciesGuess);
-            }
-            String iconicTaxonName = data.getStringExtra(CommentsIdsActivity.ICONIC_TAXON_NAME);
-            if (iconicTaxonName != null) mObservation.iconic_taxon_name = iconicTaxonName;
-
-            // Only update the last_comments/id_count fields
-            ContentValues cv = mObservation.getContentValues();
-            cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
-            getContentResolver().update(mUri, cv, null, null);
-
-            mObservationCommentsIds.setBackgroundResource(R.drawable.comments_ids_background);
-
-            Integer totalCount = mObservation.comments_count + mObservation.identifications_count;
-            refreshCommentsIdSize(totalCount);
         }
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {

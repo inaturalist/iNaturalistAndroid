@@ -22,11 +22,15 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
@@ -45,10 +49,6 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
@@ -83,7 +83,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class ObservationViewerActivity extends SherlockFragmentActivity {
+public class ObservationViewerActivity extends AppCompatActivity {
     private static final int NEW_ID_REQUEST_CODE = 0x101;
     private static final int REQUEST_CODE_LOGIN = 0x102;
     private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
@@ -368,10 +368,9 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.observation);
 
         mApp = (INaturalistApp) getApplicationContext();
@@ -541,46 +540,6 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
             if (!mReadOnly) mObservation = new Observation(mCursor);
         }
 
-        if (mReadOnly) {
-            // The content description used to locate the overflow button
-            final String overflowDesc = getString(R.string.overflow_menu);
-            // The top-level window
-            final ViewGroup decor = (ViewGroup) getWindow().getDecorView();
-            // Wait a moment to ensure the overflow button can be located
-            decor.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // The List that contains the matching views
-                    final ArrayList<View> outViews = new ArrayList<>();
-                    // Traverse the view-hierarchy and locate the overflow button
-                    findViewsWithText(outViews, decor, overflowDesc);
-                    // Guard against any errors
-                    if (outViews.isEmpty()) {
-                        return;
-                    }
-                    // Do something with the view
-                    final ImageButton overflow = (ImageButton) outViews.get(0);
-                    overflow.setImageResource(R.drawable.ic_more_vert_black_24dp);
-                }
-
-            }, 1000);
-        }
-    }
-
-    static void findViewsWithText(List<View> outViews, ViewGroup parent, String targetDescription) {
-        if (parent == null || TextUtils.isEmpty(targetDescription)) {
-            return;
-        }
-        final int count = parent.getChildCount();
-        for (int i = 0; i < count; i++) {
-            final View child = parent.getChildAt(i);
-            final CharSequence desc = child.getContentDescription();
-            if (!TextUtils.isEmpty(desc) && targetDescription.equals(desc.toString())) {
-                outViews.add(child);
-            } else if (child instanceof ViewGroup && child.getVisibility() == View.VISIBLE) {
-                findViewsWithText(outViews, (ViewGroup) child, targetDescription);
-            }
-        }
     }
 
     private int getFavoritedByUsername(String username) {
@@ -1526,7 +1485,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getSupportMenuInflater().inflate(mReadOnly ? R.menu.observation_viewer_read_only_menu : R.menu.observation_viewer_menu, menu);
+        getMenuInflater().inflate(mReadOnly ? R.menu.observation_viewer_read_only_menu : R.menu.observation_viewer_menu, menu);
         return true;
     }
 
@@ -1833,7 +1792,7 @@ public class ObservationViewerActivity extends SherlockFragmentActivity {
 
     		// Set list height.
     		ViewGroup.LayoutParams params = listView.getLayoutParams();
-    		int paddingHeight = (int)getResources().getDimension(R.dimen.abs__action_bar_default_height);
+    		int paddingHeight = (int)getResources().getDimension(R.dimen.actionbar_height);
     		params.height = totalItemsHeight + totalDividersHeight;
     		listView.setLayoutParams(params);
     		listView.requestLayout();

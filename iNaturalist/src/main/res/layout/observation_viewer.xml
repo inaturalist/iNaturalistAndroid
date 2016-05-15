@@ -68,7 +68,7 @@
             android:layout_alignParentBottom="true"
             app:radius="6dp"
             android:paddingBottom="16dp" />
-        
+
         <ImageView
             android:id="@+id/share_photo"
             android:layout_width="45dp"

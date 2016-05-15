@@ -16,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
@@ -52,7 +51,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public abstract class BaseTab extends SherlockFragment {
+public abstract class BaseTab extends Fragment {
 
     private ProjectsAdapter mAdapter;
     private ArrayList<JSONObject> mProjects = null;

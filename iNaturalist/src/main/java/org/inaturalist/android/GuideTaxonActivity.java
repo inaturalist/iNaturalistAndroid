@@ -12,11 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -36,6 +31,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Layout;
 import android.text.Spannable;
@@ -44,6 +41,9 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -55,7 +55,7 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class GuideTaxonActivity extends SherlockActivity {
+public class GuideTaxonActivity extends AppCompatActivity {
     private static String TAG = "GuideTaxonActivity";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -107,10 +107,10 @@ public class GuideTaxonActivity extends SherlockActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         requestWindowFeature(Window.FEATURE_PROGRESS);
+
+        super.onCreate(savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -259,7 +259,7 @@ public class GuideTaxonActivity extends SherlockActivity {
 
         actionBar.setHomeButtonEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         String title = "";
         if ((mGuideTaxon) && (mGuideXmlFilename != null) && (mGuideTaxonXml != null)) {
@@ -412,7 +412,7 @@ public class GuideTaxonActivity extends SherlockActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         if (mShowAdd) {
             inflater.inflate(R.menu.guide_taxon_menu, menu);
         }

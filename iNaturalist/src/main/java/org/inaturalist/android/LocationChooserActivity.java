@@ -10,19 +10,19 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,7 +32,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class LocationChooserActivity extends SherlockFragmentActivity implements LocationListener {
+public class LocationChooserActivity extends AppCompatActivity implements LocationListener {
     public final static String TAG = "INaturalistMapActivity";
 	protected static final String LATITUDE = "latitude";
 	protected static final String LONGITUDE = "longitude";
@@ -85,7 +85,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(Html.fromHtml(getString(R.string.details)));
 
         if (savedInstanceState != null) {
@@ -177,7 +177,7 @@ public class LocationChooserActivity extends SherlockFragmentActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.choose_location_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }

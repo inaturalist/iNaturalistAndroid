@@ -9,9 +9,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -19,9 +22,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -33,7 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class NewsArticle extends SherlockFragmentActivity {
+public class NewsArticle extends AppCompatActivity {
     public static final String KEY_ARTICLE = "article";
     public static final String KEY_IS_USER_FEED = "is_user_feed";
 
@@ -89,7 +89,6 @@ public class NewsArticle extends SherlockFragmentActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.article);
 
         mArticleTitle = (TextView) findViewById(R.id.article_title);

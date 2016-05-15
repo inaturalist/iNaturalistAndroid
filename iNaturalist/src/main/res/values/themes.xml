@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme" parent="Theme.Sherlock.Light">
-        <!--<item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>-->
+    <!--
+    <style name="Theme" parent="@style/Theme.AppCompat.Light">
+        <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
         <item name="switchStyle">@style/iNatAppThemeSwitch</item>
     </style>
 
@@ -16,6 +17,7 @@
         <item name="switchMinWidth">96dip</item>
         <item name="switchPadding">16dip</item>
     </style>
+    -->
 
     <style name="iNatAppTextAppearanceSwitch" parent="android:TextAppearance.Small">
         <item name="android:textColor">#ff3c3f41</item>
@@ -23,8 +25,8 @@
 
   <style name="iNatAppTheme" parent="@style/_iNatAppTheme"/>
 
-    <style name="_iNatAppTheme" parent="Theme.Sherlock.Light">
-        <item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>
+    <style name="_iNatAppTheme" parent="@style/Theme.AppCompat.Light">
+        <!--<item name="switchStyle">@style/Widget.Holo.Light.CompoundButton.Switch</item>-->
 
         <item name="android:editTextStyle">@style/EditTextiNatAppTheme</item>
 

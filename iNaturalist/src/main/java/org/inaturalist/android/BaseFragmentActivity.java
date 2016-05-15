@@ -1,7 +1,5 @@
 package org.inaturalist.android;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.crashlytics.android.Crashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -22,10 +20,13 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,7 +39,7 @@ import android.widget.Toast;
  * Utility class for implementing the side-menu (navigation drawer) used throughout the app
  *
  */
-public class BaseFragmentActivity extends SherlockFragmentActivity {
+public class BaseFragmentActivity extends AppCompatActivity {
 	
     static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
     static final int SELECT_IMAGE_REQUEST_CODE = 2;
@@ -85,7 +86,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mSideMenu = (LinearLayout) findViewById(R.id.left_drawer);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_menu, 0, 0) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
             }
@@ -95,7 +96,7 @@ public class BaseFragmentActivity extends SherlockFragmentActivity {
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setIcon(android.R.color.transparent);

@@ -1,7 +1,5 @@
 package org.inaturalist.android;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
@@ -10,16 +8,18 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 
-public class IdentificationActivity extends SherlockActivity {
+public class IdentificationActivity extends AppCompatActivity {
     public static final String ID_REMARKS = "id_remarks";
     protected static final int TAXON_SEARCH_REQUEST_CODE = 301;
     public static final String TAXON_ID = "taxon_id";

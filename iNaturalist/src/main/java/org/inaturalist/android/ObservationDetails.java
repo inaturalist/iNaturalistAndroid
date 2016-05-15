@@ -8,9 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -28,8 +25,11 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
@@ -44,7 +44,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ObservationDetails extends SherlockActivity implements CommentsIdsAdapter.OnIDAdded {
+public class ObservationDetails extends AppCompatActivity implements CommentsIdsAdapter.OnIDAdded {
     protected static final int NEW_ID_REQUEST_CODE = 0x100;
 
 	private static String TAG = "ObservationDetails";
@@ -700,7 +700,7 @@ public class ObservationDetails extends SherlockActivity implements CommentsIdsA
 
     		// Set list height.
     		ViewGroup.LayoutParams params = listView.getLayoutParams();
-    		int paddingHeight = (int)getResources().getDimension(R.dimen.abs__action_bar_default_height);
+    		int paddingHeight = (int)getResources().getDimension(R.dimen.actionbar_height);
     		params.height = totalItemsHeight + totalDividersHeight + paddingHeight;
     		listView.setLayoutParams(params);
     		listView.requestLayout();

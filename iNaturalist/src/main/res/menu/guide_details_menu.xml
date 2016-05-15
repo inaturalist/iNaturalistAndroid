@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/show_side_menu"
           android:icon="@drawable/ic_fa_sliders"
           android:title=""
-          android:showAsAction="always"
+          app:showAsAction="always"
         />
 </menu>

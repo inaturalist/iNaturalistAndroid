@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="115"
+    android:versionCode="116"
     android:versionName="1.4.3" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
@@ -87,11 +87,6 @@
             android:name=".ProjectSelectorActivity" >
         </activity>
  
-        <activity
-            android:configChanges="orientation"
-            android:label="@string/comments_ids"
-            android:name=".CommentsIdsActivity" >
-        </activity>
          <activity
             android:configChanges="orientation"
             android:label="@string/add_id"

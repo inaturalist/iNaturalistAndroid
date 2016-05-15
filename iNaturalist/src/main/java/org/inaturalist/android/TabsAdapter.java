@@ -2,10 +2,6 @@ package org.inaturalist.android;
 
 import java.util.ArrayList;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * This is a helper class that implements the management of tabs and all
@@ -42,7 +40,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements OnPageChangeLis
         }
     }
 
-    public TabsAdapter(SherlockFragmentActivity activity, ActionBar bar, ViewPager pager) {
+    public TabsAdapter(AppCompatActivity activity, ActionBar bar, ViewPager pager) {
         super(activity.getSupportFragmentManager());
         mContext = activity;
         mBar = bar;
@@ -85,7 +83,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements OnPageChangeLis
     }
 
     @Override
-    public void onTabSelected(Tab tab, FragmentTransaction ft) {
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         Object tag = tab.getTag();
         for (int i=0; i<mTabs.size(); i++) {
             if (mTabs.get(i) == tag) {
@@ -95,12 +93,12 @@ public class TabsAdapter extends FragmentPagerAdapter implements OnPageChangeLis
     }
 
     @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
     }
 
     @Override
-    public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
     }
 }

@@ -3,7 +3,6 @@ package org.inaturalist.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.flurry.android.FlurryAgent;
 
 import android.annotation.SuppressLint;
@@ -14,6 +13,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
@@ -50,9 +50,6 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
 	    onDrawerCreate(savedInstanceState);
         
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
 
         // Tab Initialization
         initialiseTabHost();

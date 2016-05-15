@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/save_location"
         android:title=""
         android:icon="@drawable/ic_check_black_24dp"
-        android:showAsAction="always" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/layers"
         android:alphabeticShortcut="l"
         android:icon="@android:drawable/ic_menu_mapmode"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/layers"/>
     
 </menu>

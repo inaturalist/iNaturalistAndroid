@@ -14,20 +14,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 
-public class TutorialActivity extends SherlockFragmentActivity {
+public class TutorialActivity extends AppCompatActivity {
 	
 	@Override
 	protected void onStart()
@@ -47,10 +48,10 @@ public class TutorialActivity extends SherlockFragmentActivity {
     
     private class TutorialAdapter extends FragmentPagerAdapter implements OnPageChangeListener {
 
-        private SherlockFragmentActivity mContext;
+        private AppCompatActivity mContext;
         private int mCount;
         
-        public TutorialAdapter(SherlockFragmentActivity context) {
+        public TutorialAdapter(AppCompatActivity context) {
             super(context.getSupportFragmentManager());
             mContext = context;
             
@@ -181,18 +182,18 @@ public class TutorialActivity extends SherlockFragmentActivity {
         
         if (mViewPager.getCurrentItem() > 0) {
             MenuItem item = menu.add(Menu.NONE, ACTION_PREVIOUS, Menu.NONE, R.string.previous);
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            MenuItemCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         }
 
         if ((mViewPager.getCurrentItem() < mAdapter.getCount() - 1)) {
             MenuItem item2 = menu.add(Menu.NONE, ACTION_SKIP, Menu.NONE, R.string.skip2);
-            item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            MenuItemCompat.setShowAsAction(item2, MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         }
 
         MenuItem item3 = menu.add(Menu.NONE, ACTION_NEXT, Menu.NONE,
                 (mViewPager.getCurrentItem() == mAdapter.getCount() - 1)
                 ? R.string.finish : R.string.next);
-        item3.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        MenuItemCompat.setShowAsAction(item3, MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return true;
     }

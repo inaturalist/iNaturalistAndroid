@@ -52,16 +52,15 @@ android {
 dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile project(':library')
-    compile project(':androidswitchbackport')
     compile project(':urlImageViewHelper')
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    //compile 'com.android.support:appcompat-v7:21.+'
+    compile 'com.android.support:appcompat-v7:21.+'
     compile files('libs/FlurryAnalytics-4.2.0.jar')
     compile('com.crashlytics.sdk.android:crashlytics:2.4.0@aar') {
         transitive = true;
     }
+    compile 'com.android.support:design:22.+'
     compile 'com.android.support:support-v4:22.1.1'
-    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.google.android.gms:play-services:7.3.0'
     compile 'org.apache.commons:commons-collections4:4.0'
     compile 'org.apache.commons:commons-lang3:3.1'

@@ -1,8 +1,5 @@
 package org.inaturalist.android;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
@@ -11,11 +8,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroupOverlay;
@@ -27,7 +27,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class ProjectDetailsAbout extends SherlockFragmentActivity {
+public class ProjectDetailsAbout extends AppCompatActivity {
     public static final String KEY_PROJECT = "project";
     private BetterJSONObject mProject;
 
@@ -56,7 +56,6 @@ public class ProjectDetailsAbout extends SherlockFragmentActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.about);
 
         TextView title = (TextView) findViewById(R.id.project_title);

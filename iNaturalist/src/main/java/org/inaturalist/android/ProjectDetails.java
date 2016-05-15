@@ -5,9 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -26,8 +23,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -45,7 +44,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectDetails extends SherlockFragmentActivity implements TabHost.OnTabChangeListener {
+public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabChangeListener {
  	private final static String VIEW_TYPE_OBSERVATIONS = "observations";
 	private final static String VIEW_TYPE_SPECIES = "species";
 	private final static String VIEW_TYPE_OBSERVERS = "observers";
@@ -132,11 +131,11 @@ public class ProjectDetails extends SherlockFragmentActivity implements TabHost.
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
 
         mHelper = new ActivityHelper(this);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         final Intent intent = getIntent();
         setContentView(R.layout.project_details);

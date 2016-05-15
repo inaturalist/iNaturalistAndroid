@@ -9,7 +9,7 @@
         android:id="@+id/bottom_bar"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-	    android:layout_height="@dimen/abs__action_bar_default_height"
+	    android:layout_height="@dimen/actionbar_height"
         android:layout_alignParentBottom="true"
 	    android:paddingLeft="5dp"
 	    android:paddingRight="5dp"

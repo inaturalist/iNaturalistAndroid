@@ -5,7 +5,7 @@
 
   <style name="iNatAppTheme" parent="@style/_iNatAppTheme">
 
-    <item name="switchStyle">@style/iNatAppThemeSwitch</item>
+    <!--<item name="switchStyle">@style/iNatAppThemeSwitch</item>-->
 
     <item name="android:textSelectHandleLeft">@drawable/inatapptheme_text_select_handle_left</item>
     <item name="android:textSelectHandleRight">@drawable/inatapptheme_text_select_handle_right</item>

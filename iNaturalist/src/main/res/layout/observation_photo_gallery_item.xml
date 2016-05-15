@@ -7,7 +7,7 @@
         android:id="@+id/observation_photo"
         android:layout_height="50dp"
         android:layout_width="50dp"
-        android:src="@drawable/abs__ic_search"
+        android:src="@drawable/ic_action_email"
         android:adjustViewBounds="false"
         android:scaleType="fitCenter"
         android:background="#5D5B5E"
@@ -50,18 +50,5 @@
             android:text="@string/first"
             />
     </RelativeLayout>
-    <!--
-    <RadioButton
-        android:id="@+id/observation_is_first"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="-7dp"
-        android:layout_marginStart="-7dp"
-        android:paddingLeft="-5dp"
-        android:layout_width="fill_parent"
-        android:layout_height="20dp"
-        android:text="@string/first"
-        android:textSize="10sp"
-        />
-        -->
 
 </LinearLayout>

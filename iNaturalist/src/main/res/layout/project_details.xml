@@ -32,7 +32,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="17dp"
             />
-        
+
         <RelativeLayout
             android:id="@+id/project_pic_container"
             android:background="@drawable/project_details_border"
@@ -58,7 +58,7 @@
                 android:visibility="gone"
                 />
         </RelativeLayout>
-        
+
         <TextView
             android:id="@+id/project_title"
             android:layout_width="fill_parent"

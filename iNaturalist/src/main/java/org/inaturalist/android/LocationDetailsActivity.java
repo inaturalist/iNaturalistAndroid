@@ -6,19 +6,19 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,7 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationDetailsActivity extends SherlockFragmentActivity implements LocationListener {
+public class LocationDetailsActivity extends AppCompatActivity implements LocationListener {
     private final static String TAG = "LocationDetailsActivity";
     public static final String OBSERVATION = "observation";
     public static final String READ_ONLY = "read_only";
@@ -84,32 +84,8 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
 
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
         actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(R.string.location);
 
-        // The content description used to locate the overflow button
-        final String overflowDesc = getString(R.string.overflow_menu);
-        // The top-level window
-        final ViewGroup decor = (ViewGroup) getWindow().getDecorView();
-        // Wait a moment to ensure the overflow button can be located
-        decor.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // The List that contains the matching views
-                final ArrayList<View> outViews = new ArrayList<>();
-                // Traverse the view-hierarchy and locate the overflow button
-                findViewsWithText(outViews, decor, overflowDesc);
-                // Guard against any errors
-                if (outViews.isEmpty()) {
-                    return;
-                }
-                // Do something with the view
-                final ImageButton overflow = (ImageButton) outViews.get(0);
-                overflow.setImageResource(R.drawable.ic_more_vert_black_24dp);
-            }
-
-        }, 1000);
-        
         if (savedInstanceState != null) {
             mObservation = (Observation) savedInstanceState.getSerializable("observation");
             mIsReadOnly = savedInstanceState.getBoolean(READ_ONLY);
@@ -124,22 +100,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
         mLocationCoordinates = (TextView) findViewById(R.id.location_coordinates);
     }
 
-    static void findViewsWithText(List<View> outViews, ViewGroup parent, String targetDescription) {
-        if (parent == null || TextUtils.isEmpty(targetDescription)) {
-            return;
-        }
-        final int count = parent.getChildCount();
-        for (int i = 0; i < count; i++) {
-            final View child = parent.getChildAt(i);
-            final CharSequence desc = child.getContentDescription();
-            if (!TextUtils.isEmpty(desc) && targetDescription.equals(desc.toString())) {
-                outViews.add(child);
-            } else if (child instanceof ViewGroup && child.getVisibility() == View.VISIBLE) {
-                findViewsWithText(outViews, (ViewGroup) child, targetDescription);
-            }
-        }
-    }
-    @Override 
+    @Override
     public void onResume() {
         super.onResume();
         if (mApp == null) {
@@ -225,7 +186,7 @@ public class LocationDetailsActivity extends SherlockFragmentActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.choose_location_menu, menu);
         if (mIsReadOnly) {
             MenuItem save = menu.findItem(R.id.save_location);

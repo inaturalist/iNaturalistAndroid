@@ -10,9 +10,6 @@ import org.json.JSONObject;
 import uk.co.senab.photoview.HackyViewPager;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -23,12 +20,15 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.LayoutParams;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-public class TaxonTagPhotosViewer extends SherlockActivity {
+public class TaxonTagPhotosViewer extends AppCompatActivity {
 	private static String TAG = "TaxonTagPhotosViewer";
 	private INaturalistApp mApp;
 	private ActivityHelper mHelper;

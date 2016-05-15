@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,9 +31,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
 
@@ -58,7 +56,7 @@ public class ProjectFieldViewer {
     private static final String TAG = "ProjectFieldViewer";
     public static final int PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE = 301;
     private final boolean mIsConfirmation;
-    private SherlockFragmentActivity mContext;
+    private AppCompatActivity mContext;
     private ProjectField mField;
     private ProjectFieldValue mFieldValue;
 
@@ -220,7 +218,7 @@ public class ProjectFieldViewer {
     }
 
 
-    public ProjectFieldViewer(SherlockFragmentActivity context, ProjectField field, ProjectFieldValue fieldValue, boolean isConfirmation) {
+    public ProjectFieldViewer(AppCompatActivity context, ProjectField field, ProjectFieldValue fieldValue, boolean isConfirmation) {
         mField = field;
         mFieldValue = fieldValue;
         mContext = context;

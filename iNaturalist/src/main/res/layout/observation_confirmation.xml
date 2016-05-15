@@ -129,7 +129,7 @@
             />
 
 
-        <org.jraf.android.backport.switchwidget.Switch
+        <android.support.v7.widget.SwitchCompat
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/id_please"
             android:layout_width="wrap_content"
