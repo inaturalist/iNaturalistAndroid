@@ -481,9 +481,6 @@ public class INaturalistApp extends MultiDexApplication {
         if (mNotificationManager == null) {
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }
-        Notification notification = new Notification(R.drawable.ic_stat_inaturalist, ticker, System.currentTimeMillis());
-        notification.setLatestEventInfo(getApplicationContext(), title, content, pendingIntent);
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
         //mNotificationManager.notify(id, notification);
         if (mNotificationCallback != null) {
         	mNotificationCallback.onNotification(title, content);

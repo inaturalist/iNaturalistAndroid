@@ -21,16 +21,22 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -40,18 +46,18 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabChangeListener {
+public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabChangeListener, AppBarLayout.OnOffsetChangedListener {
  	private final static String VIEW_TYPE_OBSERVATIONS = "observations";
 	private final static String VIEW_TYPE_SPECIES = "species";
 	private final static String VIEW_TYPE_OBSERVERS = "observers";
     private final static String VIEW_TYPE_IDENTIFIERS = "identifiers";
 
     private Button mJoinLeaveProject;
-    private TextView mProjectTitle;
 
     private String mViewType;
 
@@ -60,7 +66,6 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
 
     private TabHost mTabHost;
     private ActivityHelper mHelper;
-    private View mBack;
     private Button mAboutProject;
     private Button mProjectNews;
 
@@ -102,6 +107,10 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
     private int mTotalObervers;
     private int mTotalIdentifiers;
 
+    private AppBarLayout mAppBarLayout;
+    private boolean mProjectPicHidden;
+    private ViewGroup mProjectPicContainer;
+
     @Override
 	protected void onStart()
 	{
@@ -131,15 +140,22 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
 
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
         setContentView(R.layout.project_details);
-        
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.project_top_bar);
+        mAppBarLayout.addOnOffsetChangedListener(this);
+
         mLoadingObservationsGrid = (ProgressBar) findViewById(R.id.loading_observations_grid);
         mObservationsGridEmpty = (TextView) findViewById(R.id.observations_grid_empty);
         mObservationsGrid = (GridViewExtended) findViewById(R.id.observations_grid);
@@ -187,6 +203,10 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
             }
         });
 
+        ViewCompat.setNestedScrollingEnabled(mObservationsGrid, true);
+        ViewCompat.setNestedScrollingEnabled(mIdentifiersList, true);
+        ViewCompat.setNestedScrollingEnabled(mPeopleList, true);
+        ViewCompat.setNestedScrollingEnabled(mSpeciesList, true);
 
         if (mApp == null) {
             mApp = (INaturalistApp)getApplicationContext();
@@ -227,16 +247,7 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
         refreshViewState();
         refreshViewType();
 
-        mBack = findViewById(R.id.back);
-        mBack.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
         mJoinLeaveProject = (Button) findViewById(R.id.join_leave_project);
-        mProjectTitle = (TextView) findViewById(R.id.project_title);
         mAboutProject = (Button) findViewById(R.id.about_project);
         mProjectNews = (Button) findViewById(R.id.project_news);
 
@@ -263,6 +274,7 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
             }
         });
 
+        mProjectPicContainer = (ViewGroup) findViewById(R.id.project_pic_container);
         final ImageView projectPic = (ImageView) findViewById(R.id.project_pic);
         String iconUrl = mProject.getString("icon_url");
 
@@ -287,8 +299,8 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
             findViewById(R.id.project_pic_none).setVisibility(View.VISIBLE);
         }
 
-        mProjectTitle.setText(mProject.getString("title"));
-        
+        collapsingToolbar.setTitle(mProject.getString("title"));
+
         Boolean isJoined = mProject.getBoolean("joined");
         if ((isJoined != null) && (isJoined == true)) {
             mJoinLeaveProject.setText(R.string.leave);
@@ -340,7 +352,7 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
 
             }
         });
-        
+
     }
 
     private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
@@ -509,6 +521,8 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
                 createTabContent(getString(R.string.project_people), 3000)));
         ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_IDENTIFIERS).setIndicator(
                 createTabContent(getString(R.string.project_identifiers), 4000)));
+
+        mTabHost.getTabWidget().setDividerDrawable(null);
 
         mTabHost.setOnTabChangedListener(this);
     }
@@ -705,4 +719,34 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
             mIdentifiersListHeader.setVisibility(View.VISIBLE);
         }
     }
+
+
+    public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
+        int maxScroll = appBarLayout.getTotalScrollRange();
+        float percentage = (float) Math.abs(offset) / (float) maxScroll;
+
+        if (percentage >= 0.9f) {
+            if (!mProjectPicHidden) {
+                startAlphaAnimation(mProjectPicContainer, 200, View.INVISIBLE);
+                mProjectPicHidden = true;
+            }
+        } else {
+            if (mProjectPicHidden) {
+                startAlphaAnimation(mProjectPicContainer, 200, View.VISIBLE);
+                mProjectPicHidden = false;
+            }
+        }
+
+    }
+
+   public static void startAlphaAnimation (View v, long duration, int visibility) {
+       AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
+               ? new AlphaAnimation(0f, 1f)
+               : new AlphaAnimation(1f, 0f);
+
+       alphaAnimation.setDuration(duration);
+       alphaAnimation.setFillAfter(true);
+       v.startAnimation(alphaAnimation);
+   }
+
 }

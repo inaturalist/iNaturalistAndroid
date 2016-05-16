@@ -1652,7 +1652,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private void resizeFavList() {
         final Handler handler = new Handler();
-        if ((mFavoritesList.getVisibility() == View.VISIBLE) && (mFavoritesList.getWidth() == 0)) {
+        if ((mFavoritesTabContainer.getVisibility() == View.VISIBLE) && (mFavoritesList.getVisibility() == View.VISIBLE) && (mFavoritesList.getWidth() == 0)) {
             // UI not initialized yet - try later
             handler.postDelayed(new Runnable() {
                 @Override
@@ -1674,7 +1674,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private void resizeActivityList() {
         final Handler handler = new Handler();
-        if ((mCommentsIdsList.getVisibility() == View.VISIBLE) && (mCommentsIdsList.getWidth() == 0)) {
+        if ((mCommentsIdsList.getVisibility() == View.VISIBLE) && (mActivityTabContainer.getVisibility() == View.VISIBLE) && (mCommentsIdsList.getWidth() == 0)) {
             // UI not initialized yet - try later
             handler.postDelayed(new Runnable() {
                 @Override
@@ -1695,9 +1695,20 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams params2 = background.getLayoutParams();
                 params2.height = height;
                 background.requestLayout();
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        int height = setListViewHeightBasedOnItems(mCommentsIdsList);
+                        View background = findViewById(R.id.comment_id_list_background);
+                        ViewGroup.LayoutParams params2 = background.getLayoutParams();
+                        params2.height = height;
+                        background.requestLayout();
+                    }
+                }, 100);
+
             }
         }, 100);
-
     }
 
     @Override

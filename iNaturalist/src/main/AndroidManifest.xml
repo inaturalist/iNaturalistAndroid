@@ -64,6 +64,8 @@
         <activity
             android:configChanges="orientation"
             android:label="@string/projects"
+            android:windowActionBar="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".ProjectDetails" >
            	<meta-data
 	            android:name="android.support.PARENT_ACTIVITY"

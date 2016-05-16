@@ -2,7 +2,6 @@ package org.inaturalist.android;
 
 import com.facebook.login.LoginManager;
 import com.flurry.android.FlurryAgent;
-import com.google.android.maps.MapActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
