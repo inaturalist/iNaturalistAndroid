@@ -279,6 +279,13 @@ public class MissionsGridActivity extends AppCompatActivity {
                 return;
             }
 
+            int taxonId = extras.getInt(INaturalistService.TAXON_ID, 0);
+            if (mTaxonId != taxonId) {
+                // Result returned for other taxon - don't show it (could happen when switching quickly
+                // between taxon-mission screens)
+                return;
+            }
+
             loadMissions(INaturalistService.MISSIONS_BY_TAXON_RESULT);
             refreshViewState();
         }

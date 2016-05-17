@@ -498,6 +498,7 @@ public class INaturalistService extends IntentService {
                             Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
                             mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, null);
                             reply.putExtra(IS_SHARED_ON_APP, true);
+                            reply.putExtra(TAXON_ID, taxonId);
                             sendBroadcast(reply);
                             return;
                         }
@@ -507,6 +508,7 @@ public class INaturalistService extends IntentService {
                         Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
                         mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, missions);
                         reply.putExtra(IS_SHARED_ON_APP, true);
+                        reply.putExtra(TAXON_ID, taxonId);
                         sendBroadcast(reply);
                     }
                 });
