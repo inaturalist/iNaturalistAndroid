@@ -1845,7 +1845,7 @@ public class INaturalistService extends IntentService {
                     }
                 }
             }
-            if (!(new File(imgFilePath)).exists()) {
+            if ((imgFilePath == null) || !(new File(imgFilePath)).exists()) {
                 // Local (cached) photo was deleted - probably because the user deleted the app's cache
 
                 // First, delete this photo record
