@@ -764,17 +764,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     }
 
     
-
-    @Override
-    public void onPause() {
-    	try {
-    		unregisterReceiver(mNearbyReceiver);
-    	} catch (Exception exc) {
-    		exc.printStackTrace();
-    	}
-        super.onPause();
-    }
- 
     private void setUpMapIfNeeded() {
         if (mMarkerObservations == null) {
             mMarkerObservations = new HashMap<String, JSONObject>();

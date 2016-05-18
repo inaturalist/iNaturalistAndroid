@@ -2345,11 +2345,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     private void requestCredentials() {
         stopSelf();
-        Intent intent = new Intent(
-                mLogin == null ? "signin" : INaturalistPrefsActivity.REAUTHENTICATE_ACTION, 
-                null, getBaseContext(), INaturalistPrefsActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null, intent);
+        mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null);
     }
     
    
