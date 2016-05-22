@@ -239,6 +239,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             imageCursor.moveToFirst();
 
+            if (imageCursor.getCount() == 0) return;
+
             do {
                 int photoId = imageCursor.getInt(imageCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
                 Cursor pc = findPhotoInStorage(photoId);
