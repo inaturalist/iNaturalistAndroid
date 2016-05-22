@@ -1279,6 +1279,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
         String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=200";
         JSONArray json = get(url);
+        if (json == null) return new BetterJSONObject();
         try {
 			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
