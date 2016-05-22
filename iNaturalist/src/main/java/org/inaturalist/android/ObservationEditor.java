@@ -1542,7 +1542,7 @@ public class ObservationEditor extends AppCompatActivity {
                                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                                     mSpeciesGuessIcon.setAlpha(1.0f);
                                 }
-                                imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap));
+                                if (loadedBitmap != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap));
                             }
 
                             @Override
