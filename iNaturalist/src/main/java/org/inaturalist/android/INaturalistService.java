@@ -578,11 +578,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 JSONObject observationJson = getObservationJson(id);
-                Observation observation = new Observation(new BetterJSONObject(observationJson));
+                Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
                 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson != null ? observationJson.toString() : null);
                 sendBroadcast(reply);
                 
             } else if (action.equals(ACTION_JOIN_PROJECT)) {
@@ -1125,7 +1125,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private Observation getObservation(int id) throws AuthenticationException {
-        return new Observation(new BetterJSONObject(getObservationJson(id)));
+        JSONObject json = getObservationJson(id);
+        if (json == null) return null;
+        return new Observation(new BetterJSONObject(json));
     }
     
     private void postPhotos() throws AuthenticationException {
