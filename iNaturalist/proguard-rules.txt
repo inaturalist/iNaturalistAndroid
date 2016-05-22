@@ -1,0 +1,17 @@
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
+-dontobfuscate
+-dontpreverify
+-dontoptimize
+-dontshrink
+-verbose
+-keepattributes **
+-dontwarn **
+-dontnote **
+-keep class *
+-ignorewarnings
+-keepattributes EnclosingMethod
+
+# Fix bug on Samsung, Wiko (and other) devices running Android 4.2
+# See also: https://code.google.com/p/android/issues/detail?id=78377
+-keep class !android.support.v7.internal.view.menu.*MenuBuilder*, android.support.v7.** { *; }
+-keep interface android.support.v7.** { *; }
