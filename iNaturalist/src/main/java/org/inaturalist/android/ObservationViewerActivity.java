@@ -878,6 +878,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
     }
 
     private void setupMap() {
+        if (mMap == null) return;
+
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setAllGesturesEnabled(false);
