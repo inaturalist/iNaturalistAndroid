@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
@@ -54,6 +55,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private PullToRefreshGridViewExtended mGrid;
 
     private HashMap<Integer, Boolean> mObservationLoaded;
+
+    private CircularProgressBar mCurrentProgressBar = null;
 
     public ObservationCursorAdapter(Context context, Cursor c) {
         this(context, c, false, null);
@@ -175,6 +178,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public ViewGroup commentIdContainer;
         public ViewGroup leftContainer;
         public View progress;
+        public View progressInner;
 
         public ImageView commentIcon;
         public ImageView idIcon;
@@ -201,6 +205,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             locationIcon = (ImageView) view.findViewById(R.id.location_icon);
 
             progress = view.findViewById(R.id.progress);
+            progressInner = view.findViewById(R.id.progress_inner);
         }
 
     }
@@ -237,6 +242,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ImageView locationIcon = holder.locationIcon;
 
         View progress = holder.progress;
+        View progressInner = holder.progressInner;
 
         final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
@@ -477,30 +483,34 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
-        if (syncNeeded) {
-            // This observations needs to be synced
+        if (mApp.getObservationIdBeingSynced() == obsId) {
+            CircularProgressBar currentProgressBar = (CircularProgressBar) (progressInner != null ? progressInner : progress);
+            if (currentProgressBar != mCurrentProgressBar) {
+                currentProgressBar.setProgress(0);
+            }
 
-            if (mApp.getObservationIdBeingSynced() == obsId) {
-                // Observation is currently being uploaded
+            mCurrentProgressBar = currentProgressBar;
+
+            // Observation is currently being uploaded
+            view.setBackgroundResource(R.drawable.observation_item_uploading_background);
+
+            if (!mIsGrid) {
+                placeGuess.setText(R.string.uploading);
+                placeGuess.setTextColor(Color.parseColor("#74Ac00"));
+                locationIcon.setVisibility(View.GONE);
+                dateObserved.setVisibility(View.GONE);
+            }
+
+            progress.setVisibility(View.VISIBLE);
+            commentIdContainer.setVisibility(View.INVISIBLE);
+
+        } else if (syncNeeded && (mApp.getObservationIdBeingSynced() != obsId)) {
+            // This observation needs to be synced (and waiting to be synced)
+            if (!hasErrors) {
                 view.setBackgroundResource(R.drawable.observation_item_uploading_background);
-
                 if (!mIsGrid) {
-                    placeGuess.setText(R.string.uploading);
-                    placeGuess.setTextColor(Color.parseColor("#74Ac00"));
+                    placeGuess.setText(R.string.waiting_to_upload);
                     locationIcon.setVisibility(View.GONE);
-                    dateObserved.setVisibility(View.GONE);
-                }
-
-                progress.setVisibility(View.VISIBLE);
-                commentIdContainer.setVisibility(View.INVISIBLE);
-            } else {
-                // Observation is waiting to be uploaded
-                if (!hasErrors) {
-                    view.setBackgroundResource(R.drawable.observation_item_uploading_background);
-                    if (!mIsGrid) {
-                        placeGuess.setText(R.string.waiting_to_upload);
-                        locationIcon.setVisibility(View.GONE);
-                    }
                 }
             }
         } else {
@@ -762,6 +772,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         return iconResource;
+    }
+
+    public void updateProgress(int observationId, float progress) {
+        if (mCurrentProgressBar != null) mCurrentProgressBar.setProgressWithAnimation(progress);
     }
 }
 

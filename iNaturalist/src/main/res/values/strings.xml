@@ -527,7 +527,7 @@
     <string name="help">Help</string>
     <string name="stop">Stop</string>
     <string name="resume">Resume</string>
-    <string name="syncing_projects">Syncing projects...</string>
+    <string name="cleaning_up">Cleaning up...</string>
     <string name="syncing_observation_fields">Syncing observation fields...</string>
     <string name="syncing_paused">Paused</string>
     <string name="upload">Upload</string>
@@ -584,6 +584,9 @@
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s new</string>
     <string name="no_results_found">No Results Found...</string>
+    <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
+    <string name="deleting_observations">Deleting Observations...</string>
+    <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
     <string name="restore">Restore</string>
 </resources>

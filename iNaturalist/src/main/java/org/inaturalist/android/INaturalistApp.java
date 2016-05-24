@@ -35,6 +35,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -577,8 +578,12 @@ public class INaturalistApp extends MultiDexApplication {
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
         notify(id, title, content, ticker, pendingIntent);
     }
-    
+
     public void notify(Integer id, String title, String content, String ticker, PendingIntent pendingIntent) {
+        notify(title, content);
+    }
+
+    public void notify(String title, String content) {
         if (mNotificationManager == null) {
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }

@@ -83,119 +83,6 @@ public class ProjectFieldViewer {
     private FocusedListener mFocusedListener;
     private boolean mIsFocusing;
 
-    @SuppressLint("ValidFragment")
-    private class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
-
-        private boolean mIsCanceled;
-        private int mHour, mMinute;
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            String currentHour = mDate.getText().toString();
-            Calendar c;
-
-            mIsCanceled = false;
-
-            if (currentHour.equals("")) {
-                // Use the current hour as the default hour in the picker
-                c = Calendar.getInstance();
-            } else {
-                Date date;
-                c = Calendar.getInstance();
-                c.set(Calendar.HOUR_OF_DAY, Integer.valueOf(currentHour.split(":")[0]));
-                c.set(Calendar.MINUTE, Integer.valueOf(currentHour.split(":")[1]));
-            }
-
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-
-            // Create a new instance of TimePickerDialog and return it
-            TimePickerDialog dialog = new TimePickerDialog(getActivity(), this, hour, minute, true);
-            dialog.setOnCancelListener(this);
-            dialog.setOnDismissListener(this);
-
-            return dialog;
-        }
-
-        public void onCancel(DialogInterface dialog) {
-            mIsCanceled = true;
-        }
-
-        public void onDismiss(DialogInterface dialog) {
-            if (!mIsCanceled) {
-                mDate.setText(String.format("%02d:%02d", mHour, mMinute));
-            }
-
-            dismiss();
-        }
-
-        @Override
-        public void onTimeSet(TimePicker view, int hour, int minute) {
-            mHour = hour;
-            mMinute = minute;
-        }
-    }
-
-
-    @SuppressLint("ValidFragment")
-    private class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-
-        private boolean mIsCanceled;
-        private int mYear, mMonth, mDay;
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            String currentDate = mDate.getText().toString();
-            Calendar c;
-
-            mIsCanceled = false;
-
-            if (currentDate.equals("")) {
-                // Use the current date as the default date in the picker
-                c = Calendar.getInstance();
-            } else {
-                Date date;
-                c = Calendar.getInstance();
-                try {
-                    date = new SimpleDateFormat("yyyy-MM-dd").parse(currentDate);
-                    c.setTime(date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-            dialog.setOnCancelListener(this);
-            dialog.setOnDismissListener(this);
-
-            return dialog;
-        }
-
-        public void onCancel(DialogInterface dialog) {
-            mIsCanceled = true;
-        }
-
-        public void onDismiss(DialogInterface dialog) {
-            if (!mIsCanceled) {
-                mDate.setText(String.format("%d-%02d-%02d", mYear, mMonth + 1, mDay));
-            }
-
-            dismiss();
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            mYear = year;
-            mMonth = month;
-            mDay = day;
-        }
-    }
-
-
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -473,7 +360,8 @@ public class ProjectFieldViewer {
             mDateContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DialogFragment newFragment = new DatePickerFragment();
+                    DatePickerFragment newFragment = new DatePickerFragment();
+                    newFragment.setDate(mDate);
                     newFragment.show(mContext.getSupportFragmentManager(), "datePicker");
                 }
             });
@@ -485,7 +373,8 @@ public class ProjectFieldViewer {
             mDateContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DialogFragment newFragment = new TimePickerFragment();
+                    TimePickerFragment newFragment = new TimePickerFragment();
+                    newFragment.setDate(mDate);
                     newFragment.show(mContext.getSupportFragmentManager(), "timePicker");
                 }
             });
