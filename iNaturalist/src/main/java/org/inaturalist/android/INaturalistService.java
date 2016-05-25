@@ -1573,15 +1573,17 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             ObservationPhoto op = new ObservationPhoto(c);
-            JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
-            if (result == null) {
-                c.close();
-                throw new SyncFailedException();
+            if (op._synced_at != null) {
+                JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
+                if (result == null) {
+                    c.close();
+                    throw new SyncFailedException();
+                }
             }
             increaseProgressForObservation(observation);
 
             getContentResolver().delete(ObservationPhoto.CONTENT_URI,
-                    "id = ?", new String[] { String.valueOf(op.id) });
+                    "id = ? or _id = ?", new String[] { String.valueOf(op.id), String.valueOf(op._id)  });
             c.moveToNext();
         }
 
@@ -2000,7 +2002,7 @@ public class INaturalistService extends IntentService {
         // query observation photos where _synced_at is null (i.e. new photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "_synced_at IS NULL AND ((_observation_id = ? OR observation_id = ?))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND (is_deleted != 1)", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -2095,7 +2097,7 @@ public class INaturalistService extends IntentService {
 
         c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
         		ObservationPhoto.PROJECTION,
-                "_synced_at IS NULL AND ((_observation_id = ? OR observation_id = ?))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND (is_deleted != 1)", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
         c.close();
 
