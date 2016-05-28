@@ -195,6 +195,7 @@ public class ObservationEditor extends AppCompatActivity {
     private ImageView mLocationIcon;
     private TextView mLocationGuess;
     private TextView mFindingCurrentLocation;
+    private boolean mLocationManuallySet;
 
     @Override
 	protected void onStart()
@@ -374,6 +375,7 @@ public class ObservationEditor extends AppCompatActivity {
             mIsCaptive = savedInstanceState.getBoolean("mIsCaptive", false);
             mFirstPositionPhotoId = savedInstanceState.getLong("mFirstPositionPhotoId");
             mGettingLocation = savedInstanceState.getBoolean("mGettingLocation");
+            mLocationManuallySet = savedInstanceState.getBoolean("mLocationManuallySet");
         }
 
 
@@ -532,6 +534,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                         if (position == 0) {
                             // Get current location
+                            mLocationManuallySet = true;
                             getLocation();
                         } else {
                             // Edit location
@@ -733,6 +736,7 @@ public class ObservationEditor extends AppCompatActivity {
         outState.putBoolean("mIsCaptive", mIsCaptive);
         outState.putLong("mFirstPositionPhotoId", mFirstPositionPhotoId != null ? mFirstPositionPhotoId : -1);
         outState.putBoolean("mGettingLocation", mGettingLocation);
+        outState.putBoolean("mLocationManuallySet", mLocationManuallySet);
         super.onSaveInstanceState(outState);
     }
 
@@ -1467,6 +1471,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
         } else if (requestCode == LOCATION_CHOOSER_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                mLocationManuallySet = true;
             	stopGetLocation();
             	
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
@@ -1625,8 +1630,19 @@ public class ObservationEditor extends AppCompatActivity {
 
                 updateImages();
                 if (!isCamera) {
-                    promptImportPhotoMetadata(selectedImageUri);
-               }
+                    // Import photo metadata (e.g. location) only when the location hasn't been set
+                    // by the user before (whether manually or by importing previous images)
+                    if (!mLocationManuallySet) {
+                        stopGetLocation();
+                        mLocationManuallySet = true;
+                        importPhotoMetadata(selectedImageUri);
+                    }
+               } else {
+                    // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
+                    if (!mLocationManuallySet && !mGettingLocation) {
+                        getLocation();
+                    }
+                }
 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
@@ -1641,7 +1657,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
             // Returned from activity AND it's a new observation
-            if (mObservation.longitude == null) {
+            if ((mObservation.longitude == null) && (mGettingLocation)) {
                 // Got stopped in the middle of retrieving GPS coordinates - try again
                 getLocation();
             }
@@ -1704,17 +1720,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
-    
-    private void promptImportPhotoMetadata(Uri photoUri) {
-        final Uri uri = photoUri;
-        confirm(ObservationEditor.this, R.string.import_metadata, R.string.import_metadata_desc, 
-                R.string.yes, R.string.no, 
-                new Runnable() { public void run() {
-                    importPhotoMetadata(uri);
-                }}, 
-                null);
-    }
-    
+
     private void importPhotoMetadata(Uri photoUri) {
         String imgFilePath = imageFilePathFromUri(photoUri);
         
@@ -1736,6 +1742,7 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation.positional_accuracy = null;
                 mObservation.private_longitude = mObservation.longitude;
                 mObservation.private_latitude = mObservation.latitude;
+                setPlaceGuess(null);
             }
 
             if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
