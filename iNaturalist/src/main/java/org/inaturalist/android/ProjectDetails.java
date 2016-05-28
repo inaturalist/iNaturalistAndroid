@@ -573,16 +573,24 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
                 resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.RESULTS);
             }
 
-            resultsJSON = resultsObject.getJSONArray("results");
-            int totalResults = resultsObject.getInt("total_results");
+            JSONArray results = null;
+            int totalResults = 0;
 
-            JSONArray results = resultsJSON.getJSONArray();
-            ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
+            if (resultsObject != null) {
+                resultsJSON = resultsObject.getJSONArray("results");
+                Integer count = resultsObject.getInt("total_results");
+                if (count != null) {
+                    totalResults = count;
+                    results = resultsJSON.getJSONArray();
+                }
+            }
 
             if (results == null) {
                 refreshViewState();
                 return;
             }
+
+            ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
 
             for (int i = 0; i < results.length(); i++) {
 				try {
