@@ -654,7 +654,7 @@ public class ObservationEditor extends AppCompatActivity {
             mCanceled = true;
             setResult(RESULT_CANCELED);
             finish();
-            return true;
+            return false;
         }
 
         // Restore the old observation (since uiToObservation has overwritten it)
@@ -673,7 +673,7 @@ public class ObservationEditor extends AppCompatActivity {
                 },
                 null);
 
-        return false;
+        return true;
     }
 
     
