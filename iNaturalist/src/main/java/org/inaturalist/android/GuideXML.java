@@ -657,6 +657,10 @@ public class GuideXML extends BaseGuideXMLParser {
         ArrayList<Node> nodes = getNodesByXPath(xPathExpression);
         ArrayList<GuideTaxonXML> taxa = new ArrayList<GuideTaxonXML>();
 
+        if (nodes == null) {
+            return taxa;
+        }
+
         // Initialize each node into a GuideTaxonXML instance
         for (Node node: nodes) {
             taxa.add(new GuideTaxonXML(this, node));
