@@ -1163,18 +1163,19 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mUserPic.setImageResource(R.drawable.ic_account_circle_black_24dp);
         }
 
-        BetterJSONObject obs = new BetterJSONObject(mObsJson);
-        final JSONObject userObj = obs.getJSONObject("user");
 
         if (mReadOnly) {
+            if (mObsJson == null) return;
+
+            BetterJSONObject obs = new BetterJSONObject(mObsJson);
+            final JSONObject userObj = obs.getJSONObject("user");
+
             OnClickListener showUser = new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*
                     Intent intent = new Intent(ObservationViewerActivity.this, UserProfile.class);
                     intent.putExtra("user", new BetterJSONObject(userObj));
                     startActivity(intent);
-                    */
                 }
             };
 
