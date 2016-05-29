@@ -493,5 +493,9 @@
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
     <string name="article_by">Article By</string>
     <string name="feed">Feed</string>
+    <string name="no_identifications_found">No identifications found</string>
+    <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
+    <string name="no_location">No Location</string>
  </resources>
 

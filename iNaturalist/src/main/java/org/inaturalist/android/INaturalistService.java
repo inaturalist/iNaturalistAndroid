@@ -116,8 +116,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String OBSERVATION_ID = "observation_id";
     public static final String COMMENT_ID = "comment_id";
     public static final String OBSERVATION_RESULT = "observation_result";
+    public static final String USER_OBSERVATIONS_RESULT = "user_observations_result";
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
     public static final String PROJECTS_RESULT = "projects_result";
+    public static final String IDENTIFICATIONS_RESULT = "identifications_result";
+    public static final String LIFE_LIST_RESULT = "life_list_result";
+    public static final String USER_DETAILS_RESULT = "user_details_result";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
     public static final String COMMENT_BODY = "comment_body";
@@ -131,9 +135,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
+    public static final String OBSERVATIONS = "observations";
+    public static final String IDENTIFICATIONS = "identifications";
+    public static final String LIFE_LIST_ID = "life_list_id";
     public static final String PASSWORD = "password";
     public static final String LICENSE = "license";
     public static final String RESULTS = "results";
+    public static final String LIFE_LIST = "life_list";
     public static final String REGISTER_USER_ERROR = "error";
     public static final String REGISTER_USER_STATUS = "status";
 
@@ -207,6 +215,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String GUIDES_RESULT = "guides_result";
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
+    public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
+    public static String ACTION_GET_LIFE_LIST = "get_life_list";
+    public static String ACTION_GET_USER_IDENTIFICATIONS = "get_user_identifications";
+    public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -377,6 +389,42 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 
                 Intent reply = new Intent(ACTION_GET_TAXON_RESULT);
                 reply.putExtra(TAXON_RESULT, taxon);
+                sendBroadcast(reply);
+
+              } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
+                String username = intent.getStringExtra(USERNAME);
+                BetterJSONObject user = getUserDetails(username);
+
+                Intent reply = new Intent(USER_DETAILS_RESULT);
+                reply.putExtra(USER, user);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_LIFE_LIST)) {
+                int lifeListId = intent.getIntExtra(LIFE_LIST_ID, 0);
+                BetterJSONObject lifeList = getUserLifeList(lifeListId);
+
+                Intent reply = new Intent(LIFE_LIST_RESULT);
+                mApp.setServiceResult(LIFE_LIST_RESULT, lifeList);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_USER_OBSERVATIONS)) {
+                String username = intent.getStringExtra(USERNAME);
+                SerializableJSONArray observations = getUserObservations(username);
+
+                Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
+                mApp.setServiceResult(USER_OBSERVATIONS_RESULT, observations);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+
+            } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
+                String username = intent.getStringExtra(USERNAME);
+                SerializableJSONArray identifications = getUserIdentifications(username);
+
+                Intent reply = new Intent(IDENTIFICATIONS_RESULT);
+                mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_ADD_COMMENT)) {
@@ -1260,6 +1308,49 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             return null;
         }
 
+    }
+
+
+    private BetterJSONObject getUserDetails(String username) throws AuthenticationException {
+        String url = HOST + "/users/" + username + ".json";
+        JSONArray json = get(url, false);
+        try {
+            if (json == null) return null;
+            if (json.length() == 0) return null;
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private SerializableJSONArray getUserObservations(String username) throws AuthenticationException {
+        String url = HOST + "/observations/" + username + ".json?per_page=200";
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        return new SerializableJSONArray(json);
+    }
+
+    private SerializableJSONArray getUserIdentifications(String username) throws AuthenticationException {
+        String url = HOST + "/identifications/" + username + ".json?per_page=200";
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        return new SerializableJSONArray(json);
+    }
+
+    private BetterJSONObject getUserLifeList(int lifeListId) throws AuthenticationException {
+        String url = HOST + "/life_lists/" + lifeListId + ".json";
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private BetterJSONObject getUserDetails() throws AuthenticationException {

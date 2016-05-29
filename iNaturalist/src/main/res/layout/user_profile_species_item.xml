@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/species_pic"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/actionbar_back_indicator" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/species_pic"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/species_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1,320"
+                style="@android:style/TextAppearance.Medium"
+                android:textColor="#000000"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                />
+            <TextView
+                android:id="@+id/species_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Medium"
+                android:textColor="#000000"
+                android:layout_toLeftOf="@id/species_count"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="Name" />
+
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/species_science_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:lines="1"
+            android:ellipsize="end"
+            android:text="Name" />
+    </LinearLayout>
+
+</RelativeLayout>

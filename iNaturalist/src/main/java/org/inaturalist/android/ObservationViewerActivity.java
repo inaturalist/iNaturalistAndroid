@@ -1127,8 +1127,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private void loadObservationIntoUI() {
         String userIconUrl = null;
 
-
         if (mReadOnly) {
+            if (mObsJson == null) {
+                finish();
+                return;
+            }
+
             BetterJSONObject obs = new BetterJSONObject(mObsJson);
             JSONObject userObj = obs.getJSONObject("user");
             userIconUrl = userObj.has("user_icon_url") && !userObj.isNull("user_icon_url") ? userObj.optString("user_icon_url", null) : null;
@@ -1157,6 +1161,25 @@ public class ObservationViewerActivity extends AppCompatActivity {
             });
         } else {
             mUserPic.setImageResource(R.drawable.ic_account_circle_black_24dp);
+        }
+
+        BetterJSONObject obs = new BetterJSONObject(mObsJson);
+        final JSONObject userObj = obs.getJSONObject("user");
+
+        if (mReadOnly) {
+            OnClickListener showUser = new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    /*
+                    Intent intent = new Intent(ObservationViewerActivity.this, UserProfile.class);
+                    intent.putExtra("user", new BetterJSONObject(userObj));
+                    startActivity(intent);
+                    */
+                }
+            };
+
+            mUserName.setOnClickListener(showUser);
+            mUserPic.setOnClickListener(showUser);
         }
 
         mObservedOn.setText(formatObservedOn(mObservation.observed_on, mObservation.time_observed_at));

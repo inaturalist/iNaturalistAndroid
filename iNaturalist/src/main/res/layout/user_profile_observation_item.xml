@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/observation_pic"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/iconic_taxon_unknown"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="3w" />
+
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/date"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/comment_id_container"
+        android:paddingLeft="10dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/comment_pic"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_chat_bubble_black_24dp"
+            android:tint="#707070"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="31"
+            android:layout_marginRight="8dp"
+            />
+
+        <ImageView
+            android:id="@+id/id_pic"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_local_offer_black_24dp"
+            android:tint="#707070"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/id_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/observation_pic"
+        android:layout_toLeftOf="@id/comment_id_container"
+        android:layout_centerVertical="true"
+        >
+
+        <TextView
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/species_guess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            style="@android:style/TextAppearance.Medium"
+            android:text="Species Guess" />
+
+
+        <ImageView
+            android:id="@+id/location_icon"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location_on_black_24dp"
+            android:tint="#6F6F6F"
+            android:layout_below="@id/species_guess"
+            android:layout_alignParentLeft="true"
+            />
+        <TextView
+            android:id="@+id/place_guess"
+            android:layout_toRightOf="@id/location_icon"
+            android:layout_alignBottom="@id/location_icon"
+            android:layout_alignTop="@id/location_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="San Francisco" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

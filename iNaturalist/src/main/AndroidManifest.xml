@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="119"
+    android:versionCode="120"
     android:versionName="1.4.3" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
@@ -60,7 +60,12 @@
 	            android:name="android.support.PARENT_ACTIVITY"
 	            android:value=".GuideDetails" />
         </activity>
-        
+         <activity
+            android:configChanges="orientation"
+            android:windowActionBar="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".UserProfile" >
+        </activity>
         <activity
             android:configChanges="orientation"
             android:label="@string/projects"
@@ -211,6 +216,10 @@
         <activity
             android:configChanges="orientation"
             android:name=".NewsArticle" >
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:name=".ProfilePhotoViewer" >
         </activity>
 
         <provider
