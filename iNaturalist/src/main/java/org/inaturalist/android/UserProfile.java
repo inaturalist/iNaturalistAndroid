@@ -239,44 +239,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mUserName = (TextView) findViewById(R.id.user_name);
         mUserBio = (TextView) findViewById(R.id.user_bio);
 
-        refreshUserDetails();
-
         mUserPicContainer = (ViewGroup) findViewById(R.id.user_pic_container);
-        final ImageView userPic = (ImageView) findViewById(R.id.user_pic);
-        String iconUrl = mUser.getString("user_icon_url");
-
-        if ((iconUrl != null) && (iconUrl.length() > 0)) {
-            userPic.setVisibility(View.VISIBLE);
-            findViewById(R.id.no_user_pic).setVisibility(View.GONE);
-            UrlImageViewHelper.setUrlDrawable(userPic, iconUrl);
-
-            UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.user_bg), iconUrl + "?bg=1", new UrlImageViewCallback() {
-                @Override
-                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    imageView.setImageBitmap(ImageUtils.blur(UserProfile.this, loadedBitmap.copy(loadedBitmap.getConfig(), true)));
-                }
-
-                @Override
-                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    return loadedBitmap;
-                }
-            });
-
-            userPic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Only show the photo viewer if a large enough image exists
-                    if ((mUser.getString("original_user_icon_url") != null) || (mUser.getString("medium_user_icon_url") != null)) {
-                        Intent intent = new Intent(UserProfile.this, ProfilePhotoViewer.class);
-                        intent.putExtra(ProfilePhotoViewer.USER, mUser.getJSONObject().toString());
-                        startActivity(intent);
-                    }
-                }
-            });
-        } else {
-            userPic.setVisibility(View.GONE);
-            findViewById(R.id.no_user_pic).setVisibility(View.VISIBLE);
-        }
 
         refreshUserDetails();
     }
@@ -758,5 +721,42 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             });
 
         }
+
+        final ImageView userPic = (ImageView) findViewById(R.id.user_pic);
+        String iconUrl = mUser.getString("user_icon_url");
+
+        if ((iconUrl != null) && (iconUrl.length() > 0)) {
+            userPic.setVisibility(View.VISIBLE);
+            findViewById(R.id.no_user_pic).setVisibility(View.GONE);
+            UrlImageViewHelper.setUrlDrawable(userPic, iconUrl);
+
+            UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.user_bg), iconUrl + "?bg=1", new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    imageView.setImageBitmap(ImageUtils.blur(UserProfile.this, loadedBitmap.copy(loadedBitmap.getConfig(), true)));
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    return loadedBitmap;
+                }
+            });
+
+            userPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Only show the photo viewer if a large enough image exists
+                    if ((mUser.getString("original_user_icon_url") != null) || (mUser.getString("medium_user_icon_url") != null)) {
+                        Intent intent = new Intent(UserProfile.this, ProfilePhotoViewer.class);
+                        intent.putExtra(ProfilePhotoViewer.USER, mUser.getJSONObject().toString());
+                        startActivity(intent);
+                    }
+                }
+            });
+        } else {
+            userPic.setVisibility(View.GONE);
+            findViewById(R.id.no_user_pic).setVisibility(View.VISIBLE);
+        }
+
     }
 }
