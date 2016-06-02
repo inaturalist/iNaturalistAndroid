@@ -559,7 +559,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                      SerializableJSONArray projects = getNearByProjects(false);
 
                      Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                     reply.putExtra(PROJECTS_RESULT, projects);
+                     mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, projects);
+                     reply.putExtra(IS_SHARED_ON_APP, true);
                      sendBroadcast(reply);
                  }
                  
@@ -570,18 +571,19 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  reply.putExtra(PROJECTS_RESULT, projects);
                  sendBroadcast(reply);
 
-              } else if (action.equals(ACTION_GET_JOINED_PROJECTS_ONLINE)) {
-                 SerializableJSONArray projects = null;
-            	 if (mCredentials != null) {
-            		 projects = getJoinedProjects();
-            	 }
+            } else if (action.equals(ACTION_GET_JOINED_PROJECTS_ONLINE)) {
+                SerializableJSONArray projects = null;
+                if (mCredentials != null) {
+                    projects = getJoinedProjects();
+                }
 
-                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
-                 reply.putExtra(PROJECTS_RESULT, projects);
-                 sendBroadcast(reply);
+                Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
+                mApp.setServiceResult(ACTION_JOINED_PROJECTS_RESULT, projects);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
-                 SerializableJSONArray projects = null;
+            } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
+                SerializableJSONArray projects = null;
             	 if (mCredentials != null) {
             		 projects = getJoinedProjectsOffline();
             	 }
@@ -1829,7 +1831,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             return null;
         }
         String url = HOST + "/projects/user/" + Uri.encode(mLogin) + ".json";
-        
+
         JSONArray json = get(url, true);
         JSONArray finalJson = new JSONArray();
         
@@ -2833,7 +2835,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 }
 
                 Intent reply = new Intent(mGetLocationForProjects ? ACTION_NEARBY_PROJECTS_RESULT: ACTION_NEAR_BY_GUIDES_RESULT);
-                reply.putExtra(mGetLocationForProjects ? PROJECTS_RESULT : GUIDES_RESULT, projects);
+                mApp.setServiceResult(mGetLocationForProjects ? ACTION_NEARBY_PROJECTS_RESULT: ACTION_NEAR_BY_GUIDES_RESULT, projects);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
             }
         });
