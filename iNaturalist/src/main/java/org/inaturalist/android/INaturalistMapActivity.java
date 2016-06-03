@@ -854,7 +854,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
         MarkerOptions opts = new MarkerOptions()
             .position(latLng)
-            //.title(o.getString("species_guess"))
             .icon(INaturalistMapActivity.observationIcon(iconicTaxonName));
         Marker m = mMap.addMarker(opts);
         mMarkerObservations.put(m.getId(), o);
@@ -1630,7 +1629,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
  			CameraPosition camPos = new CameraPosition.Builder()
  			.target(latLng)
- 			.zoom(12)
+ 			.zoom(13)
  			.build();
 
  			CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
