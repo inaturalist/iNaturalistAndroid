@@ -60,6 +60,13 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/dummy_focus"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
@@ -153,22 +160,6 @@
             android:textColor="#000000"
             android:textSize="16sp"
             />
-
-        <!--
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/switch_compat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="25dp"
-            android:checked="false" />
-            -->
     </RelativeLayout>
     <View
         android:layout_width="fill_parent"
@@ -479,6 +470,7 @@
                 android:layout_width="wrap_content"
                 android:text="Location is open"
                 android:textSize="16sp"
+                android:textColor="#000000"
                 />
             <Spinner
                 android:id="@+id/geoprivacy"
@@ -531,18 +523,8 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/is_captive_icon"
             android:layout_toEndOf="@id/is_captive_icon"
+            android:textColor="#000000"
             />
-
-        <!--
-        <CheckBox
-            android:id="@+id/is_captive_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            />
-            -->
 
         <RelativeLayout
             android:id="@+id/is_captive_checkbox"
@@ -615,6 +597,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="right"
+            android:textColor="#000000"
             />
 
 
@@ -626,7 +609,7 @@
             android:id="@+id/select_projects"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:text="@string/projects"
+            android:text="@string/add_to_projects"
             android:textSize="16sp"
             android:layout_centerVertical="true"
             />

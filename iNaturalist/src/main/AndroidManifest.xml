@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="123"
+    android:versionCode="124"
     android:versionName="1.4.4" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />

@@ -139,7 +139,7 @@ public class ObservationEditor extends AppCompatActivity {
     private TextView mAccuracyView;
     private ProgressBar mLocationProgressView;
     private View mLocationRefreshButton;
-    private View mProjectSelector;
+    private TextView mProjectSelector;
     private Uri mFileUri;
     private Observation mObservation;
     private LocationManager mLocationManager;
@@ -250,7 +250,16 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void refreshProjectList() {
-        mProjectCount.setText(String.valueOf(mProjectIds.size()));
+        if (mProjectIds.size() == 0) {
+            mProjectCount.setVisibility(View.GONE);
+            mProjectSelector.setTextColor(Color.parseColor("#757575"));
+            mProjectSelector.setText(R.string.add_to_projects);
+        } else {
+            mProjectCount.setVisibility(View.VISIBLE);
+            mProjectCount.setText(String.valueOf(mProjectIds.size()));
+            mProjectSelector.setTextColor(Color.parseColor("#000000"));
+            mProjectSelector.setText(R.string.projects);
+        }
     }
 
 
@@ -428,7 +437,7 @@ public class ObservationEditor extends AppCompatActivity {
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
         mObservationCommentsIds = (TextView) findViewById(R.id.commentIdCount);
-        mProjectSelector = findViewById(R.id.select_projects);
+        mProjectSelector = (TextView) findViewById(R.id.select_projects);
         mProjectCount = (TextView) findViewById(R.id.project_count);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         mLocationIcon = (ImageView) findViewById(R.id.location_icon);
@@ -562,7 +571,6 @@ public class ObservationEditor extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         
         
@@ -921,18 +929,23 @@ public class ObservationEditor extends AppCompatActivity {
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {
             mObservedOnButton.setText(getString(R.string.set_date));
+            mObservedOnButton.setTextColor(Color.parseColor("#757575"));
         } else {
             mObservedOnButton.setText(app.shortFormatDate(mObservation.observed_on));
+            mObservedOnButton.setTextColor(Color.parseColor("#000000"));
         }
         if (mObservation.observed_on_string != null) {
             mObservedOnStringTextView.setText(mObservation.observed_on_string);
+            mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
             mDateSetByUser = mObservation.observed_on;
         }
         if (mObservation.time_observed_at == null) {
             mTimeObservedAtButton.setText(getString(R.string.set_time));
+            mTimeObservedAtButton.setTextColor(Color.parseColor("#757575"));
         } else {
             mTimeObservedAtButton.setText(app.shortFormatTime(mObservation.time_observed_at));
             mTimeSetByUser = mObservation.time_observed_at;
+            mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
         }
 
         if (mObservation.latitude != null) {
@@ -968,8 +981,10 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mObservation.place_guess != null) {
             mLocationGuess.setText(mObservation.place_guess);
+            mLocationGuess.setTextColor(Color.parseColor("#000000"));
         } else {
             mLocationGuess.setText(getString(R.string.set_location));
+            mLocationGuess.setTextColor(Color.parseColor("#757575"));
         }
     }
 
@@ -1072,6 +1087,7 @@ public class ObservationEditor extends AppCompatActivity {
                     date = new Timestamp(System.currentTimeMillis());
                 }
                 mObservedOnStringTextView.setText(INaturalistApp.DATETIME_FORMAT.format(date));
+                mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
                 mObservedOnButton.setText(app.shortFormatDate(date));
             } catch (ParseException dateTimeException) {
                 date = new Timestamp(year - 1900, month, day, 0, 0, 0, 0);
@@ -1079,10 +1095,12 @@ public class ObservationEditor extends AppCompatActivity {
                     date = new Timestamp(System.currentTimeMillis());
                 }
                 mObservedOnStringTextView.setText(app.formatDate(date));
+                mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
                 mObservedOnButton.setText(app.shortFormatDate(date));
             }
 
             mDateSetByUser = date;
+            mObservedOnButton.setTextColor(Color.parseColor("#000000"));
         }
     };
 
@@ -1115,7 +1133,9 @@ public class ObservationEditor extends AppCompatActivity {
                 datetime = new Timestamp(System.currentTimeMillis());
             }
             mObservedOnStringTextView.setText(app.formatDatetime(datetime));
+            mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
             mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
+            mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
             mTimeSetByUser = datetime;
         }
     };
@@ -1278,9 +1298,11 @@ public class ObservationEditor extends AppCompatActivity {
         }
         if ((placeGuess != null) && (placeGuess.length() > 0)) {
             mLocationGuess.setText(placeGuess);
+            mLocationGuess.setTextColor(Color.parseColor("#000000"));
             mObservation.place_guess = placeGuess;
         } else {
             mLocationGuess.setText(R.string.set_location);
+            mLocationGuess.setTextColor(Color.parseColor("#757575"));
             mObservation.place_guess = null;
         }
     }
@@ -1769,7 +1791,9 @@ public class ObservationEditor extends AppCompatActivity {
                     mObservation.observed_on_string = app.formatDatetime(timestamp);
 
                     mObservedOnStringTextView.setText(app.formatDatetime(timestamp));
+                    mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
                     mTimeObservedAtButton.setText(app.shortFormatTime(timestamp));
+                    mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
                     mDateSetByUser = timestamp;
                     mTimeSetByUser = timestamp;
                 } catch (ParseException e) {
