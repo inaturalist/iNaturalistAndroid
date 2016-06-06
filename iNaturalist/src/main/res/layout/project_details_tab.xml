@@ -32,16 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:textColor="#000000"
+        android:textColor="#ACACAC"
         android:layout_gravity="center_horizontal"
         android:text="Observations"
         android:paddingBottom="10dp"
         android:textAllCaps="true"
         />
-
-    <View
-        android:id="@+id/bottom_line"
-        android:background="@color/inatapptheme_color"
-        android:layout_width="match_parent"
-        android:layout_height="3dp" />
 </LinearLayout>

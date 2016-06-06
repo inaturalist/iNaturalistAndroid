@@ -1,6 +1,5 @@
 package org.inaturalist.android;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,49 +8,42 @@ import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TabHost;
-import android.widget.TabWidget;
 import android.widget.TextView;
 
-import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
-public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabChangeListener, AppBarLayout.OnOffsetChangedListener {
+public class ProjectDetails extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
  	private final static String VIEW_TYPE_OBSERVATIONS = "observations";
 	private final static String VIEW_TYPE_SPECIES = "species";
 	private final static String VIEW_TYPE_OBSERVERS = "observers";
@@ -64,7 +56,6 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
     private INaturalistApp mApp;
     private BetterJSONObject mProject;
 
-    private TabHost mTabHost;
     private ActivityHelper mHelper;
     private Button mAboutProject;
     private Button mProjectNews;
@@ -72,26 +63,22 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
     private GridViewExtended mObservationsGrid;
     private ObservationGridAdapter mGridAdapter;
     private ProgressBar mLoadingObservationsGrid;
-    private ViewGroup mGridContainer;
     private TextView mObservationsGridEmpty;
 
     private ListView mSpeciesList;
     private TaxonAdapter mSpeciesListAdapter;
     private ProgressBar mLoadingSpeciesList;
-    private ViewGroup mSpeciesContainer;
     private TextView mSpeciesListEmpty;
 
     private ListView mPeopleList;
     private ProjectUserAdapter mPeopleListAdapter;
     private ProgressBar mLoadingPeopleList;
-    private ViewGroup mPeopleContainer;
     private ViewGroup mPeopleListHeader;
     private TextView mPeopleListEmpty;
 
     private ListView mIdentifiersList;
     private ProjectUserAdapter mIdentifiersListAdapter;
     private ProgressBar mLoadingIdentifiersList;
-    private ViewGroup mIdentifiersContainer;
     private ViewGroup mIdentifiersListHeader;
     private TextView mIdentifiersListEmpty;
 
@@ -110,6 +97,8 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
     private AppBarLayout mAppBarLayout;
     private boolean mProjectPicHidden;
     private ViewGroup mProjectPicContainer;
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
 
     @Override
 	protected void onStart()
@@ -156,62 +145,11 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
         mAppBarLayout = (AppBarLayout) findViewById(R.id.project_top_bar);
         mAppBarLayout.addOnOffsetChangedListener(this);
 
-        mLoadingObservationsGrid = (ProgressBar) findViewById(R.id.loading_observations_grid);
-        mObservationsGridEmpty = (TextView) findViewById(R.id.observations_grid_empty);
-        mObservationsGrid = (GridViewExtended) findViewById(R.id.observations_grid);
-        mGridContainer = (ViewGroup) findViewById(R.id.grid_container);
-
-        mLoadingSpeciesList = (ProgressBar) findViewById(R.id.loading_species_list);
-        mSpeciesListEmpty = (TextView) findViewById(R.id.species_list_empty);
-        mSpeciesList = (ListView) findViewById(R.id.species_list);
-        mSpeciesContainer = (ViewGroup) findViewById(R.id.species_container);
-
-        mSpeciesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                JSONObject item = (JSONObject) view.getTag();
-                Intent intent = new Intent(ProjectDetails.this, GuideTaxonActivity.class);
-                intent.putExtra("taxon", new BetterJSONObject(item));
-                intent.putExtra("guide_taxon", false);
-                intent.putExtra("show_add", false);
-                intent.putExtra("download_taxon", true);
-                startActivity(intent);
-            }
-        });
-
-        mLoadingPeopleList = (ProgressBar) findViewById(R.id.loading_people_list);
-        mPeopleListEmpty = (TextView) findViewById(R.id.people_list_empty);
-        mPeopleList = (ListView) findViewById(R.id.people_list);
-        mPeopleContainer = (ViewGroup) findViewById(R.id.people_container);
-        mPeopleListHeader = (ViewGroup) findViewById(R.id.people_list_header);
-
-        mLoadingIdentifiersList = (ProgressBar) findViewById(R.id.loading_identifiers_list);
-        mIdentifiersListEmpty = (TextView) findViewById(R.id.identifiers_list_empty);
-        mIdentifiersList = (ListView) findViewById(R.id.identifiers_list);
-        mIdentifiersContainer = (ViewGroup) findViewById(R.id.identifiers_container);
-        mIdentifiersListHeader = (ViewGroup) findViewById(R.id.identifiers_list_header);
-
-        mObservationsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
-                JSONObject item = (JSONObject) view.getTag();
-                Intent intent = new Intent(ProjectDetails.this, ObservationViewerActivity.class);
-                intent.putExtra("observation", item.toString());
-                intent.putExtra("read_only", true);
-                intent.putExtra("reload", true);
-                startActivity(intent);
-            }
-        });
-
-        ViewCompat.setNestedScrollingEnabled(mObservationsGrid, true);
-        ViewCompat.setNestedScrollingEnabled(mIdentifiersList, true);
-        ViewCompat.setNestedScrollingEnabled(mPeopleList, true);
-        ViewCompat.setNestedScrollingEnabled(mSpeciesList, true);
-
         if (mApp == null) {
             mApp = (INaturalistApp)getApplicationContext();
         }
-        
+
+
         if (savedInstanceState == null) {
             mProject = (BetterJSONObject) intent.getSerializableExtra("project");
             mViewType = VIEW_TYPE_OBSERVATIONS;
@@ -220,11 +158,6 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
             getProjectDetails(INaturalistService.ACTION_GET_PROJECT_SPECIES);
             getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVERS);
             getProjectDetails(INaturalistService.ACTION_GET_PROJECT_IDENTIFIERS);
-
-            mGridContainer.setVisibility(View.VISIBLE);
-            mSpeciesContainer.setVisibility(View.GONE);
-            mPeopleContainer.setVisibility(View.GONE);
-            mIdentifiersContainer.setVisibility(View.GONE);
 
         } else {
             mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
@@ -242,10 +175,7 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
         }
 
         // Tab Initialization
-        initialiseTabHost();
-
-        refreshViewState();
-        refreshViewType();
+        initializeTabs();
 
         mJoinLeaveProject = (Button) findViewById(R.id.join_leave_project);
         mAboutProject = (Button) findViewById(R.id.about_project);
@@ -433,8 +363,6 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
         filter.addAction(INaturalistService.ACTION_PROJECT_OBSERVATIONS_RESULT);
         filter.addAction(INaturalistService.ACTION_PROJECT_OBSERVERS_RESULT);
         registerReceiver(mProjectDetailsReceiver, filter);
-
-        refreshViewState();
     }
 
     @Override
@@ -452,79 +380,97 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
 
 
      // Method to add a TabHost
-    private static void AddTab(ProjectDetails activity, TabHost tabHost, TabHost.TabSpec tabSpec) {
-        tabSpec.setContent(new MyTabFactory(activity));
-        tabHost.addTab(tabSpec);
-    }
-
-    // Manages the Tab changes, synchronizing it with Pages
-    public void onTabChanged(String tag) {
-        mViewType = tag;
-        refreshViewType();
-    }
-
-    private void refreshViewType() {
-        mGridContainer.setVisibility(View.GONE);
-        mSpeciesContainer.setVisibility(View.GONE);
-        mPeopleContainer.setVisibility(View.GONE);
-        mIdentifiersContainer.setVisibility(View.GONE);
-
-
-        TabWidget tabWidget = mTabHost.getTabWidget();
-        for (int i = 0; i < tabWidget.getChildCount(); i++) {
-            View tab = tabWidget.getChildAt(i);
-            TextView tabNameText = (TextView) tab.findViewById(R.id.tab_name);
-            View bottomLine = tab.findViewById(R.id.bottom_line);
-
-            tabNameText.setTypeface(null, Typeface.NORMAL);
-            tabNameText.setTextColor(Color.parseColor("#ACACAC"));
-            bottomLine.setVisibility(View.GONE);
-        }
-
-        int selectedTab = 0;
-
-    	if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
-            selectedTab = 0;
-    		mGridContainer.setVisibility(View.VISIBLE);
-    	} else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
-            selectedTab = 1;
-            mSpeciesContainer.setVisibility(View.VISIBLE);
-        } else if (mViewType.equals(VIEW_TYPE_OBSERVERS)) {
-            selectedTab = 2;
-            mPeopleContainer.setVisibility(View.VISIBLE);
-        } else if (mViewType.equals(VIEW_TYPE_IDENTIFIERS)) {
-            selectedTab = 3;
-            mIdentifiersContainer.setVisibility(View.VISIBLE);
-        }
-
-        mTabHost.setCurrentTab(selectedTab);
-        View tab = tabWidget.getChildAt(selectedTab);
-        TextView tabNameText = (TextView) tab.findViewById(R.id.tab_name);
-        View bottomLine = tab.findViewById(R.id.bottom_line);
-
-        tabNameText.setTypeface(null, Typeface.BOLD);
-        tabNameText.setTextColor(Color.parseColor("#000000"));
-        bottomLine.setVisibility(View.VISIBLE);
+    private void addTab(int position, View tabContent) {
+        TabLayout.Tab tab = mTabLayout.getTabAt(position);
+        tab.setCustomView(tabContent);
     }
 
 
     // Tabs Creation
-    private void initialiseTabHost() {
-        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
-        mTabHost.setup();
+    private void initializeTabs() {
+        mTabLayout = (TabLayout) findViewById(R.id.tabs);
+        mViewPager = (ViewPager) findViewById(R.id.view_pager);
 
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_OBSERVATIONS).setIndicator(
-                createTabContent(getString(R.string.project_observations), 1000)));
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_SPECIES).setIndicator(
-                createTabContent(getString(R.string.project_species), 2000)));
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_OBSERVERS).setIndicator(
-                createTabContent(getString(R.string.project_people), 3000)));
-        ProjectDetails.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_IDENTIFIERS).setIndicator(
-                createTabContent(getString(R.string.project_identifiers), 4000)));
+        mViewPager.setOffscreenPageLimit(3); // So we wouldn't have to recreate the views every time
+        ProjectDetailsPageAdapter adapter = new ProjectDetailsPageAdapter(this);
+        mViewPager.setAdapter(adapter);
+        mTabLayout.setupWithViewPager(mViewPager);
 
-        mTabHost.getTabWidget().setDividerDrawable(null);
+        addTab(0, createTabContent(getString(R.string.project_observations), 1000));
+        addTab(1, createTabContent(getString(R.string.project_species), 2000));
+        addTab(2, createTabContent(getString(R.string.project_people), 3000));
+        addTab(3, createTabContent(getString(R.string.project_identifiers), 4000));
 
-        mTabHost.setOnTabChangedListener(this);
+        TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                TextView tabNameText = (TextView) tab.getCustomView().findViewById(R.id.tab_name);
+
+                tabNameText.setTypeface(null, Typeface.BOLD);
+                tabNameText.setTextColor(Color.parseColor("#000000"));
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                View tabView = tab.getCustomView();
+                TextView tabNameText = (TextView) tabView.findViewById(R.id.tab_name);
+
+                tabNameText.setTypeface(null, Typeface.NORMAL);
+                tabNameText.setTextColor(Color.parseColor("#ACACAC"));
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        };
+        mTabLayout.setOnTabSelectedListener(tabListener);
+
+        ViewPager.OnPageChangeListener pageListener = new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 3:
+                        mViewType = VIEW_TYPE_IDENTIFIERS;
+                        break;
+                    case 2:
+                        mViewType = VIEW_TYPE_OBSERVERS;
+                        break;
+                    case 1:
+                        mViewType = VIEW_TYPE_SPECIES;
+                        break;
+                    case 0:
+                    default:
+                        mViewType = VIEW_TYPE_OBSERVATIONS;
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        };
+        mViewPager.addOnPageChangeListener(pageListener);
+
+        if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
+            tabListener.onTabSelected(mTabLayout.getTabAt(0));
+        } else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
+            tabListener.onTabSelected(mTabLayout.getTabAt(1));
+        } else if (mViewType.equals(VIEW_TYPE_OBSERVERS)) {
+            tabListener.onTabSelected(mTabLayout.getTabAt(2));
+        } else if (mViewType.equals(VIEW_TYPE_IDENTIFIERS)) {
+            tabListener.onTabSelected(mTabLayout.getTabAt(3));
+        }
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        } else {
+            mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        }
     }
 
     private View createTabContent(String tabName, int count) {
@@ -620,111 +566,118 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
     }
 
     private void refreshViewState() {
-        TabWidget tabWidget = mTabHost.getTabWidget();
         DecimalFormat formatter = new DecimalFormat("#,###,###");
 
-        if (mObservations == null) {
-            ((TextView)tabWidget.getChildAt(0).findViewById(R.id.count)).setVisibility(View.GONE);
-            ((ProgressBar)tabWidget.getChildAt(0).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
-            mLoadingObservationsGrid.setVisibility(View.VISIBLE);
-            mObservationsGrid.setVisibility(View.GONE);
-            mObservationsGridEmpty.setVisibility(View.GONE);
-        } else {
-            ((TextView)tabWidget.getChildAt(0).findViewById(R.id.count)).setVisibility(View.VISIBLE);
-            ((ProgressBar)tabWidget.getChildAt(0).findViewById(R.id.loading)).setVisibility(View.GONE);
-            ((TextView)tabWidget.getChildAt(0).findViewById(R.id.count)).setText(formatter.format(mTotalObservations));
-            mLoadingObservationsGrid.setVisibility(View.GONE);
-
-            if (mObservations.size() == 0) {
-                mObservationsGridEmpty.setVisibility(View.VISIBLE);
-            } else {
+        if (mLoadingObservationsGrid != null) {
+            if (mObservations == null) {
+                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
+                ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                mLoadingObservationsGrid.setVisibility(View.VISIBLE);
+                mObservationsGrid.setVisibility(View.GONE);
                 mObservationsGridEmpty.setVisibility(View.GONE);
-            }
+            } else {
+                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
+                ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
+                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(formatter.format(mTotalObservations));
+                mLoadingObservationsGrid.setVisibility(View.GONE);
 
-            mObservationsGrid.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (mObservationsGrid.getColumnWidth() > 0) {
-                        mGridAdapter = new ObservationGridAdapter(ProjectDetails.this, mObservationsGrid.getColumnWidth(), mObservations);
-                        mObservationsGrid.setAdapter(mGridAdapter);
-                    }
+                if (mObservations.size() == 0) {
+                    mObservationsGridEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    mObservationsGridEmpty.setVisibility(View.GONE);
                 }
-            });
 
-            mObservationsGrid.setVisibility(View.VISIBLE);
+                mObservationsGrid.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mObservationsGrid.getColumnWidth() > 0) {
+                            mGridAdapter = new ObservationGridAdapter(ProjectDetails.this, mObservationsGrid.getColumnWidth(), mObservations);
+                            mObservationsGrid.setAdapter(mGridAdapter);
+                        }
+                    }
+                });
+
+                mObservationsGrid.setVisibility(View.VISIBLE);
+            }
         }
 
-        if (mSpecies == null) {
-            ((TextView)tabWidget.getChildAt(1).findViewById(R.id.count)).setVisibility(View.GONE);
-            ((ProgressBar)tabWidget.getChildAt(1).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
-            mLoadingSpeciesList.setVisibility(View.VISIBLE);
-            mSpeciesListEmpty.setVisibility(View.GONE);
-            mSpeciesList.setVisibility(View.GONE);
-        } else {
-            ((TextView)tabWidget.getChildAt(1).findViewById(R.id.count)).setVisibility(View.VISIBLE);
-            ((ProgressBar)tabWidget.getChildAt(1).findViewById(R.id.loading)).setVisibility(View.GONE);
-            ((TextView)tabWidget.getChildAt(1).findViewById(R.id.count)).setText(formatter.format(mTotalSpecies));
-            mLoadingSpeciesList.setVisibility(View.GONE);
-
-            if (mSpecies.size() == 0) {
-                mSpeciesListEmpty.setVisibility(View.VISIBLE);
-            } else {
+        if (mLoadingSpeciesList != null) {
+            if (mSpecies == null) {
+                ((TextView) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
+                ((ProgressBar) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                mLoadingSpeciesList.setVisibility(View.VISIBLE);
                 mSpeciesListEmpty.setVisibility(View.GONE);
-            }
+                mSpeciesList.setVisibility(View.GONE);
+            } else {
+                ((TextView) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
+                ((ProgressBar) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
+                ((TextView) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.count)).setText(formatter.format(mTotalSpecies));
+                mLoadingSpeciesList.setVisibility(View.GONE);
 
-            mSpeciesListAdapter = new TaxonAdapter(ProjectDetails.this, mSpecies);
-            mSpeciesList.setAdapter(mSpeciesListAdapter);
-            mSpeciesList.setVisibility(View.VISIBLE);
+                if (mSpecies.size() == 0) {
+                    mSpeciesListEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    mSpeciesListEmpty.setVisibility(View.GONE);
+                }
+
+                mSpeciesListAdapter = new TaxonAdapter(ProjectDetails.this, mSpecies);
+                mSpeciesList.setAdapter(mSpeciesListAdapter);
+                mSpeciesList.setVisibility(View.VISIBLE);
+            }
         }
 
-        if (mObservers == null) {
-            ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setVisibility(View.GONE);
-            ((ProgressBar)tabWidget.getChildAt(2).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
-            mLoadingPeopleList.setVisibility(View.VISIBLE);
-            mPeopleListEmpty.setVisibility(View.GONE);
-            mPeopleList.setVisibility(View.GONE);
-            mPeopleListHeader.setVisibility(View.GONE);
-        } else {
-            ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setVisibility(View.VISIBLE);
-            ((ProgressBar)tabWidget.getChildAt(2).findViewById(R.id.loading)).setVisibility(View.GONE);
-            ((TextView)tabWidget.getChildAt(2).findViewById(R.id.count)).setText(formatter.format(mTotalObervers));
-            mLoadingPeopleList.setVisibility(View.GONE);
-
-            if (mObservers.size() == 0) {
-                mPeopleListEmpty.setVisibility(View.VISIBLE);
-            } else {
+        if (mLoadingPeopleList != null) {
+            if (mObservers == null) {
+                ((TextView) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
+                ((ProgressBar) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                mLoadingPeopleList.setVisibility(View.VISIBLE);
                 mPeopleListEmpty.setVisibility(View.GONE);
-            }
+                mPeopleList.setVisibility(View.GONE);
+                mPeopleListHeader.setVisibility(View.GONE);
+            } else {
+                ((TextView) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
+                ((ProgressBar) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
+                ((TextView) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.count)).setText(formatter.format(mTotalObervers));
+                mLoadingPeopleList.setVisibility(View.GONE);
 
-            mPeopleListAdapter = new ProjectUserAdapter(ProjectDetails.this, mObservers);
-            mPeopleList.setAdapter(mPeopleListAdapter);
-            mPeopleList.setVisibility(View.VISIBLE);
-            mPeopleListHeader.setVisibility(View.VISIBLE);
+                if (mObservers.size() == 0) {
+                    mPeopleListEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    mPeopleListEmpty.setVisibility(View.GONE);
+                }
+
+                mPeopleListAdapter = new ProjectUserAdapter(ProjectDetails.this, mObservers);
+                mPeopleList.setAdapter(mPeopleListAdapter);
+                mPeopleList.setVisibility(View.VISIBLE);
+                mPeopleListHeader.setVisibility(View.VISIBLE);
+            }
         }
 
-        if (mIdentifiers == null) {
-            ((TextView)tabWidget.getChildAt(3).findViewById(R.id.count)).setVisibility(View.GONE);
-            ((ProgressBar)tabWidget.getChildAt(3).findViewById(R.id.loading)).setVisibility(View.VISIBLE);
-            mLoadingIdentifiersList.setVisibility(View.VISIBLE);
-            mIdentifiersListEmpty.setVisibility(View.GONE);
-            mIdentifiersList.setVisibility(View.GONE);
-            mIdentifiersListHeader.setVisibility(View.GONE);
-        } else {
-            ((TextView)tabWidget.getChildAt(3).findViewById(R.id.count)).setVisibility(View.VISIBLE);
-            ((ProgressBar)tabWidget.getChildAt(3).findViewById(R.id.loading)).setVisibility(View.GONE);
-            ((TextView)tabWidget.getChildAt(3).findViewById(R.id.count)).setText(formatter.format(mTotalIdentifiers));
-            mLoadingIdentifiersList.setVisibility(View.GONE);
-
-            if (mIdentifiers.size() == 0) {
-                mIdentifiersListEmpty.setVisibility(View.VISIBLE);
-            } else {
+        if (mLoadingIdentifiersList != null) {
+            if (mIdentifiers == null) {
+                ((TextView) mTabLayout.getTabAt(3).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
+                ((ProgressBar) mTabLayout.getTabAt(3).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                mLoadingIdentifiersList.setVisibility(View.VISIBLE);
                 mIdentifiersListEmpty.setVisibility(View.GONE);
-            }
+                mIdentifiersList.setVisibility(View.GONE);
+                mIdentifiersListHeader.setVisibility(View.GONE);
+            } else {
+                ((TextView) mTabLayout.getTabAt(3).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
+                ((ProgressBar) mTabLayout.getTabAt(3).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
+                ((TextView) mTabLayout.getTabAt(3).getCustomView().findViewById(R.id.count)).setText(formatter.format(mTotalIdentifiers));
+                mLoadingIdentifiersList.setVisibility(View.GONE);
 
-            mIdentifiersListAdapter = new ProjectUserAdapter(ProjectDetails.this, mIdentifiers);
-            mIdentifiersList.setAdapter(mIdentifiersListAdapter);
-            mIdentifiersList.setVisibility(View.VISIBLE);
-            mIdentifiersListHeader.setVisibility(View.VISIBLE);
+                if (mIdentifiers.size() == 0) {
+                    mIdentifiersListEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    mIdentifiersListEmpty.setVisibility(View.GONE);
+                }
+
+                mIdentifiersListAdapter = new ProjectUserAdapter(ProjectDetails.this, mIdentifiers);
+                mIdentifiersList.setAdapter(mIdentifiersListAdapter);
+                mIdentifiersList.setVisibility(View.VISIBLE);
+                mIdentifiersListHeader.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -735,26 +688,139 @@ public class ProjectDetails extends AppCompatActivity implements TabHost.OnTabCh
 
         if (percentage >= 0.9f) {
             if (!mProjectPicHidden) {
-                startAlphaAnimation(mProjectPicContainer, 200, View.INVISIBLE);
+                startAlphaAnimation(mProjectPicContainer, 100, View.INVISIBLE);
                 mProjectPicHidden = true;
             }
         } else {
             if (mProjectPicHidden) {
-                startAlphaAnimation(mProjectPicContainer, 200, View.VISIBLE);
+                startAlphaAnimation(mProjectPicContainer, 100, View.VISIBLE);
                 mProjectPicHidden = false;
             }
         }
 
     }
 
-   public static void startAlphaAnimation (View v, long duration, int visibility) {
-       AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
-               ? new AlphaAnimation(0f, 1f)
-               : new AlphaAnimation(1f, 0f);
+    public static void startAlphaAnimation (View v, long duration, int visibility) {
+        AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
+                ? new AlphaAnimation(0f, 1f)
+                : new AlphaAnimation(1f, 0f);
 
-       alphaAnimation.setDuration(duration);
-       alphaAnimation.setFillAfter(true);
-       v.startAnimation(alphaAnimation);
-   }
+        alphaAnimation.setDuration(duration);
+        alphaAnimation.setFillAfter(true);
+        v.startAnimation(alphaAnimation);
+    }
+
+
+    public class ProjectDetailsPageAdapter extends PagerAdapter {
+        final int PAGE_COUNT = 4;
+        private Context mContext;
+
+        public ProjectDetailsPageAdapter(Context context) {
+            mContext = context;
+        }
+
+        @Override
+        public int getCount() {
+            return PAGE_COUNT;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup collection, int position) {
+            int layoutResource;
+
+            switch (position) {
+                case 3:
+                    layoutResource = R.layout.project_identifiers;
+                    break;
+                case 2:
+                    layoutResource = R.layout.project_people;
+                    break;
+                case 1:
+                    layoutResource = R.layout.project_species;
+                    break;
+                case 0:
+                default:
+                    layoutResource = R.layout.project_observations;
+                    break;
+            }
+
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            ViewGroup layout = (ViewGroup) inflater.inflate(layoutResource, collection, false);
+
+
+
+            switch (position) {
+                case 3:
+                    mLoadingIdentifiersList = (ProgressBar) layout.findViewById(R.id.loading_identifiers_list);
+                    mIdentifiersListEmpty = (TextView) layout.findViewById(R.id.identifiers_list_empty);
+                    mIdentifiersList = (ListView) layout.findViewById(R.id.identifiers_list);
+                    mIdentifiersListHeader = (ViewGroup) layout.findViewById(R.id.identifiers_list_header);
+                    ViewCompat.setNestedScrollingEnabled(mIdentifiersList, true);
+                    break;
+                case 2:
+                    mLoadingPeopleList = (ProgressBar) layout.findViewById(R.id.loading_people_list);
+                    mPeopleListEmpty = (TextView) layout.findViewById(R.id.people_list_empty);
+                    mPeopleList = (ListView) layout.findViewById(R.id.people_list);
+                    mPeopleListHeader = (ViewGroup) layout.findViewById(R.id.people_list_header);
+                    ViewCompat.setNestedScrollingEnabled(mPeopleList, true);
+                    break;
+                case 1:
+                    mLoadingSpeciesList = (ProgressBar) layout.findViewById(R.id.loading_species_list);
+                    mSpeciesListEmpty = (TextView) layout.findViewById(R.id.species_list_empty);
+                    mSpeciesList = (ListView) layout.findViewById(R.id.species_list);
+                    ViewCompat.setNestedScrollingEnabled(mSpeciesList, true);
+                    mSpeciesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            JSONObject item = (JSONObject) view.getTag();
+                            Intent intent = new Intent(ProjectDetails.this, GuideTaxonActivity.class);
+                            intent.putExtra("taxon", new BetterJSONObject(item));
+                            intent.putExtra("guide_taxon", false);
+                            intent.putExtra("show_add", false);
+                            intent.putExtra("download_taxon", true);
+                            startActivity(intent);
+                        }
+                    });
+
+                    break;
+                case 0:
+                default:
+                    mLoadingObservationsGrid = (ProgressBar) layout.findViewById(R.id.loading_observations_grid);
+                    mObservationsGridEmpty = (TextView) layout.findViewById(R.id.observations_grid_empty);
+                    mObservationsGrid = (GridViewExtended) layout.findViewById(R.id.observations_grid);
+                    mObservationsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
+                            JSONObject item = (JSONObject) view.getTag();
+                            Intent intent = new Intent(ProjectDetails.this, ObservationViewerActivity.class);
+                            intent.putExtra("observation", item.toString());
+                            intent.putExtra("read_only", true);
+                            intent.putExtra("reload", true);
+                            startActivity(intent);
+                        }
+                    });
+
+                    ViewCompat.setNestedScrollingEnabled(mObservationsGrid, true);
+                    break;
+            }
+
+
+
+            collection.addView(layout);
+
+            refreshViewState();
+
+            return layout;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+    }
 
 }

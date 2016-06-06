@@ -140,262 +140,30 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
-            <TabHost
-                android:id="@android:id/tabhost"
-                android:layout_gravity="bottom"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <TabWidget
-                        android:id="@android:id/tabs"
-                        android:orientation="horizontal"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0" />
-
-                    <FrameLayout
-                        android:id="@android:id/tabcontent"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="0" />
-
-                </LinearLayout>
-            </TabHost>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_gravity="bottom"
+            app:tabMode="scrollable"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/inatapptheme_color"
+            app:tabMinWidth="115dp"
+            app:tabPadding="0dp"
+            app:tabPaddingStart="0dp"
+            app:tabPaddingEnd="0dp"
+            android:background="#ffffff"
+            />
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/identifiers_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#F5F5F5"
+    <android.support.v4.view.ViewPager
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-        <ProgressBar
-            android:id="@+id/loading_identifiers_list"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            />
-
-        <TextView
-            android:id="@+id/identifiers_list_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="@string/no_people_found" />
-
-        <RelativeLayout
-            android:id="@+id/identifiers_list_header"
-            android:background="#DCDCDC"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:text="@string/rank"
-                android:textSize="13sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:text="@string/identifications"
-                android:textSize="13sp" />
-
-        </RelativeLayout>
-
-        <ListView
-            android:id="@+id/identifiers_list"
-            android:layout_below="@id/identifiers_list_header"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/people_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#F5F5F5"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-        <ProgressBar
-            android:id="@+id/loading_people_list"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            />
-
-        <TextView
-            android:id="@+id/people_list_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="@string/no_people_found" />
-
-        <RelativeLayout
-            android:id="@+id/people_list_header"
-            android:background="#DCDCDC"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="8dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:text="@string/rank"
-                android:textSize="13sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:text="@string/project_observations"
-                android:textSize="13sp" />
-
-        </RelativeLayout>
-
-        <ListView
-            android:id="@+id/people_list"
-            android:layout_below="@id/people_list_header"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/species_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:visibility="gone"
-        android:background="#F5F5F5"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-        <ProgressBar
-            android:id="@+id/loading_species_list"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:padding="30dp"
-            android:gravity="center"
-            />
-
-        <TextView
-            android:id="@+id/species_list_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="@string/no_species_found" />
-
-        <ListView
-            android:id="@+id/species_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/grid_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:visibility="gone"
-        android:background="#F5F5F5"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-        <ProgressBar
-            android:id="@+id/loading_observations_grid"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:padding="30dp"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            />
-
-        <TextView
-            android:id="@+id/observations_grid_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:text="@string/no_observations_found" />
-
-        <org.inaturalist.android.GridViewExtended
-            android:id="@+id/observations_grid"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:numColumns="3"
-            android:verticalSpacing="3dp"
-            android:horizontalSpacing="3dp"
-            android:stretchMode="columnWidth"
-            android:gravity="center"
-            />
-
-    </RelativeLayout>
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5" />
 
 
 </android.support.design.widget.CoordinatorLayout>
