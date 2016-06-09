@@ -1343,7 +1343,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private void downloadTaxon() {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json";
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json?locale=" + deviceLanguage;
 
         // Download the taxon image URL
         new Thread(new Runnable() {
@@ -1366,6 +1368,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                         mTaxonIdName = taxon.getJSONObject("default_name").getString("name");
                                     } else if (taxon.has("common_name")) {
                                         mTaxonIdName = taxon.getJSONObject("common_name").getString("name");
+                                    } else {
+                                        String commonName = taxon.optString("preferred_common_name", null);
+                                        if ((commonName == null) || (commonName.length() == 0)) {
+                                            commonName = taxon.optString("english_common_name");
+                                        }
+                                        mTaxonIdName = commonName;
                                     }
                                     mTaxonName = taxon.getString("name");
 

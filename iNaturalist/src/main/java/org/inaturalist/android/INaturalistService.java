@@ -696,7 +696,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     private BetterJSONObject getTaxon(int id) throws AuthenticationException {
-        String url = String.format("%s/taxa/%d.json", HOST, id);
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage = deviceLocale.getLanguage();
+        String url = String.format("%s/taxa/%d.json?locale=%s", HOST, id, deviceLanguage);
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return null; }
@@ -1384,7 +1386,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
     private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException {
-        String url = API_HOST + "/observations/species_counts?project_id=" + projectId;
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + deviceLanguage;
         JSONArray json = get(url);
         try {
 			return new BetterJSONObject(json.getJSONObject(0));

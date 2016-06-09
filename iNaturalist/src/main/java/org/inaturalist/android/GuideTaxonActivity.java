@@ -290,25 +290,6 @@ public class GuideTaxonActivity extends AppCompatActivity {
 
         String displayName = null;
         // Get the taxon display name according to configuration of the current iNat network
-        String inatNetwork = mApp.getInaturalistNetworkMember();
-        String networkLexicon = mApp.getStringResourceByName("inat_lexicon_" + inatNetwork);
-        int taxonNamePosition = Integer.MAX_VALUE;
-        try {
-            JSONArray taxonNames = mTaxon.getJSONObject().getJSONArray("taxon_names");
-            for (int i = 0; i < taxonNames.length(); i++) {
-                JSONObject taxonName = taxonNames.getJSONObject(i);
-                String lexicon = taxonName.getString("lexicon");
-                int currentTaxonNamePosition = taxonName.getInt("position");
-                if ((lexicon.equals(networkLexicon)) && (currentTaxonNamePosition < taxonNamePosition)) {
-                    // Found the appropriate lexicon for the taxon
-                    displayName = taxonName.getString("name");
-                    taxonNamePosition = currentTaxonNamePosition;
-                }
-            }
-        } catch (JSONException e3) {
-            e3.printStackTrace();
-        }
-
         if (displayName == null) {
             // Couldn't extract the display name from the taxon names list - use the default one
             try {
@@ -324,6 +305,9 @@ public class GuideTaxonActivity extends AppCompatActivity {
 
             if (displayName == null) {
                 displayName = mTaxon.getJSONObject().optString("preferred_common_name");
+            }
+            if ((displayName == null) || (displayName.length() == 0)) {
+                displayName = mTaxon.getJSONObject().optString("english_common_name");
             }
         }
 
@@ -395,7 +379,9 @@ public class GuideTaxonActivity extends AppCompatActivity {
                         wikiTitle = taxonObj.optString("name");
                     }
                     wikiTitle = wikiTitle.replace(" ", "_");
-                    obsUrl = "https://en.wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
+                    Locale deviceLocale = getResources().getConfiguration().locale;
+                    String deviceLanguage =   deviceLocale.getLanguage();
+                    obsUrl = "https://" + deviceLanguage + ".wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

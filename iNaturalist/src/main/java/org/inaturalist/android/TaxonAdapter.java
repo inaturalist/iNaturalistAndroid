@@ -55,8 +55,11 @@ class TaxonAdapter extends ArrayAdapter<String> {
             TextView idName = (TextView) view.findViewById(R.id.id_name);
             TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
             String commonName = item.optString("preferred_common_name", null);
+            if ((commonName == null) || (commonName.length() == 0)) {
+                commonName = item.optString("english_common_name");
+            }
 
-            if (commonName != null) {
+            if ((commonName != null) && (commonName.length() > 0)) {
                 idName.setText(commonName);
                 idTaxonName.setText(item.getString("name"));
             } else {

@@ -408,6 +408,8 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
                 tabNameText.setTypeface(null, Typeface.BOLD);
                 tabNameText.setTextColor(Color.parseColor("#000000"));
+
+                mViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
