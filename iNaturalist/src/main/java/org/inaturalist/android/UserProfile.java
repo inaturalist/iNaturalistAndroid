@@ -420,7 +420,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     }
 
     private View createTabContent(String tabName, int count) {
-        View view = LayoutInflater.from(this).inflate(R.layout.project_details_tab, null);
+        View view = LayoutInflater.from(this).inflate(R.layout.user_profile_tab, null);
         TextView countText = (TextView) view.findViewById(R.id.count);
         TextView tabNameText = (TextView) view.findViewById(R.id.tab_name);
 
