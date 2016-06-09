@@ -83,13 +83,15 @@
                         android:layout_centerInParent="true"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
+                        android:visibility="visible"
                         android:src="@drawable/ic_person_white_24dp" />
                     <ImageView
+                        android:layout_centerInParent="true"
+                        android:visibility="gone"
+                        android:padding="2dp"
                         android:id="@+id/user_pic"
                         android:layout_width="fill_parent"
-                        android:visibility="gone"
                         android:layout_height="fill_parent"
-                        android:layout_centerInParent="true"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_person_white_24dp" />
@@ -111,6 +113,7 @@
                         android:layout_centerHorizontal="true"
                         android:ellipsize="end"
                         android:maxLines="2"
+                        android:gravity="center_horizontal"
                         />
                 </RelativeLayout>
             </LinearLayout>

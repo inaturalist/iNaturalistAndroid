@@ -628,12 +628,12 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 
         if (percentage >= 0.9f) {
             if (!mUserPicHidden) {
-                startAlphaAnimation(mUserPicContainer, 200, View.INVISIBLE);
+                startAlphaAnimation(mUserPicContainer, 100, View.INVISIBLE);
                 mUserPicHidden = true;
             }
         } else {
             if (mUserPicHidden) {
-                startAlphaAnimation(mUserPicContainer, 200, View.VISIBLE);
+                startAlphaAnimation(mUserPicContainer, 100, View.VISIBLE);
                 mUserPicHidden = false;
             }
         }
@@ -723,12 +723,23 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         }
 
         final ImageView userPic = (ImageView) findViewById(R.id.user_pic);
-        String iconUrl = mUser.getString("user_icon_url");
+        String iconUrl = mUser.getString("medium_user_icon_url");
+        if (iconUrl == null) iconUrl = mUser.getString("user_icon_url");
 
         if ((iconUrl != null) && (iconUrl.length() > 0)) {
-            userPic.setVisibility(View.VISIBLE);
-            findViewById(R.id.no_user_pic).setVisibility(View.GONE);
-            UrlImageViewHelper.setUrlDrawable(userPic, iconUrl);
+            UrlImageViewHelper.setUrlDrawable(userPic, iconUrl, new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    findViewById(R.id.no_user_pic).setVisibility(View.GONE);
+                    userPic.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    Bitmap centerCrop = ImageUtils.centerCropBitmap(loadedBitmap);
+                    return ImageUtils.getCircleBitmap(centerCrop);
+                }
+            });
 
             UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.user_bg), iconUrl + "?bg=1", new UrlImageViewCallback() {
                 @Override
