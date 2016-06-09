@@ -358,7 +358,7 @@
   <string name="login_signup">Inicieu sessió / Registreu-vos</string>
   <string name="please_sign_in_via_settings_for_guides">Heu d\'haver iniciat sessió per veure les vostres guies.</string>
   <string name="please_sign_in_for_updates">Heu d\'haver iniciat sessió per veure les vostres actualitzacions.</string>
-  <string name="by_using_inat_terms"><![CDATA[Utilitzant iNaturalist accepteu les <b><a href="http://www.inaturalist.org/pages/terms"> Condicions d\'ús</a></b> i la <b><a href="http://www.inaturalist.org/pages/privacy"> Política de privacitat</a></b>]]></string>
+  <string name="by_using_inat_terms"><![CDATA[Utilitzant iNaturalist accepteu les <b><a href="http://www.inaturalist.org/pages/terms"> Condicions d'ús</a></b> i la <b><a href="http://www.inaturalist.org/pages/privacy"> Política de privacitat</a></b>]]></string>
   <string name="activity">Activitat</string>
   <string name="not_logged_in">N/D</string>
   <string name="observation_count">%1$d observacions</string>
@@ -395,14 +395,14 @@
   <string name="needs_id">Necessita ID</string>
   <string name="research_grade">Grau d\'investigació</string>
   <string name="data_quality">Qualitat de les dades</string>
-  <string name="casual_grade_add_location"><![CDATA[ Afegir una <b>ubicació</b> per avançar aquesta observació a l\'estat "Necessita ID". ]]></string>
+  <string name="casual_grade_add_location"><![CDATA[ Afegir una <b>ubicació</b> per avançar aquesta observació a l'estat "Necessita ID". ]]></string>
   <string name="casual_grade_add_date"><![CDATA[ Afegir una <b>data</b> per avançar aquesta observació a la condició de "Necessita ID". ]]></string>
   <string name="casual_grade_add_photo"><![CDATA[ Afegir una <b>foto</b> per avançar aquesta observació a la condició de "Necessita ID". ]]></string>
   <string name="casual_grade_captive"><![CDATA[ Observació de grau casual grau perquè és <b>captiu/cultivat</b>. ]]></string>
-  <string name="needs_id_more_ids"><![CDATA[ Observació necessita <b>més identificacions</b> de la comunitat per considerar-la de "Grau d\'investigació". ]]></string>
+  <string name="needs_id_more_ids"><![CDATA[ Observació necessita <b>més identificacions</b> de la comunitat per considerar-la de "Grau d'investigació". ]]></string>
   <string name="included_in_projects">Incorporat en %1$d projectes</string>
   <string name="included_in_projects_singular">Incorporat en %1$d projecte</string>
-  <string name="geoprivacy_explanation"><![CDATA[ Geoprivacitat és una característica que podeu incorporar a les observacions que controla com es mostren les coordenades espacials (latitud i longitud). Aquestes són les opcions: <br/> <b>oberta</b> - tothom pot veure les coordenades excepte si el tàxon està amenaçat. <br/> <b>enfosquida</b> - les coordenades públics es mostren com a punt de l\'atzar en una àrea de 0,2 per 0,2 graus que conté les coordenades reals, el que representa una àrea quadrada de 22 x 22 km d\'incertesa a l\'equador, que disminueix a mesura s\'acosten als pols. Les coordenades reals només són visibles per a vostè i els administradors dels projectes als que afegiu l\'observació. <br/> <b>privada</b> - coordenades completament ocultes en els mapes públics, les coordenades reals només són visibles per a vostè i els administradors dels projectes als que afegiu l\'observació. <br/> <br/> Tingueu en compte que els administradors de projectes individuals poden veure sempre les coordenades independentment de la geoprivacitat especificada, per tant si esteu preocupats per qui té accés a les coordenades cal que us assegureu que confieu en els administradors dels projectes en els quals participeu. ]]></string>
+  <string name="geoprivacy_explanation"><![CDATA[ Geoprivacitat és una característica que podeu incorporar a les observacions que controla com es mostren les coordenades espacials (latitud i longitud). Aquestes són les opcions: <br/> <b>oberta</b> - tothom pot veure les coordenades excepte si el tàxon està amenaçat. <br/> <b>enfosquida</b> - les coordenades públics es mostren com a punt de l'atzar en una àrea de 0,2 per 0,2 graus que conté les coordenades reals, el que representa una àrea quadrada de 22 x 22 km d'incertesa a l'equador, que disminueix a mesura s'acosten als pols. Les coordenades reals només són visibles per a vostè i els administradors dels projectes als que afegiu l'observació. <br/> <b>privada</b> - coordenades completament ocultes en els mapes públics, les coordenades reals només són visibles per a vostè i els administradors dels projectes als que afegiu l'observació. <br/> <br/> Tingueu en compte que els administradors de projectes individuals poden veure sempre les coordenades independentment de la geoprivacitat especificada, per tant si esteu preocupats per qui té accés a les coordenades cal que us assegureu que confieu en els administradors dels projectes en els quals participeu. ]]></string>
   <string name="agree2">D\'acord</string>
   <string name="id_title">ID de %1$s • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
