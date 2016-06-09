@@ -168,7 +168,13 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                 if (commonName != null) {
                     displayName = commonName.optString("name");
                 } else {
-                    displayName = item.optString("name");
+                    displayName = item.optString("preferred_common_name");
+                    if ((displayName == null) || (displayName.length() == 0)) {
+                        displayName = item.optString("english_common_name");
+                        if ((displayName == null) || (displayName.length() == 0)) {
+                            displayName = item.optString("name");
+                        }
+                    }
                 }
             }
         }

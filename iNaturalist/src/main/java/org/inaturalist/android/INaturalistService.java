@@ -1370,7 +1370,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
 
     private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
-        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=200";
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=200&locale=" + deviceLanguage;
         JSONArray json = get(url);
         if (json == null) return new BetterJSONObject();
         try {
