@@ -672,7 +672,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             if (mIsSyncing) {
                 mIsSyncing = false;
                 mApp.setIsSyncing(mIsSyncing);
-                
+
                 Log.i(TAG, "Sending ACTION_SYNC_COMPLETE");
                 
                 // Notify the rest of the app of the completion of the sync

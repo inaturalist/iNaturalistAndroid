@@ -1023,8 +1023,6 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
         
-        app.checkSyncNeeded();
-
         if (app.getAutoSync() && !app.getIsSyncing()) {
             // Trigger a sync
             Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationEditor.this, INaturalistService.class);
@@ -1056,8 +1054,6 @@ public class ObservationEditor extends AppCompatActivity {
         }
         
         mDeleted = true;
-        
-        app.checkSyncNeeded();
     }
 
     /**
