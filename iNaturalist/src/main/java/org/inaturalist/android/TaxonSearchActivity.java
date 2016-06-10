@@ -111,9 +111,9 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
+            String deviceLexicon = deviceLocale.getDisplayLanguage(Locale.ENGLISH);
             sb.append("&locale=");
-            sb.append(deviceLocale);
+            sb.append(deviceLocale.toString().replace("_", "-"));
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
@@ -496,9 +496,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
 
     private String getTaxonName(JSONObject item) {
-        return item.optString("preferred_common_name",
-                item.optString("english_common_name",
-                        item.optString("matched_term")));
+        return item.optString("preferred_common_name", item.optString("matched_term"));
     }
 
 
