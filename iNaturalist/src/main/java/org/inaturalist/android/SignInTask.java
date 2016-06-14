@@ -53,8 +53,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     private ProgressDialog mProgressDialog;
     private SignInTaskStatus mCallback;
 
-    private static final int REQUEST_CODE_LOGIN = 0x1000;
-    private static final int REQUEST_CODE_ADD_ACCOUNT = 0x1001;
+    private static final int REQUEST_CODE_LOGIN = 0x3000;
+    private static final int REQUEST_CODE_ADD_ACCOUNT = 0x3001;
 
     private String mGoogleUsername;
 
