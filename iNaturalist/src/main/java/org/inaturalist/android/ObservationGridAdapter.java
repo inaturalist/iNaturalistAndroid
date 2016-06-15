@@ -135,7 +135,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         // Get the taxon display name according to device locale
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = mContext.getResources().getConfiguration().locale;
-        String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
+        String deviceLexicon =   deviceLocale.getLanguage();
 
         try {
             JSONArray taxonNames = item.getJSONArray("taxon_names");

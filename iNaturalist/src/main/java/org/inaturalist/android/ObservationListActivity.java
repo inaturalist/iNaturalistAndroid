@@ -382,9 +382,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         // Used to map notes entries from the database to views
         ObservationCursorAdapter adapter = new ObservationCursorAdapter(
                 this, R.layout.list_item, cursor,
-                new String[] { Observation.SPECIES_GUESS, Observation.DESCRIPTION }, 
-                new int[] { R.id.speciesGuess, R.id.subContent });
-        
+                new String[] { Observation.DESCRIPTION },
+                new int[] { R.id.subContent });
+
         mAdapter = adapter;
         
         mPullRefreshListView.setEmptyView(findViewById(android.R.id.empty));
@@ -850,11 +850,20 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             ViewGroup commentCatcher = (ViewGroup) view.findViewById(R.id.commentsIdClickCatcher);
 
             String speciesGuess = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
+            String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
             title.setTextColor(Color.parseColor("#000000"));
             subTitle.setTextColor(Color.parseColor("#666666"));
             progress.setVisibility(View.GONE);
             observedOn.setVisibility(View.VISIBLE);
             commentCatcher.setVisibility(View.VISIBLE);
+
+            if (preferredCommonName != null) {
+                title.setText(preferredCommonName);
+            } else if (speciesGuess != null) {
+                title.setText("\"" + speciesGuess + "\"");
+            } else {
+                title.setText(R.string.unknown_species);
+            }
 
 
             ImageView errorIcon = (ImageView) view.findViewById(R.id.error);
@@ -881,10 +890,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
                     title.setTextColor(Color.parseColor("#ffffff"));
                     subTitle.setTextColor(Color.parseColor("#ffffff"));
-
-                    if (speciesGuess == null) {
-                        title.setText(R.string.unknown_species);
-                    }
 
                     progress.setVisibility(View.VISIBLE);
                     observedOn.setVisibility(View.GONE);

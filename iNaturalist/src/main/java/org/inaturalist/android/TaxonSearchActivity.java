@@ -111,9 +111,9 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
+            String deviceLexicon = deviceLocale.getLanguage();
             sb.append("&locale=");
-            sb.append(deviceLocale);
+            sb.append(deviceLexicon);
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();

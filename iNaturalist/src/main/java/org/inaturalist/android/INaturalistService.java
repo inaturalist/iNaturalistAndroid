@@ -1879,6 +1879,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             // Retrieve only a certain number of observations
             url += String.format("&per_page=%d&page=1", maxCount);
         }
+
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        url += "&locale=" + deviceLanguage;
         
         mProjectObservations = new ArrayList<SerializableJSONArray>();
         mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
@@ -2064,7 +2068,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         	url += "&projects[]=" + extras.getInt("project_id");
         }
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
         url += "&locale=" + deviceLanguage;
@@ -2187,9 +2190,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = entity != null ? EntityUtils.toString(entity) : null;
-            
+
             Log.d(TAG, String.format("RESP: %s", content));
-            
+
             JSONArray json = null;
             switch (response.getStatusLine().getStatusCode()) {
             //switch (response.getStatusCode()) {
@@ -2209,9 +2212,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                         Log.e(TAG, "Failed to create JSONObject, JSONException: " + e2.toString());
                     }
                 }
-                
+
                 mResponseHeaders = response.getAllHeaders();
-                
+
                 try {
                 	if (json != null) {
                         JSONObject result = json.getJSONObject(0);
@@ -2225,18 +2228,18 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-                
+
                 mResponseErrors = null;
-                
-                
+
+
                 return json;
 
             case HttpStatus.SC_UNAUTHORIZED:
                 throw new AuthenticationException();
             case HttpStatus.SC_GONE:
                 Log.e(TAG, "GONE: " + response.getStatusLine().toString());
-                // TODO create notification that informs user some observations have been deleted on the server, 
-                // click should take them to an activity that lets them decide whether to delete them locally 
+                // TODO create notification that informs user some observations have been deleted on the server,
+                // click should take them to an activity that lets them decide whether to delete them locally
                 // or post them as new observations
             default:
                 Log.e(TAG, response.getStatusLine().toString());
@@ -2390,13 +2393,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 			int originalHeight = options.outHeight;
 			int originalWidth = options.outWidth;
 			int newHeight, newWidth;
-			
-			
+
+
 			if (Math.max(originalHeight, originalWidth) < 2048) {
 				// Original file is smaller than 2048x2048 - no need to resize
 				return filename;
 			}
-			
+
 			// Resize but make sure we have the same width/height aspect ratio
 			if (originalHeight > originalWidth) {
 				newHeight = 2048;
@@ -2430,7 +2433,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	
+
     	return filename;
 	}
 
@@ -2449,8 +2452,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         stopSelf();
         mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null);
     }
-    
-   
+
+
     public static String verifyCredentials(String credentials) {
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
@@ -2504,7 +2507,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 );
         return verifyCredentials(credentials);
     }
-    
+
     // Returns an array of two strings: access token + iNat username
     public static String[] verifyCredentials(String oauth2Token, LoginType authType) {
         String grantType;
@@ -2513,7 +2516,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = HOST + "/oauth/assertion_token";
         HttpRequestBase request = new HttpPost(url);
         ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
-        
+
         postParams.add(new BasicNameValuePair("format", "json"));
         postParams.add(new BasicNameValuePair("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id)));
         if (authType == LoginType.FACEBOOK) {

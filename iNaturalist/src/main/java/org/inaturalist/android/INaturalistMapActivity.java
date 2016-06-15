@@ -1541,7 +1541,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 		// Get the taxon display name according to device locale
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		Locale deviceLocale = getResources().getConfiguration().locale;
-		String deviceLexicon =   deviceLocale.getDisplayLanguage(Locale.ENGLISH);
+		String deviceLexicon =   deviceLocale.getLanguage();
 
  		try {
  			JSONArray taxonNames = item.getJSONArray("taxon_names");

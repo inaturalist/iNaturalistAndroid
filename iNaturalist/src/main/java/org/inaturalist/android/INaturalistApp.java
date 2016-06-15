@@ -319,13 +319,6 @@ public class INaturalistApp extends MultiDexApplication {
 	}
    
     
-    public String getFormattedDeviceLocale(){
-    	if(deviceLocale!=null){
-    		return deviceLocale.getDisplayLanguage();
-    	}    	
-    	return "";
-    }
-    
     public String[] getINatNetworks() {
         Resources res = getResources();
         return res.getStringArray(R.array.inat_networks);

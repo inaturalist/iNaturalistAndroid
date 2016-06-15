@@ -1534,6 +1534,7 @@ public class ObservationEditor extends AppCompatActivity {
                     mObservation.taxon_id = null;
                     mSpeciesGuessTextView.setText("Unknown");
                     mPreviousTaxonSearch = "Unknown";
+                    mObservation.preferred_common_name = null;
                     mTaxonPicUrl = null;
                     mIsTaxonUnknown = true;
                     mIsCustomTaxon = false;
@@ -1544,6 +1545,7 @@ public class ObservationEditor extends AppCompatActivity {
                     }
                 } else {
                     String speciesGuess = String.format("%s", idName);
+                    mObservation.preferred_common_name = isCustomTaxon ? null : idName;
                     mSpeciesGuess = speciesGuess;
                     mObservation.species_guess = speciesGuess;
                     mObservation.taxon_id = isCustomTaxon ? null : taxonId;

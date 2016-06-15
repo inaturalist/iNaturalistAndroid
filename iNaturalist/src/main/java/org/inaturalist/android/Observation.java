@@ -57,7 +57,8 @@ public class Observation implements BaseColumns, Serializable {
     public Integer last_comments_count;
     public Integer last_identifications_count;
     public Boolean is_deleted;
-    
+    public String preferred_common_name;
+
     public SerializableJSONArray comments;
     public SerializableJSONArray identifications;
     public SerializableJSONArray favorites;
@@ -136,6 +137,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String PRIVATE_POSITIONAL_ACCURACY = "private_positional_accuracy";
     public static final String QUALITY_GRADE = "quality_grade";
     public static final String SPECIES_GUESS = "species_guess";
+    public static final String PREFERRED_COMMON_NAME = "preferred_common_name";
     public static final String TAXON_ID = "taxon_id";
     public static final String TIME_OBSERVED_AT = "time_observed_at";
     public static final String UPDATED_AT = "updated_at";
@@ -177,6 +179,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.PRIVATE_POSITIONAL_ACCURACY,
         Observation.QUALITY_GRADE,
         Observation.SPECIES_GUESS,
+        Observation.PREFERRED_COMMON_NAME,
         Observation.TAXON_ID,
         Observation.TIME_OBSERVED_AT,
         Observation.UPDATED_AT,
@@ -220,6 +223,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.PRIVATE_POSITIONAL_ACCURACY, Observation.PRIVATE_POSITIONAL_ACCURACY);
         PROJECTION_MAP.put(Observation.QUALITY_GRADE, Observation.QUALITY_GRADE);
         PROJECTION_MAP.put(Observation.SPECIES_GUESS, Observation.SPECIES_GUESS);
+        PROJECTION_MAP.put(Observation.PREFERRED_COMMON_NAME, Observation.PREFERRED_COMMON_NAME);
         PROJECTION_MAP.put(Observation.TAXON_ID, Observation.TAXON_ID);
         PROJECTION_MAP.put(Observation.TIME_OBSERVED_AT, Observation.TIME_OBSERVED_AT);
         PROJECTION_MAP.put(Observation.UPDATED_AT, Observation.UPDATED_AT);
@@ -290,6 +294,7 @@ public class Observation implements BaseColumns, Serializable {
         this.quality_grade_was = this.quality_grade;
         this.species_guess = bc.getString(SPECIES_GUESS);
         this.species_guess_was = this.species_guess;
+        this.preferred_common_name = bc.getString(PREFERRED_COMMON_NAME);
         this.taxon_id = bc.getInteger(TAXON_ID);
         this.taxon_id_was = this.taxon_id;
         this.time_observed_at = bc.getTimestamp(TIME_OBSERVED_AT);
@@ -403,6 +408,18 @@ public class Observation implements BaseColumns, Serializable {
         this.identifications_count = o.getInteger("identifications_count");
         
         this.projects = o.getJSONArray("project_observations");
+
+        this.preferred_common_name = null;
+        JSONObject taxon = o.getJSONObject("taxon");
+        if (taxon != null) {
+            if (taxon.has("common_name") && !taxon.isNull("common_name")) {
+                try {
+                    this.preferred_common_name = taxon.getJSONObject("common_name").optString("name");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override
@@ -522,6 +539,7 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.private_positional_accuracy == null) && (observation.private_positional_accuracy != null)) { this.private_positional_accuracy = observation.private_positional_accuracy; isModified = true; }
             if ((this.quality_grade == null) && (observation.quality_grade != null)) { this.quality_grade = observation.quality_grade; isModified = true; }
             if ((this.species_guess == null) && (observation.species_guess != null)) { this.species_guess = observation.species_guess; isModified = true; }
+            if ((this.preferred_common_name == null) && (observation.preferred_common_name != null)) { this.preferred_common_name = observation.preferred_common_name; isModified = true; }
             if ((this.taxon_id == null) && (observation.taxon_id != null)) { this.taxon_id = observation.taxon_id; isModified = true; }
             if ((this.time_observed_at == null) && (observation.time_observed_at != null)) { this.time_observed_at = observation.time_observed_at; isModified = true; }
             if ((this.updated_at == null) && (observation.updated_at != null)) { this.updated_at = observation.updated_at; isModified = true; }
@@ -560,6 +578,7 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(PRIVATE_POSITIONAL_ACCURACY, private_positional_accuracy);
         cv.put(QUALITY_GRADE, quality_grade);
         cv.put(SPECIES_GUESS, species_guess);
+        cv.put(PREFERRED_COMMON_NAME, preferred_common_name);
         cv.put(TAXON_ID, taxon_id);
         if (time_observed_at != null) { cv.put(TIME_OBSERVED_AT, time_observed_at.getTime()); }
         if (updated_at != null) { cv.put(UPDATED_AT, updated_at.getTime()); }
@@ -631,6 +650,7 @@ public class Observation implements BaseColumns, Serializable {
                 + "private_positional_accuracy INTEGER,"
                 + "quality_grade TEXT,"
                 + "species_guess TEXT,"
+                + "preferred_common_name TEXT,"
                 + "taxon_id INTEGER,"
                 + "time_observed_at INTEGER,"
                 + "updated_at INTEGER,"
