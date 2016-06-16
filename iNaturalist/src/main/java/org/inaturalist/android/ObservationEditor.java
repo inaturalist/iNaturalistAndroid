@@ -1716,7 +1716,6 @@ public class ObservationEditor extends AppCompatActivity {
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         ObservationPhoto op = new ObservationPhoto();
         Long photoId = null;
-        int random = (new Random()).nextInt();
         try {
         	photoId = ContentUris.parseId(photoUri);
         } catch (Exception exc) {

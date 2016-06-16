@@ -971,7 +971,21 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             		// No more pages to fetch
             		mPage = -1;
             	} else {
-                    mObservations.addAll(resultsArray);
+                    // Prevent duplicate observation results
+                    for (int i = 0; i < resultsArray.size(); i++) {
+                        boolean found = false;
+                        JSONObject currentResult = resultsArray.get(i);
+                        for (int c = 0; c < mObservations.size(); c++) {
+                            if (mObservations.get(c).optInt("id", -1) == currentResult.optInt("id", -1)) {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found) {
+                            mObservations.add(currentResult);
+                        }
+                    }
             	}
             	loadExistingObservations(false);
            
