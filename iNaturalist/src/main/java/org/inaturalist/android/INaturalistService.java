@@ -2381,7 +2381,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     /**
      * Resizes an image to max size of 2048x2048
      * @param filename the image filename
-     * @return the reized image - or original image if smaller than 2048x2048
+     * @return the resized image - or original image if smaller than 2048x2048
      */
     private String resizeImage(String filename) {
     	BitmapFactory.Options options = new BitmapFactory.Options();

@@ -5,7 +5,14 @@ import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +35,18 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sanselan.ImageReadException;
+import org.apache.sanselan.ImageWriteException;
+import org.apache.sanselan.Sanselan;
+import org.apache.sanselan.common.IImageMetadata;
+import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
+import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
+import org.apache.sanselan.formats.tiff.TiffImageMetadata;
+import org.apache.sanselan.formats.tiff.constants.TagInfo;
+import org.apache.sanselan.formats.tiff.constants.TiffConstants;
+import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
+import org.apache.sanselan.formats.tiff.write.TiffOutputField;
+import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.lucasr.twowayview.TwoWayView;
@@ -88,6 +107,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -123,7 +143,9 @@ public class ObservationEditor extends AppCompatActivity {
     private final static String TAG = "INAT: ObservationEditor";
     public final static String TAKE_PHOTO = "take_photo";
     public final static String CHOOSE_PHOTO = "choose_photo";
+    public final static String RETURN_TO_OBSERVATION_LIST = "return_to_observation_list";
     public static final int RESULT_DELETED = 0x1000;
+    public static final int RESULT_RETURN_TO_OBSERVATION_LIST = 0x1001;
     private Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
@@ -196,6 +218,7 @@ public class ObservationEditor extends AppCompatActivity {
     private TextView mLocationGuess;
     private TextView mFindingCurrentLocation;
     private boolean mLocationManuallySet;
+    private boolean mReturnToObservationList;
 
     @Override
 	protected void onStart()
@@ -385,6 +408,7 @@ public class ObservationEditor extends AppCompatActivity {
             mFirstPositionPhotoId = savedInstanceState.getLong("mFirstPositionPhotoId");
             mGettingLocation = savedInstanceState.getBoolean("mGettingLocation");
             mLocationManuallySet = savedInstanceState.getBoolean("mLocationManuallySet");
+            mReturnToObservationList = savedInstanceState.getBoolean("mReturnToObservationList");
         }
 
 
@@ -622,7 +646,73 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
 
+
+        if (intent != null) {
+            mReturnToObservationList =  intent.getBooleanExtra(RETURN_TO_OBSERVATION_LIST, false);
+        }
+
         updateObservationVisibilityDescription();
+
+        final OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeLeft() {
+                editNextObservation(1);
+            }
+
+            @Override
+            public void onSwipeRight() {
+                editNextObservation(-1);
+            }
+        };
+        findViewById(R.id.main_content).setOnTouchListener(onSwipeTouchListener);
+    }
+
+    private void editNextObservation(int direction) {
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String login = prefs.getString("username", null);
+        String conditions = "(_synced_at IS NULL";
+        if (login != null) {
+            conditions += " OR user_login = '" + login + "'";
+        }
+        conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
+
+        Cursor cursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
+                conditions, null, Observation.DEFAULT_SORT_ORDER);
+
+        // Find next observation
+        Long obsId, externalObsId;
+        cursor.moveToFirst();
+        do {
+            obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
+            if ((mObservation._id != null) && (obsId.equals(mObservation._id.longValue()))) {
+                break;
+            }
+        } while (cursor.moveToNext());
+
+        if (
+                ((direction == 1) && !cursor.isLast() && !cursor.isAfterLast()) ||
+                ((direction == -1) && !cursor.isFirst() && !cursor.isBeforeFirst())
+                ) {
+
+            // Edit the next observation (if one is available)
+            if (direction == 1) {
+                cursor.moveToNext();
+            } else {
+                cursor.moveToPrevious();
+            }
+            obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
+            Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId);
+            Intent intent = new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class);
+            intent.putExtra(RETURN_TO_OBSERVATION_LIST, true);
+            startActivity(intent);
+
+            uiToProjectFieldValues();
+            if (save()) {
+                setResult(RESULT_RETURN_TO_OBSERVATION_LIST);
+                finish();
+            }
+        }
+
     }
 
     private void takePhoto() {
@@ -663,7 +753,7 @@ public class ObservationEditor extends AppCompatActivity {
         if (!mObservation.isDirty()) {
             // User hasn't changed anything - no need to display confirmation dialog
             mCanceled = true;
-            setResult(RESULT_CANCELED);
+            setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
             finish();
             return false;
         }
@@ -678,7 +768,7 @@ public class ObservationEditor extends AppCompatActivity {
                     public void run() {
                         // Get back to the observations list (consider this as canceled)
                         mCanceled = true;
-                        setResult(RESULT_CANCELED);
+                        setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
                         finish();
                     }
                 },
@@ -696,7 +786,7 @@ public class ObservationEditor extends AppCompatActivity {
             case R.id.save_observation:
                 uiToProjectFieldValues();
                 if (save()) {
-                    setResult(RESULT_OK);
+                    setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_OK);
                     finish();
                 }
                 return true;
@@ -714,7 +804,7 @@ public class ObservationEditor extends AppCompatActivity {
                                     startService(serviceIntent);
                                 }
 
-                                setResult(RESULT_DELETED);
+                                setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_DELETED);
                                 finish();
                             }
                         },
@@ -745,6 +835,7 @@ public class ObservationEditor extends AppCompatActivity {
         outState.putLong("mFirstPositionPhotoId", mFirstPositionPhotoId != null ? mFirstPositionPhotoId : -1);
         outState.putBoolean("mGettingLocation", mGettingLocation);
         outState.putBoolean("mLocationManuallySet", mLocationManuallySet);
+        outState.putBoolean("mReturnToObservationList", mReturnToObservationList);
         super.onSaveInstanceState(outState);
     }
 
@@ -2314,5 +2405,190 @@ public class ObservationEditor extends AppCompatActivity {
                 }
             }
         }).show();
+    }
+
+
+    /**
+     * Resizes an image to max size of 2048x2048
+     * @param filename the image filename
+     * @return the resized image - or original image if smaller than 2048x2048
+     */
+    private String resizeImage(String filename) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        InputStream is = null;
+        try {
+            is = new FileInputStream(filename);
+            Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
+            is.close();
+            int originalHeight = options.outHeight;
+            int originalWidth = options.outWidth;
+            int newHeight, newWidth;
+
+
+            if (Math.max(originalHeight, originalWidth) < 2048) {
+                // Original file is smaller than 2048x2048 - no need to resize
+                return filename;
+            }
+
+            // Resize but make sure we have the same width/height aspect ratio
+            if (originalHeight > originalWidth) {
+                newHeight = 2048;
+                newWidth = (int)(2048 * ((float)originalWidth / originalHeight));
+            } else {
+                newWidth = 2048;
+                newHeight = (int)(2048 * ((float)originalHeight / originalWidth));
+            }
+
+            Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
+            Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
+
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+
+            // Save resized image
+            File imageFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
+            OutputStream os = new FileOutputStream(imageFile);
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            os.flush();
+            os.close();
+
+            // Copy all EXIF data from original image into resized image
+            copyExifData(new File(filename), new File(imageFile.getAbsolutePath()), null);
+
+            return imageFile.getAbsolutePath();
+
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return filename;
+    }
+
+    // EXIF-copying code taken from: https://bricolsoftconsulting.com/copying-exif-metadata-using-sanselan/
+    public static boolean copyExifData(File sourceFile, File destFile, List<TagInfo> excludedFields) {
+        String tempFileName = destFile.getAbsolutePath() + ".tmp";
+        File tempFile = null;
+        OutputStream tempStream = null;
+
+        try {
+            tempFile = new File (tempFileName);
+
+            TiffOutputSet sourceSet = getSanselanOutputSet(sourceFile, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
+            TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
+
+            // If the EXIF data endianess of the source and destination files
+            // differ then fail. This only happens if the source and
+            // destination images were created on different devices. It's
+            // technically possible to copy this data by changing the byte
+            // order of the data, but handling this case is outside the scope
+            // of this implementation
+            if (sourceSet.byteOrder != destSet.byteOrder) return false;
+
+            destSet.getOrCreateExifDirectory();
+
+            // Go through the source directories
+            List<?> sourceDirectories = sourceSet.getDirectories();
+            for (int i=0; i<sourceDirectories.size(); i++) {
+                TiffOutputDirectory sourceDirectory = (TiffOutputDirectory)sourceDirectories.get(i);
+                TiffOutputDirectory destinationDirectory = getOrCreateExifDirectory(destSet, sourceDirectory);
+
+                if (destinationDirectory == null) continue; // failed to create
+
+                // Loop the fields
+                List<?> sourceFields = sourceDirectory.getFields();
+                for (int j=0; j<sourceFields.size(); j++) {
+                    // Get the source field
+                    TiffOutputField sourceField = (TiffOutputField) sourceFields.get(j);
+
+                    // Check exclusion list
+                    if (excludedFields != null && excludedFields.contains(sourceField.tagInfo)) {
+                        destinationDirectory.removeField(sourceField.tagInfo);
+                        continue;
+                    }
+
+                    // Remove any existing field
+                    destinationDirectory.removeField(sourceField.tagInfo);
+
+                    // Add field
+                    destinationDirectory.add(sourceField);
+                }
+            }
+
+            // Save data to destination
+            tempStream = new BufferedOutputStream(new FileOutputStream(tempFile));
+            new ExifRewriter().updateExifMetadataLossless(destFile, tempStream, destSet);
+            tempStream.close();
+
+            // Replace file
+            if (destFile.delete()) {
+                tempFile.renameTo(destFile);
+            }
+
+            return true;
+
+        } catch (ImageReadException exception) {
+            exception.printStackTrace();
+
+        } catch (ImageWriteException exception) {
+            exception.printStackTrace();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+
+        } finally {
+            if (tempStream != null) {
+                try {
+                    tempStream.close();
+                } catch (IOException e) {
+                }
+            }
+
+            if (tempFile != null) {
+                if (tempFile.exists()) tempFile.delete();
+            }
+        }
+
+        return false;
+    }
+
+    private static TiffOutputDirectory getOrCreateExifDirectory(TiffOutputSet outputSet, TiffOutputDirectory outputDirectory) {
+        TiffOutputDirectory result = outputSet.findDirectory(outputDirectory.type);
+        if (result != null)
+            return result;
+        result = new TiffOutputDirectory(outputDirectory.type);
+        try {
+            outputSet.addDirectory(result);
+        } catch (ImageWriteException e) {
+            return null;
+        }
+        return result;
+    }
+
+
+    private static TiffOutputSet getSanselanOutputSet(File jpegImageFile, int defaultByteOrder)
+            throws IOException, ImageReadException, ImageWriteException {
+        TiffImageMetadata exif = null;
+        TiffOutputSet outputSet = null;
+
+        IImageMetadata metadata = Sanselan.getMetadata(jpegImageFile);
+        JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
+        if (jpegMetadata != null) {
+            exif = jpegMetadata.getExif();
+
+            if (exif != null) {
+                outputSet = exif.getOutputSet();
+            }
+        }
+
+        // If JPEG file contains no EXIF metadata, create an empty set
+        // of EXIF metadata. Otherwise, use existing EXIF metadata to
+        // keep all other existing tags
+        if (outputSet == null)
+            outputSet = new TiffOutputSet(exif==null?defaultByteOrder:exif.contents.header.byteOrder);
+
+        return outputSet;
     }
 }

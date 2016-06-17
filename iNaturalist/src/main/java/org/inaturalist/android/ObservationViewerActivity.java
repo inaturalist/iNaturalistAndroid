@@ -1749,8 +1749,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
-            if (resultCode == ObservationEditor.RESULT_DELETED) {
-                // User deleted the observation
+            if ((resultCode == ObservationEditor.RESULT_DELETED) || (resultCode == ObservationEditor.RESULT_RETURN_TO_OBSERVATION_LIST)) {
+                // User deleted the observation (or did a batch-edit)
                 finish();
                 return;
             }

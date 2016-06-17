@@ -3,6 +3,7 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:background="#ffffff"
+    android:id="@+id/main_content"
     >
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
