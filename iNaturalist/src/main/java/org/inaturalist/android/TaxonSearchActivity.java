@@ -496,9 +496,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
 
     private String getTaxonName(JSONObject item) {
-        return item.optString("preferred_common_name",
-                item.optString("english_common_name",
-                        item.optString("matched_term")));
+        return item.optString("preferred_common_name", item.optString("matched_term"));
     }
 
 
