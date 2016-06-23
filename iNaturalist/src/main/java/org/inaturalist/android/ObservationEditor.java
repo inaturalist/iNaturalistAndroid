@@ -787,6 +787,20 @@ public class ObservationEditor extends AppCompatActivity {
         return true;
     }
 
+
+    private boolean hasNoCoords() {
+        if (mLatitudeView.getText() == null || mLatitudeView.getText().length() == 0) {
+            return true;
+        }
+        if (mLongitudeView.getText() == null || mLongitudeView.getText().length() == 0) {
+            return true;
+        }
+        if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
+            return true;
+        }
+
+        return false;
+    }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -794,6 +808,24 @@ public class ObservationEditor extends AppCompatActivity {
             case android.R.id.home:
                 return onBack();
             case R.id.save_observation:
+                if (hasNoCoords()) {
+                    // Confirm with the user that he's about to save an observation with no coordinates
+                    confirm(ObservationEditor.this, R.string.save_observation, R.string.are_you_sure_you_want_to_save_obs_without_coords,
+                            R.string.yes, R.string.no,
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    uiToProjectFieldValues();
+                                    if (save()) {
+                                        setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_OK);
+                                        finish();
+                                    }
+                                }
+                            }, null);
+
+                    return true;
+                }
+
                 uiToProjectFieldValues();
                 if (save()) {
                     setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_OK);
@@ -916,6 +948,11 @@ public class ObservationEditor extends AppCompatActivity {
         mLocationIcon.setVisibility(View.VISIBLE);
 
         if (mGettingLocation) {
+            mLocationProgressView.setVisibility(View.VISIBLE);
+            mFindingCurrentLocation.setVisibility(View.VISIBLE);
+            mLocationRefreshButton.setVisibility(View.GONE);
+            mLocationIcon.setVisibility(View.GONE);
+
             getLocation();
         }
 

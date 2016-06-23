@@ -498,5 +498,6 @@
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
     <string name="no_location">No Location</string>
     <string name="add_to_projects">Add to project(s)</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
  </resources>
 
