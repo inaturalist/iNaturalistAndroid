@@ -496,7 +496,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             // the user.  The have clicked on one, so return it now.
             setResult(RESULT_OK, new Intent().setData(uri));
         } else {
-            if (!mAdapter.isLocked(uri)) {
+            if ((!mAdapter.isLocked(uri)) || (mAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
                 // Launch activity to view/edit the currently selected item
                 startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerActivity.class));
             }
