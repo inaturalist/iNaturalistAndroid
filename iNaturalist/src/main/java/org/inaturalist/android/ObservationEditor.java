@@ -668,6 +668,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void editNextObservation(int direction) {
+        Log.v("ObservationEditor", "editNextObservation: Direction = " + direction);
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         String conditions = "(_synced_at IS NULL";
@@ -682,9 +683,13 @@ public class ObservationEditor extends AppCompatActivity {
         // Find next observation
         Long obsId, externalObsId;
         cursor.moveToFirst();
+        Log.e("ObservationEditor", "Current obs id: " + mObservation._id + ", " + mObservation.id);
         do {
             obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
-            if ((mObservation._id != null) && (obsId.equals(mObservation._id.longValue()))) {
+            externalObsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation.ID));
+            if (((mObservation._id != null) && (obsId.equals(mObservation._id.longValue()))) ||
+                ((mObservation.id != null) && (externalObsId.equals(mObservation.id.longValue())))) {
+                Log.e("ObservationEditor", "Found current obs with " + obsId + ", " + externalObsId);
                 break;
             }
         } while (cursor.moveToNext());
@@ -696,12 +701,17 @@ public class ObservationEditor extends AppCompatActivity {
 
             // Edit the next observation (if one is available)
             if (direction == 1) {
+                Log.v("ObservationEditor", "Moving to previous observation");
                 cursor.moveToNext();
             } else {
+                Log.v("ObservationEditor", "Moving to next observation");
                 cursor.moveToPrevious();
             }
             obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
-            Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId);
+            externalObsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation.ID));
+            Log.e("ObservationEditor", "Next obs ID: " + obsId + ", " + externalObsId);
+            cursor.close();
+            Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId != null ? obsId : externalObsId);
             Intent intent = new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class);
             intent.putExtra(RETURN_TO_OBSERVATION_LIST, true);
             startActivity(intent);
@@ -1694,8 +1704,6 @@ public class ObservationEditor extends AppCompatActivity {
 
             }
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-
-            int random = (new Random()).nextInt();
 
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;
