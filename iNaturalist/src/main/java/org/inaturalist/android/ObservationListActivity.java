@@ -141,7 +141,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 c.close();
 
                 // Trigger a sync (more new observations were added in the mean time)
-                if (syncCount > 0) {
+                if ((syncCount > 0) && (mApp.loggedIn())) {
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                     startService(serviceIntent);
                 }
