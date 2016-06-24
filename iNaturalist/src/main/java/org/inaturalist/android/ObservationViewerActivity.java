@@ -1071,7 +1071,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             // Captive
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
             reasonText = R.string.casual_grade_captive;
-        } else if ((mObservation.id_please) && (mIdCount <= 1)) {
+        } else if (mIdCount <= 1) {
             dataQuality = DATA_QUALITY_NEEDS_ID;
             reasonText = R.string.needs_id_more_ids;
         } else {
