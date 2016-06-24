@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -213,22 +214,10 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  	class IdPicsPagerAdapter extends PagerAdapter {
  		int mDefaultTaxonIcon;
  		List<String> mImages;
-        List<Integer> mImageIds;
-        boolean mIsOffline = false;
 
-        private Cursor findPhotoInStorage(Integer photoId) {
-            Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    new String[]{MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
-                    MediaStore.MediaColumns._ID + " = " + photoId, null, null);
-
-            imageCursor.moveToFirst();
-            return imageCursor;
-        }
 
         // Load offline photos for a new observation
         public IdPicsPagerAdapter(int observationId, int _observationId) {
-            mIsOffline = true;
-            mImageIds = new ArrayList<Integer>();
             mImages = new ArrayList<String>();
 
             Cursor imageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
@@ -242,19 +231,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             if (imageCursor.getCount() == 0) return;
 
             do {
-                int photoId = imageCursor.getInt(imageCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
-                Cursor pc = findPhotoInStorage(photoId);
-                if (pc.getCount() > 0) {
-                    mImageIds.add(photoId);
-                    pc.close();
-                } else {
-                    String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-                    if (imageUrl != null) {
-                        // Online photo
-                        mImages.add(imageUrl);
-                        mIsOffline = false;
-                    }
-                }
+                String photoFileName = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                mImages.add(imageUrl != null ? imageUrl : photoFileName);
             } while (imageCursor.moveToNext());
         }
 
@@ -286,7 +265,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
  		@Override
  		public int getCount() {
- 			return (mIsOffline ? mImageIds.size() : mImages.size());
+ 			return mImages.size();
  		}
 
  		@Override
@@ -296,40 +275,28 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  			ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
  			final ProgressBar loading = (ProgressBar) layout.findViewById(R.id.id_pic_loading);
 
-            if (mIsOffline) {
-                // Offline photos
-                int photoId = mImageIds.get(position);
-                Cursor pc = findPhotoInStorage(photoId);
-                if (pc.getCount() > 0) {
-                    int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-                    Bitmap bitmapImage = null;
-                    try {
-                        int newHeight = mViewPager.getMeasuredHeight();
-                        int newWidth = mViewPager.getMeasuredHeight();
+            String imagePath = mImages.get(position);
 
-                        bitmapImage = ImageUtils.decodeSampledBitmapFromUri(getContentResolver(),
-                                ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId),
-                                newWidth, newHeight);
+            if (!imagePath.startsWith("http://")) {
+                // Offline photo
+                Bitmap bitmapImage = null;
+                try {
+                    int newHeight = mViewPager.getMeasuredHeight();
+                    int newWidth = mViewPager.getMeasuredHeight();
 
-                        if (orientation != 0) {
-                            Matrix matrix = new Matrix();
-                            int height = bitmapImage.getHeight();
-                            int width = bitmapImage.getWidth();
-                            matrix.setRotate((float) orientation, width, height);
-                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, width, height, matrix, true);
-                        }
+                    bitmapImage = ImageUtils.decodeSampledBitmapFromUri(getContentResolver(),
+                            Uri.fromFile(new File(imagePath)), newWidth, newHeight);
 
-                        // Scale down the image if it's too big for the GL renderer
-                        bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);
-                        imageView.setImageBitmap(bitmapImage);
-                        final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
-                        attacher.update();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    // Scale down the image if it's too big for the GL renderer
+                    bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);
+                    imageView.setImageBitmap(bitmapImage);
+                    final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
+                    attacher.update();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             } else {
-                // Online photos
+                // Online photo
 
                 String imageUrl = mImages.get(position);
                 if (imageUrl == null) {

@@ -95,6 +95,7 @@ import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.CursorLoader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -212,7 +213,7 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mIsTaxonUnknown;
     private boolean mIsCustomTaxon;
     private TextView mProjectCount;
-    private Long mFirstPositionPhotoId;
+    private String mFirstPositionPhotoId;
     private boolean mGettingLocation;
     private ImageView mLocationIcon;
     private TextView mLocationGuess;
@@ -405,7 +406,7 @@ public class ObservationEditor extends AppCompatActivity {
             mPreviousTaxonSearch = savedInstanceState.getString("mPreviousTaxonSearch");
             mTaxonPicUrl = savedInstanceState.getString("mTaxonPicUrl");
             mIsCaptive = savedInstanceState.getBoolean("mIsCaptive", false);
-            mFirstPositionPhotoId = savedInstanceState.getLong("mFirstPositionPhotoId");
+            mFirstPositionPhotoId = savedInstanceState.getString("mFirstPositionPhotoId");
             mGettingLocation = savedInstanceState.getBoolean("mGettingLocation");
             mLocationManuallySet = savedInstanceState.getBoolean("mLocationManuallySet");
             mReturnToObservationList = savedInstanceState.getBoolean("mReturnToObservationList");
@@ -726,8 +727,12 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void takePhoto() {
+        /*
         mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
         mFileUri = getPath(ObservationEditor.this, mFileUri);
+        */
+        // Temp file for the photo
+        mFileUri = Uri.fromFile(new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg"));
 
         final Intent galleryIntent = new Intent();
 
@@ -874,7 +879,7 @@ public class ObservationEditor extends AppCompatActivity {
         outState.putString("mPreviousTaxonSearch", mPreviousTaxonSearch);
         outState.putString("mTaxonPicUrl", mTaxonPicUrl);
         outState.putBoolean("mIsCaptive", mIsCaptive);
-        outState.putLong("mFirstPositionPhotoId", mFirstPositionPhotoId != null ? mFirstPositionPhotoId : -1);
+        outState.putString("mFirstPositionPhotoId", mFirstPositionPhotoId);
         outState.putBoolean("mGettingLocation", mGettingLocation);
         outState.putBoolean("mLocationManuallySet", mLocationManuallySet);
         outState.putBoolean("mReturnToObservationList", mReturnToObservationList);
@@ -1763,8 +1768,6 @@ public class ObservationEditor extends AppCompatActivity {
                     selectedImageUri = data == null ? null : data.getData();
                     if (selectedImageUri == null) {
                         selectedImageUri = mFileUri;
-                    } else {
-                        selectedImageUri = getPath(this, selectedImageUri);
                     }
                 }
 
@@ -1774,9 +1777,14 @@ public class ObservationEditor extends AppCompatActivity {
                     // Image captured and saved to mFileUri specified in the Intent
                     Toast.makeText(this, getString(R.string.image_saved), Toast.LENGTH_LONG).show();
                 }
-                
-                updateImageOrientation(selectedImageUri);
+
                 Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
+
+                if (isCamera)  {
+                    // Delete original photo (before resize)
+                    File f = new File(selectedImageUri.getPath());
+                    f.delete();
+                }
 
                 if (createdUri == null) {
                 	mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
@@ -1850,29 +1858,31 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
-        ObservationPhoto op = new ObservationPhoto();
-        Long photoId = null;
-        try {
-        	photoId = ContentUris.parseId(photoUri);
-        } catch (Exception exc) {
-        	// Not a supported media type (e.g. Google Drive)
-        	exc.printStackTrace();
-        	return null;
+        String path = FileUtils.getPath(this, photoUri);
+        if (path == null) {
+            path = photoUri.getPath();
         }
+        // Resize photo to 2048x2048 max
+        String resizedPhoto = resizeImage(path);
+
+        if (resizedPhoto == null) {
+            return null;
+        }
+
+        ObservationPhoto op = new ObservationPhoto();
 
         op.uuid = UUID.randomUUID().toString();
 
         ContentValues cv = op.getContentValues();
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
-        if (photoId > -1) {
-            cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
-        }
+        cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
         if (mGallery.getCount() == 0) {
             cv.put(ObservationPhoto.POSITION, 0);
         } else {
             cv.put(ObservationPhoto.POSITION, mGallery.getCount());
         }
+
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
 
@@ -1941,8 +1951,17 @@ public class ObservationEditor extends AppCompatActivity {
     
     private void deletePhoto(int position) {
     	GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-    	Long photoId = adapter.getItemId(position);
-    	getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_photo_id = " + photoId, null);
+
+        Cursor cursor = adapter.getCursor();
+        cursor.moveToPosition(position);
+
+    	String photoId = adapter.getItemIdString(position);
+        String photoFilename = cursor.getString(cursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+        if (photoFilename != null) {
+            getContentResolver().delete(ObservationPhoto.CONTENT_URI, "photo_filename = '" + photoId + "'", null);
+        } else {
+            getContentResolver().delete(ObservationPhoto.CONTENT_URI, "photo_url = '" + photoId + "'", null);
+        }
     	updateImages();
     }
 
@@ -2153,6 +2172,10 @@ public class ObservationEditor extends AppCompatActivity {
         private Cursor mCursor;
         private HashMap<Integer, View> mViews;
 
+        public Cursor getCursor() {
+            return mCursor;
+        }
+
         public GalleryCursorAdapter(Context c, Cursor cur) {
             mContext = c;
             mCursor = cur;
@@ -2170,42 +2193,32 @@ public class ObservationEditor extends AppCompatActivity {
 
         public long getItemId(int position) {
             mCursor.moveToPosition(position);
-            return mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+            return mCursor.getLong(mCursor.getColumnIndexOrThrow(ObservationPhoto.ID));
         }
 
-        public Uri getItemUri(int position) {
+        public String getItemIdString(int position) {
             mCursor.moveToPosition(position);
-            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
-            String imageUrl = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-
-            if (imageUrl != null) {
-                // Online photo
-                return Uri.parse(imageUrl);
+            String id = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+            if (id == null) {
+                return mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            } else {
+                return id;
             }
-
-            // Offline (local storage) photo
-            return ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageId);
-        }
-
-        private Cursor findPhotoInStorage(Integer photoId) {
-            Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    new String[]{MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
-                    MediaStore.MediaColumns._ID + " = " + photoId, null, null);
-
-            imageCursor.moveToFirst();
-            return imageCursor;
         }
 
         public void setAsFirstPhoto(int position) {
-            Long photoId = getItemId(position);
+            String photoId = getItemIdString(position);
             mFirstPositionPhotoId = photoId;
-
 
             // Set current photo to be positioned first
             mCursor.moveToPosition(position);
             ObservationPhoto op = new ObservationPhoto(mCursor);
             op.position = 0;
-            getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "_photo_id = " + photoId, null);
+            if (op.photo_filename != null) {
+                getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_filename = '" + op.photo_filename + "'", null);
+            } else {
+                getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_url = '" + op.photo_url + "'", null);
+            }
 
             // Update the rest of the photos to be positioned afterwards
             int currentPosition = 1;
@@ -2216,7 +2229,12 @@ public class ObservationEditor extends AppCompatActivity {
                 if (mCursor.getPosition() != position) {
                     ObservationPhoto currentOp = new ObservationPhoto(mCursor);
                     currentOp.position = currentPosition;
-                    getContentResolver().update(ObservationPhoto.CONTENT_URI, currentOp.getContentValues(), "_photo_id = " + currentOp._photo_id, null);
+                    if (currentOp.photo_filename != null) {
+                        getContentResolver().update(ObservationPhoto.CONTENT_URI, currentOp.getContentValues(), "photo_filename = '" + currentOp.photo_filename + "'", null);
+                    } else {
+                        getContentResolver().update(ObservationPhoto.CONTENT_URI, currentOp.getContentValues(), "photo_url = '" + currentOp.photo_url + "'", null);
+                    }
+
                     currentPosition++;
                 }
             } while (mCursor.moveToNext());
@@ -2239,8 +2257,8 @@ public class ObservationEditor extends AppCompatActivity {
             imageView = (ImageView) container.findViewById(R.id.observation_photo);
 
             int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
-            int photoId = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
             String imageUrl = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            String photoFileName = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
 
             if (imageUrl != null) {
                 // Online photo
@@ -2257,37 +2275,36 @@ public class ObservationEditor extends AppCompatActivity {
                 });
             } else {
                 // Offline photo
-                Cursor pc = findPhotoInStorage(photoId);
-                if (pc.getCount() == 0) {
-                    // photo has been deleted, delete the corresponding db row
-                    getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = " + imageId, null);
-                } else {
-                    int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-                    Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
-                            getContentResolver(),
-                            photoId,
-                            MediaStore.Images.Thumbnails.MINI_KIND,
-                            (BitmapFactory.Options) null);
+                int orientation = 0;
+                Bitmap bitmapImage = null;
 
-                    if (bitmapImage == null) {
-                        // Couldn't retrieve the thumbnail - get the original image
-                        try {
-                            bitmapImage = MediaStore.Images.Media.getBitmap(
-                                    getContentResolver(),
-                                    ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                try {
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    FileInputStream is = new FileInputStream(photoFileName);
+                    Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
+                    is.close();
+                    int originalHeight = options.outHeight;
+                    int originalWidth = options.outWidth;
+                    int newHeight, newWidth;
+
+                    // Resize but make sure we have the same width/height aspect ratio
+                    if (originalHeight > originalWidth) {
+                        newHeight = 200;
+                        newWidth = (int) (100 * ((float) originalWidth / originalHeight));
+                    } else {
+                        newWidth = 200;
+                        newHeight = (int) (100 * ((float) originalHeight / originalWidth));
                     }
 
-                    if (bitmapImage != null) {
-                        if (orientation != 0) {
-                            Matrix matrix = new Matrix();
-                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
-                        }
-                        imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
-                    }
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+
+                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(resizedBitmap)));
+                    bitmap.recycle();
+                } catch (FileNotFoundException exc) {
+                    exc.printStackTrace();
+                } catch (IOException exc) {
+                    exc.printStackTrace();
                 }
             }
 
@@ -2313,8 +2330,6 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                     intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
                     startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
-
-                    startActivity(intent);
                 }
             });
 
@@ -2323,9 +2338,9 @@ public class ObservationEditor extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Integer position = (Integer) view.getTag();
-                    Long photoId = getItemId(position);
+                    String photoId = getItemIdString(position);
 
-                    if ((mFirstPositionPhotoId == null) || (mFirstPositionPhotoId != photoId)) {
+                    if ((mFirstPositionPhotoId == null) || (!mFirstPositionPhotoId.equals(photoId))) {
                         setAsFirstPhoto(position);
                     }
                 }
@@ -2636,4 +2651,5 @@ public class ObservationEditor extends AppCompatActivity {
 
         return outputSet;
     }
+
 }

@@ -556,21 +556,21 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
             // Add any online-only photos
             Cursor onlinePc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL},
-                    "(_observation_id IN (" + StringUtils.join(obsIds, ',') + ") OR observation_id IN (" + StringUtils.join(obsExternalIds, ',') + ")  )  AND photo_url IS NOT NULL",
+                    new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME},
+                    "(_observation_id IN (" + StringUtils.join(obsIds, ',') + ") OR observation_id IN (" + StringUtils.join(obsExternalIds, ',') + ")  )",
                     null,
                     ObservationPhoto.DEFAULT_SORT_ORDER);
             onlinePc.moveToFirst();
             while (!onlinePc.isAfterLast()) {
                 Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
-                Long photoId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
                 String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-                
+                String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
-                                    photoId.toString(),
+                                    photoFilename,
                                     null,
                                     photoUrl,
                                     null,
@@ -582,13 +582,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             
             onlinePc.close();
             
-            
+
+            /*
             Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
                     new String[]{
                         ObservationPhoto._ID, 
                         ObservationPhoto._OBSERVATION_ID, 
                         ObservationPhoto._PHOTO_ID, 
                         ObservationPhoto.PHOTO_URL,
+                        ObservationPhoto.PHOTO_FILENAME,
                         ObservationPhoto._UPDATED_AT,
                         ObservationPhoto._SYNCED_AT
                     }, 
@@ -598,42 +600,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if (opc.getCount() == 0) return;
             opc.moveToFirst();
             while (!opc.isAfterLast()) {
-                photoIds.add(opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID)));
-                opc.moveToNext();
-            }
-            
-            Cursor pc = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.ImageColumns.ORIENTATION},
-                    "_ID IN (" + StringUtils.join(photoIds, ',') + ")",
-                    null,
-                    "_ID");
-            if (pc == null) { opc.close(); return; }
-            if (pc.getCount() == 0) { pc.close(); opc.close(); return; }
-            HashMap<Long,String> orientationsByPhotoId = new HashMap<Long,String>();
-            pc.moveToFirst();
-            while (!pc.isAfterLast()) {
-                orientationsByPhotoId.put(
-                        pc.getLong(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns._ID)), 
-                        pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION)));
-                pc.moveToNext();
-            }
-            
-            pc.close();
-            
-            opc.moveToFirst();
-            while (!opc.isAfterLast()) {
                 Long obsId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
-                Long photoId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
+                String photoFilename = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
                 Long syncedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._SYNCED_AT));
                 Long updatedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._UPDATED_AT));
-                String photoUrl = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
 
                 if (!mPhotoInfo.containsKey(obsId)) {
                     mPhotoInfo.put(
                             obsId,
                             new String[] {
-                                photoId.toString(),
-                                orientationsByPhotoId.get(photoId),
+                                photoFilename,
+                                null,
                                 null,
                                 updatedAt.toString(),
                                 syncedAt.toString()
@@ -641,8 +618,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 }
                 opc.moveToNext();
             }
-            
+
             opc.close();
+            */
             
         }
 
@@ -679,8 +657,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             }
 
             if (photoInfo != null) {
-                if (photoInfo[0] == null || photoInfo[0].equals("null")) return view;
-                Long photoId = Long.parseLong(photoInfo[0]);
+                String photoFilename = photoInfo[0];
                 
                 if (photoInfo[2] != null) {
                     // Online-only photo
@@ -694,16 +671,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     } else {
                         orientation = Integer.parseInt(photoInfo[1]);
                     }
-                    Bitmap bitmapImage = MediaStore.Images.Thumbnails.getThumbnail(
-                            getContentResolver(), 
-                            photoId, 
-                            MediaStore.Images.Thumbnails.MICRO_KIND, 
-                            (BitmapFactory.Options) null);
-                    if (orientation != 0) {
-                        Matrix matrix = new Matrix();
-                        matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                        bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
-                    }
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = ImageUtils.calculateInSampleSize(options, 100, 100);
+
+                    // Decode bitmap with inSampleSize set
+                    options.inJustDecodeBounds = false;
+                    // This decreases in-memory byte-storage per pixel
+                    options.inPreferredConfig = Bitmap.Config.ALPHA_8;
+                    Bitmap bitmapImage = BitmapFactory.decodeFile(photoFilename, options);
                     image.setImageBitmap(bitmapImage);
                 }
                 

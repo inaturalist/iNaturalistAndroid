@@ -257,13 +257,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             int imageId = 0;
-            int photoId = 0;
+            String photoFilename = null;
             String imageUrl = null;
 
             if (!mReadOnly) {
-                photoId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._PHOTO_ID));
                 imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
                 imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
             } else {
                 imageUrl = mObservation.photos.get(position).photo_url;
             }
@@ -274,53 +274,22 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 UrlImageViewHelper.setUrlDrawable(imageView, imageUrl);
             } else {
                 // Offline photo
-                Cursor pc = findPhotoInStorage(photoId);
-                if (pc.getCount() == 0) {
-                    // photo has been deleted, delete the corresponding db row
-                    getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = " + imageId, null);
-                } else {
-                    int orientation = pc.getInt(pc.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+                int newHeight = mPhotosViewPager.getMeasuredHeight();
+                int newWidth = mPhotosViewPager.getMeasuredWidth();
+                Bitmap bitmapImage = null;
 
-                    Bitmap bitmapImage = null;
-                    try {
-                        MediaStore.Images.Thumbnails.getThumbnail(
-                                getContentResolver(),
-                                photoId,
-                                MediaStore.Images.Thumbnails.MINI_KIND,
-                                (BitmapFactory.Options) null);
-                    } catch (Exception exc) {
-                        // In case of unsupported thumbnail kind
-                    }
+                try {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = ImageUtils.calculateInSampleSize(options, newWidth, newHeight);
 
-                    int newHeight = mPhotosViewPager.getMeasuredHeight();
-                    int newWidth = mPhotosViewPager.getMeasuredWidth();
-
-                    if (bitmapImage == null) {
-                        // Couldn't retrieve the thumbnail - get the original image
-                        try {
-                            bitmapImage = ImageUtils.decodeSampledBitmapFromUri(getContentResolver(),
-                                    ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, photoId),
-                                    newWidth, newHeight);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    if (bitmapImage != null) {
-                       try {
-                            if (orientation != 0) {
-                                int height = bitmapImage.getHeight();
-                                int width = bitmapImage.getWidth();
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate((float) orientation, width, height);
-                                bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, width, height, matrix, true);
-                            }
-                            imageView.setImageBitmap(bitmapImage);
-                        } catch (OutOfMemoryError exception) {
-                            // Nothing we can do in this case...
-                            Crashlytics.logException(exception);
-                        }
-                    }
+                    // Decode bitmap with inSampleSize set
+                    options.inJustDecodeBounds = false;
+                    // This decreases in-memory byte-storage per pixel
+                    options.inPreferredConfig = Bitmap.Config.ALPHA_8;
+                    bitmapImage = BitmapFactory.decodeFile(photoFilename, options);
+                    imageView.setImageBitmap(bitmapImage);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 

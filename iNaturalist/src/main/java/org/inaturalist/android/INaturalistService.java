@@ -1202,28 +1202,17 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     String.format(getString(R.string.posting_x_photos), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
             op = new ObservationPhoto(c);
-            ArrayList <NameValuePair> params = op.getParams();
-            // http://stackoverflow.com/questions/2935946/sending-images-using-http-post
-            Uri photoUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, op._photo_id); 
-            Cursor pc = getContentResolver().query(photoUri, 
-                    new String[] {MediaStore.MediaColumns._ID, MediaStore.Images.Media.DATA}, 
-                    null, 
-                    null, 
-                    MediaStore.Images.Media.DEFAULT_SORT_ORDER);
 
+            if (op.photo_url != null) {
+                // Online photo
+                c.moveToNext();
+                continue;
+            }
+
+            ArrayList <NameValuePair> params = op.getParams();
             mApp.setObservationIdBeingSynced(op._observation_id);
 
-            if (pc == null) {
-            	continue;
-            } else if (pc.getCount() == 0) {
-                // photo has been deleted, destroy the ObservationPhoto
-                getContentResolver().delete(op.getUri(), null, null);
-                continue;
-            } else {
-                pc.moveToFirst();
-            }
-            
-            String imgFilePath = pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+            String imgFilePath = op.photo_filename;
             params.add(new BasicNameValuePair("file", imgFilePath));
             
             String inatNetwork = mApp.getInaturalistNetworkMember();
@@ -2150,11 +2139,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             for (int i = 0; i < params.size(); i++) {
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
                     // If the key equals to "image", we use FileBody to transfer the data
-                	
-                	// Resize image to max size of 2048x2048 before sending it to the server
-                	String filename = resizeImage(params.get(i).getValue());
-
-                    entity.addPart(params.get(i).getName(), new FileBody(new File (filename)));
+                    entity.addPart(params.get(i).getName(), new FileBody(new File (params.get(i).getValue())));
                 } else {
                     // Normal string data
                     try {
@@ -2252,190 +2237,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
         return null;
     }
-
-
-    // EXIF-copying code taken from: https://bricolsoftconsulting.com/copying-exif-metadata-using-sanselan/
-    public static boolean copyExifData(File sourceFile, File destFile, List<TagInfo> excludedFields) {
-        String tempFileName = destFile.getAbsolutePath() + ".tmp";
-        File tempFile = null;
-        OutputStream tempStream = null;
-
-        try {
-            tempFile = new File (tempFileName);
-
-            TiffOutputSet sourceSet = getSanselanOutputSet(sourceFile, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
-            TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
-
-            // If the EXIF data endianess of the source and destination files
-            // differ then fail. This only happens if the source and
-            // destination images were created on different devices. It's
-            // technically possible to copy this data by changing the byte
-            // order of the data, but handling this case is outside the scope
-            // of this implementation
-            if (sourceSet.byteOrder != destSet.byteOrder) return false;
-
-            destSet.getOrCreateExifDirectory();
-
-            // Go through the source directories
-            List<?> sourceDirectories = sourceSet.getDirectories();
-            for (int i=0; i<sourceDirectories.size(); i++) {
-                TiffOutputDirectory sourceDirectory = (TiffOutputDirectory)sourceDirectories.get(i);
-                TiffOutputDirectory destinationDirectory = getOrCreateExifDirectory(destSet, sourceDirectory);
-
-                if (destinationDirectory == null) continue; // failed to create
-
-                // Loop the fields
-                List<?> sourceFields = sourceDirectory.getFields();
-                for (int j=0; j<sourceFields.size(); j++) {
-                    // Get the source field
-                    TiffOutputField sourceField = (TiffOutputField) sourceFields.get(j);
-
-                    // Check exclusion list
-                    if (excludedFields != null && excludedFields.contains(sourceField.tagInfo)) {
-                        destinationDirectory.removeField(sourceField.tagInfo);
-                        continue;
-                    }
-
-                    // Remove any existing field
-                    destinationDirectory.removeField(sourceField.tagInfo);
-
-                    // Add field
-                    destinationDirectory.add(sourceField);
-                }
-            }
-
-            // Save data to destination
-            tempStream = new BufferedOutputStream(new FileOutputStream(tempFile));
-            new ExifRewriter().updateExifMetadataLossless(destFile, tempStream, destSet);
-            tempStream.close();
-
-            // Replace file
-            if (destFile.delete()) {
-                tempFile.renameTo(destFile);
-            }
-
-            return true;
-
-        } catch (ImageReadException exception) {
-            exception.printStackTrace();
-
-        } catch (ImageWriteException exception) {
-            exception.printStackTrace();
-
-        } catch (IOException exception) {
-            exception.printStackTrace();
-
-        } finally {
-            if (tempStream != null) {
-                try {
-                    tempStream.close();
-                } catch (IOException e) {
-                }
-            }
-
-            if (tempFile != null) {
-                if (tempFile.exists()) tempFile.delete();
-            }
-        }
-
-        return false;
-    }
-
-    private static TiffOutputSet getSanselanOutputSet(File jpegImageFile, int defaultByteOrder)
-            throws IOException, ImageReadException, ImageWriteException {
-        TiffImageMetadata exif = null;
-        TiffOutputSet outputSet = null;
-
-        IImageMetadata metadata = Sanselan.getMetadata(jpegImageFile);
-        JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
-        if (jpegMetadata != null) {
-            exif = jpegMetadata.getExif();
-
-            if (exif != null) {
-                outputSet = exif.getOutputSet();
-            }
-        }
-
-        // If JPEG file contains no EXIF metadata, create an empty set
-        // of EXIF metadata. Otherwise, use existing EXIF metadata to
-        // keep all other existing tags
-        if (outputSet == null)
-            outputSet = new TiffOutputSet(exif==null?defaultByteOrder:exif.contents.header.byteOrder);
-
-        return outputSet;
-    }
-
-    private static TiffOutputDirectory getOrCreateExifDirectory(TiffOutputSet outputSet, TiffOutputDirectory outputDirectory) {
-        TiffOutputDirectory result = outputSet.findDirectory(outputDirectory.type);
-        if (result != null)
-            return result;
-        result = new TiffOutputDirectory(outputDirectory.type);
-        try {
-            outputSet.addDirectory(result);
-        } catch (ImageWriteException e) {
-            return null;
-        }
-        return result;
-    }
-
-    /**
-     * Resizes an image to max size of 2048x2048
-     * @param filename the image filename
-     * @return the resized image - or original image if smaller than 2048x2048
-     */
-    private String resizeImage(String filename) {
-    	BitmapFactory.Options options = new BitmapFactory.Options();
-    	InputStream is = null;
-    	try {
-			is = new FileInputStream(filename);
-			Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
-			is.close();
-			int originalHeight = options.outHeight;
-			int originalWidth = options.outWidth;
-			int newHeight, newWidth;
-
-
-			if (Math.max(originalHeight, originalWidth) < 2048) {
-				// Original file is smaller than 2048x2048 - no need to resize
-				return filename;
-			}
-
-			// Resize but make sure we have the same width/height aspect ratio
-			if (originalHeight > originalWidth) {
-				newHeight = 2048;
-				newWidth = (int)(2048 * ((float)originalWidth / originalHeight));
-			} else {
-				newWidth = 2048;
-				newHeight = (int)(2048 * ((float)originalHeight / originalWidth));
-			}
-
-			Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
-			Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
-
-			Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
-
-			// Save resized image
-			File imageFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
-			OutputStream os = new FileOutputStream(imageFile);
-			resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
-			os.flush();
-			os.close();
-
-            // Copy all EXIF data from original image into resized image
-            copyExifData(new File(filename), new File(imageFile.getAbsolutePath()), null);
-
-            return imageFile.getAbsolutePath();
-
-		} catch (OutOfMemoryError e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-    	return filename;
-	}
 
 	private boolean ensureCredentials() throws AuthenticationException {
         if (mCredentials != null) { return true; }
@@ -2597,20 +2398,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
 
-    private Uri createObservationPhotoForPhoto(Uri photoUri, Observation observation) {
-        ObservationPhoto op = new ObservationPhoto();
-        Long photoId = ContentUris.parseId(photoUri);
-        ContentValues cv = op.getContentValues();
-        cv.put(ObservationPhoto._OBSERVATION_ID, observation._id);
-        cv.put(ObservationPhoto.OBSERVATION_ID, observation.id);
-        cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
-        if (photoId > -1) {
-            cv.put(ObservationPhoto._PHOTO_ID, photoId.intValue());
-        }
-        return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
-    }
-
-    
     public void syncJson(JSONArray json, boolean isUser) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         ArrayList<Integer> existingIds = new ArrayList<Integer>();

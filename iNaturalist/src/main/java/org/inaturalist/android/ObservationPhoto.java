@@ -29,6 +29,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public Integer position;
     public Timestamp updated_at;
     public String photo_url;
+    public String photo_filename;
     public String uuid;
 
     public Timestamp _created_at_was;
@@ -62,6 +63,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public static final String CREATED_AT = "created_at";
     public static final String UUID = "uuid";
     public static final String PHOTO_URL = "photo_url";
+    public static final String PHOTO_FILENAME = "photo_filename";
     public static final String ID = "id";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String PHOTO_ID = "photo_id";
@@ -83,7 +85,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         ObservationPhoto.PHOTO_ID,
         ObservationPhoto.POSITION,
         ObservationPhoto.UPDATED_AT,
-        ObservationPhoto.PHOTO_URL
+        ObservationPhoto.PHOTO_URL,
+        ObservationPhoto.PHOTO_FILENAME
     };
 
     static {
@@ -102,6 +105,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ObservationPhoto.POSITION, ObservationPhoto.POSITION);
         PROJECTION_MAP.put(ObservationPhoto.UPDATED_AT, ObservationPhoto.UPDATED_AT);
         PROJECTION_MAP.put(ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_URL);
+        PROJECTION_MAP.put(ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.PHOTO_FILENAME);
 
     }
 
@@ -135,6 +139,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.updated_at = bc.getTimestamp(UPDATED_AT);
         this.updated_at_was = this.updated_at;
         this.photo_url = bc.getString(PHOTO_URL);
+        this.photo_filename = bc.getString(PHOTO_FILENAME);
     }
 
     public ObservationPhoto(BetterJSONObject o) {
@@ -237,6 +242,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         cv.put(PHOTO_ID, photo_id);
         cv.put(POSITION, position);
         cv.put(PHOTO_URL, photo_url);
+        cv.put(PHOTO_FILENAME, photo_filename);
         if (updated_at != null) { cv.put(UPDATED_AT, updated_at.getTime()); }
         if (uuid != null) { cv.put(UUID, uuid); }
 
@@ -268,7 +274,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
                 + "photo_id INTEGER,"
                 + "position INTEGER,"
                 + "updated_at INTEGER,"
-                + "photo_url TEXT"
+                + "photo_url TEXT,"
+                + "photo_filename TEXT"
                 + ");";
     }
 
