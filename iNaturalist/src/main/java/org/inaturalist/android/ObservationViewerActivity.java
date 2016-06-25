@@ -1104,11 +1104,18 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
             BetterJSONObject obs = new BetterJSONObject(mObsJson);
             JSONObject userObj = obs.getJSONObject("user");
-            userIconUrl = userObj.has("user_icon_url") && !userObj.isNull("user_icon_url") ? userObj.optString("user_icon_url", null) : null;
-            if (userIconUrl == null) {
-                userIconUrl = userObj.has("icon_url") && !userObj.isNull("icon_url") ? userObj.optString("icon_url", null) : null;
+            if (userObj != null) {
+                userIconUrl = userObj.has("user_icon_url") && !userObj.isNull("user_icon_url") ? userObj.optString("user_icon_url", null) : null;
+                if (userIconUrl == null) {
+                    userIconUrl = userObj.has("icon_url") && !userObj.isNull("icon_url") ? userObj.optString("icon_url", null) : null;
+                }
+                mUserName.setText(userObj.optString("login"));
+                mUserPic.setVisibility(View.VISIBLE);
+                mUserName.setVisibility(View.VISIBLE);
+            } else {
+                mUserPic.setVisibility(View.INVISIBLE);
+                mUserName.setVisibility(View.INVISIBLE);
             }
-            mUserName.setText(userObj.optString("login"));
         } else {
             SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
             String username = pref.getString("username", null);

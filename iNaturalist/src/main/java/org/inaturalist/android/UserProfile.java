@@ -73,7 +73,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     private TextView mSpeciesListEmpty;
 
     private ListView mIdentificationsList;
-    private TaxonAdapter mIdentificationsListAdapter;
+    private UserIdentificationsAdapter mIdentificationsListAdapter;
     private ProgressBar mLoadingIdentificationsList;
     private ViewGroup mIdentificationsContainer;
     private TextView mIdentificationsListEmpty;
@@ -612,11 +612,23 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 mIdentificationsListEmpty.setVisibility(View.GONE);
             }
 
-            // TODO
             if (mIdentificationsList.getAdapter() == null) {
-                mIdentificationsListAdapter = new TaxonAdapter(UserProfile.this, mIdentifications);
+                mIdentificationsListAdapter = new UserIdentificationsAdapter(UserProfile.this, mIdentifications, mUser.getString("login"));
                 mIdentificationsList.setAdapter(mIdentificationsListAdapter);
                 mIdentificationsList.setVisibility(View.VISIBLE);
+
+                mIdentificationsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        JSONObject item = (JSONObject) view.getTag();
+                        Intent intent = new Intent(UserProfile.this, ObservationViewerActivity.class);
+                        intent.putExtra("observation", item.optJSONObject("observation").toString());
+                        intent.putExtra("read_only", true);
+                        intent.putExtra("reload", true);
+                        startActivity(intent);
+                    }
+                });
+
             }
         }
     }
