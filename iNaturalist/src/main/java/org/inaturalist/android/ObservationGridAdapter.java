@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,6 +98,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                 if (isNewApi) {
                     url = observationPhoto.optString("url");
+                    url = url.substring(0, url.lastIndexOf("/") + 1) + "medium.jpg";
                 } else {
                     JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
                     url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
