@@ -1213,6 +1213,22 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             mApp.setObservationIdBeingSynced(op._observation_id);
 
             String imgFilePath = op.photo_filename;
+            if (imgFilePath == null) {
+                // Observation photo is saved in the "old" way (prior to latest change in the way we store photos)
+                if (op._photo_id != null) {
+                    Uri photoUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, op._photo_id);
+                    Cursor pc = getContentResolver().query(photoUri,
+                            new String[]{MediaStore.MediaColumns._ID, MediaStore.Images.Media.DATA},
+                            null,
+                            null,
+                            MediaStore.Images.Media.DEFAULT_SORT_ORDER);
+                    if ((pc != null) && (pc.getCount() > 0)) {
+                        pc.moveToFirst();
+                        imgFilePath = pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                        pc.close();
+                    }
+                }
+            }
             params.add(new BasicNameValuePair("file", imgFilePath));
             
             String inatNetwork = mApp.getInaturalistNetworkMember();
