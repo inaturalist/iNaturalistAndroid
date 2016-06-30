@@ -66,12 +66,38 @@ public class ObservationProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-            for (int i = 0; i < TABLE_NAMES.length; i++) {
-                db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAMES[i]);
+            Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
+
+            // Do any changes to the existing tables (e.g. add columns), according to the new DB version
+
+            if (oldVersion < 7) {
+                addColumnIfNotExists(db, ObservationPhoto.TABLE_NAME, "uuid", "TEXT");
+                addColumnIfNotExists(db, Observation.TABLE_NAME, "uuid", "TEXT");
             }
-            onCreate(db);
+            if (oldVersion < 8) {
+                addColumnIfNotExists(db, Observation.TABLE_NAME, "preferred_common_name", "TEXT");
+            }
+            if (oldVersion < 9) {
+                addColumnIfNotExists(db, ObservationPhoto.TABLE_NAME, "photo_filename", "TEXT");
+            }
+        }
+
+        // Adds a new column to a table if doesn't exist already
+        // @param db
+        // @param tableName
+        // @param columnName
+        // @param columnDefinition - type + default value + contraints (e.g. "CHAR(25) DEFAULT 4 NOT NULL")
+        private void addColumnIfNotExists(SQLiteDatabase db,  String tableName, String columnName, String columnDefinition) {
+            Cursor cursor = db.rawQuery("SELECT * FROM " + tableName + " LIMIT 1", null);
+
+            // See if column exists
+            int columnIndex = cursor.getColumnIndex(columnName);
+            cursor.close();
+            if (columnIndex < 0) {
+                // Add in the new column
+                db.execSQL("ALTER TABLE " + tableName + " ADD COLUMN " + columnName + " " + columnDefinition + ";");
+            }
+
         }
     }
 
