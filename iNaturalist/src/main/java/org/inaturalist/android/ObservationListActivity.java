@@ -392,21 +392,38 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mPullRefreshListView.setOnItemClickListener(this);
 
 
-        if (app.getAutoSync() && !app.getIsSyncing()) {
-            Cursor c = getContentResolver().query(Observation.CONTENT_URI,
-                    Observation.PROJECTION,
-                    "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))",
-                    null,
-                    Observation.SYNC_ORDER);
-            int syncCount = c.getCount();
-            c.close();
+        boolean hasOldObs = hasOldObservations();
+        if ((app.getAutoSync() && !app.getIsSyncing()) || (hasOldObs)) {
+            int syncCount = 0;
+            if (!hasOldObs) {
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))",
+                        null,
+                        Observation.SYNC_ORDER);
+                syncCount = c.getCount();
+                c.close();
+            }
 
-            // Trigger a sync
-            if (syncCount > 0) {
+            // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
+            if (hasOldObs || (syncCount > 0)) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
             }
         }
+    }
+
+    // Checks to see if there are any observations that have the "old" way of saving photos
+    private boolean hasOldObservations() {
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "(photo_filename IS NULL) AND (photo_url IS NULL)",
+                null,
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+        int count = c.getCount();
+        c.close();
+
+        return count > 0;
     }
     
 

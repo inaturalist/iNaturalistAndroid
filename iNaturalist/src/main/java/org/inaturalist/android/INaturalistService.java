@@ -23,9 +23,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -691,8 +693,49 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         syncObservationFields();
         postPhotos();
         postProjectObservations();
+        redownloadOldObservations();
+    }
 
-//        Toast.makeText(getApplicationContext(), "Observations synced", Toast.LENGTH_SHORT);
+    // Re-download any observations that have photos saved in the "old" way
+    private void redownloadOldObservations() throws AuthenticationException {
+
+        // Find all observations that have photos saved in the old way
+        Set<Integer> observationIds = new HashSet<Integer>();
+
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "(photo_filename IS NULL) AND (photo_url IS NULL)",
+                null,
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+
+        do {
+            Integer obsId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_ID));
+
+            // Delete the observation photo
+            Integer obsPhotoId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto.ID));
+            getContentResolver().delete(ObservationPhoto.CONTENT_URI, "id = " + obsPhotoId, null);
+
+            if (!observationIds.contains(obsId)) {
+                // Re-download this observation (haven't been re-downloaded yet)
+
+                String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json?extra=observation_photos,projects,fields";
+                Locale deviceLocale = getResources().getConfiguration().locale;
+                String deviceLanguage =   deviceLocale.getLanguage();
+                url += "&locale=" + deviceLanguage;
+                JSONArray json = get(url, true);
+                if (json != null && json.length() > 0) {
+                    syncJson(json, true);
+                }
+            }
+
+            observationIds.add(obsId);
+
+        } while (c.moveToNext());
+
+        c.close();
+
     }
     
     private BetterJSONObject getTaxon(int id) throws AuthenticationException {
@@ -2478,7 +2521,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             Cursor pc = getContentResolver().query(
                     ObservationPhoto.CONTENT_URI, 
                     ObservationPhoto.PROJECTION, 
-                    "observation_id = "+observation.id, 
+                    "(observation_id = "+observation.id + ") AND (photo_url IS NOT NULL) AND (photo_filename IS NOT NULL)",
                     null, null);
             pc.moveToFirst();
             while(pc.isAfterLast() == false) {
@@ -2521,7 +2564,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     ObservationPhoto.CONTENT_URI, 
                     where, 
                     null);
-            
+
             if (deleteCount > 0) {
             	Crashlytics.log(1, TAG, String.format("Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
             			deleteCount, observation.id, joinedPhotoIds));
