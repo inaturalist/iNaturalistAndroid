@@ -2219,11 +2219,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (authenticated) {
             ensureCredentials();
             
-            if (mLoginType == LoginType.PASSWORD) {
-                request.setHeader("Authorization", "Basic " + mCredentials);
-            } else {
-                request.setHeader("Authorization", "Bearer " + mCredentials);
-            }
+            request.setHeader("Authorization", "Bearer " + mCredentials);
         }
 
         try {
@@ -2314,66 +2310,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
 
-    public static String verifyCredentials(String credentials) {
-        DefaultHttpClient client = new DefaultHttpClient();
-        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
-        String url = HOST + "/observations/new.json";
-        HttpRequestBase request = new HttpGet(url);
-        request.setHeader("Authorization", "Basic "+credentials);
-        request.setHeader("Content-Type", "application/json");
-
-        try {
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-            	// Next, find the iNat username (since we currently only have email address)
-            	request = new HttpGet(HOST + "/users/edit.json");
-                request.setHeader("Authorization", "Basic "+credentials);
-
-            	response = client.execute(request);
-            	entity = response.getEntity();
-            	content = EntityUtils.toString(entity);
-
-            	if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-            		return null;
-            	}
-
-            	JSONObject json = new JSONObject(content);
-            	if (!json.has("login")) {
-            		return null;
-            	}
-
-            	String username = json.getString("login");
-
-                return username;
-            } else {
-                Log.e(TAG, "Authentication failed: " + content);
-                return null;
-            }
-        }
-        catch (IOException e) {
-            request.abort();
-            Log.w(TAG, "Error for URL " + url, e);
-        } catch (JSONException e) {
-			e.printStackTrace();
-		}
-        return null;
-    }
-
-    public static String verifyCredentials(String username, String password) {
-        String credentials = Base64.encodeToString(
-                (username + ":" + password).getBytes(), Base64.URL_SAFE|Base64.NO_WRAP
-                );
-        return verifyCredentials(credentials);
-    }
-
     // Returns an array of two strings: access token + iNat username
-    public static String[] verifyCredentials(String oauth2Token, LoginType authType) {
-        String grantType;
+    public static String[] verifyCredentials(String username, String oauth2Token, LoginType authType) {
+        String grantType = null;
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
-        String url = HOST + "/oauth/assertion_token";
+        String url = HOST + (authType == LoginType.PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
         HttpRequestBase request = new HttpPost(url);
         ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
 
@@ -2381,12 +2323,20 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         postParams.add(new BasicNameValuePair("client_id", INaturalistApp.getAppContext().getString(R.string.oauth_client_id)));
         if (authType == LoginType.FACEBOOK) {
             grantType = "facebook";
-        } else {
+        } else if (authType == LoginType.GOOGLE) {
             grantType = "google";
+        } else if (authType == LoginType.PASSWORD) {
+            grantType = "password";
         }
-        
+
         postParams.add(new BasicNameValuePair("grant_type", grantType));
-        postParams.add(new BasicNameValuePair("assertion", oauth2Token));
+        if (authType == LoginType.PASSWORD) {
+            postParams.add(new BasicNameValuePair("password", oauth2Token));
+            postParams.add(new BasicNameValuePair("username", username));
+            postParams.add(new BasicNameValuePair("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret)));
+        } else {
+            postParams.add(new BasicNameValuePair("assertion", oauth2Token));
+        }
         
         try {
             ((HttpPost)request).setEntity(new UrlEncodedFormEntity(postParams));
@@ -2425,9 +2375,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     return null;
                 }
                 
-                String username = json.getString("login");
+                String returnedUsername = json.getString("login");
                
-                return new String[] { accessToken, username };
+                return new String[] { accessToken, returnedUsername };
                 
             } else {
                 Log.e(TAG, "Authentication failed: " + content);

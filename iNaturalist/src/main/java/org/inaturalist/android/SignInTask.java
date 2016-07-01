@@ -135,26 +135,16 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             mInvalidated = false;
         }
 
-        if (mLoginType == INaturalistService.LoginType.PASSWORD) {
-            String result = INaturalistService.verifyCredentials(mUsername, mPassword);
-            if (result != null) {
-                mUsername = result;
-                return "true";
-            } else {
-                return null;
-            }
-        } else {
-            String[] results = INaturalistService.verifyCredentials(mPassword, mLoginType);
+        String[] results = INaturalistService.verifyCredentials(mUsername, mPassword, mLoginType);
 
-            if (results == null) {
-                return null;
-            }
-
-            // Upgrade from FB/Google email to iNat username
-            mUsername = results[1];
-
-            return results[0];
+        if (results == null) {
+            return null;
         }
+
+        // Upgrade from FB/Google email to iNat username
+        mUsername = results[1];
+
+        return results[0];
     }
 
     protected void onPreExecute() {
@@ -194,13 +184,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         mPrefEditor.putString("username", mUsername);
 
         String credentials;
-        if (mLoginType == INaturalistService.LoginType.PASSWORD) {
-            credentials = Base64.encodeToString(
-                    (mUsername + ":" + mPassword).getBytes(), Base64.URL_SAFE | Base64.NO_WRAP
-            );
-        } else {
-            credentials = result; // Access token
-        }
+        credentials = result; // Access token
         mPrefEditor.putString("credentials", credentials);
         mPrefEditor.putString("password", mPassword);
         mPrefEditor.putString("login_type", mLoginType.toString());
