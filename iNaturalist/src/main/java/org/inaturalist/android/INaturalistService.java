@@ -252,7 +252,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 	public enum LoginType {
 	    PASSWORD,
 	    GOOGLE,
-        LoginType, FACEBOOK
+        FACEBOOK,
+        OAUTH_PASSWORD
 	};
 
 
@@ -267,7 +268,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         mLogin = mPreferences.getString("username", null);
         mCredentials = mPreferences.getString("credentials", null);
-        mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.PASSWORD.toString()));
+        mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.OAUTH_PASSWORD.toString()));
         mApp = (INaturalistApp) getApplicationContext();
         String action = intent.getAction();
         
@@ -2218,8 +2219,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         // auth
         if (authenticated) {
             ensureCredentials();
-            
-            request.setHeader("Authorization", "Bearer " + mCredentials);
+
+            if (mLoginType == LoginType.PASSWORD) {
+                // Old-style password authentication
+                request.setHeader("Authorization", "Basic " + mCredentials);
+            } else {
+                request.setHeader("Authorization", "Bearer " + mCredentials);
+            }
         }
 
         try {
@@ -2315,7 +2321,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String grantType = null;
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
-        String url = HOST + (authType == LoginType.PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
+        String url = HOST + (authType == LoginType.OAUTH_PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
         HttpRequestBase request = new HttpPost(url);
         ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
 
@@ -2325,12 +2331,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             grantType = "facebook";
         } else if (authType == LoginType.GOOGLE) {
             grantType = "google";
-        } else if (authType == LoginType.PASSWORD) {
+        } else if (authType == LoginType.OAUTH_PASSWORD) {
             grantType = "password";
         }
 
         postParams.add(new BasicNameValuePair("grant_type", grantType));
-        if (authType == LoginType.PASSWORD) {
+        if (authType == LoginType.OAUTH_PASSWORD) {
             postParams.add(new BasicNameValuePair("password", oauth2Token));
             postParams.add(new BasicNameValuePair("username", username));
             postParams.add(new BasicNameValuePair("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret)));

@@ -333,7 +333,7 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
 	}
 	
 	private void signOut() {
-        INaturalistService.LoginType loginType = INaturalistService.LoginType.valueOf(mPreferences.getString("login_type", INaturalistService.LoginType.PASSWORD.toString()));
+        INaturalistService.LoginType loginType = INaturalistService.LoginType.valueOf(mPreferences.getString("login_type", INaturalistService.LoginType.OAUTH_PASSWORD.toString()));
 
         if (loginType == INaturalistService.LoginType.FACEBOOK) {
             LoginManager.getInstance().logOut();

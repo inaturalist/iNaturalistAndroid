@@ -88,7 +88,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             } else {
                 // Registration successful - login the user
                 recreateSignInTaskIfNeeded();
-                mSignInTask.signIn(INaturalistService.LoginType.PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
             }
         }
     }
@@ -352,7 +352,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 if (!mIsSignup) {
                     // Login
                     recreateSignInTaskIfNeeded();
-                    mSignInTask.signIn(INaturalistService.LoginType.PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                    mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
                 } else {
                     // Sign up
                     mUserRegisterReceiver = new UserRegisterReceiver();

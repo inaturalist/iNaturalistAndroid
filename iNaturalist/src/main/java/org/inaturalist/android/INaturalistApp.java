@@ -421,7 +421,7 @@ public class INaturalistApp extends MultiDexApplication {
     }
     
     public LoginType getLoginType() {
-        return LoginType.valueOf(getPrefs().getString("login_type", LoginType.PASSWORD.toString()));
+        return LoginType.valueOf(getPrefs().getString("login_type", LoginType.OAUTH_PASSWORD.toString()));
     }
 
 

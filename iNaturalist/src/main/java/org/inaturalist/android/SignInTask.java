@@ -293,7 +293,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
 	    } else {
 	        // "Regular" login
-	        execute(username, password, INaturalistService.LoginType.PASSWORD.toString());
+	        execute(username, password, INaturalistService.LoginType.OAUTH_PASSWORD.toString());
 	    }
 	}
 
