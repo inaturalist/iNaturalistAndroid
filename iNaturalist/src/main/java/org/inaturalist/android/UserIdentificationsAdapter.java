@@ -42,12 +42,11 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.taxon_result_item, parent, false);
+        View view = inflater.inflate(R.layout.user_profile_identifications_item, parent, false);
         JSONObject item = null;
         item = mResultList.get(position);
 
         ((ViewGroup)view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
-        ((ViewGroup)view.findViewById(R.id.unknown_taxon_result)).setVisibility(View.GONE);
 
         // Get the taxon display name according to device locale
         try {

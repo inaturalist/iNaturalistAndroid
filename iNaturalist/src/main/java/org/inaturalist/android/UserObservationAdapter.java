@@ -97,7 +97,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
                     @Override
                     public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        Bitmap centerCrop = ImageUtils.centerCropBitmap(loadedBitmap);
+                        Bitmap centerCrop = ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap), 4);
                         return centerCrop;
                     }
                 });
