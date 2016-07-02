@@ -654,18 +654,17 @@ public class ObservationEditor extends AppCompatActivity {
 
         updateObservationVisibilityDescription();
 
-        final OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(this) {
-            @Override
-            public void onSwipeLeft() {
-                editNextObservation(1);
-            }
-
+        ((SwipeableLinearLayout)findViewById(R.id.swipeable_layout)).setOnSwipeListener(new SwipeableLinearLayout.SwipeListener() {
             @Override
             public void onSwipeRight() {
                 editNextObservation(-1);
             }
-        };
-        findViewById(R.id.main_content).setOnTouchListener(onSwipeTouchListener);
+
+            @Override
+            public void onSwipeLeft() {
+                editNextObservation(1);
+            }
+        });
     }
 
     private void editNextObservation(int direction) {
