@@ -22,9 +22,10 @@ import android.widget.TextView;
 public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeListener, OnPageChangeListener {
     MyPageAdapter mPageAdapter;
     private ViewPager mViewPager;
-    private TabHost mTabHost;   
-    
-	@Override
+    private TabHost mTabHost;
+    private List<Fragment> mFragments;
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -37,7 +38,16 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
 	{
 		super.onStop();		
 		FlurryAgent.onEndSession(this);
-	}	
+	}
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        getSupportFragmentManager().putFragment(outState, "all_guides", mFragments.get(0));
+        getSupportFragmentManager().putFragment(outState, "my_guides", mFragments.get(1));
+        getSupportFragmentManager().putFragment(outState, "nearby_guides", mFragments.get(2));
+
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +58,22 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
 	    onDrawerCreate(savedInstanceState);
         
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        
+        mViewPager.setOffscreenPageLimit(2);
+
         // Tab Initialization
         initialiseTabHost();
 
         // Fragments and ViewPager Initialization
-        List<Fragment> fragments = getFragments();
-        mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+        if (savedInstanceState == null) {
+            mFragments = getFragments();
+        } else {
+            mFragments = new ArrayList<Fragment>();
+            mFragments.add(getSupportFragmentManager().getFragment(savedInstanceState, "all_guides"));
+            mFragments.add(getSupportFragmentManager().getFragment(savedInstanceState, "my_guides"));
+            mFragments.add(getSupportFragmentManager().getFragment(savedInstanceState, "nearby_guides"));
+        }
+
+        mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mPageAdapter);
         mViewPager.setOnPageChangeListener(this);
     }

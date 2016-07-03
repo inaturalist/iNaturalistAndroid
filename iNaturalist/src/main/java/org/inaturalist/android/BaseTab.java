@@ -207,6 +207,41 @@ public abstract class BaseTab extends Fragment {
      * the iNat service class */
     abstract protected boolean recallServiceActionIfNoResults();
 
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        saveListToBundle(outState, mProjects, "mProjects");
+        super.onSaveInstanceState(outState);
+    }
+
+    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
+        if (list != null) {
+        	JSONArray arr = new JSONArray(list);
+        	outState.putString(key, arr.toString());
+        }
+    }
+
+    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
+        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
+
+        String obsString = savedInstanceState.getString(key);
+        if (obsString != null) {
+            try {
+                JSONArray arr = new JSONArray(obsString);
+                for (int i = 0; i < arr.length(); i++) {
+                    results.add(arr.getJSONObject(i));
+                }
+
+                return results;
+            } catch (JSONException exc) {
+                exc.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -227,6 +262,12 @@ public abstract class BaseTab extends Fragment {
         super.onCreate(savedInstanceState);
         
         Log.i(TAG, "onCreate - " + getActionName() + ":" + getClass().getName());
+
+        if (savedInstanceState == null) {
+            mProjects = null;
+        } else {
+            mProjects = loadListFromBundle(savedInstanceState, "mProjects");
+        }
     }
     
     @Override
@@ -252,7 +293,6 @@ public abstract class BaseTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView: " + getActionName() + ":" + getClass().getName() + (mProjects != null ? mProjects.toString() : "null"));
         
-        mProjects = null;
         mApp = (INaturalistApp) getActivity().getApplication();
         mHelper = new ActivityHelper(getActivity());
 
@@ -310,10 +350,10 @@ public abstract class BaseTab extends Fragment {
             // Get the user's projects
             Log.i(TAG, "Calling " + getActionName());
             Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-            getActivity().startService(serviceIntent);  
+            getActivity().startService(serviceIntent);
         } else {
             // Load previously downloaded projects
-            Log.i(TAG, "Previosly loaded projects: " + mProjects.toString());
+            Log.i(TAG, "Previously loaded projects: " + mProjects.toString());
             loadProjectsIntoUI();
         }
         
@@ -410,7 +450,7 @@ public abstract class BaseTab extends Fragment {
                     FilterResults filterResults = new FilterResults();
                     if (constraint != null) {
                         if (constraint.length() == 0) {
-                            filterResults.values = new ArrayList<JSONObject>();
+                            filterResults.values = mOriginalItems;
                             filterResults.count = 0;
                             
                         } else {

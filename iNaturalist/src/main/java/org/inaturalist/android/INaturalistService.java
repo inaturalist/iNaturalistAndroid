@@ -711,7 +711,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         c.moveToFirst();
 
-        do {
+        while (!c.isAfterLast()) {
             Integer obsId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_ID));
 
             // Delete the observation photo
@@ -733,7 +733,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
             observationIds.add(obsId);
 
-        } while (c.moveToNext());
+            c.moveToNext();
+        }
 
         c.close();
 

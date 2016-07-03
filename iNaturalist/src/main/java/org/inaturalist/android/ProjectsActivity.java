@@ -24,7 +24,8 @@ import android.widget.TextView;
 public class ProjectsActivity extends BaseFragmentActivity implements OnTabChangeListener, OnPageChangeListener {
     MyPageAdapter mPageAdapter;
     private ViewPager mViewPager;
-    private TabHost mTabHost;   
+    private TabHost mTabHost;
+    private List<Fragment> mFragments;
     
 	@Override
 	protected void onStart()
@@ -50,13 +51,22 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
 	    onDrawerCreate(savedInstanceState);
         
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager.setOffscreenPageLimit(2);
 
         // Tab Initialization
         initialiseTabHost();
 
         // Fragments and ViewPager Initialization
-        List<Fragment> fragments = getFragments();
-        mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+        if (savedInstanceState == null) {
+            mFragments = getFragments();
+        } else {
+            mFragments = new ArrayList<Fragment>();
+            mFragments.add(getSupportFragmentManager().getFragment(savedInstanceState, "joined_projects"));
+            mFragments.add(getSupportFragmentManager().getFragment(savedInstanceState, "nearby_projects"));
+            mFragments.add(getSupportFragmentManager().getFragment(savedInstanceState, "featured_projects"));
+        }
+
+        mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mPageAdapter);
         mViewPager.setOnPageChangeListener(this);
     }
@@ -138,5 +148,15 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
 
         refreshTabs(0);
     }
-  
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        getSupportFragmentManager().putFragment(outState, "joined_projects", mFragments.get(0));
+        getSupportFragmentManager().putFragment(outState, "nearby_projects", mFragments.get(1));
+        getSupportFragmentManager().putFragment(outState, "featured_projects", mFragments.get(2));
+
+        super.onSaveInstanceState(outState);
+    }
+
 }
