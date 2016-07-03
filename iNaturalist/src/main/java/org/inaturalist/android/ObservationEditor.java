@@ -1781,7 +1781,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 if (isCamera)  {
                     // Delete original photo (before resize)
-                    File f = new File(selectedImageUri.getPath());
+                    File f = new File(FileUtils.getPath(this, selectedImageUri));
                     f.delete();
                 }
 
@@ -1886,7 +1886,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void importPhotoMetadata(Uri photoUri) {
-        String imgFilePath = imageFilePathFromUri(photoUri);
+        String imgFilePath = FileUtils.getPath(this, photoUri);
         
         if (imgFilePath == null) return;
         
@@ -2096,7 +2096,7 @@ public class ObservationEditor extends AppCompatActivity {
     
 
     private void updateImageOrientation(Uri uri) {
-        String imgFilePath = imageFilePathFromUri(uri);
+        String imgFilePath = FileUtils.getPath(this, uri);
         
         if (imgFilePath == null) return;
         
@@ -2122,32 +2122,6 @@ public class ObservationEditor extends AppCompatActivity {
         }
     }
     
-    private String imageFilePathFromUri(Uri uri) {
-        String[] projection = {
-                MediaStore.MediaColumns._ID,
-                MediaStore.Images.Media.DATA
-        };
-        
-
-        Cursor c;
-        try {
-        	c = getContentResolver().query(uri, projection, null, null, null);
-        } catch (Exception exc) {
-        	exc.printStackTrace();
-        	return null;
-        }
-        
-        if ((c == null) || (c.getCount() == 0)) {
-        	return null;
-        }
-
-        c.moveToFirst();
-        String path = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
-        c.close();
-        
-        return path;
-    }
-
     protected void updateImages() {
     	if (mObservation.id != null) {
     		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
