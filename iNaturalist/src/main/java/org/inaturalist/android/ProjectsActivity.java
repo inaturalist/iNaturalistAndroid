@@ -49,7 +49,9 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
 
         setContentView(R.layout.projects);
 	    onDrawerCreate(savedInstanceState);
-        
+
+        getSupportActionBar().setElevation(0);
+
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setOffscreenPageLimit(2);
 

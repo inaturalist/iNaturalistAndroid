@@ -4,7 +4,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
    <style name="iNatActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
        <item name="android:background">#ffffff</item>
-       <item name="elevation">0dp</item>
+       <item name="elevation">3dp</item>
     </style>
 
   <style name="ButtoniNatAppTheme" parent="android:Widget.Holo.Light.Button">

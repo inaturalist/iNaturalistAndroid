@@ -56,7 +56,9 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
 
         setContentView(R.layout.guides);
 	    onDrawerCreate(savedInstanceState);
-        
+
+        getSupportActionBar().setElevation(0);
+
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setOffscreenPageLimit(2);
 

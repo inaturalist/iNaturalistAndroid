@@ -269,6 +269,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         refreshSyncBar();
 
         mTopActionBar = getSupportActionBar();
+
         View addButton = (View) findViewById(R.id.add_observation);
         addButton.setOnClickListener(new OnClickListener() {
             @Override
