@@ -1,32 +1,13 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 public abstract class BaseProjectsTab extends BaseTab {
 	private static final int PROJECT_REQUEST_CODE = 101;
 	private int mIndex;
-
-
-    @Override
-    protected Boolean useNewItemLayout() {
-        // Use the new item layout
-        return true;
-    }
-
-    @Override
-    protected Boolean showSearchBar() {
-        // Don't show the search bar
-        return false;
-    }
-
-    @Override
-    protected Boolean noClickableInfo() {
-        // Don't allow clicking the project icon for more info
-        return true;
-    }
-
 
     protected void onItemSelected(BetterJSONObject item, int index) {
     	// Show project details
@@ -50,8 +31,8 @@ public abstract class BaseProjectsTab extends BaseTab {
          }
     }
     
-    protected String getSearchFilterTextHint() {
-    	return getResources().getString(R.string.search_projects);
+    public static String getSearchFilterTextHint(Context context) {
+    	return context.getResources().getString(R.string.search_projects);
     }
 
     protected String getNoItemsFoundText() {
@@ -62,9 +43,9 @@ public abstract class BaseProjectsTab extends BaseTab {
     	return getResources().getString(R.string.no_internet_projects);
     }
     
-    protected String getSearchUrl() {
-        String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+    public static String getSearchUrl(INaturalistApp app) {
+        String inatNetwork = app.getInaturalistNetworkMember();
+        String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
 
         return "http://" + inatHost + "/projects/search.json";
     }

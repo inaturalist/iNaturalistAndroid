@@ -221,6 +221,10 @@
             android:configChanges="orientation"
             android:name=".ProfilePhotoViewer" >
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:name=".ItemSearchActivity" >
+        </activity>
 
         <provider
             android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo;org.inaturalist.android.project;org.inaturalist.android.project_observation;org.inaturalist.android.project_field;org.inaturalist.android.project_field_value"

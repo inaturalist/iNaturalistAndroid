@@ -6,6 +6,7 @@ import java.util.List;
 import com.flurry.android.FlurryAgent;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -159,5 +162,26 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
 
         refreshTabs(0);
     }
-   
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                Intent intent = new Intent(this, ItemSearchActivity.class);
+                intent.putExtra(ItemSearchActivity.RESULT_VIEWER_ACTIVITY, GuideDetails.class);
+                intent.putExtra(ItemSearchActivity.RESULT_VIEWER_ACTIVITY_PARAM_NAME, "guide");
+                intent.putExtra(ItemSearchActivity.SEARCH_HINT_TEXT, BaseGuidesTab.getSearchFilterTextHint(this));
+                intent.putExtra(ItemSearchActivity.SEARCH_URL, BaseGuidesTab.getSearchUrl((INaturalistApp) getApplicationContext()));
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
+        return true;
+    }
 }

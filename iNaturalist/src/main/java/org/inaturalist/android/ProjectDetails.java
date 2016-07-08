@@ -28,6 +28,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -118,10 +119,10 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        // Respond to the action bar's Up/Home button
-        case android.R.id.home:
-        	this.onBackPressed();
-            return true;
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                this.onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     } 
@@ -824,5 +825,4 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
             return view == object;
         }
     }
-
 }

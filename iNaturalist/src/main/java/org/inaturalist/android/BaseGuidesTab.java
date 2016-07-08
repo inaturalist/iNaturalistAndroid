@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.content.Context;
 import android.content.Intent;
 
 public abstract class BaseGuidesTab extends BaseTab {
@@ -11,8 +12,8 @@ public abstract class BaseGuidesTab extends BaseTab {
     }
     
     
-    protected String getSearchFilterTextHint() {
-    	return getResources().getString(R.string.search_guides);
+    public static String getSearchFilterTextHint(Context context) {
+    	return context.getResources().getString(R.string.search_guides);
     }
 
     protected String getNoItemsFoundText() {
@@ -23,9 +24,9 @@ public abstract class BaseGuidesTab extends BaseTab {
     	return getResources().getString(R.string.no_internet_guides);
     }
 
-    protected String getSearchUrl() {
-        String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+    public static String getSearchUrl(INaturalistApp app) {
+        String inatNetwork = app.getInaturalistNetworkMember();
+        String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
 
         return "http://" + inatHost + "/guides/search.json";
     }
@@ -33,4 +34,6 @@ public abstract class BaseGuidesTab extends BaseTab {
     protected boolean recallServiceActionIfNoResults() {
         return false;
     }
+
+
 }
