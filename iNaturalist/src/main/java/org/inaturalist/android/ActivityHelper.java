@@ -144,29 +144,47 @@ public class ActivityHelper {
     }
 
     public void loading(String title, String msg) {
+        loading(title, msg, null);
+    }
+
+    public void loading(String title, String msg, final DialogInterface.OnClickListener onCancelCb) {
         if (title == null) { title = ""; }
         if (msg == null) { msg = mContext.getString(R.string.loading); }
 
-        if (mProgressDialog != null) {
-            mProgressDialog.setTitle(title);
-            mProgressDialog.setMessage(msg);
-        } else {
-        	try {
-        		mProgressDialog = ProgressDialog.show(mContext, title, msg, true);
-        		mProgressDialog.setCancelable(false);
-        	} catch (Exception exc) {
-        		exc.printStackTrace();
-        		mProgressDialog = null;
-        	}
+        boolean newDialog = false;
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(mContext);
+            newDialog = true;
         }
+        mProgressDialog.setTitle(title);
+        mProgressDialog.setMessage(msg);
+
+        if (onCancelCb != null) {
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, mContext.getString(R.string.cancel), onCancelCb);
+            mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
+                    onCancelCb.onClick(dialogInterface, 0);
+                }
+            });
+        } else {
+            mProgressDialog.setCancelable(false);
+        }
+
+        if (newDialog) mProgressDialog.show();
     }
 
     public void loading(String msg) {
         loading(null, msg);
     }
 
+    public void loading(String msg, DialogInterface.OnClickListener onCancel) {
+        loading(null, msg, onCancel);
+    }
+
     public void loading() {
-        loading(null, null);
+        loading(null, null, null);
     }
     
     public boolean isLoading() {

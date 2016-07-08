@@ -60,7 +60,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ObservationListActivity extends BaseFragmentActivity implements OnItemClickListener, INotificationCallback {
+public class ObservationListActivity extends BaseFragmentActivity implements OnItemClickListener, INotificationCallback, DialogInterface.OnClickListener {
 	public static String TAG = "INAT:ObservationListActivity";
 	
 	private PullToRefreshListView mPullRefreshListView;
@@ -106,8 +106,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 	    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-	}	
-	
+	}
+
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i) {
+        // User chose to cancel sync
+        mApp.setCancelSync(true);
+        refreshSyncBar();
+    }
+
     private class SyncCompleteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -129,6 +136,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
             if ((mLastMessage != null) && (mLastMessage.length() > 0)) {
                 Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
+                mLastMessage = null;
             }
 
             if (mApp.getAutoSync()) {
@@ -246,7 +254,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
                 mSyncObservations.setVisibility(View.GONE);
 
-                mHelper.loading(getResources().getString(R.string.syncing_observations));
+                mHelper.loading(getResources().getString(R.string.syncing_observations), ObservationListActivity.this);
             }
         });
         
@@ -471,7 +479,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         if (app.getIsSyncing()) {
         	// We're still syncing
         	mHelper.stopLoading();
-        	if ((mLastMessage != null) && (!mApp.getAutoSync())) mHelper.loading(mLastMessage);
+        	if ((mLastMessage != null) && (!mApp.getAutoSync())) mHelper.loading(mLastMessage, ObservationListActivity.this);
         	app.setNotificationCallback(this);
         }
 
@@ -1009,7 +1017,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             @Override
             public void run() {
                 if (!mApp.getAutoSync()) {
-                    mHelper.loading(content);
+                    mHelper.loading(content, ObservationListActivity.this);
                 }
                 mAdapter.refreshCursor();
             }

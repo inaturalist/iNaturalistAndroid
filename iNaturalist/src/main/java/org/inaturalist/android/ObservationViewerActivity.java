@@ -596,7 +596,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mAddFavorite.setVisibility(View.VISIBLE);
             mRemoveFavorite.setVisibility(View.GONE);
         }
-        
+
         mFavoritesAdapter = new FavoritesAdapter(this, mFavorites);
         mFavoritesList.setAdapter(mFavoritesAdapter);
 
@@ -1308,7 +1308,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         });
 
-        if ((mObservation.description != null) && (mObservation.description.length() > 0)) {
+        if ((mObservation.description != null) && (mObservation.description.trim().length() > 0)) {
             mNotesContainer.setVisibility(View.VISIBLE);
             mNotes.setText(mObservation.description);
         } else {

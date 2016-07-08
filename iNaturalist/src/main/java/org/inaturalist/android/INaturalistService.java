@@ -661,12 +661,21 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
                 syncObservations();
-               
+
                 // Update last sync time
                 long lastSync = System.currentTimeMillis();
                 mPreferences.edit().putLong("last_sync_time", lastSync).commit();
  
             }
+        } catch (CancelSyncException e) {
+            mApp.setCancelSync(false);
+            mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+            mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION,
+                    getString(R.string.syncing_canceled),
+                    getString(R.string.syncing_canceled),
+                    getString(R.string.syncing_canceled));
+
+
         } catch (AuthenticationException e) {
             if (!mPassive) {
                 requestCredentials();
@@ -686,7 +695,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
 
 
-    private void syncObservations() throws AuthenticationException {
+    private void syncObservations() throws AuthenticationException, CancelSyncException {
         deleteObservations(); // Delete locally-removed observations
         getUserObservations(0); // First, download remote observations (new/updated)
         postObservations(); // Next, update local-to-remote observations
@@ -759,7 +768,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         return new BetterJSONObject(res);
     }
  
-    private void postProjectObservations() throws AuthenticationException {
+    private void postProjectObservations() throws AuthenticationException, CancelSyncException {
         // First, delete any project-observations that were deleted by the user
         Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, 
                 ProjectObservation.PROJECTION, 
@@ -782,6 +791,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
 
             c.moveToNext();
+            checkForCancelSync();
         }
 
         // Now it's safe to delete all of the project-observations locally
@@ -873,6 +883,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
             
             c.moveToNext();
+            checkForCancelSync();
         }
 
         mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
@@ -925,7 +936,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
     
-    private void deleteObservations() throws AuthenticationException {
+    private void deleteObservations() throws AuthenticationException, CancelSyncException {
         // Remotely delete any locally-removed observations
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
                 Observation.PROJECTION, 
@@ -949,6 +960,12 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
         int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
         int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
+
+        checkForCancelSync();
+    }
+
+    private void checkForCancelSync() throws CancelSyncException {
+        if (mApp.getCancelSync()) throw new CancelSyncException();
     }
 
 
@@ -1115,7 +1132,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         post(HOST + "/comments.json", params);
     }
 
-    private void postObservations() throws AuthenticationException {
+    private void postObservations() throws AuthenticationException, CancelSyncException {
         Observation observation;
         // query observations where _updated_at > updated_at
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
@@ -1142,6 +1159,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     put(HOST + "/observations/" + observation.id + ".json?extra=observation_photos", paramsForObservation(observation, false))
             );
             c.moveToNext();
+
+            checkForCancelSync();
         }
         c.close();
 
@@ -1168,6 +1187,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     post("http://" + inatHost + "/observations.json?extra=observation_photos", paramsForObservation(observation, true))
             );
             c.moveToNext();
+
+            checkForCancelSync();
         }
         c.close();
         
@@ -1227,7 +1248,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         return new Observation(new BetterJSONObject(json));
     }
     
-    private void postPhotos() throws AuthenticationException {
+    private void postPhotos() throws AuthenticationException, CancelSyncException {
         ObservationPhoto op;
         int createdCount = 0;
         // query observations where _updated_at > updated_at
@@ -1297,6 +1318,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Log.e(TAG, "JSONException: " + e.toString());
             }
             c.moveToNext();
+
+            checkForCancelSync();
         }
         c.close();
 
@@ -1915,7 +1938,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     
     
     @SuppressLint("NewApi")
-	private void getUserObservations(int maxCount) throws AuthenticationException {
+	private void getUserObservations(int maxCount) throws AuthenticationException, CancelSyncException {
         if (ensureCredentials() == false) {
             return;
         }
@@ -1958,9 +1981,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         		mResponseHeaders = null;
         	}
         }
+
+        checkForCancelSync();
     }
     
-    private void syncObservationFields() throws AuthenticationException {
+    private void syncObservationFields() throws AuthenticationException, CancelSyncException {
         
         // First, remotely update the observation fields which were modified
         
@@ -1997,6 +2022,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 	}
 
                 	mProjectFieldValues.put(localField.observation_id, fields);
+
+                    checkForCancelSync();
                 }
             }
             
@@ -2045,6 +2072,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             fields.remove(Integer.valueOf(localField.field_id));
 
             c.moveToNext();
+
+            checkForCancelSync();
         }
         c.close();
 

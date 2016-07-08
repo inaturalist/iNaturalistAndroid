@@ -70,6 +70,7 @@ public class INaturalistApp extends MultiDexApplication {
 
     public static final int NO_OBSERVATION = -1;
     private int mObservationIdBeingSynced = NO_OBSERVATION;
+    private boolean mCancelSync = false;
 
     // The ID of the observation being currently synced
 
@@ -398,7 +399,15 @@ public class INaturalistApp extends MultiDexApplication {
     public boolean getIsSyncing() {
     	return mIsSyncing;
     }
-    
+
+
+    public void setCancelSync(boolean cancel) {
+        mCancelSync  = cancel;
+    }
+    public boolean getCancelSync() {
+        return mCancelSync;
+    }
+
     public void checkSyncNeeded() {
         Cursor oCursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, 
                 "_synced_at IS NULL OR (_updated_at > _synced_at)", null, Observation.DEFAULT_SORT_ORDER);

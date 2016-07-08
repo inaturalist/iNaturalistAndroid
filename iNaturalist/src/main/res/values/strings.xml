@@ -500,5 +500,6 @@
     <string name="add_to_projects">Add to project(s)</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
     <string name="users_identification">%1$s\'s ID: %2$s</string>
+    <string name="syncing_canceled">Syncing Canceled</string>
  </resources>
 
