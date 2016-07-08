@@ -799,9 +799,6 @@ public class ObservationEditor extends AppCompatActivity {
         if (mLongitudeView.getText() == null || mLongitudeView.getText().length() == 0) {
             return true;
         }
-        if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
-            return true;
-        }
 
         return false;
     }
