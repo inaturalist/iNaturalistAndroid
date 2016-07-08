@@ -449,18 +449,16 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			}
 		});
         
-        mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+        mTabHost = (TabHost) findViewById(R.id.tabhost);
         mTabHost.setup();
-        
+
         INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_MAP).setIndicator("", getResources().getDrawable(R.drawable.ic_map_black_24dp)));
         INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_GRID).setIndicator("", getResources().getDrawable(R.drawable.ic_view_module_black_24dp)));
         INaturalistMapActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_LIST).setIndicator("", getResources().getDrawable(R.drawable.ic_list_black_24dp)));
 
         mTabHost.getTabWidget().getChildAt(0).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
         mTabHost.getTabWidget().getChildAt(1).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-        mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));
-
-		mTabHost.getTabWidget().setDividerDrawable(null);
+        mTabHost.getTabWidget().getChildAt(2).setBackgroundDrawable(getResources().getDrawable(R.drawable.inatapptheme_tab_indicator_holo));	mTabHost.getTabWidget().setDividerDrawable(null);
 
         mTabHost.setOnTabChangedListener(this);
         
@@ -1714,11 +1712,26 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		public View getView(int position, View convertView, ViewGroup parent) { 
  			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
  			final View view = inflater.inflate(R.layout.explore_list_item, parent, false); 
- 			JSONObject item = mItems.get(position);
+ 			final JSONObject item = mItems.get(position);
  			
  			
  			TextView username = (TextView) view.findViewById(R.id.username);
  			username.setText(item.optString("user_login"));
+
+            OnClickListener showUser = new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, UserProfile.class);
+                    try {
+                        intent.putExtra("user", new BetterJSONObject(item.getJSONObject("user")));
+                        mContext.startActivity(intent);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            username.setOnClickListener(showUser);
+
 
  			TextView idName = (TextView) view.findViewById(R.id.id_name);
  			TextView taxonName = (TextView) view.findViewById(R.id.id_taxon_name);
@@ -1782,11 +1795,6 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  			BetterJSONObject json = new BetterJSONObject(item);
  			Timestamp observedOn = json.getTimestamp("time_observed_at");
 
-            if (item.optString("user_login").equals("budowski")) {
-                int i = 0;
-                i++;
-            }
-
  			if (observedOn != null) {
  				observedOnDate.setText(mApp.formatDate(observedOn));
  			} else {
@@ -1845,4 +1853,5 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			}
 		}
 	}
+
  }

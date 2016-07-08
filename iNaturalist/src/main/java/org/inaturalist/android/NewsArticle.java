@@ -109,6 +109,7 @@ public class NewsArticle extends AppCompatActivity {
             mIsUserFeed = savedInstanceState.getBoolean(KEY_IS_USER_FEED);
         }
 
+
         if (mArticle == null) {
             finish();
             return;
@@ -130,8 +131,19 @@ public class NewsArticle extends AppCompatActivity {
             Linkify.addLinks(mArticleContent, Linkify.ALL);
         }
 
-        JSONObject user = mArticle.getJSONObject("user");
+        final JSONObject user = mArticle.getJSONObject("user");
         mUsername.setText(user.optString("login"));
+
+
+        View.OnClickListener showUser = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewsArticle.this, UserProfile.class);
+                intent.putExtra("user", new BetterJSONObject(user));
+                startActivity(intent);
+            }
+        };
+
 
         if (user.has("user_icon_url") && !user.isNull("user_icon_url")) {
             UrlImageViewHelper.setUrlDrawable(mUserPic, user.optString("user_icon_url"), R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
@@ -147,6 +159,9 @@ public class NewsArticle extends AppCompatActivity {
                 }
             });
         }
+
+        mUserPic.setOnClickListener(showUser);
+        mUsername.setOnClickListener(showUser);
 
     }
 

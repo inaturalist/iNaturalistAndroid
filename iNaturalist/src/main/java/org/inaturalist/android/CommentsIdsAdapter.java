@@ -126,8 +126,21 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                         format.format(postDate)));
             }
 
+			OnClickListener showUser = new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(mContext, UserProfile.class);
+					intent.putExtra("user", new BetterJSONObject(item.getJSONObject("user")));
+					mContext.startActivity(intent);
+				}
+			};
+
+
             final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
             boolean hasUserIcon = item.getJSONObject("user").getString("user_icon_url") != null;
+
+            userPic.setOnClickListener(showUser);
+            postedOn.setOnClickListener(showUser);
 
             if (hasUserIcon) {
                 UrlImageViewHelper.setUrlDrawable(userPic, item.getJSONObject("user").getString("user_icon_url"), R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {

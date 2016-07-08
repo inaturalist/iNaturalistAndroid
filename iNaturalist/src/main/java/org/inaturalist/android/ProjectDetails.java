@@ -653,6 +653,16 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
                 mPeopleList.setAdapter(mPeopleListAdapter);
                 mPeopleList.setVisibility(View.VISIBLE);
                 mPeopleListHeader.setVisibility(View.VISIBLE);
+
+                mPeopleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        JSONObject item = (JSONObject) view.getTag();
+                        Intent intent = new Intent(ProjectDetails.this, UserProfile.class);
+                        intent.putExtra("user", new BetterJSONObject(item));
+                        startActivity(intent);
+                    }
+                });
             }
         }
 
@@ -680,6 +690,16 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
                 mIdentifiersList.setAdapter(mIdentifiersListAdapter);
                 mIdentifiersList.setVisibility(View.VISIBLE);
                 mIdentifiersListHeader.setVisibility(View.VISIBLE);
+
+                mIdentifiersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        JSONObject item = (JSONObject) view.getTag();
+                        Intent intent = new Intent(ProjectDetails.this, UserProfile.class);
+                        intent.putExtra("user", new BetterJSONObject(item));
+                        startActivity(intent);
+                    }
+                });
             }
         }
     }

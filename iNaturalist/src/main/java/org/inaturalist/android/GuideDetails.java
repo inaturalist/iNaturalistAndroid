@@ -320,6 +320,19 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         mEditorName.setText(mGuideXml.getCompiler());
         mLicense.setText(GuideXML.licenseToText(this, mGuideXml.getLicense()));
 
+        View.OnClickListener showUser = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BetterJSONObject userObj = new BetterJSONObject();
+                userObj.put("login", mGuideXml.getCompiler());
+                Intent intent = new Intent(GuideDetails.this, UserProfile.class);
+                intent.putExtra("user", userObj);
+                startActivity(intent);
+            }
+        };
+        mEditorName.setOnClickListener(showUser);
+
+
         if (mIsDownloading) {
             // Currently downloading guide
             mDownloadingGuide.setVisibility(View.VISIBLE);
