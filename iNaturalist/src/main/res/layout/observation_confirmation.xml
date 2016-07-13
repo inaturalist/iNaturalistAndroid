@@ -101,9 +101,10 @@
             android:layout_toEndOf="@id/species_guess_icon"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:clickable="false"
-            android:focusable="false"
+            android:clickable="true"
+            android:focusable="true"
             android:background="#00000000"
+            android:transitionName="search_taxon"
             />
     </RelativeLayout>
     <View

@@ -55,6 +55,7 @@ import com.ptashek.widgets.datetimepicker.DateTimePicker;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -151,7 +152,7 @@ public class ObservationEditor extends AppCompatActivity {
     private Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
-    private TextView mSpeciesGuessTextView;
+    private EditText mSpeciesGuessTextView;
     private TextView mDescriptionTextView;
     private TextView mSaveButton;
     private TextView mObservedOnStringTextView;
@@ -221,6 +222,7 @@ public class ObservationEditor extends AppCompatActivity {
     private TextView mFindingCurrentLocation;
     private boolean mLocationManuallySet;
     private boolean mReturnToObservationList;
+    private boolean mTaxonTextChanged = false;
 
     @Override
 	protected void onStart()
@@ -444,7 +446,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         mIdPlease = (CompoundButton) findViewById(R.id.id_please);
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
-        mSpeciesGuessTextView = (TextView) findViewById(R.id.speciesGuess);
+        mSpeciesGuessTextView = (EditText) findViewById(R.id.speciesGuess);
         mSpeciesGuessIcon = (ImageView) findViewById(R.id.species_guess_icon);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
         mSaveButton = (TextView) findViewById(R.id.save_observation);
@@ -499,13 +501,35 @@ public class ObservationEditor extends AppCompatActivity {
             });
         }
 
-        mSpeciesGuessTextView.setOnClickListener(new OnClickListener() {
+        mSpeciesGuessTextView.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
-                intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
-                intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
-                startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if ((charSequence.length() > 1) && (!mTaxonTextChanged)) {
+                    Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
+                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
+                    intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // Special material design animation
+                        View sharedView = mSpeciesGuessTextView;
+                        String transitionName = "search_taxon";
+                        ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(ObservationEditor.this, sharedView, transitionName);
+                        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE, transitionActivityOptions.toBundle());
+                    } else {
+                        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
@@ -1065,7 +1089,9 @@ public class ObservationEditor extends AppCompatActivity {
 
         mIdPlease.setChecked(mObservation.id_please);
 
+        mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
+        mTaxonTextChanged = false;
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {
             mObservedOnButton.setText(getString(R.string.set_date));
@@ -1672,7 +1698,9 @@ public class ObservationEditor extends AppCompatActivity {
                     mSpeciesGuess = null;
                     mObservation.species_guess = null;
                     mObservation.taxon_id = null;
+                    mTaxonTextChanged = true;
                     mSpeciesGuessTextView.setText("Unknown");
+                    mTaxonTextChanged = false;
                     mPreviousTaxonSearch = "Unknown";
                     mObservation.preferred_common_name = null;
                     mTaxonPicUrl = null;
@@ -1689,7 +1717,9 @@ public class ObservationEditor extends AppCompatActivity {
                     mSpeciesGuess = speciesGuess;
                     mObservation.species_guess = speciesGuess;
                     mObservation.taxon_id = isCustomTaxon ? null : taxonId;
+                    mTaxonTextChanged = true;
                     mSpeciesGuessTextView.setText(mSpeciesGuess);
+                    mTaxonTextChanged = false;
                     mPreviousTaxonSearch = mSpeciesGuess;
                     mTaxonPicUrl = isCustomTaxon ? null : idPicUrl;
                     mIsTaxonUnknown = false;

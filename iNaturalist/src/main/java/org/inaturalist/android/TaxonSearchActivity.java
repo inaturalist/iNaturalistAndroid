@@ -23,6 +23,7 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -379,7 +380,11 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
         // Respond to the action bar's Up/Home button
         case android.R.id.home:
             setResult(RESULT_CANCELED);
-            finish();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                finishAfterTransition();
+            } else {
+                finish();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -388,7 +393,11 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
    @Override
    public void onBackPressed() {
        setResult(RESULT_CANCELED);
-       finish();
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           finishAfterTransition();
+       } else {
+           finish();
+       }
    }
 
     @Override
@@ -480,7 +489,11 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
             intent.putExtras(bundle);
 
             setResult(RESULT_OK, intent);
-            finish();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                finishAfterTransition();
+            } else {
+                finish();
+            }
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block

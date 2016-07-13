@@ -15,6 +15,7 @@
             android:background="#ffffff"
             android:padding="10dp"
             android:imeOptions="actionSearch"
+            android:transitionName="search_taxon"
 	        android:hint="@string/enter_taxon_name">
 	        <requestFocus />   
     </EditText>
