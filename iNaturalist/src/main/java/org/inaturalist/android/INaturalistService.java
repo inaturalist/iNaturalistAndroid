@@ -710,8 +710,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private void redownloadOldObservations() throws AuthenticationException {
 
         // Find all observations that have photos saved in the old way
-        Set<Integer> observationIds = new HashSet<Integer>();
-
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
                 "(photo_filename IS NULL) AND (photo_url IS NULL)",
@@ -727,20 +725,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             Integer obsPhotoId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto.ID));
             getContentResolver().delete(ObservationPhoto.CONTENT_URI, "id = " + obsPhotoId, null);
 
-            if (!observationIds.contains(obsId)) {
-                // Re-download this observation (haven't been re-downloaded yet)
+            // Re-download this observation
 
-                String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json?extra=observation_photos,projects,fields";
-                Locale deviceLocale = getResources().getConfiguration().locale;
-                String deviceLanguage =   deviceLocale.getLanguage();
-                url += "&locale=" + deviceLanguage;
-                JSONArray json = get(url, true);
-                if (json != null && json.length() > 0) {
-                    syncJson(json, true);
-                }
+            String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json?extra=observation_photos,projects,fields";
+            Locale deviceLocale = getResources().getConfiguration().locale;
+            String deviceLanguage =   deviceLocale.getLanguage();
+            url += "&locale=" + deviceLanguage;
+            JSONArray json = get(url, true);
+            if (json != null && json.length() > 0) {
+                syncJson(json, true);
             }
-
-            observationIds.add(obsId);
 
             c.moveToNext();
         }
@@ -2507,7 +2501,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             Cursor pc = getContentResolver().query(
                     ObservationPhoto.CONTENT_URI, 
                     ObservationPhoto.PROJECTION, 
-                    "(observation_id = "+observation.id + ") AND (photo_url IS NOT NULL) AND (photo_filename IS NOT NULL)",
+                    "(observation_id = "+observation.id + ")",
                     null, null);
             pc.moveToFirst();
             while(pc.isAfterLast() == false) {
