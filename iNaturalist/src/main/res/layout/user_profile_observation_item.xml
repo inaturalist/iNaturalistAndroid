@@ -14,7 +14,7 @@
         android:src="@drawable/iconic_taxon_unknown"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="9dp"
         />
 
 
