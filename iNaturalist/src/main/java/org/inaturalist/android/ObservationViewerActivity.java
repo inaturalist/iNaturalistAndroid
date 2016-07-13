@@ -1729,6 +1729,20 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 // User deleted the observation (or did a batch-edit)
                 finish();
                 return;
+            } else if (resultCode == ObservationEditor.RESULT_REFRESH_OBS) {
+                // User made changes to observation - refresh the view
+
+                reloadObservation(null, true);
+
+                loadObservationIntoUI();
+                setupMap();
+                refreshActivity();
+                refreshFavorites();
+                resizeActivityList();
+                resizeFavList();
+                refreshProjectList();
+                refreshDataQuality();
+
             }
         } if (requestCode == NEW_ID_REQUEST_CODE) {
     		if (resultCode == RESULT_OK) {

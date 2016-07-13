@@ -242,7 +242,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
                             // Assign the data to the FilterResults
                             filterResults.values = results;
-                            filterResults.count = results.size();
+                            filterResults.count = results != null ? results.size() : 0;
                         }
                     }
 

@@ -147,6 +147,7 @@ public class ObservationEditor extends AppCompatActivity {
     public final static String RETURN_TO_OBSERVATION_LIST = "return_to_observation_list";
     public static final int RESULT_DELETED = 0x1000;
     public static final int RESULT_RETURN_TO_OBSERVATION_LIST = 0x1001;
+    public static final int RESULT_REFRESH_OBS = 0x1002;
     private Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
@@ -818,7 +819,7 @@ public class ObservationEditor extends AppCompatActivity {
                                 public void run() {
                                     uiToProjectFieldValues();
                                     if (save()) {
-                                        setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_OK);
+                                        setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
                                         finish();
                                     }
                                 }
@@ -829,7 +830,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 uiToProjectFieldValues();
                 if (save()) {
-                    setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_OK);
+                    setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
                     finish();
                 }
                 return true;
