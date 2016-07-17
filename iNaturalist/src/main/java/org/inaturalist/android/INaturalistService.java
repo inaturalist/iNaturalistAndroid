@@ -1407,7 +1407,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = HOST + "/identifications/" + username + ".json?per_page=200";
         JSONArray json = get(url, false);
         if (json == null) return null;
-        if (json.length() == 0) return null;
         return new SerializableJSONArray(json);
     }
 
