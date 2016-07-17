@@ -142,7 +142,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if (mApp.getAutoSync()) {
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                         Observation.PROJECTION,
-                        "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))",
+                        "(((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) AND (_updated_at > _created_at)",
                         null,
                         Observation.SYNC_ORDER);
                 int syncCount = c.getCount();
