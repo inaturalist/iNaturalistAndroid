@@ -1135,24 +1135,24 @@ public class ObservationEditor extends AppCompatActivity {
             mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
         }
 
-        if (mObservation.latitude != null) {
-            mLatitudeView.setText(mObservation.latitude.toString());
+        if ((mObservation.latitude != null) || (mObservation.private_latitude != null)) {
+            mLatitudeView.setText(mObservation.latitude != null ? mObservation.latitude.toString() : mObservation.private_latitude.toString() );
             findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
         } else {
             mLatitudeView.setText("");
         }
-        if (mObservation.longitude != null) {
-            mLongitudeView.setText(mObservation.longitude.toString());
+        if ((mObservation.longitude != null) || (mObservation.private_longitude != null)) {
+            mLongitudeView.setText(mObservation.longitude != null ? mObservation.longitude.toString() : mObservation.private_longitude.toString() );
         } else {
             mLongitudeView.setText("");
         }
-        if (mObservation.positional_accuracy == null) {
+        if ((mObservation.positional_accuracy == null) && (mObservation.private_positional_accuracy == null)) {
             mAccuracyView.setText("");
 
             findViewById(R.id.accuracy_prefix).setVisibility(View.GONE);
             findViewById(R.id.accuracy).setVisibility(View.GONE);
         } else {
-            mAccuracyView.setText(mObservation.positional_accuracy.toString());
+            mAccuracyView.setText(mObservation.positional_accuracy != null ? mObservation.positional_accuracy.toString() : mObservation.private_positional_accuracy.toString() );
             findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
             findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
         }
