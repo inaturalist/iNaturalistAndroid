@@ -4,7 +4,6 @@
     android:background="#ffffff"
     android:layout_height="67dp">
 
-
     <LinearLayout
         android:layout_centerInParent="true"
         android:paddingTop="5dp"
@@ -36,4 +35,5 @@
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="3dp" />
+
 </RelativeLayout>

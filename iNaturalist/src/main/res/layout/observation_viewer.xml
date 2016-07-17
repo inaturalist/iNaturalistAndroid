@@ -2,12 +2,15 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#EEEEEE"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:layout_width="fill_parent">
+
+
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE">
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -104,7 +107,8 @@
 
         </LinearLayout>
     </RelativeLayout>
-    
+
+
     <RelativeLayout
         android:id="@+id/id_row"
         android:background="#FFFFFF"
@@ -182,6 +186,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:showDividers="none"
+                android:elevation="3dp"
                 android:layout_weight="0" />
 
             <FrameLayout
@@ -192,7 +197,6 @@
 
         </LinearLayout>
     </TabHost>
-
 
     <LinearLayout
         android:id="@+id/favorites_tab_content"
@@ -563,7 +567,7 @@
 
     <LinearLayout
         android:id="@+id/info_tab_content"
-        android:visibility="visible"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">

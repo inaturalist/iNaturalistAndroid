@@ -7,8 +7,8 @@
     >
 
     <TabHost
+        android:id="@+id/tabhost"
         android:layout_alignParentTop="true"
-        android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -25,23 +25,17 @@
                 android:layout_height="wrap_content"
                 android:elevation="3dp"
                 android:layout_weight="0" />
-
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="0" />
+                />
 
         </LinearLayout>
     </TabHost>
 
-
-
-
-
-
     <LinearLayout
-        android:layout_below="@android:id/tabhost"
+        android:layout_below="@id/tabhost"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
