@@ -223,6 +223,7 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mLocationManuallySet;
     private boolean mReturnToObservationList;
     private boolean mTaxonTextChanged = false;
+    private boolean mTaxonSearchStarted = false;
 
     @Override
 	protected void onStart()
@@ -501,6 +502,18 @@ public class ObservationEditor extends AppCompatActivity {
             });
         }
 
+        /*
+        mSpeciesGuessTextView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
+                intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
+                intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
+                startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+            }
+        });
+        */
+
         mSpeciesGuessTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -509,9 +522,16 @@ public class ObservationEditor extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if ((charSequence.length() > 1) && (!mTaxonTextChanged)) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String newTaxon = mSpeciesGuessTextView.getText().toString();
+                if ((!mTaxonTextChanged) && (!mTaxonSearchStarted)) {
+                    mTaxonSearchStarted = true;
                     Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
-                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
+                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, newTaxon);
                     intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -519,16 +539,17 @@ public class ObservationEditor extends AppCompatActivity {
                         View sharedView = mSpeciesGuessTextView;
                         String transitionName = "search_taxon";
                         ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(ObservationEditor.this, sharedView, transitionName);
-                        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE, transitionActivityOptions.toBundle());
+                        try {
+                            startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE, transitionActivityOptions.toBundle());
+                        } catch (Exception exc) {
+                            // Internal Android bug when rotating screen of activity opened this way
+                            exc.printStackTrace();
+                            startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+                        }
                     } else {
                         startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                     }
                 }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
 
             }
         });
@@ -1028,7 +1049,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void uiToObservation() {
-        if (((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+        if ((((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) && (!mTaxonSearchStarted)) mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
         if (((mObservation.description == null) && (mDescriptionTextView.getText().length() > 0)) || (mObservation.description != null)) mObservation.description = mDescriptionTextView.getText().toString();
         if (mObservedOnStringTextView.getText() == null || mObservedOnStringTextView.getText().length() == 0) {
             mObservation.observed_on_string = null; 
@@ -1686,6 +1707,7 @@ public class ObservationEditor extends AppCompatActivity {
 
             }
          } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
+            mTaxonSearchStarted = false;
             if (resultCode == RESULT_OK) {
                 String iconicTaxonName = data.getStringExtra(TaxonSearchActivity.ICONIC_TAXON_NAME);
                 String taxonName = data.getStringExtra(TaxonSearchActivity.TAXON_NAME);
@@ -1752,6 +1774,11 @@ public class ObservationEditor extends AppCompatActivity {
                         }
                     }
                 }
+            } else {
+                // Restore original taxon guess
+                mTaxonTextChanged = true;
+                mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
+                mTaxonTextChanged = false;
             }
 
         } else if (requestCode == ProjectFieldViewer.PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE) {
