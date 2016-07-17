@@ -686,7 +686,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mObservation.identifications_count = mObservation.last_identifications_count = mIdCount;
         if (mObservation.getUri() != null) {
             ContentValues cv = mObservation.getContentValues();
-            cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+            if (!((mObservation._synced_at == null) || ((mObservation._updated_at != null) && (mObservation._updated_at.after(mObservation._synced_at))))) {
+                cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
+            }
             getContentResolver().update(mObservation.getUri(), cv, null, null);
         }
         mLoginToAddCommentId.setVisibility(View.GONE);

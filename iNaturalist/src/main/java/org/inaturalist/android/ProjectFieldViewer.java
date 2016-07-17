@@ -36,6 +36,9 @@ import com.ptashek.widgets.datetimepicker.DateTimePicker;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -214,7 +217,65 @@ public class ProjectFieldViewer {
             mIdName.setText(taxon.getString("unique_name"));
             mIdTaxonName.setText(taxon.getString("name"));
             mIdTaxonName.setTypeface(null, Typeface.ITALIC);
+            String idNameString = getTaxonName(taxon.getJSONObject());
+            if (idNameString != null) {
+                mIdName.setText(idNameString);
+                mIdTaxonName.setText(taxon.getJSONObject().optString("name", ""));
+            } else {
+                mIdName.setText(taxon.getJSONObject().optString("name", mContext.getResources().getString(R.string.unknown)));
+                mIdTaxonName.setText("");
+                mIdName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+            }
         }
+    }
+
+    // Utility function for retrieving the Taxon's name
+    private String getTaxonName(JSONObject item) {
+        JSONObject defaultName;
+        String displayName = null;
+
+
+        // Get the taxon display name according to configuration of the current iNat network
+        String inatNetwork = ((INaturalistApp)mContext.getApplication()).getInaturalistNetworkMember();
+        String networkLexicon = ((INaturalistApp)mContext.getApplication()).getStringResourceByName("inat_lexicon_" + inatNetwork);
+        try {
+            JSONArray taxonNames = item.getJSONArray("taxon_names");
+            for (int i = 0; i < taxonNames.length(); i++) {
+                JSONObject taxonName = taxonNames.getJSONObject(i);
+                String lexicon = taxonName.getString("lexicon");
+                if (lexicon.equals(networkLexicon)) {
+                    // Found the appropriate lexicon for the taxon
+                    displayName = taxonName.getString("name");
+                    break;
+                }
+            }
+        } catch (JSONException e3) {
+            e3.printStackTrace();
+        }
+
+        if (displayName == null) {
+            // Couldn't extract the display name from the taxon names list - use the default one
+            try {
+                displayName = item.getString("unique_name");
+            } catch (JSONException e2) {
+                displayName = null;
+            }
+            try {
+                defaultName = item.getJSONObject("default_name");
+                displayName = defaultName.getString("name");
+            } catch (JSONException e1) {
+                // alas
+                JSONObject commonName = item.optJSONObject("common_name");
+                if (commonName != null) {
+                    displayName = commonName.optString("name");
+                } else {
+                    displayName = item.optString("name");
+                }
+            }
+        }
+
+        return displayName;
+
     }
 
 
