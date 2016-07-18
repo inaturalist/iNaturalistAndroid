@@ -192,7 +192,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
         		Observation.PROJECTION, 
-        		"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", 
+        		"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL)) AND (_updated_at > _created_at)",
         		null, 
         		Observation.SYNC_ORDER);
         syncCount = c.getCount();

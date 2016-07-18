@@ -502,17 +502,16 @@ public class ObservationEditor extends AppCompatActivity {
             });
         }
 
-        /*
         mSpeciesGuessTextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                mTaxonSearchStarted = true;
                 Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
                 intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
                 intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
                 startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
             }
         });
-        */
 
         mSpeciesGuessTextView.addTextChangedListener(new TextWatcher() {
             @Override

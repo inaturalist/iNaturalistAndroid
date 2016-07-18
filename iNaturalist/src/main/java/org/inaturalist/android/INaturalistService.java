@@ -1164,7 +1164,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         // query observations where _synced_at IS NULL
         c = getContentResolver().query(Observation.CONTENT_URI, 
                 Observation.PROJECTION, 
-                "id IS NULL", null, Observation.SYNC_ORDER);
+                "(id IS NULL) AND (_updated_at > _created_at)", null, Observation.SYNC_ORDER);
         int createdCount = c.getCount();
         // for each observation POST to /observations/
 

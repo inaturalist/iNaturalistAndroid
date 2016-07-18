@@ -102,7 +102,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:clickable="true"
-            android:focusable="true"
+            android:focusable="false"
             android:background="#00000000"
             android:transitionName="search_taxon"
             />
