@@ -526,6 +526,8 @@ public class ObservationEditor extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                return;
+                /*
                 String newTaxon = mSpeciesGuessTextView.getText().toString();
                 if ((!mTaxonTextChanged) && (!mTaxonSearchStarted)) {
                     mTaxonSearchStarted = true;
@@ -549,6 +551,7 @@ public class ObservationEditor extends AppCompatActivity {
                         startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                     }
                 }
+                */
 
             }
         });

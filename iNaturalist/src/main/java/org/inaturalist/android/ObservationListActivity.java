@@ -138,22 +138,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
                 mLastMessage = null;
             }
-
-            if (mApp.getAutoSync()) {
-                Cursor c = getContentResolver().query(Observation.CONTENT_URI,
-                        Observation.PROJECTION,
-                        "(((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL) OR (is_deleted = 1))) AND (_updated_at > _created_at)",
-                        null,
-                        Observation.SYNC_ORDER);
-                int syncCount = c.getCount();
-                c.close();
-
-                // Trigger a sync (more new observations were added in the mean time)
-                if ((syncCount > 0) && (mApp.loggedIn())) {
-                    Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
-                    startService(serviceIntent);
-                }
-            }
         }
     } 	
   
