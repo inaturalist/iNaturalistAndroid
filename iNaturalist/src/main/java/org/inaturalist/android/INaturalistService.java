@@ -772,6 +772,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         c.moveToFirst();
         while (c.isAfterLast() == false) {
+            checkForCancelSync();
             ProjectObservation projectObservation = new ProjectObservation(c);
 
             // Clean the errors for the observation
@@ -785,7 +786,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
 
             c.moveToNext();
-            checkForCancelSync();
         }
 
         // Now it's safe to delete all of the project-observations locally
@@ -801,6 +801,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         c.moveToFirst();
         while (c.isAfterLast() == false) {
+            checkForCancelSync();
             ProjectObservation projectObservation = new ProjectObservation(c);
             BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
 
@@ -877,7 +878,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
             
             c.moveToNext();
-            checkForCancelSync();
         }
 
         mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
@@ -1142,7 +1142,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         // for each observation PUT to /observations/:id
         c.moveToFirst();
         while (c.isAfterLast() == false) {
-            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+            checkForCancelSync();
+
+            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION,
                     getString(R.string.updating_observations), 
                     String.format(getString(R.string.updating_x_observations), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
@@ -1153,8 +1155,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     put(HOST + "/observations/" + observation.id + ".json?extra=observation_photos", paramsForObservation(observation, false))
             );
             c.moveToNext();
-
-            checkForCancelSync();
         }
         c.close();
 
@@ -1170,7 +1170,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         c.moveToFirst();
         while (c.isAfterLast() == false) {
-            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
+            checkForCancelSync();
+
+            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION,
                     getString(R.string.posting_observations), 
                     String.format(getString(R.string.posting_x_observations), (c.getPosition() + 1), c.getCount()),
                     getString(R.string.syncing));
@@ -1181,8 +1183,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     post("http://" + inatHost + "/observations.json?extra=observation_photos", paramsForObservation(observation, true))
             );
             c.moveToNext();
-
-            checkForCancelSync();
         }
         c.close();
         
@@ -1252,6 +1252,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         if (c.getCount() == 0) {
             return;
         }
+
+        checkForCancelSync();
 
         // for each observation PUT to /observations/:id
         ContentValues cv;
@@ -1990,6 +1992,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         
         c.moveToFirst();
         while (c.isAfterLast() == false) {
+            checkForCancelSync();
             ProjectFieldValue localField = new ProjectFieldValue(c);
 
             mApp.setObservationIdBeingSynced(localField.observation_id);
@@ -2065,8 +2068,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             fields.remove(Integer.valueOf(localField.field_id));
 
             c.moveToNext();
-
-            checkForCancelSync();
         }
         c.close();
 
