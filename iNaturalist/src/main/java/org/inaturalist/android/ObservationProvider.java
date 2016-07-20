@@ -8,6 +8,7 @@ import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -23,7 +24,7 @@ import android.util.Log;
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
     private static final String[] TABLE_NAMES = new String[]{Observation.TABLE_NAME, ObservationPhoto.TABLE_NAME, Project.TABLE_NAME, ProjectObservation.TABLE_NAME, ProjectField.TABLE_NAME, ProjectFieldValue.TABLE_NAME};
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
@@ -50,8 +51,11 @@ public class ObservationProvider extends ContentProvider {
      */
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
+        Context mContext;
+
         DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, sFactory, DATABASE_VERSION);
+            mContext = context;
         }
 
         @Override
@@ -79,6 +83,15 @@ public class ObservationProvider extends ContentProvider {
             }
             if (oldVersion < 9) {
                 addColumnIfNotExists(db, ObservationPhoto.TABLE_NAME, "photo_filename", "TEXT");
+            }
+            if (oldVersion < 10) {
+                // Need to change the constraint of the project field table - which is only possible
+                // by recreating the table
+                db.execSQL("DROP TABLE IF EXISTS " + ProjectField.TABLE_NAME);
+                db.execSQL(ProjectField.sqlCreate());
+                // Re-populate the table
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS_ONLINE, null, mContext, INaturalistService.class);
+                mContext.startService(serviceIntent);
             }
         }
 

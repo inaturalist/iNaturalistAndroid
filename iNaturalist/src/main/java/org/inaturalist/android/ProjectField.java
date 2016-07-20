@@ -154,7 +154,7 @@ public class ProjectField implements BaseColumns, Serializable {
                 + "allowed_values TEXT, "
                 + "is_required INTEGER, "
                 + "position INTEGER, "
-                + "UNIQUE(field_id) ON CONFLICT REPLACE"
+                + "UNIQUE(field_id, project_id) ON CONFLICT REPLACE"
                 + ");";
     }
 

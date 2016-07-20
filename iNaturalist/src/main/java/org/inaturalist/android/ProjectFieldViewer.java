@@ -735,7 +735,7 @@ public class ProjectFieldViewer {
                 Integer projectId1 = (field1.project_id != null ? field1.project_id : Integer.valueOf(-1));
                 Integer projectId2 = (field2.project_id != null ? field2.project_id : Integer.valueOf(-1));
 
-                if (projectId1 == projectId2) {
+                if (projectId1.equals(projectId2)) {
                     // Same project - sort by position
                     Integer position1 = (field1.position != null ? field1.position : Integer.valueOf(0));
                     Integer position2 = (field2.position != null ? field2.position : Integer.valueOf(0));
