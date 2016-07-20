@@ -1244,7 +1244,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         });
 
         mIdPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
-        mIdName.setText(mObservation.species_guess);
+        mIdName.setText((mObservation.preferred_common_name != null) &&  (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);
         mTaxonicName.setVisibility(View.GONE);
 
 
