@@ -1062,7 +1062,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 observedDataQuality = DATA_QUALITY_RESEARCH_GRADE;
             }
 
-            if (observedDataQuality != dataQuality) {
+            if ((observedDataQuality != dataQuality) && (observedDataQuality != -1)) {
                 // This observation was synced and got a different data quality score - prefer
                 // to use what the server deducted through analysis / more advanced algorithm
                 dataQuality = observedDataQuality;
