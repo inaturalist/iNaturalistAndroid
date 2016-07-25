@@ -280,7 +280,7 @@ public class ObservationEditor extends AppCompatActivity {
     private void refreshProjectList() {
         if (mProjectIds.size() == 0) {
             mProjectCount.setVisibility(View.GONE);
-            mProjectSelector.setTextColor(Color.parseColor("#757575"));
+            mProjectSelector.setTextColor(Color.parseColor("#8A000000"));
             mProjectSelector.setText(R.string.add_to_projects);
         } else {
             mProjectCount.setVisibility(View.VISIBLE);
