@@ -344,16 +344,25 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
  	public static int observationIcon(JSONObject o) {
  		if (o == null) return R.drawable.unknown_large;
- 		if (!o.has("iconic_taxon_name") || o.isNull("iconic_taxon_name")) {
- 			return R.drawable.unknown_large;
- 		}
- 		String iconicTaxonName;
- 		try {
- 			iconicTaxonName = o.getString("iconic_taxon_name");
- 		} catch (JSONException e) {
- 			e.printStackTrace();
- 			return R.drawable.unknown_large;
- 		}
+ 		String iconicTaxonName = null;
+
+        if (o.has("iconic_taxon_name") && !o.isNull("iconic_taxon_name")) {
+            try {
+                iconicTaxonName = o.getString("iconic_taxon_name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return R.drawable.unknown_large;
+            }
+        }
+
+        if (o.has("taxon")) {
+            try {
+                iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return R.drawable.unknown_large;
+            }
+        }
 
  		if (iconicTaxonName == null) {
  			return R.drawable.unknown_large;

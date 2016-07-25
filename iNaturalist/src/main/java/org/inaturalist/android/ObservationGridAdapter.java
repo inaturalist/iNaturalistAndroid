@@ -98,7 +98,8 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                 if (isNewApi) {
                     url = observationPhoto.optString("url");
-                    url = url.substring(0, url.lastIndexOf("/") + 1) + "medium.jpg";
+                    String extension = url.substring(url.lastIndexOf(".") + 1);
+                    url = url.substring(0, url.lastIndexOf("/") + 1) + "medium." + extension;
                 } else {
                     JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
                     url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
