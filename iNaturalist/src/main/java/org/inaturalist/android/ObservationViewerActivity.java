@@ -98,6 +98,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private static int DATA_QUALITY_NEEDS_ID = 1;
     private static int DATA_QUALITY_RESEARCH_GRADE = 2;
 
+    private static String QUALITY_GRADE_RESEARCH = "research";
+    private static String QUALITY_GRADE_NEEDS_ID = "needs_id";
+    private static String QUALITY_GRADE_CASUAL_GRADE = "casual";
+
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 	private Observation mObservation;
@@ -1048,6 +1052,25 @@ public class ObservationViewerActivity extends AppCompatActivity {
         } else {
             dataQuality = DATA_QUALITY_RESEARCH_GRADE;
         }
+        if (mObservation.quality_grade != null) {
+            int observedDataQuality = -1;
+            if (mObservation.quality_grade.equals(QUALITY_GRADE_CASUAL_GRADE)) {
+                observedDataQuality = DATA_QUALITY_CASUAL_GRADE;
+            } else if (mObservation.quality_grade.equals(QUALITY_GRADE_NEEDS_ID)) {
+                observedDataQuality = DATA_QUALITY_NEEDS_ID;
+            } else if (mObservation.quality_grade.equals(QUALITY_GRADE_RESEARCH)) {
+                observedDataQuality = DATA_QUALITY_RESEARCH_GRADE;
+            }
+
+            if (observedDataQuality != dataQuality) {
+                // This observation was synced and got a different data quality score - prefer
+                // to use what the server deducted through analysis / more advanced algorithm
+                dataQuality = observedDataQuality;
+                // Remove the reasoning
+                reasonText = 0;
+            }
+        }
+
 
         // TODO - "Observation is casual grade because the community voted that they cannot identify it from the photo."
         // TODO - "Observation needs finer identifications from the community to become "Research Grade" status.
@@ -1086,7 +1109,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         }
 
 
-        if (reasonText != 0) {
+        if ((reasonText != 0) && (!mReadOnly)) {
             mTipText.setText(Html.fromHtml(getString(reasonText)));
             mDataQualityReason.setVisibility(View.VISIBLE);
         } else {
