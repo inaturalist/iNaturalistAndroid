@@ -845,7 +845,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
             if (preferredCommonName != null) {
                 title.setText(preferredCommonName);
-            } else if (speciesGuess != null) {
+            } else if ((speciesGuess != null) && (speciesGuess.trim().length() > 0)) {
                 title.setText("\"" + speciesGuess + "\"");
             } else {
                 title.setText(R.string.unknown_species);

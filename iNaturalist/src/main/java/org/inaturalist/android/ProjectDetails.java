@@ -17,7 +17,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -37,6 +39,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -477,13 +480,25 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     }
 
     private View createTabContent(String tabName, int count) {
-        View view = LayoutInflater.from(this).inflate(R.layout.project_details_tab, null);
+        ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.project_details_tab, null);
         TextView countText = (TextView) view.findViewById(R.id.count);
         TextView tabNameText = (TextView) view.findViewById(R.id.tab_name);
 
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         countText.setText(formatter.format(count));
         tabNameText.setText(tabName);
+
+        int width;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Point size = new Point();
+            getWindowManager().getDefaultDisplay().getSize(size);
+            width = size.x;
+        } else {
+            width = getWindowManager().getDefaultDisplay().getWidth();
+        }
+        width = (int)(width * 0.283);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        view.setLayoutParams(params);
 
         return view;
     }
