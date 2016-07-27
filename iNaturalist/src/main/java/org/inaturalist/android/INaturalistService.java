@@ -517,55 +517,72 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_NEAR_BY_GUIDES)) {
-                 int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+                if (!mApp.isLocationEnabled()) {
+                    // No location enabled
+                    Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
+                    reply.putExtra(GUIDES_RESULT, new SerializableJSONArray());
+                    sendBroadcast(reply);
 
-                 // If Google Play services is available
-                 if (ConnectionResult.SUCCESS == resultCode) {
-                     // Use Google Location Services to determine location
-                     mLocationClient = new GoogleApiClient.Builder(this)
-                             .addApi(LocationServices.API)
-                             .addConnectionCallbacks(this)
-                             .addOnConnectionFailedListener(this)
-                             .build();
-                     mLocationClient.connect();
-                     
-                     // Only once we're connected - we'll call getNearByGuides()
-                     mGetLocationForProjects = false;
-                     
-                 } else {
-                     // Use GPS for the location
-                     SerializableJSONArray guides = getNearByGuides(false);
+                } else {
+                    int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
-                     Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
-                     reply.putExtra(GUIDES_RESULT, guides);
-                     sendBroadcast(reply);
-                 }
+                    // If Google Play services is available
+                    if (ConnectionResult.SUCCESS == resultCode) {
+                        // Use Google Location Services to determine location
+                        mLocationClient = new GoogleApiClient.Builder(this)
+                                .addApi(LocationServices.API)
+                                .addConnectionCallbacks(this)
+                                .addOnConnectionFailedListener(this)
+                                .build();
+                        mLocationClient.connect();
+
+                        // Only once we're connected - we'll call getNearByGuides()
+                        mGetLocationForProjects = false;
+
+                    } else {
+                        // Use GPS for the location
+                        SerializableJSONArray guides = getNearByGuides(false);
+
+                        Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
+                        reply.putExtra(GUIDES_RESULT, guides);
+                        sendBroadcast(reply);
+                    }
+                }
                
              } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
-                 int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+                if (!mApp.isLocationEnabled()) {
+                    // No location enabled
+                    Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
+                    mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, new SerializableJSONArray());
+                    reply.putExtra(IS_SHARED_ON_APP, true);
+                    sendBroadcast(reply);
 
-                 // If Google Play services is available
-                 if (ConnectionResult.SUCCESS == resultCode) {
-                     // Use Google Location Services to determine location
-                     mLocationClient = new GoogleApiClient.Builder(this)
-                             .addApi(LocationServices.API)
-                             .addConnectionCallbacks(this)
-                             .addOnConnectionFailedListener(this)
-                             .build();
-                     mLocationClient.connect();
-                     
-                     // Only once we're connected - we'll call getNearByProjects()
-                     mGetLocationForProjects = true;
-                     
-                 } else {
-                     // Use GPS for the location
-                     SerializableJSONArray projects = getNearByProjects(false);
+                } else {
+                    int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
-                     Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                     mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, projects);
-                     reply.putExtra(IS_SHARED_ON_APP, true);
-                     sendBroadcast(reply);
-                 }
+                    // If Google Play services is available
+                    if (ConnectionResult.SUCCESS == resultCode) {
+                        // Use Google Location Services to determine location
+                        mLocationClient = new GoogleApiClient.Builder(this)
+                                .addApi(LocationServices.API)
+                                .addConnectionCallbacks(this)
+                                .addOnConnectionFailedListener(this)
+                                .build();
+                        mLocationClient.connect();
+
+                        // Only once we're connected - we'll call getNearByProjects()
+                        mGetLocationForProjects = true;
+
+                    } else {
+                        // Use GPS for the location
+                        SerializableJSONArray projects = getNearByProjects(false);
+
+                        Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
+                        mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, projects);
+                        reply.putExtra(IS_SHARED_ON_APP, true);
+                        sendBroadcast(reply);
+                    }
+                }
                  
               } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
                  SerializableJSONArray projects = getFeaturedProjects();

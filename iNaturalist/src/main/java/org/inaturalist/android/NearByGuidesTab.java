@@ -2,6 +2,11 @@ package org.inaturalist.android;
 
 public class NearByGuidesTab extends BaseGuidesTab {
     @Override
+    protected boolean requiresLocation() {
+        return true;
+    }
+
+    @Override
     protected String getActionName() {
         return INaturalistService.ACTION_GET_NEAR_BY_GUIDES;
     }

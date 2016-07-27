@@ -42,6 +42,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.location.LocationManager;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
@@ -252,6 +253,15 @@ public class INaturalistApp extends MultiDexApplication {
     	settingsEditor.putString("pref_network_member", memberNetwork);
     	settingsEditor.apply();
 	}
+
+    /** Checks if location services are enabled */
+    public boolean isLocationEnabled() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return (
+                lm.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
+                lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            );
+    }
 
  	public void detectUserCountryAndUpdateNetwork(Context context) {
  		// Don't ask the user again to switch to another network (if he's been asked before)

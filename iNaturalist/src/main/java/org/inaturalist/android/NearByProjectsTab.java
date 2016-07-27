@@ -2,6 +2,11 @@ package org.inaturalist.android;
 
 public class NearByProjectsTab extends BaseProjectsTab {
     @Override
+    protected boolean requiresLocation() {
+        return true;
+    }
+
+    @Override
     protected String getActionName() {
         return INaturalistService.ACTION_GET_NEARBY_PROJECTS;
     }

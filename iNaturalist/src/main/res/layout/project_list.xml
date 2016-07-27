@@ -36,7 +36,24 @@
         android:text="@string/no_projects" />
 
     <Button
+        android:visibility="gone"
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/go_to_settings"
+        android:layout_below="@android:id/empty"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/circular_button"
+        />
+
+    <Button
         android:id="@+id/login"
+        android:background="@drawable/circular_button"
+        android:textColor="#ffffff"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="@string/login_signup"

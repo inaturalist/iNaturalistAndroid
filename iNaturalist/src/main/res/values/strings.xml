@@ -43,7 +43,9 @@
     <string name="error_couldnt_connect_to_server">Couldn\'t connect to server.</string>
     <string name="please_sign_in">Please sign in</string>
     <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
-    
+    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
+    <string name="go_to_settings">Go to Settings</string>
+
     <string name="photo_not_specified">Photo not specified</string>
     <string name="set_date">Date</string>
     <string name="set_time">Time</string>

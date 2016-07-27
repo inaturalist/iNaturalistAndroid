@@ -29,6 +29,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.Html;
@@ -56,6 +57,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     private ProjectsAdapter mAdapter;
     private ArrayList<JSONObject> mProjects = null;
     private Button mLogin;
+    private Button mSettings;
 
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private ActivityHelper mHelper;
@@ -132,6 +134,10 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             if (!isNetworkAvailable()) {
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
+            } else if (requiresLocation() && !mApp.isLocationEnabled()) {
+            	// No projects due to no location services enabled
+            	mEmptyListLabel.setText(getLocationRequiredText());
+                mSettings.setVisibility(View.VISIBLE);
             } else if (requiresLogin() && !mApp.loggedIn()) {
             	// Required user login
             	mEmptyListLabel.setText(getUserLoginRequiredText());
@@ -182,8 +188,14 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     /** Returns the text to display when no Internet connection is available */
     abstract protected String getNoInternetText();
 
+    /** Returns the text to display when no location services are available */
+    protected String getLocationRequiredText() { return getResources().getString(R.string.please_enable_location_services); }
+
     /** Whether or not the tab requires user login (e.g. for "Joined projects") */
     protected boolean requiresLogin() { return false; }
+
+    /** Whether or not the tab requires location services (e.g. "Nearby Projects") */
+    protected boolean requiresLocation() { return false; }
 
     /** Returns the text to display when a user login is required */
     protected String getUserLoginRequiredText() { return getResources().getString(R.string.please_sign_in); }
@@ -282,6 +294,15 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         mHelper = new ActivityHelper(getActivity());
 
         View v = inflater.inflate(R.layout.project_list, container, false);
+
+        mSettings = (Button) v.findViewById(R.id.settings);
+        mSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(myIntent);
+            }
+        });
 
         mLogin = (Button) v.findViewById(R.id.login);
         mLogin.setOnClickListener(new View.OnClickListener() {
