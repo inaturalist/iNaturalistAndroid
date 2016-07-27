@@ -7,6 +7,7 @@
         <item>naturalista</item>
         <item>naturewatchnz</item>
         <item>inaturalistcanada</item>
+        <item>naturalistacolombia</item>
     </string-array>
 
     <!-- The names of the iNat networks -->
@@ -14,12 +15,14 @@
     <string name="network_naturalista">NaturaLista</string>
     <string name="network_naturewatchnz">NatureWatch</string>
     <string name="network_inaturalistcanada">iNaturalist Canada</string>
+    <string name="network_naturalistacolombia">NaturaLista Colombia</string>
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
     <string name="inat_country_inaturalist"></string> <!-- Empty - any country -->
     <string name="inat_country_naturalista">mx</string> <!-- Mexico -->
     <string name="inat_country_naturewatchnz">nz</string> <!-- New Zealand -->
     <string name="inat_country_inaturalistcanada">ca</string> <!-- Canada -->
+    <string name="inat_country_naturalistacolombia">co</string> <!-- Colombia -->
 
     <!-- When opening the explore screen, these are the default coordinates / bounding box to show
      on the map (swlng,swlat,nelng,nelat): You can use http://isithackday.com/geoplanet-explorer/index.php to find
@@ -28,18 +31,21 @@
     <string name="inat_country_coordinates_naturalista">14.54808,-117.123596,32.718319,-86.74501</string> <!-- Mexico -->
     <string name="inat_country_coordinates_naturewatchnz">-50.85445,165.566357,-33.069679,178.559693</string> <!-- New Zealand -->
     <string name="inat_country_coordinates_inaturalistcanada">41.681019,-141.002701,83.110619,-52.620201</string> <!-- Canada -->
+    <string name="inat_country_coordinates_naturalistacolombia">-4.23048,-81.728111,13.39029,-66.869827</string> <!-- Colombia -->
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">www.inaturalist.org</string>
     <string name="inat_host_naturalista">conabio.inaturalist.org</string>
     <string name="inat_host_naturewatchnz">naturewatch.org.nz</string>
     <string name="inat_host_inaturalistcanada">www.inaturalist.ca</string>
+    <string name="inat_host_naturalistacolombia">colombia.inaturalist.org</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>
     <string name="inat_site_id_naturalista">2</string>
     <string name="inat_site_id_naturewatchnz">3</string>
     <string name="inat_site_id_inaturalistcanada">5</string>
+    <string name="inat_site_id_naturalistacolombia">6</string>
 
     <!-- The lexicon name to use for each network type - used when searching for taxa (so we'll
     	know which display name to use for the results) -->
@@ -47,16 +53,19 @@
     <string name="inat_lexicon_naturalista">Spanish</string>
     <string name="inat_lexicon_naturewatchnz">English</string>
     <string name="inat_lexicon_inaturalistcanada">English</string>
+    <string name="inat_lexicon_naturalistacolombia">Spanish</string>
 
     <!-- The logo drawable name to use for each network type -->
     <string name="inat_logo_inaturalist">logo_text</string>
     <string name="inat_logo_naturalista">logo_naturalista</string>
     <string name="inat_logo_naturewatchnz">logo_naturewatchnz</string>
     <string name="inat_logo_inaturalistcanada">logo_inaturalistcanada</string>
+    <string name="inat_logo_naturalistacolombia">logo_naturalista_colombia</string>
 
     <!-- The string array resource name that points to the localized tutorial images -->
     <string name="inat_tutorial_images_inaturalist">tutorial_images</string>
     <string name="inat_tutorial_images_naturalista">tutorial_images_naturalista</string>
     <string name="inat_tutorial_images_naturewatchnz">tutorial_images_naturewatchnz</string>
     <string name="inat_tutorial_images_inaturalistcanada">tutorial_images_inaturalistcanada</string>
+    <string name="inat_tutorial_images_naturalistacolombia">tutorial_images_naturalista_colombia</string>
 </resources>

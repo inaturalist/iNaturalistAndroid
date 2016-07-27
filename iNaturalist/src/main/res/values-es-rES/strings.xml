@@ -200,38 +200,6 @@
   <string name="refreshing">Actualizando...</string>
   <string name="sync_x_observations">Sincronización %1$d observaciones</string>
   <string name="sync_observations">Sincronización de observaciones</string>
-  <string-array name="tutorial_images">
-    <item>tutorial1</item>
-    <item>tutorial2</item>
-    <item>tutorial3</item>
-    <item>tutorial4</item>
-    <item>tutorial5</item>
-    <item>tutorial6</item>
-  </string-array>
-  <string-array name="tutorial_images_naturalista">
-    <item>tutorial1_naturalista</item>
-    <item>tutorial2_naturalista</item>
-    <item>tutorial3_naturalista</item>
-    <item>tutorial4_naturalista</item>
-    <item>tutorial5_naturalista</item>
-    <item>tutorial6_naturalista</item>
-  </string-array>
-  <string-array name="tutorial_images_naturewatchnz">
-    <item>tutorial1_naturewatch</item>
-    <item>tutorial2</item>
-    <item>tutorial3</item>
-    <item>tutorial4</item>
-    <item>tutorial5</item>
-    <item>tutorial6</item>
-  </string-array>
-  <string-array name="tutorial_images_inaturalistcanada">
-    <item>tutorial1_inaturalistcanada</item>
-    <item>tutorial2</item>
-    <item>tutorial3</item>
-    <item>tutorial4</item>
-    <item>tutorial5</item>
-    <item>tutorial6</item>
-  </string-array>
   <string-array name="geoprivacy_items">
     <item>Abierta</item>
     <item>Oscurecida</item>

@@ -201,38 +201,6 @@
   <string name="refreshing">새로 고침 중...</string>
   <string name="sync_x_observations">%1$d 관찰기록 동기화</string>
   <string name="sync_observations">관찰기록 동기화</string>
-  <string-array name="tutorial_images">
-    <item>미리 해보기1</item>
-    <item>튜토리얼2</item>
-    <item>튜토리얼3</item>
-    <item>튜토리얼4</item>
-    <item>튜토리얼5</item>
-    <item>튜토리얼6</item>
-  </string-array>
-  <string-array name="tutorial_images_naturalista">
-    <item>Naturalista를 미리 해보기1</item>
-    <item>Naturalista를 미리 해보기2</item>
-    <item>Naturalista를 미리 해보기3</item>
-    <item>Naturalista를 미리 해보기4</item>
-    <item>Naturalista를 미리 해보기5</item>
-    <item>Naturalista를 미리 해보기6</item>
-  </string-array>
-  <string-array name="tutorial_images_naturewatchnz">
-    <item>NatureWatch를 미리 해보기1</item>
-    <item>미리 해보기2</item>
-    <item>미리 해보기3</item>
-    <item>미리 해보기4</item>
-    <item>미리 해보기5</item>
-    <item>미리 해보기6</item>
-  </string-array>
-  <string-array name="tutorial_images_inaturalistcanada">
-    <item>iNaturalistCanada를 미리 해보기1</item>
-    <item>튜토리얼2</item>
-    <item>튜토리얼3</item>
-    <item>튜토리얼4</item>
-    <item>튜토리얼5</item>
-    <item>튜토리얼6</item>
-  </string-array>
   <string-array name="geoprivacy_items">
     <item>모두 공개</item>
     <item>위치 불명료</item>

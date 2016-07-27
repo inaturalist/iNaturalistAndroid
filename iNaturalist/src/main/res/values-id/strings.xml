@@ -200,38 +200,6 @@
   <string name="refreshing">Refresh...</string>
   <string name="sync_x_observations">Sinkronisasi %1$d pengamatan</string>
   <string name="sync_observations">Sinkronisasi pengamatan</string>
-  <string-array name="tutorial_images">
-    <item>panduan1</item>
-    <item>panduan2</item>
-    <item>panduan3</item>
-    <item>panduan4</item>
-    <item>panduan5</item>
-    <item>panduan6</item>
-  </string-array>
-  <string-array name="tutorial_images_naturalista">
-    <item>panduan1_naturalista</item>
-    <item>panduan2_naturalista</item>
-    <item>panduan3_naturalista</item>
-    <item>panduan4_naturalista</item>
-    <item>panduan5_naturalista</item>
-    <item>panduan6_naturalista</item>
-  </string-array>
-  <string-array name="tutorial_images_naturewatchnz">
-    <item>panduan1_naturewatch</item>
-    <item>panduan2</item>
-    <item>panduan3</item>
-    <item>panduan4</item>
-    <item>panduan5</item>
-    <item>panduan6</item>
-  </string-array>
-  <string-array name="tutorial_images_inaturalistcanada">
-    <item>panduan1_inaturalistcanada</item>
-    <item>panduan2</item>
-    <item>panduan3</item>
-    <item>panduan4</item>
-    <item>panduan5</item>
-    <item>panduan6</item>
-  </string-array>
   <string-array name="geoprivacy_items">
     <item>Buka</item>
     <item>Mengaburkan</item>

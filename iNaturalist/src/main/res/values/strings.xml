@@ -223,7 +223,16 @@
 	    <item>tutorial5_naturalista</item>
 	    <item>tutorial6_naturalista</item>
     </string-array>
-    
+
+    <string-array name="tutorial_images_naturalista_colombia">
+	    <item>tutorial1_naturalista_colombia</item>
+	    <item>tutorial2_naturalista</item>
+	    <item>tutorial3_naturalista</item>
+	    <item>tutorial4_naturalista</item>
+	    <item>tutorial5_naturalista</item>
+	    <item>tutorial6_naturalista</item>
+    </string-array>
+
     <string-array name="tutorial_images_naturewatchnz">
 	    <item>tutorial1_naturewatch</item>
 	    <item>tutorial2</item>
@@ -242,7 +251,7 @@
 	    <item>tutorial6</item>
     </string-array>
 
-    
+
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
 	    <item>Obscured</item>
@@ -346,12 +355,14 @@
     <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
     <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Clicking OK will localise your experience and share data accordingly.</string>
+    <string name="alert_message_use_naturalistacolombia">CONABIO\'s NaturaLista Colombia is a member of the iNaturalist Network in Colombia. Clicking OK will localize your experience and share data accordingly.</string>
 
     <!-- The text shown in a dialog box when the user is about to sign up -->
     <string name="inat_sign_up_inaturalist">You\'re about to visit iNaturalist.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
     <string name="inat_sign_up_naturalista">You\'re about to visit NaturaLista, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
     <string name="inat_sign_up_naturewatchnz">You\'re about to visit NatureWatchNz.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
     <string name="inat_sign_up_inaturalistcanada">You\'re about to visit iNaturalist.ca, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
+    <string name="inat_sign_up_naturalistacolombia">You\'re about to visit NaturaLista Colombia, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
 
     <string name="description">Description</string>
     <string name="editor">Editor</string>
