@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.channels.FileChannel;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -85,6 +86,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.ExifInterface;
+import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -1837,8 +1839,12 @@ public class ObservationEditor extends AppCompatActivity {
                 Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
 
                 if (isCamera)  {
+                    // Make a copy of the image into the phone's camera folder
+                    String path = FileUtils.getPath(this, selectedImageUri);
+                    addPhotoToGallery(path);
+
                     // Delete original photo (before resize)
-                    File f = new File(FileUtils.getPath(this, selectedImageUri));
+                    File f = new File(path);
                     f.delete();
                 }
 
@@ -2680,6 +2686,47 @@ public class ObservationEditor extends AppCompatActivity {
             outputSet = new TiffOutputSet(exif==null?defaultByteOrder:exif.contents.header.byteOrder);
 
         return outputSet;
+    }
+
+    private void addPhotoToGallery(String path) {
+        // Copy the file into the camera folder
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
+        if (!storageDir.exists()) storageDir.mkdirs();
+        String outputPath;
+        try {
+            File image = File.createTempFile(
+                    timeStamp,                   /* prefix */
+                    ".jpeg",                     /* suffix */
+                    storageDir                   /* directory */
+            );
+            outputPath = image.getPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            FileInputStream inStream = null;
+            inStream = new FileInputStream(path);
+            FileOutputStream outStream = new FileOutputStream(outputPath);
+            FileChannel inChannel = inStream.getChannel();
+            FileChannel outChannel = outStream.getChannel();
+            inChannel.transferTo(0, inChannel.size(), outChannel);
+            inStream.close();
+            outStream.close();
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            return;
+        }
+
+        // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
+        MediaScannerConnection.scanFile(this,
+                new String[] { outputPath }, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    public void onScanCompleted(String path, Uri uri) {
+                    }
+                });
     }
 
 }
