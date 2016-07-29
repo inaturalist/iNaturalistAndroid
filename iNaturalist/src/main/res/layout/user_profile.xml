@@ -131,6 +131,19 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:layout_marginBottom="3dp"
+            android:elevation="2dp"
+            android:outlineProvider="bounds"
+            android:paddingTop="0dp"
+            android:background="#ffffff"
+            android:layout_marginTop="-3dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff">
 
                     <TabWidget
                         android:id="@android:id/tabs"
@@ -138,6 +151,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0" />
+                    </FrameLayout>
+                    </FrameLayout>
 
                     <FrameLayout
                         android:id="@android:id/tabcontent"
