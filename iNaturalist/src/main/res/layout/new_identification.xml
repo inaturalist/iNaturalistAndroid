@@ -54,11 +54,10 @@
            android:layout_height="wrap_content"
            android:layout_marginStart="3dp"
            android:layout_marginEnd="3dp"
-           android:minLines="3"
            android:isScrollContainer="true"
            android:gravity="top"
            android:hint="@string/remarks"
-           android:inputType="text|textCapSentences"
+		   android:inputType="textMultiLine|textCapSentences"
            android:scrollbars="vertical"
            android:imeOptions="actionDone" />
 	
