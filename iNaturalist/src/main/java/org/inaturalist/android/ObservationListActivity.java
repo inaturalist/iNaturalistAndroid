@@ -1,9 +1,12 @@
 package org.inaturalist.android;
 
+import java.lang.ref.WeakReference;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
@@ -17,13 +20,11 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Handler;
-import android.support.v4.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -32,16 +33,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v4.app.NavUtils;
-import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
@@ -51,11 +47,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -666,6 +660,39 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             	photoInfo = mPhotoInfo.get(externalObsId);
             }
 
+            String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
+            if (iconicTaxonName == null) {
+                image.setImageResource(R.drawable.iconic_taxon_unknown);
+            } else if (iconicTaxonName.equals("Animalia")) {
+                image.setImageResource(R.drawable.iconic_taxon_animalia);
+            } else if (iconicTaxonName.equals("Plantae")) {
+                image.setImageResource(R.drawable.iconic_taxon_plantae);
+            } else if (iconicTaxonName.equals("Chromista")) {
+                image.setImageResource(R.drawable.iconic_taxon_chromista);
+            } else if (iconicTaxonName.equals("Fungi")) {
+                image.setImageResource(R.drawable.iconic_taxon_fungi);
+            } else if (iconicTaxonName.equals("Protozoa")) {
+                image.setImageResource(R.drawable.iconic_taxon_protozoa);
+            } else if (iconicTaxonName.equals("Actinopterygii")) {
+                image.setImageResource(R.drawable.iconic_taxon_actinopterygii);
+            } else if (iconicTaxonName.equals("Amphibia")) {
+                image.setImageResource(R.drawable.iconic_taxon_amphibia);
+            } else if (iconicTaxonName.equals("Reptilia")) {
+                image.setImageResource(R.drawable.iconic_taxon_reptilia);
+            } else if (iconicTaxonName.equals("Aves")) {
+                image.setImageResource(R.drawable.iconic_taxon_aves);
+            } else if (iconicTaxonName.equals("Mammalia")) {
+                image.setImageResource(R.drawable.iconic_taxon_mammalia);
+            } else if (iconicTaxonName.equals("Mollusca")) {
+                image.setImageResource(R.drawable.iconic_taxon_mollusca);
+            } else if (iconicTaxonName.equals("Insecta")) {
+                image.setImageResource(R.drawable.iconic_taxon_insecta);
+            } else if (iconicTaxonName.equals("Arachnida")) {
+                image.setImageResource(R.drawable.iconic_taxon_arachnida);
+            } else {
+                image.setImageResource(R.drawable.iconic_taxon_unknown);
+            }
+
             if (photoInfo != null) {
                 String photoFilename = photoInfo[0];
                 
@@ -675,56 +702,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     
                 } else {
                     // Offline photo
-                    Integer orientation;
-                    if (photoInfo[1] == null || photoInfo[1].equals("null")) {
-                        orientation = 0;
-                    } else {
-                        orientation = Integer.parseInt(photoInfo[1]);
-                    }
-
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize = ImageUtils.calculateInSampleSize(options, 100, 100);
-
-                    // Decode bitmap with inSampleSize set
-                    options.inJustDecodeBounds = false;
-                    // This decreases in-memory byte-storage per pixel
-                    options.inPreferredConfig = Bitmap.Config.ALPHA_8;
-                    Bitmap bitmapImage = BitmapFactory.decodeFile(photoFilename, options);
-                    image.setImageBitmap(bitmapImage);
-                }
-                
-            } else {
-                String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
-                if (iconicTaxonName == null) {
-                    image.setImageResource(R.drawable.iconic_taxon_unknown);
-                } else if (iconicTaxonName.equals("Animalia")) {
-                    image.setImageResource(R.drawable.iconic_taxon_animalia);
-                } else if (iconicTaxonName.equals("Plantae")) {
-                    image.setImageResource(R.drawable.iconic_taxon_plantae);
-                } else if (iconicTaxonName.equals("Chromista")) {
-                    image.setImageResource(R.drawable.iconic_taxon_chromista);
-                } else if (iconicTaxonName.equals("Fungi")) {
-                    image.setImageResource(R.drawable.iconic_taxon_fungi);
-                } else if (iconicTaxonName.equals("Protozoa")) {
-                    image.setImageResource(R.drawable.iconic_taxon_protozoa);
-                } else if (iconicTaxonName.equals("Actinopterygii")) {
-                    image.setImageResource(R.drawable.iconic_taxon_actinopterygii);
-                } else if (iconicTaxonName.equals("Amphibia")) {
-                    image.setImageResource(R.drawable.iconic_taxon_amphibia);
-                } else if (iconicTaxonName.equals("Reptilia")) {
-                    image.setImageResource(R.drawable.iconic_taxon_reptilia);
-                } else if (iconicTaxonName.equals("Aves")) {
-                    image.setImageResource(R.drawable.iconic_taxon_aves);
-                } else if (iconicTaxonName.equals("Mammalia")) {
-                    image.setImageResource(R.drawable.iconic_taxon_mammalia);
-                } else if (iconicTaxonName.equals("Mollusca")) {
-                    image.setImageResource(R.drawable.iconic_taxon_mollusca);
-                } else if (iconicTaxonName.equals("Insecta")) {
-                    image.setImageResource(R.drawable.iconic_taxon_insecta);
-                } else if (iconicTaxonName.equals("Arachnida")) {
-                    image.setImageResource(R.drawable.iconic_taxon_arachnida);
-                } else {
-                    image.setImageResource(R.drawable.iconic_taxon_unknown);
+                    BitmapWorkerTask task = new BitmapWorkerTask(image);
+                    task.execute(photoFilename);
                 }
             }
                 
@@ -1008,4 +987,55 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         });
 	}
 
+
+    // For caching observation thumbnails
+    private HashMap<String, Bitmap> mObservationThumbnails = new HashMap<>();
+
+    // Used for loading and processing the observation photo in the background (as to not block the UI)
+    class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap> {
+        private final WeakReference<ImageView> mImageViewReference;
+        private String mFilename = null;
+
+        public BitmapWorkerTask(ImageView imageView) {
+            // Use a WeakReference to ensure the ImageView can be garbage collected
+            mImageViewReference = new WeakReference<ImageView>(imageView);
+        }
+
+        // Decode image in background.
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            mFilename = params[0];
+
+            Bitmap bitmapImage;
+            if (mObservationThumbnails.containsKey(mFilename)) {
+                // Load from cache
+                bitmapImage = mObservationThumbnails.get(mFilename);
+            } else {
+                // Decode into a thumbnail
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = ImageUtils.calculateInSampleSize(options, 100, 100);
+
+                // Decode bitmap with inSampleSize set
+                options.inJustDecodeBounds = false;
+                // This decreases in-memory byte-storage per pixel
+                options.inPreferredConfig = Bitmap.Config.ALPHA_8;
+                bitmapImage = BitmapFactory.decodeFile(mFilename, options);
+
+                mObservationThumbnails.put(mFilename, bitmapImage);
+            }
+
+            return bitmapImage;
+        }
+
+        // Once complete, see if ImageView is still around and set bitmap.
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if (mImageViewReference != null && bitmap != null) {
+                final ImageView imageView = mImageViewReference.get();
+                if (imageView != null) {
+                    imageView.setImageBitmap(bitmap);
+                }
+            }
+        }
+    }
 }
