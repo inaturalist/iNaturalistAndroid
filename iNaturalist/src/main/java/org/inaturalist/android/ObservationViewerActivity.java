@@ -182,7 +182,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private ImageView mIdPicBig;
     private ViewGroup mNoPhotosContainer;
 
-    private PhotosViewPagerAdapter mPhotosAdapter;
+    private PhotosViewPagerAdapter mPhotosAdapter = null;
     private ArrayList<BetterJSONObject> mProjects;
     private ImageView mIdArrow;
     private ViewGroup mUnknownLocationContainer;
@@ -214,7 +214,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
         private Cursor mImageCursor = null;
 
         public PhotosViewPagerAdapter() {
-
             if (!mReadOnly) {
                 if (mObservation.id != null) {
                     mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
@@ -1186,8 +1185,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         mObservedOn.setText(formatObservedOn(mObservation.observed_on, mObservation.time_observed_at));
 
-        mPhotosAdapter = new PhotosViewPagerAdapter();
-        mPhotosViewPager.setAdapter(mPhotosAdapter);
+        if (mPhotosAdapter == null) {
+            mPhotosAdapter = new PhotosViewPagerAdapter();
+            mPhotosViewPager.setAdapter(mPhotosAdapter);
+        }
         mIndicator.setViewPager(mPhotosViewPager);
 
         if (mPhotosAdapter.getCount() <= 1) {
