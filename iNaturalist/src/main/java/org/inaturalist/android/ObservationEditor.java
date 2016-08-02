@@ -1963,13 +1963,8 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation.longitude = (double) latLng[1];
                 mObservation.positional_accuracy = null;
             } else {
-                // Nullify the GPS coordinates
-                mObservation.latitude = null;
-                mObservation.longitude = null;
-                mObservation.positional_accuracy = null;
-                mObservation.private_longitude = mObservation.longitude;
-                mObservation.private_latitude = mObservation.latitude;
-                setPlaceGuess(null);
+                // No coordinates - don't override the observation coordinates
+                return;
             }
 
             if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
