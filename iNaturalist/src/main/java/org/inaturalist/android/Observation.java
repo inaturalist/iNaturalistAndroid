@@ -418,6 +418,8 @@ public class Observation implements BaseColumns, Serializable {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            } else {
+                this.preferred_common_name = taxon.optString("name");
             }
         }
     }
