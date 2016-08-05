@@ -45,7 +45,10 @@ public class BaseFragmentActivity extends AppCompatActivity {
     static final int SELECT_IMAGE_REQUEST_CODE = 2;
 	private static final String TAG = "BaseFragmentActivity";
 
-	private DrawerLayout mDrawerLayout;
+    // Time in mins to refresh the user details (such as user obs count)
+    private static final int USER_REFRESH_TIME_MINS = 1;
+
+    private DrawerLayout mDrawerLayout;
 	private LinearLayout mSideMenu;
 
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -163,14 +166,15 @@ public class BaseFragmentActivity extends AppCompatActivity {
         String username = prefs.getString("username", null);
         Integer obsCount = prefs.getInt("observation_count", -1);
         String userIconUrl = prefs.getString("user_icon_url", null);
+        Long lastRefreshTime = prefs.getLong("last_user_details_refresh_time", 0);
 
         if (username != null) {
             ((TextView)findViewById(R.id.username)).setText(username);
             findViewById(R.id.menu_login).setVisibility(View.INVISIBLE);
             findViewById(R.id.username).setVisibility(View.VISIBLE);
 
-            if (obsCount == -1) {
-                // Get user details from the server
+            if (System.currentTimeMillis() - lastRefreshTime > 1000 * 60 * USER_REFRESH_TIME_MINS) {
+                // Get fresh user details from the server
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
                 startService(serviceIntent);
             }
@@ -402,6 +406,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.putInt("observation_count", user.getInt("observations_count"));
             String iconUrl = user.has("medium_user_icon_url") ? user.getString("medium_user_icon_url") : user.getString("user_icon_url");
             editor.putString("user_icon_url", iconUrl);
+            editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
             editor.apply();
 
             refreshUserDetails();

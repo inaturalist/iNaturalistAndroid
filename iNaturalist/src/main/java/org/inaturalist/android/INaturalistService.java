@@ -676,7 +676,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                  // Update last sync time
                 long lastSync = System.currentTimeMillis();
                 mPreferences.edit().putLong("last_sync_time", lastSync).commit();
-                 
+                mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
+
             } else {
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
@@ -724,6 +725,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         postPhotos();
         postProjectObservations();
         redownloadOldObservations();
+        mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
     }
 
     // Re-download any observations that have photos saved in the "old" way
