@@ -41,6 +41,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -50,8 +51,10 @@ import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.DefaultRedirectHandler;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.sanselan.ImageReadException;
 import org.apache.sanselan.ImageWriteException;
@@ -2213,6 +2216,20 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
         DefaultHttpClient client = new DefaultHttpClient();
+        // Handle redirects (301/302) for all HTTP methods (including POST)
+        client.setRedirectHandler(new DefaultRedirectHandler() {
+            @Override
+            public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
+                boolean isRedirect = super.isRedirectRequested(response, context);
+                if (!isRedirect) {
+                    int responseCode = response.getStatusLine().getStatusCode();
+                    if (responseCode == 301 || responseCode == 302) {
+                        return true;
+                    }
+                }
+                return isRedirect;
+            }
+        });
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
         
 //        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
@@ -2270,10 +2287,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
 
         try {
-            /*
-            com.google.api.client.http.HttpResponse response = request.execute();
-            String content = response.parseAsString();
-            */
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = entity != null ? EntityUtils.toString(entity) : null;

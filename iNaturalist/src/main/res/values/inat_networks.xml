@@ -35,7 +35,7 @@
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">www.inaturalist.org</string>
-    <string name="inat_host_naturalista">conabio.inaturalist.org</string>
+    <string name="inat_host_naturalista">www.naturalista.mx</string>
     <string name="inat_host_naturewatchnz">naturewatch.org.nz</string>
     <string name="inat_host_inaturalistcanada">www.inaturalist.ca</string>
     <string name="inat_host_naturalistacolombia">colombia.inaturalist.org</string>
