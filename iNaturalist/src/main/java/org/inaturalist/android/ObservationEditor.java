@@ -2314,23 +2314,21 @@ public class ObservationEditor extends AppCompatActivity {
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     FileInputStream is = new FileInputStream(photoFileName);
                     Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
+
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeStream(is, null, options);
                     is.close();
-                    int originalHeight = options.outHeight;
-                    int originalWidth = options.outWidth;
-                    int newHeight, newWidth;
 
-                    // Resize but make sure we have the same width/height aspect ratio
-                    if (originalHeight > originalWidth) {
-                        newHeight = 200;
-                        newWidth = (int) (100 * ((float) originalWidth / originalHeight));
-                    } else {
-                        newWidth = 200;
-                        newHeight = (int) (100 * ((float) originalHeight / originalWidth));
-                    }
+                    // Decode into a thumbnail
+                    options.inSampleSize = ImageUtils.calculateInSampleSize(options, 200, 200);
 
-                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+                    // Decode bitmap with inSampleSize set
+                    options.inJustDecodeBounds = false;
+                    // This decreases in-memory byte-storage per pixel
+                    options.inPreferredConfig = Bitmap.Config.ALPHA_8;
+                    bitmapImage = BitmapFactory.decodeFile(photoFileName, options);
 
-                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(resizedBitmap)));
+                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
                     bitmap.recycle();
                 } catch (FileNotFoundException exc) {
                     exc.printStackTrace();
