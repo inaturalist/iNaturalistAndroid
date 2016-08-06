@@ -443,6 +443,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         refreshActivity();
         refreshFavorites();
 
+        reloadPhotos();
         loadObservationIntoUI();
         refreshDataQuality();
     }
@@ -1185,12 +1186,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         mObservedOn.setText(formatObservedOn(mObservation.observed_on, mObservation.time_observed_at));
 
-        if (mPhotosAdapter == null) {
-            mPhotosAdapter = new PhotosViewPagerAdapter();
-            mPhotosViewPager.setAdapter(mPhotosAdapter);
-        }
-        mIndicator.setViewPager(mPhotosViewPager);
-
         if (mPhotosAdapter.getCount() <= 1) {
             mIndicator.setVisibility(View.GONE);
             mNoPhotosContainer.setVisibility(View.GONE);
@@ -1674,6 +1669,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
             }
 
+            reloadPhotos();
             loadObservationIntoUI();
             setupMap();
             refreshActivity();
@@ -1685,6 +1681,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
 	    }
 
 	}
+
+    private void reloadPhotos() {
+        mPhotosAdapter = new PhotosViewPagerAdapter();
+        mPhotosViewPager.setAdapter(mPhotosAdapter);
+        mIndicator.setViewPager(mPhotosViewPager);
+    }
 
     private void resizeFavList() {
         final Handler handler = new Handler();
@@ -1760,6 +1762,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                 reloadObservation(null, true);
 
+                reloadPhotos();
                 loadObservationIntoUI();
                 setupMap();
                 refreshActivity();
