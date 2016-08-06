@@ -184,6 +184,9 @@ public class ObservationEditor extends AppCompatActivity {
     private TextView mObservationCommentsIds;
     private TableLayout mProjectFieldsTable;
 
+    private ArrayList<String> mPhotosAdded;
+    private ArrayList<ObservationPhoto> mPhotosRemoved;
+
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
@@ -226,6 +229,7 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mReturnToObservationList;
     private boolean mTaxonTextChanged = false;
     private boolean mTaxonSearchStarted = false;
+    private boolean mPhotosChanged = false;
 
     @Override
 	protected void onStart()
@@ -393,6 +397,10 @@ public class ObservationEditor extends AppCompatActivity {
                 finish();
                 return;
             }
+
+            mPhotosAdded = new ArrayList<String>();
+            mPhotosRemoved = new ArrayList<ObservationPhoto>();
+
         } else {
             String fileUri = savedInstanceState.getString("mFileUri");
             if (fileUri != null) {mFileUri = Uri.parse(fileUri);}
@@ -416,6 +424,9 @@ public class ObservationEditor extends AppCompatActivity {
             mGettingLocation = savedInstanceState.getBoolean("mGettingLocation");
             mLocationManuallySet = savedInstanceState.getBoolean("mLocationManuallySet");
             mReturnToObservationList = savedInstanceState.getBoolean("mReturnToObservationList");
+            mPhotosChanged = savedInstanceState.getBoolean("mPhotosChanged");
+            mPhotosAdded = savedInstanceState.getStringArrayList("mPhotosAdded");
+            mPhotosRemoved = (ArrayList<ObservationPhoto>) savedInstanceState.getSerializable("mPhotosRemoved");
         }
 
 
@@ -814,7 +825,7 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean onBack() {
         Observation observationCopy = new Observation(mCursor);
         uiToObservation();
-        if (!mObservation.isDirty()) {
+        if (!mObservation.isDirty() && !mPhotosChanged) {
             // User hasn't changed anything - no need to display confirmation dialog
             mCanceled = true;
             setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
@@ -832,6 +843,7 @@ public class ObservationEditor extends AppCompatActivity {
                     public void run() {
                         // Get back to the observations list (consider this as canceled)
                         mCanceled = true;
+                        revertPhotos();
                         setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
                         finish();
                     }
@@ -839,6 +851,26 @@ public class ObservationEditor extends AppCompatActivity {
                 null);
 
         return true;
+    }
+
+    // User canceled - revert any changes made to the observation photos
+    private void revertPhotos() {
+        // Add any photos that were deleted
+        for (ObservationPhoto photo : mPhotosRemoved) {
+            ContentValues cv = photo.getContentValues();
+            getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
+        }
+
+        // Delete any photos that were added
+        for (String uriString : mPhotosAdded) {
+            Uri uri = Uri.parse(uriString);
+            getContentResolver().delete(uri, null, null);
+        }
+
+        // Restore the positions of all photos
+    	updateImages();
+        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+        adapter.refreshPhotoPositions(null);
     }
 
 
@@ -929,6 +961,9 @@ public class ObservationEditor extends AppCompatActivity {
         outState.putBoolean("mGettingLocation", mGettingLocation);
         outState.putBoolean("mLocationManuallySet", mLocationManuallySet);
         outState.putBoolean("mReturnToObservationList", mReturnToObservationList);
+        outState.putBoolean("mPhotosChanged", mPhotosChanged);
+        outState.putStringArrayList("mPhotosAdded", mPhotosAdded);
+        outState.putSerializable("mPhotosRemoved", mPhotosRemoved);
         super.onSaveInstanceState(outState);
     }
 
@@ -1837,6 +1872,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
 
                 Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
+                mPhotosAdded.add(createdUri.toString());
 
                 if (isCamera)  {
                     // Make a copy of the image into the phone's camera folder
@@ -1920,6 +1956,8 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
+        mPhotosChanged = true;
+
         String path = FileUtils.getPath(this, photoUri);
         if (path == null) {
             path = photoUri.getPath();
@@ -2007,10 +2045,14 @@ public class ObservationEditor extends AppCompatActivity {
     }
     
     private void deletePhoto(int position) {
+        mPhotosChanged = true;
     	GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
 
         Cursor cursor = adapter.getCursor();
         cursor.moveToPosition(position);
+
+        ObservationPhoto op = new ObservationPhoto(cursor);
+        mPhotosRemoved.add(op);
 
     	String photoId = adapter.getItemIdString(position);
         String photoFilename = cursor.getString(cursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
@@ -2020,6 +2062,9 @@ public class ObservationEditor extends AppCompatActivity {
             getContentResolver().delete(ObservationPhoto.CONTENT_URI, "photo_url = '" + photoId + "'", null);
         }
     	updateImages();
+        // Refresh the positions of all other photos
+        adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+        adapter.refreshPhotoPositions(null);
     }
 
     /**
@@ -2238,6 +2283,8 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         public void setAsFirstPhoto(int position) {
+            mPhotosChanged = true;
+
             String photoId = getItemIdString(position);
             mFirstPositionPhotoId = photoId;
 
@@ -2252,12 +2299,18 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             // Update the rest of the photos to be positioned afterwards
-            int currentPosition = 1;
+            refreshPhotoPositions(position);
+
+            updateImages();
+        }
+
+        public void refreshPhotoPositions(Integer position) {
+            int currentPosition = position == null ? 0 : 1;
             int count = mCursor.getCount();
             mCursor.moveToPosition(0);
 
             do {
-                if (mCursor.getPosition() != position) {
+                if ((position == null) || (mCursor.getPosition() != position.intValue()))  {
                     ObservationPhoto currentOp = new ObservationPhoto(mCursor);
                     currentOp.position = currentPosition;
                     if (currentOp.photo_filename != null) {
@@ -2270,7 +2323,6 @@ public class ObservationEditor extends AppCompatActivity {
                 }
             } while (mCursor.moveToNext());
 
-            updateImages();
         }
 
         public View getView(final int position, View convertView, ViewGroup parent) {

@@ -239,6 +239,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         if (created_at != null) { cv.put(CREATED_AT, created_at.getTime()); }
         cv.put(ID, id);
         cv.put(OBSERVATION_ID, observation_id);
+        cv.put(_OBSERVATION_ID, _observation_id);
         cv.put(PHOTO_ID, photo_id);
         cv.put(POSITION, position);
         cv.put(PHOTO_URL, photo_url);
