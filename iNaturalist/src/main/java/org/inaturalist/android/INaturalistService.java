@@ -1481,6 +1481,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + deviceLanguage;
         JSONArray json = get(url);
         try {
+            if (json == null) return new BetterJSONObject();
 			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
