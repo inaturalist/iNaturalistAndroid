@@ -1507,6 +1507,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = API_HOST + "/observations/observers?project_id=" + projectId;
         JSONArray json = get(url);
         try {
+            if (json == null) return new BetterJSONObject();
 			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -1518,6 +1519,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = API_HOST + "/observations/identifiers?project_id=" + projectId;
         JSONArray json = get(url);
         try {
+            if (json == null) return new BetterJSONObject();
 			return new BetterJSONObject(json.getJSONObject(0));
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -1529,6 +1531,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         String url = HOST + "/guide_taxa.json?guide_id=" + guideId.toString();
         JSONArray json = get(url);
         try {
+            if (json == null) return new SerializableJSONArray();
 			return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("guide_taxa"));
 		} catch (JSONException e) {
 			e.printStackTrace();
