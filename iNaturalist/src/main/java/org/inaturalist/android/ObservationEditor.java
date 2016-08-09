@@ -2307,6 +2307,9 @@ public class ObservationEditor extends AppCompatActivity {
         public void refreshPhotoPositions(Integer position) {
             int currentPosition = position == null ? 0 : 1;
             int count = mCursor.getCount();
+
+            if (count == 0) return;
+
             mCursor.moveToPosition(0);
 
             do {
