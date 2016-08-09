@@ -74,6 +74,7 @@
                 android:layout_marginEnd="5dp"
                 android:textColor="#FFFFFF"
                 android:hint="@string/email"
+                android:textColorHint="#66ffffff"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
                 android:inputType="textEmailAddress"
@@ -110,6 +111,7 @@
                 android:layout_marginEnd="5dp"
                 android:textColor="#FFFFFF"
                 android:hint="@string/password"
+                android:textColorHint="#66ffffff"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
                 android:inputType="textPassword"
@@ -119,7 +121,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="#7fffffff"
                 android:text="@string/min_6_chars"
                 android:layout_centerVertical="true"
@@ -159,6 +161,7 @@
                 android:layout_marginEnd="5dp"
                 android:textColor="#FFFFFF"
                 android:hint="@string/username"
+                android:textColorHint="#66ffffff"
                 android:textSize="18sp"
                 android:gravity="center_vertical"
                 android:inputType="text"
@@ -333,4 +336,11 @@
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:id="@+id/hide_focus"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
 </RelativeLayout>
