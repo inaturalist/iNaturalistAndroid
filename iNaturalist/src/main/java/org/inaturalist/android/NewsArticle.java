@@ -122,7 +122,23 @@ public class NewsArticle extends AppCompatActivity {
             mArticleContentWeb.setVisibility(View.VISIBLE);
             mArticleContentWeb.setBackgroundColor(Color.TRANSPARENT);
             mArticleContentWeb.setVerticalScrollBarEnabled(false);
-            String html = "<html><head><style type=\"text/css\">body { line-height: 22pt; margin: 0; padding: 0; font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif; font-size: medium; }</style></head><body>";
+            String html = "" +
+                "<html>" +
+                    "<head>" +
+                        "<style type=\"text/css\"> " +
+                            "body {" +
+                                "line-height: 22pt;" +
+                                "margin: 0;" +
+                                "padding: 0;" +
+                                "font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
+                                "font-size: medium;" +
+                            "} " +
+                            "div {max-width: 100%;} " +
+                            "figure { padding: 0; margin: 0; } " +
+                            "img { padding-top: 4; padding-bottom: 4; max-width: 100%; } " +
+                        "</style>" +
+                    "</head>" +
+                "<body>";
             mArticleContentWeb.loadDataWithBaseURL("", html + mArticle.getString("body") + "</body></html>", "text/html", "UTF-8", "");
         } else {
             mArticleContentWeb.setVisibility(View.GONE);
