@@ -9,7 +9,7 @@
         android:layout_width="50dp"
         android:src="@drawable/ic_action_email"
         android:adjustViewBounds="false"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:background="#5D5B5E"
         />
 
