@@ -230,6 +230,7 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mTaxonTextChanged = false;
     private boolean mTaxonSearchStarted = false;
     private boolean mPhotosChanged = false;
+    private ArrayList<String> mCameraPhotos;
 
     @Override
 	protected void onStart()
@@ -331,6 +332,8 @@ public class ObservationEditor extends AppCompatActivity {
             mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
         }
 
+        mCameraPhotos = new ArrayList<String>();
+
         setContentView(R.layout.observation_confirmation);
 
         if (mIsConfirmation) {
@@ -427,6 +430,7 @@ public class ObservationEditor extends AppCompatActivity {
             mPhotosChanged = savedInstanceState.getBoolean("mPhotosChanged");
             mPhotosAdded = savedInstanceState.getStringArrayList("mPhotosAdded");
             mPhotosRemoved = (ArrayList<ObservationPhoto>) savedInstanceState.getSerializable("mPhotosRemoved");
+            mCameraPhotos = savedInstanceState.getStringArrayList("mCameraPhotos");
         }
 
 
@@ -964,6 +968,7 @@ public class ObservationEditor extends AppCompatActivity {
         outState.putBoolean("mPhotosChanged", mPhotosChanged);
         outState.putStringArrayList("mPhotosAdded", mPhotosAdded);
         outState.putSerializable("mPhotosRemoved", mPhotosRemoved);
+        outState.putStringArrayList("mCameraPhotos", mCameraPhotos);
         super.onSaveInstanceState(outState);
     }
 
@@ -1532,6 +1537,25 @@ public class ObservationEditor extends AppCompatActivity {
     private void setCurrentLocation(Location location) {
         mCurrentLocation = location;
 
+        // Update any external photos taken through the app with the coordinates
+        for (String filename : mCameraPhotos) {
+            try {
+                ExifInterface exif;
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+
+                exif = new ExifInterface(filename);
+                exif.setAttribute(ExifInterface.TAG_GPS_LATITUDE, GPSEncoder.convert(latitude));
+                exif.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, GPSEncoder.latitudeRef(latitude));
+                exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, GPSEncoder.convert(longitude));
+                exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, GPSEncoder.longitudeRef(longitude));
+                exif.saveAttributes();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         mObservation.latitude = location.getLatitude();
         mObservation.longitude = location.getLongitude();
 
@@ -1877,7 +1901,11 @@ public class ObservationEditor extends AppCompatActivity {
                 if (isCamera)  {
                     // Make a copy of the image into the phone's camera folder
                     String path = FileUtils.getPath(this, selectedImageUri);
-                    addPhotoToGallery(path);
+                    String copyPath = addPhotoToGallery(path);
+
+                    if (copyPath != null) {
+                        mCameraPhotos.add(copyPath);
+                    }
 
                     // Delete original photo (before resize)
                     File f = new File(path);
@@ -2736,7 +2764,7 @@ public class ObservationEditor extends AppCompatActivity {
         return outputSet;
     }
 
-    private void addPhotoToGallery(String path) {
+    private String addPhotoToGallery(String path) {
         // Copy the file into the camera folder
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
         File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
@@ -2751,7 +2779,7 @@ public class ObservationEditor extends AppCompatActivity {
             outputPath = image.getPath();
         } catch (IOException e) {
             e.printStackTrace();
-            return;
+            return null;
         }
 
         try {
@@ -2765,7 +2793,7 @@ public class ObservationEditor extends AppCompatActivity {
             outStream.close();
         } catch (Exception exc) {
             exc.printStackTrace();
-            return;
+            return null;
         }
 
         // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
@@ -2775,6 +2803,8 @@ public class ObservationEditor extends AppCompatActivity {
                     public void onScanCompleted(String path, Uri uri) {
                     }
                 });
+
+        return outputPath;
     }
 
 }
