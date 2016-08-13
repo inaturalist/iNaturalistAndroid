@@ -229,7 +229,7 @@ public class ObservationDetails extends AppCompatActivity implements CommentsIds
         }
 
         ImageView userPic = (ImageView) findViewById(R.id.user_pic);
-        String photoUrl = "http://www.inaturalist.org/attachments/users/icons/" + mObservation.optInt("user_id") + "-thumb.jpg";
+        String photoUrl = "http://www.inaturalist.org/attachments/users/icons/" + mObservation.optInt("user_id") + "-medium.jpg";
         UrlImageViewHelper.setUrlDrawable(userPic, photoUrl, R.drawable.usericon, new UrlImageViewCallback() {
             @Override
             public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
