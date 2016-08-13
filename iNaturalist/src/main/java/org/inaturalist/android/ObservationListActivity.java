@@ -150,10 +150,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             Log.i(TAG, "Unregistering ACTION_SYNC_COMPLETE");
             try {
                 unregisterReceiver(mSyncCompleteReceiver);
+                unregisterReceiver(mConnectivityListener);
             } catch (Exception exc) {
                 exc.printStackTrace();
             }
             mSyncCompleteReceiver = null;
+            mConnectivityListener = null;
         }
     }
 
@@ -297,7 +299,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
         Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
         registerReceiver(mSyncCompleteReceiver, filter);
- 
+
+        mConnectivityListener = new ConnectivityBroadcastReceiver();
+        IntentFilter filter2 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        Log.i(TAG, "Registering CONNECTIVITY_ACTION");
+        registerReceiver(mConnectivityListener, filter2);
+
         mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.observations_list);
         mPullRefreshListView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_refresh));
         mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_refresh));
@@ -378,9 +385,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mPullRefreshListView.setAdapter(mAdapter);
         mPullRefreshListView.setOnItemClickListener(this);
 
+        triggerSyncIfNeeded();
+    }
 
+    private void triggerSyncIfNeeded() {
         boolean hasOldObs = hasOldObservations();
-        if ((app.getAutoSync() && !app.getIsSyncing()) || (hasOldObs)) {
+        if ((mApp.getAutoSync() && !mApp.getIsSyncing()) || (hasOldObs)) {
             int syncCount = 0;
             if (!hasOldObs) {
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
@@ -1035,6 +1045,27 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 if (imageView != null) {
                     imageView.setImageBitmap(bitmap);
                 }
+            }
+        }
+    }
+
+
+    private ConnectivityBroadcastReceiver mConnectivityListener = null;
+
+    private class ConnectivityBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (!action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+                return;
+            }
+
+            boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+
+            if (!noConnectivity) {
+                // We're connected to the Internet - try syncing again
+                triggerSyncIfNeeded();
             }
         }
     }
