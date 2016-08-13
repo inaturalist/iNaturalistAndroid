@@ -2,6 +2,16 @@ package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.FacebookSdk;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStates;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import io.fabric.sdk.android.Fabric;
 import java.io.BufferedInputStream;
@@ -72,6 +82,7 @@ public class INaturalistApp extends MultiDexApplication {
     public static final int NO_OBSERVATION = -1;
     private int mObservationIdBeingSynced = NO_OBSERVATION;
     private boolean mCancelSync = false;
+    private GoogleApiClient mGoogleApiClient;
 
     // The ID of the observation being currently synced
 
@@ -254,16 +265,66 @@ public class INaturalistApp extends MultiDexApplication {
     	settingsEditor.apply();
 	}
 
+    // Called by isLocationEnabled to notify the rest of the app if location is enabled/disabled
+    public interface OnLocationStatus {
+        void onLocationStatus(boolean isEnabled);
+    }
+
     /** Checks if location services are enabled */
-    public boolean isLocationEnabled() {
+    public boolean isLocationEnabled(final OnLocationStatus locationCallback) {
+        // First, check if GPS is disabled
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        return (
+        boolean gpsDisabled = (
                 lm.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
                 lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
             );
+
+        if (!gpsDisabled) return false;
+
+
+        // Next, see if specifically the user has revoked location access to our app
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addApi(LocationServices.API)
+                    .build();
+            mGoogleApiClient.connect();
+        }
+
+        if (locationCallback != null) {
+            final LocationRequest locationRequest = new LocationRequest();
+            locationRequest.setInterval(10000);
+            locationRequest.setFastestInterval(5000);
+            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
+
+            PendingResult<LocationSettingsResult> result = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
+
+            result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+                @Override
+                public void onResult(LocationSettingsResult locationSettingsResult) {
+                    final Status status = locationSettingsResult.getStatus();
+                    switch (status.getStatusCode()) {
+                        case LocationSettingsStatusCodes.SUCCESS:
+                            // All location settings are satisfied. The client can initialize location
+                            // requests here.
+                            locationCallback.onLocationStatus(true);
+                            break;
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                            // Location settings are not satisfied
+                            locationCallback.onLocationStatus(false);
+                            break;
+                    }
+                }
+            });
+        }
+
+        return gpsDisabled;
+
     }
 
- 	public void detectUserCountryAndUpdateNetwork(Context context) {
+    public void detectUserCountryAndUpdateNetwork(Context context) {
  		// Don't ask the user again to switch to another network (if he's been asked before)
  		if (getInaturalistNetworkMember() != null) return;
 

@@ -52,7 +52,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoading {
+public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoading, INaturalistApp.OnLocationStatus {
 
     private ProjectsAdapter mAdapter;
     private ArrayList<JSONObject> mProjects = null;
@@ -134,7 +134,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             if (!isNetworkAvailable()) {
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
-            } else if (requiresLocation() && !mApp.isLocationEnabled()) {
+            } else if (requiresLocation() && !mApp.isLocationEnabled(this)) {
             	// No projects due to no location services enabled
             	mEmptyListLabel.setText(getLocationRequiredText());
                 mSettings.setVisibility(View.VISIBLE);
@@ -375,7 +375,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
+        if (((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) /*|| (resultCode == ProjectDetails.RESULT_REFRESH_RESULTS)*/) {
             // User logged-in - Refresh list
             mEmptyListLabel.setVisibility(View.GONE);
             mLogin.setVisibility(View.GONE);
@@ -399,6 +399,16 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     @Override
     public void onLoading(Boolean loading) {
         toggleLoading(loading);
+    }
+
+
+    @Override
+    public void onLocationStatus(boolean isEnabled) {
+        if (!isEnabled) {
+            // No projects due to no location services enabled
+            mEmptyListLabel.setText(getLocationRequiredText());
+            mSettings.setVisibility(View.VISIBLE);
+        }
     }
 
 }
