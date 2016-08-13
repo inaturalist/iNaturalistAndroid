@@ -520,7 +520,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_NEAR_BY_GUIDES)) {
-                if (!mApp.isLocationEnabled()) {
+                if (!mApp.isLocationEnabled(null)) {
                     // No location enabled
                     Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
                     reply.putExtra(GUIDES_RESULT, new SerializableJSONArray());
@@ -553,7 +553,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 }
                
              } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
-                if (!mApp.isLocationEnabled()) {
+                if (!mApp.isLocationEnabled(null)) {
                     // No location enabled
                     Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
                     mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, new SerializableJSONArray());
@@ -1715,23 +1715,25 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     private SerializableJSONArray getNearByProjects(boolean useLocationServices) throws AuthenticationException {
-           
+
+        Location location = null;
         if (useLocationServices) {
-        	Location location;
-        	try {
-        		location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
-         	} catch (IllegalStateException ex) {
-        		ex.printStackTrace();
-        		return new SerializableJSONArray();
-        	}
-           
+            try {
+                location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
+            } catch (IllegalStateException ex) {
+                ex.printStackTrace();
+                return new SerializableJSONArray();
+            }
+        }
+
+        if (location != null) {
             return getNearByProjects(location);
         } else {
             // Use GPS alone to determine location
             LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();
             String provider = locationManager.getBestProvider(criteria, false);
-            Location location = locationManager.getLastKnownLocation(provider);
+            location = locationManager.getLastKnownLocation(provider);
             
             return getNearByProjects(location);
         }
@@ -1805,6 +1807,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         
         try {
             JSONArray result = get(String.format("%s/projects/%d.json", HOST, projectId));
+            if (result == null) return;
             BetterJSONObject jsonProject = new BetterJSONObject(result.getJSONObject(0));
             Project project = new Project(jsonProject);
             
