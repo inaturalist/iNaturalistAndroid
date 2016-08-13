@@ -486,6 +486,7 @@ public class Observation implements BaseColumns, Serializable {
             this.geoprivacy = observation.geoprivacy;
             this.iconic_taxon_id = observation.iconic_taxon_id;
             this.iconic_taxon_name = observation.iconic_taxon_name;
+            if (observation.preferred_common_name != null) this.preferred_common_name = observation.preferred_common_name;
             this.id = observation.id;
             this.id_please = observation.id_please;
             this.latitude = observation.latitude;
