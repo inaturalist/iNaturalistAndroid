@@ -269,6 +269,14 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     
     @Override
     public void onResume() {
+        if (mProjectsReceiver != null) {
+            try {
+                getActivity().unregisterReceiver(mProjectsReceiver);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+        }
+
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
         Log.i(TAG, "Registering " + getFilterResultName());
@@ -375,17 +383,30 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) /*|| (resultCode == ProjectDetails.RESULT_REFRESH_RESULTS)*/) {
+        if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
             // User logged-in - Refresh list
-            mEmptyListLabel.setVisibility(View.GONE);
-            mLogin.setVisibility(View.GONE);
-
-            toggleLoading(true);
-            getProjects();
+            refresh();
         }
     }
 
+    public void refresh() {
+        mEmptyListLabel.setVisibility(View.GONE);
+        mLogin.setVisibility(View.GONE);
+
+        toggleLoading(true);
+        getProjects();
+    }
+
     private void getProjects() {
+
+        if (mProjectsReceiver != null) {
+            try {
+                getActivity().unregisterReceiver(mProjectsReceiver);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+            }
+        }
+
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
         Log.i(TAG, "Registering " + getFilterResultName());

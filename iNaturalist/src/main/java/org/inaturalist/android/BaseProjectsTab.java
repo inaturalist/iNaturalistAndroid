@@ -23,7 +23,7 @@ public abstract class BaseProjectsTab extends BaseTab {
         super.onActivityResult(requestCode, resultCode, data);
 
          if (requestCode == PROJECT_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
+            if ((resultCode == Activity.RESULT_OK) || (resultCode == ProjectDetails.RESULT_REFRESH_RESULTS)) {
                 BetterJSONObject project = (BetterJSONObject) data.getSerializableExtra("project");
                 
                 if (project != null) updateProject(mIndex, project);

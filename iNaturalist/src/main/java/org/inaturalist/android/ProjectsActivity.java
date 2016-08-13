@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -184,5 +185,19 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
         return true;
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if  (resultCode == ProjectDetails.RESULT_REFRESH_RESULTS) {
+            // Refresh all projects result
+            for (int i = 0; i < mFragments.size(); i++) {
+                BaseTab tab = (BaseTab) mFragments.get(i);
+                tab.refresh();
+            }
+        }
     }
 }

@@ -30,7 +30,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,6 +51,8 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 	private final static String VIEW_TYPE_SPECIES = "species";
 	private final static String VIEW_TYPE_OBSERVERS = "observers";
     private final static String VIEW_TYPE_IDENTIFIERS = "identifiers";
+
+    public static final int RESULT_REFRESH_RESULTS = 0x1000;
 
     private Button mJoinLeaveProject;
 
@@ -103,6 +104,8 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     private ViewGroup mProjectPicContainer;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+
+    private boolean mJoinedOrLeftProject = false;
 
     @Override
 	protected void onStart()
@@ -176,6 +179,8 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
             mTotalObervers = savedInstanceState.getInt("mTotalObervers");
             mTotalObservations = savedInstanceState.getInt("mTotalObservations");
             mTotalSpecies = savedInstanceState.getInt("mTotalSpecies");
+
+            mJoinedOrLeftProject = savedInstanceState.getBoolean("mJoinedOrLeftProject");
         }
 
         // Tab Initialization
@@ -245,6 +250,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         mJoinLeaveProject.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                mJoinedOrLeftProject = true;
                 Boolean isJoined = mProject.getBoolean("joined");
                 if ((isJoined != null) && (isJoined == true)) {
                     mHelper.confirm(getString(R.string.leave_project), getString(R.string.leave_project_confirmation),
@@ -344,6 +350,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         outState.putInt("mTotalObervers", mTotalObervers);
         outState.putInt("mTotalObservations", mTotalObservations);
         outState.putInt("mTotalSpecies", mTotalSpecies);
+        outState.putBoolean("mJoinedOrLeftProject", mJoinedOrLeftProject);
 
         super.onSaveInstanceState(outState);
     }
@@ -376,7 +383,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     	bundle.putSerializable("project", mProject);
     	intent.putExtras(bundle);
 
-    	setResult(RESULT_OK, intent);      
+    	setResult(mJoinedOrLeftProject ? RESULT_REFRESH_RESULTS : RESULT_OK, intent);
         super.onBackPressed();
     }
 
