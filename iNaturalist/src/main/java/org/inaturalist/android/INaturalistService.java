@@ -2240,7 +2240,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
         });
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
-        
+
 //        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
 //                authenticated ? mCredentials : "<null>",
 //                url));

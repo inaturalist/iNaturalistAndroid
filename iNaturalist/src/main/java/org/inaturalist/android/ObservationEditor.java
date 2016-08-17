@@ -1987,15 +1987,26 @@ public class ObservationEditor extends AppCompatActivity {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
-        if (path == null) {
-            path = photoUri.getPath();
-        }
-        // Resize photo to 2048x2048 max
-        String resizedPhoto = resizeImage(path);
+        InputStream is = null;
+        String resizedPhoto;
+        try {
+            if (path == null) {
+                is = getContentResolver().openInputStream(photoUri);
+            } else {
+                is = new FileInputStream(path);
+            }
 
-        if (resizedPhoto == null) {
+            // Resize photo to 2048x2048 max
+            resizedPhoto = resizeImage(is, path);
+
+            if (resizedPhoto == null) {
+                return null;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
             return null;
         }
+
 
         ObservationPhoto op = new ObservationPhoto();
 
@@ -2585,30 +2596,33 @@ public class ObservationEditor extends AppCompatActivity {
      * @param filename the image filename
      * @return the resized image - or original image if smaller than 2048x2048
      */
-    private String resizeImage(String filename) {
+    private String resizeImage(InputStream is, String filename) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        InputStream is = null;
         try {
-            is = new FileInputStream(filename);
             Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
-            is.close();
             int originalHeight = options.outHeight;
             int originalWidth = options.outWidth;
             int newHeight, newWidth;
 
 
             if (Math.max(originalHeight, originalWidth) < 2048) {
-                // Original file is smaller than 2048x2048 - no need to resize
-                return filename;
-            }
-
-            // Resize but make sure we have the same width/height aspect ratio
-            if (originalHeight > originalWidth) {
-                newHeight = 2048;
-                newWidth = (int)(2048 * ((float)originalWidth / originalHeight));
+                if (filename != null) {
+                    // Original file is smaller than 2048x2048 - no need to resize
+                    return filename;
+                } else {
+                    // Don't resize because image is smaller than 2048x2048 - however, make a local copy of it
+                    newHeight = originalHeight;
+                    newWidth = originalWidth;
+                }
             } else {
-                newWidth = 2048;
-                newHeight = (int)(2048 * ((float)originalHeight / originalWidth));
+                // Resize but make sure we have the same width/height aspect ratio
+                if (originalHeight > originalWidth) {
+                    newHeight = 2048;
+                    newWidth = (int) (2048 * ((float) originalWidth / originalHeight));
+                } else {
+                    newWidth = 2048;
+                    newHeight = (int) (2048 * ((float) originalHeight / originalWidth));
+                }
             }
 
             Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
@@ -2624,7 +2638,7 @@ public class ObservationEditor extends AppCompatActivity {
             os.close();
 
             // Copy all EXIF data from original image into resized image
-            copyExifData(new File(filename), new File(imageFile.getAbsolutePath()), null);
+            copyExifData(is, new File(imageFile.getAbsolutePath()), null);
 
             return imageFile.getAbsolutePath();
 
@@ -2640,7 +2654,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     // EXIF-copying code taken from: https://bricolsoftconsulting.com/copying-exif-metadata-using-sanselan/
-    public static boolean copyExifData(File sourceFile, File destFile, List<TagInfo> excludedFields) {
+    public static boolean copyExifData(InputStream sourceFileStream, File destFile, List<TagInfo> excludedFields) {
         String tempFileName = destFile.getAbsolutePath() + ".tmp";
         File tempFile = null;
         OutputStream tempStream = null;
@@ -2648,7 +2662,7 @@ public class ObservationEditor extends AppCompatActivity {
         try {
             tempFile = new File (tempFileName);
 
-            TiffOutputSet sourceSet = getSanselanOutputSet(sourceFile, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
+            TiffOutputSet sourceSet = getSanselanOutputSet(sourceFileStream, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
             TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
 
             // If the EXIF data endianess of the source and destination files
@@ -2739,6 +2753,30 @@ public class ObservationEditor extends AppCompatActivity {
         return result;
     }
 
+
+    private static TiffOutputSet getSanselanOutputSet(InputStream stream, int defaultByteOrder)
+            throws IOException, ImageReadException, ImageWriteException {
+        TiffImageMetadata exif = null;
+        TiffOutputSet outputSet = null;
+
+        IImageMetadata metadata = Sanselan.getMetadata(stream, null);
+        JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
+        if (jpegMetadata != null) {
+            exif = jpegMetadata.getExif();
+
+            if (exif != null) {
+                outputSet = exif.getOutputSet();
+            }
+        }
+
+        // If JPEG file contains no EXIF metadata, create an empty set
+        // of EXIF metadata. Otherwise, use existing EXIF metadata to
+        // keep all other existing tags
+        if (outputSet == null)
+            outputSet = new TiffOutputSet(exif==null?defaultByteOrder:exif.contents.header.byteOrder);
+
+        return outputSet;
+    }
 
     private static TiffOutputSet getSanselanOutputSet(File jpegImageFile, int defaultByteOrder)
             throws IOException, ImageReadException, ImageWriteException {
