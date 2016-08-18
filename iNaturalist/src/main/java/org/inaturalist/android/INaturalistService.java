@@ -2024,6 +2024,19 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             checkForCancelSync();
             ProjectFieldValue localField = new ProjectFieldValue(c);
 
+            // Make sure that the local field has an *external* observation id (i.e. the observation
+            // it belongs to has been synced)
+            Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "id = ? AND _synced_at IS NOT NULL",
+                    new String[] { localField.observation_id.toString() },
+                    ProjectFieldValue.DEFAULT_SORT_ORDER);
+            if (obsc.getCount() == 0) {
+                continue;
+            }
+            obsc.close();
+
+
             mApp.setObservationIdBeingSynced(localField.observation_id);
 
             if (!mProjectFieldValues.containsKey(Integer.valueOf(localField.observation_id))) {
