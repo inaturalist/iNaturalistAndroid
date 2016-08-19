@@ -118,7 +118,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     }
     
     private void loadProjectsIntoUI() {
-        mAdapter = new ProjectsAdapter(getActivity(), null, this, mProjects);
+        mAdapter = new ProjectsAdapter(getActivity(), null, this, mProjects, getDefaultIcon());
         mProjectList.setAdapter(mAdapter);
 
         mProjectList.setVisibility(View.VISIBLE);
@@ -204,6 +204,8 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
      * the iNat service class */
     abstract protected boolean recallServiceActionIfNoResults();
 
+    /** The default icon used for project items */
+    protected int getDefaultIcon() { return R.drawable.ic_work_black_24dp; }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

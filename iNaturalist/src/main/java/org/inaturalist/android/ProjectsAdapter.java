@@ -33,6 +33,7 @@ import java.util.List;
 public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filterable {
 
     private static final String TAG = "ProjectsAdapter";
+    private final int mDefaultIcon;
 
     private List<JSONObject> mItems;
     private List<JSONObject> mOriginalItems;
@@ -103,6 +104,10 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
     }
 
     public ProjectsAdapter(Context context, String searchUrl, OnLoading onLoading, List<JSONObject> objects) {
+        this(context, searchUrl, onLoading, objects, R.drawable.ic_work_black_24dp);
+    }
+
+    public ProjectsAdapter(Context context, String searchUrl, OnLoading onLoading, List<JSONObject> objects, int defaultIcon) {
         super(context, R.layout.project_item, objects);
 
         mSearchUrl = searchUrl;
@@ -111,6 +116,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
         mContext = context;
         mHelper = new ActivityHelper(mContext);
         mOnLoading = onLoading;
+        mDefaultIcon = defaultIcon;
 
         mFilter = new Filter() {
             @Override
@@ -206,8 +212,10 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
         if ((iconUrl == null) || (iconUrl.length() == 0)) {
             projectPic.setVisibility(View.GONE);
             view.findViewById(R.id.project_pic_none).setVisibility(View.VISIBLE);
+            ((ImageView)view.findViewById(R.id.project_pic_none)).setImageResource(mDefaultIcon);
         } else {
             projectPic.setVisibility(View.VISIBLE);
+            projectPic.setImageResource(mDefaultIcon);
             UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl);
 
             view.findViewById(R.id.project_pic_none).setVisibility(View.GONE);
