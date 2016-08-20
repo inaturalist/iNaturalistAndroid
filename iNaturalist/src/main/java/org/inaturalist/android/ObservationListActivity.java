@@ -671,36 +671,37 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             }
 
             String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
+            int iconResource = 0;
             if (iconicTaxonName == null) {
-                image.setImageResource(R.drawable.iconic_taxon_unknown);
+                iconResource = R.drawable.iconic_taxon_unknown;
             } else if (iconicTaxonName.equals("Animalia")) {
-                image.setImageResource(R.drawable.iconic_taxon_animalia);
+                iconResource = R.drawable.iconic_taxon_animalia;
             } else if (iconicTaxonName.equals("Plantae")) {
-                image.setImageResource(R.drawable.iconic_taxon_plantae);
+                iconResource = R.drawable.iconic_taxon_plantae;
             } else if (iconicTaxonName.equals("Chromista")) {
-                image.setImageResource(R.drawable.iconic_taxon_chromista);
+                iconResource = R.drawable.iconic_taxon_chromista;
             } else if (iconicTaxonName.equals("Fungi")) {
-                image.setImageResource(R.drawable.iconic_taxon_fungi);
+                iconResource = R.drawable.iconic_taxon_fungi;
             } else if (iconicTaxonName.equals("Protozoa")) {
-                image.setImageResource(R.drawable.iconic_taxon_protozoa);
+                iconResource = R.drawable.iconic_taxon_protozoa;
             } else if (iconicTaxonName.equals("Actinopterygii")) {
-                image.setImageResource(R.drawable.iconic_taxon_actinopterygii);
+                iconResource = R.drawable.iconic_taxon_actinopterygii;
             } else if (iconicTaxonName.equals("Amphibia")) {
-                image.setImageResource(R.drawable.iconic_taxon_amphibia);
+                iconResource = R.drawable.iconic_taxon_amphibia;
             } else if (iconicTaxonName.equals("Reptilia")) {
-                image.setImageResource(R.drawable.iconic_taxon_reptilia);
+                iconResource = R.drawable.iconic_taxon_reptilia;
             } else if (iconicTaxonName.equals("Aves")) {
-                image.setImageResource(R.drawable.iconic_taxon_aves);
+                iconResource = R.drawable.iconic_taxon_aves;
             } else if (iconicTaxonName.equals("Mammalia")) {
-                image.setImageResource(R.drawable.iconic_taxon_mammalia);
+                iconResource = R.drawable.iconic_taxon_mammalia;
             } else if (iconicTaxonName.equals("Mollusca")) {
-                image.setImageResource(R.drawable.iconic_taxon_mollusca);
+                iconResource = R.drawable.iconic_taxon_mollusca;
             } else if (iconicTaxonName.equals("Insecta")) {
-                image.setImageResource(R.drawable.iconic_taxon_insecta);
+                iconResource = R.drawable.iconic_taxon_insecta;
             } else if (iconicTaxonName.equals("Arachnida")) {
-                image.setImageResource(R.drawable.iconic_taxon_arachnida);
+                iconResource = R.drawable.iconic_taxon_arachnida;
             } else {
-                image.setImageResource(R.drawable.iconic_taxon_unknown);
+                iconResource = R.drawable.iconic_taxon_unknown;
             }
 
             if (photoInfo != null) {
@@ -708,12 +709,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 
                 if (photoInfo[2] != null) {
                     // Online-only photo
-                    UrlImageViewHelper.setUrlDrawable(image, photoInfo[2]); 
+                    UrlImageViewHelper.setUrlDrawable(image, photoInfo[2], iconResource);
                     
                 } else {
                     // Offline photo
                     BitmapWorkerTask task = new BitmapWorkerTask(image);
-                    task.execute(photoFilename);
+                    task.execute(photoFilename, String.valueOf(iconResource));
                 }
             }
                 
@@ -1005,6 +1006,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap> {
         private final WeakReference<ImageView> mImageViewReference;
         private String mFilename = null;
+        private int mIconResource;
 
         public BitmapWorkerTask(ImageView imageView) {
             // Use a WeakReference to ensure the ImageView can be garbage collected
@@ -1015,12 +1017,23 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         @Override
         protected Bitmap doInBackground(String... params) {
             mFilename = params[0];
+            mIconResource = Integer.valueOf(params[1]);
 
             Bitmap bitmapImage;
             if (mObservationThumbnails.containsKey(mFilename)) {
                 // Load from cache
                 bitmapImage = mObservationThumbnails.get(mFilename);
             } else {
+                if (mImageViewReference != null) {
+                    runOnUiThread(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          mImageViewReference.get().setImageResource(mIconResource);
+                                      }
+                                  }
+                    );
+                }
+
                 // Decode into a thumbnail
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inSampleSize = ImageUtils.calculateInSampleSize(options, 100, 100);
