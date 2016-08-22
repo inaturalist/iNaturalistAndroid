@@ -24,6 +24,10 @@ public abstract class BaseGuidesTab extends BaseTab {
     	return getResources().getString(R.string.no_internet_guides);
     }
 
+    protected int getDefaultIcon() {
+        return R.drawable.ic_book_black_24dp;
+    }
+
     public static String getSearchUrl(INaturalistApp app) {
         String inatNetwork = app.getInaturalistNetworkMember();
         String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);

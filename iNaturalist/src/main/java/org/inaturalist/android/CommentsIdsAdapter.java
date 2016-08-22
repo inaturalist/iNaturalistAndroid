@@ -42,6 +42,7 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implements OnClickListener {
 
@@ -108,7 +109,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		final BetterJSONObject item = mItems.get(position);
 
 		try {
-			TextView comment = (TextView) view.findViewById(R.id.comment);
+			final TextView comment = (TextView) view.findViewById(R.id.comment);
 			RelativeLayout idLayout = (RelativeLayout) view.findViewById(R.id.id_layout);
             final RelativeLayout idAgreeLayout = (RelativeLayout) view.findViewById(R.id.id_agree_container);
 
@@ -238,6 +239,15 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				Linkify.addLinks(comment, Linkify.ALL);
 				comment.setMovementMethod(LinkMovementMethod.getInstance());
 
+				comment.setOnLongClickListener(new View.OnLongClickListener() {
+					@Override
+					public boolean onLongClick(View view) {
+                        copyToClipBoard(comment.getText().toString());
+                        Toast.makeText(mContext, R.string.comment_copied, Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				});
+
                 if (mIsNewLayout) {
                     postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
                     if (hasUserIcon) userPic.setAlpha(255);
@@ -253,6 +263,15 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					comment.setMovementMethod(LinkMovementMethod.getInstance());
 
                     comment.setVisibility(View.VISIBLE);
+
+                    comment.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            copyToClipBoard(comment.getText().toString());
+                            Toast.makeText(mContext, R.string.id_comment_copied, Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
+                    });
 
                     if (!mIsNewLayout) {
                         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) comment.getLayoutParams();
@@ -508,5 +527,17 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		intent.putExtra("download_taxon", true);
 		mContext.startActivity(intent);
 	}
+
+    private void copyToClipBoard(String text) {
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText(text, text);
+            clipboard.setPrimaryClip(clip);
+        } else {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        }
+    }
 }
 

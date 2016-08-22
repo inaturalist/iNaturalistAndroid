@@ -1263,7 +1263,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         });
 
         mIdPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
-        mIdName.setText((mObservation.preferred_common_name != null) &&  (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);
+        mIdName.setText((mObservation.preferred_common_name != null) && (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);
         mTaxonicName.setVisibility(View.GONE);
 
 
@@ -1272,10 +1272,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
         }
 
 
-        if (mObservation.taxon_id == null) {
+        if ((mObservation.taxon_id == null) && (mObservation.species_guess == null)) {
             mIdName.setText(R.string.unknown_species);
             mIdArrow.setVisibility(View.GONE);
-        } else {
+        } else if (mObservation.taxon_id != null) {
             mIdArrow.setVisibility(View.VISIBLE);
 
             if ((mTaxonName == null) || (mTaxonIdName == null) || (mTaxonImage == null)) {
