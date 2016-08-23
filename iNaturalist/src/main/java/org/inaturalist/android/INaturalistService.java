@@ -905,22 +905,31 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
         // Finally, retrieve all project observations
+        storeProjectObservations();
+    }
+
+    private void storeProjectObservations() {
         for (int j = 0; j < mProjectObservations.size(); j++) {
             JSONArray projectObservations = mProjectObservations.get(j).getJSONArray();
-            
+
             for (int i = 0; i < projectObservations.length(); i++) {
                 JSONObject jsonProjectObservation;
                 try {
                     jsonProjectObservation = projectObservations.getJSONObject(i);
                     ProjectObservation projectObservation = new ProjectObservation(new BetterJSONObject(jsonProjectObservation));
                     ContentValues cv = projectObservation.getContentValues();
-                    getContentResolver().insert(ProjectObservation.CONTENT_URI, cv);
+                    Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI,
+                            ProjectObservation.PROJECTION,
+                            "project_id = "+projectObservation.project_id+" AND observation_id = "+projectObservation.observation_id,
+                            null, ProjectObservation.DEFAULT_SORT_ORDER);
+                    if (c.getCount() == 0) {
+                        getContentResolver().insert(ProjectObservation.CONTENT_URI, cv);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
-
     }
     
     private void saveJoinedProjects() throws AuthenticationException {
@@ -2509,7 +2518,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 if (isUser) {
                     // Save the project observations aside (will be later used in the syncing of project observations)
                     mProjectObservations.add(o.getJSONArray("project_observations"));
-                    
+
                     // Save project field values
                     Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
                     JSONArray jsonFields = o.getJSONArray("observation_field_values").getJSONArray();
@@ -2665,6 +2674,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 
                 mResponseHeaders = null;
             }
+        }
+
+        if (isUser) {
+            storeProjectObservations();
         }
     }
     
