@@ -716,6 +716,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     BitmapWorkerTask task = new BitmapWorkerTask(image);
                     task.execute(photoFilename, String.valueOf(iconResource));
                 }
+            } else {
+                image.setImageResource(iconResource);
             }
                 
             
