@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="152"
-    android:versionName="1.4.6" >
+    android:versionCode="153"
+    android:versionName="1.4.7" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
 
@@ -231,6 +231,11 @@
             android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo;org.inaturalist.android.project;org.inaturalist.android.project_observation;org.inaturalist.android.project_field;org.inaturalist.android.project_field_value"
             android:name=".ObservationProvider" >
         </provider>
+
+        <activity
+            android:configChanges="orientation"
+            android:name=".ProfileEditor" >
+        </activity>
 
         <service android:name=".INaturalistService" />
         <meta-data android:name="com.crashlytics.ApiKey" android:value="7baaee0ca8a376b3d129b908c1e03be6ecbe5786"/>

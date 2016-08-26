@@ -349,6 +349,9 @@ public class INaturalistPrefsActivity extends BaseFragmentActivity implements Si
         mPrefEditor.remove("last_sync_time");
 		mPrefEditor.remove("observation_count");
 		mPrefEditor.remove("user_icon_url");
+		mPrefEditor.remove("user_bio");
+		mPrefEditor.remove("user_full_name");
+		mPrefEditor.remove("last_user_details_refresh_time");
 		mPrefEditor.commit();
 		
 		int count1 = getContentResolver().delete(Observation.CONTENT_URI, null, null);

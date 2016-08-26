@@ -516,5 +516,14 @@
     <string name="syncing_canceled">Syncing Canceled</string>
     <string name="comment_copied">Comment copied to clipboard</string>
     <string name="id_comment_copied">Identification comment copied to clipboard</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="remove_photo">Remove Photo</string>
+    <string name="name">Name</string>
+    <string name="tell_us_about_yourself">Tell us about yourself...</string>
+    <string name="view_profile">View Profile</string>
+    <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
+    <string name="updating_profile">Updating Profile...</string>
+    <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
+    <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
  </resources>
 

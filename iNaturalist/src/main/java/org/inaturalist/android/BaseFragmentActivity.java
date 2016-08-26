@@ -283,6 +283,13 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.user_pic_container).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, ProfileEditor.class), false);
+            }
+        });
+
 
         if (INaturalistMapActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_explore).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
@@ -316,7 +323,12 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
     }
 
+
     private void startActivityIfNew(Intent intent) {
+        startActivityIfNew(intent, true);
+    }
+
+    private void startActivityIfNew(Intent intent, boolean closeCurrentActivity) {
         if (intent.getComponent().getClassName().equals(this.getClass().getName())) {
             // Activity is already loaded
             mDrawerLayout.closeDrawer(mSideMenu);
@@ -325,7 +337,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         startActivity(intent);
         overridePendingTransition(R.anim.show, R.anim.hide);
-        finish();
+        if (closeCurrentActivity) {
+            finish();
+        }
     }
 
 
@@ -406,6 +420,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.putInt("observation_count", user.getInt("observations_count"));
             String iconUrl = user.has("medium_user_icon_url") ? user.getString("medium_user_icon_url") : user.getString("user_icon_url");
             editor.putString("user_icon_url", iconUrl);
+            editor.putString("user_bio", user.getString("description"));
+            editor.putString("user_full_name", user.getString("name"));
             editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
             editor.apply();
 

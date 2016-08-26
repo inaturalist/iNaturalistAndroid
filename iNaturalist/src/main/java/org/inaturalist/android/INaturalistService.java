@@ -185,6 +185,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
     public static String ACTION_TAXA_FOR_GUIDE = "get_taxa_for_guide";
     public static String ACTION_GET_USER_DETAILS = "get_user_details";
+    public static String ACTION_UPDATE_USER_DETAILS = "update_user_details";
     public static String ACTION_GET_PROJECT_NEWS = "get_project_news";
     public static String ACTION_GET_NEWS = "get_news";
     public static String ACTION_GET_PROJECT_OBSERVATIONS = "get_project_observations";
@@ -215,9 +216,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_NEAR_BY_GUIDES_RESULT = "near_by_guides_results";
     public static String ACTION_TAXA_FOR_GUIDES_RESULT = "taxa_for_guides_results";
     public static String ACTION_GET_USER_DETAILS_RESULT = "get_user_details_result";
+    public static String ACTION_UPDATE_USER_DETAILS_RESULT = "update_user_details_result";
     public static String ACTION_GUIDE_XML_RESULT = "guide_xml_result";
     public static String ACTION_GUIDE_XML = "guide_xml";
     public static String GUIDES_RESULT = "guides_result";
+    public static String ACTION_USERNAME = "username";
+    public static String ACTION_FULL_NAME = "full_name";
+    public static String ACTION_USER_BIO = "user_bio";
+    public static String ACTION_USER_PIC = "user_pic";
+    public static String ACTION_USER_DELETE_PIC = "user_delete_pic";
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
@@ -485,6 +492,39 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
                 Intent reply = new Intent(ACTION_GUIDE_XML_RESULT);
                 reply.putExtra(GUIDE_XML_RESULT, guideXMLFilename);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_UPDATE_USER_DETAILS)) {
+                String username = intent.getStringExtra(ACTION_USERNAME);
+                String fullName = intent.getStringExtra(ACTION_FULL_NAME);
+                String bio = intent.getStringExtra(ACTION_USER_BIO);
+                String userPic = intent.getStringExtra(ACTION_USER_PIC);
+                boolean deletePic  = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
+
+                JSONObject newUser = updateUser(username, fullName, bio, userPic, deletePic);
+
+                if ((newUser != null) && (!newUser.has("errors"))) {
+                    SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+
+                    String prevLogin = mLogin;
+                    mLogin = newUser.optString("login");
+                    editor.putString("username", mLogin);
+                    editor.putString("user_icon_url", newUser.has("medium_user_icon_url") ? newUser.optString("medium_user_icon_url") : newUser.optString("user_icon_url"));
+                    editor.putString("user_bio", newUser.optString("description"));
+                    editor.putString("user_full_name", newUser.optString("name"));
+                    editor.apply();
+
+
+                    // Update observations with the new username
+                    ContentValues cv = new ContentValues();
+                    cv.put("user_login", mLogin);
+                    int count = getContentResolver().update(Observation.CONTENT_URI, cv, "user_login = ?", new String[] { prevLogin });
+                    Log.d(TAG, String.format("Updated %d observations with new user login %s from %s", count, mLogin, prevLogin));
+                }
+
+                Intent reply = new Intent(ACTION_UPDATE_USER_DETAILS_RESULT);
+                reply.putExtra(USER, newUser != null ? new BetterJSONObject(newUser) : null);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_USER_DETAILS)) {
@@ -1102,6 +1142,31 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    // Updates a user's profile
+    private JSONObject updateUser(String username, String fullName, String bio, String userPic, boolean deletePic) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("user[login]", username));
+        params.add(new BasicNameValuePair("user[name]", fullName));
+        params.add(new BasicNameValuePair("user[description]", bio));
+
+        if (deletePic) {
+            // Delete profile pic
+            params.add(new BasicNameValuePair("user[icon_delete]", "true"));
+        } else if (userPic != null) {
+            // New profile pic
+            params.add(new BasicNameValuePair("user[icon]", userPic));
+        }
+
+        JSONArray array = put(HOST + "/users/" + mLogin + ".json", params);
+
+        if ((mResponseErrors != null) || (array == null)) {
+            // Couldn't update user
+            return null;
+        } else {
+            return array.optJSONObject(0);
         }
     }
 
@@ -2286,7 +2351,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         	Charset utf8Charset = Charset.forName("UTF-8");
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
             for (int i = 0; i < params.size(); i++) {
-                if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file")) {
+                if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]")) {
                     // If the key equals to "image", we use FileBody to transfer the data
                     entity.addPart(params.get(i).getName(), new FileBody(new File (params.get(i).getValue())));
                 } else {
