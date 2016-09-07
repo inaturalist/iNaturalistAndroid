@@ -608,6 +608,7 @@
                 android:id="@+id/notes"
                 android:textColor="#757575"
                 android:text="a sdlkasj dlkasjlkdj aslkjd laksjd lkasj dalksj dlakjd aslkjdlkasjd laj dkaj dlasj dlkaj dasjlkdalkj alks lka dlkasldk aslkd alkd alks dlaksj dlkasjd alksj dlkas"
+                android:textIsSelectable="true"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
