@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -1147,6 +1148,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
             userIconUrl = pref.getString("user_icon_url", null);
             mUserName.setText(username);
         }
+
+        String extension = userIconUrl.substring(userIconUrl.lastIndexOf(".") + 1);
+        userIconUrl = userIconUrl.substring(0, userIconUrl.lastIndexOf('-')) + "-medium." + extension;
 
         if (userIconUrl != null) {
             UrlImageViewHelper.setUrlDrawable(mUserPic, userIconUrl, R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
