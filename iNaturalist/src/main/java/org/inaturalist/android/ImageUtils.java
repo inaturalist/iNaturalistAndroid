@@ -6,11 +6,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.support.v8.renderscript.Allocation;
 import android.support.v8.renderscript.Element;
@@ -20,6 +22,7 @@ import android.util.Log;
 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -264,6 +267,47 @@ public class ImageUtils {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+
+    public static int getImageOrientation(String imgFilePath) {
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(imgFilePath);
+            int degrees = exifOrientationToDegrees(exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
+            return degrees;
+        } catch (IOException e) {
+            e.printStackTrace();
+            // No orientation
+            return 0;
+        }
+    }
+
+    private static int exifOrientationToDegrees(int orientation) {
+        switch (orientation) {
+        case ExifInterface.ORIENTATION_ROTATE_90:
+            return 90;
+        case ExifInterface.ORIENTATION_ROTATE_180:
+            return 180;
+        case ExifInterface.ORIENTATION_ROTATE_270:
+            return -90;
+        default:
+            return 0;
+        }
+
+    }
+
+    public static Bitmap rotateAccordingToOrientation(Bitmap bitmapImage, String filename) {
+        int orientation = getImageOrientation(filename);
+
+        if (orientation != 0) {
+            // Rotate the image
+            Matrix matrix = new Matrix();
+            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+            return Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+        } else {
+            return bitmapImage;
         }
     }
 }

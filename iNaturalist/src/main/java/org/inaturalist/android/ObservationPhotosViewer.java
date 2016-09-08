@@ -289,6 +289,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
                     // Scale down the image if it's too big for the GL renderer
                     bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);
+                    bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, imagePath);
                     imageView.setImageBitmap(bitmapImage);
                     final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
                     attacher.update();

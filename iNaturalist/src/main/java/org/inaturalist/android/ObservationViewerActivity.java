@@ -291,6 +291,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     // This decreases in-memory byte-storage per pixel
                     options.inPreferredConfig = Bitmap.Config.ALPHA_8;
                     bitmapImage = BitmapFactory.decodeFile(photoFilename, options);
+                    bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, photoFilename);
                     imageView.setImageBitmap(bitmapImage);
                 } catch (Exception e) {
                     e.printStackTrace();

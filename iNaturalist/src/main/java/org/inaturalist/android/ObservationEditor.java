@@ -35,6 +35,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.functors.ExceptionClosure;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sanselan.ImageReadException;
 import org.apache.sanselan.ImageWriteException;
@@ -42,6 +43,7 @@ import org.apache.sanselan.Sanselan;
 import org.apache.sanselan.common.IImageMetadata;
 import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
 import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
+import org.apache.sanselan.formats.tiff.TiffField;
 import org.apache.sanselan.formats.tiff.TiffImageMetadata;
 import org.apache.sanselan.formats.tiff.constants.TagInfo;
 import org.apache.sanselan.formats.tiff.constants.TiffConstants;
@@ -2245,25 +2247,14 @@ public class ObservationEditor extends AppCompatActivity {
         ContentValues values = new ContentValues();
         int degrees = -1;
         try {
-            ExifInterface exif = new ExifInterface(imgFilePath);
-            degrees = exifOrientationToDegrees(
-                    exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 
-                            ExifInterface.ORIENTATION_NORMAL));
+            degrees = ImageUtils.getImageOrientation(imgFilePath);
             values.put(MediaStore.Images.ImageColumns.ORIENTATION, degrees);
             getContentResolver().update(uri, values, null, null);
-            
-            String lat = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
-            String d = exif.getAttribute(ExifInterface.TAG_DATETIME);
-            Log.d(TAG, "lat: " + lat + ", d: " + d);
-        } catch (IOException e) {
-            Log.e(TAG, "couldn't find " + imgFilePath);
         } catch (Exception e) {
         	Log.e(TAG, "Couldn't update image orientation for path: " + uri);
-            SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-            String username = pref.getString("username", null);
         }
     }
-    
+
     protected void updateImages() {
     	if (mObservation.id != null) {
     		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
@@ -2400,7 +2391,7 @@ public class ObservationEditor extends AppCompatActivity {
                 });
             } else {
                 // Offline photo
-                int orientation = 0;
+                int orientation = ImageUtils.getImageOrientation(photoFileName);
                 Bitmap bitmapImage = null;
 
                 try {
@@ -2421,6 +2412,13 @@ public class ObservationEditor extends AppCompatActivity {
                     // This decreases in-memory byte-storage per pixel
                     options.inPreferredConfig = Bitmap.Config.ALPHA_8;
                     bitmapImage = BitmapFactory.decodeFile(photoFileName, options);
+
+                    if (orientation != 0) {
+                        // Rotate the image
+                        Matrix matrix = new Matrix();
+                        matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                        bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                    }
 
                     imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
                     bitmap.recycle();
@@ -2474,20 +2472,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
     }
 
-    private int exifOrientationToDegrees(int orientation) {
-        switch (orientation) {
-        case ExifInterface.ORIENTATION_ROTATE_90:
-            return 90;
-        case ExifInterface.ORIENTATION_ROTATE_180:
-            return 180;
-        case ExifInterface.ORIENTATION_ROTATE_270:
-            return -90;
-        default:
-            return 0;
-        }
 
-    }
-    
     /**
      * Display a confirm dialog. 
      * @param activity

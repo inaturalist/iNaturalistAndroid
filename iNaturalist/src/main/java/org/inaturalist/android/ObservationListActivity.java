@@ -1045,6 +1045,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 // This decreases in-memory byte-storage per pixel
                 options.inPreferredConfig = Bitmap.Config.ALPHA_8;
                 bitmapImage = BitmapFactory.decodeFile(mFilename, options);
+                bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, mFilename);
 
                 mObservationThumbnails.put(mFilename, bitmapImage);
             }
