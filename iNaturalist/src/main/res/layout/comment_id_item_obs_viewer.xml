@@ -104,6 +104,7 @@
             android:layout_marginTop="3dp"
             android:textColor="#000000"
             android:text="..comment.."
+            android:textIsSelectable="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
 

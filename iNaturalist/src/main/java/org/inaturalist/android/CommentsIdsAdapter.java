@@ -239,15 +239,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				Linkify.addLinks(comment, Linkify.ALL);
 				comment.setMovementMethod(LinkMovementMethod.getInstance());
 
-				comment.setOnLongClickListener(new View.OnLongClickListener() {
-					@Override
-					public boolean onLongClick(View view) {
-                        copyToClipBoard(comment.getText().toString());
-                        Toast.makeText(mContext, R.string.comment_copied, Toast.LENGTH_SHORT).show();
-						return false;
-					}
-				});
-
                 if (mIsNewLayout) {
                     postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
                     if (hasUserIcon) userPic.setAlpha(255);
@@ -263,15 +254,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					comment.setMovementMethod(LinkMovementMethod.getInstance());
 
                     comment.setVisibility(View.VISIBLE);
-
-                    comment.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View view) {
-                            copyToClipBoard(comment.getText().toString());
-                            Toast.makeText(mContext, R.string.id_comment_copied, Toast.LENGTH_SHORT).show();
-                            return false;
-                        }
-                    });
 
                     if (!mIsNewLayout) {
                         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) comment.getLayoutParams();

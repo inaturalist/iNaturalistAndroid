@@ -514,8 +514,6 @@
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
     <string name="users_identification">%1$s\'s ID: %2$s</string>
     <string name="syncing_canceled">Syncing Canceled</string>
-    <string name="comment_copied">Comment copied to clipboard</string>
-    <string name="id_comment_copied">Identification comment copied to clipboard</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="remove_photo">Remove Photo</string>
     <string name="name">Name</string>
