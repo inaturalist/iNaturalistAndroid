@@ -2357,7 +2357,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             for (int i = 0; i < params.size(); i++) {
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]")) {
                     // If the key equals to "image", we use FileBody to transfer the data
-                    entity.addPart(params.get(i).getName(), new FileBody(new File (params.get(i).getValue())));
+                    String value = params.get(i).getValue();
+                    if (value != null) entity.addPart(params.get(i).getName(), new FileBody(new File (value)));
                 } else {
                     // Normal string data
                     try {
