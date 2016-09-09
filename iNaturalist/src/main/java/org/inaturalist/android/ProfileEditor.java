@@ -208,7 +208,7 @@ public class ProfileEditor extends AppCompatActivity {
         mUserPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new BottomSheet.Builder(ProfileEditor.this).sheet(R.menu.profile_editor_photo_menu).listener(new DialogInterface.OnClickListener() {
+                new BottomSheet.Builder(ProfileEditor.this).sheet(mUserIconUrl != null ? R.menu.profile_editor_photo_menu : R.menu.profile_editor_no_photo_menu).listener(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent;

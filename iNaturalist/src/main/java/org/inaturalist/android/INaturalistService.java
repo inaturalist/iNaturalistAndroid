@@ -510,7 +510,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     String prevLogin = mLogin;
                     mLogin = newUser.optString("login");
                     editor.putString("username", mLogin);
-                    editor.putString("user_icon_url", newUser.has("medium_user_icon_url") ? newUser.optString("medium_user_icon_url") : newUser.optString("user_icon_url"));
+                    if (!newUser.has("user_icon_url") || newUser.isNull("user_icon_url")) {
+                        editor.putString("user_icon_url", null);
+                    } else {
+                        editor.putString("user_icon_url", newUser.has("medium_user_icon_url") ? newUser.optString("medium_user_icon_url") : newUser.optString("user_icon_url"));
+                    }
                     editor.putString("user_bio", newUser.optString("description"));
                     editor.putString("user_full_name", newUser.optString("name"));
                     editor.apply();
@@ -1154,7 +1158,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         if (deletePic) {
             // Delete profile pic
-            params.add(new BasicNameValuePair("user[icon_delete]", "true"));
+            params.add(new BasicNameValuePair("icon_delete", "true"));
         } else if (userPic != null) {
             // New profile pic
             params.add(new BasicNameValuePair("user[icon]", userPic));
