@@ -50,7 +50,7 @@ import android.widget.Toast;
 
 public class ProjectSelectorActivity extends AppCompatActivity implements OnItemClickListener {
     
-    private static final String TAG = "INAT:ProjectSelectorActivity";
+    private static final String TAG = "INAT:ProjectSelectorAct";
     public static final String PROJECT_IDS = "project_ids";
     public static final String PROJECT_FIELDS = "project_fields";
     public static final String IS_CONFIRMATION = "is_confirmation";
@@ -69,7 +69,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     private boolean mIsConfirmation;
     private ProjectAdapter mAdapter;
     private ActivityHelper mHelper;
-    private Hashtable<Integer, ProjectField> mProjectFields;
+    private ArrayList mProjectFields;
     private HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
 
     private HashMap<Integer, List<ProjectFieldViewer>> mProjectFieldViewers;
@@ -152,7 +152,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
 
             ProjectFieldViewer.getProjectFields(ProjectSelectorActivity.this, projectIds, mObservationId, new ProjectFieldViewer.ProjectFieldsResults() {
                 @Override
-                public void onProjectFieldsResults(Hashtable<Integer, ProjectField> projectFields, HashMap<Integer, ProjectFieldValue> projectValues) {
+                public void onProjectFieldsResults(ArrayList projectFields, HashMap<Integer, ProjectFieldValue> projectValues) {
                     mProjectFields = projectFields;
 
                     if (mProjectFieldValues == null) {

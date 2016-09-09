@@ -40,6 +40,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -658,12 +659,12 @@ public class ProjectFieldViewer {
     // Returns all fields and field values for a specific observation
 
     public interface ProjectFieldsResults {
-        void onProjectFieldsResults(Hashtable<Integer, ProjectField> projectFields, HashMap<Integer, ProjectFieldValue> projectValues);
+        void onProjectFieldsResults(ArrayList projectFields, HashMap<Integer, ProjectFieldValue> projectValues);
     }
 
     public static void getProjectFields(Context context, List<Integer> projectIds, int obsId, ProjectFieldsResults resultsCallback) {
-        Hashtable<Integer, ProjectField> projectFields = new Hashtable<Integer, ProjectField>();
-        HashMap<Integer, ProjectFieldValue> projectFieldValues = new HashMap<Integer, ProjectFieldValue>();
+        ArrayList projectFields = new ArrayList();
+        HashMap<Integer, ProjectFieldValue> projectFieldValues = new HashMap<>();
 
         // Get project fields
         for (int projectId : projectIds) {
@@ -675,7 +676,7 @@ public class ProjectFieldViewer {
 
             while (c.isAfterLast() == false) {
                 ProjectField projectField = new ProjectField(c);
-                projectFields.put(projectField.field_id, projectField);
+                projectFields.add(projectField);
                 c.moveToNext();
             }
             c.close();
@@ -692,19 +693,6 @@ public class ProjectFieldViewer {
         while (c.isAfterLast() == false) {
             ProjectFieldValue fieldValue = new ProjectFieldValue(c);
             projectFieldValues.put(fieldValue.field_id, fieldValue);
-
-            if (!projectFields.containsKey(fieldValue.field_id)) {
-                // It's a custom non-project field
-                Cursor c2 = context.getContentResolver().query(ProjectField.CONTENT_URI, ProjectField.PROJECTION,
-                        "(field_id = " + fieldValue.field_id + ")", null, ProjectField.DEFAULT_SORT_ORDER);
-                c2.moveToFirst();
-                if (!c2.isAfterLast()) {
-                    ProjectField field = new ProjectField(c2);
-                    projectFields.put(fieldValue.field_id, field);
-                }
-                c2.close();
-            }
-
             c.moveToNext();
         }
         c.close();
@@ -713,25 +701,19 @@ public class ProjectFieldViewer {
     }
 
     // Returns a sorted field list for a specific project
-    public static List<ProjectField> sortProjectFields(final int projectId, Hashtable<Integer, ProjectField> projectFields) {
-        ArrayList<Map.Entry<Integer, ProjectField>> fields = new ArrayList(projectFields.entrySet());
-
+    public static List<ProjectField> sortProjectFields(final int projectId, ArrayList projectFields) {
         // Filter by project ID
-        CollectionUtils.filter(fields, new Predicate<Map.Entry<Integer, ProjectField>>() {
+        CollectionUtils.filter(projectFields, new Predicate<ProjectField>() {
             @Override
-            public boolean evaluate(Map.Entry<Integer, ProjectField> object) {
-                ProjectField field = object.getValue();
+            public boolean evaluate(ProjectField field) {
                 return (field.project_id != null) && (field.project_id == projectId);
             }
         });
 
         // Then sort by position
-        Collections.sort(fields, new Comparator<Map.Entry<Integer, ProjectField>>() {
+        Collections.sort(projectFields, new Comparator<ProjectField>() {
             @Override
-            public int compare(Map.Entry<Integer, ProjectField> lhs, Map.Entry<Integer, ProjectField> rhs) {
-                ProjectField field1 = lhs.getValue();
-                ProjectField field2 = rhs.getValue();
-
+            public int compare(ProjectField field1, ProjectField field2) {
                 Integer projectId1 = (field1.project_id != null ? field1.project_id : Integer.valueOf(-1));
                 Integer projectId2 = (field2.project_id != null ? field2.project_id : Integer.valueOf(-1));
 
@@ -747,15 +729,7 @@ public class ProjectFieldViewer {
                 }
             }
         });
-
-        Iterator<Map.Entry<Integer, ProjectField>> iterator = fields.iterator();
-        List<ProjectField> resultProjectFields = new ArrayList<ProjectField>();
-
-        while (iterator.hasNext()) {
-            ProjectField field = iterator.next().getValue();
-            resultProjectFields.add(field);
-        }
-        return resultProjectFields;
+        return projectFields;
     }
 
 }

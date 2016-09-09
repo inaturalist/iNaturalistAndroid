@@ -1369,7 +1369,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
     };
     private ArrayList<Integer> mProjectIds;
-    private Hashtable<Integer, ProjectField> mProjectFields;
+    private ArrayList<ProjectField> mProjectFields;
     private HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
 
     @Override
@@ -2511,7 +2511,7 @@ public class ObservationEditor extends AppCompatActivity {
     private void refreshProjectFields() {
         ProjectFieldViewer.getProjectFields(this, mProjectIds, (mObservation.id == null ? mObservation._id : mObservation.id), new ProjectFieldViewer.ProjectFieldsResults() {
             @Override
-            public void onProjectFieldsResults(Hashtable<Integer, ProjectField> projectFields, HashMap<Integer, ProjectFieldValue> projectValues) {
+            public void onProjectFieldsResults(ArrayList projectFields, HashMap<Integer, ProjectFieldValue> projectValues) {
                 mProjectFields = projectFields;
 
                 if (mProjectFieldValues == null) {
@@ -2525,14 +2525,9 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void addProjectFieldViewers() {
         // Prepare the fields for display
-        
-        ArrayList<Map.Entry<Integer, ProjectField>> fields = new ArrayList(mProjectFields.entrySet());
-        Collections.sort(fields, new Comparator<Map.Entry<Integer, ProjectField>>() {
+        Collections.sort(mProjectFields, new Comparator<ProjectField>() {
             @Override
-            public int compare(Entry<Integer, ProjectField> lhs, Entry<Integer, ProjectField> rhs) {
-                ProjectField field1 = lhs.getValue();
-                ProjectField field2 = rhs.getValue();
-                
+            public int compare(ProjectField field1, ProjectField field2) {
                 Integer projectId1 = (field1.project_id != null ? field1.project_id : Integer.valueOf(-1));
                 Integer projectId2 = (field2.project_id != null ? field2.project_id : Integer.valueOf(-1));
                 
@@ -2548,7 +2543,6 @@ public class ObservationEditor extends AppCompatActivity {
                 }
             }
         });
-
     }
     
     private boolean isNetworkAvailable() {
