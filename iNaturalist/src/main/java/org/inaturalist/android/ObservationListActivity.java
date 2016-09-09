@@ -392,6 +392,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         boolean hasOldObs = hasOldObservations();
         if ((mApp.getAutoSync() && !mApp.getIsSyncing()) || (hasOldObs)) {
             int syncCount = 0;
+            int photoSyncCount = 0;
+
             if (!hasOldObs) {
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                         Observation.PROJECTION,
@@ -400,10 +402,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                         Observation.SYNC_ORDER);
                 syncCount = c.getCount();
                 c.close();
+
+                c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
+                photoSyncCount = c.getCount();
+                c.close();
             }
 
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
-            if (hasOldObs || (syncCount > 0)) {
+            if (hasOldObs || (syncCount > 0) || (photoSyncCount > 0)) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
             }
