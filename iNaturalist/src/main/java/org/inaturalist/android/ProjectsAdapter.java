@@ -221,7 +221,8 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
             view.findViewById(R.id.project_pic_none).setVisibility(View.GONE);
         }
 
-        final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
+        String description = item.getString("description");
+        final String noHTMLDescription = Html.fromHtml(description != null ? description : "").toString();
         if (noHTMLDescription.length() > 0) {
             ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new View.OnClickListener() {
                 @Override
