@@ -66,6 +66,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 	private ActionBar mTopActionBar;
 
 	private TextView mSyncObservations;
+    private ViewGroup mSyncingTopBar;
 
 	private ObservationCursorAdapter mAdapter;
 
@@ -79,6 +80,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
 	private static final int OBSERVATION_LIST_LOADER = 0x01;
     private INaturalistApp mApp;
+    private TextView mSyncingStatus;
+    private TextView mCancelSync;
 
     @Override
 	protected void onStart()
@@ -131,6 +134,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if ((mLastMessage != null) && (mLastMessage.length() > 0)) {
                 Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
                 mLastMessage = null;
+            }
+
+            if (!mApp.getIsSyncing()) {
+                mSyncingTopBar.setVisibility(View.GONE);
             }
         }
     } 	
@@ -215,6 +222,19 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mHelper = new ActivityHelper(this);
 
         mApp = (INaturalistApp)getApplication();
+
+        mSyncingTopBar = (ViewGroup) findViewById(R.id.syncing_top_bar);
+        mSyncingTopBar.setVisibility(View.GONE);
+        mSyncingStatus = (TextView) findViewById(R.id.syncing_status);
+        mCancelSync = (TextView) findViewById(R.id.cancel_sync);
+        mCancelSync.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // User chose to cancel sync
+                mApp.setCancelSync(true);
+                mSyncingTopBar.setVisibility(View.GONE);
+            }
+        });
 
         mSyncObservations = (TextView) findViewById(R.id.sync_observations);
         mSyncObservations.setOnClickListener(new OnClickListener() {
@@ -412,6 +432,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if (hasOldObs || (syncCount > 0) || (photoSyncCount > 0)) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
+
+                mSyncingStatus.setText(R.string.syncing);
+                mSyncingTopBar.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -870,10 +893,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 if (mApp.getObservationIdBeingSynced() == obsId) {
                     // Observation is currently being uploaded
                     subTitle.setText(R.string.uploading);
-                    view.setBackgroundColor(Color.parseColor("#76AA1B"));
+                    view.setBackgroundColor(Color.parseColor("#E3EDCD"));
 
-                    title.setTextColor(Color.parseColor("#ffffff"));
-                    subTitle.setTextColor(Color.parseColor("#ffffff"));
+                    subTitle.setTextColor(Color.parseColor("#74Ac00"));
 
                     progress.setVisibility(View.VISIBLE);
                     observedOn.setVisibility(View.GONE);
@@ -1000,6 +1022,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             public void run() {
                 if (!mApp.getAutoSync()) {
                     mHelper.loading(content, ObservationListActivity.this);
+                } else {
+                    mSyncingStatus.setText(content);
+                    mSyncingTopBar.setVisibility(mApp.getIsSyncing() ? View.VISIBLE : View.GONE);
                 }
                 mAdapter.refreshCursor();
             }

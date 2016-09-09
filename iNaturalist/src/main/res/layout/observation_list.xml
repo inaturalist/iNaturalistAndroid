@@ -4,6 +4,39 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    
+
+    <RelativeLayout
+        android:id="@+id/syncing_top_bar"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:background="#74AC00"
+        android:padding="10dp"
+        android:layout_height="48dp">
+
+        <TextView
+            android:id="@+id/syncing_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="Posting 1 of 5 observation(s)..."
+            android:textColor="#fff"
+            />
+
+        <TextView
+            android:id="@+id/cancel_sync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textAllCaps="true"
+            android:text="@string/cancel"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/sync_observations"
@@ -19,6 +52,7 @@
         android:text="@string/sync_x_observations" />
 
     <RelativeLayout
+        android:layout_below="@id/syncing_top_bar"
         android:layout_above="@id/sync_observations"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
