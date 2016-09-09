@@ -1419,6 +1419,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 						break;
 					}
 
+					mPage = 1;
     				reloadObservations();
     				refreshActiveFilters();
 				} catch (JSONException e) {
