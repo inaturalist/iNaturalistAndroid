@@ -1150,8 +1150,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mUserName.setText(username);
         }
 
-        String extension = userIconUrl.substring(userIconUrl.lastIndexOf(".") + 1);
-        userIconUrl = userIconUrl.substring(0, userIconUrl.lastIndexOf('-')) + "-medium." + extension;
+        if (userIconUrl != null) {
+            String extension = userIconUrl.substring(userIconUrl.lastIndexOf(".") + 1);
+            userIconUrl = userIconUrl.substring(0, userIconUrl.lastIndexOf('-')) + "-medium." + extension;
+        }
 
         if (userIconUrl != null) {
             UrlImageViewHelper.setUrlDrawable(mUserPic, userIconUrl, R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
