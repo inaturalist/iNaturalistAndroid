@@ -15,4 +15,7 @@
 
     <!-- Support email address -->
     <!-- <string name="inat_support_email_address">help@yoursite.org</string> -->
+
+    <!-- URL explaining about the iNaturalist networks  -->
+    <!-- <string name="inat_network_info_url">http://www.inaturalist.org/pages/network</string> -->
 </resources>

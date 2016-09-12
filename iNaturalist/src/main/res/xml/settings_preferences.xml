@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="username"
+        android:summary="Sign out"
+        android:title="Some title" />
+
+    <CheckBoxPreference
+        android:layout="@layout/custom_preference"
+        android:widgetLayout="@layout/custom_checkbox_preference"
+        android:defaultValue="true"
+        android:key="auto_sync"
+        android:summary="@string/auto_upload_description"
+        android:title="@string/automatic_upload" />
+
+
+    <ListPreference
+        android:layout="@layout/custom_preference"
+        android:key="language"
+        android:title="@string/language"
+        android:summary="@string/use_device_language_settings"
+        android:entries="@array/language_names"
+        android:entryValues="@array/language_values"
+        />
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="inat_network"
+        android:title="@string/inat_network"
+        android:summary="Network Name" />
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="contact_support"
+        android:title="@string/contact_support" />
+
+     <Preference
+        android:layout="@layout/custom_preference_with_header"
+        android:key="about"
+        android:summary="@string/credits"
+        android:title="@string/about" />
+
+     <Preference
+        android:layout="@layout/custom_preference_with_header"
+        android:key="version"
+        android:summary="1.2.3 (456)"
+        android:title="@string/version" />
+
+</android.support.v7.preference.PreferenceScreen>

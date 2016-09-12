@@ -5,6 +5,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Build;
 
 import io.fabric.sdk.android.Fabric;
@@ -110,6 +111,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             ((ImageView)findViewById(R.id.menu_guides_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_activity_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_settings_icon)).setAlpha(0.54f);
+            ((ImageView)findViewById(R.id.menu_help_icon)).setAlpha(0.54f);
         }
 
         buildSideMenu();
@@ -268,11 +270,21 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 intent.putExtra("is_user_feed", true);
                 startActivityIfNew(intent);
             }
+
         });
+        findViewById(R.id.menu_help).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(getString(R.string.inat_help_url)));
+                startActivity(i);
+            }
+        });
+
         findViewById(R.id.menu_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityIfNew(new Intent(BaseFragmentActivity.this, INaturalistPrefsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, SettingsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             }
         });
 
@@ -315,7 +327,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.menu_activity_icon)).setAlpha(1.0f);
             }
         }
-        if (INaturalistPrefsActivity.class.getName().equals(this.getClass().getName())) {
+        if (SettingsActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_settings).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                 ((ImageView) findViewById(R.id.menu_settings_icon)).setAlpha(1.0f);

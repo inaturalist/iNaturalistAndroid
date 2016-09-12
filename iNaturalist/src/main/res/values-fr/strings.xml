@@ -188,7 +188,7 @@
   <string name="choose_location">Choisir l\'emplacement</string>
   <string name="done">Terminé</string>
   <string name="please_sign_in_via_settings">Veuillez ouvrir une session à l\'aide de l\'écran des paramètres pour visualiser vos projets</string>
-  <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">Contacter le soutien technique</a>]]></string>
+  <string name="contact_support">Contacter le soutien technique</string>
   <string name="credits">Conçu et développé par iNaturalist.org avec le soutien de la California Academy of Sciences</string>
   <string name="leave_project">Quitter le projet</string>
   <string name="leave_project_confirmation">Désirez-vous vraiment quitter ce projet?</string>

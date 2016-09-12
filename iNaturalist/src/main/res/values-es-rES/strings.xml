@@ -188,7 +188,7 @@
   <string name="choose_location">Elegir ubicación</string>
   <string name="done">Hecho</string>
   <string name="please_sign_in_via_settings">Debes haber iniciado la sesión para ver tus proyectos.</string>
-  <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org"> Contacta soporte</a>]]></string>
+  <string name="contact_support">Contacta soporte</string>
   <string name="credits">Diseñado y construido por iNaturalist.org con el apoyo de la Academia de Ciencias de California</string>
   <string name="leave_project">Deja el proyecto</string>
   <string name="leave_project_confirmation">¿Estás seguro de que deseas abandonar este proyecto?</string>
@@ -328,7 +328,6 @@
   <string name="please_sign_in_for_updates">Debes haber iniciado la sesión para ver tus actualizaciones.</string>
   <string name="by_using_inat_terms"><![CDATA[Al usar iNaturalist aceptas los <b><a href="http://www.inaturalist.org/pages/terms"> Términos de servicio</a></b> y la<b><a href="http://www.inaturalist.org/pages/privacy"> Política de privacidad</a></b>]]></string>
   <string name="activity">Actividad</string>
-  <string name="not_logged_in">N/D</string>
   <string name="observation_count">%1$d observaciones</string>
   <string name="observation_count_single">%1$d observación</string>
   <string name="camera">Hacer foto</string>

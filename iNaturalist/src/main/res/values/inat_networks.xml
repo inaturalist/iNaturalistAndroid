@@ -24,6 +24,14 @@
     <string name="inat_country_inaturalistcanada">ca</string> <!-- Canada -->
     <string name="inat_country_naturalistacolombia">co</string> <!-- Colombia -->
 
+     <!-- The country display name to use for each network type - used when detecting the user's country -->
+    <string name="inat_country_name_inaturalist">Global</string>
+    <string name="inat_country_name_naturalista">Mexico</string>
+    <string name="inat_country_name_naturewatchnz">New Zealand</string>
+    <string name="inat_country_name_inaturalistcanada">Canada</string>
+    <string name="inat_country_name_naturalistacolombia">Colombia</string>
+
+
     <!-- When opening the explore screen, these are the default coordinates / bounding box to show
      on the map (swlng,swlat,nelng,nelat): You can use http://isithackday.com/geoplanet-explorer/index.php to find
        out the bounding box of countries/cities -->

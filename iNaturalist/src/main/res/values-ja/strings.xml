@@ -188,7 +188,7 @@
   <string name="choose_location">場所を選択</string>
   <string name="done">完了</string>
   <string name="please_sign_in_via_settings">ご自身のプロジェクトを閲覧するには設定画面からサインインしてください</string>
-  <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">サポートへのお問い合わせ</a>]]></string>
+  <string name="contact_support">サポートへのお問い合わせ</string>
   <string name="credits">このアプリはiNaturalist.orgによりデザイン及び設計が行われカリフォルニア科学アカデミーの支援により運営されています</string>
   <string name="leave_project">このプロジェクトを退会</string>
   <string name="leave_project_confirmation">このプロジェクトを退会してもよろしいですか？</string>

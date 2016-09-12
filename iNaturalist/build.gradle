@@ -81,6 +81,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:7.3.0'
     compile 'com.google.android.gms:play-services-identity:7.3.0'
     compile 'com.google.android.gms:play-services-gcm:7.3.0'
+    compile 'com.android.support:preference-v7:23.2.0'
 
     androidTestCompile 'com.android.support:support-annotations:23.0.1'
     androidTestCompile 'com.android.support.test:runner:0.4.1'

@@ -188,7 +188,7 @@
   <string name="choose_location">Escolha a localização</string>
   <string name="done">Pronto</string>
   <string name="please_sign_in_via_settings">Por favor entre através da tela de configurações para exibir seus projetos</string>
-  <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org"> Suporte e Contato</a>]]></string>
+  <string name="contact_support">Suporte e Contato</string>
   <string name="credits">Projetado e construído por iNaturalist.org com o apoio da Academia de Ciências da Califórnia</string>
   <string name="leave_project">Sair do Projeto</string>
   <string name="leave_project_confirmation">Tem certeza que deseja sair deste projeto?</string>

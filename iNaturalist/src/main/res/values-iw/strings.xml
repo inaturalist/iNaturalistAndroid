@@ -187,7 +187,7 @@
     <string name="choose_location">"בחירת מיקום"</string>
     <string name="done">"סיום"</string>
     <string name="please_sign_in_via_settings">"נא לבצע התחברות במסך הגדרות על מנת לראות את הפרוייקטים."</string>
-    <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">יצירת קשר עם תמיכה</a>]]></string>
+    <string name="contact_support">יצירת קשר עם תמיכה</string>
     <string name="credits">"עוצב ופותח על ידי iNaturalist.org עם תמיכה של California Academy of Sciences"</string>
     <string name="leave_project">"לעזות פרוייקט"</string>
     <string name="leave_project_confirmation">"בטוח לעזוב את הפרוייקט?"</string>

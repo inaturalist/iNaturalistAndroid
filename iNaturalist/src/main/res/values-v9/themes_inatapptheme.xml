@@ -4,6 +4,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <style name="iNatAppTheme" parent="@style/_iNatAppTheme">
+    <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 
     <!--<item name="switchStyle">@style/iNatAppThemeSwitch</item>-->
 

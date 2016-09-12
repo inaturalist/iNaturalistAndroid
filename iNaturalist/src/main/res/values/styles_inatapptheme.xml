@@ -10,7 +10,7 @@
     </style>
 
     <style name="RadioButtoniNatAppTheme" parent="android:Widget.CompoundButton.RadioButton">
-        <item name="android:button">@drawable/inatapptheme_btn_radio_holo_light</item>
+        <!--<item name="android:button">@drawable/inatapptheme_btn_radio_holo_light</item>-->
     </style>
 
     <style name="ButtoniNatAppTheme" parent="android:Widget.Button">

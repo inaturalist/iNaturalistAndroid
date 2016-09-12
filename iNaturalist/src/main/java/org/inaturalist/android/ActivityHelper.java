@@ -141,6 +141,8 @@ public class ActivityHelper {
         if (cancelListener != null) builder.setNegativeButton(cancelText, cancelListener);
         AlertDialog alert = builder.create();
         alert.show();
+        alert.getButton(alert.BUTTON_POSITIVE).setTextColor(Color.parseColor("#85B623"));
+        alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#85B623"));
     }
 
     public void loading(String title, String msg) {

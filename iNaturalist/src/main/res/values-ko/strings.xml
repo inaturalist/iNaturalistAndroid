@@ -189,7 +189,7 @@
   <string name="choose_location">위치 선택</string>
   <string name="done">완료</string>
   <string name="please_sign_in_via_settings">내가 참여하는 프로젝트를 보려면 로그인해야 합니다.</string>
-  <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">고객 지원 문의</a>]]></string>
+  <string name="contact_support">고객 지원 문의</string>
   <string name="credits">iNaturalist의 설립과 디자인은 캘리포니아 과학원에서 지원하였습니다.</string>
   <string name="leave_project">프로젝트 나가기</string>
   <string name="leave_project_confirmation">정말로 이 프로젝트에서 나가시겠습니까?</string>
@@ -329,7 +329,6 @@
   <string name="please_sign_in_for_updates">회원님의 업데이트를 보려면 로그인 해야 합니다.</string>
   <string name="by_using_inat_terms"><![CDATA[iNaturalist를 이용하시려면 다음의 <b><a href="http://www.inaturalist.org/pages/terms">서비스 이용약관</a></b>과 <b><a href="http://www.inaturalist.org/pages/privacy"> 개인정보 보호 정책</a></b>에 동의하셔야 합니다.]]></string>
   <string name="activity">탐사 활동</string>
-  <string name="not_logged_in">없음</string>
   <string name="observation_count">%1$d 관찰기록</string>
   <string name="observation_count_single">%1$d 관찰기록</string>
   <string name="camera">사진 촬영</string>

@@ -185,7 +185,7 @@
 <string name="restart_now">التمهيد الآن</string>
 <string name="choose_location">حدد موقع</string>
 <string name="done">انهاء</string>
-    <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">خيارات الدعم</a>]]></string>
+    <string name="contact_support">خيارات الدعم</string>
 <string name="credits">تصميم وتطويرiNaturalist.org بدعم من California Academy of Sciences</string>
 <string name="leave_project">ترك المشروع</string>
 <string name="leave_project_confirmation">ترك المشروع?</string>
@@ -327,7 +327,6 @@
 <string name="content_licensing">ترخيص المحتوى</string>
 <string name="content_licensing_description">حدد هذا الخيار للسماح باستخدام  الصور التي تقوم بتحميلها. يمكنك تغيير هذا في وقت لاحق، ولكن هذا هو الخيار الأفضل لتبادل مع المحققين.</string>
 <string name="activity">تحديثات</string>
-<string name="not_logged_in">N/A</string>
 <string name="observation_count">%1$d ارصاد</string>
 <string name="observation_count_single">%1$d رصد</string>
 <string name="camera">تصوير</string>

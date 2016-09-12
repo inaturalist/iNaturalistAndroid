@@ -195,7 +195,7 @@
     <string name="choose_location">Choose Location</string>
     <string name="done">Done</string>
     <string name="please_sign_in_via_settings">You must be logged in to view your joined projects.</string>
-    <string name="contact_support"><![CDATA[<a href="mailto:help@inaturalist.org">Contact support</a>]]></string>
+    <string name="contact_support">Contact support</string>
     <string name="credits">Designed and built by iNaturalist.org with support from the California Academy of Sciences</string>
     <string name="leave_project">Leave Project</string>
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
@@ -354,10 +354,10 @@
 
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
-    <string name="alert_message_use_naturalista">CONABIO\'s NaturaLista is a member of the iNaturalist Network in Mexico. Clicking OK will localize your experience and share data accordingly.</string>
-    <string name="alert_message_use_naturewatchnz">NatureWatch is a member of the iNaturalist Network in New Zealand. Clicking OK will localize your experience and share data accordingly.</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Clicking OK will localise your experience and share data accordingly.</string>
-    <string name="alert_message_use_naturalistacolombia">CONABIO\'s NaturaLista Colombia is a member of the iNaturalist Network in Colombia. Clicking OK will localize your experience and share data accordingly.</string>
+    <string name="alert_message_use_naturalista">iNaturalist is a member of the iNaturalist Network in Mexico. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_naturewatchnz">NatureWatch NZ is a member of the iNaturalist Network in New Zealand. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Would you like to use this network to localize your experience and share data accordingly?</string>
 
     <!-- The text shown in a dialog box when the user is about to sign up -->
     <string name="inat_sign_up_inaturalist">You\'re about to visit iNaturalist.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
@@ -412,7 +412,6 @@
     <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="http://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="http://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Activity</string>
-    <string name="not_logged_in">N/A</string>
     <string name="observation_count">%1$d observations</string>
     <string name="observation_count_single">%1$d observation</string>
     <string name="camera">Take Photo</string>
@@ -523,5 +522,28 @@
     <string name="updating_profile">Updating Profile...</string>
     <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
     <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
+    <string name="log_out">Log out</string>
+    <string name="not_logged_in">Not logged in</string>
+    <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
+    <string name="language">Language</string>
+    <string name="version">Version</string>
+
+    <string-array name="language_values">
+	    <item>default</item>
+	    <item>eu</item>
+        <item>gl</item>
+    </string-array>
+    <string-array name="language_names">
+	    <item>@string/use_device_language_settings</item>
+	    <item>@string/locale_eu</item>
+        <item>@string/locale_gl</item>
+    </string-array>
+
+    <string name="inat_network">iNaturalist Network</string>
+    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community on national scales. Such national focus can help make nature more accessible to people of different backgrounds.</string>
+    <string name="more_info">More Info</string>
+    <string name="select_network">Select Network</string>
+    <string name="help">Help</string>
  </resources>
 
