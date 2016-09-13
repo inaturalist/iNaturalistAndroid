@@ -1924,7 +1924,7 @@ public class ObservationEditor extends AppCompatActivity {
                 if (!isCamera) {
                     // Import photo metadata (e.g. location) only when the location hasn't been set
                     // by the user before (whether manually or by importing previous images)
-                    if (!mLocationManuallySet) {
+                    if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
                         stopGetLocation();
                         mLocationManuallySet = true;
                         importPhotoMetadata(selectedImageUri);
