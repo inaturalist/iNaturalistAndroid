@@ -36,6 +36,7 @@ import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.URLUtil;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -1731,29 +1732,23 @@ public class ObservationViewerActivity extends AppCompatActivity {
             return;
         }
 
-        handler.postDelayed(new Runnable() {
+        mCommentsIdsList.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void run() {
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
                 int height = setListViewHeightBasedOnItems(mCommentsIdsList);
-
                 View background = findViewById(R.id.comment_id_list_background);
-                ViewGroup.LayoutParams params2 = background.getLayoutParams();
-                params2.height = height;
-                background.requestLayout();
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        int height = setListViewHeightBasedOnItems(mCommentsIdsList);
-                        View background = findViewById(R.id.comment_id_list_background);
-                        ViewGroup.LayoutParams params2 = background.getLayoutParams();
-                        params2.height = height;
-                        background.requestLayout();
-                    }
-                }, 100);
+                ViewGroup.LayoutParams params = background.getLayoutParams();
+                if (params.height != height) {
+                    params.height = height;
+                    background.requestLayout();
+                }
 
             }
-        }, 100);
+        });
     }
 
     @Override
@@ -1847,26 +1842,29 @@ public class ObservationViewerActivity extends AppCompatActivity {
     	ListAdapter listAdapter = listView.getAdapter();
     	if (listAdapter != null) {
 
-    		int numberOfItems = listAdapter.getCount();
+            int numberOfItems = listAdapter.getCount();
 
-    		// Get total height of all items.
-    		int totalItemsHeight = 0;
-    		for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-    			View item = listAdapter.getView(itemPos, null, listView);
-    			item.measure(MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
-    			totalItemsHeight += item.getMeasuredHeight();
-    		}
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, listView);
+                item.measure(MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
+                totalItemsHeight += item.getMeasuredHeight();
+            }
 
-    		// Get total height of all item dividers.
-    		int totalDividersHeight = listView.getDividerHeight() *
-    				(numberOfItems - 1);
+            // Get total height of all item dividers.
+            int totalDividersHeight = listView.getDividerHeight() *
+                    (numberOfItems - 1);
 
-    		// Set list height.
-    		ViewGroup.LayoutParams params = listView.getLayoutParams();
-    		int paddingHeight = (int)getResources().getDimension(R.dimen.actionbar_height);
-    		params.height = totalItemsHeight + totalDividersHeight;
-    		listView.setLayoutParams(params);
-    		listView.requestLayout();
+            // Set list height.
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            int paddingHeight = (int) getResources().getDimension(R.dimen.actionbar_height);
+            int newHeight = totalItemsHeight + totalDividersHeight;
+            if (params.height != newHeight) {
+                params.height = totalItemsHeight + totalDividersHeight;
+                listView.setLayoutParams(params);
+                listView.requestLayout();
+            }
 
     		return params.height;
 
