@@ -1989,23 +1989,10 @@ public class ObservationEditor extends AppCompatActivity {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
-        InputStream is = null;
-        String resizedPhoto;
-        try {
-            if (path == null) {
-                is = getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(path);
-            }
+        // Resize photo to 2048x2048 max
+        String resizedPhoto = resizeImage(path, photoUri);
 
-            // Resize photo to 2048x2048 max
-            resizedPhoto = resizeImage(is, path);
-
-            if (resizedPhoto == null) {
-                return null;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if (resizedPhoto == null) {
             return null;
         }
 
@@ -2572,22 +2559,39 @@ public class ObservationEditor extends AppCompatActivity {
 
     /**
      * Resizes an image to max size of 2048x2048
-     * @param filename the image filename
+     * @param path the path to the image filename (optional)
+     * @param photoUri the original Uri of the image
      * @return the resized image - or original image if smaller than 2048x2048
      */
-    private String resizeImage(InputStream is, String filename) {
+    private String resizeImage(String path, Uri photoUri) {
+        InputStream is = null;
         BitmapFactory.Options options = new BitmapFactory.Options();
+
         try {
+            if (path == null) {
+                is = getContentResolver().openInputStream(photoUri);
+            } else {
+                is = new FileInputStream(path);
+            }
+
             Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
             int originalHeight = options.outHeight;
             int originalWidth = options.outWidth;
             int newHeight, newWidth;
 
+            // BitmapFactory.decodeStream moves the reading cursor
+            is.close();
+            if (path == null) {
+                is = getContentResolver().openInputStream(photoUri);
+            } else {
+                is = new FileInputStream(path);
+            }
+
 
             if (Math.max(originalHeight, originalWidth) < 2048) {
-                if (filename != null) {
+                if (path != null) {
                     // Original file is smaller than 2048x2048 - no need to resize
-                    return filename;
+                    return path;
                 } else {
                     // Don't resize because image is smaller than 2048x2048 - however, make a local copy of it
                     newHeight = originalHeight;
@@ -2629,7 +2633,7 @@ public class ObservationEditor extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return filename;
+        return path;
     }
 
     // EXIF-copying code taken from: https://bricolsoftconsulting.com/copying-exif-metadata-using-sanselan/
