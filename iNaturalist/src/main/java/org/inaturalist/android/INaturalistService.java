@@ -149,6 +149,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String LIFE_LIST = "life_list";
     public static final String REGISTER_USER_ERROR = "error";
     public static final String REGISTER_USER_STATUS = "status";
+    public static final String SYNC_CANCELED = "sync_canceled";
 
 	public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
 
@@ -275,6 +276,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        boolean cancelSyncRequested = false;
+        boolean dontStopSync = false;
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         mLogin = mPreferences.getString("username", null);
         mCredentials = mPreferences.getString("credentials", null);
@@ -723,30 +726,31 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
 
             } else {
-                mIsSyncing = true;
-                mApp.setIsSyncing(mIsSyncing);
-                syncObservations();
+                if (!mIsSyncing) {
+                    mIsSyncing = true;
+                    mApp.setIsSyncing(mIsSyncing);
+                    syncObservations();
 
-                // Update last sync time
-                long lastSync = System.currentTimeMillis();
-                mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+                    // Update last sync time
+                    long lastSync = System.currentTimeMillis();
+                    mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+                } else {
+                    // Already in middle of syncing
+                    dontStopSync = true;
+                }
  
             }
         } catch (CancelSyncException e) {
+            cancelSyncRequested = true;
             mApp.setCancelSync(false);
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-            mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION,
-                    getString(R.string.syncing_canceled),
-                    getString(R.string.syncing_canceled),
-                    getString(R.string.syncing_canceled));
-
 
         } catch (AuthenticationException e) {
             if (!mPassive) {
                 requestCredentials();
             }
         } finally {
-            if (mIsSyncing) {
+            if (mIsSyncing && !dontStopSync) {
                 mIsSyncing = false;
                 mApp.setIsSyncing(mIsSyncing);
 
@@ -754,6 +758,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 
                 // Notify the rest of the app of the completion of the sync
                 Intent reply = new Intent(ACTION_SYNC_COMPLETE);
+                reply.putExtra(SYNC_CANCELED, cancelSyncRequested);
                 sendBroadcast(reply); 
             }
         }
@@ -764,9 +769,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         deleteObservations(); // Delete locally-removed observations
         getUserObservations(0); // First, download remote observations (new/updated)
         postObservations(); // Next, update local-to-remote observations
+        postPhotos();
         saveJoinedProjects();
         syncObservationFields();
-        postPhotos();
         postProjectObservations();
         redownloadOldObservations();
         mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
@@ -976,9 +981,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
     
-    private void saveJoinedProjects() throws AuthenticationException {
+    private void saveJoinedProjects() throws AuthenticationException, CancelSyncException {
+        mApp.notify(SYNC_PHOTOS_NOTIFICATION,
+                getString(R.string.projects),
+                getString(R.string.syncing_projects),
+                getString(R.string.syncing));
+
         SerializableJSONArray projects = getJoinedProjects();
-        
+
+        checkForCancelSync();
+
         if (projects != null) {
             JSONArray arr = projects.getJSONArray();
             
@@ -1301,13 +1313,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
-        if ((currentCreatedCount == 0) && (currentUpdatedCount == 0)) {
-        	// Sync completed successfully
-        	mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION,
-        			getString(R.string.observation_sync_complete), 
-        			String.format(getString(R.string.observation_sync_status), createdCount, updatedCount),
-        			getString(R.string.sync_complete));
-        } else {
+        if ((currentCreatedCount > 0) || (currentUpdatedCount > 0)) {
         	// There was a problem with the sync process
         	mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
         			getString(R.string.observation_sync_failed), 
@@ -2088,6 +2094,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     private void syncObservationFields() throws AuthenticationException, CancelSyncException {
+        mApp.notify(SYNC_PHOTOS_NOTIFICATION,
+                getString(R.string.projects),
+                getString(R.string.syncing_observation_fields),
+                getString(R.string.syncing));
+
         
         // First, remotely update the observation fields which were modified
         
@@ -2188,6 +2199,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             fields.remove(Integer.valueOf(localField.field_id));
 
             c.moveToNext();
+            checkForCancelSync();
         }
         c.close();
 

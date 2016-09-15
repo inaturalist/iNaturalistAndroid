@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:textAllCaps="true"
-            android:text="@string/cancel"
+            android:text="@string/stop"
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

@@ -83,6 +83,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     private TextView mSyncingStatus;
     private TextView mCancelSync;
 
+    private boolean mUserCanceledSync = false; // When the user chose to pause/stop sync while in auto sync mode
+    private boolean mSyncRequested = false;
+
     @Override
 	protected void onStart()
 	{
@@ -132,12 +135,20 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
 
             if ((mLastMessage != null) && (mLastMessage.length() > 0)) {
-                Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
-                mLastMessage = null;
+                if (!mApp.getAutoSync()) {
+                    Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
+                    mLastMessage = null;
+                }
             }
 
+            mSyncRequested = false;
+
             if (!mApp.getIsSyncing()) {
-                mSyncingTopBar.setVisibility(View.GONE);
+                if ((intent != null) && (!intent.getBooleanExtra(INaturalistService.SYNC_CANCELED, false))) {
+                    // Sync finished
+                    mUserCanceledSync = false;
+                    mSyncingTopBar.setVisibility(View.GONE);
+                }
             }
         }
     } 	
@@ -230,9 +241,22 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mCancelSync.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                // User chose to cancel sync
-                mApp.setCancelSync(true);
-                mSyncingTopBar.setVisibility(View.GONE);
+                if (!mUserCanceledSync) {
+                    // User chose to cancel sync
+                    mUserCanceledSync = true;
+                    mApp.setCancelSync(true);
+                    mCancelSync.setText(R.string.resume);
+                    mSyncingStatus.setText(R.string.syncing_paused);
+                } else {
+                    // User chose to resume sync
+                    mUserCanceledSync = false;
+                    mApp.setCancelSync(false);
+                    mCancelSync.setText(R.string.stop);
+                    mSyncingStatus.setText(R.string.syncing);
+                    // Re-sync
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                    startService(serviceIntent);
+                }
             }
         });
 
@@ -260,6 +284,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         
         if (savedInstanceState != null) {
             mLastMessage = savedInstanceState.getString("mLastMessage");
+            mUserCanceledSync = savedInstanceState.getBoolean("mUserCanceledSync");
         }
         
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -410,7 +435,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
     private void triggerSyncIfNeeded() {
         boolean hasOldObs = hasOldObservations();
-        if ((mApp.getAutoSync() && !mApp.getIsSyncing()) || (hasOldObs)) {
+        if ((mApp.getAutoSync() && !mApp.getIsSyncing() && (!mSyncRequested)) || (hasOldObs)) {
             int syncCount = 0;
             int photoSyncCount = 0;
 
@@ -429,7 +454,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             }
 
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
-            if (hasOldObs || (syncCount > 0) || (photoSyncCount > 0)) {
+            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync))) {
+                mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 startService(serviceIntent);
 
@@ -514,11 +540,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             // Show a "downloading ..." message instead of "no observations yet"
             ((TextView)findViewById(android.R.id.empty)).setText(R.string.downloading_observations);
         }
+
+        triggerSyncIfNeeded();
     }
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (mLastMessage != null) outState.putString("mLastMessage", mLastMessage);
+        outState.putBoolean("mUserCanceledSync", mUserCanceledSync);
         super.onSaveInstanceState(outState);
     }
  
@@ -1024,7 +1053,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     mHelper.loading(content, ObservationListActivity.this);
                 } else {
                     mSyncingStatus.setText(content);
-                    mSyncingTopBar.setVisibility(mApp.getIsSyncing() ? View.VISIBLE : View.GONE);
+                    int visibility = View.GONE;
+                    if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+                        visibility = View.GONE;
+                    } else {
+                        visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
+                    }
+                    mSyncingTopBar.setVisibility(visibility);
                 }
                 mAdapter.refreshCursor();
             }

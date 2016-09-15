@@ -929,11 +929,6 @@ public class ObservationEditor extends AppCompatActivity {
                             public void run() {
                                 delete((mObservation == null) || (mObservation.id == null));
                                 Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
-                                if (app.getAutoSync() && !app.getIsSyncing()) {
-                                    // Trigger a sync
-                                    Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationEditor.this, INaturalistService.class);
-                                    startService(serviceIntent);
-                                }
 
                                 setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_DELETED);
                                 finish();
@@ -1255,13 +1250,7 @@ public class ObservationEditor extends AppCompatActivity {
                 Log.e(TAG, "failed to save observation:" + e);
             }
         }
-        
-        if (app.getAutoSync() && !app.getIsSyncing()) {
-            // Trigger a sync
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationEditor.this, INaturalistService.class);
-            startService(serviceIntent);
-        }
-        
+
         return true;
     }
 

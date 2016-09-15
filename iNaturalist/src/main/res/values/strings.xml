@@ -545,5 +545,10 @@
     <string name="more_info">More Info</string>
     <string name="select_network">Select Network</string>
     <string name="help">Help</string>
+    <string name="stop">Stop</string>
+    <string name="resume">Resume</string>
+    <string name="syncing_projects">Syncing projects...</string>
+    <string name="syncing_observation_fields">Syncing observation fields...</string>
+    <string name="syncing_paused">Syncing Paused</string>
  </resources>
 
