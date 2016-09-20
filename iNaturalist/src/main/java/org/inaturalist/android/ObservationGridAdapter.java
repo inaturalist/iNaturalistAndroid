@@ -103,6 +103,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                 } else {
                     JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
                     url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
+                    if ((url == null) || (url.length() == 0)) url = innerPhoto.optString("url");
                 }
                 UrlImageViewHelper.setUrlDrawable(taxonPic, url, ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
                     @Override

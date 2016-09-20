@@ -1151,12 +1151,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mUserName.setText(username);
         }
 
-        if (userIconUrl != null) {
+        if ((userIconUrl != null) && (userIconUrl.length() > 0)) {
             String extension = userIconUrl.substring(userIconUrl.lastIndexOf(".") + 1);
-            userIconUrl = userIconUrl.substring(0, userIconUrl.lastIndexOf('-')) + "-medium." + extension;
+            int lastIndex = userIconUrl.lastIndexOf('-');
+            userIconUrl = userIconUrl.substring(0, lastIndex == -1 ? userIconUrl.lastIndexOf(".")  : lastIndex) + "-medium." + extension;
         }
 
-        if (userIconUrl != null) {
+        if ((userIconUrl != null) && (userIconUrl.length() > 0)) {
             UrlImageViewHelper.setUrlDrawable(mUserPic, userIconUrl, R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) { }
