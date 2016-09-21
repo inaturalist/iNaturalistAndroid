@@ -45,6 +45,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -1050,7 +1051,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             @Override
             public void run() {
                 if (!mApp.getAutoSync()) {
-                    mHelper.loading(content, ObservationListActivity.this);
+                    try {
+                        mHelper.loading(content, ObservationListActivity.this);
+                    } catch (WindowManager.BadTokenException exc) {
+                        // Activity is not visible - can't display the loading dialog
+                    }
                 } else {
                     mSyncingStatus.setText(content);
                     int visibility = View.GONE;
