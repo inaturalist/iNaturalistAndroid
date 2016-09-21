@@ -6,7 +6,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?attr/listPreferredItemHeightSmall"
+    android:minHeight="50dp"
     android:gravity="center_vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:ellipsize="marquee" />
 
         <TextView android:id="@android:id/summary"
@@ -56,7 +56,7 @@
             android:layout_alignStart="@android:id/title"
             android:layout_alignLeft="@android:id/title"
             android:textColor="#8B8B8B"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:maxLines="10" />
 
     </RelativeLayout>

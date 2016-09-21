@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -16,8 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NetworkSettings extends AppCompatActivity {
     private static final String TAG = "NetworkSettings";
@@ -27,6 +32,7 @@ public class NetworkSettings extends AppCompatActivity {
     private ActivityHelper mHelper;
 
     private RadioGroup mNetworks;
+    private List<RadioButton> mNetworkRadioButtons;
     private ViewGroup mMoreInfo;
     private int mFormerSelectedNetworkRadioButton;
 
@@ -93,14 +99,19 @@ public class NetworkSettings extends AppCompatActivity {
         String network = mApp.getInaturalistNetworkMember();
         int selectedNetwork = 0;
 
+        mNetworkRadioButtons = new ArrayList<RadioButton>();
+
         for (int i = 0; i < networks.length; i++) {
-            AppCompatRadioButton radioButton = new AppCompatRadioButton(this);
-            radioButton.setText(Html.fromHtml(
-                    // Network name
-                    mApp.getStringResourceByName("network_" + networks[i]) +
-                    // Network location (country)
-                    "<br/><font color='#8B8B8B'><small>" + mApp.getStringResourceByName("inat_country_name_" + networks[i]) +
-                    "</small></font>"));
+
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final ViewGroup customNetworkOption = (ViewGroup) inflater.inflate(R.layout.network_option, null, false);
+
+            TextView networkName = (TextView) customNetworkOption.findViewById(R.id.title);
+            TextView networkLocation = (TextView) customNetworkOption.findViewById(R.id.sub_title);
+            final AppCompatRadioButton radioButton = (AppCompatRadioButton) customNetworkOption.findViewById(R.id.radio_button);
+
+            networkName.setText(mApp.getStringResourceByName("network_" + networks[i]));
+            networkLocation.setText(mApp.getStringResourceByName("inat_country_name_" + networks[i]));
             radioButton.setId(i);
 
             // Set radio button color
@@ -115,20 +126,22 @@ public class NetworkSettings extends AppCompatActivity {
             );
             radioButton.setSupportButtonTintList(colorStateList);
 
-            // Set layout_marginBottom to 15dp
-            float scale = getResources().getDisplayMetrics().density;
-            int dpAsPixels = (int) (15 * scale + 0.5f);
-            RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 0, 0, dpAsPixels);
-            radioButton.setLayoutParams(params);
-
-            radioButton.setOnClickListener(new View.OnClickListener() {
+            final int index = i;
+            customNetworkOption.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onINatNetworkRadioButtonClicked(v);
+                    // Uncheck all other radio buttons
+                    for (int c = 0; c <  mNetworkRadioButtons.size(); c++) {
+                        if (c == index) continue;
+                        RadioButton r = mNetworkRadioButtons.get(c);
+                        r.setChecked(false);
+                    }
+                    onINatNetworkRadioButtonClicked(index);
                 }
             });
-            mNetworks.addView(radioButton);
+
+            mNetworkRadioButtons.add(radioButton);
+            mNetworks.addView(customNetworkOption);
 
             if (networks[i].equals(network)) {
                 selectedNetwork = i;
@@ -136,12 +149,10 @@ public class NetworkSettings extends AppCompatActivity {
         }
 
         mFormerSelectedNetworkRadioButton = selectedNetwork;
-        mNetworks.check(selectedNetwork);
+        mNetworkRadioButtons.get(selectedNetwork).setChecked(true);
     }
 
-    public void onINatNetworkRadioButtonClicked(View view){
-	    final boolean checked = ((RadioButton) view).isChecked();
-	    final int selectedRadioButtonId = view.getId();
+    public void onINatNetworkRadioButtonClicked(final int index) {
 	    final String[] networks = mApp.getINatNetworks();
 
 	    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -149,11 +160,9 @@ public class NetworkSettings extends AppCompatActivity {
 	        public void onClick(DialogInterface dialog, int which) {
 	            switch (which){
 	            case DialogInterface.BUTTON_POSITIVE:
-	            	if (checked) {
-	            		mApp.setInaturalistNetworkMember(networks[selectedRadioButtonId]);
-	            	}
+                    mApp.setInaturalistNetworkMember(networks[index]);
 
-	            	mFormerSelectedNetworkRadioButton = selectedRadioButtonId;
+	            	mFormerSelectedNetworkRadioButton = index;
 	            	mApp.applyLocaleSettings();
 	        	    mApp.restart();
 					finish();
@@ -161,7 +170,8 @@ public class NetworkSettings extends AppCompatActivity {
 
 	            case DialogInterface.BUTTON_NEGATIVE:
 	                //No button clicked
-	            	mNetworks.check(mFormerSelectedNetworkRadioButton);
+                    mNetworkRadioButtons.get(index).setChecked(false);
+	            	mNetworkRadioButtons.get(mFormerSelectedNetworkRadioButton).setChecked(true);
 	                break;
 	            }
 	        }
@@ -171,12 +181,12 @@ public class NetworkSettings extends AppCompatActivity {
 		View titleBarView = inflater.inflate(R.layout.change_network_title_bar, null);
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
 
-	    String logoName = mApp.getStringResourceByName("inat_logo_" + networks[selectedRadioButtonId]);
+	    String logoName = mApp.getStringResourceByName("inat_logo_" + networks[index]);
 	    String packageName = getPackageName();
 	    int resId = getResources().getIdentifier(logoName, "drawable", packageName);
 	    titleBarLogo.setImageResource(resId);
 
-        mHelper.confirm(titleBarView, mApp.getStringResourceByName("alert_message_use_" + networks[selectedRadioButtonId]),
+        mHelper.confirm(titleBarView, mApp.getStringResourceByName("alert_message_use_" + networks[index]),
                 dialogClickListener, dialogClickListener, R.string.yes, R.string.cancel);
 	}
 

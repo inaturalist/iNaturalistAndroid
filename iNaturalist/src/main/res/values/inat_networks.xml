@@ -4,10 +4,10 @@
     	and strings: For example, inat_country_naturlista, inat_country_naturewatchnz, ... -->
     <string-array name="inat_networks">
         <item>inaturalist</item> <!--  iNaturalist must be first -->
-        <item>naturalista</item>
-        <item>naturewatchnz</item>
         <item>inaturalistcanada</item>
         <item>naturalistacolombia</item>
+        <item>naturalista</item>
+        <item>naturewatchnz</item>
     </string-array>
 
     <!-- The names of the iNat networks -->
@@ -15,7 +15,7 @@
     <string name="network_naturalista">NaturaLista</string>
     <string name="network_naturewatchnz">NatureWatch</string>
     <string name="network_inaturalistcanada">iNaturalist Canada</string>
-    <string name="network_naturalistacolombia">NaturaLista Colombia</string>
+    <string name="network_naturalistacolombia">Naturalista Colombia</string>
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
     <string name="inat_country_inaturalist"></string> <!-- Empty - any country -->
