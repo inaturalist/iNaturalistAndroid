@@ -98,13 +98,17 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                 if (isNewApi) {
                     url = observationPhoto.optString("url");
-                    String extension = url.substring(url.lastIndexOf(".") + 1);
-                    url = url.substring(0, url.lastIndexOf("/") + 1) + "medium." + extension;
                 } else {
                     JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
                     url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
                     if ((url == null) || (url.length() == 0)) url = innerPhoto.optString("url");
                 }
+
+                if ((url != null) && (url.length() > 0)) {
+                    String extension = url.substring(url.lastIndexOf(".") + 1);
+                    url = url.substring(0, url.lastIndexOf("/") + 1) + "medium." + extension;
+                }
+
                 UrlImageViewHelper.setUrlDrawable(taxonPic, url, ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
