@@ -46,6 +46,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.params.ClientPNames;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
@@ -1068,7 +1069,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     private JSONObject addFavorite(int observationId) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        JSONArray result = post(HOST + "/votes/vote/observation/" + observationId + ".json", null);
+        JSONArray result = post(HOST + "/votes/vote/observation/" + observationId + ".json", (JSONObject)null);
 
         if (result != null) {
         	try {
@@ -1264,7 +1265,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             mApp.setObservationIdBeingSynced(observation._id);
             handleObservationResponse(
                     observation,
-                    put(HOST + "/observations/" + observation.id + ".json?extra=observation_photos", paramsForObservation(observation, false))
+                    put(API_HOST + "/observations/" + observation.id, observationToJsonObject(observation, false))
             );
             c.moveToNext();
         }
@@ -1290,9 +1291,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     getString(R.string.syncing));
             observation = new Observation(c);
             mApp.setObservationIdBeingSynced(observation._id);
+
             handleObservationResponse(
                     observation,
-                    post("http://" + inatHost + "/observations.json?extra=observation_photos", paramsForObservation(observation, true))
+                    post(API_HOST + "/observations", observationToJsonObject(observation, true))
             );
             c.moveToNext();
         }
@@ -1883,11 +1885,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
 
     public void flagObservationAsCaptive(int obsId) throws AuthenticationException {
-        post(String.format("%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), null);
+        post(String.format("%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), (JSONObject)null);
     }
 
     public void joinProject(int projectId) throws AuthenticationException {
-        post(String.format("%s/projects/%d/join.json", HOST, projectId), null);
+        post(String.format("%s/projects/%d/join.json", HOST, projectId), (JSONObject)null);
         
         try {
             JSONArray result = get(String.format("%s/projects/%d.json", HOST, projectId));
@@ -2303,30 +2305,39 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
     private JSONArray put(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
         params.add(new BasicNameValuePair("_method", "PUT"));
-        return request(url, "put", params, true);
+        return request(url, "put", params, null, true);
     }
-    
+
+    private JSONArray put(String url, JSONObject jsonContent) throws AuthenticationException {
+        return request(url, "put", null, jsonContent, true);
+    }
+
     private JSONArray delete(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
-        return request(url, "delete", params, true);
+        return request(url, "delete", params, null, true);
     }
 
     private JSONArray post(String url, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
-        return request(url, "post", params, authenticated);
+        return request(url, "post", params, null, authenticated);
     }
 
     private JSONArray post(String url, ArrayList<NameValuePair> params) throws AuthenticationException {
-        return request(url, "post", params, true);
+        return request(url, "post", params, null, true);
     }
+
+    private JSONArray post(String url, JSONObject jsonContent) throws AuthenticationException {
+        return request(url, "post", null, jsonContent, true);
+    }
+
 
     private JSONArray get(String url) throws AuthenticationException {
         return get(url, false);
     }
 
     private JSONArray get(String url, boolean authenticated) throws AuthenticationException {
-        return request(url, "get", null, authenticated);
+        return request(url, "get", null, null, authenticated);
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, boolean authenticated) throws AuthenticationException {
+    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException {
         DefaultHttpClient client = new DefaultHttpClient();
         // Handle redirects (301/302) for all HTTP methods (including POST)
         client.setRedirectHandler(new DefaultRedirectHandler() {
@@ -2363,7 +2374,25 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
         
         // POST params
-        if (params != null) {
+        if (jsonContent != null) {
+            // JSON body content
+            request.setHeader("Content-type", "application/json");
+            StringEntity entity = null;
+            try {
+                entity = new StringEntity(jsonContent.toString());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+            if (method.equalsIgnoreCase("put")) {
+                ((HttpPut) request).setEntity(entity);
+            } else {
+                ((HttpPost) request).setEntity(entity);
+            }
+
+        } else if (params != null) {
+            // "Standard" multipart encoding
         	Charset utf8Charset = Charset.forName("UTF-8");
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
             for (int i = 0; i < params.size(); i++) {
@@ -2762,7 +2791,27 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             storeProjectObservations();
         }
     }
-    
+
+    private JSONObject observationToJsonObject(Observation observation, boolean isPOST) {
+        JSONObject obs = observation.toJSONObject();
+        try {
+            obs.put("ignore_photos", true);
+
+            if (isPOST) {
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                obs.put("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork));
+            }
+
+            JSONObject obsContainer = new JSONObject();
+            obsContainer.put("observation", obs);
+
+            return obsContainer;
+        } catch (JSONException exc) {
+            exc.printStackTrace();
+            return null;
+        }
+    }
+
     private ArrayList<NameValuePair> paramsForObservation(Observation observation, boolean isPOST) {
         ArrayList<NameValuePair> params = observation.getParams();
         params.add(new BasicNameValuePair("ignore_photos", "true"));

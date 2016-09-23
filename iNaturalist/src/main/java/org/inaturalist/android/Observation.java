@@ -419,7 +419,30 @@ public class Observation implements BaseColumns, Serializable {
                     e.printStackTrace();
                 }
             } else {
-                this.preferred_common_name = taxon.optString("name");
+                if (taxon.has("preferred_common_name") && !taxon.isNull("preferred_common_name")) {
+                    this.preferred_common_name = taxon.optString("preferred_common_name");
+                } else {
+                    this.preferred_common_name = taxon.optString("name");
+                }
+            }
+
+            if (taxon.has("id")) this.taxon_id = taxon.optInt("id");
+            if (taxon.has("iconic_taxon_name")) this.iconic_taxon_name = taxon.optString("iconic_taxon_name");
+            if (taxon.has("iconic_taxon_id")) this.iconic_taxon_id = taxon.optInt("iconic_taxon_id");
+        }
+
+        JSONObject user = o.getJSONObject("user");
+        if (user != null) {
+            this.user_id = user.optInt("id");
+            this.user_login = user.optString("login");
+        }
+
+        if (o.has("location")) {
+            String location = o.getString("location");
+            if ((location != null) && (location.length() > 0)) {
+                String[] locationSplit = location.split(",");
+                this.latitude = Double.parseDouble(locationSplit[0]);
+                this.longitude = Double.parseDouble(locationSplit[1]);
             }
         }
     }
