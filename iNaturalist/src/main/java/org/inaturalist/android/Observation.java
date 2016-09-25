@@ -502,7 +502,7 @@ public class Observation implements BaseColumns, Serializable {
 
     // Returns true if observation was modified because of the merge
     public boolean merge(Observation observation) {
-        if (this._updated_at.before(observation.updated_at)) {
+        if ((observation.updated_at != null) && this._updated_at.before(observation.updated_at)) {
             // overwrite
             this.created_at = observation.created_at;
             this.description = observation.description;
