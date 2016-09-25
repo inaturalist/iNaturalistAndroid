@@ -2389,14 +2389,16 @@ public class ObservationEditor extends AppCompatActivity {
                     options.inPreferredConfig = Bitmap.Config.ALPHA_8;
                     bitmapImage = BitmapFactory.decodeFile(photoFileName, options);
 
-                    if (orientation != 0) {
-                        // Rotate the image
-                        Matrix matrix = new Matrix();
-                        matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
-                        bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
-                    }
+                    if (bitmapImage != null) {
+                        if (orientation != 0) {
+                            // Rotate the image
+                            Matrix matrix = new Matrix();
+                            matrix.setRotate((float) orientation, bitmapImage.getWidth() / 2, bitmapImage.getHeight() / 2);
+                            bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
+                        }
 
-                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                        if (bitmapImage != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                    }
                     bitmap.recycle();
                 } catch (FileNotFoundException exc) {
                     exc.printStackTrace();
