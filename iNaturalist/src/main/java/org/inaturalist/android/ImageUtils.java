@@ -277,7 +277,7 @@ public class ImageUtils {
             exif = new ExifInterface(imgFilePath);
             int degrees = exifOrientationToDegrees(exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
             return degrees;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             // No orientation
             return 0;
