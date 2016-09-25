@@ -25,8 +25,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -842,6 +844,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 null, 
                 ProjectObservation.DEFAULT_SORT_ORDER);
 
+        if (c.getCount() > 0) {
+            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
+                    getString(R.string.projects),
+                    getString(R.string.syncing_observation_fields),
+                    getString(R.string.syncing));
+        }
+
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             checkForCancelSync();
@@ -870,6 +879,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 "is_new = 1",
                 null, 
                 ProjectObservation.DEFAULT_SORT_ORDER);
+
+        if (c.getCount() > 0) {
+            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
+                    getString(R.string.projects),
+                    getString(R.string.syncing_observation_fields),
+                    getString(R.string.syncing));
+        }
+
 
         c.moveToFirst();
         while (c.isAfterLast() == false) {
@@ -992,29 +1009,49 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         checkForCancelSync();
 
-        if (projects != null) {
-            JSONArray arr = projects.getJSONArray();
-            
+        if (projects == null) {
+            return;
+        }
+
+        JSONArray arr = projects.getJSONArray();
+
+        // Retrieve all currently-joined project IDs
+        List<Integer> projectIds = new ArrayList<Integer>();
+        HashMap<Integer, JSONObject> projectByIds = new HashMap<Integer, JSONObject>();
+        for (int i = 0; i < arr.length(); i++) {
             try {
-            // First, delete all joined projects
-            getContentResolver().delete(Project.CONTENT_URI, null, null);
-            } catch (Exception exc) {
+                JSONObject jsonProject = arr.getJSONObject(i);
+                int id = jsonProject.getInt("id");
+                projectIds.add(id);
+                projectByIds.put(id, jsonProject);
+            } catch (JSONException exc) {
                 exc.printStackTrace();
-                return;
             }
-            
-            // Next, add the new joined projects
-            for (int i = 0; i < arr.length(); i++) {
-                try {
-                    JSONObject jsonProject = arr.getJSONObject(i);
-                    Project project = new Project(new BetterJSONObject(jsonProject));
-                    ContentValues cv = project.getContentValues();
-                    getContentResolver().insert(Project.CONTENT_URI, cv);
-                    
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        }
+
+
+        // Check which projects were un-joined and remove them locally
+        try {
+            int count = getContentResolver().delete(Project.CONTENT_URI, "id not in (" + StringUtils.join(projectIds, ',') + ")", null);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            return;
+        }
+
+        // Add any newly-joined projects
+
+        for (Map.Entry<Integer, JSONObject> entry : projectByIds.entrySet()) {
+            int id = entry.getKey();
+            JSONObject jsonProject = entry.getValue();
+
+            Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = ?", new String[] { String.valueOf(id) }, null);
+
+            if (c.getCount() == 0) {
+                Project project = new Project(new BetterJSONObject(jsonProject));
+                ContentValues cv = project.getContentValues();
+                getContentResolver().insert(Project.CONTENT_URI, cv);
             }
+            c.close();
         }
     }
     
@@ -2096,12 +2133,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     }
     
     private void syncObservationFields() throws AuthenticationException, CancelSyncException {
-        mApp.notify(SYNC_PHOTOS_NOTIFICATION,
-                getString(R.string.projects),
-                getString(R.string.syncing_observation_fields),
-                getString(R.string.syncing));
 
-        
         // First, remotely update the observation fields which were modified
         
         Cursor c = getContentResolver().query(ProjectFieldValue.CONTENT_URI, 
@@ -2111,6 +2143,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 ProjectFieldValue.DEFAULT_SORT_ORDER);
         
         c.moveToFirst();
+
+        if ((c.getCount() > 0) || (mProjectFieldValues.size() > 0)) {
+            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
+                    getString(R.string.projects),
+                    getString(R.string.syncing_observation_fields),
+                    getString(R.string.syncing));
+        } else {
+            return;
+        }
+
         while (c.isAfterLast() == false) {
             checkForCancelSync();
             ProjectFieldValue localField = new ProjectFieldValue(c);

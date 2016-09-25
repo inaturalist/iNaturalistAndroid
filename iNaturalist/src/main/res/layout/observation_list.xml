@@ -38,22 +38,8 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/sync_observations"
-        android:background="@color/inatapptheme_color"
-        android:textColor="#FFFFFF"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"
-        style="@android:style/TextAppearance.Medium"
-        android:text="@string/sync_x_observations" />
-
     <RelativeLayout
         android:layout_below="@id/syncing_top_bar"
-        android:layout_above="@id/sync_observations"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 

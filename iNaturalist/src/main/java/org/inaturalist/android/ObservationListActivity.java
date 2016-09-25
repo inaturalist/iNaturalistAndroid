@@ -39,6 +39,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 	private int mLastTop;
 	private ActionBar mTopActionBar;
 
-	private TextView mSyncObservations;
     private ViewGroup mSyncingTopBar;
 
 	private ObservationCursorAdapter mAdapter;
@@ -123,8 +123,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             mPullRefreshListView.onRefreshComplete();
             mPullRefreshListView.refreshDrawableState();
 
-            mHelper.stopLoading();
-
             ObservationCursorAdapter adapter = mAdapter;
             adapter.refreshCursor();
             refreshSyncBar();
@@ -134,13 +132,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 ((TextView)findViewById(android.R.id.empty)).setText(R.string.no_observations_yet);
             }
 
-
-            if ((mLastMessage != null) && (mLastMessage.length() > 0)) {
-                if (!mApp.getAutoSync()) {
-                    Toast.makeText(getApplicationContext(), mLastMessage, Toast.LENGTH_LONG).show();
-                    mLastMessage = null;
-                }
-            }
 
             mSyncRequested = false;
 
@@ -185,7 +176,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
         if (mApp.getAutoSync()) {
             // Auto sync is on - no need for manual sync
-            mSyncObservations.setVisibility(View.GONE);
+            mSyncingTopBar.setVisibility(View.GONE);
             return;
         }
 
@@ -214,10 +205,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         opc.close();
 
     	if ((syncCount > 0) || (photoSyncCount > 0)) {
-    		mSyncObservations.setText(String.format(getResources().getString(R.string.sync_x_observations), (syncCount > 0 ? syncCount : photoSyncCount)));
-    		mSyncObservations.setVisibility(View.VISIBLE);
+    		mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), (syncCount > 0 ? syncCount : photoSyncCount)));
+    		mSyncingTopBar.setVisibility(View.VISIBLE);
+            mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
+            mCancelSync.setText(R.string.sync_observations);
     	} else {
-    		mSyncObservations.setVisibility(View.GONE);
+    		mSyncingTopBar.setVisibility(View.GONE);
     	}
     	
     }
@@ -239,6 +232,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mSyncingTopBar.setVisibility(View.GONE);
         mSyncingStatus = (TextView) findViewById(R.id.syncing_status);
         mCancelSync = (TextView) findViewById(R.id.cancel_sync);
+
+        if (mApp.getAutoSync()) {
+            // Auto sync
+            mCancelSync.setText(R.string.stop);
+        } else {
+            // Manual
+            mCancelSync.setText(R.string.sync_observations);
+        }
+
         mCancelSync.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -250,6 +252,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     mSyncingStatus.setText(R.string.syncing_paused);
                 } else {
                     // User chose to resume sync
+                    if (!isNetworkAvailable()) {
+                        Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                        return;
+                    } else if (!isLoggedIn()) {
+                        // User not logged-in - redirect to onboarding screen
+                        startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                        return;
+                    }
+
                     mUserCanceledSync = false;
                     mApp.setCancelSync(false);
                     mCancelSync.setText(R.string.stop);
@@ -261,28 +272,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             }
         });
 
-        mSyncObservations = (TextView) findViewById(R.id.sync_observations);
-        mSyncObservations.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isNetworkAvailable()) {
-                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
-                    return;
-                } else if (!isLoggedIn()) {
-                    // User not logged-in - redirect to onboarding screen
-                    startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-                    return;
-                }
-
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
-                startService(serviceIntent);
-
-                mSyncObservations.setVisibility(View.GONE);
-
-                mHelper.loading(getResources().getString(R.string.syncing_observations), ObservationListActivity.this);
-            }
-        });
-        
         if (savedInstanceState != null) {
             mLastMessage = savedInstanceState.getString("mLastMessage");
             mUserCanceledSync = savedInstanceState.getBoolean("mUserCanceledSync");
@@ -522,9 +511,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         INaturalistApp app = (INaturalistApp)(getApplication());
         if (app.getIsSyncing()) {
         	// We're still syncing
-        	mHelper.stopLoading();
-        	if ((mLastMessage != null) && (!mApp.getAutoSync())) mHelper.loading(mLastMessage, ObservationListActivity.this);
+        	if ((mLastMessage != null) && (!mApp.getAutoSync())) mSyncingStatus.setText(mLastMessage);
         	app.setNotificationCallback(this);
+            if (!app.getAutoSync()) mCancelSync.setText(R.string.stop);
         }
 
         (new Handler()).postDelayed(new Runnable() {
@@ -1050,22 +1039,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 		runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!mApp.getAutoSync()) {
-                    try {
-                        mHelper.loading(content, ObservationListActivity.this);
-                    } catch (WindowManager.BadTokenException exc) {
-                        // Activity is not visible - can't display the loading dialog
-                    }
+                mSyncingStatus.setText(content);
+                int visibility = View.GONE;
+                if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+                    visibility = View.GONE;
                 } else {
-                    mSyncingStatus.setText(content);
-                    int visibility = View.GONE;
-                    if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
-                        visibility = View.GONE;
-                    } else {
-                        visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
-                    }
-                    mSyncingTopBar.setVisibility(visibility);
+                    visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
                 }
+                mSyncingTopBar.setVisibility(visibility);
                 mAdapter.refreshCursor();
             }
         });
