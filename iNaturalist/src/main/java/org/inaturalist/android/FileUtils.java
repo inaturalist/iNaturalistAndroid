@@ -224,6 +224,9 @@ public class FileUtils {
                 final int column_index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(column_index);
             }
+        } catch (Exception exc) {
+            // Column doesn't exist
+            exc.printStackTrace();
         } finally {
             if (cursor != null)
                 cursor.close();
