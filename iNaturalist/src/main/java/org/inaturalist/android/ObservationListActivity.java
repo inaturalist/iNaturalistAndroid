@@ -208,7 +208,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     		mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), (syncCount > 0 ? syncCount : photoSyncCount)));
     		mSyncingTopBar.setVisibility(View.VISIBLE);
             mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
-            mCancelSync.setText(R.string.sync_observations);
+            mCancelSync.setText(R.string.upload);
     	} else {
     		mSyncingTopBar.setVisibility(View.GONE);
     	}
@@ -238,7 +238,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             mCancelSync.setText(R.string.stop);
         } else {
             // Manual
-            mCancelSync.setText(R.string.sync_observations);
+            mCancelSync.setText(R.string.upload);
         }
 
         mCancelSync.setOnClickListener(new OnClickListener() {

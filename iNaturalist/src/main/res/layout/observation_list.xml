@@ -12,17 +12,9 @@
         android:layout_width="fill_parent"
         android:background="#74AC00"
         android:padding="10dp"
-        android:layout_height="48dp">
+        android:layout_height="wrap_content"
+        android:minHeight="48dp">
 
-        <TextView
-            android:id="@+id/syncing_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:text="Posting 1 of 5 observation(s)..."
-            android:textColor="#fff"
-            />
 
         <TextView
             android:id="@+id/cancel_sync"
@@ -34,6 +26,16 @@
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            />
+        <TextView
+            android:id="@+id/syncing_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="Posting 1 of 5 observation(s)..."
+            android:textColor="#fff"
+            android:layout_toLeftOf="@id/cancel_sync"
             />
 
     </RelativeLayout>

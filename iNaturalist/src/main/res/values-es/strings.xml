@@ -423,4 +423,5 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="couldnt_load_project_news">No pudo cargar las noticias del proyecto: %1$s</string>
   <string name="article_by">Articulo por</string>
   <string name="feed">Lista</string>
+  <string name="upload">Cargar</string>
 </resources>
