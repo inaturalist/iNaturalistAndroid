@@ -16,7 +16,6 @@
         android:summary="@string/auto_upload_description"
         android:title="@string/automatic_upload" />
 
-
     <ListPreference
         android:layout="@layout/custom_preference"
         android:key="language"
@@ -36,6 +35,7 @@
         android:layout="@layout/custom_preference"
         android:key="contact_support"
         android:title="@string/contact_support" />
+
 
      <Preference
         android:layout="@layout/custom_preference_with_header"

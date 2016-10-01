@@ -25,7 +25,7 @@
         android:paddingRight="12dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp">
-        <ImageView
+        <com.android.internal.widget.PreferenceImageView
             android:id="@+android:id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,8 +44,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:textColor="#000000"
-            android:textSize="17sp"
+            android:textColor="#85B623"
+            android:layout_marginBottom="10dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
             android:ellipsize="marquee" />
 
         <TextView android:id="@android:id/summary"
@@ -54,8 +56,8 @@
             android:layout_below="@android:id/title"
             android:layout_alignStart="@android:id/title"
             android:layout_alignLeft="@android:id/title"
-            android:textColor="#8B8B8B"
-            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textSize="17sp"
             android:maxLines="10" />
 
     </RelativeLayout>

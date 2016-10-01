@@ -10,7 +10,6 @@
     android:gravity="center_vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:background="@drawable/activated_background"
     android:clipToPadding="false">
 
     <LinearLayout
@@ -26,7 +25,7 @@
         android:paddingRight="12dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp">
-        <com.android.internal.widget.PreferenceImageView
+        <ImageView
             android:id="@+android:id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
