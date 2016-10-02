@@ -1135,7 +1135,8 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void updateObservationVisibilityDescription() {
         List<String> names = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_items));
-        String selectedName = names.get(mGeoprivacy.getSelectedItemPosition());
+        int index = mGeoprivacy.getSelectedItemPosition();
+        String selectedName = names.get(index > -1 ? index : 0);
         ((TextView)findViewById(R.id.location_visibility_description)).setText(getString(R.string.location_is) + " " + selectedName);
     }
 
@@ -1143,7 +1144,8 @@ public class ObservationEditor extends AppCompatActivity {
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
 
         if (mObservation.geoprivacy != null) {
-            mGeoprivacy.setSelection(values.indexOf(mObservation.geoprivacy));
+            int index = values.indexOf(mObservation.geoprivacy);
+            mGeoprivacy.setSelection(index > -1 ? index : 0);
         } else {
             mGeoprivacy.setSelection(0);
         }

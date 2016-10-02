@@ -206,11 +206,6 @@
     <item>위치 불명료</item>
     <item>비공개</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>모두 공개</item>
-    <item>위치 불명료</item>
-    <item>비공개</item>
-  </string-array>
   <string name="alert_sign_out">정말 로그아웃 하시겠습니까? 진행시 회원님의 기기에 저장된 모든 관찰기록이 삭제됩니다. 물론, iNaturalist에 등록한 관찰기록에는 영향을 미치지 않습니다.</string>
   <string name="alert_unsupported_media_type">죄송합니다. 저희는 구글 드라이브나, 드롭박스 등 기타 웹하드에서 사진을 업로딩 하는 것을 지원하지 않습니다. 휴대하신 기기에 사진을 저장한 후 다시 시도해보세요.</string>
   <string name="alert_title_use">사용하기</string>

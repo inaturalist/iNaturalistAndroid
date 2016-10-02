@@ -205,11 +205,6 @@
     <item>Oscurecida</item>
     <item>Privada</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>abierta</item>
-    <item>oscurecida</item>
-    <item>privada</item>
-  </string-array>
   <string name="alert_sign_out">¿Estás seguro que deseas salir? Esto borrará todas tus observaciones en este dispositivo. No afectará a todas las observaciones que hayas subido a Naturalista.</string>
   <string name="alert_unsupported_media_type">Lo sentimos, pero por el momento no pueden subirse fotos de Google Drive, Dropbox, etc.\nPor favor descarga las fotos a la memoria local de tu teléfono y vuelve a intentarlo.</string>
   <string name="alert_title_use">Usa</string>

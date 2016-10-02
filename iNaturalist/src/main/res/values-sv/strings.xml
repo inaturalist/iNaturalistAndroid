@@ -205,11 +205,6 @@
     <item>Dold</item>
     <item>Privat</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>Öppna</item>
-    <item>dold</item>
-    <item>privat</item>
-  </string-array>
   <string name="alert_sign_out">Är du säker på att du vill logga ut? Detta raderar alla dina observationer på den här mobila enheten. Det påverkar inte observationer som du redan har laddat upp till iNaturalist.</string>
   <string name="alert_unsupported_media_type">Tyvärr, men just nu kan du inte ladda upp bilder från Google Drive, Dropbox, etc. \n Ladda ner bilderna till din mobiltelefons minne och försök igen.</string>
   <string name="alert_title_use">Använd</string>

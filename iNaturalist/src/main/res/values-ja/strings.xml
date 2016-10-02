@@ -205,11 +205,6 @@
     <item>不明瞭</item>
     <item>プライベート</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>オープン</item>
-    <item>不明瞭</item>
-    <item>プライベート</item>
-  </string-array>
   <string name="alert_sign_out">本当にサインアウトしてもよろしいですか？サインアウトするとこのデバイス上の全ての観察情報が削除されます。iNaturalist上にアップロードした観察情報には影響しません。</string>
   <string name="alert_unsupported_media_type">申し訳ありませんがGoogle Drive、Dropbox、等からの写真のアップロードは現在サポートしておりません。\n写真をローカルストレージにダウンロードし直して再試行してください。</string>
   <string name="alert_title_use">使用する</string>

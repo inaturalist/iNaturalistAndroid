@@ -205,11 +205,6 @@
     <item>Mengaburkan</item>
     <item>Pribadi</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>buka</item>
-    <item>mengaburkan</item>
-    <item>pribadi</item>
-  </string-array>
   <string name="alert_sign_out">Apakah Anda yakin Anda ingin keluar? Ini akan menghapus semua pengamatan Anda pada perangkat ini. Itu tidak akan mempengaruhi setiap pengamatan yang Anda upload ke iNaturalist.</string>
   <string name="alert_unsupported_media_type">Maaf, tetapi saat ini kami tidak mendukung pengunggahan foto dari Google Drive, Dropbox, dll dan tolong unduh foto tersebut ke penyimpanan handphone anda dan coba lagi.</string>
   <string name="alert_title_use">Gunakan</string>

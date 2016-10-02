@@ -170,9 +170,4 @@
     <item>Obscured</item>
     <item>Private</item>
     </string-array>
-    <string-array name="geoprivacy_values">
-    <item>open</item>
-    <item>obscured</item>
-    <item>private</item>
-    </string-array>
 </resources>

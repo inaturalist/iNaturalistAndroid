@@ -205,11 +205,6 @@
     <item>Oculta</item>
     <item>Particular</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>aberto</item>
-    <item>oculta</item>
-    <item>particular</item>
-  </string-array>
   <string name="alert_sign_out">Tem certeza que deseja sair? Isto irá apagar todas as suas observações feitas com este dispositivo. Isso não irá afetar quaisquer observações que você carregou no iNaturalist.</string>
   <string name="alert_unsupported_media_type">Desculpe, mas no momento não possibilitamos upload de fotos do Google Drive, Dropbox, etc \nPor favor faça o download das fotos para serem armazenadas no seu telefone e tente novamente.</string>
   <string name="alert_title_use">Uso</string>

@@ -205,11 +205,6 @@
     <item>Enfosquida</item>
     <item>Privada</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>oberta</item>
-    <item>enfosquida</item>
-    <item>privada</item>
-  </string-array>
   <string name="alert_sign_out">Esteu segur que voleu tancar la sessió? Això esborrarà totes les observacions d\'aquest dispositiu. No afectarà les observacions que heu pujat a iNaturalist.</string>
   <string name="alert_unsupported_media_type">Ho sentim, però de moment que no donem suport a pujar fotos des de Google Drive, Dropbox, etc. \nSi us plau, descarregueu les fotos al dispositiu d\'emmagatzematge del vostre telèfon i torneu a provar.</string>
   <string name="alert_title_use">Usa</string>

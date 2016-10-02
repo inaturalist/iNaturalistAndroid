@@ -205,11 +205,6 @@
     <item>Oscurata</item>
     <item>Privata</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>aperta</item>
-    <item>oscurata</item>
-    <item>privata</item>
-  </string-array>
   <string name="alert_sign_out">Sei sicuro di volere uscire? Tutte le tue osservazioni su questo dispositivo verrano cancellate. Le osservazione che hai caricato su iNaturalist non ne saranno affette.</string>
   <string name="alert_unsupported_media_type">Siamo spiacenti, al momento non supportiamo il caricamento di foto da Google Drive, Dropbox, etc.\nPer favore scarica le foto sul tuo telefono e prova di nuovo.</string>
   <string name="alert_title_use">Usa</string>
