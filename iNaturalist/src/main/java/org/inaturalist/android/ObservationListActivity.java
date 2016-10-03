@@ -15,7 +15,9 @@ import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.annotation.SuppressLint;
@@ -41,26 +43,36 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.preference.Preference;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ObservationListActivity extends BaseFragmentActivity implements OnItemClickListener, INotificationCallback, DialogInterface.OnClickListener {
 	public static String TAG = "INAT:ObservationListActivity";
-	
+
 	private PullToRefreshListView mPullRefreshListView;
-	
+    private PullToRefreshGridViewExtended mPullRefreshGridView;
+
+    private boolean mIsGrid = false;
+
 	private SyncCompleteReceiver mSyncCompleteReceiver;
 	
 	private int mLastIndex;
@@ -69,9 +81,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
     private ViewGroup mSyncingTopBar;
 
-	private ObservationCursorAdapter mAdapter;
-
-	private TextView mTitleBar;
+	private ObservationCursorAdapter mListAdapter;
+    private ObservationCursorAdapter mGridAdapter;
 
 	private ActivityHelper mHelper;
 
@@ -86,6 +97,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
     private boolean mUserCanceledSync = false; // When the user chose to pause/stop sync while in auto sync mode
     private boolean mSyncRequested = false;
+    private Menu mMenu;
 
     @Override
 	protected void onStart()
@@ -122,12 +134,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
             mPullRefreshListView.onRefreshComplete();
             mPullRefreshListView.refreshDrawableState();
+            mPullRefreshGridView.onRefreshComplete();
+            mPullRefreshGridView.refreshDrawableState();
 
-            ObservationCursorAdapter adapter = mAdapter;
-            adapter.refreshCursor();
+            mListAdapter.refreshCursor();
+            mGridAdapter.refreshCursor();
             refreshSyncBar();
 
-            if (mApp.loggedIn() && !mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+            if (mApp.loggedIn() && !mApp.getIsSyncing() && (mListAdapter.getCount() == 0)) {
                 // Show a "no observations" message
                 ((TextView)findViewById(android.R.id.empty)).setText(R.string.no_observations_yet);
             }
@@ -275,6 +289,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         if (savedInstanceState != null) {
             mLastMessage = savedInstanceState.getString("mLastMessage");
             mUserCanceledSync = savedInstanceState.getBoolean("mUserCanceledSync");
+            mIsGrid = savedInstanceState.getBoolean("mIsGrid");
         }
         
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -345,55 +360,30 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         mPullRefreshListView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_refresh));
         mPullRefreshListView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.refreshing));
         mPullRefreshListView.setReleaseRatio(2.5f);
-        
+
+        mPullRefreshGridView = (PullToRefreshGridViewExtended) findViewById(R.id.observations_grid);
+        mPullRefreshGridView.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_refresh));
+        mPullRefreshGridView.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_refresh));
+        mPullRefreshGridView.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.refreshing));
+        mPullRefreshGridView.setReleaseRatio(2.5f);
+
+
         // Set a listener to be invoked when the list should be refreshed.
         mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                if (!isNetworkAvailable() || !isLoggedIn()) {
-                    Thread t = (new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mPullRefreshListView.onRefreshComplete();
-                                }
-                            });
-                        }
-                    }));
-                    t.start();
-                    if (!isNetworkAvailable()) {
-                        Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show(); 
-                    } else if (!isLoggedIn()) {
-                        Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show(); 
-                    }
-                    return;
-                }
-                
-                // Start sync
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
-                startService(serviceIntent);
+                onRefreshView(false);
+            }
+        });
+        mPullRefreshGridView.setOnRefreshListener(new OnRefreshListener<GridView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<GridView> refreshView) {
+                onRefreshView(true);
             }
         });
 
         onDrawerCreate(savedInstanceState);
         
-        
-		ListView actualListView = mPullRefreshListView.getRefreshableView();
-
-		// Need to use the Actual ListView when registering for Context Menu
-		registerForContextMenu(actualListView);
-        
-        
-        // Inform the list we provide context menus for items
-        //getListView().setOnCreateContextMenuListener(this);
-		
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         
@@ -405,22 +395,42 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         }
         conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
         
-        Cursor cursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION, 
+        final Cursor cursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION,
         		conditions, null, Observation.DEFAULT_SORT_ORDER);
 
-        // Used to map notes entries from the database to views
-        ObservationCursorAdapter adapter = new ObservationCursorAdapter(
-                this, R.layout.list_item, cursor,
-                new String[] { Observation.DESCRIPTION },
-                new int[] { R.id.subContent });
+        mListAdapter = new ObservationCursorAdapter(this, cursor, false, 0);
+        mGridAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor, true, mPullRefreshGridView.getColumnWidth());
+        mPullRefreshGridView.setAdapter(mGridAdapter);
 
-        mAdapter = adapter;
-        
+
         mPullRefreshListView.setEmptyView(findViewById(android.R.id.empty));
-        mPullRefreshListView.setAdapter(mAdapter);
+        mPullRefreshListView.setAdapter(mListAdapter);
         mPullRefreshListView.setOnItemClickListener(this);
 
+        mPullRefreshGridView.setEmptyView(findViewById(android.R.id.empty));
+        mPullRefreshGridView.setAdapter(mGridAdapter);
+        mPullRefreshGridView.setOnItemClickListener(this);
+
         triggerSyncIfNeeded();
+        refreshViewState();
+    }
+
+    private void refreshViewState() {
+        if (mIsGrid) {
+            mPullRefreshGridView.setVisibility(View.VISIBLE);
+            mPullRefreshListView.setVisibility(View.GONE);
+        } else {
+            mPullRefreshGridView.setVisibility(View.GONE);
+            mPullRefreshListView.setVisibility(View.VISIBLE);
+        }
+
+        if (mMenu != null) {
+            if (!mIsGrid) {
+                mMenu.getItem(0).setIcon(R.drawable.grid_view_gray);
+            } else {
+                mMenu.getItem(0).setIcon(R.drawable.list_view_gray);
+            }
+        }
     }
 
     private void triggerSyncIfNeeded() {
@@ -476,22 +486,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
 
         // save last position of list so we can resume there later
         // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
-        ListView lv = mPullRefreshListView.getRefreshableView();
+        AbsListView lv = mIsGrid ? mPullRefreshGridView.getRefreshableView() : mPullRefreshListView.getRefreshableView();
         mLastIndex = lv.getFirstVisiblePosition();
         View v = lv.getChildAt(0);
         mLastTop = (v == null) ? 0 : v.getTop();
-        
-
-        /*
-        ObservationCursorAdapter adapter = mAdapter;
-        adapter.notifyDataSetInvalidated();
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB){
-        	Cursor oldCursor = adapter.swapCursor(null);
-        	if ((oldCursor != null) && (!oldCursor.isClosed())) oldCursor.close();
-        } else {
-        	adapter.changeCursor(null);
-        }
-        */
 
         super.onPause();
     }
@@ -500,14 +498,21 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     public void onResume() {
         super.onResume();
 
-        ListView lv = mPullRefreshListView.getRefreshableView();
-        lv.setSelectionFromTop(mLastIndex, mLastTop);
+        if (mIsGrid) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                GridView grid = mPullRefreshGridView.getRefreshableView();
+                grid.setSelectionFromTop(mLastIndex, mLastTop);
+            }
+        } else {
+            ListView lv = mPullRefreshListView.getRefreshableView();
+            lv.setSelectionFromTop(mLastIndex, mLastTop);
+        }
       
         refreshSyncBar();
 
-        ObservationCursorAdapter adapter = mAdapter;
-        adapter.refreshCursor();
-        
+        mListAdapter.refreshCursor();
+        if (mGridAdapter != null) mGridAdapter.refreshCursor();
+
         INaturalistApp app = (INaturalistApp)(getApplication());
         if (app.getIsSyncing()) {
         	// We're still syncing
@@ -519,14 +524,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         (new Handler()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+                if (mApp.loggedIn() && mApp.getIsSyncing() && (mListAdapter.getCount() == 0)) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.downloading_observations), Toast.LENGTH_LONG).show();
                 }
             }
         }, 100);
 
 
-        if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+        if (mApp.loggedIn() && mApp.getIsSyncing() && (mListAdapter.getCount() == 0)) {
             // Show a "downloading ..." message instead of "no observations yet"
             ((TextView)findViewById(android.R.id.empty)).setText(R.string.downloading_observations);
         }
@@ -538,6 +543,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     protected void onSaveInstanceState(Bundle outState) {
         if (mLastMessage != null) outState.putString("mLastMessage", mLastMessage);
         outState.putBoolean("mUserCanceledSync", mUserCanceledSync);
+        outState.putBoolean("mIsGrid", mIsGrid);
         super.onSaveInstanceState(outState);
     }
  
@@ -558,7 +564,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             // the user.  The have clicked on one, so return it now.
             setResult(RESULT_OK, new Intent().setData(uri));
         } else {
-            if ((!mAdapter.isLocked(uri)) || (mAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
+            if ((!mListAdapter.isLocked(uri)) || (mListAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
                 // Launch activity to view/edit the currently selected item
                 startActivity(new Intent(Intent.ACTION_VIEW, uri, this, ObservationViewerActivity.class));
             }
@@ -566,10 +572,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
     }
     
     private class ObservationCursorAdapter extends SimpleCursorAdapter {
-		private HashMap<Long, String[]> mPhotoInfo = new HashMap<Long, String[]>();
+        private int mDimension;
+        private HashMap<Long, String[]> mPhotoInfo = new HashMap<Long, String[]>();
+        private boolean mIsGrid;
         
-        public ObservationCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to) {
-            super(context, layout, c, from, to);
+        public ObservationCursorAdapter(Context context, Cursor c, boolean isGrid, int dimension) {
+            super(context, isGrid ? R.layout.observation_grid_item : R.layout.list_item, c, new String[] {}, new int[] {});
+            mIsGrid = isGrid;
+            mDimension = dimension;
             getPhotoInfo();
         }
         
@@ -643,47 +653,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             }
             
             onlinePc.close();
-            
-
-            /*
-            Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
-                    new String[]{
-                        ObservationPhoto._ID, 
-                        ObservationPhoto._OBSERVATION_ID, 
-                        ObservationPhoto._PHOTO_ID, 
-                        ObservationPhoto.PHOTO_URL,
-                        ObservationPhoto.PHOTO_FILENAME,
-                        ObservationPhoto._UPDATED_AT,
-                        ObservationPhoto._SYNCED_AT
-                    }, 
-                    "_observation_id IN ("+StringUtils.join(obsIds, ',')+") AND photo_url IS NULL", 
-                    null, 
-                    ObservationPhoto._ID);
-            if (opc.getCount() == 0) return;
-            opc.moveToFirst();
-            while (!opc.isAfterLast()) {
-                Long obsId = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
-                String photoFilename = opc.getString(opc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                Long syncedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._SYNCED_AT));
-                Long updatedAt = opc.getLong(opc.getColumnIndexOrThrow(ObservationPhoto._UPDATED_AT));
-
-                if (!mPhotoInfo.containsKey(obsId)) {
-                    mPhotoInfo.put(
-                            obsId,
-                            new String[] {
-                                photoFilename,
-                                null,
-                                null,
-                                updatedAt.toString(),
-                                syncedAt.toString()
-                            });
-                }
-                opc.moveToNext();
-            }
-
-            opc.close();
-            */
-            
         }
 
         public void refreshPhotoInfo() {
@@ -701,12 +670,35 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if (c.getCount() == 0) {
                 return view;
             }
-
-
-            ImageView image = (ImageView) view.findViewById(R.id.image);
             c.moveToPosition(position);
+
+            ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
+            TextView speciesGuess = (TextView) view.findViewById(R.id.species_guess);
+            TextView dateObserved = (TextView) view.findViewById(R.id.date);
+            ViewGroup commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
+
+            ImageView commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
+            ImageView idIcon = (ImageView) view.findViewById(R.id.id_pic);
+            TextView commentCount = (TextView) view.findViewById(R.id.comment_count);
+            TextView idCount = (TextView) view.findViewById(R.id.id_count);
+
+            TextView placeGuess = (TextView) view.findViewById(R.id.place_guess);
+            ImageView locationIcon = (ImageView) view.findViewById(R.id.location_icon);
+
+            View progress = view.findViewById(R.id.progress);
+
+
             final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
             final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
+            String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
+            Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
+            Double longitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LONGITUDE));
+
+            if (mIsGrid) {
+                mDimension = mPullRefreshGridView.getColumnWidth();
+                obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+            }
 
             refreshPhotoInfo(obsId);
             getPhotoInfo();
@@ -753,65 +745,110 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             }
 
             if (photoInfo != null) {
+                obsImage.setPadding(0, 0, 0, 0);
+                obsImage.clearColorFilter();
                 String photoFilename = photoInfo[0];
-                
+
                 if (photoInfo[2] != null) {
                     // Online-only photo
-                    UrlImageViewHelper.setUrlDrawable(image, photoInfo[2], iconResource);
+                    UrlImageViewHelper.setUrlDrawable(obsImage, photoInfo[2], iconResource, new UrlImageViewCallback() {
+                        @Override
+                        public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            if (mIsGrid) {
+                                imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                            }
+                        }
+
+                        @Override
+                        public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap));
+                        }
+                    });
                     
                 } else {
                     // Offline photo
-                    BitmapWorkerTask task = new BitmapWorkerTask(image);
+                    BitmapWorkerTask task = new BitmapWorkerTask(obsImage);
                     task.execute(photoFilename, String.valueOf(iconResource));
                 }
             } else {
-                image.setImageResource(iconResource);
+                obsImage.setImageResource(iconResource);
+
+                // 5dp -> pixels
+                int px = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+                obsImage.setPadding(px, px, px, px);
+                obsImage.setColorFilter(Color.parseColor("#8C8C8C"));
             }
                 
             
-            TextView observedOn = (TextView) view.findViewById(R.id.dateObserved);
             Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
-            
-            if (observationTimestamp == 0) {
-                // No observation date set - don't show it
-                observedOn.setVisibility(View.INVISIBLE);
-            } else {
-                observedOn.setVisibility(View.VISIBLE);
-                Timestamp observationDate = new Timestamp(observationTimestamp);
-                observedOn.setText(new SimpleDateFormat("M/d/yyyy").format(observationDate));
+
+            if (!mIsGrid) {
+                if (observationTimestamp == 0) {
+                    // No observation date set - don't show it
+                    dateObserved.setVisibility(View.INVISIBLE);
+                } else {
+                    dateObserved.setVisibility(View.VISIBLE);
+                    Timestamp observationDate = new Timestamp(observationTimestamp);
+                    dateObserved.setText(CommentsIdsAdapter.formatIdDate(observationDate));
+                }
             }
-            
-            
-            TextView commentIdCountText = (TextView) view.findViewById(R.id.commentIdCount);
+
             Long commentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.COMMENTS_COUNT));
-            Long idCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
+            Long idsCount = c.getLong(c.getColumnIndexOrThrow(Observation.IDENTIFICATIONS_COUNT));
             Long lastCommentsCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_COMMENTS_COUNT));
             Long lastIdCount = c.getLong(c.getColumnIndexOrThrow(Observation.LAST_IDENTIFICATIONS_COUNT));
-            final Long taxonId = c.getLong(c.getColumnIndexOrThrow(Observation.TAXON_ID));
-            if (taxonId != 0 && idCount > 0) {
-                idCount--;
-            }
-            Long totalCount = commentsCount + idCount;
-            ViewGroup clickCatcher = (ViewGroup) view.findViewById(R.id.rightObsPart);
 
-            if (totalCount == 0) {
+            if (commentsCount + idsCount == 0) {
                 // No comments/IDs - don't display the indicator
-                commentIdCountText.setVisibility(View.INVISIBLE);
-                clickCatcher.setClickable(false);
+                commentIdContainer.setVisibility(View.INVISIBLE);
+                commentIdContainer.setClickable(false);
             } else {
-                clickCatcher.setClickable(true);
-                commentIdCountText.setVisibility(View.VISIBLE);
-                if ((lastCommentsCount == null) || (lastCommentsCount < commentsCount) ||
-                        (lastIdCount == null) || (lastIdCount < idCount)) {
-                    // There are unread comments/IDs
-                    commentIdCountText.setBackgroundResource(R.drawable.comments_ids_background_highlighted);
-                } else {
-                    commentIdCountText.setBackgroundResource(R.drawable.comments_ids_background);
-                }
-                
-                refreshCommentsIdSize(commentIdCountText, totalCount);
+                commentIdContainer.setClickable(true);
+                commentIdContainer.setVisibility(View.VISIBLE);
 
-                clickCatcher.setOnClickListener(new OnClickListener() {
+                if ((lastCommentsCount == null) || (lastCommentsCount < commentsCount) ||
+                        (lastIdCount == null) || (lastIdCount < idsCount)) {
+                    // There are unread comments/IDs
+                    if (mIsGrid) {
+                        commentIdContainer.setBackgroundColor(Color.parseColor("#EA118D"));
+                    } else {
+                        commentCount.setTextColor(Color.parseColor("#EA118D"));
+                        idCount.setTextColor(Color.parseColor("#EA118D"));
+
+                        commentIcon.setColorFilter(Color.parseColor("#EA118D"));
+                        idIcon.setColorFilter(Color.parseColor("#EA118D"));
+                    }
+                } else {
+                    if (mIsGrid) {
+                        commentIdContainer.setBackgroundColor(Color.parseColor("#00ffffff"));
+                    } else {
+                        commentCount.setTextColor(Color.parseColor("#959595"));
+                        idCount.setTextColor(Color.parseColor("#959595"));
+
+                        commentIcon.setColorFilter(Color.parseColor("#707070"));
+                        idIcon.setColorFilter(Color.parseColor("#707070"));
+                    }
+                }
+
+                if (commentsCount > 0) {
+                    commentCount.setText(String.valueOf(commentsCount));
+                    commentCount.setVisibility(View.VISIBLE);
+                    commentIcon.setVisibility(View.VISIBLE);
+                } else {
+                    commentCount.setVisibility(View.GONE);
+                    commentIcon.setVisibility(View.GONE);
+                }
+
+                if (idsCount > 0) {
+                    idCount.setText(String.valueOf(idsCount));
+                    idCount.setVisibility(View.VISIBLE);
+                    idIcon.setVisibility(View.VISIBLE);
+                } else {
+                    idCount.setVisibility(View.GONE);
+                    idIcon.setVisibility(View.GONE);
+                }
+
+                commentIdContainer.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!isNetworkAvailable()) {
@@ -869,69 +906,85 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 opc.close();
             }
 
-            ImageView needToSync = (ImageView) view.findViewById(R.id.syncRequired);
-            TextView subTitle = (TextView) view.findViewById(R.id.subContent);
-            TextView title = (TextView) view.findViewById(R.id.speciesGuess);
-            ProgressBar progress = (ProgressBar) view.findViewById(R.id.progress);
-            ViewGroup commentCatcher = (ViewGroup) view.findViewById(R.id.commentsIdClickCatcher);
 
-            String speciesGuess = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
-            String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
-            title.setTextColor(Color.parseColor("#000000"));
-            subTitle.setTextColor(Color.parseColor("#666666"));
-            progress.setVisibility(View.GONE);
-            observedOn.setVisibility(View.VISIBLE);
-            commentCatcher.setVisibility(View.VISIBLE);
-
-            if (preferredCommonName != null) {
-                title.setText(preferredCommonName);
-            } else if ((speciesGuess != null) && (speciesGuess.trim().length() > 0)) {
-                title.setText("\"" + speciesGuess + "\"");
-            } else {
-                title.setText(R.string.unknown_species);
+            if (!mIsGrid) {
+                if ((placeGuessValue == null) || (placeGuessValue.length() == 0)) {
+                    if ((longitude == null) || (latitude == null)) {
+                        // Show coordinates instead
+                        placeGuess.setText(String.format(getString(R.string.location_coords_no_acc),
+                                String.format("%.4f...", latitude), String.format("%.4f...", longitude)));
+                    } else {
+                        // No location at all
+                        placeGuess.setText(R.string.no_location);
+                    }
+                } else {
+                    placeGuess.setText(placeGuessValue);
+                }
             }
 
 
-            ImageView errorIcon = (ImageView) view.findViewById(R.id.error);
+            String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
+            String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
+            progress.setVisibility(View.GONE);
+            if (!mIsGrid) {
+                placeGuess.setTextColor(Color.parseColor("#666666"));
+                dateObserved.setVisibility(View.VISIBLE);
+                speciesGuess.setTextColor(Color.parseColor("#000000"));
+            }
+
+            if (preferredCommonName != null) {
+                speciesGuess.setText(preferredCommonName);
+            } else if ((speciesGuessValue != null) && (speciesGuessValue.trim().length() > 0)) {
+                speciesGuess.setText("\"" + speciesGuess + "\"");
+            } else {
+                speciesGuess.setText(R.string.unknown_species);
+            }
+
+
             boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
             if (hasErrors)  {
-                errorIcon.setVisibility(View.VISIBLE);
-                needToSync.setVisibility(View.GONE);
-                commentIdCountText.setVisibility(View.GONE);
                 view.setBackgroundColor(Color.parseColor("#F3D3DA"));
-                subTitle.setText(R.string.needs_your_attention);
+                if (!mIsGrid) {
+                    placeGuess.setText(R.string.needs_your_attention);
+                    locationIcon.setVisibility(View.GONE);
+                }
             } else {
-                errorIcon.setVisibility(View.GONE);
                 view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                if (!mIsGrid) {
+                    locationIcon.setVisibility(View.VISIBLE);
+                }
             }
 
             if (syncNeeded) {
                 // This observations needs to be synced
-                needToSync.setVisibility(View.VISIBLE);
 
                 if (mApp.getObservationIdBeingSynced() == obsId) {
                     // Observation is currently being uploaded
-                    subTitle.setText(R.string.uploading);
                     view.setBackgroundColor(Color.parseColor("#E3EDCD"));
 
-                    subTitle.setTextColor(Color.parseColor("#74Ac00"));
+                    if (!mIsGrid) {
+                        placeGuess.setText(R.string.uploading);
+                        placeGuess.setTextColor(Color.parseColor("#74Ac00"));
+                        locationIcon.setVisibility(View.GONE);
+                        dateObserved.setVisibility(View.GONE);
+                    }
 
                     progress.setVisibility(View.VISIBLE);
-                    observedOn.setVisibility(View.GONE);
-                    commentCatcher.setVisibility(View.GONE);
+                    commentIdContainer.setVisibility(View.GONE);
                 } else {
                     // Observation is waiting to be uploaded
                     if (!hasErrors) {
-                        subTitle.setText(R.string.waiting_to_upload);
                         view.setBackgroundColor(Color.parseColor("#E3EDCD"));
+                        if (!mIsGrid) {
+                            placeGuess.setText(R.string.waiting_to_upload);
+                            locationIcon.setVisibility(View.GONE);
+                        }
                     }
                 }
             } else {
-                needToSync.setVisibility(View.INVISIBLE);
                 if (!hasErrors)
                     view.setBackgroundColor(Color.parseColor("#FFFFFF"));
             }
-
 
             return view;
         }
@@ -1041,13 +1094,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             public void run() {
                 mSyncingStatus.setText(content);
                 int visibility = View.GONE;
-                if (mApp.loggedIn() && mApp.getIsSyncing() && (mAdapter.getCount() == 0)) {
+                if (mApp.loggedIn() && mApp.getIsSyncing() && (mListAdapter.getCount() == 0)) {
                     visibility = View.GONE;
                 } else {
                     visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
                 }
                 mSyncingTopBar.setVisibility(visibility);
-                mAdapter.refreshCursor();
+                mListAdapter.refreshCursor();
+                mGridAdapter.refreshCursor();
             }
         });
 	}
@@ -1098,6 +1152,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 options.inPreferredConfig = Bitmap.Config.ALPHA_8;
                 bitmapImage = BitmapFactory.decodeFile(mFilename, options);
                 bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, mFilename);
+                bitmapImage = ImageUtils.centerCropBitmap(bitmapImage);
+                bitmapImage = ImageUtils.getRoundedCornerBitmap(bitmapImage);
 
                 mObservationThumbnails.put(mFilename, bitmapImage);
             }
@@ -1136,5 +1192,67 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                 triggerSyncIfNeeded();
             }
         }
+    }
+
+
+    private void onRefreshView(final boolean isGrid) {
+        if (!isNetworkAvailable() || !isLoggedIn()) {
+            Thread t = (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!isGrid) {
+                                mPullRefreshListView.onRefreshComplete();
+                            } else {
+                                mPullRefreshGridView.onRefreshComplete();
+                            }
+                        }
+                    });
+                }
+            }));
+            t.start();
+            if (!isNetworkAvailable()) {
+                Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+            } else if (!isLoggedIn()) {
+                Toast.makeText(getApplicationContext(), R.string.please_sign_in, Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
+
+        // Start sync
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
+        startService(serviceIntent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.my_observations_menu, menu);
+        mMenu = menu;
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.observation_view_type:
+                mIsGrid = !mIsGrid;
+
+                mLastIndex = 0;
+                mLastTop = 0;
+                refreshViewState();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

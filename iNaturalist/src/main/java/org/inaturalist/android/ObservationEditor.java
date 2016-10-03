@@ -183,7 +183,6 @@ public class ObservationEditor extends AppCompatActivity {
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
     private ImageButton mViewOnInat;
-    private TextView mObservationCommentsIds;
     private TableLayout mProjectFieldsTable;
 
     private ArrayList<String> mPhotosAdded;
@@ -484,7 +483,6 @@ public class ObservationEditor extends AppCompatActivity {
         mTopActionBar = getSupportActionBar();
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
-        mObservationCommentsIds = (TextView) findViewById(R.id.commentIdCount);
         mProjectSelector = (TextView) findViewById(R.id.select_projects);
         mProjectCount = (TextView) findViewById(R.id.project_count);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
@@ -1947,35 +1945,6 @@ public class ObservationEditor extends AppCompatActivity {
         }
     }
     
-    private void refreshCommentsIdSize(Integer value) {
-        ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
-        // Make sure the height and width of the rectangle are the same (i.e. a square)
-        observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-            @SuppressLint("NewApi")
-			@Override
-            public void onGlobalLayout() {
-                int dimension = mObservationCommentsIds.getHeight();
-                ViewGroup.LayoutParams params = mObservationCommentsIds.getLayoutParams();
-                
-                if (dimension > mObservationCommentsIds.getWidth()) {
-                    // Only resize if there's enough room
-                    params.width = dimension;
-                    mObservationCommentsIds.setLayoutParams(params);
-                }
-                
-                ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
-                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                    observer.removeGlobalOnLayoutListener(this);
-                } else {
-                    observer.removeOnGlobalLayoutListener(this);
-                }  
-
-            }
-        });
-        
-        mObservationCommentsIds.setText(value.toString());
-    }
-
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         mPhotosChanged = true;
 

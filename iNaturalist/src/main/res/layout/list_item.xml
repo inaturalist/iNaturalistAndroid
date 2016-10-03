@@ -1,131 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="70dp">
 
     <ImageView
-        android:id="@+id/image"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:id="@+id/observation_pic"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/iconic_taxon_unknown"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="10dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/iconic_taxon_unknown" />
+        android:layout_marginRight="9dp"
+        android:background="#B0B0B0"
+        android:scaleType="fitCenter"
+        />
 
-    <LinearLayout
-        android:clickable="true"
-        android:id="@+id/rightObsPart"
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="3w"
+        android:textColor="#979797" />
+
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:id="@+id/comment_id_container"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/comment_pic"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_chat_bubble_black_24dp"
+            android:tint="#707070"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="31"
+            android:layout_marginRight="8dp"
+            />
+
+        <ImageView
+            android:id="@+id/id_pic"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_id"
+            android:tint="#707070"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/id_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            />
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLargeInverse"
+        android:layout_height="35dp"
+        android:layout_width="35dp"
+        android:visibility="visible"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress_white"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:paddingRight="10dp" >
+        />
 
-        <TextView
-            android:id="@+id/dateObserved"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:singleLine="true"
-            android:text="05/07/2010"
-            android:textColor="#666"
-            android:textSize="13sp" />
-
-        <RelativeLayout
-            android:id="@+id/commentsIdClickCatcher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:clickable="false"
-                android:focusable="false"
-                android:id="@+id/commentIdCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="6dp"
-                android:background="@drawable/comments_ids_background"
-                android:gravity="center"
-                android:minWidth="23dp"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:text="30"
-                android:textColor="#ffffff"
-                android:textSize="13sp" />
-
-            <ImageView
-                android:id="@+id/syncRequired"
-                android:clickable="false"
-                android:focusable="false"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/commentIdCount"
-                android:src="@drawable/ic_action_refresh" />
-            <ImageView
-                android:id="@+id/error"
-                android:clickable="false"
-                android:focusable="false"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                android:tint="#DA302E"
-                android:src="@drawable/ic_error_black_24dp" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/observation_pic"
+        android:layout_toLeftOf="@id/comment_id_container"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/rightObsPart"
-        android:layout_toRightOf="@id/image"
-        android:orientation="vertical" >
+        >
 
-        <ProgressBar
-            android:id="@+id/progress"
-            style="?android:attr/progressBarStyleLargeInverse"
-            android:layout_width="25dp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:indeterminate="true"
-            android:indeterminateDrawable="@drawable/progress_white"
-            android:layout_height="35dp"
-            />
         <TextView
-            android:id="@+id/speciesGuess"
+            android:id="@+id/species_guess"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
             style="@android:style/TextAppearance.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/unknown_species"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:singleLine="true"
-            android:textColor="#ffffff"
-            android:text="species guess" />
+            android:text="Species Guess" />
 
-        <TextView
-            android:id="@+id/subContent"
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_below="@id/species_guess"
+            android:layout_alignParentLeft="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/no_description"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:singleLine="true"
-            android:text="sub stuff"
-            android:textColor="#666666"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location_on_black_24dp"
+                android:tint="#6F6F6F"
+                />
+            <TextView
+                android:id="@+id/place_guess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="San Francisco" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

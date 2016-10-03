@@ -45,6 +45,17 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+        <org.inaturalist.android.PullToRefreshGridViewExtended
+            android:id="@+id/observations_grid"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:numColumns="3"
+            android:verticalSpacing="3dp"
+            android:horizontalSpacing="3dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:orientation="vertical"/>
+
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             android:id="@+id/observations_list"
             android:layout_width="fill_parent"
