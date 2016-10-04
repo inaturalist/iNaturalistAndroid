@@ -2837,7 +2837,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private JSONObject observationToJsonObject(Observation observation, boolean isPOST) {
         JSONObject obs = observation.toJSONObject();
         try {
-            obs.put("ignore_photos", true);
 
             if (isPOST) {
                 String inatNetwork = mApp.getInaturalistNetworkMember();
@@ -2846,6 +2845,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
             JSONObject obsContainer = new JSONObject();
             obsContainer.put("observation", obs);
+            obsContainer.put("ignore_photos", true);
 
             return obsContainer;
         } catch (JSONException exc) {
