@@ -1153,8 +1153,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         if ((userIconUrl != null) && (userIconUrl.length() > 0)) {
             String extension = userIconUrl.substring(userIconUrl.lastIndexOf(".") + 1);
-            int lastIndex = userIconUrl.lastIndexOf('-');
-            userIconUrl = userIconUrl.substring(0, lastIndex == -1 ? userIconUrl.lastIndexOf(".")  : lastIndex) + "-medium." + extension;
+            userIconUrl = userIconUrl.substring(0, userIconUrl.lastIndexOf('/') + 1) + "medium." + extension;
         }
 
         if ((userIconUrl != null) && (userIconUrl.length() > 0)) {

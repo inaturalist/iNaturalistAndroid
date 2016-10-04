@@ -526,11 +526,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     editor.apply();
 
 
-                    // Update observations with the new username
-                    ContentValues cv = new ContentValues();
-                    cv.put("user_login", mLogin);
-                    int count = getContentResolver().update(Observation.CONTENT_URI, cv, "user_login = ?", new String[] { prevLogin });
-                    Log.d(TAG, String.format("Updated %d observations with new user login %s from %s", count, mLogin, prevLogin));
+                    if ((prevLogin != null) && (!prevLogin.equals(mLogin))) {
+                        // Update observations with the new username
+                        ContentValues cv = new ContentValues();
+                        cv.put("user_login", mLogin);
+                        // Update its sync at time so we won't update the remote servers later on (since we won't
+                        // accidently consider this an updated record)
+                        cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                        int count = getContentResolver().update(Observation.CONTENT_URI, cv, "user_login = ?", new String[]{prevLogin});
+                        Log.d(TAG, String.format("Updated %d observations with new user login %s from %s", count, mLogin, prevLogin));
+                    }
                 }
 
                 Intent reply = new Intent(ACTION_UPDATE_USER_DETAILS_RESULT);
