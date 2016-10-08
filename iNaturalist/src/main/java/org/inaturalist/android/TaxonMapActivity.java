@@ -13,6 +13,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,11 +165,42 @@ public class TaxonMapActivity extends AppCompatActivity {
         case android.R.id.home:
             finish();
             return true;
+        case R.id.satellite:
+            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+            return true;
+        case R.id.street:
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            return true;
+        case R.id.terrain:
+            mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+            return true;
         default:
             return super.onOptionsItemSelected(item);
         }
     }
-    
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (mMap != null) {
+            if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
+                menu.findItem(R.id.satellite).setChecked(true);
+            } else if (mMap.getMapType() == GoogleMap.MAP_TYPE_NORMAL) {
+                menu.findItem(R.id.street).setChecked(true);
+            } else if (mMap.getMapType() == GoogleMap.MAP_TYPE_TERRAIN) {
+                menu.findItem(R.id.terrain).setChecked(true);
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mission_details_map_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

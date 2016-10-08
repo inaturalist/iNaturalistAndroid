@@ -6,11 +6,22 @@
         android:title=""
         android:icon="@drawable/ic_check_black_24dp"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/layers"
-        android:alphabeticShortcut="l"
-        android:icon="@android:drawable/ic_menu_mapmode"
-        app:showAsAction="never"
-        android:title="@string/layers"/>
-    
+    <group
+        android:id="@+id/map_layers"
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/satellite"
+            app:showAsAction="never"
+            android:title="@string/satellite"/>
+        <item
+            android:id="@+id/street"
+            app:showAsAction="never"
+            android:title="@string/street"/>
+        <item
+            android:id="@+id/terrain"
+            app:showAsAction="never"
+            android:title="@string/terrain"/>
+    </group>
+
 </menu>

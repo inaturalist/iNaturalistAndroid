@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/layers"
-        android:alphabeticShortcut="l"
-        android:icon="@android:drawable/ic_menu_mapmode"
-        app:showAsAction="never"
-        android:title="@string/layers"/>
-    
+    <group
+        android:id="@+id/map_layers"
+        android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/satellite"
+            app:showAsAction="never"
+            android:title="@string/satellite"/>
+        <item
+            android:id="@+id/street"
+            app:showAsAction="never"
+            android:title="@string/street"/>
+        <item
+            android:id="@+id/terrain"
+            app:showAsAction="never"
+            android:title="@string/terrain"/>
+    </group>
+
 </menu>

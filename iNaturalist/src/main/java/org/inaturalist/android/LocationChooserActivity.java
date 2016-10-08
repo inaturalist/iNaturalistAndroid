@@ -164,12 +164,13 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
  
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem layersItem = menu.findItem(R.id.layers);
         if (mMap != null) {
         	if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
-        		layersItem.setTitle(R.string.street);
-        	} else {
-        		layersItem.setTitle(R.string.satellite);
+                menu.findItem(R.id.satellite).setChecked(true);
+        	} else if (mMap.getMapType() == GoogleMap.MAP_TYPE_NORMAL) {
+                menu.findItem(R.id.street).setChecked(true);
+            } else if (mMap.getMapType() == GoogleMap.MAP_TYPE_TERRAIN) {
+                menu.findItem(R.id.terrain).setChecked(true);
         	}
         }
         return super.onPrepareOptionsMenu(menu);
@@ -251,14 +252,14 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
                 return true;
 
-            case R.id.layers:
-                if (mMap.getMapType() == GoogleMap.MAP_TYPE_HYBRID) {
-                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                    item.setTitle(R.string.satellite);
-                } else {
-                    mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                    item.setTitle(R.string.street);
-                }
+            case R.id.satellite:
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                return true;
+            case R.id.street:
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                return true;
+            case R.id.terrain:
+                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
