@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/people_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F5F5F5"
+    >
+     <RelativeLayout
+        android:id="@+id/syncing_top_bar"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:background="#74AC00"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp">
+
+
+        <TextView
+            android:id="@+id/cancel_sync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textAllCaps="true"
+            android:text="@string/stop"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+        <TextView
+            android:id="@+id/syncing_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="Posting 1 of 5 observation(s)..."
+            android:textColor="#fff"
+            android:layout_toLeftOf="@id/cancel_sync"
+            />
+
+    </RelativeLayout>
+
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:layout_below="@id/syncing_top_bar"
+        />
+
+    <RelativeLayout
+        android:layout_below="@id/syncing_top_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <org.inaturalist.android.PullToRefreshGridViewExtended
+            android:id="@+id/grid"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:numColumns="3"
+            android:verticalSpacing="3dp"
+            android:horizontalSpacing="3dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:orientation="vertical"/>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"/>
+
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            style="@android:style/TextAppearance.Medium"
+            android:text="@string/no_observations_yet" />
+
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/add_observation"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_add_white_24dp"
+            android:scaleType="fitCenter"
+            fab:fab_colorNormal="@color/inatapptheme_color"
+            fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
+            fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
