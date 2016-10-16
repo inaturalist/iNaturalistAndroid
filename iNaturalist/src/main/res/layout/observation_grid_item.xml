@@ -25,6 +25,7 @@
             android:background="#EA118D"
             android:padding="5dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -77,7 +78,7 @@
             android:padding="5dp"
             android:maxLines="1"
             android:ellipsize="end"
-            android:gravity="center"
+            android:gravity="left"
             android:textSize="12dp"
             android:text="TextView" />
 
@@ -85,6 +86,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/progress"
         android:background="#c8000000"
         android:layout_width="match_parent"

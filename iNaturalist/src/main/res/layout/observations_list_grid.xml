@@ -9,6 +9,7 @@
     >
      <RelativeLayout
         android:id="@+id/syncing_top_bar"
+         android:visibility="gone"
         android:layout_alignParentTop="true"
         android:layout_width="fill_parent"
         android:background="#74AC00"
@@ -53,6 +54,7 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:layout_below="@id/syncing_top_bar"
+        android:visibility="gone"
         />
 
     <RelativeLayout
@@ -98,6 +100,7 @@
             android:layout_marginRight="16dp"
             android:padding="14dp"
             android:src="@drawable/ic_add_white_24dp"
+            android:visibility="gone"
             android:scaleType="fitCenter"
             fab:fab_colorNormal="@color/inatapptheme_color"
             fab:fab_colorPressed="@color/inatapptheme_color_highlighted"

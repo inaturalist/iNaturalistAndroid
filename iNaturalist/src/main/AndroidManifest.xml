@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="170"
+    android:versionCode="171"
     android:versionName="1.5.0" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
@@ -235,6 +235,11 @@
         <activity
             android:configChanges="orientation"
             android:name=".NetworkSettings" >
+        </activity>
+
+        <activity
+            android:configChanges="orientation"
+            android:name=".ObservationSearchActivity" >
         </activity>
 
         <service android:name=".INaturalistService" />

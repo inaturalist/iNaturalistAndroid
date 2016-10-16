@@ -551,5 +551,6 @@
     <string name="syncing_observation_fields">Syncing observation fields...</string>
     <string name="syncing_paused">Paused</string>
     <string name="upload">Upload</string>
+    <string name="search_observations">Search Observations...</string>
  </resources>
 

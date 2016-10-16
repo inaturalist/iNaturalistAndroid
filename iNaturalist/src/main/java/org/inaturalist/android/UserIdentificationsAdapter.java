@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -26,13 +27,23 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private String mUsername;
+    private boolean mIsGrid;
+    private int mDimension;
+    private PullToRefreshGridViewExtended mGrid;
 
-    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username) {
+
+    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username, boolean isGrid, PullToRefreshGridViewExtended grid) {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
         mResultList = results;
         mUsername = username;
+        mIsGrid = isGrid;
+        mGrid = grid;
+    }
+
+    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username) {
+        this(context, results, username, false, null);
     }
 
     @Override
@@ -42,24 +53,31 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.user_profile_identifications_item, parent, false);
+        View view = inflater.inflate(mIsGrid ? R.layout.observation_grid_item : R.layout.user_profile_identifications_item, parent, false);
         JSONObject item = null;
         item = mResultList.get(position);
 
-        ((ViewGroup)view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
+        if (!mIsGrid) {
+            ((ViewGroup) view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
+        }
 
         // Get the taxon display name according to device locale
         try {
-            ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
-            TextView idName = (TextView) view.findViewById(R.id.id_name);
+            ImageView idPic = (ImageView) view.findViewById(mIsGrid ? R.id.observation_pic : R.id.id_pic);
+            TextView idName = (TextView) view.findViewById(mIsGrid ? R.id.species_guess : R.id.id_name);
             TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
 
             JSONObject observation = item.getJSONObject("observation");
             JSONObject taxon = item.getJSONObject("taxon");
-            idName.setText(observation.optString("species_guess"));
-            idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
+            idName.setText(getTaxonName(taxon));
+            if (!mIsGrid) idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
 
             idPic.setImageResource(R.drawable.iconic_taxon_unknown);
+
+            if (mIsGrid) {
+                mDimension = mGrid.getColumnWidth();
+                idPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+            }
 
             JSONArray photos = observation.optJSONArray("photos");
             if ((photos != null) && (photos.length() > 0)) {
@@ -68,6 +86,10 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         if (loadedBitmap != null)
                             imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
+
+                        if (mIsGrid) {
+                            imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                        }
                     }
 
                     @Override
