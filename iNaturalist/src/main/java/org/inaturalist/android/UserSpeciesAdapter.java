@@ -77,8 +77,15 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
                 speciesName.setText(defaultName.getString("name"));
                 if (!mIsGrid) scienceName.setText(item.getString("name"));
             } else {
-                speciesName.setText(item.getString("name"));
-                if (!mIsGrid) scienceName.setVisibility(View.GONE);
+                String preferredCommonName = item.optString("preferred_common_name", "");
+                if (preferredCommonName.length() == 0) preferredCommonName = item.optString("english_common_name");
+                if (preferredCommonName.length() == 0) {
+                    speciesName.setText(item.getString("name"));
+                    if (!mIsGrid) scienceName.setVisibility(View.GONE);
+                } else {
+                    speciesName.setText(preferredCommonName);
+                    if (!mIsGrid) scienceName.setText(item.getString("name"));
+                }
             }
 
             String photoUrl = item.optString("photo_url");
@@ -89,6 +96,9 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
                     JSONObject photoInner = photo.optJSONObject("photo");
                     if ((photoInner != null) && (!photoInner.isNull("medium_url"))) photoUrl = photoInner.optString("medium_url");
                 }
+            } else if (item.has("default_photo")) {
+                JSONObject defaultPhoto = item.getJSONObject("default_photo");
+                if (defaultPhoto.has("medium_url")) photoUrl = defaultPhoto.getString("medium_url");
             }
 
             if (photoUrl != null) {
@@ -113,7 +123,8 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
 
             if (!mIsGrid) {
                 TextView speciesCount = (TextView) view.findViewById(R.id.species_count);
-                int count = item.getInt("observations_count");
+                int obsCount = mResultList.get(position).optInt("count", -1);
+                int count = obsCount > -1 ? obsCount : item.getInt("observations_count");
                 DecimalFormat formatter = new DecimalFormat("#,###,###");
                 speciesCount.setText(formatter.format(count));
             }

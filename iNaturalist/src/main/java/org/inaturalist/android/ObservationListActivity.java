@@ -1,12 +1,8 @@
 package org.inaturalist.android;
 
-import java.lang.ref.WeakReference;
-import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import org.apache.commons.lang3.StringUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,14 +13,10 @@ import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.content.BroadcastReceiver;
 import android.content.ContentUris;
@@ -33,8 +25,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -45,25 +35,19 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.View.OnClickListener;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -300,6 +284,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if (mApp.loggedIn()) {
                 getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
                 getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
+                getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
             }
         }
         
@@ -523,7 +508,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         mUserDetailsReceiver = new UserDetailsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.USER_DETAILS_RESULT);
-        filter.addAction(INaturalistService.LIFE_LIST_RESULT);
+        filter.addAction(INaturalistService.SPECIES_COUNT_RESULT);
         filter.addAction(INaturalistService.USER_OBSERVATIONS_RESULT);
         filter.addAction(INaturalistService.IDENTIFICATIONS_RESULT);
         registerReceiver(mUserDetailsReceiver, filter);
@@ -1122,12 +1107,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             if (object == null) {
                 // Network error of some kind
-                if ((intent.getAction().equals(INaturalistService.USER_DETAILS_RESULT)) || (intent.getAction().equals(INaturalistService.LIFE_LIST_RESULT))) {
-                    mTotalSpecies = 0;
-                    mSpecies = new ArrayList<>();
-                } else if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
+                if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
                     mTotalIdentifications = 0;
                     mIdentifications = new ArrayList<>();
+                } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
+                    mTotalSpecies = 0;
+                    mSpecies = new ArrayList<>();
                 }
                 refreshViewState();
                 return;
@@ -1138,17 +1123,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mUser = (BetterJSONObject) object;
 
                 mTotalIdentifications = mUser.getInt("identifications_count");
-
-                // Retrieve the user's life list
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_LIFE_LIST, null, ObservationListActivity.this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.LIFE_LIST_ID, mUser.getInt("life_list_id"));
-                startService(serviceIntent);
                 return;
-            } else if (intent.getAction().equals(INaturalistService.LIFE_LIST_RESULT)) {
-                // Life list result (species)
+            } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
+                // Species count result
                 resultsObject = (BetterJSONObject) object;
-                totalResults = resultsObject.getInt("total_entries");
-                results = resultsObject.getJSONArray("listed_taxa").getJSONArray();
+                totalResults = resultsObject.getInt("total_results");
+                results = resultsObject.getJSONArray("results").getJSONArray();
             } else {
                 // Identifications result
                 results = ((SerializableJSONArray) object).getJSONArray();
@@ -1171,7 +1151,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 				}
             }
 
-            if (intent.getAction().equals(INaturalistService.LIFE_LIST_RESULT)) {
+            if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
             	mSpecies = resultsArray;
                 mTotalSpecies = totalResults;
             } else if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
@@ -1184,8 +1164,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         private String actionToResultsParam(String action) {
             if (action.equals(INaturalistService.USER_DETAILS_RESULT)) {
                 return INaturalistService.USER;
-            } else if (action.equals(INaturalistService.LIFE_LIST_RESULT)) {
-                return INaturalistService.LIFE_LIST;
+            } else if (action.equals(INaturalistService.SPECIES_COUNT_RESULT)) {
+                return INaturalistService.SPECIES_COUNT_RESULT;
             } else if (action.equals(INaturalistService.USER_OBSERVATIONS_RESULT)) {
                 return INaturalistService.OBSERVATIONS;
             } else if (action.equals(INaturalistService.IDENTIFICATIONS_RESULT)) {

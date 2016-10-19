@@ -1,20 +1,12 @@
 package org.inaturalist.android;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
@@ -23,14 +15,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -43,7 +31,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -59,18 +46,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-import org.apache.sanselan.ImageReadException;
-import org.apache.sanselan.ImageWriteException;
-import org.apache.sanselan.Sanselan;
-import org.apache.sanselan.common.IImageMetadata;
-import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
-import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
-import org.apache.sanselan.formats.tiff.TiffImageMetadata;
-import org.apache.sanselan.formats.tiff.constants.TagInfo;
-import org.apache.sanselan.formats.tiff.constants.TiffConstants;
-import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
-import org.apache.sanselan.formats.tiff.write.TiffOutputField;
-import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,8 +61,6 @@ import com.google.android.gms.location.LocationServices;
 import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.NotificationManager;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -95,18 +68,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteConstraintException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -129,6 +97,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
     public static final String LIFE_LIST_RESULT = "life_list_result";
+    public static final String SPECIES_COUNT_RESULT = "species_count_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
@@ -233,6 +202,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
     public static String ACTION_GET_LIFE_LIST = "get_life_list";
+    public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";
     public static String ACTION_GET_USER_IDENTIFICATIONS = "get_user_identifications";
     public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
@@ -416,6 +386,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
                 Intent reply = new Intent(USER_DETAILS_RESULT);
                 reply.putExtra(USER, user);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_USER_SPECIES_COUNT)) {
+                String username = intent.getStringExtra(USERNAME);
+                BetterJSONObject speciesCount = getUserSpeciesCount(username);
+
+                Intent reply = new Intent(SPECIES_COUNT_RESULT);
+                mApp.setServiceResult(SPECIES_COUNT_RESULT, speciesCount);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_LIFE_LIST)) {
@@ -1560,6 +1539,21 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         JSONArray json = get(url, false);
         if (json == null) return null;
         return new SerializableJSONArray(json);
+    }
+
+    private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/observations/species_counts?user_id=" + username + "&locale=" + deviceLanguage;
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private BetterJSONObject getUserLifeList(int lifeListId) throws AuthenticationException {
