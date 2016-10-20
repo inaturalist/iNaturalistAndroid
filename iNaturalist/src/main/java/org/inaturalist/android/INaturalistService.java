@@ -48,6 +48,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.params.ClientPNames;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -57,6 +58,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.DefaultRedirectHandler;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.sanselan.ImageReadException;
@@ -2426,7 +2428,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             request.setHeader("Content-type", "application/json");
             StringEntity entity = null;
             try {
-                entity = new StringEntity(jsonContent.toString());
+                entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 return null;
