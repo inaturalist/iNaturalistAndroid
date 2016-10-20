@@ -321,7 +321,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.menu_guides_icon)).setAlpha(1.0f);
             }
         }
-        if (WebActivity.class.getName().equals(this.getClass().getName())) {
+        if (ProjectNews.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_activity).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                 ((ImageView) findViewById(R.id.menu_activity_icon)).setAlpha(1.0f);

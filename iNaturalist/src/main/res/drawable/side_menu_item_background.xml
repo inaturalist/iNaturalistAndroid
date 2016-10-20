@@ -11,7 +11,7 @@
         android:state_focused="false"
         android:state_selected="true"
         android:state_pressed="false"
-        android:drawable="@color/inatapptheme_color"
+        android:drawable="@color/side_menu_item_bg_current"
         />
 
     <!-- Focused states -->
@@ -19,18 +19,18 @@
         android:state_focused="true"
         android:state_selected="false"
         android:state_pressed="false"
-        android:drawable="@color/inatapptheme_color"
+        android:drawable="@color/side_menu_item_bg_current"
         />
     <item
         android:state_focused="true"
         android:state_selected="true"
         android:state_pressed="false"
-        android:drawable="@color/inatapptheme_color"
+        android:drawable="@color/side_menu_item_bg_current"
         />
 
     <!-- Pressed -->
     <item
         android:state_pressed="true"
-        android:drawable="@color/inatapptheme_color"
+        android:drawable="@color/side_menu_item_bg_current"
         />
 </selector>

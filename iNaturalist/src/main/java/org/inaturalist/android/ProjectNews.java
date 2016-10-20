@@ -135,7 +135,7 @@ public class ProjectNews extends BaseFragmentActivity {
             return;
         }
 
-        actionBar.setTitle(mIsUserFeed ? R.string.feed : R.string.news);
+        actionBar.setTitle(R.string.news);
 
         if (!mIsUserFeed) {
             actionBar.setHomeButtonEnabled(true);
