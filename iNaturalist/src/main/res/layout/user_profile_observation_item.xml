@@ -7,6 +7,21 @@
     android:layout_width="fill_parent"
     android:layout_height="70dp">
 
+     <ImageView
+        android:id="@+id/observation_iconic_pic"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/iconic_taxon_unknown"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="9dp"
+        android:background="#DDDDDD"
+        android:padding="5dp"
+        android:tint="#8c8c8c"
+        android:visibility="gone"
+        />
+
+
     <ImageView
         android:id="@+id/observation_pic"
         android:layout_width="45dp"

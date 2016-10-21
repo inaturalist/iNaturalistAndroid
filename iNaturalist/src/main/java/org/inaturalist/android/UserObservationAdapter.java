@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -74,6 +77,9 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
         }
 
         ImageView observationPic = (ImageView) view.findViewById(R.id.observation_pic);
+        ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
+        obsIconicImage.setVisibility(View.VISIBLE);
+        obsIconicImage.setImageResource(ObservationPhotosViewer.observationIcon(item));
 
         JSONArray observationPhotos;
         try {
@@ -84,15 +90,20 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
         }
 
         if (observationPhotos.length() > 0) {
+            observationPic.setVisibility(View.VISIBLE);
             JSONObject observationPhoto;
             try {
                 String url;
                 observationPhoto = observationPhotos.getJSONObject(0);
 
                 url = (observationPhoto.isNull("small_url") ? observationPhoto.optString("original_url") : observationPhoto.optString("small_url"));
-                UrlImageViewHelper.setUrlDrawable(observationPic, url, ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
+                UrlImageViewHelper.setUrlDrawable(observationPic, url, new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                        if (!loadedFromCache) {
+                            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                            imageView.startAnimation(animation);
+                        }
                     }
 
                     @Override
@@ -107,6 +118,8 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
                 // Could happen if user scrolls really fast and there a LOT of thumbnails being downloaded at once (too many threads at once)
                 e.printStackTrace();
             }
+        } else {
+            observationPic.setVisibility(View.INVISIBLE);
         }
 
 

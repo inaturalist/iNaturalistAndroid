@@ -4,10 +4,14 @@ package org.inaturalist.android;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -61,27 +65,35 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
             ((ViewGroup) view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
         }
 
+
         // Get the taxon display name according to device locale
         try {
             ImageView idPic = (ImageView) view.findViewById(mIsGrid ? R.id.observation_pic : R.id.id_pic);
+            ImageView idIconicPic = (ImageView) view.findViewById(R.id.observation_iconic_pic);
             TextView idName = (TextView) view.findViewById(mIsGrid ? R.id.species_guess : R.id.id_name);
             TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
+
+            idIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
+            idIconicPic.setVisibility(View.VISIBLE);
 
             JSONObject observation = item.getJSONObject("observation");
             JSONObject taxon = item.getJSONObject("taxon");
             idName.setText(getTaxonName(taxon));
             if (!mIsGrid) idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
 
-            idPic.setImageResource(R.drawable.iconic_taxon_unknown);
-
             if (mIsGrid) {
                 mDimension = mGrid.getColumnWidth();
                 idPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                idIconicPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                int newPadding = (int) (mDimension * 0.48 * 0.5); // So final image size will be 48% of original size
+                idIconicPic.setPadding(newPadding, newPadding, newPadding, newPadding);
             }
 
             JSONArray photos = observation.optJSONArray("photos");
             if ((photos != null) && (photos.length() > 0)) {
-                UrlImageViewHelper.setUrlDrawable(idPic, photos.getJSONObject(0).getString("square_url"), ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
+                idPic.setVisibility(View.VISIBLE);
+
+                UrlImageViewCallback callback = new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         if (loadedBitmap != null)
@@ -90,13 +102,22 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
                         if (mIsGrid) {
                             imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
                         }
+
+                        if (!loadedFromCache) {
+                            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                            imageView.startAnimation(animation);
+                        }
                     }
 
                     @Override
                     public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         return loadedBitmap;
                     }
-                });
+                };
+
+                UrlImageViewHelper.setUrlDrawable(idPic, photos.getJSONObject(0).getString("square_url"), callback);
+            } else {
+                idPic.setVisibility(View.INVISIBLE);
             }
 
             view.setTag(item);

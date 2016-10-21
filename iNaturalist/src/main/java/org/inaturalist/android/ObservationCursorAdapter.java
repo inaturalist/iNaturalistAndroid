@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Animatable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -20,6 +21,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
@@ -162,6 +165,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         c.moveToPosition(position);
 
         ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
+        ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
         TextView speciesGuess = (TextView) view.findViewById(R.id.species_guess);
         TextView dateObserved = (TextView) view.findViewById(R.id.date);
         ViewGroup commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
@@ -187,6 +191,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
             mDimension = mGrid.getColumnWidth();
             obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+            int newPadding = (int) (mDimension * 0.48 * 0.5); // So final image size will be 48% of original size
+            obsIconicImage.setPadding(newPadding, newPadding, newPadding, newPadding);
         }
 
         refreshPhotoInfo(obsId);
@@ -234,17 +240,21 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         }
 
         if (photoInfo != null) {
-            obsImage.setPadding(0, 0, 0, 0);
-            obsImage.clearColorFilter();
+            obsImage.setVisibility(View.VISIBLE);
             String photoFilename = photoInfo[0];
 
             if (photoInfo[2] != null) {
                 // Online-only photo
-                UrlImageViewHelper.setUrlDrawable(obsImage, photoInfo[2], iconResource, new UrlImageViewCallback() {
+                UrlImageViewCallback callback = new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         if (mIsGrid) {
                             imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                        }
+
+                        if (!loadedFromCache) {
+                            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                            imageView.startAnimation(animation);
                         }
                     }
 
@@ -252,20 +262,25 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
                     public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap));
                     }
-                });
+                };
+
+                obsIconicImage.setVisibility(View.VISIBLE);
+                obsIconicImage.setImageResource(iconResource);
+
+                UrlImageViewHelper.setUrlDrawable(obsImage, photoInfo[2], callback);
 
             } else {
                 // Offline photo
+                obsIconicImage.setVisibility(View.VISIBLE);
+                obsIconicImage.setImageResource(iconResource);
+
                 BitmapWorkerTask task = new BitmapWorkerTask(obsImage);
-                task.execute(photoFilename, String.valueOf(iconResource));
+                task.execute(photoFilename);
             }
         } else {
-            obsImage.setImageResource(iconResource);
-
-            // 5dp -> pixels
-            int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, mContext.getResources().getDisplayMetrics());
-            obsImage.setPadding(px, px, px, px);
-            obsImage.setColorFilter(Color.parseColor("#8C8C8C"));
+            obsImage.setVisibility(View.INVISIBLE);
+            obsIconicImage.setVisibility(View.VISIBLE);
+            obsIconicImage.setImageResource(iconResource);
         }
 
 
@@ -581,7 +596,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
     class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap> {
         private final WeakReference<ImageView> mImageViewReference;
         private String mFilename = null;
-        private int mIconResource;
 
         public BitmapWorkerTask(ImageView imageView) {
             // Use a WeakReference to ensure the ImageView can be garbage collected
@@ -592,23 +606,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         @Override
         protected Bitmap doInBackground(String... params) {
             mFilename = params[0];
-            mIconResource = Integer.valueOf(params[1]);
 
             Bitmap bitmapImage;
             if (mObservationThumbnails.containsKey(mFilename)) {
                 // Load from cache
                 bitmapImage = mObservationThumbnails.get(mFilename);
             } else {
-                if (mImageViewReference != null) {
-                    mContext.runOnUiThread(new Runnable() {
-                                      @Override
-                                      public void run() {
-                                          mImageViewReference.get().setImageResource(mIconResource);
-                                      }
-                                  }
-                    );
-                }
-
                 // Decode into a thumbnail
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inSampleSize = ImageUtils.calculateInSampleSize(options, 100, 100);

@@ -16,7 +16,22 @@
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     >
-    
+
+    <ImageView
+        android:id="@+id/observation_iconic_pic"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/iconic_taxon_actinopterygii"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="9dp"
+        android:padding="5dp"
+        android:tint="#8C8C8C"
+        android:background="#DDDDDD"
+        android:visibility="gone"
+        />
+
+
        <ImageView
            android:id="@+id/id_pic"
            android:layout_width="45dp"
@@ -24,6 +39,7 @@
            android:layout_alignParentLeft="true"
            android:layout_centerVertical="true"
            android:layout_marginRight="9dp"
+           android:background="#DDDDDD"
            android:src="@drawable/actionbar_back_indicator" />
 
         <LinearLayout

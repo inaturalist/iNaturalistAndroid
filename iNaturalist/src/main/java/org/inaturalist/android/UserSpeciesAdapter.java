@@ -10,6 +10,8 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -65,9 +67,14 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
         // Get the taxon display name according to device locale
         try {
             ImageView speciesPic = (ImageView) view.findViewById(mIsGrid ? R.id.observation_pic : R.id.species_pic);
+            ImageView speciesIconicPic = (ImageView) view.findViewById(R.id.observation_iconic_pic);
+
             if (mIsGrid) {
                 mDimension = mGrid.getColumnWidth();
                 speciesPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                speciesIconicPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                int newPadding = (int) (mDimension * 0.48 * 0.5); // So final image size will be 48% of original size
+                speciesIconicPic.setPadding(newPadding, newPadding, newPadding, newPadding);
             }
             TextView speciesName = (TextView) view.findViewById(mIsGrid ? R.id.species_guess : R.id.species_name);
             TextView scienceName = (TextView) view.findViewById(R.id.species_science_name);
@@ -102,13 +109,20 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
             }
 
             if (photoUrl != null) {
-                UrlImageViewHelper.setUrlDrawable(speciesPic, photoUrl, ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
+                speciesPic.setVisibility(View.VISIBLE);
+
+                UrlImageViewCallback callback = new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         if (loadedBitmap != null)
                             imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
                         if (mIsGrid) {
                             imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                       }
+
+                        if (!loadedFromCache) {
+                            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                            imageView.startAnimation(animation);
                         }
                     }
 
@@ -116,9 +130,14 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
                     public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         return loadedBitmap;
                     }
-                });
+                };
+
+                speciesIconicPic.setVisibility(View.VISIBLE);
+                speciesIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
+                UrlImageViewHelper.setUrlDrawable(speciesPic, photoUrl, callback);
             } else {
-                speciesPic.setImageResource(R.drawable.iconic_taxon_unknown);
+                speciesIconicPic.setImageResource(R.drawable.iconic_taxon_unknown);
+                speciesPic.setVisibility(View.GONE);
             }
 
             if (!mIsGrid) {
