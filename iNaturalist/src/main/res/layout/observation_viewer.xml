@@ -11,6 +11,16 @@
     android:layout_height="match_parent"
     android:background="#EEEEEE">
 
+    <TextView
+        android:id="@+id/errors"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Errors"
+        android:background="#F3D4DB"
+        android:textColor="#C8565F"
+        android:padding="10dp"
+        android:visibility="gone"
+        />
 
     <RelativeLayout
         android:layout_width="fill_parent"
