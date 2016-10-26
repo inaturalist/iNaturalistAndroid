@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,9 +81,14 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             if (mIsGrid) {
                 mDimension = mGrid.getColumnWidth();
                 speciesPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                speciesIconicPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                int newPadding = (int) (mDimension * 0.48 * 0.5); // So final image size will be 48% of original size
-                speciesIconicPic.setPadding(newPadding, newPadding, newPadding, newPadding);
+
+                int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
+                int speciesGuessHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
+                int leftRightMargin = (mDimension - newDimension) / 2;
+                int topBottomMargin = (mDimension - speciesGuessHeight - newDimension) / 2;
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
+                layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
+                speciesIconicPic.setLayoutParams(layoutParams);
             }
             TextView speciesName = (TextView) view.findViewById(mIsGrid ? R.id.species_guess : R.id.species_name);
             TextView scienceName = (TextView) view.findViewById(R.id.species_science_name);

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#DDDDDD"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/observation_iconic_pic"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/iconic_taxon_actinopterygii"
         android:layout_centerInParent="true"
-        android:padding="50dp"
         android:tint="#8C8C8C"
-        android:background="#DDDDDD"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <ImageView
@@ -22,10 +21,12 @@
         android:src="@drawable/iconic_taxon_unknown"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
+        android:visibility="gone"
         />
 
 
     <LinearLayout
+        android:id="@+id/bottom_container"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -83,14 +84,13 @@
         <TextView
             android:id="@+id/species_guess"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_height="30dp"
             android:background="#88000000"
             android:textColor="#ffffff"
             android:padding="5dp"
             android:maxLines="1"
             android:ellipsize="end"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:textSize="12dp"
             android:text="TextView" />
 

@@ -93,9 +93,14 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             if (mIsGrid) {
                 mDimension = mGrid.getColumnWidth();
                 idPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                idIconicPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                int newPadding = (int) (mDimension * 0.48 * 0.5); // So final image size will be 48% of original size
-                idIconicPic.setPadding(newPadding, newPadding, newPadding, newPadding);
+
+                int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
+                int speciesGuessHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
+                int leftRightMargin = (mDimension - newDimension) / 2;
+                int topBottomMargin = (mDimension - speciesGuessHeight - newDimension) / 2;
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
+                layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
+                idIconicPic.setLayoutParams(layoutParams);
             }
 
             JSONArray photos = observation.optJSONArray("photos");

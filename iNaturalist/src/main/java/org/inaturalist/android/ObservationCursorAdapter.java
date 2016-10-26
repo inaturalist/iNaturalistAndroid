@@ -15,6 +15,9 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -168,8 +171,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         c.moveToPosition(position);
 
         final ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
-        ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
-        TextView speciesGuess = (TextView) view.findViewById(R.id.species_guess);
+        final ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
+        final TextView speciesGuess = (TextView) view.findViewById(R.id.species_guess);
         TextView dateObserved = (TextView) view.findViewById(R.id.date);
         ViewGroup commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
 
@@ -193,10 +196,15 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (mIsGrid) {
             mDimension = mGrid.getColumnWidth();
             obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-            obsIconicImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-            int newPadding = (int) (mDimension * 0.48 * 0.5); // So final image size will be 48% of original size
-            obsIconicImage.setPadding(newPadding, newPadding, newPadding, newPadding);
+
+            int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
+            int speciesGuessHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
+            int leftRightMargin = (mDimension - newDimension) / 2;
+            int topBottomMargin = (mDimension - speciesGuessHeight - newDimension) / 2;
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
+            layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
+            obsIconicImage.setLayoutParams(layoutParams);
         }
 
         refreshPhotoInfo(obsId);
@@ -435,9 +443,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 locationIcon.setVisibility(View.GONE);
             }
         } else {
-            view.setBackgroundColor(Color.parseColor("#FFFFFF"));
             if (!mIsGrid) {
                 locationIcon.setVisibility(View.VISIBLE);
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            } else {
+                view.setBackgroundColor(Color.parseColor("#DDDDDD"));
             }
         }
 
@@ -468,8 +478,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
         } else {
-            if (!hasErrors)
-                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            if (!hasErrors) {
+                if (!mIsGrid) {
+                    view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                } else {
+                    view.setBackgroundColor(Color.parseColor("#DDDDDD"));
+                }
+            }
         }
 
         return view;
