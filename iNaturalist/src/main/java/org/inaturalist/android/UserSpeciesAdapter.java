@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -27,13 +28,16 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-class UserSpeciesAdapter extends ArrayAdapter<String> {
+class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private boolean mIsGrid;
     private int mDimension;
     private PullToRefreshGridViewExtended mGrid;
+
+    private boolean mIsScrolling = false;
 
     public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results) {
         this(context, results, false, null);
@@ -46,6 +50,10 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
         mResultList = results;
         mIsGrid = isGrid;
         mGrid = grid;
+
+        mObservationPhotoNames = new HashMap<>();
+        mImageViews = new HashMap<>();
+        mObservationLoaded = new HashMap<>();
     }
 
     @Override
@@ -108,37 +116,21 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
                 if (defaultPhoto.has("medium_url")) photoUrl = defaultPhoto.getString("medium_url");
             }
 
+            speciesPic.setVisibility(View.INVISIBLE);
+            speciesIconicPic.setVisibility(View.VISIBLE);
+            speciesIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
+
             if (photoUrl != null) {
-                speciesPic.setVisibility(View.VISIBLE);
-
-                UrlImageViewCallback callback = new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        if (loadedBitmap != null)
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
-                        if (mIsGrid) {
-                            imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                       }
-
-                        if (!loadedFromCache) {
-                            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-                            imageView.startAnimation(animation);
-                        }
-                    }
-
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return loadedBitmap;
-                    }
-                };
-
-                speciesIconicPic.setVisibility(View.VISIBLE);
-                speciesIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
-                UrlImageViewHelper.setUrlDrawable(speciesPic, photoUrl, callback);
+                if (!mIsScrolling) {
+                    // Only load image if user is not scrolling
+                    loadObsImage(position, speciesPic, photoUrl);
+                }
             } else {
-                speciesIconicPic.setImageResource(R.drawable.iconic_taxon_unknown);
-                speciesPic.setVisibility(View.GONE);
+                speciesPic.setVisibility(View.INVISIBLE);
             }
+
+            mObservationPhotoNames.put(position, photoUrl);
+            mImageViews.put(position, speciesPic);
 
             if (!mIsGrid) {
                 TextView speciesCount = (TextView) view.findViewById(R.id.species_count);
@@ -156,5 +148,69 @@ class UserSpeciesAdapter extends ArrayAdapter<String> {
         return view;
     }
 
+    private void loadObsImage(final int position, ImageView imageView, String url) {
+        UrlImageViewCallback callback = new UrlImageViewCallback() {
+            @Override
+            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                if (loadedBitmap != null)
+                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
+                if (mIsGrid) {
+                    imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                }
+
+                imageView.setVisibility(View.VISIBLE);
+
+                if ((!mObservationLoaded.containsKey(position)) || (mObservationLoaded.get(position) == false)) {
+                    Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                    imageView.startAnimation(animation);
+                    mObservationLoaded.put(position, true);
+                }
+            }
+
+            @Override
+            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                return loadedBitmap;
+            }
+        };
+
+        UrlImageViewHelper.setUrlDrawable(imageView, url, callback);
+    }
+
+    private HashMap<Integer, ImageView> mImageViews;
+    private HashMap<Integer, String> mObservationPhotoNames;
+    private HashMap<Integer, Boolean> mObservationLoaded;
+
+    // Load an observation image for one of the views
+    private void loadImageByPosition(int position) {
+        if (!mImageViews.containsKey(position) || !mObservationPhotoNames.containsKey(position)) return;
+
+        ImageView imageView = mImageViews.get(position);
+        String photoName = mObservationPhotoNames.get(position);
+
+        if ((photoName == null) || (imageView == null)) return;
+
+        loadObsImage(position, imageView, photoName);
+    }
+
+
+    @Override
+    public void onScrollStateChanged(AbsListView listView, int state) {
+        switch (state) {
+            case SCROLL_STATE_FLING:
+            case SCROLL_STATE_TOUCH_SCROLL:
+                mIsScrolling = true;
+                break;
+            case SCROLL_STATE_IDLE:
+                mIsScrolling = false;
+                for (int visiblePosition = listView.getFirstVisiblePosition(); visiblePosition <= listView.getLastVisiblePosition(); visiblePosition++) {
+                    loadImageByPosition(visiblePosition);
+                }
+                break;
+        }
+    }
+    @Override
+    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+    }
 }
 

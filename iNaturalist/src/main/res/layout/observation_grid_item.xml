@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/observation_pic"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/iconic_taxon_unknown"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"

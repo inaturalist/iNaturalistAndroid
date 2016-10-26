@@ -587,6 +587,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 mSpeciesListAdapter = new UserSpeciesAdapter(UserProfile.this, mSpecies);
                 mSpeciesList.setAdapter(mSpeciesListAdapter);
                 mSpeciesList.setVisibility(View.VISIBLE);
+
+                // Make sure the images get loaded only when the user stops scrolling
+                mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
             }
         }
 
@@ -612,6 +615,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 mIdentificationsListAdapter = new UserIdentificationsAdapter(UserProfile.this, mIdentifications, mUser.getString("login"));
                 mIdentificationsList.setAdapter(mIdentificationsListAdapter);
                 mIdentificationsList.setVisibility(View.VISIBLE);
+
+                // Make sure the images get loaded only when the user stops scrolling
+                mIdentificationsList.setOnScrollListener(mIdentificationsListAdapter);
 
                 mIdentificationsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

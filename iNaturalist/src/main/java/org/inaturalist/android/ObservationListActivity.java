@@ -2,7 +2,10 @@ package org.inaturalist.android;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -279,6 +282,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             mTotalSpecies = savedInstanceState.getInt("mTotalSpecies");
 
         } else {
+            SharedPreferences settings = mApp.getPrefs();
+            String isGridArray = settings.getString("me_screen_list_grid", null);
+            if (isGridArray != null) {
+                int i = 0;
+                for (String value : isGridArray.split(",")) {
+                    mIsGrid[i] = Boolean.valueOf(value);
+                    i++;
+                }
+            }
+
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
             if (mApp.loggedIn()) {
@@ -343,7 +356,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             } else {
                 ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
                 ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
-                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(formatter.format(mObservationListAdapter.getCount()));
+                SharedPreferences settings = mApp.getPrefs();
+                ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(String.valueOf(settings.getInt("observation_count", mObservationListAdapter.getCount())));
                 mLoadingObservations.setVisibility(View.GONE);
 
                 if (mIsGrid[0]) {
@@ -383,6 +397,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesGridAdapter = new UserSpeciesAdapter(this, mSpecies, true, mSpeciesGrid);
                     mSpeciesGrid.setAdapter(mSpeciesGridAdapter);
 
+                    // Make sure the images get loaded only when the user stops scrolling
+                    mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
+                    mSpeciesGrid.setOnScrollListener(mSpeciesGridAdapter);
+
                     if (mIsGrid[1]) {
                         mSpeciesGrid.setVisibility(View.VISIBLE);
                         mSpeciesList.setVisibility(View.GONE);
@@ -418,6 +436,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsList.setAdapter(mIdentificationsListAdapter);
                     mIdentificationsGridAdapter = new UserIdentificationsAdapter(this, mIdentifications, mApp.currentUserLogin(), true, mIdentificationsGrid);
                     mIdentificationsGrid.setAdapter(mIdentificationsGridAdapter);
+
+                    // Make sure the images get loaded only when the user stops scrolling
+                    mIdentificationsList.setOnScrollListener(mIdentificationsListAdapter);
+                    mIdentificationsGrid.setOnScrollListener(mIdentificationsGridAdapter);
 
                     if (mIsGrid[2]) {
                         mIdentificationsGrid.setVisibility(View.VISIBLE);
@@ -493,6 +515,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             View v = lv.getChildAt(0);
             mLastTop = (v == null) ? 0 : v.getTop();
         }
+
+
+        // Save listview/gridview preferences
+        SharedPreferences settings = mApp.getPrefs();
+        SharedPreferences.Editor settingsEditor = settings.edit();
+        settingsEditor.putString("me_screen_list_grid", String.format("%s,%s,%s", mIsGrid[0], mIsGrid[1], mIsGrid[2]));
+        settingsEditor.apply();
 
         super.onPause();
     }
@@ -909,6 +938,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationGridAdapter = new ObservationCursorAdapter(ObservationListActivity.this, cursor, true, mObservationsGrid);
                     mObservationsGrid.setAdapter(mObservationGridAdapter);
                     mObservationsList.setAdapter(mObservationListAdapter);
+
+                    // Make sure the images get loaded only when the user stops scrolling
+                    mObservationsGrid.setOnScrollListener(mObservationGridAdapter);
+                    mObservationsList.setOnScrollListener(mObservationListAdapter);
 
                     // Set a listener to be invoked when the list should be refreshed.
                     mObservationsList.setOnRefreshListener(new OnRefreshListener<ListView>() {

@@ -10,19 +10,17 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Animatable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
@@ -39,7 +37,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class ObservationCursorAdapter extends SimpleCursorAdapter {
+class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private int mDimension;
     private HashMap<Long, String[]> mPhotoInfo = new HashMap<Long, String[]>();
     private boolean mIsGrid;
@@ -47,6 +45,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
     private final Activity mContext;
     private INaturalistApp mApp;
     private PullToRefreshGridViewExtended mGrid;
+    private boolean mIsScrolling = false;
 
     public ObservationCursorAdapter(Context context, Cursor c) {
         this(context, c, false, null);
@@ -58,6 +57,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         mGrid = grid;
         mContext = (Activity)context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
+
+        mObservationPhotoNames = new HashMap<>();
+        mImageViews = new HashMap<>();
+        mObservationLoaded = new HashMap<>();
 
         getPhotoInfo();
     }
@@ -164,7 +167,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         }
         c.moveToPosition(position);
 
-        ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
+        final ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
         ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
         TextView speciesGuess = (TextView) view.findViewById(R.id.species_guess);
         TextView dateObserved = (TextView) view.findViewById(R.id.date);
@@ -190,6 +193,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         if (mIsGrid) {
             mDimension = mGrid.getColumnWidth();
             obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+            obsIconicImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             progress.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             int newPadding = (int) (mDimension * 0.48 * 0.5); // So final image size will be 48% of original size
             obsIconicImage.setPadding(newPadding, newPadding, newPadding, newPadding);
@@ -239,48 +243,24 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
             iconResource = R.drawable.iconic_taxon_unknown;
         }
 
+        obsIconicImage.setVisibility(View.VISIBLE);
+        obsIconicImage.setImageResource(iconResource);
+        obsImage.setVisibility(View.INVISIBLE);
+
         if (photoInfo != null) {
-            obsImage.setVisibility(View.VISIBLE);
-            String photoFilename = photoInfo[0];
+            String photoFilename = photoInfo[2] != null ? photoInfo[2] : photoInfo[0];
 
-            if (photoInfo[2] != null) {
-                // Online-only photo
-                UrlImageViewCallback callback = new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        if (mIsGrid) {
-                            imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                        }
-
-                        if (!loadedFromCache) {
-                            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-                            imageView.startAnimation(animation);
-                        }
-                    }
-
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap));
-                    }
-                };
-
-                obsIconicImage.setVisibility(View.VISIBLE);
-                obsIconicImage.setImageResource(iconResource);
-
-                UrlImageViewHelper.setUrlDrawable(obsImage, photoInfo[2], callback);
-
-            } else {
-                // Offline photo
-                obsIconicImage.setVisibility(View.VISIBLE);
-                obsIconicImage.setImageResource(iconResource);
-
-                BitmapWorkerTask task = new BitmapWorkerTask(obsImage);
-                task.execute(photoFilename);
+            if (!mIsScrolling) {
+                // Only load image if user is not scrolling
+                loadObsImage(position, obsImage, photoFilename, photoInfo[2] != null);
             }
+
+            mObservationPhotoNames.put(position, photoFilename);
+            mImageViews.put(position, obsImage);
         } else {
             obsImage.setVisibility(View.INVISIBLE);
-            obsIconicImage.setVisibility(View.VISIBLE);
-            obsIconicImage.setImageResource(iconResource);
+            mObservationPhotoNames.put(position, null);
+            mImageViews.put(position, null);
         }
 
 
@@ -596,6 +576,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
     class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap> {
         private final WeakReference<ImageView> mImageViewReference;
         private String mFilename = null;
+        private int mPosition;
 
         public BitmapWorkerTask(ImageView imageView) {
             // Use a WeakReference to ensure the ImageView can be garbage collected
@@ -606,6 +587,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         @Override
         protected Bitmap doInBackground(String... params) {
             mFilename = params[0];
+            mPosition = Integer.valueOf(params[1]);
 
             Bitmap bitmapImage;
             if (mObservationThumbnails.containsKey(mFilename)) {
@@ -638,6 +620,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
                 final ImageView imageView = mImageViewReference.get();
                 if (imageView != null) {
                     imageView.setImageBitmap(bitmap);
+                    imageView.setVisibility(View.VISIBLE);
+
+                    if ((!mObservationLoaded.containsKey(mPosition)) || (mObservationLoaded.get(mPosition) == false)) {
+                        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                        imageView.startAnimation(animation);
+                        mObservationLoaded.put(mPosition, true);
+                    }
                 }
             }
         }
@@ -648,6 +637,77 @@ class ObservationCursorAdapter extends SimpleCursorAdapter {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+    
+    private void loadObsImage(final int position, ImageView imageView, String name, boolean isOnline) {
 
+        if (isOnline) {
+            // Online image
+            UrlImageViewCallback callback = new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    if (mIsGrid) {
+                        imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                    }
+
+                    imageView.setVisibility(View.VISIBLE);
+                    if ((!mObservationLoaded.containsKey(position)) || (mObservationLoaded.get(position) == false)) {
+                        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                        imageView.startAnimation(animation);
+                        mObservationLoaded.put(position, true);
+                    }
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap));
+                }
+            };
+
+            UrlImageViewHelper.setUrlDrawable(imageView, name, callback);
+
+        } else {
+            // Offline image
+
+            BitmapWorkerTask task = new BitmapWorkerTask(imageView);
+            task.execute(name, String.valueOf(position));
+        }
+    }
+
+    private HashMap<Integer, ImageView> mImageViews;
+    private HashMap<Integer, String> mObservationPhotoNames;
+    private HashMap<Integer, Boolean> mObservationLoaded;
+
+    // Load an observation image for one of the views
+    private void loadImageByPosition(int position) {
+        if (!mImageViews.containsKey(position) || !mObservationPhotoNames.containsKey(position)) return;
+
+        ImageView imageView = mImageViews.get(position);
+        String photoName = mObservationPhotoNames.get(position);
+
+        if ((photoName == null) || (imageView == null)) return;
+
+        loadObsImage(position, imageView, photoName, photoName.startsWith("http://"));
+    }
+
+
+    @Override
+    public void onScrollStateChanged(AbsListView listView, int state) {
+        switch (state) {
+            case SCROLL_STATE_FLING:
+            case SCROLL_STATE_TOUCH_SCROLL:
+                mIsScrolling = true;
+                break;
+            case SCROLL_STATE_IDLE:
+                mIsScrolling = false;
+                for (int visiblePosition = listView.getFirstVisiblePosition(); visiblePosition <= listView.getLastVisiblePosition(); visiblePosition++) {
+                    loadImageByPosition(visiblePosition);
+                }
+                break;
+        }
+    }
+    @Override
+    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+    }
 }
 
