@@ -45,6 +45,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -153,6 +154,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         @Override
         public void onReceive(Context context, Intent intent) {
         	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
+
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
             mObservationsList.onRefreshComplete();
             mObservationsList.refreshDrawableState();
@@ -263,7 +266,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         setContentView(R.layout.observation_list);
 
         setTitle(R.string.observations);
-        
+
         mHelper = new ActivityHelper(this);
 
         mApp = (INaturalistApp)getApplication();
@@ -480,6 +483,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync))) {
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 startService(serviceIntent);
 
                 if (mSyncingTopBar != null) {
@@ -917,6 +921,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 mSyncingStatus.setText(R.string.syncing);
                                 // Re-sync
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 startService(serviceIntent);
                             }
                         }
