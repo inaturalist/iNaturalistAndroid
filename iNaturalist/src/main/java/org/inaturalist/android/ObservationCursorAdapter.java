@@ -518,7 +518,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         if (!syncNeeded) {
-            // See if it's an existing observation with a new photo:w
+            // See if it's an existing observation with a new photo
             Cursor opc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     new String[]{
                             ObservationPhoto._ID,
