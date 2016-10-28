@@ -60,6 +60,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
     public static interface OnIDAdded {
 		public void onIdentificationAdded(BetterJSONObject taxon);
 		public void onIdentificationRemoved(BetterJSONObject taxon);
+        public void onIdentificationUpdated(BetterJSONObject id);
 		public void onCommentRemoved(BetterJSONObject comment);
 		public void onCommentUpdated(BetterJSONObject comment);
 	};
@@ -195,6 +196,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 						case R.id.edit:
 							if (isComment) {
 								mOnIDAddedCb.onCommentUpdated(item);
+							} else {
+                                mOnIDAddedCb.onIdentificationUpdated(item);
 							}
 					}
 				}

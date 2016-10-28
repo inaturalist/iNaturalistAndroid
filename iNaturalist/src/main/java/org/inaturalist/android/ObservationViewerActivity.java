@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import android.widget.AbsListView;
 import android.widget.Button;
@@ -746,10 +747,56 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 registerReceiver(mObservationReceiver, filter);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
                 startService(serviceIntent);
             }
+
+            @Override
+            public void onIdentificationUpdated(final BetterJSONObject id) {
+                // Set up the input
+                final EditText input = new EditText(ObservationViewerActivity.this);
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+                input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+                input.setText(id.getString("body"));
+                input.setSelection(input.getText().length());
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        input.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+                    }
+                }, 100);
+
+
+                mHelper.confirm(R.string.update_id_description, input,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String body = input.getText().toString();
+
+                                // After calling the update API - we'll refresh the comment/ID list
+                                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                                registerReceiver(mObservationReceiver, filter);
+
+                                Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                                serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
+                                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                                serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, body);
+                                serviceIntent.putExtra(INaturalistService.TAXON_ID, id.getInt("taxon_id"));
+                                startService(serviceIntent);
+                            }
+                        },
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+            }
+
 
             @Override
             public void onCommentRemoved(BetterJSONObject comment) {
@@ -771,6 +818,17 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
                 input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
                 input.setText(comment.getString("body"));
+                input.setSelection(input.getText().length());
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        input.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+                    }
+                }, 100);
+
 
                 mHelper.confirm(R.string.update_comment, input,
                         new DialogInterface.OnClickListener() {
@@ -815,6 +873,16 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
                 input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        input.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+                    }
+                }, 100);
+
 
                 mHelper.confirm(R.string.add_comment, input,
                         new DialogInterface.OnClickListener() {
