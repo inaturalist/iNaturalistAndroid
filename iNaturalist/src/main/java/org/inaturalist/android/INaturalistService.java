@@ -208,6 +208,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_NEARBY = "nearby";
     public static String ACTION_AGREE_ID = "agree_id";
     public static String ACTION_REMOVE_ID = "remove_id";
+    public static String ACTION_UPDATE_ID = "update_id";
     public static String ACTION_GUIDE_ID = "guide_id";
     public static String ACTION_ADD_COMMENT = "add_comment";
     public static String ACTION_UPDATE_COMMENT = "update_comment";
@@ -323,7 +324,21 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 	reply.putExtra(OBSERVATION_RESULT, observation);
                 	sendBroadcast(reply);
                 }
- 
+
+            } else if (action.equals(ACTION_UPDATE_ID)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                int identificationId = intent.getIntExtra(IDENTIFICATION_ID, 0);
+                String body = intent.getStringExtra(IDENTIFICATION_BODY);
+                updateIdentification(observationId, identificationId, taxonId, body);
+
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_REMOVE_ID)) {
                 int id = intent.getIntExtra(IDENTIFICATION_ID, 0);
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -1162,8 +1177,17 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
  
-    
-     private void addIdentification(int observationId, int taxonId, String body) throws AuthenticationException {
+
+    private void updateIdentification(int observationId, int identificationId, int taxonId, String body) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
+        params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
+        params.add(new BasicNameValuePair("identification[body]", body));
+
+        JSONArray arrayResult = put(HOST + "/identifications/" + identificationId + ".json", params);
+    }
+
+    private void addIdentification(int observationId, int taxonId, String body) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));

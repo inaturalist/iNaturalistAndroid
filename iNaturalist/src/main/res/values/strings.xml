@@ -458,9 +458,9 @@
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Delete</string>
-    <string name="delete_id">Delete Identification</string>
+    <string name="delete_id">Withdraw Identification</string>
     <string name="delete_comment">Delete Comment</string>
-    <string name="delete_id_message">Are you sure you want to delete this identification?</string>
+    <string name="delete_id_message">Are you sure you want to withdraw this identification?</string>
     <string name="delete_comment_message">Are you sure you want to delete this comment?</string>
     <string name="comment">Comment</string>
     <string name="suggest_id">Suggest ID</string>
@@ -551,5 +551,8 @@
     <string name="syncing_observation_fields">Syncing observation fields...</string>
     <string name="syncing_paused">Paused</string>
     <string name="upload">Upload</string>
+    <string name="search_observations">Search Observations...</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="update_id_description">Update Identification Description</string>
  </resources>
 
