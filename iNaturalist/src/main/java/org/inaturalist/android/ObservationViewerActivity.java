@@ -1219,25 +1219,29 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mUserName.setText(username);
 
             // Display the errors for the observation, if any
-            JSONArray errors = mApp.getErrorsForObservation(mObservation.id);
             TextView errorsDescription = (TextView) findViewById(R.id.errors);
+            if (mObservation.id != null) {
+                JSONArray errors = mApp.getErrorsForObservation(mObservation.id);
 
-            if (errors.length() == 0) {
-                errorsDescription.setVisibility(View.GONE);
-            } else {
-                errorsDescription.setVisibility(View.VISIBLE);
-                StringBuilder errorsHtml = new StringBuilder();
-                try {
-                    for (int i = 0; i < errors.length(); i++) {
-                        errorsHtml.append("&#8226; ");
-                        errorsHtml.append(errors.getString(i));
-                        if (i < errors.length() - 1)
-                            errorsHtml.append("<br/>");
+                if (errors.length() == 0) {
+                    errorsDescription.setVisibility(View.GONE);
+                } else {
+                    errorsDescription.setVisibility(View.VISIBLE);
+                    StringBuilder errorsHtml = new StringBuilder();
+                    try {
+                        for (int i = 0; i < errors.length(); i++) {
+                            errorsHtml.append("&#8226; ");
+                            errorsHtml.append(errors.getString(i));
+                            if (i < errors.length() - 1)
+                                errorsHtml.append("<br/>");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    errorsDescription.setText(Html.fromHtml(errorsHtml.toString()));
                 }
-                errorsDescription.setText(Html.fromHtml(errorsHtml.toString()));
+            } else {
+                errorsDescription.setVisibility(View.GONE);
             }
         }
 
