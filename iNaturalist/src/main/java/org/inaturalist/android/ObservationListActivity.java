@@ -120,6 +120,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
         @Override
         public void onReceive(Context context, Intent intent) {
         	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
+
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
             mPullRefreshListView.onRefreshComplete();
             mPullRefreshListView.refreshDrawableState();
 
@@ -267,6 +270,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
                     mSyncingStatus.setText(R.string.syncing);
                     // Re-sync
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     startService(serviceIntent);
                 }
             }
@@ -447,6 +451,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements OnI
             if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync))) {
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 startService(serviceIntent);
 
                 mSyncingStatus.setText(R.string.syncing);
