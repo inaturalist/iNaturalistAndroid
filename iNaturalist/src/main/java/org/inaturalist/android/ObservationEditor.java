@@ -204,7 +204,6 @@ public class ObservationEditor extends AppCompatActivity {
 	public static final String OBSERVATION_PROJECT = "observation_project";
     
     private List<ProjectFieldViewer> mProjectFieldViewers;
-    private CompoundButton mIdPlease;
     private Spinner mGeoprivacy;
     private String mSpeciesGuess;
     private ProjectReceiver mProjectReceiver;
@@ -464,7 +463,6 @@ public class ObservationEditor extends AppCompatActivity {
             }
             });
 
-        mIdPlease = (CompoundButton) findViewById(R.id.id_please);
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (EditText) findViewById(R.id.speciesGuess);
         mSpeciesGuessIcon = (ImageView) findViewById(R.id.species_guess_icon);
@@ -1120,8 +1118,6 @@ public class ObservationEditor extends AppCompatActivity {
             mObservation.uuid = UUID.randomUUID().toString();
         }
 
-        mObservation.id_please = mIdPlease.isChecked();
-
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
         String selectedValue = values.get(mGeoprivacy.getSelectedItemPosition());
         if ((mObservation.geoprivacy != null) || (mGeoprivacy.getSelectedItemPosition() != 0)) {
@@ -1150,8 +1146,6 @@ public class ObservationEditor extends AppCompatActivity {
             mGeoprivacy.setSelection(0);
         }
         updateObservationVisibilityDescription();
-
-        mIdPlease.setChecked(mObservation.id_please);
 
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
