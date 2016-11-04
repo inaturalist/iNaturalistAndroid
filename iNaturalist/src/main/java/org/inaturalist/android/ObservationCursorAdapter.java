@@ -618,11 +618,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 // This decreases in-memory byte-storage per pixel
                 options.inPreferredConfig = Bitmap.Config.ALPHA_8;
                 bitmapImage = BitmapFactory.decodeFile(mFilename, options);
-                bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, mFilename);
-                bitmapImage = ImageUtils.centerCropBitmap(bitmapImage);
-                bitmapImage = ImageUtils.getRoundedCornerBitmap(bitmapImage);
 
-                mObservationThumbnails.put(mFilename, bitmapImage);
+                if (bitmapImage != null) {
+                    bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, mFilename);
+                    bitmapImage = ImageUtils.centerCropBitmap(bitmapImage);
+                    bitmapImage = ImageUtils.getRoundedCornerBitmap(bitmapImage);
+
+                    mObservationThumbnails.put(mFilename, bitmapImage);
+                }
             }
 
             return bitmapImage;
