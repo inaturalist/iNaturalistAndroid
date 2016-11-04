@@ -469,7 +469,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
         bo.put("out_of_range", out_of_range);
-        bo.put("captive", captive);
+        bo.put("captive_flag", captive);
         bo.put("place_guess", place_guess);
         bo.put("uuid", uuid);
         bo.put("positional_accuracy", positional_accuracy);
