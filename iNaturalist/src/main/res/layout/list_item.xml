@@ -15,9 +15,9 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
-        android:background="#DDDDDD"
+        android:background="#DDD"
         android:padding="5dp"
-        android:tint="#8c8c8c"
+        android:tint="#ffffff"
         android:visibility="gone"
         />
 

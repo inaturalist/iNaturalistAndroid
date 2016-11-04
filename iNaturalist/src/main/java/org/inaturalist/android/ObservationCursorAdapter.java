@@ -641,7 +641,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     imageView.setVisibility(View.VISIBLE);
 
                     if ((!mObservationLoaded.containsKey(mPosition)) || (mObservationLoaded.get(mPosition) == false)) {
-                        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slow_fade_in);
                         imageView.startAnimation(animation);
                         mObservationLoaded.put(mPosition, true);
                     }
@@ -669,7 +669,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                     imageView.setVisibility(View.VISIBLE);
                     if ((!mObservationLoaded.containsKey(position)) || (mObservationLoaded.get(position) == false)) {
-                        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slow_fade_in);
                         imageView.startAnimation(animation);
                         mObservationLoaded.put(position, true);
                     }

@@ -26,8 +26,8 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
         android:padding="5dp"
-        android:tint="#8C8C8C"
-        android:background="#DDDDDD"
+        android:tint="#FFFFFF"
+        android:background="#DDD"
         android:visibility="gone"
         />
 

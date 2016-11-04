@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#DDDDDD"
+    android:background="#DDD"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,7 +10,7 @@
         android:layout_height="150dp"
         android:src="@drawable/iconic_taxon_actinopterygii"
         android:layout_centerInParent="true"
-        android:tint="#8C8C8C"
+        android:tint="#ffffff"
         android:visibility="visible"
         />
 
