@@ -55,6 +55,8 @@ import org.json.JSONException;
 import org.lucasr.twowayview.TwoWayView;
 
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
+import com.tangxiaolv.telegramgallery.GalleryActivity;
+import com.tangxiaolv.telegramgallery.GalleryConfig;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -193,6 +195,7 @@ public class ObservationEditor extends AppCompatActivity {
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
     private static final int LOCATION_CHOOSER_REQUEST_CODE = 103;
     private static final int OBSERVATION_PHOTOS_REQUEST_CODE = 104;
+    private static final int CHOOSE_IMAGES_ACTIVITY_REQUEST_CODE = 105;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -809,13 +812,24 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void choosePhoto() {
-        mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-        mFileUri = getPath(ObservationEditor.this, mFileUri);
 
-        final Intent galleryIntent = new Intent();
-        galleryIntent.setType("image/*");
-        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-        this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+            mFileUri = getPath(ObservationEditor.this, mFileUri);
+
+            final Intent galleryIntent = new Intent();
+            galleryIntent.setType("image/*");
+            galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+            this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        } else {
+            // Use multi-photo picker (a custom widget, since the default Android one doesn't support it for all device types)
+            GalleryConfig config = new GalleryConfig.Build()
+                    .limitPickPhoto(3)
+                    .singlePhoto(false)
+                    .filterMimeTypes(new String[]{"image/*"})
+                    .build();
+            GalleryActivity.openActivity(this, CHOOSE_IMAGES_ACTIVITY_REQUEST_CODE, config);
+        }
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
         mPictureTaken = true;
@@ -1853,8 +1867,28 @@ public class ObservationEditor extends AppCompatActivity {
                 refreshProjectList();
 
             }
-        } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+        } else if (requestCode == CHOOSE_IMAGES_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                List<String> photos = (List<String>) data.getSerializableExtra(GalleryActivity.PHOTOS);
 
+                for (String photo : photos) {
+                    Uri selectedImageUri = Uri.fromFile(new File(photo));
+                    Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
+                    mPhotosAdded.add(createdUri.toString());
+
+                    updateImages();
+
+                    // Import photo metadata (e.g. location) only when the location hasn't been set
+                    // by the user before (whether manually or by importing previous images)
+                    if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
+                        stopGetLocation();
+                        mLocationManuallySet = true;
+                        importPhotoMetadata(selectedImageUri);
+                    }
+                }
+
+            }
+        } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;
 
@@ -1944,7 +1978,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
     }
-    
+
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         mPhotosChanged = true;
 
