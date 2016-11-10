@@ -172,7 +172,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             DecimalFormat formatter = new DecimalFormat("#,###,###");
-            ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(formatter.format(mObservationListAdapter.getCount()));
+            SharedPreferences settings = mApp.getPrefs();
+            ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(String.valueOf(settings.getInt("observation_count", mObservationListAdapter.getCount())));
 
             mSyncRequested = false;
 
@@ -564,7 +565,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if (mObservationGridAdapter != null) mObservationGridAdapter.refreshCursor();
 
             DecimalFormat formatter = new DecimalFormat("#,###,###");
-            ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(formatter.format(mObservationListAdapter.getCount()));
+            SharedPreferences settings = mApp.getPrefs();
+            ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setText(String.valueOf(settings.getInt("observation_count", mObservationListAdapter.getCount())));
         }
       
         refreshSyncBar();
