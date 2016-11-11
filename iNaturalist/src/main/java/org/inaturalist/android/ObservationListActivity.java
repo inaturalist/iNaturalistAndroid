@@ -182,6 +182,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     // Sync finished
                     mUserCanceledSync = false;
                     mSyncingTopBar.setVisibility(View.GONE);
+
+                    refreshViewState();
                 }
             }
         }
@@ -597,6 +599,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mLoadingObservations.setVisibility(View.VISIBLE);
                 ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
                 ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+
+                refreshViewState();
+                getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
+                getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
+                getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
             }
         }
 
