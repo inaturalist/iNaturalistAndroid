@@ -6,6 +6,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -661,6 +662,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (isOnline) {
             // Online image
             UrlImageViewCallback callback = new UrlImageViewCallback() {
+                float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, mContext.getResources().getDisplayMetrics());
+
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                     if (mIsGrid) {
@@ -677,7 +680,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 @Override
                 public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap));
+                    return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap), px);
                 }
             };
 

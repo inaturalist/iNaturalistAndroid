@@ -554,5 +554,6 @@
     <string name="search_observations">Search Observations...</string>
     <string name="withdraw">Withdraw</string>
     <string name="update_id_description">Update Identification Description</string>
+    <string name="your_identification">Your ID: %1$s</string>
  </resources>
 

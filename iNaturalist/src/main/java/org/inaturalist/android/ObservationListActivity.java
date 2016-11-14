@@ -1070,7 +1070,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             public void onTabSelected(TabLayout.Tab tab) {
                 TextView tabNameText = (TextView) tab.getCustomView().findViewById(R.id.tab_name);
 
-                tabNameText.setTypeface(null, Typeface.BOLD);
                 tabNameText.setTextColor(Color.parseColor("#000000"));
 
                 mViewPager.setCurrentItem(tab.getPosition());

@@ -61,7 +61,6 @@
                 android:id="@+id/id_taxon_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
                 android:text="TextView" />
       </LinearLayout>
 

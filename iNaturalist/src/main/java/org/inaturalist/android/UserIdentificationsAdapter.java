@@ -33,6 +33,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private String mUsername;
+    private String mLoggedInUsername;
     private boolean mIsGrid;
     private int mDimension;
     private PullToRefreshGridViewExtended mGrid;
@@ -47,6 +48,8 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
         mUsername = username;
         mIsGrid = isGrid;
         mGrid = grid;
+
+        mLoggedInUsername = ((INaturalistApp)mContext.getApplicationContext()).currentUserLogin();
 
         mObservationPhotoNames = new HashMap<>();
         mImageViews = new HashMap<>();
@@ -88,7 +91,13 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             JSONObject observation = item.getJSONObject("observation");
             JSONObject taxon = item.getJSONObject("taxon");
             idName.setText(getTaxonName(taxon));
-            if (!mIsGrid) idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
+            if (!mIsGrid) {
+                if (!mUsername.equals(mLoggedInUsername)) {
+                    idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
+                } else {
+                    idTaxonName.setText(String.format(mContext.getString(R.string.your_identification), getTaxonName(taxon)));
+                }
+            }
 
             if (mIsGrid) {
                 mDimension = mGrid.getColumnWidth();
