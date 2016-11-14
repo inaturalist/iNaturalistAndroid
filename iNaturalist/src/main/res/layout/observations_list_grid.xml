@@ -69,6 +69,8 @@
             android:numColumns="3"
             android:verticalSpacing="3dp"
             android:horizontalSpacing="3dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
             android:stretchMode="columnWidth"
             android:gravity="center"
             android:orientation="vertical"/>
