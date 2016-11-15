@@ -15,6 +15,7 @@
         app:tabPaddingEnd="0dp"
         android:background="#ffffff"
         android:layout_alignParentTop="true"
+        android:elevation="3dp"
         />
 
 
