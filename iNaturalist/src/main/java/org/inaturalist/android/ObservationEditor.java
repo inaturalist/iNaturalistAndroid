@@ -235,6 +235,8 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mTaxonSearchStarted = false;
     private boolean mPhotosChanged = false;
     private ArrayList<String> mCameraPhotos;
+    private ViewGroup mSpeciesNameOnboarding;
+    private View mCloseSpeciesNameOnboarding;
 
     @Override
 	protected void onStart()
@@ -492,6 +494,25 @@ public class ObservationEditor extends AppCompatActivity {
         mLocationIcon = (ImageView) findViewById(R.id.location_icon);
         mLocationGuess = (TextView) findViewById(R.id.location_guess);
         mFindingCurrentLocation = (TextView) findViewById(R.id.finding_current_location);
+
+        mCloseSpeciesNameOnboarding = findViewById(R.id.onboarding_species_name_close);
+        mSpeciesNameOnboarding = (ViewGroup) findViewById(R.id.onboarding_species_name);
+
+        mCloseSpeciesNameOnboarding.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSpeciesNameOnboarding.setVisibility(View.GONE);
+            }
+        });
+
+        // Decide if to show onboarding message
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        boolean hasOnboardedSpeciesGuess = prefs.getBoolean("onboarded_species_guess", false);
+
+        mSpeciesNameOnboarding.setVisibility(hasOnboardedSpeciesGuess ? View.GONE : View.VISIBLE);
+
+        prefs.edit().putBoolean("onboarded_species_guess", true).commit();
+
 
         mProjectSelector.setOnClickListener(new View.OnClickListener() {
             @Override

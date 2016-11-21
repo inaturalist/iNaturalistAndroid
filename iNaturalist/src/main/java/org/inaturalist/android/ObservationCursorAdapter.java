@@ -163,30 +163,73 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (mPhotoInfo.containsKey(obsId)) mPhotoInfo.remove(obsId);
     }
 
+    private static class ViewHolder {
+        public ImageView obsImage;
+        public ImageView obsIconicImage;
+        public TextView speciesGuess;
+        public TextView dateObserved;
+        public ViewGroup commentIdContainer;
+        public View progress;
+
+        public ImageView commentIcon;
+        public ImageView idIcon;
+        public ImageView locationIcon;
+
+        public TextView commentCount;
+        public TextView idCount;
+        public TextView placeGuess;
+
+        public ViewHolder(ViewGroup view) {
+            obsImage = (ImageView) view.findViewById(R.id.observation_pic);
+            obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
+            speciesGuess = (TextView) view.findViewById(R.id.species_guess);
+            dateObserved = (TextView) view.findViewById(R.id.date);
+            commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
+
+            commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
+            idIcon = (ImageView) view.findViewById(R.id.id_pic);
+            commentCount = (TextView) view.findViewById(R.id.comment_count);
+            idCount = (TextView) view.findViewById(R.id.id_count);
+
+            placeGuess = (TextView) view.findViewById(R.id.place_guess);
+            locationIcon = (ImageView) view.findViewById(R.id.location_icon);
+
+            progress = view.findViewById(R.id.progress);
+        }
+
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
+        ViewHolder holder;
         Cursor c = this.getCursor();
         if (c.getCount() == 0) {
             return view;
         }
         c.moveToPosition(position);
 
-        final ImageView obsImage = (ImageView) view.findViewById(R.id.observation_pic);
-        final ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
-        final TextView speciesGuess = (TextView) view.findViewById(R.id.species_guess);
-        TextView dateObserved = (TextView) view.findViewById(R.id.date);
-        ViewGroup commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
+        if (convertView == null) {
+            holder = new ViewHolder((ViewGroup) view);
+            view.setTag(holder);
+        } else {
+            holder = (ViewHolder) view.getTag();
+        }
 
-        ImageView commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
-        ImageView idIcon = (ImageView) view.findViewById(R.id.id_pic);
-        TextView commentCount = (TextView) view.findViewById(R.id.comment_count);
-        TextView idCount = (TextView) view.findViewById(R.id.id_count);
+        ImageView obsImage = holder.obsImage;
+        ImageView obsIconicImage = holder.obsIconicImage;
+        TextView speciesGuess = holder.speciesGuess;
+        TextView dateObserved = holder.dateObserved;
+        ViewGroup commentIdContainer = holder.commentIdContainer;
 
-        TextView placeGuess = (TextView) view.findViewById(R.id.place_guess);
-        ImageView locationIcon = (ImageView) view.findViewById(R.id.location_icon);
+        ImageView commentIcon = holder.commentIcon;
+        ImageView idIcon = holder.idIcon;
+        TextView commentCount = holder.commentCount;
+        TextView idCount = holder.idCount;
 
-        View progress = view.findViewById(R.id.progress);
+        TextView placeGuess = holder.placeGuess;
+        ImageView locationIcon = holder.locationIcon;
 
+        View progress = holder.progress;
 
         final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));

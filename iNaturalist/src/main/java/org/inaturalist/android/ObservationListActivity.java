@@ -120,6 +120,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private BetterJSONObject mUser;
     private UserDetailsReceiver mUserDetailsReceiver;
 
+    private ViewGroup mOnboardingSyncing;
+    private View mOnboardingSyncingClose;
+
 
     @Override
 	protected void onStart()
@@ -185,6 +188,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                     refreshViewState();
                 }
+
+                // Decide if to show onboarding message
+                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                boolean hasOnboardedSyncing = prefs.getBoolean("onboarded_syncing", false);
+
+                mOnboardingSyncing.setVisibility(hasOnboardedSyncing ? View.GONE : View.VISIBLE);
+
+                prefs.edit().putBoolean("onboarded_syncing", true).commit();
+
             }
         }
     } 	
@@ -865,6 +877,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsEmpty = (TextView) layout.findViewById(R.id.empty);
                     mObservationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mObservationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
+
+                    mOnboardingSyncing = (ViewGroup) layout.findViewById(R.id.onboarding_syncing);
+                    mOnboardingSyncingClose = layout.findViewById(R.id.onboarding_syncing_close);
+
+                    mOnboardingSyncingClose.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mOnboardingSyncing.setVisibility(View.GONE);
+                        }
+                    });
 
                     initPullToRefreshList(mObservationsList, layout);
                     initPullToRefreshList(mObservationsGrid, layout);

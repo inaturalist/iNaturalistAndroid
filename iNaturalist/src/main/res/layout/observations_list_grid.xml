@@ -7,9 +7,11 @@
     android:layout_height="fill_parent"
     android:background="#F5F5F5"
     >
-     <RelativeLayout
+
+
+    <RelativeLayout
         android:id="@+id/syncing_top_bar"
-         android:visibility="gone"
+        android:visibility="gone"
         android:layout_alignParentTop="true"
         android:layout_width="fill_parent"
         android:background="#74AC00"
@@ -107,6 +109,70 @@
             fab:fab_colorNormal="@color/inatapptheme_color"
             fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
             fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/onboarding_syncing"
+        android:background="#74AC00"
+        android:layout_width="fill_parent"
+        android:paddingBottom="14dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/complete_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_done_black_24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp"
+            android:tint="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/onboarding_syncing_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/upload_complete"
+            android:layout_toRightOf="@id/complete_icon"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/complete_icon"
+            android:layout_marginTop="4dp"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/onboarding_syncing_description"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/onboarding_upload_description"
+            android:layout_toRightOf="@id/complete_icon"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/onboarding_syncing_title"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            />
+
+
+        <TextView
+            android:id="@+id/onboarding_syncing_close"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/got_it"
+            android:textAllCaps="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/onboarding_syncing_description"
+            android:paddingTop="10dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            />
     </RelativeLayout>
 
 
