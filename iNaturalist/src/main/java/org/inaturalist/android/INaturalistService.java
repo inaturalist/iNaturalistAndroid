@@ -68,6 +68,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.location.Criteria;
@@ -133,7 +135,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
     public static String API_HOST = "https://api.inaturalist.org/v1";
-    public static String USER_AGENT = "iNaturalist/" + INaturalistApp.VERSION + " (" +
+    public static String USER_AGENT = "iNaturalist/%VERSION% (" +
+        "Build %BUILD%; " +
         "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
         "SDK " + android.os.Build.VERSION.SDK_INT + "; " +
         android.os.Build.DEVICE + " " +
@@ -2467,7 +2470,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 return isRedirect;
             }
         });
-        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
+        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(mApp));
 
 //        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
 //                authenticated ? mCredentials : "<null>",
@@ -2627,10 +2630,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
 
     // Returns an array of two strings: access token + iNat username
-    public static String[] verifyCredentials(String username, String oauth2Token, LoginType authType) {
+    public static String[] verifyCredentials(Context context, String username, String oauth2Token, LoginType authType) {
         String grantType = null;
         DefaultHttpClient client = new DefaultHttpClient();
-        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
+        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(context));
         String url = HOST + (authType == LoginType.OAUTH_PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
         HttpRequestBase request = new HttpPost(url);
         ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
@@ -3024,5 +3027,20 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public void onDestroy() {
     	mIsStopped = true;
     	super.onDestroy();
+    }
+
+
+    public static String getUserAgent(Context context) {
+        PackageInfo info = null;
+        try {
+            info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String userAgent = USER_AGENT.replace("%BUILD%", info != null ? String.valueOf(info.versionCode) : String.valueOf(INaturalistApp.VERSION));
+        userAgent = userAgent.replace("%VERSION%", info != null ? info.versionName : String.valueOf(INaturalistApp.VERSION));
+
+        return userAgent;
     }
 }
