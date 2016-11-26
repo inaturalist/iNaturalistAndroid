@@ -251,15 +251,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsIconicImage.setLayoutParams(layoutParams);
         }
 
-        refreshPhotoInfo(obsId);
-        getPhotoInfo();
-
-        String[] photoInfo = mPhotoInfo.get(obsId);
-
-        if (photoInfo == null) {
-            // Try getting the external observation photo info
-            photoInfo = mPhotoInfo.get(externalObsId);
-        }
 
         String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
         int iconResource = 0;
@@ -299,6 +290,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         obsIconicImage.setImageResource(iconResource);
         obsImage.setVisibility(View.INVISIBLE);
 
+        String[] photoInfo = mPhotoInfo.get(obsId);
+
+        if (photoInfo == null) {
+            // Try getting the external observation photo info
+            photoInfo = mPhotoInfo.get(externalObsId);
+        }
+
         if (photoInfo != null) {
             String photoFilename = photoInfo[2] != null ? photoInfo[2] : photoInfo[0];
 
@@ -314,7 +312,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             mObservationPhotoNames.put(position, null);
             mImageViews.put(position, null);
         }
-
 
         Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
 
@@ -699,7 +696,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-    
+
     private void loadObsImage(final int position, ImageView imageView, String name, boolean isOnline) {
 
         if (isOnline) {
