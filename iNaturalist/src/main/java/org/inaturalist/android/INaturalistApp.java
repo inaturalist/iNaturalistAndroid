@@ -195,6 +195,14 @@ public class INaturalistApp extends MultiDexApplication {
     	settingsEditor.apply();
 	}
 
+	public void setOnBoardingTextsShown() {
+    	SharedPreferences settings = getPrefs();
+    	Editor settingsEditor = settings.edit();
+
+    	settingsEditor.putBoolean("onboarded_syncing", true);
+        settingsEditor.putBoolean("onboarded_species_guess", true);
+    	settingsEditor.apply();
+	}
 
     public void setErrorsForObservation(int obsId, int projectId, JSONArray errors) {
         SharedPreferences settings = getPrefs();

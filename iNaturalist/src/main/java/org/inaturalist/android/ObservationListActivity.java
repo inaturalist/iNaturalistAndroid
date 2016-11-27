@@ -195,8 +195,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 mOnboardingSyncing.setVisibility(hasOnboardedSyncing ? View.GONE : View.VISIBLE);
 
-                prefs.edit().putBoolean("onboarded_syncing", true).commit();
-
             }
         }
     } 	
@@ -885,6 +883,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         @Override
                         public void onClick(View view) {
                             mOnboardingSyncing.setVisibility(View.GONE);
+                            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                            prefs.edit().putBoolean("onboarded_syncing", true).commit();
                         }
                     });
 
