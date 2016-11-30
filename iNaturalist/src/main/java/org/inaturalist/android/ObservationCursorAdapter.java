@@ -101,6 +101,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         } else {
             changeCursor(newCursor);
         }
+
+        getPhotoInfo();
     }
 
     /**

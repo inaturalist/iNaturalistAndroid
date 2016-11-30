@@ -55,8 +55,6 @@ import org.json.JSONException;
 import org.lucasr.twowayview.TwoWayView;
 
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
-import com.tangxiaolv.telegramgallery.GalleryActivity;
-import com.tangxiaolv.telegramgallery.GalleryConfig;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -64,9 +62,11 @@ import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -195,7 +195,7 @@ public class ObservationEditor extends AppCompatActivity {
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
     private static final int LOCATION_CHOOSER_REQUEST_CODE = 103;
     private static final int OBSERVATION_PHOTOS_REQUEST_CODE = 104;
-    private static final int CHOOSE_IMAGES_ACTIVITY_REQUEST_CODE = 105;
+    private static final int CHOOSE_IMAGES_REQUEST_CODE = 105;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -833,23 +833,26 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void choosePhoto() {
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-            mFileUri = getPath(ObservationEditor.this, mFileUri);
+        mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+        mFileUri = getPath(ObservationEditor.this, mFileUri);
 
-            final Intent galleryIntent = new Intent();
-            galleryIntent.setType("image/*");
-            galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-            this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-        } else {
-            // Use multi-photo picker (a custom widget, since the default Android one doesn't support it for all device types)
-            GalleryConfig config = new GalleryConfig.Build()
-                    .limitPickPhoto(3)
-                    .singlePhoto(false)
-                    .filterMimeTypes(new String[]{"image/*"})
-                    .build();
-            GalleryActivity.openActivity(this, CHOOSE_IMAGES_ACTIVITY_REQUEST_CODE, config);
+        final Intent galleryIntent = new Intent();
+        galleryIntent.setType("image/*");
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            // Multi-photo picking is supported
+            galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
+            final SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            if (!prefs.getBoolean("shown_multi_select_toast", false)) {
+                // Show a toast explaining the multi-select functionality
+                Toast.makeText(this, R.string.multi_select_description, Toast.LENGTH_LONG).show();
+                prefs.edit().putBoolean("shown_multi_select_toast", true).commit();
+            }
         }
+
+        this.startActivityForResult(galleryIntent, CHOOSE_IMAGES_REQUEST_CODE);
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
         mPictureTaken = true;
@@ -1887,27 +1890,65 @@ public class ObservationEditor extends AppCompatActivity {
                 refreshProjectList();
 
             }
-        } else if (requestCode == CHOOSE_IMAGES_ACTIVITY_REQUEST_CODE) {
+        } else if (requestCode == CHOOSE_IMAGES_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                List<String> photos = (List<String>) data.getSerializableExtra(GalleryActivity.PHOTOS);
+                final List<Uri> photos = new ArrayList<Uri>();
 
-                for (String photo : photos) {
-                    Uri selectedImageUri = Uri.fromFile(new File(photo));
-                    Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
-                    mPhotosAdded.add(createdUri.toString());
+                if ((android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+                    && (data.getClipData() != null)) {
+                    // Multi photo mode
+                    ClipData clipData = data.getClipData();
 
-                    updateImages();
-
-                    // Import photo metadata (e.g. location) only when the location hasn't been set
-                    // by the user before (whether manually or by importing previous images)
-                    if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
-                        stopGetLocation();
-                        mLocationManuallySet = true;
-                        importPhotoMetadata(selectedImageUri);
+                    for (int i = 0; i < clipData.getItemCount(); i++) {
+                        ClipData.Item item = clipData.getItemAt(i);
+                        Uri uri = item.getUri();
+                        photos.add(uri);
                     }
+                } else {
+                    // Single photo mode
+                    Uri selectedImageUri = data == null ? null : data.getData();
+                    if (selectedImageUri == null) {
+                        selectedImageUri = mFileUri;
+                    }
+                    photos.add(selectedImageUri);
                 }
 
+                mHelper.loading(getString(R.string.importing_photos));
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (final Uri photo : photos) {
+                            Uri createdUri = createObservationPhotoForPhoto(photo);
+                            mPhotosAdded.add(createdUri.toString());
+
+                            // Import photo metadata (e.g. location) only when the location hasn't been set
+                            // by the user before (whether manually or by importing previous images)
+                            if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
+                                mLocationManuallySet = true;
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        stopGetLocation();
+                                        importPhotoMetadata(photo);
+                                    }
+                                });
+
+                            }
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateImages();
+                                mHelper.stopLoading();
+                            }
+                        });
+                    }
+                }).start();
+
             }
+
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 final boolean isCamera;

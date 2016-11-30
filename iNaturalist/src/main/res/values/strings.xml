@@ -559,5 +559,7 @@
     <string name="got_it">Got it!</string>
     <string name="upload_complete">Upload Complete!</string>
     <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
+    <string name="importing_photos">Importing Photos...</string>
+    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
  </resources>
 

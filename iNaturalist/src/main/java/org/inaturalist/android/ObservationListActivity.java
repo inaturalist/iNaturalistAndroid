@@ -280,6 +280,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         setTitle(R.string.observations);
 
+        getSupportActionBar().setElevation(0);
+
         mHelper = new ActivityHelper(this);
 
         mApp = (INaturalistApp)getApplication();
