@@ -1951,74 +1951,59 @@ public class ObservationEditor extends AppCompatActivity {
 
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                final boolean isCamera;
+                final Uri selectedImageUri = mFileUri;
 
-                if ((data == null) || (data.getScheme() == null)) {
-                    isCamera = true;
-                } else {
-                    final String action = data.getAction();
-                    if(action == null) {
-                        isCamera = false;
-                    } else {
-                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                Log.v(TAG, String.format("%s", selectedImageUri));
+
+                // Image captured and saved to mFileUri specified in the Intent
+                mHelper.loading(getString(R.string.preparing_photo));
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
+                        mPhotosAdded.add(createdUri.toString());
+
+                        // Make a copy of the image into the phone's camera folder
+                        String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
+                        String copyPath = addPhotoToGallery(path);
+
+                        if (copyPath != null) {
+                            mCameraPhotos.add(copyPath);
+                        }
+
+                        // Delete original photo (before resize)
+                        File f = new File(path);
+                        f.delete();
+
+                        if (createdUri == null) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
+                                }
+                            });
+                            mFileUri = null;
+                            return;
+                        }
+
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateImages();
+                                // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
+                                if (!mLocationManuallySet && !mGettingLocation) {
+                                    getLocation();
+                                }
+
+                                mHelper.stopLoading();
+                            }
+                        });
+
                     }
-                }
+                }).start();
 
-                Uri selectedImageUri;
-                if(isCamera) {
-                    selectedImageUri = mFileUri;
-                } else {
-                    selectedImageUri = data == null ? null : data.getData();
-                    if (selectedImageUri == null) {
-                        selectedImageUri = mFileUri;
-                    }
-                }
-
-                Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
-
-                if (isCamera) {
-                    // Image captured and saved to mFileUri specified in the Intent
-                    Toast.makeText(this, getString(R.string.image_saved), Toast.LENGTH_LONG).show();
-                }
-
-                Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
-                mPhotosAdded.add(createdUri.toString());
-
-                if (isCamera)  {
-                    // Make a copy of the image into the phone's camera folder
-                    String path = FileUtils.getPath(this, selectedImageUri);
-                    String copyPath = addPhotoToGallery(path);
-
-                    if (copyPath != null) {
-                        mCameraPhotos.add(copyPath);
-                    }
-
-                    // Delete original photo (before resize)
-                    File f = new File(path);
-                    f.delete();
-                }
-
-                if (createdUri == null) {
-                	mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
-                	mFileUri = null;
-                	return;
-                }
-
-                updateImages();
-                if (!isCamera) {
-                    // Import photo metadata (e.g. location) only when the location hasn't been set
-                    // by the user before (whether manually or by importing previous images)
-                    if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
-                        stopGetLocation();
-                        mLocationManuallySet = true;
-                        importPhotoMetadata(selectedImageUri);
-                    }
-               } else {
-                    // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
-                    if (!mLocationManuallySet && !mGettingLocation) {
-                        getLocation();
-                    }
-                }
 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
