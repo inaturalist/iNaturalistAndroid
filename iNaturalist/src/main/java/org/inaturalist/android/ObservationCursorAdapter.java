@@ -726,6 +726,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             };
 
+            // Change URL postfix so UrlImageViewHelper won't cache the squared version for other screens using this image
+            if (name.lastIndexOf('/') > name.lastIndexOf('?')) {
+                name += "?square=1";
+            } else {
+                name += "&square=1";
+            }
+
             UrlImageViewHelper.setUrlDrawable(imageView, name, callback);
 
         } else {
