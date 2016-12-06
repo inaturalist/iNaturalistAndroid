@@ -2301,6 +2301,9 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     public class GalleryCursorAdapter extends BaseAdapter {
+        private static final int MIN_SAMPLE_SIZE_COMPRESSION = 8;
+        private static final int PHOTO_DIMENSIONS = 200;
+
         private Context mContext;
         private Cursor mCursor;
         private HashMap<Integer, View> mViews;
@@ -2431,8 +2434,8 @@ public class ObservationEditor extends AppCompatActivity {
                     BitmapFactory.decodeStream(is, null, options);
                     is.close();
 
-                    // Decode into a thumbnail
-                    options.inSampleSize = ImageUtils.calculateInSampleSize(options, 200, 200);
+                    // Decode into a thumbnail / smaller image (make sure we resize at least by a factor of 8)
+                    options.inSampleSize = Math.max(MIN_SAMPLE_SIZE_COMPRESSION, ImageUtils.calculateInSampleSize(options, PHOTO_DIMENSIONS, PHOTO_DIMENSIONS));
 
                     // Decode bitmap with inSampleSize set
                     options.inJustDecodeBounds = false;
