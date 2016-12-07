@@ -282,5 +282,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         int count4 = getActivity().getContentResolver().delete(ProjectFieldValue.CONTENT_URI, null, null);
 
         refreshSettings();
+        ((SettingsActivity)getActivity()).refreshUserDetails();
 	}
 }
