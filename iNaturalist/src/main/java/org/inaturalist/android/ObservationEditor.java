@@ -1918,9 +1918,11 @@ public class ObservationEditor extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        int position = mGallery.getCount();
                         for (final Uri photo : photos) {
-                            Uri createdUri = createObservationPhotoForPhoto(photo);
+                            Uri createdUri = createObservationPhotoForPhoto(photo, position);
                             mPhotosAdded.add(createdUri.toString());
+                            position++;
 
                             // Import photo metadata (e.g. location) only when the location hasn't been set
                             // by the user before (whether manually or by importing previous images)
@@ -2026,6 +2028,10 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
+        return createObservationPhotoForPhoto(photoUri, mGallery.getCount());
+    }
+
+    private Uri createObservationPhotoForPhoto(Uri photoUri, int position) {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
@@ -2045,11 +2051,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
-        if (mGallery.getCount() == 0) {
-            cv.put(ObservationPhoto.POSITION, 0);
-        } else {
-            cv.put(ObservationPhoto.POSITION, mGallery.getCount());
-        }
+        cv.put(ObservationPhoto.POSITION, position);
 
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
@@ -2428,7 +2430,6 @@ public class ObservationEditor extends AppCompatActivity {
 
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     FileInputStream is = new FileInputStream(photoFileName);
-                    Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
 
                     options.inJustDecodeBounds = true;
                     BitmapFactory.decodeStream(is, null, options);
@@ -2451,9 +2452,11 @@ public class ObservationEditor extends AppCompatActivity {
                             bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
                         }
 
-                        if (bitmapImage != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                        if (bitmapImage != null) {
+                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                            bitmapImage.recycle();
+                        }
                     }
-                    bitmap.recycle();
                 } catch (FileNotFoundException exc) {
                     exc.printStackTrace();
                 } catch (IOException exc) {
