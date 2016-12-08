@@ -115,7 +115,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             JSONArray photos = observation.optJSONArray("photos");
             String photoUrl = null;
             if ((photos != null) && (photos.length() > 0)) {
-                photoUrl = photos.getJSONObject(0).getString("square_url");
+                photoUrl = photos.getJSONObject(0).getString("medium_url");
                 if (!mIsScrolling) {
                     // Only load image if user is not scrolling
                     loadObsImage(position, idPic, photoUrl);
@@ -187,7 +187,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             @Override
             public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                 if (loadedBitmap != null)
-                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
+                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap), 4));
                 if (mIsGrid) {
                     imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
                 }
@@ -206,6 +206,13 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
                 return loadedBitmap;
             }
         };
+
+        // Change URL postfix so UrlImageViewHelper won't cache the squared version for other screens using this image
+        if (url.lastIndexOf('/') > url.lastIndexOf('?')) {
+            url += "?square=1";
+        } else {
+            url += "&square=1";
+        }
 
         UrlImageViewHelper.setUrlDrawable(imageView, url, callback);
     }
