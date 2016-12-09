@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FF74AC00"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="0.65"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lets_get_started"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff"
+            android:textSize="35sp"
+            />
+        <ImageView
+            android:layout_below="@id/title"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_gps_fixed_black_48dp"
+            android:tint="#ffffff"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        >
+
+        <Button
+            android:id="@+id/view_nearby_observations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/view_nearby_observations"
+            android:background="@drawable/circular_button_light_green"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            />
+
+        <TextView
+            android:id="@+id/skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skip_for_now"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+    
+
+</LinearLayout>
