@@ -62,9 +62,11 @@ import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
 import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -183,7 +185,6 @@ public class ObservationEditor extends AppCompatActivity {
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
     private ImageButton mViewOnInat;
-    private TextView mObservationCommentsIds;
     private TableLayout mProjectFieldsTable;
 
     private ArrayList<String> mPhotosAdded;
@@ -194,6 +195,7 @@ public class ObservationEditor extends AppCompatActivity {
     private static final int PROJECT_SELECTOR_REQUEST_CODE = 102;
     private static final int LOCATION_CHOOSER_REQUEST_CODE = 103;
     private static final int OBSERVATION_PHOTOS_REQUEST_CODE = 104;
+    private static final int CHOOSE_IMAGES_REQUEST_CODE = 105;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -232,6 +234,8 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mTaxonSearchStarted = false;
     private boolean mPhotosChanged = false;
     private ArrayList<String> mCameraPhotos;
+    private ViewGroup mSpeciesNameOnboarding;
+    private View mCloseSpeciesNameOnboarding;
 
     @Override
 	protected void onStart()
@@ -482,13 +486,30 @@ public class ObservationEditor extends AppCompatActivity {
         mTopActionBar = getSupportActionBar();
         mDeleteButton = (ImageButton) findViewById(R.id.delete_observation);
         mViewOnInat = (ImageButton) findViewById(R.id.view_on_inat);
-        mObservationCommentsIds = (TextView) findViewById(R.id.commentIdCount);
         mProjectSelector = (TextView) findViewById(R.id.select_projects);
         mProjectCount = (TextView) findViewById(R.id.project_count);
         mProjectFieldsTable = (TableLayout) findViewById(R.id.project_fields);
         mLocationIcon = (ImageView) findViewById(R.id.location_icon);
         mLocationGuess = (TextView) findViewById(R.id.location_guess);
         mFindingCurrentLocation = (TextView) findViewById(R.id.finding_current_location);
+
+        mCloseSpeciesNameOnboarding = findViewById(R.id.onboarding_species_name_close);
+        mSpeciesNameOnboarding = (ViewGroup) findViewById(R.id.onboarding_species_name);
+
+        final SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        mCloseSpeciesNameOnboarding.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSpeciesNameOnboarding.setVisibility(View.GONE);
+                prefs.edit().putBoolean("onboarded_species_guess", true).commit();
+            }
+        });
+
+        // Decide if to show onboarding message
+        boolean hasOnboardedSpeciesGuess = prefs.getBoolean("onboarded_species_guess", false);
+
+        mSpeciesNameOnboarding.setVisibility(hasOnboardedSpeciesGuess ? View.GONE : View.VISIBLE);
+
 
         mProjectSelector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -809,13 +830,27 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void choosePhoto() {
+
         mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
         mFileUri = getPath(ObservationEditor.this, mFileUri);
 
         final Intent galleryIntent = new Intent();
         galleryIntent.setType("image/*");
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-        this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            // Multi-photo picking is supported
+            galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
+            final SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            if (!prefs.getBoolean("shown_multi_select_toast", false)) {
+                // Show a toast explaining the multi-select functionality
+                Toast.makeText(this, R.string.multi_select_description, Toast.LENGTH_LONG).show();
+                prefs.edit().putBoolean("shown_multi_select_toast", true).commit();
+            }
+        }
+
+        this.startActivityForResult(galleryIntent, CHOOSE_IMAGES_REQUEST_CODE);
 
         // In case a new/existing photo was taken - make sure we won't retake it in case the activity pauses/resumes.
         mPictureTaken = true;
@@ -1849,77 +1884,122 @@ public class ObservationEditor extends AppCompatActivity {
                 refreshProjectList();
 
             }
-        } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-
+        } else if (requestCode == CHOOSE_IMAGES_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                final boolean isCamera;
+                final List<Uri> photos = new ArrayList<Uri>();
 
-                if ((data == null) || (data.getScheme() == null)) {
-                    isCamera = true;
-                } else {
-                    final String action = data.getAction();
-                    if(action == null) {
-                        isCamera = false;
-                    } else {
-                        isCamera = action.equals(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                if ((android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+                    && (data.getClipData() != null)) {
+                    // Multi photo mode
+                    ClipData clipData = data.getClipData();
+
+                    for (int i = 0; i < clipData.getItemCount(); i++) {
+                        ClipData.Item item = clipData.getItemAt(i);
+                        Uri uri = item.getUri();
+                        photos.add(uri);
                     }
-                }
-
-                Uri selectedImageUri;
-                if(isCamera) {
-                    selectedImageUri = mFileUri;
                 } else {
-                    selectedImageUri = data == null ? null : data.getData();
+                    // Single photo mode
+                    Uri selectedImageUri = data == null ? null : data.getData();
                     if (selectedImageUri == null) {
                         selectedImageUri = mFileUri;
                     }
+                    photos.add(selectedImageUri);
                 }
 
-                Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
+                mHelper.loading(getString(R.string.importing_photos));
 
-                if (isCamera) {
-                    // Image captured and saved to mFileUri specified in the Intent
-                    Toast.makeText(this, getString(R.string.image_saved), Toast.LENGTH_LONG).show();
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int position = mGallery.getCount();
+                        for (final Uri photo : photos) {
+                            Uri createdUri = createObservationPhotoForPhoto(photo, position);
+                            mPhotosAdded.add(createdUri.toString());
+                            position++;
 
-                Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
-                mPhotosAdded.add(createdUri.toString());
+                            // Import photo metadata (e.g. location) only when the location hasn't been set
+                            // by the user before (whether manually or by importing previous images)
+                            if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
+                                mLocationManuallySet = true;
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        stopGetLocation();
+                                        importPhotoMetadata(photo);
+                                    }
+                                });
 
-                if (isCamera)  {
-                    // Make a copy of the image into the phone's camera folder
-                    String path = FileUtils.getPath(this, selectedImageUri);
-                    String copyPath = addPhotoToGallery(path);
+                            }
+                        }
 
-                    if (copyPath != null) {
-                        mCameraPhotos.add(copyPath);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateImages();
+                                mHelper.stopLoading();
+                            }
+                        });
                     }
+                }).start();
 
-                    // Delete original photo (before resize)
-                    File f = new File(path);
-                    f.delete();
-                }
+            }
 
-                if (createdUri == null) {
-                	mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
-                	mFileUri = null;
-                	return;
-                }
+        } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                final Uri selectedImageUri = mFileUri;
 
-                updateImages();
-                if (!isCamera) {
-                    // Import photo metadata (e.g. location) only when the location hasn't been set
-                    // by the user before (whether manually or by importing previous images)
-                    if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
-                        stopGetLocation();
-                        mLocationManuallySet = true;
-                        importPhotoMetadata(selectedImageUri);
+                Log.v(TAG, String.format("%s", selectedImageUri));
+
+                // Image captured and saved to mFileUri specified in the Intent
+                mHelper.loading(getString(R.string.preparing_photo));
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
+                        mPhotosAdded.add(createdUri.toString());
+
+                        // Make a copy of the image into the phone's camera folder
+                        String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
+                        String copyPath = addPhotoToGallery(path);
+
+                        if (copyPath != null) {
+                            mCameraPhotos.add(copyPath);
+                        }
+
+                        // Delete original photo (before resize)
+                        File f = new File(path);
+                        f.delete();
+
+                        if (createdUri == null) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
+                                }
+                            });
+                            mFileUri = null;
+                            return;
+                        }
+
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateImages();
+                                // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
+                                if (!mLocationManuallySet && !mGettingLocation) {
+                                    getLocation();
+                                }
+
+                                mHelper.stopLoading();
+                            }
+                        });
+
                     }
-               } else {
-                    // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
-                    if (!mLocationManuallySet && !mGettingLocation) {
-                        getLocation();
-                    }
-                }
+                }).start();
+
 
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
@@ -1940,37 +2020,12 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
     }
-    
-    private void refreshCommentsIdSize(Integer value) {
-        ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
-        // Make sure the height and width of the rectangle are the same (i.e. a square)
-        observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-            @SuppressLint("NewApi")
-			@Override
-            public void onGlobalLayout() {
-                int dimension = mObservationCommentsIds.getHeight();
-                ViewGroup.LayoutParams params = mObservationCommentsIds.getLayoutParams();
-                
-                if (dimension > mObservationCommentsIds.getWidth()) {
-                    // Only resize if there's enough room
-                    params.width = dimension;
-                    mObservationCommentsIds.setLayoutParams(params);
-                }
-                
-                ViewTreeObserver observer = mObservationCommentsIds.getViewTreeObserver();
-                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                    observer.removeGlobalOnLayoutListener(this);
-                } else {
-                    observer.removeOnGlobalLayoutListener(this);
-                }  
-
-            }
-        });
-        
-        mObservationCommentsIds.setText(value.toString());
-    }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
+        return createObservationPhotoForPhoto(photoUri, mGallery.getCount());
+    }
+
+    private Uri createObservationPhotoForPhoto(Uri photoUri, int position) {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
@@ -1990,11 +2045,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
-        if (mGallery.getCount() == 0) {
-            cv.put(ObservationPhoto.POSITION, 0);
-        } else {
-            cv.put(ObservationPhoto.POSITION, mGallery.getCount());
-        }
+        cv.put(ObservationPhoto.POSITION, position);
 
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
     }
@@ -2246,6 +2297,9 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     public class GalleryCursorAdapter extends BaseAdapter {
+        private static final int MIN_SAMPLE_SIZE_COMPRESSION = 8;
+        private static final int PHOTO_DIMENSIONS = 200;
+
         private Context mContext;
         private Cursor mCursor;
         private HashMap<Integer, View> mViews;
@@ -2370,14 +2424,13 @@ public class ObservationEditor extends AppCompatActivity {
 
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     FileInputStream is = new FileInputStream(photoFileName);
-                    Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
 
                     options.inJustDecodeBounds = true;
                     BitmapFactory.decodeStream(is, null, options);
                     is.close();
 
-                    // Decode into a thumbnail
-                    options.inSampleSize = ImageUtils.calculateInSampleSize(options, 200, 200);
+                    // Decode into a thumbnail / smaller image (make sure we resize at least by a factor of 8)
+                    options.inSampleSize = Math.max(MIN_SAMPLE_SIZE_COMPRESSION, ImageUtils.calculateInSampleSize(options, PHOTO_DIMENSIONS, PHOTO_DIMENSIONS));
 
                     // Decode bitmap with inSampleSize set
                     options.inJustDecodeBounds = false;
@@ -2393,9 +2446,11 @@ public class ObservationEditor extends AppCompatActivity {
                             bitmapImage = Bitmap.createBitmap(bitmapImage, 0, 0, bitmapImage.getWidth(), bitmapImage.getHeight(), matrix, true);
                         }
 
-                        if (bitmapImage != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                        if (bitmapImage != null) {
+                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                            bitmapImage.recycle();
+                        }
                     }
-                    bitmap.recycle();
                 } catch (FileNotFoundException exc) {
                     exc.printStackTrace();
                 } catch (IOException exc) {

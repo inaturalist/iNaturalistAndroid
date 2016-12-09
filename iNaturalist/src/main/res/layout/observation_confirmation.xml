@@ -107,6 +107,72 @@
             android:transitionName="search_taxon"
             />
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/onboarding_species_name"
+        android:background="#F1F6E5"
+        android:layout_width="fill_parent"
+        android:paddingBottom="12dp"
+        android:layout_marginTop="-15dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_alignParentTop="true"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+            <View
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/arrow_up"
+                android:layout_marginTop="-10dp"
+                android:layout_marginLeft="22dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/info_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_info_outline_black_24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="18dp"
+            android:tint="@color/inatapptheme_color"
+            />
+
+        <TextView
+            android:id="@+id/onboarding_species_name_description"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/onboarding_species_name"
+            android:layout_marginRight="16dp"
+            android:layout_toRightOf="@id/info_icon"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/info_icon"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/onboarding_species_name_close"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/got_it"
+            android:textAllCaps="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/onboarding_species_name_description"
+            android:paddingTop="10dp"
+            android:textColor="#8BB929"
+            android:textStyle="bold"
+            android:layout_marginRight="16dp"
+            />
+    </RelativeLayout>
+
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"

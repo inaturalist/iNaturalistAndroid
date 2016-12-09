@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/observation_view_type"
+        android:title=""
+        android:icon="@drawable/grid_view_gray"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/search_observations"
+        android:title=""
+        android:icon="@drawable/search_gray"
+        app:showAsAction="always" />
+</menu>

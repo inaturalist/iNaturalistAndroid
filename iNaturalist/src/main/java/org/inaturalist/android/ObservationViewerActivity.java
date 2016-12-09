@@ -28,6 +28,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
 import android.widget.AbsListView;
@@ -47,6 +49,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -198,6 +201,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private String mTaxonName;
     private String mActiveTab;
     private boolean mReloadObs;
+    private ViewGroup mPhotosContainer;
 
     @Override
 	protected void onStart() {
@@ -413,6 +417,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mNoPhotosContainer = (ViewGroup) findViewById(R.id.no_photos);
         mIdPicBig = (ImageView) findViewById(R.id.id_icon_big);
         mIdArrow = (ImageView) findViewById(R.id.id_arrow);
+        mPhotosContainer = (ViewGroup) findViewById(R.id.photos_container);
+
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mPhotosContainer.getLayoutParams();
+        params.height = (int) (display.getHeight() * 0.32);
+        mPhotosContainer.setLayoutParams(params);
 
         View.OnClickListener onLogin = new View.OnClickListener() {
             @Override

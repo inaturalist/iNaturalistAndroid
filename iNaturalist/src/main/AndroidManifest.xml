@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
-    android:versionCode="175"
-    android:versionName="1.4.23" >
+    android:versionCode="181"
+    android:versionName="1.5.0" >
 
-    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21" />
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21"
+        tools:overrideLibrary="com.tangxiaolv.telegramgallery"
+        />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -236,6 +239,13 @@
             android:configChanges="orientation"
             android:name=".NetworkSettings" >
         </activity>
+
+        <activity
+            android:configChanges="orientation"
+            android:name=".ObservationSearchActivity" >
+        </activity>
+
+        <activity android:name="com.tangxiaolv.telegramgallery.GalleryActivity" />
 
         <service android:name=".INaturalistService" />
         <meta-data android:name="com.crashlytics.ApiKey" android:value="7baaee0ca8a376b3d129b908c1e03be6ecbe5786"/>

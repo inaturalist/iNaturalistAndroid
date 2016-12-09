@@ -198,6 +198,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
             getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
+            getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
             getUserDetails(INaturalistService.ACTION_GET_USER_OBSERVATIONS);
             getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
 
@@ -334,7 +335,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mUserDetailsReceiver = new UserDetailsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.USER_DETAILS_RESULT);
-        filter.addAction(INaturalistService.LIFE_LIST_RESULT);
+        filter.addAction(INaturalistService.SPECIES_COUNT_RESULT);
         filter.addAction(INaturalistService.USER_OBSERVATIONS_RESULT);
         filter.addAction(INaturalistService.IDENTIFICATIONS_RESULT);
         registerReceiver(mUserDetailsReceiver, filter);
@@ -478,17 +479,12 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 
                 mTotalObservations = mUser.getInt("observations_count");
                 mTotalIdentifications = mUser.getInt("identifications_count");
-
-                // Retrieve the user's life list
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_LIFE_LIST, null, UserProfile.this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.LIFE_LIST_ID, mUser.getInt("life_list_id"));
-                startService(serviceIntent);
                 return;
-            } else if (intent.getAction().equals(INaturalistService.LIFE_LIST_RESULT)) {
+            } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
                 // Life list result (species)
                 resultsObject = (BetterJSONObject) object;
-                totalResults = resultsObject.getInt("total_entries");
-                results = resultsObject.getJSONArray("listed_taxa").getJSONArray();
+                totalResults = resultsObject.getInt("total_results");
+                results = resultsObject.getJSONArray("results").getJSONArray();
             } else {
                 // Observations / Identifications result
                 results = ((SerializableJSONArray) object).getJSONArray();
@@ -513,7 +509,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 
             if (intent.getAction().equals(INaturalistService.USER_OBSERVATIONS_RESULT)) {
             	mObservations = resultsArray;
-            } else if (intent.getAction().equals(INaturalistService.LIFE_LIST_RESULT)) {
+            } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
             	mSpecies = resultsArray;
                 mTotalSpecies = totalResults;
             } else if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
@@ -526,8 +522,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         private String actionToResultsParam(String action) {
             if (action.equals(INaturalistService.USER_DETAILS_RESULT)) {
                 return INaturalistService.USER;
-            } else if (action.equals(INaturalistService.LIFE_LIST_RESULT)) {
-                return INaturalistService.LIFE_LIST;
+            } else if (action.equals(INaturalistService.SPECIES_COUNT_RESULT)) {
+                return INaturalistService.SPECIES_COUNT_RESULT;
             } else if (action.equals(INaturalistService.USER_OBSERVATIONS_RESULT)) {
                 return INaturalistService.OBSERVATIONS;
             } else if (action.equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
@@ -591,6 +587,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 mSpeciesListAdapter = new UserSpeciesAdapter(UserProfile.this, mSpecies);
                 mSpeciesList.setAdapter(mSpeciesListAdapter);
                 mSpeciesList.setVisibility(View.VISIBLE);
+
+                // Make sure the images get loaded only when the user stops scrolling
+                mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
             }
         }
 
@@ -616,6 +615,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 mIdentificationsListAdapter = new UserIdentificationsAdapter(UserProfile.this, mIdentifications, mUser.getString("login"));
                 mIdentificationsList.setAdapter(mIdentificationsListAdapter);
                 mIdentificationsList.setVisibility(View.VISIBLE);
+
+                // Make sure the images get loaded only when the user stops scrolling
+                mIdentificationsList.setOnScrollListener(mIdentificationsListAdapter);
 
                 mIdentificationsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

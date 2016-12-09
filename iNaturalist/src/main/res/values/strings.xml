@@ -207,52 +207,31 @@
     <string name="refreshing">Refreshing...</string>
     <string name="sync_x_observations">Sync %1$d observations</string>
     <string name="sync_observations">Sync Observations</string>
+    <string name="lets_get_started">Let\'s get started!</string>
+    <string name="view_nearby_observations">View Nearby Observations</string>
+    <string name="skip_for_now">Skip for Now</string>
 
     <string-array name="tutorial_images">
-	    <item>tutorial1</item>
-	    <item>tutorial2</item>
-	    <item>tutorial3</item>
-	    <item>tutorial4</item>
-	    <item>tutorial5</item>
-	    <item>tutorial6</item>
+	    <item>slide_logo</item>
+	    <item>slide_observe</item>
+	    <item>slide_share</item>
+	    <item>slide_learn</item>
+	    <item>slide_contribute</item>
     </string-array>
-
-    <string-array name="tutorial_images_naturalista">
-	    <item>tutorial1_naturalista</item>
-	    <item>tutorial2_naturalista</item>
-	    <item>tutorial3_naturalista</item>
-	    <item>tutorial4_naturalista</item>
-	    <item>tutorial5_naturalista</item>
-	    <item>tutorial6_naturalista</item>
+    <string-array name="tutorial_titles">
+	    <item></item>
+	    <item>Observe</item>
+	    <item>Share</item>
+	    <item>Learn</item>
+	    <item>Contribute</item>
     </string-array>
-
-    <string-array name="tutorial_images_naturalista_colombia">
-	    <item>tutorial1_naturalista_colombia</item>
-	    <item>tutorial2_naturalista</item>
-	    <item>tutorial3_naturalista</item>
-	    <item>tutorial4_naturalista</item>
-	    <item>tutorial5_naturalista</item>
-	    <item>tutorial6_naturalista</item>
+    <string-array name="tutorial_descriptions">
+	    <item>Explore and Connect with Nature</item>
+	    <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
+	    <item>Share your observation with the iNaturalist community.</item>
+	    <item>Check back for comments and identifications on your observation!</item>
+	    <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
     </string-array>
-
-    <string-array name="tutorial_images_naturewatchnz">
-	    <item>tutorial1_naturewatch</item>
-	    <item>tutorial2</item>
-	    <item>tutorial3</item>
-	    <item>tutorial4</item>
-	    <item>tutorial5</item>
-	    <item>tutorial6</item>
-    </string-array>
-
-    <string-array name="tutorial_images_inaturalistcanada">
-	    <item>tutorial1_inaturalistcanada</item>
-	    <item>tutorial2</item>
-	    <item>tutorial3</item>
-	    <item>tutorial4</item>
-	    <item>tutorial5</item>
-	    <item>tutorial6</item>
-    </string-array>
-
 
     <string-array name="geoprivacy_items">
 	    <item>Open</item>
@@ -554,5 +533,13 @@
     <string name="search_observations">Search Observations...</string>
     <string name="withdraw">Withdraw</string>
     <string name="update_id_description">Update Identification Description</string>
+    <string name="your_identification">Your ID: %1$s</string>
+    <string name="onboarding_species_name">Name what you saw if you can, but it\'s OK if you can\'t. Others may help you identify it!</string>
+    <string name="got_it">Got it!</string>
+    <string name="upload_complete">Upload Complete!</string>
+    <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
+    <string name="importing_photos">Importing photo(s)...</string>
+    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
+    <string name="preparing_photo">Preparing photo...</string>
  </resources>
 

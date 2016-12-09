@@ -123,7 +123,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         // See if we need to display the tutorial (only for the first time using the app)
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         boolean firstTime = preferences.getBoolean("first_time", true);
-        
+
         if (firstTime) {
             Intent intent = new Intent(this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("first_time", true);
@@ -336,11 +336,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
     }
 
 
-    private void startActivityIfNew(Intent intent) {
+    protected void startActivityIfNew(Intent intent) {
         startActivityIfNew(intent, true);
     }
 
-    private void startActivityIfNew(Intent intent, boolean closeCurrentActivity) {
+    protected void startActivityIfNew(Intent intent, boolean closeCurrentActivity) {
         if (intent.getComponent().getClassName().equals(this.getClass().getName())) {
             // Activity is already loaded
             mDrawerLayout.closeDrawer(mSideMenu);

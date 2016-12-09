@@ -1,20 +1,12 @@
 package org.inaturalist.android;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
@@ -23,14 +15,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -43,7 +31,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -61,18 +48,6 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-import org.apache.sanselan.ImageReadException;
-import org.apache.sanselan.ImageWriteException;
-import org.apache.sanselan.Sanselan;
-import org.apache.sanselan.common.IImageMetadata;
-import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
-import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
-import org.apache.sanselan.formats.tiff.TiffImageMetadata;
-import org.apache.sanselan.formats.tiff.constants.TagInfo;
-import org.apache.sanselan.formats.tiff.constants.TiffConstants;
-import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
-import org.apache.sanselan.formats.tiff.write.TiffOutputField;
-import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,27 +63,22 @@ import com.google.android.gms.location.LocationServices;
 import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.NotificationManager;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteConstraintException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -124,13 +94,16 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String USER = "user";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String FIELD_ID = "field_id";
     public static final String COMMENT_ID = "comment_id";
     public static final String OBSERVATION_RESULT = "observation_result";
     public static final String USER_OBSERVATIONS_RESULT = "user_observations_result";
+    public static final String USER_SEARCH_OBSERVATIONS_RESULT = "user_search_observations_result";
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
     public static final String LIFE_LIST_RESULT = "life_list_result";
+    public static final String SPECIES_COUNT_RESULT = "species_count_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
@@ -145,6 +118,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
+    public static final String QUERY = "query";
     public static final String OBSERVATIONS = "observations";
     public static final String IDENTIFICATIONS = "identifications";
     public static final String LIFE_LIST_ID = "life_list_id";
@@ -161,7 +135,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
     public static String API_HOST = "https://api.inaturalist.org/v1";
-    public static String USER_AGENT = "iNaturalist/" + INaturalistApp.VERSION + " (" +
+    public static String USER_AGENT = "iNaturalist/%VERSION% (" +
+        "Build %BUILD%; " +
         "Android " + System.getProperty("os.version") + " " + android.os.Build.VERSION.INCREMENTAL + "; " +
         "SDK " + android.os.Build.VERSION.SDK_INT + "; " +
         android.os.Build.DEVICE + " " +
@@ -170,6 +145,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_REGISTER_USER = "register_user";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
+    public static String ACTION_ADD_PROJECT_FIELD = "add_project_field";
     public static String ACTION_ADD_FAVORITE = "add_favorite";
     public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
@@ -236,8 +212,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
     public static String ACTION_GET_LIFE_LIST = "get_life_list";
+    public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";
     public static String ACTION_GET_USER_IDENTIFICATIONS = "get_user_identifications";
     public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
+    public static String ACTION_SEARCH_USER_OBSERVATIONS = "search_user_observations";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -365,6 +343,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 String body = intent.getStringExtra(IDENTIFICATION_BODY);
                 addIdentification(observationId, taxonId, body);
 
+            } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
+                int fieldId = intent.getIntExtra(FIELD_ID, 0);
+                addProjectField(fieldId);
+
             } else if (action.equals(ACTION_REGISTER_USER)) {
                 String email = intent.getStringExtra(EMAIL);
                 String password = intent.getStringExtra(PASSWORD);
@@ -435,6 +417,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 reply.putExtra(USER, user);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_GET_USER_SPECIES_COUNT)) {
+                String username = intent.getStringExtra(USERNAME);
+                BetterJSONObject speciesCount = getUserSpeciesCount(username);
+
+                Intent reply = new Intent(SPECIES_COUNT_RESULT);
+                mApp.setServiceResult(SPECIES_COUNT_RESULT, speciesCount);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_LIFE_LIST)) {
                 int lifeListId = intent.getIntExtra(LIFE_LIST_ID, 0);
                 BetterJSONObject lifeList = getUserLifeList(lifeListId);
@@ -453,6 +444,15 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_SEARCH_USER_OBSERVATIONS)) {
+                String query = intent.getStringExtra(QUERY);
+                SerializableJSONArray observations = searchUserObservation(query);
+
+                Intent reply = new Intent(USER_SEARCH_OBSERVATIONS_RESULT);
+                mApp.setServiceResult(USER_SEARCH_OBSERVATIONS_RESULT, observations);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(QUERY, query);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
                 String username = intent.getStringExtra(USERNAME);
@@ -1573,6 +1573,35 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
     }
 
+    private SerializableJSONArray searchUserObservation(String query) throws AuthenticationException {
+        String url = null;
+
+        try {
+            StringBuilder sb = new StringBuilder(INaturalistService.HOST + "/observations/" + mLogin + ".json");
+            sb.append("?per_page=100");
+            sb.append("&q=");
+            sb.append(URLEncoder.encode(query, "utf8"));
+
+            sb.append("&extra=observation_photos,projects,fields");
+
+            Locale deviceLocale = getResources().getConfiguration().locale;
+            String deviceLexicon = deviceLocale.getLanguage();
+            sb.append("&locale=");
+            sb.append(deviceLexicon);
+
+            url = sb.toString();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        JSONArray json = get(url, true);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+
+        return new SerializableJSONArray(json);
+    }
+
     private SerializableJSONArray getUserObservations(String username) throws AuthenticationException {
         String url = HOST + "/observations/" + username + ".json?per_page=200";
         JSONArray json = get(url, false);
@@ -1586,6 +1615,21 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         JSONArray json = get(url, false);
         if (json == null) return null;
         return new SerializableJSONArray(json);
+    }
+
+    private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/observations/species_counts?user_id=" + username + "&locale=" + deviceLanguage;
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private BetterJSONObject getUserLifeList(int lifeListId) throws AuthenticationException {
@@ -2426,7 +2470,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 return isRedirect;
             }
         });
-        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
+        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(mApp));
 
 //        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
 //                authenticated ? mCredentials : "<null>",
@@ -2586,10 +2630,10 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
 
     // Returns an array of two strings: access token + iNat username
-    public static String[] verifyCredentials(String username, String oauth2Token, LoginType authType) {
+    public static String[] verifyCredentials(Context context, String username, String oauth2Token, LoginType authType) {
         String grantType = null;
         DefaultHttpClient client = new DefaultHttpClient();
-        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, USER_AGENT);
+        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(context));
         String url = HOST + (authType == LoginType.OAUTH_PASSWORD ? "/oauth/token" : "/oauth/assertion_token");
         HttpRequestBase request = new HttpPost(url);
         ArrayList<NameValuePair> postParams = new ArrayList<NameValuePair>();
@@ -2983,5 +3027,20 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public void onDestroy() {
     	mIsStopped = true;
     	super.onDestroy();
+    }
+
+
+    public static String getUserAgent(Context context) {
+        PackageInfo info = null;
+        try {
+            info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String userAgent = USER_AGENT.replace("%BUILD%", info != null ? String.valueOf(info.versionCode) : String.valueOf(INaturalistApp.VERSION));
+        userAgent = userAgent.replace("%VERSION%", info != null ? info.versionName : String.valueOf(INaturalistApp.VERSION));
+
+        return userAgent;
     }
 }

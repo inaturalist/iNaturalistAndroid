@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -353,7 +354,10 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 if (!mIsSignup) {
                     // Login
                     recreateSignInTaskIfNeeded();
-                    mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+                    mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString().trim(), mPassword.getText().toString());
+
+                    // Existing user (not a new one) - No need to show onboarding
+                    mApp.setOnBoardingTextsShown();
                 } else {
                     // Sign up
                     mUserRegisterReceiver = new UserRegisterReceiver();
@@ -408,6 +412,10 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     @Override
     public void onLoginSuccessful() {
         mSignInTask.pause();
+
+        // Existing user (not a new one) - No need to show onboarding
+        mApp.setOnBoardingTextsShown();
+
         setResult(RESULT_OK);
         finish();
     }

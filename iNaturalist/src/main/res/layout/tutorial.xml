@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
- <android.support.v4.view.ViewPager
-    android:id="@+id/pager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     />
-</LinearLayout>
+
+    <com.viewpagerindicator.CirclePageIndicator
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tutorial_indicator"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        app:radius="5dp"
+        app:pageColor="#FFC4C4C4"
+        app:fillColor="#FF4A4A4A"
+        app:strokeWidth="0dp"
+        android:paddingBottom="40dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tutorial_indicator"
+        />
+
+</RelativeLayout>

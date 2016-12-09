@@ -63,6 +63,8 @@ public class Observation implements BaseColumns, Serializable {
     public SerializableJSONArray identifications;
     public SerializableJSONArray favorites;
 
+    public SerializableJSONArray field_values;
+
     public List<ObservationPhoto> photos;
 
     public Timestamp _created_at_was;
@@ -408,6 +410,7 @@ public class Observation implements BaseColumns, Serializable {
         this.identifications_count = o.getInteger("identifications_count");
         
         this.projects = o.getJSONArray("project_observations");
+        this.field_values = o.getJSONArray("observation_field_values");
 
         this.preferred_common_name = null;
         JSONObject taxon = o.getJSONObject("taxon");

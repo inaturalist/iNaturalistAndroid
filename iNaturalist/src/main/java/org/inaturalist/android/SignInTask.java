@@ -135,7 +135,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             mInvalidated = false;
         }
 
-        String[] results = INaturalistService.verifyCredentials(mUsername, mPassword, mLoginType);
+        String[] results = INaturalistService.verifyCredentials(mActivity, mUsername, mPassword, mLoginType);
 
         if (results == null) {
             return null;

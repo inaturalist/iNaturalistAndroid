@@ -354,9 +354,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 e.printStackTrace();
                 return R.drawable.unknown_large;
             }
-        }
-
-        if (o.has("taxon")) {
+        } else if (o.has("taxon")) {
             try {
                 iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
             } catch (JSONException e) {

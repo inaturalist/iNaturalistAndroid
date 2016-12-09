@@ -4,12 +4,18 @@ package org.inaturalist.android;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -20,19 +26,38 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
-class UserIdentificationsAdapter extends ArrayAdapter<String> {
+class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private String mUsername;
+    private String mLoggedInUsername;
+    private boolean mIsGrid;
+    private int mDimension;
+    private PullToRefreshGridViewExtended mGrid;
 
-    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username) {
+    private boolean mIsScrolling = false;
+
+    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username, boolean isGrid, PullToRefreshGridViewExtended grid) {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
         mResultList = results;
         mUsername = username;
+        mIsGrid = isGrid;
+        mGrid = grid;
+
+        mLoggedInUsername = ((INaturalistApp)mContext.getApplicationContext()).currentUserLogin();
+
+        mObservationPhotoNames = new HashMap<>();
+        mImageViews = new HashMap<>();
+        mObservationLoaded = new HashMap<>();
+    }
+
+    public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username) {
+        this(context, results, username, false, null);
     }
 
     @Override
@@ -42,40 +67,63 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.user_profile_identifications_item, parent, false);
+        View view = inflater.inflate(mIsGrid ? R.layout.observation_grid_item : R.layout.user_profile_identifications_item, parent, false);
         JSONObject item = null;
         item = mResultList.get(position);
 
-        ((ViewGroup)view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
+        if (!mIsGrid) {
+            ((ViewGroup) view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
+        }
+
 
         // Get the taxon display name according to device locale
         try {
-            ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
-            TextView idName = (TextView) view.findViewById(R.id.id_name);
+            ImageView idPic = (ImageView) view.findViewById(mIsGrid ? R.id.observation_pic : R.id.id_pic);
+            ImageView idIconicPic = (ImageView) view.findViewById(R.id.observation_iconic_pic);
+            TextView idName = (TextView) view.findViewById(mIsGrid ? R.id.species_guess : R.id.id_name);
             TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
+
+            idPic.setVisibility(View.INVISIBLE);
+
+            idIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
+            idIconicPic.setVisibility(View.VISIBLE);
 
             JSONObject observation = item.getJSONObject("observation");
             JSONObject taxon = item.getJSONObject("taxon");
-            idName.setText(observation.optString("species_guess"));
-            idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
+            idName.setText(getTaxonName(taxon));
+            if (!mIsGrid) {
+                if (!mUsername.equals(mLoggedInUsername)) {
+                    idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
+                } else {
+                    idTaxonName.setText(String.format(mContext.getString(R.string.your_identification), getTaxonName(taxon)));
+                }
+            }
 
-            idPic.setImageResource(R.drawable.iconic_taxon_unknown);
+            if (mIsGrid) {
+                mDimension = mGrid.getColumnWidth();
+                idPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+
+                int newDimension = (int) (mDimension * 0.48); // So final image size will be 48% of original size
+                int speciesGuessHeight = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, mContext.getResources().getDisplayMetrics());
+                int leftRightMargin = (mDimension - newDimension) / 2;
+                int topBottomMargin = (mDimension - speciesGuessHeight - newDimension) / 2;
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
+                layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
+                idIconicPic.setLayoutParams(layoutParams);
+            }
 
             JSONArray photos = observation.optJSONArray("photos");
+            String photoUrl = null;
             if ((photos != null) && (photos.length() > 0)) {
-                UrlImageViewHelper.setUrlDrawable(idPic, photos.getJSONObject(0).getString("square_url"), ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        if (loadedBitmap != null)
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
-                    }
-
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return loadedBitmap;
-                    }
-                });
+                photoUrl = photos.getJSONObject(0).getString("medium_url");
+                if (!mIsScrolling) {
+                    // Only load image if user is not scrolling
+                    loadObsImage(position, idPic, photoUrl);
+                }
             }
+
+            mObservationPhotoNames.put(position, photoUrl);
+            mImageViews.put(position, idPic);
 
             view.setTag(item);
         } catch (JSONException e) {
@@ -131,6 +179,78 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> {
         }
 
         return displayName;
+
+    }
+
+    private void loadObsImage(final int position, ImageView imageView, String url) {
+        UrlImageViewCallback callback = new UrlImageViewCallback() {
+            @Override
+            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                if (loadedBitmap != null)
+                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap), 4));
+                if (mIsGrid) {
+                    imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                }
+
+                imageView.setVisibility(View.VISIBLE);
+
+                if ((!mObservationLoaded.containsKey(position)) || (mObservationLoaded.get(position) == false)) {
+                    Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slow_fade_in);
+                    imageView.startAnimation(animation);
+                    mObservationLoaded.put(position, true);
+                }
+            }
+
+            @Override
+            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                return loadedBitmap;
+            }
+        };
+
+        // Change URL postfix so UrlImageViewHelper won't cache the squared version for other screens using this image
+        if (url.lastIndexOf('/') > url.lastIndexOf('?')) {
+            url += "?square=1";
+        } else {
+            url += "&square=1";
+        }
+
+        UrlImageViewHelper.setUrlDrawable(imageView, url, callback);
+    }
+
+    private HashMap<Integer, ImageView> mImageViews;
+    private HashMap<Integer, String> mObservationPhotoNames;
+    private HashMap<Integer, Boolean> mObservationLoaded;
+
+    // Load an observation image for one of the views
+    private void loadImageByPosition(int position) {
+        if (!mImageViews.containsKey(position) || !mObservationPhotoNames.containsKey(position)) return;
+
+        ImageView imageView = mImageViews.get(position);
+        String photoName = mObservationPhotoNames.get(position);
+
+        if ((photoName == null) || (imageView == null)) return;
+
+        loadObsImage(position, imageView, photoName);
+    }
+
+
+    @Override
+    public void onScrollStateChanged(AbsListView listView, int state) {
+        switch (state) {
+            case SCROLL_STATE_FLING:
+            case SCROLL_STATE_TOUCH_SCROLL:
+                mIsScrolling = true;
+                break;
+            case SCROLL_STATE_IDLE:
+                mIsScrolling = false;
+                for (int visiblePosition = listView.getFirstVisiblePosition(); visiblePosition <= listView.getLastVisiblePosition(); visiblePosition++) {
+                    loadImageByPosition(visiblePosition);
+                }
+                break;
+        }
+    }
+    @Override
+    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
 
     }
 }

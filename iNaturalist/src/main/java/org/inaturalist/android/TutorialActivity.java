@@ -6,6 +6,7 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
@@ -23,59 +24,66 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
+import com.viewpagerindicator.CirclePageIndicator;
 
-public class TutorialActivity extends AppCompatActivity {
-	
-	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
+public class TutorialActivity extends BaseFragmentActivity {
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
-	
-    
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+        FlurryAgent.logEvent(this.getClass().getSimpleName());
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
+
+
     private class TutorialAdapter extends FragmentPagerAdapter implements OnPageChangeListener {
 
         private AppCompatActivity mContext;
         private int mCount;
-        
+
         public TutorialAdapter(AppCompatActivity context) {
             super(context.getSupportFragmentManager());
             mContext = context;
-            
-            
-            String inatNetwork = mApp.getInaturalistNetworkMember();
-            
-            String[] images;
-            
-            if (inatNetwork == null) {
-            	// No network selected - use default tutorial images
-            	images = getResources().getStringArray(R.array.tutorial_images);
-            } else {
-            	// Use network specific tutorial images
-            	String imagesArrayName = mApp.getStringResourceByName("inat_tutorial_images_" + inatNetwork);
-            	images = mApp.getStringArrayResourceByName(imagesArrayName);
-            }
-            mCount = images.length;
+
+            String[] images = getResources().getStringArray(R.array.tutorial_images);
+            mCount = images.length + 1; // +1 for the final "Let's get started" page
         }
 
         @Override
         public Fragment getItem(int position) {
+            // Determine appropriate image/title/description for current page
+
+            Resources res = getResources();
+            Fragment fragment;
+
             Bundle args = new Bundle();
-            args.putInt("id", position);
-            Fragment fragment = Fragment.instantiate(mContext, TutorialFragment.class.getName(), args);
+            String[] images = res.getStringArray(R.array.tutorial_images);
+
+            if (position == images.length) {
+                // Final page ("Let's get started")
+                args.putBoolean("final_page", true);
+            } else {
+                int imageResId = res.getIdentifier("@drawable/" + images[position], "drawable", getApplicationContext().getPackageName());
+                args.putInt("image", imageResId);
+
+                args.putString("title", res.getStringArray(R.array.tutorial_titles)[position]);
+                args.putString("description", res.getStringArray(R.array.tutorial_descriptions)[position]);
+            }
+
+            fragment = Fragment.instantiate(mContext, TutorialFragment.class.getName(), args);
             return fragment;
         }
 
@@ -89,112 +97,51 @@ public class TutorialActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        public void onPageScrolled(int position, float arg1, int arg2) {
         }
 
-        @SuppressLint("NewApi")
-		@Override
-        public void onPageSelected(int arg0) {
-        	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-        		invalidateOptionsMenu();
-        	}
+        @Override
+        public void onPageSelected(int position) {
+            if (position == mCount - 1) {
+                // Final page ("Let's get started")
+                mIndicator.setVisibility(View.GONE);
+            } else {
+                mIndicator.setVisibility(View.VISIBLE);
+            }
         }
-        
+
     }
-
-    private static final int ACTION_PREVIOUS = 0x100;
-    private static final int ACTION_NEXT = 0x101;
-    private static final int ACTION_SKIP = 0x102;
 
     private TutorialAdapter mAdapter;
     private ViewPager mViewPager;
-	private INaturalistApp mApp;
-    
+    private CirclePageIndicator mIndicator;
+
+    private INaturalistApp mApp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.tutorial);
-        
+
         Intent intent = getIntent();
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        
-        final ActionBar actionBar = getSupportActionBar();
-        
-        if ((intent == null) || (!intent.getBooleanExtra("first_time", false))) {
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        actionBar.setIcon(android.R.color.transparent);
+        mIndicator = (CirclePageIndicator) findViewById(R.id.tutorial_indicator);
 
-       mApp = (INaturalistApp) getApplicationContext();
-       mAdapter = new TutorialAdapter(this);
-       mViewPager.setAdapter(mAdapter);
-       mViewPager.setOnPageChangeListener(mAdapter);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
-       mApp.detectUserCountryAndUpdateNetwork(this);
-        
-    }
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-    	if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-    		SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-        	preferences.edit().putBoolean("first_time", false).apply();
-    	}
-    	return super.onKeyDown(keyCode, event);
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-    	SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        mApp = (INaturalistApp) getApplicationContext();
+        mAdapter = new TutorialAdapter(this);
+        mViewPager.setAdapter(mAdapter);
+        mViewPager.addOnPageChangeListener(mAdapter);
+        mIndicator.setViewPager(mViewPager);
 
-        switch (item.getItemId()) {
-        // Respond to the action bar's Up/Home button
-        case android.R.id.home:
-        	preferences.edit().putBoolean("first_time", false).apply();
-            finish();
-            return true;
-        case ACTION_SKIP:
-            preferences.edit().putBoolean("first_time", false).apply();
-            finish();
-            return true;
-        case ACTION_NEXT:
-            if (mViewPager.getCurrentItem() == mAdapter.getCount() - 1) {
-                // Pressed the finish button
-                preferences.edit().putBoolean("first_time", false).apply();
-                finish();
-                return true;
-            }
-            mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
-            return true;
-        case ACTION_PREVIOUS:
-            mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    } 
+        mApp.detectUserCountryAndUpdateNetwork(this);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        // Add either a "next" or "finish" button to the action bar, depending on which page is currently selected.
-        
-        if (mViewPager.getCurrentItem() > 0) {
-            MenuItem item = menu.add(Menu.NONE, ACTION_PREVIOUS, Menu.NONE, R.string.previous);
-            MenuItemCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-        }
-
-        if ((mViewPager.getCurrentItem() < mAdapter.getCount() - 1)) {
-            MenuItem item2 = menu.add(Menu.NONE, ACTION_SKIP, Menu.NONE, R.string.skip2);
-            MenuItemCompat.setShowAsAction(item2, MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-        }
-
-        MenuItem item3 = menu.add(Menu.NONE, ACTION_NEXT, Menu.NONE,
-                (mViewPager.getCurrentItem() == mAdapter.getCount() - 1)
-                ? R.string.finish : R.string.next);
-        MenuItemCompat.setShowAsAction(item3, MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-
-        return true;
+        SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        preferences.edit().putBoolean("first_time", false).apply();
     }
 }
+
