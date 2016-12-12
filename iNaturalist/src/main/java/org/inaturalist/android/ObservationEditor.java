@@ -2616,6 +2616,8 @@ public class ObservationEditor extends AppCompatActivity {
                 is = new FileInputStream(path);
             }
 
+            // Just read the input image dimensions
+            options.inJustDecodeBounds = true;
             Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
             int originalHeight = options.outHeight;
             int originalWidth = options.outWidth;
@@ -2623,6 +2625,7 @@ public class ObservationEditor extends AppCompatActivity {
 
             // BitmapFactory.decodeStream moves the reading cursor
             is.close();
+
             if (path == null) {
                 is = getContentResolver().openInputStream(photoUri);
             } else {
@@ -2653,7 +2656,14 @@ public class ObservationEditor extends AppCompatActivity {
             Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
             Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
 
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+            // will load & resize the image to be 1/inSampleSize dimensions
+            BitmapFactory.Options resizedOptions = new BitmapFactory.Options();
+            resizedOptions.inScaled = true;
+            resizedOptions.inSampleSize = 4;
+            resizedOptions.inDensity = originalWidth;
+            resizedOptions.inTargetDensity =  newWidth * resizedOptions.inSampleSize;
+
+            Bitmap resizedBitmap = BitmapFactory.decodeStream(is, null, resizedOptions);
 
             // Save resized image
             File imageFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
@@ -2661,6 +2671,9 @@ public class ObservationEditor extends AppCompatActivity {
             resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
             os.flush();
             os.close();
+
+            resizedBitmap.recycle();
+            is.close();
 
             // Copy all EXIF data from original image into resized image
             copyExifData(is, new File(imageFile.getAbsolutePath()), null);
