@@ -129,6 +129,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String REGISTER_USER_ERROR = "error";
     public static final String REGISTER_USER_STATUS = "status";
     public static final String SYNC_CANCELED = "sync_canceled";
+    public static final String FIRST_SYNC = "first_sync";
 
 	public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
 
@@ -784,7 +785,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 // Notify the rest of the app of the completion of the sync
                 Intent reply = new Intent(ACTION_SYNC_COMPLETE);
                 reply.putExtra(SYNC_CANCELED, cancelSyncRequested);
-                sendBroadcast(reply); 
+                reply.putExtra(FIRST_SYNC, action.equals(ACTION_FIRST_SYNC));
+                sendBroadcast(reply);
             }
         }
     }
