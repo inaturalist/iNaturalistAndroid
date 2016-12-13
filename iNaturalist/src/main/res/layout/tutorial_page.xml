@@ -4,19 +4,21 @@
     android:layout_height="match_parent"
     android:paddingLeft="32dp"
     android:paddingRight="32dp"
+    android:background="#EFEFEF"
     android:orientation="vertical" >
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_weight="0.65"
+        android:layout_weight="0.60"
         android:layout_height="0dp">
         <ImageView
             android:id="@+id/tutorial_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
             />
     </RelativeLayout>
     <LinearLayout
@@ -25,7 +27,7 @@
         android:layout_weight="0.35"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         >
 
         <TextView
