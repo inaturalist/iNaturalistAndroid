@@ -20,24 +20,26 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/is_first_on"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
             android:src="@drawable/ic_check_circle_black_24dp"
             android:background="#00ffffff"
             android:tint="#74ac00"
             android:visibility="visible"
             android:layout_centerVertical="true"
+            android:scaleType="fitXY"
             />
         <ImageView
             android:id="@+id/is_first_off"
-            android:layout_width="17dp"
-            android:layout_height="17dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:background="@drawable/circular_border"
             android:visibility="visible"
             android:layout_centerVertical="true"
             android:layout_marginLeft="2dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="3dp"
+            android:scaleType="fitXY"
             />
 
         <TextView

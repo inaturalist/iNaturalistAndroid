@@ -422,7 +422,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mPhotosContainer.getLayoutParams();
-        params.height = (int) (display.getHeight() * 0.32);
+        params.height = (int) (display.getHeight() * 0.37);
         mPhotosContainer.setLayoutParams(params);
 
         View.OnClickListener onLogin = new View.OnClickListener() {

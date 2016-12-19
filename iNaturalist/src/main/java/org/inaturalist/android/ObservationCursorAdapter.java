@@ -700,7 +700,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     private void loadObsImage(final int position, ImageView imageView, String name, boolean isOnline) {
-
         if (isOnline) {
             // Online image
             UrlImageViewCallback callback = new UrlImageViewCallback() {
@@ -756,7 +755,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if ((photoName == null) || (imageView == null)) return;
 
-        loadObsImage(position, imageView, photoName, photoName.startsWith("http://"));
+        loadObsImage(position, imageView, photoName, !FileUtils.isLocal(photoName));
     }
 
 

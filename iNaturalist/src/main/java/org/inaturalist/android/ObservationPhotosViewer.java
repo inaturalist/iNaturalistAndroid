@@ -277,7 +277,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             String imagePath = mImages.get(position);
 
-            if (!imagePath.startsWith("http://")) {
+            if (FileUtils.isLocal(imagePath)) {
                 // Offline photo
                 Bitmap bitmapImage = null;
                 try {
