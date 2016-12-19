@@ -245,7 +245,16 @@
             android:name=".ObservationSearchActivity" >
         </activity>
 
-        <activity android:name="com.tangxiaolv.telegramgallery.GalleryActivity" />
+         <activity
+            android:configChanges="orientation"
+            android:label="@string/missions"
+            android:name=".MissionsActivity">
+        </activity>
+         <activity
+            android:configChanges="orientation"
+            android:label="@string/missions"
+            android:name=".MissionsGridActivity">
+        </activity>
 
         <service android:name=".INaturalistService" />
         <meta-data android:name="com.crashlytics.ApiKey" android:value="7baaee0ca8a376b3d129b908c1e03be6ecbe5786"/>

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,22 +36,26 @@ import java.util.HashMap;
 class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
-    private boolean mIsGrid;
+    private int mViewType;
     private int mDimension;
     private PullToRefreshGridViewExtended mGrid;
+
+    public static final int VIEW_TYPE_LIST = 0x1000;
+    public static final int VIEW_TYPE_GRID = 0x1001;
+    public static final int VIEW_TYPE_CARDS = 0x1002;
 
     private boolean mIsScrolling = false;
 
     public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results) {
-        this(context, results, false, null);
+        this(context, results, VIEW_TYPE_LIST, null);
     }
 
-    public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results, boolean isGrid, PullToRefreshGridViewExtended grid) {
+    public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results, int viewType, PullToRefreshGridViewExtended grid) {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
         mResultList = results;
-        mIsGrid = isGrid;
+        mViewType = viewType;
         mGrid = grid;
 
         mObservationPhotoNames = new HashMap<>();
@@ -64,7 +70,21 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(mIsGrid ? R.layout.observation_grid_item : R.layout.user_profile_species_item, parent, false);
+
+        int layout;
+        switch (mViewType) {
+            case VIEW_TYPE_CARDS:
+                layout = R.layout.mission_grid_item;
+                break;
+            case VIEW_TYPE_GRID:
+                layout = R.layout.observation_grid_item;
+                break;
+            case VIEW_TYPE_LIST:
+            default:
+                layout = R.layout.user_profile_species_item;
+        }
+
+        View view = inflater.inflate(layout, parent, false);
         JSONObject item = null;
         try {
             item = mResultList.get(position).getJSONObject("taxon");
@@ -75,10 +95,10 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
         // Get the taxon display name according to device locale
         try {
-            ImageView speciesPic = (ImageView) view.findViewById(mIsGrid ? R.id.observation_pic : R.id.species_pic);
+            ImageView speciesPic = (ImageView) view.findViewById(mViewType == VIEW_TYPE_LIST ? R.id.species_pic : R.id.observation_pic);
             ImageView speciesIconicPic = (ImageView) view.findViewById(R.id.observation_iconic_pic);
 
-            if (mIsGrid) {
+            if (mViewType == VIEW_TYPE_GRID) {
                 mDimension = mGrid.getColumnWidth();
                 speciesPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
 
@@ -89,23 +109,27 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
                 layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
                 speciesIconicPic.setLayoutParams(layoutParams);
+            } else if ((mViewType == VIEW_TYPE_CARDS) && (mGrid != null)) {
+                mDimension = mGrid.getColumnWidth();
+                view.setLayoutParams(new LinearLayout.LayoutParams(mDimension, mDimension));
             }
-            TextView speciesName = (TextView) view.findViewById(mIsGrid ? R.id.species_guess : R.id.species_name);
+
+            TextView speciesName = (TextView) view.findViewById(mViewType == VIEW_TYPE_LIST ? R.id.species_name : R.id.species_guess);
             TextView scienceName = (TextView) view.findViewById(R.id.species_science_name);
             JSONObject defaultName = item.optJSONObject("default_name");
 
             if (defaultName != null) {
                 speciesName.setText(defaultName.getString("name"));
-                if (!mIsGrid) scienceName.setText(item.getString("name"));
+                if (mViewType == VIEW_TYPE_LIST) scienceName.setText(item.getString("name"));
             } else {
                 String preferredCommonName = item.optString("preferred_common_name", "");
                 if (preferredCommonName.length() == 0) preferredCommonName = item.optString("english_common_name");
                 if (preferredCommonName.length() == 0) {
                     speciesName.setText(item.getString("name"));
-                    if (!mIsGrid) scienceName.setVisibility(View.GONE);
+                    if (mViewType == VIEW_TYPE_LIST) scienceName.setVisibility(View.GONE);
                 } else {
                     speciesName.setText(preferredCommonName);
-                    if (!mIsGrid) scienceName.setText(item.getString("name"));
+                    if (mViewType == VIEW_TYPE_LIST) scienceName.setText(item.getString("name"));
                 }
             }
 
@@ -138,7 +162,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             mObservationPhotoNames.put(position, photoUrl);
             mImageViews.put(position, speciesPic);
 
-            if (!mIsGrid) {
+            if (mViewType == VIEW_TYPE_LIST) {
                 TextView speciesCount = (TextView) view.findViewById(R.id.species_count);
                 int obsCount = mResultList.get(position).optInt("count", -1);
                 int count = obsCount > -1 ? obsCount : item.getInt("observations_count");
@@ -160,7 +184,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                 if (loadedBitmap != null)
                     imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
-                if (mIsGrid) {
+                if (mViewType == VIEW_TYPE_GRID) {
                     imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
                 }
 

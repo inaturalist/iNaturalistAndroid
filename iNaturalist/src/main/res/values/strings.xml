@@ -541,5 +541,20 @@
     <string name="importing_photos">Importing photo(s)...</string>
     <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
     <string name="preparing_photo">Preparing photo...</string>
+    <string name="recommended_for_you">Recommended for You</string>
+    <string name="missions">Missions</string>
+    <string name="view_all">View All</string>
+    <string name="browse_by_category">Browse By Category</string>
+    <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
+    <string name="plants">Plants</string>
+    <string name="mammals">Mammals</string>
+    <string name="insects">Insects</string>
+    <string name="reptiles">Reptiles</string>
+    <string name="fish">Fish</string>
+    <string name="mollusks">Mollusks</string>
+    <string name="amphibians">Amphibians</string>
+    <string name="fungi">Fungi</string>
+    <string name="birds">Birds</string>
+    <string name="arachnids">Arachnids</string>
  </resources>
 

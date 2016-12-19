@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffffff"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:background="#FFEEEEEE"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/recommended_for_you"
+            android:text="@string/recommended_for_you"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/view_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_all"
+            android:textColor="#FF74AC00"
+            android:layout_marginRight="16dp"
+            android:textSize="14sp"
+            android:textAllCaps="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/recommended_for_you"
+            />
+
+
+
+        <android.support.v4.view.ViewPager
+            android:layout_below="@id/view_all"
+            android:layout_marginTop="16dp"
+            android:id="@+id/recommended_missions"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/recommended_missions"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_marginTop="10dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/browse_by_category"
+            android:textSize="16sp"
+            android:textColor="#FF74AC00"
+            android:layout_marginBottom="16dp"
+            />
+
+        <org.inaturalist.android.GridViewExtended
+            android:id="@+id/categories"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:numColumns="3"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="5dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:orientation="vertical"/>
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

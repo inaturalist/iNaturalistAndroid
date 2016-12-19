@@ -412,7 +412,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                     mSpeciesListAdapter = new UserSpeciesAdapter(this, mSpecies);
                     mSpeciesList.setAdapter(mSpeciesListAdapter);
-                    mSpeciesGridAdapter = new UserSpeciesAdapter(this, mSpecies, true, mSpeciesGrid);
+                    mSpeciesGridAdapter = new UserSpeciesAdapter(this, mSpecies, UserSpeciesAdapter.VIEW_TYPE_GRID, mSpeciesGrid);
                     mSpeciesGrid.setAdapter(mSpeciesGridAdapter);
 
                     // Make sure the images get loaded only when the user stops scrolling

@@ -82,12 +82,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
-public class INaturalistService extends IntentService implements ConnectionCallbacks, OnConnectionFailedListener {
+public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
-    
-    private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
-    
     
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
@@ -104,6 +101,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
     public static final String LIFE_LIST_RESULT = "life_list_result";
     public static final String SPECIES_COUNT_RESULT = "species_count_result";
+    public static final String RECOMMENDED_MISSIONS_RESULT = "recommended_missions_result";
+    public static final String MISSIONS_BY_TAXON_RESULT = "missions_by_taxon_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
@@ -215,6 +214,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";
     public static String ACTION_GET_USER_IDENTIFICATIONS = "get_user_identifications";
     public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
+    public static String ACTION_GET_RECOMMENDED_MISSIONS = "get_recommended_missions";
+    public static String ACTION_GET_MISSIONS_BY_TAXON = "get_missions_by_taxon";
     public static String ACTION_SEARCH_USER_OBSERVATIONS = "search_user_observations";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
@@ -417,6 +418,55 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 reply.putExtra(USER, user);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
+                final String username = intent.getStringExtra(USERNAME);
+                final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
+
+                getLocation(new IOnLocation() {
+                    @Override
+                    public void onLocation(Location location) {
+                        if (location == null) {
+                            // No location
+                            Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
+                            mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, new BetterJSONObject());
+                            reply.putExtra(IS_SHARED_ON_APP, true);
+                            sendBroadcast(reply);
+                            return;
+                        }
+
+                        BetterJSONObject missions = getMissions(location, username, taxonId);
+
+                        Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
+                        mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, missions);
+                        reply.putExtra(IS_SHARED_ON_APP, true);
+                        sendBroadcast(reply);
+                    }
+                });
+
+            } else if (action.equals(ACTION_GET_RECOMMENDED_MISSIONS)) {
+                final String username = intent.getStringExtra(USERNAME);
+
+                getLocation(new IOnLocation() {
+                    @Override
+                    public void onLocation(Location location) {
+                        if (location == null) {
+                            // No location
+                            Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
+                            mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, new BetterJSONObject());
+                            reply.putExtra(IS_SHARED_ON_APP, true);
+                            sendBroadcast(reply);
+                            return;
+                        }
+
+                        BetterJSONObject missions = getMissions(location, username, null);
+
+                        Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
+                        mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, missions);
+                        reply.putExtra(IS_SHARED_ON_APP, true);
+                        sendBroadcast(reply);
+                    }
+                });
+
             } else if (action.equals(ACTION_GET_USER_SPECIES_COUNT)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject speciesCount = getUserSpeciesCount(username);
@@ -591,75 +641,59 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 reply.putExtra(GUIDES_RESULT, guides);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_NEAR_BY_GUIDES)) {
-                if (!mApp.isLocationEnabled(null)) {
-                    // No location enabled
-                    Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
-                    reply.putExtra(GUIDES_RESULT, new SerializableJSONArray());
-                    sendBroadcast(reply);
+            } else if (action.equals(ACTION_GET_NEAR_BY_GUIDES)) {
+                getLocation(new IOnLocation() {
+                    @Override
+                    public void onLocation(Location location) {
+                        if (location == null) {
+                            // No location enabled
+                            Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
+                            reply.putExtra(GUIDES_RESULT, new SerializableJSONArray());
+                            sendBroadcast(reply);
 
-                } else {
-                    int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+                        } else {
+                            SerializableJSONArray guides = null;
+                            try {
+                                guides = getNearByGuides(location);
+                            } catch (AuthenticationException e) {
+                                e.printStackTrace();
+                            }
 
-                    // If Google Play services is available
-                    if (ConnectionResult.SUCCESS == resultCode) {
-                        // Use Google Location Services to determine location
-                        mLocationClient = new GoogleApiClient.Builder(this)
-                                .addApi(LocationServices.API)
-                                .addConnectionCallbacks(this)
-                                .addOnConnectionFailedListener(this)
-                                .build();
-                        mLocationClient.connect();
-
-                        // Only once we're connected - we'll call getNearByGuides()
-                        mGetLocationForProjects = false;
-
-                    } else {
-                        // Use GPS for the location
-                        SerializableJSONArray guides = getNearByGuides(false);
-
-                        Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
-                        reply.putExtra(GUIDES_RESULT, guides);
-                        sendBroadcast(reply);
+                            Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
+                            reply.putExtra(GUIDES_RESULT, guides);
+                            sendBroadcast(reply);
+                        }
                     }
-                }
-               
-             } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
-                if (!mApp.isLocationEnabled(null)) {
-                    // No location enabled
-                    Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                    mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, new SerializableJSONArray());
-                    reply.putExtra(IS_SHARED_ON_APP, true);
-                    sendBroadcast(reply);
+                });
 
-                } else {
-                    int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+            } else if (action.equals(ACTION_GET_NEARBY_PROJECTS)) {
+                getLocation(new IOnLocation() {
+                    @Override
+                    public void onLocation(Location location) {
+                        if (location == null) {
+                            // No location enabled
+                            Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
+                            mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, new SerializableJSONArray());
+                            reply.putExtra(IS_SHARED_ON_APP, true);
+                            sendBroadcast(reply);
 
-                    // If Google Play services is available
-                    if (ConnectionResult.SUCCESS == resultCode) {
-                        // Use Google Location Services to determine location
-                        mLocationClient = new GoogleApiClient.Builder(this)
-                                .addApi(LocationServices.API)
-                                .addConnectionCallbacks(this)
-                                .addOnConnectionFailedListener(this)
-                                .build();
-                        mLocationClient.connect();
+                        } else {
+                            SerializableJSONArray projects = null;
+                            try {
+                                projects = getNearByProjects(location);
+                            } catch (AuthenticationException e) {
+                                e.printStackTrace();
+                            }
 
-                        // Only once we're connected - we'll call getNearByProjects()
-                        mGetLocationForProjects = true;
-
-                    } else {
-                        // Use GPS for the location
-                        SerializableJSONArray projects = getNearByProjects(false);
-
-                        Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
-                        mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, projects);
-                        reply.putExtra(IS_SHARED_ON_APP, true);
-                        sendBroadcast(reply);
+                            Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
+                            mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, projects);
+                            reply.putExtra(IS_SHARED_ON_APP, true);
+                            sendBroadcast(reply);
+                        }
                     }
-                }
-                 
-              } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
+                });
+
+            } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
                  SerializableJSONArray projects = getFeaturedProjects();
 
                  Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
@@ -1673,6 +1707,35 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 		}
     }
 
+    private BetterJSONObject getMissions(Location location, String username, Integer taxonId) {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/observations/species_counts?locale=" + deviceLanguage +
+                "&verifiable=true&lat=" + location.getLatitude()+ "&lng=" + location.getLongitude();
+        if (username != null) {
+            url += "&unobserved_by_user_id=" + username;
+        }
+        if (taxonId != null) {
+            url += "&taxon_id=" + taxonId;
+        }
+
+        JSONArray json = null;
+        try {
+            json = get(url, false);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return null;
+        }
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
@@ -1827,27 +1890,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         return new SerializableJSONArray(json);
     }
 
-    private SerializableJSONArray getNearByGuides(boolean useLocationServices) throws AuthenticationException {
-        if (useLocationServices) {
-        	Location location;
-        	try {
-        		location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
-        	} catch (IllegalStateException ex) {
-        		ex.printStackTrace();
-        		return new SerializableJSONArray();
-        	}
-
-            return getNearByGuides(location);
-        } else {
-            // Use GPS alone to determine location
-            LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-            String provider = locationManager.getBestProvider(criteria, false);
-            Location location = locationManager.getLastKnownLocation(provider);
-            return getNearByGuides(location);
-        }
-    }
-
     private SerializableJSONArray getNearByGuides(Location location) throws AuthenticationException {
         if (location == null) {
             // No location found - return an empty result
@@ -1912,31 +1954,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         return new SerializableJSONArray(json);
     }
     
-    private SerializableJSONArray getNearByProjects(boolean useLocationServices) throws AuthenticationException {
-
-        Location location = null;
-        if (useLocationServices) {
-            try {
-                location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
-            } catch (IllegalStateException ex) {
-                ex.printStackTrace();
-                return new SerializableJSONArray();
-            }
-        }
-
-        if (location != null) {
-            return getNearByProjects(location);
-        } else {
-            // Use GPS alone to determine location
-            LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-            String provider = locationManager.getBestProvider(criteria, false);
-            location = locationManager.getLastKnownLocation(provider);
-            
-            return getNearByProjects(location);
-        }
-    }
-
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
@@ -2962,65 +2979,104 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         private static final long serialVersionUID = 1L;
     }
 
-    @Override
-    public void onConnectionFailed(ConnectionResult arg0) {
-        Log.e(TAG, "onConnectionFailed: " + (arg0 != null ? arg0.toString() : "null"));
-        
-        // Try using the GPS for the location
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SerializableJSONArray projects;
-                try {
-                	if (mGetLocationForProjects) {
-                		projects = getNearByProjects(false);
-                	} else {
-                		projects = getNearByGuides(false);
-                	}
-                } catch (AuthenticationException e) {
-                    projects = new SerializableJSONArray();
-                    e.printStackTrace();
-                }
-
-                Intent reply = new Intent(mGetLocationForProjects ? ACTION_NEARBY_PROJECTS_RESULT: ACTION_NEAR_BY_GUIDES_RESULT);
-                mApp.setServiceResult(mGetLocationForProjects ? ACTION_NEARBY_PROJECTS_RESULT: ACTION_NEAR_BY_GUIDES_RESULT, projects);
-                reply.putExtra(IS_SHARED_ON_APP, true);
-                sendBroadcast(reply);
-            }
-        });
-        thread.start();
+    public interface IOnLocation {
+        void onLocation(Location location);
     }
 
-    @Override
-    public void onConnected(Bundle arg0) {
-        Log.i(TAG, "onConnected: " + (arg0 != null ? arg0.toString() : "null"));
-        
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SerializableJSONArray projects;
-                try {
-                	if (mGetLocationForProjects) {
-                		projects = getNearByProjects(true);
-                	} else {
-                		projects = getNearByGuides(true);
-                	}
-                } catch (AuthenticationException e) {
-                    projects = new SerializableJSONArray();
-                    e.printStackTrace();
-                }
+    private Location getLocationFromGPS() {
+        LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
 
-                Intent reply = new Intent(mGetLocationForProjects ? ACTION_NEARBY_PROJECTS_RESULT : ACTION_NEAR_BY_GUIDES_RESULT);
-                reply.putExtra(mGetLocationForProjects ? PROJECTS_RESULT : GUIDES_RESULT, projects);
-                sendBroadcast(reply);
-            }
-        });
-        thread.start();
+        return location;
     }
 
-    @Override
-    public void onConnectionSuspended(int i) {
+    private Location getLastKnownLocationFromClient() {
+        Location location = null;
 
+        try {
+            location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
+        } catch (IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+
+        if (location == null) {
+            // Failed - try and return last location using GPS
+            return getLocationFromGPS();
+        } else {
+            return location;
+        }
+    }
+
+    private void getLocation(final IOnLocation callback) {
+        if (!mApp.isLocationEnabled(null)) {
+            // Location not enabled
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onLocation(null);
+                }
+            }).start();
+            return;
+        }
+
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+        if (ConnectionResult.SUCCESS == resultCode) {
+            // User Google Play services if available
+            if ((mLocationClient != null) && (mLocationClient.isConnected())) {
+                // Location client already initialized and connected - use it
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onLocation(getLastKnownLocationFromClient());
+                    }
+                }).start();
+            } else {
+                // Connect to the location services
+                mLocationClient = new GoogleApiClient.Builder(this)
+                        .addApi(LocationServices.API)
+                        .addConnectionCallbacks(new ConnectionCallbacks() {
+                            @Override
+                            public void onConnected(Bundle bundle) {
+                                // Connected successfully
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        callback.onLocation(getLastKnownLocationFromClient());
+                                    }
+                                }).start();
+                            }
+
+                            @Override
+                            public void onConnectionSuspended(int i) { }
+                        })
+                        .addOnConnectionFailedListener(new OnConnectionFailedListener() {
+                            @Override
+                            public void onConnectionFailed(ConnectionResult connectionResult) {
+                                // Couldn't connect
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        callback.onLocation(null);
+                                    }
+                                }).start();
+                            }
+                        })
+                        .build();
+                mLocationClient.connect();
+            }
+
+        } else {
+            // Use GPS alone for location
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onLocation(getLocationFromGPS());
+                }
+            }).start();
+        }
     }
 
     @Override
