@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/mission_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="#003fb921"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginBottom="10dp"
+            app:expandedTitleTextAppearance="@style/Toolbar.TitleText"
+            app:expandedTitleGravity="center_horizontal"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            app:contentScrim="#00214a9e"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:fitsSystemWindows="false"
+                android:id="@+id/mission_bg"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/taxon_name_container"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/what_to_look_for"
+                    android:textSize="14sp"
+                    android:textColor="#FF74AC00"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/taxon_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Common Green Darner"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    />
+
+                <TextView
+                    android:id="@+id/taxon_scientific_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(Sceloporus occidentalis)"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#0F000000"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/have_been_seen_here"
+                    android:textSize="14sp"
+                    android:textColor="#FF74AC00"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="230dp">
+
+                    <ProgressBar
+                        android:id="@+id/loading_map"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        />
+
+
+                    <RelativeLayout
+                        android:id="@+id/map_container"
+                        android:layout_centerInParent="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/map_preview_background"
+                        android:padding="1dp">
+                        <fragment
+                            android:id="@+id/location_map"
+                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/mission_location_container"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shadow_background"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginRight="17dp"
+                        android:layout_marginBottom="14dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="7dp"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp"
+                        android:paddingRight="7dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/mission_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="San Francisco, CA with some very long text that is multi line"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textColor="#89000000"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentLeft="true"
+                            />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/observe"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="@string/observe"
+                    android:background="@drawable/circular_button"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:textAllCaps="false"
+                    style="?android:attr/borderlessButtonStyle"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="#FFF5F5F5"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nearby_missions"
+                    android:textSize="14sp"
+                    android:textColor="#FF74AC00"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"
+                    />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/nearby_missions_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about"
+                    android:textSize="14sp"
+                    android:textColor="#FF74AC00"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ProgressBar
+                        android:id="@+id/loading_about"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        />
+
+                    <TextView
+                        android:id="@+id/about_taxon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="long text jaksl jdlkasj dlkasjlk dlaksj dklasj lkasj lkasj lkajs lkj alk jalkjlak lkaj dlkjas dlkj aslkd jas"
+                        android:textSize="14sp"
+                        android:textColor="#DE000000"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/view_on_wikipedia"
+                        android:layout_below="@id/about_taxon"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/circular_button_gray"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_height="48dp">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_open_in_new_black_24dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/view_on_wikipedia"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:paddingLeft="7dp"
+                            />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="#FFF5F5F5"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nearby_observations"
+                    android:textSize="14sp"
+                    android:textColor="#FF74AC00"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/nearby_observations_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp" />
+
+                    <ProgressBar
+                        android:id="@+id/loading_nearby_observations"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

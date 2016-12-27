@@ -32,13 +32,24 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
     private List<JSONObject> mItems;
     private Context mContext;
+    private int mViewType;
 
-    public UserObservationAdapter(Context context, List<JSONObject> objects) {
+    public static final int VIEW_TYPE_CARDS = 0x1000;
+    public static final int VIEW_TYPE_GRID = 0x1001;
+
+
+    public UserObservationAdapter(Context context, List<JSONObject> objects, int viewType) {
         super(context, R.layout.guide_taxon_item, objects);
 
         mItems = objects;
         mContext = context;
+        mViewType = viewType;
     }
+
+    public UserObservationAdapter(Context context, List<JSONObject> objects) {
+        this(context, objects, VIEW_TYPE_GRID);
+    }
+
 
     @Override
     public int getCount() {
@@ -54,7 +65,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.user_profile_observation_item, parent, false);
+        final View view = inflater.inflate(mViewType == VIEW_TYPE_GRID ? R.layout.user_profile_observation_item : R.layout.mission_grid_item, parent, false);
         JSONObject item = mItems.get(position);
 
         TextView idName = (TextView) view.findViewById(R.id.species_guess);
@@ -62,18 +73,20 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
         idName.setText(idNameStr);
 
 
-        TextView placeGuess = (TextView) view.findViewById(R.id.place_guess);
-        if (item.isNull("place_guess") || (item.optString("place_guess").length() == 0)) {
-            if (!item.isNull("latitude") && !item.isNull("longitude")) {
-                // Show coordinates instead
-                placeGuess.setText(String.format(mContext.getString(R.string.location_coords_no_acc),
-                        String.format("%.4f...", Double.valueOf(item.optString("latitude"))), String.format("%.4f...", Double.valueOf(item.optString("longitude")))));
+        if (mViewType == VIEW_TYPE_GRID) {
+            TextView placeGuess = (TextView) view.findViewById(R.id.place_guess);
+            if (item.isNull("place_guess") || (item.optString("place_guess").length() == 0)) {
+                if (!item.isNull("latitude") && !item.isNull("longitude")) {
+                    // Show coordinates instead
+                    placeGuess.setText(String.format(mContext.getString(R.string.location_coords_no_acc),
+                            String.format("%.4f...", Double.valueOf(item.optString("latitude"))), String.format("%.4f...", Double.valueOf(item.optString("longitude")))));
+                } else {
+                    // No location at all
+                    placeGuess.setText(R.string.no_location);
+                }
             } else {
-                // No location at all
-                placeGuess.setText(R.string.no_location);
+                placeGuess.setText(item.optString("place_guess"));
             }
-        } else {
-            placeGuess.setText(item.optString("place_guess"));
         }
 
         ImageView observationPic = (ImageView) view.findViewById(R.id.observation_pic);
@@ -122,41 +135,42 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
             observationPic.setVisibility(View.INVISIBLE);
         }
 
+        if (mViewType == VIEW_TYPE_GRID) {
+            TextView date = (TextView) view.findViewById(R.id.date);
+            BetterJSONObject json = new BetterJSONObject(item);
+            Timestamp dateTimestamp = json.getTimestamp("observed_on");
+            if (dateTimestamp == null) {
+                date.setVisibility(View.INVISIBLE);
+            } else {
+                date.setText(CommentsIdsAdapter.formatIdDate(dateTimestamp));
+                date.setVisibility(View.VISIBLE);
+            }
 
-        TextView date = (TextView) view.findViewById(R.id.date);
-        BetterJSONObject json = new BetterJSONObject(item);
-        Timestamp dateTimestamp = json.getTimestamp("observed_on");
-        if (dateTimestamp == null) {
-            date.setVisibility(View.INVISIBLE);
-        } else {
-            date.setText(CommentsIdsAdapter.formatIdDate(dateTimestamp));
-            date.setVisibility(View.VISIBLE);
-        }
+            TextView commentCountText = (TextView) view.findViewById(R.id.comment_count);
+            ImageView commentCountIcon = (ImageView) view.findViewById(R.id.comment_pic);
+            int commentCount = item.optInt("comments_count");
 
-        TextView commentCountText = (TextView) view.findViewById(R.id.comment_count);
-        ImageView commentCountIcon = (ImageView) view.findViewById(R.id.comment_pic);
-        int commentCount = item.optInt("comments_count");
+            if (commentCount > 0) {
+                commentCountIcon.setVisibility(View.VISIBLE);
+                commentCountText.setVisibility(View.VISIBLE);
+                commentCountText.setText(String.valueOf(commentCount));
+            } else {
+                commentCountIcon.setVisibility(View.GONE);
+                commentCountText.setVisibility(View.GONE);
+            }
 
-        if (commentCount > 0) {
-            commentCountIcon.setVisibility(View.VISIBLE);
-            commentCountText.setVisibility(View.VISIBLE);
-            commentCountText.setText(String.valueOf(commentCount));
-        } else {
-            commentCountIcon.setVisibility(View.GONE);
-            commentCountText.setVisibility(View.GONE);
-        }
+            TextView idCountText = (TextView) view.findViewById(R.id.id_count);
+            ImageView idCountIcon = (ImageView) view.findViewById(R.id.id_pic);
+            int idCount = item.optInt("identifications_count");
 
-        TextView idCountText = (TextView) view.findViewById(R.id.id_count);
-        ImageView idCountIcon = (ImageView) view.findViewById(R.id.id_pic);
-        int idCount = item.optInt("identifications_count");
-
-        if (idCount > 0) {
-            idCountIcon.setVisibility(View.VISIBLE);
-            idCountText.setVisibility(View.VISIBLE);
-            idCountText.setText(String.valueOf(idCount));
-        } else {
-            idCountIcon.setVisibility(View.GONE);
-            idCountText.setVisibility(View.GONE);
+            if (idCount > 0) {
+                idCountIcon.setVisibility(View.VISIBLE);
+                idCountText.setVisibility(View.VISIBLE);
+                idCountText.setText(String.valueOf(idCount));
+            } else {
+                idCountIcon.setVisibility(View.GONE);
+                idCountText.setVisibility(View.GONE);
+            }
         }
 
         view.setTag(item);

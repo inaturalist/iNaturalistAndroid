@@ -250,10 +250,16 @@
             android:label="@string/missions"
             android:name=".MissionsActivity">
         </activity>
-         <activity
+        <activity
             android:configChanges="orientation"
             android:label="@string/missions"
             android:name=".MissionsGridActivity">
+        </activity>
+         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".MissionDetails">
         </activity>
 
         <service android:name=".INaturalistService" />

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -73,6 +74,15 @@ public class MissionsGridActivity extends AppCompatActivity {
 
         mMissionsGrid = (PullToRefreshGridViewExtended) findViewById(R.id.missions);
         mMissionsGrid.setMode(PullToRefreshBase.Mode.DISABLED);
+        mMissionsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                // Load the missions details screen
+                Intent intent = new Intent(MissionsGridActivity.this, MissionDetails.class);
+                intent.putExtra("mission", new BetterJSONObject(mMissions.get(position)));
+                startActivity(intent);
+            }
+        });
 
         mLoading = (ProgressBar) findViewById(R.id.loading);
 

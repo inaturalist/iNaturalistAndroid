@@ -74,7 +74,7 @@
     <string name="menu">Menu</string>
     <string name="layers">Layers</string>
     <string name="my_location">My location</string>
-    <string name="nearby_observations">Nearby observations</string>
+    <string name="nearby_observations">Nearby Observations</string>
     <string name="add">Add</string>
     <string name="view_on_inat">View on iNaturalist.org</string>
     <string name="reload">Reload</string>
@@ -556,5 +556,11 @@
     <string name="fungi">Fungi</string>
     <string name="birds">Birds</string>
     <string name="arachnids">Arachnids</string>
+    <string name="no_connectivity">No Connectivity</string>
+    <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
+    <string name="what_to_look_for">What To Look For</string>
+    <string name="have_been_seen_here">Have Been Seen Here</string>
+    <string name="observe">Observe</string>
+    <string name="nearby_missions">Nearby Missions</string>
  </resources>
 

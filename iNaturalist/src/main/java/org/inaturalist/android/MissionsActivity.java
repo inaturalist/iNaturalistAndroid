@@ -1,32 +1,24 @@
 package org.inaturalist.android;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
-import android.widget.TabHost;
-import android.widget.TabHost.OnTabChangeListener;
-import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
@@ -36,7 +28,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MissionsActivity extends BaseFragmentActivity {
     // Each category is comprised of: Name (string resource), Icon (drawable resource), Background color, taxon ID
@@ -61,6 +52,10 @@ public class MissionsActivity extends BaseFragmentActivity {
     private ProgressBar mLoading;
     private GridViewExtended mCategories;
     private TextView mViewAll;
+    private ViewGroup mRecommendedForYouContainer;
+    private ViewGroup mNoConnectivityContainer;
+    private ViewGroup mNoMissionsContainer;
+    private ViewGroup mMissionsByCategoryContainer;
 
     @Override
 	protected void onStart()
@@ -75,7 +70,7 @@ public class MissionsActivity extends BaseFragmentActivity {
 	{
 		super.onStop();		
 		FlurryAgent.onEndSession(this);
-	}	
+	}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +79,10 @@ public class MissionsActivity extends BaseFragmentActivity {
         setContentView(R.layout.missions);
 	    onDrawerCreate(savedInstanceState);
 
+        mMissionsByCategoryContainer = (ViewGroup) findViewById(R.id.missions_by_category_container);
+        mRecommendedForYouContainer = (ViewGroup) findViewById(R.id.recommended_for_you_container);
+        mNoConnectivityContainer = (ViewGroup) findViewById(R.id.no_connectivity_container);
+        mNoMissionsContainer = (ViewGroup) findViewById(R.id.no_recommended_missions);
         mMissionsViewPager = (ViewPager) findViewById(R.id.recommended_missions);
         mLoading = (ProgressBar) findViewById(R.id.loading);
         mCategories = (GridViewExtended) findViewById(R.id.categories);
@@ -195,8 +194,6 @@ public class MissionsActivity extends BaseFragmentActivity {
                 object = intent.getSerializableExtra(INaturalistService.RECOMMENDED_MISSIONS_RESULT);
             }
 
-            int totalResults = 0;
-
             if (object == null) {
                 // Network error of some kind
                 mMissions = new ArrayList<>();
@@ -206,7 +203,6 @@ public class MissionsActivity extends BaseFragmentActivity {
 
             // Species count result
             resultsObject = (BetterJSONObject) object;
-            totalResults = resultsObject.getInt("total_results");
             results = resultsObject.getJSONArray("results").getJSONArray();
 
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
@@ -232,15 +228,37 @@ public class MissionsActivity extends BaseFragmentActivity {
     }
 
     private void refreshViewState() {
+        if (!isNetworkAvailable()) {
+            mNoConnectivityContainer.setVisibility(View.VISIBLE);
+            mRecommendedForYouContainer.setVisibility(View.GONE);
+            mNoMissionsContainer.setVisibility(View.GONE);
+            mMissionsByCategoryContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        mNoConnectivityContainer.setVisibility(View.GONE);
+        mNoMissionsContainer.setVisibility(View.GONE);
+        mRecommendedForYouContainer.setVisibility(View.VISIBLE);
+        mMissionsByCategoryContainer.setVisibility(View.VISIBLE);
+
         if (mMissions == null) {
             mMissionsViewPager.setVisibility(View.INVISIBLE);
             mLoading.setVisibility(View.VISIBLE);
         } else {
             mLoading.setVisibility(View.GONE);
-            mMissionsViewPager.setVisibility(View.VISIBLE);
 
-            mPageAdapter = new MissionsPagerAdapter(mMissions);
-            mMissionsViewPager.setAdapter(mPageAdapter);
+            if (mMissions.size() == 0) {
+                mRecommendedForYouContainer.setVisibility(View.GONE);
+                mMissionsByCategoryContainer.setVisibility(View.GONE);
+                mNoMissionsContainer.setVisibility(View.VISIBLE);
+
+            } else {
+                mMissionsViewPager.setVisibility(View.VISIBLE);
+                mMissionsByCategoryContainer.setVisibility(View.VISIBLE);
+
+                mPageAdapter = new MissionsPagerAdapter(this, mMissions);
+                mMissionsViewPager.setAdapter(mPageAdapter);
+            }
         }
     }
     
@@ -294,42 +312,6 @@ public class MissionsActivity extends BaseFragmentActivity {
     }
 
 
-    private class MissionsPagerAdapter extends PagerAdapter {
-        private UserSpeciesAdapter mAdapter;
-
-        public MissionsPagerAdapter(ArrayList<JSONObject> missions) {
-            mAdapter = new UserSpeciesAdapter(MissionsActivity.this, missions, UserSpeciesAdapter.VIEW_TYPE_CARDS, null);
-        }
-
-        @Override
-        public int getCount() {
-            return mAdapter.getCount();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == (View)object;
-        }
-
-        @Override
-        public float getPageWidth(int position) {
-            return 0.32f;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, final int position) {
-            View view = mAdapter.getView(position, null, container);
-            ((ViewPager)container).addView(view, 0);
-            return view;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((View) object);
-        }
-    }
-
-
     public int setGridViewHeightBasedOnItems(final GridViewExtended gridView) {
     	ListAdapter adapter = gridView.getAdapter();
     	if (adapter != null) {
@@ -355,4 +337,12 @@ public class MissionsActivity extends BaseFragmentActivity {
     		return 0;
     	}
     }
+
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 }

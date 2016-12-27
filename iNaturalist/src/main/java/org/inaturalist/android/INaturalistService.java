@@ -261,7 +261,7 @@ public class INaturalistService extends IntentService {
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    protected void onHandleIntent(final Intent intent) {
         boolean cancelSyncRequested = false;
         boolean dontStopSync = false;
         mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -280,7 +280,29 @@ public class INaturalistService extends IntentService {
 
         try {
             if (action.equals(ACTION_NEARBY)) {
-                getNearbyObservations(intent);
+
+                Boolean getLocation = intent.getBooleanExtra("get_location", false);
+                if (!getLocation) {
+                    getNearbyObservations(intent);
+                } else {
+                    // Retrieve current location before getting nearby observations
+                    getLocation(new IOnLocation() {
+                        @Override
+                        public void onLocation(Location location) {
+                            final Intent newIntent = new Intent(intent);
+
+                            if (location != null) {
+                                newIntent.putExtra("lat", location.getLatitude());
+                                newIntent.putExtra("lng", location.getLongitude());
+                            }
+                            try {
+                                getNearbyObservations(newIntent);
+                            } catch (AuthenticationException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
                 
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 mIsSyncing = true;
@@ -429,7 +451,7 @@ public class INaturalistService extends IntentService {
                         if (location == null) {
                             // No location
                             Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
-                            mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, new BetterJSONObject());
+                            mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, null);
                             reply.putExtra(IS_SHARED_ON_APP, true);
                             sendBroadcast(reply);
                             return;
@@ -453,7 +475,7 @@ public class INaturalistService extends IntentService {
                         if (location == null) {
                             // No location
                             Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
-                            mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, new BetterJSONObject());
+                            mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, null);
                             reply.putExtra(IS_SHARED_ON_APP, true);
                             sendBroadcast(reply);
                             return;
@@ -2383,8 +2405,11 @@ public class INaturalistService extends IntentService {
         Double maxx = extras.getDouble("maxx");
         Double miny = extras.getDouble("miny");
         Double maxy = extras.getDouble("maxy");
+        Double lat = extras.getDouble("lat");
+        Double lng = extras.getDouble("lng");
         Boolean clearMapLimit = extras.getBoolean("clear_map_limit", false);
         Integer page = extras.getInt("page", 0);
+        Integer perPage = extras.getInt("per_page", NEAR_BY_OBSERVATIONS_PER_PAGE);
 
         String url = HOST;
         if (extras.containsKey("username")) {
@@ -2393,7 +2418,7 @@ public class INaturalistService extends IntentService {
         	url = HOST + "/observations.json?extra=observation_photos";
         }
         
-        url += "&captive=false&page=" + page + "&per_page=" + NEAR_BY_OBSERVATIONS_PER_PAGE;
+        url += "&captive=false&page=" + page + "&per_page=" + perPage;
 
        if (extras.containsKey("taxon_id")) {
         	url += "&taxon_id=" + extras.getInt("taxon_id");
@@ -2401,10 +2426,15 @@ public class INaturalistService extends IntentService {
         if (extras.containsKey("location_id")) {
         	url += "&place_id=" + extras.getInt("location_id");
         } else if (!clearMapLimit) {
-        	url += "&swlat="+miny;
-        	url += "&nelat="+maxy;
-        	url += "&swlng="+minx;
-        	url += "&nelng="+maxx;
+            if ((lat != null) && (lng != null) && !((lat == 0) && (lng == 0))) {
+                url += "&lat=" + lat;
+                url += "&lng=" + lng;
+            } else {
+                url += "&swlat=" + miny;
+                url += "&nelat=" + maxy;
+                url += "&swlng=" + minx;
+                url += "&nelng=" + maxx;
+            }
         }
         
         if (extras.containsKey("project_id")) {
@@ -2432,7 +2462,7 @@ public class INaturalistService extends IntentService {
             //syncJson(json, false);
         }
         
-        if (!mIsStopped && url.equalsIgnoreCase(mNearByObservationsUrl)) {
+        if (url.equalsIgnoreCase(mNearByObservationsUrl)) {
         	// Only send the reply if a new near by observations request hasn't been made yet
         	mApp.setServiceResult(ACTION_NEARBY, new SerializableJSONArray(json));
         	sendBroadcast(reply);

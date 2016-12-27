@@ -52,6 +52,7 @@ import org.apache.sanselan.formats.tiff.write.TiffOutputField;
 import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.lucasr.twowayview.TwoWayView;
 
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
@@ -62,6 +63,7 @@ import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
@@ -204,7 +206,8 @@ public class ObservationEditor extends AppCompatActivity {
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
     public static final String SPECIES_GUESS = "species_guess";
 	public static final String OBSERVATION_PROJECT = "observation_project";
-    
+    public static final String TAXON = "taxon";
+
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Spinner mGeoprivacy;
     private String mSpeciesGuess;
@@ -408,7 +411,6 @@ public class ObservationEditor extends AppCompatActivity {
 
             mPhotosAdded = new ArrayList<String>();
             mPhotosRemoved = new ArrayList<ObservationPhoto>();
-
         } else {
             String fileUri = savedInstanceState.getString("mFileUri");
             if (fileUri != null) {mFileUri = Uri.parse(fileUri);}
@@ -615,6 +617,14 @@ public class ObservationEditor extends AppCompatActivity {
         mSpeciesGuess = intent.getStringExtra(SPECIES_GUESS);
 
         initUi();
+
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            if ((extras != null) && (extras.getSerializable(TAXON) != null)) {
+                BetterJSONObject taxon = (BetterJSONObject) extras.getSerializable(TAXON);
+                setTaxon(getTaxonName(taxon.getJSONObject()), false, taxon.getInt("id"), taxon.getJSONObject("default_photo").optString("square_url"), taxon.getString("iconic_taxon_name"));
+            }
+        }
 
         mObservedOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1819,45 +1829,7 @@ public class ObservationEditor extends AppCompatActivity {
                         mSpeciesGuessIcon.setAlpha(0.6f);
                     }
                 } else {
-                    String speciesGuess = String.format("%s", idName);
-                    mObservation.preferred_common_name = isCustomTaxon ? null : idName;
-                    mSpeciesGuess = speciesGuess;
-                    mObservation.species_guess = speciesGuess;
-                    mObservation.taxon_id = isCustomTaxon ? null : taxonId;
-                    mTaxonTextChanged = true;
-                    mSpeciesGuessTextView.setText(mSpeciesGuess);
-                    mTaxonTextChanged = false;
-                    mPreviousTaxonSearch = mSpeciesGuess;
-                    mTaxonPicUrl = isCustomTaxon ? null : idPicUrl;
-                    mIsTaxonUnknown = false;
-                    mIsCustomTaxon = isCustomTaxon;
-                    mObservation.iconic_taxon_name = isCustomTaxon ? null : iconicTaxonName;
-
-                    ((EditText)mSpeciesGuessTextView).clearFocus();
-                    mDescriptionTextView.clearFocus();
-
-                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-                    if (!mIsCustomTaxon) {
-                        UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, mTaxonPicUrl, R.drawable.ic_species_guess_black_24dp, new UrlImageViewCallback() {
-                            @Override
-                            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-                                    mSpeciesGuessIcon.setAlpha(1.0f);
-                                }
-                                if (loadedBitmap != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap));
-                            }
-
-                            @Override
-                            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                                return loadedBitmap;
-                            }
-                        });
-                    } else {
-                        mSpeciesGuessIcon.setImageResource(R.drawable.iconic_taxon_unknown);
-                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-                            mSpeciesGuessIcon.setAlpha(1.0f);
-                        }
-                    }
+                    setTaxon(idName, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
                 }
             } else {
                 // Restore original taxon guess
@@ -2881,6 +2853,105 @@ public class ObservationEditor extends AppCompatActivity {
                 });
 
         return outputPath;
+    }
+
+
+    private void setTaxon(String idName, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
+        String speciesGuess = String.format("%s", idName);
+        mObservation.preferred_common_name = isCustomTaxon ? null : idName;
+        mSpeciesGuess = speciesGuess;
+        mObservation.species_guess = speciesGuess;
+        mObservation.taxon_id = isCustomTaxon ? null : taxonId;
+        mTaxonTextChanged = true;
+        mSpeciesGuessTextView.setText(mSpeciesGuess);
+        mTaxonTextChanged = false;
+        mPreviousTaxonSearch = mSpeciesGuess;
+        mTaxonPicUrl = isCustomTaxon ? null : idPicUrl;
+        mIsTaxonUnknown = false;
+        mIsCustomTaxon = isCustomTaxon;
+        mObservation.iconic_taxon_name = isCustomTaxon ? null : iconicTaxonName;
+
+        ((EditText)mSpeciesGuessTextView).clearFocus();
+        mDescriptionTextView.clearFocus();
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        if (!mIsCustomTaxon) {
+            UrlImageViewHelper.setUrlDrawable(mSpeciesGuessIcon, mTaxonPicUrl, R.drawable.ic_species_guess_black_24dp, new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                        mSpeciesGuessIcon.setAlpha(1.0f);
+                    }
+                    if (loadedBitmap != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap));
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    return loadedBitmap;
+                }
+            });
+        } else {
+            mSpeciesGuessIcon.setImageResource(R.drawable.iconic_taxon_unknown);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                mSpeciesGuessIcon.setAlpha(1.0f);
+            }
+        }
+    }
+
+
+    private String getTaxonName(JSONObject item) {
+        JSONObject defaultName;
+        String displayName = null;
+
+        // Get the taxon display name according to device locale
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLexicon =   deviceLocale.getLanguage();
+
+        try {
+            JSONArray taxonNames = item.getJSONArray("taxon_names");
+            for (int i = 0; i < taxonNames.length(); i++) {
+                JSONObject taxonName = taxonNames.getJSONObject(i);
+                String lexicon = taxonName.getString("lexicon");
+                if (lexicon.equals(deviceLexicon)) {
+                    // Found the appropriate lexicon for the taxon
+                    displayName = taxonName.getString("name");
+                    break;
+                }
+            }
+        } catch (JSONException e3) {
+            //e3.printStackTrace();
+        }
+
+        if (displayName == null) {
+            // Couldn't extract the display name from the taxon names list - use the default one
+            try {
+                displayName = item.getString("unique_name");
+            } catch (JSONException e2) {
+                displayName = null;
+            }
+            try {
+                defaultName = item.getJSONObject("default_name");
+                displayName = defaultName.getString("name");
+            } catch (JSONException e1) {
+                // alas
+                JSONObject commonName = item.optJSONObject("common_name");
+                if (commonName != null) {
+                    displayName = commonName.optString("name");
+                } else {
+                    displayName = item.optString("preferred_common_name");
+                    if ((displayName == null) || (displayName.length() == 0)) {
+                        displayName = item.optString("english_common_name");
+                        if ((displayName == null) || (displayName.length() == 0)) {
+                            displayName = item.optString("name");
+                        }
+                    }
+                }
+            }
+        }
+
+        return displayName;
+
     }
 
 }

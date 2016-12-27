@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="wrap_content"
+<ScrollView android:layout_height="match_parent"
+    android:background="#FFEEEEEE"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#ffffff"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/no_connectivity_container"
+        android:visibility="gone"
+        android:background="#FFEEEEEE"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/no_connectivity_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cloud_off_black_48dp"
+            android:tint="#929292"
+            android:layout_centerInParent="true"
+            android:paddingBottom="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_connectivity"
+            android:textColor="#8A000000"
+            android:textSize="15sp"
+            android:layout_below="@id/no_connectivity_icon"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/no_recommended_missions"
+        android:background="#FFEEEEEE"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/no_recommended_missions_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_my_location_black_48dp"
+            android:tint="#929292"
+            android:layout_centerInParent="true"
+            android:paddingBottom="40dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_recommended_missions"
+            android:textColor="#8A000000"
+            android:textSize="15sp"
+            android:layout_below="@id/no_recommended_missions_icon"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/recommended_for_you_container"
         android:background="#FFEEEEEE"
         android:paddingTop="16dp"
         android:paddingLeft="16dp"
@@ -62,6 +126,8 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/missions_by_category_container"
+        android:visibility="gone"
         android:background="#ffffff"
         android:padding="16dp"
         android:orientation="vertical"
