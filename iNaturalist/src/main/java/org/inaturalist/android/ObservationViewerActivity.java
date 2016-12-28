@@ -225,13 +225,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 if (mObservation.id != null) {
                     mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
-                            "_observation_id=? or observation_id=?",
+                            "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString(), mObservation.id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
                 } else {
                     mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
-                            "_observation_id=?",
+                            "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
                 }

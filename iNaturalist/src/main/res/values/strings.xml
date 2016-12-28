@@ -562,5 +562,8 @@
     <string name="have_been_seen_here">Have Been Seen Here</string>
     <string name="observe">Observe</string>
     <string name="nearby_missions">Nearby Missions</string>
+    <string name="updating_photos">Updating photos...</string>
+    <string name="updating_x_photos">Updating %1$d of %2$d existing photos...</string>
  </resources>
+
 

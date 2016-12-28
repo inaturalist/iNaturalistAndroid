@@ -24,7 +24,7 @@ import android.util.Log;
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
     private static final String[] TABLE_NAMES = new String[]{Observation.TABLE_NAME, ObservationPhoto.TABLE_NAME, Project.TABLE_NAME, ProjectObservation.TABLE_NAME, ProjectField.TABLE_NAME, ProjectFieldValue.TABLE_NAME};
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
@@ -92,6 +92,10 @@ public class ObservationProvider extends ContentProvider {
                 // Re-populate the table
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS_ONLINE, null, mContext, INaturalistService.class);
                 mContext.startService(serviceIntent);
+            }
+            if (oldVersion < 11) {
+                // Add a "is_deleted" column to ObservationPhoto
+                addColumnIfNotExists(db, ObservationPhoto.TABLE_NAME, "is_deleted", "INTEGER");
             }
         }
 
