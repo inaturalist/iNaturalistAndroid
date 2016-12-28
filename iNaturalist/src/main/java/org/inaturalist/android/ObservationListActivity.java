@@ -253,7 +253,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         		ObservationPhoto._SYNCED_AT
             }, 
             "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
-            "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at))", 
+            "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
+            "(is_deleted = 1)",
             null, 
             ObservationPhoto._ID);
         photoSyncCount = opc.getCount();
@@ -490,7 +491,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 syncCount = c.getCount();
                 c.close();
 
-                c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
+                c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
+                        "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
+                                "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
+                                "(is_deleted = 1)"
+                        , null, ObservationPhoto.DEFAULT_SORT_ORDER);
+
                 photoSyncCount = c.getCount();
                 c.close();
             }

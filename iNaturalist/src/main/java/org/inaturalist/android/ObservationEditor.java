@@ -894,10 +894,11 @@ public class ObservationEditor extends AppCompatActivity {
 
     // User canceled - revert any changes made to the observation photos
     private void revertPhotos() {
-        // Add any photos that were deleted
+        // Mark any deleted photos as non-deleted
         for (ObservationPhoto photo : mPhotosRemoved) {
-            ContentValues cv = photo.getContentValues();
-            getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
+            ContentValues cv = new ContentValues();
+            cv.put(Observation.IS_DELETED, 0);
+            getContentResolver().update(photo.getUri(), cv, null, null);
         }
 
         // Delete any photos that were added
@@ -2118,14 +2119,13 @@ public class ObservationEditor extends AppCompatActivity {
         ObservationPhoto op = new ObservationPhoto(cursor);
         mPhotosRemoved.add(op);
 
-    	String photoId = adapter.getItemIdString(position);
-        String photoFilename = cursor.getString(cursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-        if (photoFilename != null) {
-            getContentResolver().delete(ObservationPhoto.CONTENT_URI, "photo_filename = '" + photoId + "'", null);
-        } else {
-            getContentResolver().delete(ObservationPhoto.CONTENT_URI, "photo_url = '" + photoId + "'", null);
-        }
+        // Mark photo as deleted
+        ContentValues cv = new ContentValues();
+        cv.put(ObservationPhoto.IS_DELETED, 1);
+        int updateCount = getContentResolver().update(op.getUri(), cv, null, null);
+
     	updateImages();
+
         // Refresh the positions of all other photos
         adapter = (GalleryCursorAdapter) mGallery.getAdapter();
         adapter.refreshPhotoPositions(null);
@@ -2282,13 +2282,13 @@ public class ObservationEditor extends AppCompatActivity {
     	if (mObservation.id != null) {
     		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
     				ObservationPhoto.PROJECTION, 
-    				"_observation_id=? or observation_id=?", 
+    				"(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
     				new String[]{mObservation._id.toString(), mObservation.id.toString()}, 
     				ObservationPhoto.DEFAULT_SORT_ORDER);
     	} else {
      		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
     				ObservationPhoto.PROJECTION, 
-    				"_observation_id=?", 
+    				"_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
     				new String[]{mObservation._id.toString()}, 
     				"id ASC, _id ASC");
     	}

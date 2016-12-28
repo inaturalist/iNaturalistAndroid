@@ -541,5 +541,7 @@
     <string name="importing_photos">Importing photo(s)...</string>
     <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
     <string name="preparing_photo">Preparing photo...</string>
+    <string name="updating_photos">Updating photos...</string>
+    <string name="updating_x_photos">Updating %1$d of %2$d existing photos...</string>
  </resources>
 

@@ -797,6 +797,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         getUserObservations(0); // First, download remote observations (new/updated)
         postObservations(); // Next, update local-to-remote observations
         postPhotos();
+        deleteObservationPhotos(); // Delete locally-removed observation photos
         saveJoinedProjects();
         syncObservationFields();
         postProjectObservations();
@@ -1077,6 +1078,30 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             }
             c.close();
         }
+    }
+
+    private void deleteObservationPhotos() throws AuthenticationException, CancelSyncException {
+        // Remotely delete any locally-removed observation photos
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "is_deleted = 1",
+                null,
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+
+       // for each observation DELETE to /observation_photos/:id
+        ArrayList<Integer> obsIds = new ArrayList<Integer>();
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            ObservationPhoto op = new ObservationPhoto(c);
+            delete(HOST + "/observation_photos/" + op.id + ".json", null);
+            obsIds.add(op.id);
+            c.moveToNext();
+        }
+
+        // Now it's safe to delete all of the observation photos locally
+        getContentResolver().delete(ObservationPhoto.CONTENT_URI, "is_deleted = 1", null);
+
+        checkForCancelSync();
     }
     
     private void deleteObservations() throws AuthenticationException, CancelSyncException {
@@ -1423,8 +1448,58 @@ public class INaturalistService extends IntentService implements ConnectionCallb
     private void postPhotos() throws AuthenticationException, CancelSyncException {
         ObservationPhoto op;
         int createdCount = 0;
-        // query observations where _updated_at > updated_at
-        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+        ContentValues cv;
+
+        // query observation photos where _updated_at > updated_at (i.e. updated photos)
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "_updated_at > _synced_at AND _synced_at IS NOT NULL",
+                null,
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        int updatedCount = c.getCount();
+
+        // for each observation PUT to /observation_photos/:id
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            checkForCancelSync();
+
+            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
+                    getString(R.string.updating_photos),
+                    String.format(getString(R.string.updating_x_photos), (c.getPosition() + 1), c.getCount()),
+                    getString(R.string.syncing));
+            op = new ObservationPhoto(c);
+            ArrayList <NameValuePair> params = op.getParams();
+            mApp.setObservationIdBeingSynced(op._observation_id);
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+            params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
+
+            JSONArray response = put("http://" + inatHost + "/observation_photos/" + op.id + ".json", params);
+            try {
+                if (response == null || response.length() != 1) {
+                    break;
+                }
+                JSONObject json = response.getJSONObject(0);
+                BetterJSONObject j = new BetterJSONObject(json);
+                ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
+                op.merge(jsonObservationPhoto);
+                cv = op.getContentValues();
+                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                getContentResolver().update(op.getUri(), cv, null, null);
+                createdCount += 1;
+            } catch (JSONException e) {
+                Log.e(TAG, "JSONException: " + e.toString());
+            }
+
+            c.moveToNext();
+        }
+        c.close();
+
+
+
+        // query observation photos where _synced_at is null (i.e. new photos)
+        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION, 
                 "_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
@@ -1433,8 +1508,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         checkForCancelSync();
 
-        // for each observation PUT to /observations/:id
-        ContentValues cv;
+        // for each observation POST to /observation_photos
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             mApp.notify(SYNC_PHOTOS_NOTIFICATION,

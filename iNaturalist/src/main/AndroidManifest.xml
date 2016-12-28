@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
-    android:versionCode="183"
+    android:versionCode="185"
     android:versionName="1.5.0" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21"
