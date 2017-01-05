@@ -67,7 +67,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(mIsGrid ? R.layout.observation_grid_item : R.layout.user_profile_identifications_item, parent, false);
+        View view = (convertView != null) ? convertView : inflater.inflate(mIsGrid ? R.layout.observation_grid_item : R.layout.user_profile_identifications_item, parent, false);
         JSONObject item = null;
         item = mResultList.get(position);
 
