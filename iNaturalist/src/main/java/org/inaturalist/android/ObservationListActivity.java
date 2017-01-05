@@ -583,6 +583,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             mObservationListAdapter.refreshCursor();
+            mObservationListAdapter.refreshPhotoInfo();
             if (mObservationGridAdapter != null) mObservationGridAdapter.refreshCursor();
 
             DecimalFormat formatter = new DecimalFormat("#,###,###");
