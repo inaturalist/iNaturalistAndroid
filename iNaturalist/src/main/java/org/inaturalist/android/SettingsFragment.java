@@ -9,7 +9,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
@@ -23,6 +25,9 @@ import android.view.View;
 import com.facebook.login.LoginManager;
 
 import org.apache.http.util.LangUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
@@ -38,6 +43,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private ActivityHelper mHelper;
     private SharedPreferences.Editor mPrefEditor;
     private INaturalistApp mApp;
+
+    private int mDebugLogsClickCount = 0;
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -137,6 +144,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
+
+        mVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                mDebugLogsClickCount++;
+
+                if (mDebugLogsClickCount >= 3) {
+                    // Secret menu - Open up the email client with the app debug log as attachment
+                    sendDebugLog();
+                    mDebugLogsClickCount = 0;
+                    return false;
+                }
+
+                return false;
+            }
+        });
 
         mContactSupport.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -284,4 +307,41 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         refreshSettings();
         ((SettingsActivity)getActivity()).refreshUserDetails();
 	}
+
+
+    public void sendDebugLog() {
+        // Save Logcat output to a file
+        File outputFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "logcat.txt");
+        try {
+            Runtime.getRuntime().exec("logcat -f " + outputFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String username = mPreferences.getString("username", null);
+        PackageInfo info = null;
+
+        try {
+            PackageManager manager = getActivity().getPackageManager();
+            info = manager.getPackageInfo(getActivity().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            info = null;
+        }
+
+        // Send the file using email
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("vnd.android.cursor.dir/email");
+        // Add the attachment
+        Uri path = Uri.fromFile(outputFile);
+        emailIntent .putExtra(Intent.EXTRA_STREAM, path);
+        if (info == null) {
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (user id - %s)", username == null ? "N/A" : username));
+        } else {
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (version %s - %s; user id - %s)", info.versionName, info.versionCode, username == null ? "N/A" : username));
+        }
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
+
+        startActivity(Intent.createChooser(emailIntent , getString(R.string.send_email)));
+    }
+
 }
