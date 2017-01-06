@@ -281,12 +281,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
 				idTaxonName.setText(item.getJSONObject("taxon").getString("name"));
 				
-				String rank = item.getJSONObject("taxon").optString("rank", null);
+				int rankLevel = item.getJSONObject("taxon").optInt("rank_level");
                 idTaxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-				if (rank != null) {
-					if ((rank.equalsIgnoreCase("genus")) || (rank.equalsIgnoreCase("species"))) {
-						idTaxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
-					}
+				if (rankLevel <= 20) {
+					idTaxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
 				}
 
 				Boolean isCurrent = item.getBoolean("current");

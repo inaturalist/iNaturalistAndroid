@@ -346,7 +346,14 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                 } else {
                     idName.setText(getTaxonName(item));
                     idTaxonName.setText(item.getString("name"));
-                    idTaxonName.setTypeface(null, Typeface.ITALIC);
+
+                    int rankLevel = item.getInt("rank_level");
+                    if (rankLevel <= 20) {
+                        idTaxonName.setTypeface(null, Typeface.ITALIC);
+                    } else {
+                        idTaxonName.setTypeface(null, Typeface.NORMAL);
+                    }
+
                     if (item.has("default_photo") && !item.isNull("default_photo")) {
                         JSONObject defaultPhoto = item.getJSONObject("default_photo");
                         UrlImageViewHelper.setUrlDrawable(idPic, defaultPhoto.getString("square_url"), new UrlImageViewCallback() {

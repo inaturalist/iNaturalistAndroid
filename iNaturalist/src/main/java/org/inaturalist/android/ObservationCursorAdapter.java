@@ -127,7 +127,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         c.moveToPosition(originalPosition);
 
-        // Add any online-only photos
+        // Add any photos
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME},
                 "(_observation_id IN (" + StringUtils.join(obsIds, ',') + ") OR observation_id IN (" + StringUtils.join(obsExternalIds, ',') + ")  )",

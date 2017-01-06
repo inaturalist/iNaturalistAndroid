@@ -84,7 +84,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
                 layout = R.layout.user_profile_species_item;
         }
 
-        View view = inflater.inflate(layout, parent, false);
+        View view = (convertView != null) ? convertView : inflater.inflate(layout, parent, false);
         JSONObject item = null;
         try {
             item = mResultList.get(position).getJSONObject("taxon");
