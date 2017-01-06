@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -199,6 +200,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private String mTaxonImage;
     private String mTaxonIdName;
     private String mTaxonName;
+    private int mTaxonRankLevel;
     private String mActiveTab;
     private boolean mReloadObs;
     private ViewGroup mPhotosContainer;
@@ -502,6 +504,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mObsJson = savedInstanceState.getString("mObsJson");
             mFlagAsCaptive = savedInstanceState.getBoolean("mFlagAsCaptive");
             mTaxonName = savedInstanceState.getString("mTaxonName");
+            mTaxonRankLevel = savedInstanceState.getInt("mTaxonRankLevel");
             mTaxonIdName = savedInstanceState.getString("mTaxonIdName");
             mTaxonImage = savedInstanceState.getString("mTaxonImage");
             try {
@@ -1398,6 +1401,11 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 mIdName.setText(mTaxonIdName);
                 mTaxonicName.setText(mTaxonName);
                 mTaxonicName.setVisibility(View.VISIBLE);
+                if (mTaxonRankLevel <= 20) {
+                    mTaxonicName.setTypeface(null, Typeface.ITALIC);
+                } else {
+                    mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                }
             }
         }
 
@@ -1490,6 +1498,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                     mIdName.setText(mTaxonIdName);
                                     mTaxonicName.setText(mTaxonName);
                                     mTaxonicName.setVisibility(View.VISIBLE);
+
+                                    mTaxonRankLevel = taxon.getInt("rank_level");
+                                    if (mTaxonRankLevel <= 20) {
+                                        mTaxonicName.setTypeface(null, Typeface.ITALIC);
+                                    } else {
+                                        mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                                    }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -1653,6 +1668,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         outState.putString("mTaxonIdName", mTaxonIdName);
         outState.putString("mTaxonName", mTaxonName);
+        outState.putInt("mTaxonRankLevel", mTaxonRankLevel);
         outState.putString("mTaxonImage", mTaxonImage);
         outState.putString("mTaxon", mTaxon != null ? mTaxon.toString() : null);
 
