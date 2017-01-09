@@ -43,6 +43,11 @@ public class MissionsActivity extends BaseFragmentActivity {
             { R.string.arachnids, R.drawable.iconic_taxon_arachnida, Color.parseColor("#FDEAE6"), 47119 }
     };
 
+
+    // How much to expand the recommended missions search by (in terms of degrees), in case
+    // a previous search yielded no results.
+    public final static float[] RECOMMENDED_MISSIONS_EXPANSION = { 0, 0.25f, 0.5f, 1.0f };
+
     MissionsPagerAdapter mPageAdapter;
     private ViewPager mMissionsViewPager;
     private INaturalistApp mApp;
@@ -52,10 +57,13 @@ public class MissionsActivity extends BaseFragmentActivity {
     private ProgressBar mLoading;
     private GridViewExtended mCategories;
     private TextView mViewAll;
+    private TextView mLoadingDescription;
     private ViewGroup mRecommendedForYouContainer;
     private ViewGroup mNoConnectivityContainer;
     private ViewGroup mNoMissionsContainer;
     private ViewGroup mMissionsByCategoryContainer;
+
+    private int mMissionsCurrentExpansionLevel = 0;
 
     @Override
 	protected void onStart()
@@ -85,6 +93,7 @@ public class MissionsActivity extends BaseFragmentActivity {
         mNoMissionsContainer = (ViewGroup) findViewById(R.id.no_recommended_missions);
         mMissionsViewPager = (ViewPager) findViewById(R.id.recommended_missions);
         mLoading = (ProgressBar) findViewById(R.id.loading);
+        mLoadingDescription = (TextView) findViewById(R.id.loading_description);
         mCategories = (GridViewExtended) findViewById(R.id.categories);
         mCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -120,6 +129,7 @@ public class MissionsActivity extends BaseFragmentActivity {
 
         } else {
             mMissions = loadListFromBundle(savedInstanceState, "mMissions");
+            mMissionsCurrentExpansionLevel = savedInstanceState.getInt("mMissionsCurrentExpansionLevel");
         }
 
 
@@ -223,6 +233,22 @@ public class MissionsActivity extends BaseFragmentActivity {
 
             mMissions = resultsArray;
 
+            if (mMissions.size() == 0) {
+                // No recommended missions - see if we can expand our search grid to find more
+                mMissionsCurrentExpansionLevel++;
+                if (mMissionsCurrentExpansionLevel < RECOMMENDED_MISSIONS_EXPANSION.length) {
+                    // Still more search expansions left to try out
+
+                    mMissions = null; // So it'll show up in the UI as still loading missions
+                    float nextExpansion = RECOMMENDED_MISSIONS_EXPANSION[mMissionsCurrentExpansionLevel];
+
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
+                    serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
+                    serviceIntent.putExtra(INaturalistService.EXPAND_LOCATION_BY_DEGREES, nextExpansion);
+                    startService(serviceIntent);
+                }
+            }
+
             refreshViewState();
         }
     }
@@ -244,8 +270,16 @@ public class MissionsActivity extends BaseFragmentActivity {
         if (mMissions == null) {
             mMissionsViewPager.setVisibility(View.INVISIBLE);
             mLoading.setVisibility(View.VISIBLE);
+            mLoadingDescription.setVisibility(View.VISIBLE);
+
+            if (mMissionsCurrentExpansionLevel == 0) {
+                mLoadingDescription.setText(R.string.searching_your_area);
+            } else {
+                mLoadingDescription.setText(R.string.expanding_your_search_area);
+            }
         } else {
             mLoading.setVisibility(View.GONE);
+            mLoadingDescription.setVisibility(View.GONE);
 
             if (mMissions.size() == 0) {
                 mRecommendedForYouContainer.setVisibility(View.GONE);
@@ -256,7 +290,7 @@ public class MissionsActivity extends BaseFragmentActivity {
                 mMissionsViewPager.setVisibility(View.VISIBLE);
                 mMissionsByCategoryContainer.setVisibility(View.VISIBLE);
 
-                mPageAdapter = new MissionsPagerAdapter(this, mMissions);
+                mPageAdapter = new MissionsPagerAdapter(this, mMissions, mMissionsCurrentExpansionLevel);
                 mMissionsViewPager.setAdapter(mPageAdapter);
             }
         }
@@ -279,6 +313,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         saveListToBundle(outState, mMissions, "mMissions");
+        outState.putInt("mMissionsCurrentExpansionLevel", mMissionsCurrentExpansionLevel);
 
         super.onSaveInstanceState(outState);
     }

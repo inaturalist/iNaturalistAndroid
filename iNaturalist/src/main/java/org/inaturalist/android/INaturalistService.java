@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,7 +36,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.params.ClientPNames;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -58,6 +58,7 @@ import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationServices;
 
 import android.annotation.SuppressLint;
@@ -67,6 +68,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -117,6 +119,7 @@ public class INaturalistService extends IntentService {
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
+    public static final String EXPAND_LOCATION_BY_DEGREES = "expand_location_by_degrees";
     public static final String QUERY = "query";
     public static final String OBSERVATIONS = "observations";
     public static final String IDENTIFICATIONS = "identifications";
@@ -282,6 +285,7 @@ public class INaturalistService extends IntentService {
             if (action.equals(ACTION_NEARBY)) {
 
                 Boolean getLocation = intent.getBooleanExtra("get_location", false);
+                final float locationExpansion = intent.getFloatExtra("location_expansion", 0);
                 if (!getLocation) {
                     getNearbyObservations(intent);
                 } else {
@@ -292,8 +296,16 @@ public class INaturalistService extends IntentService {
                             final Intent newIntent = new Intent(intent);
 
                             if (location != null) {
-                                newIntent.putExtra("lat", location.getLatitude());
-                                newIntent.putExtra("lng", location.getLongitude());
+                                if (locationExpansion == 0) {
+                                    newIntent.putExtra("lat", location.getLatitude());
+                                    newIntent.putExtra("lng", location.getLongitude());
+                                } else {
+                                    // Expand location by requested degrees (to make sure results are returned from this API)
+                                    newIntent.putExtra("minx", location.getLongitude() - locationExpansion);
+                                    newIntent.putExtra("miny", location.getLatitude() - locationExpansion);
+                                    newIntent.putExtra("maxx", location.getLongitude() + locationExpansion);
+                                    newIntent.putExtra("maxy", location.getLatitude() + locationExpansion);
+                                }
                             }
                             try {
                                 getNearbyObservations(newIntent);
@@ -444,6 +456,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
                 final String username = intent.getStringExtra(USERNAME);
                 final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
+                final float expandLocationByDegrees  = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
 
                 getLocation(new IOnLocation() {
                     @Override
@@ -457,7 +470,7 @@ public class INaturalistService extends IntentService {
                             return;
                         }
 
-                        BetterJSONObject missions = getMissions(location, username, taxonId);
+                        BetterJSONObject missions = getMissions(location, username, taxonId, expandLocationByDegrees);
 
                         Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
                         mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, missions);
@@ -468,6 +481,7 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_RECOMMENDED_MISSIONS)) {
                 final String username = intent.getStringExtra(USERNAME);
+                final float expandLocationByDegrees  = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
 
                 getLocation(new IOnLocation() {
                     @Override
@@ -481,7 +495,7 @@ public class INaturalistService extends IntentService {
                             return;
                         }
 
-                        BetterJSONObject missions = getMissions(location, username, null);
+                        BetterJSONObject missions = getMissions(location, username, null, expandLocationByDegrees);
 
                         Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
                         mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, missions);
@@ -1805,17 +1819,37 @@ public class INaturalistService extends IntentService {
 		}
     }
 
-    private BetterJSONObject getMissions(Location location, String username, Integer taxonId) {
+    private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?locale=" + deviceLanguage +
-                "&verifiable=true&lat=" + location.getLatitude()+ "&lng=" + location.getLongitude();
+                "&verifiable=true&hrank=species";
+
+        if (expandLocationByDegress == 0) {
+            url += "&lat=" + location.getLatitude()+ "&lng=" + location.getLongitude();
+        } else {
+            // Search for taxa in a bounding box expanded by a certain number of degrees (used to expand
+            // our search in case we can't find any close taxa)
+            url += String.format("&nelat=%f&nelng=%f&swlat=%f&swlng=%f",
+                    location.getLatitude() + expandLocationByDegress,
+                    location.getLongitude() + expandLocationByDegress,
+                    location.getLatitude() - expandLocationByDegress,
+                    location.getLongitude() - expandLocationByDegress);
+        }
+
         if (username != null) {
+            // Taxa unobserved by a specific user
             url += "&unobserved_by_user_id=" + username;
         }
         if (taxonId != null) {
+            // Taxa under a specific category (e.g. fungi)
             url += "&taxon_id=" + taxonId;
         }
+
+        // Make sure to show only taxa observable for the current months (+/- 1 month from current one)
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        url += String.format("&month=%d,%d,%d", modulo(month - 1, 12) + 1, month + 1, modulo(month + 1, 12) + 1);
 
         JSONArray json = null;
         try {
@@ -2002,7 +2036,7 @@ public class INaturalistService extends IntentService {
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
         String url = "http://" + inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
-        Log.e(TAG, url);
+        Log.d(TAG, url);
 
         JSONArray json = get(url);
         
@@ -3094,6 +3128,7 @@ public class INaturalistService extends IntentService {
         Criteria criteria = new Criteria();
         String provider = locationManager.getBestProvider(criteria, false);
         Location location = locationManager.getLastKnownLocation(provider);
+        Log.e(TAG, "getLocationFromGPS: " + location);
 
         return location;
     }
@@ -3107,6 +3142,7 @@ public class INaturalistService extends IntentService {
             ex.printStackTrace();
         }
 
+        Log.e(TAG, "getLastKnownLocationFromClient: " + location);
         if (location == null) {
             // Failed - try and return last location using GPS
             return getLocationFromGPS();
@@ -3117,6 +3153,7 @@ public class INaturalistService extends IntentService {
 
     private void getLocation(final IOnLocation callback) {
         if (!mApp.isLocationEnabled(null)) {
+            Log.e(TAG, "getLocation: Location not enabled");
             // Location not enabled
             new Thread(new Runnable() {
                 @Override
@@ -3128,6 +3165,8 @@ public class INaturalistService extends IntentService {
         }
 
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+        Log.e(TAG, "getLocation: resultCode = " + resultCode);
 
         if (ConnectionResult.SUCCESS == resultCode) {
             // User Google Play services if available
@@ -3204,5 +3243,14 @@ public class INaturalistService extends IntentService {
         userAgent = userAgent.replace("%VERSION%", info != null ? info.versionName : String.valueOf(INaturalistApp.VERSION));
 
         return userAgent;
+    }
+
+
+    private int modulo(int x, int y) {
+        int result = x % y;
+        if (result < 0) {
+            result += y;
+        }
+        return result;
     }
 }

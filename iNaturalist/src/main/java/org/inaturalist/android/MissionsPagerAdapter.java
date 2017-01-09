@@ -12,14 +12,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MissionsPagerAdapter extends PagerAdapter {
+    private final float mLocationExpansion;
     private UserSpeciesAdapter mAdapter;
     private ArrayList<JSONObject> mMissions;
     private Context mContext;
 
-    public MissionsPagerAdapter(Context context, ArrayList<JSONObject> missions) {
+    public MissionsPagerAdapter(Context context, ArrayList<JSONObject> missions, float locationExpansion) {
         mContext = context;
         mAdapter = new UserSpeciesAdapter(context, missions, UserSpeciesAdapter.VIEW_TYPE_CARDS, null);
         mMissions = missions;
+        mLocationExpansion = locationExpansion;
     }
 
     @Override
@@ -47,7 +49,8 @@ public class MissionsPagerAdapter extends PagerAdapter {
             public void onClick(View view) {
                 // Load the missions details screen
                 Intent intent = new Intent(mContext, MissionDetails.class);
-                intent.putExtra("mission", new BetterJSONObject(mMissions.get(position)));
+                intent.putExtra(MissionDetails.MISSION, new BetterJSONObject(mMissions.get(position)));
+                intent.putExtra(MissionDetails.LOCATION_EXPANSION, mLocationExpansion);
                 mContext.startActivity(intent);
             }
         });

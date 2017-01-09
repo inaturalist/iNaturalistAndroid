@@ -33,13 +33,22 @@ import java.util.ArrayList;
 
 public class MissionsGridActivity extends AppCompatActivity {
 
+    public static final String MISSIONS_EXPANSION_LEVEL = "missions_expansion_level";
+    public static final String TAXON_ID = "taxon_id";
+
     UserSpeciesAdapter mMissionsAdapter;
     private PullToRefreshGridViewExtended mMissionsGrid;
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
     private ArrayList<JSONObject> mMissions;
     private ProgressBar mLoading;
+    private TextView mLoadingDescription;
+    private ViewGroup mNoMissionsContainer;
+
     private MissionsReceiver mMissionsReceiver;
+
+    private int mMissionsCurrentExpansionLevel = 0;
+    private int mTaxonId = -1;
 
     @Override
 	protected void onStart()
@@ -79,22 +88,28 @@ public class MissionsGridActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Load the missions details screen
                 Intent intent = new Intent(MissionsGridActivity.this, MissionDetails.class);
-                intent.putExtra("mission", new BetterJSONObject(mMissions.get(position)));
+                intent.putExtra(MissionDetails.MISSION, new BetterJSONObject(mMissions.get(position)));
+                intent.putExtra(MissionDetails.LOCATION_EXPANSION, MissionsActivity.RECOMMENDED_MISSIONS_EXPANSION[mMissionsCurrentExpansionLevel]);
                 startActivity(intent);
             }
         });
 
         mLoading = (ProgressBar) findViewById(R.id.loading);
+        mLoadingDescription = (TextView) findViewById(R.id.loading_description);
+        mNoMissionsContainer = (ViewGroup) findViewById(R.id.no_recommended_missions);
 
         mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
         if (savedInstanceState == null) {
-            if (intent.hasExtra("taxon_id")) {
+            mMissionsCurrentExpansionLevel = intent.getIntExtra(MissionsGridActivity.MISSIONS_EXPANSION_LEVEL, 0);
+            mTaxonId = intent.getIntExtra(TAXON_ID, -1);
+
+            if (mTaxonId > -1) {
                 // Load recommended missions by taxon ID - start the service requesting the missions for that taxon ID
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MISSIONS_BY_TAXON, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-                serviceIntent.putExtra(INaturalistService.TAXON_ID, intent.getIntExtra("taxon_id", 0));
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
                 startService(serviceIntent);
 
             } else {
@@ -104,6 +119,8 @@ public class MissionsGridActivity extends AppCompatActivity {
 
         } else {
             mMissions = loadListFromBundle(savedInstanceState, "mMissions");
+            mMissionsCurrentExpansionLevel = savedInstanceState.getInt("mMissionsCurrentExpansionLevel");
+            mTaxonId = savedInstanceState.getInt("mTaxonId");
         }
 
         refreshViewState();
@@ -134,25 +151,63 @@ public class MissionsGridActivity extends AppCompatActivity {
         }
 
         mMissions = resultsArray;
+
+        if (mMissions.size() == 0) {
+            // No missions - see if we can expand our search grid to find more
+            mMissionsCurrentExpansionLevel++;
+            if (mMissionsCurrentExpansionLevel < MissionsActivity.RECOMMENDED_MISSIONS_EXPANSION.length) {
+                // Still more search expansions left to try out
+
+                mMissions = null; // So it'll show up in the UI as still loading missions
+                float nextExpansion = MissionsActivity.RECOMMENDED_MISSIONS_EXPANSION[mMissionsCurrentExpansionLevel];
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MISSIONS_BY_TAXON, null, MissionsGridActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
+                serviceIntent.putExtra(INaturalistService.EXPAND_LOCATION_BY_DEGREES, nextExpansion);
+                if (mTaxonId > -1) serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
+                startService(serviceIntent);
+            }
+        }
+
     }
 
     private void refreshViewState() {
         if (mMissions == null) {
             mMissionsGrid.setVisibility(View.INVISIBLE);
             mLoading.setVisibility(View.VISIBLE);
+            mLoadingDescription.setVisibility(View.VISIBLE);
+            mNoMissionsContainer.setVisibility(View.GONE);
+
+            if (mMissionsCurrentExpansionLevel == 0) {
+                mLoadingDescription.setText(R.string.searching_your_area);
+            } else {
+                mLoadingDescription.setText(R.string.expanding_your_search_area);
+            }
         } else {
             mLoading.setVisibility(View.GONE);
-            mMissionsGrid.setVisibility(View.VISIBLE);
+            mLoadingDescription.setVisibility(View.GONE);
 
-            mMissionsAdapter = new UserSpeciesAdapter(this, mMissions, UserSpeciesAdapter.VIEW_TYPE_CARDS, mMissionsGrid);
-            mMissionsGrid.setAdapter(mMissionsAdapter);
-            mMissionsGrid.setOnScrollListener(mMissionsAdapter);
+            if (mMissions.size() == 0) {
+                // No missions found
+                mMissionsGrid.setVisibility(View.GONE);
+                mNoMissionsContainer.setVisibility(View.VISIBLE);
+
+            } else {
+                mMissionsGrid.setVisibility(View.VISIBLE);
+                mNoMissionsContainer.setVisibility(View.GONE);
+
+                mMissionsAdapter = new UserSpeciesAdapter(this, mMissions, UserSpeciesAdapter.VIEW_TYPE_CARDS, mMissionsGrid);
+                mMissionsGrid.setAdapter(mMissionsAdapter);
+                mMissionsGrid.setOnScrollListener(mMissionsAdapter);
+            }
         }
     }
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         saveListToBundle(outState, mMissions, "mMissions");
+        outState.putInt("mMissionsCurrentExpansionLevel", mMissionsCurrentExpansionLevel);
+        outState.putInt("mTaxonId", mTaxonId);
 
         super.onSaveInstanceState(outState);
     }

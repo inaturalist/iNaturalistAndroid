@@ -564,6 +564,8 @@
     <string name="nearby_missions">Nearby Missions</string>
     <string name="updating_photos">Updating photos...</string>
     <string name="updating_x_photos">Updating %1$d of %2$d existing photos...</string>
+    <string name="searching_your_area">Searching your area...</string>
+    <string name="expanding_your_search_area">Expanding your search area...</string>
  </resources>
 
 

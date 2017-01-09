@@ -47,6 +47,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
@@ -282,12 +283,12 @@ public class INaturalistApp extends MultiDexApplication {
     public boolean isLocationEnabled(final OnLocationStatus locationCallback) {
         // First, check if GPS is disabled
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        boolean gpsDisabled = (
-                lm.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
+        boolean gpsEnabled = (
+                lm.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
                 lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
             );
 
-        if (!gpsDisabled) return false;
+        if (!gpsEnabled) return false;
 
 
         // Next, see if specifically the user has revoked location access to our app
@@ -328,7 +329,7 @@ public class INaturalistApp extends MultiDexApplication {
             });
         }
 
-        return gpsDisabled;
+        return gpsEnabled;
 
     }
 

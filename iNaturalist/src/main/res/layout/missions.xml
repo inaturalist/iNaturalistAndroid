@@ -123,6 +123,16 @@
             android:layout_marginTop="10dp"
             />
 
+        <TextView
+            android:id="@+id/loading_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loading"
+            android:text="@string/searching_your_area"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+
     </RelativeLayout>
 
     <LinearLayout

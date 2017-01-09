@@ -51,6 +51,8 @@ import java.util.Locale;
 public class MissionDetails extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final int MAX_MAP_RESULTS = 20;
+    public static final String MISSION = "mission";
+    public static final String LOCATION_EXPANSION = "location_expansion";
 
     private INaturalistApp mApp;
     private BetterJSONObject mMission;
@@ -86,6 +88,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     private ProgressBar mLoadingNearbyObservations;
     private ViewPager mNearbyObservationsViewPager;
     private ObservationsPagerAdapter mNearbyObservationsPageAdapter;
+    private float mLocationExpansion;
 
     @Override
 	protected void onStart()
@@ -135,7 +138,8 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         }
         
         if (savedInstanceState == null) {
-            mMission = (BetterJSONObject) intent.getSerializableExtra("mission");
+            mMission = (BetterJSONObject) intent.getSerializableExtra(MISSION);
+            mLocationExpansion = intent.getFloatExtra(LOCATION_EXPANSION, 0);
             BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
 
             int taxonId = taxon.getInt("id");
@@ -144,6 +148,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             Intent getObservationsIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
 
             getObservationsIntent.putExtra("get_location", true);
+            getObservationsIntent.putExtra("location_expansion", mLocationExpansion);
             getObservationsIntent.putExtra("taxon_id", taxonId);
             getObservationsIntent.putExtra("per_page", MAX_MAP_RESULTS);
             startService(getObservationsIntent);
@@ -420,7 +425,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             });
         }
         
-        mNearbyMissionsPageAdapter = new MissionsPagerAdapter(this, mNearByMissions);
+        mNearbyMissionsPageAdapter = new MissionsPagerAdapter(this, mNearByMissions, mLocationExpansion);
         mNearbyMissionsViewPager.setAdapter(mNearbyMissionsPageAdapter);
 
         if (mAboutText == null) {
