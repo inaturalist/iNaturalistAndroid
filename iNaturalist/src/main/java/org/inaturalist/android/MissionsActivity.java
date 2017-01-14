@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +41,7 @@ public class MissionsActivity extends BaseFragmentActivity {
             { R.string.fish, R.drawable.iconic_taxon_actinopterygii, Color.parseColor("#E9F0FB"), 47178 },
             { R.string.mollusks, R.drawable.iconic_taxon_mollusca, Color.parseColor("#FDEAE6"), 47115 },
             { R.string.amphibians, R.drawable.iconic_taxon_amphibia, Color.parseColor("#E9F0FB"), 20978 },
+            { R.string.fungi, R.drawable.iconic_taxon_fungi, Color.parseColor("#FDEAE6"), 47170 },
             { R.string.birds, R.drawable.iconic_taxon_aves, Color.parseColor("#E9F0FB"), 3 },
             { R.string.arachnids, R.drawable.iconic_taxon_arachnida, Color.parseColor("#FDEAE6"), 47119 }
     };
@@ -143,6 +146,14 @@ public class MissionsActivity extends BaseFragmentActivity {
 
 
         refreshViewState();
+
+        SharedPreferences settings = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        if (!settings.getBoolean("shown_missions_onboarding", false)) {
+            // Show the missions onboarding screen
+            Intent intent = new Intent(MissionsActivity.this, MissionsOnboardingActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     private class CategoriesAdapter extends ArrayAdapter<String> {
@@ -352,7 +363,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     	if (adapter != null) {
             int numberOfItems = adapter.getCount();
             int numberOfColumns = gridView.getNumColumns();
-            int numberOfRows = (int)Math.ceil(numberOfItems / numberOfColumns);
+            int numberOfRows = (int)Math.ceil((float)numberOfItems / numberOfColumns);
 
             int spacing = gridView.getVerticalSpacing();
             int columnWidth = gridView.getColumnWidth();

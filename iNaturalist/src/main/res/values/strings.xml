@@ -566,6 +566,10 @@
     <string name="updating_x_photos">Updating %1$d of %2$d existing photos...</string>
     <string name="searching_your_area">Searching your area...</string>
     <string name="expanding_your_search_area">Expanding your search area...</string>
+    <string name="introducing_missions">Introducing Missions!</string>
+    <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
+    <string name="ok_got_it">Ok, got it!</string>
+    <string name="new_badge">New</string>
  </resources>
 
 

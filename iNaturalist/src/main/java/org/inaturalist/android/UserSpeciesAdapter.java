@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.util.Log;
@@ -93,6 +94,8 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             return view;
         }
 
+        TextView speciesName = (TextView) view.findViewById(mViewType == VIEW_TYPE_LIST ? R.id.species_name : R.id.species_guess);
+
         // Get the taxon display name according to device locale
         try {
             ImageView speciesPic = (ImageView) view.findViewById(mViewType == VIEW_TYPE_LIST ? R.id.species_pic : R.id.observation_pic);
@@ -111,10 +114,10 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
                 speciesIconicPic.setLayoutParams(layoutParams);
             } else if ((mViewType == VIEW_TYPE_CARDS) && (mGrid != null)) {
                 mDimension = mGrid.getColumnWidth();
-                view.setLayoutParams(new LinearLayout.LayoutParams(mDimension, mDimension));
+                int lineHeight = speciesName.getLineHeight();
+                if (convertView == null) view.setLayoutParams(new LinearLayout.LayoutParams(mDimension, mDimension + (lineHeight * 2)));
             }
 
-            TextView speciesName = (TextView) view.findViewById(mViewType == VIEW_TYPE_LIST ? R.id.species_name : R.id.species_guess);
             TextView scienceName = (TextView) view.findViewById(R.id.species_science_name);
             JSONObject defaultName = item.optJSONObject("default_name");
 

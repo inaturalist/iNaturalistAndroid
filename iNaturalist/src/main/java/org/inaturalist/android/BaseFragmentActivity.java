@@ -133,6 +133,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
         	app.detectUserCountryAndUpdateNetwork(this);
         }
 
+
+        // Show the mission "new" badge only for the first couple of times
+        int missionViewCount = preferences.getInt("mission_view_count", 0);
+        ((TextView)findViewById(R.id.missions_new)).setVisibility(missionViewCount < 10 ? View.VISIBLE : View.GONE);
+
         refreshUserDetails();
 
         ((Button)findViewById(R.id.menu_login)).setOnClickListener(new View.OnClickListener() {

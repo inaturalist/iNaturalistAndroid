@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -327,7 +330,6 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
         BetterJSONObject defaultPhoto = new BetterJSONObject(taxon.getJSONObject("default_photo"));
 
-        //mCollapsingToolbar.setTitle(taxon.getString("preferred_common_name"));
         UrlImageViewHelper.setUrlDrawable(mMissionBackground, defaultPhoto.getString("medium_url"), new UrlImageViewCallback() {
             @Override
             public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
@@ -342,6 +344,8 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         mTaxonName.setText(taxon.getString("preferred_common_name"));
         mCollapsingToolbar.setTitle(taxon.getString("preferred_common_name"));
         mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+        mCollapsingToolbar.setCollapsedTitleTextColor(Color.parseColor("#000000"));
+        mCollapsingToolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
         mTaxonScientificName.setText(taxon.getString("name"));
 
         if (mObservations == null) {
@@ -362,6 +366,17 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
             mNearbyObservationsPageAdapter = new ObservationsPagerAdapter(this, mObservations);
             mNearbyObservationsViewPager.setAdapter(mNearbyObservationsPageAdapter);
+
+            mMissionMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng latLng) {
+                    // Show the map screen
+                    Intent intent = new Intent(MissionDetails.this, MissionDetailsMapActivity.class);
+                    JSONArray arr = new JSONArray(mObservations);
+                    intent.putExtra(MissionDetailsMapActivity.OBSERVATIONS, arr.toString());
+                    startActivity(intent);
+                }
+            });
 
             mMissionMap.clear();
             final LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -478,12 +493,18 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
         if (percentage >= 0.9f) {
             if (!mTaxonNameHidden) {
-                //startAlphaAnimation(mTaxonNameContainer, 100, View.INVISIBLE);
+                startAlphaAnimation(mMissionBackground, 100, View.INVISIBLE);
+                Drawable upArrow = getResources().getDrawable(R.drawable.ic_arrow_back);
+                upArrow.setColorFilter(Color.parseColor("#7A7A7A"), PorterDuff.Mode.SRC_ATOP);
+                getSupportActionBar().setHomeAsUpIndicator(upArrow);
                 mTaxonNameHidden = true;
             }
         } else {
             if (mTaxonNameHidden) {
-                //startAlphaAnimation(mTaxonNameContainer, 100, View.VISIBLE);
+                startAlphaAnimation(mMissionBackground, 100, View.VISIBLE);
+                Drawable upArrow = getResources().getDrawable(R.drawable.ic_arrow_back);
+                upArrow.setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_ATOP);
+                getSupportActionBar().setHomeAsUpIndicator(upArrow);
                 mTaxonNameHidden = false;
             }
         }

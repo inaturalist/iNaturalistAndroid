@@ -133,6 +133,10 @@ public class INaturalistApp extends MultiDexApplication {
         if (username != null) {
             setShownOnboarding(true);
         }
+
+
+        int missionViewCount = getPrefs().getInt("mission_view_count", 0);
+        getPrefs().edit().putInt("mission_view_count", ++missionViewCount).commit();
     }
     
     

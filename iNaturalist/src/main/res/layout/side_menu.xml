@@ -256,6 +256,19 @@
                 android:textColor="#000000"
                 android:layout_marginLeft="30dp"
                 android:text="@string/missions"/>
+
+             <TextView
+                 android:id="@+id/missions_new"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textColor="#ffffff"
+                 android:background="#FFF66923"
+                 android:textSize="9sp"
+                 android:text="@string/new_badge"
+                 android:textAllCaps="true"
+                 android:layout_marginLeft="8dp"
+                 android:padding="4dp"
+                 />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
