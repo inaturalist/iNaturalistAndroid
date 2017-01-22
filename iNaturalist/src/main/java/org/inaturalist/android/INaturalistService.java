@@ -294,7 +294,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 JSONObject result = agreeIdentification(observationId, taxonId);
-                
+
                 if (result != null) {
                 	// Reload the observation at the end (need to refresh comment/ID list)
                 	Observation observation = getObservation(observationId);
