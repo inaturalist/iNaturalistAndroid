@@ -2673,7 +2673,16 @@ public class ObservationEditor extends AppCompatActivity {
             os.close();
 
             resizedBitmap.recycle();
+
+            // BitmapFactory.decodeStream moves the reading cursor
             is.close();
+
+            if (path == null) {
+                is = getContentResolver().openInputStream(photoUri);
+            } else {
+                is = new FileInputStream(path);
+            }
+
 
             // Copy all EXIF data from original image into resized image
             copyExifData(is, new File(imageFile.getAbsolutePath()), null);
