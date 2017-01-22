@@ -177,7 +177,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                 signIn(INaturalistService.LoginType.GOOGLE, mUsername, null, true);
                 return;
             }
-            mHelper.alert(mActivity.getString(R.string.signed_in_failed));
+            mHelper.alert(mActivity.getString(R.string.not_connected));
             return;
         }
 
