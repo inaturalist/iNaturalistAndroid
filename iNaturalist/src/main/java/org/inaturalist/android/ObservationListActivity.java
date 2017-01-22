@@ -184,8 +184,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 if ((intent != null) && (!intent.getBooleanExtra(INaturalistService.SYNC_CANCELED, false))) {
                     // Sync finished
                     mUserCanceledSync = false;
-                    mSyncingTopBar.setVisibility(View.GONE);
-
+                    refreshSyncBar();
                     refreshViewState();
                 }
 
