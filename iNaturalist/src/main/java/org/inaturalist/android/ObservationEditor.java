@@ -2683,9 +2683,10 @@ public class ObservationEditor extends AppCompatActivity {
                 is = new FileInputStream(path);
             }
 
-
             // Copy all EXIF data from original image into resized image
             copyExifData(is, new File(imageFile.getAbsolutePath()), null);
+
+            is.close();
 
             return imageFile.getAbsolutePath();
 
