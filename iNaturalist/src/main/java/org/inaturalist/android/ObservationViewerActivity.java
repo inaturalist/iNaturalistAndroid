@@ -762,6 +762,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                 startService(serviceIntent);
             }
 
@@ -1724,7 +1725,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
 
 	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
-
 
             if (mObservation == null) {
                 reloadObservation(null, false);

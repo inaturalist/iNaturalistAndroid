@@ -131,7 +131,7 @@ public class ObservationProvider extends ContentProvider {
             String sortOrder) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         String orderBy;
-        
+
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             qb.setTables(Observation.TABLE_NAME);

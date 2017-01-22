@@ -329,7 +329,7 @@ public class INaturalistService extends IntentService {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 JSONObject result = agreeIdentification(observationId, taxonId);
-                
+
                 if (result != null) {
                 	// Reload the observation at the end (need to refresh comment/ID list)
                 	Observation observation = getObservation(observationId);
@@ -2732,7 +2732,7 @@ public class INaturalistService extends IntentService {
                 mResponseHeaders = response.getAllHeaders();
 
                 try {
-                	if (json != null) {
+                	if ((json != null) && (json.length() > 0)) {
                         JSONObject result = json.getJSONObject(0);
                         if (result.has("errors")) {
                             // Error response
