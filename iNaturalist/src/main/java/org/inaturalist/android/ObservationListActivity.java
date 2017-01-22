@@ -659,16 +659,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 		runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mSyncingStatus.setText(content);
-                int visibility = View.GONE;
-                if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
-                    visibility = View.GONE;
-                } else {
-                    visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
+                if (mSyncingStatus != null) {
+                    mSyncingStatus.setText(content);
+                    int visibility;
+                    if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
+                        visibility = View.GONE;
+                    } else {
+                        visibility = mApp.getIsSyncing() ? View.VISIBLE : View.GONE;
+                    }
+                    mSyncingTopBar.setVisibility(visibility);
+                    mObservationListAdapter.refreshCursor();
+                    mObservationGridAdapter.refreshCursor();
                 }
-                mSyncingTopBar.setVisibility(visibility);
-                mObservationListAdapter.refreshCursor();
-                mObservationGridAdapter.refreshCursor();
             }
         });
 	}

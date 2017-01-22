@@ -2651,7 +2651,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 mResponseHeaders = response.getAllHeaders();
 
                 try {
-                	if (json != null) {
+                	if ((json != null) && (json.length() > 0)) {
                         JSONObject result = json.getJSONObject(0);
                         if (result.has("errors")) {
                             // Error response
