@@ -171,7 +171,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             if (mApp.loggedIn() && !mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
                 // Show a "no observations" message
-                ((TextView)findViewById(android.R.id.empty)).setText(R.string.no_observations_yet);
+                TextView emptyView = (TextView)findViewById(android.R.id.empty);
+                if (emptyView != null) emptyView.setText(R.string.no_observations_yet);
             }
 
             DecimalFormat formatter = new DecimalFormat("#,###,###");
@@ -867,6 +868,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             JSONObject item = (JSONObject) view.getTag();
+                            if (item == null) return;
                             Intent intent = new Intent(ObservationListActivity.this, GuideTaxonActivity.class);
                             intent.putExtra("taxon", new BetterJSONObject(item));
                             intent.putExtra("guide_taxon", false);
@@ -1209,7 +1211,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 // Species count result
                 resultsObject = (BetterJSONObject) object;
                 totalResults = resultsObject.getInt("total_results");
-                results = resultsObject.getJSONArray("results").getJSONArray();
+                SerializableJSONArray resultsArray = resultsObject.getJSONArray("results");
+                results = resultsArray != null ? resultsArray.getJSONArray() : new JSONArray();
             } else {
                 // Identifications result
                 results = ((SerializableJSONArray) object).getJSONArray();
