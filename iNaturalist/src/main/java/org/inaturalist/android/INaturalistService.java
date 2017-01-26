@@ -894,6 +894,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             c.moveToNext();
         }
 
+        c.close();
+
         // Now it's safe to delete all of the project-observations locally
         getContentResolver().delete(ProjectObservation.CONTENT_URI, "is_deleted = 1", null);
         
@@ -937,6 +939,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 Cursor c2 = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = '"+projectObservation.observation_id+"'", null, Observation.DEFAULT_SORT_ORDER);
                 c2.moveToFirst();
                 if (c2.getCount() == 0) {
+                    c2.close();
                     break;
                 }
                 Observation observation = new Observation(c2);
@@ -945,6 +948,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 c2 = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+projectObservation.project_id+"'", null, Project.DEFAULT_SORT_ORDER);
                 c2.moveToFirst();
                 if (c2.getCount() == 0) {
+                    c2.close();
                     break;
                 }
                 Project project = new Project(c2);
@@ -994,6 +998,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             c.moveToNext();
         }
 
+        c.close();
+
         mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
         // Finally, retrieve all project observations
@@ -1017,6 +1023,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     if (c.getCount() == 0) {
                         getContentResolver().insert(ProjectObservation.CONTENT_URI, cv);
                     }
+                    c.close();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1098,6 +1105,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             c.moveToNext();
         }
 
+        c.close();
+
         // Now it's safe to delete all of the observation photos locally
         getContentResolver().delete(ObservationPhoto.CONTENT_URI, "is_deleted = 1", null);
 
@@ -1121,6 +1130,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             obsIds.add(observation.id);
             c.moveToNext();
         }
+
+        c.close();
         
         // Now it's safe to delete all of the observations locally
         getContentResolver().delete(Observation.CONTENT_URI, "is_deleted = 1", null);
@@ -1503,6 +1514,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 ObservationPhoto.PROJECTION, 
                 "_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
+            c.close();
             return;
         }
 
@@ -1536,9 +1548,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                             null,
                             null,
                             MediaStore.Images.Media.DEFAULT_SORT_ORDER);
-                    if ((pc != null) && (pc.getCount() > 0)) {
-                        pc.moveToFirst();
-                        imgFilePath = pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                    if (pc != null) {
+                        if (pc.getCount() > 0) {
+                            pc.moveToFirst();
+                            imgFilePath = pc.getString(pc.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                        }
                         pc.close();
                     }
                 }
@@ -1975,7 +1989,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             try {
                 c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
                 c.moveToFirst();
-                if (c.getCount() > 0) {
+                int count = c.getCount();
+                c.close();
+                if (count > 0) {
                     json.getJSONObject(i).put("joined", true);
                 }
             } catch (JSONException e) {
@@ -2031,7 +2047,9 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             try {
                 c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
                 c.moveToFirst();
-                if (c.getCount() > 0) {
+                int count = c.getCount();
+                c.close();
+                if (count > 0) {
                     json.getJSONObject(i).put("joined", true);
                 }
             } catch (JSONException e) {
@@ -2301,6 +2319,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     getString(R.string.syncing_observation_fields),
                     getString(R.string.syncing));
         } else {
+            c.close();
             return;
         }
 
@@ -2315,10 +2334,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                     "id = ? AND _synced_at IS NOT NULL",
                     new String[] { localField.observation_id.toString() },
                     ProjectFieldValue.DEFAULT_SORT_ORDER);
-            if (obsc.getCount() == 0) {
+            int count = obsc.getCount();
+            obsc.close();
+            if (count == 0) {
                 continue;
             }
-            obsc.close();
 
 
             mApp.setObservationIdBeingSynced(localField.observation_id);
