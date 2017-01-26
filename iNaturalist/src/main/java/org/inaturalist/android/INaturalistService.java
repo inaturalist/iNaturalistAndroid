@@ -293,16 +293,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             } else if (action.equals(ACTION_AGREE_ID)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
-                JSONObject result = agreeIdentification(observationId, taxonId);
+                addIdentification(observationId, taxonId, null);
 
-                if (result != null) {
-                	// Reload the observation at the end (need to refresh comment/ID list)
-                	Observation observation = getObservation(observationId);
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
 
-                	Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                	reply.putExtra(OBSERVATION_RESULT, observation);
-                	sendBroadcast(reply);
-                }
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_UPDATE_ID)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -343,6 +341,14 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 String body = intent.getStringExtra(IDENTIFICATION_BODY);
                 addIdentification(observationId, taxonId, body);
+
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
+
 
             } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
                 int fieldId = intent.getIntExtra(FIELD_ID, 0);
@@ -1229,7 +1235,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
-        params.add(new BasicNameValuePair("identification[body]", body));
+        if (body != null) params.add(new BasicNameValuePair("identification[body]", body));
         
         JSONArray arrayResult = post(HOST + "/identifications.json", params);
         
@@ -1239,8 +1245,8 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 result = new BetterJSONObject(arrayResult.getJSONObject(0));
                 JSONObject jsonObservation = result.getJSONObject("observation");
                 Observation remoteObservation = new Observation(new BetterJSONObject(jsonObservation));
-                
-                Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
+
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                         Observation.PROJECTION, 
                         "id = "+ remoteObservation.id, null, Observation.DEFAULT_SORT_ORDER);
 
