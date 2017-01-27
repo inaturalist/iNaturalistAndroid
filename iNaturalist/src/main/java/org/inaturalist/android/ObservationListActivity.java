@@ -196,6 +196,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mOnboardingSyncing.setVisibility(hasOnboardedSyncing ? View.GONE : View.VISIBLE);
                 }
 
+                if (intent.getBooleanExtra(INaturalistService.SYNC_FAILED, false)) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.sync_failed_connection_problems), Toast.LENGTH_LONG).show();
+                }
             }
         }
     } 	

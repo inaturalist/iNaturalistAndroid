@@ -543,5 +543,7 @@
     <string name="preparing_photo">Preparing photo...</string>
     <string name="updating_photos">Updating photos...</string>
     <string name="updating_x_photos">Updating %1$d of %2$d existing photos...</string>
+    <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
+    <string name="sync_failed_connection_problems">Sync failed due to connection problems. Please try again later.</string>
  </resources>
 
