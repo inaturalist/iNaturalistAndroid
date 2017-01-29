@@ -952,7 +952,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             ProjectObservation projectObservation = new ProjectObservation(c);
             BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
 
-            if (result == null) {
+            if ((result == null) && (mResponseErrors == null)) {
                 c.close();
                 throw new SyncFailedException();
             }
@@ -960,67 +960,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             mApp.setObservationIdBeingSynced(projectObservation.observation_id);
 
             if (mResponseErrors != null) {
-                SerializableJSONArray errors = new SerializableJSONArray(mResponseErrors);
-            
-                // Couldn't add the observation to the project (probably didn't pass validation)
-                String error;
-                try {
-                    error = errors.getJSONArray().getString(0);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    c.moveToNext();
-                    continue;
-                }
-                
-                Cursor c2 = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = '"+projectObservation.observation_id+"'", null, Observation.DEFAULT_SORT_ORDER);
-                c2.moveToFirst();
-                if (c2.getCount() == 0) {
-                    c2.close();
-                    break;
-                }
-                Observation observation = new Observation(c2);
-                c2.close();
-                
-                c2 = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+projectObservation.project_id+"'", null, Project.DEFAULT_SORT_ORDER);
-                c2.moveToFirst();
-                if (c2.getCount() == 0) {
-                    c2.close();
-                    break;
-                }
-                Project project = new Project(c2);
-                c2.close();
-
-                // Remember the errors for this observation (to be shown in the observation editor screen)
-                JSONArray formattedErrors = new JSONArray();
-                JSONArray unformattedErrors = errors.getJSONArray();
-
-                for (int i = 0; i < unformattedErrors.length(); i++) {
-                    try {
-                        formattedErrors.put(String.format(getString(R.string.failed_to_add_to_project), project.title, unformattedErrors.getString(i)));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                mApp.setErrorsForObservation(observation.id, project.id, formattedErrors);
-
-                final String errorMessage = String.format(getString(R.string.failed_to_add_obs_to_project),
-                        observation.species_guess == null ? getString(R.string.unknown) : observation.species_guess, project.title, error);
-
-                // Notify user
-                mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
-                        getString(R.string.syncing_observations), 
-                        errorMessage,
-                        getString(R.string.syncing));
-                
-                // Display toast in this main thread handler (since otherwise it won't get displayed)
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
-                    }
-                });
-
+                handleProjectFieldErrors(projectObservation.observation_id, projectObservation.project_id);
             } else {
                 // Unmark as new
                 projectObservation.is_new = false;
@@ -1040,6 +980,63 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 
         // Finally, retrieve all project observations
         storeProjectObservations();
+
+        return true;
+    }
+
+    private boolean handleProjectFieldErrors(int observationId, int projectId) {
+        SerializableJSONArray errors = new SerializableJSONArray(mResponseErrors);
+
+        // Couldn't add the observation to the project (probably didn't pass validation)
+        String error;
+        try {
+            error = errors.getJSONArray().getString(0);
+        } catch (JSONException e) {
+            return false;
+        }
+
+        Cursor c2 = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = '"+observationId+"'", null, Observation.DEFAULT_SORT_ORDER);
+        c2.moveToFirst();
+        if (c2.getCount() == 0) {
+            c2.close();
+            return false;
+        }
+        Observation observation = new Observation(c2);
+        c2.close();
+
+        c2 = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+projectId+"'", null, Project.DEFAULT_SORT_ORDER);
+        c2.moveToFirst();
+        if (c2.getCount() == 0) {
+            c2.close();
+            return false;
+        }
+        Project project = new Project(c2);
+        c2.close();
+
+        // Remember the errors for this observation (to be shown in the observation editor screen)
+        JSONArray formattedErrors = new JSONArray();
+        JSONArray unformattedErrors = errors.getJSONArray();
+
+        for (int i = 0; i < unformattedErrors.length(); i++) {
+            try {
+                formattedErrors.put(String.format(getString(R.string.failed_to_add_to_project), project.title, unformattedErrors.getString(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        mApp.setErrorsForObservation(observation.id, project.id, formattedErrors);
+
+        final String errorMessage = String.format(getString(R.string.failed_to_add_obs_to_project),
+                observation.species_guess == null ? getString(R.string.unknown) : observation.species_guess, project.title, error);
+
+        // Display toast in this main thread handler (since otherwise it won't get displayed)
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
+            }
+        });
 
         return true;
     }
@@ -2401,12 +2398,13 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             // it belongs to has been synced)
             Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
                     Observation.PROJECTION,
-                    "id = ? AND _synced_at IS NOT NULL",
-                    new String[] { localField.observation_id.toString() },
+                    "id = ? AND _synced_at IS NOT NULL AND _id != ?",
+                    new String[] { localField.observation_id.toString(), localField.observation_id.toString() },
                     ProjectFieldValue.DEFAULT_SORT_ORDER);
             int count = obsc.getCount();
             obsc.close();
             if (count == 0) {
+                c.moveToNext();
                 continue;
             }
 
@@ -2449,6 +2447,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
             ProjectFieldValue remoteField = null;
 
             if (fields == null) {
+                c.moveToNext();
                 continue;
             }
             
@@ -2472,9 +2471,23 @@ public class INaturalistService extends IntentService implements ConnectionCallb
                 JSONArray result = post(HOST + "/observation_field_values.json", params);
 
                 if (result == null) {
-                    c.close();
-                    mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-                    throw new SyncFailedException();
+                    if (mResponseErrors == null) {
+                        c.close();
+                        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+                        throw new SyncFailedException();
+                    } else {
+                        Cursor c2 = getContentResolver().query(ProjectField.CONTENT_URI, ProjectField.PROJECTION,
+                                "field_id = " + localField.field_id, null, Project.DEFAULT_SORT_ORDER);
+                        c2.moveToFirst();
+                        if (c2.getCount() > 0) {
+                            ProjectField projectField = new ProjectField(c2);
+                            handleProjectFieldErrors(localField.observation_id, projectField.project_id);
+                        }
+                        c2.close();
+                        c.moveToNext();
+                        checkForCancelSync();
+                        continue;
+                    }
                 }
                 
             } else {
@@ -2734,6 +2747,7 @@ public class INaturalistService extends IntentService implements ConnectionCallb
         }
 
         try {
+            mResponseErrors = null;
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
             String content = entity != null ? EntityUtils.toString(entity) : null;
@@ -2775,9 +2789,6 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-
-                mResponseErrors = null;
-
 
                 return json;
 
