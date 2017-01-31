@@ -34,16 +34,16 @@ import java.util.ArrayList;
 public class MissionsActivity extends BaseFragmentActivity {
     // Each category is comprised of: Name (string resource), Icon (drawable resource), Background color, taxon ID
     private final static int[][] CATEGORIES = {
-            { R.string.plants, R.drawable.iconic_taxon_plantae, Color.parseColor("#F1F8EA"), 47126 },
-            { R.string.mammals, R.drawable.iconic_taxon_mammalia, Color.parseColor("#E9F0FB"), 40151 },
+            { R.string.plants, R.drawable.ic_taxa_plants, Color.parseColor("#F1F8EA"), 47126 },
+            { R.string.mammals, R.drawable.ic_taxa_mammals, Color.parseColor("#E9F0FB"), 40151 },
             { R.string.insects, R.drawable.iconic_taxon_insecta, Color.parseColor("#FDEAE6"), 47158 },
-            { R.string.reptiles, R.drawable.iconic_taxon_reptilia, Color.parseColor("#E9F0FB"), 26036 },
-            { R.string.fish, R.drawable.iconic_taxon_actinopterygii, Color.parseColor("#E9F0FB"), 47178 },
-            { R.string.mollusks, R.drawable.iconic_taxon_mollusca, Color.parseColor("#FDEAE6"), 47115 },
-            { R.string.amphibians, R.drawable.iconic_taxon_amphibia, Color.parseColor("#E9F0FB"), 20978 },
-            { R.string.fungi, R.drawable.iconic_taxon_fungi, Color.parseColor("#FDEAE6"), 47170 },
-            { R.string.birds, R.drawable.iconic_taxon_aves, Color.parseColor("#E9F0FB"), 3 },
-            { R.string.arachnids, R.drawable.iconic_taxon_arachnida, Color.parseColor("#FDEAE6"), 47119 }
+            { R.string.reptiles, R.drawable.ic_taxa_reptiles, Color.parseColor("#E9F0FB"), 26036 },
+            { R.string.fish, R.drawable.ic_taxa_fish, Color.parseColor("#E9F0FB"), 47178 },
+            { R.string.mollusks, R.drawable.ic_taxa_mollusks, Color.parseColor("#FDEAE6"), 47115 },
+            { R.string.amphibians, R.drawable.ic_taxa_amphibians, Color.parseColor("#E9F0FB"), 20978 },
+            { R.string.fungi, R.drawable.ic_taxa_fungi, Color.parseColor("#FDEAE6"), 47170 },
+            { R.string.birds, R.drawable.ic_taxa_birds, Color.parseColor("#E9F0FB"), 3 },
+            { R.string.arachnids, R.drawable.ic_taxa_arachnids, Color.parseColor("#FDEAE6"), 47119 }
     };
 
 
