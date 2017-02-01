@@ -2791,6 +2791,11 @@ public class INaturalistService extends IntentService implements ConnectionCallb
 					e.printStackTrace();
 				}
 
+                if ((content != null) && (content.length() == 0)) {
+                    // In case it's just non content (but OK HTTP status code) - so there's no error
+                    json = new JSONArray();
+                }
+
                 return json;
 
             case HttpStatus.SC_UNAUTHORIZED:
