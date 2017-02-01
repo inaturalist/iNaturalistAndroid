@@ -119,6 +119,7 @@ public class INaturalistApp extends MultiDexApplication {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         FacebookSdk.sdkInitialize(getApplicationContext());
+        AnalyticsClient.initAnalyticsClient(this);
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();

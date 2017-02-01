@@ -16,12 +16,14 @@ public class MissionsPagerAdapter extends PagerAdapter {
     private UserSpeciesAdapter mAdapter;
     private ArrayList<JSONObject> mMissions;
     private Context mContext;
+    private boolean mIsNearbyMissions;
 
-    public MissionsPagerAdapter(Context context, ArrayList<JSONObject> missions, float locationExpansion) {
+    public MissionsPagerAdapter(Context context, ArrayList<JSONObject> missions, float locationExpansion, boolean isNearbyMissions) {
         mContext = context;
         mAdapter = new UserSpeciesAdapter(context, missions, UserSpeciesAdapter.VIEW_TYPE_CARDS, null);
         mMissions = missions;
         mLocationExpansion = locationExpansion;
+        mIsNearbyMissions = isNearbyMissions;
     }
 
     @Override
@@ -52,6 +54,10 @@ public class MissionsPagerAdapter extends PagerAdapter {
                 intent.putExtra(MissionDetails.MISSION, new BetterJSONObject(mMissions.get(position)));
                 intent.putExtra(MissionDetails.LOCATION_EXPANSION, mLocationExpansion);
                 mContext.startActivity(intent);
+
+                if (mIsNearbyMissions) {
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEARBY_MISSION);
+                }
             }
         });
 

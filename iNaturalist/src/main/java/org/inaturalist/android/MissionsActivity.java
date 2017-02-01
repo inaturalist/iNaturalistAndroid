@@ -90,6 +90,8 @@ public class MissionsActivity extends BaseFragmentActivity {
         setContentView(R.layout.missions);
 	    onDrawerCreate(savedInstanceState);
 
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MISSIONS);
+
         mMissionsByCategoryContainer = (ViewGroup) findViewById(R.id.missions_by_category_container);
         mRecommendedForYouContainer = (ViewGroup) findViewById(R.id.recommended_for_you_container);
         mNoConnectivityContainer = (ViewGroup) findViewById(R.id.no_connectivity_container);
@@ -102,6 +104,8 @@ public class MissionsActivity extends BaseFragmentActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Load the missions for that taxon id
+                AnalyticsClient.getInstance().logEvent(String.format(AnalyticsClient.EVENT_NAME_MISSIONS_CATEGORY, getString(CATEGORIES[position][0])));
+
                 Intent intent = new Intent(MissionsActivity.this, MissionsGridActivity.class);
                 intent.putExtra("taxon_id", CATEGORIES[position][3]);
                 intent.putExtra("taxon_name", getString(CATEGORIES[position][0]));
@@ -115,6 +119,8 @@ public class MissionsActivity extends BaseFragmentActivity {
             @Override
             public void onClick(View view) {
                 if (mMissions == null) return;
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MISSIONS_CATEGORY_ALL);
 
                 Intent intent = new Intent(MissionsActivity.this, MissionsGridActivity.class);
                 startActivity(intent);
@@ -301,7 +307,7 @@ public class MissionsActivity extends BaseFragmentActivity {
                 mMissionsViewPager.setVisibility(View.VISIBLE);
                 mMissionsByCategoryContainer.setVisibility(View.VISIBLE);
 
-                mPageAdapter = new MissionsPagerAdapter(this, mMissions, mMissionsCurrentExpansionLevel);
+                mPageAdapter = new MissionsPagerAdapter(this, mMissions, mMissionsCurrentExpansionLevel, false);
                 mMissionsViewPager.setAdapter(mPageAdapter);
             }
         }

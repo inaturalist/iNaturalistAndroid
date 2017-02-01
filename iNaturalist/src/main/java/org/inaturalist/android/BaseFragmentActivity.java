@@ -96,6 +96,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
 
             public void onDrawerOpened(View drawerView) {
+                // Log an event every time the side menu is opened
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MENU);
+
                 super.onDrawerOpened(drawerView);
             }
         };

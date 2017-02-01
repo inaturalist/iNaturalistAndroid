@@ -18,4 +18,7 @@
 
     <!-- URL explaining about the iNaturalist networks  -->
     <!-- <string name="inat_network_info_url">http://www.inaturalist.org/pages/network</string> -->
+
+    <!-- Amplitude analytics API key  -->
+    <!--<string name="amplitude_api_key">xxxx</string>-->
 </resources>

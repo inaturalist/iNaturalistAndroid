@@ -54,6 +54,8 @@ public class MissionsOnboardingActivity extends BaseFragmentActivity {
         setContentView(R.layout.missions_onboarding);
 	    onDrawerCreate(savedInstanceState);
 
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MISSIONS_ONBOARDING);
+
         getSupportActionBar().setTitle(R.string.missions);
 
         ((Button) findViewById(R.id.got_it)).setOnClickListener(new View.OnClickListener() {

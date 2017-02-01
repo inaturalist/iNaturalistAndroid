@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.amplitude.api.Amplitude;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -282,6 +283,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         setTitle(R.string.observations);
 
         getSupportActionBar().setElevation(0);
+
+        Amplitude.getInstance().initialize(this, getString(R.string.amplitude_api_key)).enableForegroundTracking(getApplication());
+
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ME);
 
         mHelper = new ActivityHelper(this);
 
@@ -1013,6 +1018,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     addButton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_START);
+
                             new BottomSheet.Builder(ObservationListActivity.this).sheet(R.menu.observation_list_menu).listener(new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

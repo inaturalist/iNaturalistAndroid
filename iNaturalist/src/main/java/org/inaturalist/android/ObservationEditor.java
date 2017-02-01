@@ -950,6 +950,10 @@ public class ObservationEditor extends AppCompatActivity {
                                 public void run() {
                                     uiToProjectFieldValues();
                                     if (save()) {
+                                        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE);
+                                        }
+
                                         setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
                                         finish();
                                     }
@@ -961,6 +965,9 @@ public class ObservationEditor extends AppCompatActivity {
 
                 uiToProjectFieldValues();
                 if (save()) {
+                    if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE);
+                    }
                     setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
                     finish();
                 }
@@ -1274,13 +1281,14 @@ public class ObservationEditor extends AppCompatActivity {
 
     private final boolean save() {
         if (mCursor == null) { return true; }
-        
+
         uiToObservation();
         
         boolean updatedProjects = saveProjects();
         saveProjectFields();
         
         if ((Intent.ACTION_INSERT.equals(getIntent().getAction())) || (mObservation.isDirty()) || (mProjectFieldsUpdated) || (updatedProjects)) {
+
             try {
                 ContentValues cv = mObservation.getContentValues();
                 if (mObservation.latitude_changed()) {

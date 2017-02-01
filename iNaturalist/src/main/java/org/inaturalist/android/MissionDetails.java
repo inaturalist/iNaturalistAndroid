@@ -126,6 +126,8 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
         mHelper = new ActivityHelper(this);
 
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MISSION_DETAILS);
+
         final Intent intent = getIntent();
         setContentView(R.layout.mission_details);
 
@@ -220,6 +222,8 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         mViewOnWikipedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEARBY_WIKI_ARTICLE_FROM_MISSION);
+
                 // Build the Wikipedia URL
                 BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
                 String obsUrl = null;
@@ -440,7 +444,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             });
         }
         
-        mNearbyMissionsPageAdapter = new MissionsPagerAdapter(this, mNearByMissions, mLocationExpansion);
+        mNearbyMissionsPageAdapter = new MissionsPagerAdapter(this, mNearByMissions, mLocationExpansion, true);
         mNearbyMissionsViewPager.setAdapter(mNearbyMissionsPageAdapter);
 
         if (mAboutText == null) {
@@ -581,6 +585,8 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                     intent.putExtra("read_only", true);
                     intent.putExtra("reload", true);
                     startActivity(intent);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEARBY_OBS_FROM_MISSION);
                 }
             });
 
