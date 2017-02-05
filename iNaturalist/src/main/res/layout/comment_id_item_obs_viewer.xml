@@ -95,15 +95,16 @@
         android:id="@+id/bottom_part"
         android:orientation="vertical"
         android:layout_below="@id/id_layout"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="5dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/comment"
             android:layout_marginTop="3dp"
+            android:layout_marginBottom="5dp"
             android:textColor="#000000"
             android:text="..comment.."
             android:textIsSelectable="true"
@@ -115,7 +116,7 @@
             android:layout_below="@id/id_layout"
             android:layout_marginTop="10dp"
             android:layout_width="fill_parent"
-            android:layout_height="40dp">
+            android:layout_height="31dp">
 
             <View
                 android:layout_width="fill_parent"
@@ -126,8 +127,9 @@
 
             <LinearLayout
                 android:id="@+id/id_agree"
-                android:layout_centerVertical="true"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginBottom="3dp"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

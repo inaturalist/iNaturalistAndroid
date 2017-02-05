@@ -2045,25 +2045,27 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation.latitude = (double) latLng[0];
                 mObservation.longitude = (double) latLng[1];
                 mObservation.positional_accuracy = null;
+
+                if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
+                    mObservation.private_longitude = mObservation.longitude;
+                    mObservation.private_latitude = mObservation.latitude;
+                }
+
+                if (mObservation.latitude_changed()) {
+                    if (isNetworkAvailable()) {
+                        guessLocation();
+                    } else {
+                        setPlaceGuess(null);
+                    }
+                }
+
             } else {
                 // No coordinates - don't override the observation coordinates
-                return;
             }
 
-            if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
-                mObservation.private_longitude = mObservation.longitude;
-                mObservation.private_latitude = mObservation.latitude;
-            }
 
-            if (mObservation.latitude_changed()) {
-                if (isNetworkAvailable()) {
-                    guessLocation();
-                } else {
-                    setPlaceGuess(null);
-                }
-            }
+            String datetime = exif.getAttribute("DateTimeOriginal" /* ExifInterface.TAG_DATETIME_ORIGINAL - supported from API v24 only */);
 
-            String datetime = exif.getAttribute(ExifInterface.TAG_DATETIME);
             if (datetime != null) {
                 SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
                 try {
@@ -2082,7 +2084,13 @@ public class ObservationEditor extends AppCompatActivity {
                 } catch (ParseException e) {
                     Log.d(TAG, "Failed to parse " + datetime + ": " + e);
                 }
+            } else {
+                // No original datetime - nullify the date
+                mObservation.observed_on = null;
+                mObservation.time_observed_at = null;
+                mObservation.observed_on_string = null;
             }
+
             observationToUi();
         } catch (IOException e) {
             Log.e(TAG, "couldn't find " + imgFilePath);

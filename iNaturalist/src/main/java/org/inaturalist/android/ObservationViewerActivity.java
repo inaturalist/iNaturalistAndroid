@@ -204,6 +204,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private String mActiveTab;
     private boolean mReloadObs;
     private ViewGroup mPhotosContainer;
+    private boolean mReloadTaxon;
 
     @Override
 	protected void onStart() {
@@ -501,6 +502,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mIdCount = savedInstanceState.getInt("mIdCount");
             mCommentCount = savedInstanceState.getInt("mCommentCount");
             mReadOnly = savedInstanceState.getBoolean("mReadOnly");
+            mReloadTaxon = savedInstanceState.getBoolean("mReloadTaxon");
             mObsJson = savedInstanceState.getString("mObsJson");
             mFlagAsCaptive = savedInstanceState.getBoolean("mFlagAsCaptive");
             mTaxonName = savedInstanceState.getString("mTaxonName");
@@ -745,6 +747,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     registerReceiver(mObservationReceiver, filter);
 
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                    mReloadTaxon = true;
                     serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                     serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.getJSONObject("taxon").getInt("id"));
                     startService(serviceIntent);
@@ -761,6 +764,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 registerReceiver(mObservationReceiver, filter);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                mReloadTaxon = true;
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                 startService(serviceIntent);
@@ -1664,6 +1668,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         outState.putInt("mIdCount", mIdCount);
         outState.putInt("mCommentCount", mCommentCount);
         outState.putBoolean("mReadOnly", mReadOnly);
+        outState.putBoolean("mReloadTaxon", mReloadTaxon);
         outState.putString("mObsJson", mObsJson);
         outState.putBoolean("mFlagAsCaptive", mFlagAsCaptive);
 
@@ -1798,6 +1803,24 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
             }
 
+            if (mReloadTaxon) {
+                // Reload just the taxon part, if changed
+                if (((mObservation.taxon_id == null) && (observation.taxon_id != null)) ||
+                    ((mObservation.taxon_id != null) && (observation.taxon_id == null)) ||
+                    (mObservation.taxon_id != observation.taxon_id)) {
+
+                    mObservation.species_guess = observation.species_guess;
+                    mObservation.taxon_id = observation.taxon_id;
+                    mObservation.preferred_common_name = observation.preferred_common_name;
+
+                    mTaxonName = null;
+                    mTaxonIdName = null;
+                    mTaxonImage = null;
+                }
+
+                mReloadTaxon = false;
+            }
+
             reloadPhotos();
             loadObservationIntoUI();
             setupMap();
@@ -1908,23 +1931,14 @@ public class ObservationViewerActivity extends AppCompatActivity {
     			serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
     			startService(serviceIntent);
 
-
     			// Show a loading progress until the new comments/IDs are loaded
     			mCommentsIds = null;
     			refreshActivity();
 
-    			try {
-    				Thread.sleep(1000);
-    			} catch (InterruptedException e) {
-    				e.printStackTrace();
-    			}
-
     			// Refresh the comment/id list
+                mReloadTaxon = true;
     			IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
     			registerReceiver(mObservationReceiver, filter);
-    			Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
-    			serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-    			startService(serviceIntent2);
 
     		}
     	} else if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {

@@ -570,6 +570,8 @@
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">Ok, got it!</string>
     <string name="new_badge">New</string>
- </resources>
+    <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
+    <string name="sync_failed_connection_problems">Sync failed due to connection problems. Please try again later.</string>
+</resources>
 
 
