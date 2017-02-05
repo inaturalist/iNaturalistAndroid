@@ -83,8 +83,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:7.3.0'
     compile 'com.android.support:preference-v7:23.2.0'
 
-    compile 'com.library.tangxiaolv:telegramgallery:1.0.2'
-
     compile 'com.amplitude:android-sdk:2.13.2'
 
     androidTestCompile 'com.android.support:support-annotations:23.0.1'
