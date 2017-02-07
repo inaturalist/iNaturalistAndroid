@@ -36,7 +36,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     private final static int[][] CATEGORIES = {
             { R.string.plants, R.drawable.ic_taxa_plants, Color.parseColor("#F1F8EA"), 47126 },
             { R.string.mammals, R.drawable.ic_taxa_mammals, Color.parseColor("#E9F0FB"), 40151 },
-            { R.string.insects, R.drawable.iconic_taxon_insecta, Color.parseColor("#FDEAE6"), 47158 },
+            { R.string.insects, R.drawable.ic_taxa_insects, Color.parseColor("#FDEAE6"), 47158 },
             { R.string.reptiles, R.drawable.ic_taxa_reptiles, Color.parseColor("#E9F0FB"), 26036 },
             { R.string.fish, R.drawable.ic_taxa_fish, Color.parseColor("#E9F0FB"), 47178 },
             { R.string.mollusks, R.drawable.ic_taxa_mollusks, Color.parseColor("#FDEAE6"), 47115 },
