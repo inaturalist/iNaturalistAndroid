@@ -940,6 +940,14 @@ public class ObservationEditor extends AppCompatActivity {
                                 public void run() {
                                     uiToProjectFieldValues();
                                     if (save()) {
+                                        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                                            // New observation - Update cached obs count
+                                            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = prefs.edit();
+                                            editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
+                                            editor.commit();
+                                        }
+
                                         setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
                                         finish();
                                     }
@@ -951,6 +959,14 @@ public class ObservationEditor extends AppCompatActivity {
 
                 uiToProjectFieldValues();
                 if (save()) {
+                    if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                        // New observation - Update cached obs count
+                        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
+                        editor.commit();
+                    }
+
                     setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
                     finish();
                 }
@@ -965,6 +981,13 @@ public class ObservationEditor extends AppCompatActivity {
                                 Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
 
                                 setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_DELETED);
+
+                                // Update cached obs count
+                                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = prefs.edit();
+                                editor.putInt("observation_count", prefs.getInt("observation_count", 0) - 1);
+                                editor.commit();
+
                                 finish();
                             }
                         },
