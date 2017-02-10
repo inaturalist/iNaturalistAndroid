@@ -49,6 +49,10 @@
         <item name="android:activatedBackgroundIndicator">@drawable/inatapptheme_activated_background_holo_light</item>
 
         <item name="android:fastScrollThumbDrawable">@drawable/inatapptheme_fastscroll_thumb_holo</item>
+
+
+        <item name="android:progressBarStyleLarge">@style/ProgressBarLargeiNatAppTheme</item>
+        <item name="android:progressBarStyleSmall">@style/ProgressBarSmalliNatAppTheme</item>
     </style>
 
 </resources>

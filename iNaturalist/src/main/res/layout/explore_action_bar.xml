@@ -34,18 +34,16 @@
                  android:background="@drawable/actionbar_btn"
                  android:layout_toStartOf="@id/search"
 		         android:layout_centerVertical="true" />
-    
+
     <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-       			android:layout_marginEnd="-10dp"
-       			android:layout_marginTop="8dp"
-       			android:layout_marginBottom="4dp"
-                android:id="@+id/loading"
-                android:visibility="gone"
-                android:layout_toStartOf="@id/search" />
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="28dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:id="@+id/loading"
+        android:visibility="gone"
+        android:layout_toStartOf="@id/search" />
 
     
     <View android:id="@+id/middle_bar"

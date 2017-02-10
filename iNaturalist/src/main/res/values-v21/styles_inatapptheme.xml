@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+  <style name="ProgressBarLargeiNatAppTheme" parent="android:Widget.Material.ProgressBar.Large">
+      <item name="android:indeterminateTint">#6674ac00</item>
+      <item name="android:indeterminateTintMode">src_in</item>
+  </style>
+    <style name="ProgressBarSmalliNatAppTheme" parent="android:Widget.Material.ProgressBar.Small">
+      <item name="android:indeterminateTint">#6674ac00</item>
+      <item name="android:indeterminateTintMode">src_in</item>
+  </style>
+</resources>
