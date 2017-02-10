@@ -234,9 +234,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         int photoSyncCount = 0;
 
         if (mApp.getAutoSync()) {
-            // Auto sync is on - no need for manual sync
-            if (mSyncingTopBar != null) mSyncingTopBar.setVisibility(View.GONE);
-            return;
+            // Auto sync is on - no need for manual sync (only if the sync wasn't paused by the user)
+            if (!mUserCanceledSync) {
+                if (mSyncingTopBar != null) mSyncingTopBar.setVisibility(View.GONE);
+                return;
+            }
         }
 
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
