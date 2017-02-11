@@ -5,7 +5,7 @@
    <style name="iNatActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
        <item name="android:background">#ffffff</item>
        <item name="elevation">3dp</item>
-    </style>
+   </style>
 
   <style name="ButtoniNatAppTheme" parent="android:Widget.Holo.Light.Button">
 	  <item name="android:background">@drawable/inatapptheme_btn_default_holo_light</item>

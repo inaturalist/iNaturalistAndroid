@@ -10,4 +10,21 @@
       <item name="android:indeterminateTint">#6674ac00</item>
       <item name="android:indeterminateTintMode">src_in</item>
   </style>
+
+    <style name="iNatActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:background">#ffffff</item>
+        <item name="elevation">3dp</item>
+        <item name="titleTextStyle">@style/iNatTitleTextStyle</item>
+    </style>
+
+    <style name="iNatTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">#757575</item>
+    </style>
+
 </resources>

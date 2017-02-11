@@ -53,6 +53,8 @@
 
         <item name="android:progressBarStyleLarge">@style/ProgressBarLargeiNatAppTheme</item>
         <item name="android:progressBarStyleSmall">@style/ProgressBarSmalliNatAppTheme</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
 </resources>
