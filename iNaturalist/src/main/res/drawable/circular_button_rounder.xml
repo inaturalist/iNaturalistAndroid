@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" >
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <gradient
+                android:startColor="@color/inatapptheme_color_highlighted"
+                android:endColor="@color/inatapptheme_color_highlighted"
+                android:angle="270" />
+            <padding
+                android:left="5dp"
+                android:top="5dp"
+                android:right="5dp"
+                android:bottom="5dp" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <gradient
+                android:startColor="@color/inatapptheme_color_highlighted"
+                android:endColor="@color/inatapptheme_color_highlighted"
+                android:angle="270" />
+            <padding
+                android:left="5dp"
+                android:top="5dp"
+                android:right="5dp"
+                android:bottom="5dp" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <gradient
+                android:endColor="@color/inatapptheme_color_disabled"
+                android:startColor="@color/inatapptheme_color_disabled"
+                android:angle="270" />
+            <padding
+                android:left="5dp"
+                android:top="5dp"
+                android:right="5dp"
+                android:bottom="5dp" />
+        </shape>
+    </item>
+
+    <item android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <gradient
+                android:endColor="@color/inatapptheme_color"
+                android:startColor="@color/inatapptheme_color"
+                android:angle="270" />
+            <padding
+                android:left="5dp"
+                android:top="5dp"
+                android:right="5dp"
+                android:bottom="5dp" />
+        </shape>
+    </item>
+</selector>

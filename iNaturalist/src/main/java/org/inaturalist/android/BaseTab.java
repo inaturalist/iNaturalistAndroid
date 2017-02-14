@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.android.gms.common.api.Status;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
@@ -433,5 +434,4 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             mSettings.setVisibility(View.VISIBLE);
         }
     }
-
 }

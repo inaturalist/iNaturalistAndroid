@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:background="#FFEEEEEE"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:id="@+id/no_connectivity_container"
+                android:visibility="gone"
+                android:background="#FFEEEEEE"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingBottom="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/no_connectivity_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cloud_off_black_48dp"
+                    android:tint="#929292"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_connectivity"
+                    android:textColor="#8A000000"
+                    android:textSize="15sp"
+                    android:layout_below="@id/no_connectivity_icon"
+                    android:layout_centerHorizontal="true"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:id="@+id/no_recommended_missions"
+                android:background="#FFEEEEEE"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingBottom="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/no_recommended_missions_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_my_location_black_48dp"
+                    android:tint="#929292"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="40dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_recommended_missions"
+                    android:textColor="#8A000000"
+                    android:textSize="15sp"
+                    android:layout_below="@id/no_recommended_missions_icon"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    />
+            </RelativeLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/recommended_for_you_container"
+                android:background="#FFEEEEEE"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/recommended_for_you"
+                    android:text="@string/recommended_for_you"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all"
+                    android:textColor="#FF74AC00"
+                    android:layout_marginRight="16dp"
+                    android:textSize="14sp"
+                    android:textAllCaps="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBottom="@id/recommended_for_you"
+                    />
+
+
+
+                <android.support.v4.view.ViewPager
+                    android:layout_below="@id/view_all"
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/recommended_missions"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" />
+
+                <ProgressBar
+                    android:id="@+id/loading"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignTop="@id/recommended_missions"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/loading_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/loading"
+                    android:text="@string/searching_your_area"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/missions_by_category_container"
+                android:visibility="gone"
+                android:background="#ffffff"
+                android:padding="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/browse_by_category"
+                    android:textSize="16sp"
+                    android:textColor="#FF74AC00"
+                    android:layout_marginBottom="16dp"
+                    />
+
+                <org.inaturalist.android.GridViewExtended
+                    android:id="@+id/categories"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:numColumns="3"
+                    android:verticalSpacing="5dp"
+                    android:horizontalSpacing="5dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center"
+                    android:orientation="vertical"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

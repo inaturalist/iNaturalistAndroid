@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="org.inaturalist.android"
     android:versionCode="197"
     android:versionName="1.5.2" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21"
-        tools:overrideLibrary="com.tangxiaolv.telegramgallery"
         />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -245,7 +243,32 @@
             android:name=".ObservationSearchActivity" >
         </activity>
 
-        <activity android:name="com.tangxiaolv.telegramgallery.GalleryActivity" />
+         <activity
+            android:configChanges="orientation"
+            android:label="@string/missions"
+            android:name=".MissionsActivity">
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label="@string/missions"
+            android:name=".MissionsGridActivity">
+        </activity>
+         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".MissionDetails">
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".MissionDetailsMapActivity">
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".MissionsOnboardingActivity">
+        </activity>
 
         <service android:name=".INaturalistService" />
         <meta-data android:name="com.crashlytics.ApiKey" android:value="7baaee0ca8a376b3d129b908c1e03be6ecbe5786"/>

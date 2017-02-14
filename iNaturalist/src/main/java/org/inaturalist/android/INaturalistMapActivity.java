@@ -210,6 +210,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         setContentView(R.layout.map);
 	    onDrawerCreate(savedInstanceState);
 
+		AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_MAP);
+
 		getSupportActionBar().setElevation(0);
 
 	    mLoadingObservationsList = (ProgressBar) findViewById(R.id.loading_observations_list);

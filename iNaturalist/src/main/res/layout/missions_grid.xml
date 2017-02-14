@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#F5F5F5"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingBottom="16dp"
+    android:paddingRight="9dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.inaturalist.android.PullToRefreshGridViewExtended
+        android:id="@+id/missions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:verticalSpacing="3dp"
+        android:horizontalSpacing="3dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:orientation="vertical"/>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/recommended_missions"
+        android:gravity="center"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:id="@+id/loading_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loading"
+        android:text="@string/searching_your_area"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/no_recommended_missions"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/no_recommended_missions_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_my_location_black_48dp"
+            android:tint="#929292"
+            android:layout_centerInParent="true"
+            android:paddingBottom="40dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_recommended_missions"
+            android:textColor="#8A000000"
+            android:textSize="15sp"
+            android:layout_below="@id/no_recommended_missions_icon"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
