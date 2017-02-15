@@ -512,7 +512,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
-            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync))) {
+            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
