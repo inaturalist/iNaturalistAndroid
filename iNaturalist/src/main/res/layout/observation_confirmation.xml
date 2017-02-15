@@ -181,14 +181,6 @@
         android:background="#dfdfdf"
         />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginStart="64dp"
-        android:background="#dfdfdf"
-        />
-
 
     <RelativeLayout
         android:layout_width="fill_parent"

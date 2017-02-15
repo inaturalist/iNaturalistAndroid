@@ -194,7 +194,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 boolean hasOnboardedSyncing = prefs.getBoolean("onboarded_syncing", false);
                 if (!intent.getBooleanExtra(INaturalistService.FIRST_SYNC, false)) {
-                    mOnboardingSyncing.setVisibility(hasOnboardedSyncing ? View.GONE : View.VISIBLE);
+                    mOnboardingSyncing.setVisibility(hasOnboardedSyncing || !mApp.loggedIn() ? View.GONE : View.VISIBLE);
                 }
 
                 if (intent.getBooleanExtra(INaturalistService.SYNC_FAILED, false)) {
