@@ -94,6 +94,19 @@
             android:paddingRight="15dp"
             />
 
+
+        <ProgressBar
+            android:id="@+id/loading_photos"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            />
+
+
         <LinearLayout
             android:id="@+id/no_photos"
             android:layout_centerInParent="true"
@@ -682,7 +695,20 @@
                     />
             </RelativeLayout>
 
+            <ProgressBar
+                android:id="@+id/loading_map"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                />
+
+
             <RelativeLayout
+                android:id="@+id/location_label_container"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/shadow_background"

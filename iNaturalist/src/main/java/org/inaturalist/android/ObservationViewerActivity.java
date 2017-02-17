@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.service.chooser.ChooserTarget;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -150,6 +151,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private ViewGroup mDataQualityReason;
     private TextView mIncludedInProjects;
     private ViewGroup mIncludedInProjectsContainer;
+    private ProgressBar mLoadingPhotos;
+    private ProgressBar mLoadingMap;
 
     private ObservationReceiver mObservationReceiver;
 
@@ -188,12 +191,14 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private TextView mSyncToAddFave;
     private ImageView mIdPicBig;
     private ViewGroup mNoPhotosContainer;
+    private ViewGroup mLocationLabelContainer;
 
     private PhotosViewPagerAdapter mPhotosAdapter = null;
     private ArrayList<BetterJSONObject> mProjects;
     private ImageView mIdArrow;
     private ViewGroup mUnknownLocationContainer;
     private boolean mReadOnly;
+    private boolean mLoadingObservation;
     private String mObsJson;
     private boolean mShowComments;
     private int mCommentCount;
@@ -418,9 +423,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mSyncToAddCommentsIds = (TextView) findViewById(R.id.sync_to_add_comments_ids);
         mSyncToAddFave = (TextView) findViewById(R.id.sync_to_add_fave);
         mNoPhotosContainer = (ViewGroup) findViewById(R.id.no_photos);
+        mLocationLabelContainer = (ViewGroup) findViewById(R.id.location_label_container);
         mIdPicBig = (ImageView) findViewById(R.id.id_icon_big);
         mIdArrow = (ImageView) findViewById(R.id.id_arrow);
         mPhotosContainer = (ViewGroup) findViewById(R.id.photos_container);
+        mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
+        mLoadingMap = (ProgressBar) findViewById(R.id.loading_map);
 
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
@@ -684,6 +692,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private void refreshActivity() {
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String username = pref.getString("username", null);
+
+        mLoadingPhotos.setVisibility(View.GONE);
 
         if (username == null) {
             // Not logged in
@@ -955,6 +965,11 @@ public class ObservationViewerActivity extends AppCompatActivity {
         lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
         acc = mObservation.positional_accuracy;
 
+        if (!mLoadingObservation) {
+            mLoadingMap.setVisibility(View.GONE);
+            mLocationLabelContainer.setVisibility(View.VISIBLE);
+        }
+
         if (lat != null && lon != null) {
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
@@ -1012,7 +1027,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mLocationText.setText(R.string.unable_to_acquire_location);
             mLocationText.setGravity(View.TEXT_ALIGNMENT_CENTER);
             mLocationPrivate.setVisibility(View.GONE);
-            mUnknownLocationContainer.setVisibility(View.VISIBLE);
+
+            if (!mLoadingObservation) mUnknownLocationContainer.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1113,6 +1129,17 @@ public class ObservationViewerActivity extends AppCompatActivity {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             startService(serviceIntent);
+
+            if (mReadOnly) {
+                // Show loading progress bars for the photo and map
+                mLoadingObservation = true;
+                mLoadingPhotos.setVisibility(View.VISIBLE);
+                mNoPhotosContainer.setVisibility(View.GONE);
+
+                mLoadingMap.setVisibility(View.VISIBLE);
+                mUnknownLocationContainer.setVisibility(View.GONE);
+                mLocationLabelContainer.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -1729,6 +1756,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 // Continue
             }
 
+            mLoadingObservation = false;
+
 	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
 
             if (mObservation == null) {
@@ -1835,6 +1864,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 	}
 
     private void reloadPhotos() {
+        mLoadingPhotos.setVisibility(View.GONE);
         mPhotosAdapter = new PhotosViewPagerAdapter();
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
