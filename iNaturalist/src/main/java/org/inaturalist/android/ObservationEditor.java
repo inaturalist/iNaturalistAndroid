@@ -2118,8 +2118,12 @@ public class ObservationEditor extends AppCompatActivity {
     }
     
     private void deletePhoto(int position) {
-        mPhotosChanged = true;
     	GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+        if (position >= adapter.getCount()) {
+            return;
+        }
+
+        mPhotosChanged = true;
 
         Cursor cursor = adapter.getCursor();
         cursor.moveToPosition(position);
