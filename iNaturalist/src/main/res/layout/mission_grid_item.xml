@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingRight="0dp"
+    android:background="#F5F5F5"
     android:paddingBottom="0dp"
     android:clipToPadding="false"
     android:orientation="vertical"
@@ -27,7 +28,7 @@
                 android:id="@+id/species_guess"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
+                android:background="@drawable/mission_grid_item_background"
                 android:textColor="#000000"
                 android:padding="5dp"
                 android:lines="2"
