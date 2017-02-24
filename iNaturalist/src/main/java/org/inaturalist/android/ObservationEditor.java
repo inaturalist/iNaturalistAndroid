@@ -326,6 +326,9 @@ public class ObservationEditor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Intent intent = getIntent();
+        String action = intent != null ? intent.getAction() : null;
+        String type = intent != null ? intent.getType() : null;
+        List<Uri> sharePhotos = null;
 
         if ((savedInstanceState == null) && (intent != null) && (intent.getData() != null)) {
             int uriMatch = ObservationProvider.URI_MATCHER.match(intent.getData());
@@ -335,6 +338,15 @@ public class ObservationEditor extends AppCompatActivity {
             } else {
                 mIsConfirmation = false;
             }
+        } else if ((intent != null) && (action != null) && (Intent.ACTION_SEND.equals(action))) {
+            // Single share photo with iNaturalist
+            mIsConfirmation = true;
+            Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+            sharePhotos = new ArrayList<>();
+            sharePhotos.add(imageUri);
+        } else if ((intent != null) && (action != null) && (Intent.ACTION_SEND_MULTIPLE.equals(action))) {
+            // Multiple share photo with iNaturalist
+            sharePhotos = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         } else {
             // Show the observation editor screen
             mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
@@ -358,7 +370,21 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
 
-        if (savedInstanceState == null) {
+        if (sharePhotos != null) {
+            // Share photos(s) with iNaturalist
+            mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
+            if (mUri == null) {
+                Log.e(TAG, "Failed to insert new observation into " + Observation.CONTENT_URI);
+                finish();
+                return;
+            }
+            setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
+            getIntent().setAction(Intent.ACTION_INSERT);
+
+            mPhotosAdded = new ArrayList<String>();
+            mPhotosRemoved = new ArrayList<ObservationPhoto>();
+
+        } else if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
             if (uri == null) {
@@ -761,6 +787,13 @@ public class ObservationEditor extends AppCompatActivity {
                 editNextObservation(1);
             }
         });
+
+
+        if (sharePhotos != null) {
+            // Share photos(s) with iNaturalist (override any location with the one from the shared images)
+            importPhotos(sharePhotos, true);
+        }
+
     }
 
     private void editNextObservation(int direction) {
@@ -1908,42 +1941,7 @@ public class ObservationEditor extends AppCompatActivity {
                     photos.add(selectedImageUri);
                 }
 
-                mHelper.loading(getString(R.string.importing_photos));
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        int position = mGallery.getCount();
-                        for (final Uri photo : photos) {
-                            Uri createdUri = createObservationPhotoForPhoto(photo, position);
-                            mPhotosAdded.add(createdUri.toString());
-                            position++;
-
-                            // Import photo metadata (e.g. location) only when the location hasn't been set
-                            // by the user before (whether manually or by importing previous images)
-                            if ((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) {
-                                mLocationManuallySet = true;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        stopGetLocation();
-                                        importPhotoMetadata(photo);
-                                    }
-                                });
-
-                            }
-                        }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                updateImages();
-                                mHelper.stopLoading();
-                            }
-                        });
-                    }
-                }).start();
-
+                importPhotos(photos, false);
             }
 
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -2022,6 +2020,46 @@ public class ObservationEditor extends AppCompatActivity {
         }
     }
 
+    private void importPhotos(final List<Uri> photos, final boolean overrideLocation) {
+        mHelper.loading(getString(R.string.importing_photos));
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int position = mGallery.getCount();
+                for (final Uri photo : photos) {
+                    Uri createdUri = createObservationPhotoForPhoto(photo, position);
+                    mPhotosAdded.add(createdUri.toString());
+                    position++;
+
+                    // Import photo metadata (e.g. location) only when the location hasn't been set
+                    // by the user before (whether manually or by importing previous images)
+                    if (((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) ||
+                        (overrideLocation && (position == 1))) {
+                        mLocationManuallySet = true;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                stopGetLocation();
+                                importPhotoMetadata(photo);
+                            }
+                        });
+
+                    }
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateImages();
+                        mHelper.stopLoading();
+                    }
+                });
+            }
+        }).start();
+
+    }
+
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
         return createObservationPhotoForPhoto(photoUri, mGallery.getCount());
     }
@@ -2053,7 +2091,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void importPhotoMetadata(Uri photoUri) {
         String imgFilePath = FileUtils.getPath(this, photoUri);
-        
+
         if (imgFilePath == null) return;
         
         try {
