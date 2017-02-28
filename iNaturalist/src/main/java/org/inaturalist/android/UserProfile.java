@@ -587,9 +587,6 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 mSpeciesListAdapter = new UserSpeciesAdapter(UserProfile.this, mSpecies);
                 mSpeciesList.setAdapter(mSpeciesListAdapter);
                 mSpeciesList.setVisibility(View.VISIBLE);
-
-                // Make sure the images get loaded only when the user stops scrolling
-                mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
             }
         }
 

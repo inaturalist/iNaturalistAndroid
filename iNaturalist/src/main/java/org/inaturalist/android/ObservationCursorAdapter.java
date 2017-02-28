@@ -33,6 +33,9 @@ import android.widget.Toast;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -49,7 +52,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private final Activity mContext;
     private INaturalistApp mApp;
     private PullToRefreshGridViewExtended mGrid;
-    private boolean mIsScrolling = false;
+
+    private HashMap<Integer, Boolean> mObservationLoaded;
 
     public ObservationCursorAdapter(Context context, Cursor c) {
         this(context, c, false, null);
@@ -62,8 +66,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mContext = (Activity)context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
 
-        mObservationPhotoNames = new HashMap<>();
-        mImageViews = new HashMap<>();
         mObservationLoaded = new HashMap<>();
 
         getPhotoInfo();
@@ -301,18 +303,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (photoInfo != null) {
             String photoFilename = photoInfo[2] != null ? photoInfo[2] : photoInfo[0];
-
-            if (!mIsScrolling) {
-                // Only load image if user is not scrolling
-                loadObsImage(position, obsImage, photoFilename, photoInfo[2] != null);
+            if (mIsGrid && (convertView == null)) {
+                obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             }
 
-            mObservationPhotoNames.put(position, photoFilename);
-            mImageViews.put(position, obsImage);
+            loadObsImage(position, obsImage, photoFilename, photoInfo[2] != null);
         } else {
             obsImage.setVisibility(View.INVISIBLE);
-            mObservationPhotoNames.put(position, null);
-            mImageViews.put(position, null);
         }
 
         Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
@@ -699,40 +696,24 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    private void loadObsImage(final int position, ImageView imageView, String name, boolean isOnline) {
+    private void loadObsImage(final int position, final ImageView imageView, String name, boolean isOnline) {
         if (isOnline) {
             // Online image
-            UrlImageViewCallback callback = new UrlImageViewCallback() {
-                float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, mContext.getResources().getDisplayMetrics());
+            Picasso.with(mContext)
+                    .load(name)
+                    .fit()
+                    .centerCrop()
+                    .into(imageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            imageView.setVisibility(View.VISIBLE);
+                        }
 
-                @Override
-                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    if (mIsGrid) {
-                        imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                    }
+                        @Override
+                        public void onError() {
 
-                    imageView.setVisibility(View.VISIBLE);
-                    if ((!mObservationLoaded.containsKey(position)) || (mObservationLoaded.get(position) == false)) {
-                        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slow_fade_in);
-                        imageView.startAnimation(animation);
-                        mObservationLoaded.put(position, true);
-                    }
-                }
-
-                @Override
-                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap), px);
-                }
-            };
-
-            // Change URL postfix so UrlImageViewHelper won't cache the squared version for other screens using this image
-            if (name.lastIndexOf('/') > name.lastIndexOf('?')) {
-                name += "?square=1";
-            } else {
-                name += "&square=1";
-            }
-
-            UrlImageViewHelper.setUrlDrawable(imageView, name, callback);
+                        }
+                    });
 
         } else {
             // Offline image
@@ -742,38 +723,18 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
     }
 
-    private HashMap<Integer, ImageView> mImageViews;
-    private HashMap<Integer, String> mObservationPhotoNames;
-    private HashMap<Integer, Boolean> mObservationLoaded;
-
-    // Load an observation image for one of the views
-    private void loadImageByPosition(int position) {
-        if (!mImageViews.containsKey(position) || !mObservationPhotoNames.containsKey(position)) return;
-
-        ImageView imageView = mImageViews.get(position);
-        String photoName = mObservationPhotoNames.get(position);
-
-        if ((photoName == null) || (imageView == null)) return;
-
-        loadObsImage(position, imageView, photoName, !FileUtils.isLocal(photoName));
-    }
-
 
     @Override
-    public void onScrollStateChanged(AbsListView listView, int state) {
-        switch (state) {
-            case SCROLL_STATE_FLING:
-            case SCROLL_STATE_TOUCH_SCROLL:
-                mIsScrolling = true;
-                break;
-            case SCROLL_STATE_IDLE:
-                mIsScrolling = false;
-                for (int visiblePosition = listView.getFirstVisiblePosition(); visiblePosition <= listView.getLastVisiblePosition(); visiblePosition++) {
-                    loadImageByPosition(visiblePosition);
-                }
-                break;
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        final Picasso picasso = Picasso.with(mContext);
+
+        if (scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_TOUCH_SCROLL) {
+            picasso.resumeTag(mContext);
+        } else {
+            picasso.pauseTag(mContext);
         }
     }
+
     @Override
     public void onScroll(AbsListView absListView, int i, int i1, int i2) {
 

@@ -12,6 +12,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.squareup.picasso.LruCache;
+import com.squareup.picasso.Picasso;
 
 import io.fabric.sdk.android.Fabric;
 import java.io.BufferedInputStream;
@@ -39,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -120,6 +123,13 @@ public class INaturalistApp extends MultiDexApplication {
         Fabric.with(this, new Crashlytics());
         FacebookSdk.sdkInitialize(getApplicationContext());
         AnalyticsClient.initAnalyticsClient(this);
+
+        // Build a custom Picasso instance that uses more memory for image cache (50% of free memory
+        // instead of the default 15%)
+        Picasso picasso = new Picasso.Builder(getApplicationContext())
+                .memoryCache(new LruCache((int)(Runtime.getRuntime().maxMemory() * 0.5)))
+                .build();
+        Picasso.setSingletonInstance(picasso);
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();

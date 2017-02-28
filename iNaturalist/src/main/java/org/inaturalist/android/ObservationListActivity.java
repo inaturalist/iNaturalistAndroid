@@ -423,7 +423,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesGridAdapter = new UserSpeciesAdapter(this, mSpecies, UserSpeciesAdapter.VIEW_TYPE_GRID, mSpeciesGrid);
                     mSpeciesGrid.setAdapter(mSpeciesGridAdapter);
 
-                    // Make sure the images get loaded only when the user stops scrolling
                     mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
                     mSpeciesGrid.setOnScrollListener(mSpeciesGridAdapter);
 
@@ -996,9 +995,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsGrid.setAdapter(mObservationGridAdapter);
                     mObservationsList.setAdapter(mObservationListAdapter);
 
-                    // Make sure the images get loaded only when the user stops scrolling
-                    mObservationsGrid.setOnScrollListener(mObservationGridAdapter);
                     mObservationsList.setOnScrollListener(mObservationListAdapter);
+                    mObservationsGrid.setOnScrollListener(mObservationGridAdapter);
 
                     // Set a listener to be invoked when the list should be refreshed.
                     mObservationsList.setOnRefreshListener(new OnRefreshListener<ListView>() {

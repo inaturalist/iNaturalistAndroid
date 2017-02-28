@@ -25,6 +25,10 @@ import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.LruCache;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,11 +45,12 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
     private int mDimension;
     private PullToRefreshGridViewExtended mGrid;
 
+    private HashMap<Integer, Boolean> mObservationLoaded;
+
+
     public static final int VIEW_TYPE_LIST = 0x1000;
     public static final int VIEW_TYPE_GRID = 0x1001;
     public static final int VIEW_TYPE_CARDS = 0x1002;
-
-    private boolean mIsScrolling = false;
 
     public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results) {
         this(context, results, VIEW_TYPE_LIST, null);
@@ -59,8 +64,6 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
         mViewType = viewType;
         mGrid = grid;
 
-        mObservationPhotoNames = new HashMap<>();
-        mImageViews = new HashMap<>();
         mObservationLoaded = new HashMap<>();
     }
 
@@ -154,16 +157,14 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             speciesIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
 
             if (photoUrl != null) {
-                if (!mIsScrolling) {
-                    // Only load image if user is not scrolling
-                    loadObsImage(position, speciesPic, photoUrl);
+                if ((mViewType == VIEW_TYPE_GRID) && (convertView == null)) {
+                    speciesPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
                 }
+
+                loadObsImage(position, speciesPic, photoUrl);
             } else {
                 speciesPic.setVisibility(View.INVISIBLE);
             }
-
-            mObservationPhotoNames.put(position, photoUrl);
-            mImageViews.put(position, speciesPic);
 
             if (mViewType == VIEW_TYPE_LIST) {
                 TextView speciesCount = (TextView) view.findViewById(R.id.species_count);
@@ -181,66 +182,36 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
         return view;
     }
 
-    private void loadObsImage(final int position, ImageView imageView, String url) {
-        UrlImageViewCallback callback = new UrlImageViewCallback() {
-            @Override
-            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                if (loadedBitmap != null)
-                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
-                if (mViewType == VIEW_TYPE_GRID) {
-                    imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                }
+    private void loadObsImage(final int position, final ImageView imageView, String url) {
+        Picasso.with(mContext)
+                .load(url)
+                .fit()
+                .centerCrop()
+                .into(imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        imageView.setVisibility(View.VISIBLE);
+                    }
 
-                imageView.setVisibility(View.VISIBLE);
+                    @Override
+                    public void onError() {
 
-                if ((!mObservationLoaded.containsKey(position)) || (mObservationLoaded.get(position) == false)) {
-                    Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slow_fade_in);
-                    imageView.startAnimation(animation);
-                    mObservationLoaded.put(position, true);
-                }
-            }
-
-            @Override
-            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                return loadedBitmap;
-            }
-        };
-
-        UrlImageViewHelper.setUrlDrawable(imageView, url, callback);
-    }
-
-    private HashMap<Integer, ImageView> mImageViews;
-    private HashMap<Integer, String> mObservationPhotoNames;
-    private HashMap<Integer, Boolean> mObservationLoaded;
-
-    // Load an observation image for one of the views
-    private void loadImageByPosition(int position) {
-        if (!mImageViews.containsKey(position) || !mObservationPhotoNames.containsKey(position)) return;
-
-        ImageView imageView = mImageViews.get(position);
-        String photoName = mObservationPhotoNames.get(position);
-
-        if ((photoName == null) || (imageView == null)) return;
-
-        loadObsImage(position, imageView, photoName);
+                    }
+                });
     }
 
 
     @Override
-    public void onScrollStateChanged(AbsListView listView, int state) {
-        switch (state) {
-            case SCROLL_STATE_FLING:
-            case SCROLL_STATE_TOUCH_SCROLL:
-                mIsScrolling = true;
-                break;
-            case SCROLL_STATE_IDLE:
-                mIsScrolling = false;
-                for (int visiblePosition = listView.getFirstVisiblePosition(); visiblePosition <= listView.getLastVisiblePosition(); visiblePosition++) {
-                    loadImageByPosition(visiblePosition);
-                }
-                break;
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        final Picasso picasso = Picasso.with(mContext);
+
+        if (scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_TOUCH_SCROLL) {
+            picasso.resumeTag(mContext);
+        } else {
+            picasso.pauseTag(mContext);
         }
     }
+
     @Override
     public void onScroll(AbsListView absListView, int i, int i1, int i2) {
 

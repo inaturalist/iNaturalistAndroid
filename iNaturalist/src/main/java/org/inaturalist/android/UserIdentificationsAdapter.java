@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,8 +39,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
     private boolean mIsGrid;
     private int mDimension;
     private PullToRefreshGridViewExtended mGrid;
-
-    private boolean mIsScrolling = false;
+    private HashMap<Integer, Boolean> mObservationLoaded;
 
     public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username, boolean isGrid, PullToRefreshGridViewExtended grid) {
         super(context, android.R.layout.simple_list_item_1);
@@ -51,8 +52,6 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
         mLoggedInUsername = ((INaturalistApp)mContext.getApplicationContext()).currentUserLogin();
 
-        mObservationPhotoNames = new HashMap<>();
-        mImageViews = new HashMap<>();
         mObservationLoaded = new HashMap<>();
     }
 
@@ -114,16 +113,14 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
             JSONArray photos = observation.optJSONArray("photos");
             String photoUrl = null;
-            if ((photos != null) && (photos.length() > 0)) {
-                photoUrl = photos.getJSONObject(0).getString("medium_url");
-                if (!mIsScrolling) {
-                    // Only load image if user is not scrolling
-                    loadObsImage(position, idPic, photoUrl);
-                }
+            if (mIsGrid && (convertView == null)) {
+                idPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             }
 
-            mObservationPhotoNames.put(position, photoUrl);
-            mImageViews.put(position, idPic);
+            if ((photos != null) && (photos.length() > 0)) {
+                photoUrl = photos.getJSONObject(0).getString("medium_url");
+                loadObsImage(position, idPic, photoUrl);
+            }
 
             view.setTag(item);
         } catch (JSONException e) {
@@ -182,71 +179,32 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
     }
 
-    private void loadObsImage(final int position, ImageView imageView, String url) {
-        UrlImageViewCallback callback = new UrlImageViewCallback() {
-            @Override
-            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                if (loadedBitmap != null)
-                    imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap), 4));
-                if (mIsGrid) {
-                    imageView.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
-                }
+    private void loadObsImage(final int position, final ImageView imageView, String url) {
+        Picasso.with(mContext)
+                .load(url)
+                .fit()
+                .centerCrop()
+                .into(imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        imageView.setVisibility(View.VISIBLE);
+                    }
 
-                imageView.setVisibility(View.VISIBLE);
+                    @Override
+                    public void onError() {
 
-                if ((!mObservationLoaded.containsKey(position)) || (mObservationLoaded.get(position) == false)) {
-                    Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slow_fade_in);
-                    imageView.startAnimation(animation);
-                    mObservationLoaded.put(position, true);
-                }
-            }
-
-            @Override
-            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                return loadedBitmap;
-            }
-        };
-
-        // Change URL postfix so UrlImageViewHelper won't cache the squared version for other screens using this image
-        if (url.lastIndexOf('/') > url.lastIndexOf('?')) {
-            url += "?square=1";
-        } else {
-            url += "&square=1";
-        }
-
-        UrlImageViewHelper.setUrlDrawable(imageView, url, callback);
+                    }
+                });
     }
-
-    private HashMap<Integer, ImageView> mImageViews;
-    private HashMap<Integer, String> mObservationPhotoNames;
-    private HashMap<Integer, Boolean> mObservationLoaded;
-
-    // Load an observation image for one of the views
-    private void loadImageByPosition(int position) {
-        if (!mImageViews.containsKey(position) || !mObservationPhotoNames.containsKey(position)) return;
-
-        ImageView imageView = mImageViews.get(position);
-        String photoName = mObservationPhotoNames.get(position);
-
-        if ((photoName == null) || (imageView == null)) return;
-
-        loadObsImage(position, imageView, photoName);
-    }
-
 
     @Override
-    public void onScrollStateChanged(AbsListView listView, int state) {
-        switch (state) {
-            case SCROLL_STATE_FLING:
-            case SCROLL_STATE_TOUCH_SCROLL:
-                mIsScrolling = true;
-                break;
-            case SCROLL_STATE_IDLE:
-                mIsScrolling = false;
-                for (int visiblePosition = listView.getFirstVisiblePosition(); visiblePosition <= listView.getLastVisiblePosition(); visiblePosition++) {
-                    loadImageByPosition(visiblePosition);
-                }
-                break;
+    public void onScrollStateChanged(AbsListView listView, int scrollState) {
+        final Picasso picasso = Picasso.with(mContext);
+
+        if (scrollState == SCROLL_STATE_IDLE || scrollState == SCROLL_STATE_TOUCH_SCROLL) {
+            picasso.resumeTag(mContext);
+        } else {
+            picasso.pauseTag(mContext);
         }
     }
     @Override

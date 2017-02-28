@@ -198,7 +198,6 @@ public class MissionsGridActivity extends AppCompatActivity {
 
                 mMissionsAdapter = new UserSpeciesAdapter(this, mMissions, UserSpeciesAdapter.VIEW_TYPE_CARDS, mMissionsGrid);
                 mMissionsGrid.setAdapter(mMissionsAdapter);
-                mMissionsGrid.setOnScrollListener(mMissionsAdapter);
             }
         }
     }
