@@ -1175,6 +1175,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         @Override
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
+
+            String username = extras.getString(INaturalistService.USERNAME);
+
+            if (!username.equals(mApp.currentUserLogin())) {
+                // Results returned for another user
+                return;
+            }
+
             String error = extras.getString("error");
             if (error != null) {
                 mHelper.alert(String.format(getString(R.string.couldnt_load_user_details), error));

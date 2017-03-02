@@ -466,6 +466,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(USER_DETAILS_RESULT);
                 reply.putExtra(USER, user);
+                reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
@@ -526,6 +527,7 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(SPECIES_COUNT_RESULT);
                 mApp.setServiceResult(SPECIES_COUNT_RESULT, speciesCount);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_LIFE_LIST)) {
@@ -544,6 +546,7 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
                 mApp.setServiceResult(USER_OBSERVATIONS_RESULT, observations);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_SEARCH_USER_OBSERVATIONS)) {
@@ -563,6 +566,7 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(IDENTIFICATIONS_RESULT);
                 mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_ADD_COMMENT)) {
