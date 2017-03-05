@@ -124,6 +124,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private ViewGroup mOnboardingSyncing;
     private View mOnboardingSyncingClose;
 
+    private boolean mSelectedBottomGrid = false;
+
 
     @Override
 	protected void onStart()
@@ -188,6 +190,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mUserCanceledSync = false;
                     refreshSyncBar();
                     refreshViewState();
+
+
+                    try {
+                        JSONObject eventParams = new JSONObject();
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_UPLOAD_COMPLETE);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 // Decide if to show onboarding message
@@ -512,6 +524,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 startService(serviceIntent);
+
 
                 if (mSyncingTopBar != null) {
                     mSyncingStatus.setText(R.string.syncing);
@@ -846,6 +859,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                             intent.putExtra("read_only", true);
                             intent.putExtra("reload", true);
                             startActivity(intent);
+
+                            try {
+                                JSONObject eventParams = new JSONObject();
+                                eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_IDENTIFICATIONS_TAB);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     };
 
@@ -923,6 +945,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 if ((!mObservationListAdapter.isLocked(uri)) || (mObservationListAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
                                     // Launch activity to view/edit the currently selected item
                                     startActivity(new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerActivity.class));
+
+                                    try {
+                                        JSONObject eventParams = new JSONObject();
+                                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_ME_TAB);
+
+                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
                             }
                         }
@@ -953,14 +985,43 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 mApp.setCancelSync(true);
                                 mCancelSync.setText(R.string.resume);
                                 mSyncingStatus.setText(R.string.syncing_paused);
+
+                                try {
+                                    JSONObject eventParams = new JSONObject();
+                                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_STOP_UPLOAD_BUTTON);
+
+                                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
                             } else {
                                 // User chose to resume sync
                                 if (!isNetworkAvailable()) {
+                                    try {
+                                        JSONObject eventParams = new JSONObject();
+                                        eventParams.put(AnalyticsClient.EVENT_PARAM_ALERT, getString(R.string.not_connected));
+
+                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_FAILED, eventParams);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
                                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                                     return;
                                 } else if (!isLoggedIn()) {
                                     // User not logged-in - redirect to onboarding screen
                                     startActivity(new Intent(ObservationListActivity.this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+
+
+                                    try {
+                                        JSONObject eventParams = new JSONObject();
+                                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_AUTH_REQUIRED);
+
+                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                     return;
                                 }
 
@@ -972,6 +1033,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 startService(serviceIntent);
+
                             }
                         }
                     });
@@ -1021,25 +1083,42 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         public void onClick(View v) {
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_START);
 
+                            mSelectedBottomGrid = false;
                             new BottomSheet.Builder(ObservationListActivity.this).sheet(R.menu.observation_list_menu).listener(new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent intent;
+                                    mSelectedBottomGrid = true;
+
                                     switch (which) {
                                         case R.id.camera:
+                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
+
                                             intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class);
                                             intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
                                             startActivity(intent);
                                             break;
                                         case R.id.upload_photo:
+                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
+
                                             intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class);
                                             intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
                                             startActivity(intent);
                                             break;
                                         case R.id.text:
+                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
+
                                             startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
                                             break;
                                     }
+                                }
+                            }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialogInterface) {
+                                    if (!mSelectedBottomGrid) {
+                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_CANCEL);
+                                    }
+                                    mSelectedBottomGrid = false;
                                 }
                             }).show();
                         }

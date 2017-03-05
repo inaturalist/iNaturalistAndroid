@@ -31,6 +31,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import org.apache.sanselan.util.IOUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -94,10 +95,31 @@ public class ProfileEditor extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 String iconUrl = prefs.getString("user_icon_url", null);
 
-                if ((mUserIconUrl == null) && (iconUrl != null)) serviceIntent.putExtra(INaturalistService.ACTION_USER_DELETE_PIC, true); // Delete profile pic
+                if (!mUserNameText.getText().toString().equals(prefs.getString("username", ""))) {
+                    // Username changed
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_USERNAME_CHANGED);
+                }
+
+                if ((mUserIconUrl == null) && (iconUrl != null)) {
+                    // Delete profile pic
+                    serviceIntent.putExtra(INaturalistService.ACTION_USER_DELETE_PIC, true);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_PHOTO_REMOVED);
+                }
 
                 if ((mUserIconUrl != null) && (!mUserIconUrl.equals(iconUrl))) {
                     // New profile pic - make a copy of it
+
+                    try {
+                        JSONObject eventParams = new JSONObject();
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_ALREADY_HAD_PHOTO, iconUrl != null ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_PHOTO_CHANGED, eventParams);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
                     try {
                         String newFilename = null;
                         File outputFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");

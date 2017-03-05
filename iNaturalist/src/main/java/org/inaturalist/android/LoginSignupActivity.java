@@ -93,6 +93,8 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 // Registration successful - login the user
                 recreateSignInTaskIfNeeded();
                 mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_CREATE_ACCOUNT);
             }
         }
     }
@@ -325,6 +327,8 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse("http://" + inatHost + "/forgot_password.mobile"));
                     startActivity(i);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_FORGOT_PASSWORD);
                 }
             });
         } else {

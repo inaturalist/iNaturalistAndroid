@@ -8,15 +8,18 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -149,6 +152,35 @@ public class NewsArticle extends AppCompatActivity {
 
         final JSONObject user = mArticle.getJSONObject("user");
         mUsername.setText(user.optString("login"));
+
+        // Intercept link clicks (for analytics events)
+
+        WebViewClient webClient = new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView  view, String  url){
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    JSONObject item = mArticle.getJSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_LINK, url);
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_ARTICLE_TITLE, item.optString("title", ""));
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_PARENT_TYPE, item.optString("parent_type", ""));
+                    JSONObject parent = item.optJSONObject("parent");
+                    if (parent == null) parent = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_PARENT_NAME, parent.optString("title", parent.optString("name", "")));
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEWS_TAP_LINK, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                NewsArticle.this.startActivity(intent);
+                return true;
+            }
+        };
+
+        mArticleContentWeb.setWebViewClient(webClient);
 
 
         View.OnClickListener showUser = new View.OnClickListener() {

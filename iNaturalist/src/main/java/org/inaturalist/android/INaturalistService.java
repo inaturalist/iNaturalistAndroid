@@ -59,7 +59,6 @@ import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationServices;
 
 import android.annotation.SuppressLint;
@@ -69,7 +68,6 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -896,6 +894,32 @@ public class INaturalistService extends IntentService {
 
 
     private void syncObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
+        try {
+            JSONObject eventParams = new JSONObject();
+            eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, mApp.getAutoSync() ? AnalyticsClient.EVENT_VALUE_AUTOMATIC_UPLOAD : AnalyticsClient.EVENT_VALUE_MANUAL_FULL_UPLOAD);
+            Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "is_deleted = 1 AND user_login = '"+mLogin+"'",
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+
+            eventParams.put(AnalyticsClient.EVENT_PARAM_NUM_DELETES, c.getCount());
+            c.close();
+
+            c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "(_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '"+mLogin+"') OR " +
+                    "(id IS NULL AND _updated_at > _created_at)",
+                    null,
+                    Observation.SYNC_ORDER);
+            eventParams.put(AnalyticsClient.EVENT_PARAM_NUM_UPLOADS, c.getCount());
+            c.close();
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_OBS, eventParams);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         deleteObservations(); // Delete locally-removed observations
         if (!getUserObservations(0)) throw new SyncFailedException(); // First, download remote observations (new/updated)
         postObservations(); // Next, update local-to-remote observations
@@ -1115,6 +1139,16 @@ public class INaturalistService extends IntentService {
                 Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
             }
         });
+
+        try {
+            JSONObject eventParams = new JSONObject();
+            eventParams.put(AnalyticsClient.EVENT_PARAM_ALERT, errorMessage);
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_FAILED, eventParams);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         return true;
     }

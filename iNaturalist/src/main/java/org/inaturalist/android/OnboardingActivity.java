@@ -126,6 +126,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ONBOARDING_LOGIN_SKIP);
                 mSignInTask.pause();
                 setResult(RESULT_CANCELED);
                 finish();
@@ -201,6 +202,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     }
 
     public void onBackPressed(){
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ONBOARDING_LOGIN_CANCEL);
         mSignInTask.pause();
         setResult(RESULT_CANCELED);
         finish();

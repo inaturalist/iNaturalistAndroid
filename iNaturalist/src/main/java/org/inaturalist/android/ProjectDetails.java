@@ -29,6 +29,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -842,6 +843,16 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
                             intent.putExtra("read_only", true);
                             intent.putExtra("reload", true);
                             startActivity(intent);
+
+                            try {
+                                JSONObject eventParams = new JSONObject();
+                                eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_PROJECT_DETAILS);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
                     });
 

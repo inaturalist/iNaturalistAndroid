@@ -421,6 +421,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
 
                 if (position == 0) {
                     // Delete download
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_GUIDE_DOWNLOAD_DELETE);
                     mGuideXml.deleteOfflineGuide();
                     refreshGuideSideMenu();
                 } else if (position == 1) {
@@ -472,6 +473,8 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         mIsDownloading = true;
         updateDownloadProgress(0);
 
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_GUIDE_DOWNLOAD_START);
+
         // Download guide as a background task
         mApp.downloadFile(mGuideXml.getNgzURL(), this);
     }
@@ -491,6 +494,8 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
 
         if (downloaded == total) {
             // Download complete
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_GUIDE_DOWNLOAD_COMPLETE);
 
             // Extract the downloaded compressed guide file
             runOnUiThread(new Runnable() {

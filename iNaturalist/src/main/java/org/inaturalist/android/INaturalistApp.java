@@ -124,6 +124,8 @@ public class INaturalistApp extends MultiDexApplication {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AnalyticsClient.initAnalyticsClient(this);
 
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_APP_LAUNCH);
+
         // Build a custom Picasso instance that uses more memory for image cache (50% of free memory
         // instead of the default 15%)
         Picasso picasso = new Picasso.Builder(getApplicationContext())

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,12 +159,25 @@ public class NetworkSettings extends AppCompatActivity {
     public void onINatNetworkRadioButtonClicked(final int index) {
 	    final String[] networks = mApp.getINatNetworks();
 
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SETTINGS_NETWORK_CHANGE_BEGAN);
+
+        try {
+            JSONObject eventParams = new JSONObject();
+            eventParams.put(AnalyticsClient.EVENT_PARAM_PARTNER, mApp.getStringResourceByName("network_" + networks[index]));
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PARTNER_ALERT_PRESENTED, eventParams);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 	    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 	        @Override
 	        public void onClick(DialogInterface dialog, int which) {
 	            switch (which){
 	            case DialogInterface.BUTTON_POSITIVE:
                     mApp.setInaturalistNetworkMember(networks[index]);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SETTINGS_NETWORK_CHANGE_COMPLETED);
 
 	            	mFormerSelectedNetworkRadioButton = index;
 	            	mApp.applyLocaleSettings();

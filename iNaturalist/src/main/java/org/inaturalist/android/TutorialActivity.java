@@ -1,34 +1,19 @@
 package org.inaturalist.android;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -85,8 +70,38 @@ public class TutorialActivity extends BaseFragmentActivity {
                 args.putString("description", res.getStringArray(R.array.tutorial_descriptions)[position]);
             }
 
+            logOnboardingEvent(position);
+
             fragment = Fragment.instantiate(mContext, TutorialFragment.class.getName(), args);
             return fragment;
+        }
+
+        private void logOnboardingEvent(int position) {
+            String eventName;
+
+            switch (position) {
+                case 5:
+                    eventName = AnalyticsClient.EVENT_NAME_ONBOARDING_LOGIN;
+                    break;
+                case 4:
+                    eventName = AnalyticsClient.EVENT_NAME_ONBOARDING_CONTRIBUTE;
+                    break;
+                case 3:
+                    eventName = AnalyticsClient.EVENT_NAME_ONBOARDING_LEARN;
+                    break;
+                case 2:
+                    eventName = AnalyticsClient.EVENT_NAME_ONBOARDING_SHARE;
+                    break;
+                case 1:
+                    eventName = AnalyticsClient.EVENT_NAME_ONBOARDING_OBSERVE;
+                    break;
+                case 0:
+                default:
+                    eventName = AnalyticsClient.EVENT_NAME_ONBOARDING_LOGO;
+                    break;
+            }
+
+            AnalyticsClient.getInstance().logEvent(eventName);
         }
 
         @Override

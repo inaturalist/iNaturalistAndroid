@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -98,6 +99,20 @@ public class ProjectNews extends BaseFragmentActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 JSONObject item = (JSONObject) view.getTag();
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_ARTICLE_TITLE, item.optString("title", ""));
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_PARENT_TYPE, item.optString("parent_type", ""));
+                    JSONObject parent = item.optJSONObject("parent");
+                    if (parent == null) parent = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_PARENT_NAME, parent.optString("title", parent.optString("name", "")));
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEWS_OPEN_ARTICLE, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 Intent intent = new Intent(ProjectNews.this, NewsArticle.class);
                 intent.putExtra(NewsArticle.KEY_ARTICLE, new BetterJSONObject(item));
                 intent.putExtra(NewsArticle.KEY_IS_USER_FEED, mIsUserFeed);

@@ -51,6 +51,7 @@ public class TutorialFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     // Just close the tutorial
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ONBOARDING_SKIP);
                     getActivity().finish();
                 }
             });
@@ -59,6 +60,7 @@ public class TutorialFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     // Close the tutorial and open up the explore screen
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ONBOARDING_VIEW_NEARBY_OBS);
                     ((TutorialActivity)getActivity()).startActivityIfNew(new Intent(getActivity(), INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP), true);
                 }
             });

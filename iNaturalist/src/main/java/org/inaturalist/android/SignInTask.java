@@ -32,6 +32,9 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class SignInTask extends AsyncTask<String, Void, String> {
@@ -58,6 +61,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
     private String mGoogleUsername;
 
+    private String mLoginErrorMessage = null;
+
     public interface SignInTaskStatus {
         void onLoginSuccessful();
     }
@@ -79,7 +84,6 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         mFacebookAccessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
-                Log.e("AAA", "ACCESS TOKEN CHANGE: " + mActivity + "::" + (newToken == null ? "null" : newToken.getToken()));
                 if (newToken != null) {
                     String username = mPreferences.getString("username", null);
                     if (username == null) {
@@ -112,7 +116,20 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
             @Override
             public void onError(FacebookException exception) {
+                mLoginErrorMessage = exception.getMessage();
                 Toast.makeText(mActivity.getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_FROM, AnalyticsClient.EVENT_VALUE_FACEBOOK);
+                    if (mLoginErrorMessage != null) eventParams.put(AnalyticsClient.EVENT_PARAM_CODE, mLoginErrorMessage);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }
@@ -148,6 +165,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     }
 
     protected void onPreExecute() {
+        mLoginErrorMessage = null;
         try {
             mProgressDialog = ProgressDialog.show(mActivity, "", mActivity.getString(R.string.signing_in), true);
         } catch (WindowManager.BadTokenException exc) {
@@ -166,8 +184,27 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             mFacebookAccessTokenTracker.stopTracking();
         }
 
+        String loginType = null;
+        if (mLoginType == INaturalistService.LoginType.FACEBOOK) {
+            loginType = AnalyticsClient.EVENT_VALUE_FACEBOOK;
+        } else if ((mLoginType == INaturalistService.LoginType.OAUTH_PASSWORD) || (mLoginType == INaturalistService.LoginType.PASSWORD)) {
+            loginType = AnalyticsClient.EVENT_VALUE_INATURALIST;
+        } else if (mLoginType == INaturalistService.LoginType.GOOGLE) {
+            loginType = AnalyticsClient.EVENT_VALUE_GOOGLE_PLUS;
+        }
+
         if (result != null) {
             Toast.makeText(mActivity, mActivity.getString(R.string.signed_in), Toast.LENGTH_SHORT).show();
+
+            try {
+                JSONObject eventParams = new JSONObject();
+                eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, loginType);
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN, eventParams);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         } else {
             if (mLoginType == INaturalistService.LoginType.FACEBOOK) {
                 // Login failed - need to sign-out of Facebook as well
@@ -177,6 +214,18 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                 signIn(INaturalistService.LoginType.GOOGLE, mUsername, null, true);
                 return;
             }
+
+            try {
+                JSONObject eventParams = new JSONObject();
+                eventParams.put(AnalyticsClient.EVENT_PARAM_FROM, loginType);
+                if (mLoginErrorMessage != null) eventParams.put(AnalyticsClient.EVENT_PARAM_CODE, mLoginErrorMessage);
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
             mHelper.alert(mActivity.getString(R.string.not_connected));
             return;
         }

@@ -476,6 +476,16 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				intent.putExtra("observation", item.toString());
 				intent.putExtra("read_only", true);
 				startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_LIST);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
         	}
         });
 
@@ -488,6 +498,16 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				intent.putExtra("observation", item.toString());
 				intent.putExtra("read_only", true);
 				startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_GRID);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
         	}
         });
 
@@ -606,6 +626,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     			if (mActiveSearch) {
     				// Find out current location
     				getCurrentLocationAndLoadNearbyObservations();
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_SEARCH_NEAR_ME);
     			} else {
     				// Load near by observations according to current map coordinates
     				reloadObservations();
@@ -622,6 +644,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     			loadMyObservations();
     			if (mActiveSearch) {
     				refreshActiveFilters();
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_SEARCH_MINE);
     			}
 
     			break;
@@ -1029,7 +1053,16 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     	Intent intent = new Intent(this, ObservationViewerActivity.class);
     	intent.putExtra("observation", o.toString());
 		intent.putExtra("read_only", true);
-    	startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+        startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+
+        try {
+            JSONObject eventParams = new JSONObject();
+            eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_MAP);
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return false;
     }
@@ -1299,32 +1332,42 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		int loading = 0;
  		final int noResults;
  		final String typeName;
+        String eventName;
  		
  		switch (type) {
  		case FIND_CRITTERS:
  			loading = R.string.searching_for_critters;
  			noResults = R.string.no_critters_found;
  			typeName = "taxa";
+            eventName = AnalyticsClient.EVENT_NAME_EXPLORE_SEARCH_CRITTERS;
  			break;
  		case FIND_PEOPLE:
  			loading = R.string.searching_for_people;
  			noResults = R.string.no_person_found;
  			typeName = "people";
+            eventName = AnalyticsClient.EVENT_NAME_EXPLORE_SEARCH_PEOPLE;
  			break;
  		case FIND_LOCATIONS:
  			loading = R.string.searching_for_places;
  			noResults = R.string.no_place_found;
  			typeName = "places";
+            eventName = AnalyticsClient.EVENT_NAME_EXPLORE_SEARCH_PLACES;
  			break;
  		case FIND_PROJECTS:
  			loading = R.string.searching_for_projects;
  			noResults = R.string.no_project_found;
  			typeName = "projects";
+            eventName = AnalyticsClient.EVENT_NAME_EXPLORE_SEARCH_PROJECTS;
  			break;
  		default:
  			noResults = 0;
  			typeName = "";
+            eventName = null;
  		}
+
+        if (eventName != null) {
+            AnalyticsClient.getInstance().logEvent(eventName);
+        }
 
  		mHelper.loading(getResources().getString(loading));
 

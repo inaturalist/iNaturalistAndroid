@@ -25,6 +25,8 @@ import android.view.View;
 import com.facebook.login.LoginManager;
 
 import org.apache.http.util.LangUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -124,6 +126,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 boolean newValue = mAutoSyncPreference.isChecked();
                 mAutoSyncPreference.setChecked(newValue);
                 mApp.setAutoSync(newValue);
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_SETTING, AnalyticsClient.EVENT_PARAM_VALUE_AUTO_UPLOAD);
+
+                    AnalyticsClient.getInstance().logEvent(
+                            newValue ?
+                                    AnalyticsClient.EVENT_NAME_SETTING_ENABLED :
+                                    AnalyticsClient.EVENT_NAME_SETTING_DISABLED
+                            , eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
                 return false;
             }
         });
@@ -281,6 +298,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
     private void signOut() {
+
+        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGOUT);
+
         INaturalistService.LoginType loginType = INaturalistService.LoginType.valueOf(mPreferences.getString("login_type", INaturalistService.LoginType.OAUTH_PASSWORD.toString()));
 
         if (loginType == INaturalistService.LoginType.FACEBOOK) {

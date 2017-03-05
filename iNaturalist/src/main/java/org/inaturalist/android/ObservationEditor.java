@@ -475,6 +475,30 @@ public class ObservationEditor extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         mGeoprivacy.setSelection(which);
                         updateObservationVisibilityDescription();
+
+                        int index = mGeoprivacy.getSelectedItemPosition();
+                        String value;
+                        switch (index) {
+                            case 2:
+                                value = AnalyticsClient.EVENT_VALUE_GEOPRIVACY_PRIVATE;
+                                break;
+                            case 1:
+                                value = AnalyticsClient.EVENT_VALUE_GEOPRIVACY_OBSCURED;
+                                break;
+                            case 0:
+                            default:
+                                value = AnalyticsClient.EVENT_VALUE_GEOPRIVACY_OPEN;
+                        }
+
+                        try {
+                            JSONObject eventParams = new JSONObject();
+                            eventParams.put(AnalyticsClient.EVENT_PARAM_NEW_VALUE, value);
+
+                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_GEOPRIVACY_CHANGED, eventParams);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 });
             }
@@ -492,6 +516,15 @@ public class ObservationEditor extends AppCompatActivity {
                     findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
                     findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
                 }
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_NEW_VALUE, mIsCaptive ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_CAPTIVE_CHANGED, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
             });
 
@@ -499,6 +532,28 @@ public class ObservationEditor extends AppCompatActivity {
         mSpeciesGuessTextView = (EditText) findViewById(R.id.speciesGuess);
         mSpeciesGuessIcon = (ImageView) findViewById(R.id.species_guess_icon);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
+
+        mDescriptionTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String newDescription = charSequence.toString().trim();
+                String originalDescription = mObservation.description != null ? mObservation.description.trim() : "";
+                if (!newDescription.equals(originalDescription)) {
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NOTES_CHANGED);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         mSaveButton = (TextView) findViewById(R.id.save_observation);
         mObservedOnButton = (TextView) findViewById(R.id.observed_on);
         mObservedOnStringTextView = (TextView) findViewById(R.id.observed_on_string);
@@ -909,6 +964,11 @@ public class ObservationEditor extends AppCompatActivity {
         uiToObservation();
         if (!mObservation.isDirty() && !mPhotosChanged) {
             // User hasn't changed anything - no need to display confirmation dialog
+
+            if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_CANCEL);
+            }
+
             mCanceled = true;
             setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
             finish();
@@ -924,6 +984,10 @@ public class ObservationEditor extends AppCompatActivity {
                 new Runnable() {
                     public void run() {
                         // Get back to the observations list (consider this as canceled)
+                        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_CANCEL);
+                        }
+
                         mCanceled = true;
                         revertPhotos();
                         setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
@@ -1024,6 +1088,9 @@ public class ObservationEditor extends AppCompatActivity {
                         R.string.yes, R.string.no,
                         new Runnable() {
                             public void run() {
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DELETE);
+
                                 delete((mObservation == null) || (mObservation.id == null));
                                 Toast.makeText(ObservationEditor.this, R.string.observation_deleted, Toast.LENGTH_SHORT).show();
 
@@ -1422,6 +1489,8 @@ public class ObservationEditor extends AppCompatActivity {
 
             mDateSetByUser = date;
             mObservedOnButton.setTextColor(Color.parseColor("#000000"));
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DATE_CHANGED);
         }
     };
 
@@ -1458,6 +1527,8 @@ public class ObservationEditor extends AppCompatActivity {
             mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
             mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
             mTimeSetByUser = datetime;
+
+            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DATE_CHANGED);
         }
     };
     private ArrayList<Integer> mProjectIds;
@@ -1827,15 +1898,21 @@ public class ObservationEditor extends AppCompatActivity {
                 Integer deletePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DELETE_PHOTO_INDEX, -1);
                 if (setFirstPhotoIndex > -1) {
                     ((GalleryCursorAdapter)mGallery.getAdapter()).setAsFirstPhoto(setFirstPhotoIndex);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
                 } else if (deletePhotoIndex > -1) {
                     deletePhoto(deletePhotoIndex);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DELETE_PHOTO);
                 }
             }
         } else if (requestCode == LOCATION_CHOOSER_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 mLocationManuallySet = true;
             	stopGetLocation();
-            	
+
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_LOCATION_CHANGED);
+
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
                 double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
@@ -1893,6 +1970,17 @@ public class ObservationEditor extends AppCompatActivity {
                 } else {
                     setTaxon(idName, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
                 }
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_NEW_VALUE, mIsTaxonUnknown ? AnalyticsClient.EVENT_VALUE_UNKNOWN_TAXON : idName);
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_IS_TAXON, isCustomTaxon ? AnalyticsClient.EVENT_PARAM_VALUE_NO : AnalyticsClient.EVENT_PARAM_VALUE_YES);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_TAXON_CHANGED, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             } else {
                 // Restore original taxon guess
                 mTaxonTextChanged = true;
@@ -1911,6 +1999,12 @@ public class ObservationEditor extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 ArrayList<Integer> projectIds = data.getIntegerArrayListExtra(ProjectSelectorActivity.PROJECT_IDS);
                 HashMap<Integer, ProjectFieldValue> values = (HashMap<Integer, ProjectFieldValue>) data.getSerializableExtra(ProjectSelectorActivity.PROJECT_FIELDS);
+
+                if (!mProjectIds.equals(projectIds)) {
+                    // Projects changed
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PROJECTS_CHANGED);
+                }
+
                 mProjectIds = projectIds;
                 mProjectFieldValues = values;
 
@@ -1941,11 +2035,39 @@ public class ObservationEditor extends AppCompatActivity {
                     photos.add(selectedImageUri);
                 }
 
+                try {
+                    JSONObject eventParams = new JSONObject();
+
+                    if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                        // New observation
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_NUM_PICS, photos.size());
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_PICKED, eventParams);
+                    } else {
+                        // Existing observation
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_SOURCE, AnalyticsClient.EVENT_VALUE_GALLERY);
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_COUNT, photos.size());
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_PHOTO, eventParams);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
                 importPhotos(photos, false);
             }
 
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_SOURCE, AnalyticsClient.EVENT_VALUE_CAMERA);
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_COUNT, 1);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_PHOTO, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 final Uri selectedImageUri = mFileUri;
 
                 Log.v(TAG, String.format("%s", selectedImageUri));
@@ -2340,7 +2462,7 @@ public class ObservationEditor extends AppCompatActivity {
     				ObservationPhoto.PROJECTION, 
     				"_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
     				new String[]{mObservation._id.toString()}, 
-    				"id ASC, _id ASC");
+    				ObservationPhoto.DEFAULT_SORT_ORDER);
     	}
         mImageCursor.moveToFirst();
         mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
@@ -2530,6 +2652,8 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
                     intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
                     startActivityForResult(intent, OBSERVATION_PHOTOS_REQUEST_CODE);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_VIEW_HIRES_PHOTO);
                 }
             });
 
@@ -2542,6 +2666,8 @@ public class ObservationEditor extends AppCompatActivity {
 
                     if ((mFirstPositionPhotoId == null) || (!mFirstPositionPhotoId.equals(photoId))) {
                         setAsFirstPhoto(position);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
                     }
                 }
             });

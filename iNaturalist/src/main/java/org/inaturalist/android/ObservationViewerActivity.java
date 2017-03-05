@@ -95,6 +95,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private static final int NEW_ID_REQUEST_CODE = 0x101;
     private static final int REQUEST_CODE_LOGIN = 0x102;
     private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
+    private static final int SHARE_REQUEST_CODE = 0x104;
 
     public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
 
@@ -289,7 +290,28 @@ public class ObservationViewerActivity extends AppCompatActivity {
             if (imageUrl != null) {
                 // Online photo
             	imageView.setLayoutParams(new TwoWayView.LayoutParams(TwoWayView.LayoutParams.MATCH_PARENT, TwoWayView.LayoutParams.WRAP_CONTENT));
-                UrlImageViewHelper.setUrlDrawable(imageView, imageUrl);
+                UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, new UrlImageViewCallback() {
+                    @Override
+                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                        if (loadedBitmap == null) {
+                            // Failed to load observation photo
+                            try {
+                                JSONObject eventParams = new JSONObject();
+                                eventParams.put(AnalyticsClient.EVENT_PARAM_SIZE, AnalyticsClient.EVENT_PARAM_VALUE_MEDIUM);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                        return null;
+                    }
+                });
             } else {
                 // Offline photo
                 int newHeight = mPhotosViewPager.getMeasuredHeight();
@@ -635,6 +657,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mRemoveFavorite.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_UNFAVE);
+
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                 startService(serviceIntent);
@@ -659,6 +683,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mAddFavorite.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_FAVE);
+
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                 startService(serviceIntent);
@@ -761,6 +787,16 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                     serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.getJSONObject("taxon").getInt("id"));
                     startService(serviceIntent);
+
+                    try {
+                        JSONObject eventParams = new JSONObject();
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_VIEW_OBS_AGREE);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1363,7 +1399,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                 shareIntent.setAction(Intent.ACTION_SEND);
                                 shareIntent.setType("text/plain");
                                 shareIntent.putExtra(Intent.EXTRA_TEXT, obsUrl);
-                                startActivity(shareIntent);
+                                startActivityForResult(shareIntent, SHARE_REQUEST_CODE);
+
+                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_STARTED);
                                 break;
 
                             case R.id.view_on_inat:
@@ -1928,7 +1966,15 @@ public class ObservationViewerActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
+
+        if (requestCode == SHARE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // TODO - RESULT_OK is never returned + need to add "destination" param (what type of share was performed)
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_FINISHED);
+            } else {
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_CANCELLED);
+            }
+        } else if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
             if ((resultCode == ObservationEditor.RESULT_DELETED) || (resultCode == ObservationEditor.RESULT_RETURN_TO_OBSERVATION_LIST)) {
                 // User deleted the observation (or did a batch-edit)
                 finish();
@@ -1960,6 +2006,16 @@ public class ObservationViewerActivity extends AppCompatActivity {
     			serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
     			serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
     			startService(serviceIntent);
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_VIEW_OBS_ADD);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
 
     			// Show a loading progress until the new comments/IDs are loaded
     			mCommentsIds = null;
