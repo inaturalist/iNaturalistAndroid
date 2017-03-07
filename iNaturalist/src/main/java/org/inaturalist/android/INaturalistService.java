@@ -86,9 +86,6 @@ import android.widget.Toast;
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
-    // Timeout in MS for connections
-    private static final int CONNECTION_TIMEOUT_MS = 20000;
-    private static final int SOCKET_TIMEOUT_MS = 40000;
 
     private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
     
@@ -2793,8 +2790,6 @@ public class INaturalistService extends IntentService {
             }
         });
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(mApp));
-        client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, CONNECTION_TIMEOUT_MS);
-        client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, SOCKET_TIMEOUT_MS);
 
 //        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
 //                authenticated ? mCredentials : "<null>",

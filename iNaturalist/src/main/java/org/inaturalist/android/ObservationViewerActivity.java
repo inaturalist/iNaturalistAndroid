@@ -68,6 +68,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
@@ -290,28 +292,30 @@ public class ObservationViewerActivity extends AppCompatActivity {
             if (imageUrl != null) {
                 // Online photo
             	imageView.setLayoutParams(new TwoWayView.LayoutParams(TwoWayView.LayoutParams.MATCH_PARENT, TwoWayView.LayoutParams.WRAP_CONTENT));
-                UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        if (loadedBitmap == null) {
-                            // Failed to load observation photo
-                            try {
-                                JSONObject eventParams = new JSONObject();
-                                eventParams.put(AnalyticsClient.EVENT_PARAM_SIZE, AnalyticsClient.EVENT_PARAM_VALUE_MEDIUM);
 
-                                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                Picasso.with(ObservationViewerActivity.this)
+                        .load(imageUrl)
+                        .fit()
+                        .centerCrop()
+                        .into(imageView, new Callback() {
+                            @Override
+                            public void onSuccess() {
                             }
 
-                        }
-                    }
+                            @Override
+                            public void onError() {
+                                // Failed to load observation photo
+                                try {
+                                    JSONObject eventParams = new JSONObject();
+                                    eventParams.put(AnalyticsClient.EVENT_PARAM_SIZE, AnalyticsClient.EVENT_PARAM_VALUE_MEDIUM);
 
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return null;
-                    }
-                });
+                                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
             } else {
                 // Offline photo
                 int newHeight = mPhotosViewPager.getMeasuredHeight();
