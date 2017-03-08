@@ -2244,7 +2244,13 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
 
-            String datetime = exif.getAttribute("DateTimeOriginal" /* ExifInterface.TAG_DATETIME_ORIGINAL - supported from API v24 only */);
+            String datetime;
+            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                // Older Android (before v7), doesn't parse the EXIF tag of TAG_DATETIME_ORIGINAL
+                datetime = exif.getAttribute(ExifInterface.TAG_DATETIME);
+            } else {
+                datetime = exif.getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL);
+            }
 
             if (datetime != null) {
                 SimpleDateFormat exifDateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
