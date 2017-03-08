@@ -132,6 +132,8 @@ public class INaturalistApp extends MultiDexApplication {
                 .memoryCache(new LruCache((int)(Runtime.getRuntime().maxMemory() * 0.5)))
                 .build();
         Picasso.setSingletonInstance(picasso);
+        Picasso.with(getApplicationContext())
+                .setIndicatorsEnabled(true);
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
