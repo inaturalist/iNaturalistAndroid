@@ -173,6 +173,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public TextView speciesGuess;
         public TextView dateObserved;
         public ViewGroup commentIdContainer;
+        public ViewGroup leftContainer;
         public View progress;
 
         public ImageView commentIcon;
@@ -189,6 +190,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             speciesGuess = (TextView) view.findViewById(R.id.species_guess);
             dateObserved = (TextView) view.findViewById(R.id.date);
             commentIdContainer = (ViewGroup) view.findViewById(R.id.comment_id_container);
+            leftContainer = (ViewGroup) view.findViewById(R.id.left_container);
 
             commentIcon = (ImageView) view.findViewById(R.id.comment_pic);
             idIcon = (ImageView) view.findViewById(R.id.id_pic);
@@ -224,6 +226,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         TextView speciesGuess = holder.speciesGuess;
         TextView dateObserved = holder.dateObserved;
         ViewGroup commentIdContainer = holder.commentIdContainer;
+        ViewGroup leftContainer = holder.leftContainer;
 
         ImageView commentIcon = holder.commentIcon;
         ImageView idIcon = holder.idIcon;
@@ -397,6 +400,18 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     mContext.startActivity(intent);
                 }
             });
+
+
+            if (!mIsGrid) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) leftContainer.getLayoutParams();
+                if (dateObserved.getText().length() > String.format("  %d  %d", idsCount, commentsCount).length()) {
+                    params.addRule(RelativeLayout.LEFT_OF, R.id.date);
+                } else {
+                    params.addRule(RelativeLayout.LEFT_OF, R.id.comment_id_container);
+                }
+
+                leftContainer.setLayoutParams(params);
+            }
         }
 
         Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
@@ -473,7 +488,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         } else {
             speciesGuess.setText(R.string.unknown_species);
         }
-
 
         boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
         if (hasErrors)  {
