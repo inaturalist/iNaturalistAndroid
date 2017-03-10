@@ -323,7 +323,7 @@
   <string name="please_sign_in_for_updates">Anda harus login untuk melihat pembaruan Anda.</string>
   <string name="by_using_inat_terms"><![CDATA[Dengan menggunakan iNaturalist Anda setuju dengan <b><a href="http://www.inaturalist.org/pages/terms"> Ketentuan Layanan</a></b> dan <b><a href="http://www.inaturalist.org/pages/privacy"> Kebijakan privasi</a></b>]]></string>
   <string name="activity">Aktifitas</string>
-  <string name="observation_count">%1$d pengamatan</string>
+  <string name="observation_count">%1$s pengamatan</string>
   <string name="observation_count_single">%1$d pengamatan</string>
   <string name="camera">Ambil Gambar</string>
   <string name="upload_photo">Pilih Gambar</string>

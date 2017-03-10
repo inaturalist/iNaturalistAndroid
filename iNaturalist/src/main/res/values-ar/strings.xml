@@ -327,7 +327,7 @@
 <string name="content_licensing">ترخيص المحتوى</string>
 <string name="content_licensing_description">حدد هذا الخيار للسماح باستخدام  الصور التي تقوم بتحميلها. يمكنك تغيير هذا في وقت لاحق، ولكن هذا هو الخيار الأفضل لتبادل مع المحققين.</string>
 <string name="activity">تحديثات</string>
-<string name="observation_count">%1$d ارصاد</string>
+<string name="observation_count">%1$s ارصاد</string>
 <string name="observation_count_single">%1$d رصد</string>
 <string name="camera">تصوير</string>
 <string name="upload_photo">اختيار صورة</string>

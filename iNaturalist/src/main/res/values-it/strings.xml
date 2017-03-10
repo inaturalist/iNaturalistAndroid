@@ -323,7 +323,7 @@
   <string name="please_sign_in_for_updates">Devi aver effettuato l\'accesso per visualizzare i tuoi aggiornamenti.</string>
   <string name="by_using_inat_terms"><![CDATA[Utilizzando iNaturalist accetti i <b><a href="http://www.inaturalist.org/pages/terms"> Termini di servizio</a></b> e <b><a href="http://www.inaturalist.org/pages/privacy"> l\'Informativa sulla privacy</a></b>]]></string>
   <string name="activity">Attività</string>
-  <string name="observation_count">%1$d osservazioni</string>
+  <string name="observation_count">%1$s osservazioni</string>
   <string name="observation_count_single">%1$d osservazione</string>
   <string name="camera">Scatta una Foto</string>
   <string name="upload_photo">Scegli immagine</string>

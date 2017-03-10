@@ -324,7 +324,7 @@
   <string name="please_sign_in_for_updates">회원님의 업데이트를 보려면 로그인 해야 합니다.</string>
   <string name="by_using_inat_terms"><![CDATA[iNaturalist를 이용하시려면 다음의 <b><a href="http://www.inaturalist.org/pages/terms">서비스 이용약관</a></b>과 <b><a href="http://www.inaturalist.org/pages/privacy"> 개인정보 보호 정책</a></b>에 동의하셔야 합니다.]]></string>
   <string name="activity">탐사 활동</string>
-  <string name="observation_count">%1$d 관찰기록</string>
+  <string name="observation_count">%1$s 관찰기록</string>
   <string name="observation_count_single">%1$d 관찰기록</string>
   <string name="camera">사진 촬영</string>
   <string name="upload_photo">사진 선택</string>

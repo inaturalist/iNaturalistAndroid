@@ -36,6 +36,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 /**
  * Utility class for implementing the side-menu (navigation drawer) used throughout the app
  *
@@ -198,7 +200,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
             if (obsCount == 1) {
                 ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_single), obsCount));
             } else {
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), obsCount));
+                DecimalFormat formatter = new DecimalFormat("#,###,###");
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), formatter.format(obsCount)));
             }
         } else {
             String conditions = "(_synced_at IS NULL";
