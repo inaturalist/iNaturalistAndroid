@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/people_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F5F5F5"
+    >
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"/>
+
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            style="@android:style/TextAppearance.Medium"
+            android:text="@string/no_observations_yet" />
+
+        <TextView
+            android:id="@+id/empty_sub_title"
+            android:layout_below="@id/empty"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:textColor="#A5A4A9"
+            android:text="@string/you_will_only_receive_updates" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+

@@ -277,9 +277,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(BaseFragmentActivity.this, ProjectNews.class);
+                Intent intent = new Intent(BaseFragmentActivity.this, UserActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("is_user_feed", true);
                 startActivityIfNew(intent);
             }
 

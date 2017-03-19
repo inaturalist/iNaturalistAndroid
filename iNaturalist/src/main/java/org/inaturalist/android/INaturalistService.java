@@ -44,7 +44,6 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.DefaultRedirectHandler;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
@@ -87,9 +86,8 @@ public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
 
-    private boolean mGetLocationForProjects = false; // if true -> we assume it's for near by guides
-    
-    
+    private static final int JWT_TOKEN_EXPIRATION_MINS = 25; // JWT Tokens expire after 30 mins - consider 25 mins as the max time (safe margin)
+
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
     public static final String USER = "user";
@@ -103,6 +101,7 @@ public class INaturalistService extends IntentService {
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
+    public static final String UPDATES_RESULT = "updates_results";
     public static final String LIFE_LIST_RESULT = "life_list_result";
     public static final String SPECIES_COUNT_RESULT = "species_count_result";
     public static final String RECOMMENDED_MISSIONS_RESULT = "recommended_missions_result";
@@ -158,6 +157,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
     public static String ACTION_GET_OBSERVATION = "get_observation";
+    public static String ACTION_GET_AND_SAVE_OBSERVATION = "get_and_save_observation";
     public static String ACTION_FLAG_OBSERVATION_AS_CAPTIVE = "flag_observation_as_captive";
     public static String ACTION_GET_CHECK_LIST = "get_check_list";
     public static String ACTION_JOIN_PROJECT = "join_project";
@@ -196,6 +196,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_UPDATE_COMMENT = "update_comment";
     public static String ACTION_DELETE_COMMENT = "delete_comment";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
+    public static String ACTION_GET_AND_SAVE_OBSERVATION_RESULT = "get_and_save_observation_result";
     public static String ACTION_OBSERVATION_RESULT = "observation_result";
     public static String ACTION_JOINED_PROJECTS_RESULT = "joined_projects_result";
     public static String ACTION_NEARBY_PROJECTS_RESULT = "nearby_projects_result";
@@ -220,6 +221,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_LIFE_LIST = "get_life_list";
     public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";
     public static String ACTION_GET_USER_IDENTIFICATIONS = "get_user_identifications";
+    public static String ACTION_GET_USER_UPDATES = "get_user_udpates";
     public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
     public static String ACTION_GET_RECOMMENDED_MISSIONS = "get_recommended_missions";
     public static String ACTION_GET_MISSIONS_BY_TAXON = "get_missions_by_taxon";
@@ -554,6 +556,15 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(QUERY, query);
                 sendBroadcast(reply);
 
+
+            } else if (action.equals(ACTION_GET_USER_UPDATES)) {
+                SerializableJSONArray updates = getUserUpdates();
+
+                Intent reply = new Intent(UPDATES_RESULT);
+                mApp.setServiceResult(UPDATES_RESULT, updates);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
                 String username = intent.getStringExtra(USERNAME);
                 SerializableJSONArray identifications = getUserIdentifications(username);
@@ -805,9 +816,17 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, news);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_GET_AND_SAVE_OBSERVATION)) {
+                int id = intent.getExtras().getInt(OBSERVATION_ID);
+                Observation observation = getAndDownloadObservation(id);
+
+                Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
-                JSONObject observationJson = getObservationJson(id);
+                JSONObject observationJson = getObservationJson(id, false);
                 Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
                 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
@@ -1604,14 +1623,14 @@ public class INaturalistService extends IntentService {
     }
 
     
-    private JSONObject getObservationJson(int id) throws AuthenticationException {
+    private JSONObject getObservationJson(int id, boolean authenticated) throws AuthenticationException {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
 
         String url = String.format("%s/observations/%d.json?locale=%s", HOST, id, deviceLanguage);
 
-        JSONArray json = get(url);
+        JSONArray json = get(url, authenticated);
         if (json == null || json.length() == 0) {
             return null;
         }
@@ -1624,11 +1643,30 @@ public class INaturalistService extends IntentService {
     }
 
     private Observation getObservation(int id) throws AuthenticationException {
-        JSONObject json = getObservationJson(id);
+        JSONObject json = getObservationJson(id, false);
         if (json == null) return null;
         return new Observation(new BetterJSONObject(json));
     }
-    
+
+    private Observation getAndDownloadObservation(int id) throws AuthenticationException {
+        // Download the observation
+        JSONObject json = getObservationJson(id, true);
+        if (json == null) return null;
+
+        Observation obs = new Observation(new BetterJSONObject(json));
+
+        // Save the downloaded observation
+        if (mProjectObservations == null) mProjectObservations = new ArrayList<SerializableJSONArray>();
+        if (mProjectFieldValues == null) mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
+
+        JSONArray arr = new JSONArray();
+        arr.put(json);
+        syncJson(arr, true);
+
+        return obs;
+    }
+
+
     private boolean postPhotos() throws AuthenticationException, CancelSyncException, SyncFailedException {
         ObservationPhoto op;
         int createdCount = 0;
@@ -1870,6 +1908,24 @@ public class INaturalistService extends IntentService {
         if (json.length() == 0) return null;
         return new SerializableJSONArray(json);
     }
+
+    private SerializableJSONArray getUserUpdates() throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200";
+        JSONArray json = request(url, "get", null, null, true, true); // Use JWT Token authentication
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            JSONObject resObject = json.getJSONObject(0);
+            JSONArray results = json.getJSONObject(0).getJSONArray("results");
+            return new SerializableJSONArray(results);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     private SerializableJSONArray getUserIdentifications(String username) throws AuthenticationException {
         String url = HOST + "/identifications/" + username + ".json?per_page=200";
@@ -2774,6 +2830,41 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException {
+        return request(url, method, params, jsonContent, authenticated, false);
+    }
+
+    private String getJWTToken() {
+        if (mPreferences == null) mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        String jwtToken = mPreferences.getString("jwt_token", null);
+        Long jwtTokenExpiration = mPreferences.getLong("jwt_token_expiration", 0);
+
+        if ((jwtToken == null) || ((System.currentTimeMillis() - jwtTokenExpiration) / 1000 > JWT_TOKEN_EXPIRATION_MINS * 60)) {
+            // JWT Tokens expire after 30 mins - if the token is non-existent or older than 25 mins (safe margin) - ask for a new one
+            try {
+                JSONArray result = get(HOST + "/users/api_token.json", true);
+                if ((result == null) || (result.length() == 0)) return null;
+
+                // Get newest JWT Token
+                jwtToken = result.getJSONObject(0).getString("api_token");
+                jwtTokenExpiration = System.currentTimeMillis();
+
+                SharedPreferences.Editor editor = mPreferences.edit();
+                editor.putString("jwt_token", jwtToken);
+                editor.putLong("jwt_token_expiration", jwtTokenExpiration);
+                editor.commit();
+
+                return jwtToken;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            // Current JWT token is still fresh/valid - return it as-is
+            return jwtToken;
+        }
+    }
+
+    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken) throws AuthenticationException {
         DefaultHttpClient client = new DefaultHttpClient();
         // Handle redirects (301/302) for all HTTP methods (including POST)
         client.setRedirectHandler(new DefaultRedirectHandler() {
@@ -2856,10 +2947,14 @@ public class INaturalistService extends IntentService {
         if (authenticated) {
             ensureCredentials();
 
-            if (mLoginType == LoginType.PASSWORD) {
+            if (useJWTToken) {
+                // Use JSON Web Token for this request
+                request.setHeader("Authorization", getJWTToken());
+            } else if (mLoginType == LoginType.PASSWORD) {
                 // Old-style password authentication
                 request.setHeader("Authorization", "Basic " + mCredentials);
             } else {
+                // OAuth2 token (Facebook/G+/etc)
                 request.setHeader("Authorization", "Bearer " + mCredentials);
             }
         }

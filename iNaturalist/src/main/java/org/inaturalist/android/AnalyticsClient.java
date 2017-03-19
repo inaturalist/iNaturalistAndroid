@@ -29,6 +29,7 @@ public class AnalyticsClient {
     public static final String EVENT_NAME_MENU = "Menu";
     public static final String EVENT_NAME_ME = "Me";
     public static final String EVENT_NAME_EXPLORE_MAP = "Explore - Map";
+    public static final String EVENT_NAME_USER_ACTIVITY = "User Activity";
 
     // Missions
     public static final String EVENT_NAME_MISSIONS = "Missions";

@@ -260,38 +260,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
 
         String iconicTaxonName = c.getString(c.getColumnIndexOrThrow(Observation.ICONIC_TAXON_NAME));
-        int iconResource = 0;
-        if (iconicTaxonName == null) {
-            iconResource = R.drawable.iconic_taxon_unknown;
-        } else if (iconicTaxonName.equals("Animalia")) {
-            iconResource = R.drawable.iconic_taxon_animalia;
-        } else if (iconicTaxonName.equals("Plantae")) {
-            iconResource = R.drawable.iconic_taxon_plantae;
-        } else if (iconicTaxonName.equals("Chromista")) {
-            iconResource = R.drawable.iconic_taxon_chromista;
-        } else if (iconicTaxonName.equals("Fungi")) {
-            iconResource = R.drawable.iconic_taxon_fungi;
-        } else if (iconicTaxonName.equals("Protozoa")) {
-            iconResource = R.drawable.iconic_taxon_protozoa;
-        } else if (iconicTaxonName.equals("Actinopterygii")) {
-            iconResource = R.drawable.iconic_taxon_actinopterygii;
-        } else if (iconicTaxonName.equals("Amphibia")) {
-            iconResource = R.drawable.iconic_taxon_amphibia;
-        } else if (iconicTaxonName.equals("Reptilia")) {
-            iconResource = R.drawable.iconic_taxon_reptilia;
-        } else if (iconicTaxonName.equals("Aves")) {
-            iconResource = R.drawable.iconic_taxon_aves;
-        } else if (iconicTaxonName.equals("Mammalia")) {
-            iconResource = R.drawable.iconic_taxon_mammalia;
-        } else if (iconicTaxonName.equals("Mollusca")) {
-            iconResource = R.drawable.iconic_taxon_mollusca;
-        } else if (iconicTaxonName.equals("Insecta")) {
-            iconResource = R.drawable.iconic_taxon_insecta;
-        } else if (iconicTaxonName.equals("Arachnida")) {
-            iconResource = R.drawable.iconic_taxon_arachnida;
-        } else {
-            iconResource = R.drawable.iconic_taxon_unknown;
-        }
+
+        int iconResource = getIconicTaxonDrawable(iconicTaxonName);
 
         obsIconicImage.setVisibility(View.VISIBLE);
         obsIconicImage.setImageResource(iconResource);
@@ -752,6 +722,44 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     @Override
     public void onScroll(AbsListView absListView, int i, int i1, int i2) {
 
+    }
+
+    public static int getIconicTaxonDrawable(String iconicTaxonName) {
+        int iconResource;
+
+        if (iconicTaxonName == null) {
+            iconResource = R.drawable.iconic_taxon_unknown;
+        } else if (iconicTaxonName.equals("Animalia")) {
+            iconResource = R.drawable.iconic_taxon_animalia;
+        } else if (iconicTaxonName.equals("Plantae")) {
+            iconResource = R.drawable.iconic_taxon_plantae;
+        } else if (iconicTaxonName.equals("Chromista")) {
+            iconResource = R.drawable.iconic_taxon_chromista;
+        } else if (iconicTaxonName.equals("Fungi")) {
+            iconResource = R.drawable.iconic_taxon_fungi;
+        } else if (iconicTaxonName.equals("Protozoa")) {
+            iconResource = R.drawable.iconic_taxon_protozoa;
+        } else if (iconicTaxonName.equals("Actinopterygii")) {
+            iconResource = R.drawable.iconic_taxon_actinopterygii;
+        } else if (iconicTaxonName.equals("Amphibia")) {
+            iconResource = R.drawable.iconic_taxon_amphibia;
+        } else if (iconicTaxonName.equals("Reptilia")) {
+            iconResource = R.drawable.iconic_taxon_reptilia;
+        } else if (iconicTaxonName.equals("Aves")) {
+            iconResource = R.drawable.iconic_taxon_aves;
+        } else if (iconicTaxonName.equals("Mammalia")) {
+            iconResource = R.drawable.iconic_taxon_mammalia;
+        } else if (iconicTaxonName.equals("Mollusca")) {
+            iconResource = R.drawable.iconic_taxon_mollusca;
+        } else if (iconicTaxonName.equals("Insecta")) {
+            iconResource = R.drawable.iconic_taxon_insecta;
+        } else if (iconicTaxonName.equals("Arachnida")) {
+            iconResource = R.drawable.iconic_taxon_arachnida;
+        } else {
+            iconResource = R.drawable.iconic_taxon_unknown;
+        }
+
+        return iconResource;
     }
 }
 
