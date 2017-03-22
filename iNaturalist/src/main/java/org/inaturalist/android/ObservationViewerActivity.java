@@ -52,6 +52,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -104,6 +105,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private static String TAG = "ObservationViewerActivity";
 
     public final static String SHOW_COMMENTS = "show_comments";
+    public final static String SCROLL_TO_COMMENTS_BOTTOM = "scroll_to_comments_bottom";
 
     private static int DATA_QUALITY_CASUAL_GRADE = 0;
     private static int DATA_QUALITY_NEEDS_ID = 1;
@@ -213,6 +215,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private boolean mReloadObs;
     private ViewGroup mPhotosContainer;
     private boolean mReloadTaxon;
+    private boolean mScrollToCommentsBottom;
+    private ScrollView mScrollView;
 
     @Override
 	protected void onStart() {
@@ -393,6 +397,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         reloadObservation(savedInstanceState, false);
 
+        mScrollView = (ScrollView) findViewById(R.id.scroll_view);
         mUserName = (TextView) findViewById(R.id.user_name);
         mObservedOn = (TextView) findViewById(R.id.observed_on);
         mUserPic = (ImageView) findViewById(R.id.user_pic);
@@ -508,6 +513,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 			// Do some setup based on the action being performed.
 			Uri uri = intent.getData();
             mShowComments = intent.getBooleanExtra(SHOW_COMMENTS, false);
+            mScrollToCommentsBottom = intent.getBooleanExtra(SCROLL_TO_COMMENTS_BOTTOM, false);
 			if (uri == null) {
                 String obsJson = intent.getStringExtra("observation");
                 mReadOnly = intent.getBooleanExtra("read_only", false);
@@ -776,6 +782,15 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mNoActivityMessage.setVisibility(View.VISIBLE);
         } else {
             mNoActivityMessage.setVisibility(View.GONE);
+        }
+
+        if (mScrollToCommentsBottom) {
+            mScrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                }
+            });
         }
 
         mAdapter = new CommentsIdsAdapter(this, mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {

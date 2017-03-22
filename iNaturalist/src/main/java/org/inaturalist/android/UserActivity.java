@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -27,7 +29,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class UserActivity extends BaseFragmentActivity {
+public class UserActivity extends BaseFragmentActivity implements UserActivitiesAdapter.IOnUpdateViewed {
+
+
     public static String TAG = "UserActivity";
 
     private static final String VIEW_TYPE_MY_CONTENT = "my_content";
@@ -80,7 +84,16 @@ public class UserActivity extends BaseFragmentActivity {
             SharedPreferences settings = mApp.getPrefs();
             mViewType = VIEW_TYPE_MY_CONTENT;
 
+            // Get the user's news feed
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
+            startService(serviceIntent);
             if (mApp.loggedIn()) {
+                // Get the user's activities
+                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
+                startService(serviceIntent2);
+            } else {
+                // Only works if user is logged in
+                mActivities = new ArrayList<>();
             }
         }
 
@@ -89,21 +102,35 @@ public class UserActivity extends BaseFragmentActivity {
 
         onDrawerCreate(savedInstanceState);
 
-        // Get the user's news feed
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
-        startService(serviceIntent);
-        // Get the user's activities
-        Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
-        startService(serviceIntent2);
-
         initializeTabs();
         refreshViewState();
     }
 
     private void addTab(int position, String title) {
         TabLayout.Tab tab = mTabLayout.getTabAt(position);
+
         tab.setText(title);
+        /*
+        View view = LayoutInflater.from(this).inflate(R.layout.tab, null);
+        TextView tabTitle = (TextView) view.findViewById(R.id.tab_title);
+        tabTitle.setText(title);
+
+        tab.setCustomView(view);
+        */
     }
+
+    private void refreshTabs(int pos) {
+        for (int i = 0; i < 2; i++) {
+            View view = mTabLayout.getTabAt(i).getCustomView();
+            view.findViewById(R.id.bottom_line).setVisibility(View.GONE);
+            ((TextView) view.findViewById(R.id.tab_title)).setTextColor(Color.parseColor("#84000000"));
+        }
+
+        View view = mTabLayout.getTabAt(pos).getCustomView();
+        view.findViewById(R.id.bottom_line).setVisibility(View.VISIBLE);
+        ((TextView)view.findViewById(R.id.tab_title)).setTextColor(Color.parseColor("#000000"));
+    }
+
 
     private void initializeTabs() {
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -116,6 +143,7 @@ public class UserActivity extends BaseFragmentActivity {
 
         addTab(0, getString(R.string.my_content));
         addTab(1, getString(R.string.news));
+        //refreshTabs(0);
 
         ViewPager.OnPageChangeListener pageListener = new ViewPager.OnPageChangeListener() {
             @Override
@@ -133,6 +161,8 @@ public class UserActivity extends BaseFragmentActivity {
                         mViewType = VIEW_TYPE_MY_CONTENT;
                         break;
                 }
+
+                //refreshTabs(position);
             }
 
             @Override
@@ -270,7 +300,7 @@ public class UserActivity extends BaseFragmentActivity {
                     mActivityEmptySubTitle.setVisibility(View.GONE);
                 }
 
-                mActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mActivities);
+                mActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mActivities, UserActivity.this);
                 mActivityList.setAdapter(mActivitiesListAdapter);
                 mActivityList.setVisibility(View.VISIBLE);
             }
@@ -388,4 +418,14 @@ public class UserActivity extends BaseFragmentActivity {
         super.onSaveInstanceState(outState);
     }
 
+
+    @Override
+    public void onUpdateViewed(Observation obs, int position) {
+        try {
+            JSONObject item = mActivities.get(position);
+            item.put("viewed", true);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

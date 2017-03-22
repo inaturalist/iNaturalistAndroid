@@ -59,6 +59,11 @@
         <item name="android:maxHeight">16dip</item>
     </style>
 
+    <style name="ProgressBarLargeiNatAppTheme" parent="android:Widget.ProgressBar.Large">
+    </style>
+    <style name="ProgressBarSmalliNatAppTheme" parent="android:Widget.ProgressBar.Small">
+  </style>
+
     <style name="ToggleiNatAppTheme" parent="android:Widget.Button.Toggle">
         <item name="android:background">@drawable/inatapptheme_btn_toggle_holo_light</item>
         <item name="android:minHeight">48dip</item>

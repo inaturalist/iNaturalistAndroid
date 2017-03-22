@@ -182,9 +182,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
         Long lastRefreshTime = prefs.getLong("last_user_details_refresh_time", 0);
 
         if (username != null) {
-            ((TextView)findViewById(R.id.username)).setText(username);
+            ((TextView)findViewById(R.id.side_menu_username)).setText(username);
             findViewById(R.id.menu_login).setVisibility(View.INVISIBLE);
-            findViewById(R.id.username).setVisibility(View.VISIBLE);
+            findViewById(R.id.side_menu_username).setVisibility(View.VISIBLE);
 
             if (System.currentTimeMillis() - lastRefreshTime > 1000 * 60 * USER_REFRESH_TIME_MINS) {
                 // Get fresh user details from the server
@@ -193,7 +193,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
         } else {
             findViewById(R.id.menu_login).setVisibility(View.VISIBLE);
-            findViewById(R.id.username).setVisibility(View.INVISIBLE);
+            findViewById(R.id.side_menu_username).setVisibility(View.INVISIBLE);
         }
 
         if (obsCount > -1) {
@@ -223,11 +223,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
 
         if (userIconUrl != null) {
-            UrlImageViewHelper.setUrlDrawable((ImageView)findViewById(R.id.user_pic), userIconUrl, new UrlImageViewCallback() {
+            UrlImageViewHelper.setUrlDrawable((ImageView)findViewById(R.id.side_menu_user_pic), userIconUrl, new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    ((ImageView)findViewById(R.id.no_user_pic)).setVisibility(View.GONE);
-                    ((ImageView)findViewById(R.id.user_pic)).setVisibility(View.VISIBLE);
+                    ((ImageView)findViewById(R.id.side_menu_no_user_pic)).setVisibility(View.GONE);
+                    ((ImageView)findViewById(R.id.side_menu_user_pic)).setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -239,8 +239,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
             });
 
         } else {
-            ((ImageView)findViewById(R.id.no_user_pic)).setVisibility(View.VISIBLE);
-            ((ImageView)findViewById(R.id.user_pic)).setVisibility(View.GONE);
+            ((ImageView)findViewById(R.id.side_menu_no_user_pic)).setVisibility(View.VISIBLE);
+            ((ImageView)findViewById(R.id.side_menu_user_pic)).setVisibility(View.GONE);
         }
     }
 
@@ -312,7 +312,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.user_pic_container).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.side_menu_user_pic_container).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityIfNew(new Intent(BaseFragmentActivity.this, ProfileEditor.class), false);
@@ -338,7 +338,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.menu_guides_icon)).setAlpha(1.0f);
             }
         }
-        if (ProjectNews.class.getName().equals(this.getClass().getName())) {
+        if (UserActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_activity).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                 ((ImageView) findViewById(R.id.menu_activity_icon)).setAlpha(1.0f);

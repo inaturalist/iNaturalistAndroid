@@ -171,6 +171,7 @@ public class AnalyticsClient {
     public static final String EVENT_NAME_NAVIGATE_OBS_DETAILS = "Navigate - Observations - Details";
     public static final String EVENT_VALUE_EXPLORE_GRID = "Explore Grid";
     public static final String EVENT_VALUE_EXPLORE_LIST = "Explore List";
+    public static final String EVENT_VALUE_UPDATES = "Updates";
     public static final String EVENT_VALUE_EXPLORE_MAP = "Explore Map";
     public static final String EVENT_VALUE_ME_TAB = "Me Tab";
     public static final String EVENT_VALUE_IDENTIFICATIONS_TAB = "Identifications Tab";

@@ -454,6 +454,13 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 return;
             }
 
+            String username = intent.getStringExtra(INaturalistService.USERNAME);
+
+            if ((username == null) || (!username.toLowerCase().equals(mUser.getString("login").toLowerCase()))) {
+                // Results not for the current user name
+                return;
+            }
+
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             Object object = null;
             BetterJSONObject resultsObject;

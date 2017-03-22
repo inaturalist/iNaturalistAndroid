@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.os.Build;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,9 +26,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -47,14 +48,20 @@ import java.util.Locale;
 import java.util.Map;
 
 class UserActivitiesAdapter extends ArrayAdapter<String> {
+    private final IOnUpdateViewed mOnUpdateViewed;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private ObservationReceiver mObservationReceiver;
-    private Map<Integer, ImageView> mObsIdToObsPic;
+    private Map<Integer, View> mObsIdToView;
 
-    public UserActivitiesAdapter(Context context, ArrayList<JSONObject> results) {
+    public interface IOnUpdateViewed {
+        void onUpdateViewed(Observation obs, int position);
+    }
+
+    public UserActivitiesAdapter(Context context, ArrayList<JSONObject> results, IOnUpdateViewed onUpdateViewed) {
         super(context, android.R.layout.simple_list_item_1);
 
+        mOnUpdateViewed = onUpdateViewed;
         mContext = context;
         mResultList = results;
         Collections.sort(mResultList, new Comparator<JSONObject>() {
@@ -71,7 +78,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
         mContext.registerReceiver(mObservationReceiver, filter);
 
-        mObsIdToObsPic = new HashMap<>();
+        mObsIdToView = new HashMap<>();
     }
 
     @Override
@@ -81,23 +88,21 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.user_activity_item, parent, false);
+        View view = convertView == null ? inflater.inflate(R.layout.user_activity_item, parent, false) : convertView;
         BetterJSONObject item = new BetterJSONObject(mResultList.get(position));
 
         try {
             final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
             ImageView obsPic = (ImageView) view.findViewById(R.id.obs_pic);
-            TextView activityDescription = (TextView) view.findViewById(R.id.activity_description);
+            final TextView activityDescription = (TextView) view.findViewById(R.id.activity_description);
 
             obsPic.setVisibility(View.VISIBLE);
 
-            String dateFormatted = CommentsIdsAdapter.formatIdDate(item.getTimestamp("created_at"));
+            final String dateFormatted = CommentsIdsAdapter.formatIdDate(item.getTimestamp("created_at"));
             String userName = null;
             String userIconUrl = null;
             JSONObject user = null;
             final Integer obsId = item.getInt("resource_id");
-
-            obsPic.setTag(Integer.valueOf(obsId));
 
             // Viewed or not?
             view.setBackgroundColor(item.getBoolean("viewed") ? Color.parseColor("#F5F5F5") : Color.parseColor("#E1E9D0") );
@@ -112,7 +117,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 userName = user.getString("login");
                 userIconUrl = user.optString("icon_url", null);
 
-                String description = String.format(mContext.getString(R.string.user_activity_id), userName, id, dateFormatted);
+                final String description = String.format(mContext.getString(R.string.user_activity_id), userName, id, dateFormatted);
                 activityDescription.setText(Html.fromHtml(description));
 
                 clickify(activityDescription, id, new OnClickListener() {
@@ -134,11 +139,33 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 user = comment.getJSONObject("user");
                 userName = user.getString("login");
                 userIconUrl = user.optString("icon_url", null);
-                String body = comment.getString("body");
+                final String body = comment.getString("body");
 
-                // TODO - trim body of comment to 3 lines (ellipsize)
-                String description = String.format(mContext.getString(R.string.user_activity_comment), userName, body, dateFormatted);
+                final String description = String.format(mContext.getString(R.string.user_activity_comment), userName, body, dateFormatted);
                 activityDescription.setText(Html.fromHtml(description));
+
+                ViewTreeObserver viewTreeObserver = activityDescription.getViewTreeObserver();
+                final String finalUserName = userName;
+                viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        ViewTreeObserver viewTreeObserver = activityDescription.getViewTreeObserver();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            viewTreeObserver.removeOnGlobalLayoutListener(this);
+                        } else {
+                            viewTreeObserver.removeGlobalOnLayoutListener(this);
+                        }
+
+                        if (activityDescription.getLineCount() > 3) {
+                            // Ellipsize to 3 lines at the most
+                            int endOfLastLine = activityDescription.getLayout().getLineEnd(2);
+                            String descriptionNoBody = Html.fromHtml(String.format(mContext.getString(R.string.user_activity_comment), finalUserName, "", dateFormatted)).toString();
+                            int charsLeft = endOfLastLine - descriptionNoBody.length() - 3;
+                            String newDescription = String.format(mContext.getString(R.string.user_activity_comment), finalUserName, body.substring(0, charsLeft) + "...", dateFormatted);
+                            activityDescription.setText(Html.fromHtml(newDescription));
+                        }
+                    }
+                });
             }
 
             if (userName != null) {
@@ -173,10 +200,10 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 });
             }
 
-            // Load obs image
-            loadObsImage(obsId, obsPic);
-
             view.setTag(item);
+
+            // Load obs image
+            loadObsImage(obsId, view, position);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -184,31 +211,38 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         return view;
     }
 
-    private void downloadAndDisplayObs(int obsId, ImageView obsPic) {
+    private void downloadAndDisplayObs(int obsId, View view, ImageView obsPic, TextView activityDescription) {
         // Couldn't find observation (must be an old one) - download it
 
-        obsPic.setImageResource(R.drawable.iconic_taxon_unknown);
-        obsPic.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener doNothing = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Do nothing
             }
-        });
+        };
+        obsPic.setOnClickListener(doNothing);
+        activityDescription.setOnClickListener(doNothing);
+        view.setOnClickListener(doNothing);
+
+        obsPic.setImageResource(R.drawable.iconic_taxon_unknown);
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
         mContext.startService(serviceIntent);
 
         // So when we get the result - we'll know which obs pic to set
-        mObsIdToObsPic.put(obsId, obsPic);
+        mObsIdToView.put(obsId, view);
     }
 
-    private void loadObsImage(int obsId, ImageView obsPic) {
+    private void loadObsImage(int obsId, View view, final int position) {
+        ImageView obsPic = (ImageView) view.findViewById(R.id.obs_pic);
+        TextView activityDescription = (TextView) view.findViewById(R.id.activity_description);
+
         Cursor c = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[] { String.valueOf(obsId) }, null);
         if (c.getCount() == 0) {
             // Observation isn't saved locally - download it
             c.close();
-            downloadAndDisplayObs(obsId, obsPic);
+            downloadAndDisplayObs(obsId, view, obsPic, activityDescription);
             return;
         }
 
@@ -243,18 +277,47 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         }
         opc.close();
 
-        obsPic.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener showObs = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mOnUpdateViewed.onUpdateViewed(obs, position);
+
                 // Show observation details screen
-                // TODO - scroll to specific ID/comment
-                // TODO - mark activity as viewed=true
                 Uri uri = obs.getUri();
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
                 intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
+                intent.putExtra(ObservationViewerActivity.SCROLL_TO_COMMENTS_BOTTOM, true);
                 mContext.startActivity(intent);
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_UPDATES);
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    JSONObject item = mResultList.get(position);
+                    item.put("viewed", true);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                view.setBackgroundColor(Color.parseColor("#F5F5F5"));
+
+                // Mark observation update as viewed
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, mContext, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obs.id);
+                mContext.startService(serviceIntent);
             }
-        });
+        };
+
+        obsPic.setOnClickListener(showObs);
+        view.setOnClickListener(showObs);
+
+        activityDescription.setOnClickListener(showObs);
     }
 
 
@@ -405,15 +468,30 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 return;
             }
 
-            ImageView obsPic = mObsIdToObsPic.get(observation.id);
-            Integer obsPicId = (Integer)obsPic.getTag();
-            if ((obsPic == null) || (obsPicId == null) || (!obsPicId.equals(observation.id))) {
-                // Current obs pic ID doesn't match the one returned (could happen if user scrolled and the view got reused by the time we got results)
+            View view = mObsIdToView.get(observation.id);
+            if (view == null) return;
+
+            BetterJSONObject update = (BetterJSONObject)view.getTag();
+            Integer id = update.getInt("resource_id");
+            if ((update == null) || (id == null) || (!id.equals(observation.id))) {
+                // Current obs ID doesn't match the one returned (could happen if user scrolled and the view got reused by the time we got results)
                 return;
             }
 
+            int foundId = 0;
+            for (int i = 0; i < mResultList.size(); i++) {
+                try {
+                    if (mResultList.get(i).getInt("resource_id") == id) {
+                        foundId = i;
+                        break;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
             // Load obs image again
-            loadObsImage(observation.id, obsPic);
+            loadObsImage(observation.id, view, foundId);
 	    }
 
 	}

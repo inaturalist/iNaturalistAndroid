@@ -222,6 +222,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";
     public static String ACTION_GET_USER_IDENTIFICATIONS = "get_user_identifications";
     public static String ACTION_GET_USER_UPDATES = "get_user_udpates";
+    public static String ACTION_VIEWED_UPDATE = "viewed_update";
     public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
     public static String ACTION_GET_RECOMMENDED_MISSIONS = "get_recommended_missions";
     public static String ACTION_GET_MISSIONS_BY_TAXON = "get_missions_by_taxon";
@@ -556,6 +557,9 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(QUERY, query);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_VIEWED_UPDATE)) {
+                Integer obsId = intent.getIntExtra(OBSERVATION_ID, 0);
+                setUserViewedUpdate(obsId);
 
             } else if (action.equals(ACTION_GET_USER_UPDATES)) {
                 SerializableJSONArray updates = getUserUpdates();
@@ -1392,7 +1396,10 @@ public class INaturalistService extends IntentService {
         	return null;
         }
     }
- 
+
+    private void setUserViewedUpdate(int obsId) throws AuthenticationException {
+        put(HOST + "/observations/" + obsId + "/viewed_updates", (JSONObject)null);
+    }
 
     private void updateIdentification(int observationId, int identificationId, int taxonId, String body) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();

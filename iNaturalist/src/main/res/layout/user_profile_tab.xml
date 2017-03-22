@@ -18,7 +18,7 @@
 
     <ProgressBar
         android:id="@+id/loading"
-        style="?android:attr/progressBarStyleSmall"
+        style="@style/ProgressBarSmalliNatAppTheme"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_gravity="center_horizontal"
