@@ -19,23 +19,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
 import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.functors.ExceptionClosure;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sanselan.ImageReadException;
 import org.apache.sanselan.ImageWriteException;
@@ -43,7 +35,6 @@ import org.apache.sanselan.Sanselan;
 import org.apache.sanselan.common.IImageMetadata;
 import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
 import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
-import org.apache.sanselan.formats.tiff.TiffField;
 import org.apache.sanselan.formats.tiff.TiffImageMetadata;
 import org.apache.sanselan.formats.tiff.constants.TagInfo;
 import org.apache.sanselan.formats.tiff.constants.TiffConstants;
@@ -55,21 +46,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.lucasr.twowayview.TwoWayView;
 
-import com.ptashek.widgets.datetimepicker.DateTimePicker;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
-import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -77,15 +62,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -100,16 +81,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.content.CursorLoader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
@@ -117,34 +94,23 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -183,7 +149,8 @@ public class ObservationEditor extends AppCompatActivity {
     private ActivityHelper mHelper;
     private boolean mCanceled = false;
     private boolean mIsCaptive = false;
-    
+    private List<Uri> mSharePhotos = null;
+
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
     private ImageButton mViewOnInat;
@@ -328,7 +295,6 @@ public class ObservationEditor extends AppCompatActivity {
         final Intent intent = getIntent();
         String action = intent != null ? intent.getAction() : null;
         String type = intent != null ? intent.getType() : null;
-        List<Uri> sharePhotos = null;
 
         if ((savedInstanceState == null) && (intent != null) && (intent.getData() != null)) {
             int uriMatch = ObservationProvider.URI_MATCHER.match(intent.getData());
@@ -342,11 +308,11 @@ public class ObservationEditor extends AppCompatActivity {
             // Single share photo with iNaturalist
             mIsConfirmation = true;
             Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
-            sharePhotos = new ArrayList<>();
-            sharePhotos.add(imageUri);
+            mSharePhotos = new ArrayList<>();
+            mSharePhotos.add(imageUri);
         } else if ((intent != null) && (action != null) && (Intent.ACTION_SEND_MULTIPLE.equals(action))) {
             // Multiple share photo with iNaturalist
-            sharePhotos = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+            mSharePhotos = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         } else {
             // Show the observation editor screen
             mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
@@ -370,7 +336,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
 
-        if (sharePhotos != null) {
+        if (mSharePhotos != null) {
             // Share photos(s) with iNaturalist
             mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
             if (mUri == null) {
@@ -826,7 +792,7 @@ public class ObservationEditor extends AppCompatActivity {
 
 
         if (intent != null) {
-            mReturnToObservationList =  intent.getBooleanExtra(RETURN_TO_OBSERVATION_LIST, false);
+            mReturnToObservationList = intent.getBooleanExtra(RETURN_TO_OBSERVATION_LIST, false);
         }
 
         updateObservationVisibilityDescription();
@@ -844,9 +810,9 @@ public class ObservationEditor extends AppCompatActivity {
         });
 
 
-        if (sharePhotos != null) {
+        if (mSharePhotos != null) {
             // Share photos(s) with iNaturalist (override any location with the one from the shared images)
-            importPhotos(sharePhotos, true);
+            importPhotos(mSharePhotos, true);
         }
 
     }
@@ -1215,7 +1181,7 @@ public class ObservationEditor extends AppCompatActivity {
             getLocation();
         }
 
-        if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+        if ((Intent.ACTION_INSERT.equals(getIntent().getAction())) && (mSharePhotos == null)) {
             if (mObservation.observed_on == null) {
                 mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
                 mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
