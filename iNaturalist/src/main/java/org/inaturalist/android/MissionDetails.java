@@ -18,6 +18,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -261,6 +262,16 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                 Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, MissionDetails.this, ObservationEditor.class);
                 intent.putExtra(ObservationEditor.TAXON, taxon);
                 startActivity(intent);
+
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_TAXON_ID, taxon.getInt("id"));
+
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MISSIONS_OBSERVE, eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

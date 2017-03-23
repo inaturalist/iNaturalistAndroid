@@ -130,7 +130,7 @@
 
                     <ProgressBar
                         android:id="@+id/loading_map"
-                        style="?android:attr/progressBarStyleLarge"
+                        style="@style/ProgressBarLargeiNatAppTheme"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"

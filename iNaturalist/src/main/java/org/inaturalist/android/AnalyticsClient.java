@@ -40,6 +40,8 @@ public class AnalyticsClient {
     public static final String EVENT_NAME_NEARBY_MISSION = "Missions - Tap - Nearby Mission";
     public static final String EVENT_NAME_NEARBY_OBS_FROM_MISSION = "Missions - Tap - Nearby Observation";
     public static final String EVENT_NAME_NEARBY_WIKI_ARTICLE_FROM_MISSION = "Missions - Tap - Wikipedia Article";
+    public static final String EVENT_NAME_MISSIONS_OBSERVE = "Missions - Observe";
+    public static final String EVENT_PARAM_TAXON_ID = "TaxonId";
 
     // Onboarding
     public static final String EVENT_NAME_ONBOARDING_LOGO = "Navigate - Onboarding - Logo";
@@ -48,9 +50,7 @@ public class AnalyticsClient {
     public static final String EVENT_NAME_ONBOARDING_LEARN = "Navigate - Onboarding - Learn";
     public static final String EVENT_NAME_ONBOARDING_CONTRIBUTE = "Navigate - Onboarding - Contribute";
     public static final String EVENT_NAME_ONBOARDING_LOGIN = "Navigate - Onboarding - Login";
-    // NEW
     public static final String EVENT_NAME_ONBOARDING_VIEW_NEARBY_OBS = "Onboarding View Nearby Obs";
-    // NEW
     public static final String EVENT_NAME_ONBOARDING_SKIP = "Onboarding Skip";
     public static final String EVENT_NAME_ONBOARDING_LOGIN_SKIP = "Onboarding Login Skip";
     public static final String EVENT_NAME_ONBOARDING_LOGIN_CANCEL = "Onboarding Login Cancel";
