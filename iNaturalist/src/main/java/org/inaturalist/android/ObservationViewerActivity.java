@@ -1898,6 +1898,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     mObservation.species_guess = observation.species_guess;
                     mObservation.taxon_id = observation.taxon_id;
                     mObservation.preferred_common_name = observation.preferred_common_name;
+                    mObservation.iconic_taxon_name = observation.iconic_taxon_name;
 
                     mTaxonName = null;
                     mTaxonIdName = null;
@@ -1905,6 +1906,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 }
 
                 mReloadTaxon = false;
+
+                if (!mReadOnly) {
+                    // Update observation's taxon in DB
+                    ContentValues cv = mObservation.getContentValues();
+                    getContentResolver().update(mUri, cv, null, null);
+                }
             }
 
             reloadPhotos();
