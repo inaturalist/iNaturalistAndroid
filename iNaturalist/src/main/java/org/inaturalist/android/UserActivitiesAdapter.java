@@ -234,7 +234,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         mObsIdToView.put(obsId, view);
     }
 
-    private void loadObsImage(int obsId, View view, final int position) {
+    private void loadObsImage(int obsId, final View view, final int position) {
         ImageView obsPic = (ImageView) view.findViewById(R.id.obs_pic);
         TextView activityDescription = (TextView) view.findViewById(R.id.activity_description);
 
@@ -279,7 +279,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
         View.OnClickListener showObs = new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 mOnUpdateViewed.onUpdateViewed(obs, position);
 
                 // Show observation details screen
