@@ -868,6 +868,10 @@ public class ObservationEditor extends AppCompatActivity {
 
             uiToProjectFieldValues();
             if (save()) {
+                if (mSharePhotos != null) {
+                    returnToObsList();
+                }
+
                 setResult(RESULT_RETURN_TO_OBSERVATION_LIST);
                 finish();
             }
@@ -934,6 +938,9 @@ public class ObservationEditor extends AppCompatActivity {
             if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_CANCEL);
             }
+            if (mSharePhotos != null) {
+                returnToObsList();
+            }
 
             mCanceled = true;
             setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
@@ -952,6 +959,9 @@ public class ObservationEditor extends AppCompatActivity {
                         // Get back to the observations list (consider this as canceled)
                         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_CANCEL);
+                        }
+                        if (mSharePhotos != null) {
+                            returnToObsList();
                         }
 
                         mCanceled = true;
@@ -1022,6 +1032,9 @@ public class ObservationEditor extends AppCompatActivity {
                                             editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
                                             editor.commit();
                                         }
+                                        if (mSharePhotos != null) {
+                                            returnToObsList();
+                                        }
 
                                         setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
                                         finish();
@@ -1042,6 +1055,11 @@ public class ObservationEditor extends AppCompatActivity {
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putInt("observation_count", prefs.getInt("observation_count", 0) + 1);
                         editor.commit();
+                    }
+
+
+                    if (mSharePhotos != null) {
+                        returnToObsList();
                     }
 
                     setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_REFRESH_OBS);
@@ -3138,6 +3156,13 @@ public class ObservationEditor extends AppCompatActivity {
 
         return displayName;
 
+    }
+
+
+    private void returnToObsList() {
+        // Since we were started by a share-photo(s)-to-iNat intent - we need to manually activate observation list
+        Intent intent = new Intent(ObservationEditor.this, ObservationListActivity.class);
+        startActivity(intent);
     }
 
 }
