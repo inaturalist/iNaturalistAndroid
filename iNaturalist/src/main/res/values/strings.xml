@@ -574,9 +574,11 @@
     <string name="sync_failed_connection_problems">Sync failed due to connection problems. Please try again later.</string>
     <string name="no_news_yet">No news yet. Stay tuned!</string>
     <string name="my_content">My Content</string>
+    <string name="following">Following</string>
     <string name="no_updates_yet">No updates yet. Stay tuned!</string>
-    <string name="you_will_only_receive_updates">(You will only receive updates once you\'ve created observations)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: <b>%2$s</b> <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
+    <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
 </resources>
 

@@ -709,7 +709,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mUserBio.setVisibility(View.GONE);
         } else {
             mUserBio.setVisibility(View.VISIBLE);
-            mUserBio.setText(bio);
+            mUserBio.setText(Html.fromHtml(bio));
 
             ViewTreeObserver vto = mUserBio.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

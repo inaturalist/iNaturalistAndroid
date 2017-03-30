@@ -93,6 +93,7 @@ public class INaturalistService extends IntentService {
     public static final String USER = "user";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String FOLLOWING = "following";
     public static final String FIELD_ID = "field_id";
     public static final String COMMENT_ID = "comment_id";
     public static final String OBSERVATION_RESULT = "observation_result";
@@ -102,6 +103,7 @@ public class INaturalistService extends IntentService {
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
     public static final String UPDATES_RESULT = "updates_results";
+    public static final String UPDATES_FOLLOWING_RESULT = "updates_following_results";
     public static final String LIFE_LIST_RESULT = "life_list_result";
     public static final String SPECIES_COUNT_RESULT = "species_count_result";
     public static final String RECOMMENDED_MISSIONS_RESULT = "recommended_missions_result";
@@ -562,10 +564,17 @@ public class INaturalistService extends IntentService {
                 setUserViewedUpdate(obsId);
 
             } else if (action.equals(ACTION_GET_USER_UPDATES)) {
-                SerializableJSONArray updates = getUserUpdates();
+                Boolean following = intent.getBooleanExtra(FOLLOWING, false);
+                SerializableJSONArray updates = getUserUpdates(following);
 
-                Intent reply = new Intent(UPDATES_RESULT);
-                mApp.setServiceResult(UPDATES_RESULT, updates);
+                Intent reply;
+                if (following) {
+                    reply = new Intent(UPDATES_FOLLOWING_RESULT);
+                    mApp.setServiceResult(UPDATES_FOLLOWING_RESULT, updates);
+                } else {
+                    reply = new Intent(UPDATES_RESULT);
+                    mApp.setServiceResult(UPDATES_RESULT, updates);
+                }
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
@@ -1916,10 +1925,11 @@ public class INaturalistService extends IntentService {
         return new SerializableJSONArray(json);
     }
 
-    private SerializableJSONArray getUserUpdates() throws AuthenticationException {
+    private SerializableJSONArray getUserUpdates(boolean following) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200";
+        String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200&observations_by=" +
+                (following ? "following": "owner");
         JSONArray json = request(url, "get", null, null, true, true); // Use JWT Token authentication
         if (json == null) return null;
         if (json.length() == 0) return null;

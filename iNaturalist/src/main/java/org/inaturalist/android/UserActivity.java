@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     public static String TAG = "UserActivity";
 
     private static final String VIEW_TYPE_MY_CONTENT = "my_content";
+    private static final String VIEW_TYPE_MY_FOLLOWING = "following";
     private static final String VIEW_TYPE_NEWS = "news";
 
     private ActivityHelper mHelper;
@@ -50,13 +52,20 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     private TextView mActivityEmpty;
     private PullToRefreshListView mActivityList;
     private TextView mActivityEmptySubTitle;
+    private ProgressBar mLoadingFollowingActivities;
+    private TextView mFollowingActivityEmpty;
+    private PullToRefreshListView mFollowingActivityList;
+    private TextView mFollowingActivityEmptySubTitle;
+
 
     private NewsReceiver mNewsReceiver;
 
     private ArrayList<JSONObject> mNews;
     private ArrayList<JSONObject> mActivities;
+    private ArrayList<JSONObject> mFollowingActivities;
     private ProjectNewsAdapter mNewsListAdapter;
     private UserActivitiesAdapter mActivitiesListAdapter;
+    private UserActivitiesAdapter mFollowingActivitiesListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +88,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             mViewType = savedInstanceState.getString("mViewType");
             mNews = loadListFromBundle(savedInstanceState, "mNews");
             mActivities = loadListFromBundle(savedInstanceState, "mActivities");
+            mFollowingActivities = loadListFromBundle(savedInstanceState, "mFollowingActivities");
 
         } else {
             SharedPreferences settings = mApp.getPrefs();
@@ -90,10 +100,16 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             if (mApp.loggedIn()) {
                 // Get the user's activities
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
+                serviceIntent2.putExtra(INaturalistService.FOLLOWING, false);
                 startService(serviceIntent2);
+                // Get the user's activities (following obs)
+                Intent serviceIntent3 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
+                serviceIntent3.putExtra(INaturalistService.FOLLOWING, true);
+                startService(serviceIntent3);
             } else {
                 // Only works if user is logged in
                 mActivities = new ArrayList<>();
+                mFollowingActivities = new ArrayList<>();
             }
         }
 
@@ -142,8 +158,8 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         mTabLayout.setupWithViewPager(mViewPager);
 
         addTab(0, getString(R.string.my_content));
-        addTab(1, getString(R.string.news));
-        //refreshTabs(0);
+        addTab(1, getString(R.string.following));
+        addTab(2, getString(R.string.news));
 
         ViewPager.OnPageChangeListener pageListener = new ViewPager.OnPageChangeListener() {
             @Override
@@ -153,16 +169,17 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             @Override
             public void onPageSelected(int position) {
                 switch (position) {
-                    case 1:
+                    case 2:
                         mViewType = VIEW_TYPE_NEWS;
+                        break;
+                    case 1:
+                        mViewType = VIEW_TYPE_MY_FOLLOWING;
                         break;
                     case 0:
                     default:
                         mViewType = VIEW_TYPE_MY_CONTENT;
                         break;
                 }
-
-                //refreshTabs(position);
             }
 
             @Override
@@ -174,7 +191,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
 
     public class ActivityPageAdapter extends PagerAdapter {
-        final int PAGE_COUNT = 2;
+        final int PAGE_COUNT = 3;
         private Context mContext;
 
         public ActivityPageAdapter(Context context) {
@@ -192,14 +209,15 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.news_list, collection, false);
 
             switch (position) {
-                case 1:
+                case 2:
                     // News (site/project news)
                     mLoadingNews = (ProgressBar) layout.findViewById(R.id.loading);
                     mNewsEmpty = (TextView) layout.findViewById(R.id.empty);
                     mNewsEmpty.setText(R.string.no_news_yet);
                     ((TextView) layout.findViewById(R.id.empty_sub_title)).setVisibility(View.GONE);
                     mNewsList = (PullToRefreshListView) layout.findViewById(R.id.list);
-                    mNewsList.setMode(PullToRefreshBase.Mode.DISABLED);
+
+                    initPullToRefreshList(mNewsList, layout);
 
                     AdapterView.OnItemClickListener onNewsClick = new AdapterView.OnItemClickListener() {
                         @Override
@@ -232,15 +250,29 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
                     break;
 
+                case 1:
+                    // User Activity (Following)
+                    mLoadingFollowingActivities = (ProgressBar) layout.findViewById(R.id.loading);
+                    mFollowingActivityEmpty = (TextView) layout.findViewById(R.id.empty);
+                    mFollowingActivityEmpty.setText(R.string.no_updates_yet);
+                    mFollowingActivityEmptySubTitle = (TextView) layout.findViewById(R.id.empty_sub_title);
+                    mFollowingActivityEmptySubTitle.setText(R.string.you_will_only_receive_updates_when_following);
+                    mFollowingActivityList = (PullToRefreshListView) layout.findViewById(R.id.list);
+
+                    initPullToRefreshList(mFollowingActivityList, layout);
+
+                    break;
+
                 case 0:
                     // User Activity (My Content)
                     mLoadingActivities = (ProgressBar) layout.findViewById(R.id.loading);
                     mActivityEmpty = (TextView) layout.findViewById(R.id.empty);
                     mActivityEmpty.setText(R.string.no_updates_yet);
                     mActivityEmptySubTitle = (TextView) layout.findViewById(R.id.empty_sub_title);
-                    mActivityEmptySubTitle.setText(R.string.you_will_only_receive_updates);
+                    mActivityEmptySubTitle.setText(R.string.you_will_only_receive_updates_when_creating);
                     mActivityList = (PullToRefreshListView) layout.findViewById(R.id.list);
-                    mActivityList.setMode(PullToRefreshBase.Mode.DISABLED);
+
+                    initPullToRefreshList(mActivityList, layout);
 
                     break;
             }
@@ -305,6 +337,29 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 mActivityList.setVisibility(View.VISIBLE);
             }
         }
+
+        if (mLoadingFollowingActivities != null) {
+            if (mFollowingActivities == null) {
+                mLoadingFollowingActivities.setVisibility(View.VISIBLE);
+                mFollowingActivityList.setVisibility(View.GONE);
+                mFollowingActivityEmpty.setVisibility(View.GONE);
+                mFollowingActivityEmptySubTitle.setVisibility(View.GONE);
+            } else {
+                mLoadingFollowingActivities.setVisibility(View.GONE);
+
+                if (mFollowingActivities.size() == 0) {
+                    mFollowingActivityEmpty.setVisibility(View.VISIBLE);
+                    mFollowingActivityEmptySubTitle.setVisibility(View.VISIBLE);
+                } else {
+                    mFollowingActivityEmpty.setVisibility(View.GONE);
+                    mFollowingActivityEmptySubTitle.setVisibility(View.GONE);
+                }
+
+                mFollowingActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mFollowingActivities, UserActivity.this);
+                mFollowingActivityList.setAdapter(mFollowingActivitiesListAdapter);
+                mFollowingActivityList.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
 
@@ -347,23 +402,59 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             }
 
             for (int i = 0; i < results.length(); i++) {
-				try {
-					JSONObject item = results.getJSONObject(i);
-					resultsArray.add(item);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+                try {
+                    JSONObject item = results.getJSONObject(i);
+                    resultsArray.add(item);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (intent.getAction().equals(INaturalistService.UPDATES_RESULT)) {
                 mActivities = resultsArray;
+                mActivityList.onRefreshComplete();
+                mActivityList.refreshDrawableState();
+            } else if (intent.getAction().equals(INaturalistService.UPDATES_FOLLOWING_RESULT)) {
+                mFollowingActivities = resultsArray;
+                mFollowingActivityList.onRefreshComplete();
+                mFollowingActivityList.refreshDrawableState();
             } else {
                 mNews = resultsArray;
+                mNewsList.onRefreshComplete();
+                mNewsList.refreshDrawableState();
             }
 
             refreshViewState();
         }
     }
+
+    private void initPullToRefreshList(PullToRefreshListView pullToRefresh, ViewGroup layout) {
+        pullToRefresh.getLoadingLayoutProxy().setPullLabel(getResources().getString(R.string.pull_to_refresh));
+        pullToRefresh.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_refresh));
+        pullToRefresh.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.refreshing));
+        pullToRefresh.setReleaseRatio(2.5f);
+
+        pullToRefresh.setEmptyView(layout.findViewById(R.id.empty));
+
+        pullToRefresh.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                Intent serviceIntent;
+
+                if (refreshView == mNewsList) {
+                    // Get the user's news
+                    serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
+                } else {
+                    // Get the user's activities
+                    serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
+                    serviceIntent.putExtra(INaturalistService.FOLLOWING, refreshView == mActivityList ? false : true);
+                }
+
+                startService(serviceIntent);
+            }
+        });
+    }
+
 
 
     @Override
@@ -377,6 +468,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.ACTION_NEWS_RESULT);
         filter.addAction(INaturalistService.UPDATES_RESULT);
+        filter.addAction(INaturalistService.UPDATES_FOLLOWING_RESULT);
         registerReceiver(mNewsReceiver, filter);
     }
 
@@ -414,6 +506,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         outState.putString("mViewType", mViewType);
         saveListToBundle(outState, mNews, "mNews");
         saveListToBundle(outState, mActivities, "mActivities");
+        saveListToBundle(outState, mFollowingActivities, "mFollowingActivities");
 
         super.onSaveInstanceState(outState);
     }
@@ -422,7 +515,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     @Override
     public void onUpdateViewed(Observation obs, int position) {
         try {
-            JSONObject item = mActivities.get(position);
+            JSONObject item = obs.user_login.equals(mApp.currentUserLogin()) ? mActivities.get(position) : mFollowingActivities.get(position) ;
             item.put("viewed", true);
         } catch (JSONException e) {
             e.printStackTrace();

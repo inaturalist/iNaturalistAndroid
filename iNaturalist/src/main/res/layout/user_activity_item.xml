@@ -1,48 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#F5F5F5"
-    android:padding="15dp">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
 
 
     <ImageView
         android:id="@+id/obs_pic"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
         android:layout_width="62dp"
         android:layout_height="62dp"
         android:scaleType="fitXY"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_work_gray_24dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp" />
 
-    <ImageView
-        android:id="@+id/user_pic"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitXY"
+    <RelativeLayout
+        android:id="@+id/user_pic_container"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_person_black_24dp"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/user_pic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_person_black_24dp"
+            />
 
+        <ProgressBar
+            android:id="@+id/loading"
+            style="@style/ProgressBarLargeiNatAppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_toLeftOf="@id/obs_pic"
-        android:layout_toRightOf="@id/user_pic"
+        android:layout_toRightOf="@id/user_pic_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_centerVertical="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         >
         <TextView
             android:id="@+id/activity_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="description"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="#000000"
             android:maxLines="3"
+            android:clickable="false"
+            android:focusableInTouchMode="false"
             />
     </LinearLayout>
+
+    <View
+        android:id="@+id/loading_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#36cccccc"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>

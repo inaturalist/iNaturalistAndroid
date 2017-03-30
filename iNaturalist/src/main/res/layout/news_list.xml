@@ -53,7 +53,7 @@
             android:gravity="center"
             android:layout_centerHorizontal="true"
             android:textColor="#A5A4A9"
-            android:text="@string/you_will_only_receive_updates" />
+            android:text="@string/you_will_only_receive_updates_when_creating" />
 
     </RelativeLayout>
 

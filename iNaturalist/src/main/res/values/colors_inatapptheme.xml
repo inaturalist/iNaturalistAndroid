@@ -4,4 +4,7 @@
     <color name="inatapptheme_color">#669900</color>
     <color name="inatapptheme_color_highlighted">#ff006616</color>
     <color name="inatapptheme_color_highlighted_grid_items">#E2EAD1</color>
+    <color name="inatapptheme_color_gray">#F5F5F5</color>
+    <color name="inatapptheme_color_unviewed_update">#E1E9D0</color>
+    <color name="inatapptheme_color_highlighted_update">#A4BE67</color>
 </resources>

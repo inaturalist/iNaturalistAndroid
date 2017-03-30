@@ -24,11 +24,14 @@ import android.text.method.MovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -49,6 +52,7 @@ import java.util.Map;
 
 class UserActivitiesAdapter extends ArrayAdapter<String> {
     private final IOnUpdateViewed mOnUpdateViewed;
+    private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private ObservationReceiver mObservationReceiver;
@@ -63,6 +67,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
         mOnUpdateViewed = onUpdateViewed;
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
         mResultList = results;
         Collections.sort(mResultList, new Comparator<JSONObject>() {
             @Override
@@ -88,7 +93,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = convertView == null ? inflater.inflate(R.layout.user_activity_item, parent, false) : convertView;
+        final View view = convertView == null ? inflater.inflate(R.layout.user_activity_item, parent, false) : convertView;
         BetterJSONObject item = new BetterJSONObject(mResultList.get(position));
 
         try {
@@ -105,14 +110,14 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             final Integer obsId = item.getInt("resource_id");
 
             // Viewed or not?
-            view.setBackgroundColor(item.getBoolean("viewed") ? Color.parseColor("#F5F5F5") : Color.parseColor("#E1E9D0") );
+            view.setBackgroundResource(item.getBoolean("viewed") ? R.drawable.activity_item_background : R.drawable.activity_unviewed_item_background );
 
             if (item.getString("notifier_type").equals("Identification")) {
                 // Identification
 
                 final JSONObject identification = item.getJSONObject("identification");
                 final JSONObject taxon = identification.getJSONObject("taxon");
-                String id = getTaxonName(identification.getJSONObject("taxon"));
+                String id = getTaxonName(taxon);
                 user = identification.getJSONObject("user");
                 userName = user.getString("login");
                 userIconUrl = user.optString("icon_url", null);
@@ -120,18 +125,6 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 final String description = String.format(mContext.getString(R.string.user_activity_id), userName, id, dateFormatted);
                 activityDescription.setText(Html.fromHtml(description));
 
-                clickify(activityDescription, id, new OnClickListener() {
-                    @Override
-                    public void onClick() {
-                        // Show taxon details screen
-                        Intent intent = new Intent(mContext, GuideTaxonActivity.class);
-                        intent.putExtra("taxon", new BetterJSONObject(taxon));
-                        intent.putExtra("guide_taxon", false);
-                        intent.putExtra("show_add", false);
-                        intent.putExtra("download_taxon", true);
-                        mContext.startActivity(intent);
-                    }
-                });
             } else if (item.getString("notifier_type").equals("Comment")) {
                 // Comment
 
@@ -192,18 +185,19 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                };
 
                 userPic.setOnClickListener(onUserClick);
+                /*
                 clickify(activityDescription, userName, new OnClickListener() {
                     @Override
                     public void onClick() {
                         onUserClick.onClick(userPic);
                     }
-                });
+                });*/
             }
 
             view.setTag(item);
 
             // Load obs image
-            loadObsImage(obsId, view, position);
+            loadObsImage(obsId, view, item, position);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -211,43 +205,49 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         return view;
     }
 
-    private void downloadAndDisplayObs(int obsId, View view, ImageView obsPic, TextView activityDescription) {
-        // Couldn't find observation (must be an old one) - download it
-
-        View.OnClickListener doNothing = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Do nothing
-            }
-        };
-        obsPic.setOnClickListener(doNothing);
-        activityDescription.setOnClickListener(doNothing);
-        view.setOnClickListener(doNothing);
-
-        obsPic.setImageResource(R.drawable.iconic_taxon_unknown);
-
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
-        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
-        mContext.startService(serviceIntent);
-
-        // So when we get the result - we'll know which obs pic to set
-        mObsIdToView.put(obsId, view);
-    }
-
-    private void loadObsImage(int obsId, final View view, final int position) {
+    private void loadObsImage(int obsId, final View view, BetterJSONObject item, final int position) {
         ImageView obsPic = (ImageView) view.findViewById(R.id.obs_pic);
-        TextView activityDescription = (TextView) view.findViewById(R.id.activity_description);
+        ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
+        ProgressBar loadingObs = (ProgressBar) view.findViewById(R.id.loading);
+        final View loadingObsOverlay = view.findViewById(R.id.loading_overlay);
+
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                loadingObsOverlay.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, view.getHeight()));
+            }
+        });
 
         Cursor c = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[] { String.valueOf(obsId) }, null);
         if (c.getCount() == 0) {
-            // Observation isn't saved locally - download it
+            // Couldn't find observation (must be an old one that isn't saved locally) - download it
             c.close();
-            downloadAndDisplayObs(obsId, view, obsPic, activityDescription);
+
+            // Show loading status
+            obsPic.setImageResource(R.drawable.iconic_taxon_unknown);
+            loadingObs.setVisibility(View.VISIBLE);
+            loadingObsOverlay.setVisibility(View.VISIBLE);
+            userPic.setVisibility(View.GONE);
+            view.setBackgroundResource(R.drawable.activity_item_background);
+
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
+            mContext.startService(serviceIntent);
+
+            // So when we get the result - we'll know which obs pic to set
+            mObsIdToView.put(obsId, view);
+
             return;
         }
 
         final Observation obs = new Observation(c);
         c.close();
+
+        loadingObs.setVisibility(View.GONE);
+        loadingObsOverlay.setVisibility(View.GONE);
+        userPic.setVisibility(View.VISIBLE);
+        view.setBackgroundResource(item.getBoolean("viewed") ? R.drawable.activity_item_background : R.drawable.activity_unviewed_item_background );
+
 
         // Get first image for the observation
         Cursor opc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION, "observation_id = ?", new String[] { String.valueOf(obsId) }, ObservationPhoto.DEFAULT_SORT_ORDER);
@@ -283,10 +283,21 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 mOnUpdateViewed.onUpdateViewed(obs, position);
 
                 // Show observation details screen
-                Uri uri = obs.getUri();
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
+                Intent intent;
+                if (obs.user_login.equals(mApp.currentUserLogin())) {
+                    // It's our own observation - allow editing it
+                    Uri uri = obs.getUri();
+                    intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
+                } else {
+                    // It's another user's observation - read only mode
+                    intent = new Intent(mContext, ObservationViewerActivity.class);
+                    intent.putExtra("observation", obs.toJSONObject().toString());
+                    intent.putExtra("read_only", true);
+                }
+
                 intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
                 intent.putExtra(ObservationViewerActivity.SCROLL_TO_COMMENTS_BOTTOM, true);
+
                 mContext.startActivity(intent);
 
                 try {
@@ -305,7 +316,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                     e.printStackTrace();
                 }
 
-                view.setBackgroundColor(Color.parseColor("#F5F5F5"));
+                view.setBackgroundResource(R.drawable.activity_item_background);
 
                 // Mark observation update as viewed
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, mContext, INaturalistService.class);
@@ -314,10 +325,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             }
         };
 
-        obsPic.setOnClickListener(showObs);
         view.setOnClickListener(showObs);
-
-        activityDescription.setOnClickListener(showObs);
     }
 
 
@@ -491,7 +499,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             }
 
             // Load obs image again
-            loadObsImage(observation.id, view, foundId);
+            loadObsImage(observation.id, view, update, foundId);
 	    }
 
 	}
