@@ -1807,10 +1807,12 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject j = new BetterJSONObject(json);
                 ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
                 op.merge(jsonObservationPhoto);
-                cv = op.getContentValues();
-                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                getContentResolver().update(op.getUri(), cv, null, null);
-                createdCount += 1;
+                if (op.id != null) {
+                    cv = op.getContentValues();
+                    cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                    getContentResolver().update(op.getUri(), cv, null, null);
+                    createdCount += 1;
+                }
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }
