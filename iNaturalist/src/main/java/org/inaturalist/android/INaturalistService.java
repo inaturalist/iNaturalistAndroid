@@ -834,7 +834,8 @@ public class INaturalistService extends IntentService {
                 Observation observation = getAndDownloadObservation(id);
 
                 Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-                reply.putExtra(OBSERVATION_RESULT, observation);
+                mApp.setServiceResult(ACTION_GET_AND_SAVE_OBSERVATION_RESULT, observation);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
@@ -843,9 +844,12 @@ public class INaturalistService extends IntentService {
                 Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
                 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson != null ? observationJson.toString() : null);
+
+                mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
+                mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? observationJson.toString() : null);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
+
                 
             } else if (action.equals(ACTION_JOIN_PROJECT)) {
                 int id = intent.getExtras().getInt(PROJECT_ID);

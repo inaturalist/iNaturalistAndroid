@@ -470,7 +470,14 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
     private class ObservationReceiver extends BroadcastReceiver {
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+	        Observation observation;
+
+            if (isSharedOnApp) {
+                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
+            } else {
+                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+            }
 
             if (observation == null) {
                 return;

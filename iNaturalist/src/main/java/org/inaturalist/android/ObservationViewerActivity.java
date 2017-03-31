@@ -1815,7 +1815,15 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
             mLoadingObservation = false;
 
-	        Observation observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            Observation observation;
+            if (isSharedOnApp) {
+                observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_OBSERVATION_RESULT);
+            } else {
+                observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
+            }
+
+
 
             if (mObservation == null) {
                 reloadObservation(null, false);
@@ -1886,7 +1894,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
             if (mReloadObs) {
                 // Reload entire observation details (not just the comments/favs)
                 mObservation = observation;
-                mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
+
+                if (isSharedOnApp) {
+                    mObsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT);
+                } else {
+                    mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
+                }
             }
 
             if (mReloadTaxon) {
