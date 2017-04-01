@@ -760,6 +760,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
             }
             getContentResolver().update(mObservation.getUri(), cv, null, null);
+            Log.d(TAG, "ObservationViewerActivity - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
         }
         mLoginToAddCommentId.setVisibility(View.GONE);
         mActivityLoginSignUpButtons.setVisibility(View.GONE);
@@ -1908,6 +1909,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     ((mObservation.taxon_id != null) && (observation.taxon_id == null)) ||
                     (mObservation.taxon_id != observation.taxon_id)) {
 
+                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+
                     mObservation.species_guess = observation.species_guess;
                     mObservation.taxon_id = observation.taxon_id;
                     mObservation.preferred_common_name = observation.preferred_common_name;
@@ -1924,6 +1928,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     // Update observation's taxon in DB
                     ContentValues cv = mObservation.getContentValues();
                     getContentResolver().update(mUri, cv, null, null);
+                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
                 }
             }
 

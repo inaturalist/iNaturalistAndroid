@@ -2533,6 +2533,7 @@ public class INaturalistService extends IntentService {
         
         JSONArray json = get(url, true);
         if (json != null && json.length() > 0) {
+            Log.d(TAG, "getUserObservations");
             syncJson(json, true);
             return true;
         } else {
@@ -3215,7 +3216,11 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             observation = new Observation(c);
             jsonObservation = jsonObservationsById.get(observation.id);
-            boolean isModified = observation.merge(jsonObservation); 
+            boolean isModified = observation.merge(jsonObservation);
+
+            Log.d(TAG, "syncJson - updating existing: " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+            Log.d(TAG, "syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id);
+
             cv = observation.getContentValues();
             if (observation._updated_at.before(jsonObservation.updated_at)) {
                 // Remote observation is newer (and thus has overwritten the local one) - update its
