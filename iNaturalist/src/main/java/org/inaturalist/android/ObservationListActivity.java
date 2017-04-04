@@ -407,8 +407,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 }
             }
 
-            mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.separator).setVisibility(View.GONE);
-
        }
 
         if (mLoadingSpecies != null) {
