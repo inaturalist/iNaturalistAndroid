@@ -317,6 +317,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		mPrefEditor.remove("user_bio");
 		mPrefEditor.remove("user_full_name");
 		mPrefEditor.remove("last_user_details_refresh_time");
+        mPrefEditor.remove("jwt_token");
+        mPrefEditor.remove("jwt_token_expiration");
 		mPrefEditor.commit();
 
 		int count1 = getActivity().getContentResolver().delete(Observation.CONTENT_URI, null, null);
