@@ -19,7 +19,7 @@
             android:layout_height="180dp"
             android:background="#003fb921"
             android:fitsSystemWindows="false"
-            app:expandedTitleMarginBottom="42dp"
+            app:expandedTitleMarginBottom="17dp"
             app:expandedTitleTextAppearance="@style/Toolbar.TitleText"
             app:expandedTitleGravity="center_horizontal"
             app:collapsedTitleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
