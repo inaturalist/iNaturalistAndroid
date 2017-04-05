@@ -461,7 +461,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
         if (hasErrors)  {
-            view.setBackgroundColor(Color.parseColor("#F3D3DA"));
+            view.setBackgroundResource(R.drawable.observation_item_error_background);
             if (!mIsGrid) {
                 placeGuess.setText(R.string.needs_your_attention);
                 locationIcon.setVisibility(View.GONE);
@@ -469,7 +469,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         } else {
             if (!mIsGrid) {
                 locationIcon.setVisibility(View.VISIBLE);
-                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                view.setBackgroundResource(R.drawable.observation_item_background);
             } else {
                 view.setBackgroundColor(Color.parseColor("#DDDDDD"));
             }
@@ -480,7 +480,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             if (mApp.getObservationIdBeingSynced() == obsId) {
                 // Observation is currently being uploaded
-                view.setBackgroundColor(Color.parseColor("#E3EDCD"));
+                view.setBackgroundResource(R.drawable.observation_item_uploading_background);
 
                 if (!mIsGrid) {
                     placeGuess.setText(R.string.uploading);
@@ -494,7 +494,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             } else {
                 // Observation is waiting to be uploaded
                 if (!hasErrors) {
-                    view.setBackgroundColor(Color.parseColor("#E3EDCD"));
+                    view.setBackgroundResource(R.drawable.observation_item_uploading_background);
                     if (!mIsGrid) {
                         placeGuess.setText(R.string.waiting_to_upload);
                         locationIcon.setVisibility(View.GONE);
@@ -504,7 +504,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         } else {
             if (!hasErrors) {
                 if (!mIsGrid) {
-                    view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    view.setBackgroundResource(R.drawable.observation_item_background);
                 } else {
                     view.setBackgroundColor(Color.parseColor("#DDDDDD"));
                 }

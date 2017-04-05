@@ -7,4 +7,7 @@
     <color name="inatapptheme_color_gray">#F5F5F5</color>
     <color name="inatapptheme_color_unviewed_update">#E1E9D0</color>
     <color name="inatapptheme_color_highlighted_update">#A4BE67</color>
+    <color name="inatapptheme_color_error">#F3D3DA</color>
+    <color name="inatapptheme_color_error_highlighted">#ff474b</color>
+    <color name="inatapptheme_color_being_uploaded">#E3EDCD</color>
 </resources>
