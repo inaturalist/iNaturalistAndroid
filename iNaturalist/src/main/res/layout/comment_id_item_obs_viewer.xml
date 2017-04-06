@@ -156,7 +156,7 @@
 
     <RelativeLayout
         android:id="@+id/loading"
-        android:background="#9F000000"
+        android:background="#9FFFFFFF"
         android:visibility="gone"
         android:layout_alignTop="@id/user_details"
         android:layout_alignBottom="@id/bottom_part"
