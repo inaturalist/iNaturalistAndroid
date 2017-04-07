@@ -1695,13 +1695,29 @@ public class INaturalistService extends IntentService {
         // query observation photos where _updated_at > updated_at (i.e. updated photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "_updated_at > _synced_at AND _synced_at IS NOT NULL",
+                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NULL",
+                null,
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            op = new ObservationPhoto(c);
+            // Shouldn't happen - a photo with null external ID is marked as sync - unmark it
+            op._synced_at = null;
+            getContentResolver().update(op.getUri(), op.getContentValues(), null, null);
+            c.moveToNext();
+        }
+        c.close();
+
+        // for each observation PUT to /observation_photos/:id
+        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
 
         int updatedCount = c.getCount();
 
-        // for each observation PUT to /observation_photos/:id
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             checkForCancelSync();
@@ -1796,7 +1812,8 @@ public class INaturalistService extends IntentService {
             String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
             params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
             
-            JSONArray response = post("http://" + inatHost + "/observation_photos.json", params);
+            JSONArray response;
+            response = post("http://" + inatHost + "/observation_photos.json", params);
             try {
                 if (response == null || response.length() != 1) {
                     c.close();
