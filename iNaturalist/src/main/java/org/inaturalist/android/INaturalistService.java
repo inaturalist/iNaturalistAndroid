@@ -1569,7 +1569,7 @@ public class INaturalistService extends IntentService {
             mApp.setObservationIdBeingSynced(observation._id);
             boolean success = handleObservationResponse(
                     observation,
-                    put(API_HOST + "/observations/" + observation.id, observationToJsonObject(observation, false))
+                    request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true)
             );
             c.moveToNext();
 
@@ -1604,7 +1604,7 @@ public class INaturalistService extends IntentService {
 
             boolean success = handleObservationResponse(
                     observation,
-                    post(API_HOST + "/observations", observationToJsonObject(observation, true))
+                    request(API_HOST + "/observations", "post", null, observationToJsonObject(observation, false), true, true)
             );
             c.moveToNext();
 
