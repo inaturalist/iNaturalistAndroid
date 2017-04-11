@@ -1806,6 +1806,23 @@ public class INaturalistService extends IntentService {
                     }
                 }
             }
+            if (!(new File(imgFilePath)).exists()) {
+                // Local (cached) photo was deleted - probably because the user deleted the app's cache
+
+                // First, delete this photo record
+                getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = ?", new String[] { String.valueOf(op._id) });
+
+                // Set errors for this obs - to notify the user that we couldn't upload the obs photos
+                JSONArray errors = new JSONArray();
+                errors.put(getString(R.string.deleted_photos_from_cache_error));
+                mApp.setErrorsForObservation(op.observation_id, 0, errors);
+
+                // Move to next observation photo
+                c.moveToNext();
+                checkForCancelSync();
+
+                continue;
+            }
             params.add(new BasicNameValuePair("file", imgFilePath));
             
             String inatNetwork = mApp.getInaturalistNetworkMember();
@@ -1833,8 +1850,8 @@ public class INaturalistService extends IntentService {
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }
-            c.moveToNext();
 
+            c.moveToNext();
             checkForCancelSync();
         }
         c.close();

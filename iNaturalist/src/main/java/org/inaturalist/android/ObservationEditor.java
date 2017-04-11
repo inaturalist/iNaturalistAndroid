@@ -145,7 +145,7 @@ public class ObservationEditor extends AppCompatActivity {
     private LocationListener mLocationListener;
     private Location mCurrentLocation;
     private Long mLocationRequestedAt;
-    private INaturalistApp app;
+    private INaturalistApp mApp;
     private ActivityHelper mHelper;
     private boolean mCanceled = false;
     private boolean mIsCaptive = false;
@@ -328,8 +328,8 @@ public class ObservationEditor extends AppCompatActivity {
             setTitle(R.string.edit_observation);
         }
 
-        if (app == null) {
-            app = (INaturalistApp) getApplicationContext();
+        if (mApp == null) {
+            mApp = (INaturalistApp) getApplicationContext();
         }
         if (mHelper == null) {
             mHelper = new ActivityHelper(this);
@@ -1164,8 +1164,8 @@ public class ObservationEditor extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         initUi();
-        if (app == null) {
-            app = (INaturalistApp) getApplicationContext();
+        if (mApp == null) {
+            mApp = (INaturalistApp) getApplicationContext();
         }
     }
 
@@ -1203,7 +1203,7 @@ public class ObservationEditor extends AppCompatActivity {
             if (mObservation.observed_on == null) {
                 mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
                 mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
-                mObservation.observed_on_string = mObservation.observed_on_string_was = app.formatDatetime(mObservation.time_observed_at);
+                mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
                 if (mObservation.latitude == null && mCurrentLocation == null) {
                     getLocation();
                 }
@@ -1212,7 +1212,7 @@ public class ObservationEditor extends AppCompatActivity {
         
         if ((mObservation != null) && (mObservation.id != null)) {
             // Display the errors for the observation, if any
-            JSONArray errors = app.getErrorsForObservation(mObservation.id);
+            JSONArray errors = mApp.getErrorsForObservation(mObservation.id);
             TextView errorsDescription = (TextView) findViewById(R.id.errors);
 
             if (errors.length() == 0) {
@@ -1312,7 +1312,7 @@ public class ObservationEditor extends AppCompatActivity {
             mObservedOnButton.setText(getString(R.string.set_date));
             mObservedOnButton.setTextColor(Color.parseColor("#757575"));
         } else {
-            mObservedOnButton.setText(app.shortFormatDate(mObservation.observed_on));
+            mObservedOnButton.setText(mApp.shortFormatDate(mObservation.observed_on));
             mObservedOnButton.setTextColor(Color.parseColor("#000000"));
         }
         if (mObservation.observed_on_string != null) {
@@ -1324,7 +1324,7 @@ public class ObservationEditor extends AppCompatActivity {
             mTimeObservedAtButton.setText(getString(R.string.set_time));
             mTimeObservedAtButton.setTextColor(Color.parseColor("#757575"));
         } else {
-            mTimeObservedAtButton.setText(app.shortFormatTime(mObservation.time_observed_at));
+            mTimeObservedAtButton.setText(mApp.shortFormatTime(mObservation.time_observed_at));
             mTimeSetByUser = mObservation.time_observed_at;
             mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
         }
@@ -1405,6 +1405,9 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
 
+        // Clear photo-related errors, if any
+        mApp.setErrorsForObservation(mObservation.id, 0, new JSONArray());
+
         return true;
     }
 
@@ -1460,15 +1463,15 @@ public class ObservationEditor extends AppCompatActivity {
                 }
                 mObservedOnStringTextView.setText(INaturalistApp.DATETIME_FORMAT.format(date));
                 mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
-                mObservedOnButton.setText(app.shortFormatDate(date));
+                mObservedOnButton.setText(mApp.shortFormatDate(date));
             } catch (ParseException dateTimeException) {
                 date = new Timestamp(year - 1900, month, day, 0, 0, 0, 0);
                 if (date.getTime() > System.currentTimeMillis()) {
                     date = new Timestamp(System.currentTimeMillis());
                 }
-                mObservedOnStringTextView.setText(app.formatDate(date));
+                mObservedOnStringTextView.setText(mApp.formatDate(date));
                 mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
-                mObservedOnButton.setText(app.shortFormatDate(date));
+                mObservedOnButton.setText(mApp.shortFormatDate(date));
             }
 
             mDateSetByUser = date;
@@ -1506,9 +1509,9 @@ public class ObservationEditor extends AppCompatActivity {
             if (datetime.getTime() > System.currentTimeMillis()) {
                 datetime = new Timestamp(System.currentTimeMillis());
             }
-            mObservedOnStringTextView.setText(app.formatDatetime(datetime));
+            mObservedOnStringTextView.setText(mApp.formatDatetime(datetime));
             mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
-            mTimeObservedAtButton.setText(app.shortFormatTime(datetime));
+            mTimeObservedAtButton.setText(mApp.shortFormatTime(datetime));
             mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
             mTimeSetByUser = datetime;
 
@@ -2243,11 +2246,11 @@ public class ObservationEditor extends AppCompatActivity {
                     Timestamp timestamp = new Timestamp(date.getTime());
                     mObservation.observed_on = timestamp;
                     mObservation.time_observed_at = timestamp;
-                    mObservation.observed_on_string = app.formatDatetime(timestamp);
+                    mObservation.observed_on_string = mApp.formatDatetime(timestamp);
 
-                    mObservedOnStringTextView.setText(app.formatDatetime(timestamp));
+                    mObservedOnStringTextView.setText(mApp.formatDatetime(timestamp));
                     mObservedOnStringTextView.setTextColor(Color.parseColor("#000000"));
-                    mTimeObservedAtButton.setText(app.shortFormatTime(timestamp));
+                    mTimeObservedAtButton.setText(mApp.shortFormatTime(timestamp));
                     mTimeObservedAtButton.setTextColor(Color.parseColor("#000000"));
                     mDateSetByUser = timestamp;
                     mTimeSetByUser = timestamp;
