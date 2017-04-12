@@ -376,6 +376,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         triggerSyncIfNeeded();
         refreshViewState();
+
+        // Clear out any old cached photos
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_CLEAR_OLD_PHOTOS_CACHE, null, ObservationListActivity.this, INaturalistService.class);
+        startService(serviceIntent);
     }
 
     private void refreshViewState() {

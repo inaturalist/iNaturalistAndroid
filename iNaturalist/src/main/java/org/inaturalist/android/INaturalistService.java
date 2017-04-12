@@ -87,6 +87,7 @@ public class INaturalistService extends IntentService {
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
 
     private static final int JWT_TOKEN_EXPIRATION_MINS = 25; // JWT Tokens expire after 30 mins - consider 25 mins as the max time (safe margin)
+    private static final int OLD_PHOTOS_CACHE_EXPIRATION_HOURS = 24 * 7; // Number of hours after which old cached photos will be deleted locally (and viewed remotely)
 
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
@@ -176,6 +177,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_TAXA_FOR_GUIDE = "get_taxa_for_guide";
     public static String ACTION_GET_USER_DETAILS = "get_user_details";
     public static String ACTION_UPDATE_USER_DETAILS = "update_user_details";
+    public static String ACTION_CLEAR_OLD_PHOTOS_CACHE = "clear_old_photos_cache";
     public static String ACTION_GET_PROJECT_NEWS = "get_project_news";
     public static String ACTION_GET_NEWS = "get_news";
     public static String ACTION_GET_PROJECT_OBSERVATIONS = "get_project_observations";
@@ -242,7 +244,8 @@ public class INaturalistService extends IntentService {
     private boolean mIsStopped = false;
 
     private boolean mIsSyncing;
-    
+    private boolean mIsClearingOldPhotosCache;
+
     private Handler mHandler;
 
     private GoogleApiClient mLocationClient;
@@ -641,6 +644,14 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(ACTION_GUIDE_XML_RESULT);
                 reply.putExtra(GUIDE_XML_RESULT, guideXMLFilename);
                 sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_CLEAR_OLD_PHOTOS_CACHE)) {
+                // Clear out the old cached photos
+                if (!mIsClearingOldPhotosCache) {
+                    mIsClearingOldPhotosCache = true;
+                    clearOldCachedPhotos();
+                    mIsClearingOldPhotosCache = false;
+                }
 
             } else if (action.equals(ACTION_UPDATE_USER_DETAILS)) {
                 String username = intent.getStringExtra(ACTION_USERNAME);
@@ -1642,7 +1653,6 @@ public class INaturalistService extends IntentService {
         return true;
     }
 
-    
     private JSONObject getObservationJson(int id, boolean authenticated) throws AuthenticationException {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
@@ -1871,6 +1881,59 @@ public class INaturalistService extends IntentService {
         	// Sync failed
             throw new SyncFailedException();
         }
+    }
+
+    // Goes over cached photos that were uploaded and that are old enough and deletes them
+    // to clear out storage space (they're replaced with their online version, so it'll be
+    // accessible by the user).
+    private void clearOldCachedPhotos() {
+        long cacheTime = System.currentTimeMillis() - (OLD_PHOTOS_CACHE_EXPIRATION_HOURS * 60 * 60 * 1000);
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
+                "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
+                "_updated_at < ? AND " +
+                "photo_filename IS NOT NULL",
+                new String[] { String.valueOf(cacheTime) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        while (!c.isAfterLast()) {
+            ObservationPhoto op = new ObservationPhoto(c);
+            File obsPhotoFile = new File(op.photo_filename);
+
+            if (op.photo_url == null) {
+                // No photo URL defined - download the observation and get the external URL for that photo
+                try {
+                    JSONObject json = getObservationJson(op.observation_id, false);
+
+                    if (json != null) {
+                        Observation obs = new Observation(new BetterJSONObject(json));
+                        for (int i = 0; i < obs.photos.size(); i++) {
+                            if (obs.photos.get(0).id.equals(op.id)) {
+                                // Found the appropriate photo - update the URL
+                                op.photo_url = obs.photos.get(i).photo_url;
+                                break;
+                            }
+                        }
+                    }
+
+                } catch (AuthenticationException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (obsPhotoFile.exists()) {
+                // Delete the local cached photo file
+                obsPhotoFile.delete();
+            }
+
+            // Update the obs photo record with the remote photo URL
+            op.photo_filename = null;
+            ContentValues cv = op.getContentValues();
+            cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+            getContentResolver().update(op.getUri(), cv, null, null);
+
+            c.moveToNext();
+        }
+
+        c.close();
     }
 
     private String getGuideXML(Integer guideId) throws AuthenticationException {

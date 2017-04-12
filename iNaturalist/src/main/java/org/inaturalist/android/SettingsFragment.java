@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -319,7 +320,28 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		mPrefEditor.remove("last_user_details_refresh_time");
         mPrefEditor.remove("jwt_token");
         mPrefEditor.remove("jwt_token_expiration");
+        mPrefEditor.remove("pref_observation_errors");
 		mPrefEditor.commit();
+
+
+        // Delete all locally-cached photo files
+        Cursor c = mApp.getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                null, null, ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        while (!c.isAfterLast()) {
+            ObservationPhoto op = new ObservationPhoto(c);
+            String photoFilename = op.photo_filename;
+
+            if (photoFilename != null) {
+                File photoFile = new File(photoFilename);
+                if (photoFile.exists()) {
+                    photoFile.delete();
+                }
+            }
+            c.moveToNext();
+        }
+        c.close();
 
 		int count1 = getActivity().getContentResolver().delete(Observation.CONTENT_URI, null, null);
 		int count2 = getActivity().getContentResolver().delete(ObservationPhoto.CONTENT_URI, null, null);

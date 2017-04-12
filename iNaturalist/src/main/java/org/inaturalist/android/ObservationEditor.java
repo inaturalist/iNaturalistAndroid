@@ -1406,7 +1406,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         // Clear photo-related errors, if any
-        mApp.setErrorsForObservation(mObservation.id, 0, new JSONArray());
+        if (mObservation.id != null) mApp.setErrorsForObservation(mObservation.id, 0, new JSONArray());
 
         return true;
     }
