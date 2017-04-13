@@ -101,6 +101,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.VisibleRegion;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 public class INaturalistMapActivity extends BaseFragmentActivity implements OnMarkerClickListener, OnInfoWindowClickListener, OnTabChangeListener {
     public final static String TAG = "INaturalistMapActivity";
@@ -1139,28 +1141,28 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 				try {
 					res.add(mResults.getJSONObject(i));
 				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			ArrayAdapter<JSONObject> adapter = new ArrayAdapter<JSONObject>(INaturalistMapActivity.this, R.layout.dialog_chooser_result_item, res) {
-               @Override
+                    e.printStackTrace();
+                }
+            }
+            ArrayAdapter<JSONObject> adapter = new ArrayAdapter<JSONObject>(INaturalistMapActivity.this, R.layout.dialog_chooser_result_item, res) {
+                @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View row;
 
                     if (null == convertView) {
-                    	LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    	row = inflater.inflate(R.layout.dialog_chooser_result_item, null);
+                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        row = inflater.inflate(R.layout.dialog_chooser_result_item, null);
                     } else {
-                    	row = convertView;
+                        row = convertView;
                     }
-                    
+
                     JSONObject object;
-					try {
-						object = mResults.getJSONObject(position);
-					} catch (JSONException e) {
-						e.printStackTrace();
-						return row;
-					}
+                    try {
+                        object = mResults.getJSONObject(position);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return row;
+                    }
 
                     String[] values = mCallbacks.getItem(object);
 
@@ -1171,13 +1173,13 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                     title.setText(values[0]);
                     subtitle.setText(values[1]);
                     UrlImageViewHelper.setUrlDrawable(image, values[2], new UrlImageViewCallback() {
-						@Override
-						public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-							// Nothing to do here
-						}
+                        @Override
+                        public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                            // Nothing to do here
+                        }
 
-						@Override
-						public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                        @Override
+                        public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                             if (mCallbacks.isImageCircular()) {
                                 // Return a circular version of the profile picture
                                 return ImageUtils.getCircleBitmap(loadedBitmap);
@@ -1185,12 +1187,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                                 // Return original, unmodified image
                                 return loadedBitmap;
                             }
-						}
-					});
+                        }
+                    });
 
                     return row;
-               }    		
-			};
+                }
+            };
 
 			mResultsList.setAdapter(adapter);
 			mResultsList.setOnItemClickListener(new OnItemClickListener() {
@@ -1828,7 +1830,12 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  					observationPhoto = observationPhotos.getJSONObject(0);
  					JSONObject innerPhoto = observationPhoto.optJSONObject("photo");
  					String url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
- 					UrlImageViewHelper.setUrlDrawable(taxonPic, url, ObservationPhotosViewer.observationIcon(item));
+                    Picasso.with(mContext)
+                            .load(url)
+                            .placeholder(ObservationPhotosViewer.observationIcon(item))
+                            .fit()
+                            .centerCrop()
+                            .into(taxonPic);
  				} catch (JSONException e) {
  					e.printStackTrace();
  				} catch (Exception e) {

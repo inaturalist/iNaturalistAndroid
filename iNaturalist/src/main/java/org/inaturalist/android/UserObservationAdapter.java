@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.apache.commons.collections4.map.CompositeMap;
 import org.json.JSONArray;
@@ -110,21 +112,21 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
                 observationPhoto = observationPhotos.getJSONObject(0);
 
                 url = (observationPhoto.isNull("small_url") ? observationPhoto.optString("original_url") : observationPhoto.optString("small_url"));
-                UrlImageViewHelper.setUrlDrawable(observationPic, url, new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        if (!loadedFromCache) {
-                            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
-                            imageView.startAnimation(animation);
-                        }
-                    }
+                Picasso.with(mContext)
+                        .load(url)
+                        .fit()
+                        .centerCrop()
+                        .into(observationPic, new Callback() {
+                            @Override
+                            public void onSuccess() {
 
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        Bitmap centerCrop = ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap), 4);
-                        return centerCrop;
-                    }
-                });
+                            }
+
+                            @Override
+                            public void onError() {
+
+                            }
+                        });
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (Exception e) {

@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,7 +78,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         }
 
 
-        ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
+        final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
 
         taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                 mDimension, mDimension));
@@ -109,20 +111,24 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                     url = url.substring(0, url.lastIndexOf("/") + 1) + "medium." + extension;
                 }
 
-                UrlImageViewHelper.setUrlDrawable(taxonPic, url, ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        imageView.setLayoutParams(new RelativeLayout.LayoutParams(
-                                mDimension, mDimension
-                        ));
-                    }
+                Picasso.with(mContext)
+                        .load(url)
+                        .placeholder(ObservationPhotosViewer.observationIcon(item))
+                        .fit()
+                        .centerCrop()
+                        .into(taxonPic, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
+                                        mDimension, mDimension));
+                            }
 
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        // No post-processing of bitmap
-                        return loadedBitmap;
-                    }
-                });
+                            @Override
+                            public void onError() {
+
+                            }
+                        });
+
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (Exception e) {
