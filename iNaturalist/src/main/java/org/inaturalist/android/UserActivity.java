@@ -126,13 +126,6 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         TabLayout.Tab tab = mTabLayout.getTabAt(position);
 
         tab.setText(title);
-        /*
-        View view = LayoutInflater.from(this).inflate(R.layout.tab, null);
-        TextView tabTitle = (TextView) view.findViewById(R.id.tab_title);
-        tabTitle.setText(title);
-
-        tab.setCustomView(view);
-        */
     }
 
     private void refreshTabs(int pos) {
@@ -316,11 +309,15 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         }
 
         if (mLoadingActivities != null) {
+            TabLayout.Tab myContentTab = mTabLayout.getTabAt(0);
+
             if (mActivities == null) {
                 mLoadingActivities.setVisibility(View.VISIBLE);
                 mActivityList.setVisibility(View.GONE);
                 mActivityEmpty.setVisibility(View.GONE);
                 mActivityEmptySubTitle.setVisibility(View.GONE);
+
+                myContentTab.setText(R.string.my_content);
             } else {
                 mLoadingActivities.setVisibility(View.GONE);
 
@@ -330,6 +327,14 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 } else {
                     mActivityEmpty.setVisibility(View.GONE);
                     mActivityEmptySubTitle.setVisibility(View.GONE);
+                }
+
+                SharedPreferences settings = mApp.getPrefs();
+                int unreadActivities = settings.getInt("unread_activities", 0);
+                if (unreadActivities == 0) {
+                    myContentTab.setText(R.string.my_content);
+                } else {
+                    myContentTab.setText(String.format("%s (%d)", getString(R.string.my_content), unreadActivities));
                 }
 
                 mActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mActivities, UserActivity.this);
@@ -414,6 +419,22 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 mActivities = resultsArray;
                 mActivityList.onRefreshComplete();
                 mActivityList.refreshDrawableState();
+
+                // Count how many unread activities are there
+                int unreadActivities = 0;
+
+                for (int i = 0; i < mActivities.size(); i++) {
+                    JSONObject activity = mActivities.get(i);
+                    try {
+                        if (!activity.getBoolean("viewed")) unreadActivities++;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                SharedPreferences settings = mApp.getPrefs();
+                settings.edit().putInt("unread_activities", unreadActivities).commit();
+
             } else if (intent.getAction().equals(INaturalistService.UPDATES_FOLLOWING_RESULT)) {
                 mFollowingActivities = resultsArray;
                 mFollowingActivityList.onRefreshComplete();
@@ -470,6 +491,16 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         filter.addAction(INaturalistService.UPDATES_RESULT);
         filter.addAction(INaturalistService.UPDATES_FOLLOWING_RESULT);
         registerReceiver(mNewsReceiver, filter);
+
+
+        TabLayout.Tab myContentTab = mTabLayout.getTabAt(0);
+        SharedPreferences settings = mApp.getPrefs();
+        int unreadActivities = settings.getInt("unread_activities", 0);
+        if (unreadActivities == 0) {
+            myContentTab.setText(R.string.my_content);
+        } else {
+            myContentTab.setText(String.format("%s (%d)", getString(R.string.my_content), unreadActivities));
+        }
     }
 
 
@@ -516,6 +547,12 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     public void onUpdateViewed(Observation obs, int position) {
         try {
             JSONObject item = obs.user_login.equals(mApp.currentUserLogin()) ? mActivities.get(position) : mFollowingActivities.get(position) ;
+            if (!item.getBoolean("viewed")) {
+                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                int unreadActivities = prefs.getInt("unread_activities", 1);
+                prefs.edit().putInt("unread_activities", unreadActivities - 1).commit();
+            }
+
             item.put("viewed", true);
         } catch (JSONException e) {
             e.printStackTrace();

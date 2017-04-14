@@ -321,6 +321,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mPrefEditor.remove("jwt_token");
         mPrefEditor.remove("jwt_token_expiration");
         mPrefEditor.remove("pref_observation_errors");
+        mPrefEditor.remove("unread_activities");
 		mPrefEditor.commit();
 
 

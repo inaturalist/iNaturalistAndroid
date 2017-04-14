@@ -101,6 +101,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 // Log an event every time the side menu is opened
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MENU);
 
+                refreshUnreadActivities();
+
                 super.onDrawerOpened(drawerView);
             }
         };
@@ -143,6 +145,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         int missionViewCount = preferences.getInt("mission_view_count", 0);
         ((TextView)findViewById(R.id.missions_new)).setVisibility(missionViewCount < 10 ? View.VISIBLE : View.GONE);
 
+        refreshUnreadActivities();
         refreshUserDetails();
 
         ((Button)findViewById(R.id.menu_login)).setOnClickListener(new View.OnClickListener() {
@@ -462,5 +465,14 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
             refreshUserDetails();
         }
+    }
+
+    private void refreshUnreadActivities() {
+        // Show the unread activities badge
+        SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        int unreadActivities = prefs.getInt("unread_activities", 0);
+        TextView activityBadge = (TextView)findViewById(R.id.activity_badge);
+        activityBadge.setVisibility(unreadActivities > 0 ? View.VISIBLE : View.GONE);
+        activityBadge.setText(String.format(getString(R.string.new_activities), unreadActivities));
     }
 }
