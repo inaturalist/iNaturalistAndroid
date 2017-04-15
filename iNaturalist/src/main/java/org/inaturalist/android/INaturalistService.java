@@ -1755,6 +1755,7 @@ public class INaturalistService extends IntentService {
                 ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
                 op.merge(jsonObservationPhoto);
                 cv = op.getContentValues();
+                Log.d(TAG, "OP - postPhotos(1) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
                 cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                 getContentResolver().update(op.getUri(), cv, null, null);
                 createdCount += 1;
@@ -1853,6 +1854,7 @@ public class INaturalistService extends IntentService {
                 op.merge(jsonObservationPhoto);
                 if (op.id != null) {
                     cv = op.getContentValues();
+                    Log.d(TAG, "OP - postPhotos(2) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
                     cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                     getContentResolver().update(op.getUri(), cv, null, null);
                     createdCount += 1;
@@ -1925,6 +1927,7 @@ public class INaturalistService extends IntentService {
             }
 
             // Update the obs photo record with the remote photo URL
+            Log.d(TAG, "OP - clearOldCachedPhotos - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
             op.photo_filename = null;
             ContentValues cv = op.getContentValues();
             cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
@@ -3353,6 +3356,7 @@ public class INaturalistService extends IntentService {
                 }
                 ContentValues opcv = photo.getContentValues();
                 // So we won't re-add this photo as though it was a local photo
+                Log.d(TAG, "OP - syncJson(1) - Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
                 opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                 opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
                 opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
@@ -3416,6 +3420,7 @@ public class INaturalistService extends IntentService {
                     photo._observation_id = jsonObservation._id;
 
                     ContentValues opcv = photo.getContentValues();
+                    Log.d(TAG, "OP - syncJson(2) - Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
                     opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
                     opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
                     opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
