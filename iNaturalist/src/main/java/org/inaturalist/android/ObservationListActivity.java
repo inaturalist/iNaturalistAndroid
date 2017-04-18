@@ -1305,7 +1305,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
                 // Species count result
                 resultsObject = (BetterJSONObject) object;
-                totalResults = resultsObject.getInt("total_results");
+                totalResults = resultsObject.getInt("total_results") == null ? 0 : resultsObject.getInt("total_results") ;
                 SerializableJSONArray resultsArray = resultsObject.getJSONArray("results");
                 results = resultsArray != null ? resultsArray.getJSONArray() : new JSONArray();
             } else {
