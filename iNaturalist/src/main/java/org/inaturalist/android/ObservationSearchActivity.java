@@ -58,6 +58,9 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
     private SearchResultsReceiver mSearchResultsReceiver;
     private TextView mNoResults;
 
+    private int mLastTypingTime = 0;
+    private long mStartTime;
+
     @Override
 	protected void onStart()
 	{
@@ -143,7 +146,6 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             @Override
             public void onTextChanged(final CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
-                    getListView().setVisibility(View.GONE);
                     mProgress.setVisibility(View.GONE);
                     return;
                 } else {
@@ -167,7 +169,17 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
 
                 } else {
                     // Online search
-                    performOnlineSearch(s.toString());
+                    mCurrentSearchString = s.toString();
+                    mStartTime = System.currentTimeMillis();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (System.currentTimeMillis() - mStartTime > 500) {
+                                performOnlineSearch(mCurrentSearchString);
+                            }
+                        }
+                    }, 600);
                 }
             }
             @Override
@@ -190,12 +202,9 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
     }
 
     private void performOnlineSearch(final String query) {
-        if (mProgress.getVisibility() == View.GONE) {
-            mProgress.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-        }
-
-        mCurrentSearchString = query;
+        mProgress.setVisibility(View.VISIBLE);
+        mListView.setVisibility(View.GONE);
+        mNoResults.setVisibility(View.GONE);
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_USER_OBSERVATIONS, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, query);
