@@ -549,8 +549,8 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             JSONObject item = obs.user_login.equals(mApp.currentUserLogin()) ? mActivities.get(position) : mFollowingActivities.get(position) ;
             if (!item.getBoolean("viewed")) {
                 SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                int unreadActivities = prefs.getInt("unread_activities", 1);
-                prefs.edit().putInt("unread_activities", unreadActivities - 1).commit();
+                int unreadActivities = prefs.getInt("unread_activities", 1) - 1;
+                prefs.edit().putInt("unread_activities", unreadActivities > 0 ? unreadActivities : 0).commit();
             }
 
             item.put("viewed", true);
