@@ -424,7 +424,12 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
                         // Add the marker (it's the main one, so it's bigger in size)
 
-                        BitmapDrawable bd = (BitmapDrawable) getDrawable(R.drawable.mm_34_dodger_blue);
+                        BitmapDrawable bd = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                            bd = (BitmapDrawable) getDrawable(R.drawable.mm_34_dodger_blue);
+                        } else {
+                            bd = (BitmapDrawable) getResources().getDrawable(R.drawable.mm_34_dodger_blue);
+                        }
                         Bitmap bitmap = bd.getBitmap();
                         Bitmap doubleBitmap = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth() * 1.3), (int)(bitmap.getHeight() * 1.3), false);
 
