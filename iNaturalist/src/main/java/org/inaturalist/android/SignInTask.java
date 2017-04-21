@@ -226,7 +226,11 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             }
 
 
-            mHelper.alert(mActivity.getString(R.string.not_connected));
+            if (!isNetworkAvailable()) {
+                mHelper.alert(mActivity.getString(R.string.not_connected));
+            } else {
+                mHelper.alert(mActivity.getString(R.string.username_invalid));
+            }
             return;
         }
 
