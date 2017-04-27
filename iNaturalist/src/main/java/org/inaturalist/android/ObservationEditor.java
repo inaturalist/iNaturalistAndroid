@@ -655,9 +655,7 @@ public class ObservationEditor extends AppCompatActivity {
         takePhoto.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-                mFileUri = getPath(ObservationEditor.this, mFileUri);
-                openImageIntent(ObservationEditor.this, mFileUri, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                openImageIntent(ObservationEditor.this);
             }
         });
 
@@ -2750,7 +2748,7 @@ public class ObservationEditor extends AppCompatActivity {
     }	
 
     
-    private void openImageIntent(final Activity activity, Uri captureImageOutputFile, int requestCode) {
+    private void openImageIntent(final Activity activity) {
         new BottomSheet.Builder(activity).sheet(R.menu.observation_confirmation_photo_menu).listener(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
