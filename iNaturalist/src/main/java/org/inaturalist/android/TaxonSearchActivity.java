@@ -74,6 +74,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
     private boolean mShowUnknown;
 
     private long mLastTime = 0;
+    private TextView mNoResults;
 
     @Override
 	protected void onStart()
@@ -227,7 +228,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                         if (constraint.length() == 0) {
                             filterResults.values = new ArrayList<JSONObject>();
                             filterResults.count = 0;
-                            
+
                         } else {
                             toggleLoading(true);
 
@@ -430,6 +431,9 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
         
         mProgress = (ProgressBar) findViewById(R.id.progress);
         mProgress.setVisibility(View.GONE);
+
+        mNoResults = (TextView) findViewById(android.R.id.empty);
+        mNoResults.setVisibility(View.GONE);
         
         mAdapter = new TaxonAutoCompleteAdapter(getApplicationContext(), R.layout.taxon_result_item);
         final EditText autoCompView = (EditText) customView.findViewById(R.id.search_text);

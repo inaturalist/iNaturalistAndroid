@@ -147,6 +147,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             public void onTextChanged(final CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
                     mProgress.setVisibility(View.GONE);
+                    mNoResults.setVisibility(View.GONE);
                     return;
                 } else {
                     getListView().setVisibility(View.VISIBLE);
