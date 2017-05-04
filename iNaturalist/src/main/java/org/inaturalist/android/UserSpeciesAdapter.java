@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
     private ArrayList<JSONObject> mResultList;
@@ -74,6 +75,17 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        if (convertView != null) {
+            try {
+                JSONObject item = (JSONObject) convertView.getTag();
+                JSONObject otherItem = mResultList.get(position).getJSONObject("taxon");
+
+                if ((item != null) && (item.getInt("id") == otherItem.getInt("id"))) return convertView;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         int layout;
         switch (mViewType) {

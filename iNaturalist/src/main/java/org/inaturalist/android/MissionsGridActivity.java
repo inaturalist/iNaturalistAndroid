@@ -132,6 +132,11 @@ public class MissionsGridActivity extends AppCompatActivity {
         JSONArray results = null;
 
         resultsObject = (BetterJSONObject) object;
+        if ((resultsObject == null) || (resultsObject.getJSONArray("results") == null)) {
+            refreshViewState();
+            return;
+        }
+
         results = resultsObject.getJSONArray("results").getJSONArray();
 
         ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();

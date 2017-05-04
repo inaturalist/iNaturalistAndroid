@@ -27,6 +27,7 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
 
@@ -55,6 +56,10 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
     private String mCurrentSearchString = "";
 
     private SearchResultsReceiver mSearchResultsReceiver;
+    private TextView mNoResults;
+
+    private int mLastTypingTime = 0;
+    private long mStartTime;
 
     @Override
 	protected void onStart()
@@ -119,6 +124,8 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
         mProgress = (ProgressBar) findViewById(R.id.progress);
         mProgress.setVisibility(View.GONE);
 
+        mNoResults = (TextView) findViewById(android.R.id.empty);
+        mNoResults.setVisibility(View.GONE);
 
         String login = mApp.currentUserLogin();
 
@@ -139,8 +146,8 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             @Override
             public void onTextChanged(final CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
-                    getListView().setVisibility(View.GONE);
                     mProgress.setVisibility(View.GONE);
+                    mNoResults.setVisibility(View.GONE);
                     return;
                 } else {
                     getListView().setVisibility(View.VISIBLE);
@@ -155,9 +162,25 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
 
                     ((ObservationCursorAdapter)mObservationsAdapter).refreshCursor(s.toString().trim());
 
+                    if ((mObservationsAdapter.getCount() == 0) && (s.length() > 0)) {
+                        mNoResults.setVisibility(View.VISIBLE);
+                    } else {
+                        mNoResults.setVisibility(View.GONE);
+                    }
+
                 } else {
                     // Online search
-                    performOnlineSearch(s.toString());
+                    mCurrentSearchString = s.toString();
+                    mStartTime = System.currentTimeMillis();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (System.currentTimeMillis() - mStartTime > 500) {
+                                performOnlineSearch(mCurrentSearchString);
+                            }
+                        }
+                    }, 600);
                 }
             }
             @Override
@@ -180,12 +203,9 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
     }
 
     private void performOnlineSearch(final String query) {
-        if (mProgress.getVisibility() == View.GONE) {
-            mProgress.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.GONE);
-        }
-
-        mCurrentSearchString = query;
+        mProgress.setVisibility(View.VISIBLE);
+        mListView.setVisibility(View.GONE);
+        mNoResults.setVisibility(View.GONE);
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_USER_OBSERVATIONS, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, query);
@@ -347,6 +367,12 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
                     setListAdapter(mObservationsAdapter);
                     mProgress.setVisibility(View.GONE);
                     mListView.setVisibility(View.VISIBLE);
+
+                    if ((mObservationsAdapter.getCount() == 0) && (mCurrentSearchString.length() > 0)) {
+                        mNoResults.setVisibility(View.VISIBLE);
+                    } else {
+                        mNoResults.setVisibility(View.GONE);
+                    }
                 }
             });
 

@@ -396,6 +396,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             mMissionMap.clear();
             final LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
+            int coordsCount = 0;
             for (int i = 0; i < mObservations.size(); i++) {
                 BetterJSONObject observation = new BetterJSONObject(mObservations.get(i));
                 String placeGuess = observation.getString("place_guess");
@@ -423,13 +424,19 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
                         // Add the marker (it's the main one, so it's bigger in size)
 
-                        BitmapDrawable bd = (BitmapDrawable) getDrawable(R.drawable.mm_34_dodger_blue);
+                        BitmapDrawable bd = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                            bd = (BitmapDrawable) getDrawable(R.drawable.mm_34_dodger_blue);
+                        } else {
+                            bd = (BitmapDrawable) getResources().getDrawable(R.drawable.mm_34_dodger_blue);
+                        }
                         Bitmap bitmap = bd.getBitmap();
                         Bitmap doubleBitmap = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth() * 1.3), (int)(bitmap.getHeight() * 1.3), false);
 
                         MarkerOptions opts = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(doubleBitmap));
                         Marker m = mMissionMap.addMarker(opts);
                         builder.include(latLng);
+                        coordsCount++;
                     }
                 } else if (latitude != null) {
                     // Add observation marker
@@ -438,16 +445,19 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                     MarkerOptions opts = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dodger_blue));
                     Marker m = mMissionMap.addMarker(opts);
                     builder.include(latLng);
+                    coordsCount++;
                 }
             }
 
+            final int finalCoordsCount = coordsCount;
             mMissionMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
-
                 @Override
                 public void onCameraChange(CameraPosition arg0) {
-                    LatLngBounds bounds = builder.build();
-                    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100 /* Padding */);
-                    mMissionMap.moveCamera(cu);
+                    if (finalCoordsCount > 0) {
+                        LatLngBounds bounds = builder.build();
+                        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100 /* Padding */);
+                        mMissionMap.moveCamera(cu);
+                    }
 
                     // Remove listener to prevent position reset on camera move.
                     mMissionMap.setOnCameraChangeListener(null);
