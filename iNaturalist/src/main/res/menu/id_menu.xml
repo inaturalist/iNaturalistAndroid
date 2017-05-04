@@ -5,5 +5,5 @@
         android:title="@string/withdraw"/>
     <item
         android:id="@+id/edit"
-        android:title="@string/edit"/>
+        android:title="@string/add_edit_remark"/>
 </menu>
