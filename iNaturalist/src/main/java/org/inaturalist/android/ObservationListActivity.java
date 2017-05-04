@@ -120,6 +120,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private BetterJSONObject mUser;
     private UserDetailsReceiver mUserDetailsReceiver;
+    private ObservationSyncProgressReceiver mObservationSyncProgressReceiver;
 
     private ViewGroup mOnboardingSyncing;
     private View mOnboardingSyncingClose;
@@ -571,6 +572,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         settingsEditor.putString("me_screen_list_grid", String.format("%s,%s,%s", mIsGrid[0], mIsGrid[1], mIsGrid[2]));
         settingsEditor.apply();
 
+        try {
+            unregisterReceiver(mObservationSyncProgressReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         super.onPause();
     }
     
@@ -590,6 +597,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         filter.addAction(INaturalistService.IDENTIFICATIONS_RESULT);
         registerReceiver(mUserDetailsReceiver, filter);
 
+        mObservationSyncProgressReceiver = new ObservationSyncProgressReceiver();
+        IntentFilter filter2 = new IntentFilter();
+        filter2.addAction(INaturalistService.OBSERVATION_SYNC_PROGRESS);
+        registerReceiver(mObservationSyncProgressReceiver, filter2);
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
@@ -1251,6 +1262,23 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
     }
 
+
+    private class ObservationSyncProgressReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle extras = intent.getExtras();
+
+            Integer obsId = extras.getInt(INaturalistService.OBSERVATION_ID);
+            Float progress = extras.getFloat(INaturalistService.PROGRESS);
+
+            if ((obsId == null) || (progress == null) || (mObservationListAdapter == null) || (mObservationGridAdapter == null)) {
+                return;
+            }
+
+            mObservationListAdapter.updateProgress(obsId, progress);
+            mObservationGridAdapter.updateProgress(obsId, progress);
+        }
+    }
 
     private class UserDetailsReceiver extends BroadcastReceiver {
         @Override

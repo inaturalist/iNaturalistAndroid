@@ -150,11 +150,14 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     }
 
     public ObservationPhoto(BetterJSONObject o) {
+        this(o, true);
+    }
+    public ObservationPhoto(BetterJSONObject o, boolean isObservationPhoto) {
         this._created_at = o.getTimestamp("_created_at");
         this._created_at_was = this._created_at;
         this._observation_id = o.getInteger("_observation_id");
         this._observation_id_was = this._observation_id;
-        this._photo_id = o.getInteger("_photo_id");
+        this._photo_id = isObservationPhoto ? o.getInteger("_photo_id") : o.getInteger("id");
         this._photo_id_was = this._photo_id;
         this._synced_at = o.getTimestamp("_synced_at");
         this._synced_at_was = this._synced_at;

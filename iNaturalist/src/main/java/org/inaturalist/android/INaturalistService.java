@@ -16,10 +16,12 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -110,6 +112,7 @@ public class INaturalistService extends IntentService {
     public static final String RECOMMENDED_MISSIONS_RESULT = "recommended_missions_result";
     public static final String MISSIONS_BY_TAXON_RESULT = "missions_by_taxon_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
+    public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
     public static final String COMMENT_BODY = "comment_body";
@@ -123,6 +126,7 @@ public class INaturalistService extends IntentService {
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
+    public static final String PROGRESS = "progress";
     public static final String EXPAND_LOCATION_BY_DEGREES = "expand_location_by_degrees";
     public static final String QUERY = "query";
     public static final String OBSERVATIONS = "observations";
@@ -914,12 +918,16 @@ public class INaturalistService extends IntentService {
 
         } catch (SyncFailedException e) {
             syncFailed = true;
+            mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
         } catch (AuthenticationException e) {
             if (!mPassive) {
                 requestCredentials();
             }
+            mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
         } finally {
+            mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
+
             if (mIsSyncing && !dontStopSync) {
                 mIsSyncing = false;
                 mApp.setIsSyncing(mIsSyncing);
@@ -935,7 +943,6 @@ public class INaturalistService extends IntentService {
             }
         }
     }
-
 
     private void syncObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
         try {
@@ -964,16 +971,190 @@ public class INaturalistService extends IntentService {
             e.printStackTrace();
         }
 
+        mApp.notify(getString(R.string.downloading), getString(R.string.downloading_observations));
+
+        // First, download remote observations (new/updated)
+        if (!getUserObservations(0)) throw new SyncFailedException();
+
+        // Gather the list of observations that need syncing (because they're new, been updated
+        // or had their photos/project fields updated
+        Set<Integer> observationIdsToSync = new HashSet<>();
+
+        // Any new/updated observations
+        Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                Observation.PROJECTION,
+                "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)",
+                null,
+                Observation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(Observation._ID)));
+            c.moveToNext();
+        }
+
+        c.close();
+
+        // Any observation that has new/updated/deleted photos
+        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL) OR " +
+                "(is_deleted = 1)",
+                null,
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID)));
+            c.moveToNext();
+        }
+
+        c.close();
+
+        // Any observation that has new/updated project fields.
+        c = getContentResolver().query(ProjectFieldValue.CONTENT_URI,
+                ProjectFieldValue.PROJECTION,
+                "(_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)",
+                null,
+                ProjectFieldValue.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ProjectFieldValue.OBSERVATION_ID)));
+            c.moveToNext();
+        }
+
+        c.close();
+
+        List<Integer> obsIdsToRemove = new ArrayList<>();
+
+        for (Integer obsId : observationIdsToSync) {
+            c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "_id in (" + StringUtils.join(observationIdsToSync, ",") + ")",
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+            if (c.getCount() == 0) {
+                obsIdsToRemove.add(obsId);
+                c.close();
+                continue;
+            }
+
+            c.moveToFirst();
+            if (c.getInt(c.getColumnIndexOrThrow(Observation.IS_DELETED)) == 1) {
+                obsIdsToRemove.add(obsId);
+            }
+            c.close();
+        }
+
+        for (Integer obsId : obsIdsToRemove) {
+            observationIdsToSync.remove(obsId);
+        }
+
+        c = getContentResolver().query(Observation.CONTENT_URI,
+                Observation.PROJECTION,
+                "_id in (" + StringUtils.join(observationIdsToSync, ",") + ")",
+                null,
+                Observation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+
+        while (!c.isAfterLast()) {
+            mApp.notify(getString(R.string.syncing_observations),
+                    String.format(getString(R.string.syncing_x_out_of_y_observations), (c.getPosition() + 1), c.getCount()));
+
+            Observation observation = new Observation(c);
+
+            mCurrentObservationProgress = 0.0f;
+            mTotalProgressForObservation = getTotalProgressForObservation(observation);
+
+            mApp.setObservationIdBeingSynced(observation._id);
+
+            if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at)))) {
+                postObservation(observation);
+                increaseProgressForObservation(observation);
+            }
+            postPhotos(observation);
+            deleteObservationPhotos(observation); // Delete locally-removed observation photos
+            syncObservationFields(observation);
+            postProjectObservations(observation);
+
+            c.moveToNext();
+        }
+
+        c.close();
+
         deleteObservations(); // Delete locally-removed observations
-        if (!getUserObservations(0)) throw new SyncFailedException(); // First, download remote observations (new/updated)
-        postObservations(); // Next, update local-to-remote observations
-        postPhotos();
-        deleteObservationPhotos(); // Delete locally-removed observation photos
+
+        // General project data
         saveJoinedProjects();
-        syncObservationFields();
-        postProjectObservations();
+        storeProjectObservations();
+
         redownloadOldObservations();
+
         mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
+    }
+
+    private int mTotalProgressForObservation = 0;
+    private float mCurrentObservationProgress = 0;
+
+    private void increaseProgressForObservation(Observation observation) {
+        float currentProgress = mCurrentObservationProgress;
+        float step = (100.0f / mTotalProgressForObservation);
+        float newProgress = currentProgress + step;
+        if (newProgress >= 99) newProgress = 100f; // Round to 100 in case of fractions (since otherwise, we'll get to 99.99999 and similar
+        mCurrentObservationProgress = newProgress;
+
+        // Notify the client of the new progress (so we'll update the progress bars)
+        Intent reply = new Intent(OBSERVATION_SYNC_PROGRESS);
+        reply.putExtra(OBSERVATION_ID, observation.id);
+        reply.putExtra(PROGRESS, newProgress);
+        sendBroadcast(reply);
+    }
+
+    private int getTotalProgressForObservation(Observation observation) {
+        int obsCount = 0;
+        if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at)))) {
+            obsCount = 1;
+        }
+
+        int photoCount;
+        int externalObsId = observation.id != null ? observation.id : observation._id;
+
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "((_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL) OR (is_deleted = 1)) AND " +
+                "((observation_id = ?) OR (_observation_id = ?))",
+                new String[] { String.valueOf(externalObsId), String.valueOf(observation._id) },
+                ObservationPhoto.DEFAULT_SORT_ORDER);
+        photoCount = c.getCount();
+        c.close();
+
+        int projectFieldCount;
+        c = getContentResolver().query(ProjectFieldValue.CONTENT_URI,
+                ProjectFieldValue.PROJECTION,
+                "((_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)) AND " +
+                "((observation_id = ?) OR (observation_id = ?))",
+                new String[] { String.valueOf(externalObsId), String.valueOf(observation._id) },
+                ProjectFieldValue.DEFAULT_SORT_ORDER);
+        projectFieldCount = c.getCount();
+        c.close();
+
+        int projectObservationCount;
+        c = getContentResolver().query(ProjectObservation.CONTENT_URI,
+                ProjectObservation.PROJECTION,
+                "((is_deleted = 1) OR (is_new = 1)) AND " +
+                "((observation_id = ?) OR (observation_id = ?))",
+                new String[] { String.valueOf(externalObsId), String.valueOf(observation._id) },
+                ProjectObservation.DEFAULT_SORT_ORDER);
+        projectObservationCount = c.getCount();
+        c.close();
+
+
+        return obsCount + // For the observation upload itself (only if new/update)
+                photoCount + // For photos
+                projectFieldCount + // For updated/new obs project fields
+                projectObservationCount; // For updated/new observation project fields
     }
 
     // Re-download any observations that have photos saved in the "old" way
@@ -1030,6 +1211,89 @@ public class INaturalistService extends IntentService {
         }
         
         return new BetterJSONObject(res);
+    }
+
+    private boolean postProjectObservations(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        if (observation.id == null) {
+            // Observation not synced yet - cannot sync its project associations yet
+            return true;
+        }
+
+        // First, delete any project-observations that were deleted by the user
+        Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI,
+                ProjectObservation.PROJECTION,
+                "is_deleted = 1 AND observation_id = ?",
+                new String[] { String.valueOf(observation.id) },
+                ProjectObservation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            checkForCancelSync();
+            ProjectObservation projectObservation = new ProjectObservation(c);
+
+            // Clean the errors for the observation
+            mApp.setErrorsForObservation(projectObservation.observation_id, projectObservation.project_id, new JSONArray());
+
+            try {
+                // Remove obs from project
+                BetterJSONObject result = removeObservationFromProject(projectObservation.observation_id, projectObservation.project_id);
+                if (result == null) {
+                    c.close();
+                    throw new SyncFailedException();
+                }
+
+                increaseProgressForObservation(observation);
+            } catch (Exception exc) {
+                // In case we're trying to delete a project-observation that wasn't synced yet
+                c.close();
+                throw new SyncFailedException();
+            }
+
+            getContentResolver().delete(ProjectObservation.CONTENT_URI, "_id = ?", new String[] { String.valueOf(projectObservation._id) });
+
+            c.moveToNext();
+        }
+
+        c.close();
+
+        // Next, add new project observations
+        c = getContentResolver().query(ProjectObservation.CONTENT_URI,
+                ProjectObservation.PROJECTION,
+                "is_new = 1 AND observation_id = ?",
+                new String[] { String.valueOf(observation.id) },
+                ProjectObservation.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            checkForCancelSync();
+            ProjectObservation projectObservation = new ProjectObservation(c);
+            BetterJSONObject result = addObservationToProject(projectObservation.observation_id, projectObservation.project_id);
+
+            if ((result == null) && (mResponseErrors == null)) {
+                c.close();
+                throw new SyncFailedException();
+            }
+
+            increaseProgressForObservation(observation);
+
+            if (mResponseErrors != null) {
+                handleProjectFieldErrors(projectObservation.observation_id, projectObservation.project_id);
+            } else {
+                // Unmark as new
+                projectObservation.is_new = false;
+                ContentValues cv = projectObservation.getContentValues();
+                getContentResolver().update(projectObservation.getUri(), cv, null, null);
+
+                // Clean the errors for the observation
+                mApp.setErrorsForObservation(projectObservation.observation_id, projectObservation.project_id, new JSONArray());
+            }
+
+            c.moveToNext();
+        }
+
+        c.close();
+
+        return true;
     }
  
     private boolean postProjectObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
@@ -1280,16 +1544,15 @@ public class INaturalistService extends IntentService {
         return true;
     }
 
-    private boolean deleteObservationPhotos() throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean deleteObservationPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
         // Remotely delete any locally-removed observation photos
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "is_deleted = 1",
-                null,
+                "is_deleted = 1 AND _observation_id = ?",
+                new String[] { String.valueOf(observation._id) },
                 ObservationPhoto.DEFAULT_SORT_ORDER);
 
        // for each observation DELETE to /observation_photos/:id
-        ArrayList<Integer> obsIds = new ArrayList<Integer>();
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             ObservationPhoto op = new ObservationPhoto(c);
@@ -1298,20 +1561,21 @@ public class INaturalistService extends IntentService {
                 c.close();
                 throw new SyncFailedException();
             }
-            obsIds.add(op.id);
+            increaseProgressForObservation(observation);
+
+            getContentResolver().delete(ObservationPhoto.CONTENT_URI,
+                    "id = ?", new String[] { String.valueOf(op.id) });
             c.moveToNext();
         }
 
         c.close();
 
-        // Now it's safe to delete all of the observation photos locally
-        getContentResolver().delete(ObservationPhoto.CONTENT_URI, "is_deleted = 1", null);
 
         checkForCancelSync();
 
         return true;
     }
-    
+
     private boolean deleteObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
         // Remotely delete any locally-removed observations
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
@@ -1319,6 +1583,10 @@ public class INaturalistService extends IntentService {
                 "is_deleted = 1 AND user_login = '"+mLogin+"'", 
                 null, 
                 Observation.DEFAULT_SORT_ORDER);
+
+        if (c.getCount() > 0) {
+            mApp.notify(getString(R.string.deleting_observations), getString(R.string.deleting_observations));
+        }
         
        // for each observation DELETE to /observations/:id
         ArrayList<Integer> obsIds = new ArrayList<Integer>();
@@ -1554,100 +1822,33 @@ public class INaturalistService extends IntentService {
         post(HOST + "/comments.json", params);
     }
 
-    private boolean postObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
-        Observation observation;
-        // query observations where _updated_at > updated_at
-        Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
-                Observation.PROJECTION, 
-                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '"+mLogin+"'", 
-                null, 
-                Observation.SYNC_ORDER);
-        int updatedCount = c.getCount();
-        mApp.sweepingNotify(SYNC_OBSERVATIONS_NOTIFICATION, 
-                getString(R.string.syncing_observations), 
-                String.format(getString(R.string.syncing_x_observations), c.getCount()),
-                getString(R.string.syncing));
-        // for each observation PUT to /observations/:id
-        c.moveToFirst();
-        while (c.isAfterLast() == false) {
-            checkForCancelSync();
-
-            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION,
-                    getString(R.string.updating_observations), 
-                    String.format(getString(R.string.updating_x_observations), (c.getPosition() + 1), c.getCount()),
-                    getString(R.string.syncing));
-            observation = new Observation(c);
-            mApp.setObservationIdBeingSynced(observation._id);
+    private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        if (observation.id != null) {
+            // Update observation
             boolean success = handleObservationResponse(
                     observation,
                     request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true)
             );
-            c.moveToNext();
-
             if (!success) {
-                c.close();
-                mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
                 throw new SyncFailedException();
             }
+
+            return true;
         }
-        c.close();
+
+        // New observation
 
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+        JSONObject observationParams = observationToJsonObject(observation, false);
 
-        // query observations where _synced_at IS NULL
-        c = getContentResolver().query(Observation.CONTENT_URI, 
-                Observation.PROJECTION, 
-                "(id IS NULL) AND (_updated_at > _created_at)", null, Observation.SYNC_ORDER);
-        int createdCount = c.getCount();
-        // for each observation POST to /observations/
+        boolean success = handleObservationResponse(
+                observation,
+                request(API_HOST + "/observations", "post", null, observationParams, true, true)
+        );
 
-        c.moveToFirst();
-        while (c.isAfterLast() == false) {
-            checkForCancelSync();
-
-            mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION,
-                    getString(R.string.posting_observations), 
-                    String.format(getString(R.string.posting_x_observations), (c.getPosition() + 1), c.getCount()),
-                    getString(R.string.syncing));
-            observation = new Observation(c);
-            mApp.setObservationIdBeingSynced(observation._id);
-
-            boolean success = handleObservationResponse(
-                    observation,
-                    request(API_HOST + "/observations", "post", null, observationToJsonObject(observation, false), true, true)
-            );
-            c.moveToNext();
-
-            if (!success) {
-                c.close();
-                mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-                throw new SyncFailedException();
-            }
-        }
-        c.close();
-        
-        c = getContentResolver().query(Observation.CONTENT_URI, 
-        		Observation.PROJECTION, 
-        		"id IS NULL", null, Observation.SYNC_ORDER);
-        int currentCreatedCount = c.getCount();
-        c.close();
-        c = getContentResolver().query(Observation.CONTENT_URI, 
-                Observation.PROJECTION, 
-                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '"+mLogin+"'", 
-                null, 
-                Observation.SYNC_ORDER);
-        int currentUpdatedCount = c.getCount();
-        c.close();
-
-        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-
-        if ((currentCreatedCount > 0) || (currentUpdatedCount > 0)) {
-        	// There was a problem with the sync process
-        	mApp.notify(SYNC_OBSERVATIONS_NOTIFICATION, 
-        			getString(R.string.observation_sync_failed), 
-        			getString(R.string.not_all_observations_were_synced),
-        			getString(R.string.sync_failed));
+        if (!success) {
+            throw new SyncFailedException();
         }
 
         return true;
@@ -1696,83 +1897,80 @@ public class INaturalistService extends IntentService {
         return obs;
     }
 
-
-    private boolean postPhotos() throws AuthenticationException, CancelSyncException, SyncFailedException {
+    private boolean postPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        Integer observationId = observation.id;
         ObservationPhoto op;
         int createdCount = 0;
         ContentValues cv;
 
-        // query observation photos where _updated_at > updated_at (i.e. updated photos)
-        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                ObservationPhoto.PROJECTION,
-                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NULL",
-                null,
-                ObservationPhoto.DEFAULT_SORT_ORDER);
+        if (observationId != null) {
+            // query observation photos where _updated_at > updated_at (i.e. updated photos)
+            Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                    ObservationPhoto.PROJECTION,
+                    "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NULL AND observation_id = ?",
+                    new String[]{String.valueOf(observationId)},
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
 
-        c.moveToFirst();
-        while (c.isAfterLast() == false) {
-            op = new ObservationPhoto(c);
-            // Shouldn't happen - a photo with null external ID is marked as sync - unmark it
-            op._synced_at = null;
-            getContentResolver().update(op.getUri(), op.getContentValues(), null, null);
-            c.moveToNext();
-        }
-        c.close();
-
-        // for each observation PUT to /observation_photos/:id
-        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                ObservationPhoto.PROJECTION,
-                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL",
-                null,
-                ObservationPhoto.DEFAULT_SORT_ORDER);
-
-        int updatedCount = c.getCount();
-
-        c.moveToFirst();
-        while (c.isAfterLast() == false) {
-            checkForCancelSync();
-
-            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
-                    getString(R.string.updating_photos),
-                    String.format(getString(R.string.updating_x_photos), (c.getPosition() + 1), c.getCount()),
-                    getString(R.string.syncing));
-            op = new ObservationPhoto(c);
-            ArrayList <NameValuePair> params = op.getParams();
-            mApp.setObservationIdBeingSynced(op._observation_id);
-            String inatNetwork = mApp.getInaturalistNetworkMember();
-            String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-            params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
-
-            JSONArray response = put("http://" + inatHost + "/observation_photos/" + op.id + ".json", params);
-            try {
-                if (response == null || response.length() != 1) {
-                    c.close();
-                    mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-                    throw new SyncFailedException();
-                }
-                JSONObject json = response.getJSONObject(0);
-                BetterJSONObject j = new BetterJSONObject(json);
-                ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
-                op.merge(jsonObservationPhoto);
-                cv = op.getContentValues();
-                Log.d(TAG, "OP - postPhotos(1) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
-                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                getContentResolver().update(op.getUri(), cv, null, null);
-                createdCount += 1;
-            } catch (JSONException e) {
-                Log.e(TAG, "JSONException: " + e.toString());
+            c.moveToFirst();
+            while (c.isAfterLast() == false) {
+                op = new ObservationPhoto(c);
+                // Shouldn't happen - a photo with null external ID is marked as sync - unmark it
+                op._synced_at = null;
+                getContentResolver().update(op.getUri(), op.getContentValues(), null, null);
+                c.moveToNext();
             }
+            c.close();
 
-            c.moveToNext();
+            // for each observation PUT to /observation_photos/:id
+            c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                    ObservationPhoto.PROJECTION,
+                    "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_id = ? AND is_deleted != 1",
+                    new String[] { String.valueOf(observationId) },
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
+
+            int updatedCount = c.getCount();
+
+            c.moveToFirst();
+            while (c.isAfterLast() == false) {
+                checkForCancelSync();
+
+                op = new ObservationPhoto(c);
+                ArrayList <NameValuePair> params = op.getParams();
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+                params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
+
+                JSONArray response = put("http://" + inatHost + "/observation_photos/" + op.id + ".json", params);
+                try {
+                    if (response == null || response.length() != 1) {
+                        c.close();
+                        throw new SyncFailedException();
+                    }
+                    increaseProgressForObservation(observation);
+
+                    JSONObject json = response.getJSONObject(0);
+                    BetterJSONObject j = new BetterJSONObject(json);
+                    ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
+                    op.merge(jsonObservationPhoto);
+                    cv = op.getContentValues();
+                    Log.d(TAG, "OP - postPhotos(1) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
+                    cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                    getContentResolver().update(op.getUri(), cv, null, null);
+                    createdCount += 1;
+                } catch (JSONException e) {
+                    Log.e(TAG, "JSONException: " + e.toString());
+                }
+
+                c.moveToNext();
+            }
+            c.close();
+
         }
-        c.close();
-
-
 
         // query observation photos where _synced_at is null (i.e. new photos)
-        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                ObservationPhoto.PROJECTION, 
-                "_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
+        Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                ObservationPhoto.PROJECTION,
+                "_synced_at IS NULL AND ((_observation_id = ? OR observation_id = ?))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -1783,10 +1981,6 @@ public class INaturalistService extends IntentService {
         // for each observation POST to /observation_photos
         c.moveToFirst();
         while (c.isAfterLast() == false) {
-            mApp.notify(SYNC_PHOTOS_NOTIFICATION,
-                    getString(R.string.posting_photos), 
-                    String.format(getString(R.string.posting_x_photos), (c.getPosition() + 1), c.getCount()),
-                    getString(R.string.syncing));
             op = new ObservationPhoto(c);
 
             if (op.photo_url != null) {
@@ -1796,7 +1990,6 @@ public class INaturalistService extends IntentService {
             }
 
             ArrayList <NameValuePair> params = op.getParams();
-            mApp.setObservationIdBeingSynced(op._observation_id);
 
             String imgFilePath = op.photo_filename;
             if (imgFilePath == null) {
@@ -1835,22 +2028,24 @@ public class INaturalistService extends IntentService {
                 continue;
             }
             params.add(new BasicNameValuePair("file", imgFilePath));
-            
+
             String inatNetwork = mApp.getInaturalistNetworkMember();
             String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
             params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
-            
+
             JSONArray response;
-            response = post("http://" + inatHost + "/observation_photos.json", params);
+            response = post("http://" + inatHost + "/observation_photos.json", params, true);
             try {
                 if (response == null || response.length() != 1) {
                     c.close();
-                    mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
                     throw new SyncFailedException();
                 }
+
+                increaseProgressForObservation(observation);
+
                 JSONObject json = response.getJSONObject(0);
                 BetterJSONObject j = new BetterJSONObject(json);
-                ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
+                ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, false);
                 op.merge(jsonObservationPhoto);
                 if (op.id != null) {
                     cv = op.getContentValues();
@@ -1868,11 +2063,9 @@ public class INaturalistService extends IntentService {
         }
         c.close();
 
-        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
-
         c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-        		ObservationPhoto.PROJECTION, 
-        		"_synced_at IS NULL", null, ObservationPhoto.DEFAULT_SORT_ORDER);
+        		ObservationPhoto.PROJECTION,
+                "_synced_at IS NULL AND ((_observation_id = ? OR observation_id = ?))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
         c.close();
 
@@ -1884,6 +2077,7 @@ public class INaturalistService extends IntentService {
             throw new SyncFailedException();
         }
     }
+
 
     // Goes over cached photos that were uploaded and that are old enough and deletes them
     // to clear out storage space (they're replaced with their online version, so it'll be
@@ -2482,7 +2676,7 @@ public class INaturalistService extends IntentService {
         }
 
         String url = String.format("%s/projects/%d/remove.json?observation_id=%d", HOST, projectId, observationId);
-        JSONArray json = delete(url, null);
+        JSONArray json = request(url, "delete", null, null, true, true);
 
         if (json == null) return null;
        
@@ -2659,6 +2853,159 @@ public class INaturalistService extends IntentService {
 
         return (json != null);
     }
+
+    private boolean syncObservationFields(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        if ((observation.id == null) || (mProjectFieldValues == null)) {
+            // Observation hasn't been synced yet - no way to sync its project fields
+            return true;
+        }
+
+        // First, remotely update the observation fields which were modified
+        Cursor c = getContentResolver().query(ProjectFieldValue.CONTENT_URI,
+                ProjectFieldValue.PROJECTION,
+                "_updated_at > _synced_at AND _synced_at IS NOT NULL AND observation_id = ?",
+                new String[] { String.valueOf( observation.id )},
+                ProjectFieldValue.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+
+        if ((c.getCount() == 0) && (mProjectFieldValues.size() == 0)) {
+            c.close();
+            return true;
+        }
+
+        while (c.isAfterLast() == false) {
+            checkForCancelSync();
+            ProjectFieldValue localField = new ProjectFieldValue(c);
+
+            increaseProgressForObservation(observation);
+
+            if (!mProjectFieldValues.containsKey(Integer.valueOf(localField.observation_id))) {
+                // Need to retrieve remote observation fields to see how to sync the fields
+                JSONArray jsonResult = get(HOST + "/observations/" + localField.observation_id + ".json");
+
+                if (jsonResult != null) {
+                	Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
+
+                	try {
+                		JSONArray jsonFields = jsonResult.getJSONObject(0).getJSONArray("observation_field_values");
+
+                		for (int j = 0; j < jsonFields.length(); j++) {
+                			JSONObject jsonField = jsonFields.getJSONObject(j);
+                			JSONObject observationField = jsonField.getJSONObject("observation_field");
+                			int id = observationField.optInt("id", jsonField.getInt("observation_field_id"));
+                			fields.put(id, new ProjectFieldValue(new BetterJSONObject(jsonField)));
+                		}
+                	} catch (JSONException e) {
+                		e.printStackTrace();
+                	}
+
+                	mProjectFieldValues.put(localField.observation_id, fields);
+
+                    checkForCancelSync();
+                } else {
+                    c.close();
+                    throw new SyncFailedException();
+                }
+            }
+
+            Hashtable<Integer, ProjectFieldValue> fields = mProjectFieldValues.get(Integer.valueOf(localField.observation_id));
+
+            boolean shouldOverwriteRemote = false;
+            ProjectFieldValue remoteField = null;
+
+            if (fields == null) {
+                c.moveToNext();
+                continue;
+            }
+
+            if (!fields.containsKey(Integer.valueOf(localField.field_id))) {
+                // No remote field - add it
+                shouldOverwriteRemote = true;
+            } else {
+                remoteField = fields.get(Integer.valueOf(localField.field_id));
+
+                if (remoteField.updated_at.before(localField._updated_at)) {
+                    shouldOverwriteRemote = true;
+                }
+            }
+
+            if (shouldOverwriteRemote) {
+                // Overwrite remote value
+                ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("observation_field_value[observation_id]", Integer.valueOf(localField.observation_id).toString()));
+                params.add(new BasicNameValuePair("observation_field_value[observation_field_id]", Integer.valueOf(localField.field_id).toString()));
+                params.add(new BasicNameValuePair("observation_field_value[value]", localField.value));
+                JSONArray result = post(HOST + "/observation_field_values.json", params);
+
+                if (result == null) {
+                    if (mResponseErrors == null) {
+                        c.close();
+                        throw new SyncFailedException();
+                    } else {
+                        Cursor c2 = getContentResolver().query(ProjectField.CONTENT_URI, ProjectField.PROJECTION,
+                                "field_id = " + localField.field_id, null, Project.DEFAULT_SORT_ORDER);
+                        c2.moveToFirst();
+                        if (c2.getCount() > 0) {
+                            ProjectField projectField = new ProjectField(c2);
+                            handleProjectFieldErrors(localField.observation_id, projectField.project_id);
+                        }
+                        c2.close();
+                        c.moveToNext();
+                        checkForCancelSync();
+                        continue;
+                    }
+                }
+
+            } else {
+                // Overwrite local value
+                localField.created_at = remoteField.created_at;
+                localField.id = remoteField.id;
+                localField.observation_id = remoteField.observation_id;
+                localField.field_id = remoteField.field_id;
+                localField.value = remoteField.value;
+                localField.updated_at = remoteField.updated_at;
+            }
+
+            ContentValues cv = localField.getContentValues();
+            cv.put(ProjectFieldValue._SYNCED_AT, System.currentTimeMillis());
+            getContentResolver().update(localField.getUri(), cv, null, null);
+
+            fields.remove(Integer.valueOf(localField.field_id));
+
+            c.moveToNext();
+            checkForCancelSync();
+        }
+        c.close();
+
+        // Next, add any new observation fields
+        Hashtable<Integer, ProjectFieldValue> fields = mProjectFieldValues.get(Integer.valueOf(observation.id));
+
+        if (fields == null) {
+            return true;
+        }
+
+        for (ProjectFieldValue field : fields.values()) {
+            ContentValues cv = field.getContentValues();
+            cv.put(ProjectFieldValue._SYNCED_AT, System.currentTimeMillis());
+            getContentResolver().insert(ProjectFieldValue.CONTENT_URI, cv);
+
+            c = getContentResolver().query(ProjectField.CONTENT_URI, ProjectField.PROJECTION,
+                    "field_id = " + field.field_id, null, Project.DEFAULT_SORT_ORDER);
+            if (c.getCount() == 0) {
+                // This observation has a non-project custom field - add it as well
+                boolean success = addProjectField(field.field_id);
+                if (!success) {
+                    c.close();
+                    throw new SyncFailedException();
+                }
+            }
+            c.close();
+
+        }
+
+        return true;
+    }
     
     private boolean syncObservationFields() throws AuthenticationException, CancelSyncException, SyncFailedException {
 
@@ -2765,7 +3112,6 @@ public class INaturalistService extends IntentService {
                 if (result == null) {
                     if (mResponseErrors == null) {
                         c.close();
-                        mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
                         throw new SyncFailedException();
                     } else {
                         Cursor c2 = getContentResolver().query(ProjectField.CONTENT_URI, ProjectField.PROJECTION,

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#DDD"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -97,20 +98,22 @@
 
     </LinearLayout>
 
+
     <RelativeLayout
         android:visibility="gone"
         android:id="@+id/progress"
         android:background="#c8000000"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ProgressBar
-            style="?android:attr/progressBarStyleLargeInverse"
-            android:layout_height="35dp"
-            android:layout_width="35dp"
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/progress_inner"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:visibility="visible"
-            android:indeterminate="true"
-            android:indeterminateDrawable="@drawable/progress_white"
             android:layout_centerInParent="true"
-            />
+            app:cpb_background_progressbar_color="#88669900"
+            app:cpb_background_progressbar_width="3dp"
+            app:cpb_progressbar_color="#669900"
+            app:cpb_progressbar_width="7dp" />
     </RelativeLayout>
 </RelativeLayout>

@@ -582,6 +582,8 @@
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s new</string>
+    <string name="syncing_x_out_of_y_observations">Syncing %1$d out of %2$d observations...</string>
+    <string name="deleting_observations">Deleting Observations...</string>
 </resources>
 
 
