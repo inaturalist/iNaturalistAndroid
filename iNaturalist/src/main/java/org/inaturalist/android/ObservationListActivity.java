@@ -275,7 +275,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         if (mSyncingTopBar != null) {
             if ((syncCount > 0) || (photoSyncCount > 0)) {
-                mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), (syncCount > 0 ? syncCount : photoSyncCount)));
+                int count = (syncCount > 0 ? syncCount : photoSyncCount);
+                if (count == 1) {
+                    mSyncingStatus.setText(R.string.sync_1_observation);
+                } else {
+                    mSyncingStatus.setText(String.format(getResources().getString(R.string.sync_x_observations), count));
+                }
                 mSyncingTopBar.setVisibility(View.VISIBLE);
                 mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
                 mCancelSync.setText(R.string.upload);
