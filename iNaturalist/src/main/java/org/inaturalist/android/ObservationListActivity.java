@@ -60,6 +60,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private boolean[] mIsGrid = new boolean[] { false, false, false };
 
+    private NewsReceiver mNewsReceiver;
+
 	private SyncCompleteReceiver mSyncCompleteReceiver;
 	
 	private int mLastIndex;
@@ -382,6 +384,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         // Clear out any old cached photos
         Intent serviceIntent = new Intent(INaturalistService.ACTION_CLEAR_OLD_PHOTOS_CACHE, null, ObservationListActivity.this, INaturalistService.class);
         startService(serviceIntent);
+
+        // Get the user's activities
+        serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.FOLLOWING, false);
+        startService(serviceIntent);
     }
 
     private void refreshViewState() {
@@ -573,6 +580,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         settingsEditor.putString("me_screen_list_grid", String.format("%s,%s,%s", mIsGrid[0], mIsGrid[1], mIsGrid[2]));
         settingsEditor.apply();
 
+        try {
+            if (mNewsReceiver != null) unregisterReceiver(mNewsReceiver);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        }
+
         super.onPause();
     }
     
@@ -592,6 +605,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         filter.addAction(INaturalistService.IDENTIFICATIONS_RESULT);
         registerReceiver(mUserDetailsReceiver, filter);
 
+        mNewsReceiver = new NewsReceiver();
+        IntentFilter filter2 = new IntentFilter();
+        filter2.addAction(INaturalistService.UPDATES_RESULT);
+        registerReceiver(mNewsReceiver, filter2);
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
@@ -1392,4 +1409,49 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
     }
 
+    private class NewsReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (!intent.getAction().equals(INaturalistService.UPDATES_RESULT)) {
+                return;
+            }
+
+            Bundle extras = intent.getExtras();
+            String error = extras.getString("error");
+            if (error != null) {
+                return;
+            }
+
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            SerializableJSONArray resultsJSON;
+
+            if (isSharedOnApp) {
+                resultsJSON = (SerializableJSONArray) mApp.getServiceResult(intent.getAction());
+            } else {
+                resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
+            }
+
+            JSONArray results = resultsJSON.getJSONArray();
+            ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
+
+            if (results == null) {
+                return;
+            }
+
+            // Count how many unread activities are there
+            int unreadActivities = 0;
+            for (int i = 0; i < results.length(); i++) {
+                try {
+                    JSONObject item = results.getJSONObject(i);
+                    if (!item.getBoolean("viewed")) unreadActivities++;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            SharedPreferences settings = mApp.getPrefs();
+            settings.edit().putInt("unread_activities", unreadActivities).commit();
+        }
+    }
 }
