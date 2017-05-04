@@ -184,6 +184,8 @@ public class AnalyticsClient {
     private Activity mCurrentActivity;
 
     private AnalyticsClient(Application application) {
+        Amplitude.getInstance().initialize(application, application.getString(R.string.amplitude_api_key)).enableForegroundTracking(application);
+
         mApplication = application;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -249,6 +251,7 @@ public class AnalyticsClient {
         try {
             if (!parameters.has(EVENT_PARAM_VIA)) parameters.put(EVENT_PARAM_VIA, currentActivityName);
             Amplitude.getInstance().logEvent(eventName, parameters);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

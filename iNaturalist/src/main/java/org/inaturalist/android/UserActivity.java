@@ -20,7 +20,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.amplitude.api.Amplitude;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -75,8 +74,6 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         setTitle(R.string.activity);
 
         getSupportActionBar().setElevation(0);
-
-        Amplitude.getInstance().initialize(this, getString(R.string.amplitude_api_key)).enableForegroundTracking(getApplication());
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_USER_ACTIVITY);
 

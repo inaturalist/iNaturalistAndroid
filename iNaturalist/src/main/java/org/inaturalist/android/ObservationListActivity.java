@@ -11,7 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.amplitude.api.Amplitude;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -297,8 +296,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         setTitle(R.string.observations);
 
         getSupportActionBar().setElevation(0);
-
-        Amplitude.getInstance().initialize(this, getString(R.string.amplitude_api_key)).enableForegroundTracking(getApplication());
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_ME);
 
