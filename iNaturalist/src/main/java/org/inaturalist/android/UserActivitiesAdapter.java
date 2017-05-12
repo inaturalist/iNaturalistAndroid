@@ -446,7 +446,9 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 source.recycle();
             }
 
-            Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());
+            Bitmap.Config config = source.getConfig();
+            if (config == null) config = squaredBitmap.getConfig();
+            Bitmap bitmap = Bitmap.createBitmap(size, size, config != null ? config : Bitmap.Config.ARGB_8888);
 
             Canvas canvas = new Canvas(bitmap);
             Paint paint = new Paint();
