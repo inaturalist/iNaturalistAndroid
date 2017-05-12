@@ -1432,6 +1432,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
             }
 
+            if (resultsJSON == null) {
+                return;
+            }
+
             JSONArray results = resultsJSON.getJSONArray();
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
 
