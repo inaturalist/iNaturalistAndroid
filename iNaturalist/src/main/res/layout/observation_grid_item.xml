@@ -112,7 +112,7 @@
             android:visibility="visible"
             android:layout_centerInParent="true"
             app:cpb_background_progressbar_color="#88669900"
-            app:cpb_background_progressbar_width="3dp"
+            app:cpb_background_progressbar_width="7dp"
             app:cpb_progressbar_color="#669900"
             app:cpb_progressbar_width="7dp" />
     </RelativeLayout>

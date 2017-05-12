@@ -971,7 +971,7 @@ public class INaturalistService extends IntentService {
             e.printStackTrace();
         }
 
-        mApp.notify(getString(R.string.downloading), getString(R.string.downloading_observations));
+        mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
 
         // First, download remote observations (new/updated)
         if (!getUserObservations(0)) throw new SyncFailedException();
@@ -1055,7 +1055,7 @@ public class INaturalistService extends IntentService {
                 Observation.PROJECTION,
                 "_id in (" + StringUtils.join(observationIdsToSync, ",") + ")",
                 null,
-                Observation.DEFAULT_SORT_ORDER);
+                Observation.OBS_SYNC_ORDER);
 
         c.moveToFirst();
 
@@ -1067,6 +1067,7 @@ public class INaturalistService extends IntentService {
 
             mCurrentObservationProgress = 0.0f;
             mTotalProgressForObservation = getTotalProgressForObservation(observation);
+            increaseProgressForObservation(observation);
 
             mApp.setObservationIdBeingSynced(observation._id);
 
@@ -1151,7 +1152,8 @@ public class INaturalistService extends IntentService {
         c.close();
 
 
-        return obsCount + // For the observation upload itself (only if new/update)
+        return 1 + // We start off with some progress (one "part")
+                obsCount + // For the observation upload itself (only if new/update)
                 photoCount + // For photos
                 projectFieldCount + // For updated/new obs project fields
                 projectObservationCount; // For updated/new observation project fields
@@ -1489,7 +1491,7 @@ public class INaturalistService extends IntentService {
     private boolean saveJoinedProjects() throws AuthenticationException, CancelSyncException, SyncFailedException {
         mApp.notify(SYNC_PHOTOS_NOTIFICATION,
                 getString(R.string.projects),
-                getString(R.string.syncing_projects),
+                getString(R.string.cleaning_up),
                 getString(R.string.syncing));
 
         SerializableJSONArray projects = getJoinedProjects();
