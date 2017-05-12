@@ -882,6 +882,18 @@ public class ObservationViewerActivity extends AppCompatActivity {
                         });
             }
 
+            @Override
+            public void onIdentificationRestored(BetterJSONObject id) {
+                // After calling the restore ID API - we'll refresh the comment/ID list
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                registerReceiver(mObservationReceiver, filter);
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_RESTORE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                startService(serviceIntent);
+            }
+
 
             @Override
             public void onCommentRemoved(BetterJSONObject comment) {

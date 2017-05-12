@@ -585,6 +585,7 @@
     <string name="new_activities">%1s new</string>
     <string name="no_results_found">No Results Found...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
+    <string name="restore">Restore</string>
 </resources>
 
 

@@ -195,6 +195,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_AGREE_ID = "agree_id";
     public static String ACTION_REMOVE_ID = "remove_id";
     public static String ACTION_UPDATE_ID = "update_id";
+    public static String ACTION_RESTORE_ID = "restore_id";
     public static String ACTION_GUIDE_ID = "guide_id";
     public static String ACTION_ADD_COMMENT = "add_comment";
     public static String ACTION_UPDATE_COMMENT = "update_comment";
@@ -341,6 +342,18 @@ public class INaturalistService extends IntentService {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 addIdentification(observationId, taxonId, null);
+
+                // Reload the observation at the end (need to refresh comment/ID list)
+                Observation observation = getObservation(observationId);
+
+                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                reply.putExtra(OBSERVATION_RESULT, observation);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_RESTORE_ID)) {
+                int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                int identificationId = intent.getIntExtra(IDENTIFICATION_ID, 0);
+                restoreIdentification(identificationId);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
                 Observation observation = getObservation(observationId);
@@ -1423,6 +1436,19 @@ public class INaturalistService extends IntentService {
 
     private void setUserViewedUpdate(int obsId) throws AuthenticationException {
         put(HOST + "/observations/" + obsId + "/viewed_updates", (JSONObject)null);
+    }
+
+    private void restoreIdentification(int identificationId) throws AuthenticationException {
+        JSONObject paramsJson = new JSONObject();
+        JSONObject paramsJsonIdentification = new JSONObject();
+        try {
+            paramsJsonIdentification.put("current", true);
+            paramsJson.put("identification", paramsJsonIdentification);
+
+            JSONArray arrayResult = put(API_HOST + "/identifications/" + identificationId, paramsJson);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateIdentification(int observationId, int identificationId, int taxonId, String body) throws AuthenticationException {

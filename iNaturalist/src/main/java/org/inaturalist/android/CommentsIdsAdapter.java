@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Handler;
 import android.text.Html;
@@ -32,6 +33,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -61,6 +63,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		public void onIdentificationAdded(BetterJSONObject taxon);
 		public void onIdentificationRemoved(BetterJSONObject taxon);
         public void onIdentificationUpdated(BetterJSONObject id);
+        public void onIdentificationRestored(BetterJSONObject id);
 		public void onCommentRemoved(BetterJSONObject comment);
 		public void onCommentUpdated(BetterJSONObject comment);
 	};
@@ -104,7 +107,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) { 
-		Resources res = mContext.getResources();
+		final Resources res = mContext.getResources();
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		final View view = inflater.inflate(mIsNewLayout ? R.layout.comment_id_item_obs_viewer : R.layout.comment_id_item, parent, false);
 		final BetterJSONObject item = mItems.get(position);
@@ -171,6 +174,12 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				@Override
 				public void onClick(DialogInterface dialogInterface, int which) {
 					switch (which) {
+                        case R.id.restore:
+                            loading.setVisibility(View.VISIBLE);
+                            mOnIDAddedCb.onIdentificationRestored(item);
+
+                            break;
+
 						case R.id.delete:
 							// Display deletion confirmation dialog
 							mHelper.confirm(mContext.getString(isComment ? R.string.delete_comment : R.string.delete_id),
@@ -211,9 +220,21 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 							return;
 						}
 
+						int menuResource = isComment && username.equalsIgnoreCase(mLogin) ? R.menu.comment_menu : R.menu.id_menu;
+
+                        boolean restoreId = false;
+                        if (menuResource == R.menu.id_menu) {
+                            Boolean isCurrent = item.getBoolean("current");
+                            if (((isCurrent == null) || (!isCurrent)) && (username.equalsIgnoreCase(mLogin)))  {
+                                restoreId = true;
+                            }
+                        }
+
+                        Menu popupMenu;
+
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 							PopupMenu popup = new PopupMenu(getContext(), moreMenu);
-							popup.getMenuInflater().inflate(isComment && username.equalsIgnoreCase(mLogin) ? R.menu.comment_menu : R.menu.id_menu, popup.getMenu());
+							popup.getMenuInflater().inflate(menuResource, popup.getMenu());
 							popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 								@Override
 								public boolean onMenuItemClick(android.view.MenuItem menuItem) {
@@ -222,10 +243,24 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 								}
 							});
 
-							popup.show();
+                            popupMenu = popup.getMenu();
+                            popup.show();
 						} else {
-							new BottomSheet.Builder((Activity) mContext).sheet(R.menu.id_menu).listener(onClick).show();
+							BottomSheet sheet = new BottomSheet.Builder((Activity) mContext).sheet(menuResource).listener(onClick).show();
+                            popupMenu = sheet.getMenu();
 						}
+
+                        if (restoreId) {
+                            // Show restore ID menu option
+                            popupMenu.getItem(0).setVisible(false);
+                            popupMenu.getItem(1).setVisible(true);
+                        } else {
+                            // Show withdraw ID menu option
+                            popupMenu.getItem(0).setVisible(true);
+                            popupMenu.getItem(1).setVisible(false);
+                        }
+
+
 
 					}
 				});
@@ -346,7 +381,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 					if ((taxon.getJSONObject("user").getString("login").equalsIgnoreCase(mLogin))) {
 						Integer taxonId = taxon.getInt("taxon_id");
-						if ((taxonId != null) && (taxonId == currentTaxonId)) {
+						if ((taxonId != null) && (taxonId == currentTaxonId) && (taxon.getBoolean("current"))) {
 							// Agreed on the current taxon type before
 							didNotIdThisBefore = false;
 							break;

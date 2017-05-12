@@ -4,6 +4,9 @@
         android:id="@+id/delete"
         android:title="@string/withdraw"/>
     <item
+        android:id="@+id/restore"
+        android:title="@string/restore"/>
+    <item
         android:id="@+id/edit"
         android:title="@string/add_edit_remark"/>
 </menu>
