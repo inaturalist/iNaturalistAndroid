@@ -3417,6 +3417,17 @@ public class INaturalistService extends IntentService {
                 // Save the new observation's photos
                 for (int j = 0; j < jsonObservation.photos.size(); j++) {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
+                    c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                            ObservationPhoto.PROJECTION,
+                            "_id = ?", new String[] { String.valueOf(photo.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                    if (c.getCount() > 0) {
+                        // Photo already exists - don't save
+                        c.close();
+                        continue;
+                    }
+
+                    c.close();
+
                     photo._observation_id = jsonObservation._id;
 
                     ContentValues opcv = photo.getContentValues();
