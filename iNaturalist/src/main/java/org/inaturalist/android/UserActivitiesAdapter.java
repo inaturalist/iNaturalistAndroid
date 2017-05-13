@@ -295,6 +295,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                     intent = new Intent(mContext, ObservationViewerActivity.class);
                     intent.putExtra("observation", obs.toJSONObject().toString());
                     intent.putExtra("read_only", true);
+                    intent.putExtra("reload", true);
                 }
 
                 intent.putExtra(ObservationViewerActivity.SHOW_COMMENTS, true);
