@@ -2175,8 +2175,11 @@ public class ObservationEditor extends AppCompatActivity {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
+
         // Resize photo to 2048x2048 max
         String resizedPhoto = resizeImage(path, photoUri);
+
+        Log.d(TAG, "createObservationForPhoto: " + position + ":" + photoUri + " => " + path + "; resize: " + resizedPhoto);
 
         if (resizedPhoto == null) {
             return null;
