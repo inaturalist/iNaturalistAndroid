@@ -1125,15 +1125,9 @@ public class ObservationEditor extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        
-        if (mProjectReceiver != null) {
-            try {
-                unregisterReceiver(mProjectReceiver);  
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-        }
-        
+
+        BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, this);
+
         stopGetLocation();
         uiToProjectFieldValues();
         if (isFinishing()) {

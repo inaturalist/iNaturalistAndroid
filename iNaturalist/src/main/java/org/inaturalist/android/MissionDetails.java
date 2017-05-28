@@ -325,6 +325,9 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     @Override
     protected void onPause() {
         super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mNearbyReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
     }
 
     @Override

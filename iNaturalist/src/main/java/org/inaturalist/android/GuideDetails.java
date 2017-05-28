@@ -1037,16 +1037,8 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
     @Override
     protected void onPause() {
         super.onPause();
-        
-        if (mTaxaGuideReceiver != null) {
-            Log.i(TAG, "Unregistering ACTION_GUIDE_XML_RESULT");
-            try {
-                unregisterReceiver(mTaxaGuideReceiver);
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-            mTaxaGuideReceiver = null;
-        }
+
+        BaseFragmentActivity.safeUnregisterReceiver(mTaxaGuideReceiver, this);
     }
 
     @Override

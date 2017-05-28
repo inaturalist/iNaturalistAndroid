@@ -566,4 +566,13 @@ public class GuideTaxonActivity extends AppCompatActivity {
         }
         textView.setText(s);
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
+    }
+
 }

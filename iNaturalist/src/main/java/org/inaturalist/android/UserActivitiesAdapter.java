@@ -478,6 +478,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
 	        Observation observation;
 
+            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, mContext);
+
             if (isSharedOnApp) {
                 observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
             } else {

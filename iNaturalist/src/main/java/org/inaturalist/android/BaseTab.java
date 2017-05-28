@@ -246,14 +246,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     public void onPause() {
         super.onPause();
 
-        try {
-            if (mProjectsReceiver != null) {
-                Log.i(TAG, "unregisterReceiver " + getFilterResultName());
-                getActivity().unregisterReceiver(mProjectsReceiver);
-            }
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        }
+        BaseFragmentActivity.safeUnregisterReceiver(mProjectsReceiver, getActivity());
     }
 
 
@@ -401,14 +394,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     }
 
     private void getProjects() {
-
-        if (mProjectsReceiver != null) {
-            try {
-                getActivity().unregisterReceiver(mProjectsReceiver);
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-        }
+        BaseFragmentActivity.safeUnregisterReceiver(mProjectsReceiver, getActivity());
 
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());

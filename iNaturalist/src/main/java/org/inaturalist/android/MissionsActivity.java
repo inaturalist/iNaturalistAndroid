@@ -397,4 +397,11 @@ public class MissionsActivity extends BaseFragmentActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mMissionsReceiver, this);
+    }
 }

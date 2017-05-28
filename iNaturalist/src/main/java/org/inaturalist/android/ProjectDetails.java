@@ -359,6 +359,8 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     @Override
     protected void onPause() {
         super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mProjectDetailsReceiver, this);
     }
 
     @Override

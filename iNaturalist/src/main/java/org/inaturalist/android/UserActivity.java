@@ -367,12 +367,9 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
     @Override
     protected void onPause() {
-        try {
-            if (mNewsReceiver != null) unregisterReceiver(mNewsReceiver);
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        }
         super.onPause();
+
+        safeUnregisterReceiver(mNewsReceiver);
     }
 
 

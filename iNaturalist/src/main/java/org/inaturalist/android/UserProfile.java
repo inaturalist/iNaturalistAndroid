@@ -323,6 +323,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     @Override
     protected void onPause() {
         super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mUserDetailsReceiver, this);
     }
 
     @Override

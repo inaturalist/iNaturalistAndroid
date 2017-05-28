@@ -290,5 +290,14 @@ public class MissionsGridActivity extends AppCompatActivity {
             refreshViewState();
         }
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mMissionsReceiver, this);
+    }
+
 }
 

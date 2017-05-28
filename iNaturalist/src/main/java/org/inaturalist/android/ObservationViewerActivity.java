@@ -1820,11 +1820,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
 		@Override
 	    public void onReceive(Context context, Intent intent) {
             Log.e(TAG, "ObservationReceiver - OBSERVATION_RESULT");
-            try {
-                unregisterReceiver(mObservationReceiver);
-            } catch (Exception exc) {
-                // Continue
-            }
+
+            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, ObservationViewerActivity.this);
 
             mLoadingObservation = false;
 
@@ -2148,6 +2145,14 @@ public class ObservationViewerActivity extends AppCompatActivity {
     	} else {
     		return 0;
     	}
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
     }
 
 }

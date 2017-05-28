@@ -278,6 +278,8 @@ public class ProfileEditor extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mUserUpdateReceiver, this);
     }
 
     @Override

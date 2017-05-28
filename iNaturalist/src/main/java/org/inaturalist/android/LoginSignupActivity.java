@@ -447,13 +447,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     public void onPause() {
         super.onPause();
 
-        try {
-            if (mUserRegisterReceiver != null) {
-                unregisterReceiver(mUserRegisterReceiver);
-            }
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        }
+        BaseFragmentActivity.safeUnregisterReceiver(mUserRegisterReceiver, this);
     }
 
 }

@@ -202,12 +202,9 @@ public class ProjectNews extends BaseFragmentActivity {
 
     @Override
     protected void onPause() {
-    	try {
-            if (mProjectNewsReceiver != null) unregisterReceiver(mProjectNewsReceiver);
-    	} catch (Exception exc) {
-    		exc.printStackTrace();
-    	}
         super.onPause();
+
+        safeUnregisterReceiver(mProjectNewsReceiver);
     }
 
     @Override

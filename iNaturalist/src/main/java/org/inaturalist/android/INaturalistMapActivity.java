@@ -700,6 +700,14 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     	
     }
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+
+        safeUnregisterReceiver(mNearbyReceiver);
+	}
+
+
     @Override 
     public void onResume() {
         super.onResume();

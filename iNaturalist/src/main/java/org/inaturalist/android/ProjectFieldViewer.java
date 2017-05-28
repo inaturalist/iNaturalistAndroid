@@ -86,7 +86,7 @@ public class ProjectFieldViewer {
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            mContext.unregisterReceiver(mTaxonReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, mContext);
 
             BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
 

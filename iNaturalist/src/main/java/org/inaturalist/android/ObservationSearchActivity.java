@@ -78,6 +78,15 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
         filter.addAction(INaturalistService.USER_SEARCH_OBSERVATIONS_RESULT);
         registerReceiver(mSearchResultsReceiver, filter);
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        BaseFragmentActivity.safeUnregisterReceiver(mSearchResultsReceiver, this);
+    }
+
  
 	@Override
 	protected void onStop()

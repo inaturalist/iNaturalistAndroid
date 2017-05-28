@@ -440,7 +440,23 @@ public class BaseFragmentActivity extends AppCompatActivity {
         if (mHelper != null) {
             mHelper.stopLoading();
         }
+
+        safeUnregisterReceiver(mUserDetailsReceiver);
     }
+
+    // Need to wrap the unregisterReceiver call in a try/catch, since sometimes the OS iteself
+    // will unregister it for us in very low memory issues.
+    protected void safeUnregisterReceiver(BroadcastReceiver receiver) {
+        safeUnregisterReceiver(receiver, this);
+    }
+
+    protected static void safeUnregisterReceiver(BroadcastReceiver receiver, Context context) {
+        try {
+            if (receiver != null) context.unregisterReceiver(receiver);
+        } catch (Exception e) {
+        }
+    }
+
 
     private class UserDetailsReceiver extends BroadcastReceiver {
         @Override

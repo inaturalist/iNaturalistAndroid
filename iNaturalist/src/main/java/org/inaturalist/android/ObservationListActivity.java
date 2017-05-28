@@ -581,16 +581,15 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         settingsEditor.putString("me_screen_list_grid", String.format("%s,%s,%s", mIsGrid[0], mIsGrid[1], mIsGrid[2]));
         settingsEditor.apply();
 
-        try {
-            unregisterReceiver(mObservationSyncProgressReceiver);
-            if (mNewsReceiver != null) unregisterReceiver(mNewsReceiver);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        safeUnregisterReceiver(mObservationSyncProgressReceiver);
+        safeUnregisterReceiver(mNewsReceiver);
+        safeUnregisterReceiver(mUserDetailsReceiver);
+        safeUnregisterReceiver(mSyncCompleteReceiver);
+        safeUnregisterReceiver(mConnectivityListener);
 
         super.onPause();
     }
-    
+
     @Override
     public void onResume() {
         super.onResume();

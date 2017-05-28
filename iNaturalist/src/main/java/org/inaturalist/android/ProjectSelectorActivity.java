@@ -310,15 +310,8 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     @Override
     protected void onPause() {
         super.onPause();
-        
-        if (mProjectReceiver != null) {
-            try {
-                unregisterReceiver(mProjectReceiver);
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-        }
 
+        BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, this);
     }
 
     @Override
