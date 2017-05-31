@@ -406,7 +406,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             mUserDetailsReceiver = new UserDetailsReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
             Log.i(TAG, "Registering ACTION_GET_USER_DETAILS_RESULT");
-            registerReceiver(mUserDetailsReceiver, filter);
+            safeRegisterReceiver(mUserDetailsReceiver, filter);
         }
     }
 
@@ -457,6 +457,15 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
     }
 
+    public void safeRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        safeRegisterReceiver(receiver, filter, this);
+    }
+
+    // Tries to unregister receiver before registering it
+    protected static void safeRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, Context context) {
+        safeUnregisterReceiver(receiver, context);
+        context.registerReceiver(receiver, filter);
+    }
 
     private class UserDetailsReceiver extends BroadcastReceiver {
         @Override

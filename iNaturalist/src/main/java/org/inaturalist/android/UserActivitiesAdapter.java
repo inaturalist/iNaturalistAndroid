@@ -83,7 +83,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
         mObservationReceiver = new ObservationReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-        mContext.registerReceiver(mObservationReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, mContext);
 
         mObsIdToView = new HashMap<>();
     }
@@ -471,6 +471,9 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         }
     }
 
+    public void unregisterReceivers() {
+        BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, mContext);
+    }
 
     private class ObservationReceiver extends BroadcastReceiver {
 		@Override

@@ -767,15 +767,8 @@ public class ObservationEditor extends AppCompatActivity {
 
         mProjectReceiver = new ProjectReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
-        registerReceiver(mProjectReceiver, filter);  
+        BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
         
-        if (mProjects == null) {
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
-            startService(serviceIntent);  
-        } else {
-            refreshProjectList();
-        }
-
 
         if ((intent != null) && (!mPictureTaken)) {
             if (intent.getBooleanExtra(TAKE_PHOTO, false)) {
@@ -1127,6 +1120,11 @@ public class ObservationEditor extends AppCompatActivity {
         super.onPause();
 
         BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, this);
+        if (mProjectFieldViewers != null) {
+            for (ProjectFieldViewer fieldViewer : mProjectFieldViewers) {
+                fieldViewer.unregisterReceivers();
+            }
+        }
 
         stopGetLocation();
         uiToProjectFieldValues();
@@ -1159,6 +1157,14 @@ public class ObservationEditor extends AppCompatActivity {
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
         }
+
+        if (mProjects == null) {
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
+            startService(serviceIntent);
+        } else {
+            refreshProjectList();
+        }
+
     }
 
     private void initUi() {

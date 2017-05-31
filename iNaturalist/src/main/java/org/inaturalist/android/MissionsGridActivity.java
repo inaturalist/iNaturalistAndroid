@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -105,25 +106,11 @@ public class MissionsGridActivity extends AppCompatActivity {
             mMissionsCurrentExpansionLevel = intent.getIntExtra(MissionsGridActivity.MISSIONS_EXPANSION_LEVEL, 0);
             mTaxonId = intent.getIntExtra(TAXON_ID, -1);
 
-            if (mTaxonId > -1) {
-                // Load recommended missions by taxon ID - start the service requesting the missions for that taxon ID
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MISSIONS_BY_TAXON, null, this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-                serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                startService(serviceIntent);
-
-            } else {
-                // Load recommended missions (already loaded in the previous screen - the main missions activity)
-                loadMissions(INaturalistService.RECOMMENDED_MISSIONS_RESULT);
-            }
-
         } else {
             mMissions = loadListFromBundle(savedInstanceState, "mMissions");
             mMissionsCurrentExpansionLevel = savedInstanceState.getInt("mMissionsCurrentExpansionLevel");
             mTaxonId = savedInstanceState.getInt("mTaxonId");
         }
-
-        refreshViewState();
     }
 
     private void loadMissions(String actionName) {
@@ -266,7 +253,23 @@ public class MissionsGridActivity extends AppCompatActivity {
         mMissionsReceiver = new MissionsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.MISSIONS_BY_TAXON_RESULT);
-        registerReceiver(mMissionsReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mMissionsReceiver, filter, this);
+
+        if (mMissions == null) {
+            if (mTaxonId > -1) {
+                // Load recommended missions by taxon ID - start the service requesting the missions for that taxon ID
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MISSIONS_BY_TAXON, null, this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
+                startService(serviceIntent);
+
+            } else {
+                // Load recommended missions (already loaded in the previous screen - the main missions activity)
+                loadMissions(INaturalistService.RECOMMENDED_MISSIONS_RESULT);
+            }
+        }
+
+        refreshViewState();
     }
 
     private class MissionsReceiver extends BroadcastReceiver {

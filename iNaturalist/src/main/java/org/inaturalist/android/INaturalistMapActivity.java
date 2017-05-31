@@ -717,7 +717,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         }
         mNearbyReceiver = new NearbyObservationsReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_NEARBY);
-        registerReceiver(mNearbyReceiver, filter);
+        safeRegisterReceiver(mNearbyReceiver, filter);
         
         setUpMapIfNeeded();
        

@@ -162,11 +162,6 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
             mProject = (BetterJSONObject) intent.getSerializableExtra("project");
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
-            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVATIONS);
-            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_SPECIES);
-            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVERS);
-            getProjectDetails(INaturalistService.ACTION_GET_PROJECT_IDENTIFIERS);
-
         } else {
             mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
             mViewType = savedInstanceState.getString("mViewType");
@@ -376,7 +371,12 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         filter.addAction(INaturalistService.ACTION_PROJECT_IDENTIFIERS_RESULT);
         filter.addAction(INaturalistService.ACTION_PROJECT_OBSERVATIONS_RESULT);
         filter.addAction(INaturalistService.ACTION_PROJECT_OBSERVERS_RESULT);
-        registerReceiver(mProjectDetailsReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mProjectDetailsReceiver, filter, this);
+
+        if (mObservations == null) getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVATIONS);
+        if (mSpecies == null) getProjectDetails(INaturalistService.ACTION_GET_PROJECT_SPECIES);
+        if (mObservers == null) getProjectDetails(INaturalistService.ACTION_GET_PROJECT_OBSERVERS);
+        if (mIdentifiers == null) getProjectDetails(INaturalistService.ACTION_GET_PROJECT_IDENTIFIERS);
     }
 
     @Override

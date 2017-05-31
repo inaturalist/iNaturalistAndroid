@@ -147,17 +147,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             mMission = (BetterJSONObject) intent.getSerializableExtra(MISSION);
             mLocationExpansion = intent.getFloatExtra(LOCATION_EXPANSION, 0);
             BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
-
             int taxonId = taxon.getInt("id");
-
-            // Get nearby observations of the same taxon ID
-            Intent getObservationsIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
-
-            getObservationsIntent.putExtra("get_location", true);
-            getObservationsIntent.putExtra("location_expansion", mLocationExpansion);
-            getObservationsIntent.putExtra("taxon_id", taxonId);
-            getObservationsIntent.putExtra("per_page", MAX_MAP_RESULTS);
-            startService(getObservationsIntent);
 
             BetterJSONObject resultsObject = (BetterJSONObject) mApp.getServiceResult(INaturalistService.RECOMMENDED_MISSIONS_RESULT);
 
@@ -186,7 +176,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             // Get taxon details for wikipedia summary, etc.
             mTaxonReceiver = new TaxonReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
-            registerReceiver(mTaxonReceiver, filter);
+            BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
@@ -339,7 +329,21 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
         mNearbyReceiver = new NearbyObservationsReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_NEARBY);
-        registerReceiver(mNearbyReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mNearbyReceiver, filter, this);
+
+
+        if (mObservations == null) {
+            // Get nearby observations of the same taxon ID
+            Intent getObservationsIntent = new Intent(INaturalistService.ACTION_NEARBY, null, this, INaturalistService.class);
+            BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
+            int taxonId = taxon.getInt("id");
+
+            getObservationsIntent.putExtra("get_location", true);
+            getObservationsIntent.putExtra("location_expansion", mLocationExpansion);
+            getObservationsIntent.putExtra("taxon_id", taxonId);
+            getObservationsIntent.putExtra("per_page", MAX_MAP_RESULTS);
+            startService(getObservationsIntent);
+        }
 
         refreshViewState();
     }

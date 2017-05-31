@@ -76,7 +76,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
         mSearchResultsReceiver = new SearchResultsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.USER_SEARCH_OBSERVATIONS_RESULT);
-        registerReceiver(mSearchResultsReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mSearchResultsReceiver, filter, this);
     }
 
 

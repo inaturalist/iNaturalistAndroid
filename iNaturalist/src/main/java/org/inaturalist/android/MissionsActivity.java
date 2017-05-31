@@ -130,13 +130,7 @@ public class MissionsActivity extends BaseFragmentActivity {
         mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
-        if (savedInstanceState == null) {
-            // Ask for the recommended missions
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, this, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-            startService(serviceIntent);
-
-        } else {
+        if (savedInstanceState != null) {
             mMissions = loadListFromBundle(savedInstanceState, "mMissions");
             mMissionsCurrentExpansionLevel = savedInstanceState.getInt("mMissionsCurrentExpansionLevel");
         }
@@ -150,8 +144,6 @@ public class MissionsActivity extends BaseFragmentActivity {
             }
         }, 100);
 
-
-        refreshViewState();
 
         SharedPreferences settings = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         if (!settings.getBoolean("shown_missions_onboarding", false)) {
@@ -324,7 +316,16 @@ public class MissionsActivity extends BaseFragmentActivity {
         mMissionsReceiver = new MissionsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.RECOMMENDED_MISSIONS_RESULT);
-        registerReceiver(mMissionsReceiver, filter);
+        safeRegisterReceiver(mMissionsReceiver, filter);
+
+        if (mMissions == null) {
+            // Ask for the recommended missions
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
+            startService(serviceIntent);
+        }
+
+        refreshViewState();
     }
 
     @Override

@@ -197,11 +197,6 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mUser = (BetterJSONObject) intent.getSerializableExtra("user");
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
-            getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
-            getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
-            getUserDetails(INaturalistService.ACTION_GET_USER_OBSERVATIONS);
-            getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
-
             mObservationsContainer.setVisibility(View.VISIBLE);
             mSpeciesContainer.setVisibility(View.GONE);
             mIdentificationsContainer.setVisibility(View.GONE);
@@ -340,7 +335,12 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         filter.addAction(INaturalistService.SPECIES_COUNT_RESULT);
         filter.addAction(INaturalistService.USER_OBSERVATIONS_RESULT);
         filter.addAction(INaturalistService.IDENTIFICATIONS_RESULT);
-        registerReceiver(mUserDetailsReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mUserDetailsReceiver, filter, this);
+
+        if ((mUser == null) || (mUser.getInt("observations_count") == null)) getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
+        if (mSpecies == null) getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
+        if (mObservations == null) getUserDetails(INaturalistService.ACTION_GET_USER_OBSERVATIONS);
+        if (mIdentifications == null) getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
 
         refreshViewState();
 

@@ -227,14 +227,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         
         if (mSyncCompleteReceiver != null) {
             Log.i(TAG, "Unregistering ACTION_SYNC_COMPLETE");
-            try {
-                unregisterReceiver(mSyncCompleteReceiver);
-                unregisterReceiver(mConnectivityListener);
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-            mSyncCompleteReceiver = null;
-            mConnectivityListener = null;
+            safeUnregisterReceiver(mSyncCompleteReceiver);
+            safeUnregisterReceiver(mConnectivityListener);
         }
     }
 
@@ -336,12 +330,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             mViewType = VIEW_TYPE_OBSERVATIONS;
-
-            if (mApp.loggedIn()) {
-                getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
-                getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
-                getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
-            }
         }
         
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -368,12 +356,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         mSyncCompleteReceiver = new SyncCompleteReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
         Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
-        registerReceiver(mSyncCompleteReceiver, filter);
+        safeRegisterReceiver(mSyncCompleteReceiver, filter);
 
         mConnectivityListener = new ConnectivityBroadcastReceiver();
         IntentFilter filter2 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         Log.i(TAG, "Registering CONNECTIVITY_ACTION");
-        registerReceiver(mConnectivityListener, filter2);
+        safeRegisterReceiver(mConnectivityListener, filter2);
 
         onDrawerCreate(savedInstanceState);
         
@@ -604,17 +592,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         filter.addAction(INaturalistService.SPECIES_COUNT_RESULT);
         filter.addAction(INaturalistService.USER_OBSERVATIONS_RESULT);
         filter.addAction(INaturalistService.IDENTIFICATIONS_RESULT);
-        registerReceiver(mUserDetailsReceiver, filter);
+        safeRegisterReceiver(mUserDetailsReceiver, filter);
 
         mObservationSyncProgressReceiver = new ObservationSyncProgressReceiver();
         IntentFilter filter2 = new IntentFilter();
         filter2.addAction(INaturalistService.OBSERVATION_SYNC_PROGRESS);
-        registerReceiver(mObservationSyncProgressReceiver, filter2);
+        safeRegisterReceiver(mObservationSyncProgressReceiver, filter2);
 
         mNewsReceiver = new NewsReceiver();
         IntentFilter filter3 = new IntentFilter();
         filter3.addAction(INaturalistService.UPDATES_RESULT);
-        registerReceiver(mNewsReceiver, filter3);
+        safeRegisterReceiver(mNewsReceiver, filter3);
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
@@ -669,7 +657,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
                 getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
                 getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
+
             }
+        }
+
+        if (mApp.loggedIn() && (!mApp.getIsSyncing() && ((mObservationListAdapter == null) || (mObservationListAdapter.getCount() > 0)))) {
+            if (mUser == null) getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
+            if (mIdentifications == null) getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
+            if (mSpecies == null) getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
         }
 
         triggerSyncIfNeeded();

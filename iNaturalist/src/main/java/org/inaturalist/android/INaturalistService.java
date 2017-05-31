@@ -3479,13 +3479,13 @@ public class INaturalistService extends IntentService {
                 try {
                     json = new JSONArray(content);
                 } catch (JSONException e) {
-                    Log.e(TAG, "Failed to create JSONArray, JSONException: " + e.toString());
+                    Log.d(TAG, "Failed to create JSONArray, JSONException: " + e.toString());
                     try {
                         JSONObject jo = new JSONObject(content);
                         json = new JSONArray();
                         json.put(jo);
                     } catch (JSONException e2) {
-                        Log.e(TAG, "Failed to create JSONObject, JSONException: " + e2.toString());
+                        Log.d(TAG, "Failed to create JSONObject, JSONException: " + e2.toString());
                     }
                 }
 

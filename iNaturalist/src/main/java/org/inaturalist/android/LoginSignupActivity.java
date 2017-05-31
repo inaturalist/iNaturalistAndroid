@@ -379,7 +379,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     // Sign up
                     mUserRegisterReceiver = new UserRegisterReceiver();
                     IntentFilter filter = new IntentFilter(INaturalistService.ACTION_REGISTER_USER_RESULT);
-                    registerReceiver(mUserRegisterReceiver, filter);
+                    BaseFragmentActivity.safeRegisterReceiver(mUserRegisterReceiver, filter, LoginSignupActivity.this);
 
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_REGISTER_USER, null, LoginSignupActivity.this, INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.EMAIL, mEmail.getText().toString());

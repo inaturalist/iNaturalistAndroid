@@ -272,7 +272,7 @@ public class ProfileEditor extends AppCompatActivity {
         mUserUpdateReceiver = new UserUpdateReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_UPDATE_USER_DETAILS_RESULT);
         Log.i(TAG, "Registering ACTION_UPDATE_USER_DETAILS_RESULT");
-        registerReceiver(mUserUpdateReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mUserUpdateReceiver, filter, this);
     }
 
     @Override

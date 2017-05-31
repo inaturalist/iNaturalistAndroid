@@ -83,6 +83,10 @@ public class ProjectFieldViewer {
     private FocusedListener mFocusedListener;
     private boolean mIsFocusing;
 
+    public void unregisterReceivers() {
+        BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, mContext);
+    }
+
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -407,7 +411,7 @@ public class ProjectFieldViewer {
                 mTaxonReceiver = new TaxonReceiver();
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
                 Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
-                mContext.registerReceiver(mTaxonReceiver, filter);
+                BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, mContext);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);

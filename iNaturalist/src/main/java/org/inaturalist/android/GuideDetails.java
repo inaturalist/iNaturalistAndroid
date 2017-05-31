@@ -935,7 +935,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         mTaxaGuideReceiver = new GuideTaxaReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GUIDE_XML_RESULT);
         Log.i(TAG, "Registering ACTION_GUIDE_XML_RESULT");
-        registerReceiver(mTaxaGuideReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mTaxaGuideReceiver, filter, this);
 
         mSearchText = (EditText) findViewById(R.id.search_filter);
         mSearchText.setEnabled(false);
@@ -990,17 +990,6 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         mGuideTaxaGrid.setVisibility(View.GONE);
         mTaxaEmpty.setVisibility(View.GONE);
  
-
-        if (mGuideXml == null) {
-            // Get the guide's XML file
-            int guideId = mGuide.getInt("id");
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GUIDE_XML, null, GuideDetails.this, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.ACTION_GUIDE_ID, guideId);
-            startService(serviceIntent);
-        }
-
-
-
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View footerView = inflater.inflate(R.layout.guide_menu_footer, null, false);
         mDescription = (TextView) footerView.findViewById(R.id.description);
@@ -1040,6 +1029,19 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
 
         BaseFragmentActivity.safeUnregisterReceiver(mTaxaGuideReceiver, this);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mGuideXml == null) {
+            // Get the guide's XML file
+            int guideId = mGuide.getInt("id");
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GUIDE_XML, null, GuideDetails.this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.ACTION_GUIDE_ID, guideId);
+            startService(serviceIntent);
+        }
+    }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

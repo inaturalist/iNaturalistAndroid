@@ -209,9 +209,6 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         super.onCreate(savedInstanceState);
 
         mHelper = new ActivityHelper(this);
-        mProjectReceiver = new ProjectReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
-        registerReceiver(mProjectReceiver, filter);
 
         mProjectFieldViewers = new HashMap<Integer, List<ProjectFieldViewer>>();
 
@@ -289,9 +286,6 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             mSearchText.setVisibility(View.VISIBLE);
         }
 
-        
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
-        startService(serviceIntent);  
     }
 
     @Override
@@ -312,6 +306,17 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         super.onPause();
 
         BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, this);
+        if (mProjectFieldViewers != null) {
+            for (Integer projectId : mProjectFieldViewers.keySet()) {
+                List<ProjectFieldViewer> fieldViewers = mProjectFieldViewers.get(projectId);
+                if (fieldViewers == null) continue;
+
+                for (ProjectFieldViewer fieldViewer : fieldViewers) {
+                    fieldViewer.unregisterReceivers();
+                }
+            }
+        }
+
     }
 
     @Override
@@ -320,6 +325,13 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
         }
+
+        mProjectReceiver = new ProjectReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
+
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
+        startService(serviceIntent);
     }
 
     // Update project field values from UI

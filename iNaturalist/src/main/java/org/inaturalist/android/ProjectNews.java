@@ -128,17 +128,6 @@ public class ProjectNews extends BaseFragmentActivity {
             mProject = (BetterJSONObject) intent.getSerializableExtra("project");
             mIsUserFeed = intent.getBooleanExtra("is_user_feed", false);
 
-            Intent serviceIntent;
-            if (mIsUserFeed) {
-                // Get the user's news feed
-                serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, ProjectNews.this, INaturalistService.class);
-            } else {
-                // Get the project's news list
-                serviceIntent = new Intent(INaturalistService.ACTION_GET_PROJECT_NEWS, null, ProjectNews.this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-            }
-            startService(serviceIntent);
-
         } else {
             mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
             mNews = loadListFromBundle(savedInstanceState, "mNews");
@@ -217,7 +206,20 @@ public class ProjectNews extends BaseFragmentActivity {
         mProjectNewsReceiver = new ProjectNewsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(mIsUserFeed ? INaturalistService.ACTION_NEWS_RESULT : INaturalistService.ACTION_PROJECT_NEWS_RESULT);
-        registerReceiver(mProjectNewsReceiver, filter);
+        safeRegisterReceiver(mProjectNewsReceiver, filter);
+
+        if (mNews == null) {
+            Intent serviceIntent;
+            if (mIsUserFeed) {
+                // Get the user's news feed
+                serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, ProjectNews.this, INaturalistService.class);
+            } else {
+                // Get the project's news list
+                serviceIntent = new Intent(INaturalistService.ACTION_GET_PROJECT_NEWS, null, ProjectNews.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
+            }
+            startService(serviceIntent);
+        }
     }
 
     @Override

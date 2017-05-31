@@ -800,7 +800,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 try {
                     // After calling the added ID API - we'll refresh the comment/ID list
                     IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                    registerReceiver(mObservationReceiver, filter);
+                    BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
                     mReloadTaxon = true;
@@ -827,7 +827,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             public void onIdentificationRemoved(BetterJSONObject taxon) {
                 // After calling the remove API - we'll refresh the comment/ID list
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                registerReceiver(mObservationReceiver, filter);
+                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
                 mReloadTaxon = true;
@@ -864,7 +864,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                                 // After calling the update API - we'll refresh the comment/ID list
                                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                                registerReceiver(mObservationReceiver, filter);
+                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
@@ -886,7 +886,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             public void onIdentificationRestored(BetterJSONObject id) {
                 // After calling the restore ID API - we'll refresh the comment/ID list
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                registerReceiver(mObservationReceiver, filter);
+                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_RESTORE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
@@ -899,7 +899,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             public void onCommentRemoved(BetterJSONObject comment) {
                  // After calling the remove API - we'll refresh the comment/ID list
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                registerReceiver(mObservationReceiver, filter);
+                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
@@ -935,7 +935,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                                 // After calling the update API - we'll refresh the comment/ID list
                                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                                registerReceiver(mObservationReceiver, filter);
+                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
                                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
@@ -1004,7 +1004,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                                 // Refresh the comment/id list
                                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                                registerReceiver(mObservationReceiver, filter);
+                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
                                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
                                 serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                                 startService(serviceIntent2);
@@ -1189,10 +1189,11 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private void getCommentIdList() {
         if ((mObservation.id != null) && (mCommentsIds == null)) {
+            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
             Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
-            registerReceiver(mObservationReceiver, filter);
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
@@ -2077,7 +2078,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     			// Refresh the comment/id list
                 mReloadTaxon = true;
     			IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-    			registerReceiver(mObservationReceiver, filter);
+    			BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
 
     		}
     	} else if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
@@ -2089,7 +2090,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
             // Refresh the comment/id list
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            registerReceiver(mObservationReceiver, filter);
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             startService(serviceIntent2);

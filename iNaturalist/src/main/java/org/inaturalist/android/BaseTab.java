@@ -265,18 +265,10 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     
     @Override
     public void onResume() {
-        if (mProjectsReceiver != null) {
-            try {
-                getActivity().unregisterReceiver(mProjectsReceiver);
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-        }
-
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
         Log.i(TAG, "Registering " + getFilterResultName());
-        getActivity().registerReceiver(mProjectsReceiver, filter);  
+        BaseFragmentActivity.safeRegisterReceiver(mProjectsReceiver, filter, getActivity());
         
         super.onResume();
     }
@@ -399,7 +391,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
         Log.i(TAG, "Registering " + getFilterResultName());
-        getActivity().registerReceiver(mProjectsReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mProjectsReceiver, filter, getActivity());
 
         Log.i(TAG, "Re-Calling " + getActionName());
         Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);

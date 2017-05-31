@@ -29,6 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import javax.crypto.Mac;
+
 public class UserActivity extends BaseFragmentActivity implements UserActivitiesAdapter.IOnUpdateViewed {
 
 
@@ -90,24 +92,6 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         } else {
             SharedPreferences settings = mApp.getPrefs();
             mViewType = VIEW_TYPE_MY_CONTENT;
-
-            // Get the user's news feed
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
-            startService(serviceIntent);
-            if (mApp.loggedIn()) {
-                // Get the user's activities
-                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
-                serviceIntent2.putExtra(INaturalistService.FOLLOWING, false);
-                startService(serviceIntent2);
-                // Get the user's activities (following obs)
-                Intent serviceIntent3 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
-                serviceIntent3.putExtra(INaturalistService.FOLLOWING, true);
-                startService(serviceIntent3);
-            } else {
-                // Only works if user is logged in
-                mActivities = new ArrayList<>();
-                mFollowingActivities = new ArrayList<>();
-            }
         }
 
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -370,6 +354,8 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         super.onPause();
 
         safeUnregisterReceiver(mNewsReceiver);
+        if (mActivitiesListAdapter != null) mActivitiesListAdapter.unregisterReceivers();
+        if (mFollowingActivitiesListAdapter != null) mFollowingActivitiesListAdapter.unregisterReceivers();
     }
 
 
@@ -484,7 +470,33 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         filter.addAction(INaturalistService.ACTION_NEWS_RESULT);
         filter.addAction(INaturalistService.UPDATES_RESULT);
         filter.addAction(INaturalistService.UPDATES_FOLLOWING_RESULT);
-        registerReceiver(mNewsReceiver, filter);
+        safeRegisterReceiver(mNewsReceiver, filter);
+
+
+        // Get the user's news feed
+        if (mNews == null) {
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
+            startService(serviceIntent);
+        }
+
+        if (mApp.loggedIn()) {
+            if (mActivities == null) {
+                // Get the user's activities
+                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
+                serviceIntent2.putExtra(INaturalistService.FOLLOWING, false);
+                startService(serviceIntent2);
+            }
+            if (mFollowingActivities == null) {
+                // Get the user's activities (following obs)
+                Intent serviceIntent3 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
+                serviceIntent3.putExtra(INaturalistService.FOLLOWING, true);
+                startService(serviceIntent3);
+            }
+        } else {
+            // Only works if user is logged in
+            mActivities = new ArrayList<>();
+            mFollowingActivities = new ArrayList<>();
+        }
 
 
         TabLayout.Tab myContentTab = mTabLayout.getTabAt(0);

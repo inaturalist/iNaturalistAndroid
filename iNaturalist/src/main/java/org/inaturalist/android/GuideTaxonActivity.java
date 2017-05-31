@@ -127,18 +127,6 @@ public class GuideTaxonActivity extends AppCompatActivity {
             mGuideXmlFilename = intent.getStringExtra("guide_xml_filename");
             mShowAdd = intent.getBooleanExtra("show_add", true);
             mDownloadTaxon = intent.getBooleanExtra("download_taxon", false);
-
-            if (mDownloadTaxon) {
-                // Get the taxon details
-                mTaxonReceiver = new TaxonReceiver();
-                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
-                Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
-                registerReceiver(mTaxonReceiver, filter);
-
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
-                serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId != null ? mTaxonId : mTaxon.getInt("id"));
-                startService(serviceIntent);
-            }
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable("taxon");
         	mGuideTaxon = savedInstanceState.getBoolean("guide_taxon", true);
@@ -575,4 +563,20 @@ public class GuideTaxonActivity extends AppCompatActivity {
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mDownloadTaxon) {
+            // Get the taxon details
+            mTaxonReceiver = new TaxonReceiver();
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
+            Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
+            BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
+
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId != null ? mTaxonId : mTaxon.getInt("id"));
+            startService(serviceIntent);
+        }
+    }
 }
