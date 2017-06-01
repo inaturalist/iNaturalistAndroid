@@ -525,6 +525,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 startService(serviceIntent);
 
+                Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %d; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %s",
+                        hasOldObs, syncCount, photoSyncCount, mUserCanceledSync));
+
 
                 if (mSyncingTopBar != null) {
                     mSyncingStatus.setText(R.string.syncing);
@@ -1055,6 +1058,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 startService(serviceIntent);
+
+                                Log.d(TAG, "Start sync by button");
 
                             }
                         }
