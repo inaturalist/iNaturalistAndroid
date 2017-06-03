@@ -2139,8 +2139,7 @@ public class INaturalistService extends IntentService {
     // to clear out storage space (they're replaced with their online version, so it'll be
     // accessible by the user).
     private void clearOldCachedPhotos() {
-        //long cacheTime = System.currentTimeMillis() - (OLD_PHOTOS_CACHE_EXPIRATION_HOURS * 60 * 60 * 1000);
-        long cacheTime = System.currentTimeMillis() - 10;
+        long cacheTime = System.currentTimeMillis() - (OLD_PHOTOS_CACHE_EXPIRATION_HOURS * 60 * 60 * 1000);
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                 "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
                 "_updated_at < ? AND " +
