@@ -61,6 +61,8 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
@@ -74,12 +76,15 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
@@ -1956,7 +1961,7 @@ public class INaturalistService extends IntentService {
             // for each observation PUT to /observation_photos/:id
             c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
-                    "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_id = ? AND is_deleted != 1",
+                    "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_id = ? AND ((is_deleted == 0) OR (is_deleted IS NULL))",
                     new String[] { String.valueOf(observationId) },
                     ObservationPhoto.DEFAULT_SORT_ORDER);
 
@@ -2002,7 +2007,7 @@ public class INaturalistService extends IntentService {
         // query observation photos where _synced_at is null (i.e. new photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND (is_deleted != 1)", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -2097,7 +2102,7 @@ public class INaturalistService extends IntentService {
 
         c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
         		ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND (is_deleted != 1)", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
         c.close();
 
@@ -2111,11 +2116,31 @@ public class INaturalistService extends IntentService {
     }
 
 
+    // Warms the images cache by pre-loading a remote image
+    private void warmUpImageCache(final String url) {
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        // Need to run on main thread
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Picasso.with(INaturalistService.this).load(url).into(new Target() {
+                    @Override public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        // cache is now warmed up
+                    }
+                    @Override public void onBitmapFailed(Drawable errorDrawable) { }
+                    @Override public void onPrepareLoad(Drawable placeHolderDrawable) { }
+                });
+            }
+        });
+    }
+
     // Goes over cached photos that were uploaded and that are old enough and deletes them
     // to clear out storage space (they're replaced with their online version, so it'll be
     // accessible by the user).
     private void clearOldCachedPhotos() {
-        long cacheTime = System.currentTimeMillis() - (OLD_PHOTOS_CACHE_EXPIRATION_HOURS * 60 * 60 * 1000);
+        //long cacheTime = System.currentTimeMillis() - (OLD_PHOTOS_CACHE_EXPIRATION_HOURS * 60 * 60 * 1000);
+        long cacheTime = System.currentTimeMillis() - 10;
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                 "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
                 "_updated_at < ? AND " +
@@ -2158,6 +2183,9 @@ public class INaturalistService extends IntentService {
             ContentValues cv = op.getContentValues();
             cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
             getContentResolver().update(op.getUri(), cv, null, null);
+
+            // Warm up the cache for the image
+            warmUpImageCache(op.photo_url);
 
             c.moveToNext();
         }

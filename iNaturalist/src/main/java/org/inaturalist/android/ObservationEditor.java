@@ -2836,11 +2836,13 @@ public class ObservationEditor extends AppCompatActivity {
             Bitmap resizedBitmap = BitmapFactory.decodeStream(is, null, resizedOptions);
 
             // Save resized image
-            File imageFile = new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg");
+            File imageFile = new File(getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
             OutputStream os = new FileOutputStream(imageFile);
             resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
             os.flush();
             os.close();
+
+            Log.d(TAG, String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
 
             resizedBitmap.recycle();
 

@@ -220,18 +220,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         return i;
     } 
     
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        
-        if (mSyncCompleteReceiver != null) {
-            Log.i(TAG, "Unregistering ACTION_SYNC_COMPLETE");
-            safeUnregisterReceiver(mSyncCompleteReceiver);
-            safeUnregisterReceiver(mConnectivityListener);
-        }
-    }
-
     /** Shows the sync required bottom bar, if needed */
     private void refreshSyncBar() {
         int syncCount = 0;
@@ -353,16 +341,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             intent.setData(Observation.CONTENT_URI);
         }
         
-        mSyncCompleteReceiver = new SyncCompleteReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
-        Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
-        safeRegisterReceiver(mSyncCompleteReceiver, filter);
-
-        mConnectivityListener = new ConnectivityBroadcastReceiver();
-        IntentFilter filter2 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        Log.i(TAG, "Registering CONNECTIVITY_ACTION");
-        safeRegisterReceiver(mConnectivityListener, filter2);
-
         onDrawerCreate(savedInstanceState);
         
         initializeTabs();
@@ -556,6 +534,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     public void onPause() {
         super.onPause();
 
+        Log.d(TAG, "onPause");
+
         // save last position of list so we can resume there later
         // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
         if (mObservationsGrid != null) {
@@ -577,8 +557,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         safeUnregisterReceiver(mUserDetailsReceiver);
         safeUnregisterReceiver(mSyncCompleteReceiver);
         safeUnregisterReceiver(mConnectivityListener);
-
-        super.onPause();
     }
 
     @Override
@@ -602,10 +580,21 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         filter2.addAction(INaturalistService.OBSERVATION_SYNC_PROGRESS);
         safeRegisterReceiver(mObservationSyncProgressReceiver, filter2);
 
+        mSyncCompleteReceiver = new SyncCompleteReceiver();
+        IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
+        Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
+        safeRegisterReceiver(mSyncCompleteReceiver, filter3);
+
+        mConnectivityListener = new ConnectivityBroadcastReceiver();
+        IntentFilter filter4 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        Log.i(TAG, "Registering CONNECTIVITY_ACTION");
+        safeRegisterReceiver(mConnectivityListener, filter4);
+
+
         mNewsReceiver = new NewsReceiver();
-        IntentFilter filter3 = new IntentFilter();
-        filter3.addAction(INaturalistService.UPDATES_RESULT);
-        safeRegisterReceiver(mNewsReceiver, filter3);
+        IntentFilter filter5 = new IntentFilter();
+        filter5.addAction(INaturalistService.UPDATES_RESULT);
+        safeRegisterReceiver(mNewsReceiver, filter5);
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
