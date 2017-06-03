@@ -344,7 +344,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  	}	
 
  	public static int observationIcon(JSONObject o) {
- 		if (o == null) return R.drawable.unknown_large;
+ 		if (o == null) return R.drawable.ic_taxa_unknown;
  		String iconicTaxonName = null;
 
         if (o.has("iconic_taxon_name") && !o.isNull("iconic_taxon_name")) {
@@ -352,19 +352,19 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 iconicTaxonName = o.getString("iconic_taxon_name");
             } catch (JSONException e) {
                 e.printStackTrace();
-                return R.drawable.unknown_large;
+                return R.drawable.ic_taxa_unknown;
             }
         } else if (o.has("taxon")) {
             try {
                 iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
             } catch (JSONException e) {
                 e.printStackTrace();
-                return R.drawable.unknown_large;
+                return R.drawable.ic_taxa_unknown;
             }
         }
 
  		if (iconicTaxonName == null) {
- 			return R.drawable.unknown_large;
+ 			return R.drawable.ic_taxa_unknown;
  		} else if (iconicTaxonName.equals("Animalia")) {
  			return R.drawable.animalia_large;
  		} else if (iconicTaxonName.equals("Plantae")) {
@@ -392,7 +392,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  		} else if (iconicTaxonName.equals("Arachnida")) {
  			return R.drawable.arachnida_large;
  		} else {
- 			return R.drawable.unknown_large;
+ 			return R.drawable.ic_taxa_unknown;
  		}
 
 
