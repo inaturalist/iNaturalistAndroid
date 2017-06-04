@@ -81,6 +81,8 @@ import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -2135,10 +2137,18 @@ public class INaturalistService extends IntentService {
         });
     }
 
+    private boolean isNetworkAvailable() {
+    	ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+    	NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+    	return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     // Goes over cached photos that were uploaded and that are old enough and deletes them
     // to clear out storage space (they're replaced with their online version, so it'll be
     // accessible by the user).
     private void clearOldCachedPhotos() {
+        if (!isNetworkAvailable()) return;
+
         long cacheTime = System.currentTimeMillis() - (OLD_PHOTOS_CACHE_EXPIRATION_HOURS * 60 * 60 * 1000);
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                 "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
@@ -2152,6 +2162,7 @@ public class INaturalistService extends IntentService {
 
             if (op.photo_url == null) {
                 // No photo URL defined - download the observation and get the external URL for that photo
+                boolean foundPhoto = false;
                 try {
                     JSONObject json = getObservationJson(op.observation_id, false);
 
@@ -2161,6 +2172,7 @@ public class INaturalistService extends IntentService {
                             if (obs.photos.get(0).id.equals(op.id)) {
                                 // Found the appropriate photo - update the URL
                                 op.photo_url = obs.photos.get(i).photo_url;
+                                foundPhoto = true;
                                 break;
                             }
                         }
@@ -2168,6 +2180,13 @@ public class INaturalistService extends IntentService {
 
                 } catch (AuthenticationException e) {
                     e.printStackTrace();
+                }
+
+
+                if (!foundPhoto) {
+                    // Couldn't download remote URL for the observation photo - don't delete it
+                    c.moveToNext();
+                    continue;
                 }
             }
 
