@@ -3055,12 +3055,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
-        MediaScannerConnection.scanFile(this,
-                new String[] { outputPath }, null,
-                new MediaScannerConnection.OnScanCompletedListener() {
-                    public void onScanCompleted(String path, Uri uri) {
-                    }
-                });
+        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(outputPath)));
 
         return outputPath;
     }
