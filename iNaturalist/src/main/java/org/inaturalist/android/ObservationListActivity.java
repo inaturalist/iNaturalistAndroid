@@ -503,7 +503,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 startService(serviceIntent);
 
-                Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %d; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %s",
+                Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
                         hasOldObs, syncCount, photoSyncCount, mUserCanceledSync));
 
 
