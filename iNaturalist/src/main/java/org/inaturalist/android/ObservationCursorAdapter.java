@@ -40,6 +40,7 @@ import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -134,7 +135,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         // Add any photos
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME},
+                new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME },
                 "(_observation_id IN (" + StringUtils.join(obsIds, ',') + ") OR observation_id IN (" + StringUtils.join(obsExternalIds, ',') + ")  )",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
@@ -145,6 +146,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
 
             if (!mPhotoInfo.containsKey(obsId)) {
+                if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
+                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
+                    String originalPhotoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                    photoFilename = originalPhotoFilename;
+                }
+
                 mPhotoInfo.put(
                         obsId,
                         new String[] {

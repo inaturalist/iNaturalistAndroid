@@ -2061,14 +2061,16 @@ public class ObservationEditor extends AppCompatActivity {
                 mHelper.loading(getString(R.string.preparing_photo));
 
                 new Thread(new Runnable() {
+
                     @Override
                     public void run() {
-                        Uri createdUri = createObservationPhotoForPhoto(selectedImageUri);
-                        mPhotosAdded.add(createdUri.toString());
-
                         // Make a copy of the image into the phone's camera folder
                         String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
                         String copyPath = addPhotoToGallery(path);
+
+                        Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
+
+                        mPhotosAdded.add(createdUri.toString());
 
                         if (copyPath != null) {
                             mCameraPhotos.add(copyPath);
@@ -2194,6 +2196,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
+        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, path);
         cv.put(ObservationPhoto.POSITION, position);
 
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);

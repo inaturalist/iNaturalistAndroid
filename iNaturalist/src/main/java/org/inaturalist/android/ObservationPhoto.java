@@ -30,6 +30,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public Timestamp updated_at;
     public String photo_url;
     public String photo_filename;
+    public String original_photo_filename;
     public String uuid;
     public Boolean is_deleted;
     public Boolean is_deleted_was;
@@ -72,6 +73,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     public static final String POSITION = "position";
     public static final String UPDATED_AT = "updated_at";
     public static final String IS_DELETED = "is_deleted";
+    public static final String ORIGINAL_PHOTO_FILENAME = "original_photo_filename";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -90,7 +92,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         ObservationPhoto.UPDATED_AT,
         ObservationPhoto.PHOTO_URL,
         ObservationPhoto.IS_DELETED,
-        ObservationPhoto.PHOTO_FILENAME
+        ObservationPhoto.PHOTO_FILENAME,
+        ObservationPhoto.ORIGINAL_PHOTO_FILENAME
     };
 
     static {
@@ -111,7 +114,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ObservationPhoto.IS_DELETED, ObservationPhoto.IS_DELETED);
         PROJECTION_MAP.put(ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_URL);
         PROJECTION_MAP.put(ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.PHOTO_FILENAME);
-
+        PROJECTION_MAP.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME);
     }
 
     public ObservationPhoto() {}
@@ -147,6 +150,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.updated_at_was = this.updated_at;
         this.photo_url = bc.getString(PHOTO_URL);
         this.photo_filename = bc.getString(PHOTO_FILENAME);
+        this.original_photo_filename = bc.getString(ORIGINAL_PHOTO_FILENAME);
     }
 
     public ObservationPhoto(BetterJSONObject o) {
@@ -254,6 +258,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         cv.put(POSITION, position);
         cv.put(PHOTO_URL, photo_url);
         cv.put(PHOTO_FILENAME, photo_filename);
+        cv.put(ORIGINAL_PHOTO_FILENAME, original_photo_filename);
         cv.put(IS_DELETED, is_deleted);
         if (updated_at != null) { cv.put(UPDATED_AT, updated_at.getTime()); }
         if (uuid != null) { cv.put(UUID, uuid); }
@@ -288,7 +293,8 @@ public class ObservationPhoto implements BaseColumns, Serializable {
                 + "updated_at INTEGER,"
                 + "is_deleted INTEGER,"
                 + "photo_url TEXT,"
-                + "photo_filename TEXT"
+                + "photo_filename TEXT,"
+                + "original_photo_filename TEXT"
                 + ");";
     }
 

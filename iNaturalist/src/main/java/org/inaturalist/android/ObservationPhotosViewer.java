@@ -232,6 +232,12 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             do {
                 String photoFileName = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                if ((photoFileName != null) && (!(new File(photoFileName).exists()))) {
+                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
+                    String originalPhotoFilename = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                    photoFileName = originalPhotoFilename;
+                }
+
                 String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
             } while (imageCursor.moveToNext());
