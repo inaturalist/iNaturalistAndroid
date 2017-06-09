@@ -178,6 +178,11 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
         finish();
     }
 
+    @Override
+    public void onLoginFailed(INaturalistService.LoginType loginType) {
+    }
+
+
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

@@ -65,6 +65,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
     public interface SignInTaskStatus {
         void onLoginSuccessful();
+        void onLoginFailed(INaturalistService.LoginType loginType);
     }
 
     public SignInTask(Activity activity, SignInTaskStatus callback) {
@@ -231,6 +232,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             } else {
                 mHelper.alert(mActivity.getString(R.string.username_invalid));
             }
+            mCallback.onLoginFailed(mLoginType);
+
             return;
         }
 

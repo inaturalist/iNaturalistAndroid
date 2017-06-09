@@ -1,11 +1,9 @@
 package org.inaturalist.android;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,7 +16,6 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -29,12 +26,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 import com.facebook.login.widget.LoginButton;
 import com.flurry.android.FlurryAgent;
-
-import org.json.JSONArray;
 
 public class LoginSignupActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
 
@@ -93,7 +87,6 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 // Registration successful - login the user
                 recreateSignInTaskIfNeeded();
                 mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString(), mPassword.getText().toString());
-
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_CREATE_ACCOUNT);
             }
         }
@@ -435,6 +428,15 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
         setResult(RESULT_OK);
         finish();
+    }
+
+
+    @Override
+    public void onLoginFailed(INaturalistService.LoginType loginType) {
+        if ((!mIsSignup) && (isNetworkAvailable()) && (loginType == INaturalistService.LoginType.OAUTH_PASSWORD)) {
+            // Invalid password - clear the password field
+            mPassword.setText("");
+        }
     }
 
     private boolean isNetworkAvailable() {
