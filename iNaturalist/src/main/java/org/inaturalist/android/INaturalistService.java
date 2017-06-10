@@ -1077,7 +1077,7 @@ public class INaturalistService extends IntentService {
                 Observation.PROJECTION,
                 "_id in (" + StringUtils.join(observationIdsToSync, ",") + ")",
                 null,
-                Observation.OBS_SYNC_ORDER);
+                Observation.DEFAULT_SYNC_ORDER);
 
         c.moveToFirst();
 
