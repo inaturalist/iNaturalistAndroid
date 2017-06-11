@@ -288,6 +288,15 @@ public class INaturalistService extends IntentService {
 
     @Override
     protected void onHandleIntent(final Intent intent) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                onHandleIntentWorker(intent);
+            }
+        }).start();
+    }
+
+    protected void onHandleIntentWorker(final Intent intent) {
         boolean cancelSyncRequested = false;
         boolean syncFailed = false;
         boolean dontStopSync = false;
