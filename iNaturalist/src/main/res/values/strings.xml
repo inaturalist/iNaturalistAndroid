@@ -396,7 +396,7 @@
     <string name="observation_count_single">%1$d observation</string>
     <string name="camera">Take Photo</string>
     <string name="upload_photo">Choose Image</string>
-    <string name="menu_text">Skip Photo</string>
+    <string name="menu_text">No Photo</string>
     <string name="first">1st</string>
     <string name="make_first">Make 1st</string>
     <string name="help_id_this_species">Help me identify this</string>
