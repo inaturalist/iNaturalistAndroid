@@ -507,16 +507,13 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             for (int i = 0; i < mResultList.size(); i++) {
                 try {
                     if (mResultList.get(i).getInt("resource_id") == id) {
-                        foundId = i;
-                        break;
+                        // Load obs image again
+                        loadObsImage(observation.id, view, update, i);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
-            // Load obs image again
-            loadObsImage(observation.id, view, update, foundId);
 	    }
 
 	}
