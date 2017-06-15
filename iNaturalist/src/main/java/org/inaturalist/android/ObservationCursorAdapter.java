@@ -6,7 +6,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +15,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -31,20 +29,19 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private int mDimension;
@@ -217,6 +214,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
+    private Map<View, Long> mViewToObsId = new HashMap<View, Long>();
+
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
         ViewHolder holder;
@@ -225,6 +224,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             return view;
         }
         c.moveToPosition(position);
+
+        final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+
+        Long previousId = mViewToObsId.get(view);
+        if (previousId != null) {
+            if (previousId.equals(obsId)) {
+                return view;
+            }
+        }
+
 
         if (convertView == null) {
             holder = new ViewHolder((ViewGroup) view);
@@ -251,7 +260,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         View progress = holder.progress;
         View progressInner = holder.progressInner;
 
-        final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
@@ -529,6 +537,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
         }
+
+        mViewToObsId.put(view, obsId);
 
         return view;
     }
