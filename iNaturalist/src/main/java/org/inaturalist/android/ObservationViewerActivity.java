@@ -1064,7 +1064,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
-            if ((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) {
+            if (((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) &&
+                ((mObservation.private_place_guess == null) || (mObservation.private_place_guess.length() == 0))) {
                 // No place guess - show coordinates instead
                 if (acc == null) {
                     mLocationText.setText(String.format(getString(R.string.location_coords_no_acc),
@@ -1077,7 +1078,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
                             acc > 999 ? ">1 km" : String.format("%dm", (int) acc)));
                 }
             } else{
-                mLocationText.setText(mObservation.place_guess);
+                mLocationText.setText((mObservation.place_guess != null) && (mObservation.place_guess.length() > 0) ?
+                        mObservation.place_guess : mObservation.private_place_guess);
             }
 
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
@@ -1838,8 +1840,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
             } else {
                 observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
             }
-
-
 
             if (mObservation == null) {
                 reloadObservation(null, false);

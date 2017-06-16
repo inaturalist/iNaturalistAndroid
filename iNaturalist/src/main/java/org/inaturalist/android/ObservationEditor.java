@@ -1358,8 +1358,8 @@ public class ObservationEditor extends AppCompatActivity {
             findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
         }
 
-        if (mObservation.place_guess != null) {
-            mLocationGuess.setText(mObservation.place_guess);
+        if ((mObservation.place_guess != null) || (mObservation.private_place_guess != null)) {
+            mLocationGuess.setText(mObservation.private_place_guess != null ? mObservation.private_place_guess : mObservation.place_guess);
             mLocationGuess.setTextColor(Color.parseColor("#000000"));
         } else {
             mLocationGuess.setText(getString(R.string.set_location));
@@ -1676,7 +1676,13 @@ public class ObservationEditor extends AppCompatActivity {
         if ((placeGuess != null) && (placeGuess.length() > 0)) {
             mLocationGuess.setText(placeGuess);
             mLocationGuess.setTextColor(Color.parseColor("#000000"));
-            mObservation.place_guess = placeGuess;
+            if (mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")) {
+                mObservation.private_place_guess = placeGuess;
+                mObservation.place_guess = null;
+            } else {
+                mObservation.place_guess = placeGuess;
+                mObservation.private_place_guess = null;
+            }
         } else {
             mLocationGuess.setText(R.string.set_location);
             mLocationGuess.setTextColor(Color.parseColor("#757575"));

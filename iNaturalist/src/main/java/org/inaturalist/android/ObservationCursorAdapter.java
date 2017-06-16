@@ -262,6 +262,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
+        String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
         Double longitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LONGITUDE));
         Double privateLatitude = c.getDouble(c.getColumnIndexOrThrow(Observation.PRIVATE_LATITUDE));
@@ -450,7 +451,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
 
         if (!mIsGrid) {
-            if ((placeGuessValue == null) || (placeGuessValue.length() == 0)) {
+            if (((placeGuessValue == null) || (placeGuessValue.length() == 0)) &&
+                ((privatePlaceGuessValue == null) || (privatePlaceGuessValue.length() == 0))) {
                 if ((longitude != 0f) || (latitude != 0f) || (privateLatitude != 0f) || (privateLongitude != 0f)) {
                     // Show coordinates instead
                     placeGuess.setText(String.format(mContext.getString(R.string.location_coords_no_acc),
@@ -460,7 +462,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     placeGuess.setText(R.string.no_location);
                 }
             } else {
-                placeGuess.setText(placeGuessValue);
+                placeGuess.setText((placeGuessValue != null) && (placeGuessValue.length() > 0) ?
+                    placeGuessValue : privatePlaceGuessValue);
             }
         }
 
