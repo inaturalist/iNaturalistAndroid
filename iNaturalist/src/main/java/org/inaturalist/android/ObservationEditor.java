@@ -1676,7 +1676,7 @@ public class ObservationEditor extends AppCompatActivity {
         if ((placeGuess != null) && (placeGuess.length() > 0)) {
             mLocationGuess.setText(placeGuess);
             mLocationGuess.setTextColor(Color.parseColor("#000000"));
-            if (mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")) {
+            if (mObservation.geoprivacy != null && (mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured"))) {
                 mObservation.private_place_guess = placeGuess;
                 mObservation.place_guess = null;
             } else {
