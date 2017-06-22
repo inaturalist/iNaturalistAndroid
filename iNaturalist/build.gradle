@@ -85,6 +85,7 @@ dependencies {
     compile 'com.amplitude:android-sdk:2.13.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.mikhaellopez:circularprogressbar:1.1.1'
+    compile project(':smoothrescale')
 
     androidTestCompile 'com.android.support:support-annotations:25.+'
     androidTestCompile 'com.android.support.test:runner:0.4.1'

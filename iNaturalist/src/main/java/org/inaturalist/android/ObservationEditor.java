@@ -4,6 +4,7 @@ import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.schokoladenbrown.Smooth;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -2835,14 +2836,13 @@ public class ObservationEditor extends AppCompatActivity {
             Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
             Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
 
-            // will load & resize the image to be 1/inSampleSize dimensions
-            BitmapFactory.Options resizedOptions = new BitmapFactory.Options();
-            resizedOptions.inScaled = true;
-            resizedOptions.inSampleSize = 4;
-            resizedOptions.inDensity = originalWidth;
-            resizedOptions.inTargetDensity =  newWidth * resizedOptions.inSampleSize;
+            Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
 
-            Bitmap resizedBitmap = BitmapFactory.decodeStream(is, null, resizedOptions);
+            if ((newHeight != originalHeight) || (newWidth != originalWidth)) {
+                // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
+                // built-in Android resize methods)
+                resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
+            }
 
             // Save resized image
             File imageFile = new File(getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
