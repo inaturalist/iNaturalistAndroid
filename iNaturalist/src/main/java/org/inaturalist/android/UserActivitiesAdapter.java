@@ -25,6 +25,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.method.MovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -58,7 +60,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private ObservationReceiver mObservationReceiver;
-    private Map<Integer, View> mObsIdToView;
+    private Map<Integer, List<Pair<View, Integer>>> mObsIdToView;
 
     public interface IOnUpdateViewed {
         void onUpdateViewed(Observation obs, int position);
@@ -237,7 +239,11 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             mContext.startService(serviceIntent);
 
             // So when we get the result - we'll know which obs pic to set
-            mObsIdToView.put(obsId, view);
+            if (!mObsIdToView.containsKey(obsId)) {
+                mObsIdToView.put(obsId, new ArrayList<Pair<View, Integer>>());
+            }
+            List<Pair<View, Integer>> views = mObsIdToView.get(obsId);
+            views.add(new Pair<>(view, position));
 
             return;
         }
@@ -493,26 +499,24 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 return;
             }
 
-            View view = mObsIdToView.get(observation.id);
-            if (view == null) return;
+            List<Pair<View, Integer>> views = mObsIdToView.get(observation.id);
+            if (views == null) return;
 
-            BetterJSONObject update = (BetterJSONObject)view.getTag();
-            Integer id = update.getInt("resource_id");
-            if ((update == null) || (id == null) || (!id.equals(observation.id))) {
-                // Current obs ID doesn't match the one returned (could happen if user scrolled and the view got reused by the time we got results)
-                return;
-            }
 
-            int foundId = 0;
-            for (int i = 0; i < mResultList.size(); i++) {
-                try {
-                    if (mResultList.get(i).getInt("resource_id") == id) {
-                        // Load obs image again
-                        loadObsImage(observation.id, view, update, i);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            // Update all views (activity update rows) that have that obs
+            for (Pair<View, Integer> pair : views) {
+                View view = pair.first;
+                int position = pair.second;
+
+                BetterJSONObject update = (BetterJSONObject)view.getTag();
+                Integer id = update.getInt("resource_id");
+                if ((update == null) || (id == null) || (!id.equals(observation.id))) {
+                    // Current obs ID doesn't match the one returned (could happen if user scrolled and the view got reused by the time we got results)
+                    continue;
                 }
+
+                // Load obs image again
+                loadObsImage(observation.id, view, update, position);
             }
 	    }
 
