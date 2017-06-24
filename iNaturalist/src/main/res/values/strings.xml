@@ -462,7 +462,6 @@
     <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
-    <string name="overflow_menu">Overflow Menu</string>
     <string name="skip2">Skip</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
