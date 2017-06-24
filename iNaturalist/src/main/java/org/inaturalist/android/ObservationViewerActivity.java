@@ -61,12 +61,20 @@ import android.widget.Toast;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.maps.android.SphericalUtil;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.squareup.picasso.Callback;
@@ -1049,18 +1057,16 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 public void onMapClick(LatLng latLng) {
                     Intent intent = new Intent(ObservationViewerActivity.this, LocationDetailsActivity.class);
                     intent.putExtra(LocationDetailsActivity.OBSERVATION, mObservation);
+                    intent.putExtra(LocationDetailsActivity.OBSERVATION_JSON, mObsJson);
                     intent.putExtra(LocationDetailsActivity.READ_ONLY, true);
                     startActivity(intent);
                 }
             });
 
-            LatLng latLng = new LatLng(lat, lon);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-
             // Add the marker
             mMap.clear();
-            MarkerOptions opts = new MarkerOptions().position(latLng).icon(INaturalistMapActivity.observationIcon(mObservation.iconic_taxon_name));
-            Marker m = mMap.addMarker(opts);
+
+            mHelper.addMapPosition(mMap, mObservation, mObsJson != null ? new BetterJSONObject(mObsJson) : null);
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);

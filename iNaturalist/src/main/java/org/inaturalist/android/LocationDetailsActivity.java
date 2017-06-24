@@ -33,18 +33,20 @@ import java.util.List;
 public class LocationDetailsActivity extends AppCompatActivity implements LocationListener {
     private final static String TAG = "LocationDetailsActivity";
     public static final String OBSERVATION = "observation";
+    public static final String OBSERVATION_JSON = "observation_json";
     public static final String READ_ONLY = "read_only";
 
     private GoogleMap mMap;
     private INaturalistApp mApp;
 	private Double mLatitude;
 	private Double mLongitude;
-	private boolean mZoomToLocation = false;
 	private LocationManager mLocationManager;
 	private double mAccuracy;
     private TextView mLocationCoordinates;
     private Observation mObservation;
+    private BetterJSONObject mObservationJson;
     private boolean mIsReadOnly;
+    private ActivityHelper mHelper;
 
     @Override
 	protected void onStart()
@@ -65,18 +67,17 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mHelper = new ActivityHelper(this);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         mObservation = (Observation)getIntent().getSerializableExtra(OBSERVATION);
+        String obsJson = getIntent().getStringExtra(OBSERVATION_JSON);
+        mObservationJson = obsJson != null ? new BetterJSONObject(obsJson) : null;
         mIsReadOnly = getIntent().getBooleanExtra(READ_ONLY, false);
         mLongitude = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
         mLatitude = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
         mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
 
-        if ((mLongitude != null) && (mLatitude != null) && (savedInstanceState == null)) {
-        	mZoomToLocation = true;
-        }
-        
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -89,9 +90,9 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
         if (savedInstanceState != null) {
             mObservation = (Observation) savedInstanceState.getSerializable("observation");
             mIsReadOnly = savedInstanceState.getBoolean(READ_ONLY);
-            mLongitude = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open")) ? mObservation.private_longitude : mObservation.longitude;
-            mLatitude = (mObservation.geoprivacy != null) && (!mObservation.geoprivacy.equals("open"))  ? mObservation.private_latitude : mObservation.latitude;
-            mAccuracy = mObservation.positional_accuracy != null ? mObservation.positional_accuracy : 0;
+            mLongitude = savedInstanceState.getDouble("mLongitude");
+            mLatitude = savedInstanceState.getDouble("mLatitude");
+            mAccuracy = savedInstanceState.getDouble("mAccuracy");
         }
 
 
@@ -134,14 +135,9 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
                 Log.e(TAG, "Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
                 zoom = zoomLevel;
         	}
-        	
 
-        	if (mZoomToLocation) {
-        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom));
-        		mZoomToLocation = false;
-        	} else {
-        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
-        	}
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
 
             if (mAccuracy == 0) {
                  mLocationCoordinates.setText(String.format(getString(R.string.location_coords_no_acc),
@@ -168,6 +164,9 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("observation", mObservation);
         outState.putBoolean(READ_ONLY, mIsReadOnly);
+        outState.putDouble("mLongitude", mLongitude);
+        outState.putDouble("mLatitude", mLatitude);
+        outState.putDouble("mAccuracy", mAccuracy);
         super.onSaveInstanceState(outState);
     }
  
@@ -225,9 +224,8 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
                 mMap.getUiSettings().setZoomControlsEnabled(false);
 
                 mMap.clear();
-                MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(INaturalistMapActivity.observationIcon(mObservation.iconic_taxon_name));
-                Marker m = mMap.addMarker(opts);
 
+                mHelper.addMapPosition(mMap, mObservation, mObservationJson);
             }
         }
     }

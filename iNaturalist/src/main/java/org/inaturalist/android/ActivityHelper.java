@@ -22,13 +22,27 @@ import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.maps.android.SphericalUtil;
+
 public class ActivityHelper {
     private static String TAG = "ActivityHelper";
+    private final INaturalistApp mApp;
     private Context mContext;
     private ProgressDialog mProgressDialog;
 
     public ActivityHelper(Context context) {
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
     }
 
     public void alert(String msg) {
@@ -230,5 +244,110 @@ public class ActivityHelper {
         } else {
             return Color.WHITE;
         }
+    }
+
+    private CameraUpdate addCircle(GoogleMap map, LatLng latlng, int radius, Observation observation) {
+        int obsColor = observationColor(observation);
+        CircleOptions opts = new CircleOptions()
+                .center(latlng)
+                .radius(radius)
+                .fillColor(0x80FFFFFF & obsColor) // Add 50% opacity
+                .strokeColor(obsColor);
+        map.addCircle(opts);
+
+        LatLngBounds bounds = new LatLngBounds.Builder().
+                include(SphericalUtil.computeOffset(latlng, radius, 0)).
+                include(SphericalUtil.computeOffset(latlng, radius, 90)).
+                include(SphericalUtil.computeOffset(latlng, radius, 180)).
+                include(SphericalUtil.computeOffset(latlng, radius, 270)).build();
+
+        return CameraUpdateFactory.newLatLngBounds(bounds, radius);
+    }
+
+    public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson) {
+        Double lat, lon;
+        lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
+        lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
+        LatLng latlng = new LatLng(lat, lon);
+        BitmapDescriptor obsIcon = INaturalistMapActivity.observationIcon(observation.iconic_taxon_name);
+        String currentUser = mApp.currentUserLogin();
+        CameraUpdate cameraUpdate = null;
+        int obsColor = observationColor(observation);
+
+        Integer publicAcc = null;
+        publicAcc = observationJson != null ? observationJson.getInteger("public_positional_accuracy") : null;
+
+        // Add a single marker
+        MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+        map.addMarker(opts);
+
+        if (((observation.geoprivacy != null) && (observation.geoprivacy.equals("private"))) ||
+                (publicAcc == null)) {
+            // No need to add anything other than the above marker
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
+
+        } else if ((currentUser != null) && (observation.user_login.equals(currentUser)) &&
+                (observation.positional_accuracy != null)) {
+            // Show circle of private positional accuracy
+            cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation);
+        } else {
+            if ((observation.positional_accuracy != null) && (publicAcc != null) &&
+                    (observation.positional_accuracy.equals(publicAcc))) {
+                // Show circle of public positional accuracy
+                cameraUpdate = addCircle(map, latlng, publicAcc, observation);
+            } else {
+                // Show uncertainty cell
+                Double cellSize = 0.2;
+                Double coords[] = new Double[] { lat, lon };
+                Double ll[] = new Double[] {
+                        coords[0] - ( coords[0] % cellSize ),
+                        coords[1] - ( coords[1] % cellSize ) };
+                Double uu[] = new Double[] { ll[0], ll[1] };
+
+                for (int i = 0; i < coords.length; i++) {
+                    if (coords[i] < uu[i]) {
+                        uu[i] -= cellSize;
+                    } else {
+                        uu[i] += cellSize;
+                    }
+                }
+
+                LatLng rectPoints[] = new LatLng[] {
+                        new LatLng(Math.min(uu[0], ll[0]), Math.min(uu[1], ll[1])),
+                        new LatLng(Math.max(uu[0], ll[0]), Math.min(uu[1], ll[1])),
+                        new LatLng(Math.max(uu[0], ll[0]), Math.max(uu[1], ll[1])),
+                        new LatLng(Math.min(uu[0], ll[0]), Math.max(uu[1], ll[1])),
+                        new LatLng(Math.min(uu[0], ll[0]), Math.min(uu[1], ll[1]))
+                };
+
+                PolygonOptions polygonOpts = new PolygonOptions()
+                        .add(rectPoints[0])
+                        .add(rectPoints[1])
+                        .add(rectPoints[2])
+                        .add(rectPoints[3])
+                        .add(rectPoints[4])
+                        .fillColor(0x80FFFFFF & obsColor) // Add 50% opacity
+                        .strokeColor(obsColor);
+                map.addPolygon(polygonOpts);
+
+                cameraUpdate = CameraUpdateFactory.newLatLngBounds(LatLngBounds.builder()
+                        .include(rectPoints[0])
+                        .include(rectPoints[1])
+                        .include(rectPoints[2])
+                        .include(rectPoints[3])
+                        .include(rectPoints[4])
+                        .build(), 10);
+            }
+
+        }
+
+        final CameraUpdate finalCameraUpdate = cameraUpdate;
+        map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
+            }
+        });
+
     }
 }
