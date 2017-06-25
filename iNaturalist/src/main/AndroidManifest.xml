@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="224"
-    android:versionName="1.6.4" >
+    android:versionCode="225"
+    android:versionName="1.6.5" >
 
     <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="21"
         />

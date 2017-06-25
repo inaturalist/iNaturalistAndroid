@@ -31,6 +31,24 @@ android {
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        /*
+         * This is done because smoothrescale uses mmpeg shared library binaries, which are not compiled
+         * to newer arm64-v8a (just to x86/armeabi-v7a). And once we have *any* 64 bit shared libraries in
+         * our binary, Android 7+ will automatically try and look for the 64 bit shared libraries instead
+         * of the 32 bit ones - so we exclude those 64 bit libraries (see here and under gradle.properties).
+         * Full solution here: https://corbt.com/posts/2015/09/18/mixing-32-and-64bit-dependencies-in-android.html
+         */
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+
+        packagingOptions {
+            exclude "lib/arm64-v8a/librsjni.so"
+            exclude "lib/arm64-v8a/libRSSupport.so"
+        }
     }
 
     buildTypes {
