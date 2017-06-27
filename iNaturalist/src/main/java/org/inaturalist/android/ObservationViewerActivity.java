@@ -1712,7 +1712,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
             prepareToExit();
             return true;
         case R.id.edit_observation:
-            startActivityForResult(new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class), REQUEST_CODE_EDIT_OBSERVATION);
+            Intent intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
+            if (mTaxon != null) intent.putExtra(ObservationEditor.TAXON, new BetterJSONObject(mTaxon));
+            startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
             return true;
         case R.id.flag_captive:
             mFlagAsCaptive = !mFlagAsCaptive;
