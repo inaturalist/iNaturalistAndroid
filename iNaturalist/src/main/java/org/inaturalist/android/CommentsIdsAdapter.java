@@ -16,6 +16,8 @@ import org.json.JSONObject;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
 import android.content.Context;
@@ -148,18 +150,24 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             postedOn.setOnClickListener(showUser);
 
             if (hasUserIcon) {
-                UrlImageViewHelper.setUrlDrawable(userPic, item.getJSONObject("user").getString("user_icon_url"), R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
-					@Override
-					public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-						// Nothing to do here
-					}
+                Picasso.with(mContext)
+                        .load(item.getJSONObject("user").getString("user_icon_url"))
+                        .fit()
+                        .centerCrop()
+                        .placeholder(R.drawable.ic_account_circle_black_24dp)
+                        .transform(new UserActivitiesAdapter.CircleTransform())
+                        .into(userPic, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                // Nothing to do here
+                            }
 
-					@Override
-					public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-						// Return a circular version of the profile picture
-						return ImageUtils.getCircleBitmap(loadedBitmap);
-					}
-				});
+                            @Override
+                            public void onError() {
+
+                            }
+                        });
+
             } else {
                 if (mIsNewLayout) {
                     userPic.setAlpha(100);
