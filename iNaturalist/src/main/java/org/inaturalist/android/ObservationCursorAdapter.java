@@ -34,7 +34,6 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -45,7 +44,7 @@ import java.util.Map;
 
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private int mDimension;
-    private HashMap<Long, String[]> mPhotoInfo = new HashMap<Long, String[]>();
+    private HashMap<String, String[]> mPhotoInfo = new HashMap<String, String[]>();
     private boolean mIsGrid;
 
     private final Activity mContext;
@@ -132,17 +131,31 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         // Add any photos
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME },
+                new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME },
                 "(_observation_id IN (" + StringUtils.join(obsIds, ',') + ") OR observation_id IN (" + StringUtils.join(obsExternalIds, ',') + ")  )",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
         onlinePc.moveToFirst();
         while (!onlinePc.isAfterLast()) {
             Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
+            Long externalObsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_ID));
+
+            // Find UUID of parent observation
+            Cursor obsCursor = mContext.getContentResolver().query(Observation.CONTENT_URI, new String[] { Observation.UUID },
+                    "(_id = ?) OR (id = ?)", new String[] { String.valueOf(obsId), String.valueOf(externalObsId) }, Observation.DEFAULT_SORT_ORDER);
+            if (obsCursor.getCount() == 0) {
+                obsCursor.close();
+                continue;
+            }
+
+            obsCursor.moveToFirst();
+            String obsUUID = obsCursor.getString(obsCursor.getColumnIndexOrThrow(Observation.UUID));
+            obsCursor.close();
+
             String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
             String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
 
-            if (!mPhotoInfo.containsKey(obsId)) {
+            if (!mPhotoInfo.containsKey(obsUUID)) {
                 if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
                     // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
                     String originalPhotoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
@@ -150,7 +163,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
 
                 mPhotoInfo.put(
-                        obsId,
+                        obsUUID,
                         new String[] {
                                 photoFilename,
                                 null,
@@ -166,12 +179,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     public void refreshPhotoInfo() {
-        mPhotoInfo = new HashMap<Long, String[]>();
+        mPhotoInfo = new HashMap<String, String[]>();
         getPhotoInfo();
-    }
-
-    public void refreshPhotoInfo(long obsId) {
-        if (mPhotoInfo.containsKey(obsId)) mPhotoInfo.remove(obsId);
     }
 
     private static class ViewHolder {
@@ -214,7 +223,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
-    private Map<View, Long> mViewToObsId = new HashMap<View, Long>();
+    private Map<View, String> mViewToObsUUID = new HashMap<View, String>();
 
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
@@ -226,10 +235,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         c.moveToPosition(position);
 
         final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+        final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
+        String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
 
-        Long previousId = mViewToObsId.get(view);
-        if (previousId != null) {
-            if (previousId.equals(obsId)) {
+        String previousUUID = mViewToObsUUID.get(view);
+        if (previousUUID != null) {
+            if (previousUUID.equals(obsUUID)) {
                 return view;
             }
         }
@@ -291,12 +302,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         obsIconicImage.setImageResource(iconResource);
         obsImage.setVisibility(View.INVISIBLE);
 
-        String[] photoInfo = mPhotoInfo.get(obsId);
-
-        if (photoInfo == null) {
-            // Try getting the external observation photo info
-            photoInfo = mPhotoInfo.get(externalObsId);
-        }
+        String[] photoInfo = mPhotoInfo.get(obsUUID);
 
         if (photoInfo != null) {
             String photoFilename = photoInfo[2] != null ? photoInfo[2] : photoInfo[0];
@@ -468,7 +474,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
 
-        String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
         String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
         progress.setVisibility(View.GONE);
         if (!mIsGrid) {
@@ -541,7 +546,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
-        mViewToObsId.put(view, obsId);
+        mViewToObsUUID.put(view, obsUUID);
 
         return view;
     }
@@ -552,7 +557,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Observation obs = new Observation(c);
 
         Integer obsId = obs._id;
-        String[] photoInfo = mPhotoInfo.get(obsId);
+        String[] photoInfo = mPhotoInfo.get(obs.uuid);
         Timestamp syncedAt = obs._synced_at;
         Timestamp updatedAt = obs._updated_at;
         Boolean syncNeeded = (syncedAt == null) || (updatedAt.after(syncedAt));
