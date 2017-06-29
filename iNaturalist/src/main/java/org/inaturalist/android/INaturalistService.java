@@ -4027,6 +4027,7 @@ public class INaturalistService extends IntentService {
                                     @Override
                                     public void run() {
                                         callback.onLocation(getLastKnownLocationFromClient());
+                                        mLocationClient.disconnect();
                                     }
                                 }).start();
                             }
@@ -4042,6 +4043,7 @@ public class INaturalistService extends IntentService {
                                     @Override
                                     public void run() {
                                         callback.onLocation(null);
+                                        mLocationClient.disconnect();
                                     }
                                 }).start();
                             }
