@@ -192,8 +192,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 photoFilename = originalPhotoFilename;
             }
 
-            Log.e("AAA", "getPhotoInfo - " + position);
-
             onlinePc.moveToNext();
 
             if (position > 0) {
