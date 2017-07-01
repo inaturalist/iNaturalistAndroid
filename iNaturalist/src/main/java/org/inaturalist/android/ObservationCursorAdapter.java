@@ -36,11 +36,18 @@ import com.squareup.picasso.Picasso;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.ref.WeakReference;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private int mDimension;
@@ -71,12 +78,41 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         getPhotoInfo();
     }
 
+    // Loads the photo info map from a cached file (for faster loading)
+    private void loadPhotoInfo() {
+        mPhotoInfo = new HashMap<>();
+
+        File file = new File(mContext.getFilesDir(), "observations_photo_info.dat");
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
+            mPhotoInfo = (HashMap<String, String[]>) inputStream.readObject();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Save the photo info map into a file (for caching and faster loading)
+    private void savePhotoInfo() {
+        File file = new File(mContext.getFilesDir(), "observations_photo_info.dat");
+        try {
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+            outputStream.writeObject(mPhotoInfo);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void refreshCursor() {
         refreshCursor(null);
     }
 
     public void refreshCursor(String speciesGuess) {
-        SharedPreferences prefs = mContext.getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
+        SharedPreferences prefs = mContext.getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         String conditions = "(_synced_at IS NULL";
         if (login != null) {
@@ -111,71 +147,70 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
      * Retrieves photo ids and orientations for photos associated with the listed observations.
      */
     public void getPhotoInfo() {
+        loadPhotoInfo();
         Cursor c = getCursor();
         int originalPosition = c.getPosition();
         if (c.getCount() == 0) return;
 
+        ArrayList<Long> obsIds = new ArrayList<>();
+        ArrayList<Long> externalObsIds = new ArrayList<>();
+        HashMap<Long, String> obsUUIDs = new HashMap<>();
+
         c.moveToFirst();
-        ArrayList<Long> obsIds = new ArrayList<Long>();
-        ArrayList<Long> obsExternalIds = new ArrayList<Long>();
-        ArrayList<Long> photoIds = new ArrayList<Long>();
         while (!c.isAfterLast()) {
-            obsIds.add(c.getLong(c.getColumnIndexOrThrow(Observation._ID)));
-            try {
-                obsExternalIds.add(c.getLong(c.getColumnIndexOrThrow(Observation.ID)));
-            } catch (Exception exc) { }
+            long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+            long obsExternalId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
+            String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
+
+            obsIds.add(obsId);
+            externalObsIds.add(obsExternalId);
+            obsUUIDs.put(obsId, obsUUID);
+
             c.moveToNext();
         }
 
         c.moveToPosition(originalPosition);
 
-        // Add any photos
+        // Add any photos that were added/changed
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                new String[]{ObservationPhoto._ID, ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME },
-                "(_observation_id IN (" + StringUtils.join(obsIds, ',') + ") OR observation_id IN (" + StringUtils.join(obsExternalIds, ',') + ")  )",
+                new String[]{ ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID, ObservationPhoto._PHOTO_ID, ObservationPhoto.PHOTO_URL, ObservationPhoto.PHOTO_FILENAME, ObservationPhoto.ORIGINAL_PHOTO_FILENAME, ObservationPhoto.POSITION },
+                "((_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL)) AND (_observation_id IN (" + StringUtils.join(obsIds, ",") + ") OR observation_id IN (" + StringUtils.join(externalObsIds, ",") + "))",
                 null,
                 ObservationPhoto.DEFAULT_SORT_ORDER);
+
         onlinePc.moveToFirst();
         while (!onlinePc.isAfterLast()) {
+            String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
             Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
-            Long externalObsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_ID));
+            int position = onlinePc.getInt(onlinePc.getColumnIndexOrThrow(ObservationPhoto.POSITION));
+            String obsUUID = obsUUIDs.get(obsId);
 
-            // Find UUID of parent observation
-            Cursor obsCursor = mContext.getContentResolver().query(Observation.CONTENT_URI, new String[] { Observation.UUID },
-                    "(_id = ?) OR (id = ?)", new String[] { String.valueOf(obsId), String.valueOf(externalObsId) }, Observation.DEFAULT_SORT_ORDER);
-            if (obsCursor.getCount() == 0) {
-                obsCursor.close();
+            if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
+                // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
+                String originalPhotoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                photoFilename = originalPhotoFilename;
+            }
+
+            onlinePc.moveToNext();
+
+            if (position > 0) {
                 continue;
             }
 
-            obsCursor.moveToFirst();
-            String obsUUID = obsCursor.getString(obsCursor.getColumnIndexOrThrow(Observation.UUID));
-            obsCursor.close();
-
-            String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-            String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-
-            if (!mPhotoInfo.containsKey(obsUUID)) {
-                if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
-                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                    String originalPhotoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
-                    photoFilename = originalPhotoFilename;
-                }
-
-                mPhotoInfo.put(
-                        obsUUID,
-                        new String[] {
-                                photoFilename,
-                                null,
-                                photoUrl,
-                                null,
-                                null
-                        });
-            }
-            onlinePc.moveToNext();
+            mPhotoInfo.put(
+                    obsUUID,
+                    new String[] {
+                            photoFilename,
+                            null,
+                            photoUrl,
+                            null,
+                            null
+                    });
         }
-
         onlinePc.close();
+
+        savePhotoInfo();
     }
 
     public void refreshPhotoInfo() {
