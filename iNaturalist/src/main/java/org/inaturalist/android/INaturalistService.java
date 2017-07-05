@@ -347,7 +347,7 @@ public class INaturalistService extends IntentService {
                         }
                     });
                 }
-                
+
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
@@ -408,11 +408,11 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(OBSERVATION_RESULT, observation);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_ADD_FAVORITE)) {
+            } else if (action.equals(ACTION_ADD_FAVORITE)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 addFavorite(observationId);
 
-             } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
+            } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 removeFavorite(observationId);
 
@@ -455,7 +455,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
+            } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectObservations(projectId);
 
@@ -464,7 +464,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
+            } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectIdentifiers(projectId);
 
@@ -472,7 +472,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
+            } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectObservers(projectId);
 
@@ -480,7 +480,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
+            } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectSpecies(projectId);
 
@@ -488,15 +488,15 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_TAXON)) {
+            } else if (action.equals(ACTION_GET_TAXON)) {
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 BetterJSONObject taxon = getTaxon(taxonId);
-                
+
                 Intent reply = new Intent(ACTION_GET_TAXON_RESULT);
                 reply.putExtra(TAXON_RESULT, taxon);
                 sendBroadcast(reply);
 
-              } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
+            } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject user = getUserDetails(username);
 
@@ -508,7 +508,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
                 final String username = intent.getStringExtra(USERNAME);
                 final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
-                final float expandLocationByDegrees  = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
+                final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
 
                 getLocation(new IOnLocation() {
                     @Override
@@ -535,7 +535,7 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_RECOMMENDED_MISSIONS)) {
                 final String username = intent.getStringExtra(USERNAME);
-                final float expandLocationByDegrees  = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
+                final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
 
                 getLocation(new IOnLocation() {
                     @Override
@@ -626,7 +626,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_ADD_COMMENT)) {
+            } else if (action.equals(ACTION_ADD_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
                 addComment(observationId, body);
@@ -638,7 +638,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(OBSERVATION_RESULT, observation);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_UPDATE_COMMENT)) {
+            } else if (action.equals(ACTION_UPDATE_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int commentId = intent.getIntExtra(COMMENT_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
@@ -651,7 +651,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(OBSERVATION_RESULT, observation);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_DELETE_COMMENT)) {
+            } else if (action.equals(ACTION_DELETE_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int commentId = intent.getIntExtra(COMMENT_ID, 0);
                 deleteComment(commentId);
@@ -693,7 +693,7 @@ public class INaturalistService extends IntentService {
                 String fullName = intent.getStringExtra(ACTION_FULL_NAME);
                 String bio = intent.getStringExtra(ACTION_USER_BIO);
                 String userPic = intent.getStringExtra(ACTION_USER_PIC);
-                boolean deletePic  = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
+                boolean deletePic = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
 
                 JSONObject newUser = updateUser(username, fullName, bio, userPic, deletePic);
 
@@ -730,14 +730,14 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(USER, newUser != null ? new BetterJSONObject(newUser) : null);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_USER_DETAILS)) {
+            } else if (action.equals(ACTION_GET_USER_DETAILS)) {
                 BetterJSONObject user = getUserDetails();
 
                 Intent reply = new Intent(ACTION_GET_USER_DETAILS_RESULT);
                 reply.putExtra(USER, user);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
+            } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
                 int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
                 SerializableJSONArray taxa = getTaxaForGuide(guideId);
 
@@ -746,16 +746,16 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
+            } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
                 SerializableJSONArray guides = getAllGuides();
-                
+
                 mApp.setServiceResult(ACTION_ALL_GUIDES_RESULT, guides);
                 Intent reply = new Intent(ACTION_ALL_GUIDES_RESULT);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_MY_GUIDES)) {
-            	 SerializableJSONArray guides = null;
+            } else if (action.equals(ACTION_GET_MY_GUIDES)) {
+                SerializableJSONArray guides = null;
                 guides = getMyGuides();
 
                 Intent reply = new Intent(ACTION_MY_GUIDES_RESULT);
@@ -815,11 +815,11 @@ public class INaturalistService extends IntentService {
                 });
 
             } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
-                 SerializableJSONArray projects = getFeaturedProjects();
+                SerializableJSONArray projects = getFeaturedProjects();
 
-                 Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
-                 reply.putExtra(PROJECTS_RESULT, projects);
-                 sendBroadcast(reply);
+                Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
+                reply.putExtra(PROJECTS_RESULT, projects);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_JOINED_PROJECTS_ONLINE)) {
                 SerializableJSONArray projects = null;
@@ -834,32 +834,32 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
                 SerializableJSONArray projects = null;
-            	 if (mCredentials != null) {
-            		 projects = getJoinedProjectsOffline();
-            	 }
+                if (mCredentials != null) {
+                    projects = getJoinedProjectsOffline();
+                }
 
-                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
-                 reply.putExtra(PROJECTS_RESULT, projects);
-                 sendBroadcast(reply);
-                 
+                Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
+                reply.putExtra(PROJECTS_RESULT, projects);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_REMOVE_OBSERVATION_FROM_PROJECT)) {
-                 int observationId = intent.getExtras().getInt(OBSERVATION_ID);
-                 int projectId = intent.getExtras().getInt(PROJECT_ID);
-                 BetterJSONObject result = removeObservationFromProject(observationId, projectId);
+                int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+                int projectId = intent.getExtras().getInt(PROJECT_ID);
+                BetterJSONObject result = removeObservationFromProject(observationId, projectId);
 
             } else if (action.equals(ACTION_ADD_OBSERVATION_TO_PROJECT)) {
-                 int observationId = intent.getExtras().getInt(OBSERVATION_ID);
-                 int projectId = intent.getExtras().getInt(PROJECT_ID);
-                 BetterJSONObject result = addObservationToProject(observationId, projectId);
+                int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+                int projectId = intent.getExtras().getInt(PROJECT_ID);
+                BetterJSONObject result = addObservationToProject(observationId, projectId);
 
-                 Intent reply = new Intent(ADD_OBSERVATION_TO_PROJECT_RESULT);
-                 reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
-                 sendBroadcast(reply);
-                 
+                Intent reply = new Intent(ADD_OBSERVATION_TO_PROJECT_RESULT);
+                reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
                 int id = intent.getExtras().getInt(CHECK_LIST_ID);
                 SerializableJSONArray checkList = getCheckList(id);
-                
+
                 Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
                 reply.putExtra(CHECK_LIST_RESULT, checkList);
                 sendBroadcast(reply);
@@ -888,7 +888,7 @@ public class INaturalistService extends IntentService {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 JSONObject observationJson = getObservationJson(id, false);
                 Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
-                
+
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
                 mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
@@ -896,17 +896,17 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
-                
+
             } else if (action.equals(ACTION_JOIN_PROJECT)) {
                 int id = intent.getExtras().getInt(PROJECT_ID);
                 joinProject(id);
-                
+
             } else if (action.equals(ACTION_LEAVE_PROJECT)) {
                 int id = intent.getExtras().getInt(PROJECT_ID);
                 leaveProject(id);
-                
+
             } else if (action.equals(ACTION_PULL_OBSERVATIONS)) {
-            	// Download observations without uploading any new ones
+                // Download observations without uploading any new ones
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
 
@@ -940,8 +940,13 @@ public class INaturalistService extends IntentService {
                     // Already in middle of syncing
                     dontStopSync = true;
                 }
- 
+
             }
+        } catch (IllegalArgumentException e) {
+            // Handle weird exception raised when sendBroadcast causes serialization of BetterJSONObject
+            // and that causes an IllegalArgumentException (see only once).
+            e.printStackTrace();
+            mIsSyncing = false;
         } catch (CancelSyncException e) {
             cancelSyncRequested = true;
             mApp.setCancelSync(false);
