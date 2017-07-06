@@ -1595,10 +1595,12 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             ObservationPhoto op = new ObservationPhoto(c);
             if (op._synced_at != null) {
-                JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
-                if (result == null) {
-                    c.close();
-                    throw new SyncFailedException();
+                if (op.id != null) {
+                    JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
+                    if (result == null) {
+                        c.close();
+                        throw new SyncFailedException();
+                    }
                 }
             }
             increaseProgressForObservation(observation);
