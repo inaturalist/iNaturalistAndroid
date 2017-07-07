@@ -261,7 +261,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private Map<View, String> mViewToObsUUID = new HashMap<View, String>();
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = super.getView(position, convertView, parent);
+        final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
         Cursor c = this.getCursor();
         if (c.getCount() == 0) {
@@ -288,7 +288,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             holder = (ViewHolder) view.getTag();
         }
 
-        ImageView obsImage = holder.obsImage;
+        final ImageView obsImage = holder.obsImage;
         ImageView obsIconicImage = holder.obsIconicImage;
         TextView speciesGuess = holder.speciesGuess;
         TextView dateObserved = holder.dateObserved;
@@ -343,6 +343,15 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             String photoFilename = photoInfo[2] != null ? photoInfo[2] : photoInfo[0];
             if (mIsGrid && (convertView == null)) {
                 obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+
+                view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        mDimension = mGrid.getColumnWidth();
+                        obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
+                    }
+                });
             }
 
             loadObsImage(position, obsImage, photoFilename, photoInfo[2] != null);
