@@ -347,7 +347,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        } else {
+                            view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        }
+
                         mDimension = mGrid.getColumnWidth();
                         obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
                     }

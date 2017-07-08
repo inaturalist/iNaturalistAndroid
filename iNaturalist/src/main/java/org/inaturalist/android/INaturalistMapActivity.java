@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.RunnableFuture;
 
 import android.app.NotificationManager;
 import android.graphics.Bitmap;
@@ -41,6 +42,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.text.Editable;
@@ -53,6 +55,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -1033,11 +1036,22 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     
     private void loadExistingObservations(boolean refreshAdapters) {
     	if ((refreshAdapters) || (mGridAdapter == null) || (mListAdapter == null)) {
-    		mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservationsGrid.getColumnWidth(), mObservations);
-    		mObservationsGrid.setAdapter(mGridAdapter);
-
     		mListAdapter = new ObservationListAdapter(INaturalistMapActivity.this, mObservations);
     		mObservationsList.setAdapter(mListAdapter);
+
+			mObservationsGrid.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+				@Override
+				public void onGlobalLayout() {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+						mObservationsGrid.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+					} else {
+						mObservationsGrid.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+					}
+
+					mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservationsGrid.getColumnWidth(), mObservations);
+					mObservationsGrid.setAdapter(mGridAdapter);
+				}
+			});
     	} else {
     		mGridAdapter.notifyDataSetChanged();
     		mListAdapter.notifyDataSetChanged();
