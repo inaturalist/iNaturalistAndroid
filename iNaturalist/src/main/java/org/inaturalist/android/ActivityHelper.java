@@ -261,7 +261,7 @@ public class ActivityHelper {
                 include(SphericalUtil.computeOffset(latlng, radius, 180)).
                 include(SphericalUtil.computeOffset(latlng, radius, 270)).build();
 
-        return CameraUpdateFactory.newLatLngBounds(bounds, radius);
+        return CameraUpdateFactory.newLatLngBounds(bounds, radius + 10);
     }
 
     public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson) {
@@ -345,7 +345,12 @@ public class ActivityHelper {
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
+                try {
+                    if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
+                } catch (IllegalStateException exc) {
+                    // Handles weird exception is raised ("View size is too small after padding is applied")
+                    exc.printStackTrace();
+                }
             }
         });
 
