@@ -1650,7 +1650,7 @@ public class ObservationEditor extends AppCompatActivity {
                     if((null != addresses) && (addresses.size() > 0)) {
                         Address address = addresses.get(0);
                         final StringBuilder location = new StringBuilder();
-                        for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                        for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
                             location.append(address.getAddressLine(i));
                             location.append(" ");
                         }
