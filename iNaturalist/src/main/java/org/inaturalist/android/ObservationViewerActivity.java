@@ -515,6 +515,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         reloadPhotos();
         loadObservationIntoUI();
+        getCommentIdList();
         refreshDataQuality();
     }
 
@@ -1009,18 +1010,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                 mCommentsIds = null;
                                 refreshActivity();
 
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
                                 // Refresh the comment/id list
                                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
                                 BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
-                                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
-                                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                                startService(serviceIntent2);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -1524,8 +1516,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 }
             }
         }
-
-        getCommentIdList();
 
         if (!mReadOnly) {
             // Get IDs of project-observations
@@ -2053,6 +2043,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                 reloadPhotos();
                 loadObservationIntoUI();
+                getCommentIdList();
                 setupMap();
                 refreshActivity();
                 refreshFavorites();

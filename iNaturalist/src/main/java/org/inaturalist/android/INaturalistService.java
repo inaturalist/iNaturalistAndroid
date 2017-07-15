@@ -422,13 +422,20 @@ public class INaturalistService extends IntentService {
                 String body = intent.getStringExtra(IDENTIFICATION_BODY);
                 addIdentification(observationId, taxonId, body);
 
+                // Wait a little before refreshing the observation details - so we'll let the server update the ID
+                // list (otherwise, it won't return the new ID)
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 // Reload the observation at the end (need to refresh comment/ID list)
                 Observation observation = getObservation(observationId);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
                 sendBroadcast(reply);
-
 
             } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
                 int fieldId = intent.getIntExtra(FIELD_ID, 0);
@@ -630,6 +637,14 @@ public class INaturalistService extends IntentService {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
                 addComment(observationId, body);
+
+                // Wait a little before refreshing the observation details - so we'll let the server update the comment
+                // list (otherwise, it won't return the new comment)
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 // Reload the observation at the end (need to refresh comment/ID list)
                 Observation observation = getObservation(observationId);

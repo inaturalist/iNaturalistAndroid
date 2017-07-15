@@ -61,6 +61,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
     private Context mContext;
     private ObservationReceiver mObservationReceiver;
     private Map<Integer, List<Pair<View, Integer>>> mObsIdToView;
+    private Map<Integer, Boolean> mObsIdBeingDownloaded;
 
     public interface IOnUpdateViewed {
         void onUpdateViewed(Observation obs, int position);
@@ -88,6 +89,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, mContext);
 
         mObsIdToView = new HashMap<>();
+        mObsIdBeingDownloaded = new HashMap<>();
     }
 
     @Override
@@ -234,9 +236,13 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             userPic.setVisibility(View.GONE);
             view.setBackgroundResource(R.drawable.activity_item_background);
 
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
-            mContext.startService(serviceIntent);
+            if (!mObsIdBeingDownloaded.getOrDefault(obsId, false)) {
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
+                mContext.startService(serviceIntent);
+            }
+
+            mObsIdBeingDownloaded.put(obsId, true);
 
             // So when we get the result - we'll know which obs pic to set
             if (!mObsIdToView.containsKey(obsId)) {
@@ -501,7 +507,6 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
             List<Pair<View, Integer>> views = mObsIdToView.get(observation.id);
             if (views == null) return;
-
 
             // Update all views (activity update rows) that have that obs
             for (Pair<View, Integer> pair : views) {

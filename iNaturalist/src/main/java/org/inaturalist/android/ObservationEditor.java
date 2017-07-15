@@ -1605,6 +1605,8 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void handleNewLocation(Location location) {
+        boolean stoppedGettingLocation = false;
+
         if (isBetterLocation(location, mCurrentLocation)) {
             setCurrentLocation(location);
         }
@@ -1612,17 +1614,22 @@ public class ObservationEditor extends AppCompatActivity {
         if (locationIsGood(mCurrentLocation)) {
             // Log.d(TAG, "location was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
+            stoppedGettingLocation = true;
         }
 
         if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
             // Log.d(TAG, "location request was old and location was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
+            stoppedGettingLocation = true;
         }
 
-        mLocationProgressView.setVisibility(View.GONE);
         mFindingCurrentLocation.setVisibility(View.GONE);
         mLocationRefreshButton.setVisibility(View.VISIBLE);
-        mLocationIcon.setVisibility(View.VISIBLE);
+
+        if (stoppedGettingLocation) {
+            mLocationProgressView.setVisibility(View.GONE);
+            mLocationIcon.setVisibility(View.VISIBLE);
+        }
     }
 
     private void stopGetLocation() {

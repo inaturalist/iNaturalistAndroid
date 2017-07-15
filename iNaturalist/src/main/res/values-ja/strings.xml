@@ -44,6 +44,8 @@
   <string name="error_couldnt_connect_to_server">サーバーに接続できませんでした。</string>
   <string name="please_sign_in">サインインしてください</string>
   <string name="please_sign_in_description">あなたのiNaturalistアカウントにサインインするか、新たにサインアップを行ってください。</string>
+  <string name="please_enable_location_services">現在の場所を見つけるために、位置情報サービスを有効にしてください...</string>
+  <string name="go_to_settings">設定に進む</string>
   <string name="photo_not_specified">写真が特定されていません</string>
   <string name="set_date">日付の設定</string>
   <string name="set_time">時刻設定</string>
@@ -81,7 +83,7 @@
   <string name="save">保存</string>
   <string name="no_observations_yet">まだ観察記録がありません！</string>
   <string name="sign_in_to_inat">iNaturalist アカウントにサインインする</string>
-  <string name="sign_in">サインイン</string>
+  <string name="sign_in">ログイン</string>
   <string name="or">または</string>
   <string name="create_new_account">新規アカウントの作成</string>
   <string name="signed_in_as_plain">としてサインインしています</string>
@@ -96,28 +98,28 @@
   <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
   <string name="com_facebook_loginview_log_out_button">ログアウト</string>
   <string name="com_facebook_loginview_log_in_button">ログイン</string>
-  <string name="com_facebook_loginview_logged_in_as">%1$sとしてログインしました</string>
+  <string name="com_facebook_loginview_logged_in_as">%1$s としてログイン中</string>
   <string name="com_facebook_loginview_logged_in_using_facebook">Facebookアカウントでログインしました</string>
   <string name="com_facebook_loginview_log_out_action">ログアウト</string>
   <string name="com_facebook_loginview_cancel_action">キャンセル</string>
   <string name="com_facebook_logo_content_description">Facebookのロゴ</string>
-  <string name="com_facebook_usersettingsfragment_log_in_button">ログインします...</string>
-  <string name="com_facebook_usersettingsfragment_logged_in">ログインしました</string>
+  <string name="com_facebook_usersettingsfragment_log_in_button">ログイン...</string>
+  <string name="com_facebook_usersettingsfragment_logged_in">ログイン中</string>
   <string name="com_facebook_usersettingsfragment_not_logged_in">ログインしていません</string>
-  <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d に此処にいました。</string>
+  <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d に此処にいました</string>
   <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
   <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d に此処にいました</string>
-  <string name="com_facebook_picker_done_button_text">完成</string>
+  <string name="com_facebook_picker_done_button_text">完了</string>
   <string name="com_facebook_choose_friends">友達を選択</string>
   <string name="com_facebook_nearby">現在地の近く</string>
-  <string name="com_facebook_loading">読み込み中です...</string>
+  <string name="com_facebook_loading">読み込み中…</string>
   <string name="com_facebook_internet_permission_error_title">AndroidManifestエラー</string>
-  <string name="com_facebook_internet_permission_error_message">WebViewのログインには、インターネット認証が必要です</string>
-  <string name="com_facebook_requesterror_web_login">あなたのFacebookアカウントはロックされています。操作を続けるには www.facebook.com  にログインしてください</string>
+  <string name="com_facebook_internet_permission_error_message">WebViewのログインには、インターネットアクセス許可が必要です</string>
+  <string name="com_facebook_requesterror_web_login">あなたのFacebookアカウントはロックされています。操作を続けるには www.facebook.com にログインしてください</string>
   <string name="com_facebook_requesterror_relogin">Facebookに再接続するために、このアプリでもう一度ログインし直してください。</string>
-  <string name="com_facebook_requesterror_password_changed">あなたのFacebookパスワードは変更されています。再度Facebookアカウントに接続するには、このアプリにグインし直してください。</string>
+  <string name="com_facebook_requesterror_password_changed">あなたのFacebookパスワードは変更されています。再度Facebookアカウントに接続するには、このアプリにログインし直してください。</string>
   <string name="com_facebook_requesterror_reconnect">Facebookに再接続するために、このアプリでもう一度ログインし直してください。</string>
-  <string name="com_facebook_requesterror_permissions">このアプリはこの操作を行う権限がありません。パーミッションを変更するには、再度アプリにログインしてください。</string>
+  <string name="com_facebook_requesterror_permissions">このアプリはこの操作を行う権限がありません。アクセス許可を変更するため、もう一度アプリにログインしてください。</string>
   <string name="pull_to_sync">スワイプダウンして同期します...</string>
   <string name="release_to_sync">離して同期します...</string>
   <string name="edit_observation">観察記録を編集</string>
@@ -199,7 +201,32 @@
   <string name="release_to_refresh">離して更新</string>
   <string name="refreshing">更新中...</string>
   <string name="sync_x_observations">%1$d 個の観察記録を同期</string>
+  <string name="sync_1_observation">1 観察記録を同期</string>
   <string name="sync_observations">観察記録を同期</string>
+  <string name="lets_get_started">始めましょう!</string>
+  <string name="view_nearby_observations">近隣の観察記録を表示</string>
+  <string name="skip_for_now">今はスキップ</string>
+  <string-array name="tutorial_images">
+    <item>チュートリアル1</item>
+    <item>チュートリアル2</item>
+    <item>チュートリアル3</item>
+    <item>チュートリアル4</item>
+    <item>チュートリアル5</item>
+  </string-array>
+  <string-array name="tutorial_titles">
+    <item></item>
+    <item>観察</item>
+    <item>共有</item>
+    <item>学習</item>
+    <item>貢献する</item>
+  </string-array>
+  <string-array name="tutorial_descriptions">
+    <item>自分の周りを探索し、自然とつながろう</item>
+    <item>外に出ましょう! 何か野生のものを見つけて、クリアな、フルフレームの写真を撮しましょう。</item>
+    <item>あなたが観察したものをコミュニティーと共有しましょう</item>
+    <item>観察のコメントと同定を確認してください!</item>
+    <item><![CDATA[<b>研究用</b> の観察は、自然をよりよく理解し、保護するために取り組んでいる科学者と共有されます。]]></item>
+  </string-array>
   <string-array name="geoprivacy_items">
     <item>オープン</item>
     <item>不明瞭</item>
@@ -209,53 +236,305 @@
   <string name="alert_unsupported_media_type">申し訳ありませんがGoogle Drive、Dropbox、等からの写真のアップロードは現在サポートしておりません。\n写真をローカルストレージにダウンロードし直して再試行してください。</string>
   <string name="alert_title_use">使用する</string>
   <string name="inat_network_settings">iNaturalist ネットワーク設定</string>
-  <string name="network_restart">ネットワーク設定が変更されました。アプリを再起動して変更を反映させてください。</string>
+  <string name="network_restart">ネットワーク設定を変更しました。変更を反映するためにアプリを再起動してください。</string>
   <string-array name="id_please_items">
     <item>はい</item>
     <item>いいえ</item>
   </string-array>
   <string name="explore">探す</string>
-  <string name="explore_description">近くの観察記録を探す。</string>
+  <string name="explore_description">近くの観察記録を探します</string>
   <string name="restricted_to_current_map_area">現在のマップ領域に制限</string>
   <string name="search">検索</string>
   <string-array name="explore_results_empty">
-    <item><![CDATA[<i>近くの観察記録を見つける。</i>]]></item>
-    <item><![CDATA[<i>私の観察記録を見つける。</i>]]></item>
+    <item><![CDATA[<i>近くの観察記録を見つける</i>]]></item>
+    <item><![CDATA[<i>私の観察記録を見つける</i>]]></item>
   </string-array>
   <string-array name="explore_results_with_text">
-    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>生物</b>を見つける。]]></item>
-    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>人</b>を見つける。]]></item>
-    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>場所</b>を見つける。]]></item>
-    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>プロジェクト</b>を見つける。]]></item>
+    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>生物</b>を見つける]]></item>
+    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>人</b>を見つける]]></item>
+    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>場所</b>を見つける]]></item>
+    <item><![CDATA[名前が\'<i>%1$s</i>\'の<b>プロジェクト</b>を見つける]]></item>
   </string-array>
   <string name="searching_for_critters">生物を検索しています...</string>
-  <string name="no_critters_found">その生物は見つかりませんでした。</string>
+  <string name="no_critters_found">そのような生物は見つかりませんでした</string>
   <string name="which_critter">どの生物ですか？</string>
-  <string name="searching_for_people">人を検索中です...</string>
-  <string name="no_person_found">その人は見つかりませんでした。</string>
+  <string name="searching_for_people">人を検索しています...</string>
+  <string name="no_person_found">そのような人物は見つかりませんでした</string>
   <string name="which_person">どの人ですか？</string>
-  <string name="searching_for_places">場所を検索中...</string>
-  <string name="no_place_found">その場所は見つかりませんでした。</string>
+  <string name="searching_for_places">場所を検索しています...</string>
+  <string name="no_place_found">その場所は見つかりませんでした</string>
   <string name="which_place">どの場所ですか？</string>
-  <string name="searching_for_projects">プロジェクトを検索中です...</string>
-  <string name="no_project_found">そのプロジェクトは見つかりませんでした。</string>
+  <string name="searching_for_projects">プロジェクトを検索しています...</string>
+  <string name="no_project_found">そのようなプロジェクトは見つかりませんでした</string>
   <string name="which_project">どのプロジェクト？</string>
   <string name="observed_taxa">%1$d 個の観察されたtaxa（分類群）</string>
   <string name="and">および</string>
   <string name="named">名前 \'%1$s\'</string>
-  <string name="seen_by">\'%1$s\' が見た。</string>
-  <string name="seen_at">\'%1$s\' で見た。</string>
+  <string name="seen_by">\'%1$s\' が見た</string>
+  <string name="seen_at">\'%1$s\' で見た</string>
   <string name="in_project">プロジェクト\'%1$s\'で</string>
   <string name="details">詳細</string>
   <string name="accuracy">精度%1$dm</string>
-  <string name="must_login_to_show_my_observations">あなたの観察を表示するはログインが必要です。</string>
+  <string name="must_login_to_show_my_observations">あなたの観察記録を表示するはログインが必要です</string>
   <string name="observation_photos">観察記録の写真</string>
-  <string name="must_login_to_add_comment">コメントを追加するはログインが必要です。</string>
-  <string name="must_login_to_add_id">IDを追加するはログインが必要です。</string>
+  <string name="must_login_to_add_comment">コメントを追加するはログインが必要です</string>
+  <string name="must_login_to_add_id">IDを追加するにはログインが必要です。</string>
   <string name="grid">グリッド</string>
   <string name="list">リスト</string>
   <string name="remove">削除しますか？</string>
-  <string name="no_observations_found">観測記録が見つかりません。</string>
+  <string name="no_observations_found">観測記録が見つかりません</string>
   <string name="id_please_tag">IDをお願いします。</string>
-  <string name="research_tag">研究</string>
+  <string name="research_tag">研究用</string>
+  <string name="sync_failed">同期に失敗しました!</string>
+  <string name="observation_sync_failed">観察記録の同期に失敗しました!</string>
+  <string name="not_all_observations_were_synced">すべての観察記録は同期されていません。</string>
+  <string name="photo_sync_failed">写真の同期が失敗しました。</string>
+  <string name="not_all_photos_were_synced">すべての写真は同期されていません。</string>
+  <string name="license_none">著作権を全て留保する</string>
+  <string name="sources_and_attribution">ソースと帰属</string>
+  <string name="photos"><![CDATA[<b>写真:</b> %1$s]]></string>
+  <string name="text"><![CDATA[<b>本文:</b> %1$s]]></string>
+  <!-- The dialog content asking the user to switch to another iNat network -->
+  <string name="alert_message_use_inaturalist">iNaturalistの一般ネットワークです。この設定にしていただくと、このアプリはiNaturalistの世界ネットワークを使用します。</string>
+  <string name="alert_message_use_naturalista">iNaturalist は、メキシコでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
+  <string name="alert_message_use_naturewatchnz">NatureWatch NZ は、ニュージーランドでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
+  <string name="alert_message_use_inaturalistcanada">iNaturalist カナダは、カナダでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
+  <string name="alert_message_use_naturalistacolombia">Naturalista は、コロンビアでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
+  <!-- The text shown in a dialog box when the user is about to sign up -->
+  <string name="inat_sign_up_inaturalist">新しいアカウントを作成するために、iNaturalist.orgにアクセスしようとしています。新しいアカウントの作成を確認メールのリンクをクリックすることで確認したら、ユーザー名とパスワードを入力してログインできるようになります。</string>
+  <string name="inat_sign_up_naturalista">新しいアカウントを作成するために、NaturaListaにアクセスしようとしています。新しいアカウントの作成を確認メールのリンクをクリックすることで確認したら、ユーザー名とパスワードを入力してログインできるようになります。</string>
+  <string name="inat_sign_up_naturewatchnz">新しいアカウントを作成するために、NatureWatchNz.orgにアクセスしようとしています。新しいアカウントの作成を確認メールのリンクをクリックすることで確認したら、ユーザー名とパスワードを入力してログインできるようになります。</string>
+  <string name="inat_sign_up_inaturalistcanada">新しいアカウントを作成するために、iNaturalist.caにアクセスしようとしています。新しいアカウントの作成を確認メールのリンクをクリックすることで確認したら、ユーザー名とパスワードを入力してログインできるようになります。</string>
+  <string name="inat_sign_up_naturalistacolombia">新しいアカウントを作成するために、NaturaListaコロンビアにアクセスしようとしています。新しいアカウントの作成を確認メールのリンクをクリックすることで確認したら、ユーザー名とパスワードを入力してログインできるようになります。</string>
+  <string name="description">説明</string>
+  <string name="editor">編集者</string>
+  <string name="license">ライセンス</string>
+  <string name="download_for_offline_use">オフラインでも使用できるようにダウンロードする</string>
+  <string name="download_not_available">ダウンロードは利用できません</string>
+  <string name="guide_editor_must_enable_this_feature">ガイドの編集者はこの機能を有効にする必要があります。</string>
+  <string name="are_you_sure">本当によろしいですか？</string>
+  <string name="download_guide_alert">%1$sのデータをダウンロードして、インター ネットに接続できない場合でも、このガイドを使用することができるようにします。</string>
+  <string name="download">ダウンロード</string>
+  <string name="failed_to_download_guide">ガイドのダウンロードに失敗しました</string>
+  <string name="internet_connection_seems_to_be_offline">インターネット接続がオフラインのようです。</string>
+  <string name="downloading">ダウンロード中…</string>
+  <string name="extracting">抽出中...</string>
+  <string name="downloaded">ダウンロード完了</string>
+  <string name="delete_download">ダウンロードを削除</string>
+  <string name="re_download">ダウンロード再開</string>
+  <string name="error">エラー</string>
+  <string name="could_not_retrieve_guide">ガイド詳細を取得できませんでした - おそらくネットワーク エラーです。</string>
+  <string name="select_source">収録源を選択</string>
+  <string name="inat_support_email_subject">INaturalistのヘルプ (バージョン %1$s - %2$s; ユーザー id - %3$s)</string>
+  <string name="send_email">メールを送信...</string>
+  <string name="login_with">こちらでログイン</string>
+  <string name="facebook">Facebook</string>
+  <string name="gplus">Google+</string>
+  <string name="email">メールアドレス</string>
+  <string name="sign_up_with">こちらでサインアップ</string>
+  <string name="skip">スキップ ›</string>
+  <string name="already_have_account">すでにアカウントをお持ちですか?</string>
+  <string name="log_in">ログイン</string>
+  <string name="sign_up">新規登録</string>
+  <string name="min_6_chars">6文字以上</string>
+  <string name="use_my_license"><![CDATA[私の観察データを科学研究用に提供することに同意します。<b>詳細について</b>]]></string>
+  <string name="content_licensing">コンテンツのライセンス</string>
+  <string name="content_licensing_description">ここにチェックを入れると投稿した写真に「表示—非営利」のクリエイティブ・コモンズ・ライセンスが適用されます。別のライセンスの選択もできますし、後でライセンスを削除することもできますが、このライセンスは観察データを科学研究目的に提供するには推奨しているものです。</string>
+  <string name="username_or_email">ユーザー名またはメールアドレス</string>
+  <string name="forgot">お忘れの方</string>
+  <string name="or_login_with">または別のアカウントでログイン:</string>
+  <string name="quantity">数量</string>
+  <string name="recommended_next_step">推奨される次のステップ</string>
+  <string name="registering">登録しています...</string>
+  <string name="could_not_register_user">ユーザーを登録できませんでした</string>
+  <string name="login_signup">ログインまたは新規登録</string>
+  <string name="please_sign_in_via_settings_for_guides">ガイドを表示するはログインが必要です。</string>
+  <string name="please_sign_in_for_updates">更新を表示するはログインが必要です。</string>
+  <string name="by_using_inat_terms"><![CDATA[INaturalist を使用することで <b><a href="http://www.inaturalist.org/pages/terms">サービスの利用規約</a></b> および <b><a href="http://www.inaturalist.org/pages/privacy">プライバシー ポリシー</a></b> に同意します]]></string>
+  <string name="activity">活動</string>
+  <string name="observation_count">%1$d件の観察記録</string>
+  <string name="observation_count_single">%1$d件の観察記録</string>
+  <string name="camera">写真を撮影</string>
+  <string name="upload_photo">画像を選択</string>
+  <string name="menu_text">写真をスキップ</string>
+  <string name="first">最初</string>
+  <string name="make_first">最初に作る</string>
+  <string name="help_id_this_species">これを識別するのを手伝ってください</string>
+  <string name="notes">メモ</string>
+  <string name="location_is">場所は</string>
+  <string name="is_captive">飼育または栽培されている</string>
+  <string name="location_visibility">場所の表示</string>
+  <string name="set_location">場所を設定</string>
+  <string name="coordinates_lat">緯度:</string>
+  <string name="coordinates_lon">経度:</string>
+  <string name="coordinates_acc">精度 </string>
+  <string name="required">* 必須</string>
+  <string name="downloading_observations">観察記録をダウンロードしています...</string>
+  <string name="no_thanks">いいえ、結構です</string>
+  <string name="turn_on">オンにする</string>
+  <string name="introducing_auto_sync">自動同期機能が追加されました!</string>
+  <string name="turn_on_auto_sync">自動同期機能をオンにすれば、観察記録がiNaturalistに自動的にアップロードされます。</string>
+  <string name="automatic_upload">自動アップロード (自動同期)</string>
+  <string name="waiting_to_upload">アップロードを待っています...</string>
+  <string name="uploading">アップロードしています...</string>
+  <string name="failed_to_add_to_project">プロジェクト \'%1$s\' に追加できませんでした: %2$s</string>
+  <string name="needs_your_attention">ご確認ください...</string>
+  <string name="observation">観察記録</string>
+  <string name="share">共有</string>
+  <string name="unable_to_acquire_location">位置を取得できません</string>
+  <string name="casual_grade">一般用</string>
+  <string name="needs_id">要ID</string>
+  <string name="research_grade">研究用</string>
+  <string name="data_quality">データ品質</string>
+  <string name="casual_grade_add_location"><![CDATA[ <b>場所</b>を追加して、この観察記録を"IDが必要"の状態に進めます。 ]]></string>
+  <string name="casual_grade_add_date"><![CDATA[ <b>日付</b>を追加して、この観察記録を"IDが必要"の状態に進めます。 ]]></string>
+  <string name="casual_grade_add_photo"><![CDATA[ <b>写真</b>を追加して、この観察記録を"IDが必要"の状態に進めます。 ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ <b>飼育/栽培</b>のため、観察記録は一般用です。 ]]></string>
+  <string name="needs_id_more_ids"><![CDATA[ 観察記録が、「研究用」の状態になるには、コミュニティから<b>さらに同定</b>が必要です。 ]]></string>
+  <string name="included_in_projects">%1$dプロジェクトに含まれています</string>
+  <string name="included_in_projects_singular">%1$dプロジェクトに含まれています</string>
+  <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy は、あなたが観察をすることができる空間座標 (緯度と経度) の表示方法を制御する設定です。ここでのオプションは: <br/><b>オープン</b> - 分類群を侵害しない限り、だれでも座標を見ることができます。<br/><b>隠蔽</b> - 赤道面座標系を含む 0.2 × 0.2 度の領域内のランダム点として表示される公共測地座標系で、極に近づくにつれて減少する、赤道では不確実な約 22 x 22 km の正方形の領域ということになります。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><b>プライベート</b> - 座標は公図から完全に隠蔽されます。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><br/>個々のプロジェクトのキュレーターは Geoprivacy の設定に関係なく、常に座標を見ることができるため、誰が座標にアクセスするかについて不安がある場合は、参加しているプロジェクトのキュレーターを確認する必要があることにご注意ください。 ]]></string>
+  <string name="agree2">賛成</string>
+  <string name="id_title">%1$s\'s ID • %2$s</string>
+  <string name="comment_title">%1$s • %2$s</string>
+  <string name="delete">削除</string>
+  <string name="delete_id">同定を削除</string>
+  <string name="delete_comment">コメントを削除</string>
+  <string name="delete_id_message">この同定を削除してもよろしいですか?</string>
+  <string name="delete_comment_message">このコメントを削除してもよろしいですか?</string>
+  <string name="comment">コメント </string>
+  <string name="suggest_id">IDを提供</string>
+  <string name="update_comment">コメントを更新します。</string>
+  <string name="fave_this_observation">この観測記録をお気に入りに登録する</string>
+  <string name="faved">お気に入り登録済</string>
+  <string name="be_the_first_to_fave_this_obs">最初にこの観察記録をお気に入りにする...</string>
+  <string name="leave_a_comment">コメントを残すか、同定を提案してください...</string>
+  <string name="location_coords">緯度: %1$s 経度: %2$s 精度: %3$s</string>
+  <string name="location_coords_no_acc">緯度: %1$s 経度: %2$s</string>
+  <string name="location">位置情報</string>
+  <string name="login_in_to_add_comments_ids">ログインまたは登録して、コメントを残したり、同定を提案してください...</string>
+  <string name="login_in_to_fav">ログインまたは登録して、お気に入りを見たり、この観察記録をお気に入りにしてください...</string>
+  <string name="sync_obs_to_see_favs">お気に入りを見たり、お気に入りに登録するために、この観察記録を同期します...</string>
+  <string name="sync_obs_to_add_comments_ids">コメントを残したり、同定を提案するために、この観察記録を同期します...</string>
+  <string name="no_photo">写真なし</string>
+  <string name="about_this_species">この種について</string>
+  <string name="view_on_wikipedia">ウィキペディアの記事</string>
+  <string name="photo"><![CDATA[写真: <b><a href="%1$s">%2$s</a></b>]]></string>
+  <string name="finding_current_location">現在地を取得しています…</string>
+  <string name="flag_as_captive">飼育/栽培としてフラグ</string>
+  <string name="overflow_menu">オーバーフローメニュー</string>
+  <string name="skip2">スキップ</string>
+  <string name="observation_flagged_as_captive">観察記録は、飼育/栽培としてフラグが設定されました</string>
+  <string name="are_you_sure_you_want_to_flag_as_captive">この観察記録を飼育/栽培としてフラグを設定してもよろしいですか? (はいを押すと、観察記録ビューアー ウィンドウも閉じます)</string>
+  <string name="do_you_agree_to_the_following">以下に同意しますか?</string>
+  <string name="terms">利用規約</string>
+  <string name="observation_rules">観察ルール</string>
+  <string name="couldnt_load_project_details">プロジェクトの詳細を読み込みできませんでした: %1$s</string>
+  <string name="project_observations">観察記録</string>
+  <string name="project_species">種</string>
+  <string name="project_people">人</string>
+  <string name="project_identifiers">ID提供者</string>
+  <string name="no_species_found">種が見つかりません</string>
+  <string name="no_people_found">人が見つかりません</string>
+  <string name="no_identifiers_found">IDが見つかりません</string>
+  <string name="rank">順位</string>
+  <string name="identifications">ID</string>
+  <string name="no_news_found">ニュース項目はありません</string>
+  <string name="news">ニュース</string>
+  <string name="article">記事</string>
+  <string name="couldnt_load_project_news">プロジェクトのニュースを読み込みできませんでした: %1$s</string>
+  <string name="article_by">記事の作者</string>
+  <string name="feed">フィード</string>
+  <string name="no_identifications_found">IDが見つかりません</string>
+  <string name="couldnt_load_user_details">ユーザーの詳細を読み込みできませんでした: %1$s</string>
+  <string name="more_bio"><![CDATA[<b><font color="#ffffff">さらに »</font></b>]]></string>
+  <string name="no_location">位置情報がありません</string>
+  <string name="add_to_projects">プロジェクトに追加</string>
+  <string name="are_you_sure_you_want_to_save_obs_without_coords">座標のない観察記録を保存してもよろしいですか?</string>
+  <string name="users_identification">%1$s の ID: %2$s</string>
+  <string name="syncing_canceled">同期がキャンセルされました</string>
+  <string name="edit_profile">プロフィールを編集</string>
+  <string name="remove_photo">写真を削除</string>
+  <string name="name">名前</string>
+  <string name="tell_us_about_yourself">自身について説明してください...</string>
+  <string name="view_profile">プロフィールを表示</string>
+  <string name="are_you_sure_you_want_to_remove_photo">写真を削除してもよろしいですか?</string>
+  <string name="updating_profile">プロフィールを更新しています...</string>
+  <string name="there_was_a_problem_updating_profile">プロフィールの更新中に問題が発生しました!</string>
+  <string name="there_was_a_problem_updating_profile_params">プロフィールの更新中に問題が発生しました: %1$s</string>
+  <string name="logged_in_as_html"><![CDATA[<b>%1$s</b>としてログイン]]></string>
+  <string name="log_out">ログアウト</string>
+  <string name="not_logged_in">ログインしていません</string>
+  <string name="auto_upload_description">新しい観察記録を自動アップロードして、観察記録の編集</string>
+  <string name="language">言語</string>
+  <string name="version">バージョン</string>
+  <string name="inat_network">iNaturalistネットワーク</string>
+  <string name="inat_network_description">iNaturalist ネットワークは、国家規模で iNaturalist コミュニティをローカライズするためのフレームワークです。このような国家意識は、異なった背景の人々が自然によりアクセシブルになることを支援することができます。</string>
+  <string name="more_info">詳細情報</string>
+  <string name="select_network">ネットワークを選択</string>
+  <string name="help">ヘルプ</string>
+  <string name="stop">停止</string>
+  <string name="resume">再開</string>
+  <string name="cleaning_up">クリーンアップ中...</string>
+  <string name="syncing_observation_fields">観察記録のフィールドを同期しています...</string>
+  <string name="syncing_paused">同期を一時停止しました</string>
+  <string name="upload">アップロード</string>
+  <string name="search_observations">観察記録を検索...</string>
+  <string name="withdraw">撤回</string>
+  <string name="update_id_description">同定の説明を更新します</string>
+  <string name="your_identification">あなたの ID: %1$s</string>
+  <string name="onboarding_species_name">可能な場合は、見たものの名前を付けてください。できない場合は問題ありません。 他の人がそれを識別するのを助けてくれるかもしれません!</string>
+  <string name="got_it">了解!</string>
+  <string name="upload_complete">アップロード完了!</string>
+  <string name="onboarding_upload_description">すぐに観察結果を確認して、コメントしてください。</string>
+  <string name="importing_photos">写真をインポートしています...</string>
+  <string name="multi_select_description">一枚の写真を長押しして、複数の写真をインポートします</string>
+  <string name="preparing_photo">写真を準備しています...</string>
+  <string name="recommended_for_you">あなたへのおすすめ</string>
+  <string name="missions">ミッション</string>
+  <string name="view_all">全て表示</string>
+  <string name="browse_by_category">カテゴリ別に閲覧</string>
+  <string name="couldnt_load_recommended_missions">推奨されるミッションを読み込みできませんでした: %1$s</string>
+  <string name="plants">植物</string>
+  <string name="mammals">哺乳類</string>
+  <string name="insects">昆虫</string>
+  <string name="reptiles">爬虫類</string>
+  <string name="fish">魚</string>
+  <string name="mollusks">軟体動物</string>
+  <string name="amphibians">両生類</string>
+  <string name="fungi">菌類</string>
+  <string name="birds">鳥</string>
+  <string name="arachnids">クモ</string>
+  <string name="no_connectivity">接続なし</string>
+  <string name="no_recommended_missions">この地域での推奨事項はないようです。新しい場所に移動してみてください。</string>
+  <string name="what_to_look_for">何を探すべきか</string>
+  <string name="have_been_seen_here">ここで見たことがある</string>
+  <string name="observe">観察</string>
+  <string name="nearby_missions">近くのミッション</string>
+  <string name="updating_photos">写真を更新しています...</string>
+  <string name="updating_x_photos">%1$d / %2$d の既存の写真を更新しています...</string>
+  <string name="searching_your_area">地域を検索しています...</string>
+  <string name="expanding_your_search_area">検索領域を拡大しています...</string>
+  <string name="introducing_missions">ミッションの紹介!</string>
+  <string name="missions_onboarding_description">ミッションは、リアルタイムでおすすめするあなたの周りで探すべきものです。この方法で新しい種を発見することができます! (ネットワーク接続が必要です)</string>
+  <string name="ok_got_it">OK、分りました!</string>
+  <string name="new_badge">新規</string>
+  <string name="could_not_download_observations">最新の観察記録をダウンロードできませんでした - 接続に問題があります。後でもう一度やり直してください。</string>
+  <string name="sync_failed_connection_problems">接続の問題のため、同期に失敗しました。後でもう一度やり直してください。</string>
+  <string name="no_news_yet">ニュースはまだありません。お楽しみに!</string>
+  <string name="my_content">自分のデータ</string>
+  <string name="following">フォロー中</string>
+  <string name="no_updates_yet">まだ新着情報はありません。後ほどまた見てください!</string>
+  <string name="you_will_only_receive_updates_when_creating">(観察記録を作成すると、新着情報のみ受け取ります)</string>
+  <string name="you_will_only_receive_updates_when_following">(観察記録をフォローすると、新着情報のみ受け取ります)</string>
+  <string name="user_activity_id"><![CDATA[<b>%1$s</b> 提案 ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="user_activity_comment"><![CDATA[<b>%1$s</b> コメント: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="deleted_photos_from_cache_error">アップロードする前に、アプリのキャッシュを消去して、写真を削除したようです。観察記録に戻ってギャラリーから写真を追加する必要があります。今後は、アプリのキャッシュを消去する前に、すべての写真をアップロードしていることを確認してください。</string>
+  <string name="new_activities">新しい %1s</string>
+  <string name="no_results_found">結果は見つかりませんでした...</string>
+  <string name="syncing_x_out_of_y_observations">%1$d / %2$d の観察記録を同期しています...</string>
+  <string name="deleting_observations">観察記録を削除しています...</string>
+  <string name="preparing">準備しています...</string>
+  <string name="add_edit_remark">注釈の追加/編集</string>
+  <string name="restore">復元</string>
 </resources>

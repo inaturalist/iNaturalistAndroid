@@ -212,13 +212,6 @@
     <string name="view_nearby_observations">View Nearby Observations</string>
     <string name="skip_for_now">Skip for Now</string>
 
-    <string-array name="tutorial_images">
-	    <item>slide_logo</item>
-	    <item>slide_observe</item>
-	    <item>slide_share</item>
-	    <item>slide_learn</item>
-	    <item>slide_contribute</item>
-    </string-array>
     <string-array name="tutorial_titles">
 	    <item></item>
 	    <item>Observe</item>
@@ -239,12 +232,7 @@
 	    <item>Obscured</item>
 	    <item>Private</item>
     </string-array> 
-    <string-array name="geoprivacy_values">
-	    <item>open</item>
-	    <item>obscured</item>
-	    <item>private</item>
-    </string-array> 
-   
+
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
 
@@ -507,18 +495,6 @@
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
     <string name="language">Language</string>
     <string name="version">Version</string>
-
-    <string-array name="language_values">
-	    <item>default</item>
-	    <item>eu</item>
-        <item>gl</item>
-    </string-array>
-    <string-array name="language_names">
-	    <item>@string/use_device_language_settings</item>
-	    <item>@string/locale_eu</item>
-        <item>@string/locale_gl</item>
-    </string-array>
-
     <string name="inat_network">iNaturalist Network</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community on national scales. Such national focus can help make nature more accessible to people of different backgrounds.</string>
     <string name="more_info">More Info</string>
