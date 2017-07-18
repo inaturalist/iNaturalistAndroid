@@ -258,8 +258,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
-    private Map<View, String> mViewToObsUUID = new HashMap<View, String>();
-
     public View getView(int position, View convertView, ViewGroup parent) {
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
@@ -272,14 +270,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
-
-        String previousUUID = mViewToObsUUID.get(view);
-        if (previousUUID != null) {
-            if (previousUUID.equals(obsUUID)) {
-                return view;
-            }
-        }
-
 
         if (convertView == null) {
             holder = new ViewHolder((ViewGroup) view);
@@ -594,8 +584,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
         }
-
-        mViewToObsUUID.put(view, obsUUID);
 
         return view;
     }
