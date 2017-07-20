@@ -368,6 +368,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_RESTORE_ID)) {
@@ -380,6 +381,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_UPDATE_ID)) {
@@ -394,6 +396,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_REMOVE_ID)) {
@@ -406,6 +409,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_ADD_FAVORITE)) {
@@ -435,6 +439,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
@@ -651,6 +656,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_UPDATE_COMMENT)) {
@@ -664,6 +670,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_DELETE_COMMENT)) {
@@ -676,6 +683,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GUIDE_XML)) {
@@ -2917,7 +2925,7 @@ public class INaturalistService extends IntentService {
             return false;
         }
         String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json";
-        
+
         long lastSync = mPreferences.getLong("last_sync_time", 0);
         Timestamp lastSyncTS = new Timestamp(lastSync);
         url += String.format("?updated_since=%s&order_by=date_added&order=desc&extra=observation_photos,projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
