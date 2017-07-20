@@ -21,6 +21,7 @@ import com.flurry.android.FlurryAgent;
 
 public class IdentificationActivity extends AppCompatActivity {
     public static final String ID_REMARKS = "id_remarks";
+    public static final String SUGGEST_ID = "suggest_id";
     protected static final int TAXON_SEARCH_REQUEST_CODE = 301;
     public static final String TAXON_ID = "taxon_id";
     public static final String SPECIES_GUESS = "species_guess";
@@ -32,8 +33,9 @@ public class IdentificationActivity extends AppCompatActivity {
     private TextView mTaxonName;
     private TextView mIdName;
     private ImageView mIdPic;
+    private boolean mSuggestId;
 
-	@Override
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -68,6 +70,13 @@ public class IdentificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.new_identification);
+
+        if (savedInstanceState == null) {
+            Intent intent = getIntent();
+            mSuggestId = intent.getBooleanExtra(SUGGEST_ID, false);
+        } else {
+            mSuggestId = savedInstanceState.getBoolean(SUGGEST_ID, false);
+        }
  
         mRemarks = (EditText) findViewById(R.id.remarks);
         
@@ -114,6 +123,7 @@ public class IdentificationActivity extends AppCompatActivity {
         
         // When loaded for the first time - show the taxon search dialog
         Intent intent = new Intent(IdentificationActivity.this, TaxonSearchActivity.class);
+        intent.putExtra(SUGGEST_ID, true);
         startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
     }
     
@@ -138,6 +148,13 @@ public class IdentificationActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(SUGGEST_ID, mSuggestId);
+        super.onSaveInstanceState(outState);
+    }
+
         
 }
 

@@ -972,6 +972,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ObservationViewerActivity.this, IdentificationActivity.class);
+                intent.putExtra(IdentificationActivity.SUGGEST_ID, true);
                 startActivityForResult(intent, NEW_ID_REQUEST_CODE);
             }
         });
