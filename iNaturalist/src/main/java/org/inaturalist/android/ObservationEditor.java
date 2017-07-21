@@ -73,8 +73,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.ExifInterface;
-import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -84,6 +82,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.media.ExifInterface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -2217,12 +2216,10 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void importPhotoMetadata(Uri photoUri) {
-        String imgFilePath = FileUtils.getPath(this, photoUri);
 
-        if (imgFilePath == null) return;
-        
         try {
-            ExifInterface exif = new ExifInterface(imgFilePath);
+            InputStream is = getContentResolver().openInputStream(photoUri);
+            ExifInterface exif = new ExifInterface(is);
             float[] latLng = new float[2];
             uiToObservation();
             if (exif.getLatLong(latLng)) {
@@ -2282,9 +2279,11 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation.observed_on_string = null;
             }
 
+            is.close();
+
             observationToUi();
         } catch (IOException e) {
-            Log.e(TAG, "couldn't find " + imgFilePath);
+            Log.e(TAG, "couldn't find " + photoUri);
         }
     }
     
