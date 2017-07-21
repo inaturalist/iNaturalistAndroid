@@ -352,7 +352,7 @@
   <string name="please_sign_in_for_updates">更新を表示するはログインが必要です。</string>
   <string name="by_using_inat_terms"><![CDATA[INaturalist を使用することで <b><a href="http://www.inaturalist.org/pages/terms">サービスの利用規約</a></b> および <b><a href="http://www.inaturalist.org/pages/privacy">プライバシー ポリシー</a></b> に同意します]]></string>
   <string name="activity">活動</string>
-  <string name="observation_count">%1$d件の観察記録</string>
+  <string name="observation_count">%1$s件の観察記録</string>
   <string name="observation_count_single">%1$d件の観察記録</string>
   <string name="camera">写真を撮影</string>
   <string name="upload_photo">画像を選択</string>

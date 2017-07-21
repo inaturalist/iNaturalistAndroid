@@ -345,7 +345,7 @@
   <string name="please_sign_in_for_updates">Du må være logget inn for å se oppdateringene dine.</string>
   <string name="by_using_inat_terms"><![CDATA[Ved å bruke iNaturalist godtar du <b><a href="http://www.inaturalist.org/pages/terms">vilkår for bruk</a></b>og<b><a href="http://www.inaturalist.org/pages/privacy">personvernreglene</a></b>]]></string>
   <string name="activity">Aktivitet</string>
-  <string name="observation_count">%1$d observasjoner</string>
+  <string name="observation_count">%1$s observasjoner</string>
   <string name="observation_count_single">%1$d observasjon</string>
   <string name="camera">Ta fotografi</string>
   <string name="upload_photo">Velg bilde</string>

@@ -357,7 +357,7 @@
   <string name="please_sign_in_for_updates">Heu d\'haver iniciat sessió per veure les vostres actualitzacions.</string>
   <string name="by_using_inat_terms"><![CDATA[Utilitzant iNaturalist accepteu les <b><a href="http://www.inaturalist.org/pages/terms"> Condicions d\'ús</a></b> i la <b><a href="http://www.inaturalist.org/pages/privacy"> Política de privacitat</a></b>]]></string>
   <string name="activity">Activitat</string>
-  <string name="observation_count">%1$d observacions</string>
+  <string name="observation_count">%1$s observacions</string>
   <string name="observation_count_single">%1$d observació</string>
   <string name="camera">Fer foto</string>
   <string name="upload_photo">Escollir imatge</string>
