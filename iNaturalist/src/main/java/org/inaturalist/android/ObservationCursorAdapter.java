@@ -354,7 +354,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsImage.setVisibility(View.INVISIBLE);
         }
 
-        Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.OBSERVED_ON));
+        Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
 
         if (!mIsGrid) {
             if (observationTimestamp == 0) {
