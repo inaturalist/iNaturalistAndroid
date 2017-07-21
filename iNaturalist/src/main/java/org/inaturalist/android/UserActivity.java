@@ -378,6 +378,11 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
             }
 
+            if (resultsJSON == null) {
+                refreshViewState();
+                return;
+            }
+
             JSONArray results = resultsJSON.getJSONArray();
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
 

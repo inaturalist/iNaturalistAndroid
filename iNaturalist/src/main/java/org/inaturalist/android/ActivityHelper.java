@@ -261,7 +261,7 @@ public class ActivityHelper {
                 include(SphericalUtil.computeOffset(latlng, radius, 180)).
                 include(SphericalUtil.computeOffset(latlng, radius, 270)).build();
 
-        return CameraUpdateFactory.newLatLngBounds(bounds, radius + 10);
+        return CameraUpdateFactory.newLatLngBounds(bounds, 10);
     }
 
     public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson) {

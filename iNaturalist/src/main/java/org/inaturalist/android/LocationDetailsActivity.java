@@ -133,7 +133,7 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
                     Log.e(TAG, "\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + mAccuracy);
                 }
                 Log.e(TAG, "Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
-                zoom = zoomLevel;
+                zoom = zoomLevel - 2;
         	}
 
 
