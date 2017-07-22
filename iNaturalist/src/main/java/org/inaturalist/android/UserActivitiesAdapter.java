@@ -236,7 +236,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             userPic.setVisibility(View.GONE);
             view.setBackgroundResource(R.drawable.activity_item_background);
 
-            if (!mObsIdBeingDownloaded.getOrDefault(obsId, false)) {
+            if (!mObsIdBeingDownloaded.containsKey(obsId) || !mObsIdBeingDownloaded.get(obsId)) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
                 mContext.startService(serviceIntent);
