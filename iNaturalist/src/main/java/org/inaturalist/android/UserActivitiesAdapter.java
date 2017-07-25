@@ -55,6 +55,8 @@ import java.util.Locale;
 import java.util.Map;
 
 class UserActivitiesAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "UserActivitiesAdapter";
+
     private final IOnUpdateViewed mOnUpdateViewed;
     private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
@@ -84,9 +86,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             }
         });
 
-        mObservationReceiver = new ObservationReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, mContext);
+
+        registerReceivers();
 
         mObsIdToView = new HashMap<>();
         mObsIdBeingDownloaded = new HashMap<>();
@@ -212,6 +213,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
     }
 
     private void loadObsImage(int obsId, final View view, BetterJSONObject item, final int position) {
+        Log.e(TAG, obsId + ": loadObsImage " + position + ":" + view);
+
         ImageView obsPic = (ImageView) view.findViewById(R.id.obs_pic);
         ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
         ProgressBar loadingObs = (ProgressBar) view.findViewById(R.id.loading);
@@ -240,6 +243,9 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
                 mContext.startService(serviceIntent);
+                Log.e(TAG, obsId + ": Start download");
+            } else {
+                Log.e(TAG, obsId + ": Downloading");
             }
 
             mObsIdBeingDownloaded.put(obsId, true);
@@ -253,6 +259,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
             return;
         }
+        Log.d(TAG, obsId + ": Showing");
 
         final Observation obs = new Observation(c);
         c.close();
@@ -483,8 +490,15 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         }
     }
 
+    public void registerReceivers() {
+        mObservationReceiver = new ObservationReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, mContext);
+    }
+
     public void unregisterReceivers() {
         BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, mContext);
+        mObsIdBeingDownloaded = new HashMap<>();
     }
 
     private class ObservationReceiver extends BroadcastReceiver {
@@ -492,8 +506,6 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 	    public void onReceive(Context context, Intent intent) {
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
 	        Observation observation;
-
-            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, mContext);
 
             if (isSharedOnApp) {
                 observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
@@ -504,6 +516,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             if (observation == null) {
                 return;
             }
+
+            Log.d(TAG, observation.id + ": Download complete");
 
             List<Pair<View, Integer>> views = mObsIdToView.get(observation.id);
             if (views == null) return;
@@ -521,6 +535,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 }
 
                 // Load obs image again
+                Log.e(TAG, observation.id + ": Updating view " + position + ":" + view);
                 loadObsImage(observation.id, view, update, position);
             }
 	    }
