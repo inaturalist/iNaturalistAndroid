@@ -278,7 +278,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 mObservationGridIndex = savedInstanceState.getInt("mObservationGridIndex");
                 mObservationGridOffset = savedInstanceState.getInt("mObservationGridOffset");
             }
-	    	
+
 	    	mLoadingObservationsGrid.setVisibility(View.GONE);
 	    	mLoadingObservationsList.setVisibility(View.GONE);
 
@@ -733,7 +733,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         if (mViewType.equals(VIEW_TYPE_LIST)) {
             mObservationsList.setSelectionFromTop(mObservationListIndex, mObservationListOffset);
         } else if (mViewType.equals(VIEW_TYPE_GRID)) {
-            mObservationsGrid.setSelection(mObservationGridIndex);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mObservationsGrid.setSelectionFromTop(mObservationGridIndex, mObservationGridOffset);
+            } else {
+                mObservationsGrid.setSelection(mObservationGridIndex);
+            }
         }
     }
     
@@ -1050,6 +1054,8 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
 					mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservationsGrid.getColumnWidth(), mObservations);
 					mObservationsGrid.setAdapter(mGridAdapter);
+
+                    mObservationsGrid.setSelection(mObservationGridIndex);
 				}
 			});
     	} else {
