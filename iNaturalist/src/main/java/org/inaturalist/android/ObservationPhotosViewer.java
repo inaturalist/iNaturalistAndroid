@@ -67,6 +67,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String CURRENT_PHOTO_INDEX = "current_photo_index";
     public static final String READ_ONLY = "read_only";
+    public static final String IS_TAXON = "is_taxon";
 
     public static final String SET_DEFAULT_PHOTO_INDEX = "set_default_photo_index";
     public static final String DELETE_PHOTO_INDEX = "delete_photo_index";
@@ -77,6 +78,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     private View mDeletePhoto;
     private boolean mReadOnly;
     private int mObservationIdInternal;
+    private boolean mIsTaxon;
 
     @Override
 	protected void onStart()
@@ -102,7 +104,6 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setTitle(R.string.observation_photos);
 
         mApp = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.observation_photos);
@@ -125,6 +126,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 }
 
                 mReadOnly = intent.getBooleanExtra(READ_ONLY, false);
+                mIsTaxon = intent.getBooleanExtra(IS_TAXON, false);
         	} else {
                 mIsNewObservation = savedInstanceState.getBoolean("mIsNewObservation");
         		if (!mIsNewObservation) {
@@ -134,14 +136,22 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     mObservationIdInternal = savedInstanceState.getInt("mObservationIdInternal");
                 }
                 mReadOnly = savedInstanceState.getBoolean("mReadOnly");
+                mIsTaxon = savedInstanceState.getBoolean("mIsTaxon");
         	}
         } catch (JSONException e) {
         	e.printStackTrace();
         }
 
+
+        if (mIsTaxon) {
+            actionBar.setTitle(TaxonUtils.getTaxonName(this, mObservation));
+        } else {
+            actionBar.setTitle(R.string.observation_photos);
+        }
+
         mViewPager = (HackyViewPager) findViewById(R.id.id_pic_view_pager);
 		if ((mObservation != null) && (!mIsNewObservation)) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
+            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation, mIsTaxon));
 		} else if (mIsNewObservation) {
             mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId, mObservationIdInternal));
             if (!mReadOnly) mDeletePhoto.setVisibility(View.VISIBLE);
@@ -206,6 +216,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
 
         outState.putBoolean("mReadOnly", mReadOnly);
+        outState.putBoolean("mIsTaxon", mIsTaxon);
 
         super.onSaveInstanceState(outState);
     }
@@ -244,11 +255,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         }
 
         // Load online photos for an existing observation
- 		public IdPicsPagerAdapter(JSONObject observation) {
+ 		public IdPicsPagerAdapter(JSONObject observation, boolean isTaxon) {
  			mImages = new ArrayList<String>();
- 			mDefaultTaxonIcon = observationIcon(observation);
+ 			mDefaultTaxonIcon = TaxonUtils.observationIcon(observation);
 
- 			JSONArray photos = observation.optJSONArray("observation_photos");
+ 			JSONArray photos = observation.optJSONArray(isTaxon ? "taxon_photos" : "observation_photos");
  			if ((photos != null) && (photos.length() > 0)) {
  				// Show the photos
  				for (int i = 0; i < photos.length(); i++) {
@@ -345,64 +356,5 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  			return view == object;
  		}
 
-
-
  	}	
-
- 	public static int observationIcon(JSONObject o) {
- 		if (o == null) return R.drawable.ic_taxa_unknown;
- 		String iconicTaxonName = null;
-
-        if (o.has("iconic_taxon_name") && !o.isNull("iconic_taxon_name")) {
-            try {
-                iconicTaxonName = o.getString("iconic_taxon_name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return R.drawable.ic_taxa_unknown;
-            }
-        } else if (o.has("taxon")) {
-            try {
-                iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return R.drawable.ic_taxa_unknown;
-            }
-        }
-
- 		if (iconicTaxonName == null) {
- 			return R.drawable.ic_taxa_unknown;
- 		} else if (iconicTaxonName.equals("Animalia")) {
- 			return R.drawable.animalia_large;
- 		} else if (iconicTaxonName.equals("Plantae")) {
- 			return R.drawable.plantae_large;
- 		} else if (iconicTaxonName.equals("Chromista")) {
- 			return R.drawable.chromista_large;
- 		} else if (iconicTaxonName.equals("Fungi")) {
- 			return R.drawable.fungi_large;
- 		} else if (iconicTaxonName.equals("Protozoa")) {
- 			return R.drawable.protozoa_large;
- 		} else if (iconicTaxonName.equals("Actinopterygii")) {
- 			return R.drawable.actinopterygii_large;
- 		} else if (iconicTaxonName.equals("Amphibia")) {
- 			return R.drawable.amphibia_large;
- 		} else if (iconicTaxonName.equals("Reptilia")) {
- 			return R.drawable.reptilia_large;
- 		} else if (iconicTaxonName.equals("Aves")) {
- 			return R.drawable.aves_large;
- 		} else if (iconicTaxonName.equals("Mammalia")) {
- 			return R.drawable.mammalia_large;
- 		} else if (iconicTaxonName.equals("Mollusca")) {
- 			return R.drawable.mollusca_large;
- 		} else if (iconicTaxonName.equals("Insecta")) {
- 			return R.drawable.insecta_large;
- 		} else if (iconicTaxonName.equals("Arachnida")) {
- 			return R.drawable.arachnida_large;
- 		} else {
- 			return R.drawable.ic_taxa_unknown;
- 		}
-
-
- 	}
-
-
 }

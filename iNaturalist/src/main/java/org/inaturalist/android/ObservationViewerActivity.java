@@ -1415,7 +1415,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             if (mPhotosAdapter.getCount() == 0) {
                 // No photos at all
                 mNoPhotosContainer.setVisibility(View.VISIBLE);
-                mIdPicBig.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
+                mIdPicBig.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
             }
         } else {
             mIndicator.setVisibility(View.VISIBLE);
@@ -1479,15 +1479,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(ObservationViewerActivity.this, GuideTaxonActivity.class);
-                intent.putExtra("taxon", new BetterJSONObject(mTaxon));
-                intent.putExtra("guide_taxon", false);
-                intent.putExtra("show_add", false);
+                Intent intent = new Intent(ObservationViewerActivity.this, TaxonActivity.class);
+                intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(mTaxon));
                 startActivity(intent);
             }
         });
 
-        mIdPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
+        mIdPic.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
         mIdName.setText((mObservation.preferred_common_name != null) && (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);
         mTaxonicName.setVisibility(View.GONE);
 

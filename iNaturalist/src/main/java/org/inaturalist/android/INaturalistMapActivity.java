@@ -1860,7 +1860,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  					String url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
                     Picasso.with(mContext)
                             .load(url)
-                            .placeholder(ObservationPhotosViewer.observationIcon(item))
+                            .placeholder(TaxonUtils.observationIcon(item))
                             .fit()
                             .centerCrop()
                             .into(taxonPic);

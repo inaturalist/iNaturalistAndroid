@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/taxon_photos_container"
+            android:paddingTop="30dp"
+            android:paddingBottom="16dp"
+            android:background="#464646"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <uk.co.senab.photoview.HackyViewPager
+                android:id="@+id/taxon_photos"
+                android:layout_width="fill_parent"
+                android:layout_height="255dp" />
+
+            <com.viewpagerindicator.CirclePageIndicator
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/photos_indicator"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_alignParentBottom="true"
+                app:radius="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="40dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/taxon_buttons"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:padding="7dp"
+            android:background="#EEEEEE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/compare"
+                android:background="@drawable/circular_button_white"
+                android:textColor="#000000"
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="wrap_content"
+                android:text="@string/compare"
+                android:lines="1"
+                android:textSize="18sp"
+                android:height="40dp"
+                android:drawableLeft="@drawable/ic_compare_arrows_black_48dp"
+                android:drawableTint="#FF74AC00"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:paddingLeft="21dp"
+            android:paddingRight="21dp"
+            android:paddingBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/taxon_name"
+                android:text="Vivid Dancer"
+                android:textSize="32sp"
+                android:textColor="#000000"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/taxon_scientific_name"
+                android:text="Argia Vivida"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:textColor="#000000"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/wikipedia_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/conservation_status_container"
+            android:orientation="vertical"
+            android:paddingTop="21dp"
+            android:paddingBottom="17dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:background="#FFF4E4E2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/conservation_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Critically Imperiled Globally"
+                android:textSize="21sp"
+                android:textColor="#FFD32D06"
+                />
+
+            <TextView
+                android:id="@+id/conservation_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/conservation_source"
+                android:textSize="18sp"
+                android:textColor="#FFD32D06"
+                android:drawableLeft="@drawable/ic_open_in_browser_black_24dp"
+                android:drawableTint="#FFD32D06"
+                android:drawablePadding="4dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

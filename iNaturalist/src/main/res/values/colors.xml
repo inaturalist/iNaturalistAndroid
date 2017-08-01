@@ -9,4 +9,19 @@
     <color name="side_menu_header_bg">#666666</color>
     <color name="side_menu_header_bg_pressed">#ff3e3e3e</color>
     <color name="side_menu_item_bg_current">#ededed</color>
+
+    <color name="conservation_least_concern_text">#73ac13</color>
+    <color name="conservation_least_concern_bg">#e573ac13</color>
+    <color name="conservation_near_threatened_text">#817134</color>
+    <color name="conservation_near_threatened_bg">#e5817134</color>
+    <color name="conservation_vulnerable_text">#817134</color>
+    <color name="conservation_vulnerable_bg">#e5817134</color>
+    <color name="conservation_endangered_text">#d12f19</color>
+    <color name="conservation_endangered_bg">#e5d12f19</color>
+    <color name="conservation_critically_endangered_text">#d12f19</color>
+    <color name="conservation_critically_endangered_bg">#e5d12f19</color>
+    <color name="conservation_extinct_in_the_wild_text">#ffffff</color>
+    <color name="conservation_extinct_in_the_wild_bg">#cd0a0a</color>
+    <color name="conservation_extinct_text">#ffffff</color>
+    <color name="conservation_extinct_bg">#cd0a0a</color>
 </resources>

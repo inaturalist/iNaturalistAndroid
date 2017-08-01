@@ -113,7 +113,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                 Picasso.with(mContext)
                         .load(url)
-                        .placeholder(ObservationPhotosViewer.observationIcon(item))
+                        .placeholder(TaxonUtils.observationIcon(item))
                         .fit()
                         .centerCrop()
                         .into(taxonPic, new Callback() {

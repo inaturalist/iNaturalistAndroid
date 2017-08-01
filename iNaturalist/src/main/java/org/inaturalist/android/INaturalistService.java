@@ -3494,9 +3494,8 @@ public class INaturalistService extends IntentService {
             StringEntity entity = null;
             try {
                 entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-                return null;
+            } catch (UnsupportedEncodingException exc) {
+                exc.printStackTrace();
             }
 
             if (method.equalsIgnoreCase("put")) {

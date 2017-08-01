@@ -434,17 +434,31 @@ public class INaturalistApp extends MultiDexApplication {
     		return getResources().getStringArray(resId);
     	}
     } 
-    
+
+    public int getColorResourceByName(String aString) {
+    	int resId = getResourceIdByName(aString, "color");
+    	if (resId == 0) {
+    		return 0;
+    	} else {
+    		return getResources().getColor(resId);
+    	}
+    }
     
     public String getStringResourceByName(String aString) {
-    	String packageName = getPackageName();
-    	int resId = getResources().getIdentifier(aString, "string", packageName);
+    	int resId = getResourceIdByName(aString, "string");
     	if (resId == 0) {
     		return aString;
     	} else {
     		return getString(resId);
     	}
-    } 
+    }
+
+    private int getResourceIdByName(String aString, String type) {
+    	String packageName = getPackageName();
+    	int resId = getResources().getIdentifier(aString, type, packageName);
+        return resId;
+    }
+
     
     public void applyLocaleSettings(){
     	SharedPreferences settings = getPrefs();
