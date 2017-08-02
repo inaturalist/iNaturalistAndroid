@@ -2066,7 +2066,7 @@ public class INaturalistService extends IntentService {
         // query observation photos where _synced_at is null (i.e. new photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND (id IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND (id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
             c.close();
             return true;
