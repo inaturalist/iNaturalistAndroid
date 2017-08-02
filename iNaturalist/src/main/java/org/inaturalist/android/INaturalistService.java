@@ -951,7 +951,7 @@ public class INaturalistService extends IntentService {
                 }
 
             } else {
-                if (!mIsSyncing) {
+                if (!mIsSyncing && !mApp.getIsSyncing()) {
                     mIsSyncing = true;
                     mApp.setIsSyncing(mIsSyncing);
                     syncObservations();
