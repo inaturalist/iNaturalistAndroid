@@ -951,7 +951,7 @@ public class INaturalistService extends IntentService {
                 }
 
             } else {
-                if (!mIsSyncing) {
+                if (!mIsSyncing && !mApp.getIsSyncing()) {
                     mIsSyncing = true;
                     mApp.setIsSyncing(mIsSyncing);
                     syncObservations();
@@ -1982,7 +1982,7 @@ public class INaturalistService extends IntentService {
         ContentValues cv;
 
         if (observationId != null) {
-            // query observation photos where _updated_at > updated_at (i.e. updated photos)
+            // See if there any photos in an invalid state
             Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NULL AND observation_id = ?",
@@ -1999,7 +1999,25 @@ public class INaturalistService extends IntentService {
             }
             c.close();
 
-            // for each observation PUT to /observation_photos/:id
+            c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                    ObservationPhoto.PROJECTION,
+                    "_synced_at IS NULL AND id IS NOT NULL AND observation_id = ?",
+                    new String[]{String.valueOf(observationId)},
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
+
+            c.moveToFirst();
+            while (c.isAfterLast() == false) {
+                op = new ObservationPhoto(c);
+                // Shouldn't happen - a photo with an external ID is marked as never been synced
+                cv = op.getContentValues();
+                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                getContentResolver().update(op.getUri(), cv, null, null);
+                c.moveToNext();
+            }
+            c.close();
+
+
+            // update photos - for each observation PUT to /observation_photos/:id
             c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_id = ? AND ((is_deleted == 0) OR (is_deleted IS NULL))",
@@ -2048,7 +2066,7 @@ public class INaturalistService extends IntentService {
         // query observation photos where _synced_at is null (i.e. new photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND (id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -2125,13 +2143,12 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject j = new BetterJSONObject(json);
                 ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, false);
                 op.merge(jsonObservationPhoto);
-                if (op.id != null) {
-                    cv = op.getContentValues();
-                    Log.d(TAG, "OP - postPhotos(2) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
-                    cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                    getContentResolver().update(op.getUri(), cv, null, null);
-                    createdCount += 1;
-                }
+
+                cv = op.getContentValues();
+                Log.d(TAG, "OP - postPhotos(2) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
+                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                getContentResolver().update(op.getUri(), cv, null, null);
+                createdCount += 1;
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }

@@ -812,6 +812,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             mMarkerObservations = new HashMap<String, JSONObject>();
         }
         if (mMap == null) {
+            System.gc();
             mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
@@ -983,6 +984,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 return;
             }
 
+            System.gc();
             mMap.clear();
             mMarkerObservations.clear();
             
@@ -1934,5 +1936,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			}
 		}
 	}
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();
+    }
 
  }
