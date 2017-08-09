@@ -3,10 +3,11 @@ package org.inaturalist.android;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.IntentFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.ActionBar;
@@ -20,9 +21,19 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.android.gms.maps.model.TileProvider;
+import com.google.android.gms.maps.model.UrlTileProvider;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -30,6 +41,8 @@ import com.viewpagerindicator.CirclePageIndicator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -38,6 +51,9 @@ import java.util.List;
 import uk.co.senab.photoview.HackyViewPager;
 
 public class TaxonActivity extends AppCompatActivity {
+    // Max number of taxon photos we want to display
+    private static final int MAX_TAXON_PHOTOS = 8;
+
     private static String TAG = "TaxonActivity";
 
     public static String TAXON = "taxon";
@@ -46,6 +62,7 @@ public class TaxonActivity extends AppCompatActivity {
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 	private BetterJSONObject mTaxon;
+    private TaxonBoundsReceiver mTaxonBoundsReceiver;
     private TaxonReceiver mTaxonReceiver;
     private boolean mDownloadTaxon;
 
@@ -58,6 +75,13 @@ public class TaxonActivity extends AppCompatActivity {
     private ViewGroup mConservationStatusContainer;
     private TextView mConservationStatus;
     private TextView mConservationSource;
+    private ProgressBar mLoadingPhotos;
+    private GoogleMap mMap;
+    private ScrollView mScrollView;
+    private ImageView mTaxonomyIcon;
+    private ViewGroup mViewOnINat;
+
+    private boolean mMapBoundsSet = false;
 
     @Override
     protected void onStart()
@@ -74,7 +98,6 @@ public class TaxonActivity extends AppCompatActivity {
         FlurryAgent.onEndSession(this);
     }
 
-
     private class TaxonReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -83,11 +106,40 @@ public class TaxonActivity extends AppCompatActivity {
             BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
 
             if (taxon == null) {
+                // Connection error
+                // TODO
                 return;
             }
 
             mTaxon = taxon;
             loadTaxon();
+            mDownloadTaxon = false;
+        }
+    }
+
+    private class TaxonBoundsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mTaxonBoundsReceiver);
+
+            BetterJSONObject boundsJson = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_OBSERVATION_BOUNDS_RESULT);
+
+            if (boundsJson == null) {
+                // Connection error or no observations yet
+                findViewById(R.id.observations_map).setVisibility(View.GONE);
+                return;
+            }
+
+            findViewById(R.id.observations_map).setVisibility(View.VISIBLE);
+
+            // Set map bounds
+            if (mMap != null) {
+                LatLngBounds bounds = new LatLngBounds(
+                        new LatLng(boundsJson.getDouble("swlat"), boundsJson.getDouble("swlng")),
+                        new LatLng(boundsJson.getDouble("nelat"), boundsJson.getDouble("nelng")));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+            }
+            mMapBoundsSet = true;
         }
     }
 
@@ -99,7 +151,7 @@ public class TaxonActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
 
         mApp = (INaturalistApp) getApplicationContext();
         mHelper = new ActivityHelper(this);
@@ -109,13 +161,16 @@ public class TaxonActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
         	mTaxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
             mDownloadTaxon = intent.getBooleanExtra(DOWNLOAD_TAXON, false);
+            mMapBoundsSet = false;
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable(TAXON);
             mDownloadTaxon = savedInstanceState.getBoolean(DOWNLOAD_TAXON);
+            mMapBoundsSet = savedInstanceState.getBoolean("mMapBoundsSet");
         }
 
         setContentView(R.layout.taxon_page);
 
+        mScrollView = (ScrollView) findViewById(R.id.scroll_view);
         mPhotosContainer = (ViewGroup) findViewById(R.id.taxon_photos_container);
         mPhotosViewPager = (HackyViewPager) findViewById(R.id.taxon_photos);
         mPhotosIndicator = (CirclePageIndicator) findViewById(R.id.photos_indicator);
@@ -125,24 +180,113 @@ public class TaxonActivity extends AppCompatActivity {
         mConservationStatusContainer = (ViewGroup) findViewById(R.id.conservation_status_container);
         mConservationStatus = (TextView) findViewById(R.id.conservation_status);
         mConservationSource = (TextView) findViewById(R.id.conservation_source);
+        mMap = ((ScrollableMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMap();
+        mViewOnINat = (ViewGroup) findViewById(R.id.view_on_inat);
+        mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
 
-        mPhotosViewPager.setAdapter(new TaxonPhotosPagerAdapter(this, mTaxon.getJSONObject()));
-        mPhotosIndicator.setViewPager(mPhotosViewPager);
+        mViewOnINat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        if (mPhotosViewPager.getAdapter().getCount() <= 1) {
-            mPhotosIndicator.setVisibility(View.GONE);
-        } else {
-            mPhotosIndicator.setVisibility(View.VISIBLE);
-        }
+                String taxonUrl = String.format("http://%s/taxa/%d", inatHost, mTaxon.getInt("id"));
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(taxonUrl));
+                startActivity(i);
+            }
+        });
+
+        /*
+        mTaxonomyIcon = (ImageView) findViewById(R.id.taxonomy_info);
+
+        mTaxonomyIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHelper.confirm(getString(R.string.about_this_section), getString(R.string.taxonomy_info), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }, null, R.string.got_it, 0);
+            }
+        });
+        */
+
+        mMap.setMyLocationEnabled(false);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        // Make sure the user will be able to scroll/zoom the map (since it's inside a ScrollView)
+        ((ScrollableMapFragment) getSupportFragmentManager().findFragmentById(R.id.observations_map))
+                .setListener(new ScrollableMapFragment.OnTouchListener() {
+                    @Override
+                    public void onTouch() {
+                        mScrollView.requestDisallowInterceptTouchEvent(true);
+                    }
+                });
+
+        // Set the tile overlay (for the taxon's observations map)
+        TileProvider tileProvider = new UrlTileProvider(256, 256) {
+            @Override
+            public URL getTileUrl(int x, int y, int zoom) {
+
+                String s = String.format("http://api.inaturalist.org/v1/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
+                        zoom, x, y, mTaxon.getInt("id"));
+                try {
+                    return new URL(s);
+                } catch (MalformedURLException e) {
+                    throw new AssertionError(e);
+                }
+            }
+        };
+
+        TileOverlay tileOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Intent intent = new Intent(TaxonActivity.this, TaxonMapActivity.class);
+                intent.putExtra(TaxonMapActivity.TAXON_ID, mTaxon.getInt("id"));
+                intent.putExtra(TaxonMapActivity.TAXON_NAME, actionBar.getTitle());
+                CameraPosition position = mMap.getCameraPosition();
+                intent.putExtra(TaxonMapActivity.MAP_LATITUDE, position.target.latitude);
+                intent.putExtra(TaxonMapActivity.MAP_LONGITUDE, position.target.longitude);
+                intent.putExtra(TaxonMapActivity.MAP_ZOOM, position.zoom);
+                startActivity(intent);
+            }
+        });
+
 
         actionBar.setHomeButtonEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        if (!mDownloadTaxon) {
-            loadTaxon();
-        }
+        loadTaxon();
+    }
 
+    private String conservationStatusCodeToName(String code) {
+        switch (code) {
+            case "NE":
+                return "not_evaluated";
+            case "DD":
+                return "data_deficient";
+            case "LC":
+                return "least_concern";
+            case "NT":
+                return "near_threatened";
+            case "VU":
+                return "vulnerable";
+            case "EN":
+                return "endangered";
+            case "CR":
+                return "critically_endangered";
+            case "EW":
+                return "extinct_in_the_wild";
+            case "EX":
+                return "extinct";
+            default:
+                return null;
+        }
     }
 
     private void loadTaxon() {
@@ -157,7 +301,6 @@ public class TaxonActivity extends AppCompatActivity {
         mTaxonName.setText(taxonName);
         mTaxonScientificName.setText(mTaxon.getString("name"));
 
-
         String wikiSummary = mTaxon.getString("wikipedia_summary");
 
         if ((wikiSummary == null) || (wikiSummary.length() == 0)) {
@@ -167,26 +310,47 @@ public class TaxonActivity extends AppCompatActivity {
             mWikipediaSummary.setText(Html.fromHtml(wikiSummary + " " + getString(R.string.source_wikipedia)));
         }
 
-        String conservationStatus = mTaxon.getString("conservation_status_name");
 
-        if ((conservationStatus == null) || (conservationStatus.length() == 0) ||
-                (conservationStatus.equals("not_evaluated")) || (conservationStatus.equals("data_deficient"))) {
+        JSONObject conservationStatus = mTaxon.has("conservation_status") ? mTaxon.getJSONObject("conservation_status") : null;
+        String conservationStatusName = conservationStatus != null ? conservationStatusCodeToName(conservationStatus.optString("status")) : null;
+
+        if ((conservationStatusName == null) || (conservationStatusName.equals("not_evaluated")) || (conservationStatusName.equals("data_deficient")) ||
+                (conservationStatusName.equals("least_concern")) ) {
             mConservationStatusContainer.setVisibility(View.GONE);
         } else {
             mConservationStatusContainer.setVisibility(View.VISIBLE);
 
-            int textColor = mApp.getColorResourceByName("conservation_" + conservationStatus + "_text");
-            int backgroundColor = mApp.getColorResourceByName("conservation_" + conservationStatus + "_bg");
+            int textColor = mApp.getColorResourceByName("conservation_" + conservationStatusName + "_text");
+            int backgroundColor = mApp.getColorResourceByName("conservation_" + conservationStatusName + "_bg");
 
-            mConservationStatus.setText(mApp.getStringResourceByName("conservation_status_" + conservationStatus));
+            mConservationStatus.setText(mApp.getStringResourceByName("conservation_status_" + conservationStatusName));
             mConservationStatusContainer.setBackgroundColor(backgroundColor);
             mConservationStatus.setTextColor(textColor);
             mConservationSource.setTextColor(textColor);
-            mConservationSource.setText(Html.fromHtml(String.format(getString(R.string.conservation_source), "Some source")));
+            mConservationSource.setText(Html.fromHtml(String.format(getString(R.string.conservation_source), conservationStatus.optString("authority"))));
             Drawable drawable = getResources().getDrawable(R.drawable.ic_open_in_browser_black_24dp);
             drawable.setColorFilter(new PorterDuffColorFilter(textColor, PorterDuff.Mode.SRC_IN));
             mConservationSource.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
         }
+
+        mPhotosViewPager.setAdapter(new TaxonPhotosPagerAdapter(this, mTaxon.getJSONObject()));
+        mPhotosIndicator.setViewPager(mPhotosViewPager);
+        mPhotosViewPager.setVisibility(View.VISIBLE);
+        mLoadingPhotos.setVisibility(View.GONE);
+
+        if (mPhotosViewPager.getAdapter().getCount() <= 1) {
+            mPhotosIndicator.setVisibility(View.GONE);
+
+            if ((mPhotosViewPager.getAdapter().getCount() == 0) && (mDownloadTaxon)) {
+                mLoadingPhotos.setVisibility(View.VISIBLE);
+                mPhotosViewPager.setVisibility(View.GONE);
+            }
+        } else {
+            mPhotosIndicator.setVisibility(View.VISIBLE);
+        }
+
+
+
     }
 
 
@@ -207,6 +371,7 @@ public class TaxonActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(TAXON, mTaxon);
         outState.putBoolean(DOWNLOAD_TAXON, mDownloadTaxon);
+        outState.putBoolean("mMapBoundsSet", mMapBoundsSet);
         super.onSaveInstanceState(outState);
     }
 
@@ -214,6 +379,7 @@ public class TaxonActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        BaseFragmentActivity.safeUnregisterReceiver(mTaxonBoundsReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
     }
 
@@ -221,19 +387,28 @@ public class TaxonActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        if (!mMapBoundsSet) {
+            // Get the map bounds for the taxon (for the observations map)
+            mTaxonBoundsReceiver = new TaxonBoundsReceiver();
+            IntentFilter filter = new IntentFilter(INaturalistService.TAXON_OBSERVATION_BOUNDS_RESULT);
+            BaseFragmentActivity.safeRegisterReceiver(mTaxonBoundsReceiver, filter, this);
+
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_OBSERVATION_BOUNDS, null, this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
+            startService(serviceIntent);
+
+        }
+
         if (mDownloadTaxon) {
-            // TODO
-            /*
             // Get the taxon details
             mTaxonReceiver = new TaxonReceiver();
-            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
-            Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
+            Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
 
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId != null ? mTaxonId : mTaxon.getInt("id"));
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
             startService(serviceIntent);
-            */
         }
     }
 
@@ -253,7 +428,9 @@ public class TaxonActivity extends AppCompatActivity {
 
             JSONArray taxonPhotos = taxon.optJSONArray("taxon_photos");
 
-            for (int i = 0; i < taxonPhotos.length(); i++) {
+            if (taxonPhotos == null) return;
+
+            for (int i = 0; (i < taxonPhotos.length()) && (i < MAX_TAXON_PHOTOS); i++) {
                 mTaxonPhotos.add(taxonPhotos.optJSONObject(i));
             }
 

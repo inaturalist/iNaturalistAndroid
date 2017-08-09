@@ -118,6 +118,7 @@ public class INaturalistService extends IntentService {
     public static final String SPECIES_COUNT_RESULT = "species_count_result";
     public static final String RECOMMENDED_MISSIONS_RESULT = "recommended_missions_result";
     public static final String MISSIONS_BY_TAXON_RESULT = "missions_by_taxon_result";
+    public static final String TAXON_OBSERVATION_BOUNDS_RESULT = "taxon_observation_bounds_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
@@ -129,6 +130,7 @@ public class INaturalistService extends IntentService {
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
+    public static final String ACTION_GET_TAXON_NEW_RESULT = "action_get_taxon_new_result";
     public static final String TAXON_RESULT = "taxon_result";
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
     public static final String EMAIL = "email";
@@ -168,6 +170,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_ADD_FAVORITE = "add_favorite";
     public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
+    public static String ACTION_GET_TAXON_NEW = "get_taxon_new";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
     public static String ACTION_GET_OBSERVATION = "get_observation";
@@ -243,6 +246,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_RECOMMENDED_MISSIONS = "get_recommended_missions";
     public static String ACTION_GET_MISSIONS_BY_TAXON = "get_missions_by_taxon";
     public static String ACTION_SEARCH_USER_OBSERVATIONS = "search_user_observations";
+    public static String ACTION_GET_TAXON_OBSERVATION_BOUNDS = "get_taxon_observation_bounds";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -500,6 +504,14 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_GET_TAXON_NEW)) {
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                BetterJSONObject taxon = getTaxonNew(taxonId);
+
+                Intent reply = new Intent(ACTION_GET_TAXON_NEW_RESULT);
+                reply.putExtra(TAXON_RESULT, taxon);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_TAXON)) {
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 BetterJSONObject taxon = getTaxon(taxonId);
@@ -544,6 +556,14 @@ public class INaturalistService extends IntentService {
                         sendBroadcast(reply);
                     }
                 });
+
+            } else if (action.equals(ACTION_GET_TAXON_OBSERVATION_BOUNDS)) {
+                final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
+                BetterJSONObject bounds = getTaxonObservationsBounds(taxonId);
+
+                Intent reply = new Intent(TAXON_OBSERVATION_BOUNDS_RESULT);
+                reply.putExtra(TAXON_OBSERVATION_BOUNDS_RESULT, bounds);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_RECOMMENDED_MISSIONS)) {
                 final String username = intent.getStringExtra(USERNAME);
@@ -1253,6 +1273,27 @@ public class INaturalistService extends IntentService {
 
         c.close();
 
+    }
+
+    private BetterJSONObject getTaxonNew(int id) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage = deviceLocale.getLanguage();
+        String url = "http://api.inaturalist.org/v1/taxa/" + id + "?locale=" + deviceLanguage;
+
+        JSONArray json = get(url);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            if (!res.has("results")) return null;
+            JSONObject taxon = res.getJSONArray("results").getJSONObject(0);
+
+            return new BetterJSONObject(taxon);
+        } catch (JSONException e) {
+            return null;
+        }
     }
     
     private BetterJSONObject getTaxon(int id) throws AuthenticationException {
@@ -2439,6 +2480,27 @@ public class INaturalistService extends IntentService {
 			e.printStackTrace();
 			return new BetterJSONObject();
 		}
+    }
+
+    private BetterJSONObject getTaxonObservationsBounds(Integer taxonId) {
+        String url = API_HOST + "/observations?per_page=1&return_bounds=true&taxon_id=" + taxonId;
+
+        JSONArray json = null;
+        try {
+            json = get(url, false);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return null;
+        }
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            JSONObject response = json.getJSONObject(0);
+            return new BetterJSONObject(response.getJSONObject("total_bounds"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) {

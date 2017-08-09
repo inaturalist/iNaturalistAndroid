@@ -576,4 +576,9 @@
     <string name="conservation_status_critically_endangered">Critically endangered</string>
     <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
     <string name="conservation_status_extinct">Extinct</string>
+    <string name="map_of_observations">Map of Observations</string>
+    <string name="taxonomy">Taxonomy</string>
+    <string name="about_this_section">About this Section</string>
+    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
 </resources>

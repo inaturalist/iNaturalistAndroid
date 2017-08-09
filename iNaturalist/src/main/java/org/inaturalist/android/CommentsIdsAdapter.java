@@ -461,19 +461,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                     idLayout.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(mContext, GuideTaxonActivity.class);
-                            BetterJSONObject originalTaxon = mItems.get(position);
-                            JSONObject taxon = new JSONObject();
-                            try {
-                                taxon.put("id", originalTaxon.getInt("taxon_id"));
-                                taxon.put("common_name", originalTaxon.getJSONObject("common_name"));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            intent.putExtra("taxon", new BetterJSONObject(taxon));
-                            intent.putExtra("guide_taxon", false);
-                            intent.putExtra("show_add", false);
-							intent.putExtra("download_taxon", true);
+                            Intent intent = new Intent(mContext, TaxonActivity.class);
+                            JSONObject taxon = mItems.get(position).getJSONObject("taxon");
+                            intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
+							intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                             mContext.startActivity(intent);
                         }
                     });
@@ -546,11 +537,9 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			return;
 		}
 
-		Intent intent = new Intent(mContext, GuideTaxonActivity.class);
-		intent.putExtra("taxon", new BetterJSONObject(item.getJSONObject("taxon")));
-		intent.putExtra("guide_taxon", false);
-        intent.putExtra("show_add", false);
-		intent.putExtra("download_taxon", true);
+		Intent intent = new Intent(mContext, TaxonActivity.class);
+		intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item.getJSONObject("taxon")));
+		intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
 		mContext.startActivity(intent);
 	}
 

@@ -1568,17 +1568,28 @@ public class ObservationViewerActivity extends AppCompatActivity {
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json?locale=" + deviceLanguage;
+        final String idUrl = "http://api.inaturalist.org/v1/taxa/" + mObservation.taxon_id + "?locale=" + deviceLanguage;
 
         // Download the taxon image URL
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final JSONObject taxon = downloadJson(idUrl);
+                JSONObject results = downloadJson(idUrl);
+
+                if (results == null) return;
+
+                final JSONObject taxon;
+                try {
+                    taxon = results.getJSONArray("results").getJSONObject(0);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return;
+                }
                 mTaxon = taxon;
                 if (taxon != null) {
                     try {
-                        final String imageUrl = taxon.getString("image_url");
+                        JSONObject defaultPhoto = taxon.getJSONObject("default_photo");
+                        final String imageUrl = defaultPhoto.getString("square_url");
 
                         runOnUiThread(new Runnable() {
                             @Override
