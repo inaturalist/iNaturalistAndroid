@@ -58,6 +58,7 @@ public class TaxonActivity extends AppCompatActivity {
 
     public static String TAXON = "taxon";
     public static String DOWNLOAD_TAXON = "download_taxon";
+    public static String TAXON_SUGGESTION = "taxon_suggestion";
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -80,8 +81,11 @@ public class TaxonActivity extends AppCompatActivity {
     private ScrollView mScrollView;
     private ImageView mTaxonomyIcon;
     private ViewGroup mViewOnINat;
+    private ViewGroup mTaxonButtons;
+    private ViewGroup mSelectTaxon;
 
     private boolean mMapBoundsSet = false;
+    private boolean mTaxonSuggestion = false;
 
     @Override
     protected void onStart()
@@ -161,11 +165,13 @@ public class TaxonActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
         	mTaxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
             mDownloadTaxon = intent.getBooleanExtra(DOWNLOAD_TAXON, false);
+            mTaxonSuggestion = intent.getBooleanExtra(TAXON_SUGGESTION, false);
             mMapBoundsSet = false;
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable(TAXON);
             mDownloadTaxon = savedInstanceState.getBoolean(DOWNLOAD_TAXON);
             mMapBoundsSet = savedInstanceState.getBoolean("mMapBoundsSet");
+            mTaxonSuggestion = savedInstanceState.getBoolean(TAXON_SUGGESTION);
         }
 
         setContentView(R.layout.taxon_page);
@@ -183,6 +189,30 @@ public class TaxonActivity extends AppCompatActivity {
         mMap = ((ScrollableMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMap();
         mViewOnINat = (ViewGroup) findViewById(R.id.view_on_inat);
         mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
+        mTaxonButtons = (ViewGroup) findViewById(R.id.taxon_buttons);
+        mSelectTaxon = (ViewGroup) findViewById(R.id.select_taxon);
+
+        mTaxonButtons.setVisibility(mTaxonSuggestion ? View.VISIBLE : View.GONE);
+
+        mSelectTaxon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Taxon selected - return that taxon back
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                JSONObject taxon = mTaxon.getJSONObject();
+                bundle.putString(TaxonSearchActivity.ID_NAME, TaxonUtils.getTaxonName(TaxonActivity.this, taxon));
+                bundle.putString(TaxonSearchActivity.TAXON_NAME, taxon.optString("name"));
+                bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, taxon.optString("iconic_taxon_name"));
+                if (taxon.has("default_photo") && !taxon.isNull("default_photo")) bundle.putString(TaxonSearchActivity.ID_PIC_URL, taxon.optJSONObject("default_photo").optString("square_url"));
+                bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
+                bundle.putInt(TaxonSearchActivity.TAXON_ID, taxon.optInt("id"));
+
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
 
         mViewOnINat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -372,6 +402,7 @@ public class TaxonActivity extends AppCompatActivity {
         outState.putSerializable(TAXON, mTaxon);
         outState.putBoolean(DOWNLOAD_TAXON, mDownloadTaxon);
         outState.putBoolean("mMapBoundsSet", mMapBoundsSet);
+        outState.putBoolean(TAXON_SUGGESTION, mTaxonSuggestion);
         super.onSaveInstanceState(outState);
     }
 

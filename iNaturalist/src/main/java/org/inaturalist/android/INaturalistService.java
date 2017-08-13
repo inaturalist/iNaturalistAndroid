@@ -5,8 +5,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
@@ -91,6 +96,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
@@ -131,9 +139,16 @@ public class INaturalistService extends IntentService {
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
     public static final String ACTION_GET_TAXON_NEW_RESULT = "action_get_taxon_new_result";
+    public static final String ACTION_GET_TAXON_SUGGESTIONS_RESULT = "action_get_taxon_suggestions_result";
     public static final String TAXON_RESULT = "taxon_result";
+    public static final String TAXON_SUGGESTIONS = "taxon_suggestions";
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
     public static final String EMAIL = "email";
+    public static final String OBS_PHOTO_FILENAME = "obs_photo_filename";
+    public static final String OBS_PHOTO_URL = "obs_photo_url";
+    public static final String LONGITUDE = "longitude";
+    public static final String LATITUDE = "latitude";
+    public static final String OBSERVED_ON = "observed_on";
     public static final String USERNAME = "username";
     public static final String PROGRESS = "progress";
     public static final String EXPAND_LOCATION_BY_DEGREES = "expand_location_by_degrees";
@@ -171,6 +186,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
     public static String ACTION_GET_TAXON_NEW = "get_taxon_new";
+    public static String ACTION_GET_TAXON_SUGGESTIONS = "get_taxon_suggestions";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
     public static String ACTION_GET_OBSERVATION = "get_observation";
@@ -502,6 +518,50 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_PROJECT_SPECIES_RESULT);
                 reply.putExtra(RESULTS, results);
+                sendBroadcast(reply);
+
+
+            } else if (action.equals(ACTION_GET_TAXON_SUGGESTIONS)) {
+                String obsFilename = intent.getStringExtra(OBS_PHOTO_FILENAME);
+                String obsUrl = intent.getStringExtra(OBS_PHOTO_URL);
+                Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
+                Double latitude = intent.getDoubleExtra(LATITUDE, 0);
+                Timestamp observedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
+                File tempFile = null;
+
+                if (obsFilename == null) {
+                    // It's an online observation - need to download the image first.
+                    try {
+                        tempFile = File.createTempFile("online_photo", ".jpeg", getCacheDir());
+
+                        if (!downloadToFile(obsUrl, tempFile.getAbsolutePath())) {
+                            Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+                            reply.putExtra(TAXON_SUGGESTIONS, (Serializable) null);
+                            sendBroadcast(reply);
+                            return;
+                        }
+
+                        obsFilename = tempFile.getAbsolutePath();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                // Resize photo to 299x299 max
+                String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
+
+                if (tempFile != null) {
+                    tempFile.delete();
+                }
+
+                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn);
+
+                File resizedFile = new File(resizedPhotoFilename);
+                resizedFile.delete();
+
+                Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+                reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_TAXON_NEW)) {
@@ -1275,6 +1335,33 @@ public class INaturalistService extends IntentService {
 
     }
 
+    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage = deviceLocale.getLanguage();
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(observedOn);
+        ArrayList<NameValuePair> params = new ArrayList<>();
+        String url = String.format("http://api.inaturalist.org/v1/computervision/score_image");
+
+        params.add(new BasicNameValuePair("locale", deviceLanguage));
+        params.add(new BasicNameValuePair("lat", latitude.toString()));
+        params.add(new BasicNameValuePair("lng", longitude.toString()));
+        params.add(new BasicNameValuePair("observed_on", date));
+        params.add(new BasicNameValuePair("image", photoFilename));
+
+        JSONArray json = request(url, "post", params, null, true, true, true);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            if (!res.has("results")) return null;
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
     private BetterJSONObject getTaxonNew(int id) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
@@ -1946,7 +2033,7 @@ public class INaturalistService extends IntentService {
             // Update observation
             boolean success = handleObservationResponse(
                     observation,
-                    request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true)
+                    request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true, false)
             );
             if (!success) {
                 throw new SyncFailedException();
@@ -1963,7 +2050,7 @@ public class INaturalistService extends IntentService {
 
         boolean success = handleObservationResponse(
                 observation,
-                request(API_HOST + "/observations", "post", null, observationParams, true, true)
+                request(API_HOST + "/observations", "post", null, observationParams, true, true, false)
         );
 
         if (!success) {
@@ -2405,7 +2492,7 @@ public class INaturalistService extends IntentService {
         String deviceLanguage =   deviceLocale.getLanguage();
         String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200&observations_by=" +
                 (following ? "following": "owner");
-        JSONArray json = request(url, "get", null, null, true, true); // Use JWT Token authentication
+        JSONArray json = request(url, "get", null, null, true, true, false); // Use JWT Token authentication
         if (json == null) return null;
         if (json.length() == 0) return null;
         try {
@@ -2872,7 +2959,7 @@ public class INaturalistService extends IntentService {
         }
 
         String url = String.format("%s/projects/%d/remove.json?observation_id=%d", HOST, projectId, observationId);
-        JSONArray json = request(url, "delete", null, null, true, true);
+        JSONArray json = request(url, "delete", null, null, true, true, false);
 
         if (json == null) return null;
        
@@ -3496,7 +3583,24 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException {
-        return request(url, method, params, jsonContent, authenticated, false);
+        return request(url, method, params, jsonContent, authenticated, false, false);
+    }
+
+    private String getAnonymousJWTToken() {
+        String anonymousApiSecret = getString(R.string.jwt_anonymous_api_secret);
+
+        if (anonymousApiSecret == null) return null;
+
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("application", "android");
+        claims.put("exp", (System.currentTimeMillis() / 1000) + 300);
+
+        String compactJwt = Jwts.builder()
+                .setClaims(claims)
+                .signWith(SignatureAlgorithm.HS512, anonymousApiSecret.getBytes())
+                .compact();
+
+        return compactJwt;
     }
 
     private String getJWTToken() {
@@ -3530,7 +3634,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken) throws AuthenticationException {
+    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException {
         DefaultHttpClient client = new DefaultHttpClient();
         // Handle redirects (301/302) for all HTTP methods (including POST)
         client.setRedirectHandler(new DefaultRedirectHandler() {
@@ -3610,17 +3714,22 @@ public class INaturalistService extends IntentService {
 
         // auth
         if (authenticated) {
-            ensureCredentials();
-
-            if (useJWTToken) {
-                // Use JSON Web Token for this request
-                request.setHeader("Authorization", getJWTToken());
-            } else if (mLoginType == LoginType.PASSWORD) {
-                // Old-style password authentication
-                request.setHeader("Authorization", "Basic " + mCredentials);
+            if (useJWTToken && allowAnonymousJWTToken && (mCredentials == null)) {
+                // User not logged in, but allow using anonymous JWT
+                request.setHeader("Authorization", getAnonymousJWTToken());
             } else {
-                // OAuth2 token (Facebook/G+/etc)
-                request.setHeader("Authorization", "Bearer " + mCredentials);
+                ensureCredentials();
+
+                if (useJWTToken) {
+                    // Use JSON Web Token for this request
+                    request.setHeader("Authorization", getJWTToken());
+                } else if (mLoginType == LoginType.PASSWORD) {
+                    // Old-style password authentication
+                    request.setHeader("Authorization", "Basic " + mCredentials);
+                } else {
+                    // OAuth2 token (Facebook/G+/etc)
+                    request.setHeader("Authorization", "Bearer " + mCredentials);
+                }
             }
         }
 
@@ -4199,5 +4308,32 @@ public class INaturalistService extends IntentService {
             result += y;
         }
         return result;
+    }
+
+    private boolean downloadToFile(String uri, String outputFilename) {
+        HttpURLConnection conn = null;
+        StringBuilder jsonResults = new StringBuilder();
+        try {
+            URL url = new URL(uri);
+            conn = (HttpURLConnection) url.openConnection();
+            InputStream in = conn.getInputStream();
+            FileOutputStream output = new FileOutputStream(outputFilename);
+
+            int read;
+            byte[] buff = new byte[1024];
+            while ((read = in.read(buff)) != -1) {
+                output.write(buff, 0, read);
+            }
+
+            output.close();
+
+            conn.disconnect();
+        } catch (MalformedURLException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
     }
 }

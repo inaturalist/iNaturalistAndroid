@@ -581,4 +581,10 @@
     <string name="about_this_section">About this Section</string>
     <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
     <string name="more_info_on_inat">More Info on iNaturalist.org</string>
+    <string name="view_suggestions">View Suggestions</string>
+    <string name="species_search">Species Search</string>
+    <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
+    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
+    <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
+    <string name="what_did_you_see">What did you see?</string>
 </resources>

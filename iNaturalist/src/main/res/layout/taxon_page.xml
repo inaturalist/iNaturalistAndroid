@@ -48,14 +48,15 @@
         <LinearLayout
             android:id="@+id/taxon_buttons"
             android:orientation="horizontal"
-            android:visibility="gone"
-            android:padding="7dp"
+            android:visibility="visible"
+            android:padding="15dp"
             android:background="#EEEEEE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!--
             <Button
-                android:id="@+id/compare"
+                android:id="@+id/compare_taxon"
                 android:background="@drawable/circular_button_white"
                 android:textColor="#000000"
                 android:layout_width="0dp"
@@ -68,6 +69,35 @@
                 android:drawableLeft="@drawable/ic_compare_arrows_black_48dp"
                 android:drawableTint="#FF74AC00"
                 />
+                -->
+
+
+            <LinearLayout
+                android:id="@+id/select_taxon"
+                android:background="@drawable/circular_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal|center_vertical"
+                android:clickable="true"
+                >
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_check_circle_black_24dp"
+                    android:tint="#ffffff"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select"
+                    android:textSize="18sp"
+                    android:textColor="#ffffff"
+                    android:paddingLeft="7dp"
+                    />
+            </LinearLayout>
 
         </LinearLayout>
 

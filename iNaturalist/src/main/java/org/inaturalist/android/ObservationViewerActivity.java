@@ -1471,7 +1471,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         });
 
-        mIdRow.setOnClickListener(new OnClickListener() {
+        OnClickListener listener = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mTaxon == null) {
@@ -1483,7 +1483,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(mTaxon));
                 startActivity(intent);
             }
-        });
+        };
+        mIdRow.setOnClickListener(listener);
+        mIdName.setOnClickListener(listener);
+        mTaxonicName.setOnClickListener(listener);
 
         mIdPic.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
         mIdName.setText((mObservation.preferred_common_name != null) && (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);

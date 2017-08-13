@@ -110,6 +110,7 @@ dependencies {
     compile 'com.mikhaellopez:circularprogressbar:1.1.1'
     compile 'com.google.maps.android:android-maps-utils:0.4+'
     compile 'com.android.support:exifinterface:25.1.0'
+    compile 'io.jsonwebtoken:jjwt:0.7.0'
     compile project(':smoothrescale')
 
     androidTestCompile 'com.android.support:support-annotations:25.+'
