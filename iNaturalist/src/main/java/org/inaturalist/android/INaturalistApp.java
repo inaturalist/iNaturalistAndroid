@@ -194,7 +194,21 @@ public class INaturalistApp extends MultiDexApplication {
 		catch (Exception e) { }
 
 		return null;
-	}	
+	}
+
+
+    public boolean getSuggestSpecies() {
+        SharedPreferences settings = getPrefs();
+        return settings.getBoolean("pref_suggest_species", true);
+    }
+
+    public void setSuggestSpecies(boolean value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putBoolean("pref_suggest_species", value);
+        settingsEditor.apply();
+    }
 
 
 	public boolean getAutoSync() {

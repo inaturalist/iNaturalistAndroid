@@ -74,6 +74,7 @@ public class AnalyticsClient {
     public static final String EVENT_NAME_SETTING_DISABLED = "Setting Disabled";
     public static final String EVENT_PARAM_SETTING = "setting";
     public static final String EVENT_PARAM_VALUE_AUTO_UPLOAD = "InatAutouploadPrefKey";
+    public static final String EVENT_PARAM_VALUE_SUGGEST_SPECIES = "InatSuggestSpeciesPrefKey";
     public static final String EVENT_NAME_SETTINGS_NETWORK_CHANGE_BEGAN = "Settings Network Change Began";
     public static final String EVENT_NAME_SETTINGS_NETWORK_CHANGE_COMPLETED = "Settings Network Change Completed";
     public static final String EVENT_NAME_PROFILE_PHOTO_CHANGED = "Profile Photo Changed";

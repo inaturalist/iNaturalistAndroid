@@ -23,16 +23,12 @@
         android:id="@+id/taxon_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
         android:layout_above="@id/photo_attr"
-        android:scaleType="fitXY"
-        android:elevation="8dp"
-        android:background="#464646"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:src="@drawable/unknown_large"
-        />
+        android:background="#464646"
+        android:src="@drawable/unknown_large" />
     <ProgressBar
         android:id="@+id/loading_photo"
         style="?android:attr/progressBarStyleLarge"

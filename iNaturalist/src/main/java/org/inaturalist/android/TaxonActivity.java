@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,8 @@ import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -57,6 +61,7 @@ public class TaxonActivity extends AppCompatActivity {
     private static String TAG = "TaxonActivity";
 
     public static String TAXON = "taxon";
+    public static String OBSERVATION = "observation";
     public static String DOWNLOAD_TAXON = "download_taxon";
     public static String TAXON_SUGGESTION = "taxon_suggestion";
 
@@ -66,6 +71,7 @@ public class TaxonActivity extends AppCompatActivity {
     private TaxonBoundsReceiver mTaxonBoundsReceiver;
     private TaxonReceiver mTaxonReceiver;
     private boolean mDownloadTaxon;
+    private BetterJSONObject mObservation;
 
     private ViewGroup mPhotosContainer;
     private HackyViewPager mPhotosViewPager;
@@ -164,11 +170,13 @@ public class TaxonActivity extends AppCompatActivity {
         
         if (savedInstanceState == null) {
         	mTaxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
+            mObservation = (BetterJSONObject) intent.getSerializableExtra(OBSERVATION);
             mDownloadTaxon = intent.getBooleanExtra(DOWNLOAD_TAXON, false);
             mTaxonSuggestion = intent.getBooleanExtra(TAXON_SUGGESTION, false);
             mMapBoundsSet = false;
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable(TAXON);
+            mObservation = (BetterJSONObject) savedInstanceState.getSerializable(OBSERVATION);
             mDownloadTaxon = savedInstanceState.getBoolean(DOWNLOAD_TAXON);
             mMapBoundsSet = savedInstanceState.getBoolean("mMapBoundsSet");
             mTaxonSuggestion = savedInstanceState.getBoolean(TAXON_SUGGESTION);
@@ -256,7 +264,7 @@ public class TaxonActivity extends AppCompatActivity {
                 });
 
         // Set the tile overlay (for the taxon's observations map)
-        TileProvider tileProvider = new UrlTileProvider(256, 256) {
+        TileProvider tileProvider = new UrlTileProvider(512, 512) {
             @Override
             public URL getTileUrl(int x, int y, int zoom) {
 
@@ -368,8 +376,12 @@ public class TaxonActivity extends AppCompatActivity {
         mPhotosViewPager.setVisibility(View.VISIBLE);
         mLoadingPhotos.setVisibility(View.GONE);
 
+        ViewGroup.LayoutParams params = mPhotosContainer.getLayoutParams();
+        int newHeight;
+
         if (mPhotosViewPager.getAdapter().getCount() <= 1) {
             mPhotosIndicator.setVisibility(View.GONE);
+            newHeight = 310;
 
             if ((mPhotosViewPager.getAdapter().getCount() == 0) && (mDownloadTaxon)) {
                 mLoadingPhotos.setVisibility(View.VISIBLE);
@@ -377,10 +389,15 @@ public class TaxonActivity extends AppCompatActivity {
             }
         } else {
             mPhotosIndicator.setVisibility(View.VISIBLE);
+            newHeight = 340;
         }
 
+        params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newHeight, getResources().getDisplayMetrics());
+        mPhotosContainer.setLayoutParams(params);
 
-
+        if (mObservation != null) {
+            mHelper.addMapPosition(mMap, new Observation(mObservation), mObservation, true);
+        }
     }
 
 
@@ -400,6 +417,7 @@ public class TaxonActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(TAXON, mTaxon);
+        outState.putSerializable(OBSERVATION, mObservation);
         outState.putBoolean(DOWNLOAD_TAXON, mDownloadTaxon);
         outState.putBoolean("mMapBoundsSet", mMapBoundsSet);
         outState.putBoolean(TAXON_SUGGESTION, mTaxonSuggestion);
@@ -494,13 +512,15 @@ public class TaxonActivity extends AppCompatActivity {
 
             JSONObject taxonPhotoJSON = mTaxonPhotos.get(position);
             JSONObject innerPhotoJSON = taxonPhotoJSON.optJSONObject("photo");
-            String photoUrl = (innerPhotoJSON.has("medium_url") && !innerPhotoJSON.isNull("medium_url")) ?
-                    innerPhotoJSON.optString("medium_url") : innerPhotoJSON.optString("large_url");
+            String photoUrl = (innerPhotoJSON.has("large_url") && !innerPhotoJSON.isNull("large_url")) ?
+                    innerPhotoJSON.optString("large_url") : innerPhotoJSON.optString("original_url");
+
+            if ((photoUrl == null) || (photoUrl.length() == 0)) {
+                photoUrl = innerPhotoJSON.optString("medium_url");
+            }
 
             Picasso.with(mContext)
                     .load(photoUrl)
-                    .fit()
-                    .centerCrop()
                     .into(taxonPhoto, new Callback() {
                         @Override
                         public void onSuccess() {

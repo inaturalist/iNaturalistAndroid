@@ -265,6 +265,10 @@ public class ActivityHelper {
     }
 
     public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson) {
+        addMapPosition(map, observation, observationJson, false);
+    }
+
+    public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson, boolean markerOnly) {
         Double lat, lon;
         lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
         lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
@@ -282,7 +286,7 @@ public class ActivityHelper {
         map.addMarker(opts);
 
         if (((observation.geoprivacy != null) && (observation.geoprivacy.equals("private"))) ||
-                (publicAcc == null)) {
+                (publicAcc == null) || (markerOnly)) {
             // No need to add anything other than the above marker
             cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
 

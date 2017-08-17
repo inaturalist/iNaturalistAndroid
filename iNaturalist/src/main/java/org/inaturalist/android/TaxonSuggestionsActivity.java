@@ -6,13 +6,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,6 +43,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     public static final String LONGITUDE = "longitude";
     public static final String LATITUDE = "latitude";
     public static final String OBSERVED_ON = "observed_on";
+    public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
 
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
 
@@ -63,6 +69,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private TextView mNoNetwork;
     private TextView mCommonAncestorDescription;
     private ListView mCommonAncestorList;
+    private int mObsId;
+    private int mObsIdInternal;
 
     @Override
     protected void onStart()
@@ -105,7 +113,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mTaxonCommonAncestor = null;
             if (resultsObject.has("common_ancestor")) {
                 JSONObject commonAncestor = resultsObject.getJSONObject("common_ancestor");
-                if (commonAncestor.has("taxon")) {
+                if ((commonAncestor != null) && (commonAncestor.has("taxon"))) {
                     mTaxonCommonAncestor = new BetterJSONObject(commonAncestor);
                 }
             }
@@ -137,6 +145,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mLongitude = intent.getDoubleExtra(LONGITUDE, 0);
             mLatitude = intent.getDoubleExtra(LATITUDE, 0);
             mObservedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
+            mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
+            mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, 0);
         } else {
         	mObsPhotoFilename = savedInstanceState.getString(OBS_PHOTO_FILENAME);
             mObsPhotoUrl = savedInstanceState.getString(OBS_PHOTO_URL);
@@ -144,6 +154,10 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mLatitude = savedInstanceState.getDouble(LATITUDE, 0);
             mObservedOn = (Timestamp) savedInstanceState.getSerializable(OBSERVED_ON);
             mTaxonSuggestions = loadListFromBundle(savedInstanceState, "mTaxonSuggestions");
+            String taxonAncestorJson = savedInstanceState.getString("mTaxonCommonAncestor", null);
+            if (taxonAncestorJson != null) mTaxonCommonAncestor = new BetterJSONObject(taxonAncestorJson);
+            mObsId = savedInstanceState.getInt(OBSERVATION_ID);
+            mObsIdInternal = savedInstanceState.getInt(OBSERVATION_ID_INTERNAL);
         }
 
         setContentView(R.layout.taxon_suggestions);
@@ -191,7 +205,10 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         outState.putDouble(LONGITUDE, mLongitude);
         outState.putDouble(LATITUDE, mLatitude);
         outState.putSerializable(OBSERVED_ON, mObservedOn);
+        if (mTaxonCommonAncestor != null) outState.putString("mTaxonCommonAncestor", mTaxonCommonAncestor.getJSONObject().toString());
         saveListToBundle(outState, mTaxonSuggestions, "mTaxonSuggestions");
+        outState.putInt(OBSERVATION_ID, mObsId);
+        outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
 
         super.onSaveInstanceState(outState);
     }
@@ -250,6 +267,21 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                     }
                 });
 
+
+        mObsPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaxonSuggestionsActivity.this, ObservationPhotosViewer.class);
+                intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, 0);
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObsId);
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+                intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
+                intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
+                Log.e("AAA", "STARTING " + mObsId + ":" + mObsIdInternal);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void loadSuggestions() {
@@ -301,12 +333,17 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         }
 
         mSuggestionsList.setAdapter(new TaxonSuggestionAdapter(this, mTaxonSuggestions, onSuggestion));
+
+        resizeSuggestionsList();
     }
 
     private void saveListToBundle(Bundle outState, List<BetterJSONObject> list, String key) {
         if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
+            JSONArray arr = new JSONArray();
+            for (int i = 0; i < list.size(); i++) {
+                arr.put(list.get(i).getJSONObject().toString());
+            }
+            outState.putString(key, arr.toString());
         }
     }
 
@@ -318,7 +355,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             try {
                 JSONArray arr = new JSONArray(obsString);
                 for (int i = 0; i < arr.length(); i++) {
-                    results.add(new BetterJSONObject(arr.getJSONObject(i)));
+                    results.add(new BetterJSONObject(arr.getString(i)));
                 }
 
                 return results;
@@ -346,6 +383,72 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    private void resizeSuggestionsList() {
+        final Handler handler = new Handler();
+        if ((mSuggestionsList.getVisibility() == View.VISIBLE) && (mSuggestionsList.getWidth() == 0)) {
+            // UI not initialized yet - try later
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resizeSuggestionsList();
+                }
+            }, 100);
+
+            return;
+        }
+
+        mSuggestionsList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                int height = setListViewHeightBasedOnItems(mSuggestionsList);
+            }
+        });
+    }
+
+    /**
+     * Sets ListView height dynamically based on the height of the items.
+     *
+     * @param listView to be resized
+     */
+    public int setListViewHeightBasedOnItems(final ListView listView) {
+    	ListAdapter listAdapter = listView.getAdapter();
+    	if (listAdapter != null) {
+
+            int numberOfItems = listAdapter.getCount();
+
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, listView);
+                item.measure(MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.AT_MOST), MeasureSpec.UNSPECIFIED);
+                totalItemsHeight += item.getMeasuredHeight();
+            }
+
+            // Get total height of all item dividers.
+            int totalDividersHeight = listView.getDividerHeight() *
+                    (numberOfItems - 1);
+
+            // Set list height.
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            int paddingHeight = (int) getResources().getDimension(R.dimen.actionbar_height);
+            int newHeight = totalItemsHeight + totalDividersHeight;
+            if (params.height != newHeight) {
+                params.height = totalItemsHeight + totalDividersHeight;
+                listView.setLayoutParams(params);
+                listView.requestLayout();
+            }
+
+    		return params.height;
+
+    	} else {
+    		return 0;
+    	}
     }
 }
 

@@ -593,8 +593,8 @@ public class ObservationEditor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mTaxonSearchStarted = true;
-                if (mGallery.getAdapter().getCount() == 0) {
-                    // No photos - show the regular species search (by name)
+                if ((mGallery.getAdapter().getCount() == 0) || (!mApp.getSuggestSpecies())) {
+                    // No photos / suggest species setting is off - show the regular species search (by name)
                     Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
                     intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
                     intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
@@ -612,6 +612,8 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(TaxonSuggestionsActivity.LONGITUDE, mObservation.longitude);
                     intent.putExtra(TaxonSuggestionsActivity.LATITUDE, mObservation.latitude);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVED_ON, mObservation.observed_on);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObservation.id);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
                     startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 }
             }
@@ -1281,20 +1283,33 @@ public class ObservationEditor extends AppCompatActivity {
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
         if (mIsTaxonUnknown) {
-            mSpeciesGuessSub.setText(R.string.view_suggestions);
+            if (mApp.getSuggestSpecies()) {
+                mSpeciesGuessSub.setText(R.string.view_suggestions);
+            } else {
+                mSpeciesGuessSub.setVisibility(View.GONE);
+            }
             mClearSpeciesGuess.setVisibility(View.GONE);
         } else {
             if (mObservation.species_guess != null) {
                 mClearSpeciesGuess.setVisibility(View.VISIBLE);
                 if (mScientificName != null) {
                     mSpeciesGuessSub.setText(mScientificName);
+                    mSpeciesGuessSub.setVisibility(View.VISIBLE);
                 } else {
-                    mSpeciesGuessSub.setText(R.string.view_suggestions);
+                    if (mApp.getSuggestSpecies()) {
+                        mSpeciesGuessSub.setText(R.string.view_suggestions);
+                    } else {
+                        mSpeciesGuessSub.setVisibility(View.GONE);
+                    }
                 }
             } else {
                 mClearSpeciesGuess.setVisibility(View.GONE);
-                mSpeciesGuessSub.setText(R.string.view_suggestions);
                 mSpeciesGuessTextView.setHint(R.string.what_did_you_see);
+                if (mApp.getSuggestSpecies()) {
+                    mSpeciesGuessSub.setText(R.string.view_suggestions);
+                } else {
+                    mSpeciesGuessSub.setVisibility(View.GONE);
+                }
             }
         }
 
@@ -1967,9 +1982,14 @@ public class ObservationEditor extends AppCompatActivity {
                 mClearSpeciesGuess.setVisibility(mIsTaxonUnknown ? View.GONE : View.VISIBLE);
 
                 if (mIsTaxonUnknown || (mScientificName == null)) {
-                    mSpeciesGuessSub.setText(R.string.view_suggestions);
+                    if (mApp.getSuggestSpecies()) {
+                        mSpeciesGuessSub.setText(R.string.view_suggestions);
+                    } else {
+                        mSpeciesGuessSub.setVisibility(View.GONE);
+                    }
                 } else {
                     mSpeciesGuessSub.setText(mScientificName);
+                    mSpeciesGuessSub.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -2820,6 +2840,7 @@ public class ObservationEditor extends AppCompatActivity {
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText(mSpeciesGuess);
         mSpeciesGuessSub.setText(scientificName);
+        mSpeciesGuessSub.setVisibility(View.VISIBLE);
         mClearSpeciesGuess.setVisibility(View.VISIBLE);
         mScientificName = scientificName;
         mTaxonTextChanged = false;
@@ -2926,7 +2947,11 @@ public class ObservationEditor extends AppCompatActivity {
         mObservation.taxon_id = null;
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText("Unknown");
-        mSpeciesGuessSub.setText(R.string.view_suggestions);
+        if (mApp.getSuggestSpecies()) {
+            mSpeciesGuessSub.setText(R.string.view_suggestions);
+        } else {
+            mSpeciesGuessSub.setVisibility(View.GONE);
+        }
         mTaxonTextChanged = false;
         mPreviousTaxonSearch = "Unknown";
         mObservation.preferred_common_name = null;

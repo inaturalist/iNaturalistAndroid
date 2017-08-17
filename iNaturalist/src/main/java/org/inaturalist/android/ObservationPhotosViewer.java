@@ -117,12 +117,15 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 mIsNewObservation = intent.getBooleanExtra(IS_NEW_OBSERVATION, false);
                 mCurrentPhotoIndex = intent.getIntExtra(CURRENT_PHOTO_INDEX, 0);
 
+                Log.e("AAA", "onCreate 1");
                 if (!mIsNewObservation) {
                     String observationString = intent.getStringExtra(OBSERVATION);
                     if (observationString != null) mObservation = new JSONObject(observationString);
                 } else {
+                    Log.e("AAA", "onCreate 2");
                     mObservationId = intent.getIntExtra(OBSERVATION_ID, 0);
                     mObservationIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, 0);
+                    Log.e("AAA", "onCreate 3 - " + mObservationId + ":" + mObservationIdInternal);
                 }
 
                 mReadOnly = intent.getBooleanExtra(READ_ONLY, false);

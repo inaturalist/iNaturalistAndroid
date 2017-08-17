@@ -1338,14 +1338,14 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(observedOn);
+        String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
         ArrayList<NameValuePair> params = new ArrayList<>();
         String url = String.format("http://api.inaturalist.org/v1/computervision/score_image");
 
         params.add(new BasicNameValuePair("locale", deviceLanguage));
         params.add(new BasicNameValuePair("lat", latitude.toString()));
         params.add(new BasicNameValuePair("lng", longitude.toString()));
-        params.add(new BasicNameValuePair("observed_on", date));
+        if (date != null) params.add(new BasicNameValuePair("observed_on", date));
         params.add(new BasicNameValuePair("image", photoFilename));
 
         JSONArray json = request(url, "post", params, null, true, true, true);

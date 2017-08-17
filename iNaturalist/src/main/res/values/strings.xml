@@ -587,4 +587,6 @@
     <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
     <string name="pretty_sure_genus">We\'re pretty sure it\'s in this genus:</string>
     <string name="what_did_you_see">What did you see?</string>
+    <string name="suggest_species">Suggest Species</string>
+    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
 </resources>

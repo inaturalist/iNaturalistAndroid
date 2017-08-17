@@ -808,7 +808,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             });
         }
 
-        mAdapter = new CommentsIdsAdapter(this, mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
+        mAdapter = new CommentsIdsAdapter(this, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()), mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
             @Override
             public void onIdentificationAdded(BetterJSONObject taxon) {
                 try {
@@ -1481,6 +1481,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ObservationViewerActivity.this, TaxonActivity.class);
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(mTaxon));
+                intent.putExtra(TaxonActivity.OBSERVATION, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()));
                 startActivity(intent);
             }
         };

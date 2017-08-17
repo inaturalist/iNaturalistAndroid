@@ -912,6 +912,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                             if (item == null) return;
                             Intent intent = new Intent(ObservationListActivity.this, TaxonActivity.class);
                             intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
+                            intent.putExtra(TaxonActivity.OBSERVATION, new BetterJSONObject(item));
                             intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                             startActivity(intent);
                         }
