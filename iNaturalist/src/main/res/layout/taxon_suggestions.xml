@@ -5,7 +5,8 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:padding="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="161dp">
@@ -14,6 +15,7 @@
             android:id="@+id/back"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/ic_arrow_back"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -29,6 +31,8 @@
             android:scaleType="fitXY"
             android:elevation="8dp"
             android:background="#464646"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             />
 
     </RelativeLayout>
@@ -110,7 +114,7 @@
                     android:id="@+id/common_ancestor_description"
                     android:textSize="14sp"
                     android:textColor="#8B000000"
-                    android:text="@string/pretty_sure_genus"
+                    android:text="@string/pretty_sure_rank"
                     android:layout_marginLeft="17dp"
                     android:layout_marginRight="17dp"
                     android:layout_marginTop="23dp"

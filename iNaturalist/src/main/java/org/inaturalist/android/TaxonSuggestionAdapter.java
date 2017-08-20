@@ -74,6 +74,7 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         // Get the taxon display name according to device locale
         taxonName.setText(TaxonUtils.getTaxonName(mContext, item));
         taxonScientificName.setText(item.optString("name"));
+        taxonScientificName.setTypeface(null, item.optInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
 
         if (item.has("default_photo") && !item.isNull("default_photo")) {
             JSONObject defaultPhoto = item.optJSONObject("default_photo");

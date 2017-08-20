@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.flurry.android.FlurryAgent;
 
+import java.sql.Timestamp;
+
 public class IdentificationActivity extends AppCompatActivity {
     public static final String ID_REMARKS = "id_remarks";
     public static final String SUGGEST_ID = "suggest_id";
@@ -26,6 +28,16 @@ public class IdentificationActivity extends AppCompatActivity {
     public static final String TAXON_ID = "taxon_id";
     public static final String SPECIES_GUESS = "species_guess";
     public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
+    public static final String OBS_PHOTO_FILENAME = "obs_photo_filename";
+    public static final String OBS_PHOTO_URL = "obs_photo_url";
+    public static final String LONGITUDE = "longitude";
+    public static final String LATITUDE = "latitude";
+    public static final String OBSERVED_ON = "observed_on";
+    public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
+    public static final String OBSERVATION = "observation";
+
+
     private ActionBar mTopActionBar;
     private EditText mRemarks;
     private int mTaxonId = 0;
@@ -34,6 +46,16 @@ public class IdentificationActivity extends AppCompatActivity {
     private TextView mIdName;
     private ImageView mIdPic;
     private boolean mSuggestId;
+    private String mObsPhotoFilename;
+    private String mObsPhotoUrl;
+    private double mLatitude;
+    private double mLongitude;
+    private Timestamp mObservedOn;
+    private int mObsId;
+    private int mObsIdInternal;
+
+    private INaturalistApp mApp;
+    private String mObservationJson;
 
     @Override
 	protected void onStart()
@@ -74,10 +96,30 @@ public class IdentificationActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             Intent intent = getIntent();
             mSuggestId = intent.getBooleanExtra(SUGGEST_ID, false);
+            mObsPhotoFilename = intent.getStringExtra(OBS_PHOTO_FILENAME);
+            mObsPhotoUrl = intent.getStringExtra(OBS_PHOTO_URL);
+            mLongitude = intent.getDoubleExtra(LONGITUDE, 0);
+            mLatitude = intent.getDoubleExtra(LATITUDE, 0);
+            mObservedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
+            mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
+            mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
+            mObservationJson = intent.getStringExtra(OBSERVATION);
         } else {
             mSuggestId = savedInstanceState.getBoolean(SUGGEST_ID, false);
+            mObsPhotoFilename = savedInstanceState.getString(OBS_PHOTO_FILENAME);
+            mObsPhotoUrl = savedInstanceState.getString(OBS_PHOTO_URL);
+            mLongitude = savedInstanceState.getDouble(LONGITUDE, 0);
+            mLatitude = savedInstanceState.getDouble(LATITUDE, 0);
+            mObservedOn = (Timestamp) savedInstanceState.getSerializable(OBSERVED_ON);
+            mObsId = savedInstanceState.getInt(OBSERVATION_ID);
+            mObsIdInternal = savedInstanceState.getInt(OBSERVATION_ID_INTERNAL);
+            mObservationJson = savedInstanceState.getString(OBSERVATION);
         }
- 
+
+        if (mApp == null) {
+            mApp = (INaturalistApp) getApplicationContext();
+        }
+
         mRemarks = (EditText) findViewById(R.id.remarks);
         
         
@@ -116,15 +158,35 @@ public class IdentificationActivity extends AppCompatActivity {
         changeId.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(IdentificationActivity.this, TaxonSearchActivity.class);
-                startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+                suggestId();
             }
         });
         
         // When loaded for the first time - show the taxon search dialog
-        Intent intent = new Intent(IdentificationActivity.this, TaxonSearchActivity.class);
-        intent.putExtra(SUGGEST_ID, true);
-        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+        suggestId();
+
+    }
+
+    private void suggestId() {
+        if ((!mApp.getSuggestSpecies()) || ((mObsPhotoFilename == null) && (mObsPhotoUrl == null))) {
+            Intent intent = new Intent(IdentificationActivity.this, TaxonSearchActivity.class);
+            intent.putExtra(SUGGEST_ID, true);
+            startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+        } else {
+            Intent intent = new Intent(IdentificationActivity.this, TaxonSuggestionsActivity.class);
+            intent.putExtra(TaxonSuggestionsActivity.OBS_PHOTO_FILENAME, mObsPhotoFilename);
+            intent.putExtra(TaxonSuggestionsActivity.OBS_PHOTO_URL, mObsPhotoUrl);
+            intent.putExtra(TaxonSuggestionsActivity.LONGITUDE, mLongitude);
+            intent.putExtra(TaxonSuggestionsActivity.LATITUDE, mLatitude);
+            intent.putExtra(TaxonSuggestionsActivity.OBSERVED_ON, mObservedOn);
+            intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObsId);
+            if (mObsIdInternal == -1) {
+                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservationJson);
+            } else {
+                intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+            }
+            startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+        }
     }
     
     @Override
@@ -152,6 +214,15 @@ public class IdentificationActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(SUGGEST_ID, mSuggestId);
+        outState.putString(OBS_PHOTO_FILENAME, mObsPhotoFilename);
+        outState.putString(OBS_PHOTO_URL, mObsPhotoUrl);
+        outState.putDouble(LONGITUDE, mLongitude);
+        outState.putDouble(LATITUDE, mLatitude);
+        outState.putSerializable(OBSERVED_ON, mObservedOn);
+        outState.putInt(OBSERVATION_ID, mObsId);
+        outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
+        outState.putString(OBSERVATION, mObservationJson);
+
         super.onSaveInstanceState(outState);
     }
 

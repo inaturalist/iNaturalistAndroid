@@ -2,6 +2,8 @@ package org.inaturalist.android;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.graphics.Typeface;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +13,15 @@ import java.util.Locale;
 
 /** Various app-wide taxon-related utility functions */
 public class TaxonUtils {
+    public static void setTaxonScientificName(TextView textView, JSONObject item) {
+        textView.setText(item.optString("name"));
+        if (item.optInt("rank_level", 0) <= 20) {
+            textView.setTypeface(null, Typeface.ITALIC);
+        } else {
+            textView.setTypeface(null, Typeface.NORMAL);
+        }
+    }
+
     public static String getTaxonName(Context context, JSONObject item) {
         JSONObject defaultName;
         String displayName = null;

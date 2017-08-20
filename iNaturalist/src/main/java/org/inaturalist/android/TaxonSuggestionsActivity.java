@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
@@ -43,6 +42,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     public static final String LONGITUDE = "longitude";
     public static final String LATITUDE = "latitude";
     public static final String OBSERVED_ON = "observed_on";
+    public static final String OBSERVATION = "observation";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
 
@@ -71,6 +71,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private ListView mCommonAncestorList;
     private int mObsId;
     private int mObsIdInternal;
+    private String mObservationJson;
 
     @Override
     protected void onStart()
@@ -146,13 +147,15 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mLatitude = intent.getDoubleExtra(LATITUDE, 0);
             mObservedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
             mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
-            mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, 0);
+            mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
+            mObservationJson = intent.getStringExtra(OBSERVATION);
         } else {
         	mObsPhotoFilename = savedInstanceState.getString(OBS_PHOTO_FILENAME);
             mObsPhotoUrl = savedInstanceState.getString(OBS_PHOTO_URL);
             mLongitude = savedInstanceState.getDouble(LONGITUDE, 0);
             mLatitude = savedInstanceState.getDouble(LATITUDE, 0);
             mObservedOn = (Timestamp) savedInstanceState.getSerializable(OBSERVED_ON);
+            mObservationJson = savedInstanceState.getString(OBSERVATION);
             mTaxonSuggestions = loadListFromBundle(savedInstanceState, "mTaxonSuggestions");
             String taxonAncestorJson = savedInstanceState.getString("mTaxonCommonAncestor", null);
             if (taxonAncestorJson != null) mTaxonCommonAncestor = new BetterJSONObject(taxonAncestorJson);
@@ -205,6 +208,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         outState.putDouble(LONGITUDE, mLongitude);
         outState.putDouble(LATITUDE, mLatitude);
         outState.putSerializable(OBSERVED_ON, mObservedOn);
+        outState.putString(OBSERVATION, mObservationJson);
         if (mTaxonCommonAncestor != null) outState.putString("mTaxonCommonAncestor", mTaxonCommonAncestor.getJSONObject().toString());
         saveListToBundle(outState, mTaxonSuggestions, "mTaxonSuggestions");
         outState.putInt(OBSERVATION_ID, mObsId);
@@ -273,11 +277,11 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(TaxonSuggestionsActivity.this, ObservationPhotosViewer.class);
                 intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, 0);
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObservationJson);
                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObsId);
                 intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObsIdInternal);
                 intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
-                intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
-                Log.e("AAA", "STARTING " + mObsId + ":" + mObsIdInternal);
+                intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, mObsIdInternal == -1 ? false : true);
                 startActivity(intent);
             }
         });
@@ -300,6 +304,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 if (taxon.has("default_photo") && !taxon.isNull("default_photo")) bundle.putString(TaxonSearchActivity.ID_PIC_URL, taxon.optJSONObject("default_photo").optString("square_url"));
                 bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
                 bundle.putInt(TaxonSearchActivity.TAXON_ID, taxon.optInt("id"));
+                bundle.putInt(TaxonSearchActivity.RANK_LEVEL, taxon.optInt("rank_level"));
 
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
@@ -328,6 +333,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             List<BetterJSONObject> commonAncestor = new ArrayList<>();
             commonAncestor.add(mTaxonCommonAncestor);
             mCommonAncestorList.setAdapter(new TaxonSuggestionAdapter(this, commonAncestor, onSuggestion));
+            mCommonAncestorDescription.setText(String.format(getString(R.string.pretty_sure_rank), mTaxonCommonAncestor.getJSONObject("taxon").optString("rank")));
             mCommonAncestorDescription.setVisibility(View.VISIBLE);
             mCommonAncestorList.setVisibility(View.VISIBLE);
         }

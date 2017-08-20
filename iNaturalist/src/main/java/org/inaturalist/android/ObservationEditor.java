@@ -68,6 +68,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -209,6 +210,7 @@ public class ObservationEditor extends AppCompatActivity {
     private View mCloseSpeciesNameOnboarding;
     private String mScientificName;
     private ImageView mClearSpeciesGuess;
+    private int mTaxonRankLevel;
 
     @Override
 	protected void onStart()
@@ -645,7 +647,7 @@ public class ObservationEditor extends AppCompatActivity {
             Bundle extras = intent.getExtras();
             if ((extras != null) && (extras.getSerializable(TAXON) != null)) {
                 BetterJSONObject taxon = (BetterJSONObject) extras.getSerializable(TAXON);
-                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), false, taxon.getInt("id"), taxon.getJSONObject("default_photo").optString("square_url"), taxon.getString("iconic_taxon_name"));
+                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), taxon.getJSONObject("default_photo").optString("square_url"), taxon.getString("iconic_taxon_name"));
             }
         }
 
@@ -1285,6 +1287,7 @@ public class ObservationEditor extends AppCompatActivity {
         if (mIsTaxonUnknown) {
             if (mApp.getSuggestSpecies()) {
                 mSpeciesGuessSub.setText(R.string.view_suggestions);
+                mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
             } else {
                 mSpeciesGuessSub.setVisibility(View.GONE);
             }
@@ -1295,9 +1298,11 @@ public class ObservationEditor extends AppCompatActivity {
                 if (mScientificName != null) {
                     mSpeciesGuessSub.setText(mScientificName);
                     mSpeciesGuessSub.setVisibility(View.VISIBLE);
+                    mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
                 } else {
                     if (mApp.getSuggestSpecies()) {
                         mSpeciesGuessSub.setText(R.string.view_suggestions);
+                        mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
                     } else {
                         mSpeciesGuessSub.setVisibility(View.GONE);
                     }
@@ -1307,6 +1312,7 @@ public class ObservationEditor extends AppCompatActivity {
                 mSpeciesGuessTextView.setHint(R.string.what_did_you_see);
                 if (mApp.getSuggestSpecies()) {
                     mSpeciesGuessSub.setText(R.string.view_suggestions);
+                    mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
                 } else {
                     mSpeciesGuessSub.setVisibility(View.GONE);
                 }
@@ -1955,12 +1961,13 @@ public class ObservationEditor extends AppCompatActivity {
                 String idName = data.getStringExtra(TaxonSearchActivity.ID_NAME);
                 String idPicUrl = data.getStringExtra(TaxonSearchActivity.ID_PIC_URL);
                 Integer taxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
+                Integer rankLevel = data.getIntExtra(TaxonSearchActivity.RANK_LEVEL, 0);
                 boolean isCustomTaxon = data.getBooleanExtra(TaxonSearchActivity.IS_CUSTOM, false);
 
                 if (taxonId == TaxonSearchActivity.UNKNOWN_TAXON_ID) {
                     clearSpeciesGuess();
                 } else {
-                    setTaxon(idName, taxonName, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
+                    setTaxon(idName, taxonName, rankLevel, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
                 }
 
                 try {
@@ -1984,12 +1991,14 @@ public class ObservationEditor extends AppCompatActivity {
                 if (mIsTaxonUnknown || (mScientificName == null)) {
                     if (mApp.getSuggestSpecies()) {
                         mSpeciesGuessSub.setText(R.string.view_suggestions);
+                        mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
                     } else {
                         mSpeciesGuessSub.setVisibility(View.GONE);
                     }
                 } else {
                     mSpeciesGuessSub.setText(mScientificName);
                     mSpeciesGuessSub.setVisibility(View.VISIBLE);
+                    mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
                 }
             }
 
@@ -2831,7 +2840,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
 
-    private void setTaxon(String idName, String scientificName, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
+    private void setTaxon(String idName, String scientificName, int rankLevel, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
         String speciesGuess = String.format("%s", idName);
         mObservation.preferred_common_name = isCustomTaxon ? null : idName;
         mSpeciesGuess = speciesGuess;
@@ -2843,6 +2852,8 @@ public class ObservationEditor extends AppCompatActivity {
         mSpeciesGuessSub.setVisibility(View.VISIBLE);
         mClearSpeciesGuess.setVisibility(View.VISIBLE);
         mScientificName = scientificName;
+        mTaxonRankLevel = rankLevel;
+        mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
         mTaxonTextChanged = false;
         mPreviousTaxonSearch = mSpeciesGuess;
         mTaxonPicUrl = isCustomTaxon ? null : idPicUrl;
@@ -2949,6 +2960,7 @@ public class ObservationEditor extends AppCompatActivity {
         mSpeciesGuessTextView.setText("Unknown");
         if (mApp.getSuggestSpecies()) {
             mSpeciesGuessSub.setText(R.string.view_suggestions);
+            mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
         } else {
             mSpeciesGuessSub.setVisibility(View.GONE);
         }

@@ -253,6 +253,8 @@ public class TaxonActivity extends AppCompatActivity {
 
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.getUiSettings().setAllGesturesEnabled(false);
+        mMap.getUiSettings().setZoomControlsEnabled(false);
 
         // Make sure the user will be able to scroll/zoom the map (since it's inside a ScrollView)
         ((ScrollableMapFragment) getSupportFragmentManager().findFragmentById(R.id.observations_map))
@@ -381,7 +383,7 @@ public class TaxonActivity extends AppCompatActivity {
 
         if (mPhotosViewPager.getAdapter().getCount() <= 1) {
             mPhotosIndicator.setVisibility(View.GONE);
-            newHeight = 310;
+            newHeight = 280;
 
             if ((mPhotosViewPager.getAdapter().getCount() == 0) && (mDownloadTaxon)) {
                 mLoadingPhotos.setVisibility(View.VISIBLE);
@@ -389,7 +391,7 @@ public class TaxonActivity extends AppCompatActivity {
             }
         } else {
             mPhotosIndicator.setVisibility(View.VISIBLE);
-            newHeight = 340;
+            newHeight = 310;
         }
 
         params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newHeight, getResources().getDisplayMetrics());

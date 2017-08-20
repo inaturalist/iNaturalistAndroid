@@ -262,6 +262,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         }
 
+        public Cursor getCursor() {
+            return mImageCursor;
+        }
+
         @Override
         public int getCount() {
             return mReadOnly ? mObservation.photos.size() : mImageCursor.getCount();
@@ -973,6 +977,30 @@ public class ObservationViewerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ObservationViewerActivity.this, IdentificationActivity.class);
                 intent.putExtra(IdentificationActivity.SUGGEST_ID, true);
+                intent.putExtra(IdentificationActivity.OBSERVATION_ID, mObservation.id);
+                intent.putExtra(IdentificationActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                intent.putExtra(IdentificationActivity.OBSERVED_ON, mObservation.observed_on);
+                intent.putExtra(IdentificationActivity.LONGITUDE, mObservation.longitude);
+                intent.putExtra(IdentificationActivity.LATITUDE, mObservation.latitude);
+                if (mObservation._id != null) {
+                    if (((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getCount() > 0) {
+                        Cursor imageCursor = ((PhotosViewPagerAdapter) mPhotosViewPager.getAdapter()).getCursor();
+
+                        int pos = imageCursor.getPosition();
+                        imageCursor.moveToFirst();
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_FILENAME,
+                                imageCursor.getString(imageCursor.getColumnIndex(ObservationPhoto.PHOTO_FILENAME)));
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_URL,
+                                imageCursor.getString(imageCursor.getColumnIndex(ObservationPhoto.PHOTO_URL)));
+                        imageCursor.move(pos);
+                    }
+                } else {
+                    if ((mObservation.photos != null) && (mObservation.photos.size() > 0)) {
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_FILENAME, mObservation.photos.get(0).photo_filename);
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_URL, mObservation.photos.get(0).photo_url);
+                    }
+                }
+                intent.putExtra(IdentificationActivity.OBSERVATION, mObsJson);
                 startActivityForResult(intent, NEW_ID_REQUEST_CODE);
             }
         });
@@ -1509,13 +1537,19 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 downloadTaxon();
             } else {
                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
-                mIdName.setText(mTaxonIdName);
-                mTaxonicName.setText(mTaxonName);
-                mTaxonicName.setVisibility(View.VISIBLE);
-                if (mTaxonRankLevel <= 20) {
-                    mTaxonicName.setTypeface(null, Typeface.ITALIC);
+
+                if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
+                    mIdName.setText(mTaxonName);
+                    mTaxonicName.setVisibility(View.GONE);
                 } else {
-                    mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                    mIdName.setText(mTaxonIdName);
+                    mTaxonicName.setText(mTaxonName);
+                    mTaxonicName.setVisibility(View.VISIBLE);
+                    if (mTaxonRankLevel <= 20) {
+                        mTaxonicName.setTypeface(null, Typeface.ITALIC);
+                    } else {
+                        mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                    }
                 }
             }
         }
