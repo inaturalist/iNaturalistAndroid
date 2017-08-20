@@ -247,16 +247,18 @@ public class AnalyticsClient {
     // Logs an event with parameters - automatically ads the "Via" parameter (that indicates the current activity name)
     public void logEvent(String eventName, JSONObject parameters) {
 
-        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) || (mCurrentActivity == null)) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             // Don't log events for old phones - since those require using the GET_TASKS permission in
             // order to get the current running task (and GET_TASKS is a scary permission).
             return;
         }
 
-        // Add the via parameter (which indicates the current screen the event was initiated from)
-        String currentActivityName = getCurrentActivityName();
         try {
-            if (!parameters.has(EVENT_PARAM_VIA)) parameters.put(EVENT_PARAM_VIA, currentActivityName);
+            if (mCurrentActivity != null) {
+                // Add the via parameter (which indicates the current screen the event was initiated from)
+                String currentActivityName = getCurrentActivityName();
+                if (!parameters.has(EVENT_PARAM_VIA)) parameters.put(EVENT_PARAM_VIA, currentActivityName);
+            }
             Amplitude.getInstance().logEvent(eventName, parameters);
 
         } catch (JSONException e) {
