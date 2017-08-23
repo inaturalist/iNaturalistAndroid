@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
@@ -72,6 +73,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private int mObsId;
     private int mObsIdInternal;
     private String mObservationJson;
+    private int mLastTaxonPosition;
 
     @Override
     protected void onStart()
@@ -161,6 +163,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             if (taxonAncestorJson != null) mTaxonCommonAncestor = new BetterJSONObject(taxonAncestorJson);
             mObsId = savedInstanceState.getInt(OBSERVATION_ID);
             mObsIdInternal = savedInstanceState.getInt(OBSERVATION_ID_INTERNAL);
+            mLastTaxonPosition = savedInstanceState.getInt("mLastTaxonPosition");
         }
 
         setContentView(R.layout.taxon_suggestions);
@@ -213,6 +216,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         saveListToBundle(outState, mTaxonSuggestions, "mTaxonSuggestions");
         outState.putInt(OBSERVATION_ID, mObsId);
         outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
+        outState.putInt("mLastTaxonPosition", mLastTaxonPosition);
 
         super.onSaveInstanceState(outState);
     }
@@ -294,7 +298,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
         TaxonSuggestionAdapter.OnTaxonSuggestion onSuggestion = new TaxonSuggestionAdapter.OnTaxonSuggestion() {
             @Override
-            public void onTaxonSelected(JSONObject taxon) {
+            public void onTaxonSelected(int position, JSONObject taxon) {
                 // Taxon selected - return that taxon back
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
@@ -312,13 +316,20 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTaxonDetails(JSONObject taxon) {
+            public void onTaxonDetails(int position, JSONObject taxon) {
                 // Show taxon details screen
+                mLastTaxonPosition = position;
                 Intent intent = new Intent(TaxonSuggestionsActivity.this, TaxonActivity.class);
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
                 intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                 intent.putExtra(TaxonActivity.TAXON_SUGGESTION, true);
                 startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+            }
+
+            @Override
+            public void onTaxonCompared(int position, JSONObject taxon) {
+                // Show taxon comparison screen
+                showTaxonComparison(position);
             }
         };
 
@@ -343,14 +354,28 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         resizeSuggestionsList();
     }
 
+    private void showTaxonComparison(int position) {
+        Intent intent = new Intent(TaxonSuggestionsActivity.this, CompareSuggestionActivity.class);
+        intent.putExtra(CompareSuggestionActivity.SUGGESTION_INDEX, position);
+        if (mObservationJson != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_JSON, mObservationJson);
+        if (mObsIdInternal > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+        if (mObsId > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID, mObsId);
+        intent.putExtra(CompareSuggestionActivity.SUGGESTIONS_JSON, listToString(mTaxonSuggestions));
+        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+    }
+
     private void saveListToBundle(Bundle outState, List<BetterJSONObject> list, String key) {
         if (list != null) {
-            JSONArray arr = new JSONArray();
-            for (int i = 0; i < list.size(); i++) {
-                arr.put(list.get(i).getJSONObject().toString());
-            }
-            outState.putString(key, arr.toString());
+            outState.putString(key, listToString(list));
         }
+    }
+
+    private String listToString(List<BetterJSONObject> list) {
+        JSONArray arr = new JSONArray();
+        for (int i = 0; i < list.size(); i++) {
+            arr.put(list.get(i).getJSONObject().toString());
+        }
+        return arr.toString();
     }
 
     private ArrayList<BetterJSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
@@ -387,6 +412,9 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 setResult(RESULT_OK, intent);
 
                 finish();
+            } else if (resultCode == TaxonActivity.RESULT_COMPARE_TAXON) {
+                // User chose to compare this specific taxon
+                showTaxonComparison(mLastTaxonPosition);
             }
         }
     }

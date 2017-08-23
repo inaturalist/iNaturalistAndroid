@@ -28,9 +28,11 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
 
     public interface OnTaxonSuggestion {
         // When the user selected a specific taxon
-        void onTaxonSelected(JSONObject taxon);
+        void onTaxonSelected(int position, JSONObject taxon);
         // When the user wants to view taxon details page
-        void onTaxonDetails(JSONObject taxon);
+        void onTaxonDetails(int position, JSONObject taxon);
+        // When the user wants to compare a taxon
+        void onTaxonCompared(int position, JSONObject taxon);
     }
 
     public TaxonSuggestionAdapter(Context context, List<BetterJSONObject> results, OnTaxonSuggestion onTaxonSuggestion) {
@@ -46,7 +48,7 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         return (mResultList != null ? mResultList.size() : 0);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.taxon_suggestion_item, parent, false);
 
@@ -56,18 +58,26 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         TextView taxonName = (TextView) view.findViewById(R.id.taxon_name);
         TextView taxonScientificName = (TextView) view.findViewById(R.id.taxon_scientific_name);
         View selectTaxon = view.findViewById(R.id.select_taxon);
+        View compareTaxon = view.findViewById(R.id.compare_taxon);
 
         selectTaxon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnTaxonSuggestion.onTaxonSelected(item);
+                mOnTaxonSuggestion.onTaxonSelected(position, item);
+            }
+        });
+
+        compareTaxon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnTaxonSuggestion.onTaxonCompared(position, item);
             }
         });
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnTaxonSuggestion.onTaxonDetails(item);
+                mOnTaxonSuggestion.onTaxonDetails(position, item);
             }
         });
 

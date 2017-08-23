@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -60,6 +61,10 @@ public class TaxonActivity extends AppCompatActivity {
 
     private static String TAG = "TaxonActivity";
 
+    private static final int TAXON_SEARCH_REQUEST_CODE = 302;
+
+    public static final int RESULT_COMPARE_TAXON = 0x1000;
+
     public static String TAXON = "taxon";
     public static String OBSERVATION = "observation";
     public static String DOWNLOAD_TAXON = "download_taxon";
@@ -89,6 +94,7 @@ public class TaxonActivity extends AppCompatActivity {
     private ViewGroup mViewOnINat;
     private ViewGroup mTaxonButtons;
     private ViewGroup mSelectTaxon;
+    private ViewGroup mCompareTaxon;
 
     private boolean mMapBoundsSet = false;
     private boolean mTaxonSuggestion = false;
@@ -199,6 +205,7 @@ public class TaxonActivity extends AppCompatActivity {
         mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
         mTaxonButtons = (ViewGroup) findViewById(R.id.taxon_buttons);
         mSelectTaxon = (ViewGroup) findViewById(R.id.select_taxon);
+        mCompareTaxon = (ViewGroup) findViewById(R.id.compare_taxon);
 
         mTaxonButtons.setVisibility(mTaxonSuggestion ? View.VISIBLE : View.GONE);
 
@@ -218,6 +225,18 @@ public class TaxonActivity extends AppCompatActivity {
 
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
+
+        mCompareTaxon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show taxon comparison screen - we do this by indicating the calling activity (TaxonSuggestions/CompareSuggestions)
+                // that the user select this taxon for comparison
+                Intent intent = new Intent();
+                setResult(RESULT_COMPARE_TAXON, intent);
+
                 finish();
             }
         });
@@ -464,15 +483,17 @@ public class TaxonActivity extends AppCompatActivity {
     }
 
 
-    class TaxonPhotosPagerAdapter extends PagerAdapter {
+    public static class TaxonPhotosPagerAdapter extends PagerAdapter {
  		private int mDefaultTaxonIcon;
  		private List<JSONObject> mTaxonPhotos;
         private Context mContext;
+        private JSONObject mTaxon;
 
 
         // Load offline photos for a new observation
         public TaxonPhotosPagerAdapter(Context context, JSONObject taxon) {
             mContext = context;
+            mTaxon = taxon;
             mTaxonPhotos = new ArrayList<>();
 
             mDefaultTaxonIcon = TaxonUtils.observationIcon(taxon);
@@ -502,7 +523,7 @@ public class TaxonActivity extends AppCompatActivity {
 
  		@Override
  		public View instantiateItem(ViewGroup container, final int position) {
- 			View layout = getLayoutInflater().inflate(R.layout.taxon_photo, null, false);
+ 			View layout = ((Activity) mContext).getLayoutInflater().inflate(R.layout.taxon_photo, null, false);
  			container.addView(layout, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
  			final ImageView taxonPhoto = (ImageView) layout.findViewById(R.id.taxon_photo);
@@ -540,13 +561,13 @@ public class TaxonActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, ObservationPhotosViewer.class);
                     intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, position);
-                    intent.putExtra(ObservationPhotosViewer.OBSERVATION, mTaxon.getJSONObject().toString());
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION, mTaxon.toString());
                     intent.putExtra(ObservationPhotosViewer.IS_TAXON, true);
-                    startActivity(intent);
+                    mContext.startActivity(intent);
                 }
             });
 
-            photosAttr.setText(Html.fromHtml(String.format(getString(R.string.photo_attr), innerPhotoJSON.optString("attribution"))));
+            photosAttr.setText(Html.fromHtml(String.format(mContext.getString(R.string.photo_attr), innerPhotoJSON.optString("attribution"))));
 
  			return layout;
  		}
@@ -561,7 +582,22 @@ public class TaxonActivity extends AppCompatActivity {
  			return view == object;
  		}
 
-
-
  	}
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Copy results from taxon search directly back to the caller (e.g. observation editor)
+                Intent intent = new Intent();
+                Bundle bundle = data.getExtras();
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+
+                finish();
+            }
+        }
+    }
 }

@@ -1,58 +1,41 @@
 package org.inaturalist.android;
 
 import java.io.File;
-import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import uk.co.senab.photoview.HackyViewPager;
-import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 import com.flurry.android.FlurryAgent;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ContentUris;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.webkit.*;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class ObservationPhotosViewer extends AppCompatActivity {
     private static String TAG = "ObservationPhotosViewer";
@@ -117,15 +100,12 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 mIsNewObservation = intent.getBooleanExtra(IS_NEW_OBSERVATION, false);
                 mCurrentPhotoIndex = intent.getIntExtra(CURRENT_PHOTO_INDEX, 0);
 
-                Log.e("AAA", "onCreate 1");
                 if (!mIsNewObservation) {
                     String observationString = intent.getStringExtra(OBSERVATION);
                     if (observationString != null) mObservation = new JSONObject(observationString);
                 } else {
-                    Log.e("AAA", "onCreate 2");
                     mObservationId = intent.getIntExtra(OBSERVATION_ID, 0);
                     mObservationIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, 0);
-                    Log.e("AAA", "onCreate 3 - " + mObservationId + ":" + mObservationIdInternal);
                 }
 
                 mReadOnly = intent.getBooleanExtra(READ_ONLY, false);
@@ -154,9 +134,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
         mViewPager = (HackyViewPager) findViewById(R.id.id_pic_view_pager);
 		if ((mObservation != null) && (!mIsNewObservation)) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation, mIsTaxon));
+            mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservation, mIsTaxon));
 		} else if (mIsNewObservation) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId, mObservationIdInternal));
+            mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal));
             if (!mReadOnly) mDeletePhoto.setVisibility(View.VISIBLE);
             mDeletePhoto.setOnClickListener(new OnClickListener() {
                 @Override
@@ -225,16 +205,20 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     }
  
     
- 	class IdPicsPagerAdapter extends PagerAdapter {
+ 	public static class IdPicsPagerAdapter extends PagerAdapter {
  		int mDefaultTaxonIcon;
  		List<String> mImages;
+        Activity mActivity;
+        ViewPager mViewPager;
 
 
         // Load offline photos for a new observation
-        public IdPicsPagerAdapter(int observationId, int _observationId) {
+        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId) {
+            mActivity = activity;
+            mViewPager = viewPager;
             mImages = new ArrayList<String>();
 
-            Cursor imageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+            Cursor imageCursor = activity.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "_observation_id=? or observation_id=?",
                     new String[]{String.valueOf(_observationId), String.valueOf(observationId)},
@@ -258,7 +242,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         }
 
         // Load online photos for an existing observation
- 		public IdPicsPagerAdapter(JSONObject observation, boolean isTaxon) {
+ 		public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, JSONObject observation, boolean isTaxon) {
+            mActivity = activity;
+            mViewPager = viewPager;
  			mImages = new ArrayList<String>();
  			mDefaultTaxonIcon = TaxonUtils.observationIcon(observation);
 
@@ -290,7 +276,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
  		@Override
  		public View instantiateItem(ViewGroup container, int position) {
- 			View layout = (View) getLayoutInflater().inflate(R.layout.observation_photo, null, false);
+ 			View layout = (View) mActivity.getLayoutInflater().inflate(R.layout.observation_photo, null, false);
  			container.addView(layout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
  			ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
  			final ProgressBar loading = (ProgressBar) layout.findViewById(R.id.id_pic_loading);
@@ -304,11 +290,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     int newHeight = mViewPager.getMeasuredHeight();
                     int newWidth = mViewPager.getMeasuredHeight();
 
-                    bitmapImage = ImageUtils.decodeSampledBitmapFromUri(getContentResolver(),
+                    bitmapImage = ImageUtils.decodeSampledBitmapFromUri(mActivity.getContentResolver(),
                             Uri.fromFile(new File(imagePath)), newWidth, newHeight);
 
                     // Scale down the image if it's too big for the GL renderer
-                    bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);
+                    bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(mActivity, bitmapImage);
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, imagePath);
                     imageView.setImageBitmap(bitmapImage);
                     final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
@@ -339,7 +325,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                         @Override
                         public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                             // Scale down the image if it's too big for the GL renderer
-                            loadedBitmap = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, loadedBitmap);
+                            loadedBitmap = ImageUtils.scaleDownBitmapIfNeeded(mActivity, loadedBitmap);
                             return loadedBitmap;
                         }
                     });

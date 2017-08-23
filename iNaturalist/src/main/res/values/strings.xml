@@ -589,4 +589,7 @@
     <string name="what_did_you_see">What did you see?</string>
     <string name="suggest_species">Suggest Species</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="your_observation">Your Observation</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
+    <string name="taxon_name_with_scientific_name"><![CDATA[<b>%1$s</b> (%2$s)]]></string>
 </resources>
