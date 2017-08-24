@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="16dp"
@@ -33,7 +34,7 @@
         android:layout_marginLeft="9dp"
         android:layout_toLeftOf="@id/select_taxon"
         android:tint="#7A7A7A"
-        android:src="@drawable/ic_compare_arrows_black_48dp" />
+        android:src="@drawable/ic_compare" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -59,6 +60,15 @@
             android:textSize="12sp"
             android:layout_marginTop="3dp"
             android:textStyle="italic"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/visually_similar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#72AA00"
+            android:textSize="12sp"
+            android:layout_marginTop="3dp"
             android:text="TextView" />
     </LinearLayout>
 

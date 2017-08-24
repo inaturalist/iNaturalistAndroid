@@ -4,6 +4,8 @@ package org.inaturalist.android;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.support.v7.view.menu.ShowableListMenu;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
     private List<BetterJSONObject> mResultList;
     private Context mContext;
     private OnTaxonSuggestion mOnTaxonSuggestion;
+    private boolean mShowCompare;
 
     public interface OnTaxonSuggestion {
         // When the user selected a specific taxon
@@ -35,12 +38,13 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         void onTaxonCompared(int position, JSONObject taxon);
     }
 
-    public TaxonSuggestionAdapter(Context context, List<BetterJSONObject> results, OnTaxonSuggestion onTaxonSuggestion) {
+    public TaxonSuggestionAdapter(Context context, List<BetterJSONObject> results, OnTaxonSuggestion onTaxonSuggestion, boolean showCompare) {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
         mResultList = results;
         mOnTaxonSuggestion = onTaxonSuggestion;
+        mShowCompare = showCompare;
     }
 
     @Override
@@ -52,53 +56,70 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.taxon_suggestion_item, parent, false);
 
-        final JSONObject item = mResultList.get(position).getJSONObject("taxon");
+        BetterJSONObject item = mResultList.get(position);
+        final JSONObject taxon = item.getJSONObject("taxon");
 
         ImageView taxonPhoto = (ImageView) view.findViewById(R.id.taxon_photo);
         TextView taxonName = (TextView) view.findViewById(R.id.taxon_name);
         TextView taxonScientificName = (TextView) view.findViewById(R.id.taxon_scientific_name);
+        TextView visuallySimilar = (TextView) view.findViewById(R.id.visually_similar);
         View selectTaxon = view.findViewById(R.id.select_taxon);
         View compareTaxon = view.findViewById(R.id.compare_taxon);
+
+        Float visionScore = item.getFloat("vision_score");
+        Float frequencyScore = item.getFloat("frequency_score");
+
+        if ((visionScore == null) || (frequencyScore == null)) {
+            visuallySimilar.setVisibility(View.GONE);
+        } else if ((visionScore > 0) && (frequencyScore > 0)) {
+            visuallySimilar.setText(R.string.visually_similar_seen_nearby);
+        } else if (visionScore > 0) {
+            visuallySimilar.setText(R.string.visually_similar);
+        } else if (frequencyScore > 0) {
+            visuallySimilar.setText(R.string.seen_nearby);
+        }
+
+        compareTaxon.setVisibility(mShowCompare ? View.VISIBLE : View.INVISIBLE);
 
         selectTaxon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnTaxonSuggestion.onTaxonSelected(position, item);
+                mOnTaxonSuggestion.onTaxonSelected(position, taxon);
             }
         });
 
         compareTaxon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnTaxonSuggestion.onTaxonCompared(position, item);
+                mOnTaxonSuggestion.onTaxonCompared(position, taxon);
             }
         });
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnTaxonSuggestion.onTaxonDetails(position, item);
+                mOnTaxonSuggestion.onTaxonDetails(position, taxon);
             }
         });
 
         // Get the taxon display name according to device locale
-        taxonName.setText(TaxonUtils.getTaxonName(mContext, item));
-        taxonScientificName.setText(item.optString("name"));
-        taxonScientificName.setTypeface(null, item.optInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+        taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
+        taxonScientificName.setText(taxon.optString("name"));
+        taxonScientificName.setTypeface(null, taxon.optInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
 
-        if (item.has("default_photo") && !item.isNull("default_photo")) {
-            JSONObject defaultPhoto = item.optJSONObject("default_photo");
+        if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
+            JSONObject defaultPhoto = taxon.optJSONObject("default_photo");
             Picasso.with(mContext)
                     .load(defaultPhoto.optString("square_url"))
                     .fit()
                     .centerCrop()
-                    .placeholder(TaxonUtils.observationIcon(item))
+                    .placeholder(TaxonUtils.observationIcon(taxon))
                     .into(taxonPhoto);
         } else {
             taxonPhoto.setImageResource(R.drawable.iconic_taxon_unknown);
         }
 
-        view.setTag(item);
+        view.setTag(taxon);
 
         return view;
     }

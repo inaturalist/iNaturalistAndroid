@@ -138,24 +138,47 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             }
         });
 
-        refreshView();
+        refreshViews();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        refreshView();
+        Log.e("AAA", "onResume");
+        refreshViews();
     }
 
-    private void refreshView() {
+    private void refreshViews() {
+        View.OnClickListener onClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show full screen view of the obs photos
+                Intent intent = new Intent(CompareSuggestionActivity.this, ObservationPhotosViewer.class);
+                intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, mObservationPhotosViewPager.getCurrentItem());
+
+                if (mObsIdInternal > -1) {
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID, mObsId);
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+                    intent.putExtra(ObservationPhotosViewer.IS_NEW_OBSERVATION, true);
+                    intent.putExtra(ObservationPhotosViewer.READ_ONLY, true);
+                } else {
+                    intent.putExtra(ObservationPhotosViewer.OBSERVATION, mObservation.getJSONObject().toString());
+                }
+                startActivity(intent);
+            }
+        };
+        ObservationPhotosViewer.IdPicsPagerAdapter adapter;
+
         if (mObservation != null) {
             // External observation
-            mObservationPhotosViewPager.setAdapter(new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObservation.getJSONObject(), false));
+            adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObservation.getJSONObject(), false, onClick);
         } else {
             // Internal observation
-            mObservationPhotosViewPager.setAdapter(new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObsId, mObsIdInternal));
+            adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObsId, mObsIdInternal, onClick);
         }
+        Log.e("AAA", "NEW OBS PHOTOS ADAPTER");
+        mObservationPhotosViewPager.setAdapter(adapter);
 
         mObservationPhotosViewPager.setCurrentItem(mObservationPhotoPosition);
         mObservationPhotosIndicator.setViewPager(mObservationPhotosViewPager);
@@ -170,7 +193,23 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     }
 
     private void refreshCurrentTaxon() {
-        mTaxonPhotosViewPager.setAdapter(new ObservationPhotosViewer.IdPicsPagerAdapter(this, mTaxonPhotosViewPager, mTaxonSuggestions.get(mSuggestionIndex).getJSONObject().optJSONObject("taxon"), true));
+        final JSONObject taxon = mTaxonSuggestions.get(mSuggestionIndex).getJSONObject().optJSONObject("taxon");
+
+        View.OnClickListener onClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show full screen view of the taxon photos
+                Intent intent = new Intent(CompareSuggestionActivity.this, ObservationPhotosViewer.class);
+                intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, mTaxonPhotosViewPager.getCurrentItem());
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION, taxon.toString());
+                intent.putExtra(ObservationPhotosViewer.IS_TAXON, true);
+                startActivity(intent);
+            }
+        };
+
+        ObservationPhotosViewer.IdPicsPagerAdapter adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mTaxonPhotosViewPager, taxon, true, onClick);
+        mTaxonPhotosViewPager.setAdapter(adapter);
+
         mTaxonPhotosViewPager.setCurrentItem(mSuggestionPhotoPosition);
 
         mTaxonPhotosIndicator.setViewPager(mTaxonPhotosViewPager);
@@ -242,7 +281,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 // Taxon selected - return that taxon back
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                JSONObject taxon = mTaxonSuggestions.get(mSuggestionIndex).getJSONObject().optJSONObject("taxon");
                 bundle.putString(TaxonSearchActivity.ID_NAME, TaxonUtils.getTaxonName(CompareSuggestionActivity.this, taxon));
                 bundle.putString(TaxonSearchActivity.TAXON_NAME, taxon.optString("name"));
                 bundle.putString(TaxonSearchActivity.ICONIC_TAXON_NAME, taxon.optString("iconic_taxon_name"));
@@ -256,7 +294,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             }
         });
 
-        final JSONObject taxon = mTaxonSuggestions.get(mSuggestionIndex).getJSONObject("taxon");
         String taxonName = TaxonUtils.getTaxonName(this, taxon);
         String scientificName = taxon.optString("name");
         String htmlText;
@@ -351,13 +388,16 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        Log.e("AAA", "onSaveInstanceState");
         outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
         outState.putInt(OBSERVATION_ID, mObsId);
         outState.putString(OBSERVATION_JSON, mObservation != null ? mObservation.getJSONObject().toString() : null);
         saveListToBundle(outState, mTaxonSuggestions, SUGGESTIONS_JSON);
         outState.putInt(SUGGESTION_INDEX, mSuggestionIndex);
-        outState.putInt(OBSERVATION_PHOTO_POSITION, mObservationPhotosViewPager.getCurrentItem());
-        outState.putInt(SUGGESTION_PHOTO_POSITION, mTaxonPhotosViewPager.getCurrentItem());
+        mObservationPhotoPosition = mObservationPhotosViewPager.getCurrentItem();
+        outState.putInt(OBSERVATION_PHOTO_POSITION, mObservationPhotoPosition);
+        mSuggestionPhotoPosition = mTaxonPhotosViewPager.getCurrentItem();
+        outState.putInt(SUGGESTION_PHOTO_POSITION, mSuggestionPhotoPosition);
 
         super.onSaveInstanceState(outState);
     }

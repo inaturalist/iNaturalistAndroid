@@ -210,7 +210,12 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  		List<String> mImages;
         Activity mActivity;
         ViewPager mViewPager;
+        private OnClickListener mClickListener;
 
+        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId, OnClickListener listener) {
+            this(activity, viewPager, observationId, _observationId);
+            mClickListener = listener;
+        }
 
         // Load offline photos for a new observation
         public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId) {
@@ -239,6 +244,10 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
             } while (imageCursor.moveToNext());
+        }
+ 		public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, JSONObject observation, boolean isTaxon, OnClickListener listener) {
+            this(activity, viewPager, observation, isTaxon);
+            mClickListener = listener;
         }
 
         // Load online photos for an existing observation
@@ -299,6 +308,17 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     imageView.setImageBitmap(bitmapImage);
                     final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
                     attacher.update();
+
+                    if (mClickListener != null) {
+                        Log.e("AAA", "Setting onPhotoTap");
+                        attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+                            @Override
+                            public void onPhotoTap(View view, float x, float y) {
+                                mClickListener.onClick(view);
+                            }
+                        });
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -313,7 +333,18 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     loading.setVisibility(View.VISIBLE);
                     imageView.setVisibility(View.INVISIBLE);
                     final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
-                    // Show a photo
+
+                    Log.e("AAA", "CREATING PHOTO VIEW");
+                    if (mClickListener != null) {
+                        Log.e("AAA", "Setting onPhotoTap2");
+                        attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+                            @Override
+                            public void onPhotoTap(View view, float x, float y) {
+                                mClickListener.onClick(view);
+                            }
+                        });
+                    }                    // Show a photo
+
                     UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
                         @Override
                         public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {

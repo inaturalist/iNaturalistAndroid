@@ -68,7 +68,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_compare_arrows_black_48dp"
+                    android:src="@drawable/ic_compare"
                     android:tint="#74ac00"
                     />
                 <TextView
@@ -94,8 +94,8 @@
                 android:layout_marginLeft="10dp"
                 >
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_check_circle_black_24dp"
                     android:tint="#ffffff"
                     />

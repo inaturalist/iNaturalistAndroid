@@ -343,13 +343,13 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mSuggestionsDescription.setText(String.format(getString(R.string.top_species_suggestions), mTaxonSuggestions.size()));
             List<BetterJSONObject> commonAncestor = new ArrayList<>();
             commonAncestor.add(mTaxonCommonAncestor);
-            mCommonAncestorList.setAdapter(new TaxonSuggestionAdapter(this, commonAncestor, onSuggestion));
+            mCommonAncestorList.setAdapter(new TaxonSuggestionAdapter(this, commonAncestor, onSuggestion, false));
             mCommonAncestorDescription.setText(String.format(getString(R.string.pretty_sure_rank), mTaxonCommonAncestor.getJSONObject("taxon").optString("rank")));
             mCommonAncestorDescription.setVisibility(View.VISIBLE);
             mCommonAncestorList.setVisibility(View.VISIBLE);
         }
 
-        mSuggestionsList.setAdapter(new TaxonSuggestionAdapter(this, mTaxonSuggestions, onSuggestion));
+        mSuggestionsList.setAdapter(new TaxonSuggestionAdapter(this, mTaxonSuggestions, onSuggestion, true));
 
         resizeSuggestionsList();
     }

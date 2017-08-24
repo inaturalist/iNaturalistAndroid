@@ -592,4 +592,7 @@
     <string name="your_observation">Your Observation</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="taxon_name_with_scientific_name"><![CDATA[<b>%1$s</b> (%2$s)]]></string>
+    <string name="visually_similar">Visually Similar</string>
+    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
+    <string name="seen_nearby">Seen Nearby</string>
 </resources>
