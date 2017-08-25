@@ -18,18 +18,18 @@
 
     <ImageView
         android:id="@+id/select_taxon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="9dp"
+        android:layout_marginLeft="5dp"
         android:tint="#7A7A7A"
         android:src="@drawable/ic_check_circle_black_24dp" />
 
     <ImageView
         android:id="@+id/compare_taxon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="9dp"
         android:layout_toLeftOf="@id/select_taxon"
