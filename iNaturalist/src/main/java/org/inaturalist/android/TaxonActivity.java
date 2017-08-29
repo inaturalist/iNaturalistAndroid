@@ -402,7 +402,7 @@ public class TaxonActivity extends AppCompatActivity {
 
         if (mPhotosViewPager.getAdapter().getCount() <= 1) {
             mPhotosIndicator.setVisibility(View.GONE);
-            newHeight = 280;
+            newHeight = 310;
 
             if ((mPhotosViewPager.getAdapter().getCount() == 0) && (mDownloadTaxon)) {
                 mLoadingPhotos.setVisibility(View.VISIBLE);
@@ -410,7 +410,7 @@ public class TaxonActivity extends AppCompatActivity {
             }
         } else {
             mPhotosIndicator.setVisibility(View.VISIBLE);
-            newHeight = 310;
+            newHeight = 320;
         }
 
         params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newHeight, getResources().getDisplayMetrics());
