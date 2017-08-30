@@ -70,6 +70,7 @@
         android:focusableInTouchMode="true" />
 
     <RelativeLayout
+        android:id="@+id/species_guess_container"
         android:layout_width="fill_parent"
         android:paddingLeft="16dp"
         android:paddingStart="16dp"
@@ -77,13 +78,13 @@
         android:paddingEnd="16dp"
         android:paddingTop="6dp"
         android:paddingBottom="8dp"
-        android:layout_height="60dp">
+        android:layout_height="65dp">
 
         <ImageView
             android:id="@+id/species_guess_icon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_wallpaper_black_24dp"
+            android:src="@drawable/ic_species_guess_black_24dp"
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
             android:layout_alignParentLeft="true"
@@ -91,21 +92,49 @@
             android:layout_centerVertical="true"
             android:alpha="0.6"
             />
-        
-        <EditText
-            android:id="@+id/speciesGuess"
-            android:layout_height="60dp"
-            android:layout_width="wrap_content"
-            android:hint="@string/species_guess_hint"
-            android:layout_toRightOf="@id/species_guess_icon"
-            android:layout_toEndOf="@id/species_guess_icon"
+
+        <ImageView
+            android:id="@+id/clear_species_guess"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_close_black_48dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:clickable="true"
-            android:focusable="false"
-            android:background="#00000000"
-            android:transitionName="search_taxon"
+            android:layout_centerVertical="true"
+            android:tint="#717171"
             />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/species_guess_icon"
+            android:layout_toLeftOf="@id/clear_species_guess"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/speciesGuess"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:hint="@string/species_guess_hint"
+                android:background="#00000000"
+                android:textSize="16sp"
+                android:focusable="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                />
+            <TextView
+                android:id="@+id/speciesGuessSub"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/view_suggestions"
+                android:background="#00000000"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
     </RelativeLayout>
 
 

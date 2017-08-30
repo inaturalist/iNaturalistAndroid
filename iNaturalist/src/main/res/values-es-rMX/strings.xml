@@ -531,7 +531,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="deleted_photos_from_cache_error">Parece que has eliminado una foto al limpiar la caché de la aplicación antes de subirla. Necesitarás volver a agregar la foto a su observación de la galería. En el futuro, por favor, asegúrate que han subido todas tus fotos antes de eliminar la caché de la aplicación.</string>
   <string name="new_activities">%1s nuevo</string>
   <string name="no_results_found">No se encontraron resultados...</string>
-  <string name="syncing_x_out_of_y_observations">Sincronizando %1$d observaciones...</string>
+  <string name="syncing_x_out_of_y_observations">Sincronizando %1$d / %2$d observaciones...</string>
   <string name="deleting_observations">Borrando observaciones...</string>
   <string name="preparing">Preparando...</string>
   <string name="add_edit_remark">Agregar/editar comentario</string>

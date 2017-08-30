@@ -16,6 +16,15 @@
         android:summary="@string/auto_upload_description"
         android:title="@string/automatic_upload" />
 
+    <CheckBoxPreference
+        android:layout="@layout/custom_preference"
+        android:defaultValue="true"
+        android:widgetLayout="@layout/custom_checkbox_preference"
+        android:key="suggest_species"
+        android:summary="@string/suggest_species_description"
+        android:title="@string/suggest_species" />
+
+
     <ListPreference
         android:layout="@layout/custom_preference"
         android:key="language"

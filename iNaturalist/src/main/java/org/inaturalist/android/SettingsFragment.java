@@ -37,6 +37,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private Preference mUsernamePreference;
     private CheckBoxPreference mAutoSyncPreference;
+    private CheckBoxPreference mSuggestSpeciesPreference;
     private ListPreference mLanguagePreference;
     private Preference mNetworkPreference;
     private Preference mContactSupport;
@@ -61,6 +62,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         mUsernamePreference = getPreferenceManager().findPreference("username");
         mAutoSyncPreference = (CheckBoxPreference) getPreferenceManager().findPreference("auto_sync");
+        mSuggestSpeciesPreference = (CheckBoxPreference) getPreferenceManager().findPreference("suggest_species");
         mLanguagePreference = (ListPreference) getPreferenceManager().findPreference("language");
         mNetworkPreference = (Preference) getPreferenceManager().findPreference("inat_network");
         mContactSupport = (Preference) getPreferenceManager().findPreference("contact_support");
@@ -119,6 +121,32 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             });
 
         }
+
+        mSuggestSpeciesPreference.setChecked(mApp.getSuggestSpecies());
+        mSuggestSpeciesPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                boolean newValue = mSuggestSpeciesPreference.isChecked();
+                mSuggestSpeciesPreference.setChecked(newValue);
+                mApp.setSuggestSpecies(newValue);
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_SETTING, AnalyticsClient.EVENT_PARAM_VALUE_SUGGEST_SPECIES);
+
+                    AnalyticsClient.getInstance().logEvent(
+                            newValue ?
+                                    AnalyticsClient.EVENT_NAME_SETTING_ENABLED :
+                                    AnalyticsClient.EVENT_NAME_SETTING_DISABLED
+                            , eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return false;
+            }
+        });
+
 
         mAutoSyncPreference.setChecked(mApp.getAutoSync());
         mAutoSyncPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

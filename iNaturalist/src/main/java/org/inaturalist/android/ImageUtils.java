@@ -21,8 +21,31 @@ import android.support.v8.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 
 
+import com.schokoladenbrown.Smooth;
+
+import org.apache.sanselan.ImageReadException;
+import org.apache.sanselan.ImageWriteException;
+import org.apache.sanselan.Sanselan;
+import org.apache.sanselan.common.IImageMetadata;
+import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
+import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
+import org.apache.sanselan.formats.tiff.TiffImageMetadata;
+import org.apache.sanselan.formats.tiff.constants.TagInfo;
+import org.apache.sanselan.formats.tiff.constants.TiffConstants;
+import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
+import org.apache.sanselan.formats.tiff.write.TiffOutputField;
+import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
+import java.util.UUID;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -37,6 +60,7 @@ public class ImageUtils {
 
     // Radius of the Blur. Supported range 0 < radius <= 25
     private static final float BLUR_RADIUS = 25f;
+    private static final String TAG = "ImageUtils";
 
     public static Bitmap blur(Context context, Bitmap image) {
         if (null == image) return null;
@@ -310,4 +334,259 @@ public class ImageUtils {
             return bitmapImage;
         }
     }
+
+
+    /**
+     * Resizes an image to max size
+     * @param path the path to the image filename (optional)
+     * @param photoUri the original Uri of the image
+     * @return the resized image - or original image if smaller than 2048x2048
+     */
+    public static String resizeImage(Context context, String path, Uri photoUri, int maxDimensions) {
+        InputStream is = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+        try {
+            if (path == null) {
+                is = context.getContentResolver().openInputStream(photoUri);
+            } else {
+                is = new FileInputStream(path);
+            }
+
+            // Just read the input image dimensions
+            options.inJustDecodeBounds = true;
+            Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
+            int originalHeight = options.outHeight;
+            int originalWidth = options.outWidth;
+            int newHeight, newWidth;
+
+            // BitmapFactory.decodeStream moves the reading cursor
+            is.close();
+
+            if (path == null) {
+                is = context.getContentResolver().openInputStream(photoUri);
+            } else {
+                is = new FileInputStream(path);
+            }
+
+
+            if (Math.max(originalHeight, originalWidth) < maxDimensions) {
+                if (path != null) {
+                    // Original file is smaller than max - no need to resize
+                    return path;
+                } else {
+                    // Don't resize because image is smaller than max - however, make a local copy of it
+                    newHeight = originalHeight;
+                    newWidth = originalWidth;
+                }
+            } else {
+                // Resize but make sure we have the same width/height aspect ratio
+                if (originalHeight > originalWidth) {
+                    newHeight = maxDimensions;
+                    newWidth = (int) (maxDimensions * ((float) originalWidth / originalHeight));
+                } else {
+                    newWidth = maxDimensions;
+                    newHeight = (int) (maxDimensions * ((float) originalHeight / originalWidth));
+                }
+            }
+
+            Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
+            Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
+
+            Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
+
+            if ((newHeight != originalHeight) || (newWidth != originalWidth)) {
+                // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
+                // built-in Android resize methods)
+                resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
+            }
+
+            // Save resized image
+            File imageFile = new File(context.getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
+            OutputStream os = new FileOutputStream(imageFile);
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+            os.flush();
+            os.close();
+
+            Log.d(TAG, String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
+
+            resizedBitmap.recycle();
+
+            // BitmapFactory.decodeStream moves the reading cursor
+            is.close();
+
+            if (path == null) {
+                is = context.getContentResolver().openInputStream(photoUri);
+            } else {
+                is = new FileInputStream(path);
+            }
+
+            // Copy all EXIF data from original image into resized image
+            copyExifData(is, new File(imageFile.getAbsolutePath()), null);
+
+            is.close();
+
+            return imageFile.getAbsolutePath();
+
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return path;
+    }
+
+
+    // EXIF-copying code taken from: https://bricolsoftconsulting.com/copying-exif-metadata-using-sanselan/
+    private static boolean copyExifData(InputStream sourceFileStream, File destFile, List<TagInfo> excludedFields) {
+        String tempFileName = destFile.getAbsolutePath() + ".tmp";
+        File tempFile = null;
+        OutputStream tempStream = null;
+
+        try {
+            tempFile = new File (tempFileName);
+
+            TiffOutputSet sourceSet = getSanselanOutputSet(sourceFileStream, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
+            TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
+
+            // If the EXIF data endianess of the source and destination files
+            // differ then fail. This only happens if the source and
+            // destination images were created on different devices. It's
+            // technically possible to copy this data by changing the byte
+            // order of the data, but handling this case is outside the scope
+            // of this implementation
+            if (sourceSet.byteOrder != destSet.byteOrder) return false;
+
+            destSet.getOrCreateExifDirectory();
+
+            // Go through the source directories
+            List<?> sourceDirectories = sourceSet.getDirectories();
+            for (int i=0; i<sourceDirectories.size(); i++) {
+                TiffOutputDirectory sourceDirectory = (TiffOutputDirectory)sourceDirectories.get(i);
+                TiffOutputDirectory destinationDirectory = getOrCreateExifDirectory(destSet, sourceDirectory);
+
+                if (destinationDirectory == null) continue; // failed to create
+
+                // Loop the fields
+                List<?> sourceFields = sourceDirectory.getFields();
+                for (int j=0; j<sourceFields.size(); j++) {
+                    // Get the source field
+                    TiffOutputField sourceField = (TiffOutputField) sourceFields.get(j);
+
+                    // Check exclusion list
+                    if (excludedFields != null && excludedFields.contains(sourceField.tagInfo)) {
+                        destinationDirectory.removeField(sourceField.tagInfo);
+                        continue;
+                    }
+
+                    // Remove any existing field
+                    destinationDirectory.removeField(sourceField.tagInfo);
+
+                    // Add field
+                    destinationDirectory.add(sourceField);
+                }
+            }
+
+            // Save data to destination
+            tempStream = new BufferedOutputStream(new FileOutputStream(tempFile));
+            new ExifRewriter().updateExifMetadataLossless(destFile, tempStream, destSet);
+            tempStream.close();
+
+            // Replace file
+            if (destFile.delete()) {
+                tempFile.renameTo(destFile);
+            }
+
+            return true;
+
+        } catch (ImageReadException exception) {
+            exception.printStackTrace();
+
+        } catch (ImageWriteException exception) {
+            exception.printStackTrace();
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+
+        } finally {
+            if (tempStream != null) {
+                try {
+                    tempStream.close();
+                } catch (IOException e) {
+                }
+            }
+
+            if (tempFile != null) {
+                if (tempFile.exists()) tempFile.delete();
+            }
+        }
+
+        return false;
+    }
+
+    private static TiffOutputDirectory getOrCreateExifDirectory(TiffOutputSet outputSet, TiffOutputDirectory outputDirectory) {
+        TiffOutputDirectory result = outputSet.findDirectory(outputDirectory.type);
+        if (result != null)
+            return result;
+        result = new TiffOutputDirectory(outputDirectory.type);
+        try {
+            outputSet.addDirectory(result);
+        } catch (ImageWriteException e) {
+            return null;
+        }
+        return result;
+    }
+
+
+    private static TiffOutputSet getSanselanOutputSet(InputStream stream, int defaultByteOrder)
+            throws IOException, ImageReadException, ImageWriteException {
+        TiffImageMetadata exif = null;
+        TiffOutputSet outputSet = null;
+
+        IImageMetadata metadata = Sanselan.getMetadata(stream, null);
+        JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
+        if (jpegMetadata != null) {
+            exif = jpegMetadata.getExif();
+
+            if (exif != null) {
+                outputSet = exif.getOutputSet();
+            }
+        }
+
+        // If JPEG file contains no EXIF metadata, create an empty set
+        // of EXIF metadata. Otherwise, use existing EXIF metadata to
+        // keep all other existing tags
+        if (outputSet == null)
+            outputSet = new TiffOutputSet(exif==null?defaultByteOrder:exif.contents.header.byteOrder);
+
+        return outputSet;
+    }
+
+    private static TiffOutputSet getSanselanOutputSet(File jpegImageFile, int defaultByteOrder)
+            throws IOException, ImageReadException, ImageWriteException {
+        TiffImageMetadata exif = null;
+        TiffOutputSet outputSet = null;
+
+        IImageMetadata metadata = Sanselan.getMetadata(jpegImageFile);
+        JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
+        if (jpegMetadata != null) {
+            exif = jpegMetadata.getExif();
+
+            if (exif != null) {
+                outputSet = exif.getOutputSet();
+            }
+        }
+
+        // If JPEG file contains no EXIF metadata, create an empty set
+        // of EXIF metadata. Otherwise, use existing EXIF metadata to
+        // keep all other existing tags
+        if (outputSet == null)
+            outputSet = new TiffOutputSet(exif == null ? defaultByteOrder : exif.contents.header.byteOrder);
+
+        return outputSet;
+    }
+
 }

@@ -448,6 +448,7 @@
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
     <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
     <string name="skip2">Skip</string>
@@ -564,6 +565,34 @@
     <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
     <string name="restore">Restore</string>
+    <string name="compare">Compare</string>
+    <string name="select">Select</string>
+    <string name="source_wikipedia">(Source: Wikipedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Of least concern</string>
+    <string name="conservation_status_near_threatened">Near threatened</string>
+    <string name="conservation_status_vulnerable">Vulnerable</string>
+    <string name="conservation_status_endangered">Endangered</string>
+    <string name="conservation_status_critically_endangered">Critically endangered</string>
+    <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
+    <string name="conservation_status_extinct">Extinct</string>
+    <string name="map_of_observations">Map of Observations</string>
+    <string name="taxonomy">Taxonomy</string>
+    <string name="about_this_section">About this Section</string>
+    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
+    <string name="view_suggestions">View Suggestions</string>
+    <string name="species_search">Species Search</string>
+    <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
+    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
+    <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
+    <string name="what_did_you_see">What did you see?</string>
+    <string name="suggest_species">Suggest Species</string>
+    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="your_observation">Your Observation</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
+    <string name="taxon_name_with_scientific_name"><![CDATA[<b>%1$s</b> (%2$s)]]></string>
+    <string name="visually_similar">Visually Similar</string>
+    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
+    <string name="seen_nearby">Seen Nearby</string>
 </resources>
-
-

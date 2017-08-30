@@ -70,7 +70,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
             idTaxonName.setTypeface(null, Typeface.ITALIC);
             if (item.has("default_photo") && !item.isNull("default_photo")) {
                 JSONObject defaultPhoto = item.getJSONObject("default_photo");
-                UrlImageViewHelper.setUrlDrawable(idPic, defaultPhoto.getString("square_url"), ObservationPhotosViewer.observationIcon(item), new UrlImageViewCallback() {
+                UrlImageViewHelper.setUrlDrawable(idPic, defaultPhoto.getString("square_url"), TaxonUtils.observationIcon(item), new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                         if (loadedBitmap != null)

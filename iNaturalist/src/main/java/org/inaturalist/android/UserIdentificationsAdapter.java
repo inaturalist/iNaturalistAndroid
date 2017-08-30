@@ -84,7 +84,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
             idPic.setVisibility(View.INVISIBLE);
 
-            idIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
+            idIconicPic.setImageResource(TaxonUtils.observationIcon(item));
             idIconicPic.setVisibility(View.VISIBLE);
 
             JSONObject observation = item.getJSONObject("observation");

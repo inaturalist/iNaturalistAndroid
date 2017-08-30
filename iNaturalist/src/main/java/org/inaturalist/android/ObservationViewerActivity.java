@@ -262,6 +262,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         }
 
+        public Cursor getCursor() {
+            return mImageCursor;
+        }
+
         @Override
         public int getCount() {
             return mReadOnly ? mObservation.photos.size() : mImageCursor.getCount();
@@ -808,7 +812,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             });
         }
 
-        mAdapter = new CommentsIdsAdapter(this, mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
+        mAdapter = new CommentsIdsAdapter(this, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()), mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
             @Override
             public void onIdentificationAdded(BetterJSONObject taxon) {
                 try {
@@ -973,6 +977,30 @@ public class ObservationViewerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ObservationViewerActivity.this, IdentificationActivity.class);
                 intent.putExtra(IdentificationActivity.SUGGEST_ID, true);
+                intent.putExtra(IdentificationActivity.OBSERVATION_ID, mObservation.id);
+                intent.putExtra(IdentificationActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                intent.putExtra(IdentificationActivity.OBSERVED_ON, mObservation.observed_on);
+                intent.putExtra(IdentificationActivity.LONGITUDE, mObservation.longitude);
+                intent.putExtra(IdentificationActivity.LATITUDE, mObservation.latitude);
+                if (mObservation._id != null) {
+                    if (((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getCount() > 0) {
+                        Cursor imageCursor = ((PhotosViewPagerAdapter) mPhotosViewPager.getAdapter()).getCursor();
+
+                        int pos = imageCursor.getPosition();
+                        imageCursor.moveToFirst();
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_FILENAME,
+                                imageCursor.getString(imageCursor.getColumnIndex(ObservationPhoto.PHOTO_FILENAME)));
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_URL,
+                                imageCursor.getString(imageCursor.getColumnIndex(ObservationPhoto.PHOTO_URL)));
+                        imageCursor.move(pos);
+                    }
+                } else {
+                    if ((mObservation.photos != null) && (mObservation.photos.size() > 0)) {
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_FILENAME, mObservation.photos.get(0).photo_filename);
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_URL, mObservation.photos.get(0).photo_url);
+                    }
+                }
+                intent.putExtra(IdentificationActivity.OBSERVATION, mObsJson);
                 startActivityForResult(intent, NEW_ID_REQUEST_CODE);
             }
         });
@@ -1415,7 +1443,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             if (mPhotosAdapter.getCount() == 0) {
                 // No photos at all
                 mNoPhotosContainer.setVisibility(View.VISIBLE);
-                mIdPicBig.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
+                mIdPicBig.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
             }
         } else {
             mIndicator.setVisibility(View.VISIBLE);
@@ -1471,7 +1499,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         });
 
-        mIdRow.setOnClickListener(new OnClickListener() {
+        OnClickListener listener = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mTaxon == null) {
@@ -1479,15 +1507,17 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(ObservationViewerActivity.this, GuideTaxonActivity.class);
-                intent.putExtra("taxon", new BetterJSONObject(mTaxon));
-                intent.putExtra("guide_taxon", false);
-                intent.putExtra("show_add", false);
+                Intent intent = new Intent(ObservationViewerActivity.this, TaxonActivity.class);
+                intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(mTaxon));
+                intent.putExtra(TaxonActivity.OBSERVATION, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()));
                 startActivity(intent);
             }
-        });
+        };
+        mIdRow.setOnClickListener(listener);
+        mIdName.setOnClickListener(listener);
+        mTaxonicName.setOnClickListener(listener);
 
-        mIdPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
+        mIdPic.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
         mIdName.setText((mObservation.preferred_common_name != null) && (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);
         mTaxonicName.setVisibility(View.GONE);
 
@@ -1507,13 +1537,19 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 downloadTaxon();
             } else {
                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
-                mIdName.setText(mTaxonIdName);
-                mTaxonicName.setText(mTaxonName);
-                mTaxonicName.setVisibility(View.VISIBLE);
-                if (mTaxonRankLevel <= 20) {
-                    mTaxonicName.setTypeface(null, Typeface.ITALIC);
+
+                if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
+                    mIdName.setText(mTaxonName);
+                    mTaxonicName.setVisibility(View.GONE);
                 } else {
-                    mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                    mIdName.setText(mTaxonIdName);
+                    mTaxonicName.setText(mTaxonName);
+                    mTaxonicName.setVisibility(View.VISIBLE);
+                    if (mTaxonRankLevel <= 20) {
+                        mTaxonicName.setTypeface(null, Typeface.ITALIC);
+                    } else {
+                        mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                    }
                 }
             }
         }
@@ -1570,17 +1606,28 @@ public class ObservationViewerActivity extends AppCompatActivity {
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json?locale=" + deviceLanguage;
+        final String idUrl = "http://api.inaturalist.org/v1/taxa/" + mObservation.taxon_id + "?locale=" + deviceLanguage;
 
         // Download the taxon image URL
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final JSONObject taxon = downloadJson(idUrl);
+                JSONObject results = downloadJson(idUrl);
+
+                if (results == null) return;
+
+                final JSONObject taxon;
+                try {
+                    taxon = results.getJSONArray("results").getJSONObject(0);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return;
+                }
                 mTaxon = taxon;
                 if (taxon != null) {
                     try {
-                        final String imageUrl = taxon.getString("image_url");
+                        JSONObject defaultPhoto = taxon.getJSONObject("default_photo");
+                        final String imageUrl = defaultPhoto.getString("square_url");
 
                         runOnUiThread(new Runnable() {
                             @Override

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
     
     <ImageView
-        android:id="@+id/taxon_pic"
+        android:id="@+id/taxon_photo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/iconic_taxon_unknown"
@@ -17,7 +17,7 @@
        android:id="@+id/id_name"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
-       android:layout_alignBottom="@id/taxon_pic"
+       android:layout_alignBottom="@id/taxon_photo"
        android:background="#88000000"
        android:textColor="#ffffff"
        android:padding="5dp"

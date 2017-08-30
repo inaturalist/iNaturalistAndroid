@@ -166,7 +166,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
             speciesPic.setVisibility(View.INVISIBLE);
             speciesIconicPic.setVisibility(View.VISIBLE);
-            speciesIconicPic.setImageResource(ObservationPhotosViewer.observationIcon(item));
+            speciesIconicPic.setImageResource(TaxonUtils.observationIcon(item));
 
             if (photoUrl != null) {
                 if ((mViewType == VIEW_TYPE_GRID) && (convertView == null)) {

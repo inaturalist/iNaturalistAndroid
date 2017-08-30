@@ -53,6 +53,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
     public static final String SUGGEST_ID = "suggest_id";
     public static final String TAXON_ID = "taxon_id";
+    public static final String RANK_LEVEL = "rank_level";
 	public static final String ID_NAME = "id_name";
 	public static final String TAXON_NAME = "taxon_name";
 	public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
@@ -496,6 +497,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                     if (item.has("default_photo") && !item.isNull("default_photo")) bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getJSONObject("default_photo").getString("square_url"));
                     bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
                     bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
+                    bundle.putInt(TaxonSearchActivity.RANK_LEVEL, item.getInt("rank_level"));
 
                 }
                 bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);

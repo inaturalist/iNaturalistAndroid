@@ -53,6 +53,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
     private final Handler mMainHandler;
     private final boolean mIsNewLayout;
     private final ActivityHelper mHelper;
+    private BetterJSONObject mObservation;
     private List<BetterJSONObject> mItems;
 	private Context mContext;
 	private ArrayList<Boolean> mAgreeing;
@@ -76,17 +77,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		return false; 
 	}
 
-	public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb) {
-        this(context, objects, taxonId, onIDAddedCb, false, false);
-	}
-
-    public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean isNewLayout) {
-        this(context, objects, taxonId, onIDAddedCb, isNewLayout, false);
-    }
-
-	public CommentsIdsAdapter(Context context, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean isNewLayout, boolean readOnly) {
+	public CommentsIdsAdapter(Context context, BetterJSONObject observation, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean isNewLayout, boolean readOnly) {
 		super(context, R.layout.comment_id_item, objects);
 
+        mObservation = observation;
         mReadOnly = readOnly;
 		mItems = objects;
 		mAgreeing = new ArrayList<Boolean>();
@@ -461,19 +455,11 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                     idLayout.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(mContext, GuideTaxonActivity.class);
-                            BetterJSONObject originalTaxon = mItems.get(position);
-                            JSONObject taxon = new JSONObject();
-                            try {
-                                taxon.put("id", originalTaxon.getInt("taxon_id"));
-                                taxon.put("common_name", originalTaxon.getJSONObject("common_name"));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            intent.putExtra("taxon", new BetterJSONObject(taxon));
-                            intent.putExtra("guide_taxon", false);
-                            intent.putExtra("show_add", false);
-							intent.putExtra("download_taxon", true);
+                            Intent intent = new Intent(mContext, TaxonActivity.class);
+                            JSONObject taxon = mItems.get(position).getJSONObject("taxon");
+                            intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
+                            intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
+							intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                             mContext.startActivity(intent);
                         }
                     });
@@ -546,12 +532,11 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			return;
 		}
 
-		Intent intent = new Intent(mContext, GuideTaxonActivity.class);
-		intent.putExtra("taxon", new BetterJSONObject(item.getJSONObject("taxon")));
-		intent.putExtra("guide_taxon", false);
-        intent.putExtra("show_add", false);
-		intent.putExtra("download_taxon", true);
-		mContext.startActivity(intent);
+		Intent intent = new Intent(mContext, TaxonActivity.class);
+		intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item.getJSONObject("taxon")));
+		intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
+        intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
+        mContext.startActivity(intent);
 	}
 
     private void copyToClipBoard(String text) {

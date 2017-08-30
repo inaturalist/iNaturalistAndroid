@@ -3,9 +3,6 @@ package org.inaturalist.android;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -78,7 +73,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         }
 
 
-        final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
+        final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_photo);
 
         taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                 mDimension, mDimension));
@@ -113,7 +108,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                 Picasso.with(mContext)
                         .load(url)
-                        .placeholder(ObservationPhotosViewer.observationIcon(item))
+                        .placeholder(TaxonUtils.observationIcon(item))
                         .fit()
                         .centerCrop()
                         .into(taxonPic, new Callback() {

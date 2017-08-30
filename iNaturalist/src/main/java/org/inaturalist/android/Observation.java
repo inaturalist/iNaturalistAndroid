@@ -413,7 +413,9 @@ public class Observation implements BaseColumns, Serializable {
                 this.photos.add(photo);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            if (!e.getMessage().matches("No value for observation_photos")) {
+                e.printStackTrace();
+            }
         }
 
         this.comments_count = o.getInteger("comments_count");

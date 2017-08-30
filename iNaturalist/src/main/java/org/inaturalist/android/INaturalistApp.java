@@ -194,7 +194,21 @@ public class INaturalistApp extends MultiDexApplication {
 		catch (Exception e) { }
 
 		return null;
-	}	
+	}
+
+
+    public boolean getSuggestSpecies() {
+        SharedPreferences settings = getPrefs();
+        return settings.getBoolean("pref_suggest_species", true);
+    }
+
+    public void setSuggestSpecies(boolean value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putBoolean("pref_suggest_species", value);
+        settingsEditor.apply();
+    }
 
 
 	public boolean getAutoSync() {
@@ -434,17 +448,31 @@ public class INaturalistApp extends MultiDexApplication {
     		return getResources().getStringArray(resId);
     	}
     } 
-    
+
+    public int getColorResourceByName(String aString) {
+    	int resId = getResourceIdByName(aString, "color");
+    	if (resId == 0) {
+    		return 0;
+    	} else {
+    		return getResources().getColor(resId);
+    	}
+    }
     
     public String getStringResourceByName(String aString) {
-    	String packageName = getPackageName();
-    	int resId = getResources().getIdentifier(aString, "string", packageName);
+    	int resId = getResourceIdByName(aString, "string");
     	if (resId == 0) {
     		return aString;
     	} else {
     		return getString(resId);
     	}
-    } 
+    }
+
+    private int getResourceIdByName(String aString, String type) {
+    	String packageName = getPackageName();
+    	int resId = getResources().getIdentifier(aString, type, packageName);
+        return resId;
+    }
+
     
     public void applyLocaleSettings(){
     	SharedPreferences settings = getPrefs();
