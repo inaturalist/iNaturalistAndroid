@@ -154,6 +154,7 @@ public class TaxonActivity extends AppCompatActivity {
                         new LatLng(boundsJson.getDouble("swlat"), boundsJson.getDouble("swlng")),
                         new LatLng(boundsJson.getDouble("nelat"), boundsJson.getDouble("nelng")));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+                centerObservation();
             }
             mMapBoundsSet = true;
         }
@@ -417,6 +418,10 @@ public class TaxonActivity extends AppCompatActivity {
         params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newHeight, getResources().getDisplayMetrics());
         mPhotosContainer.setLayoutParams(params);
 
+        centerObservation();
+    }
+
+    private void centerObservation() {
         if (mObservation != null) {
             boolean markerOnly = false;
             boolean updateCamera = false;
@@ -425,8 +430,6 @@ public class TaxonActivity extends AppCompatActivity {
             mHelper.centerObservation(mMap, obs);
         }
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

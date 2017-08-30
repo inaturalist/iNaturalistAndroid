@@ -281,6 +281,10 @@ public class ActivityHelper {
         Double lat, lon;
         lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
         lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
+        if (lat == null || lon == null) {
+            // can't do anything
+            return;
+        }
         LatLng latlng = new LatLng(lat, lon);
         BitmapDescriptor obsIcon = INaturalistMapActivity.observationIcon(observation.iconic_taxon_name);
         String currentUser = mApp.currentUserLogin();
@@ -375,6 +379,10 @@ public class ActivityHelper {
         Double lat, lon;
         lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
         lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
+        if (lat == null || lon == null) {
+            // can't do anything with no coordinates
+            return;
+        }
         LatLng latlng = new LatLng(lat, lon);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(latlng);
         final CameraUpdate finalCameraUpdate = cameraUpdate;
@@ -382,7 +390,9 @@ public class ActivityHelper {
             @Override
             public void onMapLoaded() {
                 try {
-                    if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
+                    if (finalCameraUpdate != null) {
+                        map.moveCamera(finalCameraUpdate);
+                    }
                 } catch (IllegalStateException exc) {
                     // Handles weird exception is raised ("View size is too small after padding is applied")
                     exc.printStackTrace();
