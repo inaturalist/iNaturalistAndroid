@@ -170,12 +170,12 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         };
         ObservationPhotosViewer.IdPicsPagerAdapter adapter;
 
-        if (mObservation != null) {
-            // External observation
-            adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObservation.getJSONObject(), false, onClick);
-        } else {
+        if (mObsIdInternal > -1 || mObservation == null) {
             // Internal observation
             adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObsId, mObsIdInternal, onClick);
+        } else {
+            // External observation
+            adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObservation.getJSONObject(), false, onClick);
         }
         Log.e("AAA", "NEW OBS PHOTOS ADAPTER");
         mObservationPhotosViewPager.setAdapter(adapter);
@@ -319,6 +319,9 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
                 intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                 intent.putExtra(TaxonActivity.TAXON_SUGGESTION, true);
+                if (mObservation != null) {
+                    intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
+                }
                 startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
             }
         });

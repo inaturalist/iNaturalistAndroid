@@ -79,7 +79,6 @@
                     android:textSize="18sp"
                     android:textColor="#000000"
                     android:paddingLeft="7dp"
-                    android:textIsSelectable="true"
                     />
             </LinearLayout>
 
@@ -108,7 +107,6 @@
                     android:textSize="18sp"
                     android:textColor="#ffffff"
                     android:paddingLeft="7dp"
-                    android:textIsSelectable="true"
                     />
             </LinearLayout>
 

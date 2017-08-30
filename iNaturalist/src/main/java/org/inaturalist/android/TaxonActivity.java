@@ -311,6 +311,7 @@ public class TaxonActivity extends AppCompatActivity {
                 intent.putExtra(TaxonMapActivity.MAP_LATITUDE, position.target.latitude);
                 intent.putExtra(TaxonMapActivity.MAP_LONGITUDE, position.target.longitude);
                 intent.putExtra(TaxonMapActivity.MAP_ZOOM, position.zoom);
+                intent.putExtra(TaxonMapActivity.OBSERVATION, mObservation);
                 startActivity(intent);
             }
         });
@@ -417,7 +418,11 @@ public class TaxonActivity extends AppCompatActivity {
         mPhotosContainer.setLayoutParams(params);
 
         if (mObservation != null) {
-            mHelper.addMapPosition(mMap, new Observation(mObservation), mObservation, true);
+            boolean markerOnly = false;
+            boolean updateCamera = false;
+            final Observation obs = new Observation(mObservation);
+            mHelper.addMapPosition(mMap, obs, mObservation, markerOnly, updateCamera);
+            mHelper.centerObservation(mMap, obs);
         }
     }
 

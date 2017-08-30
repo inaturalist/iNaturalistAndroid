@@ -247,6 +247,10 @@ public class ActivityHelper {
     }
 
     private CameraUpdate addCircle(GoogleMap map, LatLng latlng, int radius, Observation observation) {
+        return addCircle(map, latlng, radius, observation, true);
+    }
+
+    private CameraUpdate addCircle(GoogleMap map, LatLng latlng, int radius, Observation observation, boolean updateCamera) {
         int obsColor = observationColor(observation);
         CircleOptions opts = new CircleOptions()
                 .center(latlng)
@@ -254,13 +258,14 @@ public class ActivityHelper {
                 .fillColor(0x80FFFFFF & obsColor) // Add 50% opacity
                 .strokeColor(obsColor);
         map.addCircle(opts);
-
+        if (!updateCamera) {
+            return null;
+        }
         LatLngBounds bounds = new LatLngBounds.Builder().
                 include(SphericalUtil.computeOffset(latlng, radius, 0)).
                 include(SphericalUtil.computeOffset(latlng, radius, 90)).
                 include(SphericalUtil.computeOffset(latlng, radius, 180)).
                 include(SphericalUtil.computeOffset(latlng, radius, 270)).build();
-
         return CameraUpdateFactory.newLatLngBounds(bounds, 10);
     }
 
@@ -269,6 +274,10 @@ public class ActivityHelper {
     }
 
     public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson, boolean markerOnly) {
+        addMapPosition(map, observation, observationJson, markerOnly, true);
+    }
+
+    public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson, boolean markerOnly, boolean updateCamera) {
         Double lat, lon;
         lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
         lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
@@ -293,12 +302,12 @@ public class ActivityHelper {
         } else if ((currentUser != null) && (observation.user_login.equals(currentUser)) &&
                 (observation.positional_accuracy != null)) {
             // Show circle of private positional accuracy
-            cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation);
+            cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
         } else {
             if ((observation.positional_accuracy != null) && (publicAcc != null) &&
                     (observation.positional_accuracy.equals(publicAcc))) {
                 // Show circle of public positional accuracy
-                cameraUpdate = addCircle(map, latlng, publicAcc, observation);
+                cameraUpdate = addCircle(map, latlng, publicAcc, observation, updateCamera);
             } else {
                 // Show uncertainty cell
                 Double cellSize = 0.2;
@@ -334,13 +343,15 @@ public class ActivityHelper {
                         .strokeColor(obsColor);
                 map.addPolygon(polygonOpts);
 
-                cameraUpdate = CameraUpdateFactory.newLatLngBounds(LatLngBounds.builder()
-                        .include(rectPoints[0])
-                        .include(rectPoints[1])
-                        .include(rectPoints[2])
-                        .include(rectPoints[3])
-                        .include(rectPoints[4])
-                        .build(), 10);
+                if (updateCamera) {
+                    cameraUpdate = CameraUpdateFactory.newLatLngBounds(LatLngBounds.builder()
+                            .include(rectPoints[0])
+                            .include(rectPoints[1])
+                            .include(rectPoints[2])
+                            .include(rectPoints[3])
+                            .include(rectPoints[4])
+                            .build(), 10);
+                }
             }
 
         }
@@ -358,5 +369,25 @@ public class ActivityHelper {
             }
         });
 
+    }
+
+    public void centerObservation(final GoogleMap map, Observation observation) {
+        Double lat, lon;
+        lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
+        lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
+        LatLng latlng = new LatLng(lat, lon);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(latlng);
+        final CameraUpdate finalCameraUpdate = cameraUpdate;
+        map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                try {
+                    if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
+                } catch (IllegalStateException exc) {
+                    // Handles weird exception is raised ("View size is too small after padding is applied")
+                    exc.printStackTrace();
+                }
+            }
+        });
     }
 }

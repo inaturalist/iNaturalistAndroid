@@ -58,12 +58,15 @@ public class TaxonMapActivity extends AppCompatActivity {
     public static String MAP_LONGITUDE = "map_longitude";
     public static String MAP_LATITUDE = "map_latitude";
     public static String MAP_ZOOM = "map_zoom";
+    public static String OBSERVATION = "observation";
 
     private INaturalistApp mApp;
+    private ActivityHelper mHelper;
     private int mTaxonId;
     private String mTaxonName;
     private double mMapLatitude, mMapLongitude;
     private float mMapZoom;
+    private BetterJSONObject mObservation;
 
     private GoogleMap mMap;
 
@@ -93,6 +96,7 @@ public class TaxonMapActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         mApp = (INaturalistApp) getApplicationContext();
+        mHelper = new ActivityHelper(this);
 
         Intent intent = getIntent();
         
@@ -102,12 +106,14 @@ public class TaxonMapActivity extends AppCompatActivity {
             mMapLongitude = intent.getDoubleExtra(MAP_LONGITUDE, 0);
             mMapLatitude = intent.getDoubleExtra(MAP_LATITUDE, 0);
             mMapZoom = intent.getFloatExtra(MAP_ZOOM, 0);
+            mObservation = (BetterJSONObject) intent.getSerializableExtra(OBSERVATION);
         } else {
         	mTaxonId = savedInstanceState.getInt(TAXON_ID);
             mTaxonName = savedInstanceState.getString(TAXON_NAME);
             mMapLongitude = savedInstanceState.getDouble(MAP_LONGITUDE, 0);
             mMapLatitude = savedInstanceState.getDouble(MAP_LATITUDE, 0);
             mMapZoom = savedInstanceState.getFloat(MAP_ZOOM, 0);
+            mObservation = (BetterJSONObject) savedInstanceState.getSerializable(OBSERVATION);
         }
 
         setContentView(R.layout.taxon_map);
@@ -140,6 +146,14 @@ public class TaxonMapActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         actionBar.setTitle(mTaxonName);
+
+        if (mObservation != null) {
+            boolean markerOnly = false;
+            boolean updateCamera = false;
+            final Observation obs = new Observation(mObservation);
+            mHelper.addMapPosition(mMap, obs, mObservation, markerOnly, updateCamera);
+            mHelper.centerObservation(mMap, obs);
+        }
     }
 
 

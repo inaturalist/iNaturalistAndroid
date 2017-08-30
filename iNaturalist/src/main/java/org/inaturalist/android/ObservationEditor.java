@@ -616,6 +616,7 @@ public class ObservationEditor extends AppCompatActivity {
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVED_ON, mObservation.observed_on);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObservation.id);
                     intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservation.toJSONObject().toString());
                     startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 }
             }

@@ -323,6 +323,9 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
                 intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                 intent.putExtra(TaxonActivity.TAXON_SUGGESTION, true);
+                if (mObservationJson != null) {
+                    intent.putExtra(TaxonActivity.OBSERVATION, new BetterJSONObject(mObservationJson));
+                }
                 startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
             }
 
