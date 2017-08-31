@@ -1518,9 +1518,11 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mTaxonicName.setOnClickListener(listener);
 
         mIdPic.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
-        mIdName.setText((mObservation.preferred_common_name != null) && (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);
-        mTaxonicName.setVisibility(View.GONE);
-
+        if (mObservation.preferred_common_name != null && mObservation.preferred_common_name.length() > 0) {
+            mIdName.setText(mObservation.preferred_common_name);
+        } else {
+            mIdName.setText(mObservation.species_guess);
+        }
 
         if (mObservation.id == null) {
             mSharePhoto.setVisibility(View.GONE);
@@ -1540,7 +1542,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                 if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
                     mIdName.setText(mTaxonName);
-                    mTaxonicName.setVisibility(View.GONE);
                 } else {
                     mIdName.setText(mTaxonIdName);
                     mTaxonicName.setText(mTaxonName);
@@ -1942,7 +1943,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 public int compare(BetterJSONObject lhs, BetterJSONObject rhs) {
                     Timestamp date1 = lhs.getTimestamp("created_at");
                     Timestamp date2 = rhs.getTimestamp("created_at");
-
                     return date1.compareTo(date2);
                 }
             };

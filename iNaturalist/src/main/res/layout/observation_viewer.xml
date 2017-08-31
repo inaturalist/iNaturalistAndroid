@@ -163,7 +163,7 @@
             <TextView
                 android:id="@+id/id_name"
                 android:textSize="17sp"
-                android:text="Some name"
+                android:text="@string/unknown_species"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textIsSelectable="true"
@@ -174,7 +174,7 @@
                 android:textSize="14sp"
                 android:textStyle="italic"
                 android:textColor="#66000000"
-                android:text="Sub name"
+                android:text="@string/unknown"
                 android:textIsSelectable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

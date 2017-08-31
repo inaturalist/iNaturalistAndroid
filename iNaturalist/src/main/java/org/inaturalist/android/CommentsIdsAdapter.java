@@ -49,7 +49,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implements OnClickListener {
-
+    private static String TAG = "CommentsIdsAdapter";
     private final Handler mMainHandler;
     private final boolean mIsNewLayout;
     private final ActivityHelper mHelper;
@@ -459,7 +459,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                             JSONObject taxon = mItems.get(position).getJSONObject("taxon");
                             intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
                             intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
-							intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
+                            intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                             mContext.startActivity(intent);
                         }
                     });
@@ -527,7 +527,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
     @Override
 	public void onClick(View view) {
 		BetterJSONObject item = (BetterJSONObject) view.getTag();
-		
 		if (!item.getString("type").equals("identification")) {
 			return;
 		}

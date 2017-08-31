@@ -201,7 +201,7 @@
   <string name="release_to_refresh">Relacher pour actualiser...</string>
   <string name="refreshing">Actualisation...</string>
   <string name="sync_x_observations">Synchroniser %1$d observations</string>
-  <string name="sync_1_observation">Synchroniser 1observation</string>
+  <string name="sync_1_observation">Synchroniser 1 observation</string>
   <string name="sync_observations">Synchroniser les observations</string>
   <string name="lets_get_started">Allons-y !</string>
   <string name="view_nearby_observations">Observations à proximité</string>
