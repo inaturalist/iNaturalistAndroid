@@ -1729,7 +1729,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
             format.append(dateFormat.format(date));
         }
-
         if (time != null) {
             // Format the time part
             if (date != null) {
