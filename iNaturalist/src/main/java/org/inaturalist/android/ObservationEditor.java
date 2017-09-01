@@ -151,6 +151,7 @@ public class ObservationEditor extends AppCompatActivity {
     private ActivityHelper mHelper;
     private boolean mCanceled = false;
     private boolean mIsCaptive = false;
+    private boolean mChoseNewPhoto = false;
     private List<Uri> mSharePhotos = null;
 
     private ActionBar mTopActionBar;
@@ -435,6 +436,7 @@ public class ObservationEditor extends AppCompatActivity {
             mPhotosAdded = savedInstanceState.getStringArrayList("mPhotosAdded");
             mPhotosRemoved = (ArrayList<ObservationPhoto>) savedInstanceState.getSerializable("mPhotosRemoved");
             mCameraPhotos = savedInstanceState.getStringArrayList("mCameraPhotos");
+            mChoseNewPhoto = savedInstanceState.getBoolean("mChoseNewPhoto");
         }
 
 
@@ -642,6 +644,20 @@ public class ObservationEditor extends AppCompatActivity {
 
         mSpeciesGuess = intent.getStringExtra(SPECIES_GUESS);
 
+        initObservation();
+
+        if ((intent != null) && (!mPictureTaken)) {
+            if (intent.getBooleanExtra(TAKE_PHOTO, false)) {
+                // Immediately take a photo
+                takePhoto();
+
+            } else if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
+                // Immediately choose an existing photo
+                mChoseNewPhoto = true;
+                choosePhoto();
+            }
+        }
+
         initUi();
 
         if (intent != null) {
@@ -750,18 +766,6 @@ public class ObservationEditor extends AppCompatActivity {
         mProjectReceiver = new ProjectReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
-        
-
-        if ((intent != null) && (!mPictureTaken)) {
-            if (intent.getBooleanExtra(TAKE_PHOTO, false)) {
-                // Immediately take a photo
-                takePhoto();
-
-            } else if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
-                // Immediately choose an existing photo
-                choosePhoto();
-            }
-        }
 
 
         if (intent != null) {
@@ -784,6 +788,7 @@ public class ObservationEditor extends AppCompatActivity {
 
 
         if (mSharePhotos != null) {
+            stopGetLocation();
             // Share photos(s) with iNaturalist (override any location with the one from the shared images)
             importPhotos(mSharePhotos, true);
         }
@@ -1094,6 +1099,7 @@ public class ObservationEditor extends AppCompatActivity {
         outState.putStringArrayList("mPhotosAdded", mPhotosAdded);
         outState.putSerializable("mPhotosRemoved", mPhotosRemoved);
         outState.putStringArrayList("mCameraPhotos", mCameraPhotos);
+        outState.putBoolean("mChoseNewPhoto", mChoseNewPhoto);
         super.onSaveInstanceState(outState);
     }
 
@@ -1149,7 +1155,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     }
 
-    private void initUi() {
+    private void initObservation() {
         if (mCursor == null) {
             mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
         } else {
@@ -1159,33 +1165,38 @@ public class ObservationEditor extends AppCompatActivity {
         if (mObservation == null) {
             mObservation = new Observation(mCursor);
         }
-        
+
         if ((mSpeciesGuess != null) && (mObservation.species_guess == null)) {
             mObservation.species_guess = mSpeciesGuess;
         }
+    }
 
+    private void initUi() {
+        initObservation();
 
         mLocationProgressView.setVisibility(View.GONE);
         mFindingCurrentLocation.setVisibility(View.GONE);
         mLocationRefreshButton.setVisibility(View.VISIBLE);
         mLocationIcon.setVisibility(View.VISIBLE);
 
-        if (mGettingLocation) {
-            mLocationProgressView.setVisibility(View.VISIBLE);
-            mFindingCurrentLocation.setVisibility(View.VISIBLE);
-            mLocationRefreshButton.setVisibility(View.GONE);
-            mLocationIcon.setVisibility(View.GONE);
+        if (!mChoseNewPhoto) {
+            if (mGettingLocation) {
+                mLocationProgressView.setVisibility(View.VISIBLE);
+                mFindingCurrentLocation.setVisibility(View.VISIBLE);
+                mLocationRefreshButton.setVisibility(View.GONE);
+                mLocationIcon.setVisibility(View.GONE);
 
-            getLocation();
-        }
+                getLocation();
+            }
 
-        if ((Intent.ACTION_INSERT.equals(getIntent().getAction())) && (mSharePhotos == null)) {
-            if (mObservation.observed_on == null) {
-                mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
-                mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
-                mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
-                if (mObservation.latitude == null && mCurrentLocation == null) {
-                    getLocation();
+            if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                if (mObservation.observed_on == null) {
+                    mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
+                    mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
+                    mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
+                    if (mObservation.latitude == null && mCurrentLocation == null) {
+                        getLocation();
+                    }
                 }
             }
         }
@@ -2174,8 +2185,8 @@ public class ObservationEditor extends AppCompatActivity {
 
                     // Import photo metadata (e.g. location) only when the location hasn't been set
                     // by the user before (whether manually or by importing previous images)
-                    if (((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) ||
-                        (overrideLocation && (position == 1))) {
+                    if ((!mLocationManuallySet && mObservation.latitude == null && mObservation.longitude == null) ||
+                        (overrideLocation && position == 1)) {
                         mLocationManuallySet = true;
                         runOnUiThread(new Runnable() {
                             @Override
@@ -2211,8 +2222,6 @@ public class ObservationEditor extends AppCompatActivity {
 
         // Resize photo to 2048x2048 max
         String resizedPhoto = ImageUtils.resizeImage(this, path, photoUri, 2048);
-
-        Log.d(TAG, "createObservationForPhoto: " + position + ":" + photoUri + " => " + path + "; resize: " + resizedPhoto);
 
         if (resizedPhoto == null) {
             return null;
@@ -2298,7 +2307,6 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             is.close();
-
             observationToUi();
         } catch (IOException e) {
             Log.e(TAG, "couldn't find " + photoUri);
