@@ -159,11 +159,11 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
 
         if (savedInstanceState == null) {
-            mProject = (BetterJSONObject) intent.getSerializableExtra("project");
+            mProject = new BetterJSONObject(intent.getStringExtra("project"));
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
         } else {
-            mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
+            mProject = new BetterJSONObject(savedInstanceState.getString("project"));
             mViewType = savedInstanceState.getString("mViewType");
 
             mObservations = loadListFromBundle(savedInstanceState, "mObservations");
@@ -336,7 +336,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("project", mProject);
+        outState.putString("project", mProject.getJSONObject().toString());
         outState.putString("mViewType", mViewType);
         saveListToBundle(outState, mObservations, "mObservations");
         saveListToBundle(outState, mSpecies, "mSpecies");
@@ -383,7 +383,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     public void onBackPressed() {
     	Intent intent = new Intent();
     	Bundle bundle = new Bundle();
-    	bundle.putSerializable("project", mProject);
+    	bundle.putString("project", mProject.getJSONObject().toString());
     	intent.putExtras(bundle);
 
     	setResult(mJoinedOrLeftProject ? RESULT_REFRESH_RESULTS : RESULT_OK, intent);

@@ -662,8 +662,8 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (intent != null) {
             Bundle extras = intent.getExtras();
-            if ((extras != null) && (extras.getSerializable(TAXON) != null)) {
-                BetterJSONObject taxon = (BetterJSONObject) extras.getSerializable(TAXON);
+            if ((extras != null) && (extras.getString(TAXON) != null)) {
+                BetterJSONObject taxon = new BetterJSONObject(extras.getString(TAXON));
                 JSONObject idPhoto = taxon.getJSONObject("default_photo");
                 setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
             }

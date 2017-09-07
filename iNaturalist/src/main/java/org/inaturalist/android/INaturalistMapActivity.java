@@ -434,7 +434,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 mProject.put("joined", INaturalistService.hasJoinedProject(INaturalistMapActivity.this, mProjectId));
 
                 Intent intent = new Intent(INaturalistMapActivity.this, ProjectDetails.class);
-                intent.putExtra("project", mProject);
+                intent.putExtra("project", mProject.getJSONObject().toString());
                 startActivity(intent);
 			}
 		});

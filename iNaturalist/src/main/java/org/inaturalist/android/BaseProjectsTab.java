@@ -12,7 +12,7 @@ public abstract class BaseProjectsTab extends BaseTab {
     protected void onItemSelected(BetterJSONObject item, int index) {
     	// Show project details
     	Intent intent = new Intent(getActivity(), ProjectDetails.class);
-    	intent.putExtra("project", item);
+    	intent.putExtra("project", item.getJSONObject().toString());
     	startActivityForResult(intent, PROJECT_REQUEST_CODE);
     	
     	mIndex = index;
@@ -24,7 +24,7 @@ public abstract class BaseProjectsTab extends BaseTab {
 
          if (requestCode == PROJECT_REQUEST_CODE) {
             if ((resultCode == Activity.RESULT_OK) || (resultCode == ProjectDetails.RESULT_REFRESH_RESULTS)) {
-                BetterJSONObject project = (BetterJSONObject) data.getSerializableExtra("project");
+                BetterJSONObject project = new BetterJSONObject(data.getStringExtra("project"));
                 
                 if (project != null) updateProject(mIndex, project);
             }
