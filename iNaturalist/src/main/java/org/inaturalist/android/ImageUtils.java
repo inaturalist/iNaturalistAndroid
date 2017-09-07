@@ -396,9 +396,15 @@ public class ImageUtils {
             Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
 
             if ((newHeight != originalHeight) || (newWidth != originalWidth)) {
-                // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
-                // built-in Android resize methods)
-                resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
+                if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
+                    // built-in Android resize methods)
+                    resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
+                } else {
+                    // The Smooth rescale library has issues with Older Android versions (causes crashes) - use
+                    // built-in Android resizing
+                    resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
+                }
             }
 
             // Save resized image
