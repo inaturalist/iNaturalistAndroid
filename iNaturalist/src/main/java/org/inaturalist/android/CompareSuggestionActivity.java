@@ -1,17 +1,20 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.util.Log;
+import android.view.Display;
+import android.view.Surface;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,9 +63,10 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private ImageView mNextTaxon;
     private ImageView mPreviousTaxon;
     private View mSelectTaxon;
+    private View mEnlargeTaxon;
+    private View mAboutTaxon;
+    private ViewGroup mTaxonMenu;
     private TextView mTaxonName;
-    private ImageView mNextTaxonBig;
-    private ImageView mPreviousTaxonBig;
 
     @Override
     protected void onStart()
@@ -116,7 +120,16 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             mSuggestionPhotoPosition = savedInstanceState.getInt(SUGGESTION_PHOTO_POSITION);
         }
 
-        setContentView(R.layout.compare_suggestions);
+        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int rotation = display.getRotation();
+
+        if (rotation == Surface.ROTATION_90) {
+            setContentView(R.layout.compare_suggestions_land_counter_clockwise);
+        } else if (rotation == Surface.ROTATION_270) {
+            setContentView(R.layout.compare_suggestions_land_clockwise);
+        } else {
+            setContentView(R.layout.compare_suggestions);
+        }
 
         mBackButton = findViewById(R.id.back);
         mObservationPhotosViewPager = (HackyViewPager) findViewById(R.id.observation_photos);
@@ -125,10 +138,13 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         mTaxonPhotosIndicator = (CirclePageIndicator) findViewById(R.id.taxon_photos_indicator);
         mNextTaxon = (ImageView) findViewById(R.id.next_taxon);
         mPreviousTaxon = (ImageView) findViewById(R.id.previous_taxon);
+        mTaxonMenu = (ViewGroup) findViewById(R.id.taxon_menu);
         mSelectTaxon = findViewById(R.id.select_taxon);
+        mEnlargeTaxon = findViewById(R.id.enlarge_taxon);
+        mAboutTaxon = findViewById(R.id.about_taxon);
         mTaxonName = (TextView) findViewById(R.id.taxon_name);
-        mNextTaxonBig = (ImageView) findViewById(R.id.next_taxon_big);
-        mPreviousTaxonBig = (ImageView) findViewById(R.id.previous_taxon_big);
+
+        mTaxonMenu.setVisibility(View.GONE);
 
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +161,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Log.e("AAA", "onResume");
         refreshViews();
     }
 
@@ -177,7 +192,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             // External observation
             adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObservation.getJSONObject(), false, onClick);
         }
-        Log.e("AAA", "NEW OBS PHOTOS ADAPTER");
         mObservationPhotosViewPager.setAdapter(adapter);
 
         mObservationPhotosViewPager.setCurrentItem(mObservationPhotoPosition);
@@ -195,15 +209,20 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private void refreshCurrentTaxon() {
         final JSONObject taxon = mTaxonSuggestions.get(mSuggestionIndex).getJSONObject().optJSONObject("taxon");
 
+        mTaxonMenu.setVisibility(View.GONE);
+
+        mTaxonMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTaxonMenu.setVisibility(View.GONE);
+            }
+        });
+
         View.OnClickListener onClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show full screen view of the taxon photos
-                Intent intent = new Intent(CompareSuggestionActivity.this, ObservationPhotosViewer.class);
-                intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, mTaxonPhotosViewPager.getCurrentItem());
-                intent.putExtra(ObservationPhotosViewer.OBSERVATION, taxon.toString());
-                intent.putExtra(ObservationPhotosViewer.IS_TAXON, true);
-                startActivity(intent);
+                // Show the taxon menu
+                mTaxonMenu.setVisibility(View.VISIBLE);
             }
         };
 
@@ -229,7 +248,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 mSuggestionPhotoPosition = position;
-                refreshBigTaxonArrows();
             }
 
             @Override
@@ -275,6 +293,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             }
         });
 
+
         mSelectTaxon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -294,24 +313,26 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             }
         });
 
+
+        mEnlargeTaxon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show full screen view of the taxon photos
+                Intent intent = new Intent(CompareSuggestionActivity.this, ObservationPhotosViewer.class);
+                intent.putExtra(ObservationPhotosViewer.CURRENT_PHOTO_INDEX, mTaxonPhotosViewPager.getCurrentItem());
+                intent.putExtra(ObservationPhotosViewer.OBSERVATION, taxon.toString());
+                intent.putExtra(ObservationPhotosViewer.IS_TAXON, true);
+                startActivity(intent);
+            }
+        });
+
         String taxonName = TaxonUtils.getTaxonName(this, taxon);
         String scientificName = taxon.optString("name");
-        String htmlText;
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            if (taxonName.equals(scientificName)) {
-                // No common name
-                htmlText = String.format(getString(R.string.taxon_name), taxonName);
-            } else {
-                htmlText = String.format(getString(R.string.taxon_name_with_scientific_name), taxonName, scientificName);
-            }
-        } else {
-            htmlText = String.format(getString(R.string.taxon_name), taxonName);
-        }
+        String htmlText = String.format(getString(R.string.taxon_name), taxonName);
 
         mTaxonName.setText(Html.fromHtml(htmlText));
 
-        mTaxonName.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener showTaxonPage = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Show taxon details screen
@@ -324,39 +345,11 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 }
                 startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
             }
-        });
+        };
 
-        refreshBigTaxonArrows();
+        mTaxonName.setOnClickListener(showTaxonPage);
+        mAboutTaxon.setOnClickListener(showTaxonPage);
     }
-
-    private void refreshBigTaxonArrows() {
-        if ((mSuggestionPhotoPosition == 0) && (mSuggestionIndex > 0)) {
-            mPreviousTaxonBig.setVisibility(View.VISIBLE);
-        } else {
-            mPreviousTaxonBig.setVisibility(View.GONE);
-        }
-
-        mPreviousTaxonBig.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPreviousTaxon.performClick();
-            }
-        });
-
-        if ((mSuggestionPhotoPosition == mTaxonPhotosViewPager.getAdapter().getCount() - 1) && (mSuggestionIndex < mTaxonSuggestions.size() - 1)) {
-            mNextTaxonBig.setVisibility(View.VISIBLE);
-        } else {
-            mNextTaxonBig.setVisibility(View.GONE);
-        }
-
-        mNextTaxonBig.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNextTaxon.performClick();
-            }
-        });
-    }
-
 
     private void saveListToBundle(Bundle outState, List<BetterJSONObject> list, String key) {
         if (list != null) {
@@ -391,7 +384,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.e("AAA", "onSaveInstanceState");
         outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
         outState.putInt(OBSERVATION_ID, mObsId);
         outState.putString(OBSERVATION_JSON, mObservation != null ? mObservation.getJSONObject().toString() : null);

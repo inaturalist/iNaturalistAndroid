@@ -310,7 +310,6 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     attacher.update();
 
                     if (mClickListener != null) {
-                        Log.e("AAA", "Setting onPhotoTap");
                         attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
                             @Override
                             public void onPhotoTap(View view, float x, float y) {
@@ -334,16 +333,15 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     imageView.setVisibility(View.INVISIBLE);
                     final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
 
-                    Log.e("AAA", "CREATING PHOTO VIEW");
                     if (mClickListener != null) {
-                        Log.e("AAA", "Setting onPhotoTap2");
                         attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
                             @Override
                             public void onPhotoTap(View view, float x, float y) {
                                 mClickListener.onClick(view);
                             }
                         });
-                    }                    // Show a photo
+                    }
+                    // Show a photo
 
                     UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
                         @Override

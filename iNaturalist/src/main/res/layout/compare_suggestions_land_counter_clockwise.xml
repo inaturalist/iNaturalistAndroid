@@ -5,83 +5,22 @@
     android:background="#303030"
     >
 
-    <RelativeLayout
-        android:id="@+id/current_taxon_details"
-        android:layout_alignParentBottom="true"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_width="match_parent"
-        android:background="#FF212121"
-        android:layout_height="52dp">
-        <ImageView
-            android:id="@+id/previous_taxon"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_keyboard_arrow_left_black_48dp"
-            android:tint="#ffffff"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/circle_green"
-            />
-
-        <ImageView
-            android:id="@+id/next_taxon"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_keyboard_arrow_right_black_48dp"
-            android:background="@drawable/circle_green"
-            android:tint="#ffffff"
-            android:layout_marginLeft="8dp"
-            />
-        <LinearLayout
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/next_taxon"
-            android:layout_toRightOf="@id/previous_taxon"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/ic_info_outline_black_24dp"
-                android:tint="#74AC00"
-                android:layout_marginRight="9dp"
-                />
-            <TextView
-                android:id="@+id/taxon_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:textSize="15sp"
-                android:text="Power Dancer"
-                android:maxLines="1"
-                android:ellipsize="end"
-                />
-        </LinearLayout>
-    </RelativeLayout>
-
     <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/current_taxon_details"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="9dp">
+        android:layout_marginBottom="0dp">
 
         <RelativeLayout
             android:id="@+id/observation_photos_container"
-            android:paddingTop="30dp"
+            android:paddingTop="15dp"
             android:paddingBottom="20dp"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="1dp"
+            android:paddingLeft="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="9dp"
             android:layout_weight="1"
-            android:layout_height="0dp">
-
-
+            android:layout_width="0dp">
             <com.viewpagerindicator.CirclePageIndicator
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/observation_photos_indicator"
@@ -96,32 +35,96 @@
                 android:layout_above="@id/observation_photos_indicator"
                 android:id="@+id/observation_photos"
                 android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
                 android:layout_height="match_parent" />
 
         </RelativeLayout>
+
         <View
             android:background="#000000"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
 
         <RelativeLayout
             android:id="@+id/taxon_photos_container"
             android:paddingTop="0dp"
-            android:paddingBottom="20dp"
-            android:layout_width="match_parent"
+            android:paddingBottom="0dp"
+            android:paddingRight="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginTop="1dp"
-            android:layout_height="0dp">
+            android:layout_width="0dp">
+
+            <RelativeLayout
+                android:id="@+id/current_taxon_details"
+                android:layout_alignParentBottom="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_width="match_parent"
+                android:background="#FF212121"
+                android:layout_height="52dp">
+                <ImageView
+                    android:id="@+id/previous_taxon"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_keyboard_arrow_left_black_48dp"
+                    android:tint="#ffffff"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/circle_green"
+                    />
+
+                <ImageView
+                    android:id="@+id/next_taxon"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_keyboard_arrow_right_black_48dp"
+                    android:background="@drawable/circle_green"
+                    android:tint="#ffffff"
+                    android:layout_marginLeft="8dp"
+                    />
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/next_taxon"
+                    android:layout_toRightOf="@id/previous_taxon"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_info_outline_black_24dp"
+                        android:tint="#74AC00"
+                        android:layout_marginRight="9dp"
+                        />
+                    <TextView
+                        android:id="@+id/taxon_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:text="Power Dancer"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
 
             <com.viewpagerindicator.CirclePageIndicator
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/taxon_photos_indicator"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_alignParentBottom="true"
+                android:layout_above="@id/current_taxon_details"
                 app:radius="4dp"
                 android:paddingTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:paddingBottom="4dp" />
 
             <uk.co.senab.photoview.HackyViewPager
@@ -129,14 +132,18 @@
                 android:layout_width="match_parent"
                 android:layout_above="@id/taxon_photos_indicator"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_height="match_parent" />
+
 
             <LinearLayout
                 android:id="@+id/taxon_menu"
                 android:orientation="vertical"
                 android:background="#90000000"
                 android:gravity="center"
+                android:layout_above="@id/current_taxon_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
