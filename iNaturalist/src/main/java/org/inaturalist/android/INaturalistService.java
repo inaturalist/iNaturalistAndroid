@@ -291,8 +291,9 @@ public class INaturalistService extends IntentService {
 	private JSONArray mResponseErrors;
 
 	private String mNearByObservationsUrl;
-    
-	public enum LoginType {
+    private int mLastStatusCode = 0;
+
+    public enum LoginType {
 	    PASSWORD,
 	    GOOGLE,
         FACEBOOK,
@@ -2031,10 +2032,24 @@ public class INaturalistService extends IntentService {
     private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
         if (observation.id != null) {
             // Update observation
-            boolean success = handleObservationResponse(
-                    observation,
-                    request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true, false)
-            );
+            JSONArray response = request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true, false);
+
+            if (response == null) {
+                // Some sort of error
+                if ((mLastStatusCode >= 400) && (mLastStatusCode < 500)) {
+                    // Observation doesn't exist anymore (deleted remotely, and due to network
+                    // issues we didn't get any notification of this) - so delete the observation
+                    // locally.
+                    getContentResolver().delete(Observation.CONTENT_URI, "id = " + observation.id, null);
+                    // Delete associated project-fields and photos
+                    int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id = " + observation.id, null);
+                    int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id = " + observation.id, null);
+                    int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id = " + observation.id, null);
+                    return true;
+                }
+            }
+
+            boolean success = handleObservationResponse(observation, response);
             if (!success) {
                 throw new SyncFailedException();
             }
@@ -3742,6 +3757,8 @@ public class INaturalistService extends IntentService {
             Log.d(TAG, String.format("RESP: %s", content));
 
             JSONArray json = null;
+            mLastStatusCode = response.getStatusLine().getStatusCode();
+
             switch (response.getStatusLine().getStatusCode()) {
             //switch (response.getStatusCode()) {
             case HttpStatus.SC_UNPROCESSABLE_ENTITY:
