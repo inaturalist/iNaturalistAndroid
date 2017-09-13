@@ -9,7 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +70,8 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private View mAboutTaxon;
     private ViewGroup mTaxonMenu;
     private TextView mTaxonName;
+    private ImageView mTaxonNameIcon;
+    private ViewGroup mTaxonDetails;
 
     @Override
     protected void onStart()
@@ -139,10 +144,12 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         mNextTaxon = (ImageView) findViewById(R.id.next_taxon);
         mPreviousTaxon = (ImageView) findViewById(R.id.previous_taxon);
         mTaxonMenu = (ViewGroup) findViewById(R.id.taxon_menu);
+        mTaxonDetails = (ViewGroup) findViewById(R.id.current_taxon_details);
         mSelectTaxon = findViewById(R.id.select_taxon);
         mEnlargeTaxon = findViewById(R.id.enlarge_taxon);
         mAboutTaxon = findViewById(R.id.about_taxon);
         mTaxonName = (TextView) findViewById(R.id.taxon_name);
+        mTaxonNameIcon = (ImageView) findViewById(R.id.taxon_name_icon);
 
         mTaxonMenu.setVisibility(View.GONE);
 
@@ -192,6 +199,41 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             // External observation
             adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mObservationPhotosViewPager, mObservation.getJSONObject(), false, onClick);
         }
+        adapter.setOnZoomListener(new ObservationPhotosViewer.IdPicsPagerAdapter.OnZoomListener() {
+            @Override
+            public void onZoomedIn() {
+                mObservationPhotosIndicator.setVisibility(View.GONE);
+
+                Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+                int rotation = display.getRotation();
+
+                if (rotation != Surface.ROTATION_270) {
+                    mBackButton.setVisibility(View.GONE);
+                }
+
+                // No padding
+                mObservationPhotosViewPager.setPadding(0, 0, 0, 0);
+            }
+
+            @Override
+            public void onZoomOriginal() {
+                mObservationPhotosIndicator.setVisibility(mObservationPhotosViewPager.getAdapter().getCount() <= 1 ? View.GONE : View.VISIBLE);
+
+                Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+                int rotation = display.getRotation();
+                if (rotation != Surface.ROTATION_270) {
+                    mBackButton.setVisibility(View.VISIBLE);
+                }
+
+                // Restore padding
+                int padding = Math.round(16 * (getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+                mObservationPhotosViewPager.setPadding(padding, padding, padding, padding);
+            }
+        });
+
+        int padding = Math.round(16 * (getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        mObservationPhotosViewPager.setPadding(padding, padding, padding, padding);
+
         mObservationPhotosViewPager.setAdapter(adapter);
 
         mObservationPhotosViewPager.setCurrentItem(mObservationPhotoPosition);
@@ -226,8 +268,90 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             }
         };
 
+        final View.OnClickListener moveToPreviousTaxon = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mSuggestionIndex == 0) return;
+
+                mSuggestionIndex--;
+                mSuggestionPhotoPosition = 0;
+                refreshCurrentTaxon();
+            }
+        };
+
+        final View.OnClickListener moveToNextTaxon = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mSuggestionIndex == mTaxonSuggestions.size() - 1) return;
+
+                mSuggestionIndex++;
+                mSuggestionPhotoPosition = 0;
+                refreshCurrentTaxon();
+            }
+        };
+
+
         ObservationPhotosViewer.IdPicsPagerAdapter adapter = new ObservationPhotosViewer.IdPicsPagerAdapter(this, mTaxonPhotosViewPager, taxon, true, onClick);
+
+        adapter.setOnZoomListener(new ObservationPhotosViewer.IdPicsPagerAdapter.OnZoomListener() {
+            @Override
+            public void onZoomedIn() {
+                mTaxonPhotosIndicator.setVisibility(View.GONE);
+                mTaxonDetails.setVisibility(View.GONE);
+
+                Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+                int rotation = display.getRotation();
+
+                if (rotation == Surface.ROTATION_270) {
+                    mBackButton.setVisibility(View.GONE);
+                }
+
+                // No padding
+                mTaxonPhotosViewPager.setPadding(0, 0, 0, 0);
+            }
+
+            @Override
+            public void onZoomOriginal() {
+                mTaxonPhotosIndicator.setVisibility(mTaxonPhotosViewPager.getAdapter().getCount() <= 1 ? View.GONE : View.VISIBLE);
+                Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+                int rotation = display.getRotation();
+                if (rotation == Surface.ROTATION_270) {
+                    mBackButton.setVisibility(View.VISIBLE);
+                }
+                mTaxonDetails.setVisibility(View.VISIBLE);
+
+                // Restore padding
+                int padding = Math.round(16 * (getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+                int paddingBottom = Math.round(28 * (getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+                mTaxonPhotosViewPager.setPadding(padding, padding, padding, padding);
+            }
+        });
+
+        int padding = Math.round(16 * (getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        mTaxonPhotosViewPager.setPadding(padding, padding, padding, padding);
+
+
         mTaxonPhotosViewPager.setAdapter(adapter);
+
+        mTaxonPhotosViewPager.setOnSwipeOutListener(new HackyViewPager.OnSwipeOutListener() {
+            @Override
+            public void onSwipeOutAtStart() {
+                // Trying to swipe to previous taxon suggestion (move to last photo of previous taxon)
+                if (mSuggestionIndex == 0) return;
+
+                mSuggestionIndex--;
+                mSuggestionPhotoPosition = 0;
+                refreshCurrentTaxon();
+                mSuggestionPhotoPosition = mTaxonPhotosViewPager.getAdapter().getCount() - 1;
+                mTaxonPhotosViewPager.setCurrentItem(mSuggestionPhotoPosition);
+            }
+
+            @Override
+            public void onSwipeOutAtEnd() {
+                // Trying to swipe to next taxon suggestion
+                moveToNextTaxon.onClick(null);
+            }
+        });
 
         mTaxonPhotosViewPager.setCurrentItem(mSuggestionPhotoPosition);
 
@@ -264,16 +388,8 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             mPreviousTaxon.setColorFilter(Color.parseColor("#FFFFFF"));
         }
 
-        mPreviousTaxon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mSuggestionIndex == 0) return;
 
-                mSuggestionIndex--;
-                mSuggestionPhotoPosition = 0;
-                refreshCurrentTaxon();
-            }
-        });
+        mPreviousTaxon.setOnClickListener(moveToPreviousTaxon);
 
         if (mSuggestionIndex == mTaxonSuggestions.size() - 1) {
             // No next taxon
@@ -282,16 +398,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             mNextTaxon.setColorFilter(Color.parseColor("#FFFFFF"));
         }
 
-        mNextTaxon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mSuggestionIndex == mTaxonSuggestions.size() - 1) return;
-
-                mSuggestionIndex++;
-                mSuggestionPhotoPosition = 0;
-                refreshCurrentTaxon();
-            }
-        });
+        mNextTaxon.setOnClickListener(moveToNextTaxon);
 
 
         mSelectTaxon.setOnClickListener(new View.OnClickListener() {
@@ -348,6 +455,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         };
 
         mTaxonName.setOnClickListener(showTaxonPage);
+        mTaxonNameIcon.setOnClickListener(showTaxonPage);
         mAboutTaxon.setOnClickListener(showTaxonPage);
     }
 

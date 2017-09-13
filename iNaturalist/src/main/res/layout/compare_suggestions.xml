@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="#303030"
@@ -50,6 +51,7 @@
                 android:src="@drawable/ic_info_outline_black_24dp"
                 android:tint="#74AC00"
                 android:layout_marginRight="9dp"
+                android:id="@+id/taxon_name_icon"
                 />
             <TextView
                 android:id="@+id/taxon_name"
@@ -70,34 +72,29 @@
         android:layout_above="@+id/current_taxon_details"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="9dp">
+        android:layout_marginBottom="0dp">
 
         <RelativeLayout
             android:id="@+id/observation_photos_container"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
             android:layout_width="match_parent"
             android:layout_marginBottom="1dp"
             android:layout_weight="1"
             android:layout_height="0dp">
 
+            <uk.co.senab.photoview.HackyViewPager
+                android:id="@+id/observation_photos"
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_height="match_parent" />
 
             <com.viewpagerindicator.CirclePageIndicator
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/observation_photos_indicator"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_alignParentBottom="true"
                 app:radius="4dp"
-                android:paddingTop="16dp"
+                android:layout_marginBottom="20dp"
                 android:paddingBottom="4dp" />
-
-            <uk.co.senab.photoview.HackyViewPager
-                android:layout_above="@id/observation_photos_indicator"
-                android:id="@+id/observation_photos"
-                android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_height="match_parent" />
 
         </RelativeLayout>
         <View
@@ -108,29 +105,27 @@
         <RelativeLayout
             android:id="@+id/taxon_photos_container"
             android:paddingTop="0dp"
-            android:paddingBottom="20dp"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_marginTop="1dp"
             android:layout_height="0dp">
 
+            <uk.co.senab.photoview.HackyViewPager
+                android:id="@+id/taxon_photos"
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_height="match_parent" />
+
+
             <com.viewpagerindicator.CirclePageIndicator
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/taxon_photos_indicator"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_alignParentBottom="true"
                 app:radius="4dp"
-                android:paddingTop="16dp"
+                android:layout_marginBottom="20dp"
                 android:paddingBottom="4dp" />
 
-            <uk.co.senab.photoview.HackyViewPager
-                android:id="@+id/taxon_photos"
-                android:layout_width="match_parent"
-                android:layout_above="@id/taxon_photos_indicator"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="30dp"
-                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:id="@+id/taxon_menu"

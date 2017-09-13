@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -27,6 +28,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -206,15 +208,24 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  
     
  	public static class IdPicsPagerAdapter extends PagerAdapter {
+        public static interface OnZoomListener {
+            void onZoomedIn();
+            void onZoomOriginal();
+        }
  		int mDefaultTaxonIcon;
  		List<String> mImages;
         Activity mActivity;
         ViewPager mViewPager;
         private OnClickListener mClickListener;
+        private OnZoomListener mZoomListener = null;
 
         public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId, OnClickListener listener) {
             this(activity, viewPager, observationId, _observationId);
             mClickListener = listener;
+        }
+
+        public void setOnZoomListener(OnZoomListener listener) {
+            mZoomListener = listener;
         }
 
         // Load offline photos for a new observation
@@ -287,10 +298,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  		public View instantiateItem(ViewGroup container, int position) {
  			View layout = (View) mActivity.getLayoutInflater().inflate(R.layout.observation_photo, null, false);
  			container.addView(layout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
- 			ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
+ 			final ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
  			final ProgressBar loading = (ProgressBar) layout.findViewById(R.id.id_pic_loading);
 
             String imagePath = mImages.get(position);
+            PhotoViewAttacher attacher = null;
 
             if (FileUtils.isLocal(imagePath)) {
                 // Offline photo
@@ -306,17 +318,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(mActivity, bitmapImage);
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, imagePath);
                     imageView.setImageBitmap(bitmapImage);
-                    final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
+                    attacher = new PhotoViewAttacher(imageView);
                     attacher.update();
-
-                    if (mClickListener != null) {
-                        attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
-                            @Override
-                            public void onPhotoTap(View view, float x, float y) {
-                                mClickListener.onClick(view);
-                            }
-                        });
-                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -331,24 +334,17 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 } else {
                     loading.setVisibility(View.VISIBLE);
                     imageView.setVisibility(View.INVISIBLE);
-                    final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
+                    attacher = new PhotoViewAttacher(imageView);
 
-                    if (mClickListener != null) {
-                        attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
-                            @Override
-                            public void onPhotoTap(View view, float x, float y) {
-                                mClickListener.onClick(view);
-                            }
-                        });
-                    }
                     // Show a photo
 
+                    final PhotoViewAttacher finalAttacher = attacher;
                     UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
                         @Override
                         public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                             loading.setVisibility(View.GONE);
                             imageView.setVisibility(View.VISIBLE);
-                            attacher.update();
+                            finalAttacher.update();
                         }
 
                         @Override
@@ -361,7 +357,35 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 }
             }
 
- 			return layout;
+
+            if ((mClickListener != null) && (attacher != null)) {
+                attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+                    @Override
+                    public void onPhotoTap(View view, float x, float y) {
+                        mClickListener.onClick(view);
+                    }
+                });
+            }
+            if (attacher != null) {
+                final PhotoViewAttacher finalAttacher1 = attacher;
+                attacher.setOnMatrixChangeListener(new PhotoViewAttacher.OnMatrixChangedListener() {
+                    @Override
+                    public void onMatrixChanged(RectF rect) {
+                        float scale = finalAttacher1.getScale();
+                        if (mZoomListener != null) {
+                            if (scale > 1.0f) {
+                                mZoomListener.onZoomedIn();
+                            } else {
+                                mZoomListener.onZoomOriginal();
+                            }
+                        }
+                    }
+                });
+            }
+
+
+
+            return layout;
  		}
 
  		@Override

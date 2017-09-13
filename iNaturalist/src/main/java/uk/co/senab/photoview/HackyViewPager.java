@@ -1,6 +1,7 @@
 package uk.co.senab.photoview;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -28,8 +29,37 @@ import android.view.MotionEvent;
 public class HackyViewPager extends ViewPager {
 
 	private boolean isLocked;
-	
-    public HackyViewPager(Context context) {
+
+	float mStartDragX;
+	OnSwipeOutListener mOnSwipeOutListener;
+
+	public interface OnSwipeOutListener {
+		void onSwipeOutAtStart();
+		void onSwipeOutAtEnd();
+	}
+
+	public void setOnSwipeOutListener(OnSwipeOutListener listener) {
+		mOnSwipeOutListener = listener;
+	}
+
+	private boolean onSwipeOutAtStart() {
+		if (mOnSwipeOutListener != null) {
+			mOnSwipeOutListener.onSwipeOutAtStart();
+            return false;
+		}
+		return true;
+	}
+
+	private boolean onSwipeOutAtEnd() {
+		if (mOnSwipeOutListener != null) {
+			mOnSwipeOutListener.onSwipeOutAtEnd();
+            return false;
+		}
+		return true;
+	}
+
+
+	public HackyViewPager(Context context) {
         super(context);
         isLocked = false;
     }
@@ -41,7 +71,13 @@ public class HackyViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-    	if (!isLocked) {
+		if (!isLocked) {
+			switch (ev.getAction() & MotionEventCompat.ACTION_MASK) {
+				case MotionEvent.ACTION_DOWN:
+					mStartDragX = ev.getX();
+					break;
+			}
+
 	        try {
 	            return super.onInterceptTouchEvent(ev);
 	        } catch (IllegalArgumentException e) {
@@ -55,6 +91,31 @@ public class HackyViewPager extends ViewPager {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (!isLocked) {
+			if ((getCurrentItem() == 0) || (getCurrentItem() == getAdapter().getCount() - 1)){
+				final int action = event.getAction();
+				float x = event.getX();
+				switch (action & MotionEventCompat.ACTION_MASK) {
+					case MotionEvent.ACTION_MOVE:
+						break;
+					case MotionEvent.ACTION_UP:
+					    boolean value = true;
+						if ((getCurrentItem() == 0) && (x > mStartDragX)) {
+							value = onSwipeOutAtStart();
+						}
+						if ((getCurrentItem() == getAdapter().getCount() - 1) && (x < mStartDragX)) {
+							value = onSwipeOutAtEnd();
+						}
+
+						if (!value) {
+                            return false;
+                        }
+
+						break;
+				}
+			} else {
+				mStartDragX = 0;
+			}
+
             return super.onTouchEvent(event);
         }
         return false;
