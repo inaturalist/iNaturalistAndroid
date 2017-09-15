@@ -2817,19 +2817,14 @@ public class ObservationEditor extends AppCompatActivity {
         File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
         if (!storageDir.exists()) storageDir.mkdirs();
         String outputPath;
+        File image = null;
         try {
-            File image = File.createTempFile(
+            image = File.createTempFile(
                     timeStamp,                   /* prefix */
                     ".jpeg",                     /* suffix */
                     storageDir                   /* directory */
             );
             outputPath = image.getPath();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        try {
             FileInputStream inStream = null;
             inStream = new FileInputStream(path);
             FileOutputStream outStream = new FileOutputStream(outputPath);
@@ -2838,13 +2833,21 @@ public class ObservationEditor extends AppCompatActivity {
             inChannel.transferTo(0, inChannel.size(), outChannel);
             inStream.close();
             outStream.close();
+            // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image)));
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to create gallery photo");
+            e.printStackTrace();
+            return null;
         } catch (Exception exc) {
+            Log.e(TAG, "Failed to write gallery photo");
+            if (image != null) {
+                // Don't leave around an empty file if we failed to write to it.
+                image.delete();
+            }
             exc.printStackTrace();
             return null;
         }
-
-        // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
-        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(outputPath)));
 
         return outputPath;
     }
