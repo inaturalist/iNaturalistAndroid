@@ -234,7 +234,6 @@
 
             </RelativeLayout>
 
-            <!--
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:paddingTop="30dp"
@@ -264,7 +263,11 @@
                     />
 
             </RelativeLayout>
-            -->
+
+            <ListView
+                android:id="@+id/taxonomy_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:id="@+id/view_on_inat"

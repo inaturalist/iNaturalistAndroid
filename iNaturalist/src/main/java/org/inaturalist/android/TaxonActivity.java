@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -55,7 +57,7 @@ import java.util.List;
 
 import uk.co.senab.photoview.HackyViewPager;
 
-public class TaxonActivity extends AppCompatActivity {
+public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.TaxonomyListener {
     // Max number of taxon photos we want to display
     private static final int MAX_TAXON_PHOTOS = 8;
 
@@ -95,9 +97,11 @@ public class TaxonActivity extends AppCompatActivity {
     private ViewGroup mTaxonButtons;
     private ViewGroup mSelectTaxon;
     private ViewGroup mCompareTaxon;
+    private ListView mTaxonomyList;
 
     private boolean mMapBoundsSet = false;
     private boolean mTaxonSuggestion = false;
+    private boolean mIsTaxonomyListExpanded = false;
 
     @Override
     protected void onStart()
@@ -181,12 +185,14 @@ public class TaxonActivity extends AppCompatActivity {
             mDownloadTaxon = intent.getBooleanExtra(DOWNLOAD_TAXON, false);
             mTaxonSuggestion = intent.getBooleanExtra(TAXON_SUGGESTION, false);
             mMapBoundsSet = false;
+            mIsTaxonomyListExpanded = false;
         } else {
         	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable(TAXON);
             mObservation = (BetterJSONObject) savedInstanceState.getSerializable(OBSERVATION);
             mDownloadTaxon = savedInstanceState.getBoolean(DOWNLOAD_TAXON);
             mMapBoundsSet = savedInstanceState.getBoolean("mMapBoundsSet");
             mTaxonSuggestion = savedInstanceState.getBoolean(TAXON_SUGGESTION);
+            mIsTaxonomyListExpanded = savedInstanceState.getBoolean("mIsTaxonomyListExpanded");
         }
 
         setContentView(R.layout.taxon_page);
@@ -255,8 +261,8 @@ public class TaxonActivity extends AppCompatActivity {
             }
         });
 
-        /*
         mTaxonomyIcon = (ImageView) findViewById(R.id.taxonomy_info);
+        mTaxonomyList = (ListView) findViewById(R.id.taxonomy_list);
 
         mTaxonomyIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -269,7 +275,6 @@ public class TaxonActivity extends AppCompatActivity {
                 }, null, R.string.got_it, 0);
             }
         });
-        */
 
         mMap.setMyLocationEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -356,7 +361,7 @@ public class TaxonActivity extends AppCompatActivity {
             return;
         }
 
-        String taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
+        final String taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
         getSupportActionBar().setTitle(taxonName);
 
         mTaxonName.setText(taxonName);
@@ -418,7 +423,29 @@ public class TaxonActivity extends AppCompatActivity {
         params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newHeight, getResources().getDisplayMetrics());
         mPhotosContainer.setLayoutParams(params);
 
+        final TaxonomyAdapter adapter = new TaxonomyAdapter(this, mTaxon, this);
+
+        adapter.setExpanded(mIsTaxonomyListExpanded);
+        mTaxonomyList.setAdapter(adapter);
+
+        mHelper.resizeList(mTaxonomyList);
+
         centerObservation();
+    }
+
+    @Override
+    public void onViewChildren(BetterJSONObject taxon) {
+        TaxonomyAdapter childrenAdapter = new TaxonomyAdapter(TaxonActivity.this, mTaxon, true, this);
+        String taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
+        mHelper.selection(taxonName, childrenAdapter);
+    }
+
+    @Override
+    public void onViewTaxon(BetterJSONObject taxon) {
+        Intent intent = new Intent(TaxonActivity.this, TaxonActivity.class);
+        intent.putExtra(TaxonActivity.TAXON, taxon);
+        intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
+        startActivity(intent);
     }
 
     private void centerObservation() {
@@ -450,6 +477,7 @@ public class TaxonActivity extends AppCompatActivity {
         outState.putBoolean(DOWNLOAD_TAXON, mDownloadTaxon);
         outState.putBoolean("mMapBoundsSet", mMapBoundsSet);
         outState.putBoolean(TAXON_SUGGESTION, mTaxonSuggestion);
+        outState.putBoolean("mIsTaxonomyListExpanded", ((TaxonomyAdapter)mTaxonomyList.getAdapter()).isExpanded());
         super.onSaveInstanceState(outState);
     }
 

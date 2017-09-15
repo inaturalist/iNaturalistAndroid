@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -15,8 +16,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
@@ -69,6 +72,26 @@ public class ActivityHelper {
             }
         }, null);
     }
+
+    public void selection(String title, ListAdapter adapter) {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View titleBar = inflater.inflate(R.layout.dialog_title, null, false);
+        ((TextView)titleBar.findViewById(R.id.title)).setText(title);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+        ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_title_top_bar, null, false);
+        content.addView(titleBar, 0);
+        ListView listView = (ListView) inflater.inflate(R.layout.dialog_list, null, false);
+        listView.setAdapter(adapter);
+
+        content.addView(listView, 2);
+
+        builder.setView(content);
+        builder.setCancelable(true);
+        final AlertDialog alert = builder.create();
+        alert.show();
+   }
 
     public void selection(String title, String[] items, final DialogInterface.OnClickListener onItemSelected) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -399,5 +422,70 @@ public class ActivityHelper {
                 }
             }
         });
+    }
+
+    /**
+     * Sets ListView height dynamically based on the height of the items.
+     *
+     * @param list to be resized
+     */
+    public static void resizeList(final ListView list) {
+        final Handler handler = new Handler();
+        if ((list.getVisibility() == View.VISIBLE) && (list.getWidth() == 0)) {
+            // UI not initialized yet - try later
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resizeList(list);
+                }
+            }, 100);
+
+            return;
+        }
+
+        list.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                int height = setListViewHeightBasedOnItems(list);
+            }
+        });
+    }
+
+    private static int setListViewHeightBasedOnItems(final ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter != null) {
+
+            int numberOfItems = listAdapter.getCount();
+
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, listView);
+                item.measure(View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST), View.MeasureSpec.UNSPECIFIED);
+                totalItemsHeight += item.getMeasuredHeight();
+            }
+
+            // Get total height of all item dividers.
+            int totalDividersHeight = listView.getDividerHeight() *
+                    (numberOfItems - 1);
+
+            // Set list height.
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            int newHeight = totalItemsHeight + totalDividersHeight;
+            if (params.height != newHeight) {
+                params.height = totalItemsHeight + totalDividersHeight;
+                listView.setLayoutParams(params);
+                listView.requestLayout();
+            }
+
+            return params.height;
+
+        } else {
+            return 0;
+        }
     }
 }
