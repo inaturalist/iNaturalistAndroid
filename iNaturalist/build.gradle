@@ -23,6 +23,10 @@ android {
     buildToolsVersion "25.0.0"
     useLibrary 'org.apache.http.legacy'
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     defaultConfig {
         applicationId "org.inaturalist.android"
         minSdkVersion 15
