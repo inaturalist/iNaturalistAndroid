@@ -236,7 +236,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
         }
 
 
-        view.setTag(item);
+        view.setTag(item.getJSONObject().toString());
 
         return view;
     }
