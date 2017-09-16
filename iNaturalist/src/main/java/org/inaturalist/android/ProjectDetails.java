@@ -221,7 +221,9 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
             UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.project_bg), iconUrl + "?bg=1", new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    imageView.setImageBitmap(ImageUtils.blur(ProjectDetails.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                    if (loadedBitmap != null) {
+                        imageView.setImageBitmap(ImageUtils.blur(ProjectDetails.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                    }
                 }
 
                 @Override
