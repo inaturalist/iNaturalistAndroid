@@ -4,16 +4,13 @@ import com.cocosw.bottomsheet.BottomSheet;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-import com.schokoladenbrown.Smooth;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -30,18 +27,6 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sanselan.ImageReadException;
-import org.apache.sanselan.ImageWriteException;
-import org.apache.sanselan.Sanselan;
-import org.apache.sanselan.common.IImageMetadata;
-import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
-import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
-import org.apache.sanselan.formats.tiff.TiffImageMetadata;
-import org.apache.sanselan.formats.tiff.constants.TagInfo;
-import org.apache.sanselan.formats.tiff.constants.TiffConstants;
-import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
-import org.apache.sanselan.formats.tiff.write.TiffOutputField;
-import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +41,7 @@ import android.app.NotificationManager;
 import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -100,6 +86,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -2178,8 +2165,16 @@ public class ObservationEditor extends AppCompatActivity {
             @Override
             public void run() {
                 int position = mGallery.getCount();
+                boolean errorImporting = false;
+
                 for (final Uri photo : photos) {
                     Uri createdUri = createObservationPhotoForPhoto(photo, position);
+
+                    if (createdUri == null) {
+                        errorImporting = true;
+                        break;
+                    }
+
                     mPhotosAdded.add(createdUri.toString());
                     position++;
 
@@ -2199,11 +2194,16 @@ public class ObservationEditor extends AppCompatActivity {
                     }
                 }
 
+                final boolean finalErrorImporting = errorImporting;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         updateImages();
                         mHelper.stopLoading();
+
+                        if (finalErrorImporting) {
+                            mHelper.alert(getString(R.string.invalid_photo_extension));
+                        }
                     }
                 });
             }
@@ -2215,10 +2215,37 @@ public class ObservationEditor extends AppCompatActivity {
         return createObservationPhotoForPhoto(photoUri, mGallery.getCount());
     }
 
+    public static String getExtension(Context context, Uri uri) {
+        String extension;
+
+        //Check uri format to avoid null
+        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+            //If scheme is a content
+            final MimeTypeMap mime = MimeTypeMap.getSingleton();
+            extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));
+        } else {
+            //If scheme is a File
+            //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
+            extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(uri.getPath())).toString());
+
+        }
+
+        return extension;
+    }
+
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position) {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
+        String extension = getExtension(this, photoUri);
+
+        if ((extension == null) || (
+                (!extension.toLowerCase().equals("jpg")) &&
+                (!extension.toLowerCase().equals("jpeg")) &&
+                (!extension.toLowerCase().equals("png"))
+            )) {
+            return null;
+        }
 
         // Resize photo to 2048x2048 max
         String resizedPhoto = ImageUtils.resizeImage(this, path, photoUri, 2048);
