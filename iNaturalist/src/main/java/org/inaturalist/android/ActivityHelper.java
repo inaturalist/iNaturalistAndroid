@@ -75,21 +75,24 @@ public class ActivityHelper {
 
     public void selection(String title, ListAdapter adapter) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View titleBar = inflater.inflate(R.layout.dialog_title, null, false);
-        ((TextView)titleBar.findViewById(R.id.title)).setText(title);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
-        ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_title_top_bar, null, false);
-        content.addView(titleBar, 0);
-        ListView listView = (ListView) inflater.inflate(R.layout.dialog_list, null, false);
+        ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_list_popup, null, false);
+        ((TextView)content.findViewById(R.id.title)).setText(title);
+        ListView listView = (ListView) content.findViewById(R.id.list_view);
         listView.setAdapter(adapter);
-
-        content.addView(listView, 2);
 
         builder.setView(content);
         builder.setCancelable(true);
         final AlertDialog alert = builder.create();
+
+        content.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.cancel();
+            }
+        });
+
         alert.show();
    }
 

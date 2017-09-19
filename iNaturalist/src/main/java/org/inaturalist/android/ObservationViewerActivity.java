@@ -1637,17 +1637,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                     mTaxonImage = imageUrl;
                                     UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
-                                    if (taxon.has("default_name")) {
-                                        mTaxonIdName = taxon.getJSONObject("default_name").getString("name");
-                                    } else if (taxon.has("common_name")) {
-                                        mTaxonIdName = taxon.getJSONObject("common_name").getString("name");
-                                    } else {
-                                        String commonName = taxon.optString("preferred_common_name", null);
-                                        if ((commonName == null) || (commonName.length() == 0)) {
-                                            commonName = taxon.optString("english_common_name");
-                                        }
-                                        mTaxonIdName = commonName;
-                                    }
+                                    mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
                                     mTaxonName = taxon.getString("name");
 
                                     mIdName.setText(mTaxonIdName);

@@ -81,6 +81,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private BetterJSONObject mObservation;
 
     private ViewGroup mPhotosContainer;
+    private ViewGroup mNoPhotosContainer;
     private HackyViewPager mPhotosViewPager;
     private CirclePageIndicator mPhotosIndicator;
     private TextView mTaxonName;
@@ -132,8 +133,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             }
 
             mTaxon = taxon;
-            loadTaxon();
             mDownloadTaxon = false;
+            loadTaxon();
         }
     }
 
@@ -199,6 +200,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         mScrollView = (ScrollView) findViewById(R.id.scroll_view);
         mPhotosContainer = (ViewGroup) findViewById(R.id.taxon_photos_container);
+        mNoPhotosContainer = (ViewGroup) findViewById(R.id.no_taxon_photos_container);
         mPhotosViewPager = (HackyViewPager) findViewById(R.id.taxon_photos);
         mPhotosIndicator = (CirclePageIndicator) findViewById(R.id.photos_indicator);
         mTaxonName = (TextView) findViewById(R.id.taxon_name);
@@ -403,6 +405,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         mPhotosIndicator.setViewPager(mPhotosViewPager);
         mPhotosViewPager.setVisibility(View.VISIBLE);
         mLoadingPhotos.setVisibility(View.GONE);
+        mNoPhotosContainer.setVisibility(View.GONE);
+        mPhotosContainer.setVisibility(View.VISIBLE);
 
         ViewGroup.LayoutParams params = mPhotosContainer.getLayoutParams();
         int newHeight;
@@ -411,9 +415,16 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             mPhotosIndicator.setVisibility(View.GONE);
             newHeight = 310;
 
-            if ((mPhotosViewPager.getAdapter().getCount() == 0) && (mDownloadTaxon)) {
-                mLoadingPhotos.setVisibility(View.VISIBLE);
-                mPhotosViewPager.setVisibility(View.GONE);
+            if (mPhotosViewPager.getAdapter().getCount() == 0) {
+                if (mDownloadTaxon) {
+                    // Still downloading taxon
+                    mLoadingPhotos.setVisibility(View.VISIBLE);
+                    mPhotosViewPager.setVisibility(View.GONE);
+                } else {
+                    // Taxon has no photos
+                    mNoPhotosContainer.setVisibility(View.VISIBLE);
+                    mPhotosContainer.setVisibility(View.GONE);
+                }
             }
         } else {
             mPhotosIndicator.setVisibility(View.VISIBLE);
@@ -422,6 +433,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newHeight, getResources().getDisplayMetrics());
         mPhotosContainer.setLayoutParams(params);
+        mNoPhotosContainer.setLayoutParams(params);
 
         final TaxonomyAdapter adapter = new TaxonomyAdapter(this, mTaxon, this);
 

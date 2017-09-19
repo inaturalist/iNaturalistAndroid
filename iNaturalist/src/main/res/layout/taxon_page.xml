@@ -8,6 +8,46 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:id="@+id/no_taxon_photos_container"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:background="#E2E2E2"
+            android:paddingBottom="0dp"
+            android:visibility="visible"
+            android:paddingTop="30dp">
+
+            <LinearLayout
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/taxon_iconic_taxon"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:src="@drawable/iconic_taxon_arachnida"
+                    android:tint="#8C8C8C" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/taxon_has_no_photos"
+                    android:textColor="#71000000"
+                    android:layout_marginTop="6dp"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#D3D3D3"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:id="@+id/taxon_photos_container"
             android:paddingTop="30dp"
             android:paddingBottom="0dp"
@@ -22,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:padding="30dp"
-                android:visibility="gone"
+                android:visibility="visible"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
                 />
 

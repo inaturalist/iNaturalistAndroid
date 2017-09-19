@@ -598,4 +598,5 @@
     <string name="enlarge">Enlarge</string>
     <string name="view_children">View Children</string>
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
+    <string name="taxon_has_no_photos">This taxon has no photos.</string>
 </resources>

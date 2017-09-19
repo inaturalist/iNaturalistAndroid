@@ -10,8 +10,8 @@
     >
     <ImageView
         android:id="@+id/taxon_photo"
-        android:layout_width="59dp"
-        android:layout_height="59dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="9dp"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:textColor="#8A000000"
             android:textSize="12sp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="0dp"
             android:textStyle="italic"
             android:text="TextView" />
     </LinearLayout>
