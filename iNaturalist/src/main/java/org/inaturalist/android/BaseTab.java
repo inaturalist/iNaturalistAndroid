@@ -343,7 +343,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     }
 
 
-    private void toggleLoading(final boolean isLoading) {
+    private void toggleLoading(final boolean isLoading, int count) {
     	getActivity().runOnUiThread(new Runnable() {
     		@Override
     		public void run() {
@@ -381,7 +381,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         mEmptyListLabel.setVisibility(View.GONE);
         mLogin.setVisibility(View.GONE);
 
-        toggleLoading(true);
+        toggleLoading(true, 0);
         getProjects();
     }
 
@@ -399,8 +399,8 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     }
 
     @Override
-    public void onLoading(Boolean loading) {
-        toggleLoading(loading);
+    public void onLoading(Boolean loading, int count) {
+        toggleLoading(loading, count);
     }
 
 

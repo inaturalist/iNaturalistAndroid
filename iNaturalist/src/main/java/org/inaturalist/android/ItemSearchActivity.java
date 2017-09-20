@@ -206,7 +206,7 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
 
 
     @Override
-    public void onLoading(final Boolean isLoading) {
+    public void onLoading(final Boolean isLoading, final int count) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -218,7 +218,7 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
                     mProgress.setVisibility(View.GONE);
                     getListView().setVisibility(View.VISIBLE);
 
-                    if (getListView().getAdapter().getCount() == 0) {
+                    if (count == 0) {
                         mNoResults.setVisibility(View.VISIBLE);
                     } else {
                         mNoResults.setVisibility(View.GONE);
