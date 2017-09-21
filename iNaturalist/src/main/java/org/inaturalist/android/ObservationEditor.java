@@ -1223,7 +1223,14 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void uiToObservation() {
-        if ((((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) && (!mTaxonSearchStarted)) mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+        if ((((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) && (!mTaxonSearchStarted)) {
+            mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+
+            if (mObservation.id == null) {
+                // New observation, user adding an identification
+                mObservation.identifications_count = mObservation.last_identifications_count = 1;
+            }
+        }
         if (((mObservation.description == null) && (mDescriptionTextView.getText().length() > 0)) || (mObservation.description != null)) mObservation.description = mDescriptionTextView.getText().toString();
         if (mObservedOnStringTextView.getText() == null || mObservedOnStringTextView.getText().length() == 0) {
             mObservation.observed_on_string = null; 

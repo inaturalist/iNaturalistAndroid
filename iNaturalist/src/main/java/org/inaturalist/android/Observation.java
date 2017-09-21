@@ -419,8 +419,19 @@ public class Observation implements BaseColumns, Serializable {
         }
 
         this.comments_count = o.getInteger("comments_count");
+        if ((this.comments != null) && (this.comments.getJSONArray().length() != this.comments_count)) {
+            // Actually count the number of comments just in case the count field hasn't been updated by the server yet
+            this.comments_count = this.comments.getJSONArray().length();
+        }
+        this.last_comments_count = this.comments_count;
+
         this.identifications_count = o.getInteger("identifications_count");
-        
+        if ((this.identifications != null) && (this.identifications.getJSONArray().length() != this.identifications_count)) {
+            // Actually count the number of identifications just in case the count field hasn't been updated by the server yet
+            this.identifications_count = this.identifications.getJSONArray().length();
+        }
+        this.last_identifications_count = this.identifications_count;
+
         this.projects = o.getJSONArray("project_observations");
         this.field_values = o.getJSONArray("observation_field_values");
 
