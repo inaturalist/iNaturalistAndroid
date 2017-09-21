@@ -256,7 +256,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                String taxonUrl = String.format("http://%s/taxa/%d", inatHost, mTaxon.getInt("id"));
+                String taxonUrl = String.format("%s/taxa/%d", inatHost, mTaxon.getInt("id"));
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);
@@ -297,7 +297,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             @Override
             public URL getTileUrl(int x, int y, int zoom) {
 
-                String s = String.format("http://api.inaturalist.org/v1/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
+                String s = String.format(INaturalistService.API_HOST + "/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
                         zoom, x, y, mTaxon.getInt("id"));
                 try {
                     return new URL(s);

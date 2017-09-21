@@ -32,7 +32,7 @@ public abstract class BaseGuidesTab extends BaseTab {
         String inatNetwork = app.getInaturalistNetworkMember();
         String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
 
-        return "http://" + inatHost + "/guides/search.json";
+        return inatHost + "/guides/search.json";
     }
 
     protected boolean recallServiceActionIfNoResults() {

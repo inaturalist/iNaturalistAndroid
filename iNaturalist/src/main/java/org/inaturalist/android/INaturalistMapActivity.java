@@ -1546,7 +1546,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  						if (!item.isNull("icon_url")) {
  							url = item.getString("icon_url");
  						} else {
- 							url = "http://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
+ 							url = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
  						}
  						return new String[] {
  								title,

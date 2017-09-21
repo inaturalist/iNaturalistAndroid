@@ -1458,7 +1458,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String inatNetwork = mApp.getInaturalistNetworkMember();
                         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-                        String obsUrl = "http://" + inatHost + "/observations/" + mObservation.id;
+                        String obsUrl = inatHost + "/observations/" + mObservation.id;
 
                         switch (which) {
                             case R.id.share:
@@ -1604,10 +1604,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private void downloadTaxon() {
         String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        final String idUrl = "http://api.inaturalist.org/v1/taxa/" + mObservation.taxon_id + "?locale=" + deviceLanguage;
+        final String idUrl = INaturalistService.API_HOST + "/taxa/" + mObservation.taxon_id + "?locale=" + deviceLanguage;
 
         // Download the taxon image URL
         new Thread(new Runnable() {

@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 public class WebActivity extends BaseFragmentActivity {
     private static String TAG = "WebActivity";
-    private static String HOME_URL = "http://%s/home.mobile";
+    private static String HOME_URL = "%s/home.mobile";
     private WebView mWebView;
     private INaturalistApp app;
     private ActivityHelper helper;

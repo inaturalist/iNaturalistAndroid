@@ -47,7 +47,7 @@ public abstract class BaseProjectsTab extends BaseTab {
         String inatNetwork = app.getInaturalistNetworkMember();
         String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
 
-        return "http://" + inatHost + "/projects/search.json";
+        return inatHost + "/projects/search.json";
     }
 
     protected boolean recallServiceActionIfNoResults() {

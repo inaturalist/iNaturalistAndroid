@@ -1341,7 +1341,7 @@ public class INaturalistService extends IntentService {
         String deviceLanguage = deviceLocale.getLanguage();
         String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
         ArrayList<NameValuePair> params = new ArrayList<>();
-        String url = String.format("http://api.inaturalist.org/v1/computervision/score_image");
+        String url = String.format(API_HOST + "/computervision/score_image");
 
         params.add(new BasicNameValuePair("locale", deviceLanguage));
         params.add(new BasicNameValuePair("lat", latitude.toString()));
@@ -1366,7 +1366,7 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getTaxonNew(int id) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
-        String url = "http://api.inaturalist.org/v1/taxa/" + id + "?locale=" + deviceLanguage;
+        String url = API_HOST + "/taxa/" + id + "?locale=" + deviceLanguage;
 
         JSONArray json = get(url);
         if (json == null || json.length() == 0) { return null; }
@@ -2060,7 +2060,6 @@ public class INaturalistService extends IntentService {
         // New observation
 
         String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
         JSONObject observationParams = observationToJsonObject(observation, false);
 
         boolean success = handleObservationResponse(
@@ -2179,7 +2178,7 @@ public class INaturalistService extends IntentService {
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
                 params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
 
-                JSONArray response = put("http://" + inatHost + "/observation_photos/" + op.id + ".json", params);
+                JSONArray response = put(inatHost + "/observation_photos/" + op.id + ".json", params);
                 try {
                     if (response == null || response.length() != 1) {
                         c.close();
@@ -2273,7 +2272,7 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
 
             JSONArray response;
-            response = post("http://" + inatHost + "/observation_photos.json", params, true);
+            response = post(inatHost + "/observation_photos.json", params, true);
             try {
                 if (response == null || response.length() != 1) {
                     c.close();
@@ -2723,7 +2722,7 @@ public class INaturalistService extends IntentService {
     	String inatNetwork = mApp.getInaturalistNetworkMember();
     	String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "http://" + inatHost + "/guides.json?";
+        String url = inatHost + "/guides.json?";
         
         url += "per_page=200&page=";
         
@@ -2755,7 +2754,7 @@ public class INaturalistService extends IntentService {
         JSONArray json = null;
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = "http://" + inatHost + "/guides.json?by=you&per_page=200";
+        String url = inatHost + "/guides.json?by=you&per_page=200";
 
         if (mCredentials != null) {
             try {
@@ -2821,7 +2820,7 @@ public class INaturalistService extends IntentService {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "http://" + inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
+        String url = inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
         Log.d(TAG, url);
 
         JSONArray json = get(url);
@@ -2843,7 +2842,7 @@ public class INaturalistService extends IntentService {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "http://" + inatHost + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
+        String url = inatHost + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
         
         Log.e(TAG, url);
 
@@ -2877,7 +2876,7 @@ public class INaturalistService extends IntentService {
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = "http://" + inatHost + "/projects.json?featured=true";
+        String url = inatHost + "/projects.json?featured=true";
         
         JSONArray json = get(url);
         
