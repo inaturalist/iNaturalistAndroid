@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -66,6 +67,11 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
 
     public static final int RESULT_COMPARE_TAXON = 0x1000;
+    public static final int SELECT_TAXON_REQUEST_CODE = 0x1001;
+
+    public static final int TAXON_SUGGESTION_NONE = 0;
+    public static final int TAXON_SUGGESTION_COMPARE_AND_SELECT = 1;
+    public static final int TAXON_SUGGESTION_SELECT = 2;
 
     public static String TAXON = "taxon";
     public static String OBSERVATION = "observation";
@@ -101,7 +107,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private ListView mTaxonomyList;
 
     private boolean mMapBoundsSet = false;
-    private boolean mTaxonSuggestion = false;
+    private int mTaxonSuggestion = TAXON_SUGGESTION_NONE;
     private boolean mIsTaxonomyListExpanded = false;
 
     @Override
@@ -184,7 +190,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         	mTaxon = (BetterJSONObject) intent.getSerializableExtra(TAXON);
             mObservation = (BetterJSONObject) intent.getSerializableExtra(OBSERVATION);
             mDownloadTaxon = intent.getBooleanExtra(DOWNLOAD_TAXON, false);
-            mTaxonSuggestion = intent.getBooleanExtra(TAXON_SUGGESTION, false);
+            mTaxonSuggestion = intent.getIntExtra(TAXON_SUGGESTION, TAXON_SUGGESTION_NONE);
             mMapBoundsSet = false;
             mIsTaxonomyListExpanded = false;
         } else {
@@ -192,7 +198,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             mObservation = (BetterJSONObject) savedInstanceState.getSerializable(OBSERVATION);
             mDownloadTaxon = savedInstanceState.getBoolean(DOWNLOAD_TAXON);
             mMapBoundsSet = savedInstanceState.getBoolean("mMapBoundsSet");
-            mTaxonSuggestion = savedInstanceState.getBoolean(TAXON_SUGGESTION);
+            mTaxonSuggestion = savedInstanceState.getInt(TAXON_SUGGESTION);
             mIsTaxonomyListExpanded = savedInstanceState.getBoolean("mIsTaxonomyListExpanded");
         }
 
@@ -216,7 +222,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         mSelectTaxon = (ViewGroup) findViewById(R.id.select_taxon);
         mCompareTaxon = (ViewGroup) findViewById(R.id.compare_taxon);
 
-        mTaxonButtons.setVisibility(mTaxonSuggestion ? View.VISIBLE : View.GONE);
+        mTaxonButtons.setVisibility(mTaxonSuggestion != TAXON_SUGGESTION_NONE ? View.VISIBLE : View.GONE);
 
         mSelectTaxon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,6 +243,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 finish();
             }
         });
+
+        mCompareTaxon.setVisibility(mTaxonSuggestion == TAXON_SUGGESTION_COMPARE_AND_SELECT ? View.VISIBLE : View.GONE);
 
         mCompareTaxon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -368,6 +376,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         mTaxonName.setText(taxonName);
         mTaxonScientificName.setText(mTaxon.getString("name"));
+        mTaxonScientificName.setTypeface(null, mTaxon.getInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
 
         String wikiSummary = mTaxon.getString("wikipedia_summary");
 
@@ -457,7 +466,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         Intent intent = new Intent(TaxonActivity.this, TaxonActivity.class);
         intent.putExtra(TaxonActivity.TAXON, taxon);
         intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
-        startActivity(intent);
+        intent.putExtra(TaxonActivity.TAXON_SUGGESTION, TaxonActivity.TAXON_SUGGESTION_SELECT);
+        startActivityForResult(intent, SELECT_TAXON_REQUEST_CODE);
     }
 
     private void centerObservation() {
@@ -488,7 +498,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         outState.putSerializable(OBSERVATION, mObservation);
         outState.putBoolean(DOWNLOAD_TAXON, mDownloadTaxon);
         outState.putBoolean("mMapBoundsSet", mMapBoundsSet);
-        outState.putBoolean(TAXON_SUGGESTION, mTaxonSuggestion);
+        outState.putInt(TAXON_SUGGESTION, mTaxonSuggestion);
         outState.putBoolean("mIsTaxonomyListExpanded", ((TaxonomyAdapter)mTaxonomyList.getAdapter()).isExpanded());
         super.onSaveInstanceState(outState);
     }
@@ -639,6 +649,16 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // Copy results from taxon search directly back to the caller (e.g. observation editor)
+                Intent intent = new Intent();
+                Bundle bundle = data.getExtras();
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+
+                finish();
+            }
+        } else if (requestCode == SELECT_TAXON_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Copy results from taxon selection directly back to the caller (compare screen)
                 Intent intent = new Intent();
                 Bundle bundle = data.getExtras();
                 intent.putExtras(bundle);

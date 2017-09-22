@@ -177,7 +177,6 @@
                 android:id="@+id/taxon_scientific_name"
                 android:text="Argia Vivida"
                 android:textSize="16sp"
-                android:textStyle="italic"
                 android:textColor="#757575"
                 android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"

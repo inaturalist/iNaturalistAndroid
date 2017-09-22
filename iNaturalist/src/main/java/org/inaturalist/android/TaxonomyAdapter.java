@@ -57,16 +57,18 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
             JSONArray ancestors = mTaxon.getJSONArray(key).getJSONArray();
 
             if (mExpanded || mShowChildren) {
-                // Show all ancestors
+                // Show all ancestors / show all children
                 for (int i = 0; i < ancestors.length(); i++) {
                     mAncestors.add(ancestors.optJSONObject(i));
                 }
             } else {
-                // Show all ancestors up to family (including), and then the kingdom
+                // Show all ancestors up to family (including), and then the kingdom. Also show
+                // the direct ancestor of the current taxon.
                 for (int i = 0; i < ancestors.length(); i++) {
                     JSONObject ancestor = ancestors.optJSONObject(i);
                     int rankLevel = ancestor.optInt("rank_level");
-                    if ((rankLevel <= 30) || (rankLevel == 70)) {
+                    if ((rankLevel <= 30) || (rankLevel == 70) ||
+                            (i == ancestors.length() - 1)) {
                         mAncestors.add(ancestor);
                     }
                 }

@@ -36,7 +36,7 @@ import uk.co.senab.photoview.HackyViewPager;
 public class CompareSuggestionActivity extends AppCompatActivity {
     private static String TAG = "CompareSuggestionActivity";
 
-    private static final int TAXON_SEARCH_REQUEST_CODE = 302;
+    private static final int TAXON_SEARCH_REQUEST_CODE = 0x1000;
 
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String OBSERVATION_ID = "observation_id";
@@ -446,7 +446,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 Intent intent = new Intent(CompareSuggestionActivity.this, TaxonActivity.class);
                 intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
                 intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
-                intent.putExtra(TaxonActivity.TAXON_SUGGESTION, true);
+                intent.putExtra(TaxonActivity.TAXON_SUGGESTION, TaxonActivity.TAXON_SUGGESTION_COMPARE_AND_SELECT);
                 if (mObservation != null) {
                     intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
                 }
