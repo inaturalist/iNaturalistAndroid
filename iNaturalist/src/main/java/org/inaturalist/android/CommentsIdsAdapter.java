@@ -452,7 +452,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				}
 
                 if (mIsNewLayout) {
-                    idLayout.setOnClickListener(new OnClickListener() {
+					OnClickListener listener = new OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(mContext, TaxonActivity.class);
@@ -462,7 +462,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                             intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                             mContext.startActivity(intent);
                         }
-                    });
+                    };
+                    idLayout.setOnClickListener(listener);
+                    idName.setOnClickListener(listener);
+                    idTaxonName.setOnClickListener(listener);
 
                 }
 
