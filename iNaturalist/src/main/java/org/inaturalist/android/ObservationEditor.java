@@ -2654,7 +2654,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     @Override
                     public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap));
+                        return ImageUtils.centerCropBitmap(loadedBitmap);
                     }
                 });
             } else {
@@ -2689,7 +2689,7 @@ public class ObservationEditor extends AppCompatActivity {
                         }
 
                         if (bitmapImage != null) {
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                            imageView.setImageBitmap(ImageUtils.centerCropBitmap(bitmapImage));
                             bitmapImage.recycle();
                         }
                     }

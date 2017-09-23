@@ -720,7 +720,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 if (bitmapImage != null) {
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, mFilename);
                     bitmapImage = ImageUtils.centerCropBitmap(bitmapImage);
-                    bitmapImage = ImageUtils.getRoundedCornerBitmap(bitmapImage);
 
                     mObservationThumbnails.put(mFilename, bitmapImage);
                 }
