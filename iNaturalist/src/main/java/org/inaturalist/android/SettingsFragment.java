@@ -377,6 +377,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         int count3 = getActivity().getContentResolver().delete(ProjectObservation.CONTENT_URI, null, null);
         int count4 = getActivity().getContentResolver().delete(ProjectFieldValue.CONTENT_URI, null, null);
 
+        File obsPhotoCache = new File(getActivity().getFilesDir(), "observations_photo_info.dat");
+        obsPhotoCache.delete();
+
         refreshSettings();
         ((SettingsActivity)getActivity()).refreshUserDetails();
 	}

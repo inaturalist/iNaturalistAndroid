@@ -183,7 +183,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             String photoUrl = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
             String photoFilename = onlinePc.getString(onlinePc.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
             Long obsId = onlinePc.getLong(onlinePc.getColumnIndexOrThrow(ObservationPhoto._OBSERVATION_ID));
-            int position = onlinePc.getInt(onlinePc.getColumnIndexOrThrow(ObservationPhoto.POSITION));
             String obsUUID = obsUUIDs.get(obsId);
 
             if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
@@ -194,7 +193,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             onlinePc.moveToNext();
 
-            if (position > 0) {
+            if (mPhotoInfo.containsKey(obsUUID)) {
                 continue;
             }
 
@@ -331,6 +330,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (photoInfo != null) {
             String photoFilename = photoInfo[2] != null ? photoInfo[2] : photoInfo[0];
+
             if (mIsGrid && (convertView == null)) {
                 obsImage.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
 

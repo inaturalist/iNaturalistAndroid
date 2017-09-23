@@ -2703,7 +2703,7 @@ public class ObservationEditor extends AppCompatActivity {
             View isFirst = container.findViewById(R.id.observation_is_first);
             Integer obsPhotoPosition = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto.POSITION));
 
-            if ((obsPhotoPosition != null) && (obsPhotoPosition == 0)) {
+            if (position == 0) {
                 container.findViewById(R.id.is_first_on).setVisibility(View.VISIBLE);
                 container.findViewById(R.id.is_first_off).setVisibility(View.GONE);
                 container.findViewById(R.id.is_first_text).setVisibility(View.VISIBLE);
