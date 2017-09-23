@@ -1520,8 +1520,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mIdPic.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
         if (mObservation.preferred_common_name != null && mObservation.preferred_common_name.length() > 0) {
             mIdName.setText(mObservation.preferred_common_name);
+            mTaxonicName.setText(mObservation.preferred_common_name);
         } else {
             mIdName.setText(mObservation.species_guess);
+            mTaxonicName.setText(mObservation.species_guess);
         }
 
         if (mObservation.id == null) {
@@ -1542,6 +1544,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                 if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
                     mIdName.setText(mTaxonName);
+                    mTaxonicName.setText(mTaxonName);
                 } else {
                     mIdName.setText(mTaxonIdName);
                     mTaxonicName.setText(mTaxonName);
