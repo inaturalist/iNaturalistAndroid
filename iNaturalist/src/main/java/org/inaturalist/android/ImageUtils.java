@@ -88,7 +88,8 @@ public class ImageUtils {
         Bitmap output;
 
         if (bitmap.getWidth() == bitmap.getHeight()) {
-            return bitmap;
+            // No resize needed - return a copy as-is
+            return bitmap.copy(bitmap.getConfig(), true);
 
         } else if (bitmap.getWidth() > bitmap.getHeight()) {
             output = Bitmap.createBitmap(
