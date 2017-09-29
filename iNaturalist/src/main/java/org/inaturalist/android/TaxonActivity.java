@@ -105,6 +105,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private ViewGroup mSelectTaxon;
     private ViewGroup mCompareTaxon;
     private ListView mTaxonomyList;
+    private ImageView mTaxonicIcon;
 
     private boolean mMapBoundsSet = false;
     private int mTaxonSuggestion = TAXON_SUGGESTION_NONE;
@@ -221,6 +222,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         mTaxonButtons = (ViewGroup) findViewById(R.id.taxon_buttons);
         mSelectTaxon = (ViewGroup) findViewById(R.id.select_taxon);
         mCompareTaxon = (ViewGroup) findViewById(R.id.compare_taxon);
+        mTaxonicIcon = (ImageView) findViewById(R.id.taxon_iconic_taxon);
 
         mTaxonButtons.setVisibility(mTaxonSuggestion != TAXON_SUGGESTION_NONE ? View.VISIBLE : View.GONE);
 
@@ -451,6 +453,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         mHelper.resizeList(mTaxonomyList);
 
+        mTaxonicIcon.setImageResource(TaxonUtils.observationIcon(mTaxon.getJSONObject()));
+
         centerObservation();
     }
 
@@ -466,7 +470,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         Intent intent = new Intent(TaxonActivity.this, TaxonActivity.class);
         intent.putExtra(TaxonActivity.TAXON, taxon);
         intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
-        intent.putExtra(TaxonActivity.TAXON_SUGGESTION, TaxonActivity.TAXON_SUGGESTION_SELECT);
+        intent.putExtra(TaxonActivity.TAXON_SUGGESTION, mTaxonSuggestion == TAXON_SUGGESTION_COMPARE_AND_SELECT ? TAXON_SUGGESTION_SELECT : mTaxonSuggestion);
         startActivityForResult(intent, SELECT_TAXON_REQUEST_CODE);
     }
 
