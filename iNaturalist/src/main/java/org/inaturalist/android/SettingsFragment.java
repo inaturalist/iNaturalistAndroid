@@ -21,7 +21,9 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.facebook.login.LoginManager;
 
@@ -74,6 +76,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         refreshSettings();
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        refreshSettings();
+    }
+
+
 
     private void refreshSettings() {
         String username = mPreferences.getString("username", null);

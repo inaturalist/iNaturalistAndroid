@@ -131,6 +131,7 @@ public class INaturalistService extends IntentService {
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
+    public static final String NETWORK_SITE_ID = "network_site_id";
     public static final String COMMENT_BODY = "comment_body";
     public static final String IDENTIFICATION_BODY = "id_body";
     public static final String PROJECT_ID = "project_id";
@@ -263,6 +264,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_MISSIONS_BY_TAXON = "get_missions_by_taxon";
     public static String ACTION_SEARCH_USER_OBSERVATIONS = "search_user_observations";
     public static String ACTION_GET_TAXON_OBSERVATION_BOUNDS = "get_taxon_observation_bounds";
+    public static String ACTION_UPDATE_USER_NETWORK = "update_user_network";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -791,6 +793,11 @@ public class INaturalistService extends IntentService {
                     clearOldCachedPhotos();
                     mIsClearingOldPhotosCache = false;
                 }
+
+
+            } else if (action.equals(ACTION_UPDATE_USER_NETWORK)) {
+                int siteId = intent.getIntExtra(NETWORK_SITE_ID, 0);
+                updateUserNetwork(siteId);
 
             } else if (action.equals(ACTION_UPDATE_USER_DETAILS)) {
                 String username = intent.getStringExtra(ACTION_USERNAME);
@@ -1949,6 +1956,21 @@ public class INaturalistService extends IntentService {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    // Updates a user's inat network settings
+    private JSONObject updateUserNetwork(int siteId) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("user[site_id]", String.valueOf(siteId)));
+
+        JSONArray array = put(HOST + "/users/" + mLogin + ".json", params);
+
+        if ((mResponseErrors != null) || (array == null)) {
+            // Couldn't update user
+            return null;
+        } else {
+            return array.optJSONObject(0);
         }
     }
 
