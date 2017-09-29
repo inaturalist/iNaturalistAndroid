@@ -753,7 +753,17 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+
+    private Map<String, ImageView> mUrlToImageView = new HashMap<>();
+
     private void loadObsImage(final int position, final ImageView imageView, String name, boolean isOnline) {
+
+        if (mUrlToImageView.containsKey(name) && mUrlToImageView.get(name).equals(imageView)){
+            return;
+        }
+
+        mUrlToImageView.put(name, imageView);
+
         if (isOnline) {
             // Online image
             Picasso.with(mContext)
