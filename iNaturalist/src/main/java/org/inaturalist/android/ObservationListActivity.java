@@ -1278,7 +1278,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             mObservationListAdapter.updateProgress(obsId, progress);
+            mObservationListAdapter.notifyDataSetChanged();
             mObservationGridAdapter.updateProgress(obsId, progress);
+            mObservationGridAdapter.notifyDataSetChanged();
         }
     }
 
