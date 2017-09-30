@@ -115,7 +115,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 			TextView postedOn = (TextView) view.findViewById(R.id.posted_on);
 			final String username = item.getJSONObject("user").getString("login");
-			Timestamp postDate = item.getTimestamp("updated_at");
+            Timestamp postDate = item.getTimestamp("updated_at");
 
             if (mIsNewLayout) {
                 postedOn.setText(String.format(res.getString(item.getString("type").equals("comment") ? R.string.comment_title : R.string.id_title),
