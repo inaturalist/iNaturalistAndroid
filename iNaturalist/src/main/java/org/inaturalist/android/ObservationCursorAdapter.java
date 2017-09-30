@@ -744,6 +744,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     }
                 }
             }
+
+            mUrlToImageView.remove(mFilename);
         }
     }
 
