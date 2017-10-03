@@ -376,7 +376,14 @@ public class BaseFragmentActivity extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.show, R.anim.hide);
         if (closeCurrentActivity) {
-            finish();
+            if (this.getClass().getName().equals(ObservationListActivity.class.getName())) {
+                // Always leave the top/main activity (obs list) as-is and don't close it -
+                // so when the user clicks the phone's back button, it will return to this screen.
+                // Do close the side drawer, though.
+                mDrawerLayout.closeDrawer(mSideMenu);
+            } else {
+                finish();
+            }
         }
     }
 
