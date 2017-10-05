@@ -2246,6 +2246,13 @@ public class ObservationEditor extends AppCompatActivity {
         String path = FileUtils.getPath(this, photoUri);
         String extension = getExtension(this, photoUri);
 
+        if ((extension == null) && (path != null)) {
+            int i = path.lastIndexOf('.');
+            if (i >= 0) {
+                extension = path.substring(i + 1).toLowerCase();
+            }
+        }
+
         if ((extension == null) || (
                 (!extension.toLowerCase().equals("jpg")) &&
                 (!extension.toLowerCase().equals("jpeg")) &&
