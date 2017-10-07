@@ -4,6 +4,7 @@ import com.crashlytics.android.Crashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Build;
@@ -493,6 +494,21 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.putString("user_bio", user.getString("description"));
             editor.putString("user_full_name", user.getString("name"));
             editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
+            String currentUsername = prefs.getString("username", null);
+            String newUsername = user.getString("login");
+
+            if ((currentUsername != null) && (newUsername != null) && (!currentUsername.equals(newUsername))) {
+                // Username changed remotely - Update all existing observations' username
+                ContentValues cv = new ContentValues();
+                cv.put("user_login", newUsername);
+                // Update its sync at time so we won't update the remote servers later on (since we won't
+                // accidently consider this an updated record)
+                cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                int count = getContentResolver().update(Observation.CONTENT_URI, cv, "user_login = ?", new String[]{ currentUsername });
+                Log.d(TAG, String.format("Updated %d observations with new user login %s from %s", count, newUsername, currentUsername));
+            }
+
+            editor.putString("username", newUsername);
             editor.apply();
 
             // Update network settings as well
