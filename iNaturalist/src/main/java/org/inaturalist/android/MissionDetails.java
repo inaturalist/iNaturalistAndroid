@@ -250,7 +250,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                 // Show the observation editor screen with the taxon already pre-filled
                 BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
                 Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, MissionDetails.this, ObservationEditor.class);
-                intent.putExtra(ObservationEditor.TAXON, taxon.getJSONObject().toString());
+                mApp.setServiceResult(ObservationEditor.TAXON, taxon.getJSONObject().toString());
                 startActivity(intent);
 
 

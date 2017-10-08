@@ -1743,7 +1743,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             return true;
         case R.id.edit_observation:
             Intent intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
-            if (mTaxon != null) intent.putExtra(ObservationEditor.TAXON, mTaxon.toString());
+            if (mTaxon != null) mApp.setServiceResult(ObservationEditor.TAXON, mTaxon.toString());
             startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
             return true;
         case R.id.flag_captive:

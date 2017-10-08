@@ -648,11 +648,12 @@ public class ObservationEditor extends AppCompatActivity {
         initUi();
 
         if (intent != null) {
-            Bundle extras = intent.getExtras();
-            if ((extras != null) && (extras.getString(TAXON) != null)) {
-                BetterJSONObject taxon = new BetterJSONObject(extras.getString(TAXON));
+            String taxonJson = (String) mApp.getServiceResult(TAXON);
+            if (taxonJson != null) {
+                BetterJSONObject taxon = new BetterJSONObject(taxonJson);
                 JSONObject idPhoto = taxon.getJSONObject("default_photo");
                 setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+                mApp.setServiceResult(TAXON, null);
             }
         }
 
