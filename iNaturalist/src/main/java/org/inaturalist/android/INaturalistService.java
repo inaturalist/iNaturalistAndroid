@@ -91,6 +91,11 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
+// PerfProbe hack begin
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
+// PerfProbe hack end
+
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
@@ -279,6 +284,55 @@ public class INaturalistService extends IntentService {
         OAUTH_PASSWORD
 	};
 
+
+    // PerfProbe hack begin
+    private BroadcastReceiver loadMoreReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(ACTION_GET_ALL_GUIDES)) {
+                Log.i(TAG, "Received loadmore intent");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadMoreWorker();
+                    }
+                }).start();
+            }
+        }
+    };
+
+    public void loadMoreWorker() {
+        Log.i(TAG, "loadMoreWorker " + curr_load_page);
+        try {
+            JSONArray currentResults = getAllGuides(load_item, curr_load_page);
+            if (currentResults != null) {
+                for (int i = 0; i < currentResults.length(); i++) {
+                    try {
+                        load_results.put(currentResults.get(i));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                curr_load_page++;
+            }
+            SerializableJSONArray guides = new SerializableJSONArray(load_results);
+            mApp.setServiceResult(ACTION_ALL_GUIDES_RESULT, guides);
+            Intent reply = new Intent(ACTION_ALL_GUIDES_RESULT);
+            reply.putExtra(IS_SHARED_ON_APP, true);
+            sendBroadcast(reply);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean isLoadMoreListenerRegistered = false;
+
+    private static int curr_load_page;
+
+    private final static int load_item = 20;
+
+    private static JSONArray load_results = null;
+    // PerfProbe hack end
 
     public INaturalistService() {
         super("INaturalistService");
@@ -747,6 +801,7 @@ public class INaturalistService extends IntentService {
                 sendBroadcast(reply);
 
              } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
+                /*
                 SerializableJSONArray guides = getAllGuides();
                 
                 mApp.setServiceResult(ACTION_ALL_GUIDES_RESULT, guides);
@@ -754,6 +809,18 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
+                */
+                // PerfProbe hack begin
+                load_results = new JSONArray();
+                curr_load_page = 1;
+                loadMoreWorker();
+                IntentFilter filter_loadmore = new IntentFilter(ACTION_GET_ALL_GUIDES);
+                if (!isLoadMoreListenerRegistered) {
+                    registerReceiver(loadMoreReceiver, filter_loadmore);
+                    isLoadMoreListenerRegistered = true;
+                    Log.i(TAG, "Registering LoadMore receiver");
+                }
+                // PerfProbe hack end
              } else if (action.equals(ACTION_GET_MY_GUIDES)) {
             	 SerializableJSONArray guides = null;
                 guides = getMyGuides();
@@ -2540,6 +2607,22 @@ public class INaturalistService extends IntentService {
         return new SerializableJSONArray(results);
     }
     
+    // PerfProbe hack begin
+    private JSONArray getAllGuides(int item, int page) throws AuthenticationException {
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+        String url = "http://" + inatHost + "/guides.json?";
+        url += ("per_page=" + item + "&page=");
+        JSONArray results = new JSONArray();
+        JSONArray currentResults = get(url + page);
+
+        if ((currentResults != null) && (currentResults.length() > 0))
+            return currentResults;
+        else
+            return null;
+    }
+    // PerfProbe hack end
+
     private SerializableJSONArray getMyGuides() throws AuthenticationException {
         JSONArray json = null;
         String inatNetwork = mApp.getInaturalistNetworkMember();

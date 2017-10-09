@@ -72,4 +72,20 @@
         android:layout_below="@id/search_filter"
         />
     
+    <Button
+        android:id="@+id/loadmore"
+        android:background="@drawable/circular_button"
+        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/load_more"
+        android:layout_below="@android:id/empty"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        />
+
 </RelativeLayout>
