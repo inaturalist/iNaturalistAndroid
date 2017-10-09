@@ -910,11 +910,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             JSONObject item = (JSONObject) view.getTag();
                             if (item == null) return;
-                            Intent intent = new Intent(ObservationListActivity.this, GuideTaxonActivity.class);
-                            intent.putExtra("taxon", new BetterJSONObject(item));
-                            intent.putExtra("guide_taxon", false);
-                            intent.putExtra("show_add", false);
-                            intent.putExtra("download_taxon", true);
+                            Intent intent = new Intent(ObservationListActivity.this, TaxonActivity.class);
+                            intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
+                            intent.putExtra(TaxonActivity.OBSERVATION, new BetterJSONObject(item));
+                            intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                             startActivity(intent);
                         }
                     };
@@ -1279,7 +1278,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             mObservationListAdapter.updateProgress(obsId, progress);
+            mObservationListAdapter.notifyDataSetChanged();
             mObservationGridAdapter.updateProgress(obsId, progress);
+            mObservationGridAdapter.notifyDataSetChanged();
         }
     }
 

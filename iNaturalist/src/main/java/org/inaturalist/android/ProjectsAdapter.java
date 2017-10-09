@@ -45,7 +45,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
     private ActivityHelper mHelper;
 
     public interface OnLoading {
-        public void onLoading(Boolean loading);
+        public void onLoading(Boolean loading, int count);
     }
 
     private OnLoading mOnLoading;
@@ -128,7 +128,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
                         filterResults.count = 0;
 
                     } else {
-                        if (mOnLoading != null) mOnLoading.onLoading(true);
+                        if (mOnLoading != null) mOnLoading.onLoading(true, 0);
 
                         // Retrieve the autocomplete results.
                         ArrayList<JSONObject> results;
@@ -151,7 +151,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
                     }
                 }
 
-                if (mOnLoading != null) mOnLoading.onLoading(false);
+                if (mOnLoading != null) mOnLoading.onLoading(false, filterResults.count);
 
                 return filterResults;
             }
@@ -236,7 +236,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
         }
 
 
-        view.setTag(item);
+        view.setTag(item.getJSONObject().toString());
 
         return view;
     }

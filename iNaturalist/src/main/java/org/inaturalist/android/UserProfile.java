@@ -159,11 +159,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 JSONObject item = (JSONObject) view.getTag();
-                Intent intent = new Intent(UserProfile.this, GuideTaxonActivity.class);
-                intent.putExtra("taxon", new BetterJSONObject(item));
-                intent.putExtra("guide_taxon", false);
-                intent.putExtra("show_add", false);
-                intent.putExtra("download_taxon", true);
+                Intent intent = new Intent(UserProfile.this, TaxonActivity.class);
+                intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
+                intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                 startActivity(intent);
             }
         });

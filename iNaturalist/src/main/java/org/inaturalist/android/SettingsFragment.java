@@ -21,7 +21,9 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.facebook.login.LoginManager;
 
@@ -37,6 +39,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private Preference mUsernamePreference;
     private CheckBoxPreference mAutoSyncPreference;
+    private CheckBoxPreference mSuggestSpeciesPreference;
     private ListPreference mLanguagePreference;
     private Preference mNetworkPreference;
     private Preference mContactSupport;
@@ -61,6 +64,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         mUsernamePreference = getPreferenceManager().findPreference("username");
         mAutoSyncPreference = (CheckBoxPreference) getPreferenceManager().findPreference("auto_sync");
+        mSuggestSpeciesPreference = (CheckBoxPreference) getPreferenceManager().findPreference("suggest_species");
         mLanguagePreference = (ListPreference) getPreferenceManager().findPreference("language");
         mNetworkPreference = (Preference) getPreferenceManager().findPreference("inat_network");
         mContactSupport = (Preference) getPreferenceManager().findPreference("contact_support");
@@ -72,6 +76,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         refreshSettings();
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        refreshSettings();
+    }
+
+
 
     private void refreshSettings() {
         String username = mPreferences.getString("username", null);
@@ -119,6 +131,32 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             });
 
         }
+
+        mSuggestSpeciesPreference.setChecked(mApp.getSuggestSpecies());
+        mSuggestSpeciesPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                boolean newValue = mSuggestSpeciesPreference.isChecked();
+                mSuggestSpeciesPreference.setChecked(newValue);
+                mApp.setSuggestSpecies(newValue);
+
+                try {
+                    JSONObject eventParams = new JSONObject();
+                    eventParams.put(AnalyticsClient.EVENT_PARAM_SETTING, AnalyticsClient.EVENT_PARAM_VALUE_SUGGEST_SPECIES);
+
+                    AnalyticsClient.getInstance().logEvent(
+                            newValue ?
+                                    AnalyticsClient.EVENT_NAME_SETTING_ENABLED :
+                                    AnalyticsClient.EVENT_NAME_SETTING_DISABLED
+                            , eventParams);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return false;
+            }
+        });
+
 
         mAutoSyncPreference.setChecked(mApp.getAutoSync());
         mAutoSyncPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -348,6 +386,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		int count2 = getActivity().getContentResolver().delete(ObservationPhoto.CONTENT_URI, null, null);
         int count3 = getActivity().getContentResolver().delete(ProjectObservation.CONTENT_URI, null, null);
         int count4 = getActivity().getContentResolver().delete(ProjectFieldValue.CONTENT_URI, null, null);
+
+        File obsPhotoCache = new File(getActivity().getFilesDir(), "observations_photo_info.dat");
+        obsPhotoCache.delete();
 
         refreshSettings();
         ((SettingsActivity)getActivity()).refreshUserDetails();

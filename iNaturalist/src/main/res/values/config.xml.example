@@ -4,6 +4,9 @@
     <!-- https://developers.google.com/maps/documentation/android/ -->
     <!-- <string name="gmaps_api_key">xxx</string>  -->
 
+    <!-- Used by the app to do anonymous JWT authentication (when user is not logged in) -->
+    <!-- <string name="jwt_anonymous_api_secret"></string> -->
+
     <!-- https://developers.facebook.com/android/ -->
     <!-- <string name="facebook_app_id">xxx</string>  -->
 

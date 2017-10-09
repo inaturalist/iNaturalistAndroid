@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -182,7 +181,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
             if ((name == null) || (name.length() == 0)) name = item.getName();
             idName.setText(name);
 
-            ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_pic);
+            ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_photo);
             
             taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                     mGuideTaxaGrid.getColumnWidth(),

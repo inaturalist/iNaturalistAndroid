@@ -72,6 +72,7 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
     private ProgressBar mProgress;
     private INaturalistApp mApp;
     private EditText mSearchEditText;
+    private TextView mNoResults;
 
     @Override
 	protected void onStart()
@@ -136,7 +137,10 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
         actionBar.setLogo(R.drawable.ic_arrow_back);
        
         setContentView(R.layout.taxon_search);
-        
+
+        mNoResults = (TextView) findViewById(android.R.id.empty);
+        mNoResults.setVisibility(View.GONE);
+
         mProgress = (ProgressBar) findViewById(R.id.progress);
         mProgress.setVisibility(View.GONE);
 
@@ -170,7 +174,7 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
     }
 
     public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
-        BetterJSONObject item = (BetterJSONObject) v.getTag();
+        String item = (String) v.getTag();
         if (item != null) {
             Intent intent = new Intent(this, mViewerActivity);
             intent.putExtra(mViewerActivityParamName, item);
@@ -202,16 +206,23 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
 
 
     @Override
-    public void onLoading(final Boolean isLoading) {
+    public void onLoading(final Boolean isLoading, final int count) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (isLoading) {
                     getListView().setVisibility(View.GONE);
                     mProgress.setVisibility(View.VISIBLE);
+                    mNoResults.setVisibility(View.GONE);
                 } else {
                     mProgress.setVisibility(View.GONE);
                     getListView().setVisibility(View.VISIBLE);
+
+                    if (count == 0) {
+                        mNoResults.setVisibility(View.VISIBLE);
+                    } else {
+                        mNoResults.setVisibility(View.GONE);
+                    }
                 }
             }
         });

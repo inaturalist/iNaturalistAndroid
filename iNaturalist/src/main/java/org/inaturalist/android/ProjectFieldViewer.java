@@ -1,18 +1,12 @@
 package org.inaturalist.android;
 
-import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
@@ -22,14 +16,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.ptashek.widgets.datetimepicker.DateTimePicker;
@@ -40,7 +32,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,11 +41,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 public class ProjectFieldViewer {
     private static final String TAG = "ProjectFieldViewer";
@@ -313,7 +300,7 @@ public class ProjectFieldViewer {
         mSetDate = (ImageView) row.findViewById(R.id.set_date);
         mDate = (TextView) row.findViewById(R.id.date);
         mTaxonContainer = (RelativeLayout) row.findViewById(R.id.taxon_container);
-        mTaxonPic = (ImageView) row.findViewById(R.id.taxon_pic);
+        mTaxonPic = (ImageView) row.findViewById(R.id.taxon_photo);
         mIdName = (TextView) row.findViewById(R.id.id_name);
         mIdTaxonName = (TextView) row.findViewById(R.id.id_taxon_name);
         mIdTaxonName.setTypeface(null, Typeface.ITALIC);

@@ -25,6 +25,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.method.MovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,16 +50,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 class UserActivitiesAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "UserActivitiesAdapter";
+
     private final IOnUpdateViewed mOnUpdateViewed;
     private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private ObservationReceiver mObservationReceiver;
-    private Map<Integer, View> mObsIdToView;
+    private Map<Integer, List<Pair<View, Integer>>> mObsIdToView;
+    private Map<Integer, Boolean> mObsIdBeingDownloaded;
 
     public interface IOnUpdateViewed {
         void onUpdateViewed(Observation obs, int position);
@@ -81,11 +86,11 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             }
         });
 
-        mObservationReceiver = new ObservationReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, mContext);
+
+        registerReceivers();
 
         mObsIdToView = new HashMap<>();
+        mObsIdBeingDownloaded = new HashMap<>();
     }
 
     @Override
@@ -208,6 +213,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
     }
 
     private void loadObsImage(int obsId, final View view, BetterJSONObject item, final int position) {
+        Log.e(TAG, obsId + ": loadObsImage " + position + ":" + view);
+
         ImageView obsPic = (ImageView) view.findViewById(R.id.obs_pic);
         ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
         ProgressBar loadingObs = (ProgressBar) view.findViewById(R.id.loading);
@@ -232,15 +239,27 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             userPic.setVisibility(View.GONE);
             view.setBackgroundResource(R.drawable.activity_item_background);
 
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
-            mContext.startService(serviceIntent);
+            if (!mObsIdBeingDownloaded.containsKey(obsId) || !mObsIdBeingDownloaded.get(obsId)) {
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
+                mContext.startService(serviceIntent);
+                Log.e(TAG, obsId + ": Start download");
+            } else {
+                Log.e(TAG, obsId + ": Downloading");
+            }
+
+            mObsIdBeingDownloaded.put(obsId, true);
 
             // So when we get the result - we'll know which obs pic to set
-            mObsIdToView.put(obsId, view);
+            if (!mObsIdToView.containsKey(obsId)) {
+                mObsIdToView.put(obsId, new ArrayList<Pair<View, Integer>>());
+            }
+            List<Pair<View, Integer>> views = mObsIdToView.get(obsId);
+            views.add(new Pair<>(view, position));
 
             return;
         }
+        Log.d(TAG, obsId + ": Showing");
 
         final Observation obs = new Observation(c);
         c.close();
@@ -434,7 +453,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
     }
 
-    public class CircleTransform implements Transformation {
+    public static class CircleTransform implements Transformation {
         @Override
         public Bitmap transform(Bitmap source) {
             int size = Math.min(source.getWidth(), source.getHeight());
@@ -471,8 +490,15 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         }
     }
 
+    public void registerReceivers() {
+        mObservationReceiver = new ObservationReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, mContext);
+    }
+
     public void unregisterReceivers() {
         BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, mContext);
+        mObsIdBeingDownloaded = new HashMap<>();
     }
 
     private class ObservationReceiver extends BroadcastReceiver {
@@ -480,8 +506,6 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 	    public void onReceive(Context context, Intent intent) {
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
 	        Observation observation;
-
-            BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, mContext);
 
             if (isSharedOnApp) {
                 observation = (Observation) mApp.getServiceResult(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
@@ -493,30 +517,27 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 return;
             }
 
-            View view = mObsIdToView.get(observation.id);
-            if (view == null) return;
+            Log.d(TAG, observation.id + ": Download complete");
 
-            BetterJSONObject update = (BetterJSONObject)view.getTag();
-            Integer id = update.getInt("resource_id");
-            if ((update == null) || (id == null) || (!id.equals(observation.id))) {
-                // Current obs ID doesn't match the one returned (could happen if user scrolled and the view got reused by the time we got results)
-                return;
-            }
+            List<Pair<View, Integer>> views = mObsIdToView.get(observation.id);
+            if (views == null) return;
 
-            int foundId = 0;
-            for (int i = 0; i < mResultList.size(); i++) {
-                try {
-                    if (mResultList.get(i).getInt("resource_id") == id) {
-                        foundId = i;
-                        break;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            // Update all views (activity update rows) that have that obs
+            for (Pair<View, Integer> pair : views) {
+                View view = pair.first;
+                int position = pair.second;
+
+                BetterJSONObject update = (BetterJSONObject)view.getTag();
+                Integer id = update.getInt("resource_id");
+                if ((update == null) || (id == null) || (!id.equals(observation.id))) {
+                    // Current obs ID doesn't match the one returned (could happen if user scrolled and the view got reused by the time we got results)
+                    continue;
                 }
-            }
 
-            // Load obs image again
-            loadObsImage(observation.id, view, update, foundId);
+                // Load obs image again
+                Log.e(TAG, observation.id + ": Updating view " + position + ":" + view);
+                loadObsImage(observation.id, view, update, position);
+            }
 	    }
 
 	}

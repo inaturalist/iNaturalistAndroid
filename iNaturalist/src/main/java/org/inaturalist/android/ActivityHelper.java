@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -15,20 +16,36 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.maps.android.SphericalUtil;
+
 public class ActivityHelper {
     private static String TAG = "ActivityHelper";
+    private final INaturalistApp mApp;
     private Context mContext;
     private ProgressDialog mProgressDialog;
 
     public ActivityHelper(Context context) {
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
     }
 
     public void alert(String msg) {
@@ -55,6 +72,29 @@ public class ActivityHelper {
             }
         }, null);
     }
+
+    public void selection(String title, ListAdapter adapter) {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+        ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_list_popup, null, false);
+        ((TextView)content.findViewById(R.id.title)).setText(title);
+        ListView listView = (ListView) content.findViewById(R.id.list_view);
+        listView.setAdapter(adapter);
+
+        builder.setView(content);
+        builder.setCancelable(true);
+        final AlertDialog alert = builder.create();
+
+        content.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.cancel();
+            }
+        });
+
+        alert.show();
+   }
 
     public void selection(String title, String[] items, final DialogInterface.OnClickListener onItemSelected) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -229,6 +269,226 @@ public class ActivityHelper {
             return Color.parseColor("#993300");
         } else {
             return Color.WHITE;
+        }
+    }
+
+    private CameraUpdate addCircle(GoogleMap map, LatLng latlng, int radius, Observation observation) {
+        return addCircle(map, latlng, radius, observation, true);
+    }
+
+    private CameraUpdate addCircle(GoogleMap map, LatLng latlng, int radius, Observation observation, boolean updateCamera) {
+        int obsColor = observationColor(observation);
+        CircleOptions opts = new CircleOptions()
+                .center(latlng)
+                .radius(radius)
+                .fillColor(0x80FFFFFF & obsColor) // Add 50% opacity
+                .strokeColor(obsColor);
+        map.addCircle(opts);
+        if (!updateCamera) {
+            return null;
+        }
+        LatLngBounds bounds = new LatLngBounds.Builder().
+                include(SphericalUtil.computeOffset(latlng, radius, 0)).
+                include(SphericalUtil.computeOffset(latlng, radius, 90)).
+                include(SphericalUtil.computeOffset(latlng, radius, 180)).
+                include(SphericalUtil.computeOffset(latlng, radius, 270)).build();
+        return CameraUpdateFactory.newLatLngBounds(bounds, 10);
+    }
+
+    public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson) {
+        addMapPosition(map, observation, observationJson, false);
+    }
+
+    public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson, boolean markerOnly) {
+        addMapPosition(map, observation, observationJson, markerOnly, true);
+    }
+
+    public void addMapPosition(final GoogleMap map, Observation observation, BetterJSONObject observationJson, boolean markerOnly, boolean updateCamera) {
+        Double lat, lon;
+        lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
+        lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
+        if (lat == null || lon == null) {
+            // can't do anything
+            return;
+        }
+        LatLng latlng = new LatLng(lat, lon);
+        BitmapDescriptor obsIcon = INaturalistMapActivity.observationIcon(observation.iconic_taxon_name);
+        String currentUser = mApp.currentUserLogin();
+        CameraUpdate cameraUpdate = null;
+        int obsColor = observationColor(observation);
+
+        Integer publicAcc = null;
+        publicAcc = observationJson != null ? observationJson.getInteger("public_positional_accuracy") : null;
+
+        // Add a single marker
+        MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+        map.addMarker(opts);
+
+        if (((observation.geoprivacy != null) && (observation.geoprivacy.equals("private"))) ||
+                (publicAcc == null) || (markerOnly)) {
+            // No need to add anything other than the above marker
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
+
+        } else if ((currentUser != null) && (observation.user_login.equals(currentUser)) &&
+                (observation.positional_accuracy != null)) {
+            // Show circle of private positional accuracy
+            cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
+        } else {
+            if ((observation.positional_accuracy != null) && (publicAcc != null) &&
+                    (observation.positional_accuracy.equals(publicAcc))) {
+                // Show circle of public positional accuracy
+                cameraUpdate = addCircle(map, latlng, publicAcc, observation, updateCamera);
+            } else {
+                // Show uncertainty cell
+                Double cellSize = 0.2;
+                Double coords[] = new Double[] { lat, lon };
+                Double ll[] = new Double[] {
+                        coords[0] - ( coords[0] % cellSize ),
+                        coords[1] - ( coords[1] % cellSize ) };
+                Double uu[] = new Double[] { ll[0], ll[1] };
+
+                for (int i = 0; i < coords.length; i++) {
+                    if (coords[i] < uu[i]) {
+                        uu[i] -= cellSize;
+                    } else {
+                        uu[i] += cellSize;
+                    }
+                }
+
+                LatLng rectPoints[] = new LatLng[] {
+                        new LatLng(Math.min(uu[0], ll[0]), Math.min(uu[1], ll[1])),
+                        new LatLng(Math.max(uu[0], ll[0]), Math.min(uu[1], ll[1])),
+                        new LatLng(Math.max(uu[0], ll[0]), Math.max(uu[1], ll[1])),
+                        new LatLng(Math.min(uu[0], ll[0]), Math.max(uu[1], ll[1])),
+                        new LatLng(Math.min(uu[0], ll[0]), Math.min(uu[1], ll[1]))
+                };
+
+                PolygonOptions polygonOpts = new PolygonOptions()
+                        .add(rectPoints[0])
+                        .add(rectPoints[1])
+                        .add(rectPoints[2])
+                        .add(rectPoints[3])
+                        .add(rectPoints[4])
+                        .fillColor(0x80FFFFFF & obsColor) // Add 50% opacity
+                        .strokeColor(obsColor);
+                map.addPolygon(polygonOpts);
+
+                if (updateCamera) {
+                    cameraUpdate = CameraUpdateFactory.newLatLngBounds(LatLngBounds.builder()
+                            .include(rectPoints[0])
+                            .include(rectPoints[1])
+                            .include(rectPoints[2])
+                            .include(rectPoints[3])
+                            .include(rectPoints[4])
+                            .build(), 10);
+                }
+            }
+
+        }
+
+        final CameraUpdate finalCameraUpdate = cameraUpdate;
+        map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                try {
+                    if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
+                } catch (IllegalStateException exc) {
+                    // Handles weird exception is raised ("View size is too small after padding is applied")
+                    exc.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    public void centerObservation(final GoogleMap map, Observation observation) {
+        Double lat, lon;
+        lat = observation.private_latitude == null ? observation.latitude : observation.private_latitude;
+        lon = observation.private_longitude == null ? observation.longitude : observation.private_longitude;
+        if (lat == null || lon == null) {
+            // can't do anything with no coordinates
+            return;
+        }
+        LatLng latlng = new LatLng(lat, lon);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(latlng);
+        final CameraUpdate finalCameraUpdate = cameraUpdate;
+        map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                try {
+                    if (finalCameraUpdate != null) {
+                        map.moveCamera(finalCameraUpdate);
+                    }
+                } catch (IllegalStateException exc) {
+                    // Handles weird exception is raised ("View size is too small after padding is applied")
+                    exc.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Sets ListView height dynamically based on the height of the items.
+     *
+     * @param list to be resized
+     */
+    public static void resizeList(final ListView list) {
+        final Handler handler = new Handler();
+        if ((list.getVisibility() == View.VISIBLE) && (list.getWidth() == 0)) {
+            // UI not initialized yet - try later
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resizeList(list);
+                }
+            }, 100);
+
+            return;
+        }
+
+        list.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                int height = setListViewHeightBasedOnItems(list);
+            }
+        });
+    }
+
+    private static int setListViewHeightBasedOnItems(final ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter != null) {
+
+            int numberOfItems = listAdapter.getCount();
+
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, listView);
+                item.measure(View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST), View.MeasureSpec.UNSPECIFIED);
+                totalItemsHeight += item.getMeasuredHeight();
+            }
+
+            // Get total height of all item dividers.
+            int totalDividersHeight = listView.getDividerHeight() *
+                    (numberOfItems - 1);
+
+            // Set list height.
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            int newHeight = totalItemsHeight + totalDividersHeight;
+            if (params.height != newHeight) {
+                params.height = totalItemsHeight + totalDividersHeight;
+                listView.setLayoutParams(params);
+                listView.requestLayout();
+            }
+
+            return params.height;
+
+        } else {
+            return 0;
         }
     }
 }

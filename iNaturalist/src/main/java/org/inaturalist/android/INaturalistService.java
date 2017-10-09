@@ -5,8 +5,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
@@ -96,6 +101,9 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 // PerfProbe hack end
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
 public class INaturalistService extends IntentService {
     // How many observations should we initially download for the user
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
@@ -123,10 +131,12 @@ public class INaturalistService extends IntentService {
     public static final String SPECIES_COUNT_RESULT = "species_count_result";
     public static final String RECOMMENDED_MISSIONS_RESULT = "recommended_missions_result";
     public static final String MISSIONS_BY_TAXON_RESULT = "missions_by_taxon_result";
+    public static final String TAXON_OBSERVATION_BOUNDS_RESULT = "taxon_observation_bounds_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
+    public static final String NETWORK_SITE_ID = "network_site_id";
     public static final String COMMENT_BODY = "comment_body";
     public static final String IDENTIFICATION_BODY = "id_body";
     public static final String PROJECT_ID = "project_id";
@@ -134,9 +144,17 @@ public class INaturalistService extends IntentService {
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
+    public static final String ACTION_GET_TAXON_NEW_RESULT = "action_get_taxon_new_result";
+    public static final String ACTION_GET_TAXON_SUGGESTIONS_RESULT = "action_get_taxon_suggestions_result";
     public static final String TAXON_RESULT = "taxon_result";
+    public static final String TAXON_SUGGESTIONS = "taxon_suggestions";
     public static final String GUIDE_XML_RESULT = "guide_xml_result";
     public static final String EMAIL = "email";
+    public static final String OBS_PHOTO_FILENAME = "obs_photo_filename";
+    public static final String OBS_PHOTO_URL = "obs_photo_url";
+    public static final String LONGITUDE = "longitude";
+    public static final String LATITUDE = "latitude";
+    public static final String OBSERVED_ON = "observed_on";
     public static final String USERNAME = "username";
     public static final String PROGRESS = "progress";
     public static final String EXPAND_LOCATION_BY_DEGREES = "expand_location_by_degrees";
@@ -173,6 +191,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_ADD_FAVORITE = "add_favorite";
     public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
+    public static String ACTION_GET_TAXON_NEW = "get_taxon_new";
+    public static String ACTION_GET_TAXON_SUGGESTIONS = "get_taxon_suggestions";
     public static String ACTION_FIRST_SYNC = "first_sync";
     public static String ACTION_PULL_OBSERVATIONS = "pull_observations";
     public static String ACTION_GET_OBSERVATION = "get_observation";
@@ -248,6 +268,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_RECOMMENDED_MISSIONS = "get_recommended_missions";
     public static String ACTION_GET_MISSIONS_BY_TAXON = "get_missions_by_taxon";
     public static String ACTION_SEARCH_USER_OBSERVATIONS = "search_user_observations";
+    public static String ACTION_GET_TAXON_OBSERVATION_BOUNDS = "get_taxon_observation_bounds";
+    public static String ACTION_UPDATE_USER_NETWORK = "update_user_network";
     public static Integer SYNC_OBSERVATIONS_NOTIFICATION = 1;
     public static Integer SYNC_PHOTOS_NOTIFICATION = 2;
     public static Integer AUTH_NOTIFICATION = 3;
@@ -276,8 +298,9 @@ public class INaturalistService extends IntentService {
 	private JSONArray mResponseErrors;
 
 	private String mNearByObservationsUrl;
-    
-	public enum LoginType {
+    private int mLastStatusCode = 0;
+
+    public enum LoginType {
 	    PASSWORD,
 	    GOOGLE,
         FACEBOOK,
@@ -401,7 +424,7 @@ public class INaturalistService extends IntentService {
                         }
                     });
                 }
-                
+
             } else if (action.equals(ACTION_FIRST_SYNC)) {
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
@@ -422,6 +445,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_RESTORE_ID)) {
@@ -434,6 +458,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_UPDATE_ID)) {
@@ -448,6 +473,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_REMOVE_ID)) {
@@ -460,13 +486,14 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_ADD_FAVORITE)) {
+            } else if (action.equals(ACTION_ADD_FAVORITE)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 addFavorite(observationId);
 
-             } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
+            } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 removeFavorite(observationId);
 
@@ -476,13 +503,21 @@ public class INaturalistService extends IntentService {
                 String body = intent.getStringExtra(IDENTIFICATION_BODY);
                 addIdentification(observationId, taxonId, body);
 
+                // Wait a little before refreshing the observation details - so we'll let the server update the ID
+                // list (otherwise, it won't return the new ID)
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 // Reload the observation at the end (need to refresh comment/ID list)
                 Observation observation = getObservation(observationId);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
-
 
             } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
                 int fieldId = intent.getIntExtra(FIELD_ID, 0);
@@ -509,7 +544,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
+            } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectObservations(projectId);
 
@@ -518,7 +553,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
+            } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectIdentifiers(projectId);
 
@@ -526,7 +561,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
+            } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectObservers(projectId);
 
@@ -534,7 +569,7 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
+            } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectSpecies(projectId);
 
@@ -542,15 +577,67 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(RESULTS, results);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_TAXON)) {
+
+            } else if (action.equals(ACTION_GET_TAXON_SUGGESTIONS)) {
+                String obsFilename = intent.getStringExtra(OBS_PHOTO_FILENAME);
+                String obsUrl = intent.getStringExtra(OBS_PHOTO_URL);
+                Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
+                Double latitude = intent.getDoubleExtra(LATITUDE, 0);
+                Timestamp observedOn = (Timestamp) intent.getSerializableExtra(OBSERVED_ON);
+                File tempFile = null;
+
+                if (obsFilename == null) {
+                    // It's an online observation - need to download the image first.
+                    try {
+                        tempFile = File.createTempFile("online_photo", ".jpeg", getCacheDir());
+
+                        if (!downloadToFile(obsUrl, tempFile.getAbsolutePath())) {
+                            Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+                            reply.putExtra(TAXON_SUGGESTIONS, (Serializable) null);
+                            sendBroadcast(reply);
+                            return;
+                        }
+
+                        obsFilename = tempFile.getAbsolutePath();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                // Resize photo to 299x299 max
+                String resizedPhotoFilename = ImageUtils.resizeImage(this, obsFilename, null, 299);
+
+                if (tempFile != null) {
+                    tempFile.delete();
+                }
+
+                BetterJSONObject taxonSuggestions = getTaxonSuggestions(resizedPhotoFilename, latitude, longitude, observedOn);
+
+                File resizedFile = new File(resizedPhotoFilename);
+                resizedFile.delete();
+
+                Intent reply = new Intent(ACTION_GET_TAXON_SUGGESTIONS_RESULT);
+                reply.putExtra(TAXON_SUGGESTIONS, taxonSuggestions);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_TAXON_NEW)) {
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                BetterJSONObject taxon = getTaxonNew(taxonId);
+
+                Intent reply = new Intent(ACTION_GET_TAXON_NEW_RESULT);
+                reply.putExtra(TAXON_RESULT, taxon);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_TAXON)) {
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 BetterJSONObject taxon = getTaxon(taxonId);
-                
+
                 Intent reply = new Intent(ACTION_GET_TAXON_RESULT);
                 reply.putExtra(TAXON_RESULT, taxon);
                 sendBroadcast(reply);
 
-              } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
+            } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject user = getUserDetails(username);
 
@@ -562,7 +649,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
                 final String username = intent.getStringExtra(USERNAME);
                 final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
-                final float expandLocationByDegrees  = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
+                final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
 
                 getLocation(new IOnLocation() {
                     @Override
@@ -587,9 +674,17 @@ public class INaturalistService extends IntentService {
                     }
                 });
 
+            } else if (action.equals(ACTION_GET_TAXON_OBSERVATION_BOUNDS)) {
+                final Integer taxonId = intent.getIntExtra(TAXON_ID, 0);
+                BetterJSONObject bounds = getTaxonObservationsBounds(taxonId);
+
+                Intent reply = new Intent(TAXON_OBSERVATION_BOUNDS_RESULT);
+                reply.putExtra(TAXON_OBSERVATION_BOUNDS_RESULT, bounds);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_RECOMMENDED_MISSIONS)) {
                 final String username = intent.getStringExtra(USERNAME);
-                final float expandLocationByDegrees  = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
+                final float expandLocationByDegrees = intent.getFloatExtra(EXPAND_LOCATION_BY_DEGREES, 0);
 
                 getLocation(new IOnLocation() {
                     @Override
@@ -680,19 +775,28 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_ADD_COMMENT)) {
+            } else if (action.equals(ACTION_ADD_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
                 addComment(observationId, body);
+
+                // Wait a little before refreshing the observation details - so we'll let the server update the comment
+                // list (otherwise, it won't return the new comment)
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 // Reload the observation at the end (need to refresh comment/ID list)
                 Observation observation = getObservation(observationId);
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_UPDATE_COMMENT)) {
+            } else if (action.equals(ACTION_UPDATE_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int commentId = intent.getIntExtra(COMMENT_ID, 0);
                 String body = intent.getStringExtra(COMMENT_BODY);
@@ -703,9 +807,10 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_DELETE_COMMENT)) {
+            } else if (action.equals(ACTION_DELETE_COMMENT)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int commentId = intent.getIntExtra(COMMENT_ID, 0);
                 deleteComment(commentId);
@@ -715,6 +820,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GUIDE_XML)) {
@@ -742,12 +848,17 @@ public class INaturalistService extends IntentService {
                     mIsClearingOldPhotosCache = false;
                 }
 
+
+            } else if (action.equals(ACTION_UPDATE_USER_NETWORK)) {
+                int siteId = intent.getIntExtra(NETWORK_SITE_ID, 0);
+                updateUserNetwork(siteId);
+
             } else if (action.equals(ACTION_UPDATE_USER_DETAILS)) {
                 String username = intent.getStringExtra(ACTION_USERNAME);
                 String fullName = intent.getStringExtra(ACTION_FULL_NAME);
                 String bio = intent.getStringExtra(ACTION_USER_BIO);
                 String userPic = intent.getStringExtra(ACTION_USER_PIC);
-                boolean deletePic  = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
+                boolean deletePic = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
 
                 JSONObject newUser = updateUser(username, fullName, bio, userPic, deletePic);
 
@@ -784,14 +895,14 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(USER, newUser != null ? new BetterJSONObject(newUser) : null);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_GET_USER_DETAILS)) {
+            } else if (action.equals(ACTION_GET_USER_DETAILS)) {
                 BetterJSONObject user = getUserDetails();
 
                 Intent reply = new Intent(ACTION_GET_USER_DETAILS_RESULT);
                 reply.putExtra(USER, user);
                 sendBroadcast(reply);
 
-             } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
+            } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
                 int guideId = intent.getIntExtra(ACTION_GUIDE_ID, 0);
                 SerializableJSONArray taxa = getTaxaForGuide(guideId);
 
@@ -802,8 +913,9 @@ public class INaturalistService extends IntentService {
 
              } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
                 /*
+            } else if (action.equals(ACTION_GET_ALL_GUIDES)) {
                 SerializableJSONArray guides = getAllGuides();
-                
+
                 mApp.setServiceResult(ACTION_ALL_GUIDES_RESULT, guides);
                 Intent reply = new Intent(ACTION_ALL_GUIDES_RESULT);
                 reply.putExtra(IS_SHARED_ON_APP, true);
@@ -821,8 +933,8 @@ public class INaturalistService extends IntentService {
                     Log.i(TAG, "Registering LoadMore receiver");
                 }
                 // PerfProbe hack end
-             } else if (action.equals(ACTION_GET_MY_GUIDES)) {
-            	 SerializableJSONArray guides = null;
+            } else if (action.equals(ACTION_GET_MY_GUIDES)) {
+                SerializableJSONArray guides = null;
                 guides = getMyGuides();
 
                 Intent reply = new Intent(ACTION_MY_GUIDES_RESULT);
@@ -882,11 +994,11 @@ public class INaturalistService extends IntentService {
                 });
 
             } else if (action.equals(ACTION_GET_FEATURED_PROJECTS)) {
-                 SerializableJSONArray projects = getFeaturedProjects();
+                SerializableJSONArray projects = getFeaturedProjects();
 
-                 Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
-                 reply.putExtra(PROJECTS_RESULT, projects);
-                 sendBroadcast(reply);
+                Intent reply = new Intent(ACTION_FEATURED_PROJECTS_RESULT);
+                reply.putExtra(PROJECTS_RESULT, projects);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_JOINED_PROJECTS_ONLINE)) {
                 SerializableJSONArray projects = null;
@@ -901,32 +1013,32 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_JOINED_PROJECTS)) {
                 SerializableJSONArray projects = null;
-            	 if (mCredentials != null) {
-            		 projects = getJoinedProjectsOffline();
-            	 }
+                if (mCredentials != null) {
+                    projects = getJoinedProjectsOffline();
+                }
 
-                 Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
-                 reply.putExtra(PROJECTS_RESULT, projects);
-                 sendBroadcast(reply);
-                 
+                Intent reply = new Intent(ACTION_JOINED_PROJECTS_RESULT);
+                reply.putExtra(PROJECTS_RESULT, projects);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_REMOVE_OBSERVATION_FROM_PROJECT)) {
-                 int observationId = intent.getExtras().getInt(OBSERVATION_ID);
-                 int projectId = intent.getExtras().getInt(PROJECT_ID);
-                 BetterJSONObject result = removeObservationFromProject(observationId, projectId);
+                int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+                int projectId = intent.getExtras().getInt(PROJECT_ID);
+                BetterJSONObject result = removeObservationFromProject(observationId, projectId);
 
             } else if (action.equals(ACTION_ADD_OBSERVATION_TO_PROJECT)) {
-                 int observationId = intent.getExtras().getInt(OBSERVATION_ID);
-                 int projectId = intent.getExtras().getInt(PROJECT_ID);
-                 BetterJSONObject result = addObservationToProject(observationId, projectId);
+                int observationId = intent.getExtras().getInt(OBSERVATION_ID);
+                int projectId = intent.getExtras().getInt(PROJECT_ID);
+                BetterJSONObject result = addObservationToProject(observationId, projectId);
 
-                 Intent reply = new Intent(ADD_OBSERVATION_TO_PROJECT_RESULT);
-                 reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
-                 sendBroadcast(reply);
-                 
+                Intent reply = new Intent(ADD_OBSERVATION_TO_PROJECT_RESULT);
+                reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
                 int id = intent.getExtras().getInt(CHECK_LIST_ID);
                 SerializableJSONArray checkList = getCheckList(id);
-                
+
                 Intent reply = new Intent(ACTION_CHECK_LIST_RESULT);
                 reply.putExtra(CHECK_LIST_RESULT, checkList);
                 sendBroadcast(reply);
@@ -955,7 +1067,7 @@ public class INaturalistService extends IntentService {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 JSONObject observationJson = getObservationJson(id, false);
                 Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
-                
+
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
                 mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
@@ -963,17 +1075,17 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
-                
+
             } else if (action.equals(ACTION_JOIN_PROJECT)) {
                 int id = intent.getExtras().getInt(PROJECT_ID);
                 joinProject(id);
-                
+
             } else if (action.equals(ACTION_LEAVE_PROJECT)) {
                 int id = intent.getExtras().getInt(PROJECT_ID);
                 leaveProject(id);
-                
+
             } else if (action.equals(ACTION_PULL_OBSERVATIONS)) {
-            	// Download observations without uploading any new ones
+                // Download observations without uploading any new ones
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
 
@@ -995,7 +1107,7 @@ public class INaturalistService extends IntentService {
                 }
 
             } else {
-                if (!mIsSyncing) {
+                if (!mIsSyncing && !mApp.getIsSyncing()) {
                     mIsSyncing = true;
                     mApp.setIsSyncing(mIsSyncing);
                     syncObservations();
@@ -1007,8 +1119,13 @@ public class INaturalistService extends IntentService {
                     // Already in middle of syncing
                     dontStopSync = true;
                 }
- 
+
             }
+        } catch (IllegalArgumentException e) {
+            // Handle weird exception raised when sendBroadcast causes serialization of BetterJSONObject
+            // and that causes an IllegalArgumentException (see only once).
+            e.printStackTrace();
+            mIsSyncing = false;
         } catch (CancelSyncException e) {
             cancelSyncRequested = true;
             mApp.setCancelSync(false);
@@ -1292,6 +1409,54 @@ public class INaturalistService extends IntentService {
 
         c.close();
 
+    }
+
+    private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage = deviceLocale.getLanguage();
+        String date = observedOn != null ? new SimpleDateFormat("yyyy-MM-dd").format(observedOn) : null;
+        ArrayList<NameValuePair> params = new ArrayList<>();
+        String url = String.format(API_HOST + "/computervision/score_image");
+
+        params.add(new BasicNameValuePair("locale", deviceLanguage));
+        params.add(new BasicNameValuePair("lat", latitude.toString()));
+        params.add(new BasicNameValuePair("lng", longitude.toString()));
+        if (date != null) params.add(new BasicNameValuePair("observed_on", date));
+        params.add(new BasicNameValuePair("image", photoFilename));
+
+        JSONArray json = request(url, "post", params, null, true, true, true);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            if (!res.has("results")) return null;
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject getTaxonNew(int id) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage = deviceLocale.getLanguage();
+        String url = API_HOST + "/taxa/" + id + "?locale=" + deviceLanguage;
+
+        JSONArray json = get(url);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            if (!res.has("results")) return null;
+            JSONObject taxon = res.getJSONArray("results").getJSONObject(0);
+
+            return new BetterJSONObject(taxon);
+        } catch (JSONException e) {
+            return null;
+        }
     }
     
     private BetterJSONObject getTaxon(int id) throws AuthenticationException {
@@ -1657,10 +1822,12 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             ObservationPhoto op = new ObservationPhoto(c);
             if (op._synced_at != null) {
-                JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
-                if (result == null) {
-                    c.close();
-                    throw new SyncFailedException();
+                if (op.id != null) {
+                    JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
+                    if (result == null) {
+                        c.close();
+                        throw new SyncFailedException();
+                    }
                 }
             }
             increaseProgressForObservation(observation);
@@ -1860,6 +2027,21 @@ public class INaturalistService extends IntentService {
         }
     }
 
+    // Updates a user's inat network settings
+    private JSONObject updateUserNetwork(int siteId) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("user[site_id]", String.valueOf(siteId)));
+
+        JSONArray array = put(HOST + "/users/" + mLogin + ".json", params);
+
+        if ((mResponseErrors != null) || (array == null)) {
+            // Couldn't update user
+            return null;
+        } else {
+            return array.optJSONObject(0);
+        }
+    }
+
     // Updates a user's profile
     private JSONObject updateUser(String username, String fullName, String bio, String userPic, boolean deletePic) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1940,10 +2122,24 @@ public class INaturalistService extends IntentService {
     private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
         if (observation.id != null) {
             // Update observation
-            boolean success = handleObservationResponse(
-                    observation,
-                    request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true)
-            );
+            JSONArray response = request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true, false);
+
+            if (response == null) {
+                // Some sort of error
+                if ((mLastStatusCode >= 400) && (mLastStatusCode < 500)) {
+                    // Observation doesn't exist anymore (deleted remotely, and due to network
+                    // issues we didn't get any notification of this) - so delete the observation
+                    // locally.
+                    getContentResolver().delete(Observation.CONTENT_URI, "id = " + observation.id, null);
+                    // Delete associated project-fields and photos
+                    int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id = " + observation.id, null);
+                    int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id = " + observation.id, null);
+                    int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id = " + observation.id, null);
+                    return true;
+                }
+            }
+
+            boolean success = handleObservationResponse(observation, response);
             if (!success) {
                 throw new SyncFailedException();
             }
@@ -1954,12 +2150,11 @@ public class INaturalistService extends IntentService {
         // New observation
 
         String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
         JSONObject observationParams = observationToJsonObject(observation, false);
 
         boolean success = handleObservationResponse(
                 observation,
-                request(API_HOST + "/observations", "post", null, observationParams, true, true)
+                request(API_HOST + "/observations", "post", null, observationParams, true, true, false)
         );
 
         if (!success) {
@@ -2019,7 +2214,7 @@ public class INaturalistService extends IntentService {
         ContentValues cv;
 
         if (observationId != null) {
-            // query observation photos where _updated_at > updated_at (i.e. updated photos)
+            // See if there any photos in an invalid state
             Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NULL AND observation_id = ?",
@@ -2036,7 +2231,25 @@ public class INaturalistService extends IntentService {
             }
             c.close();
 
-            // for each observation PUT to /observation_photos/:id
+            c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                    ObservationPhoto.PROJECTION,
+                    "_synced_at IS NULL AND id IS NOT NULL AND observation_id = ?",
+                    new String[]{String.valueOf(observationId)},
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
+
+            c.moveToFirst();
+            while (c.isAfterLast() == false) {
+                op = new ObservationPhoto(c);
+                // Shouldn't happen - a photo with an external ID is marked as never been synced
+                cv = op.getContentValues();
+                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                getContentResolver().update(op.getUri(), cv, null, null);
+                c.moveToNext();
+            }
+            c.close();
+
+
+            // update photos - for each observation PUT to /observation_photos/:id
             c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_id = ? AND ((is_deleted == 0) OR (is_deleted IS NULL))",
@@ -2055,7 +2268,7 @@ public class INaturalistService extends IntentService {
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
                 params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
 
-                JSONArray response = put("http://" + inatHost + "/observation_photos/" + op.id + ".json", params);
+                JSONArray response = put(inatHost + "/observation_photos/" + op.id + ".json", params);
                 try {
                     if (response == null || response.length() != 1) {
                         c.close();
@@ -2085,7 +2298,7 @@ public class INaturalistService extends IntentService {
         // query observation photos where _synced_at is null (i.e. new photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND (id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -2149,7 +2362,7 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
 
             JSONArray response;
-            response = post("http://" + inatHost + "/observation_photos.json", params, true);
+            response = post(inatHost + "/observation_photos.json", params, true);
             try {
                 if (response == null || response.length() != 1) {
                     c.close();
@@ -2162,13 +2375,12 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject j = new BetterJSONObject(json);
                 ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, false);
                 op.merge(jsonObservationPhoto);
-                if (op.id != null) {
-                    cv = op.getContentValues();
-                    Log.d(TAG, "OP - postPhotos(2) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
-                    cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
-                    getContentResolver().update(op.getUri(), cv, null, null);
-                    createdCount += 1;
-                }
+
+                cv = op.getContentValues();
+                Log.d(TAG, "OP - postPhotos(2) - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
+                cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
+                getContentResolver().update(op.getUri(), cv, null, null);
+                createdCount += 1;
             } catch (JSONException e) {
                 Log.e(TAG, "JSONException: " + e.toString());
             }
@@ -2384,7 +2596,7 @@ public class INaturalistService extends IntentService {
         String deviceLanguage =   deviceLocale.getLanguage();
         String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200&observations_by=" +
                 (following ? "following": "owner");
-        JSONArray json = request(url, "get", null, null, true, true); // Use JWT Token authentication
+        JSONArray json = request(url, "get", null, null, true, true, false); // Use JWT Token authentication
         if (json == null) return null;
         if (json.length() == 0) return null;
         try {
@@ -2459,6 +2671,27 @@ public class INaturalistService extends IntentService {
 			e.printStackTrace();
 			return new BetterJSONObject();
 		}
+    }
+
+    private BetterJSONObject getTaxonObservationsBounds(Integer taxonId) {
+        String url = API_HOST + "/observations?per_page=1&return_bounds=true&taxon_id=" + taxonId;
+
+        JSONArray json = null;
+        try {
+            json = get(url, false);
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return null;
+        }
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            JSONObject response = json.getJSONObject(0);
+            return new BetterJSONObject(response.getJSONObject("total_bounds"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) {
@@ -2579,7 +2812,7 @@ public class INaturalistService extends IntentService {
     	String inatNetwork = mApp.getInaturalistNetworkMember();
     	String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "http://" + inatHost + "/guides.json?";
+        String url = inatHost + "/guides.json?";
         
         url += "per_page=200&page=";
         
@@ -2627,7 +2860,7 @@ public class INaturalistService extends IntentService {
         JSONArray json = null;
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = "http://" + inatHost + "/guides.json?by=you&per_page=200";
+        String url = inatHost + "/guides.json?by=you&per_page=200";
 
         if (mCredentials != null) {
             try {
@@ -2693,7 +2926,7 @@ public class INaturalistService extends IntentService {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "http://" + inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
+        String url = inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
         Log.d(TAG, url);
 
         JSONArray json = get(url);
@@ -2715,7 +2948,7 @@ public class INaturalistService extends IntentService {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = "http://" + inatHost + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
+        String url = inatHost + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
         
         Log.e(TAG, url);
 
@@ -2749,7 +2982,7 @@ public class INaturalistService extends IntentService {
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = "http://" + inatHost + "/projects.json?featured=true";
+        String url = inatHost + "/projects.json?featured=true";
         
         JSONArray json = get(url);
         
@@ -2846,7 +3079,7 @@ public class INaturalistService extends IntentService {
         }
 
         String url = String.format("%s/projects/%d/remove.json?observation_id=%d", HOST, projectId, observationId);
-        JSONArray json = request(url, "delete", null, null, true, true);
+        JSONArray json = request(url, "delete", null, null, true, true, false);
 
         if (json == null) return null;
        
@@ -2978,7 +3211,7 @@ public class INaturalistService extends IntentService {
             return false;
         }
         String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json";
-        
+
         long lastSync = mPreferences.getLong("last_sync_time", 0);
         Timestamp lastSyncTS = new Timestamp(lastSync);
         url += String.format("?updated_since=%s&order_by=date_added&order=desc&extra=observation_photos,projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
@@ -3470,7 +3703,24 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated) throws AuthenticationException {
-        return request(url, method, params, jsonContent, authenticated, false);
+        return request(url, method, params, jsonContent, authenticated, false, false);
+    }
+
+    private String getAnonymousJWTToken() {
+        String anonymousApiSecret = getString(R.string.jwt_anonymous_api_secret);
+
+        if (anonymousApiSecret == null) return null;
+
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("application", "android");
+        claims.put("exp", (System.currentTimeMillis() / 1000) + 300);
+
+        String compactJwt = Jwts.builder()
+                .setClaims(claims)
+                .signWith(SignatureAlgorithm.HS512, anonymousApiSecret.getBytes())
+                .compact();
+
+        return compactJwt;
     }
 
     private String getJWTToken() {
@@ -3504,7 +3754,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
-    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken) throws AuthenticationException {
+    private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException {
         DefaultHttpClient client = new DefaultHttpClient();
         // Handle redirects (301/302) for all HTTP methods (including POST)
         client.setRedirectHandler(new DefaultRedirectHandler() {
@@ -3547,9 +3797,8 @@ public class INaturalistService extends IntentService {
             StringEntity entity = null;
             try {
                 entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-                return null;
+            } catch (UnsupportedEncodingException exc) {
+                exc.printStackTrace();
             }
 
             if (method.equalsIgnoreCase("put")) {
@@ -3585,17 +3834,22 @@ public class INaturalistService extends IntentService {
 
         // auth
         if (authenticated) {
-            ensureCredentials();
-
-            if (useJWTToken) {
-                // Use JSON Web Token for this request
-                request.setHeader("Authorization", getJWTToken());
-            } else if (mLoginType == LoginType.PASSWORD) {
-                // Old-style password authentication
-                request.setHeader("Authorization", "Basic " + mCredentials);
+            if (useJWTToken && allowAnonymousJWTToken && (mCredentials == null)) {
+                // User not logged in, but allow using anonymous JWT
+                request.setHeader("Authorization", getAnonymousJWTToken());
             } else {
-                // OAuth2 token (Facebook/G+/etc)
-                request.setHeader("Authorization", "Bearer " + mCredentials);
+                ensureCredentials();
+
+                if (useJWTToken) {
+                    // Use JSON Web Token for this request
+                    request.setHeader("Authorization", getJWTToken());
+                } else if (mLoginType == LoginType.PASSWORD) {
+                    // Old-style password authentication
+                    request.setHeader("Authorization", "Basic " + mCredentials);
+                } else {
+                    // OAuth2 token (Facebook/G+/etc)
+                    request.setHeader("Authorization", "Bearer " + mCredentials);
+                }
             }
         }
 
@@ -3608,6 +3862,8 @@ public class INaturalistService extends IntentService {
             Log.d(TAG, String.format("RESP: %s", content));
 
             JSONArray json = null;
+            mLastStatusCode = response.getStatusLine().getStatusCode();
+
             switch (response.getStatusLine().getStatusCode()) {
             //switch (response.getStatusCode()) {
             case HttpStatus.SC_UNPROCESSABLE_ENTITY:
@@ -4110,6 +4366,7 @@ public class INaturalistService extends IntentService {
                                     @Override
                                     public void run() {
                                         callback.onLocation(getLastKnownLocationFromClient());
+                                        mLocationClient.disconnect();
                                     }
                                 }).start();
                             }
@@ -4125,6 +4382,7 @@ public class INaturalistService extends IntentService {
                                     @Override
                                     public void run() {
                                         callback.onLocation(null);
+                                        mLocationClient.disconnect();
                                     }
                                 }).start();
                             }
@@ -4172,5 +4430,32 @@ public class INaturalistService extends IntentService {
             result += y;
         }
         return result;
+    }
+
+    private boolean downloadToFile(String uri, String outputFilename) {
+        HttpURLConnection conn = null;
+        StringBuilder jsonResults = new StringBuilder();
+        try {
+            URL url = new URL(uri);
+            conn = (HttpURLConnection) url.openConnection();
+            InputStream in = conn.getInputStream();
+            FileOutputStream output = new FileOutputStream(outputFilename);
+
+            int read;
+            byte[] buff = new byte[1024];
+            while ((read = in.read(buff)) != -1) {
+                output.write(buff, 0, read);
+            }
+
+            output.close();
+
+            conn.disconnect();
+        } catch (MalformedURLException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
     }
 }

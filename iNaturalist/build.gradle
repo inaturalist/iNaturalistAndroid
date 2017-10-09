@@ -23,14 +23,36 @@ android {
     buildToolsVersion "25.0.0"
     useLibrary 'org.apache.http.legacy'
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     defaultConfig {
         applicationId "org.inaturalist.android"
-        minSdkVersion 11
+        minSdkVersion 15
         targetSdkVersion 21
         multiDexEnabled true
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+        /*
+         * This is done because smoothrescale uses mmpeg shared library binaries, which are not compiled
+         * to newer arm64-v8a (just to x86/armeabi-v7a). And once we have *any* 64 bit shared libraries in
+         * our binary, Android 7+ will automatically try and look for the 64 bit shared libraries instead
+         * of the 32 bit ones - so we exclude those 64 bit libraries (see here and under gradle.properties).
+         * Full solution here: https://corbt.com/posts/2015/09/18/mixing-32-and-64bit-dependencies-in-android.html
+         */
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+
+        packagingOptions {
+            exclude "lib/arm64-v8a/librsjni.so"
+            exclude "lib/arm64-v8a/libRSSupport.so"
+        }
     }
 
     buildTypes {
@@ -51,6 +73,11 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'LICENSE.txt'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
@@ -70,7 +97,7 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.1'
     compile 'org.apache.httpcomponents:httpmime:4.3.3'
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.24.0'
     compile 'com.loopj.android:android-async-http:1.4.7'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'org.apache.sanselan:sanselan:0.97-incubator'
@@ -85,6 +112,10 @@ dependencies {
     compile 'com.amplitude:android-sdk:2.13.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.mikhaellopez:circularprogressbar:1.1.1'
+    compile 'com.google.maps.android:android-maps-utils:0.4+'
+    compile 'com.android.support:exifinterface:25.1.0'
+    compile 'io.jsonwebtoken:jjwt:0.7.0'
+    compile project(':smoothrescale')
 
     androidTestCompile 'com.android.support:support-annotations:25.+'
     androidTestCompile 'com.android.support.test:runner:0.4.1'

@@ -346,7 +346,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
         } else {
             findViewById(R.id.loading_image).setVisibility(View.GONE);
             taxonImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            taxonImage.setImageResource(ObservationPhotosViewer.observationIcon(itemJson));
+            taxonImage.setImageResource(TaxonUtils.observationIcon(itemJson));
         }
 
         TextView description = (TextView) findViewById(R.id.description);

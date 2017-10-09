@@ -378,6 +378,11 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 resultsJSON = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.RESULTS);
             }
 
+            if (resultsJSON == null) {
+                refreshViewState();
+                return;
+            }
+
             JSONArray results = resultsJSON.getJSONArray();
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
 
@@ -507,6 +512,9 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         } else {
             myContentTab.setText(String.format("%s (%d)", getString(R.string.my_content), unreadActivities));
         }
+
+        if (mFollowingActivitiesListAdapter != null) mFollowingActivitiesListAdapter.registerReceivers();
+        if (mActivitiesListAdapter != null) mActivitiesListAdapter.registerReceivers();
     }
 
 

@@ -488,6 +488,25 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
             editor.apply();
 
+            // Update network settings as well
+            int networkSiteId = user.getInt("site_id");
+            // Find matching network name (according to site id)
+            INaturalistApp app = (INaturalistApp) getApplication();
+            final String[] inatNetworks = app.getINatNetworks();
+            for (String inatNetwork : inatNetworks) {
+                try {
+                    int currentSiteId = Integer.valueOf(app.getStringResourceByName("inat_site_id_" + inatNetwork));
+                    if (currentSiteId == networkSiteId) {
+                        // Found a match
+                        app.setInaturalistNetworkMember(inatNetwork, false);
+                        break;
+                    }
+                } catch (NumberFormatException exc) {
+                    exc.printStackTrace();
+                    continue;
+                }
+            }
+
             refreshUserDetails();
         }
     }

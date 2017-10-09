@@ -61,12 +61,20 @@ import android.widget.Toast;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.maps.android.SphericalUtil;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.squareup.picasso.Callback;
@@ -252,6 +260,10 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 }
                 mImageCursor.moveToFirst();
             }
+        }
+
+        public Cursor getCursor() {
+            return mImageCursor;
         }
 
         @Override
@@ -507,6 +519,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         reloadPhotos();
         loadObservationIntoUI();
+        getCommentIdList();
         refreshDataQuality();
     }
 
@@ -799,7 +812,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             });
         }
 
-        mAdapter = new CommentsIdsAdapter(this, mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
+        mAdapter = new CommentsIdsAdapter(this, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()), mCommentsIds, mObservation.taxon_id == null ? 0 : mObservation.taxon_id , new CommentsIdsAdapter.OnIDAdded() {
             @Override
             public void onIdentificationAdded(BetterJSONObject taxon) {
                 try {
@@ -963,6 +976,31 @@ public class ObservationViewerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ObservationViewerActivity.this, IdentificationActivity.class);
+                intent.putExtra(IdentificationActivity.SUGGEST_ID, true);
+                intent.putExtra(IdentificationActivity.OBSERVATION_ID, mObservation.id);
+                intent.putExtra(IdentificationActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                intent.putExtra(IdentificationActivity.OBSERVED_ON, mObservation.observed_on);
+                intent.putExtra(IdentificationActivity.LONGITUDE, mObservation.longitude);
+                intent.putExtra(IdentificationActivity.LATITUDE, mObservation.latitude);
+                if (mObservation._id != null) {
+                    if (((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getCount() > 0) {
+                        Cursor imageCursor = ((PhotosViewPagerAdapter) mPhotosViewPager.getAdapter()).getCursor();
+
+                        int pos = imageCursor.getPosition();
+                        imageCursor.moveToFirst();
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_FILENAME,
+                                imageCursor.getString(imageCursor.getColumnIndex(ObservationPhoto.PHOTO_FILENAME)));
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_URL,
+                                imageCursor.getString(imageCursor.getColumnIndex(ObservationPhoto.PHOTO_URL)));
+                        imageCursor.move(pos);
+                    }
+                } else {
+                    if ((mObservation.photos != null) && (mObservation.photos.size() > 0)) {
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_FILENAME, mObservation.photos.get(0).photo_filename);
+                        intent.putExtra(IdentificationActivity.OBS_PHOTO_URL, mObservation.photos.get(0).photo_url);
+                    }
+                }
+                intent.putExtra(IdentificationActivity.OBSERVATION, mObsJson);
                 startActivityForResult(intent, NEW_ID_REQUEST_CODE);
             }
         });
@@ -1001,18 +1039,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                 mCommentsIds = null;
                                 refreshActivity();
 
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
                                 // Refresh the comment/id list
                                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
                                 BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
-                                Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
-                                serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                                startService(serviceIntent2);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -1049,22 +1078,21 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 public void onMapClick(LatLng latLng) {
                     Intent intent = new Intent(ObservationViewerActivity.this, LocationDetailsActivity.class);
                     intent.putExtra(LocationDetailsActivity.OBSERVATION, mObservation);
+                    intent.putExtra(LocationDetailsActivity.OBSERVATION_JSON, mObsJson);
                     intent.putExtra(LocationDetailsActivity.READ_ONLY, true);
                     startActivity(intent);
                 }
             });
 
-            LatLng latLng = new LatLng(lat, lon);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-
             // Add the marker
             mMap.clear();
-            MarkerOptions opts = new MarkerOptions().position(latLng).icon(INaturalistMapActivity.observationIcon(mObservation.iconic_taxon_name));
-            Marker m = mMap.addMarker(opts);
+
+            mHelper.addMapPosition(mMap, mObservation, mObsJson != null ? new BetterJSONObject(mObsJson) : null);
 
             mLocationMapContainer.setVisibility(View.VISIBLE);
             mUnknownLocationIcon.setVisibility(View.GONE);
-            if ((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) {
+            if (((mObservation.place_guess == null) || (mObservation.place_guess.length() == 0)) &&
+                ((mObservation.private_place_guess == null) || (mObservation.private_place_guess.length() == 0))) {
                 // No place guess - show coordinates instead
                 if (acc == null) {
                     mLocationText.setText(String.format(getString(R.string.location_coords_no_acc),
@@ -1077,7 +1105,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
                             acc > 999 ? ">1 km" : String.format("%dm", (int) acc)));
                 }
             } else{
-                mLocationText.setText(mObservation.place_guess);
+                mLocationText.setText((mObservation.place_guess != null) && (mObservation.place_guess.length() > 0) ?
+                        mObservation.place_guess : mObservation.private_place_guess);
             }
 
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);
@@ -1414,7 +1443,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             if (mPhotosAdapter.getCount() == 0) {
                 // No photos at all
                 mNoPhotosContainer.setVisibility(View.VISIBLE);
-                mIdPicBig.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
+                mIdPicBig.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
             }
         } else {
             mIndicator.setVisibility(View.VISIBLE);
@@ -1429,7 +1458,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String inatNetwork = mApp.getInaturalistNetworkMember();
                         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-                        String obsUrl = "http://" + inatHost + "/observations/" + mObservation.id;
+                        String obsUrl = inatHost + "/observations/" + mObservation.id;
 
                         switch (which) {
                             case R.id.share:
@@ -1470,7 +1499,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         });
 
-        mIdRow.setOnClickListener(new OnClickListener() {
+        OnClickListener listener = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mTaxon == null) {
@@ -1478,18 +1507,24 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(ObservationViewerActivity.this, GuideTaxonActivity.class);
-                intent.putExtra("taxon", new BetterJSONObject(mTaxon));
-                intent.putExtra("guide_taxon", false);
-                intent.putExtra("show_add", false);
+                Intent intent = new Intent(ObservationViewerActivity.this, TaxonActivity.class);
+                intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(mTaxon));
+                intent.putExtra(TaxonActivity.OBSERVATION, mObsJson != null ? new BetterJSONObject(mObsJson) : new BetterJSONObject(mObservation.toJSONObject()));
                 startActivity(intent);
             }
-        });
+        };
+        mIdRow.setOnClickListener(listener);
+        mIdName.setOnClickListener(listener);
+        mTaxonicName.setOnClickListener(listener);
 
-        mIdPic.setImageResource(ObservationPhotosViewer.observationIcon(mObservation.toJSONObject()));
-        mIdName.setText((mObservation.preferred_common_name != null) && (mObservation.preferred_common_name.length() > 0) ? mObservation.preferred_common_name : mObservation.species_guess);
-        mTaxonicName.setVisibility(View.GONE);
-
+        mIdPic.setImageResource(TaxonUtils.observationIcon(mObservation.toJSONObject()));
+        if (mObservation.preferred_common_name != null && mObservation.preferred_common_name.length() > 0) {
+            mIdName.setText(mObservation.preferred_common_name);
+            mTaxonicName.setText(mObservation.preferred_common_name);
+        } else {
+            mIdName.setText(mObservation.species_guess);
+            mTaxonicName.setText(mObservation.species_guess);
+        }
 
         if (mObservation.id == null) {
             mSharePhoto.setVisibility(View.GONE);
@@ -1506,18 +1541,22 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 downloadTaxon();
             } else {
                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
-                mIdName.setText(mTaxonIdName);
-                mTaxonicName.setText(mTaxonName);
-                mTaxonicName.setVisibility(View.VISIBLE);
-                if (mTaxonRankLevel <= 20) {
-                    mTaxonicName.setTypeface(null, Typeface.ITALIC);
+
+                if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
+                    mIdName.setText(mTaxonName);
+                    mTaxonicName.setText(mTaxonName);
                 } else {
-                    mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                    mIdName.setText(mTaxonIdName);
+                    mTaxonicName.setText(mTaxonName);
+                    mTaxonicName.setVisibility(View.VISIBLE);
+                    if (mTaxonRankLevel <= 20) {
+                        mTaxonicName.setTypeface(null, Typeface.ITALIC);
+                    } else {
+                        mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                    }
                 }
             }
         }
-
-        getCommentIdList();
 
         if (!mReadOnly) {
             // Get IDs of project-observations
@@ -1568,20 +1607,30 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private void downloadTaxon() {
         String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        final String idUrl = "http://" + inatHost + "/taxa/" + mObservation.taxon_id + ".json?locale=" + deviceLanguage;
+        final String idUrl = INaturalistService.API_HOST + "/taxa/" + mObservation.taxon_id + "?locale=" + deviceLanguage;
 
         // Download the taxon image URL
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final JSONObject taxon = downloadJson(idUrl);
+                JSONObject results = downloadJson(idUrl);
+
+                if (results == null) return;
+
+                final JSONObject taxon;
+                try {
+                    taxon = results.getJSONArray("results").getJSONObject(0);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return;
+                }
                 mTaxon = taxon;
                 if (taxon != null) {
                     try {
-                        final String imageUrl = taxon.getString("image_url");
+                        JSONObject defaultPhoto = taxon.getJSONObject("default_photo");
+                        final String imageUrl = defaultPhoto.getString("square_url");
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -1590,17 +1639,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                     mTaxonImage = imageUrl;
                                     UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
-                                    if (taxon.has("default_name")) {
-                                        mTaxonIdName = taxon.getJSONObject("default_name").getString("name");
-                                    } else if (taxon.has("common_name")) {
-                                        mTaxonIdName = taxon.getJSONObject("common_name").getString("name");
-                                    } else {
-                                        String commonName = taxon.optString("preferred_common_name", null);
-                                        if ((commonName == null) || (commonName.length() == 0)) {
-                                            commonName = taxon.optString("english_common_name");
-                                        }
-                                        mTaxonIdName = commonName;
-                                    }
+                                    mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
                                     mTaxonName = taxon.getString("name");
 
                                     mIdName.setText(mTaxonIdName);
@@ -1682,7 +1721,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
             format.append(dateFormat.format(date));
         }
-
         if (time != null) {
             // Format the time part
             if (date != null) {
@@ -1704,7 +1742,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
             prepareToExit();
             return true;
         case R.id.edit_observation:
-            startActivityForResult(new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class), REQUEST_CODE_EDIT_OBSERVATION);
+            Intent intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
+            if (mTaxon != null) intent.putExtra(ObservationEditor.TAXON, mTaxon.toString());
+            startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
             return true;
         case R.id.flag_captive:
             mFlagAsCaptive = !mFlagAsCaptive;
@@ -1839,8 +1879,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 observation = (Observation) intent.getSerializableExtra(INaturalistService.OBSERVATION_RESULT);
             }
 
-
-
             if (mObservation == null) {
                 reloadObservation(null, false);
                 mObsJson = null;
@@ -1896,7 +1934,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 public int compare(BetterJSONObject lhs, BetterJSONObject rhs) {
                     Timestamp date1 = lhs.getTimestamp("created_at");
                     Timestamp date2 = rhs.getTimestamp("created_at");
-
                     return date1.compareTo(date2);
                 }
             };
@@ -2045,6 +2082,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
                 reloadPhotos();
                 loadObservationIntoUI();
+                getCommentIdList();
                 setupMap();
                 refreshActivity();
                 refreshFavorites();

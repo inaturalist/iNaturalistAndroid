@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Resources that should not be translated / renamed -->
+
+    <string-array name="tutorial_images">
+	    <item>slide_logo</item>
+	    <item>slide_observe</item>
+	    <item>slide_share</item>
+	    <item>slide_learn</item>
+	    <item>slide_contribute</item>
+    </string-array>
+
+	<string-array name="geoprivacy_values">
+	    <item>open</item>
+	    <item>obscured</item>
+	    <item>private</item>
+    </string-array>
+
+    <string-array name="language_values">
+	    <item>default</item>
+	    <item>eu</item>
+        <item>gl</item>
+    </string-array>
+    <string-array name="language_names">
+	    <item>@string/use_device_language_settings</item>
+	    <item>@string/locale_eu</item>
+        <item>@string/locale_gl</item>
+    </string-array>
+
+</resources>

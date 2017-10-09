@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    >
+    <ImageView
+        android:id="@+id/taxon_photo"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="9dp"
+        android:src="@drawable/actionbar_back_indicator" />
+
+    <ImageView
+        android:id="@+id/select_taxon"
+        android:layout_width="40dp"
+        android:layout_height="59dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="9dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:tint="#7A7A7A"
+        android:src="@drawable/ic_check_circle_black_24dp" />
+
+    <ImageView
+        android:id="@+id/compare_taxon"
+        android:layout_width="40dp"
+        android:layout_height="59dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="9dp"
+        android:layout_toLeftOf="@id/select_taxon"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:tint="#7A7A7A"
+        android:src="@drawable/ic_compare" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/taxon_photo"
+        android:layout_toLeftOf="@id/compare_taxon"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/taxon_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#DE000000"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/taxon_scientific_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#8A000000"
+            android:textSize="12sp"
+            android:layout_marginTop="3dp"
+            android:textStyle="italic"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/visually_similar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#72AA00"
+            android:textSize="12sp"
+            android:layout_marginTop="3dp"
+            android:text="TextView" />
+    </LinearLayout>
+
+
+</RelativeLayout>

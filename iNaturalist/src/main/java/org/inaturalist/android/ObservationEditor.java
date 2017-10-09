@@ -5,14 +5,12 @@ import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -29,18 +27,6 @@ import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sanselan.ImageReadException;
-import org.apache.sanselan.ImageWriteException;
-import org.apache.sanselan.Sanselan;
-import org.apache.sanselan.common.IImageMetadata;
-import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
-import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
-import org.apache.sanselan.formats.tiff.TiffImageMetadata;
-import org.apache.sanselan.formats.tiff.constants.TagInfo;
-import org.apache.sanselan.formats.tiff.constants.TiffConstants;
-import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
-import org.apache.sanselan.formats.tiff.write.TiffOutputField;
-import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,6 +41,7 @@ import android.app.NotificationManager;
 import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -67,13 +54,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.ExifInterface;
-import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -83,6 +69,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.media.ExifInterface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -99,6 +86,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -127,6 +115,7 @@ public class ObservationEditor extends AppCompatActivity {
     private Cursor mCursor;
     private Cursor mImageCursor;
     private EditText mSpeciesGuessTextView;
+    private TextView mSpeciesGuessSub;
     private TextView mDescriptionTextView;
     private TextView mSaveButton;
     private TextView mObservedOnStringTextView;
@@ -149,6 +138,7 @@ public class ObservationEditor extends AppCompatActivity {
     private ActivityHelper mHelper;
     private boolean mCanceled = false;
     private boolean mIsCaptive = false;
+    private boolean mChoseNewPhoto = false;
     private List<Uri> mSharePhotos = null;
 
     private ActionBar mTopActionBar;
@@ -206,6 +196,9 @@ public class ObservationEditor extends AppCompatActivity {
     private ArrayList<String> mCameraPhotos;
     private ViewGroup mSpeciesNameOnboarding;
     private View mCloseSpeciesNameOnboarding;
+    private String mScientificName;
+    private ImageView mClearSpeciesGuess;
+    private int mTaxonRankLevel;
 
     @Override
 	protected void onStart()
@@ -430,6 +423,7 @@ public class ObservationEditor extends AppCompatActivity {
             mPhotosAdded = savedInstanceState.getStringArrayList("mPhotosAdded");
             mPhotosRemoved = (ArrayList<ObservationPhoto>) savedInstanceState.getSerializable("mPhotosRemoved");
             mCameraPhotos = savedInstanceState.getStringArrayList("mCameraPhotos");
+            mChoseNewPhoto = savedInstanceState.getBoolean("mChoseNewPhoto");
         }
 
 
@@ -496,8 +490,18 @@ public class ObservationEditor extends AppCompatActivity {
 
         mGeoprivacy = (Spinner) findViewById(R.id.geoprivacy);
         mSpeciesGuessTextView = (EditText) findViewById(R.id.speciesGuess);
+        mSpeciesGuessSub = (TextView) findViewById(R.id.speciesGuessSub);
+        mClearSpeciesGuess = (ImageView) findViewById(R.id.clear_species_guess);
         mSpeciesGuessIcon = (ImageView) findViewById(R.id.species_guess_icon);
         mDescriptionTextView = (TextView) findViewById(R.id.description);
+
+        mClearSpeciesGuess.setVisibility(View.VISIBLE);
+        mClearSpeciesGuess.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearSpeciesGuess();
+            }
+        });
 
         mDescriptionTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -545,19 +549,7 @@ public class ObservationEditor extends AppCompatActivity {
         mCloseSpeciesNameOnboarding = findViewById(R.id.onboarding_species_name_close);
         mSpeciesNameOnboarding = (ViewGroup) findViewById(R.id.onboarding_species_name);
 
-        final SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-        mCloseSpeciesNameOnboarding.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSpeciesNameOnboarding.setVisibility(View.GONE);
-                prefs.edit().putBoolean("onboarded_species_guess", true).commit();
-            }
-        });
-
-        // Decide if to show onboarding message
-        boolean hasOnboardedSpeciesGuess = prefs.getBoolean("onboarded_species_guess", false);
-
-        mSpeciesNameOnboarding.setVisibility(hasOnboardedSpeciesGuess ? View.GONE : View.VISIBLE);
+        mSpeciesNameOnboarding.setVisibility(View.GONE);
 
 
         mProjectSelector.setOnClickListener(new View.OnClickListener() {
@@ -588,60 +580,38 @@ public class ObservationEditor extends AppCompatActivity {
                 }
             });
         }
-
-        mSpeciesGuessTextView.setOnClickListener(new OnClickListener() {
+        OnClickListener listener = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 mTaxonSearchStarted = true;
-                Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
-                intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
-                intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
-                startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
-            }
-        });
-
-        mSpeciesGuessTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                return;
-                /*
-                String newTaxon = mSpeciesGuessTextView.getText().toString();
-                if ((!mTaxonTextChanged) && (!mTaxonSearchStarted)) {
-                    mTaxonSearchStarted = true;
+                if ((mGallery.getAdapter().getCount() == 0) || (!mApp.getSuggestSpecies())) {
+                    // No photos / suggest species setting is off - show the regular species search (by name)
                     Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
-                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, newTaxon);
+                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
                     intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        // Special material design animation
-                        View sharedView = mSpeciesGuessTextView;
-                        String transitionName = "search_taxon";
-                        ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(ObservationEditor.this, sharedView, transitionName);
-                        try {
-                            startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE, transitionActivityOptions.toBundle());
-                        } catch (Exception exc) {
-                            // Internal Android bug when rotating screen of activity opened this way
-                            exc.printStackTrace();
-                            startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
-                        }
-                    } else {
-                        startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
-                    }
+                    startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
+                } else {
+                    // At least one photo - show taxon suggestions screen
+                    Intent intent = new Intent(ObservationEditor.this, TaxonSuggestionsActivity.class);
+                    int pos = mImageCursor.getPosition();
+                    mImageCursor.moveToFirst();
+                    intent.putExtra(TaxonSuggestionsActivity.OBS_PHOTO_FILENAME,
+                            mImageCursor.getString(mImageCursor.getColumnIndex(ObservationPhoto.PHOTO_FILENAME)));
+                    intent.putExtra(TaxonSuggestionsActivity.OBS_PHOTO_URL,
+                            mImageCursor.getString(mImageCursor.getColumnIndex(ObservationPhoto.PHOTO_URL)));
+                    mImageCursor.move(pos);
+                    intent.putExtra(TaxonSuggestionsActivity.LONGITUDE, mObservation.longitude);
+                    intent.putExtra(TaxonSuggestionsActivity.LATITUDE, mObservation.latitude);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVED_ON, mObservation.observed_on);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID, mObservation.id);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                    intent.putExtra(TaxonSuggestionsActivity.OBSERVATION, mObservation.toJSONObject().toString());
+                    startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 }
-                */
-
             }
-        });
+        };
+        findViewById(R.id.species_guess_container).setOnClickListener(listener);
+        mSpeciesGuessTextView.setOnClickListener(listener);
 
         mTopActionBar.setHomeButtonEnabled(true);
         mTopActionBar.setDisplayHomeAsUpEnabled(true);
@@ -661,13 +631,28 @@ public class ObservationEditor extends AppCompatActivity {
 
         mSpeciesGuess = intent.getStringExtra(SPECIES_GUESS);
 
+        initObservation();
+
+        if ((intent != null) && (!mPictureTaken)) {
+            if (intent.getBooleanExtra(TAKE_PHOTO, false)) {
+                // Immediately take a photo
+                takePhoto();
+
+            } else if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
+                // Immediately choose an existing photo
+                mChoseNewPhoto = true;
+                choosePhoto();
+            }
+        }
+
         initUi();
 
         if (intent != null) {
             Bundle extras = intent.getExtras();
-            if ((extras != null) && (extras.getSerializable(TAXON) != null)) {
-                BetterJSONObject taxon = (BetterJSONObject) extras.getSerializable(TAXON);
-                setTaxon(getTaxonName(taxon.getJSONObject()), false, taxon.getInt("id"), taxon.getJSONObject("default_photo").optString("square_url"), taxon.getString("iconic_taxon_name"));
+            if ((extras != null) && (extras.getString(TAXON) != null)) {
+                BetterJSONObject taxon = new BetterJSONObject(extras.getString(TAXON));
+                JSONObject idPhoto = taxon.getJSONObject("default_photo");
+                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
             }
         }
 
@@ -768,18 +753,6 @@ public class ObservationEditor extends AppCompatActivity {
         mProjectReceiver = new ProjectReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
-        
-
-        if ((intent != null) && (!mPictureTaken)) {
-            if (intent.getBooleanExtra(TAKE_PHOTO, false)) {
-                // Immediately take a photo
-                takePhoto();
-
-            } else if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
-                // Immediately choose an existing photo
-                choosePhoto();
-            }
-        }
 
 
         if (intent != null) {
@@ -802,6 +775,7 @@ public class ObservationEditor extends AppCompatActivity {
 
 
         if (mSharePhotos != null) {
+            stopGetLocation();
             // Share photos(s) with iNaturalist (override any location with the one from the shared images)
             importPhotos(mSharePhotos, true);
         }
@@ -1112,6 +1086,7 @@ public class ObservationEditor extends AppCompatActivity {
         outState.putStringArrayList("mPhotosAdded", mPhotosAdded);
         outState.putSerializable("mPhotosRemoved", mPhotosRemoved);
         outState.putStringArrayList("mCameraPhotos", mCameraPhotos);
+        outState.putBoolean("mChoseNewPhoto", mChoseNewPhoto);
         super.onSaveInstanceState(outState);
     }
 
@@ -1167,7 +1142,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     }
 
-    private void initUi() {
+    private void initObservation() {
         if (mCursor == null) {
             mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
         } else {
@@ -1177,33 +1152,38 @@ public class ObservationEditor extends AppCompatActivity {
         if (mObservation == null) {
             mObservation = new Observation(mCursor);
         }
-        
+
         if ((mSpeciesGuess != null) && (mObservation.species_guess == null)) {
             mObservation.species_guess = mSpeciesGuess;
         }
+    }
 
+    private void initUi() {
+        initObservation();
 
         mLocationProgressView.setVisibility(View.GONE);
         mFindingCurrentLocation.setVisibility(View.GONE);
         mLocationRefreshButton.setVisibility(View.VISIBLE);
         mLocationIcon.setVisibility(View.VISIBLE);
 
-        if (mGettingLocation) {
-            mLocationProgressView.setVisibility(View.VISIBLE);
-            mFindingCurrentLocation.setVisibility(View.VISIBLE);
-            mLocationRefreshButton.setVisibility(View.GONE);
-            mLocationIcon.setVisibility(View.GONE);
+        if (!mChoseNewPhoto) {
+            if (mGettingLocation) {
+                mLocationProgressView.setVisibility(View.VISIBLE);
+                mFindingCurrentLocation.setVisibility(View.VISIBLE);
+                mLocationRefreshButton.setVisibility(View.GONE);
+                mLocationIcon.setVisibility(View.GONE);
 
-            getLocation();
-        }
+                getLocation();
+            }
 
-        if ((Intent.ACTION_INSERT.equals(getIntent().getAction())) && (mSharePhotos == null)) {
-            if (mObservation.observed_on == null) {
-                mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
-                mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
-                mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
-                if (mObservation.latitude == null && mCurrentLocation == null) {
-                    getLocation();
+            if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
+                if (mObservation.observed_on == null) {
+                    mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
+                    mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
+                    mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
+                    if (mObservation.latitude == null && mCurrentLocation == null) {
+                        getLocation();
+                    }
                 }
             }
         }
@@ -1243,7 +1223,14 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void uiToObservation() {
-        if ((((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) && (!mTaxonSearchStarted)) mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+        if ((((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) && (!mTaxonSearchStarted)) {
+            mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+
+            if (mObservation.id == null) {
+                // New observation, user adding an identification
+                mObservation.identifications_count = mObservation.last_identifications_count = 1;
+            }
+        }
         if (((mObservation.description == null) && (mDescriptionTextView.getText().length() > 0)) || (mObservation.description != null)) mObservation.description = mDescriptionTextView.getText().toString();
         if (mObservedOnStringTextView.getText() == null || mObservedOnStringTextView.getText().length() == 0) {
             mObservation.observed_on_string = null; 
@@ -1304,6 +1291,41 @@ public class ObservationEditor extends AppCompatActivity {
 
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
+        if (mIsTaxonUnknown) {
+            if (mApp.getSuggestSpecies()) {
+                mSpeciesGuessSub.setText(R.string.view_suggestions);
+                mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+            } else {
+                mSpeciesGuessSub.setVisibility(View.GONE);
+            }
+            mClearSpeciesGuess.setVisibility(View.GONE);
+        } else {
+            if (mObservation.species_guess != null) {
+                mClearSpeciesGuess.setVisibility(View.VISIBLE);
+                if (mScientificName != null) {
+                    mSpeciesGuessSub.setText(mScientificName);
+                    mSpeciesGuessSub.setVisibility(View.VISIBLE);
+                    mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+                } else {
+                    if (mApp.getSuggestSpecies()) {
+                        mSpeciesGuessSub.setText(R.string.view_suggestions);
+                        mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+                    } else {
+                        mSpeciesGuessSub.setVisibility(View.GONE);
+                    }
+                }
+            } else {
+                mClearSpeciesGuess.setVisibility(View.GONE);
+                mSpeciesGuessTextView.setHint(R.string.what_did_you_see);
+                if (mApp.getSuggestSpecies()) {
+                    mSpeciesGuessSub.setText(R.string.view_suggestions);
+                    mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+                } else {
+                    mSpeciesGuessSub.setVisibility(View.GONE);
+                }
+            }
+        }
+
         mTaxonTextChanged = false;
         mDescriptionTextView.setText(mObservation.description);
         if (mObservation.observed_on == null) {
@@ -1358,8 +1380,8 @@ public class ObservationEditor extends AppCompatActivity {
             findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
         }
 
-        if (mObservation.place_guess != null) {
-            mLocationGuess.setText(mObservation.place_guess);
+        if ((mObservation.place_guess != null) || (mObservation.private_place_guess != null)) {
+            mLocationGuess.setText(mObservation.private_place_guess != null ? mObservation.private_place_guess : mObservation.place_guess);
             mLocationGuess.setTextColor(Color.parseColor("#000000"));
         } else {
             mLocationGuess.setText(getString(R.string.set_location));
@@ -1604,6 +1626,8 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void handleNewLocation(Location location) {
+        boolean stoppedGettingLocation = false;
+
         if (isBetterLocation(location, mCurrentLocation)) {
             setCurrentLocation(location);
         }
@@ -1611,17 +1635,22 @@ public class ObservationEditor extends AppCompatActivity {
         if (locationIsGood(mCurrentLocation)) {
             // Log.d(TAG, "location was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
+            stoppedGettingLocation = true;
         }
 
         if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
             // Log.d(TAG, "location request was old and location was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
+            stoppedGettingLocation = true;
         }
 
-        mLocationProgressView.setVisibility(View.GONE);
         mFindingCurrentLocation.setVisibility(View.GONE);
         mLocationRefreshButton.setVisibility(View.VISIBLE);
-        mLocationIcon.setVisibility(View.VISIBLE);
+
+        if (stoppedGettingLocation) {
+            mLocationProgressView.setVisibility(View.GONE);
+            mLocationIcon.setVisibility(View.VISIBLE);
+        }
     }
 
     private void stopGetLocation() {
@@ -1649,7 +1678,7 @@ public class ObservationEditor extends AppCompatActivity {
                     if((null != addresses) && (addresses.size() > 0)) {
                         Address address = addresses.get(0);
                         final StringBuilder location = new StringBuilder();
-                        for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                        for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
                             location.append(address.getAddressLine(i));
                             location.append(" ");
                         }
@@ -1676,7 +1705,13 @@ public class ObservationEditor extends AppCompatActivity {
         if ((placeGuess != null) && (placeGuess.length() > 0)) {
             mLocationGuess.setText(placeGuess);
             mLocationGuess.setTextColor(Color.parseColor("#000000"));
-            mObservation.place_guess = placeGuess;
+            if (mObservation.geoprivacy != null && (mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured"))) {
+                mObservation.private_place_guess = placeGuess;
+                mObservation.place_guess = null;
+            } else {
+                mObservation.place_guess = placeGuess;
+                mObservation.private_place_guess = null;
+            }
         } else {
             mLocationGuess.setText(R.string.set_location);
             mLocationGuess.setTextColor(Color.parseColor("#757575"));
@@ -1933,27 +1968,13 @@ public class ObservationEditor extends AppCompatActivity {
                 String idName = data.getStringExtra(TaxonSearchActivity.ID_NAME);
                 String idPicUrl = data.getStringExtra(TaxonSearchActivity.ID_PIC_URL);
                 Integer taxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
+                Integer rankLevel = data.getIntExtra(TaxonSearchActivity.RANK_LEVEL, 0);
                 boolean isCustomTaxon = data.getBooleanExtra(TaxonSearchActivity.IS_CUSTOM, false);
 
                 if (taxonId == TaxonSearchActivity.UNKNOWN_TAXON_ID) {
-                    mSpeciesGuess = null;
-                    mObservation.species_guess = null;
-                    mObservation.taxon_id = null;
-                    mTaxonTextChanged = true;
-                    mSpeciesGuessTextView.setText("Unknown");
-                    mTaxonTextChanged = false;
-                    mPreviousTaxonSearch = "Unknown";
-                    mObservation.preferred_common_name = null;
-                    mTaxonPicUrl = null;
-                    mIsTaxonUnknown = true;
-                    mIsCustomTaxon = false;
-
-                    mSpeciesGuessIcon.setImageResource(R.drawable.ic_species_guess_black_24dp);
-                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-                        mSpeciesGuessIcon.setAlpha(0.6f);
-                    }
+                    clearSpeciesGuess();
                 } else {
-                    setTaxon(idName, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
+                    setTaxon(idName, taxonName, rankLevel, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
                 }
 
                 try {
@@ -1971,6 +1992,21 @@ public class ObservationEditor extends AppCompatActivity {
                 mTaxonTextChanged = true;
                 mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
                 mTaxonTextChanged = false;
+
+                mClearSpeciesGuess.setVisibility(mIsTaxonUnknown ? View.GONE : View.VISIBLE);
+
+                if (mIsTaxonUnknown || (mScientificName == null)) {
+                    if (mApp.getSuggestSpecies()) {
+                        mSpeciesGuessSub.setText(R.string.view_suggestions);
+                        mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+                    } else {
+                        mSpeciesGuessSub.setVisibility(View.GONE);
+                    }
+                } else {
+                    mSpeciesGuessSub.setText(mScientificName);
+                    mSpeciesGuessSub.setVisibility(View.VISIBLE);
+                    mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+                }
             }
 
         } else if (requestCode == ProjectFieldViewer.PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE) {
@@ -2136,15 +2172,23 @@ public class ObservationEditor extends AppCompatActivity {
             @Override
             public void run() {
                 int position = mGallery.getCount();
+                boolean errorImporting = false;
+
                 for (final Uri photo : photos) {
                     Uri createdUri = createObservationPhotoForPhoto(photo, position);
+
+                    if (createdUri == null) {
+                        errorImporting = true;
+                        break;
+                    }
+
                     mPhotosAdded.add(createdUri.toString());
                     position++;
 
                     // Import photo metadata (e.g. location) only when the location hasn't been set
                     // by the user before (whether manually or by importing previous images)
-                    if (((!mLocationManuallySet) && (mObservation.latitude == null) && (mObservation.longitude == null)) ||
-                        (overrideLocation && (position == 1))) {
+                    if ((!mLocationManuallySet && mObservation.latitude == null && mObservation.longitude == null) ||
+                        (overrideLocation && position == 1)) {
                         mLocationManuallySet = true;
                         runOnUiThread(new Runnable() {
                             @Override
@@ -2157,11 +2201,16 @@ public class ObservationEditor extends AppCompatActivity {
                     }
                 }
 
+                final boolean finalErrorImporting = errorImporting;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         updateImages();
                         mHelper.stopLoading();
+
+                        if (finalErrorImporting) {
+                            mHelper.alert(getString(R.string.invalid_photo_extension));
+                        }
                     }
                 });
             }
@@ -2173,15 +2222,40 @@ public class ObservationEditor extends AppCompatActivity {
         return createObservationPhotoForPhoto(photoUri, mGallery.getCount());
     }
 
+    public static String getExtension(Context context, Uri uri) {
+        String extension;
+
+        //Check uri format to avoid null
+        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+            //If scheme is a content
+            final MimeTypeMap mime = MimeTypeMap.getSingleton();
+            extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));
+        } else {
+            //If scheme is a File
+            //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
+            extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(uri.getPath())).toString());
+
+        }
+
+        return extension;
+    }
+
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position) {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
+        String extension = getExtension(this, photoUri);
+
+        if ((extension == null) || (
+                (!extension.toLowerCase().equals("jpg")) &&
+                (!extension.toLowerCase().equals("jpeg")) &&
+                (!extension.toLowerCase().equals("png"))
+            )) {
+            return null;
+        }
 
         // Resize photo to 2048x2048 max
-        String resizedPhoto = resizeImage(path, photoUri);
-
-        Log.d(TAG, "createObservationForPhoto: " + position + ":" + photoUri + " => " + path + "; resize: " + resizedPhoto);
+        String resizedPhoto = ImageUtils.resizeImage(this, path, photoUri, 2048);
 
         if (resizedPhoto == null) {
             return null;
@@ -2203,12 +2277,10 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void importPhotoMetadata(Uri photoUri) {
-        String imgFilePath = FileUtils.getPath(this, photoUri);
 
-        if (imgFilePath == null) return;
-        
         try {
-            ExifInterface exif = new ExifInterface(imgFilePath);
+            InputStream is = getContentResolver().openInputStream(photoUri);
+            ExifInterface exif = new ExifInterface(is);
             float[] latLng = new float[2];
             uiToObservation();
             if (exif.getLatLong(latLng)) {
@@ -2268,9 +2340,10 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation.observed_on_string = null;
             }
 
+            is.close();
             observationToUi();
         } catch (IOException e) {
-            Log.e(TAG, "couldn't find " + imgFilePath);
+            Log.e(TAG, "couldn't find " + photoUri);
         }
     }
     
@@ -2581,7 +2654,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     @Override
                     public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(loadedBitmap));
+                        return ImageUtils.centerCropBitmap(loadedBitmap);
                     }
                 });
             } else {
@@ -2616,7 +2689,7 @@ public class ObservationEditor extends AppCompatActivity {
                         }
 
                         if (bitmapImage != null) {
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(ImageUtils.centerCropBitmap(bitmapImage)));
+                            imageView.setImageBitmap(ImageUtils.centerCropBitmap(bitmapImage));
                             bitmapImage.recycle();
                         }
                     }
@@ -2630,7 +2703,7 @@ public class ObservationEditor extends AppCompatActivity {
             View isFirst = container.findViewById(R.id.observation_is_first);
             Integer obsPhotoPosition = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto.POSITION));
 
-            if ((obsPhotoPosition != null) && (obsPhotoPosition == 0)) {
+            if (position == 0) {
                 container.findViewById(R.id.is_first_on).setVisibility(View.VISIBLE);
                 container.findViewById(R.id.is_first_off).setVisibility(View.GONE);
                 container.findViewById(R.id.is_first_text).setVisibility(View.VISIBLE);
@@ -2772,278 +2845,20 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
 
-    /**
-     * Resizes an image to max size of 2048x2048
-     * @param path the path to the image filename (optional)
-     * @param photoUri the original Uri of the image
-     * @return the resized image - or original image if smaller than 2048x2048
-     */
-    private String resizeImage(String path, Uri photoUri) {
-        InputStream is = null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-
-        try {
-            if (path == null) {
-                is = getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(path);
-            }
-
-            // Just read the input image dimensions
-            options.inJustDecodeBounds = true;
-            Bitmap bitmap = BitmapFactory.decodeStream(is,null,options);
-            int originalHeight = options.outHeight;
-            int originalWidth = options.outWidth;
-            int newHeight, newWidth;
-
-            // BitmapFactory.decodeStream moves the reading cursor
-            is.close();
-
-            if (path == null) {
-                is = getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(path);
-            }
-
-
-            if (Math.max(originalHeight, originalWidth) < 2048) {
-                if (path != null) {
-                    // Original file is smaller than 2048x2048 - no need to resize
-                    return path;
-                } else {
-                    // Don't resize because image is smaller than 2048x2048 - however, make a local copy of it
-                    newHeight = originalHeight;
-                    newWidth = originalWidth;
-                }
-            } else {
-                // Resize but make sure we have the same width/height aspect ratio
-                if (originalHeight > originalWidth) {
-                    newHeight = 2048;
-                    newWidth = (int) (2048 * ((float) originalWidth / originalHeight));
-                } else {
-                    newWidth = 2048;
-                    newHeight = (int) (2048 * ((float) originalHeight / originalWidth));
-                }
-            }
-
-            Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
-            Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
-
-            // will load & resize the image to be 1/inSampleSize dimensions
-            BitmapFactory.Options resizedOptions = new BitmapFactory.Options();
-            resizedOptions.inScaled = true;
-            resizedOptions.inSampleSize = 4;
-            resizedOptions.inDensity = originalWidth;
-            resizedOptions.inTargetDensity =  newWidth * resizedOptions.inSampleSize;
-
-            Bitmap resizedBitmap = BitmapFactory.decodeStream(is, null, resizedOptions);
-
-            // Save resized image
-            File imageFile = new File(getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
-            OutputStream os = new FileOutputStream(imageFile);
-            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
-            os.flush();
-            os.close();
-
-            Log.d(TAG, String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
-
-            resizedBitmap.recycle();
-
-            // BitmapFactory.decodeStream moves the reading cursor
-            is.close();
-
-            if (path == null) {
-                is = getContentResolver().openInputStream(photoUri);
-            } else {
-                is = new FileInputStream(path);
-            }
-
-            // Copy all EXIF data from original image into resized image
-            copyExifData(is, new File(imageFile.getAbsolutePath()), null);
-
-            is.close();
-
-            return imageFile.getAbsolutePath();
-
-        } catch (OutOfMemoryError e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return path;
-    }
-
-    // EXIF-copying code taken from: https://bricolsoftconsulting.com/copying-exif-metadata-using-sanselan/
-    public static boolean copyExifData(InputStream sourceFileStream, File destFile, List<TagInfo> excludedFields) {
-        String tempFileName = destFile.getAbsolutePath() + ".tmp";
-        File tempFile = null;
-        OutputStream tempStream = null;
-
-        try {
-            tempFile = new File (tempFileName);
-
-            TiffOutputSet sourceSet = getSanselanOutputSet(sourceFileStream, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
-            TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
-
-            // If the EXIF data endianess of the source and destination files
-            // differ then fail. This only happens if the source and
-            // destination images were created on different devices. It's
-            // technically possible to copy this data by changing the byte
-            // order of the data, but handling this case is outside the scope
-            // of this implementation
-            if (sourceSet.byteOrder != destSet.byteOrder) return false;
-
-            destSet.getOrCreateExifDirectory();
-
-            // Go through the source directories
-            List<?> sourceDirectories = sourceSet.getDirectories();
-            for (int i=0; i<sourceDirectories.size(); i++) {
-                TiffOutputDirectory sourceDirectory = (TiffOutputDirectory)sourceDirectories.get(i);
-                TiffOutputDirectory destinationDirectory = getOrCreateExifDirectory(destSet, sourceDirectory);
-
-                if (destinationDirectory == null) continue; // failed to create
-
-                // Loop the fields
-                List<?> sourceFields = sourceDirectory.getFields();
-                for (int j=0; j<sourceFields.size(); j++) {
-                    // Get the source field
-                    TiffOutputField sourceField = (TiffOutputField) sourceFields.get(j);
-
-                    // Check exclusion list
-                    if (excludedFields != null && excludedFields.contains(sourceField.tagInfo)) {
-                        destinationDirectory.removeField(sourceField.tagInfo);
-                        continue;
-                    }
-
-                    // Remove any existing field
-                    destinationDirectory.removeField(sourceField.tagInfo);
-
-                    // Add field
-                    destinationDirectory.add(sourceField);
-                }
-            }
-
-            // Save data to destination
-            tempStream = new BufferedOutputStream(new FileOutputStream(tempFile));
-            new ExifRewriter().updateExifMetadataLossless(destFile, tempStream, destSet);
-            tempStream.close();
-
-            // Replace file
-            if (destFile.delete()) {
-                tempFile.renameTo(destFile);
-            }
-
-            return true;
-
-        } catch (ImageReadException exception) {
-            exception.printStackTrace();
-
-        } catch (ImageWriteException exception) {
-            exception.printStackTrace();
-
-        } catch (IOException exception) {
-            exception.printStackTrace();
-
-        } finally {
-            if (tempStream != null) {
-                try {
-                    tempStream.close();
-                } catch (IOException e) {
-                }
-            }
-
-            if (tempFile != null) {
-                if (tempFile.exists()) tempFile.delete();
-            }
-        }
-
-        return false;
-    }
-
-    private static TiffOutputDirectory getOrCreateExifDirectory(TiffOutputSet outputSet, TiffOutputDirectory outputDirectory) {
-        TiffOutputDirectory result = outputSet.findDirectory(outputDirectory.type);
-        if (result != null)
-            return result;
-        result = new TiffOutputDirectory(outputDirectory.type);
-        try {
-            outputSet.addDirectory(result);
-        } catch (ImageWriteException e) {
-            return null;
-        }
-        return result;
-    }
-
-
-    private static TiffOutputSet getSanselanOutputSet(InputStream stream, int defaultByteOrder)
-            throws IOException, ImageReadException, ImageWriteException {
-        TiffImageMetadata exif = null;
-        TiffOutputSet outputSet = null;
-
-        IImageMetadata metadata = Sanselan.getMetadata(stream, null);
-        JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
-        if (jpegMetadata != null) {
-            exif = jpegMetadata.getExif();
-
-            if (exif != null) {
-                outputSet = exif.getOutputSet();
-            }
-        }
-
-        // If JPEG file contains no EXIF metadata, create an empty set
-        // of EXIF metadata. Otherwise, use existing EXIF metadata to
-        // keep all other existing tags
-        if (outputSet == null)
-            outputSet = new TiffOutputSet(exif==null?defaultByteOrder:exif.contents.header.byteOrder);
-
-        return outputSet;
-    }
-
-    private static TiffOutputSet getSanselanOutputSet(File jpegImageFile, int defaultByteOrder)
-            throws IOException, ImageReadException, ImageWriteException {
-        TiffImageMetadata exif = null;
-        TiffOutputSet outputSet = null;
-
-        IImageMetadata metadata = Sanselan.getMetadata(jpegImageFile);
-        JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
-        if (jpegMetadata != null) {
-            exif = jpegMetadata.getExif();
-
-            if (exif != null) {
-                outputSet = exif.getOutputSet();
-            }
-        }
-
-        // If JPEG file contains no EXIF metadata, create an empty set
-        // of EXIF metadata. Otherwise, use existing EXIF metadata to
-        // keep all other existing tags
-        if (outputSet == null)
-            outputSet = new TiffOutputSet(exif==null?defaultByteOrder:exif.contents.header.byteOrder);
-
-        return outputSet;
-    }
-
     private String addPhotoToGallery(String path) {
         // Copy the file into the camera folder
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
         File storageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
         if (!storageDir.exists()) storageDir.mkdirs();
         String outputPath;
+        File image = null;
         try {
-            File image = File.createTempFile(
+            image = File.createTempFile(
                     timeStamp,                   /* prefix */
                     ".jpeg",                     /* suffix */
                     storageDir                   /* directory */
             );
             outputPath = image.getPath();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        try {
             FileInputStream inStream = null;
             inStream = new FileInputStream(path);
             FileOutputStream outStream = new FileOutputStream(outputPath);
@@ -3052,19 +2867,27 @@ public class ObservationEditor extends AppCompatActivity {
             inChannel.transferTo(0, inChannel.size(), outChannel);
             inStream.close();
             outStream.close();
+            // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image)));
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to create gallery photo");
+            e.printStackTrace();
+            return null;
         } catch (Exception exc) {
+            Log.e(TAG, "Failed to write gallery photo");
+            if (image != null) {
+                // Don't leave around an empty file if we failed to write to it.
+                image.delete();
+            }
             exc.printStackTrace();
             return null;
         }
-
-        // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
-        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(outputPath)));
 
         return outputPath;
     }
 
 
-    private void setTaxon(String idName, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
+    private void setTaxon(String idName, String scientificName, int rankLevel, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
         String speciesGuess = String.format("%s", idName);
         mObservation.preferred_common_name = isCustomTaxon ? null : idName;
         mSpeciesGuess = speciesGuess;
@@ -3072,6 +2895,12 @@ public class ObservationEditor extends AppCompatActivity {
         mObservation.taxon_id = isCustomTaxon ? null : taxonId;
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText(mSpeciesGuess);
+        mSpeciesGuessSub.setText(scientificName);
+        mSpeciesGuessSub.setVisibility(View.VISIBLE);
+        mClearSpeciesGuess.setVisibility(View.VISIBLE);
+        mScientificName = scientificName;
+        mTaxonRankLevel = rankLevel;
+        mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
         mTaxonTextChanged = false;
         mPreviousTaxonSearch = mSpeciesGuess;
         mTaxonPicUrl = isCustomTaxon ? null : idPicUrl;
@@ -3169,4 +2998,31 @@ public class ObservationEditor extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    private void clearSpeciesGuess() {
+        mSpeciesGuess = null;
+        mObservation.species_guess = null;
+        mObservation.taxon_id = null;
+        mTaxonTextChanged = true;
+        mSpeciesGuessTextView.setText("Unknown");
+        if (mApp.getSuggestSpecies()) {
+            mSpeciesGuessSub.setText(R.string.view_suggestions);
+            mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+        } else {
+            mSpeciesGuessSub.setVisibility(View.GONE);
+        }
+        mTaxonTextChanged = false;
+        mPreviousTaxonSearch = "Unknown";
+        mObservation.preferred_common_name = null;
+        mTaxonPicUrl = null;
+        mIsTaxonUnknown = true;
+        mIsCustomTaxon = false;
+
+        mSpeciesGuessIcon.setImageResource(R.drawable.ic_species_guess_black_24dp);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            mSpeciesGuessIcon.setAlpha(0.6f);
+        }
+
+        mClearSpeciesGuess.setVisibility(View.GONE);
+    }
 }

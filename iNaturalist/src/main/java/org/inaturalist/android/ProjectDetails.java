@@ -159,11 +159,11 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
 
         if (savedInstanceState == null) {
-            mProject = (BetterJSONObject) intent.getSerializableExtra("project");
+            mProject = new BetterJSONObject(intent.getStringExtra("project"));
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
         } else {
-            mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
+            mProject = new BetterJSONObject(savedInstanceState.getString("project"));
             mViewType = savedInstanceState.getString("mViewType");
 
             mObservations = loadListFromBundle(savedInstanceState, "mObservations");
@@ -221,7 +221,9 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
             UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.project_bg), iconUrl + "?bg=1", new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    imageView.setImageBitmap(ImageUtils.blur(ProjectDetails.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                    if (loadedBitmap != null) {
+                        imageView.setImageBitmap(ImageUtils.blur(ProjectDetails.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                    }
                 }
 
                 @Override
@@ -336,7 +338,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("project", mProject);
+        outState.putString("project", mProject.getJSONObject().toString());
         outState.putString("mViewType", mViewType);
         saveListToBundle(outState, mObservations, "mObservations");
         saveListToBundle(outState, mSpecies, "mSpecies");
@@ -383,7 +385,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     public void onBackPressed() {
     	Intent intent = new Intent();
     	Bundle bundle = new Bundle();
-    	bundle.putSerializable("project", mProject);
+    	bundle.putString("project", mProject.getJSONObject().toString());
     	intent.putExtras(bundle);
 
     	setResult(mJoinedOrLeftProject ? RESULT_REFRESH_RESULTS : RESULT_OK, intent);
@@ -821,11 +823,9 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             JSONObject item = (JSONObject) view.getTag();
-                            Intent intent = new Intent(ProjectDetails.this, GuideTaxonActivity.class);
-                            intent.putExtra("taxon", new BetterJSONObject(item));
-                            intent.putExtra("guide_taxon", false);
-                            intent.putExtra("show_add", false);
-                            intent.putExtra("download_taxon", true);
+                            Intent intent = new Intent(ProjectDetails.this, TaxonActivity.class);
+                            intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(item));
+                            intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
                             startActivity(intent);
                         }
                     });

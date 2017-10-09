@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.RunnableFuture;
 
 import android.app.NotificationManager;
 import android.graphics.Bitmap;
@@ -41,6 +42,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.text.Editable;
@@ -53,6 +55,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -275,7 +278,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 mObservationGridIndex = savedInstanceState.getInt("mObservationGridIndex");
                 mObservationGridOffset = savedInstanceState.getInt("mObservationGridOffset");
             }
-	    	
+
 	    	mLoadingObservationsGrid.setVisibility(View.GONE);
 	    	mLoadingObservationsList.setVisibility(View.GONE);
 
@@ -431,7 +434,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 mProject.put("joined", INaturalistService.hasJoinedProject(INaturalistMapActivity.this, mProjectId));
 
                 Intent intent = new Intent(INaturalistMapActivity.this, ProjectDetails.class);
-                intent.putExtra("project", mProject);
+                intent.putExtra("project", mProject.getJSONObject().toString());
                 startActivity(intent);
 			}
 		});
@@ -730,7 +733,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
         if (mViewType.equals(VIEW_TYPE_LIST)) {
             mObservationsList.setSelectionFromTop(mObservationListIndex, mObservationListOffset);
         } else if (mViewType.equals(VIEW_TYPE_GRID)) {
-            mObservationsGrid.setSelection(mObservationGridIndex);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mObservationsGrid.setSelectionFromTop(mObservationGridIndex, mObservationGridOffset);
+            } else {
+                mObservationsGrid.setSelection(mObservationGridIndex);
+            }
         }
     }
     
@@ -805,6 +812,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
             mMarkerObservations = new HashMap<String, JSONObject>();
         }
         if (mMap == null) {
+            System.gc();
             mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
@@ -976,6 +984,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                 return;
             }
 
+            System.gc();
             mMap.clear();
             mMarkerObservations.clear();
             
@@ -1033,11 +1042,24 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     
     private void loadExistingObservations(boolean refreshAdapters) {
     	if ((refreshAdapters) || (mGridAdapter == null) || (mListAdapter == null)) {
-    		mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservationsGrid.getColumnWidth(), mObservations);
-    		mObservationsGrid.setAdapter(mGridAdapter);
-
     		mListAdapter = new ObservationListAdapter(INaturalistMapActivity.this, mObservations);
     		mObservationsList.setAdapter(mListAdapter);
+
+			mObservationsGrid.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+				@Override
+				public void onGlobalLayout() {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+						mObservationsGrid.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+					} else {
+						mObservationsGrid.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+					}
+
+					mGridAdapter = new ObservationGridAdapter(INaturalistMapActivity.this, mObservationsGrid.getColumnWidth(), mObservations);
+					mObservationsGrid.setAdapter(mGridAdapter);
+
+                    mObservationsGrid.setSelection(mObservationGridIndex);
+				}
+			});
     	} else {
     		mGridAdapter.notifyDataSetChanged();
     		mListAdapter.notifyDataSetChanged();
@@ -1524,7 +1546,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  						if (!item.isNull("icon_url")) {
  							url = item.getString("icon_url");
  						} else {
- 							url = "http://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
+ 							url = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
  						}
  						return new String[] {
  								title,
@@ -1840,7 +1862,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  					String url = (innerPhoto.isNull("small_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("small_url"));
                     Picasso.with(mContext)
                             .load(url)
-                            .placeholder(ObservationPhotosViewer.observationIcon(item))
+                            .placeholder(TaxonUtils.observationIcon(item))
                             .fit()
                             .centerCrop()
                             .into(taxonPic);
@@ -1914,5 +1936,11 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 			}
 		}
 	}
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();
+    }
 
  }

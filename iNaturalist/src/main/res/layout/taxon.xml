@@ -25,115 +25,114 @@
                 />
 
         </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/taxon_details"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/taxon_details"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/taxon_image_container"
-            android:layout_width="fill_parent"
-            android:layout_height="220dp">
-            <ProgressBar
-                android:id="@+id/loading_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_centerInParent="true"
-                android:visibility="gone"
-                />
+            <RelativeLayout
+                android:id="@+id/taxon_image_container"
+                android:layout_width="fill_parent"
+                android:layout_height="220dp">
+                <ProgressBar
+                    android:id="@+id/loading_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    />
 
-            <ImageView
-                android:id="@+id/taxon_image"
-                android:src="@drawable/logo_text"
-                android:scaleType="centerCrop"
-                android:layout_width="match_parent"
-                android:layout_height="220dp" />
+                <ImageView
+                    android:id="@+id/taxon_image"
+                    android:src="@drawable/logo_text"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp" />
+                <TextView
+                    android:id="@+id/attributions_photos"
+                    android:textSize="11sp"
+                    android:textColor="#ffffff"
+                    android:text="@string/photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#88000000"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:textColorLink="#ffffff" />
+
+            </RelativeLayout>
+
             <TextView
-                android:id="@+id/attributions_photos"
-                android:textSize="11sp"
-                android:textColor="#ffffff"
-                android:text="@string/photo"
-                android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:layout_alignParentBottom="true"
-                android:background="#88000000"
+                android:id="@+id/displayName"
+                android:textSize="22dp"
+                android:textColor="#de000000"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:lines="1"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:textColorLink="#ffffff" />
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/displayName"
-            android:textSize="22dp"
-            android:textColor="#de000000"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Display name long"
-            android:textIsSelectable="true"/>
-
-        <TextView
-            android:id="@+id/name"
-            android:textSize="15dp"
-            android:textColor="#66000000"
-            android:textStyle="italic"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="Scientific Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textIsSelectable="true"/>
-
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textSize="16dp"
-            android:textColor="#000000"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Display name long"
-            android:textIsSelectable="true"/>
-
-
-        <LinearLayout
-            android:id="@+id/view_on_wikipedia"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:background="@drawable/circular_button_gray"
-            android:gravity="center_horizontal|center_vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_height="40dp">
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_open_in_new_black_24dp"
-                />
+                android:text="Display name long"
+                android:textIsSelectable="true"/>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/name"
+                android:textSize="15dp"
+                android:textColor="#66000000"
+                android:textStyle="italic"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Scientific Name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/view_on_wikipedia"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:paddingLeft="7dp"
-                />
-        </LinearLayout>
-    </LinearLayout>
+                android:textIsSelectable="true"/>
 
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textSize="16dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display name long"
+                android:textIsSelectable="true"/>
+
+
+            <LinearLayout
+                android:id="@+id/view_on_wikipedia"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@drawable/circular_button_gray"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_height="40dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_open_in_new_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_on_wikipedia"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:paddingLeft="7dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

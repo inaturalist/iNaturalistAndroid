@@ -94,7 +94,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
         ImageView observationPic = (ImageView) view.findViewById(R.id.observation_pic);
         ImageView obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
         obsIconicImage.setVisibility(View.VISIBLE);
-        obsIconicImage.setImageResource(ObservationPhotosViewer.observationIcon(item));
+        obsIconicImage.setImageResource(TaxonUtils.observationIcon(item));
 
         JSONArray observationPhotos;
         try {

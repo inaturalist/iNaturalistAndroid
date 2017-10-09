@@ -51,7 +51,9 @@ import android.widget.TextView;
 public class TaxonSearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private static final String LOG_TAG = "TaxonSearchActivity";
 
+    public static final String SUGGEST_ID = "suggest_id";
     public static final String TAXON_ID = "taxon_id";
+    public static final String RANK_LEVEL = "rank_level";
 	public static final String ID_NAME = "id_name";
 	public static final String TAXON_NAME = "taxon_name";
 	public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
@@ -75,6 +77,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
     private long mLastTime = 0;
     private TextView mNoResults;
+    private boolean mSuggestId;
 
     @Override
 	protected void onStart()
@@ -206,7 +209,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            mResultList.add(customObs);
+                            if (!mSuggestId) mResultList.add(customObs);
                             notifyDataSetChanged();
                         }
 
@@ -269,10 +272,10 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
-                                    mResultList.add(0, customObs);
+                                    if (!mSuggestId) mResultList.add(0, customObs);
                                 }
 
-                                if (mShowUnknown) mResultList.add(0, null);
+                                if (mShowUnknown && !mSuggestId) mResultList.add(0, null);
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -291,10 +294,10 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
-                                        mResultList.add(customObs);
+                                        if (!mSuggestId) mResultList.add(customObs);
                                     }
 
-                                    if (mShowUnknown) mResultList.add(0, null);
+                                    if (mShowUnknown && !mSuggestId) mResultList.add(0, null);
 
                                 }
 
@@ -434,7 +437,13 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
         mNoResults = (TextView) findViewById(android.R.id.empty);
         mNoResults.setVisibility(View.GONE);
-        
+
+        if (savedInstanceState == null) {
+            mSuggestId = intent.getBooleanExtra(SUGGEST_ID, false);
+        } else {
+            mSuggestId = savedInstanceState.getBoolean(SUGGEST_ID, false);
+        }
+
         mAdapter = new TaxonAutoCompleteAdapter(getApplicationContext(), R.layout.taxon_result_item);
         final EditText autoCompView = (EditText) customView.findViewById(R.id.search_text);
         
@@ -488,6 +497,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                     if (item.has("default_photo") && !item.isNull("default_photo")) bundle.putString(TaxonSearchActivity.ID_PIC_URL, item.getJSONObject("default_photo").getString("square_url"));
                     bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
                     bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
+                    bundle.putInt(TaxonSearchActivity.RANK_LEVEL, item.getInt("rank_level"));
 
                 }
                 bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);
@@ -545,4 +555,11 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
             return adapter;
         }
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(SUGGEST_ID, mSuggestId);
+        super.onSaveInstanceState(outState);
+    }
+
 }

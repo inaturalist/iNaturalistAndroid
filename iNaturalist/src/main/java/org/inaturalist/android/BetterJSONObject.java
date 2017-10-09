@@ -16,8 +16,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,12 +25,13 @@ import android.util.Log;
 
 
 public class BetterJSONObject implements Serializable {
-	public final static String TAG = "BetterJSONObject";
-	private transient JSONObject mJSONObject;
-	private transient DateFormat mDateTimeFormat; 
-	private transient DateFormat mDateFormat;
-	private SimpleDateFormat mDateTimeFormat2;
-	
+    public final static String TAG = "BetterJSONObject";
+    private transient JSONObject mJSONObject;
+    private transient DateFormat mDateTimeFormat;
+	private transient DateFormat mDateTimeFormat2;
+    private transient DateFormat mDateFormat;
+    private SimpleDateFormat mDateTimeFormat3;
+    private SimpleDateFormat mDateTimeFormat4;
 
 	public BetterJSONObject() {
 	    this(new JSONObject());
@@ -53,9 +54,13 @@ public class BetterJSONObject implements Serializable {
 
 	private void initRegExIfNeeded() {
         if (mDateFormat == null) mDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        if (mDateTimeFormat == null) mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
-        if (mDateTimeFormat2 == null) mDateTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZZZ", Locale.US);
-
+        if (mDateTimeFormat == null) mDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
+		if (mDateTimeFormat2 == null) mDateTimeFormat2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssSSSz", Locale.US);
+        if (mDateTimeFormat3 == null) mDateTimeFormat3 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZZZ", Locale.US);
+        if (mDateTimeFormat4 == null) {
+            mDateTimeFormat4 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            mDateTimeFormat4.setTimeZone(TimeZone.getTimeZone("GMT"));
+        }
 	}
 	
 	public JSONObject getJSONObject() {
@@ -131,13 +136,21 @@ public class BetterJSONObject implements Serializable {
 		try {
 			date = mDateTimeFormat.parse(value);
 		} catch (ParseException e) {
-			try {
+            try {
 				date = mDateTimeFormat2.parse(value);
-			} catch (ParseException e1) {
+			} catch (ParseException e2) {
 				try {
-					date =  mDateFormat.parse(value);
-				} catch (ParseException e2) {
-					return null;
+					date = mDateTimeFormat3.parse(value);
+				} catch (ParseException e1) {
+					try {
+						date = mDateTimeFormat4.parse(value);
+					} catch (ParseException e3) {
+						try {
+							date = mDateFormat.parse(value);
+						} catch (ParseException e4) {
+							return null;
+						}
+					}
 				}
 			}
 		}

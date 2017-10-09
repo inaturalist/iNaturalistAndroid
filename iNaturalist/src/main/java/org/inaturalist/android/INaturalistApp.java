@@ -194,7 +194,21 @@ public class INaturalistApp extends MultiDexApplication {
 		catch (Exception e) { }
 
 		return null;
-	}	
+	}
+
+
+    public boolean getSuggestSpecies() {
+        SharedPreferences settings = getPrefs();
+        return settings.getBoolean("pref_suggest_species", true);
+    }
+
+    public void setSuggestSpecies(boolean value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putBoolean("pref_suggest_species", value);
+        settingsEditor.apply();
+    }
 
 
 	public boolean getAutoSync() {
@@ -283,15 +297,26 @@ public class INaturalistApp extends MultiDexApplication {
     	SharedPreferences settings = getPrefs();
         return settings.getString("pref_network_member", null);
 	}
-	   
-	
+
+    /** Set the inat network member */
+    public void setInaturalistNetworkMember(String memberNetwork) {
+        setInaturalistNetworkMember(memberNetwork, true);
+    }
+
 	/** Set the inat network member */
-	public void setInaturalistNetworkMember(String memberNetwork) {
+	public void setInaturalistNetworkMember(String memberNetwork, boolean updateServer) {
     	SharedPreferences settings = getPrefs();
     	Editor settingsEditor = settings.edit();
 
     	settingsEditor.putString("pref_network_member", memberNetwork);
     	settingsEditor.apply();
+
+        if (updateServer) {
+            // Update the server of the network change
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_NETWORK, null, this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.NETWORK_SITE_ID, Integer.valueOf(getStringResourceByName("inat_site_id_" + memberNetwork)));
+            startService(serviceIntent);
+        }
 	}
 
     // Called by isLocationEnabled to notify the rest of the app if location is enabled/disabled
@@ -434,17 +459,31 @@ public class INaturalistApp extends MultiDexApplication {
     		return getResources().getStringArray(resId);
     	}
     } 
-    
+
+    public int getColorResourceByName(String aString) {
+    	int resId = getResourceIdByName(aString, "color");
+    	if (resId == 0) {
+    		return 0;
+    	} else {
+    		return getResources().getColor(resId);
+    	}
+    }
     
     public String getStringResourceByName(String aString) {
-    	String packageName = getPackageName();
-    	int resId = getResources().getIdentifier(aString, "string", packageName);
+    	int resId = getResourceIdByName(aString, "string");
     	if (resId == 0) {
     		return aString;
     	} else {
     		return getString(resId);
     	}
-    } 
+    }
+
+    private int getResourceIdByName(String aString, String type) {
+    	String packageName = getPackageName();
+    	int resId = getResources().getIdentifier(aString, type, packageName);
+        return resId;
+    }
+
     
     public void applyLocaleSettings(){
     	SharedPreferences settings = getPrefs();

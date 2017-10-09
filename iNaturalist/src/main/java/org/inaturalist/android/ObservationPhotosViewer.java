@@ -1,58 +1,43 @@
 package org.inaturalist.android;
 
 import java.io.File;
-import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import uk.co.senab.photoview.HackyViewPager;
-import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 import com.flurry.android.FlurryAgent;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ContentUris;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.webkit.*;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class ObservationPhotosViewer extends AppCompatActivity {
     private static String TAG = "ObservationPhotosViewer";
@@ -67,6 +52,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String CURRENT_PHOTO_INDEX = "current_photo_index";
     public static final String READ_ONLY = "read_only";
+    public static final String IS_TAXON = "is_taxon";
 
     public static final String SET_DEFAULT_PHOTO_INDEX = "set_default_photo_index";
     public static final String DELETE_PHOTO_INDEX = "delete_photo_index";
@@ -77,6 +63,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     private View mDeletePhoto;
     private boolean mReadOnly;
     private int mObservationIdInternal;
+    private boolean mIsTaxon;
 
     @Override
 	protected void onStart()
@@ -102,7 +89,6 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setTitle(R.string.observation_photos);
 
         mApp = (INaturalistApp) getApplicationContext();
         setContentView(R.layout.observation_photos);
@@ -125,6 +111,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 }
 
                 mReadOnly = intent.getBooleanExtra(READ_ONLY, false);
+                mIsTaxon = intent.getBooleanExtra(IS_TAXON, false);
         	} else {
                 mIsNewObservation = savedInstanceState.getBoolean("mIsNewObservation");
         		if (!mIsNewObservation) {
@@ -134,16 +121,24 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     mObservationIdInternal = savedInstanceState.getInt("mObservationIdInternal");
                 }
                 mReadOnly = savedInstanceState.getBoolean("mReadOnly");
+                mIsTaxon = savedInstanceState.getBoolean("mIsTaxon");
         	}
         } catch (JSONException e) {
         	e.printStackTrace();
         }
 
+
+        if (mIsTaxon) {
+            actionBar.setTitle(TaxonUtils.getTaxonName(this, mObservation));
+        } else {
+            actionBar.setTitle(R.string.observation_photos);
+        }
+
         mViewPager = (HackyViewPager) findViewById(R.id.id_pic_view_pager);
 		if ((mObservation != null) && (!mIsNewObservation)) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservation));
+            mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservation, mIsTaxon));
 		} else if (mIsNewObservation) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(mObservationId, mObservationIdInternal));
+            mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal));
             if (!mReadOnly) mDeletePhoto.setVisibility(View.VISIBLE);
             mDeletePhoto.setOnClickListener(new OnClickListener() {
                 @Override
@@ -206,21 +201,40 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
 
         outState.putBoolean("mReadOnly", mReadOnly);
+        outState.putBoolean("mIsTaxon", mIsTaxon);
 
         super.onSaveInstanceState(outState);
     }
  
     
- 	class IdPicsPagerAdapter extends PagerAdapter {
+ 	public static class IdPicsPagerAdapter extends PagerAdapter {
+        public static interface OnZoomListener {
+            void onZoomedIn();
+            void onZoomOriginal();
+        }
  		int mDefaultTaxonIcon;
  		List<String> mImages;
+        Activity mActivity;
+        ViewPager mViewPager;
+        private OnClickListener mClickListener;
+        private OnZoomListener mZoomListener = null;
 
+        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId, OnClickListener listener) {
+            this(activity, viewPager, observationId, _observationId);
+            mClickListener = listener;
+        }
+
+        public void setOnZoomListener(OnZoomListener listener) {
+            mZoomListener = listener;
+        }
 
         // Load offline photos for a new observation
-        public IdPicsPagerAdapter(int observationId, int _observationId) {
+        public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId) {
+            mActivity = activity;
+            mViewPager = viewPager;
             mImages = new ArrayList<String>();
 
-            Cursor imageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+            Cursor imageCursor = activity.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "_observation_id=? or observation_id=?",
                     new String[]{String.valueOf(_observationId), String.valueOf(observationId)},
@@ -242,13 +256,19 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
             } while (imageCursor.moveToNext());
         }
+ 		public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, JSONObject observation, boolean isTaxon, OnClickListener listener) {
+            this(activity, viewPager, observation, isTaxon);
+            mClickListener = listener;
+        }
 
         // Load online photos for an existing observation
- 		public IdPicsPagerAdapter(JSONObject observation) {
+ 		public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, JSONObject observation, boolean isTaxon) {
+            mActivity = activity;
+            mViewPager = viewPager;
  			mImages = new ArrayList<String>();
- 			mDefaultTaxonIcon = observationIcon(observation);
+ 			mDefaultTaxonIcon = TaxonUtils.observationIcon(observation);
 
- 			JSONArray photos = observation.optJSONArray("observation_photos");
+ 			JSONArray photos = observation.optJSONArray(isTaxon ? "taxon_photos" : "observation_photos");
  			if ((photos != null) && (photos.length() > 0)) {
  				// Show the photos
  				for (int i = 0; i < photos.length(); i++) {
@@ -276,12 +296,13 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
  		@Override
  		public View instantiateItem(ViewGroup container, int position) {
- 			View layout = (View) getLayoutInflater().inflate(R.layout.observation_photo, null, false);
+ 			View layout = (View) mActivity.getLayoutInflater().inflate(R.layout.observation_photo, null, false);
  			container.addView(layout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
- 			ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
+ 			final ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
  			final ProgressBar loading = (ProgressBar) layout.findViewById(R.id.id_pic_loading);
 
             String imagePath = mImages.get(position);
+            PhotoViewAttacher attacher = null;
 
             if (FileUtils.isLocal(imagePath)) {
                 // Offline photo
@@ -290,15 +311,16 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     int newHeight = mViewPager.getMeasuredHeight();
                     int newWidth = mViewPager.getMeasuredHeight();
 
-                    bitmapImage = ImageUtils.decodeSampledBitmapFromUri(getContentResolver(),
+                    bitmapImage = ImageUtils.decodeSampledBitmapFromUri(mActivity.getContentResolver(),
                             Uri.fromFile(new File(imagePath)), newWidth, newHeight);
 
                     // Scale down the image if it's too big for the GL renderer
-                    bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, bitmapImage);
+                    bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(mActivity, bitmapImage);
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, imagePath);
                     imageView.setImageBitmap(bitmapImage);
-                    final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
+                    attacher = new PhotoViewAttacher(imageView);
                     attacher.update();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -312,27 +334,58 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 } else {
                     loading.setVisibility(View.VISIBLE);
                     imageView.setVisibility(View.INVISIBLE);
-                    final PhotoViewAttacher attacher = new PhotoViewAttacher(imageView);
+                    attacher = new PhotoViewAttacher(imageView);
+
                     // Show a photo
+
+                    final PhotoViewAttacher finalAttacher = attacher;
                     UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
                         @Override
                         public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                             loading.setVisibility(View.GONE);
                             imageView.setVisibility(View.VISIBLE);
-                            attacher.update();
+                            finalAttacher.update();
                         }
 
                         @Override
                         public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                             // Scale down the image if it's too big for the GL renderer
-                            loadedBitmap = ImageUtils.scaleDownBitmapIfNeeded(ObservationPhotosViewer.this, loadedBitmap);
+                            loadedBitmap = ImageUtils.scaleDownBitmapIfNeeded(mActivity, loadedBitmap);
                             return loadedBitmap;
                         }
                     });
                 }
             }
 
- 			return layout;
+
+            if ((mClickListener != null) && (attacher != null)) {
+                attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+                    @Override
+                    public void onPhotoTap(View view, float x, float y) {
+                        mClickListener.onClick(view);
+                    }
+                });
+            }
+            if (attacher != null) {
+                final PhotoViewAttacher finalAttacher1 = attacher;
+                attacher.setOnMatrixChangeListener(new PhotoViewAttacher.OnMatrixChangedListener() {
+                    @Override
+                    public void onMatrixChanged(RectF rect) {
+                        float scale = finalAttacher1.getScale();
+                        if (mZoomListener != null) {
+                            if (scale > 1.0f) {
+                                mZoomListener.onZoomedIn();
+                            } else {
+                                mZoomListener.onZoomOriginal();
+                            }
+                        }
+                    }
+                });
+            }
+
+
+
+            return layout;
  		}
 
  		@Override
@@ -345,64 +398,5 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  			return view == object;
  		}
 
-
-
  	}	
-
- 	public static int observationIcon(JSONObject o) {
- 		if (o == null) return R.drawable.ic_taxa_unknown;
- 		String iconicTaxonName = null;
-
-        if (o.has("iconic_taxon_name") && !o.isNull("iconic_taxon_name")) {
-            try {
-                iconicTaxonName = o.getString("iconic_taxon_name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return R.drawable.ic_taxa_unknown;
-            }
-        } else if (o.has("taxon")) {
-            try {
-                iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return R.drawable.ic_taxa_unknown;
-            }
-        }
-
- 		if (iconicTaxonName == null) {
- 			return R.drawable.ic_taxa_unknown;
- 		} else if (iconicTaxonName.equals("Animalia")) {
- 			return R.drawable.animalia_large;
- 		} else if (iconicTaxonName.equals("Plantae")) {
- 			return R.drawable.plantae_large;
- 		} else if (iconicTaxonName.equals("Chromista")) {
- 			return R.drawable.chromista_large;
- 		} else if (iconicTaxonName.equals("Fungi")) {
- 			return R.drawable.fungi_large;
- 		} else if (iconicTaxonName.equals("Protozoa")) {
- 			return R.drawable.protozoa_large;
- 		} else if (iconicTaxonName.equals("Actinopterygii")) {
- 			return R.drawable.actinopterygii_large;
- 		} else if (iconicTaxonName.equals("Amphibia")) {
- 			return R.drawable.amphibia_large;
- 		} else if (iconicTaxonName.equals("Reptilia")) {
- 			return R.drawable.reptilia_large;
- 		} else if (iconicTaxonName.equals("Aves")) {
- 			return R.drawable.aves_large;
- 		} else if (iconicTaxonName.equals("Mammalia")) {
- 			return R.drawable.mammalia_large;
- 		} else if (iconicTaxonName.equals("Mollusca")) {
- 			return R.drawable.mollusca_large;
- 		} else if (iconicTaxonName.equals("Insecta")) {
- 			return R.drawable.insecta_large;
- 		} else if (iconicTaxonName.equals("Arachnida")) {
- 			return R.drawable.arachnida_large;
- 		} else {
- 			return R.drawable.ic_taxa_unknown;
- 		}
-
-
- 	}
-
-
 }

@@ -42,11 +42,11 @@
     <string name="inat_country_coordinates_naturalistacolombia">-4.23048,-81.728111,13.39029,-66.869827</string> <!-- Colombia -->
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
-    <string name="inat_host_inaturalist">www.inaturalist.org</string>
-    <string name="inat_host_naturalista">www.naturalista.mx</string>
-    <string name="inat_host_naturewatchnz">naturewatch.org.nz</string>
-    <string name="inat_host_inaturalistcanada">www.inaturalist.ca</string>
-    <string name="inat_host_naturalistacolombia">colombia.inaturalist.org</string>
+    <string name="inat_host_inaturalist">https://www.inaturalist.org</string>
+    <string name="inat_host_naturalista">http://www.naturalista.mx</string>
+    <string name="inat_host_naturewatchnz">http://naturewatch.org.nz</string>
+    <string name="inat_host_inaturalistcanada">http://www.inaturalist.ca</string>
+    <string name="inat_host_naturalistacolombia">http://colombia.inaturalist.org</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>

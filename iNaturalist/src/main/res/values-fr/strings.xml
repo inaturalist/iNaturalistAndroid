@@ -44,6 +44,8 @@
   <string name="error_couldnt_connect_to_server">Impossible de se connecter au serveur.</string>
   <string name="please_sign_in">Veuillez vous connecter</string>
   <string name="please_sign_in_description">Veuillez vous connecter à votre compte iNaturalist ou vous inscrire.</string>
+  <string name="please_enable_location_services">Veuillez activer votre service de localisation afin de pouvoir vous localiser...</string>
+  <string name="go_to_settings">Accéder aux paramètres</string>
   <string name="photo_not_specified">Photo non précisée</string>
   <string name="set_date">Définir la date</string>
   <string name="set_time">Définir l\'heure</string>
@@ -81,7 +83,7 @@
   <string name="save">Enregistrer</string>
   <string name="no_observations_yet">Aucune observation n\'est disponible à l\'heure actuelle.</string>
   <string name="sign_in_to_inat">Connexion à votre compte iNaturalist</string>
-  <string name="sign_in">Connexion</string>
+  <string name="sign_in">Se connecter</string>
   <string name="or">ou</string>
   <string name="create_new_account">Créer un nouveau compte</string>
   <string name="signed_in_as_plain">Connecté en tant que</string>
@@ -97,20 +99,20 @@
   <string name="com_facebook_loginview_log_out_button">Déconnexion</string>
   <string name="com_facebook_loginview_log_in_button">Connexion</string>
   <string name="com_facebook_loginview_logged_in_as">Connecté en tant que %1$s</string>
-  <string name="com_facebook_loginview_logged_in_using_facebook">Connecté à l\'aide de Facebook</string>
+  <string name="com_facebook_loginview_logged_in_using_facebook">Se connecter à l\'aide de Facebook</string>
   <string name="com_facebook_loginview_log_out_action">Déconnexion</string>
   <string name="com_facebook_loginview_cancel_action">Annuler</string>
   <string name="com_facebook_logo_content_description">Logo de Facebook</string>
   <string name="com_facebook_usersettingsfragment_log_in_button">Connexion&#8230;</string>
   <string name="com_facebook_usersettingsfragment_logged_in">Connecté</string>
-  <string name="com_facebook_usersettingsfragment_not_logged_in">Non connecté</string>
+  <string name="com_facebook_usersettingsfragment_not_logged_in">Vous n\'êtes pas connecté</string>
   <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d ont été ici</string>
   <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
   <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d ont été ici</string>
-  <string name="com_facebook_picker_done_button_text">Terminé</string>
+  <string name="com_facebook_picker_done_button_text">Effectué</string>
   <string name="com_facebook_choose_friends">Choisir des amis</string>
   <string name="com_facebook_nearby">À proximité</string>
-  <string name="com_facebook_loading">Chargement...</string>
+  <string name="com_facebook_loading">Chargement en cours...</string>
   <string name="com_facebook_internet_permission_error_title">Erreur AndroidManifest</string>
   <string name="com_facebook_internet_permission_error_message">La connexion à WebView nécessite une permission INTERNET</string>
   <string name="com_facebook_requesterror_web_login">Votre compte Facebook est verrouillé. Veuillez vous connecter sur www.facebook.com pour continuer.</string>
@@ -199,12 +201,34 @@
   <string name="release_to_refresh">Relacher pour actualiser...</string>
   <string name="refreshing">Actualisation...</string>
   <string name="sync_x_observations">Synchroniser %1$d observations</string>
+  <string name="sync_1_observation">Synchroniser 1 observation</string>
   <string name="sync_observations">Synchroniser les observations</string>
-
+  <string name="lets_get_started">Allons-y !</string>
+  <string name="view_nearby_observations">Observations à proximité</string>
+  <string name="skip_for_now">Ignorer pour l\'instant</string>
+  <string-array name="tutorial_titles">
+    <item></item>
+    <item>Observer</item>
+    <item>Partager</item>
+    <item>Apprendre</item>
+    <item>Contribuer</item>
+  </string-array>
+  <string-array name="tutorial_descriptions">
+    <item>Explorez et connectez vous avec la nature</item>
+    <item>Sortez dehors! Trouvez quelque chose de sauvage et prenez une photo claire.</item>
+    <item>Partagez votre point de vue avec la communauté iNaturalist.</item>
+    <item>Revenez jeter un coup d’œil plus tard pour voir l’activité de la communauté au sujet de votre observation!</item>
+    <item><![CDATA[Observations de <b>niveau recherche</b> sont partagées avec les scientifiques qui travaillent à mieux comprendre et protéger la nature.]]></item>
+  </string-array>
   <string-array name="geoprivacy_items">
     <item>Ouvrir</item>
     <item>Obscurci</item>
     <item>Privé</item>
+  </string-array>
+  <string-array name="geoprivacy_values">
+    <item>ouvrir</item>
+    <item>obscurci</item>
+    <item>privé</item>
   </string-array>
   <string name="alert_sign_out">Désirez-vous vraiment vous déconnecter? Toutes vos observations sur cet appareil seront supprimées. Les observations que vous avez téléversées sur iNaturalist ne seront pas touchées.</string>
   <string name="alert_unsupported_media_type">Nous sommes désolés, mais le téléversement de photos à partir de Google Drive, Dropbox, etc., n\'est pas pris en charge à l\'heure actuelle.\nVeuillez télécharger les photos sur votre appareil et essayer de nouveau.</string>
@@ -236,7 +260,7 @@
   <string name="no_person_found">Aucune de ces personnes n\'a été trouvée</string>
   <string name="which_person">Quelle personne?</string>
   <string name="searching_for_places">Recherche de l\'emplacement...</string>
-  <string name="no_place_found">Aucun emplacement recherché n\'a été trouvé</string>
+  <string name="no_place_found">Impossible de trouver cet emplacement</string>
   <string name="which_place">Quel emplacement?</string>
   <string name="searching_for_projects">Recherche de projets...</string>
   <string name="no_project_found">Aucun de ces projets n\'a été trouvé</string>
@@ -259,18 +283,257 @@
   <string name="no_observations_found">Aucune observation trouvée</string>
   <string name="id_please_tag">ID SVP</string>
   <string name="research_tag">Recherche</string>
-
-
+  <string name="sync_failed">Echec de la synchronisation!</string>
+  <string name="observation_sync_failed">Synchronisation des observations terminée!</string>
+  <string name="not_all_observations_were_synced">Toutes les observations n\'ont pas été synchronisées.</string>
+  <string name="photo_sync_failed">Échec de synchronisation des photos !</string>
+  <string name="not_all_photos_were_synced">Toutes les photos n\'ont pas été synchronisées.</string>
+  <string name="license_none">Aucun, tous droits réservés</string>
+  <string name="sources_and_attribution">Sources et Attribution</string>
+  <string name="photos"><![CDATA[<b>Photos :</b> %1$s]]></string>
+  <string name="text"><![CDATA[<b>Texte :</b> %1$s]]></string>
   <!-- The dialog content asking the user to switch to another iNat network -->
-  <string name="alert_message_use_inaturalist">Le principal réseau iNaturalist. En cliquant sur « oui » mettra votre application dans le cadre du réseau de iNaturalist mondiale.</string>
-  <string name="alert_message_use_naturalista">CONABIO Naturalista est membre du réseau iNaturalist. Cliquez sur « oui » pour rendre votre expérience plus locale et partager les données en conséquence.</string>
-  <string name="alert_message_use_naturewatchnz">NatureWatch est membre du réseau iNaturalist. Cliquez sur « oui » pour rendre votre expérience plus locale et partager les données en conséquence.</string>
-  <string name="alert_message_use_inaturalistcanada">iNaturalist Canada est membre du réseau iNaturalist. Cliquez sur « oui » pour rendre votre expérience plus locale et partager les données en conséquence.</string>
-
+  <string name="alert_message_use_inaturalist">Le principal réseau iNaturalist. En cliquant sur « oui » mettra votre application dans le cadre du réseau de iNaturalist mondiale.
+</string>
+  <string name="alert_message_use_naturalista">iNaturalist Canada est un membre du réseau iNaturalist au Canada. En cliquant sur OK vous localiserez votre expérience et partagerez ainsi vos données?</string>
+  <string name="alert_message_use_naturewatchnz">NatureWatch NZ is a member of the iNaturalist Network in New Zealand. Would you like to use this network to localize your experience and share data accordingly?</string>
+  <string name="alert_message_use_inaturalistcanada">iNaturalist Canada est un membre du réseau iNaturalist au Canada. En cliquant sur OK vous localiserez votre expérience et partagerez ainsi vos données?</string>
+  <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Would you like to use this network to localize your experience and share data accordingly?</string>
   <!-- The text shown in a dialog box when the user is about to sign up -->
-  <string name="inat_sign_up_inaturalist">You\'re about to visit iNaturalist.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
-  <string name="inat_sign_up_naturalista">You\'re about to visit NaturaLista, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
-  <string name="inat_sign_up_naturewatchnz">You\'re about to visit NatureWatchNz.org, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
-  <string name="inat_sign_up_inaturalistcanada">You\'re about to visit iNaturalist.ca, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
-
+  <string name="inat_sign_up_inaturalist">Vous êtes sur le point de visiter iNaturalist.org, où vous pourrez créer un compte. Dès que vous aurez confirmé la création de votre nouveau compte en cliquant sur le lien figurant dans le courriel de confirmation, vous pourrez revenir et inscrire votre identifiant et votre mot de passe.</string>
+  <string name="inat_sign_up_naturalista">Vous êtes sur le point de visiter iNaturalist. org, où vous pourrez créer un compte. Dès que vous aurez confirmé la création de votre nouveau compte en cliquant sur le lien figurant dans le courriel de confirmation, vous pourrez revenir et inscrire votre identifiant et votre mot de passe.</string>
+  <string name="inat_sign_up_naturewatchnz">Vous êtes sur le point de visiter iNaturalist.org, où vous pourrez créer un compte. Dès que vous aurez confirmé la création de votre nouveau compte en cliquant sur le lien figurant dans le courriel de confirmation, vous pourrez revenir et inscrire votre identifiant et votre mot de passe.</string>
+  <string name="inat_sign_up_inaturalistcanada">Vous êtes sur le point de visiter iNaturalist.ca, où vous pourrez créer un compte. Dès que vous aurez confirmé la création de votre nouveau compte en cliquant sur le lien figurant dans le courriel de confirmation, vous pourrez revenir et inscrire votre identifiant et votre mot de passe.</string>
+  <string name="inat_sign_up_naturalistacolombia">You\'re about to visit NaturaLista Colombia, where you can sign up for a new account. Once you\'ve confirmed your new account by clicking the link in the confirmation email you\'ll receive, you can come back here to enter your username and password.</string>
+  <string name="description">Description</string>
+  <string name="editor">Éditeur</string>
+  <string name="license">Licence</string>
+  <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
+  <string name="download_not_available">Téléchargement non disponible</string>
+  <string name="guide_editor_must_enable_this_feature">L\'éditeur du guide doit activer cette fonctionnalité.</string>
+  <string name="are_you_sure">Êtes-vous sûr?</string>
+  <string name="download_guide_alert">%1$s de données seront téléchargées pour vous permettre d\'utiliser ce guide même lorsque vous n\'avez pas accès à Internet.</string>
+  <string name="download">Télécharger</string>
+  <string name="failed_to_download_guide">Échec du téléchargement du guide</string>
+  <string name="internet_connection_seems_to_be_offline">La connexion Internet semble être hors ligne.</string>
+  <string name="downloading">Téléchargement en cours...</string>
+  <string name="extracting">Extraction...</string>
+  <string name="downloaded">Téléchargé</string>
+  <string name="delete_download">Supprimer le téléchargement</string>
+  <string name="re_download">Télécharger de nouveau</string>
+  <string name="error">Erreur</string>
+  <string name="could_not_retrieve_guide">Impossible de récupérer les détails du guide - probablement dû à une erreur de réseau.</string>
+  <string name="select_source">Sélectionnez la source</string>
+  <string name="inat_support_email_subject">Aider iNaturalist (version %1$s - %2$s ; id utilisateur - %3$s)</string>
+  <string name="send_email">Envoyer un e-mail...</string>
+  <string name="login_with">Connexion avec</string>
+  <string name="facebook">Facebook</string>
+  <string name="gplus">Google +</string>
+  <string name="email">E-mail</string>
+  <string name="sign_up_with">S\'inscrire avec</string>
+  <string name="skip">Ignorer</string>
+  <string name="already_have_account">Vous avez déjà un compte?</string>
+  <string name="log_in">Se connecter</string>
+  <string name="sign_up">Inscrivez-vous</string>
+  <string name="min_6_chars">Min. 6 caractères</string>
+  <string name="use_my_license"><![CDATA[Oui, accordez une licence à mon contenu pour que les scientifiques puissent l\'utiliser. <b>Apprenez-en davantage</b>]]></string>
+  <string name="content_licensing">Contenu de la licence</string>
+  <string name="content_licensing_description">Cochez cette case si vous voulez appliquer une licence d\'attribution non commerciale Creative Commons à vos photos. Vous pouvez choisir une licence différente ou supprimer la licence plus tard, mais il s\'agit de la meilleure licence pour échanger avec les chercheurs.</string>
+  <string name="username_or_email">Nom d\'utilisateur ou e-mail</string>
+  <string name="forgot">Mot de passe oublié?</string>
+  <string name="or_login_with">Ou connectez-vous avec:</string>
+  <string name="quantity">Qté</string>
+  <string name="recommended_next_step">Étape suivante recommandée</string>
+  <string name="registering">Inscription...</string>
+  <string name="could_not_register_user">L\'inscription n\'a pas pu s\'effectuer</string>
+  <string name="login_signup">Connexion / Inscription</string>
+  <string name="please_sign_in_via_settings_for_guides">Vous devez être connecté pour voir vos guides.</string>
+  <string name="please_sign_in_for_updates">Vous devez être connecté pour voir vos actualisations.</string>
+  <string name="by_using_inat_terms"><![CDATA[En utilisant iNaturalist vous acceptez les <b><a href="http://www.inaturalist.org/pages/terms"> conditions d’utilisation</a></b> et <b><a href="http://www.inaturalist.org/pages/privacy"> la politique de confidentialité</a></b>]]></string>
+  <string name="activity">Activité</string>
+  <string name="observation_count">%1$s observations</string>
+  <string name="observation_count_single">%1$d observation</string>
+  <string name="camera">Prendre une photo</string>
+  <string name="upload_photo">Choisir une image</string>
+  <string name="menu_text">Ignorer la photo</string>
+  <string name="first">1er</string>
+  <string name="make_first">Passer 1er</string>
+  <string name="help_id_this_species">Aidez-moi à identifier cette espèce</string>
+  <string name="notes">Notes</string>
+  <string name="location_is">L’emplacement est</string>
+  <string name="is_captive">Est en captivité ou en culture</string>
+  <string name="location_visibility">Visibilité de l’emplacement</string>
+  <string name="set_location">Définir l\'emplacement</string>
+  <string name="coordinates_lat">Lat:</string>
+  <string name="coordinates_lon">Lon:</string>
+  <string name="coordinates_acc">Acc. </string>
+  <string name="required">* Obligatoire</string>
+  <string name="downloading_observations">Téléchargement des observations...</string>
+  <string name="no_thanks">Non Merci</string>
+  <string name="turn_on">Activer</string>
+  <string name="introducing_auto_sync">Lancement de l\'Auto-Sync!</string>
+  <string name="turn_on_auto_sync">Activez l\'Auto-Sync dans paramètres et vos observations seront automatiquement téléchargées sur iNaturalist.</string>
+  <string name="automatic_upload">Téléchargement automatique (Auto Sync)</string>
+  <string name="waiting_to_upload">En attente du chargement...</string>
+  <string name="uploading">En cours...</string>
+  <string name="failed_to_add_to_project">Impossible d’ajouter au projet \'%1$s\': %2$s</string>
+  <string name="needs_your_attention">Attention...</string>
+  <string name="observation">Observation</string>
+  <string name="share">Partager</string>
+  <string name="unable_to_acquire_location">Impossible de localiser l\'emplacement</string>
+  <string name="casual_grade">Classement occasionnel</string>
+  <string name="needs_id">Identification nécessaire</string>
+  <string name="research_grade">Recherche d\'évaluation</string>
+  <string name="data_quality">Qualité des données</string>
+  <string name="casual_grade_add_location"><![CDATA[ Ajouter un <b>emplacement</b> pour passer cette observation au statut "Besoin d'identifier''. ]]></string>
+  <string name="casual_grade_add_date"><![CDATA[ Ajouter une <b>date</b> pour passer cette observation au statut "Besoin d'identifier''. ]]></string>
+  <string name="casual_grade_add_photo"><![CDATA[ Ajouter une <b>photo</b> pour passer cette observation au statut "Besoin d'identifier''. ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ L\'observation a un classement occasionnel car elle est <b>en captivité/cultivé</b>. ]]></string>
+  <string name="needs_id_more_ids"><![CDATA[ L\'observation doit avoir <b>d\'autres identifications</b>de la part de la communauté pour passer au statut \'Classement Recherche\'. ]]></string>
+  <string name="included_in_projects">Inclus dans %1$d projets</string>
+  <string name="included_in_projects_singular">Inclus dans %1$d projet</string>
+  <string name="geoprivacy_explanation"><![CDATA[Le Geoprivacy est un paramètre que vous pouvez utiliser dans vos observations et qui contrôle l\'affichage des coordonnées spaciales (latitude et longitude). En voici les options : ]]></string>
+  <string name="agree2">D\'accord</string>
+  <string name="id_title">ID • %2$s de %1$s</string>
+  <string name="comment_title">%1$s • %2$s</string>
+  <string name="delete">Supprimer</string>
+  <string name="delete_id">Supprimer l’Identification</string>
+  <string name="delete_comment">Supprimer le commentaire</string>
+  <string name="delete_id_message">Êtes-vous sûr de vouloir supprimer cette identification ?</string>
+  <string name="delete_comment_message">Êtes-vous sûr de vouloir supprimer ce commentaire?</string>
+  <string name="comment">Ecrire un Commentaire</string>
+  <string name="suggest_id">Suggérer un ID</string>
+  <string name="update_comment">Actualiser le commentaire</string>
+  <string name="fave_this_observation">Marquer comme favorite</string>
+  <string name="faved">Favorite</string>
+  <string name="be_the_first_to_fave_this_obs">Soyez le premier à marquer cette observation comme favorite...</string>
+  <string name="leave_a_comment">Laisser un commentaire ou proposer une identification...</string>
+  <string name="location_coords">Latitude : %1$s Longitude : %2$s Précision. %3$s</string>
+  <string name="location_coords_no_acc">Latitude : %1$s Longitude : %2$s</string>
+  <string name="location">Emplacement</string>
+  <string name="login_in_to_add_comments_ids">Connectez-vous ou inscrivez-vous pour laisser un commentaire ou suggérer une identification...</string>
+  <string name="login_in_to_fav">Connectez-vous ou inscrivez-vous pour voir ou marquer une observation favorite...</string>
+  <string name="sync_obs_to_see_favs">Synchroniser cette observation afin de voir les favorites ou la marquer comme favorite...</string>
+  <string name="sync_obs_to_add_comments_ids">Synchroniser cette observation afin de laisser un commentaire ou de suggérer une identification...</string>
+  <string name="no_photo">Aucune photo</string>
+  <string name="about_this_species">À propos de cette espèce</string>
+  <string name="view_on_wikipedia">Article de wikipedia</string>
+  <string name="photo"><![CDATA[Photo : <b><a href="%1$s">%2$s</a></b>]]></string>
+  <string name="finding_current_location">Détection de la position actuelle...</string>
+  <string name="flag_as_captive">Marquer comme captif/cultivé</string>
+  <string name="overflow_menu">Menu de dépassement</string>
+  <string name="skip2">Suivant</string>
+  <string name="observation_flagged_as_captive">L\'observation a été signalée comme captif/cultivé</string>
+  <string name="are_you_sure_you_want_to_flag_as_captive">Êtes-vous sûr de que vouloir signaler cette observation comme captif/cultivé ? (En appuyant sur Oui l\'onglet de visualisation de l\'observation se fermera)</string>
+  <string name="do_you_agree_to_the_following">Êtes-vous d’accord avec ce qui suit ?</string>
+  <string name="terms">Termes</string>
+  <string name="observation_rules">Règles au sujet des observations</string>
+  <string name="couldnt_load_project_details">Les détails du projet n\'ont pu être téléchargés: %1$s</string>
+  <string name="project_observations">Observations</string>
+  <string name="project_species">Espèces</string>
+  <string name="project_people">Personnes</string>
+  <string name="project_identifiers">Identifiants</string>
+  <string name="no_species_found">Aucune espèce trouvée</string>
+  <string name="no_people_found">Aucune personne trouvée</string>
+  <string name="no_identifiers_found">Aucun identifiant trouvé</string>
+  <string name="rank">Classement</string>
+  <string name="identifications">Identification</string>
+  <string name="no_news_found">Aucun nouvel élément trouvé</string>
+  <string name="news">Actualités</string>
+  <string name="article">Article</string>
+  <string name="couldnt_load_project_news">L\'actualisation du projet n\'a pu être téléchargée: %1$s</string>
+  <string name="article_by">Article rédigé par</string>
+  <string name="feed">Flux</string>
+  <string name="no_identifications_found">Aucune identification trouvée</string>
+  <string name="couldnt_load_user_details">Les informations de l’utilisateur n\'ont pu être téléchargés: %1$s</string>
+  <string name="more_bio"><![CDATA[<b><font color="#ffffff">Plus »</font></b>]]></string>
+  <string name="no_location">Aucun emplacement</string>
+  <string name="add_to_projects">Ajouter au(x) projet(s)</string>
+  <string name="are_you_sure_you_want_to_save_obs_without_coords">Êtes-vous sûr de que vouloir enregistrer l’observation sans toutes les coordonnées ?</string>
+  <string name="users_identification">a identifié(e)</string>
+  <string name="syncing_canceled">Synchronisation annulée</string>
+  <string name="edit_profile">Modifier le profil</string>
+  <string name="remove_photo">Supprimer la photo</string>
+  <string name="name">Nom</string>
+  <string name="tell_us_about_yourself">Parlez nous de vous...</string>
+  <string name="view_profile">Afficher le profil</string>
+  <string name="are_you_sure_you_want_to_remove_photo">Êtes-vous sûr de vouloir supprimer votre photo ?</string>
+  <string name="updating_profile">Mise à jour du profil...</string>
+  <string name="there_was_a_problem_updating_profile">Un problème est survenu durant la mise à jour de votre profil !</string>
+  <string name="there_was_a_problem_updating_profile_params">Un problème est survenu durant la mise à jour de votre profil </string>
+  <string name="logged_in_as_html"><![CDATA[Connecté en tant que <b>%1$s</b>]]></string>
+  <string name="log_out">Se déconnecter</string>
+  <string name="not_logged_in">Vous n\'êtes pas connecté(e)</string>
+  <string name="auto_upload_description">Téléchargement automatique de nouvelles observations et modifications aux observations</string>
+  <string name="language">Langage</string>
+  <string name="version">Version</string>
+  <string name="inat_network">Réseau iNaturalist</string>
+  <string name="inat_network_description">Le réseau iNaturalist est un cadre pour localiser la communauté iNaturalist sur les échelles nationales. Une telle orientation nationale peut aider à rendre la nature plus accessible aux citoyens.</string>
+  <string name="more_info">Plus d\'Infos</string>
+  <string name="select_network">Sélectionner un réseau</string>
+  <string name="help">Aide</string>
+  <string name="stop">Arrêter</string>
+  <string name="resume">Continuer</string>
+  <string name="cleaning_up">Nettoyage en cours...</string>
+  <string name="syncing_observation_fields">Synchronisation des champs d’observation...</string>
+  <string name="syncing_paused">En pause</string>
+  <string name="upload">Télécharger</string>
+  <string name="search_observations">Rechercher des observations...</string>
+  <string name="withdraw">Retirer</string>
+  <string name="update_id_description">Mise à jour la description d’Identification</string>
+  <string name="your_identification">Votre identification</string>
+  <string name="onboarding_species_name">Nommez ce que vous avez vu, mais c’est correct si vous ne pouvez pas. D’autres peuvent vous aider à l’identifier !</string>
+  <string name="got_it">J\'ai compris!</string>
+  <string name="upload_complete">Téléchargement complet !</string>
+  <string name="onboarding_upload_description">Revenez jeter un coup d’œil bientôt pour voir l’activité de la communauté au sujet de votre observation</string>
+  <string name="importing_photos">Téléchargement de photos...</string>
+  <string name="multi_select_description">Importez plusieurs photos en appuyant plus longtemps sur une seule photo</string>
+  <string name="preparing_photo">Preparation de photo...</string>
+  <string name="recommended_for_you">Recommandé pour vous</string>
+  <string name="missions">Missions</string>
+  <string name="view_all">Afficher tout</string>
+  <string name="browse_by_category">Recherche par catégorie</string>
+  <string name="couldnt_load_recommended_missions">Impossible de charger des missions recommandées</string>
+  <string name="plants">Plantes</string>
+  <string name="mammals">Mammifères</string>
+  <string name="insects">Insectes</string>
+  <string name="reptiles">Reptiles</string>
+  <string name="fish">Poissons</string>
+  <string name="mollusks">Mollusques</string>
+  <string name="amphibians">Amphibiens</string>
+  <string name="fungi">Champignons</string>
+  <string name="birds">Oiseaux</string>
+  <string name="arachnids">Arachnides</string>
+  <string name="no_connectivity">Pas de connexion</string>
+  <string name="no_recommended_missions">On dirait qu’il n’y a aucune recommandation dans cette endroit. Essayez de déplacer vers un nouvel emplacement.</string>
+  <string name="what_to_look_for">Que chercher</string>
+  <string name="have_been_seen_here">Ont été vus ici</string>
+  <string name="observe">Observer</string>
+  <string name="nearby_missions">Missions à proximité</string>
+  <string name="updating_photos">Mise à jour des photos...</string>
+  <string name="updating_x_photos">Mise à jour de %1$d de %2$d des photos existantes...</string>
+  <string name="searching_your_area">Recherchons votre région...</string>
+  <string name="expanding_your_search_area">Étendrons votre zone de recherche...</string>
+  <string name="introducing_missions">Voici les Missions !</string>
+  <string name="missions_onboarding_description">Les missions sont des recommandations en temps réel de ce que vous pouvez chercher autour de vous. De cette façon vous pouvez découvrir de nouvelles espèces! (Nécessite une connectivité)</string>
+  <string name="ok_got_it">OK, j\'ai compris !</string>
+  <string name="new_badge">Nouveau</string>
+  <string name="could_not_download_observations">Pas pu télécharger les observations les plus récentes - problèmes de connexion. Réessayez plus tard.</string>
+  <string name="sync_failed_connection_problems">Synchronisation a échoué en raison de problèmes de connexion. Veuillez réessayer plus tard.</string>
+  <string name="no_news_yet">Pas encore de nouvelles. Restez à l’écoute !</string>
+  <string name="my_content">Mon contenu</string>
+  <string name="following">Following</string>
+  <string name="no_updates_yet">No updates yet. Stay tuned!</string>
+  <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
+  <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
+  <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
+  <string name="new_activities">%1s new</string>
+  <string name="no_results_found">No Results Found...</string>
+  <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
+  <string name="deleting_observations">Deleting Observations...</string>
+  <string name="preparing">Preparing...</string>
+  <string name="add_edit_remark">Add/Edit Remark</string>
+  <string name="restore">Restore</string>
 </resources>

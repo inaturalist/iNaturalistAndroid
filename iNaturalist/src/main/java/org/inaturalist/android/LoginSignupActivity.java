@@ -318,7 +318,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
                     Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse("http://" + inatHost + "/forgot_password.mobile"));
+                    i.setData(Uri.parse(inatHost + "/forgot_password.mobile"));
                     startActivity(i);
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_FORGOT_PASSWORD);

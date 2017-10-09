@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="221"
-    android:versionName="1.6.1" >
-
-    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="21"
-        />
+    android:versionCode="244"
+    android:versionName="1.7.9" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,7 +10,6 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
     <uses-feature android:name="android.hardware.location.gps" />
@@ -31,6 +27,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:name=".INaturalistApp" >
         
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" /> 
@@ -179,7 +176,6 @@
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:label="@string/app_name" />
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
@@ -287,6 +283,26 @@
             android:configChanges="orientation"
             android:label=""
             android:name=".MissionsOnboardingActivity">
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".TaxonActivity">
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".TaxonMapActivity">
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".TaxonSuggestionsActivity">
+        </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".CompareSuggestionActivity">
         </activity>
 
         <service android:name=".INaturalistService" />

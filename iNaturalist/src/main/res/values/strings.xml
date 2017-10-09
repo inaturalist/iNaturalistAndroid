@@ -212,13 +212,6 @@
     <string name="view_nearby_observations">View Nearby Observations</string>
     <string name="skip_for_now">Skip for Now</string>
 
-    <string-array name="tutorial_images">
-	    <item>slide_logo</item>
-	    <item>slide_observe</item>
-	    <item>slide_share</item>
-	    <item>slide_learn</item>
-	    <item>slide_contribute</item>
-    </string-array>
     <string-array name="tutorial_titles">
 	    <item></item>
 	    <item>Observe</item>
@@ -239,12 +232,7 @@
 	    <item>Obscured</item>
 	    <item>Private</item>
     </string-array> 
-    <string-array name="geoprivacy_values">
-	    <item>open</item>
-	    <item>obscured</item>
-	    <item>private</item>
-    </string-array> 
-   
+
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
 
@@ -397,7 +385,7 @@
     <string name="observation_count_single">%1$d observation</string>
     <string name="camera">Take Photo</string>
     <string name="upload_photo">Choose Image</string>
-    <string name="menu_text">Skip Photo</string>
+    <string name="menu_text">No Photo</string>
     <string name="first">1st</string>
     <string name="make_first">Make 1st</string>
     <string name="help_id_this_species">Help me identify this</string>
@@ -461,9 +449,9 @@
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
     <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
-    <string name="overflow_menu">Overflow Menu</string>
     <string name="skip2">Skip</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
@@ -509,18 +497,6 @@
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
     <string name="language">Language</string>
     <string name="version">Version</string>
-
-    <string-array name="language_values">
-	    <item>default</item>
-	    <item>eu</item>
-        <item>gl</item>
-    </string-array>
-    <string-array name="language_names">
-	    <item>@string/use_device_language_settings</item>
-	    <item>@string/locale_eu</item>
-        <item>@string/locale_gl</item>
-    </string-array>
-
     <string name="inat_network">iNaturalist Network</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community on national scales. Such national focus can help make nature more accessible to people of different backgrounds.</string>
     <string name="more_info">More Info</string>
@@ -590,6 +566,38 @@
     <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
     <string name="restore">Restore</string>
+    <string name="compare">Compare</string>
+    <string name="select">Select</string>
+    <string name="source_wikipedia">(Source: Wikipedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Of least concern</string>
+    <string name="conservation_status_near_threatened">Near threatened</string>
+    <string name="conservation_status_vulnerable">Vulnerable</string>
+    <string name="conservation_status_endangered">Endangered</string>
+    <string name="conservation_status_critically_endangered">Critically endangered</string>
+    <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
+    <string name="conservation_status_extinct">Extinct</string>
+    <string name="map_of_observations">Map of Observations</string>
+    <string name="taxonomy">Taxonomy</string>
+    <string name="about_this_section">About this Section</string>
+    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
+    <string name="view_suggestions">View Suggestions</string>
+    <string name="species_search">Species Search</string>
+    <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
+    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
+    <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
+    <string name="what_did_you_see">What did you see?</string>
+    <string name="suggest_species">Suggest Species</string>
+    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="your_observation">Your Observation</string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
+    <string name="taxon_name_with_scientific_name"><![CDATA[<b>%1$s</b> (%2$s)]]></string>
+    <string name="visually_similar">Visually Similar</string>
+    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
+    <string name="seen_nearby">Seen Nearby</string>
+    <string name="enlarge">Enlarge</string>
+    <string name="view_children">View Children</string>
+    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
+    <string name="taxon_has_no_photos">This taxon has no photos.</string>
 </resources>
-
-
