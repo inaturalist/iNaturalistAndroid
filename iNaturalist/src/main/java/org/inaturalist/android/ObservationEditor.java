@@ -652,7 +652,8 @@ public class ObservationEditor extends AppCompatActivity {
             if (taxonJson != null) {
                 BetterJSONObject taxon = new BetterJSONObject(taxonJson);
                 JSONObject idPhoto = taxon.getJSONObject("default_photo");
-                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+                int rankLevel = taxon.getInt("rank_level") != null ? taxon.getInt("rank_level") : 0;
+                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), rankLevel, false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
                 mApp.setServiceResult(TAXON, null);
             }
         }
