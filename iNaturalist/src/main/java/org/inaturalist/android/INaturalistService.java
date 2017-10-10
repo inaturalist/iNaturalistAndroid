@@ -2082,7 +2082,7 @@ public class INaturalistService extends IntentService {
         // New observation
 
         String inatNetwork = mApp.getInaturalistNetworkMember();
-        JSONObject observationParams = observationToJsonObject(observation, false);
+        JSONObject observationParams = observationToJsonObject(observation, true);
 
         boolean success = handleObservationResponse(
                 observation,
