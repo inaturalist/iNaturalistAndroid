@@ -2844,7 +2844,7 @@ public class INaturalistService extends IntentService {
     private JSONArray getAllGuides(int item, int page) throws AuthenticationException {
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = "http://" + inatHost + "/guides.json?";
+        String url = inatHost + "/guides.json?";
         url += ("per_page=" + item + "&page=");
         JSONArray results = new JSONArray();
         JSONArray currentResults = get(url + page);
