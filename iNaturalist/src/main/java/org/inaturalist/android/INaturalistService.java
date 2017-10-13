@@ -504,7 +504,8 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject results = getProjectIdentifiers(projectId);
 
                 Intent reply = new Intent(ACTION_PROJECT_IDENTIFIERS_RESULT);
-                reply.putExtra(RESULTS, results);
+                mApp.setServiceResult(ACTION_PROJECT_IDENTIFIERS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
@@ -512,7 +513,8 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject results = getProjectObservers(projectId);
 
                 Intent reply = new Intent(ACTION_PROJECT_OBSERVERS_RESULT);
-                reply.putExtra(RESULTS, results);
+                mApp.setServiceResult(ACTION_PROJECT_OBSERVERS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
@@ -520,7 +522,8 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject results = getProjectSpecies(projectId);
 
                 Intent reply = new Intent(ACTION_PROJECT_SPECIES_RESULT);
-                reply.putExtra(RESULTS, results);
+                mApp.setServiceResult(ACTION_PROJECT_SPECIES_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
 
