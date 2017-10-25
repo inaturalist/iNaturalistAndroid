@@ -61,6 +61,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     private static final int VIEW_OBSERVATION_REQUEST_CODE = 0x100;
     private static final int MAX_RESULTS = 50;
+    private static final float MY_LOCATION_ZOOM_LEVEL = 10;
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -98,6 +99,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private ImageView mObservationsMapMyLocation;
     private ViewGroup mRedoObservationsSearch;
     private ProgressBar mPerformingSearch;
+    private ImageView mRedoObservationSearchIcon;
 
     private ListView[] mList = new ListView[] { null, null, null, null };
     private ArrayAdapter[] mListAdapter =  new ArrayAdapter[] { null, null, null, null };
@@ -108,17 +110,16 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     private static final int OBSERVATIONS_VIEW_MODE_GRID = 0;
     private static final int OBSERVATIONS_VIEW_MODE_MAP = 1;
-    private int mObservationsViewMode = OBSERVATIONS_VIEW_MODE_GRID;
+    private int mObservationsViewMode = OBSERVATIONS_VIEW_MODE_MAP;
 
 
     private int[] mCurrentResultsPage = { 0, 0, 0, 0 };
     private boolean[] mLoadingNextResults = { false, false, false, false };
     private HashMap<String, JSONObject> mMarkerObservations;
     private int mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
-    private float mMyLocationZoomLevel = 0;
     private LatLngBounds mLastMapBounds = null;
     private boolean mMapMoved = false;
-    private LatLng mLastPosition;
+    private LatLngBounds mInitialLocationBounds;
 
     @Override
 	protected void onStart()
@@ -180,9 +181,6 @@ public class ExploreActivity extends BaseFragmentActivity {
             mResults = (List<JSONObject>[]) new List[] {null, null, null, null };
 
             mSearchFilters = new ExploreSearchFilters();
-
-            loadAllResults();
-
             mLastMapBounds = null;
 
         } else {
@@ -464,8 +462,27 @@ public class ExploreActivity extends BaseFragmentActivity {
                 return;
             }
 
-            mLastPosition = new LatLng(location.getLatitude(), location.getLongitude());
-            mObservationsMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), mMyLocationZoomLevel));
+            // If it's the first time we're zooming in - this means we'll force a new search for nearby results
+            final boolean shouldRedoSearch = mLastMapBounds == null;
+
+            mObservationsMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), MY_LOCATION_ZOOM_LEVEL),
+                    10,
+                    new GoogleMap.CancelableCallback() {
+                        @Override
+                        public void onFinish() {
+                            mInitialLocationBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
+
+                            if (shouldRedoSearch) {
+                                mRedoObservationsSearch.performClick();
+                                mLastMapBounds = mInitialLocationBounds;
+                            }
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+                    });
         }
     }
 
@@ -579,8 +596,13 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
 
         if (mSearchFilters.place == null) {
-            // Nearby place
-            subTitle.setText(R.string.nearby);
+            if ((mLastMapBounds != null) && (mInitialLocationBounds != null) && (mLastMapBounds.equals(mInitialLocationBounds) == true)) {
+                // Nearby observations
+                subTitle.setText(R.string.nearby);
+            } else {
+                // No specific place search
+                subTitle.setText("");
+            }
         } else {
             // Specific place
             subTitle.setText(mSearchFilters.place.optString("display_name"));
@@ -787,17 +809,16 @@ public class ExploreActivity extends BaseFragmentActivity {
         mObservationsMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                if (mLastMapBounds != null) mLastMapBounds = null;
-
                 mObservationsMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
                     @Override
                     public void onCameraChange(CameraPosition position) {
                         // User moved the map view - allow him to make a new search on those new map bounds
-                        if ((mLastPosition == null) || (!position.target.equals(mLastPosition))) {
+                        if ((mLastMapBounds == null) || (!mLastMapBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
                             mMapMoved = true;
                             mRedoObservationsSearch.setVisibility(View.VISIBLE);
-                            mLastPosition = position.target;
                         }
+
+                        mLastMapBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
                     }
                 });
             }
@@ -805,6 +826,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         mRedoObservationsSearch.setVisibility(mMapMoved ? View.VISIBLE : View.GONE);
         mPerformingSearch.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.VISIBLE : View.GONE);
+        mRedoObservationSearchIcon.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.GONE : View.VISIBLE);
 
         mRedoObservationsSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -816,6 +838,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 loadAllResults();
 
                 mPerformingSearch.setVisibility(View.VISIBLE);
+                mRedoObservationSearchIcon.setVisibility(View.GONE);
             }
         });
     }
@@ -827,7 +850,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsChangeMapLayers.setImageResource(R.drawable.ic_satellite_black_48dp);
         }
 
-        mObservationsMap.setMapType(mObservationsMapType);
+        if (mObservationsMap.getMapType() != mObservationsMapType) mObservationsMap.setMapType(mObservationsMapType);
     }
 
     private void loadAllResults() {
@@ -930,12 +953,11 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsMapMyLocation = (ImageView) layout.findViewById(R.id.my_location);
                 mRedoObservationsSearch = (ViewGroup) layout.findViewById(R.id.redo_search);
                 mPerformingSearch = (ProgressBar) layout.findViewById(R.id.performing_search);
+                mRedoObservationSearchIcon = (ImageView) layout.findViewById(R.id.redo_search_icon);
 
                 mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mMyLocationZoomLevel = mObservationsMap.getCameraPosition().zoom;
-
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
                         startService(serviceIntent);
                     }
@@ -945,6 +967,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                     // Initially zoom to current location
                     mObservationsMapMyLocation.performClick();
                 }
+
+                mMarkerObservations = new HashMap<>();
 
                 mObservationsMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
@@ -977,6 +1001,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsMap.getUiSettings().setIndoorLevelPickerEnabled(false);
                 mObservationsMap.setIndoorEnabled(false);
                 mObservationsMap.setTrafficEnabled(false);
+                mObservationsMap.getUiSettings().setRotateGesturesEnabled(false);
 
             } else {
                 int loadingListResource = 0;

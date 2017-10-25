@@ -113,6 +113,8 @@ public class ProfilePhotoViewer extends AppCompatActivity {
 				url = profile.optString("original_user_icon_url");
 			} else if (profile.has("medium_user_icon_url") && !profile.isNull("medium_user_icon_url")) {
 				url = profile.optString("medium_user_icon_url");
+			} else if (profile.has("icon_url") && !profile.isNull("icon_url")) {
+				url = profile.optString("icon_url");
 			} else {
 				url = profile.optString("user_icon_url");
 			}

@@ -193,6 +193,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         
         if (savedInstanceState == null) {
             mUser = (BetterJSONObject) intent.getSerializableExtra("user");
+            mTotalObservations = mUser.getInt("observations_count");
+            mTotalIdentifications = mUser.getInt("identifications_count");
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
             mObservationsContainer.setVisibility(View.VISIBLE);
@@ -743,6 +745,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         final ImageView userPic = (ImageView) findViewById(R.id.user_pic);
         String iconUrl = mUser.getString("medium_user_icon_url");
         if (iconUrl == null) iconUrl = mUser.getString("user_icon_url");
+        if (iconUrl == null) iconUrl = mUser.getString("icon_url");
 
         if ((iconUrl != null) && (iconUrl.length() > 0)) {
             UrlImageViewHelper.setUrlDrawable(userPic, iconUrl, new UrlImageViewCallback() {
@@ -775,7 +778,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 @Override
                 public void onClick(View view) {
                     // Only show the photo viewer if a large enough image exists
-                    if ((mUser.getString("original_user_icon_url") != null) || (mUser.getString("medium_user_icon_url") != null)) {
+                    if ((mUser.getString("original_user_icon_url") != null) || (mUser.getString("medium_user_icon_url") != null) || (mUser.getString("icon_url") != null)) {
                         Intent intent = new Intent(UserProfile.this, ProfilePhotoViewer.class);
                         intent.putExtra(ProfilePhotoViewer.USER, mUser.getJSONObject().toString());
                         startActivity(intent);
