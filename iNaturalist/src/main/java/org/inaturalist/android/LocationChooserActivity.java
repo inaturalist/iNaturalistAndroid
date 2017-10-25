@@ -288,7 +288,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 }
 
                 mMap.clear();
-                MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(INaturalistMapActivity.observationIcon(mIconicTaxonName));
+                MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(TaxonUtils.observationMarkerIcon(mIconicTaxonName));
                 Marker m = mMap.addMarker(opts);
 
             }

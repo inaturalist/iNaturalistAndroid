@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Html;
@@ -36,6 +37,15 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.maps.android.SphericalUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ActivityHelper {
     private static String TAG = "ActivityHelper";
@@ -312,7 +322,7 @@ public class ActivityHelper {
             return;
         }
         LatLng latlng = new LatLng(lat, lon);
-        BitmapDescriptor obsIcon = INaturalistMapActivity.observationIcon(observation.iconic_taxon_name);
+        BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name);
         String currentUser = mApp.currentUserLogin();
         CameraUpdate cameraUpdate = null;
         int obsColor = observationColor(observation);
@@ -491,4 +501,64 @@ public class ActivityHelper {
             return 0;
         }
     }
+
+    public void saveMapToBundle(Bundle outState, HashMap<String, JSONObject> map, String key) {
+        if (map != null) {
+            HashMap newMap = new HashMap<String, JSONObject>();
+
+            for (Object currentKey : map.keySet()) {
+                newMap.put(currentKey, map.get(currentKey).toString());
+            }
+
+        	outState.putSerializable(key, newMap);
+        }
+    }
+
+    public HashMap<String, JSONObject> loadMapFromBundle(Bundle savedInstanceState, String key) {
+        HashMap<String, String> map = (HashMap<String, String>) savedInstanceState.getSerializable(key);
+        if (map != null) {
+            try {
+                HashMap<String, JSONObject> newMap = new HashMap<>();
+                for (String currentKey : map.keySet()) {
+                    newMap.put(currentKey, new JSONObject(map.get(currentKey)));
+                }
+
+                return newMap;
+            } catch (JSONException exc) {
+                exc.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public void saveListToBundle(Bundle outState, List<JSONObject> list, String key) {
+        if (list != null) {
+        	JSONArray arr = new JSONArray(list);
+        	outState.putString(key, arr.toString());
+        }
+    }
+
+    public List<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
+        List<JSONObject> results = new ArrayList<JSONObject>();
+
+        String obsString = savedInstanceState.getString(key);
+        if (obsString != null) {
+            try {
+                JSONArray arr = new JSONArray(obsString);
+                for (int i = 0; i < arr.length(); i++) {
+                    results.add(arr.getJSONObject(i));
+                }
+
+                return results;
+            } catch (JSONException exc) {
+                exc.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
 }

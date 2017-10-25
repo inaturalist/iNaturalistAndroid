@@ -141,7 +141,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
             return mItems.get(index);
         }
 
-        // Gets the photo location (local/remote) - tries a specific size, and if not found,
+        // Gets the photo place (local/remote) - tries a specific size, and if not found,
         // tries the next best size until something is found
         private String getPhotoLocation(GuideTaxonPhotoXML photo, GuideTaxonPhotoXML.PhotoType photoType) {
             final GuideTaxonPhotoXML.PhotoSize[] DEFAULT_SIZES = {

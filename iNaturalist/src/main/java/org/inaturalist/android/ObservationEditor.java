@@ -694,11 +694,11 @@ public class ObservationEditor extends AppCompatActivity {
                         alertDialog.dismiss();
 
                         if (position == 0) {
-                            // Get current location
+                            // Get current place
                             mLocationManuallySet = true;
                             getLocation();
                         } else {
-                            // Edit location
+                            // Edit place
                             Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
                             Double lat, lon;
                             lat = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
@@ -777,7 +777,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mSharePhotos != null) {
             stopGetLocation();
-            // Share photos(s) with iNaturalist (override any location with the one from the shared images)
+            // Share photos(s) with iNaturalist (override any place with the one from the shared images)
             importPhotos(mSharePhotos, true);
         }
 
@@ -1583,7 +1583,7 @@ public class ObservationEditor extends AppCompatActivity {
      * Location
      */
 
-    // Kicks off location service
+    // Kicks off place service
     private void getLocation() {
         if (mLocationListener != null) {
             return;
@@ -1601,10 +1601,10 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (mLocationListener == null) {
-            // Define a listener that responds to location updates
+            // Define a listener that responds to place updates
             mLocationListener = new LocationListener() {
                 public void onLocationChanged(Location location) {
-                    // Called when a new location is found by the network location provider.
+                    // Called when a new place is found by the network place provider.
 
                     handleNewLocation(location);
                 }
@@ -1615,7 +1615,7 @@ public class ObservationEditor extends AppCompatActivity {
             };
         }
 
-        // Register the listener with the Location Manager to receive location updates
+        // Register the listener with the Location Manager to receive place updates
         if (mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);   
         }
@@ -1634,13 +1634,13 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (locationIsGood(mCurrentLocation)) {
-            // Log.d(TAG, "location was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Log.d(TAG, "place was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
 
         if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
-            // Log.d(TAG, "location request was old and location was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Log.d(TAG, "place request was old and place was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
@@ -2186,7 +2186,7 @@ public class ObservationEditor extends AppCompatActivity {
                     mPhotosAdded.add(createdUri.toString());
                     position++;
 
-                    // Import photo metadata (e.g. location) only when the location hasn't been set
+                    // Import photo metadata (e.g. place) only when the place hasn't been set
                     // by the user before (whether manually or by importing previous images)
                     if ((!mLocationManuallySet && mObservation.latitude == null && mObservation.longitude == null) ||
                         (overrideLocation && position == 1)) {

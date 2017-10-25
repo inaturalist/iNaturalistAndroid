@@ -5,6 +5,9 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -122,7 +125,36 @@ public class TaxonUtils {
  		} else {
  			return R.drawable.ic_taxa_unknown;
  		}
-
-
  	}
+
+ 	public static BitmapDescriptor observationMarkerIcon(String iconic_taxon_name) {
+        if (iconic_taxon_name == null) {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
+        }
+
+        if (iconic_taxon_name.equals("Animalia") ||
+                iconic_taxon_name.equals("Actinopterygii") ||
+                iconic_taxon_name.equals("Amphibia") ||
+                iconic_taxon_name.equals("Reptilia") ||
+                iconic_taxon_name.equals("Aves") ||
+                iconic_taxon_name.equals("Mammalia")) {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dodger_blue);
+        } else if (iconic_taxon_name.equals("Insecta") ||
+                iconic_taxon_name.equals("Arachnida") ||
+                iconic_taxon_name.equals("Mollusca")) {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_orange_red);
+        } else if (iconic_taxon_name.equals("Protozoa")) {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dark_magenta);
+        } else if (iconic_taxon_name.equals("Plantae")) {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_inat_green);
+        } else if (iconic_taxon_name.equals("Fungi")) {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_hot_pink);
+        } else if (iconic_taxon_name.equals("Chromista")) {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_chromista_brown);
+        } else {
+            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
+        }
+
+    }
+
 }

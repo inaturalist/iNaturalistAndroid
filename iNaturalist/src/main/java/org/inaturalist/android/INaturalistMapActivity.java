@@ -629,7 +629,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
     		case FIND_NEAR_BY_OBSERVATIONS:
     			// Find observations near me
     			if (mActiveSearch) {
-    				// Find out current location
+    				// Find out current place
     				getCurrentLocationAndLoadNearbyObservations();
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_EXPLORE_SEARCH_NEAR_ME);
@@ -1680,7 +1680,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
 
  		// If Google Play services is available
  		if ((ConnectionResult.SUCCESS == resultCode) && ((mLocationClient == null) || (!mLocationClient.isConnected())))  {
- 			// Use Google Location Services to determine location
+ 			// Use Google Location Services to determine place
             mLocationClient = new GoogleApiClient.Builder(this)
                     .addApi(LocationServices.API)
                     .addConnectionCallbacks(new ConnectionCallbacks() {
@@ -1704,7 +1704,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
                     .build();
  			mLocationClient.connect();
  		} else {
- 			// Use GPS for the location
+ 			// Use GPS for the place
  			loadNearbyObservations();
  			
  		}
@@ -1736,7 +1736,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		Location location = null;
 
  		if ((mLocationClient != null) && (mLocationClient.isConnected())) {
- 			// Use location client for the latest location
+ 			// Use place client for the latest place
  			try {
  				location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
  			} catch (IllegalStateException ex) {
@@ -1745,7 +1745,7 @@ public class INaturalistMapActivity extends BaseFragmentActivity implements OnMa
  		}
 
  		if (location == null) {
- 			// Use GPS for current location
+ 			// Use GPS for current place
  			LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
  			Criteria criteria = new Criteria();
  			String provider = locationManager.getBestProvider(criteria, false);

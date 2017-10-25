@@ -1,0 +1,150 @@
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/grid_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F5F5F5"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+    <ProgressBar
+        android:id="@+id/loading_observations_grid"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/observations_grid_empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="30dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="@string/no_observations_found" />
+
+    <org.inaturalist.android.GridViewExtended
+        android:id="@+id/observations_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:numColumns="3"
+        android:verticalSpacing="3dp"
+        android:horizontalSpacing="3dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+     <RelativeLayout
+        android:id="@+id/observations_map_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/observations_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+         <ImageView
+             android:id="@+id/my_location"
+             android:background="@drawable/map_button"
+             android:src="@drawable/ic_my_location_black_48dp"
+             android:tint="#676767"
+             android:padding="14dp"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentBottom="true"
+             android:layout_marginBottom="60dp"
+             android:layout_marginRight="20dp"
+             android:elevation="3dp"
+             android:layout_width="56dp"
+             android:layout_height="56dp" />
+         <ImageView
+             android:id="@+id/change_map_layers"
+             android:background="@drawable/map_button"
+             android:src="@drawable/ic_terrain_black_48dp"
+             android:tint="#676767"
+             android:padding="12dp"
+             android:layout_above="@id/my_location"
+             android:layout_alignRight="@id/my_location"
+             android:layout_marginBottom="15dp"
+             android:elevation="3dp"
+             android:layout_width="56dp"
+             android:layout_height="56dp" />
+
+
+         <RelativeLayout
+             android:id="@+id/redo_search"
+             android:layout_width="match_parent"
+             android:layout_height="40dp"
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="20dp"
+             android:layout_marginTop="14dp"
+             android:background="@drawable/circular_button_white_with_border"
+             android:layout_alignParentTop="true"
+             >
+
+             <TextView
+                 android:id="@+id/redo_search_text"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/redo_search"
+                 android:textColor="#8A000000"
+                 android:textSize="18sp"
+                 android:layout_centerInParent="true"
+                 />
+
+             <ProgressBar
+                 android:id="@+id/performing_search"
+                 style="?android:attr/progressBarStyleSmall"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:indeterminate="true"
+                 android:layout_marginRight="5dp"
+                 android:layout_toLeftOf="@id/redo_search_text"
+                 android:layout_centerVertical="true"
+                 android:visibility="visible" />
+         </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        >
+        <ImageView
+            android:id="@+id/observations_map_view_button"
+            android:background="@drawable/left_half_circle"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_map_black_48dp"
+            android:tint="#676767"
+            android:padding="8dp"
+            android:layout_marginRight="-1dp"
+            />
+        <ImageView
+            android:id="@+id/observations_grid_view_button"
+            android:background="@drawable/right_half_circle"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_view_module_black_48dp"
+            android:tint="#676767"
+            android:padding="8dp"
+            android:layout_marginLeft="-1dp"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

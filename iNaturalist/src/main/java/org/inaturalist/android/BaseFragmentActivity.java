@@ -258,7 +258,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         findViewById(R.id.menu_explore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityIfNew(new Intent(BaseFragmentActivity.this, INaturalistMapActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, ExploreActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             }
         });
         findViewById(R.id.menu_projects).setOnClickListener(new View.OnClickListener() {
@@ -324,7 +324,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         });
 
 
-        if (INaturalistMapActivity.class.getName().equals(this.getClass().getName())) {
+        if (ExploreActivity.class.getName().equals(this.getClass().getName())) {
             findViewById(R.id.menu_explore).setBackgroundColor(getResources().getColor(R.color.side_menu_item_bg_current));
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
                 ((ImageView) findViewById(R.id.menu_explore_icon)).setAlpha(1.0f);

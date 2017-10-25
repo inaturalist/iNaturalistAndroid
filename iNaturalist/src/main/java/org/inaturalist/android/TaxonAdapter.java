@@ -67,14 +67,12 @@ class TaxonAdapter extends ArrayAdapter<String> {
                 idTaxonName.setVisibility(View.GONE);
             }
 
-            idTaxonName.setTypeface(null, Typeface.ITALIC);
+            idTaxonName.setTypeface(null, item.optInt("rank_level", 0) <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
             if (item.has("default_photo") && !item.isNull("default_photo")) {
                 JSONObject defaultPhoto = item.getJSONObject("default_photo");
                 UrlImageViewHelper.setUrlDrawable(idPic, defaultPhoto.getString("square_url"), TaxonUtils.observationIcon(item), new UrlImageViewCallback() {
                     @Override
                     public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        if (loadedBitmap != null)
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
                     }
 
                     @Override

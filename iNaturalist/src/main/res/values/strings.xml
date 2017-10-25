@@ -600,4 +600,11 @@
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Terrain</string>
+    <string name="observers">Observers</string>
+    <string name="filters">Filters</string>
+    <string name="exploring_all">Exploring All</string>
+    <string name="nearby">Nearby</string>
+    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="research_grade_initials">RG</string>
+    <string name="redo_search">Redo Search</string>
 </resources>

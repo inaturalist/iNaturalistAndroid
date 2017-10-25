@@ -55,6 +55,9 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         final View view = inflater.inflate(R.layout.guide_taxon_item, parent, false);
         JSONObject item = mItems.get(position);
 
+        TextView researchGrade = (TextView) view.findViewById(R.id.is_research_grade);
+        researchGrade.setVisibility(item.optString("quality_grade", "none").equals("research") ? View.VISIBLE : View.GONE);
+
         TextView idName = (TextView) view.findViewById(R.id.id_name);
         final JSONObject taxon = item.optJSONObject("taxon");
 

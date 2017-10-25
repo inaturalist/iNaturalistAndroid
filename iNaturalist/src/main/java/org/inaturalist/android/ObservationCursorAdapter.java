@@ -497,7 +497,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     placeGuess.setText(String.format(mContext.getString(R.string.location_coords_no_acc),
                             String.format("%.4f...", latitude != 0f ? latitude : privateLatitude), String.format("%.4f...", longitude != 0f ? longitude : privateLongitude)));
                 } else {
-                    // No location at all
+                    // No place at all
                     placeGuess.setText(R.string.no_location);
                 }
             } else {

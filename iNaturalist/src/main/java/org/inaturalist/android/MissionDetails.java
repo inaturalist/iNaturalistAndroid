@@ -411,7 +411,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                 Double longitude = observation.getDouble("longitude");
 
                 if (i == 0) {
-                    // First observation - determines initial map location, location guess text and the first big marker
+                    // First observation - determines initial map place, place guess text and the first big marker
                     if ((placeGuess != null) && (placeGuess.length() > 0)) {
                         mMissionLocation.setText(placeGuess);
                     } else if (latitude != null) {
@@ -422,7 +422,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
 
                     } else {
-                        // No location at all
+                        // No place at all
                         ((ViewGroup) mMissionLocation.getParent()).setVisibility(View.GONE);
                     }
 
