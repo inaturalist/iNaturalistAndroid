@@ -143,6 +143,8 @@ public class INaturalistService extends IntentService {
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
+    public static final String SEARCH_TAXA_RESULT = "search_taxa_result";
+    public static final String SEARCH_PLACES_RESULT = "search_places_result";
     public static final String ACTION_GET_TAXON_NEW_RESULT = "action_get_taxon_new_result";
     public static final String ACTION_GET_TAXON_SUGGESTIONS_RESULT = "action_get_taxon_suggestions_result";
     public static final String TAXON_RESULT = "taxon_result";
@@ -195,6 +197,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_ADD_FAVORITE = "add_favorite";
     public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
+    public static String ACTION_SEARCH_TAXA = "search_taxa";
+    public static String ACTION_SEARCH_PLACES = "search_places";
     public static String ACTION_GET_TAXON_NEW = "get_taxon_new";
     public static String ACTION_GET_TAXON_SUGGESTIONS = "get_taxon_suggestions";
     public static String ACTION_FIRST_SYNC = "first_sync";
@@ -596,6 +600,28 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(ACTION_GET_TAXON_RESULT);
                 reply.putExtra(TAXON_RESULT, taxon);
                 sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_SEARCH_PLACES)) {
+                String query = intent.getStringExtra(QUERY);
+                int page = intent.getIntExtra(PAGE_NUMBER, 1);
+                BetterJSONObject results = searchAutoComplete("places", query, page);
+
+                Intent reply = new Intent(SEARCH_PLACES_RESULT);
+                mApp.setServiceResult(SEARCH_PLACES_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+
+            } else if (action.equals(ACTION_SEARCH_TAXA)) {
+                String query = intent.getStringExtra(QUERY);
+                int page = intent.getIntExtra(PAGE_NUMBER, 1);
+                BetterJSONObject results = searchAutoComplete("taxa", query, page);
+
+                Intent reply = new Intent(SEARCH_TAXA_RESULT);
+                mApp.setServiceResult(SEARCH_TAXA_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
 
             } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
@@ -2582,6 +2608,22 @@ public class INaturalistService extends IntentService {
 
         return new SerializableJSONArray(json);
     }
+
+    private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/" + type + "/autocomplete?locale=" + deviceLanguage + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     private SerializableJSONArray getUserObservations(String username) throws AuthenticationException {
         String url = HOST + "/observations/" + username + ".json?per_page=200";

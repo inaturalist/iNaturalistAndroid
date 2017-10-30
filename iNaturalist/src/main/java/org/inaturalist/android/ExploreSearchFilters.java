@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -15,12 +16,18 @@ import java.util.Set;
 
 /** Represents explore screen filters / search params */
 public class ExploreSearchFilters implements Serializable {
-    public JSONObject taxon;
-    public JSONObject place;
+    public transient JSONObject taxon;
+    public transient JSONObject place;
     public transient LatLngBounds mapBounds;
     public Set<String> iconicTaxa = new HashSet<>();
 
+    private String placeJson;
+    private String taxonJson;
+
     private void writeObject(ObjectOutputStream oos) throws IOException {
+        taxonJson = taxon != null ? taxon.toString() : null;
+        placeJson = place != null ? place.toString() : null;
+
         oos.defaultWriteObject();
 
         if (mapBounds != null) {
@@ -33,6 +40,13 @@ public class ExploreSearchFilters implements Serializable {
 
     private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
         ois.defaultReadObject();
+
+        try {
+            place = placeJson != null ? new JSONObject(placeJson) : null;
+            taxon = taxonJson != null ? new JSONObject(taxonJson) : null;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (ois.available() > 0) {
             mapBounds = new LatLngBounds(new LatLng(ois.readDouble(), ois.readDouble()), new LatLng(ois.readDouble(), ois.readDouble()));

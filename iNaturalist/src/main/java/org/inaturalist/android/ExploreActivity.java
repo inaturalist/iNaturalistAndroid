@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SearchRecentSuggestionsProvider;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -26,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +36,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -43,6 +46,10 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.VisibleRegion;
+import com.google.maps.android.geojson.GeoJsonFeature;
+import com.google.maps.android.geojson.GeoJsonGeometry;
+import com.google.maps.android.geojson.GeoJsonLayer;
+import com.google.maps.android.geojson.GeoJsonPolygon;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -60,6 +67,8 @@ public class ExploreActivity extends BaseFragmentActivity {
     private static final int NOT_LOADED = -1;
 
     private static final int VIEW_OBSERVATION_REQUEST_CODE = 0x100;
+    private static final int SEARCH_REQUEST_CODE = 0x101;
+
     private static final int MAX_RESULTS = 50;
     private static final float MY_LOCATION_ZOOM_LEVEL = 10;
 
@@ -132,7 +141,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 	@Override
 	protected void onStop()
 	{
-		super.onStop();		
+		super.onStop();
 		FlurryAgent.onEndSession(this);
 	}
 
@@ -151,6 +160,10 @@ public class ExploreActivity extends BaseFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search:
+                Intent intent = new Intent(ExploreActivity.this, ExploreSearchActivity.class);
+                intent.putExtra(ExploreSearchActivity.SEARCH_FILTERS, mSearchFilters);
+                startActivityForResult(intent, SEARCH_REQUEST_CODE);
+
                 return true;
 
             case R.id.filters:
@@ -169,6 +182,14 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         actionBar.setCustomView(R.layout.explore_action_bar_new);
         actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.getCustomView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExploreActivity.this, ExploreSearchActivity.class);
+                intent.putExtra(ExploreSearchActivity.SEARCH_FILTERS, mSearchFilters);
+                startActivityForResult(intent, SEARCH_REQUEST_CODE);
+            }
+        });
 
         mHelper = new ActivityHelper(this);
 
@@ -1100,7 +1121,77 @@ public class ExploreActivity extends BaseFragmentActivity {
                 loadAllResults();
 				return;
 			}
-		}
+		} else if (requestCode == SEARCH_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Update search filters and refresh results
+                mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);
+
+                if (mSearchFilters.place != null) {
+                    // New place selected for search - zoom the map to that location
+                    zoomMapToPlace(mSearchFilters.place);
+                }
+
+                loadAllResults();
+            }
+        }
 	}
+
+    private void zoomMapToPlace(JSONObject place) {
+        JSONObject boundingBox = mSearchFilters.place.optJSONObject("bounding_box_geojson");
+        String location = mSearchFilters.place.optString("location");
+        CameraUpdate cameraUpdate = null;
+
+        if (boundingBox != null) {
+            LatLngBounds bounds = null;
+
+            try {
+                JSONObject geoJson = new JSONObject();
+                geoJson.put("type", "FeatureCollection");
+                JSONArray features = new JSONArray();
+                JSONObject feature = new JSONObject();
+                feature.put("type", "Feature");
+                feature.put("geometry", boundingBox);
+                feature.put("properties", new JSONObject());
+                features.put(feature);
+                geoJson.put("features", features);
+
+                GeoJsonLayer layer = new GeoJsonLayer(mObservationsMap, geoJson);
+                bounds = layer.getBoundingBox();
+                if (bounds == null) {
+                    LatLngBounds.Builder builder = LatLngBounds.builder();
+                    for (GeoJsonFeature f : layer.getFeatures()) {
+                        if (f.getGeometry() instanceof GeoJsonPolygon) {
+                            GeoJsonPolygon polygon = (GeoJsonPolygon) f.getGeometry();
+                            for (List<LatLng> coordsList : polygon.getCoordinates()) {
+                                for (LatLng coords : coordsList) {
+                                    builder.include(coords);
+                                }
+                            }
+                        }
+                    }
+
+                    bounds = builder.build();
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            mLastMapBounds = bounds;
+            cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 0);
+
+        } else if (location != null) {
+
+            String[] parts = location.split(",");
+            LatLng latlng = new LatLng(Double.valueOf(parts[0]), Double.valueOf(parts[1]));
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, MY_LOCATION_ZOOM_LEVEL);
+        }
+
+        if (cameraUpdate != null) {
+            mMapMoved = false;
+            mObservationsMap.moveCamera(cameraUpdate);
+        }
+    }
 
 }

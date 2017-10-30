@@ -135,6 +135,9 @@ public class ActivityHelper {
         });
    }
 
+    public void confirm(int titleRes, int messageRes, int okText) {
+        confirm(mContext.getString(titleRes), mContext.getString(messageRes), null, null, okText, 0);
+    }
 
     public void confirm(int titleRes, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
         confirm(mContext.getString(titleRes), msg, okListener, cancelListener);

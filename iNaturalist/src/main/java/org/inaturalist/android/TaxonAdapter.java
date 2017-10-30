@@ -40,7 +40,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
         View view = inflater.inflate(R.layout.taxon_result_item, parent, false);
         JSONObject item = null;
         try {
-            item = mResultList.get(position).getJSONObject("taxon");
+            item = mResultList.get(position).has("taxon") ? mResultList.get(position).getJSONObject("taxon") : mResultList.get(position);
         } catch (JSONException e) {
             e.printStackTrace();
             return view;
@@ -81,7 +81,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
                     }
                 });
             } else {
-                idPic.setImageResource(R.drawable.iconic_taxon_unknown);
+                idPic.setImageResource(TaxonUtils.observationIcon(item));
             }
 
             view.setTag(item);

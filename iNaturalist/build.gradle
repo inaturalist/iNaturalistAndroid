@@ -92,7 +92,7 @@ dependencies {
     }
     compile 'com.android.support:design:25.+'
     compile 'com.android.support:support-v4:25.+'
-    compile 'com.google.android.gms:play-services:7.3.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
     compile 'org.apache.commons:commons-collections4:4.0'
     compile 'org.apache.commons:commons-lang3:3.1'
     compile 'org.apache.httpcomponents:httpmime:4.3.3'

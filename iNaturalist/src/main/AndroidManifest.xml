@@ -309,6 +309,11 @@
             android:label=""
             android:name=".ExploreActivity">
         </activity>
+        <activity
+            android:configChanges="orientation"
+            android:label=""
+            android:name=".ExploreSearchActivity">
+        </activity>
 
         <service android:name=".INaturalistService" />
         <meta-data android:name="com.crashlytics.ApiKey" android:value="7baaee0ca8a376b3d129b908c1e03be6ecbe5786"/>
