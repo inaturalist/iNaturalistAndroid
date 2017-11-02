@@ -305,7 +305,6 @@
             android:name=".CompareSuggestionActivity">
         </activity>
         <activity
-            android:configChanges="orientation"
             android:label=""
             android:name=".ExploreActivity">
         </activity>

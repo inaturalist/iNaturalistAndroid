@@ -24,6 +24,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -129,6 +131,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private LatLngBounds mLastMapBounds = null;
     private boolean mMapMoved = false;
     private LatLngBounds mInitialLocationBounds;
+    private int[] mLastTotalResults = { NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED };
 
     @Override
 	protected void onStart()
@@ -417,23 +420,44 @@ public class ExploreActivity extends BaseFragmentActivity {
         };
         mViewPager.addOnPageChangeListener(pageListener);
 
-        tabListener.onTabSelected(mTabLayout.getTabAt(mActiveViewType));
+        int width;
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+
+            width = ViewGroup.LayoutParams.MATCH_PARENT;
+
         } else {
             mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                Point size = new Point();
+                getWindowManager().getDefaultDisplay().getSize(size);
+                width = size.x;
+            } else {
+                width = getWindowManager().getDefaultDisplay().getWidth();
+            }
+            width = (int)(width * 0.270);
         }
+
+        for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+            ViewGroup view = (ViewGroup) mTabLayout.getTabAt(i).getCustomView();
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+            view.setLayoutParams(params);
+        }
+
     }
 
     private View createTabContent(String tabName, int count) {
-        ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.my_observations_tab, null);
+        ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.explore_tab, null);
         TextView countText = (TextView) view.findViewById(R.id.count);
         TextView tabNameText = (TextView) view.findViewById(R.id.tab_name);
 
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         countText.setText(formatter.format(count));
         tabNameText.setText(tabName);
+
+        countText.setVisibility(View.INVISIBLE);
 
         int width;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -443,7 +467,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         } else {
             width = getWindowManager().getDefaultDisplay().getWidth();
         }
-        width = (int)(width * 0.283);
+        width = (int)(width * 0.270);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
 
@@ -599,14 +623,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         final TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
         final TextView subTitle = (TextView) actionBar.getCustomView().findViewById(R.id.sub_title);
 
-        if (mSearchFilters.isEmpty()) {
-            // No filters / search was made yet
-            title.setText(R.string.exploring_all);
-            subTitle.setText(R.string.nearby);
-
-            return;
-        }
-
         if (mSearchFilters.taxon != null) {
             // Searching for a specific taxa
             title.setText(TaxonUtils.getTaxonName(this, mSearchFilters.taxon));
@@ -614,7 +630,10 @@ public class ExploreActivity extends BaseFragmentActivity {
             // Searching for an iconic taxa - display their names
             String titleString = StringUtils.join(mSearchFilters.iconicTaxa, ", ");
             title.setText(titleString);
+        } else {
+            title.setText(R.string.exploring_all);
         }
+
 
         if (mSearchFilters.place == null) {
             if ((mLastMapBounds != null) && (mInitialLocationBounds != null) && (mLastMapBounds.equals(mInitialLocationBounds) == true)) {
@@ -634,15 +653,41 @@ public class ExploreActivity extends BaseFragmentActivity {
         DecimalFormat formatter = new DecimalFormat("#,###,###");
 
         for (int i = 0; i < mTotalResults.length; i++) {
+            final TextView count = ((TextView) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.count));
+            ProgressBar loading = ((ProgressBar) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.loading));
+
+            if ((mLastTotalResults[i] == mTotalResults[i]) && (mLastTotalResults[i] != NOT_LOADED)) {
+                // Already refreshed this tab title (prevent multiple fade in animations)
+                continue;
+            }
+
+            mLastTotalResults[i] = mTotalResults[i];
+
+            loading.setVisibility(View.GONE);
+
             if (mTotalResults[i] == NOT_LOADED) {
                 // Still loading
-                ((TextView) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
-                ((ProgressBar) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
+                count.setVisibility(View.INVISIBLE);
             } else {
                 // Already loaded - set the count
-                ((TextView) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.count)).setVisibility(View.VISIBLE);
-                ((ProgressBar) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.loading)).setVisibility(View.GONE);
-                ((TextView) mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.count)).setText(formatter.format(mTotalResults[i]));
+                count.setText(formatter.format(mTotalResults[i]));
+
+                Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+                fadeIn.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        count.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                count.startAnimation(fadeIn);
             }
         }
     }
@@ -856,6 +901,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 VisibleRegion vr = mObservationsMap.getProjection().getVisibleRegion();
                 LatLngBounds bounds = new LatLngBounds(new LatLng(vr.nearLeft.latitude, vr.farLeft.longitude), new LatLng(vr.farRight.latitude, vr.farRight.longitude));
                 mSearchFilters.mapBounds = bounds;
+                mSearchFilters.place = null; // Clear out the place (search by map bounds only)
                 loadAllResults();
 
                 mPerformingSearch.setVisibility(View.VISIBLE);
@@ -1126,12 +1172,24 @@ public class ExploreActivity extends BaseFragmentActivity {
                 // Update search filters and refresh results
                 mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);
 
+                // Reset old results while we're loading the new ones
+                for (int i = 0; i < mTotalResults.length; i++) {
+                    mTotalResults[i] = NOT_LOADED;
+                    mResults[i] = null;
+                }
+
                 if (mSearchFilters.place != null) {
                     // New place selected for search - zoom the map to that location
                     zoomMapToPlace(mSearchFilters.place);
-                }
+                    mSearchFilters.mapBounds = null; // No map bounds search while place is set
 
-                loadAllResults();
+                    loadAllResults();
+                } else {
+                    // No place set - that means we'll be setting to current location
+                    mLastMapBounds = null;
+                    mObservationsMapMyLocation.performClick();
+                    return;
+                }
             }
         }
 	}

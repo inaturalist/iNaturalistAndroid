@@ -12,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -181,16 +183,42 @@ public class ExploreSearchActivity extends AppCompatActivity {
         mTaxonEditText.addTextChangedListener(textWatcher);
         mLocationEditText.addTextChangedListener(textWatcher);
 
+        TextView.OnEditorActionListener onEditorAction = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    mSearchButton.performClick();
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        mTaxonEditText.setOnEditorActionListener(onEditorAction);
+        mLocationEditText.setOnEditorActionListener(onEditorAction);
+
         View.OnClickListener onClear = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final EditText editText;
+
                 if (v == mClearTaxon) {
                     mSearchFilters.taxon = null;
-                    mTaxonEditText.setText("");
+                    editText = mTaxonEditText;
+                    mActiveSearchType = SEARCH_TYPE_TAXON;
                 } else {
                     mSearchFilters.place = null;
-                    mLocationEditText.setText("");
+                    editText = mLocationEditText;
+                    mActiveSearchType = SEARCH_TYPE_LOCATION;
                 }
+
+                editText.setText("");
+                editText.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        editText.requestFocus();
+                    }
+                }, 50);
 
                 refreshViewState(true);
             }
@@ -225,9 +253,6 @@ public class ExploreSearchActivity extends AppCompatActivity {
                     } else {
                         mHelper.confirm(R.string.sorry_no_location, R.string.location_not_found, R.string.ok_got_it);
                     }
-                    return;
-                } else if ((mSearchFilters.taxon == null) && (mSearchFilters.place == null)) {
-                    mHelper.confirm(R.string.no_taxon_or_place, R.string.please_select_taxon_or_place, R.string.ok_got_it);
                     return;
                 }
 

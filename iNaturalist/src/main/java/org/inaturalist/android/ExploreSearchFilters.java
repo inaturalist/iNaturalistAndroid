@@ -53,12 +53,6 @@ public class ExploreSearchFilters implements Serializable {
         }
     }
 
-    /** Returns true if no search filters are set at all */
-    public boolean isEmpty() {
-        // TODO - add more conditions for filters later on
-        return (taxon == null) && (place == null) && (mapBounds == null) && (iconicTaxa.isEmpty());
-    }
-
     // Returns a string representation of the search filters, for use a URL search query (e.g.
     // taxon_id=1234&place_id=567&iconic_taxa=Aves )
     public String toUrlQueryString() {

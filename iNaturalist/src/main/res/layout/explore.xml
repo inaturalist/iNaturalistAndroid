@@ -12,7 +12,6 @@
         app:tabMode="scrollable"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/inatapptheme_color"
-        app:tabMinWidth="115dp"
         app:tabPadding="0dp"
         app:tabPaddingStart="0dp"
         app:tabPaddingEnd="0dp"

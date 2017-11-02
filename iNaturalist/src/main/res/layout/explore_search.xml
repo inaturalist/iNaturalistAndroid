@@ -29,7 +29,7 @@
                 android:src="@drawable/ic_search_black_24dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:background="#FF74AC00"
+                android:background="@drawable/rounded_green_button"
                 android:layout_marginRight="16dp"
                 android:layout_width="37dp"
                 android:layout_height="37dp" />
@@ -78,6 +78,7 @@
                     android:hint="@string/taxon_search_hint"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
+                    android:textColorHighlight="#CCDEF7"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp" />
             </RelativeLayout>
@@ -125,6 +126,7 @@
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:hint="@string/location_search_hint"
+                    android:textColorHighlight="#CCDEF7"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp" />
             </RelativeLayout>
@@ -140,9 +142,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="#F2F2F2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F2F2F2">
+
         <ListView
             android:id="@+id/search_results"
             android:layout_width="match_parent"
@@ -153,21 +156,19 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:visibility="gone"
             android:layout_centerHorizontal="true"
-            />
+            android:layout_marginTop="30dp"
+            android:visibility="gone" />
 
 
         <TextView
             android:id="@+id/no_results_found"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:visibility="gone"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:text="@string/no_results_found"
-            />
+            android:visibility="gone" />
 
     </RelativeLayout>
 </LinearLayout>
