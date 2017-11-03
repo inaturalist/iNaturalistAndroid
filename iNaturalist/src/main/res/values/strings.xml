@@ -600,4 +600,8 @@
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Terrain</string>
+    <string name="date_minute">%dm</string>
+    <string name="date_hour">%dh</string>
+    <string name="date_day">%dd</string>
+    <string name="date_week">%dw</string>
 </resources>

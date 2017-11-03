@@ -357,7 +357,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             } else {
                 dateObserved.setVisibility(View.VISIBLE);
                 Timestamp observationDate = new Timestamp(observationTimestamp);
-                dateObserved.setText(CommentsIdsAdapter.formatIdDate(observationDate));
+                dateObserved.setText(CommentsIdsAdapter.formatIdDate(mContext, observationDate));
             }
         }
 

@@ -119,7 +119,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
             if (mIsNewLayout) {
                 postedOn.setText(String.format(res.getString(item.getString("type").equals("comment") ? R.string.comment_title : R.string.id_title),
-                        username, formatIdDate(postDate)));
+                        username, formatIdDate(mContext, postDate)));
             } else {
                 SimpleDateFormat format = new SimpleDateFormat("LLL d, yyyy");
                 postedOn.setText(String.format(res.getString(R.string.posted_by),
@@ -488,7 +488,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		return view;
 	}
 
-    public static String formatIdDate(Timestamp postDate) {
+    public static String formatIdDate(Context context, Timestamp postDate) {
         Duration difference = new Duration(postDate.getTime(), (new Date()).getTime());
         long days = difference.getStandardDays();
         long hours = difference.getStandardHours();
@@ -498,14 +498,14 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             // Less than 30 days ago - display as 3m (mins), 3h (hours), 3d (days) or 3w (weeks)
             if (days < 1) {
                 if (hours < 1) {
-                    return String.format("%dm", minutes);
+                    return String.format(context.getString(R.string.date_minute), minutes);
                 } else {
-                    return String.format("%dh", hours);
+                    return String.format(context.getString(R.string.date_hour), hours);
                 }
             } else if (days < 7) {
-                return String.format("%dd", days);
+                return String.format(context.getString(R.string.date_day), days);
             } else {
-                return String.format("%dw", days / 7);
+                return String.format(context.getString(R.string.date_week), days / 7);
             }
         } else {
             Calendar today = Calendar.getInstance();

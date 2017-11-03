@@ -81,7 +81,7 @@ public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
 			userNameText.setText(username);
 			Timestamp postDate = item.getTimestamp("created_at");
 
-			favDate.setText(formatIdDate(postDate));
+			favDate.setText(CommentsIdsAdapter.formatIdDate(mContext, postDate));
 
             final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
             boolean hasUserIcon = item.getJSONObject("user").getString("user_icon_url") != null;
@@ -110,45 +110,5 @@ public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
 
 		return view;
 	}
-
-    private String formatIdDate(Timestamp postDate) {
-        Duration difference = new Duration(postDate.getTime(), (new Date()).getTime());
-        long days = difference.getStandardDays();
-        long hours = difference.getStandardHours();
-        long minutes = difference.getStandardMinutes();
-
-        if (days <= 30) {
-            // Less than 30 days ago - display as 3m (mins), 3h (hours), 3d (days) or 3w (weeks)
-            if (days < 1) {
-                if (hours < 1) {
-                    return String.format("%dm", minutes);
-                } else {
-                    return String.format("%dh", hours);
-                }
-            } else if (days < 7) {
-                return String.format("%dd", days);
-            } else {
-                return String.format("%dw", days / 7);
-            }
-        } else {
-            Calendar today = Calendar.getInstance();
-            today.setTime(new Date());
-            Calendar calDate = Calendar.getInstance();
-            calDate.setTimeInMillis(postDate.getTime());
-
-            String dateFormatString;
-            if (today.get(Calendar.YEAR) > calDate.get(Calendar.YEAR)) {
-                // Previous year(s)
-                dateFormatString = "MM/dd/yy";
-            } else {
-                // Current year
-                dateFormatString = "MMM d";
-            }
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
-            return dateFormat.format(new Date(postDate.getTime()));
-        }
-    }
-
 }
 

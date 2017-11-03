@@ -3575,7 +3575,7 @@ public class INaturalistService extends IntentService {
         reply.putExtra("miny", miny);
         reply.putExtra("maxy", maxy);
         if (json == null) {
-            reply.putExtra("error", getString(R.string.couldnt_load_nearby_observations));
+            reply.putExtra("error", String.format(getString(R.string.couldnt_load_nearby_observations), ""));
         } else {
             //syncJson(json, false);
         }

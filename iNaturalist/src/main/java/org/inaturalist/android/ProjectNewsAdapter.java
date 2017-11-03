@@ -79,7 +79,7 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
             String noHTML = Html.fromHtml(html).toString().trim();
             newsContent.setText(noHTML);
             BetterJSONObject newsItem = new BetterJSONObject(item);
-            newsDate.setText(CommentsIdsAdapter.formatIdDate(newsItem.getTimestamp("updated_at")));
+            newsDate.setText(CommentsIdsAdapter.formatIdDate(mContext, newsItem.getTimestamp("updated_at")));
 
             if (firstPhotoUrl != null) {
                 // Set the article photo
