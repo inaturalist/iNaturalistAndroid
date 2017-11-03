@@ -18,9 +18,17 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
+allprojects {
+    repositories {
+        maven {
+            url 'https://maven.google.com'
+        }
+    }
+}
+
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26.0.2'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
