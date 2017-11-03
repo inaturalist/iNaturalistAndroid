@@ -111,7 +111,7 @@ dependencies {
     compile 'org.apache.sanselan:sanselan:0.97-incubator'
     compile 'com.cocosw:bottomsheet:1.+@aar'
     compile 'org.lucasr.twowayview:twowayview:0.1.4'
-    compile 'com.viewpagerindicator:library:2.4.1'
+    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
     compile 'joda-time:joda-time:2.4'
     compile 'com.google.android.gms:play-services-ads:7.3.0'
     compile 'com.google.android.gms:play-services-identity:7.3.0'
