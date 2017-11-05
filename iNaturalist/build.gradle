@@ -12,6 +12,12 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
+configurations {
+    all {
+        exclude module: 'httpclient'
+    }
+}
+
 repositories {
     maven { url "http://dl.bintray.com/populov/maven" }
     mavenCentral()
