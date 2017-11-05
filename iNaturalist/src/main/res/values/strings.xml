@@ -664,5 +664,20 @@
     <string name="local_authority">Local Authority</string>
     <string name="poblacion">Poblacion</string>
     <string name="delegation">Delegation</string>
+    <string name="apply_filters">Apply Filters</string>
+    <string name="reset">Reset</string>
+    <string name="show_only_my_observations">Show Only My Observations</string>
+    <string name="project">Project</string>
+    <string name="user">User</string>
+    <string name="search_users">Search Users...</string>
+    <string name="quality_grade">Quality Grade</string>
+    <string name="dates">Dates</string>
+    <string name="any">Any</string>
+    <string name="to">to</string>
+    <string name="exact_date">Exact Date</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="months">Months</string>
+    <string name="choose_months">Choose months(s)</string>
 </resources>
 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="20dp"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/title"
+        android:textSize="22sp"
+        android:text="Some title"
+        android:padding="20dp"
+        android:textColor="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/separator"
+        android:background="#EBEBEB"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="1dp" />
+
+
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ok"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:textColor="@color/inatapptheme_color"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:textAllCaps="true"
+        android:textSize="16sp"
+        android:textColor="@color/inatapptheme_color"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/ok"
+        android:layout_marginRight="80dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        />
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_below="@id/separator"
+        android:layout_above="@id/cancel"
+        android:textSize="18sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
+
+

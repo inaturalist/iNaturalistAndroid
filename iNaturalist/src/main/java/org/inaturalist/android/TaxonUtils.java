@@ -74,27 +74,9 @@ public class TaxonUtils {
 
     }
 
-    public static int observationIcon(JSONObject o) {
- 		if (o == null) return R.drawable.ic_taxa_unknown;
- 		String iconicTaxonName = null;
 
-        if (o.has("iconic_taxon_name") && !o.isNull("iconic_taxon_name")) {
-            try {
-                iconicTaxonName = o.getString("iconic_taxon_name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return R.drawable.ic_taxa_unknown;
-            }
-        } else if (o.has("taxon")) {
-            try {
-                iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return R.drawable.ic_taxa_unknown;
-            }
-        }
-
- 		if (iconicTaxonName == null) {
+    public static int taxonicIconNameToResource(String iconicTaxonName) {
+        if (iconicTaxonName == null) {
  			return R.drawable.ic_taxa_unknown;
  		} else if (iconicTaxonName.equals("Animalia")) {
  			return R.drawable.animalia_large;
@@ -125,6 +107,29 @@ public class TaxonUtils {
  		} else {
  			return R.drawable.ic_taxa_unknown;
  		}
+    }
+
+    public static int observationIcon(JSONObject o) {
+ 		if (o == null) return R.drawable.ic_taxa_unknown;
+ 		String iconicTaxonName = null;
+
+        if (o.has("iconic_taxon_name") && !o.isNull("iconic_taxon_name")) {
+            try {
+                iconicTaxonName = o.getString("iconic_taxon_name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return R.drawable.ic_taxa_unknown;
+            }
+        } else if (o.has("taxon")) {
+            try {
+                iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return R.drawable.ic_taxa_unknown;
+            }
+        }
+
+        return taxonicIconNameToResource(iconicTaxonName);
  	}
 
  	public static BitmapDescriptor observationMarkerIcon(String iconic_taxon_name) {

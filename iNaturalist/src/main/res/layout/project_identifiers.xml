@@ -31,8 +31,28 @@
         android:layout_marginTop="50dp"
         android:text="@string/no_people_found" />
 
+    <TextView
+        android:id="@+id/filter_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="11dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="#8A000000"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:text="Filter"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
+
     <RelativeLayout
         android:id="@+id/identifiers_list_header"
+        android:layout_below="@id/filter_bar"
         android:background="#DCDCDC"
         android:layout_width="match_parent"
         android:layout_height="33dp"

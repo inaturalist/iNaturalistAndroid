@@ -56,16 +56,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class ExploreActivity extends BaseFragmentActivity {
     private static final int NOT_LOADED = -1;
 
     private static final int VIEW_OBSERVATION_REQUEST_CODE = 0x100;
     private static final int SEARCH_REQUEST_CODE = 0x101;
+    private static final int FILTERS_REQUEST_CODE = 0x102;
 
     private static final float MY_LOCATION_ZOOM_LEVEL = 10;
 
@@ -98,6 +103,8 @@ public class ExploreActivity extends BaseFragmentActivity {
     private ObservationGridAdapter mGridAdapter;
     private GoogleMap mObservationsMap;
     private ViewGroup mObservationsMapContainer;
+    private TextView mObservationsGridFilterBar;
+    private TextView mObservationsMapFilterBar;
 
     private ImageView mObservationsViewModeGrid;
     private ImageView mObservationsViewModeMap;
@@ -112,6 +119,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private ProgressBar[] mLoadingList = new ProgressBar[] { null, null, null, null };
     private TextView[] mListEmpty = new TextView[] { null, null, null, null };
     private ViewGroup[] mListHeader = new ViewGroup[] { null, null, null, null };
+    private TextView[] mFilterBar = new TextView[] { null, null, null, null };
 
 
     private static final int OBSERVATIONS_VIEW_MODE_GRID = 0;
@@ -156,15 +164,20 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.search:
-                Intent intent = new Intent(ExploreActivity.this, ExploreSearchActivity.class);
+                intent = new Intent(ExploreActivity.this, ExploreSearchActivity.class);
                 intent.putExtra(ExploreSearchActivity.SEARCH_FILTERS, mSearchFilters);
                 startActivityForResult(intent, SEARCH_REQUEST_CODE);
 
                 return true;
 
             case R.id.filters:
+                intent = new Intent(ExploreActivity.this, ExploreFiltersActivity.class);
+                intent.putExtra(ExploreSearchActivity.SEARCH_FILTERS, mSearchFilters);
+                startActivityForResult(intent, FILTERS_REQUEST_CODE);
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -598,7 +611,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 				}
             }
 
-            if (mCurrentResultsPage[index] == 1) {
+            if ((mCurrentResultsPage[index] <= 1) || (mResults[index] == null)) {
                 // Fresh results - overwrite old ones
                 mResults[index] = resultsArray;
                 mTotalResults[index] = totalResults;
@@ -624,6 +637,78 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
     }
 
+
+    private void refreshFilterBar(TextView filterBar) {
+        if (!mSearchFilters.isDirty()) {
+            // Filters are default - don't display the filter bar
+            filterBar.setVisibility(View.GONE);
+            return;
+        }
+
+        filterBar.setVisibility(View.VISIBLE);
+
+        StringBuilder builder = new StringBuilder();
+
+        if (!mSearchFilters.iconicTaxa.isEmpty()) {
+            builder.append(StringUtils.join(mSearchFilters.iconicTaxa, ", "));
+            builder.append(", ");
+        }
+
+        if (mSearchFilters.project != null) {
+            builder.append(mSearchFilters.project.optString("title"));
+            builder.append(", ");
+        }
+
+        if (mSearchFilters.user != null) {
+            builder.append(mSearchFilters.user.optString("login"));
+            builder.append(", ");
+        }
+
+        if (mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH)) {
+            builder.append(getString(R.string.research_grade));
+            builder.append(", ");
+        }
+        if (mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID)) {
+            builder.append(getString(R.string.needs_id));
+            builder.append(", ");
+        }
+        if (mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL)) {
+            builder.append(getString(R.string.casual_grade));
+            builder.append(", ");
+        }
+
+        switch (mSearchFilters.dateFilterType) {
+            case ExploreSearchFilters.DATE_TYPE_EXACT_DATE:
+                if (mSearchFilters.observedOn != null) {
+                    builder.append(mSearchFilters.formatDate(mSearchFilters.observedOn));
+                    builder.append(", ");
+                }
+                break;
+            case ExploreSearchFilters.DATE_TYPE_MIN_MAX_DATE:
+                if ((mSearchFilters.observedOnMinDate != null) && (mSearchFilters.observedOnMaxDate != null)) {
+                    builder.append(mSearchFilters.formatDate(mSearchFilters.observedOnMinDate));
+                    builder.append(" - ");
+                    builder.append(mSearchFilters.formatDate(mSearchFilters.observedOnMaxDate));
+                    builder.append(", ");
+                }
+                break;
+            case ExploreSearchFilters.DATE_TYPE_MONTHS:
+                if (!mSearchFilters.observedOnMonths.isEmpty()) {
+                    Calendar cal = Calendar.getInstance();
+                    SortedSet<Integer> sortedMonths = new TreeSet<>(mSearchFilters.observedOnMonths);
+                    for (int month : sortedMonths) {
+                        cal.set(Calendar.MONTH, month - 1); // Calendar has zero-based indexing for months
+                        builder.append(new SimpleDateFormat("MMMM").format(cal.getTime()));
+                        builder.append(", ");
+                    }
+                }
+                break;
+        }
+
+        filterBar.setText(builder.substring(0, builder.length() - 2));
+
+    }
+
     private void refreshActionBar() {
         ActionBar actionBar = getSupportActionBar();
         final TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
@@ -632,10 +717,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         if (mSearchFilters.taxon != null) {
             // Searching for a specific taxa
             title.setText(TaxonUtils.getTaxonName(this, mSearchFilters.taxon));
-        } else if (mSearchFilters.iconicTaxa.size() > 0) {
-            // Searching for an iconic taxa - display their names
-            String titleString = StringUtils.join(mSearchFilters.iconicTaxa, ", ");
-            title.setText(titleString);
         } else {
             title.setText(R.string.exploring_all);
         }
@@ -704,6 +785,8 @@ public class ExploreActivity extends BaseFragmentActivity {
             return;
         }
 
+        refreshFilterBar(mFilterBar[resultsType]);
+
         if (mTotalResults[resultsType] == NOT_LOADED) {
             mLoadingList[resultsType].setVisibility(View.VISIBLE);
             mList[resultsType].setVisibility(View.GONE);
@@ -763,6 +846,9 @@ public class ExploreActivity extends BaseFragmentActivity {
             // View hasn't loaded yet
             return;
         }
+
+        refreshFilterBar(mObservationsGridFilterBar);
+        refreshFilterBar(mObservationsMapFilterBar);
 
         mObservationsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -1030,6 +1116,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsGrid = (GridViewExtended) layout.findViewById(R.id.observations_grid);
                 mObservationsMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMap();
                 mObservationsMapContainer = (ViewGroup) layout.findViewById(R.id.observations_map_container);
+                mObservationsGridFilterBar = (TextView) layout.findViewById(R.id.grid_filter_bar);
+                mObservationsMapFilterBar = (TextView) layout.findViewById(R.id.map_filter_bar);
                 ViewCompat.setNestedScrollingEnabled(mObservationsGrid, true);
 
                 mObservationsViewModeGrid = (ImageView) layout.findViewById(R.id.observations_grid_view_button);
@@ -1152,6 +1240,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mLoadingList[position] = (ProgressBar) layout.findViewById(loadingListResource);
                 mListEmpty[position] = (TextView) layout.findViewById(listEmptyResource);
                 mList[position] = (ListView) layout.findViewById(listResource);
+                mFilterBar[position] = (TextView) layout.findViewById(R.id.filter_bar);
                 if (listHeaderResource != 0) mListHeader[position] = (ViewGroup) layout.findViewById(listHeaderResource);
                 ViewCompat.setNestedScrollingEnabled(mList[position], true);
 
@@ -1185,7 +1274,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 loadAllResults();
 				return;
 			}
-		} else if (requestCode == SEARCH_REQUEST_CODE) {
+		} else if ((requestCode == SEARCH_REQUEST_CODE) || (requestCode == FILTERS_REQUEST_CODE)) {
             if (resultCode == RESULT_OK) {
                 // Update search filters and refresh results
                 mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);

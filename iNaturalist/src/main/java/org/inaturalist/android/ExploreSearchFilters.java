@@ -1,5 +1,7 @@
 package org.inaturalist.android;
 
+import android.text.format.DateFormat;
+
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
@@ -11,22 +13,80 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 /** Represents explore screen filters / search params */
 public class ExploreSearchFilters implements Serializable {
+    public static final String QUALITY_GRADE_CASUAL = "casual";
+    public static final String QUALITY_GRADE_NEEDS_ID = "needs_id";
+    public static final String QUALITY_GRADE_RESEARCH = "research";
+
     public transient JSONObject taxon;
     public transient JSONObject place;
+    public transient JSONObject project;
+    public transient JSONObject user;
     public transient LatLngBounds mapBounds;
     public Set<String> iconicTaxa = new HashSet<>();
+    public Set<String> qualityGrade = new HashSet<>();
+
+    public Set<Integer> observedOnMonths = new HashSet<>(); // List of months
+    public Date observedOn; // Exact date
+    // Between min and max dates
+    public Date observedOnMinDate;
+    public Date observedOnMaxDate;
+
+    public static final int DATE_TYPE_ANY = 0;
+    public static final int DATE_TYPE_EXACT_DATE = 1;
+    public static final int DATE_TYPE_MIN_MAX_DATE = 2;
+    public static final int DATE_TYPE_MONTHS = 3;
+
+    public int dateFilterType = DATE_TYPE_ANY;
 
     private String placeJson;
     private String taxonJson;
+    private String projectJson;
+    private String userJson;
+
+    public ExploreSearchFilters() {
+        resetToDefault();
+    }
+
+    // Reset search filters to default
+    public void resetToDefault() {
+        qualityGrade = new HashSet<>();
+        qualityGrade.add(QUALITY_GRADE_RESEARCH);
+        qualityGrade.add(QUALITY_GRADE_NEEDS_ID);
+
+        user = null;
+        project = null;
+        iconicTaxa = new HashSet<>();
+
+        observedOn = null;
+        observedOnMinDate = null;
+        observedOnMaxDate = null;
+        observedOnMonths = new HashSet<>();
+
+        dateFilterType = DATE_TYPE_ANY;
+    }
+
+    public boolean isDirty() {
+        return ((!iconicTaxa.isEmpty()) || (project != null) || (user != null) ||
+                (qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL)) ||
+                (!qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID)) ||
+                (!qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH)) ||
+                (dateFilterType != ExploreSearchFilters.DATE_TYPE_ANY) ||
+                (observedOn != null) || (observedOnMinDate != null) ||
+                (observedOnMaxDate != null) || (!observedOnMonths.isEmpty()));
+    }
 
     private void writeObject(ObjectOutputStream oos) throws IOException {
         taxonJson = taxon != null ? taxon.toString() : null;
         placeJson = place != null ? place.toString() : null;
+        projectJson = project != null ? project.toString() : null;
+        userJson = user != null ? user.toString() : null;
 
         oos.defaultWriteObject();
 
@@ -42,6 +102,8 @@ public class ExploreSearchFilters implements Serializable {
         ois.defaultReadObject();
 
         try {
+            user = userJson != null ? new JSONObject(userJson) : null;
+            project = projectJson != null ? new JSONObject(projectJson) : null;
             place = placeJson != null ? new JSONObject(placeJson) : null;
             taxon = taxonJson != null ? new JSONObject(taxonJson) : null;
         } catch (JSONException e) {
@@ -70,6 +132,22 @@ public class ExploreSearchFilters implements Serializable {
             url.append("&place_id=" + place.optInt("id"));
         }
 
+        if (project != null) {
+            url.append("&project_id=" + project.optInt("id"));
+        }
+
+        if (user != null) {
+            if (user.has("login")) {
+                url.append("&user_login=" + user.optInt("login"));
+            } else {
+                url.append("&user_id=" + user.optInt("id"));
+            }
+        }
+
+        if (!qualityGrade.isEmpty()) {
+            url.append("&quality_grade=" + StringUtils.join(qualityGrade, ","));
+        }
+
         if (mapBounds != null) {
             url.append(String.format("&swlng=%s&swlat=%s&nelng=%s&nelat=%s",
                     mapBounds.southwest.longitude, mapBounds.southwest.latitude,
@@ -77,8 +155,21 @@ public class ExploreSearchFilters implements Serializable {
             ));
         }
 
+        if ((dateFilterType == DATE_TYPE_MONTHS) && (!observedOnMonths.isEmpty())) {
+            url.append("&month=" + StringUtils.join(observedOnMonths, ","));
+        } else if ((dateFilterType == DATE_TYPE_EXACT_DATE) && (observedOn != null)) {
+            url.append("&observed_on=" + formatDate(observedOn));
+        } else if ((dateFilterType == DATE_TYPE_MIN_MAX_DATE) && (observedOnMinDate != null) && (observedOnMaxDate != null)) {
+            url.append("&d1=" + formatDate(observedOnMinDate));
+            url.append("&d2=" + formatDate(observedOnMaxDate));
+        }
+
         if (url.length() == 0) return url.toString();
 
         return url.substring(1);
+    }
+
+    public String formatDate(Date date) {
+        return DateFormat.format("yyyy-MM-dd", date).toString();
     }
 }

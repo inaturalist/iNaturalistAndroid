@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ActivityHelper {
     private static String TAG = "ActivityHelper";
@@ -82,6 +83,42 @@ public class ActivityHelper {
             }
         }, null);
     }
+
+    public interface OnMultipleChoices {
+        void onMultipleChoices(Set<Integer> selectedPositions);
+    }
+
+    public void multipleChoiceSelection(String title, List<String> items, Set<Integer> selectedPositions, final OnMultipleChoices onOk) {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+        ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_multiple_choice_list_popup, null, false);
+        ((TextView)content.findViewById(R.id.title)).setText(title);
+        ListView listView = (ListView) content.findViewById(R.id.list_view);
+        final MultipleChoiceAdapter adapter = new MultipleChoiceAdapter(mContext, items, selectedPositions);
+        listView.setAdapter(adapter);
+
+        builder.setView(content);
+        builder.setCancelable(true);
+        final AlertDialog alert = builder.create();
+
+        content.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.cancel();
+            }
+        });
+
+        content.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onOk != null) onOk.onMultipleChoices(adapter.getSelectedItems());
+                alert.dismiss();
+            }
+        });
+
+        alert.show();
+   }
 
     public void selection(String title, ListAdapter adapter) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

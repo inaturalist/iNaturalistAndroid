@@ -1,6 +1,8 @@
 package org.inaturalist.android;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.media.Image;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +47,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
     private String mSearchUrl;
 
     private ActivityHelper mHelper;
+    private boolean mIsUser;
 
     public interface OnLoading {
         public void onLoading(Boolean loading, int count);
@@ -108,8 +113,12 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
     }
 
     public ProjectsAdapter(Context context, String searchUrl, OnLoading onLoading, List<JSONObject> objects, int defaultIcon) {
+        this(context, searchUrl, onLoading, objects, defaultIcon, false);
+    }
+    public ProjectsAdapter(Context context, String searchUrl, OnLoading onLoading, List<JSONObject> objects, int defaultIcon, boolean isUser) {
         super(context, R.layout.project_item, objects);
 
+        mIsUser = isUser;
         mSearchUrl = searchUrl;
         mItems = objects;
         mOriginalItems = new ArrayList<JSONObject>(mItems);
@@ -205,25 +214,63 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
         final BetterJSONObject item = new BetterJSONObject(mItems.get(position));
 
         TextView projectName = (TextView) view.findViewById(R.id.project_name);
-        final String projectTitle = item.getString("title");
+        final String projectTitle = item.getString(mIsUser ? "login" : "title");
         projectName.setText(projectTitle);
         ImageView projectPic = (ImageView) view.findViewById(R.id.project_pic);
+        ImageView projectPicNone = (ImageView) view.findViewById(R.id.project_pic_none);
+        ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
+        ViewGroup projectPicContainer = (ViewGroup) view.findViewById(R.id.project_pic_container);
+
+        if (mIsUser) {
+            userPic.setVisibility(View.VISIBLE);
+            projectPicContainer.setVisibility(View.INVISIBLE);
+        }
+
         String iconUrl = item.getString("icon_url");
         if ((iconUrl == null) || (iconUrl.length() == 0)) {
             projectPic.setVisibility(View.GONE);
-            view.findViewById(R.id.project_pic_none).setVisibility(View.VISIBLE);
-            ((ImageView)view.findViewById(R.id.project_pic_none)).setImageResource(mDefaultIcon);
+            projectPicNone.setVisibility(View.VISIBLE);
+
+            RequestCreator req = Picasso.with(mContext)
+                    .load(mDefaultIcon)
+                    .fit()
+                    .centerCrop()
+                    .transform(new UserActivitiesAdapter.CircleTransform());
+
+            if (mIsUser) {
+                req = req.transform(new UserActivitiesAdapter.CircleTransform());
+                req.into(userPic);
+                userPic.setColorFilter(Color.parseColor("#5D5D5D"));
+            } else {
+                req.into(projectPicNone);
+            }
+
         } else {
             projectPic.setVisibility(View.VISIBLE);
             projectPic.setImageResource(mDefaultIcon);
             UrlImageViewHelper.setUrlDrawable(projectPic, iconUrl);
 
-            view.findViewById(R.id.project_pic_none).setVisibility(View.GONE);
+            RequestCreator req = Picasso.with(mContext)
+                    .load(iconUrl)
+                    .fit()
+                    .centerCrop()
+                    .placeholder(mDefaultIcon);
+
+            if (mIsUser) {
+                req = req.transform(new UserActivitiesAdapter.CircleTransform());
+                req.into(userPic);
+                userPic.setColorFilter(null);
+            } else {
+                req.into(projectPic);
+            }
+
+            projectPicNone.setVisibility(View.GONE);
+
         }
 
         String description = item.getString("description");
         final String noHTMLDescription = Html.fromHtml(description != null ? description : "").toString();
-        if (noHTMLDescription.length() > 0) {
+        if ((noHTMLDescription.length() > 0) && (!mIsUser)) {
             ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

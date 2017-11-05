@@ -11,6 +11,7 @@
     android:paddingBottom="0dp"
     >
 
+
     <RelativeLayout
         android:id="@+id/project_top_container"
         android:layout_height="72dp"
@@ -18,6 +19,17 @@
         android:layout_alignParentTop="true"
         android:paddingRight="10dp"
         >
+        <ImageView
+            android:id="@+id/user_pic"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_account_circle_black_48dp"
+            android:visibility="gone"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="11dp"
+            />
+
         <RelativeLayout
             android:clickable="true"
             android:id="@+id/project_pic_container"
@@ -33,6 +45,7 @@
                 android:layout_height="fill_parent"
                 android:src="@drawable/ic_work_black_24dp"
                 android:padding="2dp"
+                android:visibility="gone"
                 />
             <ImageView
                 android:id="@+id/project_pic_none"
@@ -42,7 +55,7 @@
                 android:background="#dbdbdb"
                 android:tint="#ffffff"
                 android:padding="10dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
 
             <TextView
