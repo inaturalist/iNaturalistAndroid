@@ -25,28 +25,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.flurry.android.FlurryAgent;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.ListUtils;
-import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -54,7 +44,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 public class ExploreFiltersActivity extends AppCompatActivity {
     public static final String SEARCH_FILTERS = "search_filters";
@@ -209,9 +198,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mUserName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String inatNetwork = mApp.getInaturalistNetworkMember();
-                String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-                String searchUrl = inatHost + "/people/search.json";
+                String searchUrl = INaturalistService.API_HOST + "/users/autocomplete";
                 Intent intent = new Intent(ExploreFiltersActivity.this, ItemSearchActivity.class);
                 intent.putExtra(ItemSearchActivity.RETURN_RESULT, true);
                 intent.putExtra(ItemSearchActivity.SEARCH_HINT_TEXT, getString(R.string.search_users));
@@ -235,7 +222,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 Intent intent = new Intent(ExploreFiltersActivity.this, ItemSearchActivity.class);
                 intent.putExtra(ItemSearchActivity.RETURN_RESULT, true);
                 intent.putExtra(ItemSearchActivity.SEARCH_HINT_TEXT, getString(R.string.search_projects));
-                intent.putExtra(ItemSearchActivity.SEARCH_URL, BaseProjectsTab.getSearchUrl(mApp));
+                intent.putExtra(ItemSearchActivity.SEARCH_URL, INaturalistService.API_HOST + "/projects/autocomplete");
                 startActivityForResult(intent, REQUEST_CODE_SEARCH_PROJECTS);
             }
         });
@@ -266,6 +253,13 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 }
 
                 refreshViewState();
+            }
+        });
+
+        mShowMyObservationsRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mShowMyObservationsCheckbox.performClick();
             }
         });
 
@@ -399,6 +393,11 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Return the search filters
+                if (!mSearchFilters.iconicTaxa.isEmpty()) {
+                    // Iconic taxa have been chosen - clear out the taxon filter
+                    mSearchFilters.taxon = null;
+                }
+
                 Intent data = new Intent();
                 data.putExtra(SEARCH_FILTERS, mSearchFilters);
                 setResult(RESULT_OK, data);
@@ -459,7 +458,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             mProjectName.setText(mSearchFilters.project.optString("title"));
             mProjectPic.setColorFilter(null);
 
-            String iconUrl = mSearchFilters.project.optString("icon_url");
+            String iconUrl = mSearchFilters.project.has("icon") ? mSearchFilters.project.optString("icon") : mSearchFilters.project.optString("icon_url");
             if (iconUrl == null) {
                 mProjectPic.setImageResource(R.drawable.ic_work_black_24dp);
             } else {
@@ -482,8 +481,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             mUserName.setText(mSearchFilters.user.optString("login"));
             mUserPic.setColorFilter(null);
 
-            String iconUrl = mSearchFilters.user.optString("icon_url");
-            if (iconUrl == null) {
+            String iconUrl = mSearchFilters.user.has("icon") ? mSearchFilters.user.optString("icon") : mSearchFilters.user.optString("icon_url");
+            if ((iconUrl == null) || (iconUrl.length() == 0)) {
                 mUserPic.setImageResource(R.drawable.ic_account_circle_black_48dp);
             } else {
                 Picasso.with(this).

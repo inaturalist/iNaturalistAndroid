@@ -679,5 +679,8 @@
     <string name="end">End</string>
     <string name="months">Months</string>
     <string name="choose_months">Choose months(s)</string>
+    <string name="map_area">Map Area</string>
+    <string name="global">Global</string>
+    <string name="redo_search">Redo Search</string>
 </resources>
 

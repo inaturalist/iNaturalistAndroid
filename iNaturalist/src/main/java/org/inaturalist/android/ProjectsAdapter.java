@@ -89,16 +89,25 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
             }
         }
 
-        try {
-            JSONArray predsJsonArray = new JSONArray(jsonResults.toString());
+        JSONArray predsJsonArray = new JSONArray();
 
-            // Extract the Place descriptions from the results
-            resultList = new ArrayList<JSONObject>(predsJsonArray.length());
-            for (int i = 0; i < predsJsonArray.length(); i++) {
-                resultList.add(predsJsonArray.getJSONObject(i));
-            }
+        try {
+            predsJsonArray = new JSONArray(jsonResults.toString());
         } catch (JSONException e) {
-            Log.e(TAG, "Cannot process JSON results", e);
+            JSONObject resultsObject = null;
+            try {
+                resultsObject = new JSONObject(jsonResults.toString());
+                predsJsonArray = resultsObject.getJSONArray("results");
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        // Extract the Place descriptions from the results
+        resultList = new ArrayList<JSONObject>(predsJsonArray.length());
+
+        for (int i = 0; i < predsJsonArray.length(); i++) {
+            resultList.add(predsJsonArray.optJSONObject(i));
         }
 
         return resultList;
@@ -226,7 +235,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
             projectPicContainer.setVisibility(View.INVISIBLE);
         }
 
-        String iconUrl = item.getString("icon_url");
+        String iconUrl = item.has("icon") ? item.getString("icon") : item.getString("icon_url");
         if ((iconUrl == null) || (iconUrl.length() == 0)) {
             projectPic.setVisibility(View.GONE);
             projectPicNone.setVisibility(View.VISIBLE);

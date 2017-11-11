@@ -24,6 +24,9 @@ public class ExploreSearchFilters implements Serializable {
     public static final String QUALITY_GRADE_NEEDS_ID = "needs_id";
     public static final String QUALITY_GRADE_RESEARCH = "research";
 
+
+    public boolean isCurrentLocation = false;
+
     public transient JSONObject taxon;
     public transient JSONObject place;
     public transient JSONObject project;
@@ -138,7 +141,7 @@ public class ExploreSearchFilters implements Serializable {
 
         if (user != null) {
             if (user.has("login")) {
-                url.append("&user_login=" + user.optInt("login"));
+                url.append("&user_login=" + user.optString("login"));
             } else {
                 url.append("&user_id=" + user.optInt("id"));
             }

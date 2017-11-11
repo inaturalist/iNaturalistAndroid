@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
-    android:versionCode="246"
+    android:versionCode="249"
     android:versionName="1.8.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -104,6 +104,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.4.0@aar') {
         transitive = true;
     }
+    compile 'jp.wasabeef:picasso-transformations:2.1.2'
     compile 'com.android.support:design:25.+'
     compile 'com.android.support:support-v4:25.+'
     compile 'com.google.android.gms:play-services:8.4.0'

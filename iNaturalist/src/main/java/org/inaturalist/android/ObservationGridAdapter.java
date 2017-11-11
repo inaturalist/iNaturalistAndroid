@@ -77,9 +77,17 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
 
         final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_photo);
+        final ImageView taxonIcon = (ImageView) view.findViewById(R.id.taxon_icon);
 
         taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                 mDimension, mDimension));
+        taxonIcon.setLayoutParams(new RelativeLayout.LayoutParams(
+                mDimension, mDimension));
+
+        taxonIcon.setPadding(mDimension / 4, mDimension / 4, mDimension / 4, mDimension / 4);
+        taxonPic.setVisibility(View.INVISIBLE);
+        taxonIcon.setVisibility(View.VISIBLE);
+        taxonIcon.setImageResource(TaxonUtils.observationIcon(item));
 
         JSONArray observationPhotos;
         boolean isNewApi = !item.has("observation_photos");
@@ -111,7 +119,6 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                 Picasso.with(mContext)
                         .load(url)
-                        .placeholder(TaxonUtils.observationIcon(item))
                         .fit()
                         .centerCrop()
                         .into(taxonPic, new Callback() {
@@ -119,6 +126,8 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                             public void onSuccess() {
                                 taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                                         mDimension, mDimension));
+                                taxonIcon.setVisibility(View.GONE);
+                                taxonPic.setVisibility(View.VISIBLE);
                             }
 
                             @Override

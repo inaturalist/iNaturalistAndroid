@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -32,11 +33,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 public class ExploreSearchActivity extends AppCompatActivity {
     public static final String SEARCH_FILTERS = "search_filters";
 
     private static final int SEARCH_TYPE_TAXON = 0;
     private static final int SEARCH_TYPE_LOCATION = 1;
+    private static final int SEARCH_TYPE_NONE = 2;
 
     private static final int PLACE_SEARCH_HISTORY_SIZE = 10;
 
@@ -165,6 +169,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
                     searchType = SEARCH_TYPE_LOCATION;
                     mLocationEditText.setTextColor(Color.parseColor("#000000"));
                     mLocationIcon.setColorFilter(Color.parseColor("#646464"));
+                    mSearchFilters.isCurrentLocation = false;
                 }
 
                 (searchType == SEARCH_TYPE_TAXON ? mClearTaxon : mClearLocation).setVisibility(query.length() > 0 ? View.VISIBLE : View.GONE);
@@ -208,6 +213,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
                     mActiveSearchType = SEARCH_TYPE_TAXON;
                 } else {
                     mSearchFilters.place = null;
+                    mSearchFilters.mapBounds = null;
+                    mSearchFilters.isCurrentLocation = false;
                     editText = mLocationEditText;
                     mActiveSearchType = SEARCH_TYPE_LOCATION;
                 }
@@ -257,6 +264,11 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 }
 
                 // All checked out - return the search filters
+                if (mSearchFilters.taxon != null) {
+                    // A Taxon has been chosen - clear out the iconic taxa
+                    mSearchFilters.iconicTaxa.clear();
+                }
+
                 Intent data = new Intent();
                 data.putExtra(SEARCH_FILTERS, mSearchFilters);
                 setResult(RESULT_OK, data);
@@ -347,7 +359,9 @@ public class ExploreSearchActivity extends AppCompatActivity {
                     // Use taxon's default photo
                     Picasso.with(this).
                             load(mSearchFilters.taxon.optJSONObject("default_photo").optString("square_url")).
+                            transform(new RoundedCornersTransformation(3, 0)).
                             placeholder(TaxonUtils.observationIcon(mSearchFilters.taxon)).
+                            fit().
                             into(mTaxonIcon);
                 } else {
                     // No taxon photo - use iconic_taxon
@@ -362,14 +376,20 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 mLocationEditText.setTextColor(Color.parseColor("#000000"));
                 mLocationIcon.setColorFilter(Color.parseColor("#646464"));
                 mClearLocation.setVisibility(View.GONE);
-            } else if (mSearchFilters.place == null) {
-                // No place
+             } else if (mSearchFilters.isCurrentLocation) {
+                // Current location
                 mLocationEditText.setText(R.string.current_location);
                 mLocationEditText.setSelection(0, getString(R.string.current_location).length());
                 mLocationEditText.setTextColor(getResources().getColor(R.color.inatapptheme_color));
                 mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
-                mClearLocation.setVisibility(View.GONE);
-            } else {
+                mClearLocation.setVisibility(View.VISIBLE);
+            } else if (mSearchFilters.mapBounds != null) {
+                mLocationEditText.setText(R.string.map_area);
+                mLocationEditText.setSelection(0, getString(R.string.map_area).length());
+                mLocationEditText.setTextColor(getResources().getColor(R.color.inatapptheme_color));
+                mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
+                mClearLocation.setVisibility(View.VISIBLE);
+            } else if (mSearchFilters.place != null) {
                 // Set place name
                 String placeName = mSearchFilters.place.optString("display_name");
                 mLocationEditText.setText(placeName);
@@ -377,12 +397,24 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 mLocationEditText.setTextColor(getResources().getColor(R.color.inatapptheme_color));
                 mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
                 mClearLocation.setVisibility(View.VISIBLE);
+            } else {
+                // No location at all (global search)
+                mLocationEditText.setText("");
+                mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
+                mClearLocation.setVisibility(View.GONE);
             }
 
             if (mActiveSearchType == SEARCH_TYPE_TAXON) {
                 mTaxonEditText.requestFocus();
-            } else {
+            } else if (mActiveSearchType == SEARCH_TYPE_LOCATION) {
                 mLocationEditText.requestFocus();
+            } else {
+                // Lost focus from all search boxes
+                mTaxonEditText.clearFocus();
+                mLocationEditText.clearFocus();
+                // Hide keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mLocationEditText.getWindowToken(), 0);
             }
         }
 
@@ -392,7 +424,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
             if (mActiveSearchType == SEARCH_TYPE_TAXON) {
                 // Show default taxon results
                 mResults = DEFAULT_TAXON_RESULTS;
-            } else {
+            } else if (mActiveSearchType == SEARCH_TYPE_LOCATION) {
                 // Show location search history
                 mResults = loadPlaceSearchHistory();
 
@@ -400,6 +432,10 @@ public class ExploreSearchActivity extends AppCompatActivity {
                     // A special case - no place history results yet, don't show the "no results found" message
                     dontShowNoResultsFound = true;
                 }
+            } else {
+                // User already selected a location - don't show anything in the result list
+                dontShowNoResultsFound = true;
+                mResults = new ArrayList<>();
             }
         }
 
@@ -437,7 +473,11 @@ public class ExploreSearchActivity extends AppCompatActivity {
                         mActiveSearchType = SEARCH_TYPE_LOCATION;
                     } else {
                         mSearchFilters.place = result;
+                        mSearchFilters.isCurrentLocation = false;
+                        mSearchFilters.mapBounds = null;
                         addPlaceToSearchHistory(result);
+
+                        mActiveSearchType = SEARCH_TYPE_NONE;
                     }
 
                     refreshViewState(true);

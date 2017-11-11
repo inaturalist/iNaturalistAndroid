@@ -113,6 +113,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private ViewGroup mRedoObservationsSearch;
     private ProgressBar mPerformingSearch;
     private ImageView mRedoObservationSearchIcon;
+    private TextView mRedoObservationsSearchText;
 
     private ListView[] mList = new ListView[] { null, null, null, null };
     private ArrayAdapter[] mListAdapter =  new ArrayAdapter[] { null, null, null, null };
@@ -525,15 +526,15 @@ public class ExploreActivity extends BaseFragmentActivity {
             final boolean shouldRedoSearch = mLastMapBounds == null;
 
             mObservationsMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), MY_LOCATION_ZOOM_LEVEL),
-                    10,
+                    1000,
                     new GoogleMap.CancelableCallback() {
                         @Override
                         public void onFinish() {
                             mInitialLocationBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
 
                             if (shouldRedoSearch) {
-                                mRedoObservationsSearch.performClick();
                                 mLastMapBounds = mInitialLocationBounds;
+                                mRedoObservationsSearch.performClick();
                             }
                         }
 
@@ -722,17 +723,20 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
 
 
-        if (mSearchFilters.place == null) {
-            if ((mLastMapBounds != null) && (mInitialLocationBounds != null) && (mLastMapBounds.equals(mInitialLocationBounds) == true)) {
-                // Nearby observations
-                subTitle.setText(R.string.nearby);
-            } else {
-                // No specific place search
-                subTitle.setText("");
-            }
-        } else {
+        if (mSearchFilters.isCurrentLocation) {
+            // TODO
+            //if ((mLastMapBounds != null) && (mInitialLocationBounds != null) && (mLastMapBounds.equals(mInitialLocationBounds) == true)) {
+            // Nearby observations
+            subTitle.setText(R.string.nearby);
+        } else if (mSearchFilters.mapBounds != null) {
+            // Specific map bounds
+            subTitle.setText(R.string.map_area);
+        } else if (mSearchFilters.place != null) {
             // Specific place
             subTitle.setText(mSearchFilters.place.optString("display_name"));
+        } else {
+            // No specific place search - global search
+            subTitle.setText(R.string.global);
         }
     }
 
@@ -998,6 +1002,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         mRedoObservationsSearch.setVisibility(mMapMoved ? View.VISIBLE : View.GONE);
         mPerformingSearch.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.VISIBLE : View.GONE);
         mRedoObservationSearchIcon.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.GONE : View.VISIBLE);
+        mRedoObservationsSearchText.setTextColor(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? Color.parseColor("#8A000000") : Color.parseColor("#000000"));
 
         mRedoObservationsSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1007,10 +1012,19 @@ public class ExploreActivity extends BaseFragmentActivity {
                 LatLngBounds bounds = new LatLngBounds(new LatLng(vr.nearLeft.latitude, vr.farLeft.longitude), new LatLng(vr.farRight.latitude, vr.farRight.longitude));
                 mSearchFilters.mapBounds = bounds;
                 mSearchFilters.place = null; // Clear out the place (search by map bounds only)
+
+
+                if ((mLastMapBounds != null) && (mInitialLocationBounds != null) && (mLastMapBounds.equals(mInitialLocationBounds) == true)) {
+                    mSearchFilters.isCurrentLocation = true;
+                } else {
+                    mSearchFilters.isCurrentLocation = false;
+                }
+
                 loadAllResults();
 
                 mPerformingSearch.setVisibility(View.VISIBLE);
                 mRedoObservationSearchIcon.setVisibility(View.GONE);
+                mRedoObservationsSearchText.setTextColor(Color.parseColor("#8A000000"));
             }
         });
     }
@@ -1026,6 +1040,14 @@ public class ExploreActivity extends BaseFragmentActivity {
     }
 
     private void loadAllResults() {
+        // Reset old results while we're loading the new ones
+        for (int i = 0; i < mTotalResults.length; i++) {
+            mTotalResults[i] = NOT_LOADED;
+            mResults[i] = null;
+        }
+
+        refreshViewState();
+
         loadNextResultsPage(VIEW_TYPE_OBSERVATIONS, true);
         loadNextResultsPage(VIEW_TYPE_SPECIES, true);
         loadNextResultsPage(VIEW_TYPE_IDENTIFIERS, true);
@@ -1127,6 +1149,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mRedoObservationsSearch = (ViewGroup) layout.findViewById(R.id.redo_search);
                 mPerformingSearch = (ProgressBar) layout.findViewById(R.id.performing_search);
                 mRedoObservationSearchIcon = (ImageView) layout.findViewById(R.id.redo_search_icon);
+                mRedoObservationsSearchText = (TextView) layout.findViewById(R.id.redo_search_text);
 
                 mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1279,24 +1302,25 @@ public class ExploreActivity extends BaseFragmentActivity {
                 // Update search filters and refresh results
                 mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);
 
-                // Reset old results while we're loading the new ones
-                for (int i = 0; i < mTotalResults.length; i++) {
-                    mTotalResults[i] = NOT_LOADED;
-                    mResults[i] = null;
-                }
-
                 if (mSearchFilters.place != null) {
                     // New place selected for search - zoom the map to that location
                     zoomMapToPlace(mSearchFilters.place);
-                    mSearchFilters.mapBounds = null; // No map bounds search while place is set
 
-                    loadAllResults();
-                } else {
-                    // No place set - that means we'll be setting to current location
+                } else if (mSearchFilters.isCurrentLocation) {
+                    // Current location - we'll be setting to current location
                     mLastMapBounds = null;
                     mObservationsMapMyLocation.performClick();
                     return;
+                } else if (mSearchFilters.mapBounds == null) {
+                    // No place set - global search (zoom out to world map)
+                    //CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mObservationsMap.getCameraPosition().target, 0);
+                    LatLngBounds bounds = new LatLngBounds(new LatLng(-85, -180), new LatLng(85, 180));
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 0);
+                    mMapMoved = false;
+                    mObservationsMap.moveCamera(cameraUpdate);
                 }
+
+                loadAllResults();
             }
         }
 	}

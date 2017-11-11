@@ -9,6 +9,6 @@
     <item
         android:id="@+id/filters"
         android:title="@string/filters"
-        android:icon="@drawable/ic_fa_sliders"
+        android:icon="@drawable/filters_gray"
         app:showAsAction="always" />
 </menu>
