@@ -180,11 +180,6 @@
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
             android:configChanges="orientation"
-            android:label="@string/map"
-            android:name=".INaturalistMapActivity" >
-        </activity>
-        <activity
-            android:configChanges="orientation"
             android:label="@string/choose_location"
             android:name=".LocationChooserActivity" >
         </activity>

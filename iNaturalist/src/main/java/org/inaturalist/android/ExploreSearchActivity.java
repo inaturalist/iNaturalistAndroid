@@ -231,19 +231,26 @@ public class ExploreSearchActivity extends AppCompatActivity {
             }
         };
 
-        mLocationEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+        View.OnFocusChangeListener onFocus = new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+            public void onFocusChange(final View v, boolean hasFocus) {
                 if (hasFocus) {
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            mLocationEditText.setSelection(0, mLocationEditText.getText().toString().length());
+                            ((EditText)v).setSelection(0, ((EditText)v).getText().toString().length());
                         }
                     }, 50);
+
+                    mActiveSearchType = v == mLocationEditText ? SEARCH_TYPE_LOCATION : SEARCH_TYPE_TAXON;
+                    refreshViewState(false);
                 }
             }
-        });
+        };
+
+        mLocationEditText.setOnFocusChangeListener(onFocus);
+        mTaxonEditText.setOnFocusChangeListener(onFocus);
 
         mClearTaxon.setOnClickListener(onClear);
         mClearLocation.setOnClickListener(onClear);
@@ -378,8 +385,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
                 mClearLocation.setVisibility(View.GONE);
              } else if (mSearchFilters.isCurrentLocation) {
                 // Current location
-                mLocationEditText.setText(R.string.current_location);
-                mLocationEditText.setSelection(0, getString(R.string.current_location).length());
+                mLocationEditText.setText(R.string.my_location);
+                mLocationEditText.setSelection(0, getString(R.string.my_location).length());
                 mLocationEditText.setTextColor(getResources().getColor(R.color.inatapptheme_color));
                 mLocationIcon.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
                 mClearLocation.setVisibility(View.VISIBLE);
@@ -427,6 +434,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
             } else if (mActiveSearchType == SEARCH_TYPE_LOCATION) {
                 // Show location search history
                 mResults = loadPlaceSearchHistory();
+                // Always add a "My location" result to the beginning of the search history
+                mResults.add(0, getMyLocationResult());
 
                 if (mResults.size() == 0) {
                     // A special case - no place history results yet, don't show the "no results found" message
@@ -450,6 +459,11 @@ public class ExploreSearchActivity extends AppCompatActivity {
             if (mActiveSearchType == SEARCH_TYPE_TAXON) {
                 mResultsList.setAdapter(new TaxonAdapter(this, mResults));
             } else {
+                if ((mResults.size() == 0) && (mLastSearch.trim().equalsIgnoreCase(getString(R.string.my_location)))) {
+                    // Special case - user searched for "my location" - add the default my location result
+                    mResults.add(getMyLocationResult());
+                }
+
                 mResultsList.setAdapter(new PlaceAdapter(this, mResults));
             }
 
@@ -472,10 +486,18 @@ public class ExploreSearchActivity extends AppCompatActivity {
                         mSearchFilters.taxon = result;
                         mActiveSearchType = SEARCH_TYPE_LOCATION;
                     } else {
-                        mSearchFilters.place = result;
-                        mSearchFilters.isCurrentLocation = false;
+                        if (result.optBoolean("is_my_location")) {
+                            // My location
+                            mSearchFilters.place = null;
+                            mSearchFilters.isCurrentLocation = true;
+                        } else {
+                            // A specific place
+                            mSearchFilters.place = result;
+                            mSearchFilters.isCurrentLocation = false;
+                            addPlaceToSearchHistory(result);
+                        }
+
                         mSearchFilters.mapBounds = null;
-                        addPlaceToSearchHistory(result);
 
                         mActiveSearchType = SEARCH_TYPE_NONE;
                     }
@@ -603,6 +625,17 @@ public class ExploreSearchActivity extends AppCompatActivity {
             mResults = resultsArray;
 
             refreshViewState(false);
+        }
+    }
+
+    private JSONObject getMyLocationResult() {
+        try {
+            JSONObject myLocation = new JSONObject();
+            myLocation.put("is_my_location", true);
+            return myLocation;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

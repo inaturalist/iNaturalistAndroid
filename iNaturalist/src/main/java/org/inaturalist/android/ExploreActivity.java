@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -536,11 +538,12 @@ public class ExploreActivity extends BaseFragmentActivity {
                                 mLastMapBounds = mInitialLocationBounds;
                                 mRedoObservationsSearch.performClick();
                             }
+
+                            mObservationsMapMyLocation.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
                         }
 
                         @Override
                         public void onCancel() {
-
                         }
                     });
         }
@@ -724,10 +727,8 @@ public class ExploreActivity extends BaseFragmentActivity {
 
 
         if (mSearchFilters.isCurrentLocation) {
-            // TODO
-            //if ((mLastMapBounds != null) && (mInitialLocationBounds != null) && (mLastMapBounds.equals(mInitialLocationBounds) == true)) {
             // Nearby observations
-            subTitle.setText(R.string.nearby);
+            subTitle.setText(R.string.my_location);
         } else if (mSearchFilters.mapBounds != null) {
             // Specific map bounds
             subTitle.setText(R.string.map_area);
@@ -991,6 +992,10 @@ public class ExploreActivity extends BaseFragmentActivity {
                         if ((mLastMapBounds == null) || (!mLastMapBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
                             mMapMoved = true;
                             mRedoObservationsSearch.setVisibility(View.VISIBLE);
+
+                            if ((mInitialLocationBounds == null) || !(mInitialLocationBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
+                                mObservationsMapMyLocation.setColorFilter(Color.parseColor("#676767"));
+                            }
                         }
 
                         mLastMapBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
@@ -1027,6 +1032,11 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mRedoObservationsSearchText.setTextColor(Color.parseColor("#8A000000"));
             }
         });
+
+        if (mSearchFilters.place != null) {
+            // Show the boundaries/border of the place on the map
+            addPlaceLayerToMap(mSearchFilters.place);
+        }
     }
 
     private void refreshMapType() {
@@ -1313,8 +1323,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                     return;
                 } else if (mSearchFilters.mapBounds == null) {
                     // No place set - global search (zoom out to world map)
-                    //CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(mObservationsMap.getCameraPosition().target, 0);
-                    LatLngBounds bounds = new LatLngBounds(new LatLng(-85, -180), new LatLng(85, 180));
+                    //LatLngBounds bounds = new LatLngBounds(new LatLng(-85, -180), new LatLng(85, 180));
+                    LatLngBounds bounds = new LatLngBounds(new LatLng(-60, -106), new LatLng(74, 38));
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 0);
                     mMapMoved = false;
                     mObservationsMap.moveCamera(cameraUpdate);
@@ -1325,46 +1335,67 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
 	}
 
+
+	private void addPlaceLayerToMap(JSONObject place) {
+        if (place == null) return;
+
+        GeoJsonLayer layer = getGeoJsonLayer(place.optJSONObject("geometry_geojson"));
+        if (layer == null) return;
+
+        layer.addLayerToMap();
+    }
+
+
+    private GeoJsonLayer getGeoJsonLayer(JSONObject boundingBox) {
+        if (boundingBox == null) return null;
+
+        try {
+            JSONObject geoJson = new JSONObject();
+            geoJson.put("type", "FeatureCollection");
+            JSONArray features = new JSONArray();
+            JSONObject feature = new JSONObject();
+            feature.put("type", "Feature");
+            feature.put("geometry", boundingBox);
+            feature.put("properties", new JSONObject());
+            features.put(feature);
+            geoJson.put("features", features);
+
+            GeoJsonLayer layer = new GeoJsonLayer(mObservationsMap, geoJson);
+            layer.getDefaultLineStringStyle().setColor(Color.parseColor("#ccf16f3a"));
+            layer.getDefaultPolygonStyle().setStrokeColor(Color.parseColor("#ccf16f3a"));
+            Resources r = getResources();
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, r.getDisplayMetrics());
+            layer.getDefaultPolygonStyle().setStrokeWidth(px);
+            return layer;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private void zoomMapToPlace(JSONObject place) {
-        JSONObject boundingBox = mSearchFilters.place.optJSONObject("bounding_box_geojson");
-        String location = mSearchFilters.place.optString("location");
+        if (place == null) return;
+
+        GeoJsonLayer layer = getGeoJsonLayer(place.optJSONObject("bounding_box_geojson"));
+        String location = place.optString("location");
         CameraUpdate cameraUpdate = null;
 
-        if (boundingBox != null) {
-            LatLngBounds bounds = null;
-
-            try {
-                JSONObject geoJson = new JSONObject();
-                geoJson.put("type", "FeatureCollection");
-                JSONArray features = new JSONArray();
-                JSONObject feature = new JSONObject();
-                feature.put("type", "Feature");
-                feature.put("geometry", boundingBox);
-                feature.put("properties", new JSONObject());
-                features.put(feature);
-                geoJson.put("features", features);
-
-                GeoJsonLayer layer = new GeoJsonLayer(mObservationsMap, geoJson);
-                bounds = layer.getBoundingBox();
-                if (bounds == null) {
-                    LatLngBounds.Builder builder = LatLngBounds.builder();
-                    for (GeoJsonFeature f : layer.getFeatures()) {
-                        if (f.getGeometry() instanceof GeoJsonPolygon) {
-                            GeoJsonPolygon polygon = (GeoJsonPolygon) f.getGeometry();
-                            for (List<LatLng> coordsList : polygon.getCoordinates()) {
-                                for (LatLng coords : coordsList) {
-                                    builder.include(coords);
-                                }
+        if (layer != null) {
+            LatLngBounds bounds = layer.getBoundingBox();
+            if (bounds == null) {
+                LatLngBounds.Builder builder = LatLngBounds.builder();
+                for (GeoJsonFeature f : layer.getFeatures()) {
+                    if (f.getGeometry() instanceof GeoJsonPolygon) {
+                        GeoJsonPolygon polygon = (GeoJsonPolygon) f.getGeometry();
+                        for (List<LatLng> coordsList : polygon.getCoordinates()) {
+                            for (LatLng coords : coordsList) {
+                                builder.include(coords);
                             }
                         }
                     }
-
-                    bounds = builder.build();
                 }
 
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+                bounds = builder.build();
             }
 
             mLastMapBounds = bounds;

@@ -193,8 +193,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         
         if (savedInstanceState == null) {
             mUser = (BetterJSONObject) intent.getSerializableExtra("user");
-            mTotalObservations = mUser.getInt("observations_count");
-            mTotalIdentifications = mUser.getInt("identifications_count");
+            mTotalObservations = mUser.getJSONObject().optInt("observations_count", 0);
+            mTotalIdentifications = mUser.getJSONObject().optInt("identifications_count", 0);
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
             mObservationsContainer.setVisibility(View.VISIBLE);

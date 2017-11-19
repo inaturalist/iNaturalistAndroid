@@ -351,7 +351,7 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
                     idName.setText(getTaxonName(item));
                     idTaxonName.setText(item.getString("name"));
 
-                    int rankLevel = item.getInt("rank_level");
+                    int rankLevel = item.optInt("rank_level", 99);
                     if (rankLevel <= 20) {
                         idTaxonName.setTypeface(null, Typeface.ITALIC);
                     } else {

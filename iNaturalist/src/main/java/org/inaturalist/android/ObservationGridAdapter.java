@@ -3,6 +3,9 @@ package org.inaturalist.android;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +87,10 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         taxonIcon.setLayoutParams(new RelativeLayout.LayoutParams(
                 mDimension, mDimension));
 
-        taxonIcon.setPadding(mDimension / 4, mDimension / 4, mDimension / 4, mDimension / 4);
+        int labelHeight = idName.getLayoutParams().height;
+        Resources r = mContext.getResources();
+        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, labelHeight, r.getDisplayMetrics());
+        taxonIcon.setPadding(mDimension / 4, (mDimension - px) / 4, mDimension / 4, mDimension / 4);
         taxonPic.setVisibility(View.INVISIBLE);
         taxonIcon.setVisibility(View.VISIBLE);
         taxonIcon.setImageResource(TaxonUtils.observationIcon(item));

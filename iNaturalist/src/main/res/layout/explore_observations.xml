@@ -88,8 +88,9 @@
              android:layout_marginBottom="60dp"
              android:layout_marginRight="20dp"
              android:elevation="3dp"
-             android:layout_width="56dp"
-             android:layout_height="56dp" />
+             android:layout_width="50dp"
+             android:layout_height="50dp" />
+
          <ImageView
              android:id="@+id/change_map_layers"
              android:background="@drawable/map_button"
@@ -100,8 +101,8 @@
              android:layout_alignRight="@id/my_location"
              android:layout_marginBottom="15dp"
              android:elevation="3dp"
-             android:layout_width="56dp"
-             android:layout_height="56dp" />
+             android:layout_width="50dp"
+             android:layout_height="50dp" />
 
 
 
@@ -139,7 +140,7 @@
                 android:id="@+id/redo_search_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/redo_search"
+                android:text="@string/search_map_area"
                 android:textColor="#8A000000"
                 android:textSize="18sp"
                 android:layout_centerInParent="true"

@@ -46,17 +46,29 @@ class PlaceAdapter extends ArrayAdapter<String> {
         TextView placeName = (TextView) view.findViewById(R.id.place_name);
         TextView placeType = (TextView) view.findViewById(R.id.place_type);
 
-        placeName.setText(item.optString("display_name"));
-        placeType.setText(PlaceUtils.placeTypeToStringResource(item.optInt("place_type", 0)));
-
-        if (item.optBoolean("is_recent_result")) {
-            // A recent place (from the search history)
-            Picasso.with(mContext).load(R.drawable.ic_history_black_48dp).into(placePic);
-            placePic.setColorFilter(Color.parseColor("#646464"));
-        } else {
-            // An actual search result
+        if (item.optBoolean("is_my_location")) {
+            // A my location placeholder
             Picasso.with(mContext).load(R.drawable.ic_location_on_black_24dp).into(placePic);
             placePic.setColorFilter(mContext.getResources().getColor(R.color.inatapptheme_color));
+
+            placeName.setText(R.string.my_location);
+            placeName.setTextColor(mContext.getResources().getColor(R.color.inatapptheme_color));
+            placeType.setVisibility(View.GONE);
+        } else {
+            placeName.setText(item.optString("display_name"));
+            placeName.setTextColor(Color.parseColor("#000000"));
+            placeType.setText(PlaceUtils.placeTypeToStringResource(item.optInt("place_type", 0)));
+            placeType.setVisibility(View.VISIBLE);
+
+            if (item.optBoolean("is_recent_result")) {
+                // A recent place (from the search history)
+                Picasso.with(mContext).load(R.drawable.ic_history_black_48dp).into(placePic);
+                placePic.setColorFilter(Color.parseColor("#646464"));
+            } else {
+                // An actual search result
+                Picasso.with(mContext).load(R.drawable.ic_location_on_black_24dp).into(placePic);
+                placePic.setColorFilter(mContext.getResources().getColor(R.color.inatapptheme_color));
+            }
         }
 
         view.setTag(item);
