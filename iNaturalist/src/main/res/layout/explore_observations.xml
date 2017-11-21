@@ -48,6 +48,33 @@
         />
 
 
+    <LinearLayout
+        android:id="@+id/loading_more_results"
+        android:padding="8dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            />
+
+
+        <TextView
+            android:text="@string/loading"
+            android:textSize="14sp"
+            android:textColor="#717171"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
     <org.inaturalist.android.GridViewExtended
         android:id="@+id/observations_grid"
         android:layout_width="fill_parent"
@@ -59,6 +86,7 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:layout_below="@id/grid_filter_bar"
+        android:layout_above="@id/loading_more_results"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

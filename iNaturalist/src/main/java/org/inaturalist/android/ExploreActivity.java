@@ -123,6 +123,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private TextView[] mListEmpty = new TextView[] { null, null, null, null };
     private ViewGroup[] mListHeader = new ViewGroup[] { null, null, null, null };
     private TextView[] mFilterBar = new TextView[] { null, null, null, null };
+    private ViewGroup[] mLoadingMoreResults = new ViewGroup[] { null, null, null, null };
 
 
     private static final int OBSERVATIONS_VIEW_MODE_GRID = 0;
@@ -567,6 +568,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             }
 
             mLoadingNextResults[index] = false;
+            mLoadingMoreResults[index].setVisibility(View.GONE);
 
             if (index == VIEW_TYPE_OBSERVATIONS) mMapMoved = false;
 
@@ -1092,6 +1094,10 @@ public class ExploreActivity extends BaseFragmentActivity {
             serviceIntent.putExtra(INaturalistService.FILTERS, mSearchFilters);
             serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, mCurrentResultsPage[resultsType] + 1);
             startService(serviceIntent);
+
+            if (mCurrentResultsPage[resultsType] > 0) {
+                mLoadingMoreResults[resultsType].setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -1160,6 +1166,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mPerformingSearch = (ProgressBar) layout.findViewById(R.id.performing_search);
                 mRedoObservationSearchIcon = (ImageView) layout.findViewById(R.id.redo_search_icon);
                 mRedoObservationsSearchText = (TextView) layout.findViewById(R.id.redo_search_text);
+                mLoadingMoreResults[position] = (ViewGroup) layout.findViewById(R.id.loading_more_results);
+                mLoadingMoreResults[position].setVisibility(View.GONE);
 
                 mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1274,6 +1282,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mListEmpty[position] = (TextView) layout.findViewById(listEmptyResource);
                 mList[position] = (ListView) layout.findViewById(listResource);
                 mFilterBar[position] = (TextView) layout.findViewById(R.id.filter_bar);
+                mLoadingMoreResults[position] = (ViewGroup) layout.findViewById(R.id.loading_more_results);
+                mLoadingMoreResults[position].setVisibility(View.GONE);
                 if (listHeaderResource != 0) mListHeader[position] = (ViewGroup) layout.findViewById(listHeaderResource);
                 ViewCompat.setNestedScrollingEnabled(mList[position], true);
 
