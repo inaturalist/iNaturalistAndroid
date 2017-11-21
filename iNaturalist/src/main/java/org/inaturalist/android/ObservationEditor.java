@@ -141,6 +141,8 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mChoseNewPhoto = false;
     private List<Uri> mSharePhotos = null;
 
+    private TaxonReceiver mTaxonReceiver;
+
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
     private ImageButton mViewOnInat;
@@ -654,6 +656,16 @@ public class ObservationEditor extends AppCompatActivity {
                 JSONObject idPhoto = taxon.getJSONObject("default_photo");
                 setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
                 mApp.setServiceResult(TAXON, null);
+            } else if (mObservation.taxon_id != null) {
+                // Taxon info not loaded - download it now
+                mTaxonReceiver = new TaxonReceiver();
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
+                Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
+                BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, mObservation.taxon_id);
+                startService(serviceIntent);
             }
         }
 
@@ -1096,6 +1108,8 @@ public class ObservationEditor extends AppCompatActivity {
         super.onPause();
 
         BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
+
         if (mProjectFieldViewers != null) {
             for (ProjectFieldViewer fieldViewer : mProjectFieldViewers) {
                 fieldViewer.unregisterReceivers();
@@ -3033,5 +3047,20 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         mClearSpeciesGuess.setVisibility(View.GONE);
+    }
+
+    private class TaxonReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mTaxonReceiver);
+
+            BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
+
+            if (taxon == null) {
+                return;
+            }
+            JSONObject idPhoto = taxon.getJSONObject("default_photo");
+            setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+        }
     }
 }
