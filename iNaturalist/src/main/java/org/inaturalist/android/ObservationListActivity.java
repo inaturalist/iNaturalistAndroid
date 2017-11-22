@@ -405,8 +405,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 if ((mSpecies == null) || (mSpecies.size() == 0)) {
                     mSpeciesEmpty.setVisibility(View.VISIBLE);
+                    mSpeciesList.setVisibility(View.GONE);
                 } else {
                     mSpeciesEmpty.setVisibility(View.GONE);
+                    mSpeciesList.setVisibility(View.VISIBLE);
 
                     mSpeciesListAdapter = new UserSpeciesAdapter(this, mSpecies);
                     mSpeciesList.setAdapter(mSpeciesListAdapter);
@@ -444,8 +446,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 if ((mIdentifications == null) || (mIdentifications.size() == 0)) {
                     mIdentificationsEmpty.setVisibility(View.VISIBLE);
+                    mIdentificationsList.setVisibility(View.GONE);
                 } else {
                     mIdentificationsEmpty.setVisibility(View.GONE);
+                    mIdentificationsList.setVisibility(View.VISIBLE);
 
                     mIdentificationsListAdapter = new UserIdentificationsAdapter(this, mIdentifications, mApp.currentUserLogin());
                     mIdentificationsList.setAdapter(mIdentificationsListAdapter);
@@ -565,6 +569,19 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
+        }
+
+
+        if (!mApp.loggedIn()) {
+            if ((mTotalIdentifications > 0) || (mTotalIdentifications > 0)) {
+                mTotalSpecies = 0;
+                mTotalIdentifications = 0;
+
+                mSpecies = null;
+                mIdentifications = null;
+
+                refreshViewState();
+            }
         }
 
         mUserDetailsReceiver = new UserDetailsReceiver();
