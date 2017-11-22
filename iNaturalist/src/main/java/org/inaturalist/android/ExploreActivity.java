@@ -787,7 +787,8 @@ public class ExploreActivity extends BaseFragmentActivity {
     }
 
     private void refreshResultsView(final int resultsType, final Class<? extends ArrayAdapter> adapterClass) {
-         if (mLoadingList[resultsType] == null) {
+        Log.e("AAA", "refreshResultsView! - " + resultsType + ":" + mLoadingList[resultsType]);
+        if (mLoadingList[resultsType] == null) {
             // View hasn't loaded yet
             return;
         }
@@ -1027,6 +1028,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     mSearchFilters.isCurrentLocation = false;
                 }
 
+                resetResults(true);
                 loadAllResults();
 
                 mPerformingSearch.setVisibility(View.VISIBLE);
@@ -1051,13 +1053,24 @@ public class ExploreActivity extends BaseFragmentActivity {
         if (mObservationsMap.getMapType() != mObservationsMapType) mObservationsMap.setMapType(mObservationsMapType);
     }
 
-    private void loadAllResults() {
-        // Reset old results while we're loading the new ones
+    private void resetResults(boolean resetOffsets) {
+         // Reset old results while we're loading the new ones
         for (int i = 0; i < mTotalResults.length; i++) {
             mTotalResults[i] = NOT_LOADED;
             mResults[i] = null;
         }
 
+        mObservationsMap.clear();
+        mMarkerObservations = new HashMap<>();
+
+        if (resetOffsets) {
+            mListViewIndex = new HashMap<>();
+            mListViewOffset = new HashMap<>();
+        }
+    }
+
+    private void loadAllResults() {
+        Log.e("AAA", "loadAllResults");
         refreshViewState();
 
         loadNextResultsPage(VIEW_TYPE_OBSERVATIONS, true);
@@ -1314,20 +1327,24 @@ public class ExploreActivity extends BaseFragmentActivity {
 		if (requestCode == VIEW_OBSERVATION_REQUEST_CODE) {
 			if (resultCode == ObservationViewerActivity.RESULT_FLAGGED_AS_CAPTIVE) {
 				// Refresh the results (since the user flagged the result as captive)
+                resetResults(false);
                 loadAllResults();
 				return;
 			}
 		} else if ((requestCode == SEARCH_REQUEST_CODE) || (requestCode == FILTERS_REQUEST_CODE)) {
             if (resultCode == RESULT_OK) {
                 // Update search filters and refresh results
+                Log.e("AAA", "ON ACTIVITY RESULT!");
                 mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);
 
+                Log.e("AAA", "ON ACTIVITY RESULT 2!");
                 if (mSearchFilters.place != null) {
                     // New place selected for search - zoom the map to that location
                     zoomMapToPlace(mSearchFilters.place);
 
                 } else if (mSearchFilters.isCurrentLocation) {
                     // Current location - we'll be setting to current location
+                    resetResults(true);
                     mLastMapBounds = null;
                     mObservationsMapMyLocation.performClick();
                     return;
@@ -1340,6 +1357,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                     mObservationsMap.moveCamera(cameraUpdate);
                 }
 
+                Log.e("AAA", "ON ACTIVITY RESULT 3!");
+                resetResults(true);
                 loadAllResults();
             }
         }
