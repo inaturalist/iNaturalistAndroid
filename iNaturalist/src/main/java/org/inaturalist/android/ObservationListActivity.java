@@ -1349,7 +1349,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 // Extended user details
                 mUser = (BetterJSONObject) object;
 
+                SharedPreferences settings = mApp.getPrefs();
+                settings.edit().putInt("observation_count", mUser.getInt("observations_count")).commit();
+
                 mTotalIdentifications = mUser.getInt("identifications_count");
+                refreshUserDetails();
+
+                refreshViewState();
+
                 return;
             } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
                 // Species count result
