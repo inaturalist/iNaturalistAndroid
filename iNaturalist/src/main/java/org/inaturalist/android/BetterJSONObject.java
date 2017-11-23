@@ -54,7 +54,7 @@ public class BetterJSONObject implements Serializable {
 	    if (mDateFormats == null) {
 	    	mDateFormats = new ArrayList<>();
 
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZ");
 			df.setTimeZone(TimeZone.getTimeZone("GMT"));
 			mDateFormats.add(df);
 			df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
