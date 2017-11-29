@@ -2224,6 +2224,12 @@ public class ObservationEditor extends AppCompatActivity {
                             public void run() {
                                 stopGetLocation();
                                 importPhotoMetadata(photo);
+
+                                mFindingCurrentLocation.setVisibility(View.GONE);
+                                mLocationRefreshButton.setVisibility(View.VISIBLE);
+
+                                mLocationProgressView.setVisibility(View.GONE);
+                                mLocationIcon.setVisibility(View.VISIBLE);
                             }
                         });
 
