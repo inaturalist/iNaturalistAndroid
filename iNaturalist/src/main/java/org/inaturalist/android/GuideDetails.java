@@ -910,7 +910,12 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         }
         
         if (savedInstanceState == null) {
-            mGuide = (BetterJSONObject) intent.getSerializableExtra("guide");
+            Object guide = intent.getSerializableExtra("guide");
+            if (guide.getClass().equals(String.class)){
+                mGuide = new BetterJSONObject((String)guide);
+            } else {
+                mGuide = (BetterJSONObject) guide;
+            }
         } else {
             mGuide = (BetterJSONObject) savedInstanceState.getSerializable("guide");
             mGuideXmlFilename = savedInstanceState.getString("guideXmlFilename");
