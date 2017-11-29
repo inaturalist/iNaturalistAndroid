@@ -2,7 +2,9 @@ package org.inaturalist.android;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,23 +33,37 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
+    private static final String TAG = "SimpleCursorAdapter";
+
     private int mDimension;
     private HashMap<String, String[]> mPhotoInfo = new HashMap<String, String[]>();
     private boolean mIsGrid;
@@ -746,16 +762,50 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private Map<ImageView, String> mImageViewToUrl = new HashMap<>();
 
     private void loadObsImage(final int position, final ImageView imageView, final String name, boolean isOnline) {
-
         if (mImageViewToUrl.containsKey(imageView) && mImageViewToUrl.get(imageView).equals(name)){
             imageView.setVisibility(View.VISIBLE);
             return;
         }
 
+        String imageUrl = name;
+
+        if (!isOnline) {
+            File file = new File(name);
+            if (!file.exists()) {
+                // Local file - but it was deleted for some reason (probably user cleared cache)
+
+                // See if the obs has a remote URL
+                Cursor c = this.getCursor();
+                int oldPosition = c.getPosition();
+                c.moveToPosition(position);
+                Observation obs = new Observation(c);
+                c.moveToPosition(oldPosition);
+                String[] photoInfo = mPhotoInfo.get(obs.uuid);
+
+                if (photoInfo[2] == null) {
+                    // No remote image - need to download obs
+                    Log.d(TAG, "Local file deleted - re-downloading: " + position + ":" + name);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadRemoteObsPhoto(position, imageView);
+                        }
+                    }).start();
+
+                    return;
+                } else {
+                    // Try and load remote image instead
+                    imageUrl = photoInfo[2];
+                    Log.d(TAG, "Local file deleted - using remote URL: " + position + ":" + imageUrl);
+                    isOnline = true;
+                }
+            }
+        }
+
         if (isOnline) {
             // Online image
             Picasso.with(mContext)
-                    .load(name)
+                    .load(imageUrl)
                     .fit()
                     .centerCrop()
                     .into(imageView, new Callback() {
@@ -776,6 +826,101 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             BitmapWorkerTask task = new BitmapWorkerTask(imageView);
             task.execute(name, String.valueOf(position));
         }
+    }
+
+    private void downloadRemoteObsPhoto(int position, ImageView imageView) {
+        Cursor c = this.getCursor();
+        int oldPosition = c.getPosition();
+        c.moveToPosition(position);
+        Observation obs = new Observation(c);
+        c.moveToPosition(oldPosition);
+
+        if (obs.id == null) {
+            // Observation hasn't been uploaded yet to server - nothing we can do here
+            Log.d(TAG, "downloadRemoteObsPhoto - Observation hasn't been synced yet - " + obs._id);
+            return;
+        }
+
+        Log.d(TAG, "downloadRemoteObsPhoto - Downloading observation JSON - " + obs.id);
+        JSONObject json = getObservationJson(obs.id);
+
+        if (json != null) {
+            Observation remoteObs = new Observation(new BetterJSONObject(json));
+            if (remoteObs.photos.size() > 0) {
+                // Get the URL for the first photo of the obs
+                Collections.sort(remoteObs.photos, new Comparator<ObservationPhoto>() {
+                    @Override
+                    public int compare(ObservationPhoto o1, ObservationPhoto o2) {
+                        if ((o1.position == null) || (o2.position == null)) return 0;
+
+                        return o1.position.compareTo(o2.position);
+                    }
+                });
+
+                String photoUrl = remoteObs.photos.get(0).photo_url;
+                Log.d(TAG, "downloadRemoteObsPhoto - Remote obs URL - " + obs.id + ":" + photoUrl);
+
+                // Update the DB
+
+                String[] photoInfo = mPhotoInfo.get(obs.uuid);
+                photoInfo[2] = photoUrl;
+
+                Cursor pc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                        ObservationPhoto.PROJECTION,
+                        "(id = " + remoteObs.photos.get(0).id + ")",
+                        null,
+                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                if (pc.getCount() > 0) {
+                    ObservationPhoto photo = new ObservationPhoto(pc);
+                    Log.d(TAG, "downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
+                    photo.photo_url = photoUrl;
+                    ContentValues cv = photo.getContentValues();
+                    mContext.getContentResolver().update(photo.getUri(), cv, null, null);
+                }
+
+                savePhotoInfo();
+            }
+        }
+    }
+
+    private JSONObject getObservationJson(int id) {
+        Locale deviceLocale = mContext.getResources().getConfiguration().locale;
+        String deviceLanguage = deviceLocale.getLanguage();
+
+        URL url;
+        try {
+            url = new URL(String.format("%s/observations/%d.json?locale=%s", INaturalistService.HOST, id, deviceLanguage));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+        JSONObject json = null;
+
+        try {
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+
+            // Load the results into a StringBuilder
+            int read;
+            char[] buff = new char[1024];
+            StringBuilder result = new StringBuilder();
+
+            while ((read = in.read(buff)) != -1) {
+                result.append(buff, 0, read);
+            }
+
+            json = new JSONObject(result.toString());
+
+            conn.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return json;
     }
 
 
