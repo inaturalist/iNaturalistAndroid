@@ -1357,9 +1357,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 mUserName.setText(userObj.optString("login"));
                 mUserPic.setVisibility(View.VISIBLE);
                 mUserName.setVisibility(View.VISIBLE);
-            } else {
-                mUserPic.setVisibility(View.INVISIBLE);
-                mUserName.setVisibility(View.INVISIBLE);
             }
         } else {
             SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);

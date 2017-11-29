@@ -787,7 +787,6 @@ public class ExploreActivity extends BaseFragmentActivity {
     }
 
     private void refreshResultsView(final int resultsType, final Class<? extends ArrayAdapter> adapterClass) {
-        Log.e("AAA", "refreshResultsView! - " + resultsType + ":" + mLoadingList[resultsType]);
         if (mLoadingList[resultsType] == null) {
             // View hasn't loaded yet
             return;
@@ -1070,7 +1069,6 @@ public class ExploreActivity extends BaseFragmentActivity {
     }
 
     private void loadAllResults() {
-        Log.e("AAA", "loadAllResults");
         refreshViewState();
 
         loadNextResultsPage(VIEW_TYPE_OBSERVATIONS, true);
@@ -1334,10 +1332,8 @@ public class ExploreActivity extends BaseFragmentActivity {
 		} else if ((requestCode == SEARCH_REQUEST_CODE) || (requestCode == FILTERS_REQUEST_CODE)) {
             if (resultCode == RESULT_OK) {
                 // Update search filters and refresh results
-                Log.e("AAA", "ON ACTIVITY RESULT!");
                 mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);
 
-                Log.e("AAA", "ON ACTIVITY RESULT 2!");
                 if (mSearchFilters.place != null) {
                     // New place selected for search - zoom the map to that location
                     zoomMapToPlace(mSearchFilters.place);
@@ -1357,7 +1353,6 @@ public class ExploreActivity extends BaseFragmentActivity {
                     mObservationsMap.moveCamera(cameraUpdate);
                 }
 
-                Log.e("AAA", "ON ACTIVITY RESULT 3!");
                 resetResults(true);
                 loadAllResults();
             }
