@@ -83,7 +83,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
                     placeGuess.setText(String.format(mContext.getString(R.string.location_coords_no_acc),
                             String.format("%.4f...", Double.valueOf(item.optString("latitude"))), String.format("%.4f...", Double.valueOf(item.optString("longitude")))));
                 } else {
-                    // No location at all
+                    // No place at all
                     placeGuess.setText(R.string.no_location);
                 }
             } else {

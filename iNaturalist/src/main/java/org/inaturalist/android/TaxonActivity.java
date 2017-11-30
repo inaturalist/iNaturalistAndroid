@@ -55,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.senab.photoview.HackyViewPager;
 
@@ -266,7 +267,9 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-                String taxonUrl = String.format("%s/taxa/%d", inatHost, mTaxon.getInt("id"));
+                Locale deviceLocale = getResources().getConfiguration().locale;
+                String deviceLanguage =   deviceLocale.getLanguage();
+                String taxonUrl = String.format("%s/taxa/%d?locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(taxonUrl));
                 startActivity(i);

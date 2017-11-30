@@ -12,15 +12,29 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
+configurations {
+    all {
+        exclude module: 'httpclient'
+    }
+}
+
 repositories {
     maven { url "http://dl.bintray.com/populov/maven" }
     mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
 }
 
+allprojects {
+    repositories {
+        maven {
+            url 'https://maven.google.com'
+        }
+    }
+}
+
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26.0.2'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
@@ -90,9 +104,10 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.4.0@aar') {
         transitive = true;
     }
+    compile 'jp.wasabeef:picasso-transformations:2.1.2'
     compile 'com.android.support:design:25.+'
     compile 'com.android.support:support-v4:25.+'
-    compile 'com.google.android.gms:play-services:7.3.0'
+    compile 'com.google.android.gms:play-services:8.4.0'
     compile 'org.apache.commons:commons-collections4:4.0'
     compile 'org.apache.commons:commons-lang3:3.1'
     compile 'org.apache.httpcomponents:httpmime:4.3.3'
@@ -103,7 +118,7 @@ dependencies {
     compile 'org.apache.sanselan:sanselan:0.97-incubator'
     compile 'com.cocosw:bottomsheet:1.+@aar'
     compile 'org.lucasr.twowayview:twowayview:0.1.4'
-    compile 'com.viewpagerindicator:library:2.4.1'
+    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
     compile 'joda-time:joda-time:2.4'
     compile 'com.google.android.gms:play-services-ads:7.3.0'
     compile 'com.google.android.gms:play-services-identity:7.3.0'

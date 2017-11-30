@@ -30,8 +30,56 @@
         android:layout_marginTop="50dp"
         android:text="@string/no_species_found" />
 
+
+    <TextView
+        android:id="@+id/filter_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="11dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="#8A000000"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:text="Filter"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
+    <LinearLayout
+        android:id="@+id/loading_more_results"
+        android:padding="8dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            />
+
+
+        <TextView
+            android:text="@string/loading"
+            android:textSize="14sp"
+            android:textColor="#717171"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/species_list"
+        android:layout_below="@id/filter_bar"
+        android:layout_above="@id/loading_more_results"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"

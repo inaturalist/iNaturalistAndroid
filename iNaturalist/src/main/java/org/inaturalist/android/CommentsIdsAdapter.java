@@ -215,6 +215,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			};
 
 			if (moreMenu != null) {
+				moreMenu.setVisibility(View.GONE);
 				moreMenu.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) {

@@ -3,6 +3,9 @@ package org.inaturalist.android;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +58,9 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         final View view = inflater.inflate(R.layout.guide_taxon_item, parent, false);
         JSONObject item = mItems.get(position);
 
+        TextView researchGrade = (TextView) view.findViewById(R.id.is_research_grade);
+        researchGrade.setVisibility(item.optString("quality_grade", "none").equals("research") ? View.VISIBLE : View.GONE);
+
         TextView idName = (TextView) view.findViewById(R.id.id_name);
         final JSONObject taxon = item.optJSONObject("taxon");
 
@@ -74,9 +80,20 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
 
         final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_photo);
+        final ImageView taxonIcon = (ImageView) view.findViewById(R.id.taxon_icon);
 
         taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                 mDimension, mDimension));
+        taxonIcon.setLayoutParams(new RelativeLayout.LayoutParams(
+                mDimension, mDimension));
+
+        int labelHeight = idName.getLayoutParams().height;
+        Resources r = mContext.getResources();
+        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, labelHeight, r.getDisplayMetrics());
+        taxonIcon.setPadding(mDimension / 4, (mDimension - px) / 4, mDimension / 4, mDimension / 4);
+        taxonPic.setVisibility(View.INVISIBLE);
+        taxonIcon.setVisibility(View.VISIBLE);
+        taxonIcon.setImageResource(TaxonUtils.observationIcon(item));
 
         JSONArray observationPhotos;
         boolean isNewApi = !item.has("observation_photos");
@@ -108,7 +125,6 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
                 Picasso.with(mContext)
                         .load(url)
-                        .placeholder(TaxonUtils.observationIcon(item))
                         .fit()
                         .centerCrop()
                         .into(taxonPic, new Callback() {
@@ -116,6 +132,8 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                             public void onSuccess() {
                                 taxonPic.setLayoutParams(new RelativeLayout.LayoutParams(
                                         mDimension, mDimension));
+                                taxonIcon.setVisibility(View.GONE);
+                                taxonPic.setVisibility(View.VISIBLE);
                             }
 
                             @Override

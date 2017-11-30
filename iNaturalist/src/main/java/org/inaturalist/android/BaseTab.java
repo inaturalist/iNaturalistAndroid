@@ -136,7 +136,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
             } else if (requiresLocation() && !mApp.isLocationEnabled(this)) {
-            	// No projects due to no location services enabled
+            	// No projects due to no place services enabled
             	mEmptyListLabel.setText(getLocationRequiredText());
                 mSettings.setVisibility(View.VISIBLE);
             } else if (requiresLogin() && !mApp.loggedIn()) {
@@ -189,13 +189,13 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     /** Returns the text to display when no Internet connection is available */
     abstract protected String getNoInternetText();
 
-    /** Returns the text to display when no location services are available */
+    /** Returns the text to display when no place services are available */
     protected String getLocationRequiredText() { return getResources().getString(R.string.please_enable_location_services); }
 
     /** Whether or not the tab requires user login (e.g. for "Joined projects") */
     protected boolean requiresLogin() { return false; }
 
-    /** Whether or not the tab requires location services (e.g. "Nearby Projects") */
+    /** Whether or not the tab requires place services (e.g. "Nearby Projects") */
     protected boolean requiresLocation() { return false; }
 
     /** Returns the text to display when a user login is required */
@@ -407,7 +407,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     @Override
     public void onLocationStatus(boolean isEnabled) {
         if (!isEnabled) {
-            // No projects due to no location services enabled
+            // No projects due to no place services enabled
             mEmptyListLabel.setText(getLocationRequiredText());
             mSettings.setVisibility(View.VISIBLE);
         }

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="112dp">
+
+        <RelativeLayout
+            android:id="@+id/search_icon_area"
+            android:layout_width="66dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <View
+                android:layout_alignParentLeft="true"
+                android:background="#ECECEC"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+            
+            
+            <ImageButton
+                android:id="@+id/search_button"
+                android:tint="#ffffff"
+                android:src="@drawable/ic_search_black_24dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/rounded_green_button"
+                android:layout_marginRight="16dp"
+                android:layout_width="37dp"
+                android:layout_height="37dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_toLeftOf="@id/search_icon_area"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/taxon_icon"
+                    android:src="@drawable/ic_search_black_24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" />
+
+                <ImageView
+                    android:id="@+id/clear_taxon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_clear_white_48dp"
+                    android:tint="#61000000"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+                <EditText
+                    android:id="@+id/taxon_edit_text"
+                    android:background="#ffffff"
+                    android:maxLines="1"
+                    android:lines="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/taxon_icon"
+                    android:layout_toLeftOf="@id/clear_taxon"
+                    android:hint="@string/taxon_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColorHighlight="#CCDEF7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp" />
+            </RelativeLayout>
+
+            <View
+                android:background="#ECECEC"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="10dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/location_icon"
+                    android:src="@drawable/ic_location_on_black_24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" />
+
+                <ImageView
+                    android:id="@+id/clear_location"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_clear_white_48dp"
+                    android:tint="#61000000"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+                <EditText
+                    android:id="@+id/location_edit_text"
+                    android:layout_marginRight="5dp"
+                    android:maxLines="1"
+                    android:lines="1"
+                    android:background="#ffffff"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/location_icon"
+                    android:layout_toLeftOf="@id/clear_location"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:hint="@string/location_search_hint"
+                    android:textColorHighlight="#CCDEF7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F2F2">
+
+        <ListView
+            android:id="@+id/search_results"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/loading_results"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/no_results_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/no_results_found"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</LinearLayout>

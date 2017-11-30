@@ -13,11 +13,14 @@ import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 class TaxonAdapter extends ArrayAdapter<String> {
     private ArrayList<JSONObject> mResultList;
@@ -40,7 +43,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
         View view = inflater.inflate(R.layout.taxon_result_item, parent, false);
         JSONObject item = null;
         try {
-            item = mResultList.get(position).getJSONObject("taxon");
+            item = mResultList.get(position).has("taxon") ? mResultList.get(position).getJSONObject("taxon") : mResultList.get(position);
         } catch (JSONException e) {
             e.printStackTrace();
             return view;
@@ -67,23 +70,17 @@ class TaxonAdapter extends ArrayAdapter<String> {
                 idTaxonName.setVisibility(View.GONE);
             }
 
-            idTaxonName.setTypeface(null, Typeface.ITALIC);
+            idTaxonName.setTypeface(null, item.optInt("rank_level", 0) <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
             if (item.has("default_photo") && !item.isNull("default_photo")) {
                 JSONObject defaultPhoto = item.getJSONObject("default_photo");
-                UrlImageViewHelper.setUrlDrawable(idPic, defaultPhoto.getString("square_url"), TaxonUtils.observationIcon(item), new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        if (loadedBitmap != null)
-                            imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
-                    }
-
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        return loadedBitmap;
-                    }
-                });
+                Picasso.with(mContext)
+                        .load(defaultPhoto.getString("square_url"))
+                        .transform(new RoundedCornersTransformation(3, 0))
+                        .placeholder(TaxonUtils.observationIcon(item))
+                        .fit()
+                        .into(idPic);
             } else {
-                idPic.setImageResource(R.drawable.iconic_taxon_unknown);
+                idPic.setImageResource(TaxonUtils.observationIcon(item));
             }
 
             view.setTag(item);

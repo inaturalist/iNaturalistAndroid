@@ -319,12 +319,12 @@ public class INaturalistApp extends MultiDexApplication {
         }
 	}
 
-    // Called by isLocationEnabled to notify the rest of the app if location is enabled/disabled
+    // Called by isLocationEnabled to notify the rest of the app if place is enabled/disabled
     public interface OnLocationStatus {
         void onLocationStatus(boolean isEnabled);
     }
 
-    /** Checks if location services are enabled */
+    /** Checks if place services are enabled */
     public boolean isLocationEnabled(final OnLocationStatus locationCallback) {
         // First, check if GPS is disabled
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -336,7 +336,7 @@ public class INaturalistApp extends MultiDexApplication {
         if (!gpsEnabled) return false;
 
 
-        // Next, see if specifically the user has revoked location access to our app
+        // Next, see if specifically the user has revoked place access to our app
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                     .addApi(LocationServices.API)
@@ -360,7 +360,7 @@ public class INaturalistApp extends MultiDexApplication {
                     final Status status = locationSettingsResult.getStatus();
                     switch (status.getStatusCode()) {
                         case LocationSettingsStatusCodes.SUCCESS:
-                            // All location settings are satisfied. The client can initialize location
+                            // All place settings are satisfied. The client can initialize place
                             // requests here.
                             locationCallback.onLocationStatus(true);
                             break;

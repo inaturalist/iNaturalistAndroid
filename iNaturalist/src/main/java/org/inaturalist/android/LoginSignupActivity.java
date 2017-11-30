@@ -365,9 +365,6 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     // Login
                     recreateSignInTaskIfNeeded();
                     mSignInTask.signIn(INaturalistService.LoginType.OAUTH_PASSWORD, mUsername.getText().toString().trim(), mPassword.getText().toString());
-
-                    // Existing user (not a new one) - No need to show onboarding
-                    mApp.setOnBoardingTextsShown();
                 } else {
                     // Sign up
                     mUserRegisterReceiver = new UserRegisterReceiver();
@@ -422,9 +419,6 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     @Override
     public void onLoginSuccessful() {
         mSignInTask.pause();
-
-        // Existing user (not a new one) - No need to show onboarding
-        mApp.setOnBoardingTextsShown();
 
         setResult(RESULT_OK);
         finish();

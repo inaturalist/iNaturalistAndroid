@@ -13,14 +13,15 @@
     
        <ImageView
            android:id="@+id/id_pic"
-           android:layout_width="75dp"
-           android:layout_height="75dp"
+           android:layout_width="40dp"
+           android:layout_height="40dp"
            android:layout_alignParentStart="true"
            android:layout_centerVertical="true"
            android:layout_marginEnd="5dp"
            android:src="@drawable/actionbar_back_indicator" />
 
         <LinearLayout
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -31,7 +32,7 @@
                 android:id="@+id/id_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@android:style/TextAppearance.Medium"
+                android:textSize="18sp"
                 android:textColor="#000000"
                 android:text="TextView" />
 
@@ -39,7 +40,8 @@
                 android:id="@+id/id_taxon_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:textColor="#8A000000"
+                android:textSize="14sp"
                 android:text="TextView" />
       </LinearLayout>
 

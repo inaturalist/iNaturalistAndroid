@@ -33,7 +33,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LocationChooserActivity extends AppCompatActivity implements LocationListener {
-    public final static String TAG = "INaturalistMapActivity";
+    public final static String TAG = "LocationChooserActivity";
 	protected static final String LATITUDE = "latitude";
 	protected static final String LONGITUDE = "longitude";
 	protected static final String ACCURACY = "accuracy";
@@ -288,7 +288,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 }
 
                 mMap.clear();
-                MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(INaturalistMapActivity.observationIcon(mIconicTaxonName));
+                MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(TaxonUtils.observationMarkerIcon(mIconicTaxonName));
                 Marker m = mMap.addMarker(opts);
 
             }

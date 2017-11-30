@@ -141,6 +141,8 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mChoseNewPhoto = false;
     private List<Uri> mSharePhotos = null;
 
+    private TaxonReceiver mTaxonReceiver;
+
     private ActionBar mTopActionBar;
     private ImageButton mDeleteButton;
     private ImageButton mViewOnInat;
@@ -549,8 +551,21 @@ public class ObservationEditor extends AppCompatActivity {
         mCloseSpeciesNameOnboarding = findViewById(R.id.onboarding_species_name_close);
         mSpeciesNameOnboarding = (ViewGroup) findViewById(R.id.onboarding_species_name);
 
-        mSpeciesNameOnboarding.setVisibility(View.GONE);
+        mSpeciesNameOnboarding = (ViewGroup) findViewById(R.id.onboarding_species_name);
 
+        final SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        mCloseSpeciesNameOnboarding.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSpeciesNameOnboarding.setVisibility(View.GONE);
+                prefs.edit().putBoolean("onboarded_species_guess", true).commit();
+            }
+        });
+
+        // Decide if to show onboarding message
+        boolean hasOnboardedSpeciesGuess = prefs.getBoolean("onboarded_species_guess", false);
+
+        mSpeciesNameOnboarding.setVisibility(hasOnboardedSpeciesGuess ? View.GONE : View.VISIBLE);
 
         mProjectSelector.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -655,6 +670,16 @@ public class ObservationEditor extends AppCompatActivity {
                 int rankLevel = taxon.getInt("rank_level") != null ? taxon.getInt("rank_level") : 0;
                 setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), rankLevel, false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
                 mApp.setServiceResult(TAXON, null);
+            } else if (mObservation.taxon_id != null) {
+                // Taxon info not loaded - download it now
+                mTaxonReceiver = new TaxonReceiver();
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
+                Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
+                BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, mObservation.taxon_id);
+                startService(serviceIntent);
             }
         }
 
@@ -695,11 +720,11 @@ public class ObservationEditor extends AppCompatActivity {
                         alertDialog.dismiss();
 
                         if (position == 0) {
-                            // Get current location
+                            // Get current place
                             mLocationManuallySet = true;
                             getLocation();
                         } else {
-                            // Edit location
+                            // Edit place
                             Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
                             Double lat, lon;
                             lat = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
@@ -778,7 +803,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mSharePhotos != null) {
             stopGetLocation();
-            // Share photos(s) with iNaturalist (override any location with the one from the shared images)
+            // Share photos(s) with iNaturalist (override any place with the one from the shared images)
             importPhotos(mSharePhotos, true);
         }
 
@@ -1097,6 +1122,8 @@ public class ObservationEditor extends AppCompatActivity {
         super.onPause();
 
         BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
+
         if (mProjectFieldViewers != null) {
             for (ProjectFieldViewer fieldViewer : mProjectFieldViewers) {
                 fieldViewer.unregisterReceivers();
@@ -1183,9 +1210,10 @@ public class ObservationEditor extends AppCompatActivity {
                     mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
                     mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
                     mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
-                    if (mObservation.latitude == null && mCurrentLocation == null) {
-                        getLocation();
-                    }
+                }
+
+                if (mObservation.latitude == null && mCurrentLocation == null) {
+                    getLocation();
                 }
             }
         }
@@ -1584,7 +1612,7 @@ public class ObservationEditor extends AppCompatActivity {
      * Location
      */
 
-    // Kicks off location service
+    // Kicks off place service
     private void getLocation() {
         if (mLocationListener != null) {
             return;
@@ -1602,10 +1630,10 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (mLocationListener == null) {
-            // Define a listener that responds to location updates
+            // Define a listener that responds to place updates
             mLocationListener = new LocationListener() {
                 public void onLocationChanged(Location location) {
-                    // Called when a new location is found by the network location provider.
+                    // Called when a new place is found by the network place provider.
 
                     handleNewLocation(location);
                 }
@@ -1616,7 +1644,7 @@ public class ObservationEditor extends AppCompatActivity {
             };
         }
 
-        // Register the listener with the Location Manager to receive location updates
+        // Register the listener with the Location Manager to receive place updates
         if (mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);   
         }
@@ -1635,13 +1663,13 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (locationIsGood(mCurrentLocation)) {
-            // Log.d(TAG, "location was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Log.d(TAG, "place was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
 
         if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
-            // Log.d(TAG, "location request was old and location was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Log.d(TAG, "place request was old and place was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
@@ -2187,7 +2215,7 @@ public class ObservationEditor extends AppCompatActivity {
                     mPhotosAdded.add(createdUri.toString());
                     position++;
 
-                    // Import photo metadata (e.g. location) only when the location hasn't been set
+                    // Import photo metadata (e.g. place) only when the place hasn't been set
                     // by the user before (whether manually or by importing previous images)
                     if ((!mLocationManuallySet && mObservation.latitude == null && mObservation.longitude == null) ||
                         (overrideLocation && position == 1)) {
@@ -2197,6 +2225,12 @@ public class ObservationEditor extends AppCompatActivity {
                             public void run() {
                                 stopGetLocation();
                                 importPhotoMetadata(photo);
+
+                                mFindingCurrentLocation.setVisibility(View.GONE);
+                                mLocationRefreshButton.setVisibility(View.VISIBLE);
+
+                                mLocationProgressView.setVisibility(View.GONE);
+                                mLocationIcon.setVisibility(View.VISIBLE);
                             }
                         });
 
@@ -3033,5 +3067,20 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         mClearSpeciesGuess.setVisibility(View.GONE);
+    }
+
+    private class TaxonReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mTaxonReceiver);
+
+            BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
+
+            if (taxon == null) {
+                return;
+            }
+            JSONObject idPhoto = taxon.getJSONObject("default_photo");
+            setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+        }
     }
 }

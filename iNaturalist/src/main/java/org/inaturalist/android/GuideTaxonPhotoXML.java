@@ -67,7 +67,7 @@ public class GuideTaxonPhotoXML extends BaseGuideXMLParser implements Serializab
      * and photo size (thumbnail/small/medium/large).
      * @param photoType
      * @param photoSize
-     * @return URL of the photo (if photoType==REMOTE) or file location (if photoType==LOCAL)
+     * @return URL of the photo (if photoType==REMOTE) or file place (if photoType==LOCAL)
      */
     public String getPhotoLocation(PhotoType photoType, PhotoSize photoSize) {
         String typeString, sizeString;

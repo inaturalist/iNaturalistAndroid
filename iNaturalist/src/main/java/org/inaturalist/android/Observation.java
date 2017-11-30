@@ -463,8 +463,8 @@ public class Observation implements BaseColumns, Serializable {
             this.user_login = user.optString("login");
         }
 
-        if (o.has("location")) {
-            String location = o.getString("location");
+        if (o.has("place")) {
+            String location = o.getString("place");
             if ((location != null) && (location.length() > 0)) {
                 String[] locationSplit = location.split(",");
                 this.latitude = Double.parseDouble(locationSplit[0]);

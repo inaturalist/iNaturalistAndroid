@@ -35,7 +35,7 @@
     <!-- When opening the explore screen, these are the default coordinates / bounding box to show
      on the map (swlng,swlat,nelng,nelat): You can use http://isithackday.com/geoplanet-explorer/index.php to find
        out the bounding box of countries/cities -->
-    <string name="inat_country_coordinates_inaturalist"></string> <!-- Empty - use user's current location instead -->
+    <string name="inat_country_coordinates_inaturalist"></string> <!-- Empty - use user's current place instead -->
     <string name="inat_country_coordinates_naturalista">14.54808,-117.123596,32.718319,-86.74501</string> <!-- Mexico -->
     <string name="inat_country_coordinates_naturewatchnz">-50.85445,165.566357,-33.069679,178.559693</string> <!-- New Zealand -->
     <string name="inat_country_coordinates_inaturalistcanada">41.681019,-141.002701,83.110619,-52.620201</string> <!-- Canada -->

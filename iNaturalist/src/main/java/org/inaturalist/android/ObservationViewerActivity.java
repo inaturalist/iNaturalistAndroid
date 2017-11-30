@@ -1123,7 +1123,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
             mUnknownLocationContainer.setVisibility(View.GONE);
         } else {
-            // Unknown location
+            // Unknown place
             mLocationMapContainer.setVisibility(View.GONE);
             mUnknownLocationIcon.setVisibility(View.VISIBLE);
             mLocationText.setText(R.string.unable_to_acquire_location);
@@ -1251,7 +1251,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         int reasonText = 0;
 
         if (((mObservation.latitude == null) && (mObservation.longitude == null)) && ((mObservation.private_latitude == null) && (mObservation.private_longitude == null))) {
-            // No location
+            // No place
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
             reasonText = R.string.casual_grade_add_location;
         } else if (mObservation.observed_on == null) {
@@ -1357,9 +1357,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 mUserName.setText(userObj.optString("login"));
                 mUserPic.setVisibility(View.VISIBLE);
                 mUserName.setVisibility(View.VISIBLE);
-            } else {
-                mUserPic.setVisibility(View.INVISIBLE);
-                mUserName.setVisibility(View.INVISIBLE);
             }
         } else {
             SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);

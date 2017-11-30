@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -120,12 +119,17 @@ public class INaturalistService extends IntentService {
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
+    public static final String EXPLORE_GET_OBSERVATIONS_RESULT = "explore_get_observations_result";
+    public static final String EXPLORE_GET_SPECIES_RESULT = "explore_get_species_result";
+    public static final String EXPLORE_GET_IDENTIFIERS_RESULT = "explore_get_identifiers_result";
+    public static final String EXPLORE_GET_OBSERVERS_RESULT = "explore_get_observers_result";
     public static final String UPDATES_RESULT = "updates_results";
     public static final String UPDATES_FOLLOWING_RESULT = "updates_following_results";
     public static final String LIFE_LIST_RESULT = "life_list_result";
     public static final String SPECIES_COUNT_RESULT = "species_count_result";
     public static final String RECOMMENDED_MISSIONS_RESULT = "recommended_missions_result";
     public static final String MISSIONS_BY_TAXON_RESULT = "missions_by_taxon_result";
+    public static final String GET_CURRENT_LOCATION_RESULT = "get_current_location_result";
     public static final String TAXON_OBSERVATION_BOUNDS_RESULT = "taxon_observation_bounds_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
@@ -139,6 +143,8 @@ public class INaturalistService extends IntentService {
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
+    public static final String SEARCH_TAXA_RESULT = "search_taxa_result";
+    public static final String SEARCH_PLACES_RESULT = "search_places_result";
     public static final String ACTION_GET_TAXON_NEW_RESULT = "action_get_taxon_new_result";
     public static final String ACTION_GET_TAXON_SUGGESTIONS_RESULT = "action_get_taxon_suggestions_result";
     public static final String TAXON_RESULT = "taxon_result";
@@ -151,6 +157,8 @@ public class INaturalistService extends IntentService {
     public static final String LATITUDE = "latitude";
     public static final String OBSERVED_ON = "observed_on";
     public static final String USERNAME = "username";
+    public static final String LOCATION = "location";
+    public static final String FILTERS = "filters";
     public static final String PROGRESS = "progress";
     public static final String EXPAND_LOCATION_BY_DEGREES = "expand_location_by_degrees";
     public static final String QUERY = "query";
@@ -166,8 +174,11 @@ public class INaturalistService extends IntentService {
     public static final String SYNC_CANCELED = "sync_canceled";
     public static final String SYNC_FAILED = "sync_failed";
     public static final String FIRST_SYNC = "first_sync";
+    public static final String PAGE_NUMBER = "page_number";
+    public static final String PAGE_SIZE = "page_size";
 
 	public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
+    public static final int EXPLORE_DEFAULT_RESULTS_PER_PAGE = 30;
 
     public static String TAG = "INaturalistService";
     public static String HOST = "https://www.inaturalist.org";
@@ -186,6 +197,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_ADD_FAVORITE = "add_favorite";
     public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
+    public static String ACTION_SEARCH_TAXA = "search_taxa";
+    public static String ACTION_SEARCH_PLACES = "search_places";
     public static String ACTION_GET_TAXON_NEW = "get_taxon_new";
     public static String ACTION_GET_TAXON_SUGGESTIONS = "get_taxon_suggestions";
     public static String ACTION_FIRST_SYNC = "first_sync";
@@ -254,10 +267,15 @@ public class INaturalistService extends IntentService {
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
+    public static String ACTION_GET_CURRENT_LOCATION = "get_current_location";
     public static String ACTION_GET_LIFE_LIST = "get_life_list";
     public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";
     public static String ACTION_GET_USER_IDENTIFICATIONS = "get_user_identifications";
     public static String ACTION_GET_USER_UPDATES = "get_user_udpates";
+    public static String ACTION_EXPLORE_GET_OBSERVATIONS = "explore_get_observations";
+    public static String ACTION_EXPLORE_GET_SPECIES = "explore_get_species";
+    public static String ACTION_EXPLORE_GET_IDENTIFIERS = "explore_get_identifiers";
+    public static String ACTION_EXPLORE_GET_OBSERVERS = "explore_get_observers";
     public static String ACTION_VIEWED_UPDATE = "viewed_update";
     public static String ACTION_GET_USER_OBSERVATIONS = "get_user_observations";
     public static String ACTION_GET_RECOMMENDED_MISSIONS = "get_recommended_missions";
@@ -344,7 +362,7 @@ public class INaturalistService extends IntentService {
                 if (!getLocation) {
                     getNearbyObservations(intent);
                 } else {
-                    // Retrieve current location before getting nearby observations
+                    // Retrieve current place before getting nearby observations
                     getLocation(new IOnLocation() {
                         @Override
                         public void onLocation(Location location) {
@@ -355,7 +373,7 @@ public class INaturalistService extends IntentService {
                                     newIntent.putExtra("lat", location.getLatitude());
                                     newIntent.putExtra("lng", location.getLongitude());
                                 } else {
-                                    // Expand location by requested degrees (to make sure results are returned from this API)
+                                    // Expand place by requested degrees (to make sure results are returned from this API)
                                     newIntent.putExtra("minx", location.getLongitude() - locationExpansion);
                                     newIntent.putExtra("miny", location.getLatitude() - locationExpansion);
                                     newIntent.putExtra("maxx", location.getLongitude() + locationExpansion);
@@ -586,6 +604,28 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(TAXON_RESULT, taxon);
                 sendBroadcast(reply);
 
+             } else if (action.equals(ACTION_SEARCH_PLACES)) {
+                String query = intent.getStringExtra(QUERY);
+                int page = intent.getIntExtra(PAGE_NUMBER, 1);
+                BetterJSONObject results = searchAutoComplete("places", query, page);
+
+                Intent reply = new Intent(SEARCH_PLACES_RESULT);
+                mApp.setServiceResult(SEARCH_PLACES_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+
+            } else if (action.equals(ACTION_SEARCH_TAXA)) {
+                String query = intent.getStringExtra(QUERY);
+                int page = intent.getIntExtra(PAGE_NUMBER, 1);
+                BetterJSONObject results = searchAutoComplete("taxa", query, page);
+
+                Intent reply = new Intent(SEARCH_TAXA_RESULT);
+                mApp.setServiceResult(SEARCH_TAXA_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+
             } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject user = getUserDetails(username);
@@ -594,6 +634,16 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(USER, user);
                 reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_GET_CURRENT_LOCATION)) {
+                getLocation(new IOnLocation() {
+                    @Override
+                    public void onLocation(Location location) {
+                        Intent reply = new Intent(GET_CURRENT_LOCATION_RESULT);
+                        reply.putExtra(LOCATION, location);
+                        sendBroadcast(reply);
+                    }
+                });
 
             } else if (action.equals(ACTION_GET_MISSIONS_BY_TAXON)) {
                 final String username = intent.getStringExtra(USERNAME);
@@ -604,7 +654,7 @@ public class INaturalistService extends IntentService {
                     @Override
                     public void onLocation(Location location) {
                         if (location == null) {
-                            // No location
+                            // No place
                             Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
                             mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, null);
                             reply.putExtra(IS_SHARED_ON_APP, true);
@@ -639,7 +689,7 @@ public class INaturalistService extends IntentService {
                     @Override
                     public void onLocation(Location location) {
                         if (location == null) {
-                            // No location
+                            // No place
                             Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
                             mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, null);
                             reply.putExtra(IS_SHARED_ON_APP, true);
@@ -722,6 +772,50 @@ public class INaturalistService extends IntentService {
                 mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 reply.putExtra(USERNAME, username);
+                sendBroadcast(reply);
+
+             } else if (action.equals(ACTION_EXPLORE_GET_OBSERVERS)) {
+                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                BetterJSONObject results = getExploreResults("observers", filters, pageNumber, pageSize, null);
+
+                Intent reply = new Intent(EXPLORE_GET_OBSERVERS_RESULT);
+                mApp.setServiceResult(EXPLORE_GET_OBSERVERS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_EXPLORE_GET_IDENTIFIERS)) {
+                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                BetterJSONObject results = getExploreResults("identifiers", filters, pageNumber, pageSize, null);
+
+                Intent reply = new Intent(EXPLORE_GET_IDENTIFIERS_RESULT);
+                mApp.setServiceResult(EXPLORE_GET_IDENTIFIERS_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_EXPLORE_GET_SPECIES)) {
+                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                BetterJSONObject results = getExploreResults("species_counts", filters, pageNumber, pageSize, null);
+
+                Intent reply = new Intent(EXPLORE_GET_SPECIES_RESULT);
+                mApp.setServiceResult(EXPLORE_GET_SPECIES_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_EXPLORE_GET_OBSERVATIONS)) {
+                ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
+                int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
+                int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                BetterJSONObject observations = getExploreResults(null, filters, pageNumber, pageSize, "observation.id");
+
+                Intent reply = new Intent(EXPLORE_GET_OBSERVATIONS_RESULT);
+                mApp.setServiceResult(EXPLORE_GET_OBSERVATIONS_RESULT, observations);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_ADD_COMMENT)) {
@@ -881,7 +975,7 @@ public class INaturalistService extends IntentService {
                     @Override
                     public void onLocation(Location location) {
                         if (location == null) {
-                            // No location enabled
+                            // No place enabled
                             Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
                             reply.putExtra(GUIDES_RESULT, new SerializableJSONArray());
                             sendBroadcast(reply);
@@ -906,7 +1000,7 @@ public class INaturalistService extends IntentService {
                     @Override
                     public void onLocation(Location location) {
                         if (location == null) {
-                            // No location enabled
+                            // No place enabled
                             Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
                             mApp.setServiceResult(ACTION_NEARBY_PROJECTS_RESULT, new SerializableJSONArray());
                             reply.putExtra(IS_SHARED_ON_APP, true);
@@ -2518,6 +2612,22 @@ public class INaturalistService extends IntentService {
         return new SerializableJSONArray(json);
     }
 
+    private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = API_HOST + "/" + type + "/autocomplete?locale=" + deviceLanguage + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     private SerializableJSONArray getUserObservations(String username) throws AuthenticationException {
         String url = HOST + "/observations/" + username + ".json?per_page=200";
         JSONArray json = get(url, false);
@@ -2551,6 +2661,30 @@ public class INaturalistService extends IntentService {
         if (json == null) return null;
         return new SerializableJSONArray(json);
     }
+
+    private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        String url = String.format("%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&order=desc&return_bounds=true&%s",
+                API_HOST,
+                command == null ? "" : "/" + command,
+                deviceLanguage,
+                pageNumber,
+                pageSize,
+                orderBy == null ? "" : orderBy,
+                filters.toUrlQueryString());
+
+        JSONArray json = get(url, false);
+        if (json == null) return null;
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
@@ -2834,8 +2968,8 @@ public class INaturalistService extends IntentService {
 
     private SerializableJSONArray getNearByGuides(Location location) throws AuthenticationException {
         if (location == null) {
-            // No location found - return an empty result
-            Log.e(TAG, "Current location is null");
+            // No place found - return an empty result
+            Log.e(TAG, "Current place is null");
             return new SerializableJSONArray();
         }
 
@@ -2856,8 +2990,8 @@ public class INaturalistService extends IntentService {
     
     private SerializableJSONArray getNearByProjects(Location location) throws AuthenticationException {
         if (location == null) {
-            // No location found - return an empty result
-            Log.e(TAG, "Current location is null");
+            // No place found - return an empty result
+            Log.e(TAG, "Current place is null");
             return new SerializableJSONArray();
         }
 
@@ -4239,7 +4373,7 @@ public class INaturalistService extends IntentService {
 
         Log.e(TAG, "getLastKnownLocationFromClient: " + location);
         if (location == null) {
-            // Failed - try and return last location using GPS
+            // Failed - try and return last place using GPS
             return getLocationFromGPS();
         } else {
             return location;
@@ -4274,7 +4408,7 @@ public class INaturalistService extends IntentService {
                     }
                 }).start();
             } else {
-                // Connect to the location services
+                // Connect to the place services
                 mLocationClient = new GoogleApiClient.Builder(this)
                         .addApi(LocationServices.API)
                         .addConnectionCallbacks(new ConnectionCallbacks() {
@@ -4311,7 +4445,7 @@ public class INaturalistService extends IntentService {
             }
 
         } else {
-            // Use GPS alone for location
+            // Use GPS alone for place
             new Thread(new Runnable() {
                 @Override
                 public void run() {

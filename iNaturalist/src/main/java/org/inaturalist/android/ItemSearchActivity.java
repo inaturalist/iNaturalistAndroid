@@ -55,15 +55,20 @@ import java.util.Locale;
 public class ItemSearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, ProjectsAdapter.OnLoading {
     private static final String LOG_TAG = "ItemSearchActivity";
 
+    public static final String IS_USER = "is_user";
+    public static final String RETURN_RESULT = "return_result";
     public static final String RESULT_VIEWER_ACTIVITY = "result_viewer_activity";
     public static final String RESULT_VIEWER_ACTIVITY_PARAM_NAME = "result_viewer_activity_param_name";
     public static final String SEARCH_HINT_TEXT = "search_hint_text";
     public static final String SEARCH_URL = "search_url";
+    public static final String RESULT = "result";
 
     private Class<Activity> mViewerActivity;
     private String mViewerActivityParamName;
     private String mHintText;
     private String mSearchUrl;
+    private boolean mReturnResult;
+    private boolean mIsUser;
 
     private String mSearchString = "";
 
@@ -124,6 +129,8 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
         mViewerActivityParamName = intent.getStringExtra(RESULT_VIEWER_ACTIVITY_PARAM_NAME);
         mHintText = intent.getStringExtra(SEARCH_HINT_TEXT);
         mSearchUrl = intent.getStringExtra(SEARCH_URL);
+        mReturnResult = intent.getBooleanExtra(RETURN_RESULT, false);
+        mIsUser = intent.getBooleanExtra(IS_USER, false);
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -147,11 +154,11 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
         mSearchEditText = (EditText) customView.findViewById(R.id.search_text);
 
         if (savedInstanceState == null) {
-            mAdapter = new ProjectsAdapter(this, mSearchUrl, this, new ArrayList<JSONObject>());
+            mAdapter = new ProjectsAdapter(this, mSearchUrl, this, new ArrayList<JSONObject>(), mIsUser ? R.drawable.ic_account_circle_black_48dp : R.drawable.ic_work_black_24dp, mIsUser);
         } else {
             mSearchString = savedInstanceState.getString("mSearchString");
             mSearchEditText.setText(mSearchString);
-            mAdapter = new ProjectsAdapter(this, mSearchUrl, this, loadListFromBundle(savedInstanceState, "mProjects"));
+            mAdapter = new ProjectsAdapter(this, mSearchUrl, this, loadListFromBundle(savedInstanceState, "mProjects"), mIsUser ? R.drawable.ic_account_circle_black_48dp : R.drawable.ic_work_black_24dp, mIsUser);
         }
         if (mHintText != null) mSearchEditText.setHint(mHintText);
 
@@ -176,9 +183,17 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
     public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
         String item = (String) v.getTag();
         if (item != null) {
-            Intent intent = new Intent(this, mViewerActivity);
-            intent.putExtra(mViewerActivityParamName, item);
-            startActivity(intent);
+            if (mReturnResult) {
+                // Return the selected result instead of opening up a viewer
+                Intent data = new Intent();
+                data.putExtra(RESULT, item);
+                setResult(RESULT_OK, data);
+                finish();
+            } else {
+                Intent intent = new Intent(this, mViewerActivity);
+                intent.putExtra(mViewerActivityParamName, item);
+                startActivity(intent);
+            }
         }
 
 
