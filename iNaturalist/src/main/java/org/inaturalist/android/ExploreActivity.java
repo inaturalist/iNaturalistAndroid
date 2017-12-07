@@ -46,7 +46,10 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.android.gms.maps.model.TileProvider;
+import com.google.android.gms.maps.model.UrlTileProvider;
 import com.google.android.gms.maps.model.VisibleRegion;
 import com.google.maps.android.geojson.GeoJsonFeature;
 import com.google.maps.android.geojson.GeoJsonLayer;
@@ -57,6 +60,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,6 +73,10 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class ExploreActivity extends BaseFragmentActivity {
     private static final int NOT_LOADED = -1;
 
@@ -75,6 +85,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private static final int FILTERS_REQUEST_CODE = 0x102;
 
     private static final float MY_LOCATION_ZOOM_LEVEL = 10;
+    private static final String TAG = "ExploreActivity";
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -133,7 +144,6 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     private int[] mCurrentResultsPage = { 0, 0, 0, 0 };
     private boolean[] mLoadingNextResults = { false, false, false, false };
-    private HashMap<String, JSONObject> mMarkerObservations;
     private int mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
     private LatLngBounds mLastMapBounds = null;
     private boolean mMapMoved = false;
@@ -228,7 +238,6 @@ public class ExploreActivity extends BaseFragmentActivity {
             mLoadingNextResults = savedInstanceState.getBooleanArray("mLoadingNextResults");
             mObservationsMapType = savedInstanceState.getInt("mObservationsMapType", GoogleMap.MAP_TYPE_TERRAIN);
             mMapMoved = savedInstanceState.getBoolean("mMapMoved");
-            mMarkerObservations = mHelper.loadMapFromBundle(savedInstanceState, "mMarkerObservations");
 
             mResults = (List<JSONObject>[]) new List[] {null, null, null, null };
             mResults[VIEW_TYPE_OBSERVATIONS] = mHelper.loadListFromBundle(savedInstanceState, "mObservations");
@@ -260,7 +269,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         outState.putBooleanArray("mLoadingNextResults", mLoadingNextResults);
         outState.putInt("mObservationsMapType", mObservationsMapType);
         outState.putBoolean("mMapMoved", mMapMoved);
-        mHelper.saveMapToBundle(outState, mMarkerObservations, "mMarkerObservations");
 
         outState.putSerializable("mSearchFilters", mSearchFilters);
 
@@ -492,27 +500,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         return view;
     }
 
-    private void addObservationMarker(JSONObject o) throws JSONException {
-    	if (o == null) return;
-
-        if ((!o.has("location") || o.isNull("location"))) {
-            return;
-        }
-
-        LatLng latLng;
-        String locationParts[] = o.getString("location").split(",");
-        latLng = new LatLng(Double.valueOf(locationParts[0]), Double.valueOf(locationParts[1]));
-        String iconicTaxonName = o.has("taxon") && !o.isNull("taxon") ? o.getJSONObject("taxon").getString("iconic_taxon_name") : null;
-
-        MarkerOptions opts = new MarkerOptions()
-            .position(latLng)
-            .icon(TaxonUtils.observationMarkerIcon(iconicTaxonName))
-            .draggable(false);
-
-        Marker m = mObservationsMap.addMarker(opts);
-        mMarkerObservations.put(m.getId(), o);
-    }
-
     private class LocationReceiver extends BroadcastReceiver {
 
         @Override
@@ -622,10 +609,9 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mResults[index] = resultsArray;
                 mTotalResults[index] = totalResults;
 
-                if ((index == VIEW_TYPE_OBSERVATIONS) && ((mCurrentResultsPage[index] == 1) || (mMarkerObservations == null))) {
+                if ((index == VIEW_TYPE_OBSERVATIONS) && ((mCurrentResultsPage[index] == 1))) {
                     // New search - clear all observation markers on map
                     mObservationsMap.clear();
-                    mMarkerObservations = new HashMap<>();
                 }
 
             } else {
@@ -909,14 +895,6 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsGrid.post(setObsInGrid);
 
             mObservationsGrid.setVisibility(View.VISIBLE);
-
-            for (int i = mMarkerObservations.size(); i < mResults[VIEW_TYPE_OBSERVATIONS].size(); i++) {
-                try {
-                    addObservationMarker(mResults[VIEW_TYPE_OBSERVATIONS].get(i));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
         }
 
         loadListViewOffset(mObservationsGrid, getIntent().getExtras(), "mList" + VIEW_TYPE_OBSERVATIONS);
@@ -1040,6 +1018,25 @@ public class ExploreActivity extends BaseFragmentActivity {
             // Show the boundaries/border of the place on the map
             addPlaceLayerToMap(mSearchFilters.place);
         }
+
+
+        // Set the tile overlay (for the taxon's observations map)
+        TileProvider tileProvider = new UrlTileProvider(256, 256) {
+            @Override
+            public URL getTileUrl(int x, int y, int zoom) {
+
+                String s = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.png?%s",
+                        zoom, x, y, mSearchFilters.toUrlQueryString());
+
+                try {
+                    return new URL(s);
+                } catch (MalformedURLException e) {
+                    throw new AssertionError(e);
+                }
+            }
+        };
+
+        TileOverlay tileOverlay = mObservationsMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
     }
 
     private void refreshMapType() {
@@ -1060,7 +1057,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
 
         mObservationsMap.clear();
-        mMarkerObservations = new HashMap<>();
 
         if (resetOffsets) {
             mListViewIndex = new HashMap<>();
@@ -1193,29 +1189,59 @@ public class ExploreActivity extends BaseFragmentActivity {
                     mObservationsMapMyLocation.performClick();
                 }
 
-                mMarkerObservations = new HashMap<>();
-
-                mObservationsMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                mObservationsMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
-                    public boolean onMarkerClick(Marker marker) {
-                        JSONObject item = mMarkerObservations.get(marker.getId());
+                    public void onMapClick(LatLng latLng) {
+                        final int zoom = (int)Math.floor(mObservationsMap.getCameraPosition().zoom);
 
-                        Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
-                        intent.putExtra("observation", item.toString());
-                        intent.putExtra("read_only", true);
-                        intent.putExtra("reload", true);
-                        startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+                        final UTFPosition position = new UTFPosition(zoom, latLng.latitude, latLng.longitude);
 
-                        try {
-                            JSONObject eventParams = new JSONObject();
-                            eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_MAP);
+                        final String gridUrl = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.grid.json?%s", zoom, position.getTilePositionX(), position.getTilePositionY(), mSearchFilters.toUrlQueryString());
 
-                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        // Download the UTFGrid JSON for that tile
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                OkHttpClient client = new OkHttpClient();
+                                Request request = new Request.Builder()
+                                        .url(gridUrl)
+                                        .build();
 
-                        return true;
+                                try {
+                                    Response response = client.newCall(request).execute();
+                                    String responseBody = response.body().string();
+                                    JSONObject utfGridJson = new JSONObject(responseBody);
+                                    UTFGrid utfGrid = new UTFGrid(utfGridJson);
+
+                                    JSONObject observation = utfGrid.getDataForPixel(position.getPixelPositionX(), position.getPixelPositionY());
+
+                                    if (observation != null) {
+                                        // Found a matching observation
+                                        Log.d(TAG, "UTFGrid Observation: " + observation.toString());
+
+                                        Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
+
+                                        if (observation.has("captive")) observation.remove("captive"); // Since "captive" in the UTFGrid is a string instead of a boolean
+                                        if (observation.has("private_location")) observation.remove("private_location"); // Since "private_location" in the UTFGrid is a weird format ("[object Object]") instead of an actual string
+
+                                        intent.putExtra("observation", observation.toString());
+                                        intent.putExtra("read_only", true);
+                                        intent.putExtra("reload", true);
+                                        startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+
+                                        JSONObject eventParams = new JSONObject();
+                                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_MAP);
+
+                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+
                     }
                 });
 
@@ -1437,5 +1463,4 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsMap.moveCamera(cameraUpdate);
         }
     }
-
 }
