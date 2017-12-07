@@ -162,9 +162,9 @@ public class ExploreSearchFilters implements Serializable {
             url.append("&month=" + StringUtils.join(observedOnMonths, ","));
         } else if ((dateFilterType == DATE_TYPE_EXACT_DATE) && (observedOn != null)) {
             url.append("&observed_on=" + formatDate(observedOn));
-        } else if ((dateFilterType == DATE_TYPE_MIN_MAX_DATE) && (observedOnMinDate != null) && (observedOnMaxDate != null)) {
-            url.append("&d1=" + formatDate(observedOnMinDate));
-            url.append("&d2=" + formatDate(observedOnMaxDate));
+        } else if (dateFilterType == DATE_TYPE_MIN_MAX_DATE) {
+            if (observedOnMinDate != null) url.append("&d1=" + formatDate(observedOnMinDate));
+            if (observedOnMaxDate != null) url.append("&d2=" + formatDate(observedOnMaxDate));
         }
 
         if (url.length() == 0) return url.toString();
