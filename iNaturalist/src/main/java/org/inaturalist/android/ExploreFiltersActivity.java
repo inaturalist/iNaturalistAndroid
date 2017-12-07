@@ -553,7 +553,11 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             months.add(monthToString(month));
         }
 
-        setSpinnerText(mDateMonths, StringUtils.join(months, ", "));
+        if (months.size() == 0) {
+            setSpinnerText(mDateMonths, getString(R.string.months));
+        } else {
+            setSpinnerText(mDateMonths, StringUtils.join(months, ", "));
+        }
 
         refreshResetFiltersButton();
     }
