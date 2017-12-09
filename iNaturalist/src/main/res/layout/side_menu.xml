@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="290dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:orientation="vertical"
     android:background="#fff3f3f3"
     >
 
@@ -17,6 +16,7 @@
         android:paddingLeft="14dp"
         android:paddingRight="14dp"
         android:clickable="true"
+        android:layout_alignParentTop="true"
         >
 
         <RelativeLayout
@@ -46,302 +46,338 @@
                 android:src="@drawable/ic_person_white_24dp" />
         </RelativeLayout>
         <ImageView
-        android:id="@+id/right_arrow"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@id/side_menu_user_pic_container"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/ic_arrow_forward_white_24dp"
-        />
+            android:id="@+id/right_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/side_menu_user_pic_container"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_arrow_forward_white_24dp"
+            />
 
-    <RelativeLayout
-        android:id="@+id/user_details"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_toStartOf="@id/right_arrow"
-        android:layout_toEndOf="@id/side_menu_user_pic_container">
-
-        <TextView
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/side_menu_username"
+        <RelativeLayout
+            android:id="@+id/user_details"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="#ffffff"
-            android:text="@string/not_logged_in"
-            android:paddingBottom="10dp"
-            android:visibility="invisible"
-            />
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/right_arrow"
+            android:layout_toEndOf="@id/side_menu_user_pic_container">
 
-        <Button
-            android:id="@+id/menu_login"
-            android:background="@drawable/circular_button"
-            android:textColor="#ffffff"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/login_signup"
-            android:lines="1"
-            android:textSize="12sp"
-            android:paddingTop="0dp"
-            android:paddingBottom="2dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:height="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="7dp"
-            />
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/side_menu_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="#ffffff"
+                android:text="@string/not_logged_in"
+                android:paddingBottom="10dp"
+                android:visibility="invisible"
+                />
 
-        <TextView
-            android:layout_alignParentLeft="true"
-            android:id="@+id/observation_count"
-            android:layout_below="@id/side_menu_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#bbffffff"
-            android:text="124 observations"
-            android:textAllCaps="true"
-            android:paddingBottom="8dp"
-            />
+            <Button
+                android:id="@+id/menu_login"
+                android:background="@drawable/circular_button"
+                android:textColor="#ffffff"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/login_signup"
+                android:lines="1"
+                android:textSize="12sp"
+                android:paddingTop="0dp"
+                android:paddingBottom="2dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:height="25dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="7dp"
+                />
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:id="@+id/observation_count"
+                android:layout_below="@id/side_menu_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#bbffffff"
+                android:text="124 observations"
+                android:textAllCaps="true"
+                android:paddingBottom="8dp"
+                />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
 
-</RelativeLayout>
 
-<!-- Side menu -->
-    <ScrollView
-        android:background="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <LinearLayout
-        android:id="@+id/menu_items"
-        android:background="#ffffff"
-        android:orientation="vertical"
+        android:id="@+id/menu_add_obs"
+        android:background="@drawable/add_obs_menu_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-
-        <LinearLayout
-            android:id="@+id/menu_explore"
-            android:background="@drawable/side_menu_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <ImageView
-                android:id="@+id/menu_explore_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_explore_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:text="@string/explore"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/menu_projects"
-            android:background="@drawable/side_menu_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <ImageView
-                android:id="@+id/menu_projects_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_work_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:text="@string/projects"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/menu_guides"
-            android:background="@drawable/side_menu_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <ImageView
-                android:id="@+id/menu_guides_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_book_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:text="@string/guides"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/menu_activity"
-            android:background="@drawable/side_menu_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <ImageView
-                android:id="@+id/menu_activity_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_supervisor_account_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:text="@string/activity"/>
-
-            <TextView
-                 android:id="@+id/activity_badge"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:textColor="#ffffff"
-                 android:background="#73AC08"
-                 android:textSize="9sp"
-                 android:text="32 new"
-                 android:layout_marginLeft="8dp"
-                 android:padding="4dp"
-                 />
-        </LinearLayout>
-         <LinearLayout
-            android:id="@+id/menu_missions"
-            android:background="@drawable/side_menu_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <ImageView
-                android:id="@+id/menu_missions_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_flag_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:text="@string/missions"/>
-
-             <TextView
-                 android:id="@+id/missions_new"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:textColor="#ffffff"
-                 android:background="#FFF66923"
-                 android:textSize="9sp"
-                 android:text="@string/new_badge"
-                 android:textAllCaps="true"
-                 android:layout_marginLeft="8dp"
-                 android:padding="4dp"
-                 />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="#dbdbdb" />
-        <LinearLayout
-            android:id="@+id/menu_settings"
-            android:background="@drawable/side_menu_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <ImageView
-                android:id="@+id/menu_settings_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_settings_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:text="@string/settings"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/menu_help"
-            android:background="@drawable/side_menu_item_background"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <ImageView
-                android:id="@+id/menu_help_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="7dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_help_black_24dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:text="@string/help"/>
-        </LinearLayout>
-
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/menu_add_obs_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="7dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_add_circle_black_48dp"
+            android:tint="@color/inatapptheme_color"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginLeft="30dp"
+            android:text="@string/new_observation"/>
     </LinearLayout>
+
+
+    <!-- Side menu -->
+    <ScrollView
+        android:layout_below="@id/menu_header"
+        android:layout_above="@id/menu_add_obs"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/menu_items"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/menu_explore"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_explore_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_explore_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/explore"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/menu_projects"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_projects_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_work_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/projects"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/menu_guides"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_guides_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_book_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/guides"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/menu_activity"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_activity_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_supervisor_account_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/activity"/>
+
+                <TextView
+                    android:id="@+id/activity_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:background="#73AC08"
+                    android:textSize="9sp"
+                    android:text="32 new"
+                    android:layout_marginLeft="8dp"
+                    android:padding="4dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/menu_missions"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_missions_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_flag_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/missions"/>
+
+                <TextView
+                    android:id="@+id/missions_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:background="#FFF66923"
+                    android:textSize="9sp"
+                    android:text="@string/new_badge"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="8dp"
+                    android:padding="4dp"
+                    />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="#dbdbdb" />
+            <LinearLayout
+                android:id="@+id/menu_settings"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_settings_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_settings_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/settings"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/menu_help"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_help_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_help_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/help"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+
+</RelativeLayout>

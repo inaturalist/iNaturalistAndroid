@@ -681,10 +681,10 @@
     <string name="map_area">Map Area</string>
     <string name="global">Global</string>
     <string name="search_map_area">Search Map Area</string>
-
     <string name="date_minute">%dm</string>
     <string name="date_hour">%dh</string>
     <string name="date_day">%dd</string>
     <string name="date_week">%dw</string>
+    <string name="new_observation">New Observation</string>
 </resources>
 

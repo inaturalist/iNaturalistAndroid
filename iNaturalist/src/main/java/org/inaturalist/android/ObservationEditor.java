@@ -308,7 +308,7 @@ public class ObservationEditor extends AppCompatActivity {
         } else if ((intent != null) && (action != null) && (Intent.ACTION_SEND_MULTIPLE.equals(action))) {
             // Multiple share photo with iNaturalist
             mSharePhotos = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-        } else {
+        } else if (savedInstanceState != null) {
             // Show the observation editor screen
             mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
         }

@@ -6,6 +6,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 
@@ -27,16 +28,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 
 /**
@@ -53,7 +58,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
     private static final int USER_REFRESH_TIME_MINS = 1;
 
     private DrawerLayout mDrawerLayout;
-	private LinearLayout mSideMenu;
+	private ViewGroup mSideMenu;
 
 	private ActionBarDrawerToggle mDrawerToggle;
 	private INaturalistApp app;
@@ -83,6 +88,18 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         // Make the drawer replace the first child
         decor.addView(drawer);
+
+        resizeMenu();
+    }
+
+    private void resizeMenu() {
+        ViewGroup decor = (ViewGroup) getWindow().getDecorView();
+        ViewGroup sideMenu = ((ViewGroup)decor.findViewById(R.id.left_drawer));
+
+        if (sideMenu == null) return;
+
+        int navigationBarHeight = getNavigationBarHeight(this);
+        sideMenu.setPadding(0, getStatusBarHeight(), 0, navigationBarHeight);
     }
 
     public void onDrawerCreate(Bundle savedInstanceState) {
@@ -91,9 +108,16 @@ public class BaseFragmentActivity extends AppCompatActivity {
         moveDrawerToTop();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mSideMenu = (LinearLayout) findViewById(R.id.left_drawer);
+        mSideMenu = (ViewGroup) findViewById(R.id.left_drawer);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, 0, 0) {
+
+            @Override
+            public void onConfigurationChanged(Configuration newConfig) {
+                super.onConfigurationChanged(newConfig);
+                resizeMenu();
+            }
+
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
             }
@@ -255,6 +279,13 @@ public class BaseFragmentActivity extends AppCompatActivity {
             findViewById(R.id.menu_guides).setVisibility(View.GONE);
         }
 
+
+        findViewById(R.id.menu_add_obs).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class));
+            }
+        });
         findViewById(R.id.menu_explore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -541,5 +572,53 @@ public class BaseFragmentActivity extends AppCompatActivity {
         TextView activityBadge = (TextView)findViewById(R.id.activity_badge);
         activityBadge.setVisibility(unreadActivities > 0 ? View.VISIBLE : View.GONE);
         activityBadge.setText(String.format(getString(R.string.new_activities), unreadActivities));
+    }
+
+
+    // Taken from: https://stackoverflow.com/a/29609679/1233767
+    private static int getNavigationBarHeight(Context context) {
+        Point appUsableSize = getAppUsableScreenSize(context);
+        Point realScreenSize = getRealScreenSize(context);
+
+        // navigation bar on the right
+        if (appUsableSize.x < realScreenSize.x) {
+            // Treat this as zero height
+            return 0;
+        }
+
+        // navigation bar at the bottom
+        if (appUsableSize.y < realScreenSize.y) {
+            return realScreenSize.y - appUsableSize.y;
+        }
+
+        // navigation bar is not present
+        return 0;
+    }
+
+    // Taken from: https://stackoverflow.com/a/29609679/1233767
+    private static Point getAppUsableScreenSize(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return size;
+    }
+
+    // Taken from: https://stackoverflow.com/a/29609679/1233767
+    private static Point getRealScreenSize(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        Point size = new Point();
+
+        if (Build.VERSION.SDK_INT >= 17) {
+            display.getRealSize(size);
+        } else if (Build.VERSION.SDK_INT >= 14) {
+            try {
+                size.x = (Integer) Display.class.getMethod("getRawWidth").invoke(display);
+                size.y = (Integer) Display.class.getMethod("getRawHeight").invoke(display);
+            } catch (IllegalAccessException e) {} catch (InvocationTargetException e) {} catch (NoSuchMethodException e) {}
+        }
+
+        return size;
     }
 }
