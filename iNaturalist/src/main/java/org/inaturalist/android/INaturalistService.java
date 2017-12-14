@@ -2881,31 +2881,11 @@ public class INaturalistService extends IntentService {
     	String inatNetwork = mApp.getInaturalistNetworkMember();
     	String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
-        String url = inatHost + "/guides.json?";
-        
-        url += "per_page=200&page=";
-        
-        JSONArray results = new JSONArray();
+    	// Just retrieve the first page results (if the user wants to find more guides,
+        // he can search for guides)
+        String url = inatHost + "/guides.json?per_page=200&page=1";
+        JSONArray results = get(url);
 
-        // Results are paginated - make sure to retrieve them all
-        
-        int page = 1;
-        JSONArray currentResults = get(url + page);
-        
-        while ((currentResults != null) && (currentResults.length() > 0)) {
-        	// Append current results
-        	for (int i = 0; i < currentResults.length(); i++) {
-        		try {
-					results.put(currentResults.get(i));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-        	}
-
-        	page++;
-            currentResults = get(url + page);
-        }
-        
         return new SerializableJSONArray(results);
     }
     
