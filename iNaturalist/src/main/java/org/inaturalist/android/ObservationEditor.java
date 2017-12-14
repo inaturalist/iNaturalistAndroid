@@ -604,6 +604,9 @@ public class ObservationEditor extends AppCompatActivity {
                     Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
                     intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mSpeciesGuessTextView.getText().toString());
                     intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
+                    intent.putExtra(TaxonSearchActivity.OBSERVATION_ID, mObservation.id);
+                    intent.putExtra(TaxonSearchActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
+                    intent.putExtra(TaxonSearchActivity.OBSERVATION_JSON, mObservation.toJSONObject().toString());
                     startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
                 } else {
                     // At least one photo - show taxon suggestions screen

@@ -16,9 +16,12 @@ import org.json.JSONObject;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Picasso;
+
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -48,8 +51,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class TaxonSearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class TaxonSearchActivity extends AppCompatActivity {
     private static final String LOG_TAG = "TaxonSearchActivity";
+
+
+    private static final int VIEW_TAXON_REQUEST_CODE = 0x1000;
 
     public static final String SUGGEST_ID = "suggest_id";
     public static final String TAXON_ID = "taxon_id";
@@ -60,6 +66,10 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
     public static final String ID_PIC_URL = "id_url";
     public static final String FIELD_ID = "field_id";
     public static final String IS_CUSTOM = "is_custom";
+
+    public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
+    public static final String OBSERVATION_ID = "observation_id";
+    public static final String OBSERVATION_JSON = "observation_json";
 
     public static final String SPECIES_GUESS = "species_guess";
     public static final String SHOW_UNKNOWN = "show_unknown";
@@ -78,6 +88,11 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
     private long mLastTime = 0;
     private TextView mNoResults;
     private boolean mSuggestId;
+
+    private int mObsIdInternal;
+    private int mObsId;
+    private String mObservationJson;
+    private JSONObject mLastTaxon;
 
     @Override
 	protected void onStart()
@@ -318,67 +333,147 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
         }
 
         
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.taxon_result_item, parent, false); 
-            JSONObject item = mResultList.get(position);
+            final View view = inflater.inflate(R.layout.taxon_suggestion_item, parent, false);
+            final JSONObject taxon = mResultList.get(position);
             JSONObject defaultName;
             String displayName = null;
 
-            if (item == null) {
+            ImageView taxonPhoto = (ImageView) view.findViewById(R.id.taxon_photo);
+            TextView taxonName = (TextView) view.findViewById(R.id.taxon_name);
+            TextView taxonScientificName = (TextView) view.findViewById(R.id.taxon_scientific_name);
+            TextView visuallySimilar = (TextView) view.findViewById(R.id.visually_similar);
+            final View selectTaxon = view.findViewById(R.id.select_taxon);
+            View compareTaxon = view.findViewById(R.id.compare_taxon);
+
+            visuallySimilar.setVisibility(View.GONE);
+
+            if (taxon == null) {
                 // It's the unknown taxon row (the first row)
-                ((ViewGroup)view.findViewById(R.id.taxon_result)).setVisibility(View.GONE);
-                ((ViewGroup)view.findViewById(R.id.unknown_taxon_result)).setVisibility(View.VISIBLE);
+                Picasso.with(mContext)
+                        .load(R.drawable.unknown_large)
+                        .fit()
+                        .centerCrop()
+                        .into(taxonPhoto);
+
+
+                taxonName.setText(R.string.unknown);
+                taxonScientificName.setVisibility(View.GONE);
+
+                compareTaxon.setVisibility(View.GONE);
+
+                view.setOnClickListener(null);
                 view.setTag(null);
                 return view;
-            } else {
-                ((ViewGroup)view.findViewById(R.id.taxon_result)).setVisibility(View.VISIBLE);
-                ((ViewGroup)view.findViewById(R.id.unknown_taxon_result)).setVisibility(View.GONE);
+
+            } else if (taxon.optBoolean("is_custom", false)) {
+                // Custom-named taxon
+                Picasso.with(mContext)
+                        .load(R.drawable.iconic_taxon_unknown)
+                        .fit()
+                        .centerCrop()
+                        .into(taxonPhoto);
+
+                taxonName.setText(taxon.optString("name"));
+
+                taxonScientificName.setVisibility(View.GONE);
+                compareTaxon.setVisibility(View.GONE);
+
+                view.setOnClickListener(null);
+                view.setTag(taxon);
+                return view;
             }
 
-            // Get the taxon display name according to device locale
-            try {
-                ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
-                TextView idName = (TextView) view.findViewById(R.id.id_name);
-                TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
 
-                if (item.optBoolean("is_custom", false)) {
-                    // Custom-named taxon
-                    idName.setText(item.getString("name"));
-                    idTaxonName.setVisibility(View.GONE);
-                    idPic.setImageResource(R.drawable.iconic_taxon_unknown);
-                } else {
-                    idName.setText(getTaxonName(item));
-                    idTaxonName.setText(item.getString("name"));
-
-                    int rankLevel = item.optInt("rank_level", 99);
-                    if (rankLevel <= 20) {
-                        idTaxonName.setTypeface(null, Typeface.ITALIC);
-                    } else {
-                        idTaxonName.setTypeface(null, Typeface.NORMAL);
-                    }
-
-                    if (item.has("default_photo") && !item.isNull("default_photo")) {
-                        JSONObject defaultPhoto = item.getJSONObject("default_photo");
-                        UrlImageViewHelper.setUrlDrawable(idPic, defaultPhoto.getString("square_url"), new UrlImageViewCallback() {
-                            @Override
-                            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                                if (loadedBitmap != null) imageView.setImageBitmap(ImageUtils.getRoundedCornerBitmap(loadedBitmap, 4));
-                            }
-
-                            @Override
-                            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                                return loadedBitmap;
-                            }
-                        });
-                    } else {
-                        idPic.setImageResource(R.drawable.iconic_taxon_unknown);
-                    }
+            selectTaxon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectTaxon((JSONObject) view.getTag());
                 }
-                view.setTag(item);
-            } catch (JSONException e) {
-                e.printStackTrace();
+            });
+
+
+            boolean hasPhotos = false;
+
+            if ((mObsId > -1) || (mObsIdInternal > -1)) {
+                Cursor cursor = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                        new String[]{ ObservationPhoto._OBSERVATION_ID, ObservationPhoto.OBSERVATION_ID },
+                        "(observation_id = " + mObsId + " OR _observation_id = " + mObsIdInternal + ")",
+                        null,
+                        ObservationPhoto.DEFAULT_SORT_ORDER);
+                hasPhotos = (cursor.getCount() > 0);
+                cursor.close();
             }
+            if (mObservationJson != null) {
+                try {
+                    JSONObject obs = new JSONObject(mObservationJson);
+                    hasPhotos = hasPhotos || (obs.has("observation_photos") && (obs.optJSONArray("observation_photos").length() > 0));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (!hasPhotos) {
+                // Observation has no photos - don't show the compare button
+                compareTaxon.setVisibility(View.GONE);
+            }
+
+            final boolean hasPhotosFinal = hasPhotos;
+
+            compareTaxon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    compareTaxon(taxon);
+                }
+            });
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, TaxonActivity.class);
+                    intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
+                    intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
+                    intent.putExtra(TaxonActivity.TAXON_SUGGESTION, hasPhotosFinal ? TaxonActivity.TAXON_SUGGESTION_COMPARE_AND_SELECT : TaxonActivity.TAXON_SUGGESTION_SELECT);
+                    if (mObservationJson != null) {
+                        intent.putExtra(TaxonActivity.OBSERVATION, new BetterJSONObject(mObservationJson));
+                    }
+                    mLastTaxon = taxon;
+                    startActivityForResult(intent, VIEW_TAXON_REQUEST_CODE);
+                }
+            });
+
+
+            taxonScientificName.setVisibility(View.VISIBLE);
+
+            taxonName.setText(getTaxonName(taxon));
+            taxonScientificName.setText(taxon.optString("name"));
+
+            int rankLevel = taxon.optInt("rank_level", 99);
+            if (rankLevel <= 20) {
+                taxonScientificName.setTypeface(null, Typeface.ITALIC);
+            } else {
+                taxonScientificName.setTypeface(null, Typeface.NORMAL);
+            }
+
+            if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
+                JSONObject defaultPhoto = taxon.optJSONObject("default_photo");
+                Picasso.with(mContext)
+                        .load(defaultPhoto.optString("square_url"))
+                        .placeholder(TaxonUtils.observationIcon(taxon))
+                        .fit()
+                        .centerCrop()
+                        .into(taxonPhoto);
+            } else {
+                Picasso.with(mContext)
+                        .load(R.drawable.iconic_taxon_unknown)
+                        .fit()
+                        .centerCrop()
+                        .into(taxonPhoto);
+
+            }
+
+            view.setTag(taxon);
 
             return view;
         }
@@ -440,6 +535,10 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
 
         if (savedInstanceState == null) {
             mSuggestId = intent.getBooleanExtra(SUGGEST_ID, false);
+
+            mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
+            mObsId = intent.getIntExtra(OBSERVATION_ID, -1);
+            mObservationJson = intent.getStringExtra(OBSERVATION_JSON);
         } else {
             mSuggestId = savedInstanceState.getBoolean(SUGGEST_ID, false);
         }
@@ -476,11 +575,9 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
         }
 
         setListAdapter(mAdapter);
-        getListView().setOnItemClickListener(this);
     }
 
-    public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
-        JSONObject item = (JSONObject) v.getTag();
+    public void selectTaxon(JSONObject item) {
         try {
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
@@ -560,6 +657,47 @@ public class TaxonSearchActivity extends AppCompatActivity implements AdapterVie
     protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(SUGGEST_ID, mSuggestId);
         super.onSaveInstanceState(outState);
+    }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == VIEW_TAXON_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // Copy results from taxon search directly back to the caller (e.g. suggestions screen)
+                Intent intent = new Intent();
+                Bundle bundle = data.getExtras();
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+
+                finish();
+            } else if (resultCode == TaxonActivity.RESULT_COMPARE_TAXON) {
+                // User chose to compare this specific taxon
+                compareTaxon(mLastTaxon);
+            }
+        }
+    }
+
+
+    private void compareTaxon(JSONObject taxon) {
+        Intent intent = new Intent(this, CompareSuggestionActivity.class);
+        intent.putExtra(CompareSuggestionActivity.SUGGESTION_INDEX, 0);
+        if (mObservationJson != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_JSON, mObservationJson);
+        if (mObsIdInternal > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+        if (mObsId > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID, mObsId);
+        JSONArray suggestions = new JSONArray();
+        JSONObject suggestion = new JSONObject();
+        try {
+            suggestion.put("taxon", taxon);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        suggestions.put(suggestion);
+        intent.putExtra(CompareSuggestionActivity.SUGGESTIONS_JSON, suggestions.toString());
+        startActivityForResult(intent, VIEW_TAXON_REQUEST_CODE);
     }
 
 }

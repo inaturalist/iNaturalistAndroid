@@ -190,6 +190,9 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 Intent intent = new Intent(TaxonSuggestionsActivity.this, TaxonSearchActivity.class);
                 intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, "");
                 intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
+                intent.putExtra(TaxonSearchActivity.OBSERVATION_ID, mObsId);
+                intent.putExtra(TaxonSearchActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+                intent.putExtra(TaxonSearchActivity.OBSERVATION_JSON, mObservationJson);
                 startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
             }
         });

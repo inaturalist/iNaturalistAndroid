@@ -1,8 +1,10 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -72,6 +74,8 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private TextView mTaxonName;
     private ImageView mTaxonNameIcon;
     private ViewGroup mTaxonDetails;
+
+    private TaxonReceiver mTaxonReceiver;
 
     @Override
     protected void onStart()
@@ -162,6 +166,24 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         });
 
         refreshViews();
+
+
+        if (mTaxonSuggestions.size() == 1) {
+            JSONObject taxon = mTaxonSuggestions.get(0).getJSONObject().optJSONObject("taxon");
+
+            if (!taxon.has("taxon_photos")) {
+                // Special case - comparing vs a single result, that doesn't have any photos -
+                // Get the taxon details in order to retrieve the photos
+                mTaxonReceiver = new TaxonReceiver();
+                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
+                Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
+                BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
+
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
+                startService(serviceIntent);
+            }
+        }
     }
 
     @Override
@@ -521,6 +543,30 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             } else if (resultCode == TaxonActivity.RESULT_COMPARE_TAXON) {
                 // User chose to compare this specific taxon - so basically do nothing (stay with the same taxon view)
             }
+        }
+    }
+
+    private class TaxonReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            unregisterReceiver(mTaxonReceiver);
+
+            BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
+
+            if (taxon == null) {
+                // Connection error
+                return;
+            }
+
+            JSONObject taxonContainer = new JSONObject();
+            try {
+                taxonContainer.put("taxon", taxon.getJSONObject());
+                mTaxonSuggestions.set(0, new BetterJSONObject(taxonContainer));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            refreshCurrentTaxon();
         }
     }
 }

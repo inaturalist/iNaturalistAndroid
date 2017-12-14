@@ -171,6 +171,9 @@ public class IdentificationActivity extends AppCompatActivity {
         if ((!mApp.getSuggestSpecies()) || ((mObsPhotoFilename == null) && (mObsPhotoUrl == null))) {
             Intent intent = new Intent(IdentificationActivity.this, TaxonSearchActivity.class);
             intent.putExtra(SUGGEST_ID, true);
+            intent.putExtra(TaxonSearchActivity.OBSERVATION_ID, mObsId);
+            intent.putExtra(TaxonSearchActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
+            intent.putExtra(TaxonSearchActivity.OBSERVATION_JSON, mObservationJson);
             startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
         } else {
             Intent intent = new Intent(IdentificationActivity.this, TaxonSuggestionsActivity.class);

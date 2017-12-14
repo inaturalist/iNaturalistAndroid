@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +47,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
@@ -53,7 +56,9 @@ import com.google.android.gms.maps.model.UrlTileProvider;
 import com.google.android.gms.maps.model.VisibleRegion;
 import com.google.maps.android.geojson.GeoJsonFeature;
 import com.google.maps.android.geojson.GeoJsonLayer;
+import com.google.maps.android.geojson.GeoJsonPointStyle;
 import com.google.maps.android.geojson.GeoJsonPolygon;
+import com.google.maps.android.geojson.GeoJsonPolygonStyle;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -1025,8 +1030,8 @@ public class ExploreActivity extends BaseFragmentActivity {
             @Override
             public URL getTileUrl(int x, int y, int zoom) {
 
-                String s = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.png?%s",
-                        zoom, x, y, mSearchFilters.toUrlQueryString());
+                String s = String.format(INaturalistService.API_HOST + "/%s/%d/%d/%d.png?%s",
+                        zoom <= 9 ? "colored_heatmap" : "points", zoom, x, y, mSearchFilters.toUrlQueryString());
 
                 try {
                     return new URL(s);
@@ -1192,56 +1197,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
-                        final int zoom = (int)Math.floor(mObservationsMap.getCameraPosition().zoom);
-
-                        final UTFPosition position = new UTFPosition(zoom, latLng.latitude, latLng.longitude);
-
-                        final String gridUrl = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.grid.json?%s", zoom, position.getTilePositionX(), position.getTilePositionY(), mSearchFilters.toUrlQueryString());
-
-                        // Download the UTFGrid JSON for that tile
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                OkHttpClient client = new OkHttpClient();
-                                Request request = new Request.Builder()
-                                        .url(gridUrl)
-                                        .build();
-
-                                try {
-                                    Response response = client.newCall(request).execute();
-                                    String responseBody = response.body().string();
-                                    JSONObject utfGridJson = new JSONObject(responseBody);
-                                    UTFGrid utfGrid = new UTFGrid(utfGridJson);
-
-                                    JSONObject observation = utfGrid.getDataForPixel(position.getPixelPositionX(), position.getPixelPositionY());
-
-                                    if (observation != null) {
-                                        // Found a matching observation
-                                        Log.d(TAG, "UTFGrid Observation: " + observation.toString());
-
-                                        Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
-
-                                        if (observation.has("captive")) observation.remove("captive"); // Since "captive" in the UTFGrid is a string instead of a boolean
-                                        if (observation.has("private_location")) observation.remove("private_location"); // Since "private_location" in the UTFGrid is a weird format ("[object Object]") instead of an actual string
-
-                                        intent.putExtra("observation", observation.toString());
-                                        intent.putExtra("read_only", true);
-                                        intent.putExtra("reload", true);
-                                        startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
-
-                                        JSONObject eventParams = new JSONObject();
-                                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_MAP);
-
-                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }).start();
-
+                        onObservationsMapClick(latLng);
                     }
                 });
 
@@ -1344,6 +1300,58 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
     }
 
+    private void onObservationsMapClick(LatLng latLng) {
+        final int zoom = (int)Math.floor(mObservationsMap.getCameraPosition().zoom);
+
+        final UTFPosition position = new UTFPosition(zoom, latLng.latitude, latLng.longitude);
+
+        final String gridUrl = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.grid.json?%s", zoom, position.getTilePositionX(), position.getTilePositionY(), mSearchFilters.toUrlQueryString());
+
+        // Download the UTFGrid JSON for that tile
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(gridUrl)
+                        .build();
+
+                try {
+                    Response response = client.newCall(request).execute();
+                    String responseBody = response.body().string();
+                    JSONObject utfGridJson = new JSONObject(responseBody);
+                    UTFGrid utfGrid = new UTFGrid(utfGridJson);
+
+                    JSONObject observation = utfGrid.getDataForPixel(position.getPixelPositionX(), position.getPixelPositionY());
+
+                    if (observation != null) {
+                        // Found a matching observation
+                        Log.d(TAG, "UTFGrid Observation: " + observation.toString());
+
+                        Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
+
+                        if (observation.has("captive")) observation.remove("captive"); // Since "captive" in the UTFGrid is a string instead of a boolean
+                        if (observation.has("private_location")) observation.remove("private_location"); // Since "private_location" in the UTFGrid is a weird format ("[object Object]") instead of an actual string
+
+                        intent.putExtra("observation", observation.toString());
+                        intent.putExtra("read_only", true);
+                        intent.putExtra("reload", true);
+                        startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+
+                        JSONObject eventParams = new JSONObject();
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_EXPLORE_MAP);
+
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
 
     @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1392,6 +1400,22 @@ public class ExploreActivity extends BaseFragmentActivity {
         GeoJsonLayer layer = getGeoJsonLayer(place.optJSONObject("geometry_geojson"));
         if (layer == null) return;
 
+        GoogleMap map = mObservationsMap;
+        map.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
+            public void onPolygonClick(Polygon polygon) {
+                polygon.setClickable(false);
+            }
+        });
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            public boolean onMarkerClick(Marker marker) {
+                return false;
+            }
+        });
+        map.setOnPolylineClickListener(new GoogleMap.OnPolylineClickListener() {
+            public void onPolylineClick(Polyline polyline) {
+            }
+        });
+
         layer.addLayerToMap();
     }
 
@@ -1416,6 +1440,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             Resources r = getResources();
             float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, r.getDisplayMetrics());
             layer.getDefaultPolygonStyle().setStrokeWidth(px);
+            layer.getDefaultLineStringStyle().setClickable(false);
             return layer;
         } catch (JSONException e) {
             e.printStackTrace();
