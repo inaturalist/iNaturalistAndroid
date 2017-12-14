@@ -1637,7 +1637,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                                     UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
                                     mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
-                                    mTaxonName = taxon.getString("name");
+                                    mTaxonName = TaxonUtils.getTaxonScientificName(taxon);
 
                                     mIdName.setText(mTaxonIdName);
                                     mTaxonicName.setText(mTaxonName);

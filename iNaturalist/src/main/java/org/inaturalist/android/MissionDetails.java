@@ -368,7 +368,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         mCollapsingToolbar.setCollapsedTitleTextColor(Color.parseColor("#000000"));
         mCollapsingToolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        mTaxonScientificName.setText(taxon.getString("name"));
+        mTaxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
 
         if (mObservations == null) {
             mLoadingMap.setVisibility(View.VISIBLE);

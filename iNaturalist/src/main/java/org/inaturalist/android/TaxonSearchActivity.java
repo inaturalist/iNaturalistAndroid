@@ -447,7 +447,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
             taxonScientificName.setVisibility(View.VISIBLE);
 
             taxonName.setText(getTaxonName(taxon));
-            taxonScientificName.setText(taxon.optString("name"));
+            taxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon));
 
             int rankLevel = taxon.optInt("rank_level", 99);
             if (rankLevel <= 20) {

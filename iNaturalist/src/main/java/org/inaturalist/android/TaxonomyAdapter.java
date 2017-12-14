@@ -154,7 +154,7 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
 
         // Get the taxon display name according to device locale
         taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
-        taxonScientificName.setText(StringUtils.capitalize(taxon.optString("rank")) + " " + taxon.optString("name"));
+        taxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon));
         taxonScientificName.setTypeface(null, taxon.optInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
 
         if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {

@@ -138,7 +138,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
             if (defaultName != null) {
                 speciesName.setText(defaultName.getString("name"));
-                if (mViewType == VIEW_TYPE_LIST) scienceName.setText(item.getString("name"));
+                if (mViewType == VIEW_TYPE_LIST) scienceName.setText(TaxonUtils.getTaxonScientificName(item));
             } else {
                 String preferredCommonName = item.optString("preferred_common_name", "");
                 if (preferredCommonName.length() == 0) preferredCommonName = item.optString("english_common_name");
@@ -147,7 +147,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
                     if (mViewType == VIEW_TYPE_LIST) scienceName.setVisibility(View.GONE);
                 } else {
                     speciesName.setText(preferredCommonName);
-                    if (mViewType == VIEW_TYPE_LIST) scienceName.setText(item.getString("name"));
+                    if (mViewType == VIEW_TYPE_LIST) scienceName.setText(TaxonUtils.getTaxonScientificName(item));
                 }
             }
 

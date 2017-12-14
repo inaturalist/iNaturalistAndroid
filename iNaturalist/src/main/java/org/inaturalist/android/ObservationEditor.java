@@ -671,7 +671,7 @@ public class ObservationEditor extends AppCompatActivity {
                 BetterJSONObject taxon = new BetterJSONObject(taxonJson);
                 JSONObject idPhoto = taxon.getJSONObject("default_photo");
                 int rankLevel = taxon.getInt("rank_level") != null ? taxon.getInt("rank_level") : 0;
-                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), rankLevel, false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+                setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), rankLevel, false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
                 mApp.setServiceResult(TAXON, null);
             } else if (mObservation.taxon_id != null) {
                 // Taxon info not loaded - download it now
@@ -3083,7 +3083,7 @@ public class ObservationEditor extends AppCompatActivity {
                 return;
             }
             JSONObject idPhoto = taxon.getJSONObject("default_photo");
-            setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+            setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
         }
     }
 }

@@ -94,8 +94,12 @@ public class ProjectFieldViewer {
 
             UrlImageViewHelper.setUrlDrawable(mTaxonPic, taxon.getString("image_url"));
             mIdName.setText(taxon.getString("unique_name"));
-            mIdTaxonName.setText(taxon.getString("name"));
-            mIdTaxonName.setTypeface(null, Typeface.ITALIC);
+            mIdTaxonName.setText(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+            if (taxon.getJSONObject().optInt("rank_level", 0) <= 20) {
+                mIdTaxonName.setTypeface(null, Typeface.ITALIC);
+            } else {
+                mIdTaxonName.setTypeface(null, Typeface.NORMAL);
+            }
             String idNameString = getTaxonName(taxon.getJSONObject());
             if (idNameString != null) {
                 mIdName.setText(idNameString);

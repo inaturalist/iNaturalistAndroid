@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +25,29 @@ public class TaxonUtils {
             textView.setTypeface(null, Typeface.NORMAL);
         }
     }
+
+    public static String getTaxonRank(JSONObject item) {
+        int rankLevel = item.optInt("rank_level", 0);
+
+        if (rankLevel < 15) {
+            // Lower than subgenus - don't return anything
+            return "";
+        } else {
+            return StringUtils.capitalize(item.optString("rank", ""));
+        }
+    }
+
+    public static String getTaxonScientificName(JSONObject item) {
+        String rank = getTaxonRank(item);
+        String scientificName = item.optString("name", "");
+
+        if (rank.equals("")) {
+            return scientificName;
+        } else {
+            return String.format("%s %s", rank, scientificName);
+        }
+    }
+
 
     public static String getTaxonName(Context context, JSONObject item) {
         JSONObject defaultName;

@@ -317,7 +317,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					idName.setText(item.getJSONObject("taxon").getString("name"));
 				}
 				TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
-				idTaxonName.setText(item.getJSONObject("taxon").getString("name"));
+				idTaxonName.setText(TaxonUtils.getTaxonScientificName(item.getJSONObject("taxon")));
 				
 				int rankLevel = item.getJSONObject("taxon").optInt("rank_level");
                 idTaxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));

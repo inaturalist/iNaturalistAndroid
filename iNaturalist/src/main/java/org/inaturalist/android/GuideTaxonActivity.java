@@ -304,11 +304,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
             name.setVisibility(View.GONE);
         } else {
             displayNameText.setText(displayName);
-            try {
-                name.setText(mTaxon.getJSONObject().getString("name"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            name.setText(TaxonUtils.getTaxonScientificName(mTaxon.getJSONObject()));
         }
 
         JSONObject itemJson = mTaxon.getJSONObject();

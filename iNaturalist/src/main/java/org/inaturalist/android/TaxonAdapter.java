@@ -64,9 +64,9 @@ class TaxonAdapter extends ArrayAdapter<String> {
 
             if ((commonName != null) && (commonName.length() > 0)) {
                 idName.setText(commonName);
-                idTaxonName.setText(item.getString("name"));
+                idTaxonName.setText(TaxonUtils.getTaxonScientificName(item));
             } else {
-                idName.setText(item.getString("name"));
+                idName.setText(TaxonUtils.getTaxonScientificName(item));
                 idTaxonName.setVisibility(View.GONE);
             }
 
