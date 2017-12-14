@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
@@ -26,7 +27,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Handler;
@@ -469,6 +472,32 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                     idTaxonName.setOnClickListener(listener);
 
                 }
+
+
+                boolean isActive = item.getJSONObject("taxon").optBoolean("is_active", true);
+                ViewGroup taxonInactive = (ViewGroup) view.findViewById(R.id.taxon_inactive);
+				taxonInactive.setVisibility(isActive ? View.GONE : View.VISIBLE);
+
+				if (!isActive) {
+                    idTaxonName.setPaintFlags(idTaxonName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    idName.setPaintFlags(idTaxonName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                }
+
+				taxonInactive.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+					    INaturalistApp app = (INaturalistApp) mContext.getApplicationContext();
+						String inatNetwork = app.getInaturalistNetworkMember();
+						String inatHost = app.getStringResourceByName("inat_host_" + inatNetwork);
+
+						Locale deviceLocale = mContext.getResources().getConfiguration().locale;
+						String deviceLanguage =   deviceLocale.getLanguage();
+						String taxonUrl = String.format("%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, item.getInt("id"), deviceLanguage);
+						Intent i = new Intent(Intent.ACTION_VIEW);
+						i.setData(Uri.parse(taxonUrl));
+						mContext.startActivity(i);
+					}
+				});
 
 			}
 

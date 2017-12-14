@@ -686,5 +686,6 @@
     <string name="date_day">%dd</string>
     <string name="date_week">%dw</string>
     <string name="new_observation">New Observation</string>
+    <string name="inactive_taxon">Inactive Taxon</string>
 </resources>
 

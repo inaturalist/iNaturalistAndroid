@@ -225,6 +225,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private boolean mReloadTaxon;
     private boolean mScrollToCommentsBottom;
     private ScrollView mScrollView;
+    private ViewGroup mTaxonInactive;
 
     @Override
 	protected void onStart() {
@@ -477,6 +478,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mPhotosContainer = (ViewGroup) findViewById(R.id.photos_container);
         mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
         mLoadingMap = (ProgressBar) findViewById(R.id.loading_map);
+        mTaxonInactive = (ViewGroup) findViewById(R.id.taxon_inactive);
 
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
@@ -1554,6 +1556,24 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 }
             }
         }
+
+
+        mTaxonInactive.setVisibility(mTaxon == null || mTaxon.optBoolean("is_active", true) ? View.GONE : View.VISIBLE);
+
+        mTaxonInactive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
+                Locale deviceLocale = getResources().getConfiguration().locale;
+                String deviceLanguage =   deviceLocale.getLanguage();
+                String taxonUrl = String.format("%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.optInt("id"), deviceLanguage);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(taxonUrl));
+                startActivity(i);
+            }
+        });
 
         if (!mReadOnly) {
             // Get IDs of project-observations

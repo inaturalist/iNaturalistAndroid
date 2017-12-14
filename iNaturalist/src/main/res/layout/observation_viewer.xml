@@ -179,6 +179,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+
+            <LinearLayout
+                android:id="@+id/taxon_inactive"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_error_black_24dp"
+                    android:tint="#C32417"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:text="@string/inactive_taxon"
+                    android:textSize="16sp"
+                    android:textColor="#C32417"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textIsSelectable="false"
+                    />
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <ImageView

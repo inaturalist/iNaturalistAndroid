@@ -107,6 +107,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private ViewGroup mCompareTaxon;
     private ListView mTaxonomyList;
     private ImageView mTaxonicIcon;
+    private ViewGroup mTaxonInactive;
 
     private boolean mMapBoundsSet = false;
     private int mTaxonSuggestion = TAXON_SUGGESTION_NONE;
@@ -224,6 +225,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         mSelectTaxon = (ViewGroup) findViewById(R.id.select_taxon);
         mCompareTaxon = (ViewGroup) findViewById(R.id.compare_taxon);
         mTaxonicIcon = (ImageView) findViewById(R.id.taxon_iconic_taxon);
+        mTaxonInactive = (ViewGroup) findViewById(R.id.taxon_inactive);
 
         mTaxonButtons.setVisibility(mTaxonSuggestion != TAXON_SUGGESTION_NONE ? View.VISIBLE : View.GONE);
 
@@ -395,6 +397,26 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         JSONObject conservationStatus = mTaxon.has("conservation_status") ? mTaxon.getJSONObject("conservation_status") : null;
         String conservationStatusName = conservationStatus != null ? conservationStatusCodeToName(conservationStatus.optString("status")) : null;
+
+
+        mTaxonInactive.setVisibility(mTaxon.getJSONObject().optBoolean("is_active", true) ? View.GONE : View.VISIBLE);
+
+        mTaxonInactive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String inatNetwork = mApp.getInaturalistNetworkMember();
+                String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
+                Locale deviceLocale = getResources().getConfiguration().locale;
+                String deviceLanguage =   deviceLocale.getLanguage();
+                String taxonUrl = String.format("%s/taxon_changes?taxon_id=%d&locale=%s", inatHost, mTaxon.getInt("id"), deviceLanguage);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(taxonUrl));
+                startActivity(i);
+            }
+        });
+
+
 
         if ((conservationStatusName == null) || (conservationStatusName.equals("not_evaluated")) || (conservationStatusName.equals("data_deficient")) ||
                 (conservationStatusName.equals("least_concern")) ) {
