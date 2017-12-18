@@ -152,6 +152,7 @@
         android:layout_below="@id/menu_header"
         android:layout_above="@id/menu_add_obs"
         android:background="#ffffff"
+        android:fadeScrollbars="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
