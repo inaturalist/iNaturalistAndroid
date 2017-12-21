@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLng;
@@ -107,6 +108,10 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             mApp = (INaturalistApp) getApplicationContext();
         }
         setUpMapIfNeeded();
+        zoomToLocation();
+    }
+
+    private void zoomToLocation() {
         
         double longitude = mLongitude;
         double latitude = mLatitude;
@@ -137,10 +142,10 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         	
 
         	if (mZoomToLocation) {
-        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom));
+        		if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom));
         		mZoomToLocation = false;
         	} else {
-        		mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
+        		if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
         	}
         } else {
 
@@ -271,27 +276,35 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             mMarkerObservations = new HashMap<String, Observation>();
         }
         if (mMap == null) {
-            mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                // The Map is verified. It is now safe to manipulate the map.
-                mMap.setMyLocationEnabled(true);
-                if (!mMarkerObservations.isEmpty()) {
-                    LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                    for (Observation o: mMarkerObservations.values()) {
-                        if (o.private_latitude != null && o.private_longitude != null) {
-                            builder.include(new LatLng(o.private_latitude, o.private_longitude));
-                        } else {
-                            builder.include(new LatLng(o.latitude, o.longitude));
+            ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    mMap = googleMap;
+
+                    // Check if we were successful in obtaining the map.
+                    if (mMap != null) {
+                        // The Map is verified. It is now safe to manipulate the map.
+                        mMap.setMyLocationEnabled(true);
+                        if (!mMarkerObservations.isEmpty()) {
+                            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                            for (Observation o: mMarkerObservations.values()) {
+                                if (o.private_latitude != null && o.private_longitude != null) {
+                                    builder.include(new LatLng(o.private_latitude, o.private_longitude));
+                                } else {
+                                    builder.include(new LatLng(o.latitude, o.longitude));
+                                }
+                            }
                         }
+
+                        mMap.clear();
+                        MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(TaxonUtils.observationMarkerIcon(mIconicTaxonName));
+                        Marker m = mMap.addMarker(opts);
+
+                        zoomToLocation();
                     }
                 }
+            });
 
-                mMap.clear();
-                MarkerOptions opts = new MarkerOptions().position(new LatLng(mLatitude, mLongitude)).icon(TaxonUtils.observationMarkerIcon(mIconicTaxonName));
-                Marker m = mMap.addMarker(opts);
-
-            }
         }
     }
 
@@ -304,7 +317,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             mLocationManager.removeUpdates(this);
 
         	LatLng camLocation = new LatLng(location.getLatitude(), location.getLongitude());
-        	mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(camLocation, 15));
+        	if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(camLocation, 15));
         }
 	}
 

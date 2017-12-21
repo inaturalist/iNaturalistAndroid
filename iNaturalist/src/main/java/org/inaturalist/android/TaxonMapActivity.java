@@ -13,6 +13,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -120,28 +122,41 @@ public class TaxonMapActivity extends AppCompatActivity {
 
         setContentView(R.layout.taxon_map);
 
-        mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMap();
-
-        mMap.setMyLocationEnabled(true);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-        // Set the tile overlay (for the taxon's observations map)
-        TileProvider tileProvider = new UrlTileProvider(256, 256) {
+        ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
             @Override
-            public URL getTileUrl(int x, int y, int zoom) {
+            public void onMapReady(GoogleMap googleMap) {
+                mMap = googleMap;
 
-                String s = String.format(INaturalistService.API_HOST + "/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
-                        zoom, x, y, mTaxonId);
-                try {
-                    return new URL(s);
-                } catch (MalformedURLException e) {
-                    throw new AssertionError(e);
+                mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setZoomControlsEnabled(true);
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+                // Set the tile overlay (for the taxon's observations map)
+                TileProvider tileProvider = new UrlTileProvider(256, 256) {
+                    @Override
+                    public URL getTileUrl(int x, int y, int zoom) {
+
+                        String s = String.format(INaturalistService.API_HOST + "/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
+                                zoom, x, y, mTaxonId);
+                        try {
+                            return new URL(s);
+                        } catch (MalformedURLException e) {
+                            throw new AssertionError(e);
+                        }
+                    }
+                };
+
+                TileOverlay tileOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
+
+                if (mObservation != null) {
+                    boolean markerOnly = false;
+                    boolean updateCamera = false;
+                    final Observation obs = new Observation(mObservation);
+                    mHelper.addMapPosition(mMap, obs, mObservation, markerOnly, updateCamera);
+                    mHelper.centerObservationImmediate(mMap, obs);
                 }
             }
-        };
-
-        TileOverlay tileOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
+        });
 
         actionBar.setHomeButtonEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
@@ -149,13 +164,6 @@ public class TaxonMapActivity extends AppCompatActivity {
 
         actionBar.setTitle(mTaxonName);
 
-        if (mObservation != null) {
-            boolean markerOnly = false;
-            boolean updateCamera = false;
-            final Observation obs = new Observation(mObservation);
-            mHelper.addMapPosition(mMap, obs, mObservation, markerOnly, updateCamera);
-            mHelper.centerObservation(mMap, obs);
-        }
     }
 
 
@@ -206,10 +214,13 @@ public class TaxonMapActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(TAXON_ID, mTaxonId);
         outState.putString(TAXON_NAME, mTaxonName);
-        CameraPosition position = mMap.getCameraPosition();
-        outState.putDouble(MAP_LATITUDE, position.target.latitude);
-        outState.putDouble(MAP_LONGITUDE, position.target.longitude);
-        outState.putFloat(MAP_ZOOM, position.zoom);
+
+        if (mMap != null) {
+            CameraPosition position = mMap.getCameraPosition();
+            outState.putDouble(MAP_LATITUDE, position.target.latitude);
+            outState.putDouble(MAP_LONGITUDE, position.target.longitude);
+            outState.putFloat(MAP_ZOOM, position.zoom);
+        }
         super.onSaveInstanceState(outState);
     }
 
@@ -218,6 +229,6 @@ public class TaxonMapActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapLatitude, mMapLongitude), mMapZoom));
+        if (mMap != null) mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapLatitude, mMapLongitude), mMapZoom));
     }
 }

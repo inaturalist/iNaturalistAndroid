@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -108,6 +109,10 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
             mApp = (INaturalistApp) getApplicationContext();
         }
         setUpMapIfNeeded();
+        zoomToLocation();
+    }
+
+    private void zoomToLocation() {
         
         Double longitude = mLongitude;
         Double latitude = mLatitude;
@@ -137,7 +142,7 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
         	}
 
 
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
+            if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
 
             if (mAccuracy == 0) {
                  mLocationCoordinates.setText(String.format(getString(R.string.location_coords_no_acc),
@@ -217,17 +222,25 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
     
     private void setUpMapIfNeeded() {
         if (mMap == null) {
-            mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                // The Map is verified. It is now safe to manipulate the map.
-                mMap.setMyLocationEnabled(true);
-                mMap.getUiSettings().setZoomControlsEnabled(false);
+            ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    mMap = googleMap;
+                    // Check if we were successful in obtaining the map.
+                    if (mMap != null) {
+                        // The Map is verified. It is now safe to manipulate the map.
+                        mMap.setMyLocationEnabled(true);
+                        mMap.getUiSettings().setZoomControlsEnabled(false);
 
-                mMap.clear();
+                        mMap.clear();
 
-                mHelper.addMapPosition(mMap, mObservation, mObservationJson);
-            }
+                        mHelper.addMapPosition(mMap, mObservation, mObservationJson);
+
+                        zoomToLocation();
+                    }
+                }
+            });
+
         }
     }
 
@@ -240,7 +253,7 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
             mLocationManager.removeUpdates(this);
 
         	LatLng camLocation = new LatLng(location.getLatitude(), location.getLongitude());
-        	mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(camLocation, 15));
+        	if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(camLocation, 15));
         }
 	}
 

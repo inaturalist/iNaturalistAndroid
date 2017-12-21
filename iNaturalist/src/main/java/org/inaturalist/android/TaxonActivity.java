@@ -33,6 +33,7 @@ import android.widget.TextView;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -218,7 +219,51 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         mConservationStatusContainer = (ViewGroup) findViewById(R.id.conservation_status_container);
         mConservationStatus = (TextView) findViewById(R.id.conservation_status);
         mConservationSource = (TextView) findViewById(R.id.conservation_source);
-        mMap = ((ScrollableMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMap();
+        ((ScrollableMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                mMap = googleMap;
+
+                mMap.setMyLocationEnabled(false);
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                mMap.getUiSettings().setAllGesturesEnabled(false);
+                mMap.getUiSettings().setZoomControlsEnabled(false);
+
+                // Set the tile overlay (for the taxon's observations map)
+                TileProvider tileProvider = new UrlTileProvider(512, 512) {
+                    @Override
+                    public URL getTileUrl(int x, int y, int zoom) {
+
+                        String s = String.format(INaturalistService.API_HOST + "/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
+                                zoom, x, y, mTaxon.getInt("id"));
+                        try {
+                            return new URL(s);
+                        } catch (MalformedURLException e) {
+                            throw new AssertionError(e);
+                        }
+                    }
+                };
+
+                TileOverlay tileOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
+
+                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        Intent intent = new Intent(TaxonActivity.this, TaxonMapActivity.class);
+                        intent.putExtra(TaxonMapActivity.TAXON_ID, mTaxon.getInt("id"));
+                        intent.putExtra(TaxonMapActivity.TAXON_NAME, actionBar.getTitle());
+                        CameraPosition position = mMap.getCameraPosition();
+                        intent.putExtra(TaxonMapActivity.MAP_LATITUDE, position.target.latitude);
+                        intent.putExtra(TaxonMapActivity.MAP_LONGITUDE, position.target.longitude);
+                        intent.putExtra(TaxonMapActivity.MAP_ZOOM, position.zoom);
+                        intent.putExtra(TaxonMapActivity.OBSERVATION, mObservation);
+                        startActivity(intent);
+                    }
+                });
+
+
+            }
+        });
         mViewOnINat = (ViewGroup) findViewById(R.id.view_on_inat);
         mLoadingPhotos = (ProgressBar) findViewById(R.id.loading_photos);
         mTaxonButtons = (ViewGroup) findViewById(R.id.taxon_buttons);
@@ -293,10 +338,6 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             }
         });
 
-        mMap.setMyLocationEnabled(false);
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.getUiSettings().setAllGesturesEnabled(false);
-        mMap.getUiSettings().setZoomControlsEnabled(false);
 
         // Make sure the user will be able to scroll/zoom the map (since it's inside a ScrollView)
         ((ScrollableMapFragment) getSupportFragmentManager().findFragmentById(R.id.observations_map))
@@ -306,38 +347,6 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                         mScrollView.requestDisallowInterceptTouchEvent(true);
                     }
                 });
-
-        // Set the tile overlay (for the taxon's observations map)
-        TileProvider tileProvider = new UrlTileProvider(512, 512) {
-            @Override
-            public URL getTileUrl(int x, int y, int zoom) {
-
-                String s = String.format(INaturalistService.API_HOST + "/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
-                        zoom, x, y, mTaxon.getInt("id"));
-                try {
-                    return new URL(s);
-                } catch (MalformedURLException e) {
-                    throw new AssertionError(e);
-                }
-            }
-        };
-
-        TileOverlay tileOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
-
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                Intent intent = new Intent(TaxonActivity.this, TaxonMapActivity.class);
-                intent.putExtra(TaxonMapActivity.TAXON_ID, mTaxon.getInt("id"));
-                intent.putExtra(TaxonMapActivity.TAXON_NAME, actionBar.getTitle());
-                CameraPosition position = mMap.getCameraPosition();
-                intent.putExtra(TaxonMapActivity.MAP_LATITUDE, position.target.latitude);
-                intent.putExtra(TaxonMapActivity.MAP_LONGITUDE, position.target.longitude);
-                intent.putExtra(TaxonMapActivity.MAP_ZOOM, position.zoom);
-                intent.putExtra(TaxonMapActivity.OBSERVATION, mObservation);
-                startActivity(intent);
-            }
-        });
 
 
         actionBar.setHomeButtonEnabled(true);
@@ -500,7 +509,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     }
 
     private void centerObservation() {
-        if (mObservation != null) {
+        if ((mObservation != null) && (mMap != null)) {
             boolean markerOnly = false;
             boolean updateCamera = false;
             final Observation obs = new Observation(mObservation);

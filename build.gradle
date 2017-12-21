@@ -16,8 +16,9 @@ allprojects {
     repositories {
         maven { url "http://dl.bintray.com/populov/maven" }
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
     configurations.all {
-        resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
+        resolutionStrategy.force 'com.android.support:support-annotations:25.0.1'
     }
 }

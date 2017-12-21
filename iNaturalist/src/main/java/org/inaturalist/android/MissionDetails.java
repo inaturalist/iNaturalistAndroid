@@ -33,6 +33,7 @@ import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -197,7 +198,19 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         mTaxonName = (TextView) findViewById(R.id.taxon_name);
         mTaxonScientificName = (TextView) findViewById(R.id.taxon_scientific_name);
         mMissionLocation = (TextView) findViewById(R.id.mission_location);
-        mMissionMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.location_map)).getMap();
+        ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.location_map)).getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                mMissionMap = googleMap;
+
+                mMissionMap.setMyLocationEnabled(false);
+                mMissionMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                mMissionMap.getUiSettings().setAllGesturesEnabled(false);
+                mMissionMap.getUiSettings().setZoomControlsEnabled(false);
+
+                refreshViewState();
+            }
+        });
         mMapContainer = (ViewGroup) findViewById(R.id.map_container);
         mMissionLocationContainer = (ViewGroup) findViewById(R.id.mission_location_container);
         mLoadingMap = (ProgressBar) findViewById(R.id.loading_map);
@@ -239,10 +252,6 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             }
         });
 
-        mMissionMap.setMyLocationEnabled(false);
-        mMissionMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMissionMap.getUiSettings().setAllGesturesEnabled(false);
-        mMissionMap.getUiSettings().setZoomControlsEnabled(false);
 
         mObserve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -389,87 +398,93 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             mNearbyObservationsPageAdapter = new ObservationsPagerAdapter(this, mObservations);
             mNearbyObservationsViewPager.setAdapter(mNearbyObservationsPageAdapter);
 
-            mMissionMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                @Override
-                public void onMapClick(LatLng latLng) {
-                    // Show the map screen
-                    Intent intent = new Intent(MissionDetails.this, MissionDetailsMapActivity.class);
-                    JSONArray arr = new JSONArray(mObservations);
-                    intent.putExtra(MissionDetailsMapActivity.OBSERVATIONS, arr.toString());
-                    startActivity(intent);
-                }
-            });
-
-            mMissionMap.clear();
+            int coordsCount = 0;
             final LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-            int coordsCount = 0;
-            for (int i = 0; i < mObservations.size(); i++) {
-                BetterJSONObject observation = new BetterJSONObject(mObservations.get(i));
-                String placeGuess = observation.getString("place_guess");
-                Double latitude = observation.getDouble("latitude");
-                Double longitude = observation.getDouble("longitude");
 
-                if (i == 0) {
-                    // First observation - determines initial map place, place guess text and the first big marker
-                    if ((placeGuess != null) && (placeGuess.length() > 0)) {
-                        mMissionLocation.setText(placeGuess);
-                    } else if (latitude != null) {
-                        // No place guess
-                        mMissionLocation.setText(String.format(getString(R.string.location_coords_no_acc),
-                                String.format("%.3f...", latitude),
-                                String.format("%.3f...", longitude)));
-
-
-                    } else {
-                        // No place at all
-                        ((ViewGroup) mMissionLocation.getParent()).setVisibility(View.GONE);
+            if (mMissionMap != null) {
+                mMissionMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        // Show the map screen
+                        Intent intent = new Intent(MissionDetails.this, MissionDetailsMapActivity.class);
+                        JSONArray arr = new JSONArray(mObservations);
+                        intent.putExtra(MissionDetailsMapActivity.OBSERVATIONS, arr.toString());
+                        startActivity(intent);
                     }
+                });
 
-                    if (latitude != null) {
-                        LatLng latLng = new LatLng(latitude, longitude);
+                mMissionMap.clear();
 
-                        // Add the marker (it's the main one, so it's bigger in size)
+                for (int i = 0; i < mObservations.size(); i++) {
+                    BetterJSONObject observation = new BetterJSONObject(mObservations.get(i));
+                    String placeGuess = observation.getString("place_guess");
+                    Double latitude = observation.getDouble("latitude");
+                    Double longitude = observation.getDouble("longitude");
 
-                        BitmapDrawable bd = null;
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            bd = (BitmapDrawable) getDrawable(R.drawable.mm_34_dodger_blue);
+                    if (i == 0) {
+                        // First observation - determines initial map place, place guess text and the first big marker
+                        if ((placeGuess != null) && (placeGuess.length() > 0)) {
+                            mMissionLocation.setText(placeGuess);
+                        } else if (latitude != null) {
+                            // No place guess
+                            mMissionLocation.setText(String.format(getString(R.string.location_coords_no_acc),
+                                    String.format("%.3f...", latitude),
+                                    String.format("%.3f...", longitude)));
+
+
                         } else {
-                            bd = (BitmapDrawable) getResources().getDrawable(R.drawable.mm_34_dodger_blue);
+                            // No place at all
+                            ((ViewGroup) mMissionLocation.getParent()).setVisibility(View.GONE);
                         }
-                        Bitmap bitmap = bd.getBitmap();
-                        Bitmap doubleBitmap = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth() * 1.3), (int)(bitmap.getHeight() * 1.3), false);
 
-                        MarkerOptions opts = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(doubleBitmap));
+                        if (latitude != null) {
+                            LatLng latLng = new LatLng(latitude, longitude);
+
+                            // Add the marker (it's the main one, so it's bigger in size)
+
+                            BitmapDrawable bd = null;
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                                bd = (BitmapDrawable) getDrawable(R.drawable.mm_34_dodger_blue);
+                            } else {
+                                bd = (BitmapDrawable) getResources().getDrawable(R.drawable.mm_34_dodger_blue);
+                            }
+                            Bitmap bitmap = bd.getBitmap();
+                            Bitmap doubleBitmap = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth() * 1.3), (int)(bitmap.getHeight() * 1.3), false);
+
+                            MarkerOptions opts = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(doubleBitmap));
+                            Marker m = mMissionMap.addMarker(opts);
+                            builder.include(latLng);
+                            coordsCount++;
+                        }
+                    } else if (latitude != null) {
+                        // Add observation marker
+
+                        LatLng latLng = new LatLng(latitude, longitude);
+                        MarkerOptions opts = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dodger_blue));
                         Marker m = mMissionMap.addMarker(opts);
                         builder.include(latLng);
                         coordsCount++;
                     }
-                } else if (latitude != null) {
-                    // Add observation marker
-
-                    LatLng latLng = new LatLng(latitude, longitude);
-                    MarkerOptions opts = new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dodger_blue));
-                    Marker m = mMissionMap.addMarker(opts);
-                    builder.include(latLng);
-                    coordsCount++;
                 }
             }
 
-            final int finalCoordsCount = coordsCount;
-            mMissionMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
-                @Override
-                public void onCameraChange(CameraPosition arg0) {
-                    if (finalCoordsCount > 0) {
-                        LatLngBounds bounds = builder.build();
-                        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100 /* Padding */);
-                        mMissionMap.moveCamera(cu);
-                    }
+            if (mMissionMap != null) {
+                final int finalCoordsCount = coordsCount;
+                mMissionMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+                    @Override
+                    public void onCameraChange(CameraPosition arg0) {
+                        if (finalCoordsCount > 0) {
+                            LatLngBounds bounds = builder.build();
+                            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100 /* Padding */);
+                            mMissionMap.moveCamera(cu);
+                        }
 
-                    // Remove listener to prevent position reset on camera move.
-                    mMissionMap.setOnCameraChangeListener(null);
-                }
-            });
+                        // Remove listener to prevent position reset on camera move.
+                        mMissionMap.setOnCameraChangeListener(null);
+                    }
+                });
+            }
         }
         
         mNearbyMissionsPageAdapter = new MissionsPagerAdapter(this, mNearByMissions, mLocationExpansion, true);

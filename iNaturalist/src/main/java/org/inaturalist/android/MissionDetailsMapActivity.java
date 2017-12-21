@@ -22,6 +22,7 @@ import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -102,6 +103,8 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
     }
 
     private void loadObservationsToMap() {
+        if (mMap == null) return;
+
         mMap.clear();
         final LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
@@ -116,7 +119,7 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
                     LatLng latLng = new LatLng(latitude, longitude);
 
                     // Add the marker (it's the main one, so it's bigger in size)
-                    BitmapDrawable bd = (BitmapDrawable) getDrawable(R.drawable.mm_34_dodger_blue);
+                    BitmapDrawable bd = (BitmapDrawable) getResources().getDrawable(R.drawable.mm_34_dodger_blue);
                     Bitmap bitmap = bd.getBitmap();
                     Bitmap doubleBitmap = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth() * 1.3), (int)(bitmap.getHeight() * 1.3), false);
 
@@ -223,16 +226,26 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
         mMarkerObservations = new HashMap<String, JSONObject>();
 
         if (mMap == null) {
-            mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                // The Map is verified. It is now safe to manipulate the map.
-                mMap.setMyLocationEnabled(true);
-                mMap.getUiSettings().setZoomControlsEnabled(false);
+            ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    mMap = googleMap;
 
-                mMap.clear();
+                    // Check if we were successful in obtaining the map.
+                    if (mMap != null) {
+                        // The Map is verified. It is now safe to manipulate the map.
+                        mMap.setMyLocationEnabled(true);
+                        mMap.getUiSettings().setZoomControlsEnabled(false);
 
-            }
+                        mMap.clear();
+
+                        if (mObservations != null) {
+                            loadObservationsToMap();
+                        }
+                    }
+                }
+            });
+
         }
     }
 

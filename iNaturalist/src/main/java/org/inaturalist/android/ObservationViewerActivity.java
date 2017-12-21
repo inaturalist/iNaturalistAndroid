@@ -64,6 +64,7 @@ import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -427,7 +428,14 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mTaxonicName = (TextView) findViewById(R.id.id_sub_name);
         mIdRow = (ViewGroup) findViewById(R.id.id_row);
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
-        mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.location_map)).getMap();
+        ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.location_map)).getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                mMap = googleMap;
+
+                setupMap();
+            }
+        });
         mLocationMapContainer = (ViewGroup) findViewById(R.id.location_map_container);
         mUnknownLocationContainer = (ViewGroup) findViewById(R.id.unknown_location_container);
         mUnknownLocationIcon = (ImageView) findViewById(R.id.unknown_location);
@@ -515,7 +523,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
         });
 
         setupTabs();
-        setupMap();
         refreshActivity();
         refreshFavorites();
 

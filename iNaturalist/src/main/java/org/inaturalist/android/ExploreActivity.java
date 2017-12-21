@@ -42,6 +42,7 @@ import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -54,11 +55,10 @@ import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
 import com.google.android.gms.maps.model.VisibleRegion;
-import com.google.maps.android.geojson.GeoJsonFeature;
-import com.google.maps.android.geojson.GeoJsonLayer;
-import com.google.maps.android.geojson.GeoJsonPointStyle;
-import com.google.maps.android.geojson.GeoJsonPolygon;
-import com.google.maps.android.geojson.GeoJsonPolygonStyle;
+import com.google.maps.android.data.Layer;
+import com.google.maps.android.data.geojson.GeoJsonFeature;
+import com.google.maps.android.data.geojson.GeoJsonLayer;
+import com.google.maps.android.data.geojson.GeoJsonPolygon;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -967,27 +967,29 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         refreshMapType();
 
-        mObservationsMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
-            @Override
-            public void onMapLoaded() {
-                mObservationsMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
-                    @Override
-                    public void onCameraChange(CameraPosition position) {
-                        // User moved the map view - allow him to make a new search on those new map bounds
-                        if ((mLastMapBounds == null) || (!mLastMapBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
-                            mMapMoved = true;
-                            mRedoObservationsSearch.setVisibility(View.VISIBLE);
+        if (mObservationsMap != null) {
+            mObservationsMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                @Override
+                public void onMapLoaded() {
+                    mObservationsMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+                        @Override
+                        public void onCameraChange(CameraPosition position) {
+                            // User moved the map view - allow him to make a new search on those new map bounds
+                            if ((mLastMapBounds == null) || (!mLastMapBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
+                                mMapMoved = true;
+                                mRedoObservationsSearch.setVisibility(View.VISIBLE);
 
-                            if ((mInitialLocationBounds == null) || !(mInitialLocationBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
-                                mObservationsMapMyLocation.setColorFilter(Color.parseColor("#676767"));
+                                if ((mInitialLocationBounds == null) || !(mInitialLocationBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
+                                    mObservationsMapMyLocation.setColorFilter(Color.parseColor("#676767"));
+                                }
                             }
-                        }
 
-                        mLastMapBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
-                    }
-                });
-            }
-        });
+                            mLastMapBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
+                        }
+                    });
+                }
+            });
+        }
 
         mRedoObservationsSearch.setVisibility(mMapMoved ? View.VISIBLE : View.GONE);
         mPerformingSearch.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.VISIBLE : View.GONE);
@@ -1041,7 +1043,9 @@ public class ExploreActivity extends BaseFragmentActivity {
             }
         };
 
-        TileOverlay tileOverlay = mObservationsMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
+        if (mObservationsMap != null) {
+            TileOverlay tileOverlay = mObservationsMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
+        }
     }
 
     private void refreshMapType() {
@@ -1051,7 +1055,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsChangeMapLayers.setImageResource(R.drawable.ic_satellite_black_48dp);
         }
 
-        if (mObservationsMap.getMapType() != mObservationsMapType) mObservationsMap.setMapType(mObservationsMapType);
+        if ((mObservationsMap != null) && (mObservationsMap.getMapType() != mObservationsMapType)) mObservationsMap.setMapType(mObservationsMapType);
     }
 
     private void resetResults(boolean resetOffsets) {
@@ -1164,7 +1168,29 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mLoadingObservationsGrid = (ProgressBar) layout.findViewById(R.id.loading_observations_grid);
                 mObservationsGridEmpty = (TextView) layout.findViewById(R.id.observations_grid_empty);
                 mObservationsGrid = (GridViewExtended) layout.findViewById(R.id.observations_grid);
-                mObservationsMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMap();
+                ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        mObservationsMap = googleMap;
+                        mObservationsMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                            @Override
+                            public void onMapClick(LatLng latLng) {
+                                onObservationsMapClick(latLng);
+                            }
+                        });
+
+                        mObservationsMap.setMyLocationEnabled(true);
+                        mObservationsMap.getUiSettings().setMyLocationButtonEnabled(false);
+                        mObservationsMap.getUiSettings().setMapToolbarEnabled(false);
+                        mObservationsMap.getUiSettings().setCompassEnabled(false);
+                        mObservationsMap.getUiSettings().setIndoorLevelPickerEnabled(false);
+                        mObservationsMap.setIndoorEnabled(false);
+                        mObservationsMap.setTrafficEnabled(false);
+                        mObservationsMap.getUiSettings().setRotateGesturesEnabled(false);
+
+                        refreshViewState();
+                    }
+                });
                 mObservationsMapContainer = (ViewGroup) layout.findViewById(R.id.observations_map_container);
                 mObservationsGridFilterBar = (TextView) layout.findViewById(R.id.grid_filter_bar);
                 mObservationsMapFilterBar = (TextView) layout.findViewById(R.id.map_filter_bar);
@@ -1194,21 +1220,6 @@ public class ExploreActivity extends BaseFragmentActivity {
                     mObservationsMapMyLocation.performClick();
                 }
 
-                mObservationsMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLng latLng) {
-                        onObservationsMapClick(latLng);
-                    }
-                });
-
-                mObservationsMap.setMyLocationEnabled(true);
-                mObservationsMap.getUiSettings().setMyLocationButtonEnabled(false);
-                mObservationsMap.getUiSettings().setMapToolbarEnabled(false);
-                mObservationsMap.getUiSettings().setCompassEnabled(false);
-                mObservationsMap.getUiSettings().setIndoorLevelPickerEnabled(false);
-                mObservationsMap.setIndoorEnabled(false);
-                mObservationsMap.setTrafficEnabled(false);
-                mObservationsMap.getUiSettings().setRotateGesturesEnabled(false);
 
             } else {
                 int loadingListResource = 0;
@@ -1400,22 +1411,9 @@ public class ExploreActivity extends BaseFragmentActivity {
         GeoJsonLayer layer = getGeoJsonLayer(place.optJSONObject("geometry_geojson"));
         if (layer == null) return;
 
-        GoogleMap map = mObservationsMap;
-        map.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
-            public void onPolygonClick(Polygon polygon) {
-                polygon.setClickable(false);
-            }
-        });
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            public boolean onMarkerClick(Marker marker) {
-                return false;
-            }
-        });
-        map.setOnPolylineClickListener(new GoogleMap.OnPolylineClickListener() {
-            public void onPolylineClick(Polyline polyline) {
-            }
-        });
-
+        // Using our own forked version of GeoJsonLayer, we can set polygons as non-clickable,
+        // so we'll be able to catch clicks on markers inside the polygons.
+        layer.setPolygonsClickable(false);
         layer.addLayerToMap();
     }
 
@@ -1440,7 +1438,6 @@ public class ExploreActivity extends BaseFragmentActivity {
             Resources r = getResources();
             float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, r.getDisplayMetrics());
             layer.getDefaultPolygonStyle().setStrokeWidth(px);
-            layer.getDefaultLineStringStyle().setClickable(false);
             return layer;
         } catch (JSONException e) {
             e.printStackTrace();
