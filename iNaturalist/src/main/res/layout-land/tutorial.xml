@@ -24,4 +24,32 @@
         app:strokeWidth="0dp"
         android:paddingBottom="10dp" />
 
+    <ImageView
+        android:id="@+id/next_screen"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="41dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_keyboard_arrow_right_black_48dp"
+        android:background="@drawable/circle_green"
+        android:tint="#ffffff"
+        android:layout_marginRight="16dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/previous_screen"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="41dp"
+        android:src="@drawable/ic_keyboard_arrow_left_black_48dp"
+        android:background="@drawable/circle_green"
+        android:tint="#ffffff"
+        android:layout_marginLeft="16dp"
+        />
 </RelativeLayout>

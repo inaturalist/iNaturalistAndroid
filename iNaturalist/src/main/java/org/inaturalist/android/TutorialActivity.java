@@ -14,11 +14,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 
 import com.flurry.android.FlurryAgent;
 import com.viewpagerindicator.CirclePageIndicator;
 
 public class TutorialActivity extends BaseFragmentActivity {
+
+    private ImageView mPreviousScreen;
+    private ImageView mNextScreen;
 
     @Override
     protected void onStart()
@@ -119,6 +123,9 @@ public class TutorialActivity extends BaseFragmentActivity {
 
         @Override
         public void onPageSelected(int position) {
+            mPreviousScreen.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+            mNextScreen.setVisibility(position == mCount - 1 ? View.GONE : View.VISIBLE);
+
             if (position == mCount - 1) {
                 // Final page ("Let's get started")
                 mIndicator.setVisibility(View.GONE);
@@ -150,6 +157,26 @@ public class TutorialActivity extends BaseFragmentActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mIndicator = (CirclePageIndicator) findViewById(R.id.tutorial_indicator);
+
+        mPreviousScreen = (ImageView) findViewById(R.id.previous_screen);
+        mNextScreen = (ImageView) findViewById(R.id.next_screen);
+
+        mPreviousScreen.setVisibility(View.GONE);
+        mNextScreen.setVisibility(View.VISIBLE);
+
+        mPreviousScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1);
+            }
+        });
+        mNextScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+            }
+        });
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
