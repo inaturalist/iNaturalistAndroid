@@ -83,14 +83,31 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"/>
 
+
+        <ImageView
+            android:id="@+id/empty_icon"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
+            android:tint="#4d000000"
+            android:src="@drawable/unknown_large"
+            android:scaleType="fitCenter"
+            />
+
         <TextView
             android:id="@+id/empty"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="30dp"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            style="@android:style/TextAppearance.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/empty_icon"
+            android:textSize="18sp"
+            android:textColor="#8a000000"
+            android:paddingLeft="42dp"
+            android:paddingRight="42dp"
+            android:layout_marginTop="40dp"
             android:text="@string/no_observations_yet" />
 
         <com.melnykov.fab.FloatingActionButton
@@ -104,11 +121,27 @@
             android:layout_marginRight="16dp"
             android:padding="14dp"
             android:src="@drawable/ic_add_white_24dp"
-            android:visibility="gone"
             android:scaleType="fitCenter"
+            android:visibility="gone"
             fab:fab_colorNormal="@color/inatapptheme_color"
             fab:fab_colorPressed="@color/inatapptheme_color_highlighted"
             fab:fab_colorRipple="@color/inatapptheme_color_highlighted" />
+
+
+        <TextView
+            android:id="@+id/add_observation_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/make_an_observation"
+            android:layout_toLeftOf="@id/add_observation"
+            android:textSize="18sp"
+            android:textColor="@color/inatapptheme_color"
+            android:visibility="gone"
+            android:layout_alignTop="@id/add_observation"
+            android:layout_alignBottom="@id/add_observation"
+            android:gravity="center_vertical"
+            android:layout_marginRight="20dp"
+            />
     </RelativeLayout>
 
 

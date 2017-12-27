@@ -50,6 +50,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -95,16 +96,19 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private ProgressBar mLoadingIdentifications;
     private TextView mIdentificationsEmpty;
+    private ImageView mIdentificationsEmptyIcon;
     private PullToRefreshListView mIdentificationsList;
     private PullToRefreshGridViewExtended mIdentificationsGrid;
 
     private ProgressBar mLoadingSpecies;
     private TextView mSpeciesEmpty;
+    private ImageView mSpeciesEmptyIcon;
     private PullToRefreshListView mSpeciesList;
     private PullToRefreshGridViewExtended mSpeciesGrid;
 
     private ProgressBar mLoadingObservations;
     private TextView mObservationsEmpty;
+    private ImageView mObservationsEmptyIcon;
     private PullToRefreshListView mObservationsList;
     private PullToRefreshGridViewExtended mObservationsGrid;
 
@@ -127,6 +131,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private View mOnboardingSyncingClose;
 
     private boolean mSelectedBottomGrid = false;
+    private TextView mAddButtonText;
 
 
     @Override
@@ -176,8 +181,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             if (mApp.loggedIn() && !mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
                 // Show a "no observations" message
-                TextView emptyView = (TextView)findViewById(android.R.id.empty);
-                if (emptyView != null) emptyView.setText(R.string.no_observations_yet);
+                if (mObservationsEmpty != null) mObservationsEmpty.setText(R.string.no_observations_found_new);
             }
 
             DecimalFormat formatter = new DecimalFormat("#,###,###");
@@ -365,6 +369,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
                 // Show a "downloading ..." message instead of "no observations yet"
                 mObservationsEmpty.setText(R.string.downloading_observations);
+                mObservationsEmptyIcon.setVisibility(View.GONE);
                 mLoadingObservations.setVisibility(View.VISIBLE);
                 ((TextView) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.count)).setVisibility(View.GONE);
                 ((ProgressBar) mTabLayout.getTabAt(0).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
@@ -385,6 +390,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsGrid.setVisibility(View.GONE);
                     mObservationsList.setVisibility(View.VISIBLE);
                 }
+
+                if (mObservationListAdapter.getCount() == 0) {
+                    mObservationsEmptyIcon.setVisibility(View.VISIBLE);
+                    mObservationsEmpty.setVisibility(View.VISIBLE);
+                    mAddButtonText.setVisibility(View.VISIBLE);
+                } else {
+                    mObservationsEmptyIcon.setVisibility(View.GONE);
+                    mObservationsEmpty.setVisibility(View.GONE);
+                    mAddButtonText.setVisibility(View.GONE);
+                }
             }
 
        }
@@ -395,6 +410,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 ((ProgressBar) mTabLayout.getTabAt(1).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
                 mLoadingSpecies.setVisibility(View.VISIBLE);
                 mSpeciesEmpty.setVisibility(View.GONE);
+                mSpeciesEmptyIcon.setVisibility(View.GONE);
                 mSpeciesList.setVisibility(View.GONE);
                 mSpeciesGrid.setVisibility(View.GONE);
             } else {
@@ -405,9 +421,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 if ((mSpecies == null) || (mSpecies.size() == 0)) {
                     mSpeciesEmpty.setVisibility(View.VISIBLE);
+                    mSpeciesEmptyIcon.setVisibility(View.VISIBLE);
                     mSpeciesList.setVisibility(View.GONE);
                 } else {
                     mSpeciesEmpty.setVisibility(View.GONE);
+                    mSpeciesEmptyIcon.setVisibility(View.GONE);
                     mSpeciesList.setVisibility(View.VISIBLE);
 
                     mSpeciesListAdapter = new UserSpeciesAdapter(this, mSpecies);
@@ -436,6 +454,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 ((ProgressBar) mTabLayout.getTabAt(2).getCustomView().findViewById(R.id.loading)).setVisibility(View.VISIBLE);
                 mLoadingIdentifications.setVisibility(View.VISIBLE);
                 mIdentificationsEmpty.setVisibility(View.GONE);
+                mIdentificationsEmptyIcon.setVisibility(View.GONE);
                 mIdentificationsList.setVisibility(View.GONE);
                 mIdentificationsGrid.setVisibility(View.GONE);
             } else {
@@ -446,9 +465,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 if ((mIdentifications == null) || (mIdentifications.size() == 0)) {
                     mIdentificationsEmpty.setVisibility(View.VISIBLE);
+                    mIdentificationsEmptyIcon.setVisibility(View.VISIBLE);
                     mIdentificationsList.setVisibility(View.GONE);
                 } else {
                     mIdentificationsEmpty.setVisibility(View.GONE);
+                    mIdentificationsEmptyIcon.setVisibility(View.GONE);
                     mIdentificationsList.setVisibility(View.VISIBLE);
 
                     mIdentificationsListAdapter = new UserIdentificationsAdapter(this, mIdentifications, mApp.currentUserLogin());
@@ -667,6 +688,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
                 getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
 
+            } else {
+                if (mObservationListAdapter.getCount() == 0) {
+                    mObservationsEmptyIcon.setVisibility(View.VISIBLE);
+                    mObservationsEmpty.setVisibility(View.VISIBLE);
+                    mAddButtonText.setVisibility(View.VISIBLE);
+                } else {
+                    mObservationsEmptyIcon.setVisibility(View.GONE);
+                    mObservationsEmpty.setVisibility(View.GONE);
+                    mAddButtonText.setVisibility(View.GONE);
+                }
             }
         }
 
@@ -852,12 +883,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             pullToRefresh.getLoadingLayoutProxy().setReleaseLabel(getResources().getString(R.string.release_to_refresh));
             pullToRefresh.getLoadingLayoutProxy().setRefreshingLabel(getResources().getString(R.string.refreshing));
             pullToRefresh.setReleaseRatio(2.5f);
-
-            if (pullToRefresh instanceof  PullToRefreshListView) {
-                ((PullToRefreshListView) pullToRefresh).setEmptyView(layout.findViewById(R.id.empty));
-            } else {
-                ((PullToRefreshGridViewExtended) pullToRefresh).setEmptyView(layout.findViewById(R.id.empty));
-            }
         }
 
         @Override
@@ -870,6 +895,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mLoadingIdentifications = (ProgressBar) layout.findViewById(R.id.loading);
                     mIdentificationsEmpty = (TextView) layout.findViewById(R.id.empty);
                     mIdentificationsEmpty.setText(R.string.no_identifications_found);
+                    mIdentificationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
+                    mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_action_labels);
                     mIdentificationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mIdentificationsList.setMode(PullToRefreshBase.Mode.DISABLED);
                     mIdentificationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
@@ -911,6 +938,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mLoadingSpecies = (ProgressBar) layout.findViewById(R.id.loading);
                     mSpeciesEmpty = (TextView) layout.findViewById(R.id.empty);
                     mSpeciesEmpty.setText(R.string.no_species_found);
+                    mSpeciesEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
+                    mSpeciesEmptyIcon.setImageResource(R.drawable.ic_taxa_arachnids);
                     mSpeciesList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mSpeciesList.setMode(PullToRefreshBase.Mode.DISABLED);
                     mSpeciesGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
@@ -943,6 +972,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 case 0:
                     mLoadingObservations = (ProgressBar) layout.findViewById(R.id.loading);
                     mObservationsEmpty = (TextView) layout.findViewById(R.id.empty);
+                    mObservationsEmpty.setText(R.string.no_observations_found_new);
+                    mObservationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
+                    mObservationsEmptyIcon.setImageResource(R.drawable.ic_taxa_fungi);
                     mObservationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mObservationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
 
@@ -1109,8 +1141,11 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     refreshSyncBar();
 
                     View addButton = (View) layout.findViewById(R.id.add_observation);
+                    mAddButtonText = (TextView) layout.findViewById(R.id.add_observation_text);
                     addButton.setVisibility(View.VISIBLE);
-                    addButton.setOnClickListener(new OnClickListener() {
+                    mAddButtonText.setVisibility(mObservationListAdapter.getCount() > 0 ? View.GONE : View.VISIBLE);
+
+                    OnClickListener onAddObs = new OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_START);
@@ -1154,7 +1189,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 }
                             }).show();
                         }
-                    });
+                    };
+
+                    addButton.setOnClickListener(onAddObs);
+                    mAddButtonText.setOnClickListener(onAddObs);
 
 
                     if (mApp.loggedIn() && mApp.getIsSyncing() && (mObservationListAdapter.getCount() == 0)) {
