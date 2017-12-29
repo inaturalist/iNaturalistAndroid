@@ -91,7 +91,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="40dp"
-            android:tint="#4d000000"
+            android:tint="#9A9A9A"
             android:src="@drawable/unknown_large"
             android:scaleType="fitCenter"
             />

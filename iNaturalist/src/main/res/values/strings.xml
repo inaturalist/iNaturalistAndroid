@@ -689,5 +689,6 @@
     <string name="no_species_found">Since you can have multiple observations of the same species, iNaturalist keeps a list of your observed species here.\n\nFYI: There\'s an estimated 9 million on the planet. So get out there!</string>
     <string name="make_an_observation">Make an observation</string>
     <string name="no_observations_found_new">Observations are records of your encounters with an individual organism at a particular time and location</string>
+    <string name="discard_comment">Are you sure you want to discard this comment?</string>
 </resources>
 
