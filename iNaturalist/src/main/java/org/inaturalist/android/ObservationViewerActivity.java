@@ -227,6 +227,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private boolean mScrollToCommentsBottom;
     private ScrollView mScrollView;
     private ViewGroup mTaxonInactive;
+    private View mAddCommentBackground;
+    private ViewGroup mAddCommentContainer;
+    private ImageView mAddCommentUserPic;
+    private TextView mAddCommentUserName;
+    private EditText mAddCommentText;
+    private ImageView mAddCommentDone;
 
     @Override
 	protected void onStart() {
@@ -416,6 +422,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         reloadObservation(savedInstanceState, false);
 
+        mAddCommentBackground = (View) findViewById(R.id.add_comment_background);
+        mAddCommentContainer = (ViewGroup) findViewById(R.id.add_comment_container);
+        mAddCommentUserPic = (ImageView) findViewById(R.id.add_comment_user_pic);
+        mAddCommentUserName = (TextView) findViewById(R.id.add_comment_username);
+        mAddCommentDone = (ImageView) findViewById(R.id.add_comment_done);
+        mAddCommentText = (EditText) findViewById(R.id.add_comment_text);
+        
         mScrollView = (ScrollView) findViewById(R.id.scroll_view);
         mUserName = (TextView) findViewById(R.id.user_name);
         mObservedOn = (TextView) findViewById(R.id.observed_on);
@@ -1017,50 +1030,88 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mAddComment.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Set up the input
-                final EditText input = new EditText(ObservationViewerActivity.this);
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-                input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+                mAddCommentBackground.setVisibility(View.VISIBLE);
+                mAddCommentContainer.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        input.requestFocus();
+                        mAddCommentText.requestFocus();
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+                        imm.showSoftInput(mAddCommentText, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }, 100);
 
+                mAddCommentText.setText("");
 
-                mHelper.confirm(R.string.add_comment, input,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                String comment = input.getText().toString();
+                SharedPreferences pref = mApp.getPrefs();
+                String username = pref.getString("username", null);
+                String userIconUrl = pref.getString("user_icon_url", null);
 
-                                // Add the comment
-                                Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
-                                serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                                serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
-                                startService(serviceIntent);
+                mAddCommentUserName.setText(username);
+                Picasso.with(ObservationViewerActivity.this)
+                        .load(userIconUrl)
+                        .transform(new UserActivitiesAdapter.CircleTransform())
+                        .into(mAddCommentUserPic);
 
-                                mCommentsIds = null;
-                                refreshActivity();
+                mAddCommentDone.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String comment = mAddCommentText.getText().toString();
 
-                                // Refresh the comment/id list
-                                IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-                                BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
-                            }
-                        },
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
+                        // Add the comment
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
+                        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                        serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
+                        startService(serviceIntent);
+
+                        mCommentsIds = null;
+                        refreshActivity();
+
+                        // Refresh the comment/id list
+                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+
+                        mAddCommentContainer.setVisibility(View.GONE);
+                        mAddCommentBackground.setVisibility(View.GONE);
+
+                        // Hide keyboard
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    }
+                });
+
+                mAddCommentBackground.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        discardAddComment();
+                    }
+                });
+
             }
         });
+    }
+
+    private void discardAddComment() {
+        mHelper.confirm((View) null, getString(R.string.discard_comment), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mAddCommentContainer.setVisibility(View.GONE);
+                mAddCommentBackground.setVisibility(View.GONE);
+                dialog.dismiss();
+
+                // Hide keyboard
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }, R.string.yes, R.string.no);
     }
 
     private void setupMap() {
@@ -1781,7 +1832,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        prepareToExit();
+        if (mAddCommentContainer.getVisibility() == View.VISIBLE) {
+            // Currently showing the add comment dialog
+            discardAddComment();
+        } else {
+            prepareToExit();
+        }
     }
 
     private void prepareToExit() {

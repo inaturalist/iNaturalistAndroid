@@ -207,7 +207,8 @@ public class ActivityHelper {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup content = (ViewGroup) inflater.inflate(R.layout.dialog_title_top_bar, null, false);
-        content.addView(title, 0);
+
+        if (title != null) content.addView(title, 0);
 
         if (msg instanceof Integer) {
             msg = mContext.getString((Integer) msg);
@@ -221,9 +222,9 @@ public class ActivityHelper {
             textContent.setText(Html.fromHtml((String)msg));
             Linkify.addLinks(textContent, Linkify.ALL);
             textContent.setMovementMethod(LinkMovementMethod.getInstance());
-            content.addView(parentView, 2);
+            content.addView(parentView, title != null ? 2 : 1);
         } else if (msg instanceof View) {
-            content.addView((View) msg, 2);
+            content.addView((View) msg, title != null ? 2 : 1);
         }
         builder.setView(content);
         builder.setPositiveButton(okText, okListener);
