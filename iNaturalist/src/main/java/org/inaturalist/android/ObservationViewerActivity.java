@@ -233,6 +233,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private TextView mAddCommentUserName;
     private EditText mAddCommentText;
     private ImageView mAddCommentDone;
+    private MentionsAutoComplete mCommentMentions;
 
     @Override
 	protected void onStart() {
@@ -428,7 +429,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mAddCommentUserName = (TextView) findViewById(R.id.add_comment_username);
         mAddCommentDone = (ImageView) findViewById(R.id.add_comment_done);
         mAddCommentText = (EditText) findViewById(R.id.add_comment_text);
-        
+        mCommentMentions = new MentionsAutoComplete(ObservationViewerActivity.this, mAddCommentText);
+
         mScrollView = (ScrollView) findViewById(R.id.scroll_view);
         mUserName = (TextView) findViewById(R.id.user_name);
         mObservedOn = (TextView) findViewById(R.id.observed_on);
@@ -1100,6 +1102,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 mAddCommentContainer.setVisibility(View.GONE);
                 mAddCommentBackground.setVisibility(View.GONE);
                 dialog.dismiss();
+                mCommentMentions.dismiss();
 
                 // Hide keyboard
                 getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

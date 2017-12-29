@@ -144,6 +144,7 @@ public class INaturalistService extends IntentService {
     public static final String CHECK_LIST_RESULT = "check_list_result";
     public static final String ACTION_GET_TAXON_RESULT = "action_get_taxon_result";
     public static final String SEARCH_TAXA_RESULT = "search_taxa_result";
+    public static final String SEARCH_USERS_RESULT = "search_users_result";
     public static final String SEARCH_PLACES_RESULT = "search_places_result";
     public static final String ACTION_GET_TAXON_NEW_RESULT = "action_get_taxon_new_result";
     public static final String ACTION_GET_TAXON_SUGGESTIONS_RESULT = "action_get_taxon_suggestions_result";
@@ -198,6 +199,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_REMOVE_FAVORITE = "remove_favorite";
     public static String ACTION_GET_TAXON = "get_taxon";
     public static String ACTION_SEARCH_TAXA = "search_taxa";
+    public static String ACTION_SEARCH_USERS = "search_users";
     public static String ACTION_SEARCH_PLACES = "search_places";
     public static String ACTION_GET_TAXON_NEW = "get_taxon_new";
     public static String ACTION_GET_TAXON_SUGGESTIONS = "get_taxon_suggestions";
@@ -611,6 +613,16 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(SEARCH_PLACES_RESULT);
                 mApp.setServiceResult(SEARCH_PLACES_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_SEARCH_USERS)) {
+                String query = intent.getStringExtra(QUERY);
+                int page = intent.getIntExtra(PAGE_NUMBER, 1);
+                BetterJSONObject results = searchAutoComplete("users", query, page);
+
+                Intent reply = new Intent(SEARCH_USERS_RESULT);
+                mApp.setServiceResult(SEARCH_USERS_RESULT, results);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
