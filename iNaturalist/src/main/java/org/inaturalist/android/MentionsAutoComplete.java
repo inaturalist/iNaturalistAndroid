@@ -13,11 +13,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -304,11 +306,19 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
         Display display = windowManager.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        mPopupWindow.setHeight(size.x - (int)mHelper.dpToPx(70));
+
+        int pos = mEditText.getSelectionStart();
+        Layout layout = mEditText.getLayout();
+        int line = layout.getLineForOffset(pos);
+        int baseline = layout.getLineBaseline(line);
+        int ascent = layout.getLineAscent(line);
+        float y = baseline + ascent;
+
+        mPopupWindow.setHeight((int)(size.x - mEditText.getHeight() + y - mEditText.getScrollY() - mHelper.dpToPx(70)));
 
         mPopupWindow.setClippingEnabled(false);
 
-        mPopupWindow.showAsDropDown(mEditText);
+        mPopupWindow.showAsDropDown(mEditText, 0, (int)y - mEditText.getScrollY());
 
         new Handler().postDelayed(new Runnable() {
             @Override
