@@ -206,13 +206,6 @@
   <string name="lets_get_started">¡Empecemos!</string>
   <string name="view_nearby_observations">Ver observaciones cercanas</string>
   <string name="skip_for_now">Omitir por ahora</string>
-  <string-array name="tutorial_images">
-    <item>tutorial1</item>
-    <item>tutorial2</item>
-    <item>tutorial3</item>
-    <item>tutorial4</item>
-    <item>tutorial5</item>
-  </string-array>
   <string-array name="tutorial_titles">
     <item></item>
     <item>Observar</item>

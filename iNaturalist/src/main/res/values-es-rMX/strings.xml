@@ -226,11 +226,6 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <item>Oscurecida</item>
     <item>Privada</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>abierta</item>
-    <item>oscurecida</item>
-    <item>privada</item>
-  </string-array>
   <string name="alert_sign_out">¿Estás seguro que deseas salir? Esto borrará todas tus observaciones en este móvil. No afectará a las observaciones que hayas subido a NaturaLista.</string>
   <string name="alert_unsupported_media_type">Lo sentimos, pero por el momento no somos partidarios de subir fotos de Google Drive, Dropbox, etc. Por favor descarga las fotos al almacenamiento local de tu móvil y vuelve a intentarlo.</string>
   <string name="alert_title_use">Usa</string>

@@ -206,13 +206,6 @@
   <string name="lets_get_started">始めましょう!</string>
   <string name="view_nearby_observations">近隣の観察記録を表示</string>
   <string name="skip_for_now">今はスキップ</string>
-  <string-array name="tutorial_images">
-    <item>チュートリアル1</item>
-    <item>チュートリアル2</item>
-    <item>チュートリアル3</item>
-    <item>チュートリアル4</item>
-    <item>チュートリアル5</item>
-  </string-array>
   <string-array name="tutorial_titles">
     <item></item>
     <item>観察</item>

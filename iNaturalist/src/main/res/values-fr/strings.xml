@@ -225,11 +225,6 @@
     <item>Obscurci</item>
     <item>Privé</item>
   </string-array>
-  <string-array name="geoprivacy_values">
-    <item>ouvrir</item>
-    <item>obscurci</item>
-    <item>privé</item>
-  </string-array>
   <string name="alert_sign_out">Désirez-vous vraiment vous déconnecter? Toutes vos observations sur cet appareil seront supprimées. Les observations que vous avez téléversées sur iNaturalist ne seront pas touchées.</string>
   <string name="alert_unsupported_media_type">Nous sommes désolés, mais le téléversement de photos à partir de Google Drive, Dropbox, etc., n\'est pas pris en charge à l\'heure actuelle.\nVeuillez télécharger les photos sur votre appareil et essayer de nouveau.</string>
   <string name="alert_title_use">Utilisation</string>
