@@ -1080,7 +1080,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                         // Hide keyboard
                         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                        imm.hideSoftInputFromWindow(mAddCommentText.getWindowToken(), 0);
                     }
                 });
 
