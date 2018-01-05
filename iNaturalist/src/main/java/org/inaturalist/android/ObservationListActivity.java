@@ -407,6 +407,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsEmpty.setVisibility(View.GONE);
                     mAddButtonText.setVisibility(View.GONE);
                 }
+
+                mObservationsEmpty.setText(R.string.no_observations_found_new);
             }
 
        }
