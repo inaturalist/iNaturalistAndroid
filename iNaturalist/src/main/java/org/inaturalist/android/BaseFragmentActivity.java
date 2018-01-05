@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import com.cocosw.bottomsheet.BottomSheet;
 import com.crashlytics.android.Crashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -64,6 +65,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 	private INaturalistApp app;
 	private ActivityHelper mHelper;
     private UserDetailsReceiver mUserDetailsReceiver;
+    private boolean mSelectedBottomGrid;
 
     public int getStatusBarHeight() {
         int result = 0;
@@ -272,6 +274,47 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
     }
 
+    public void showNewObsMenu() {
+        mSelectedBottomGrid = false;
+        new BottomSheet.Builder(this).sheet(R.menu.observation_list_menu).listener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent;
+                mSelectedBottomGrid = true;
+
+                switch (which) {
+                    case R.id.camera:
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
+
+                        intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), BaseFragmentActivity.this, ObservationEditor.class);
+                        intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
+                        startActivity(intent);
+                        break;
+                    case R.id.upload_photo:
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
+
+                        intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), BaseFragmentActivity.this, ObservationEditor.class);
+                        intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
+                        startActivity(intent);
+                        break;
+                    case R.id.text:
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
+
+                        startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), BaseFragmentActivity.this, ObservationEditor.class));
+                        break;
+                }
+            }
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                if (!mSelectedBottomGrid) {
+                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_CANCEL);
+                }
+                mSelectedBottomGrid = false;
+            }
+        }).show();
+    }
+
 	private void buildSideMenu() {
 
         // Only show guides only for Android 4+
@@ -283,7 +326,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         findViewById(R.id.menu_add_obs).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class));
+                showNewObsMenu();
             }
         });
         findViewById(R.id.menu_explore).setOnClickListener(new View.OnClickListener() {

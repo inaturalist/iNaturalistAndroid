@@ -1165,45 +1165,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         @Override
                         public void onClick(View v) {
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_START);
-
-                            mSelectedBottomGrid = false;
-                            new BottomSheet.Builder(ObservationListActivity.this).sheet(R.menu.observation_list_menu).listener(new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent;
-                                    mSelectedBottomGrid = true;
-
-                                    switch (which) {
-                                        case R.id.camera:
-                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
-
-                                            intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class);
-                                            intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
-                                            startActivity(intent);
-                                            break;
-                                        case R.id.upload_photo:
-                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
-
-                                            intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class);
-                                            intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
-                                            startActivity(intent);
-                                            break;
-                                        case R.id.text:
-                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
-
-                                            startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), ObservationListActivity.this, ObservationEditor.class));
-                                            break;
-                                    }
-                                }
-                            }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
-                                    if (!mSelectedBottomGrid) {
-                                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_CANCEL);
-                                    }
-                                    mSelectedBottomGrid = false;
-                                }
-                            }).show();
+                            showNewObsMenu();
                         }
                     };
 
