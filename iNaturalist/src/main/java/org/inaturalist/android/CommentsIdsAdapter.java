@@ -277,6 +277,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				comment.setVisibility(View.VISIBLE);
 				idLayout.setVisibility(View.GONE);
                 loading.setVisibility(View.GONE);
+				if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
                 if (mIsNewLayout) idAgreeLayout.setVisibility(View.GONE);
 
 				comment.setText(Html.fromHtml(item.getString("body")));
@@ -503,7 +504,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 
             if (moreMenu != null) {
-                if ((mLogin == null) || ((mLogin != null) && (!username.equalsIgnoreCase(mLogin)) && (mReadOnly))) {
+                if ((mLogin == null) || ((mLogin != null) && (!username.equalsIgnoreCase(mLogin)))) {
                     moreMenu.setVisibility(View.GONE);
                 }
             }
