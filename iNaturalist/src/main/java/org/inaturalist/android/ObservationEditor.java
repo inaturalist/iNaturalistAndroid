@@ -3041,6 +3041,7 @@ public class ObservationEditor extends AppCompatActivity {
     private void returnToObsList() {
         // Since we were started by a share-photo(s)-to-iNat intent - we need to manually activate observation list
         Intent intent = new Intent(ObservationEditor.this, ObservationListActivity.class);
+        intent.putExtra(ObservationListActivity.PARAM_FROM_OBS_EDITOR, true);
         startActivity(intent);
     }
 

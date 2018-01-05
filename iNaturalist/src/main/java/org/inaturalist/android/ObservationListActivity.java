@@ -59,6 +59,8 @@ import android.widget.Toast;
 public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback, DialogInterface.OnClickListener {
 	public static String TAG = "INAT:ObservationListActivity";
 
+    public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
+
     private boolean[] mIsGrid = new boolean[] { false, false, false };
 
     private NewsReceiver mNewsReceiver;
@@ -132,6 +134,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private boolean mSelectedBottomGrid = false;
     private TextView mAddButtonText;
+
+    private boolean mFromObsEdit = false;
 
 
     @Override
@@ -309,6 +313,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             mTotalIdentifications = savedInstanceState.getInt("mTotalIdentifications");
             mTotalSpecies = savedInstanceState.getInt("mTotalSpecies");
+            mFromObsEdit = savedInstanceState.getBoolean("mFromObsEdit");
 
         } else {
             SharedPreferences settings = mApp.getPrefs();
@@ -322,6 +327,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
 
             mViewType = VIEW_TYPE_OBSERVATIONS;
+
+            mFromObsEdit = getIntent().getBooleanExtra(PARAM_FROM_OBS_EDITOR, false);
         }
         
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -592,6 +599,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             mApp = (INaturalistApp) getApplicationContext();
         }
 
+        if (mFromObsEdit) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                finishAndRemoveTask();
+            } else {
+                finish();
+            }
+        }
+
 
         if (!mApp.loggedIn()) {
             if ((mTotalIdentifications > 0) || (mTotalIdentifications > 0)) {
@@ -636,7 +651,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         if (mLoadingObservations != null) {
             if (mIsGrid[0]) {
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     GridView grid = mObservationsGrid.getRefreshableView();
                     grid.setSelectionFromTop(mLastIndex, mLastTop);
                 }
@@ -720,6 +735,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         outState.putInt("mTotalIdentifications", mTotalIdentifications);
         outState.putInt("mTotalSpecies", mTotalSpecies);
+        outState.putBoolean("mFromObsEdit", mFromObsEdit);
 
         saveListToBundle(outState, mSpecies, "mSpecies");
         saveListToBundle(outState, mIdentifications, "mIdentifications");
