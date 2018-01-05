@@ -1158,8 +1158,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
                             acc > 999 ? ">1 km" : String.format("%dm", (int) acc)));
                 }
             } else{
-                mLocationText.setText((mObservation.place_guess != null) && (mObservation.place_guess.length() > 0) ?
-                        mObservation.place_guess : mObservation.private_place_guess);
+                mLocationText.setText((mObservation.private_place_guess != null) && (mObservation.private_place_guess.length() > 0) ?
+                        mObservation.private_place_guess : mObservation.place_guess);
             }
 
             mLocationText.setGravity(View.TEXT_ALIGNMENT_TEXT_END);

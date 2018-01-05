@@ -517,8 +517,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                     placeGuess.setText(R.string.no_location);
                 }
             } else {
-                placeGuess.setText((placeGuessValue != null) && (placeGuessValue.length() > 0) ?
-                    placeGuessValue : privatePlaceGuessValue);
+                placeGuess.setText((privatePlaceGuessValue != null) && (privatePlaceGuessValue.length() > 0) ?
+                    privatePlaceGuessValue : placeGuessValue);
             }
         }
 
