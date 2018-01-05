@@ -349,6 +349,13 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
             visuallySimilar.setVisibility(View.GONE);
 
+            selectTaxon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectTaxon((JSONObject) view.getTag());
+                }
+            });
+
             if (taxon == null) {
                 // It's the unknown taxon row (the first row)
                 Picasso.with(mContext)
@@ -385,13 +392,6 @@ public class TaxonSearchActivity extends AppCompatActivity {
                 return view;
             }
 
-
-            selectTaxon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectTaxon((JSONObject) view.getTag());
-                }
-            });
 
 
             boolean hasPhotos = false;
