@@ -993,54 +993,35 @@
     <RelativeLayout
         android:id="@+id/add_comment_container"
         android:visibility="gone"
-        android:paddingTop="11dp"
+        android:paddingTop="8dp"
         android:paddingLeft="17dp"
         android:paddingRight="17dp"
+        android:paddingBottom="8dp"
         android:background="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/add_comment_user_pic"
-            android:layout_width="27dp"
-            android:layout_height="27dp"
-            android:src="@drawable/ic_account_circle_black_48dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            />
+        <EditText
+            android:id="@+id/add_comment_text"
+            android:layout_marginRight="24dp"
+            android:textSize="14sp"
+            android:hint="@string/leave_comment"
+            android:maxLines="11"
+            android:inputType="textMultiLine|textCapSentences"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/add_comment_done"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_alignParentTop="true"
+            android:layout_marginBottom="3dp"
+            android:layout_alignBottom="@id/add_comment_text"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_send_black_48dp"
             android:tint="@color/inatapptheme_color" />
-
-        <TextView
-            android:id="@+id/add_comment_username"
-            android:layout_toRightOf="@id/add_comment_user_pic"
-            android:layout_toLeftOf="@id/add_comment_done"
-            android:layout_marginLeft="7dp"
-            android:layout_alignTop="@id/add_comment_user_pic"
-            android:layout_alignBottom="@id/add_comment_user_pic"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textColor="#66000000"
-            android:text="username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/add_comment_text"
-            android:layout_below="@id/add_comment_user_pic"
-            android:layout_marginTop="13dp"
-            android:maxLines="8"
-            android:inputType="textMultiLine|textCapSentences"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

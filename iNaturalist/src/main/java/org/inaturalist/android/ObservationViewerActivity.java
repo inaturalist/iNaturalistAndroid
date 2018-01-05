@@ -229,8 +229,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private ViewGroup mTaxonInactive;
     private View mAddCommentBackground;
     private ViewGroup mAddCommentContainer;
-    private ImageView mAddCommentUserPic;
-    private TextView mAddCommentUserName;
     private EditText mAddCommentText;
     private ImageView mAddCommentDone;
     private MentionsAutoComplete mCommentMentions;
@@ -425,8 +423,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         mAddCommentBackground = (View) findViewById(R.id.add_comment_background);
         mAddCommentContainer = (ViewGroup) findViewById(R.id.add_comment_container);
-        mAddCommentUserPic = (ImageView) findViewById(R.id.add_comment_user_pic);
-        mAddCommentUserName = (TextView) findViewById(R.id.add_comment_username);
         mAddCommentDone = (ImageView) findViewById(R.id.add_comment_done);
         mAddCommentText = (EditText) findViewById(R.id.add_comment_text);
         mCommentMentions = new MentionsAutoComplete(ObservationViewerActivity.this, mAddCommentText);
@@ -1049,12 +1045,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 SharedPreferences pref = mApp.getPrefs();
                 String username = pref.getString("username", null);
                 String userIconUrl = pref.getString("user_icon_url", null);
-
-                mAddCommentUserName.setText(username);
-                Picasso.with(ObservationViewerActivity.this)
-                        .load(userIconUrl)
-                        .transform(new UserActivitiesAdapter.CircleTransform())
-                        .into(mAddCommentUserPic);
 
                 mAddCommentDone.setOnClickListener(new OnClickListener() {
                     @Override

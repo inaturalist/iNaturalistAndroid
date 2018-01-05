@@ -690,5 +690,6 @@
     <string name="make_an_observation">Make an observation</string>
     <string name="no_observations_found_new">Observations are records of your encounters with an individual organism at a particular time and location</string>
     <string name="discard_comment">Are you sure you want to discard this comment?</string>
+    <string name="leave_comment">Leave a comment...</string>
 </resources>
 
