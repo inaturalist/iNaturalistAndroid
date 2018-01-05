@@ -896,7 +896,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsEmpty = (TextView) layout.findViewById(R.id.empty);
                     mIdentificationsEmpty.setText(R.string.no_identifications_found);
                     mIdentificationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
-                    mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_action_labels);
+                    mIdentificationsEmptyIcon.setImageResource(R.drawable.ic_empty_id);
                     mIdentificationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mIdentificationsList.setMode(PullToRefreshBase.Mode.DISABLED);
                     mIdentificationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
@@ -939,7 +939,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesEmpty = (TextView) layout.findViewById(R.id.empty);
                     mSpeciesEmpty.setText(R.string.no_species_found);
                     mSpeciesEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
-                    mSpeciesEmptyIcon.setImageResource(R.drawable.icn_leaf);
+                    mSpeciesEmptyIcon.setImageResource(R.drawable.ic_empty_leaf);
                     mSpeciesList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mSpeciesList.setMode(PullToRefreshBase.Mode.DISABLED);
                     mSpeciesGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
@@ -974,7 +974,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsEmpty = (TextView) layout.findViewById(R.id.empty);
                     mObservationsEmpty.setText(R.string.no_observations_found_new);
                     mObservationsEmptyIcon = (ImageView) layout.findViewById(R.id.empty_icon);
-                    mObservationsEmptyIcon.setImageResource(R.drawable.icn_binoculars);
+                    mObservationsEmptyIcon.setImageResource(R.drawable.ic_empty_binoculars);
                     mObservationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mObservationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
 
