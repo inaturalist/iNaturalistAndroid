@@ -848,7 +848,7 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
                 reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, observation.toJSONObject().toString());
+                reply.putExtra(OBSERVATION_JSON_RESULT, observation != null ? observation.toJSONObject().toString() : null);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_UPDATE_COMMENT)) {
@@ -2627,7 +2627,7 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        String url = API_HOST + "/" + type + "/autocomplete?locale=" + deviceLanguage + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
+        String url = API_HOST + "/" + type + "/autocomplete?geo=true&locale=" + deviceLanguage + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
