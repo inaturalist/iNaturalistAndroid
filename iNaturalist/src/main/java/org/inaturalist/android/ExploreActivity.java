@@ -1369,9 +1369,6 @@ public class ExploreActivity extends BaseFragmentActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == VIEW_OBSERVATION_REQUEST_CODE) {
 			if (resultCode == ObservationViewerActivity.RESULT_FLAGGED_AS_CAPTIVE) {
-				// Refresh the results (since the user flagged the result as captive)
-                resetResults(false);
-                loadAllResults();
 				return;
 			}
 		} else if ((requestCode == SEARCH_REQUEST_CODE) || (requestCode == FILTERS_REQUEST_CODE)) {
