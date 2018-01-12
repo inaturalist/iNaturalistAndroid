@@ -3083,6 +3083,12 @@ public class ObservationEditor extends AppCompatActivity {
             if (taxon == null) {
                 return;
             }
+
+            if (!taxon.getInt("id").equals(mObservation.taxon_id)) {
+                // Discard result - It's a taxon result from a previous observation (happens with slow connection + swiping fast between observations)
+                return;
+            }
+
             JSONObject idPhoto = taxon.getJSONObject("default_photo");
             setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
         }
