@@ -12,17 +12,24 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
 import com.viewpagerindicator.CirclePageIndicator;
 
 public class TutorialActivity extends BaseFragmentActivity {
 
-    private ImageView mPreviousScreen;
-    private ImageView mNextScreen;
+    private ViewGroup mSwipe;
 
     @Override
     protected void onStart()
@@ -123,8 +130,7 @@ public class TutorialActivity extends BaseFragmentActivity {
 
         @Override
         public void onPageSelected(int position) {
-            mPreviousScreen.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
-            mNextScreen.setVisibility(position == mCount - 1 ? View.GONE : View.VISIBLE);
+            mSwipe.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
 
             if (position == mCount - 1) {
                 // Final page ("Let's get started")
@@ -158,25 +164,28 @@ public class TutorialActivity extends BaseFragmentActivity {
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mIndicator = (CirclePageIndicator) findViewById(R.id.tutorial_indicator);
 
-        mPreviousScreen = (ImageView) findViewById(R.id.previous_screen);
-        mNextScreen = (ImageView) findViewById(R.id.next_screen);
-
-        mPreviousScreen.setVisibility(View.GONE);
-        mNextScreen.setVisibility(View.VISIBLE);
-
-        mPreviousScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1);
-            }
-        });
-        mNextScreen.setOnClickListener(new View.OnClickListener() {
+        mSwipe = (ViewGroup) findViewById(R.id.swipe_container);
+        mSwipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
             }
         });
+        mSwipe.setOnTouchListener(new OnSwipeTouchListener(this) {
+            public boolean onSwipeLeft() {
+                mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+                return true;
+            }
+        });
 
+        TextView swipeIndicator = (TextView) findViewById(R.id.swipe_indicator);
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 20.0f, 0.0f, 0.0f);
+        animation.setDuration(700);
+        animation.setRepeatCount(5);
+        animation.setRepeatMode(Animation.REVERSE);
+
+        animation.setFillAfter(false);
+        swipeIndicator .startAnimation(animation);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -192,5 +201,5 @@ public class TutorialActivity extends BaseFragmentActivity {
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         preferences.edit().putBoolean("first_time", false).apply();
     }
-}
 
+}

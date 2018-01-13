@@ -159,7 +159,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         boolean firstTime = preferences.getBoolean("first_time", true);
 
-        if (firstTime) {
+        if (firstTime || true) {
             Intent intent = new Intent(this, TutorialActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra("first_time", true);
             startActivity(intent);
