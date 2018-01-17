@@ -286,21 +286,21 @@ public class BaseFragmentActivity extends AppCompatActivity {
                     case R.id.camera:
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
 
-                        intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), BaseFragmentActivity.this, ObservationEditor.class);
+                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
                         intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
                         startActivity(intent);
                         break;
                     case R.id.upload_photo:
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
 
-                        intent = new Intent(Intent.ACTION_INSERT, getIntent().getData(), BaseFragmentActivity.this, ObservationEditor.class);
+                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
                         intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
                         startActivity(intent);
                         break;
                     case R.id.text:
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
 
-                        startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData(), BaseFragmentActivity.this, ObservationEditor.class));
+                        startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class));
                         break;
                 }
             }
