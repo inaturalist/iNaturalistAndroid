@@ -36,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SignInTask extends AsyncTask<String, Void, String> {
     private static final String TAG = "SignInTask";
@@ -282,7 +283,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 	        Account account = null;
 
 	        // See if given account exists
-	        Account[] availableAccounts = AccountManager.get(mActivity).getAccountsByType("com.google");
+	        final Account[] availableAccounts = AccountManager.get(mActivity).getAccountsByType("com.google");
 	        boolean accountFound = false;
 
 	        if (username != null) {
@@ -297,21 +298,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 	            }
 	        }
 
-	        if (availableAccounts.length > 0) {
-	            accountFound = true;
-	            account = availableAccounts[0];
-	        } else if (googleUsername == null) {
-	            askForGoogleEmail();
-	            return;
-	        } else {
-	            // Redirect user to add account dialog
-	            mGoogleUsername = googleUsername;
-	            mActivity.startActivityForResult(new Intent(Settings.ACTION_ADD_ACCOUNT), REQUEST_CODE_ADD_ACCOUNT);
-	            return;
-	        }
-
-	        // Google account login
-	        final String boundUsername = googleUsername;
+            final String boundUsername = googleUsername;
 	        final String boundInvalidated = invalidated ? "invalidated" : null;
 	        final AccountManagerCallback<Bundle> cb = new AccountManagerCallback<Bundle>() {
 	            public void run(AccountManagerFuture<Bundle> future) {
@@ -337,6 +324,44 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 	                }
 	            }
 	        };
+
+	        if (availableAccounts.length > 1) {
+                // More than one Google account - Show multiple choice to select account
+                List<String> emails = new ArrayList<String>();
+                for (int i = 0; i < availableAccounts.length; i++) {
+                    emails.add(availableAccounts[i].name);
+                }
+
+                mHelper.selection(mActivity.getString(R.string.select_google_account), emails.toArray(new String[emails.size()]), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AccountManager.get(mActivity).getAuthToken(availableAccounts[which],
+                                GOOGLE_AUTH_TOKEN_TYPE,
+                                null,
+                                mActivity,
+                                cb,
+                                null);
+                    }
+                });
+
+                return;
+
+            } else if (availableAccounts.length == 1) {
+	            accountFound = true;
+	            account = availableAccounts[0];
+
+	        } else if (googleUsername == null) {
+	            askForGoogleEmail();
+	            return;
+	        } else {
+	            // Redirect user to add account dialog
+	            mGoogleUsername = googleUsername;
+	            mActivity.startActivityForResult(new Intent(Settings.ACTION_ADD_ACCOUNT), REQUEST_CODE_ADD_ACCOUNT);
+	            return;
+	        }
+
+	        // Google account login
+
 	        if (account == null) {
 	            account = new Account(googleUsername, "com.google");
 	        }
