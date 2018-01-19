@@ -2703,7 +2703,7 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/species_counts?user_id=" + username + "&locale=" + deviceLanguage;
+        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + deviceLanguage;
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
