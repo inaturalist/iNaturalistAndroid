@@ -5,12 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -19,20 +17,19 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -47,7 +44,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class ActivityHelper {
@@ -531,7 +527,7 @@ public class ActivityHelper {
         });
     }
 
-    private static int setListViewHeightBasedOnItems(final ListView listView) {
+    public static int setListViewHeightBasedOnItems(final ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter != null) {
 
@@ -563,6 +559,46 @@ public class ActivityHelper {
         } else {
             return 0;
         }
+    }
+
+    /** Checks if the list is scrollable (meaning, more items visible than space available) */
+    public interface isListScrollable {
+        void isListScrollable(boolean scrollable);
+    }
+
+    public static void willListScroll(final ListView listView, final isListScrollable cb) {
+        listView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    listView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                } else {
+                    listView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+
+                int last = listView.getChildCount() - 1; // Last visible listitem view
+                View firstChild = listView.getChildAt(0);
+                View lastChild = listView.getChildAt(last);
+
+                if ((firstChild == null) || (lastChild == null)) {
+                    return;
+                }
+
+                if ((lastChild.getBottom() > listView.getHeight()) || (firstChild.getTop() < 0)) {
+                    // Either the first visible list item is cutoff or the last is cutoff
+                    cb.isListScrollable(true);
+                } else {
+                    if (listView.getChildCount() == listView.getCount()) {
+                        // All visible listitem views are all the items there are (nowhere to scroll)
+                        cb.isListScrollable(false);
+                    }
+                    else {
+                        // No listitem views are cut off but there are other listitem views to scroll to
+                        cb.isListScrollable(true);
+                    }
+                }
+            }
+        });
     }
 
     public void saveMapToBundle(Bundle outState, HashMap<String, JSONObject> map, String key) {
@@ -628,4 +664,7 @@ public class ActivityHelper {
         Resources r = mContext.getResources();
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
     }
+
+
+
 }

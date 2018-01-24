@@ -632,6 +632,7 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(SEARCH_USERS_RESULT);
                 mApp.setServiceResult(SEARCH_USERS_RESULT, results);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(QUERY, query);
                 sendBroadcast(reply);
 
 

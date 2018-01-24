@@ -174,6 +174,7 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
 
         if ((mentionBoundaries[0] == -1) || (mentionBoundaries[1] == -1)) {
             // No mention typed in
+            mLastSearch = null;
             return;
         }
 
@@ -239,11 +240,9 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
 
-            // TODO
-            // mIsSearching = false;
-
             String error = extras.getString("error");
-            if (error != null) {
+            String query = extras.getString(INaturalistService.QUERY);
+            if ((error != null) || (!query.equals(mLastSearch))) {
                 mResults = null;
                 refreshViewState();
                 return;
@@ -310,13 +309,12 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
         int line = layout.getLineForOffset(pos);
         int baseline = layout.getLineBaseline(line);
         int ascent = layout.getLineAscent(line);
-        float y = baseline + ascent;
+        final float y = baseline + ascent;
 
         Rect r = new Rect();
         mEditText.getWindowVisibleDisplayFrame(r);
 
         mPopupWindow.setHeight((int)(r.bottom - mEditText.getHeight() + y - mEditText.getScrollY() - mHelper.dpToPx(70)));
-
 
         mPopupWindow.setClippingEnabled(false);
 
@@ -329,6 +327,22 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
                 mEditText.requestFocus();
             }
         }, 10);
+
+        ActivityHelper.willListScroll(mMentionsList, new ActivityHelper.isListScrollable() {
+            @Override
+            public void isListScrollable(boolean scrollable) {
+                if (!scrollable) {
+                    // Set height to the number of items visible
+                    ViewGroup.LayoutParams params = mMentionsList.getLayoutParams();
+                    params.height = (int)(mHelper.dpToPx(48) * mMentionsList.getAdapter().getCount());
+                    mMentionsList.setLayoutParams(params);
+                    mMentionsList.requestLayout();
+
+                    mPopupWindow.update(mEditText, 0, (int)y - mEditText.getScrollY(), mPopupWindow.getWidth(), params.height);
+
+                }
+            }
+        });
     }
 
 
