@@ -28,6 +28,7 @@ public class IdentificationActivity extends AppCompatActivity {
     public static final String TAXON_ID = "taxon_id";
     public static final String SPECIES_GUESS = "species_guess";
     public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
+    public static final String TAXON_NAME = "taxon_name";
     public static final String OBS_PHOTO_FILENAME = "obs_photo_filename";
     public static final String OBS_PHOTO_URL = "obs_photo_url";
     public static final String LONGITUDE = "longitude";
@@ -146,6 +147,7 @@ public class IdentificationActivity extends AppCompatActivity {
                 bundle.putString(ID_REMARKS, mRemarks.getText().toString());
                 bundle.putString(SPECIES_GUESS, mIdName.getText().toString());
                 bundle.putString(ICONIC_TAXON_NAME, mIconicTaxonName);
+                bundle.putString(TAXON_NAME, mTaxonName.getText().toString());
                 intent.putExtras(bundle);
 
                 setResult(RESULT_OK, intent);

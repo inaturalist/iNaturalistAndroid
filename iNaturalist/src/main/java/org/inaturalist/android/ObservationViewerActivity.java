@@ -2,7 +2,6 @@ package org.inaturalist.android;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,22 +12,18 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.service.chooser.ChooserTarget;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -40,18 +35,16 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.URLUtil;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
+import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
@@ -59,23 +52,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cocosw.bottomsheet.BottomSheet;
-import com.crashlytics.android.Crashlytics;
 import com.flurry.android.FlurryAgent;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.maps.android.SphericalUtil;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.squareup.picasso.Callback;
@@ -100,7 +81,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class ObservationViewerActivity extends AppCompatActivity {
@@ -214,6 +194,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private boolean mReadOnly;
     private boolean mLoadingObservation;
     private String mObsJson;
+    private String mTaxonJson;
     private boolean mShowComments;
     private int mCommentCount;
     private String mTaxonImage;
@@ -222,6 +203,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private int mTaxonRankLevel;
     private String mActiveTab;
     private boolean mReloadObs;
+    private boolean mLoadObsJson = false;
     private ViewGroup mPhotosContainer;
     private boolean mReloadTaxon;
     private boolean mScrollToCommentsBottom;
@@ -568,7 +550,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
 			}
 
 			mUri = uri;
-		} else {
+
+        } else {
             String obsUri = savedInstanceState.getString("mUri");
             if (obsUri != null) {
                 mUri = Uri.parse(obsUri);
@@ -582,6 +565,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mReadOnly = savedInstanceState.getBoolean("mReadOnly");
             mReloadTaxon = savedInstanceState.getBoolean("mReloadTaxon");
             mObsJson = savedInstanceState.getString("mObsJson");
+            mTaxonJson = savedInstanceState.getString("mTaxonJson");
             mFlagAsCaptive = savedInstanceState.getBoolean("mFlagAsCaptive");
             mTaxonName = savedInstanceState.getString("mTaxonName");
             mTaxonRankLevel = savedInstanceState.getInt("mTaxonRankLevel");
@@ -609,6 +593,19 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         if ((mObservation == null) || (forceReload)) {
             if (!mReadOnly) mObservation = new Observation(mCursor);
+        }
+
+        if ((mObservation != null) && (mObsJson == null)) {
+            mObservationReceiver = new ObservationReceiver();
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
+
+            mLoadObsJson = true;
+
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            startService(serviceIntent);
         }
 
     }
@@ -858,7 +855,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -1588,7 +1584,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             mIdArrow.setVisibility(View.VISIBLE);
 
             if ((mTaxonName == null) || (mTaxonIdName == null) || (mTaxonImage == null)) {
-                downloadTaxon();
+                downloadObsTaxonAndUpdate();
             } else {
                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
@@ -1673,27 +1669,28 @@ public class ObservationViewerActivity extends AppCompatActivity {
         }
     }
 
-    private void downloadTaxon() {
-        String inatNetwork = mApp.getInaturalistNetworkMember();
+
+    private JSONObject downloadTaxon(int taxonId) {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
-        final String idUrl = INaturalistService.API_HOST + "/taxa/" + mObservation.taxon_id + "?locale=" + deviceLanguage;
+        final String idUrl = INaturalistService.API_HOST + "/taxa/" + taxonId + "?locale=" + deviceLanguage;
 
-        // Download the taxon image URL
+        JSONObject results = downloadJson(idUrl);
+
+        if (results == null) return null;
+
+        return results.optJSONArray("results").optJSONObject(0);
+    }
+
+    private void downloadObsTaxonAndUpdate() {
+        // Download the taxon URL
         new Thread(new Runnable() {
             @Override
             public void run() {
-                JSONObject results = downloadJson(idUrl);
+                final JSONObject taxon = downloadTaxon(mObservation.taxon_id);
 
-                if (results == null) return;
+                if (taxon == null) return;
 
-                final JSONObject taxon;
-                try {
-                    taxon = results.getJSONArray("results").getJSONObject(0);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return;
-                }
                 mTaxon = taxon;
                 if (taxon != null) {
                     try {
@@ -1886,6 +1883,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         outState.putBoolean("mReadOnly", mReadOnly);
         outState.putBoolean("mReloadTaxon", mReloadTaxon);
         outState.putString("mObsJson", mObsJson);
+        outState.putString("mTaxonJson", mTaxonJson);
         outState.putBoolean("mFlagAsCaptive", mFlagAsCaptive);
 
         outState.putString("mTaxonIdName", mTaxonIdName);
@@ -2020,13 +2018,26 @@ public class ObservationViewerActivity extends AppCompatActivity {
             if (mReloadObs) {
                 // Reload entire observation details (not just the comments/favs)
                 mObservation = observation;
+            }
 
+            if (mReloadObs || mLoadObsJson) {
                 if (isSharedOnApp) {
                     mObsJson = (String) mApp.getServiceResult(INaturalistService.OBSERVATION_JSON_RESULT);
                 } else {
                     mObsJson = intent.getStringExtra(INaturalistService.OBSERVATION_JSON_RESULT);
                 }
+
+                if (mTaxonJson == null) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadCommunityTaxon();
+                        }
+                    }).start();
+                }
             }
+
+            mLoadObsJson = false;
 
             if (mReloadTaxon) {
                 // Reload just the taxon part, if changed
@@ -2069,6 +2080,32 @@ public class ObservationViewerActivity extends AppCompatActivity {
 	    }
 
 	}
+
+    private void downloadCommunityTaxon() {
+        JSONObject observation;
+        try {
+            observation = new JSONObject(mObsJson);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        int taxonId;
+
+        if (observation.optJSONArray("identifications").length() == 1) {
+            // Use current taxon
+            taxonId = observation.optInt("taxon_id");
+        } else {
+            // Use community taxon
+            taxonId = observation.optInt("community_taxon_id");
+        }
+
+        JSONObject taxon = downloadTaxon(taxonId);
+
+        if (taxon == null) return;
+
+        mTaxonJson = taxon.toString();
+    }
 
     private void reloadPhotos() {
         mLoadingPhotos.setVisibility(View.GONE);
@@ -2167,34 +2204,46 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         } if (requestCode == NEW_ID_REQUEST_CODE) {
     		if (resultCode == RESULT_OK) {
+
+
     			// Add the ID
-    			Integer taxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);
-    			String idRemarks = data.getStringExtra(IdentificationActivity.ID_REMARKS);
+    			final Integer taxonId = data.getIntExtra(IdentificationActivity.TAXON_ID, 0);
+                String taxonName = data.getStringExtra(IdentificationActivity.TAXON_NAME);
+                String speciesGuess = data.getStringExtra(IdentificationActivity.SPECIES_GUESS);
+    			final String idRemarks = data.getStringExtra(IdentificationActivity.ID_REMARKS);
 
-    			Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_IDENTIFICATION, null, this, INaturalistService.class);
-    			serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-    			serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
-    			serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
-    			startService(serviceIntent);
+    			checkForTaxonDisagreement(taxonId, taxonName, speciesGuess, new onDisagreement() {
+                    @Override
+                    public void onDisagreement(boolean disagreement) {
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_IDENTIFICATION, null, ObservationViewerActivity.this, INaturalistService.class);
+                        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+                        serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
+                        serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
+                        serviceIntent.putExtra(INaturalistService.DISAGREEMENT, disagreement);
+                        startService(serviceIntent);
 
-                try {
-                    JSONObject eventParams = new JSONObject();
-                    eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_VIEW_OBS_ADD);
+                        try {
+                            JSONObject eventParams = new JSONObject();
+                            eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_VIEW_OBS_ADD);
 
-                    AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
 
-    			// Show a loading progress until the new comments/IDs are loaded
-    			mCommentsIds = null;
-    			refreshActivity();
+                        // Show a loading progress until the new comments/IDs are loaded
+                        mCommentsIds = null;
+                        refreshActivity();
 
-    			// Refresh the comment/id list
-                mReloadTaxon = true;
-    			IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-    			BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
+                        // Refresh the comment/id list
+                        mReloadTaxon = true;
+                        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+                        BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+
+                    }
+                });
+
 
     		}
     	} else if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
@@ -2211,6 +2260,67 @@ public class ObservationViewerActivity extends AppCompatActivity {
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             startService(serviceIntent2);
         }
+    }
+
+
+    private interface  onDisagreement {
+        void onDisagreement(boolean disagreement);
+    }
+
+    private void checkForTaxonDisagreement(int taxonId, String name, String scientificName, final onDisagreement cb) {
+        if ((mTaxonJson == null) || (mObsJson == null)) {
+            // We don't have the JSON structures for the observation and the taxon - cannot check for possible disagreement
+            cb.onDisagreement(false);
+            return;
+        }
+
+        BetterJSONObject taxon = new BetterJSONObject(mTaxonJson);
+        JSONArray ancestors = taxon.getJSONArray("ancestor_ids").getJSONArray();
+
+        // See if the current ID taxon is an ancestor of the current observation taxon / community taxon
+        boolean disagreement = false;
+        for (int i = 0; i < ancestors.length() - 2; i++) {
+            int currentTaxonId = ancestors.optInt(i);
+
+            if (currentTaxonId == taxonId) {
+                disagreement = true;
+                break;
+            }
+        }
+
+        if (!disagreement) {
+            // No disagreement here
+            cb.onDisagreement(false);
+            return;
+        }
+
+        // Show disagreement dialog
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewGroup dialogContent = (ViewGroup) inflater.inflate(R.layout.explicit_disagreement, null, false);
+
+        TextView questionText = (TextView) dialogContent.findViewById(R.id.question);
+        final RadioButton disagreementRadioButton = (RadioButton) dialogContent.findViewById(R.id.disagreement);
+        final RadioButton noDisagreemenRadioButton = (RadioButton) dialogContent.findViewById(R.id.no_disagreement);
+
+        String taxonName = String.format("%s (%s)", name, scientificName);
+        String communityTaxonName = String.format("%s (%s)", TaxonUtils.getTaxonName(this, taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+
+        questionText.setText(Html.fromHtml(String.format(getString(R.string.do_you_think_this_could_be), taxonName)));
+        noDisagreemenRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_dont_know_but), scientificName)));
+        disagreementRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_am_sure_that_this_is_not), communityTaxonName)));
+
+        mHelper.confirm(getString(R.string.potential_disagreement), dialogContent, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                boolean isDisagreement = disagreementRadioButton.isChecked();
+                cb.onDisagreement(isDisagreement);
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Canceled dialog - nothing to do here
+            }
+        }, R.string.submit, R.string.cancel);
     }
 
     private void refreshProjectList() {
