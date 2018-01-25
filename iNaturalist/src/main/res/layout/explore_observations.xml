@@ -75,21 +75,6 @@
     </LinearLayout>
 
 
-    <org.inaturalist.android.GridViewExtended
-        android:id="@+id/observations_grid"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:numColumns="3"
-        android:verticalSpacing="3dp"
-        android:horizontalSpacing="3dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        android:layout_below="@id/grid_filter_bar"
-        android:layout_above="@id/loading_more_results"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
 
     <RelativeLayout
         android:id="@+id/observations_map_container"
@@ -200,6 +185,21 @@
 
     </RelativeLayout>
 
+
+    <org.inaturalist.android.GridViewExtended
+        android:id="@+id/observations_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:numColumns="3"
+        android:verticalSpacing="3dp"
+        android:horizontalSpacing="3dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_below="@id/grid_filter_bar"
+        android:layout_above="@id/loading_more_results"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <LinearLayout
         android:layout_width="116dp"

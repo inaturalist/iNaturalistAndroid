@@ -144,7 +144,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     private static final int OBSERVATIONS_VIEW_MODE_GRID = 0;
     private static final int OBSERVATIONS_VIEW_MODE_MAP = 1;
-    private int mObservationsViewMode = OBSERVATIONS_VIEW_MODE_MAP;
+    private int mObservationsViewMode = OBSERVATIONS_VIEW_MODE_GRID;
 
 
     private int[] mCurrentResultsPage = { 0, 0, 0, 0 };
@@ -519,6 +519,11 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             // If it's the first time we're zooming in - this means we'll force a new search for nearby results
             final boolean shouldRedoSearch = mLastMapBounds == null;
+
+            if (mObservationsMapContainer.getVisibility() != View.VISIBLE) {
+                // We're in grid view (instead of map view) - we need to perform this "hack" to make the animateCamera method actually work
+                mObservationsMapContainer.setVisibility(View.VISIBLE);
+            }
 
             mObservationsMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), MY_LOCATION_ZOOM_LEVEL),
                     1000,
