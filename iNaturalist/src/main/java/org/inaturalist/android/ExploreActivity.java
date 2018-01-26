@@ -976,9 +976,9 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
                 @Override
                 public void onMapLoaded() {
-                    mObservationsMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+                    mObservationsMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
                         @Override
-                        public void onCameraChange(CameraPosition position) {
+                        public void onCameraMove() {
                             // User moved the map view - allow him to make a new search on those new map bounds
                             if ((mLastMapBounds == null) || (!mLastMapBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
                                 mMapMoved = true;
