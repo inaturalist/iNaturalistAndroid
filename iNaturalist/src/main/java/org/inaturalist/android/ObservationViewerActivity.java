@@ -1736,6 +1736,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
         try {
             URL url = new URL(uri);
             conn = (HttpURLConnection) url.openConnection();
+            String jwtToken = mApp.getJWTToken();
+            if (mApp.loggedIn() && (jwtToken != null)) conn.setRequestProperty ("Authorization", jwtToken);
+
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
 
             // Load the results into a StringBuilder

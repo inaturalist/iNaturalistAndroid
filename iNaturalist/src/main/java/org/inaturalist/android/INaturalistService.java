@@ -3884,7 +3884,12 @@ public class INaturalistService extends IntentService {
             }
         }
 
-        // auth
+        if (url.startsWith(API_HOST) && (mCredentials != null)) {
+            // For the node API, if we're logged in, *always* use JWT authentication
+            authenticated = true;
+            useJWTToken = true;
+        }
+
         if (authenticated) {
             if (useJWTToken && allowAnonymousJWTToken && (mCredentials == null)) {
                 // User not logged in, but allow using anonymous JWT

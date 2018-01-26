@@ -567,6 +567,11 @@ public class INaturalistApp extends MultiDexApplication {
     public boolean loggedIn() {
         return getPrefs().contains("credentials");
     }
+
+    public String getJWTToken() {
+        return getPrefs().getString("jwt_token", null);
+    }
+
     
     public LoginType getLoginType() {
         return LoginType.valueOf(getPrefs().getString("login_type", LoginType.OAUTH_PASSWORD.toString()));

@@ -137,6 +137,9 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
+            String jwtToken = mApp.getJWTToken();
+            if (mApp.loggedIn() && (jwtToken != null)) conn.setRequestProperty ("Authorization", jwtToken);
+
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
 
             // Load the results into a StringBuilder
@@ -172,7 +175,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
         }
 
         return resultList;
-    } 
+    }
     
     
     private class TaxonAutoCompleteAdapter extends ArrayAdapter<String> implements Filterable {
