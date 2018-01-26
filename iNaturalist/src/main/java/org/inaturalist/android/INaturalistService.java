@@ -265,6 +265,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_USERNAME = "username";
     public static String ACTION_FULL_NAME = "full_name";
     public static String ACTION_USER_BIO = "user_bio";
+    public static String ACTION_USER_PASSWORD = "user_password";
+    public static String ACTION_USER_EMAIL = "user_email";
     public static String ACTION_USER_PIC = "user_pic";
     public static String ACTION_USER_DELETE_PIC = "user_delete_pic";
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
@@ -924,10 +926,12 @@ public class INaturalistService extends IntentService {
                 String username = intent.getStringExtra(ACTION_USERNAME);
                 String fullName = intent.getStringExtra(ACTION_FULL_NAME);
                 String bio = intent.getStringExtra(ACTION_USER_BIO);
+                String password = intent.getStringExtra(ACTION_USER_PASSWORD);
+                String email = intent.getStringExtra(ACTION_USER_EMAIL);
                 String userPic = intent.getStringExtra(ACTION_USER_PIC);
                 boolean deletePic = intent.getBooleanExtra(ACTION_USER_DELETE_PIC, false);
 
-                JSONObject newUser = updateUser(username, fullName, bio, userPic, deletePic);
+                JSONObject newUser = updateUser(username, email, password, fullName, bio, userPic, deletePic);
 
                 if ((newUser != null) && (!newUser.has("errors"))) {
                     SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -942,6 +946,7 @@ public class INaturalistService extends IntentService {
                         editor.putString("user_icon_url", newUser.has("medium_user_icon_url") ? newUser.optString("medium_user_icon_url") : newUser.optString("user_icon_url"));
                     }
                     editor.putString("user_bio", newUser.optString("description"));
+                    editor.putString("user_email", newUser.optString("email", email));
                     editor.putString("user_full_name", newUser.optString("name"));
                     editor.apply();
 
@@ -2097,11 +2102,16 @@ public class INaturalistService extends IntentService {
     }
 
     // Updates a user's profile
-    private JSONObject updateUser(String username, String fullName, String bio, String userPic, boolean deletePic) throws AuthenticationException {
+    private JSONObject updateUser(String username, String email, String password, String fullName, String bio, String userPic, boolean deletePic) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("user[login]", username));
         params.add(new BasicNameValuePair("user[name]", fullName));
         params.add(new BasicNameValuePair("user[description]", bio));
+        params.add(new BasicNameValuePair("user[email]", email));
+        if ((password != null) && (password.length() > 0)) {
+            params.add(new BasicNameValuePair("user[password]", password));
+            params.add(new BasicNameValuePair("user[password_confirmation]", password));
+        }
 
         if (deletePic) {
             // Delete profile pic

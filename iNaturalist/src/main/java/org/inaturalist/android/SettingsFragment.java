@@ -354,6 +354,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		mPrefEditor.remove("observation_count");
 		mPrefEditor.remove("user_icon_url");
 		mPrefEditor.remove("user_bio");
+        mPrefEditor.remove("user_email");
 		mPrefEditor.remove("user_full_name");
 		mPrefEditor.remove("last_user_details_refresh_time");
         mPrefEditor.remove("jwt_token");

@@ -566,6 +566,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             String iconUrl = user.has("medium_user_icon_url") ? user.getString("medium_user_icon_url") : user.getString("user_icon_url");
             editor.putString("user_icon_url", iconUrl);
             editor.putString("user_bio", user.getString("description"));
+            editor.putString("user_email", user.getString("email"));
             editor.putString("user_full_name", user.getString("name"));
             editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
             String currentUsername = prefs.getString("username", null);

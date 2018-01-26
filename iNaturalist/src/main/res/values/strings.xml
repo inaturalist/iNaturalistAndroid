@@ -699,5 +699,6 @@
     <string name="i_dont_know_but"><![CDATA[I don\'t know, but <b>%1$s</b> is my best guess.]]></string>
     <string name="i_am_sure_that_this_is_not"><![CDATA[I am sure this is <b>not</b> %1$s.]]></string>
     <string name="submit">Submit</string>
+    <string name="change_password">Change Password</string>
 </resources>
 

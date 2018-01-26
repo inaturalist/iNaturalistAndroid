@@ -13,8 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,13 +51,16 @@ public class ProfileEditor extends AppCompatActivity {
     private ImageView mUserPic;
     private EditText mUserNameText;
     private EditText mUserFullNameText;
+    private EditText mUserEmailText;
     private EditText mUserBioText;
+    private EditText mUserPasswordText;
     private Button mViewProfile;
 
     private Uri mFileUri;
     private String mUserName;
     private String mUserBio;
     private String mUserFullName;
+    private String mUserEmail;
     private String mUserIconUrl;
     private UserUpdateReceiver mUserUpdateReceiver;
 
@@ -90,7 +91,9 @@ public class ProfileEditor extends AppCompatActivity {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_DETAILS, null, ProfileEditor.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.ACTION_USERNAME, mUserNameText.getText().toString());
                 serviceIntent.putExtra(INaturalistService.ACTION_FULL_NAME, mUserFullNameText.getText().toString());
+                serviceIntent.putExtra(INaturalistService.ACTION_USER_EMAIL, mUserEmailText.getText().toString());
                 serviceIntent.putExtra(INaturalistService.ACTION_USER_BIO, mUserBioText.getText().toString());
+                serviceIntent.putExtra(INaturalistService.ACTION_USER_PASSWORD, mUserPasswordText.getText().toString());
 
                 SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 String iconUrl = prefs.getString("user_icon_url", null);
@@ -174,6 +177,8 @@ public class ProfileEditor extends AppCompatActivity {
         if (!mUserNameText.getText().toString().equals(prefs.getString("username", ""))) return true;
         if (!mUserFullNameText.getText().toString().equals(prefs.getString("user_full_name", ""))) return true;
         if (!mUserBioText.getText().toString().equals(prefs.getString("user_bio", ""))) return true;
+        if (!mUserPasswordText.getText().toString().equals("")) return true;
+        if (!mUserEmailText.getText().toString().equals(prefs.getString("user_email", ""))) return true;
         String iconUrl = prefs.getString("user_icon_url", null);
         if (((iconUrl != null) && (mUserIconUrl == null)) || ((iconUrl == null) && (mUserIconUrl != null)) || ((mUserIconUrl != null) && !mUserIconUrl.equals(iconUrl))) return true;
 
@@ -206,7 +211,9 @@ public class ProfileEditor extends AppCompatActivity {
 
         mUserNameText = (EditText) findViewById(R.id.user_name);
         mUserFullNameText = (EditText) findViewById(R.id.full_name);
+        mUserEmailText = (EditText) findViewById(R.id.email);
         mUserBioText = (EditText) findViewById(R.id.bio);
+        mUserPasswordText = (EditText) findViewById(R.id.password);
         mUserPic = (ImageView) findViewById(R.id.user_pic);
         mViewProfile = (Button) findViewById(R.id.view_profile);
 
@@ -256,6 +263,7 @@ public class ProfileEditor extends AppCompatActivity {
 
             mUserName = savedInstanceState.getString("mUserName");
             mUserFullName = savedInstanceState.getString("mUserFullName");
+            mUserEmail = savedInstanceState.getString("mUserEmail");
             mUserBio = savedInstanceState.getString("mUserBio");
             mUserIconUrl = savedInstanceState.getString("mUserIconUrl");
 
@@ -264,6 +272,7 @@ public class ProfileEditor extends AppCompatActivity {
             mUserName = prefs.getString("username", "");
             mUserFullName = prefs.getString("user_full_name", "");
             mUserBio = prefs.getString("user_bio", "");
+            mUserEmail = prefs.getString("user_email", "");
             mUserIconUrl = prefs.getString("user_icon_url", null);
         }
 
@@ -294,6 +303,7 @@ public class ProfileEditor extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString("mUserName", mUserNameText.getText().toString());
         outState.putString("mUserFullName", mUserFullNameText.getText().toString());
+        outState.putString("mUserEmail", mUserEmailText.getText().toString());
         outState.putString("mUserBio", mUserBioText.getText().toString());
         outState.putString("mUserIconUrl", mUserIconUrl);
 
@@ -308,6 +318,7 @@ public class ProfileEditor extends AppCompatActivity {
         mUserNameText.setText(mUserName);
         mUserFullNameText.setText(mUserFullName);
         mUserBioText.setText(mUserBio);
+        mUserEmailText.setText(mUserEmail);
 
         if ((iconUrl != null) && (iconUrl.length() > 0)) {
             if (!mUserIconUrl.startsWith("http")) {
