@@ -150,25 +150,32 @@ public class ProfileEditor extends AppCompatActivity {
                 return true;
 
             case android.R.id.home:
-                if (!isDirty()) {
-                    this.onBackPressed();
-                } else {
-                    mHelper.confirm(getString(R.string.edit_profile), getString(R.string.discard_changes), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            onBackPressed();
-                        }
-                    }, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    }, R.string.yes, R.string.no);
-                }
+                this.onBackPressed();
 
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (!isDirty()) {
+            super.onBackPressed();
+        } else {
+            mHelper.confirm(getString(R.string.edit_profile), getString(R.string.discard_changes), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            }, R.string.yes, R.string.no);
+        }
+
     }
 
     private boolean isDirty() {
