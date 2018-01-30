@@ -121,6 +121,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private ObservationGridAdapter mGridAdapter;
     private GoogleMap mObservationsMap;
     private ViewGroup mObservationsMapContainer;
+    private View mMapHide;
     private TextView mObservationsGridFilterBar;
     private TextView mObservationsMapFilterBar;
 
@@ -523,6 +524,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             if (mObservationsMapContainer.getVisibility() != View.VISIBLE) {
                 // We're in grid view (instead of map view) - we need to perform this "hack" to make the animateCamera method actually work
                 mObservationsMapContainer.setVisibility(View.VISIBLE);
+                mMapHide.setVisibility(View.VISIBLE);
             }
 
             mObservationsMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), MY_LOCATION_ZOOM_LEVEL),
@@ -875,7 +877,12 @@ public class ExploreActivity extends BaseFragmentActivity {
         });
 
         if (mTotalResults[VIEW_TYPE_OBSERVATIONS] == NOT_LOADED) {
-            mLoadingObservationsGrid.setVisibility(View.VISIBLE);
+            if (mObservationsViewMode == OBSERVATIONS_VIEW_MODE_GRID) {
+                mLoadingObservationsGrid.setVisibility(View.VISIBLE);
+            } else {
+                mLoadingObservationsGrid.setVisibility(View.GONE);
+            }
+
             mObservationsGrid.setVisibility(View.GONE);
             mObservationsGridEmpty.setVisibility(View.GONE);
             mObservationsMapContainer.setVisibility(View.GONE);
@@ -929,6 +936,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsViewModeGrid.setColorFilter(Color.parseColor("#ffffff"));
             mObservationsViewModeMap.setSelected(false);
             mObservationsViewModeMap.setColorFilter(Color.parseColor("#676767"));
+            mLoadingObservationsGrid.setVisibility(View.VISIBLE);
 
             mObservationsMapContainer.setVisibility(View.GONE);
         } else {
@@ -936,8 +944,10 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsViewModeGrid.setColorFilter(Color.parseColor("#676767"));
             mObservationsViewModeMap.setSelected(true);
             mObservationsViewModeMap.setColorFilter(Color.parseColor("#ffffff"));
+            mLoadingObservationsGrid.setVisibility(View.GONE);
 
             mObservationsMapContainer.setVisibility(View.VISIBLE);
+            mMapHide.setVisibility(View.GONE);
             mObservationsGrid.setVisibility(View.GONE);
             mObservationsGridEmpty.setVisibility(View.GONE);
         }
@@ -1197,6 +1207,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     }
                 });
                 mObservationsMapContainer = (ViewGroup) layout.findViewById(R.id.observations_map_container);
+                mMapHide = (View) layout.findViewById(R.id.map_hide);
                 mObservationsGridFilterBar = (TextView) layout.findViewById(R.id.grid_filter_bar);
                 mObservationsMapFilterBar = (TextView) layout.findViewById(R.id.map_filter_bar);
                 ViewCompat.setNestedScrollingEnabled(mObservationsGrid, true);

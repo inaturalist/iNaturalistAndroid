@@ -5,17 +5,6 @@
     android:layout_height="fill_parent"
     android:background="#F5F5F5"
     >
-    <ProgressBar
-        android:id="@+id/loading_observations_grid"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:padding="30dp"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        />
 
     <TextView
         android:id="@+id/observations_grid_empty"
@@ -184,6 +173,25 @@
 
 
     </RelativeLayout>
+
+
+    <View
+        android:id="@+id/map_hide"
+        android:background="#F5F5F5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/loading_observations_grid"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        />
 
 
     <org.inaturalist.android.GridViewExtended
