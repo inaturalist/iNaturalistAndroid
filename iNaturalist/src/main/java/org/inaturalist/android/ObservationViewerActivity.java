@@ -2278,11 +2278,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
         }
 
         BetterJSONObject taxon = new BetterJSONObject(mTaxonJson);
+        int communityTaxonId = taxon.getInt("id");
         JSONArray ancestors = taxon.getJSONArray("ancestor_ids").getJSONArray();
 
         // See if the current ID taxon is an ancestor of the current observation taxon / community taxon
         boolean disagreement = false;
-        for (int i = 0; i < ancestors.length() - 2; i++) {
+        for (int i = 0; i < ancestors.length() - 1; i++) {
             int currentTaxonId = ancestors.optInt(i);
 
             if (currentTaxonId == taxonId) {
@@ -2291,7 +2292,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             }
         }
 
-        if (!disagreement) {
+        if ((!disagreement) || (communityTaxonId == taxonId))  {
             // No disagreement here
             cb.onDisagreement(false);
             return;
