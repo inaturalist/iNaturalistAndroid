@@ -74,7 +74,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
 
     private HashMap<Integer, List<ProjectFieldViewer>> mProjectFieldViewers;
 
-    private boolean mShownSearchBox;
+    private boolean mShownSearchBox = true;
 
     private int mLastProjectFieldFocused = -1;
     private int mLastProjectIdFocused = -1;
@@ -268,7 +268,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         mProjectList = (ListView) findViewById(R.id.project_list);
 
         mSearchText = (EditText) findViewById(R.id.search_filter);
-        mSearchText.setHint(R.string.search_projects);
+        mSearchText.setHint(R.string.search_projects_youve_joined);
         mSearchText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

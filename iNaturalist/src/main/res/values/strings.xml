@@ -700,5 +700,6 @@
     <string name="i_am_sure_that_this_is_not"><![CDATA[I am sure this is <b>not</b> %1$s.]]></string>
     <string name="submit">Submit</string>
     <string name="change_password">Change Password</string>
+    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
 </resources>
 

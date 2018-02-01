@@ -21,8 +21,9 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:drawableLeft="@drawable/ic_fa_search"
+                android:drawablePadding="5dp"
                 android:background="#EBEBEB"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:hint="@string/search_projects" />
 
             <ListView
