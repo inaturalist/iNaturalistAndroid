@@ -863,7 +863,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 // Update the DB
 
                 String[] photoInfo = mPhotoInfo.get(obs.uuid);
-                photoInfo[2] = photoUrl;
+                if (photoInfo != null) photoInfo[2] = photoUrl;
 
                 Cursor pc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                         ObservationPhoto.PROJECTION,
