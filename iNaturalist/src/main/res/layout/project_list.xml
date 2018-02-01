@@ -24,46 +24,47 @@
         android:layout_centerInParent="true"
         android:padding="30dp"
         android:gravity="center"
-	    /> 
-    
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="30dp"
-        android:gravity="center"
+	    />
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:text="@string/no_projects" />
-
-    <Button
-        android:visibility="gone"
-        android:id="@+id/settings"
+        android:gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/go_to_settings"
-        android:layout_below="@android:id/empty"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/circular_button"
-        />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="@string/no_projects" />
 
-    <Button
-        android:id="@+id/login"
-        android:background="@drawable/circular_button"
-        android:textColor="#ffffff"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/login_signup"
-        android:layout_below="@android:id/empty"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        />
+        <Button
+            android:visibility="gone"
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/go_to_settings"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/circular_button_rounder"
+            />
 
+        <Button
+            android:id="@+id/login"
+            android:background="@drawable/circular_button_rounder"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/login_signup"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            />
+    </LinearLayout>
       <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
