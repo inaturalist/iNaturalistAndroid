@@ -283,9 +283,11 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                     mNewsEmpty.setVisibility(View.GONE);
                 }
 
-                mNewsListAdapter = new ProjectNewsAdapter(UserActivity.this, null, mNews);
-                mNewsList.setAdapter(mNewsListAdapter);
-                mNewsList.setVisibility(View.VISIBLE);
+                if (mNewsListAdapter == null) {
+                    mNewsListAdapter = new ProjectNewsAdapter(UserActivity.this, null, mNews);
+                    mNewsList.setAdapter(mNewsListAdapter);
+                    mNewsList.setVisibility(View.VISIBLE);
+                }
             }
         }
 
@@ -318,9 +320,11 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                     myContentTab.setText(String.format("%s (%d)", getString(R.string.my_content), unreadActivities));
                 }
 
-                mActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mActivities, UserActivity.this);
-                mActivityList.setAdapter(mActivitiesListAdapter);
-                mActivityList.setVisibility(View.VISIBLE);
+                if (mActivitiesListAdapter == null) {
+                    mActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mActivities, UserActivity.this);
+                    mActivityList.setAdapter(mActivitiesListAdapter);
+                    mActivityList.setVisibility(View.VISIBLE);
+                }
             }
         }
 
@@ -341,9 +345,11 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                     mFollowingActivityEmptySubTitle.setVisibility(View.GONE);
                 }
 
-                mFollowingActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mFollowingActivities, UserActivity.this);
-                mFollowingActivityList.setAdapter(mFollowingActivitiesListAdapter);
-                mFollowingActivityList.setVisibility(View.VISIBLE);
+                if (mFollowingActivitiesListAdapter == null) {
+                    mFollowingActivitiesListAdapter = new UserActivitiesAdapter(UserActivity.this, mFollowingActivities, UserActivity.this);
+                    mFollowingActivityList.setAdapter(mFollowingActivitiesListAdapter);
+                    mFollowingActivityList.setVisibility(View.VISIBLE);
+                }
             }
         }
     }
@@ -404,6 +410,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 mActivities = resultsArray;
                 mActivityList.onRefreshComplete();
                 mActivityList.refreshDrawableState();
+                mActivitiesListAdapter = null;
 
                 // Count how many unread activities are there
                 int unreadActivities = 0;
@@ -424,10 +431,12 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 mFollowingActivities = resultsArray;
                 mFollowingActivityList.onRefreshComplete();
                 mFollowingActivityList.refreshDrawableState();
+                mFollowingActivitiesListAdapter = null;
             } else {
                 mNews = resultsArray;
                 mNewsList.onRefreshComplete();
                 mNewsList.refreshDrawableState();
+                mNewsListAdapter = null;
             }
 
             refreshViewState();

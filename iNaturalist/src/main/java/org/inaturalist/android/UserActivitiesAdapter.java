@@ -212,6 +212,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         return view;
     }
 
+    Map<Integer, Boolean> blah = new HashMap<>();
+
     private void loadObsImage(int obsId, final View view, BetterJSONObject item, final int position) {
         Log.e(TAG, obsId + ": loadObsImage " + position + ":" + view);
 
@@ -228,7 +230,8 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         });
 
         Cursor c = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[] { String.valueOf(obsId) }, null);
-        if (c.getCount() == 0) {
+        if ((c.getCount() == 0) || (!blah.containsKey(obsId))) {
+            blah.put(obsId, true);
             // Couldn't find observation (must be an old one that isn't saved locally) - download it
             c.close();
 
@@ -243,7 +246,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
                 mContext.startService(serviceIntent);
-                Log.e(TAG, obsId + ": Start download");
+                Log.e(TAG, obsId + ": Start download: " + mObsIdBeingDownloaded.containsKey(obsId));
             } else {
                 Log.e(TAG, obsId + ": Downloading");
             }

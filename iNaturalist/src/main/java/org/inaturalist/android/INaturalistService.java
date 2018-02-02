@@ -1117,8 +1117,7 @@ public class INaturalistService extends IntentService {
                 Observation observation = getAndDownloadObservation(id);
 
                 Intent reply = new Intent(ACTION_GET_AND_SAVE_OBSERVATION_RESULT);
-                mApp.setServiceResult(ACTION_GET_AND_SAVE_OBSERVATION_RESULT, observation);
-                reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(OBSERVATION_RESULT, observation);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
