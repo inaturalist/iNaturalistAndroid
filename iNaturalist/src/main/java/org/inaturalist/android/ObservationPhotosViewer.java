@@ -11,6 +11,12 @@ import org.json.JSONObject;
 import uk.co.senab.photoview.HackyViewPager;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BaseTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.transition.Transition;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -21,6 +27,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -214,6 +222,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         }
  		int mDefaultTaxonIcon;
  		List<String> mImages;
+        List<String> mImageThumbnails;
         Activity mActivity;
         ViewPager mViewPager;
         private OnClickListener mClickListener;
@@ -233,6 +242,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mActivity = activity;
             mViewPager = viewPager;
             mImages = new ArrayList<String>();
+            mImageThumbnails = new ArrayList<String>();
 
             Cursor imageCursor = activity.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
@@ -254,6 +264,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
                 String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
+                mImageThumbnails.add(null);
             } while (imageCursor.moveToNext());
         }
  		public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, JSONObject observation, boolean isTaxon, OnClickListener listener) {
@@ -266,6 +277,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mActivity = activity;
             mViewPager = viewPager;
  			mImages = new ArrayList<String>();
+            mImageThumbnails = new ArrayList<String>();
  			mDefaultTaxonIcon = TaxonUtils.observationIcon(observation);
 
  			JSONArray photos = observation.optJSONArray(isTaxon ? "taxon_photos" : "observation_photos");
@@ -279,6 +291,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  							String photoUrl = innerPhoto.has("original_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("large_url");
  							if (photoUrl != null) {
  								mImages.add(photoUrl);
+                                mImageThumbnails.add(innerPhoto.has("thumb_url") ? innerPhoto.optString("thumb_url") : innerPhoto.optString("small_url"));
  							}
  						}
  					}
@@ -286,6 +299,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  			} else {
  				// Show taxon icon
  				mImages.add(null);
+                mImageThumbnails.add(null);
  			}
  		}
 
@@ -337,23 +351,48 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     attacher = new PhotoViewAttacher(imageView);
 
                     // Show a photo
+                    
+                    String thumbnailUrl = mImageThumbnails.get(position);
 
                     final PhotoViewAttacher finalAttacher = attacher;
-                    UrlImageViewHelper.setUrlDrawable(imageView, imageUrl, mDefaultTaxonIcon, new UrlImageViewCallback() {
+
+                    RequestBuilder<Drawable> imageRequest = Glide.with(mActivity)
+                            .load(imageUrl);
+
+                    if (thumbnailUrl != null) {
+                        // Load a scaled down version (thumbnail) of the image first
+                        RequestBuilder<Drawable> thumbnailRequest = Glide.
+                                with(mActivity).
+                                load(thumbnailUrl).
+                                apply(new RequestOptions().placeholder(mDefaultTaxonIcon));
+                        imageRequest = imageRequest.thumbnail(thumbnailRequest);
+                    } else {
+                        imageRequest = imageRequest.
+                                apply(new RequestOptions().placeholder(mDefaultTaxonIcon));
+;
+                    }
+
+                    BaseTarget target = new BaseTarget<BitmapDrawable>() {
                         @Override
-                        public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                        public void onResourceReady(BitmapDrawable bitmap, Transition<? super BitmapDrawable> transition) {
+                            imageView.setImageBitmap(ImageUtils.scaleDownBitmapIfNeeded(mActivity, bitmap.getBitmap()));
+
                             loading.setVisibility(View.GONE);
                             imageView.setVisibility(View.VISIBLE);
                             finalAttacher.update();
                         }
 
                         @Override
-                        public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                            // Scale down the image if it's too big for the GL renderer
-                            loadedBitmap = ImageUtils.scaleDownBitmapIfNeeded(mActivity, loadedBitmap);
-                            return loadedBitmap;
+                        public void getSize(SizeReadyCallback cb) {
+                            cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL);
                         }
-                    });
+
+                        @Override
+                        public void removeCallback(SizeReadyCallback cb) {}
+                    };
+
+
+                    imageRequest.into(target);
                 }
             }
 
