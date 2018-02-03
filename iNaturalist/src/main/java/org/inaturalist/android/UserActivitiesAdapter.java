@@ -308,7 +308,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
                 // Show observation details screen
                 Intent intent;
-                if (obs.user_login.equals(mApp.currentUserLogin())) {
+                if ((obs.user_login != null) && (obs.user_login.equals(mApp.currentUserLogin()))) {
                     // It's our own observation - allow editing it
                     Uri uri = obs.getUri();
                     intent = new Intent(Intent.ACTION_VIEW, uri, mContext, ObservationViewerActivity.class);
