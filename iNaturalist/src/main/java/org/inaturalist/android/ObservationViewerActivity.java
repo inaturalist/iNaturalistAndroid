@@ -2283,7 +2283,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
         // See if the current ID taxon is an ancestor of the current observation taxon / community taxon
         boolean disagreement = false;
-        for (int i = 0; i < ancestors.length() - 1; i++) {
+        for (int i = 0; i < ancestors.length(); i++) {
             int currentTaxonId = ancestors.optInt(i);
 
             if (currentTaxonId == taxonId) {
