@@ -982,30 +982,6 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         refreshMapType();
 
-        if (mObservationsMap != null) {
-            mObservationsMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
-                @Override
-                public void onMapLoaded() {
-                    mObservationsMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
-                        @Override
-                        public void onCameraMove() {
-                            // User moved the map view - allow him to make a new search on those new map bounds
-                            if ((mLastMapBounds == null) || (!mLastMapBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
-                                mMapMoved = true;
-                                mRedoObservationsSearch.setVisibility(View.VISIBLE);
-
-                                if ((mInitialLocationBounds == null) || !(mInitialLocationBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
-                                    mObservationsMapMyLocation.setColorFilter(Color.parseColor("#676767"));
-                                }
-                            }
-
-                            mLastMapBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
-                        }
-                    });
-                }
-            });
-        }
-
         mRedoObservationsSearch.setVisibility(mMapMoved ? View.VISIBLE : View.GONE);
         mPerformingSearch.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.VISIBLE : View.GONE);
         mRedoObservationSearchIcon.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.GONE : View.VISIBLE);
@@ -1202,6 +1178,23 @@ public class ExploreActivity extends BaseFragmentActivity {
                         mObservationsMap.setIndoorEnabled(false);
                         mObservationsMap.setTrafficEnabled(false);
                         mObservationsMap.getUiSettings().setRotateGesturesEnabled(false);
+
+                        mObservationsMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+                            @Override
+                            public void onCameraMove() {
+                                // User moved the map view - allow him to make a new search on those new map bounds
+                                if ((mLastMapBounds == null) || (!mLastMapBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
+                                    mMapMoved = true;
+                                    mRedoObservationsSearch.setVisibility(View.VISIBLE);
+
+                                    if ((mInitialLocationBounds == null) || !(mInitialLocationBounds.equals(mObservationsMap.getProjection().getVisibleRegion().latLngBounds))) {
+                                        mObservationsMapMyLocation.setColorFilter(Color.parseColor("#676767"));
+                                    }
+                                }
+
+                                mLastMapBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
+                            }
+                        });
 
                         refreshViewState();
                     }
