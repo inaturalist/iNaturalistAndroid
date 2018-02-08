@@ -181,7 +181,7 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.updated_at = o.getTimestamp("updated_at");
         this.updated_at_was = this.updated_at;
         
-        String photoUrlSize = "medium_url";
+        String photoUrlSize = "large_url";
         if (o.has(photoUrlSize)) {
         	this.photo_url = o.getString(photoUrlSize);
         } else {
