@@ -228,6 +228,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     private static class ViewHolder {
+        public long obsId;
+        
         public ImageView obsImage;
         public ImageView obsIconicImage;
         public TextView speciesGuess;
@@ -246,6 +248,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public TextView placeGuess;
 
         public ViewHolder(ViewGroup view) {
+            obsId = -1;
+
             obsImage = (ImageView) view.findViewById(R.id.observation_pic);
             obsIconicImage = (ImageView) view.findViewById(R.id.observation_iconic_pic);
             speciesGuess = (TextView) view.findViewById(R.id.species_guess);
@@ -285,7 +289,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
+
+            if (holder.obsId == obsId) {
+                // This view is already showing the current obs
+                return view;
+            }
         }
+
 
         final ImageView obsImage = holder.obsImage;
         ImageView obsIconicImage = holder.obsIconicImage;
@@ -594,6 +604,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
         }
+
+
+        holder.obsId = obsId;
 
         return view;
     }
