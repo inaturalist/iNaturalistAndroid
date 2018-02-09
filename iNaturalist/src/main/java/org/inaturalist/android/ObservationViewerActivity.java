@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -1835,7 +1836,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private void prepareToExit() {
         if (!mReadOnly || !mFlagAsCaptive) {
-            finish();
+            NavUtils.navigateUpFromSameTask(this);
             return;
         }
 
