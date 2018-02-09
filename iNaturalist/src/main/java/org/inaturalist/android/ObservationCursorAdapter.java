@@ -246,6 +246,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public TextView commentCount;
         public TextView idCount;
         public TextView placeGuess;
+        public String photoFilename;
+        public Boolean syncNeeded;
+        public boolean hasErrors;
+        public boolean isBeingSynced;
 
         public ViewHolder(ViewGroup view) {
             obsId = -1;
@@ -281,8 +285,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         c.moveToPosition(position);
 
         final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+        final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
+        String[] photoInfo = mPhotoInfo.get(obsUUID);
+        boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
+        boolean isBeingSynced = (mApp.getObservationIdBeingSynced() == obsId);
 
         if (convertView == null) {
             holder = new ViewHolder((ViewGroup) view);
@@ -291,8 +299,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             holder = (ViewHolder) view.getTag();
 
             if (holder.obsId == obsId) {
-                // This view is already showing the current obs
-                return view;
+                String photoFilename = photoInfo != null ? (photoInfo[2] != null ? photoInfo[2] : photoInfo[0]) : null;
+                if ((holder.photoFilename == photoFilename) &&
+                        (holder.hasErrors == hasErrors) &&
+                        (holder.isBeingSynced == isBeingSynced) &&
+                        (holder.isBeingSynced == (mApp.getObservationIdBeingSynced() == obsId))) {
+                    // This view is already showing the current obs
+                    return view;
+                }
             }
         }
 
@@ -315,7 +329,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         View progress = holder.progress;
         View progressInner = holder.progressInner;
 
-        final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
@@ -346,8 +359,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         obsIconicImage.setImageResource(iconResource);
         obsImage.setVisibility(View.INVISIBLE);
 
-        String[] photoInfo = mPhotoInfo.get(obsUUID);
-
         if (photoInfo != null) {
             String photoFilename = photoInfo[2] != null ? photoInfo[2] : photoInfo[0];
 
@@ -370,8 +381,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
 
             loadObsImage(position, obsImage, photoFilename, photoInfo[2] != null);
+
+            holder.photoFilename = photoFilename;
         } else {
             obsImage.setVisibility(View.INVISIBLE);
+            holder.photoFilename = null;
         }
 
         Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
@@ -532,6 +546,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
+        
+        holder.syncNeeded = syncNeeded;
 
         String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
         progress.setVisibility(View.GONE);
@@ -549,7 +565,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             speciesGuess.setText(R.string.unknown_species);
         }
 
-        boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
+        holder.hasErrors = hasErrors;
         if (hasErrors)  {
             view.setBackgroundResource(R.drawable.observation_item_error_background);
             if (!mIsGrid) {
@@ -565,6 +581,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             }
         }
 
+        holder.isBeingSynced = (mApp.getObservationIdBeingSynced() == obsId);
         if (mApp.getObservationIdBeingSynced() == obsId) {
             CircularProgressBar currentProgressBar = (CircularProgressBar) (progressInner != null ? progressInner : progress);
             if (currentProgressBar != mCurrentProgressBar) {
