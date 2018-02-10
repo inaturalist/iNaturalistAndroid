@@ -60,6 +60,10 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     private Button mLogin;
     private Button mSettings;
 
+    // PerfProbe hack begin
+    private Button mLoadMore;
+    // PrefProbe hack end
+
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private ActivityHelper mHelper;
 
@@ -69,7 +73,11 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             Log.i(TAG, "GOT " + getFilterResultName());
 
             try {
-                getActivity().unregisterReceiver(mProjectsReceiver);
+                // PerfProbe hack begin
+                if (!getFilterResultName().equals(INaturalistService.ACTION_ALL_GUIDES_RESULT))
+                    getActivity().unregisterReceiver(mProjectsReceiver);
+                // PerfProbe hack end
+                //getActivity().unregisterReceiver(mProjectsReceiver);
             } catch (Exception exc) {
                 exc.printStackTrace();
             }
@@ -309,6 +317,22 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         });
         mLogin.setVisibility(View.GONE);
         
+        // PerfProbe hack begin
+        mLoadMore = (Button) v.findViewById(R.id.loadmore);
+        mLoadMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Click load more");
+                Intent intent = new Intent();
+                intent.setAction(INaturalistService.ACTION_GET_ALL_GUIDES);
+                getContext().sendBroadcast(intent);
+                Log.i(TAG, "Load more intent sent");
+            }
+        });
+        if (!getActionName().equals(INaturalistService.ACTION_GET_ALL_GUIDES))
+            mLoadMore.setVisibility(View.GONE);
+        // PerfProbe hack end
+
         mProjectList = (ListView) v.findViewById(android.R.id.list);
         mProjectList.setOnItemClickListener(new OnItemClickListener() {
             @Override
