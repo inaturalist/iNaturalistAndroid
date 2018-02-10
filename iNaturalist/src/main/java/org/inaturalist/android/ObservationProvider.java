@@ -325,6 +325,7 @@ public class ObservationProvider extends ContentProvider {
                 (uriCode != ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE) && (uriCode != ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE) &&
                 (uriCode != ProjectField.PROJECT_FIELDS_URI_CODE) && (uriCode != ProjectField.PROJECT_FIELD_ID_URI_CODE)) {
             values.put(Observation._CREATED_AT, now);
+            values.put(Observation.CREATED_AT, now);
             values.put(Observation._UPDATED_AT, now);
         }
 
