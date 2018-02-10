@@ -250,6 +250,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public Boolean syncNeeded;
         public boolean hasErrors;
         public boolean isBeingSynced;
+        public Long updatedAt;
 
         public ViewHolder(ViewGroup view) {
             obsId = -1;
@@ -286,6 +287,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
+        Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
         String[] photoInfo = mPhotoInfo.get(obsUUID);
@@ -309,7 +311,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 }
             }
         }
-
 
         final ImageView obsImage = holder.obsImage;
         ImageView obsIconicImage = holder.obsIconicImage;
@@ -488,7 +489,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         Long syncedAt = c.getLong(c.getColumnIndexOrThrow(Observation._SYNCED_AT));
-        Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
         Boolean syncNeeded = (syncedAt == null) || (updatedAt > syncedAt);
 
         // if there's a photo and it is local
@@ -549,6 +549,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         
         holder.syncNeeded = syncNeeded;
 
+        String description = c.getString(c.getColumnIndexOrThrow(Observation.DESCRIPTION));
         String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
         progress.setVisibility(View.GONE);
         if (!mIsGrid) {
@@ -561,6 +562,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             speciesGuess.setText(preferredCommonName);
         } else if ((speciesGuessValue != null) && (speciesGuessValue.trim().length() > 0)) {
             speciesGuess.setText("\"" + speciesGuessValue + "\"");
+        } else if ((description != null) && (description.length() > 0)) {
+            speciesGuess.setText(description);
         } else {
             speciesGuess.setText(R.string.unknown_species);
         }
@@ -624,6 +627,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
 
         holder.obsId = obsId;
+        holder.updatedAt = updatedAt;
 
         return view;
     }
