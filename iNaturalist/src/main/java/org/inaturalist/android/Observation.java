@@ -16,8 +16,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import android.util.Log;
-import android.view.View;
 
 public class Observation implements BaseColumns, Serializable {
     public Integer _id;
@@ -537,6 +535,52 @@ public class Observation implements BaseColumns, Serializable {
         } else {
             return ContentUris.withAppendedId(CONTENT_URI, _id);
         }
+    }
+
+    private boolean areFieldsEqual(Object o1, Object o2) {
+        if ((o1 != null) && (o2 != null)) return o1.equals(o2);
+        if ((o1 == null) && (o2 != null)) return false;
+        if ((o1 != null) && (o2 == null)) return false;
+        return true;
+    }
+
+    public boolean equals(Observation observation) {
+        if (!areFieldsEqual(this.updated_at, observation.updated_at)) return false;
+        if (!areFieldsEqual(this.created_at, observation.created_at)) return false;
+        if (!areFieldsEqual(this.description, observation.description)) return false;
+        if (!areFieldsEqual(this.geoprivacy, observation.geoprivacy)) return false;
+        if (!areFieldsEqual(this.iconic_taxon_id, observation.iconic_taxon_id)) return false;
+        if (!areFieldsEqual(this.iconic_taxon_name, observation.iconic_taxon_name)) return false;
+        if (!areFieldsEqual(this.preferred_common_name, observation.preferred_common_name)) return false;
+        if (!areFieldsEqual(this.id, observation.id)) return false;
+        if (!areFieldsEqual(this.id_please, observation.id_please)) return false;
+        if (!areFieldsEqual(this.latitude, observation.latitude)) return false;
+        if (!areFieldsEqual(this.longitude, observation.longitude)) return false;
+        if (!areFieldsEqual(this.observed_on, observation.observed_on)) return false;
+        if (!areFieldsEqual(this.observed_on_string, observation.observed_on_string)) return false;
+        if (!areFieldsEqual(this.out_of_range, observation.out_of_range)) return false;
+        if (!areFieldsEqual(this.captive, observation.captive)) return false;
+        if (!areFieldsEqual(this.place_guess, observation.place_guess)) return false;
+        if (!areFieldsEqual(this.private_place_guess, observation.private_place_guess)) return false;
+        if (!areFieldsEqual(this.uuid, observation.uuid)) return false;
+        if (!areFieldsEqual(this.positional_accuracy, observation.positional_accuracy)) return false;
+        if (!areFieldsEqual(this.positioning_device, observation.positioning_device)) return false;
+        if (!areFieldsEqual(this.positioning_method, observation.positioning_method)) return false;
+        if (!areFieldsEqual(this.private_latitude, observation.private_latitude)) return false;
+        if (!areFieldsEqual(this.private_longitude, observation.private_longitude)) return false;
+        if (!areFieldsEqual(this.private_positional_accuracy, observation.private_positional_accuracy)) return false;
+        if (!areFieldsEqual(this.quality_grade, observation.quality_grade)) return false;
+        if (!areFieldsEqual(this.species_guess, observation.species_guess)) return false;
+        if (!areFieldsEqual(this.taxon_id, observation.taxon_id)) return false;
+        if (!areFieldsEqual(this.time_observed_at, observation.time_observed_at)) return false;
+        if (!areFieldsEqual(this.updated_at, observation.updated_at)) return false;
+        if (!areFieldsEqual(this.user_agent, observation.user_agent)) return false;
+        if (!areFieldsEqual(this.user_id, observation.user_id)) return false;
+        if (!areFieldsEqual(this.user_login, observation.user_login)) return false;
+        if (!areFieldsEqual(this.comments_count, observation.comments_count)) return false;
+        if (!areFieldsEqual(this.identifications_count, observation.identifications_count)) return false;
+
+        return true;
     }
 
     // Returns true if observation was modified because of the merge

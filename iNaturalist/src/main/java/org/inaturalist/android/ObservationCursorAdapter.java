@@ -251,6 +251,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public boolean hasErrors;
         public boolean isBeingSynced;
         public Long updatedAt;
+        public Observation observation;
 
         public ViewHolder(ViewGroup view) {
             obsId = -1;
@@ -276,6 +277,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
+    int j = 0;
     public View getView(int position, View convertView, ViewGroup parent) {
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
@@ -300,7 +302,15 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         } else {
             holder = (ViewHolder) view.getTag();
 
-            if (holder.obsId == obsId) {
+            Observation observation = new Observation(c);
+            if (position == 0) {
+                j++;
+                if (j > 4) {
+                    int ddd = 0;
+                    ddd++;
+                }
+            }
+            if ((holder.obsId == obsId) && (holder.observation != null) && (holder.observation.equals(observation))) {
                 String photoFilename = photoInfo != null ? (photoInfo[2] != null ? photoInfo[2] : photoInfo[0]) : null;
                 if ((holder.photoFilename == photoFilename) &&
                         (holder.hasErrors == hasErrors) &&
@@ -628,6 +638,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         holder.obsId = obsId;
         holder.updatedAt = updatedAt;
+        holder.observation = new Observation(c);
 
         return view;
     }
