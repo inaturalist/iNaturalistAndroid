@@ -277,7 +277,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     }
 
-    int j = 0;
     public View getView(int position, View convertView, ViewGroup parent) {
         final View view = super.getView(position, convertView, parent);
         ViewHolder holder;
@@ -303,13 +302,6 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             holder = (ViewHolder) view.getTag();
 
             Observation observation = new Observation(c);
-            if (position == 0) {
-                j++;
-                if (j > 4) {
-                    int ddd = 0;
-                    ddd++;
-                }
-            }
             if ((holder.obsId == obsId) && (holder.observation != null) && (holder.observation.equals(observation))) {
                 String photoFilename = photoInfo != null ? (photoInfo[2] != null ? photoInfo[2] : photoInfo[0]) : null;
                 if ((holder.photoFilename == photoFilename) &&
