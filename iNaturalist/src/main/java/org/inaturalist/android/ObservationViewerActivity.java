@@ -1836,7 +1836,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private void prepareToExit() {
         if (!mReadOnly || !mFlagAsCaptive) {
-            NavUtils.navigateUpFromSameTask(this);
+            finish();
             return;
         }
 

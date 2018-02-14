@@ -121,9 +121,6 @@
         <activity
             android:configChanges="orientation"
             android:name=".ObservationViewerActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ObservationListActivity" />
         </activity>
         <activity
             android:configChanges="orientation"
