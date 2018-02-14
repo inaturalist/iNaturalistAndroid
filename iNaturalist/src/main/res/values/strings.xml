@@ -685,7 +685,7 @@
     <string name="date_week">%dw</string>
     <string name="new_observation">New Observation</string>
     <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track the identifications you\'ve suggested for observations by other people here.</string>
+    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
     <string name="make_an_observation">Make an observation</string>
     <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
