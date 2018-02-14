@@ -264,7 +264,14 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
                 String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
-                mImageThumbnails.add(null);
+
+                if (imageUrl != null) {
+                    // Deduct the URL of the thumbnail
+                    String thumbnailUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/')) + "/small" + imageUrl.substring(imageUrl.lastIndexOf('.'));
+                    mImageThumbnails.add(thumbnailUrl);
+                } else {
+                    mImageThumbnails.add(null);
+                }
             } while (imageCursor.moveToNext());
         }
  		public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, JSONObject observation, boolean isTaxon, OnClickListener listener) {
