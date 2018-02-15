@@ -366,7 +366,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         if (mObservationJson != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_JSON, mObservationJson);
         if (mObsIdInternal > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
         if (mObsId > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID, mObsId);
-        intent.putExtra(CompareSuggestionActivity.SUGGESTIONS_JSON, listToString(mTaxonSuggestions));
+        CompareSuggestionActivity.setTaxonSuggestions(mTaxonSuggestions);
         startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
     }
 

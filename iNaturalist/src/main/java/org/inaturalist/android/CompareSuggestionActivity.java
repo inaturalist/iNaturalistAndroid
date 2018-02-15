@@ -52,7 +52,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 
-    private List<BetterJSONObject> mTaxonSuggestions;
+    private static List<BetterJSONObject> mTaxonSuggestions;
     private int mObsIdInternal;
     private int mObsId;
     private BetterJSONObject mObservation;
@@ -76,6 +76,10 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private ViewGroup mTaxonDetails;
 
     private TaxonReceiver mTaxonReceiver;
+
+    public static void setTaxonSuggestions(List<BetterJSONObject> suggestions) {
+        mTaxonSuggestions = suggestions;
+    }
 
     @Override
     protected void onStart()
@@ -115,7 +119,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             if (observationJson != null) {
                 mObservation = new BetterJSONObject(observationJson);
             }
-            mTaxonSuggestions = loadListFromBundle(intent.getExtras(), SUGGESTIONS_JSON);
             mSuggestionIndex = intent.getIntExtra(SUGGESTION_INDEX, 0);
 
         } else {
