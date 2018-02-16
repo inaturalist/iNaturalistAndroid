@@ -119,6 +119,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			TextView postedOn = (TextView) view.findViewById(R.id.posted_on);
 			final String username = item.getJSONObject("user").getString("login");
             Timestamp postDate = item.getTimestamp("updated_at");
+            if (postDate == null) postDate = item.getTimestamp("created_at");
 
             if (mIsNewLayout) {
                 postedOn.setText(String.format(res.getString(item.getString("type").equals("comment") ? R.string.comment_title : R.string.id_title),
@@ -141,14 +142,16 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 
 
             final ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
-            boolean hasUserIcon = item.getJSONObject("user").getString("user_icon_url") != null;
+            JSONObject user = item.getJSONObject("user");
+            String userIconUrl = user.optString("user_icon_url", user.optString("icon"));
+            boolean hasUserIcon = userIconUrl != null;
 
             userPic.setOnClickListener(showUser);
             postedOn.setOnClickListener(showUser);
 
             if (hasUserIcon) {
                 Picasso.with(mContext)
-                        .load(item.getJSONObject("user").getString("user_icon_url"))
+                        .load(userIconUrl)
                         .fit()
                         .centerCrop()
                         .placeholder(R.drawable.ic_account_circle_black_24dp)
@@ -313,13 +316,11 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					comment.setVisibility(View.GONE);
 				}
 				ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
-				UrlImageViewHelper.setUrlDrawable(idPic, item.getJSONObject("taxon").getString("image_url"), R.drawable.iconic_taxon_unknown);
+				JSONObject taxonObject = item.getJSONObject("taxon");
+				UrlImageViewHelper.setUrlDrawable(idPic, taxonObject.optString("image_url", taxonObject.optJSONObject("default_photo").optString("square_url")), R.drawable.iconic_taxon_unknown);
 				TextView idName = (TextView) view.findViewById(R.id.id_name);
-				if (!item.getJSONObject("taxon").isNull("common_name")) {
-					idName.setText(item.getJSONObject("taxon").getJSONObject("common_name").getString("name"));
-				} else {
-					idName.setText(item.getJSONObject("taxon").getString("name"));
-				}
+
+				idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
 				TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
 				idTaxonName.setText(TaxonUtils.getTaxonScientificName(item.getJSONObject("taxon")));
 				

@@ -71,8 +71,16 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
         JSONObject item = mItems.get(position);
 
         TextView idName = (TextView) view.findViewById(R.id.species_guess);
-        String idNameStr = item.isNull("species_guess") ? mContext.getResources().getString(R.string.unknown) : item.optString("species_guess", mContext.getResources().getString(R.string.unknown));
-        idName.setText(idNameStr);
+
+        if (!item.isNull("taxon")) {
+            try {
+                idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            idName.setText(item.isNull("species_guess") ? mContext.getResources().getString(R.string.unknown) : item.optString("species_guess", mContext.getResources().getString(R.string.unknown)));
+        }
 
 
         if (mViewType == VIEW_TYPE_GRID) {
@@ -112,6 +120,10 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
                 observationPhoto = observationPhotos.getJSONObject(0);
 
                 url = (observationPhoto.isNull("small_url") ? observationPhoto.optString("original_url") : observationPhoto.optString("small_url"));
+                if ((url == null) || (url.length() == 0)) {
+                    url = observationPhoto.optString("url");
+                }
+
                 Picasso.with(mContext)
                         .load(url)
                         .fit()
