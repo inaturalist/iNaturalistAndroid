@@ -2795,7 +2795,7 @@ public class INaturalistService extends IntentService {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?locale=" + deviceLanguage +
-                "&verifiable=true&hrank=species";
+                "&verifiable=true&hrank=species&oauth_application_id=2,3";
 
         if (expandLocationByDegress == 0) {
             url += "&lat=" + location.getLatitude()+ "&lng=" + location.getLongitude();
