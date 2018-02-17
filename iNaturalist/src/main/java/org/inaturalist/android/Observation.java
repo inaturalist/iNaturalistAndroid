@@ -482,6 +482,17 @@ public class Observation implements BaseColumns, Serializable {
                 this.private_longitude_was = this.private_longitude;
             }
         }
+
+        if (o.has("location")) {
+            String location = o.getString("location");
+            if ((location != null) && (location.length() > 0)) {
+                String[] locationSplit = location.split(",");
+                this.latitude = Double.parseDouble(locationSplit[0]);
+                this.latitude_was = this.latitude;
+                this.longitude = Double.parseDouble(locationSplit[1]);
+                this.longitude_was = this.longitude;
+            }
+        }
     }
 
     @Override

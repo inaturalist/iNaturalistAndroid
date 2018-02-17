@@ -191,6 +191,18 @@ public class ObservationPhoto implements BaseColumns, Serializable {
 				e.printStackTrace();
 			}
         }
+
+        if (o.has("photo")) {
+            JSONObject photo = o.getJSONObject("photo");
+            if ((this.id == null) && (photo.has("id"))) this.id = photo.optInt("id");
+            if ((this.photo_url == null) && (photo.has("url"))) this.photo_url = photo.optString("url");
+        }
+
+
+        if (this.photo_url != null) {
+            String extension = this.photo_url.substring(this.photo_url.lastIndexOf(".") + 1);
+            this.photo_url = this.photo_url.substring(0, this.photo_url.lastIndexOf('/') + 1) + "large." + extension;
+        }
     }
 
     @Override

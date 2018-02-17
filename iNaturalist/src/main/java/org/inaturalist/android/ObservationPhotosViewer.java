@@ -296,10 +296,17 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  						JSONObject innerPhoto = photo.optJSONObject("photo");
  						if (innerPhoto != null) {
  							String photoUrl = innerPhoto.has("original_url") ? innerPhoto.optString("original_url") : innerPhoto.optString("large_url");
- 							if (photoUrl != null) {
+ 							if ((photoUrl != null) && (photoUrl.length() > 0)) {
  								mImages.add(photoUrl);
                                 mImageThumbnails.add(innerPhoto.has("thumb_url") ? innerPhoto.optString("thumb_url") : innerPhoto.optString("small_url"));
- 							}
+ 							} else {
+ 							    String url = innerPhoto.optString("url");
+ 							    if (url != null) {
+                                    String extension = url.substring(url.lastIndexOf(".") + 1);
+                                    mImages.add(url.substring(0, url.lastIndexOf('/') + 1) + "original." + extension);
+                                    mImageThumbnails.add(url.substring(0, url.lastIndexOf('/') + 1) + "square." + extension);
+                                }
+                            }
  						}
  					}
  				}
