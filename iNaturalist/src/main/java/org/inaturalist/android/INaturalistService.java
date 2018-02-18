@@ -4137,7 +4137,7 @@ public class INaturalistService extends IntentService {
 
                     // Save project field values
                     Hashtable<Integer, ProjectFieldValue> fields = new Hashtable<Integer, ProjectFieldValue>();
-                    JSONArray jsonFields = o.getJSONArray("observation_field_values").getJSONArray();
+                    JSONArray jsonFields = o.getJSONArray(o.has("ofvs") ? "ofvs" : "observation_field_values").getJSONArray();
 
                     for (int j = 0; j < jsonFields.length(); j++) {
                         BetterJSONObject field = new BetterJSONObject(jsonFields.getJSONObject(j));

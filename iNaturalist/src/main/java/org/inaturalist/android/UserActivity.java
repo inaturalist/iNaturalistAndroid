@@ -569,7 +569,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     @Override
     public void onUpdateViewed(Observation obs, int position) {
         try {
-            JSONObject item = obs.id ==  mActivities.get(position).getInt("id") ? mActivities.get(position) : mFollowingActivities.get(position) ;
+            JSONObject item = obs.id ==  mActivities.get(position).getInt("resource_id") ? mActivities.get(position) : mFollowingActivities.get(position) ;
             if (!item.getBoolean("viewed")) {
                 SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 int unreadActivities = prefs.getInt("unread_activities", 1) - 1;
