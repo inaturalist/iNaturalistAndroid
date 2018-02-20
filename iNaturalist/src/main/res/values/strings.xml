@@ -685,10 +685,10 @@
     <string name="date_week">%dw</string>
     <string name="new_observation">New Observation</string>
     <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track the identifications you\'ve suggested for other people\'s observations here.</string>
-    <string name="no_species_found">Since you can have multiple observations of the same species, iNaturalist keeps a list of your observed species here.\n\nFYI: There\'s an estimated 9 million on the planet. So get out there!</string>
+    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
+    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
     <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with an individual organism at a particular time and location</string>
+    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
     <string name="discard_comment">Are you sure you want to discard this comment?</string>
     <string name="leave_comment">Leave a comment...</string>
     <string name="swipe">Swipe</string>
