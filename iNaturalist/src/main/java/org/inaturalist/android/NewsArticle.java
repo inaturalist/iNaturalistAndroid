@@ -140,6 +140,7 @@ public class NewsArticle extends AppCompatActivity {
                             "figure { padding: 0; margin: 0; } " +
                             "img { padding-top: 4; padding-bottom: 4; max-width: 100%; } " +
                         "</style>" +
+                        "<meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width\" >" +
                     "</head>" +
                 "<body>";
             mArticleContentWeb.loadDataWithBaseURL("", html + mArticle.getString("body") + "</body></html>", "text/html", "UTF-8", "");
