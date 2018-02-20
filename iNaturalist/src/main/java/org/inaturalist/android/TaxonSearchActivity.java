@@ -270,69 +270,56 @@ public class TaxonSearchActivity extends AppCompatActivity {
                     }
 
                     toggleLoading(false);
-                    
+
                     return filterResults;
                 }
 
                 @Override
                 protected void publishResults(CharSequence constraint, final FilterResults results) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (results != null && results.count > 0 && results.values != null) {
-                                mResultList = (ArrayList<JSONObject>) results.values;
-                                if ((mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
-                                    // Add in the current search string as a custom observation
-                                    JSONObject customObs = new JSONObject();
-                                    try {
-                                        customObs.put("is_custom", true);
-                                        customObs.put("name", mCurrentSearchString);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    if (!mSuggestId) mResultList.add(0, customObs);
+                    ArrayList<JSONObject> values = results != null ? (ArrayList<JSONObject>) results.values : null;
+
+                    if (results != null && results.count > 0 && results.values != null) {
+                        if ((mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
+                            // Add in the current search string as a custom observation
+                            JSONObject customObs = new JSONObject();
+                            try {
+                                customObs.put("is_custom", true);
+                                customObs.put("name", mCurrentSearchString);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            if (!mSuggestId) values.add(0, customObs);
+                        }
+
+                        if (mShowUnknown && !mSuggestId) values.add(0, null);
+
+                        mResultList = values;
+                        notifyDataSetChanged();
+                    } else {
+                        if ((results != null) && (results.values != null)) {
+                            if ((mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
+                                // Add in the current search string as a custom observation
+                                JSONObject customObs = new JSONObject();
+                                try {
+                                    customObs.put("is_custom", true);
+                                    customObs.put("name", mCurrentSearchString);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-
-                                if (mShowUnknown && !mSuggestId) mResultList.add(0, null);
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        notifyDataSetChanged();
-                                    }
-                                });
-                            } else {
-                                if ((results != null) && (results.values != null)) {
-                                    mResultList = (ArrayList<JSONObject>) results.values;
-                                    if ((mCurrentSearchString != null) && (mCurrentSearchString.length() > 0)) {
-                                        // Add in the current search string as a custom observation
-                                        JSONObject customObs = new JSONObject();
-                                        try {
-                                            customObs.put("is_custom", true);
-                                            customObs.put("name", mCurrentSearchString);
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        if (!mSuggestId) mResultList.add(customObs);
-                                    }
-
-                                    if (mShowUnknown && !mSuggestId) mResultList.add(0, null);
-
-                                }
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        notifyDataSetInvalidated();
-                                    }
-                                });
+                                if (!mSuggestId) values.add(customObs);
                             }
 
+                            if (mShowUnknown && !mSuggestId) values.add(0, null);
+                            mResultList = values;
                         }
-                    }).start();
 
-                }};
-                
-                return filter;
+                        notifyDataSetInvalidated();
+                    }
+                }
+
+            };
+
+            return filter;
         }
 
         
