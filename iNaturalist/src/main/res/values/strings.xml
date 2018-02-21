@@ -695,9 +695,9 @@
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Do you think this <b>could</b> be %1$s?]]></string>
-    <string name="i_dont_know_but"><![CDATA[I don\'t know, but <b>%1$s</b> is my best guess.]]></string>
-    <string name="i_am_sure_that_this_is_not"><![CDATA[I am sure this is <b>not</b> %1$s.]]></string>
+    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
+    <string name="i_am_sure_that_this_is_not"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Submit</string>
     <string name="change_password">Change Password</string>
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
