@@ -432,18 +432,13 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesEmpty.setVisibility(View.VISIBLE);
                     mSpeciesEmptyIcon.setVisibility(View.VISIBLE);
                     mSpeciesList.setVisibility(View.GONE);
+                    mSpeciesGrid.setVisibility(View.GONE);
+
+                    mSpeciesListAdapter = new UserSpeciesAdapter(this, new ArrayList<JSONObject>());
+                    mSpeciesGridAdapter = new UserSpeciesAdapter(this, new ArrayList<JSONObject>(), UserSpeciesAdapter.VIEW_TYPE_GRID, mSpeciesGrid);
                 } else {
                     mSpeciesEmpty.setVisibility(View.GONE);
                     mSpeciesEmptyIcon.setVisibility(View.GONE);
-                    mSpeciesList.setVisibility(View.VISIBLE);
-
-                    mSpeciesListAdapter = new UserSpeciesAdapter(this, mSpecies);
-                    mSpeciesList.setAdapter(mSpeciesListAdapter);
-                    mSpeciesGridAdapter = new UserSpeciesAdapter(this, mSpecies, UserSpeciesAdapter.VIEW_TYPE_GRID, mSpeciesGrid);
-                    mSpeciesGrid.setAdapter(mSpeciesGridAdapter);
-
-                    mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
-                    mSpeciesGrid.setOnScrollListener(mSpeciesGridAdapter);
 
                     if (mIsGrid[1]) {
                         mSpeciesGrid.setVisibility(View.VISIBLE);
@@ -452,7 +447,17 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         mSpeciesGrid.setVisibility(View.GONE);
                         mSpeciesList.setVisibility(View.VISIBLE);
                     }
+
+                    mSpeciesListAdapter = new UserSpeciesAdapter(this, mSpecies);
+                    mSpeciesGridAdapter = new UserSpeciesAdapter(this, mSpecies, UserSpeciesAdapter.VIEW_TYPE_GRID, mSpeciesGrid);
                 }
+
+                mSpeciesGrid.setAdapter(mSpeciesGridAdapter);
+                mSpeciesList.setAdapter(mSpeciesListAdapter);
+
+                mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
+                mSpeciesGrid.setOnScrollListener(mSpeciesGridAdapter);
+
 
             }
         }
@@ -476,19 +481,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsEmpty.setVisibility(View.VISIBLE);
                     mIdentificationsEmptyIcon.setVisibility(View.VISIBLE);
                     mIdentificationsList.setVisibility(View.GONE);
+                    mIdentificationsGrid.setVisibility(View.GONE);
+
+                    mIdentificationsListAdapter = new UserIdentificationsAdapter(this, new ArrayList<JSONObject>(), mApp.currentUserLogin());
+                    mIdentificationsGridAdapter = new UserIdentificationsAdapter(this, new ArrayList<JSONObject>(), mApp.currentUserLogin(), true, mIdentificationsGrid);
                 } else {
                     mIdentificationsEmpty.setVisibility(View.GONE);
                     mIdentificationsEmptyIcon.setVisibility(View.GONE);
-                    mIdentificationsList.setVisibility(View.VISIBLE);
 
                     mIdentificationsListAdapter = new UserIdentificationsAdapter(this, mIdentifications, mApp.currentUserLogin());
-                    mIdentificationsList.setAdapter(mIdentificationsListAdapter);
                     mIdentificationsGridAdapter = new UserIdentificationsAdapter(this, mIdentifications, mApp.currentUserLogin(), true, mIdentificationsGrid);
-                    mIdentificationsGrid.setAdapter(mIdentificationsGridAdapter);
-
-                    // Make sure the images get loaded only when the user stops scrolling
-                    mIdentificationsList.setOnScrollListener(mIdentificationsListAdapter);
-                    mIdentificationsGrid.setOnScrollListener(mIdentificationsGridAdapter);
 
                     if (mIsGrid[2]) {
                         mIdentificationsGrid.setVisibility(View.VISIBLE);
@@ -498,6 +500,14 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         mIdentificationsList.setVisibility(View.VISIBLE);
                     }
                 }
+
+                mIdentificationsList.setAdapter(mIdentificationsListAdapter);
+                mIdentificationsGrid.setAdapter(mIdentificationsGridAdapter);
+
+                // Make sure the images get loaded only when the user stops scrolling
+                mIdentificationsList.setOnScrollListener(mIdentificationsListAdapter);
+                mIdentificationsGrid.setOnScrollListener(mIdentificationsGridAdapter);
+
             }
         }
 
