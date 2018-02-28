@@ -1416,6 +1416,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
 	private void addPlaceLayerToMap(JSONObject place) {
         if (place == null) return;
+        if (mObservationsMap == null) return;
 
         GeoJsonLayer layer = getGeoJsonLayer(place.optJSONObject("geometry_geojson"));
         if (layer == null) return;
