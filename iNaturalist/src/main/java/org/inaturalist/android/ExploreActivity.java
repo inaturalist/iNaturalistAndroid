@@ -13,6 +13,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
@@ -650,6 +651,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
 
         filterBar.setVisibility(View.VISIBLE);
+        mMapHide.setVisibility(View.GONE);
 
         StringBuilder builder = new StringBuilder();
 
@@ -1073,7 +1075,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         loadNextResultsPage(VIEW_TYPE_OBSERVERS, true);
     }
 
-    private void loadNextResultsPage(int resultsType, boolean resetResults) {
+    private void loadNextResultsPage(final int resultsType, boolean resetResults) {
         if (resetResults) {
             mCurrentResultsPage[resultsType] = 0;
         }
@@ -1104,6 +1106,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             if (mCurrentResultsPage[resultsType] > 0) {
                 mLoadingMoreResults[resultsType].setVisibility(View.VISIBLE);
+                mMapHide.setVisibility(View.GONE);
             }
         }
     }
