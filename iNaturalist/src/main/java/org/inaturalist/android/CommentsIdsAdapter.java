@@ -317,7 +317,13 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				}
 				ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
 				JSONObject taxonObject = item.getJSONObject("taxon");
-				UrlImageViewHelper.setUrlDrawable(idPic, taxonObject.optString("image_url", taxonObject.optJSONObject("default_photo").optString("square_url")), R.drawable.iconic_taxon_unknown);
+				JSONObject defaultPhoto = taxonObject.optJSONObject("default_photo");
+				if (defaultPhoto != null) {
+					UrlImageViewHelper.setUrlDrawable(idPic, taxonObject.optString("image_url", defaultPhoto.optString("square_url")), R.drawable.iconic_taxon_unknown);
+				} else {
+				    idPic.setImageResource(R.drawable.iconic_taxon_unknown);
+                }
+
 				TextView idName = (TextView) view.findViewById(R.id.id_name);
 
 				idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
