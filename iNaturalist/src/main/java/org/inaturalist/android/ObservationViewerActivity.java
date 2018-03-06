@@ -2094,15 +2094,22 @@ public class ObservationViewerActivity extends AppCompatActivity {
             return;
         }
 
-        int taxonId;
+        int taxonId = -1;
 
         if (observation.optJSONArray("identifications").length() == 1) {
             // Use current taxon
-            taxonId = observation.optInt("taxon_id");
+            if (observation.has("taxon")) {
+                JSONObject taxon = observation.optJSONObject("taxon");
+                if (taxon != null) {
+                    taxonId = taxon.optInt("id");
+                }
+            }
         } else {
             // Use community taxon
             taxonId = observation.optInt("community_taxon_id");
         }
+
+        if (taxonId == -1) return;
 
         JSONObject taxon = downloadTaxon(taxonId);
 
