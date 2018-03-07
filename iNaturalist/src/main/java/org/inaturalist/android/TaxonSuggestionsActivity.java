@@ -361,6 +361,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     }
 
     private void showTaxonComparison(int position) {
+        if (mTaxonSuggestions == null) return;
+
         Intent intent = new Intent(TaxonSuggestionsActivity.this, CompareSuggestionActivity.class);
         intent.putExtra(CompareSuggestionActivity.SUGGESTION_INDEX, position);
         if (mObservationJson != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_JSON, mObservationJson);

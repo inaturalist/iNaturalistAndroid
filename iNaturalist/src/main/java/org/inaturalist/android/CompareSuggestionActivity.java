@@ -274,6 +274,8 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     }
 
     private void refreshCurrentTaxon() {
+        if (mTaxonSuggestions == null) return;
+
         final JSONObject taxon = mTaxonSuggestions.get(mSuggestionIndex).getJSONObject().optJSONObject("taxon");
 
         mTaxonMenu.setVisibility(View.GONE);
