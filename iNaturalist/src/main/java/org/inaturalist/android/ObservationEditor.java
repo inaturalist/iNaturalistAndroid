@@ -49,6 +49,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -2171,6 +2172,28 @@ public class ObservationEditor extends AppCompatActivity {
                                 }
 
                                 mHelper.stopLoading();
+
+
+                                // #479 - Annoying hack to handle the case if the user tries to rotate the screen after the import.
+                                // For some reason, when returning from an ACTION_IMAGE_CAPTURE activity, the ObservationEditor activity
+                                // isn't in full focus, and rotating the screen doesn't affect it, unless we force a focus on one of its UI elements.
+                                mDescriptionTextView.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mDescriptionTextView.requestFocus();
+                                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                        imm.showSoftInput(mDescriptionTextView, InputMethodManager.SHOW_IMPLICIT);
+
+                                        try {
+                                            Thread.sleep(500);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                                    }
+                                }, 100);
                             }
                         });
 
@@ -2548,7 +2571,7 @@ public class ObservationEditor extends AppCompatActivity {
     	
     	return null;
     }
-    
+
 
     private void updateImageOrientation(Uri uri) {
         String imgFilePath = FileUtils.getPath(this, uri);
