@@ -291,7 +291,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
-        String[] photoInfo = mPhotoInfo.get(obsUUID);
+        String[] photoInfo = obsUUID != null ? mPhotoInfo.get(obsUUID) : null;
         boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
         boolean isBeingSynced = (mApp.getObservationIdBeingSynced() == obsId);
 
@@ -308,8 +308,14 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                         (holder.hasErrors == hasErrors) &&
                         (holder.isBeingSynced == isBeingSynced) &&
                         (holder.isBeingSynced == (mApp.getObservationIdBeingSynced() == obsId))) {
-                    // This view is already showing the current obs
-                    return view;
+                    // Make sure the screen hasn't been rotated (and that means the image will be of a different size)
+                    int desiredDimension = mGrid.getColumnWidth();
+                    int currentDimension = holder.obsImage.getLayoutParams().width;
+
+                    if (desiredDimension == currentDimension) {
+                        // This view is already showing the current obs
+                        return view;
+                    }
                 }
             }
         }
