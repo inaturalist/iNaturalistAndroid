@@ -156,6 +156,8 @@ public class ExploreActivity extends BaseFragmentActivity {
     private boolean mMapMoved = false;
     private LatLngBounds mInitialLocationBounds;
     private int[] mLastTotalResults = { NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED };
+    private boolean mMapReady = false;
+    private boolean mShouldMoveMapAccordingToSearchFilters = false;
 
     @Override
 	protected void onStart()
@@ -1165,6 +1167,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
+                        mMapReady = true;
                         mObservationsMap = googleMap;
                         mObservationsMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                             @Override
@@ -1200,6 +1203,11 @@ public class ExploreActivity extends BaseFragmentActivity {
                         });
 
                         refreshViewState();
+
+                        if (mShouldMoveMapAccordingToSearchFilters) {
+                            mShouldMoveMapAccordingToSearchFilters = false;
+                            moveMapAccordingToSearchFilters();
+                        }
                     }
                 });
                 mObservationsMapContainer = (ViewGroup) layout.findViewById(R.id.observations_map_container);
@@ -1375,6 +1383,27 @@ public class ExploreActivity extends BaseFragmentActivity {
         }).start();
     }
 
+    private void moveMapAccordingToSearchFilters() {
+        if (mSearchFilters.place != null) {
+            // New place selected for search - zoom the map to that location
+            zoomMapToPlace(mSearchFilters.place);
+
+        } else if (mSearchFilters.isCurrentLocation) {
+            // Current location - we'll be setting to current location
+            resetResults(true);
+            mLastMapBounds = null;
+            mObservationsMapMyLocation.performClick();
+            return;
+        } else if (mSearchFilters.mapBounds == null) {
+            // No place set - global search (zoom out to world map)
+            //LatLngBounds bounds = new LatLngBounds(new LatLng(-85, -180), new LatLng(85, 180));
+            LatLngBounds bounds = new LatLngBounds(new LatLng(-60, -106), new LatLng(74, 38));
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 0);
+            mMapMoved = false;
+            mObservationsMap.moveCamera(cameraUpdate);
+        }
+    }
+
 
     @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1388,23 +1417,11 @@ public class ExploreActivity extends BaseFragmentActivity {
                 // Update search filters and refresh results
                 mSearchFilters = (ExploreSearchFilters) data.getSerializableExtra(ExploreSearchActivity.SEARCH_FILTERS);
 
-                if (mSearchFilters.place != null) {
-                    // New place selected for search - zoom the map to that location
-                    zoomMapToPlace(mSearchFilters.place);
-
-                } else if (mSearchFilters.isCurrentLocation) {
-                    // Current location - we'll be setting to current location
-                    resetResults(true);
-                    mLastMapBounds = null;
-                    mObservationsMapMyLocation.performClick();
-                    return;
-                } else if (mSearchFilters.mapBounds == null) {
-                    // No place set - global search (zoom out to world map)
-                    //LatLngBounds bounds = new LatLngBounds(new LatLng(-85, -180), new LatLng(85, 180));
-                    LatLngBounds bounds = new LatLngBounds(new LatLng(-60, -106), new LatLng(74, 38));
-                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 0);
-                    mMapMoved = false;
-                    mObservationsMap.moveCamera(cameraUpdate);
+                if (mMapReady) {
+                    moveMapAccordingToSearchFilters();
+                } else {
+                    // Map not loaded yet - wait for it load before moving
+                    mShouldMoveMapAccordingToSearchFilters = true;
                 }
 
                 resetResults(true);
