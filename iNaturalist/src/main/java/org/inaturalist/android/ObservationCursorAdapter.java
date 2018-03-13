@@ -286,7 +286,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
         c.moveToPosition(position);
 
-8       final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
+        final Long obsId = c.getLong(c.getColumnIndexOrThrow(Observation._ID));
         final Long externalObsId = c.getLong(c.getColumnIndexOrThrow(Observation.ID));
         Long updatedAt = c.getLong(c.getColumnIndexOrThrow(Observation._UPDATED_AT));
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
