@@ -1278,11 +1278,13 @@ public class ObservationEditor extends AppCompatActivity {
             mObservation.latitude = null;
         } else {
             mObservation.latitude = Double.parseDouble(mLatitudeView.getText().toString());
+            mLocationManuallySet = true;
         }
         if (mLongitudeView.getText() == null || mLongitudeView.getText().length() == 0) {
             mObservation.longitude = null;
         } else {
             mObservation.longitude = Double.parseDouble(mLongitudeView.getText().toString());
+            mLocationManuallySet = true;
         }
         if (mAccuracyView.getText() == null || mAccuracyView.getText().length() == 0) {
             mObservation.positional_accuracy = null;
