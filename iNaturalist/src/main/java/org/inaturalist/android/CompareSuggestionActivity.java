@@ -171,7 +171,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         refreshViews();
 
 
-        if (mTaxonSuggestions.size() == 1) {
+        if ((mTaxonSuggestions != null) && mTaxonSuggestions.size() == 1)) {
             JSONObject taxon = mTaxonSuggestions.get(0).getJSONObject().optJSONObject("taxon");
 
             if (!taxon.has("taxon_photos")) {
