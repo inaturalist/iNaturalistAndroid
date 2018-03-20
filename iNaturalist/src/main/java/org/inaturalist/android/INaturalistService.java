@@ -317,6 +317,7 @@ public class INaturalistService extends IntentService {
 
     private String mNearByObservationsUrl;
     private int mLastStatusCode = 0;
+    private Object mObservationLock = new Object();
 
     public enum LoginType {
         PASSWORD,
@@ -1123,12 +1124,15 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_OBSERVATION)) {
                 int id = intent.getExtras().getInt(OBSERVATION_ID);
                 JSONObject observationJson = getObservationJson(id, false);
-                Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
-                mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
-                mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? observationJson.toString() : null);
+                synchronized (mObservationLock) {
+                    Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
+
+                    mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
+                    mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? observationJson.toString() : null);
+                }
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
