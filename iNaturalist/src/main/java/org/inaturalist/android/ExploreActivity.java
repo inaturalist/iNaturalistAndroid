@@ -1167,12 +1167,18 @@ public class ExploreActivity extends BaseFragmentActivity {
                 ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
-                        mMapReady = true;
                         mObservationsMap = googleMap;
                         mObservationsMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                             @Override
                             public void onMapClick(LatLng latLng) {
                                 onObservationsMapClick(latLng);
+                            }
+                        });
+
+                        mObservationsMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                            @Override
+                            public void onMapLoaded() {
+                                mMapReady = true;
                             }
                         });
 
