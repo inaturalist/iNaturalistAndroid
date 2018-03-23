@@ -56,7 +56,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback, DialogInterface.OnClickListener {
+public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback, DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
 	public static String TAG = "INAT:ObservationListActivity";
 
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
@@ -136,6 +136,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private TextView mAddButtonText;
 
     private boolean mFromObsEdit = false;
+    private ViewGroup mLoadingMoreResults;
 
 
     @Override
@@ -165,6 +166,28 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         // User chose to cancel sync
         mApp.setCancelSync(true);
         refreshSyncBar();
+    }
+
+    @Override
+    public void onLoadingMoreResultsStart() {
+        mLoadingMoreResults.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onLoadingMoreResultsFinish() {
+        mLoadingMoreResults.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void onLoadingMoreResultsFailed() {
+        mLoadingMoreResults.setVisibility(View.GONE);
+        (new Handler()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.not_connected), Toast.LENGTH_LONG).show();
+            }
+        }, 100);
     }
 
     private class SyncCompleteReceiver extends BroadcastReceiver {
@@ -918,6 +941,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             LayoutInflater inflater = LayoutInflater.from(mContext);
             ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.observations_list_grid, collection, false);
 
+            ((ViewGroup) layout.findViewById(R.id.loading_more_results)).setVisibility(View.GONE);
+
             switch (position) {
                 case 2:
                     mLoadingIdentifications = (ProgressBar) layout.findViewById(R.id.loading);
@@ -1005,6 +1030,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsEmptyIcon.setImageResource(R.drawable.ic_empty_binoculars);
                     mObservationsList = (PullToRefreshListView) layout.findViewById(R.id.list);
                     mObservationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
+                    mLoadingMoreResults = (ViewGroup) layout.findViewById(R.id.loading_more_results);
 
                     mOnboardingSyncing = (ViewGroup) layout.findViewById(R.id.onboarding_syncing);
                     mOnboardingSyncingClose = layout.findViewById(R.id.onboarding_syncing_close);
@@ -1149,6 +1175,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mObservationsGrid.setAdapter(mObservationGridAdapter);
                     mObservationsList.setAdapter(mObservationListAdapter);
 
+                    mObservationGridAdapter.setOnLoadingMoreResultsListener(ObservationListActivity.this);
+                    mObservationListAdapter.setOnLoadingMoreResultsListener(ObservationListActivity.this);
+
                     mObservationsList.setOnScrollListener(mObservationListAdapter);
                     mObservationsGrid.setOnScrollListener(mObservationGridAdapter);
 
@@ -1212,6 +1241,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             return view == object;
         }
     }
+
 
     // Method to add a TabHost
     private void addTab(int position, View tabContent) {

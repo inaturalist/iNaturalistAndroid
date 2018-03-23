@@ -117,6 +117,7 @@ public class INaturalistService extends IntentService {
     public static final String USER_OBSERVATIONS_RESULT = "user_observations_result";
     public static final String USER_SEARCH_OBSERVATIONS_RESULT = "user_search_observations_result";
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
+    public static final String SUCCESS = "success";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
     public static final String EXPLORE_GET_OBSERVATIONS_RESULT = "explore_get_observations_result";
@@ -194,6 +195,7 @@ public class INaturalistService extends IntentService {
             android.os.Build.PRODUCT + ")";
     public static String ACTION_REGISTER_USER = "register_user";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
+    public static String ACTION_GET_ADDITIONAL_OBS = "get_additional_observations";
     public static String ACTION_ADD_IDENTIFICATION = "add_identification";
     public static String ACTION_ADD_PROJECT_FIELD = "add_project_field";
     public static String ACTION_ADD_FAVORITE = "add_favorite";
@@ -249,7 +251,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_DELETE_COMMENT = "delete_comment";
     public static String ACTION_SYNC_COMPLETE = "sync_complete";
     public static String ACTION_GET_AND_SAVE_OBSERVATION_RESULT = "get_and_save_observation_result";
-    public static String ACTION_OBSERVATION_RESULT = "observation_result";
+    public static String ACTION_GET_ADDITIONAL_OBS_RESULT = "get_additional_obs_result";
+    public static String ACTION_OBSERVATION_RESULT = "action_observation_result";
     public static String ACTION_JOINED_PROJECTS_RESULT = "joined_projects_result";
     public static String ACTION_NEARBY_PROJECTS_RESULT = "nearby_projects_result";
     public static String ACTION_FEATURED_PROJECTS_RESULT = "featured_projects_result";
@@ -471,6 +474,25 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_REMOVE_FAVORITE)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 removeFavorite(observationId);
+
+            } else if (action.equals(ACTION_GET_ADDITIONAL_OBS)) {
+                // Get timestamp of oldest observation (so we'll know to download observations than this)
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '"+mLogin+"')",
+                        null,
+                        Observation.DEFAULT_SORT_ORDER);
+                c.moveToLast();
+                BetterCursor bc = new BetterCursor(c);
+                Long lastObTsLong = bc.getLong(Observation.CREATED_AT);
+                Timestamp lastObsTs = new Timestamp(lastObTsLong - 1);
+                c.close();
+
+                boolean success = getAdditionalUserObservations(20, lastObsTs);
+
+                Intent reply = new Intent(ACTION_GET_ADDITIONAL_OBS_RESULT);
+                reply.putExtra(SUCCESS, success);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -3276,6 +3298,36 @@ public class INaturalistService extends IntentService {
         }
 
         return new SerializableJSONArray(finalJson);
+    }
+
+
+    @SuppressLint("NewApi")
+    private boolean getAdditionalUserObservations(int maxCount, Timestamp lastDate) throws AuthenticationException {
+        if (ensureCredentials() == false) {
+            return false;
+        }
+        String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=" + maxCount + "&created_d2=" + URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastDate));
+
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage =   deviceLocale.getLanguage();
+        url += "&locale=" + deviceLanguage;
+
+        mProjectObservations = new ArrayList<SerializableJSONArray>();
+        mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
+
+        JSONArray json = get(url, true);
+        if (json != null && json.length() > 0) {
+            try {
+                JSONArray results = json.getJSONObject(0).getJSONArray("results");
+                syncJson(results, true);
+                return true;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 

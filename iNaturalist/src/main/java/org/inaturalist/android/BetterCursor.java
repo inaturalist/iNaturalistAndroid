@@ -48,7 +48,16 @@ public class BetterCursor implements Serializable {
 		}
 		return mCursor.getInt(mCursor.getColumnIndexOrThrow(name));
 	}
-	
+
+	public Long getLong(String name) {
+		mCursor.moveToPosition(mPosition);
+		if (mCursor.isNull(mCursor.getColumnIndexOrThrow(name))) {
+			return null;
+		}
+		return mCursor.getLong(mCursor.getColumnIndexOrThrow(name));
+	}
+
+
 	public Integer getInteger(String name) {
 		return getInt(name);
 	}

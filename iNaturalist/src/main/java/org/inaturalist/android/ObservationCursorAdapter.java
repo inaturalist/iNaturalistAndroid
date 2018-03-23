@@ -2,11 +2,12 @@ package org.inaturalist.android;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -17,6 +18,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -33,10 +36,7 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,6 +63,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListView.OnScrollListener {
     private static final String TAG = "SimpleCursorAdapter";
+    private final GetAdditionalObsReceiver mGetAdditionalObsReceiver;
 
     private int mDimension;
     private HashMap<String, String[]> mPhotoInfo = new HashMap<String, String[]>();
@@ -73,6 +74,19 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private PullToRefreshGridViewExtended mGrid;
 
     private CircularProgressBar mCurrentProgressBar = null;
+    private boolean mLoadingAdditionalObs = false;
+    private OnLoadingMoreResultsListener mOnLoadingMoreResultsListener = null;
+
+
+    public interface OnLoadingMoreResultsListener {
+        void onLoadingMoreResultsStart();
+        void onLoadingMoreResultsFinish();
+        void onLoadingMoreResultsFailed();
+    }
+
+    public void setOnLoadingMoreResultsListener(OnLoadingMoreResultsListener listener) {
+        mOnLoadingMoreResultsListener = listener;
+    }
 
     public ObservationCursorAdapter(Context context, Cursor c) {
         this(context, c, false, null);
@@ -86,6 +100,32 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mApp = (INaturalistApp) mContext.getApplicationContext();
 
         getPhotoInfo();
+
+        mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(INaturalistService.ACTION_GET_ADDITIONAL_OBS_RESULT);
+        ((BaseFragmentActivity)mContext).safeRegisterReceiver(mGetAdditionalObsReceiver, filter);
+
+    }
+
+    private class GetAdditionalObsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle extras = intent.getExtras();
+
+            Boolean success = extras.getBoolean(INaturalistService.SUCCESS);
+
+            refreshPhotoInfo();
+
+            mLoadingAdditionalObs = false;
+            if (mOnLoadingMoreResultsListener != null) {
+                if (success) {
+                    mOnLoadingMoreResultsListener.onLoadingMoreResultsFinish();
+                } else {
+                    mOnLoadingMoreResultsListener.onLoadingMoreResultsFailed();
+                }
+            }
+        }
     }
 
     // Loads the photo info map from a cached file (for faster loading)
@@ -985,8 +1025,32 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
     @Override
-    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        if((firstVisibleItem + visibleItemCount >= totalItemCount - 6) && (totalItemCount > 0)) {
+            // The end has been reached - load more results
+            loadMoreObservations();
+        }
+    }
 
+    private void loadMoreObservations() {
+        if (mLoadingAdditionalObs) return;
+        if (!mApp.loggedIn()) return;
+        if (!mApp.isNetworkAvailable()) {
+            (new Handler()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(mContext, mContext.getResources().getString(R.string.not_connected), Toast.LENGTH_SHORT).show();
+                }
+            }, 100);
+            return;
+        }
+
+        mLoadingAdditionalObs = true;
+
+        if (mOnLoadingMoreResultsListener != null) mOnLoadingMoreResultsListener.onLoadingMoreResultsStart();
+
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ADDITIONAL_OBS, null, mContext, INaturalistService.class);
+        mContext.startService(serviceIntent);
     }
 
     public static int getIconicTaxonDrawable(String iconicTaxonName) {
