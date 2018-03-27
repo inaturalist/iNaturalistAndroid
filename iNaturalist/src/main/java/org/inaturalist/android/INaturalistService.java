@@ -1150,10 +1150,11 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
 
                 synchronized (mObservationLock) {
-                    Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(observationJson));
+                    String jsonString = observationJson != null ? observationJson.toString() : null;
+                    Observation observation = observationJson == null ? null : new Observation(new BetterJSONObject(jsonString));
 
                     mApp.setServiceResult(ACTION_OBSERVATION_RESULT, observation);
-                    mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? observationJson.toString() : null);
+                    mApp.setServiceResult(OBSERVATION_JSON_RESULT, observationJson != null ? jsonString : null);
                 }
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
