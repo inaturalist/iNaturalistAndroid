@@ -1028,7 +1028,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if((firstVisibleItem + visibleItemCount >= totalItemCount - 6) && (totalItemCount > 0)) {
             // The end has been reached - load more results
-            loadMoreObservations();
+            //loadMoreObservations();
         }
     }
 
