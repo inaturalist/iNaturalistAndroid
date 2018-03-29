@@ -118,6 +118,7 @@ public class INaturalistService extends IntentService {
     public static final String USER_SEARCH_OBSERVATIONS_RESULT = "user_search_observations_result";
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
     public static final String SUCCESS = "success";
+    public static final String OBSERVATION_COUNT = "observation_count";
     public static final String PROJECTS_RESULT = "projects_result";
     public static final String IDENTIFICATIONS_RESULT = "identifications_result";
     public static final String EXPLORE_GET_OBSERVATIONS_RESULT = "explore_get_observations_result";
@@ -484,14 +485,14 @@ public class INaturalistService extends IntentService {
                         Observation.DEFAULT_SORT_ORDER);
                 c.moveToLast();
                 BetterCursor bc = new BetterCursor(c);
-                Long lastObTsLong = bc.getLong(Observation.CREATED_AT);
-                Timestamp lastObsTs = new Timestamp(lastObTsLong - 1);
+                Integer lastId = bc.getInteger(Observation.ID);
                 c.close();
 
-                boolean success = getAdditionalUserObservations(20, lastObsTs);
+                int obsCount = getAdditionalUserObservations(20, lastId);
 
                 Intent reply = new Intent(ACTION_GET_ADDITIONAL_OBS_RESULT);
-                reply.putExtra(SUCCESS, success);
+                reply.putExtra(SUCCESS, obsCount > -1);
+                reply.putExtra(OBSERVATION_COUNT, obsCount);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_ADD_IDENTIFICATION)) {
@@ -3303,11 +3304,11 @@ public class INaturalistService extends IntentService {
 
 
     @SuppressLint("NewApi")
-    private boolean getAdditionalUserObservations(int maxCount, Timestamp lastDate) throws AuthenticationException {
+    private int getAdditionalUserObservations(int maxCount, Integer lastId) throws AuthenticationException {
         if (ensureCredentials() == false) {
-            return false;
+            return -1;
         }
-        String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=" + maxCount + "&created_d2=" + URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastDate));
+        String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=" + maxCount + "&id_below=" + lastId;
 
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage =   deviceLocale.getLanguage();
@@ -3321,13 +3322,13 @@ public class INaturalistService extends IntentService {
             try {
                 JSONArray results = json.getJSONObject(0).getJSONArray("results");
                 syncJson(results, true);
-                return true;
+                return results.length();
             } catch (JSONException e) {
                 e.printStackTrace();
-                return false;
+                return -1;
             }
         } else {
-            return false;
+            return -1;
         }
     }
 
@@ -4198,7 +4199,13 @@ public class INaturalistService extends IntentService {
 
                     for (int j = 0; j < jsonFields.length(); j++) {
                         BetterJSONObject field = new BetterJSONObject(jsonFields.getJSONObject(j));
-                        fields.put(field.getJSONObject("observation_field").getInt("id"), new ProjectFieldValue(field));
+                        int fieldId;
+                        if (field.has("observation_field")) {
+                            fieldId = field.getJSONObject("observation_field").getInt("id");
+                        } else {
+                            fieldId = field.getInt("field_id");
+                        }
+                        fields.put(fieldId, new ProjectFieldValue(field));
                     }
 
                     mProjectFieldValues.put(o.getInt("id"), fields);

@@ -76,6 +76,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     private CircularProgressBar mCurrentProgressBar = null;
     private boolean mLoadingAdditionalObs = false;
     private OnLoadingMoreResultsListener mOnLoadingMoreResultsListener = null;
+    private boolean mNoMoreObsLeft = false;
 
 
     public interface OnLoadingMoreResultsListener {
@@ -114,6 +115,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             Bundle extras = intent.getExtras();
 
             Boolean success = extras.getBoolean(INaturalistService.SUCCESS);
+            int obsCount = extras.getInt(INaturalistService.OBSERVATION_COUNT);
 
             refreshPhotoInfo();
 
@@ -124,6 +126,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 } else {
                     mOnLoadingMoreResultsListener.onLoadingMoreResultsFailed();
                 }
+            }
+
+            if (obsCount == 0) {
+                // No more observations left to download
+                mNoMoreObsLeft = true;
             }
         }
     }
@@ -1028,18 +1035,19 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if((firstVisibleItem + visibleItemCount >= totalItemCount - 6) && (totalItemCount > 0)) {
             // The end has been reached - load more results
-            //loadMoreObservations();
+            loadMoreObservations();
         }
     }
 
     private void loadMoreObservations() {
+        if (mNoMoreObsLeft) return;
         if (mLoadingAdditionalObs) return;
         if (!mApp.loggedIn()) return;
         if (!mApp.isNetworkAvailable()) {
             (new Handler()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(mContext, mContext.getResources().getString(R.string.not_connected), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, mContext.getResources().getString(R.string.must_be_connected_to_load_more_obs), Toast.LENGTH_SHORT).show();
                 }
             }, 100);
             return;

@@ -701,5 +701,6 @@
     <string name="submit">Submit</string>
     <string name="change_password">Change Password</string>
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
+    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
 </resources>
 

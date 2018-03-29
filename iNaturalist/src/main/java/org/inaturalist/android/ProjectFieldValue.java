@@ -103,7 +103,11 @@ public class ProjectFieldValue implements BaseColumns, Serializable {
         this.id = o.getInteger("id");
         this.observation_id = o.getInteger("observation_id");
         this.updated_at = o.getTimestamp("updated_at");
-        this.field_id = new BetterJSONObject(o.getJSONObject("observation_field")).getInteger("id");
+        if (o.has("observation_field")) {
+            this.field_id = new BetterJSONObject(o.getJSONObject("observation_field")).getInteger("id");
+        } else {
+            this.field_id = o.getInt("field_id");
+        }
         if (field_id == null) 
             this.field_id = o.getInt("observation_field_id");
         this.value = o.getString("value");
