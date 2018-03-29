@@ -632,11 +632,22 @@ public class ActivityHelper {
         }
     }
 
-    public void saveListToBundle(Bundle outState, List<JSONObject> list, String key) {
+    public boolean saveListToBundle(Bundle outState, List<JSONObject> list, String key) {
         if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
+            try {
+                JSONArray arr = new JSONArray(list);
+                outState.putString(key, arr.toString());
+                return true;
+            } catch (OutOfMemoryError exc) {
+                // Edge case - nothing we can do (not enough memory)
+                exc.printStackTrace();
+                // Try and free some memory - Not necessarily will help, but worth trying
+                System.gc();
+                return false;
+            }
         }
+
+        return true;
     }
 
     public List<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
@@ -653,6 +664,12 @@ public class ActivityHelper {
                 return results;
             } catch (JSONException exc) {
                 exc.printStackTrace();
+                return null;
+            } catch (OutOfMemoryError exc) {
+                // Edge case - nothing we can do (not enough memory)
+                exc.printStackTrace();
+                // Try and free some memory - Not necessarily will help, but worth trying
+                System.gc();
                 return null;
             }
         } else {
