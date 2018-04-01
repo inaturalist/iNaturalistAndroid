@@ -124,6 +124,7 @@ public class NewsArticle extends AppCompatActivity {
             mArticleContent.setVisibility(View.GONE);
             mArticleContentWeb.setVisibility(View.VISIBLE);
             mArticleContentWeb.setBackgroundColor(Color.TRANSPARENT);
+            mArticleContentWeb.getSettings().setJavaScriptEnabled(true);
             mArticleContentWeb.setVerticalScrollBarEnabled(false);
             String html = "" +
                 "<html>" +
