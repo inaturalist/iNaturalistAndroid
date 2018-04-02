@@ -405,6 +405,20 @@ public class INaturalistService extends IntentService {
 
                 saveJoinedProjects();
                 boolean success = getUserObservations(INITIAL_SYNC_OBSERVATION_COUNT);
+
+                Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '" + mLogin + "')",
+                        null,
+                        Observation.DEFAULT_SORT_ORDER);
+                c.moveToLast();
+
+                if (c.getCount() > 0) {
+                    BetterCursor bc = new BetterCursor(c);
+                    int lastId = bc.getInteger(Observation.ID);
+                    mPreferences.edit().putInt("last_downloaded_id", lastId).commit();
+                }
+                c.close();
                 if (!success) throw new SyncFailedException();
                 syncObservationFields();
                 postProjectObservations();
@@ -477,18 +491,7 @@ public class INaturalistService extends IntentService {
                 removeFavorite(observationId);
 
             } else if (action.equals(ACTION_GET_ADDITIONAL_OBS)) {
-                // Get timestamp of oldest observation (so we'll know to download observations than this)
-                Cursor c = getContentResolver().query(Observation.CONTENT_URI,
-                        Observation.PROJECTION,
-                        "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '"+mLogin+"')",
-                        null,
-                        Observation.DEFAULT_SORT_ORDER);
-                c.moveToLast();
-                BetterCursor bc = new BetterCursor(c);
-                Integer lastId = bc.getInteger(Observation.ID);
-                c.close();
-
-                int obsCount = getAdditionalUserObservations(20, lastId);
+                int obsCount = getAdditionalUserObservations(20);
 
                 Intent reply = new Intent(ACTION_GET_ADDITIONAL_OBS_RESULT);
                 reply.putExtra(SUCCESS, obsCount > -1);
@@ -3304,10 +3307,27 @@ public class INaturalistService extends IntentService {
 
 
     @SuppressLint("NewApi")
-    private int getAdditionalUserObservations(int maxCount, Integer lastId) throws AuthenticationException {
+    private int getAdditionalUserObservations(int maxCount) throws AuthenticationException {
         if (ensureCredentials() == false) {
             return -1;
         }
+
+
+        Integer lastId = mPreferences.getInt("last_downloaded_id", 0);
+
+        if (lastId == 0) {
+            Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '" + mLogin + "')",
+                    null,
+                    Observation.DEFAULT_SORT_ORDER);
+            c.moveToLast();
+            BetterCursor bc = new BetterCursor(c);
+            lastId = bc.getInteger(Observation.ID);
+            c.close();
+        }
+
+
         String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=" + maxCount + "&id_below=" + lastId;
 
         Locale deviceLocale = getResources().getConfiguration().locale;
@@ -3321,7 +3341,32 @@ public class INaturalistService extends IntentService {
         if (json != null && json.length() > 0) {
             try {
                 JSONArray results = json.getJSONObject(0).getJSONArray("results");
-                syncJson(results, true);
+                JSONArray newResults = new JSONArray();
+                int minId = Integer.MAX_VALUE;
+
+                // Remove any observations that were previously downloaded
+                for (int i = 0; i < results.length(); i++) {
+                    int currentId = results.getJSONObject(i).getInt("id");
+                    Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                            Observation.PROJECTION,
+                            "_id = ?",
+                            new String[] { String.valueOf( currentId )},
+                            Observation.DEFAULT_SORT_ORDER);
+
+                    if (currentId < minId) {
+                        minId = currentId;
+                    }
+
+                    if (c.getCount() == 0) {
+                        newResults.put(results.getJSONObject(i));
+                    }
+
+                    c.close();
+                }
+                syncJson(newResults, true);
+
+                mPreferences.edit().putInt("last_downloaded_id", minId).commit();
+
                 return results.length();
             } catch (JSONException e) {
                 e.printStackTrace();

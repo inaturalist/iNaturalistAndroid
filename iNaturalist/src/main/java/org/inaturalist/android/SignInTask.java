@@ -386,6 +386,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 		mPrefEditor.remove("password");
 		mPrefEditor.remove("login_type");
         mPrefEditor.remove("last_sync_time");
+        mPrefEditor.remove("last_downloaded_id");
 		mPrefEditor.commit();
 
 		int count1 = mActivity.getContentResolver().delete(Observation.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
