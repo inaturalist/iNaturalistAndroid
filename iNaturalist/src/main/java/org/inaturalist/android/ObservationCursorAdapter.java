@@ -117,6 +117,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             Boolean success = extras.getBoolean(INaturalistService.SUCCESS);
             int obsCount = extras.getInt(INaturalistService.OBSERVATION_COUNT);
 
+            refreshCursor();
             refreshPhotoInfo();
 
             mLoadingAdditionalObs = false;
@@ -176,6 +177,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             conditions += " OR user_login = '" + login + "'";
         }
         conditions += ") AND (is_deleted = 0 OR is_deleted is NULL)"; // Don't show deleted observations
+        conditions += " AND (id > " + mApp.getPrefs().getInt("last_downloaded_id", 0) + ")"; // Don't show obs that was downloaded through activity screen, etc. (not "naturally" by user)
 
         String[] selectionArgs = null;
 
