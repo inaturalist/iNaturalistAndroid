@@ -765,7 +765,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             UrlImageViewHelper.setUrlDrawable((ImageView) findViewById(R.id.user_bg), iconUrl + "?bg=1", new UrlImageViewCallback() {
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                    imageView.setImageBitmap(ImageUtils.blur(UserProfile.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                    if (loadedBitmap != null) {
+                        imageView.setImageBitmap(ImageUtils.blur(UserProfile.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                    }
                 }
 
                 @Override
