@@ -97,6 +97,7 @@
 
         <org.inaturalist.android.PullToRefreshGridViewExtended
             android:id="@+id/grid"
+            android:paddingTop="5dp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:numColumns="3"

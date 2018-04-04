@@ -940,7 +940,6 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsViewModeGrid.setColorFilter(Color.parseColor("#ffffff"));
             mObservationsViewModeMap.setSelected(false);
             mObservationsViewModeMap.setColorFilter(Color.parseColor("#676767"));
-            mLoadingObservationsGrid.setVisibility(View.VISIBLE);
 
             mObservationsMapContainer.setVisibility(View.GONE);
         } else {

@@ -196,6 +196,9 @@
 
     <org.inaturalist.android.GridViewExtended
         android:id="@+id/observations_grid"
+        android:paddingTop="5dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
