@@ -105,7 +105,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(INaturalistService.ACTION_GET_ADDITIONAL_OBS_RESULT);
-        ((BaseFragmentActivity)mContext).safeRegisterReceiver(mGetAdditionalObsReceiver, filter);
+        BaseFragmentActivity.safeRegisterReceiver(mGetAdditionalObsReceiver, filter, mContext);
 
     }
 
