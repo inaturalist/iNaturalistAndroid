@@ -337,7 +337,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         filter.addAction(INaturalistService.IDENTIFICATIONS_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mUserDetailsReceiver, filter, this);
 
-        if ((mUser == null) || (mUser.getInt("observations_count") == null)) getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
+        if ((mUser == null) || (mUser.getInt("observations_count") == null) || (mUser.getString("description") == null)) getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
         if (mSpecies == null) getUserDetails(INaturalistService.ACTION_GET_USER_SPECIES_COUNT);
         if (mObservations == null) getUserDetails(INaturalistService.ACTION_GET_USER_OBSERVATIONS);
         if (mIdentifications == null) getUserDetails(INaturalistService.ACTION_GET_USER_IDENTIFICATIONS);
