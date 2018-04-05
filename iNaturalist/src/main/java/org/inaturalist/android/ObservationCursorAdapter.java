@@ -865,6 +865,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             return;
         }
 
+        if (name == null) {
+            return;
+        }
+
         String imageUrl = name;
 
         if (!isOnline) {
