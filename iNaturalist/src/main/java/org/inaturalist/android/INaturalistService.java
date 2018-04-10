@@ -3365,7 +3365,11 @@ public class INaturalistService extends IntentService {
                 }
                 syncJson(newResults, true);
 
-                mPreferences.edit().putInt("last_downloaded_id", minId).commit();
+                if (results.length() == 0) {
+                    mPreferences.edit().putInt("last_downloaded_id", mPreferences.getInt("last_downloaded_id", 0)).commit();
+                } else {
+                    mPreferences.edit().putInt("last_downloaded_id", minId).commit();
+                }
 
                 return results.length();
             } catch (JSONException e) {
