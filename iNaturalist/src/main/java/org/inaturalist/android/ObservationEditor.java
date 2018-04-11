@@ -2111,6 +2111,17 @@ public class ObservationEditor extends AppCompatActivity {
 
 
                 importPhotos(photos, false);
+            } else {
+                if ((getIntent() != null) && (!mPhotosChanged)) {
+                    Intent intent = getIntent();
+                    if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
+                        // It's a new obs - delete it and get back to obs list
+                        delete(true);
+                        finish();
+                        return;
+                    }
+                }
+
             }
 
         } else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
