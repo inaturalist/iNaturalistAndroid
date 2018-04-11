@@ -907,6 +907,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (isOnline) {
             // Online image
+
+            // Use the small image instead of a large image (default) - to load images quickly
+            String extension = imageUrl.substring(imageUrl.lastIndexOf(".") + 1);
+            imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1) + "small." + extension;
+
             Picasso.with(mContext)
                     .load(imageUrl)
                     .fit()
