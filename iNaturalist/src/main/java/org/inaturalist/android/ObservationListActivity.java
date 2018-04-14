@@ -1405,29 +1405,35 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 return;
             }
 
-            if (intent.getAction().equals(INaturalistService.USER_DETAILS_RESULT)) {
-                // Extended user details
-                mUser = (BetterJSONObject) object;
+            if (object != null) {
+                if (intent.getAction().equals(INaturalistService.USER_DETAILS_RESULT)) {
+                    // Extended user details
+                    mUser = (BetterJSONObject) object;
 
-                SharedPreferences settings = mApp.getPrefs();
-                settings.edit().putInt("observation_count", mUser.getInt("observations_count")).commit();
+                    if (mUser.has("observations_count") && !mUser.isNull("observation_count")) {
+                        SharedPreferences settings = mApp.getPrefs();
+                        settings.edit().putInt("observation_count", mUser.getInt("observations_count")).commit();
+                    }
+                    if (mUser.has("identifications_count") && !mUser.isNull("identifications_count")) {
+                        mTotalIdentifications = mUser.getInt("identifications_count");
+                    }
 
-                mTotalIdentifications = mUser.getInt("identifications_count");
-                refreshUserDetails();
+                    refreshUserDetails();
 
-                refreshViewState();
+                    refreshViewState();
 
-                return;
-            } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
-                // Species count result
-                resultsObject = (BetterJSONObject) object;
-                totalResults = resultsObject.getInt("total_results") == null ? 0 : resultsObject.getInt("total_results") ;
-                SerializableJSONArray resultsArray = resultsObject.getJSONArray("results");
-                results = resultsArray != null ? resultsArray.getJSONArray() : new JSONArray();
-            } else {
-                // Identifications result
-                results = ((SerializableJSONArray) object).getJSONArray();
-                totalResults = results.length();
+                    return;
+                } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
+                    // Species count result
+                    resultsObject = (BetterJSONObject) object;
+                    totalResults = resultsObject.getInt("total_results") == null ? 0 : resultsObject.getInt("total_results");
+                    SerializableJSONArray resultsArray = resultsObject.getJSONArray("results");
+                    results = resultsArray != null ? resultsArray.getJSONArray() : new JSONArray();
+                } else {
+                    // Identifications result
+                    results = ((SerializableJSONArray) object).getJSONArray();
+                    totalResults = results.length();
+                }
             }
 
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
