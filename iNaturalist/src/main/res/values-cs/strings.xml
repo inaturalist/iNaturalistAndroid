@@ -345,7 +345,7 @@
   <string name="please_sign_in_for_updates">Musíte být přihlášen k zobrazení vašich aktualizací.</string>
   <string name="by_using_inat_terms"><![CDATA[Užíváním iNaturalist souhlasíte s <b><a href="http://www.inaturalist.org/pages/terms"> Podmínkami služeb</a></b> a <b><a href="http://www.inaturalist.org/pages/privacy"> Zásadami ochrany osobních údajů</a></b>]]></string>
   <string name="activity">Aktivita</string>
-  <string name="observation_count">%1$d pozorování</string>
+  <string name="observation_count">%1$s pozorování</string>
   <string name="observation_count_single">%1$d pozorování</string>
   <string name="camera">Pořídit snímek</string>
   <string name="upload_photo">Zvolit obrázek</string>
