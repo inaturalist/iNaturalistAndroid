@@ -3321,9 +3321,14 @@ public class INaturalistService extends IntentService {
                     "(is_deleted = 0 OR is_deleted is NULL) AND (user_login = '" + mLogin + "')",
                     null,
                     Observation.DEFAULT_SORT_ORDER);
-            c.moveToLast();
-            BetterCursor bc = new BetterCursor(c);
-            lastId = bc.getInteger(Observation.ID);
+
+            if (c.getCount() > 0) {
+                c.moveToLast();
+                BetterCursor bc = new BetterCursor(c);
+                lastId = bc.getInteger(Observation.ID);
+            } else {
+                lastId = Integer.MAX_VALUE;
+            }
             c.close();
         }
 
