@@ -16,7 +16,6 @@ import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 
 import io.fabric.sdk.android.Fabric;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 import java.io.BufferedInputStream;
 import java.io.File;

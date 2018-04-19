@@ -126,15 +126,20 @@ public class NewsArticle extends AppCompatActivity {
             mArticleContentWeb.setBackgroundColor(Color.TRANSPARENT);
             mArticleContentWeb.getSettings().setJavaScriptEnabled(true);
             mArticleContentWeb.setVerticalScrollBarEnabled(false);
+
             String html = "" +
                 "<html>" +
                     "<head>" +
                         "<style type=\"text/css\"> " +
-                            "body {" +
+                        "@font-face { " +
+                            "font-family: Whitney;" +
+                            "src: url(\"file:///android_asset/fonts/whitney_light_pro.otf\")" +
+                        "}" +
+                        "body {" +
                                 "line-height: 22pt;" +
                                 "margin: 0;" +
                                 "padding: 0;" +
-                                "font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
+                                "font-family: Whitney, \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
                                 "font-size: medium;" +
                             "} " +
                             "div {max-width: 100%;} " +
@@ -144,6 +149,7 @@ public class NewsArticle extends AppCompatActivity {
                         "<meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width\" >" +
                     "</head>" +
                 "<body>";
+            Log.e("AAA", mArticle.getString("body"));
             mArticleContentWeb.loadDataWithBaseURL("", html + mArticle.getString("body") + "</body></html>", "text/html", "UTF-8", "");
         } else {
             mArticleContentWeb.setVisibility(View.GONE);
