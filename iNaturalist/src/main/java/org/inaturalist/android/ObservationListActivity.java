@@ -233,6 +233,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
+                    // Trigger another sync if needed - in case the user added more obs in the meantime while sync was running
+                    triggerSyncIfNeeded();
                 }
 
                 // Decide if to show onboarding message
