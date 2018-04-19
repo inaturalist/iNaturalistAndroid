@@ -108,7 +108,7 @@
   <string name="com_facebook_usersettingsfragment_not_logged_in">No conectado</string>
   <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$, d estaban aquí</string>
   <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-  <string name="com_facebook_placepicker_subtitle_were_here_only_format">$ %1, d estuvieron aquí</string>
+  <string name="com_facebook_placepicker_subtitle_were_here_only_format">$%1,d estuvieron aquí</string>
   <string name="com_facebook_picker_done_button_text">Hecho</string>
   <string name="com_facebook_choose_friends">Elegir amigos</string>
   <string name="com_facebook_nearby">Cercanas</string>

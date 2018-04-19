@@ -548,7 +548,7 @@
   <string name="species_search">Hledání druhů</string>
   <string name="were_not_confident">Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale tady jsou naše hlavní návrhy %1$d:</string>
   <string name="top_species_suggestions">Zde jsou naše nejoblíbenější náměty %1$d druhů:</string>
-  <string name="pretty_sure_rank">Jsme si jisti, že je to v tomto% 1 $ s:</string>
+  <string name="pretty_sure_rank">Jsme si jisti, že je to v tomto %1$s:</string>
   <string name="what_did_you_see">Co jste viděli?</string>
   <string name="suggest_species">Navrhnout druhy</string>
   <string name="suggest_species_description">Navrhněte druhy podle vizuální podobnosti s fotkami.</string>
