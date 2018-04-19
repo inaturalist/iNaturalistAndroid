@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <font
+        app:fontStyle="normal"
+        android:fontStyle="normal"
+        app:fontWeight="300"
+        android:fontWeight="300"
+        app:font="@font/whitney_light_pro"
+        android:font="@font/whitney_light_pro" />
+
+     <font
+        app:fontStyle="italic"
+        android:fontStyle="italic"
+        app:fontWeight="300"
+        android:fontWeight="300"
+        app:font="@font/whitney_lightitalic_pro"
+        android:font="@font/whitney_lightitalic_pro" />
+
+    <font
+        app:fontStyle="normal"
+        android:fontStyle="normal"
+        app:fontWeight="500"
+        android:fontWeight="500"
+        app:font="@font/whitney_medium_pro"
+        android:font="@font/whitney_medium_pro" />
+
+     <font
+        app:fontStyle="italic"
+        android:fontStyle="italic"
+        app:fontWeight="500"
+        android:fontWeight="500"
+        app:font="@font/whitney_mediumitalic_pro"
+        android:font="@font/whitney_mediumitalic_pro" />
+
+
+    <font
+        app:fontStyle="normal"
+        android:fontStyle="normal"
+        app:fontWeight="600"
+        android:fontWeight="600"
+        app:font="@font/whitney_semibold_pro"
+        android:font="@font/whitney_semibold_pro" />
+
+     <font
+        app:fontStyle="italic"
+        android:fontStyle="italic"
+        app:fontWeight="600"
+        android:fontWeight="600"
+        app:font="@font/whitney_semibolditalic_pro"
+        android:font="@font/whitney_semibolditalic_pro" />
+
+     <font
+        app:fontStyle="normal"
+        android:fontStyle="normal"
+        app:fontWeight="700"
+        android:fontWeight="700"
+        app:font="@font/whitney_bold_pro"
+        android:font="@font/whitney_bold_pro" />
+
+     <font
+        app:fontStyle="italic"
+        android:fontStyle="italic"
+        app:fontWeight="700"
+        android:fontWeight="700"
+        app:font="@font/whitney_bolditalic_pro"
+        android:font="@font/whitney_bolditalic_pro" />
+
+    <font
+        app:fontStyle="normal"
+        android:fontStyle="normal"
+        app:fontWeight="900"
+        android:fontWeight="900"
+        app:font="@font/whitney_black_pro"
+        android:font="@font/whitney_black_pro" />
+
+     <font
+        app:fontStyle="italic"
+        android:fontStyle="italic"
+        app:fontWeight="900"
+        android:fontWeight="900"
+        app:font="@font/whitney_blackitalic_pro"
+        android:font="@font/whitney_blackitalic_pro" />
+</font-family>

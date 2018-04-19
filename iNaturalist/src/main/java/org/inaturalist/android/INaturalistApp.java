@@ -16,6 +16,8 @@ import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 
 import io.fabric.sdk.android.Fabric;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Timestamp;
@@ -57,11 +60,14 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.support.v4.content.res.ResourcesCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -119,15 +125,57 @@ public class INaturalistApp extends MultiDexApplication {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
-    
+
+
+    private void setDefaultFont(String staticTypefaceFieldName, int fontAsset) {
+        Typeface regular = ResourcesCompat.getFont(this, fontAsset);
+        replaceFont(staticTypefaceFieldName, regular);
+    }
+
+    private void replaceFont(String staticTypefaceFieldName, final Typeface newTypeface) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Map<String, Typeface> newMap = new HashMap<String, Typeface>();
+            newMap.put("sans-serif", newTypeface);
+            try {
+                final Field staticField = Typeface.class.getDeclaredField("sSystemFontMap");
+                staticField.setAccessible(true);
+                staticField.set(null, newMap);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                final Field staticField = Typeface.class.getDeclaredField(staticTypefaceFieldName);
+                staticField.setAccessible(true);
+                staticField.set(null, newTypeface);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        /*
+        setDefaultFont("DEFAULT", R.font.whitney);
+        setDefaultFont("MONOSPACE", R.font.whitney);
+        setDefaultFont("SERIF", R.font.whitney);
+        setDefaultFont("SANS_SERIF", R.font.whitney);
+        */
+
         Fabric.with(this, new Crashlytics());
         FacebookSdk.sdkInitialize(getApplicationContext());
         AnalyticsClient.initAnalyticsClient(this);
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_APP_LAUNCH);
+
+
 
         // Build a custom Picasso instance that uses more memory for image cache (50% of free memory
         // instead of the default 15%)
