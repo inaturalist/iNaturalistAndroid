@@ -678,15 +678,15 @@ public class TaxonSearchActivity extends AppCompatActivity {
         if (mObservationJson != null) intent.putExtra(CompareSuggestionActivity.OBSERVATION_JSON, mObservationJson);
         if (mObsIdInternal > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID_INTERNAL, mObsIdInternal);
         if (mObsId > -1) intent.putExtra(CompareSuggestionActivity.OBSERVATION_ID, mObsId);
-        JSONArray suggestions = new JSONArray();
         JSONObject suggestion = new JSONObject();
         try {
             suggestion.put("taxon", taxon);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        suggestions.put(suggestion);
-        intent.putExtra(CompareSuggestionActivity.SUGGESTIONS_JSON, suggestions.toString());
+        ArrayList<BetterJSONObject> suggestions = new ArrayList<>();
+        suggestions.add(new BetterJSONObject(suggestion));
+        CompareSuggestionActivity.setTaxonSuggestions(suggestions);
         startActivityForResult(intent, VIEW_TAXON_REQUEST_CODE);
     }
 

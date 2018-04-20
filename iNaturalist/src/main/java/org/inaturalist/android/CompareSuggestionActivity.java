@@ -556,11 +556,13 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             unregisterReceiver(mTaxonReceiver);
 
-            BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            BetterJSONObject taxon;
 
-            if (taxon == null) {
-                // Connection error
-                return;
+            if (isSharedOnApp) {
+                taxon = (BetterJSONObject) mApp.getServiceResult(intent.getAction());
+            } else {
+                taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
             }
 
             JSONObject taxonContainer = new JSONObject();

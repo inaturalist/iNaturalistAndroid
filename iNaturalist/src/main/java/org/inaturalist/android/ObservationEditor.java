@@ -3114,10 +3114,13 @@ public class ObservationEditor extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             unregisterReceiver(mTaxonReceiver);
 
-            BetterJSONObject taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            BetterJSONObject taxon;
 
-            if (taxon == null) {
-                return;
+            if (isSharedOnApp) {
+                taxon = (BetterJSONObject) mApp.getServiceResult(intent.getAction());
+            } else {
+                taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
             }
 
             if (!taxon.getInt("id").equals(mObservation.taxon_id)) {
