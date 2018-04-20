@@ -632,7 +632,8 @@ public class INaturalistService extends IntentService {
                 BetterJSONObject taxon = getTaxonNew(taxonId);
 
                 Intent reply = new Intent(ACTION_GET_TAXON_NEW_RESULT);
-                reply.putExtra(TAXON_RESULT, taxon);
+                mApp.setServiceResult(ACTION_GET_TAXON_NEW_RESULT, taxon);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_TAXON)) {
