@@ -130,7 +130,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             } else if ((mViewType == VIEW_TYPE_CARDS) && (mGrid != null)) {
                 mDimension = mGrid.getColumnWidth();
                 int lineHeight = speciesName.getLineHeight();
-                if (convertView == null) view.setLayoutParams(new LinearLayout.LayoutParams(mDimension, mDimension + (lineHeight * 2)));
+                if (convertView == null) view.setLayoutParams(new AbsListView.LayoutParams(mDimension, mDimension + (lineHeight * 2)));
             }
 
             TextView scienceName = (TextView) view.findViewById(R.id.species_science_name);
