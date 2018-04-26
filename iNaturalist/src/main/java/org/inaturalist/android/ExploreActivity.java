@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -15,6 +16,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.Manifest;
+import android.support.v4.content.PermissionChecker;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
@@ -174,6 +178,12 @@ public class ExploreActivity extends BaseFragmentActivity {
 		FlurryAgent.onEndSession(this);
 	}
 
+    private boolean isLocationPermissionGranted() {
+        return (
+                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
+                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        );
+    }
 
 
     @Override
@@ -1215,6 +1225,15 @@ public class ExploreActivity extends BaseFragmentActivity {
                             mShouldMoveMapAccordingToSearchFilters = false;
                             moveMapAccordingToSearchFilters();
                         }
+
+
+                        if (!isLocationPermissionGranted()) {
+                            // No location permissions granted - treat it as a global search
+                            mSearchFilters.mapBounds = null;
+                            mSearchFilters.isCurrentLocation = false;
+                            resetResults(true);
+                            loadAllResults();
+                        }
                     }
                 });
                 mObservationsMapContainer = (ViewGroup) layout.findViewById(R.id.observations_map_container);
@@ -1244,7 +1263,9 @@ public class ExploreActivity extends BaseFragmentActivity {
 
                 if (mLastMapBounds == null) {
                     // Initially zoom to current location
-                    mObservationsMapMyLocation.performClick();
+                    if (isLocationPermissionGranted()) {
+                        mObservationsMapMyLocation.performClick();
+                    }
                 }
 
 
