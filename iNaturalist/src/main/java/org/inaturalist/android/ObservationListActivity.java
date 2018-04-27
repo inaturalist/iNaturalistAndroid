@@ -558,7 +558,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                         "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
-                                "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
+                                "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at) AND (id IS NOT NULL)) OR " +
                                 "(is_deleted = 1)"
                         , null, ObservationPhoto.DEFAULT_SORT_ORDER);
 
@@ -566,16 +566,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 c.close();
             }
 
+            Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
+                    hasOldObs, syncCount, photoSyncCount, mUserCanceledSync));
+
+
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
             if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 startService(serviceIntent);
-
-                Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
-                        hasOldObs, syncCount, photoSyncCount, mUserCanceledSync));
-
 
                 if (mSyncingTopBar != null) {
                     mSyncingStatus.setText(R.string.syncing);
