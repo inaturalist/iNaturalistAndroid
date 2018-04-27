@@ -75,7 +75,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private class UserRegisterReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(mUserRegisterReceiver);
+            BaseFragmentActivity.safeUnregisterReceiver(mUserRegisterReceiver, LoginSignupActivity.this);
             mHelper.stopLoading();
 
             boolean status = intent.getBooleanExtra(INaturalistService.REGISTER_USER_STATUS, false);
