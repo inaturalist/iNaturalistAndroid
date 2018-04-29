@@ -9,13 +9,29 @@
         app:font="@font/whitney_light_pro"
         android:font="@font/whitney_light_pro" />
 
-     <font
+    <font
         app:fontStyle="italic"
         android:fontStyle="italic"
         app:fontWeight="300"
         android:fontWeight="300"
         app:font="@font/whitney_lightitalic_pro"
         android:font="@font/whitney_lightitalic_pro" />
+
+     <font
+        app:fontStyle="normal"
+        android:fontStyle="normal"
+        app:fontWeight="400"
+        android:fontWeight="400"
+        app:font="@font/whitney_book_pro"
+        android:font="@font/whitney_book_pro" />
+
+    <font
+        app:fontStyle="italic"
+        android:fontStyle="italic"
+        app:fontWeight="400"
+        android:fontWeight="400"
+        app:font="@font/whitney_bookitalic_pro"
+        android:font="@font/whitney_bookitalic_pro" />
 
     <font
         app:fontStyle="normal"
@@ -25,7 +41,7 @@
         app:font="@font/whitney_medium_pro"
         android:font="@font/whitney_medium_pro" />
 
-     <font
+    <font
         app:fontStyle="italic"
         android:fontStyle="italic"
         app:fontWeight="500"
@@ -42,7 +58,7 @@
         app:font="@font/whitney_semibold_pro"
         android:font="@font/whitney_semibold_pro" />
 
-     <font
+    <font
         app:fontStyle="italic"
         android:fontStyle="italic"
         app:fontWeight="600"
@@ -50,7 +66,7 @@
         app:font="@font/whitney_semibolditalic_pro"
         android:font="@font/whitney_semibolditalic_pro" />
 
-     <font
+    <font
         app:fontStyle="normal"
         android:fontStyle="normal"
         app:fontWeight="700"
@@ -58,7 +74,7 @@
         app:font="@font/whitney_bold_pro"
         android:font="@font/whitney_bold_pro" />
 
-     <font
+    <font
         app:fontStyle="italic"
         android:fontStyle="italic"
         app:fontWeight="700"
@@ -74,7 +90,7 @@
         app:font="@font/whitney_black_pro"
         android:font="@font/whitney_black_pro" />
 
-     <font
+    <font
         app:fontStyle="italic"
         android:fontStyle="italic"
         app:fontWeight="900"
