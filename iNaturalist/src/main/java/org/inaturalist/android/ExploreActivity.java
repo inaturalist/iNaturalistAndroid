@@ -270,7 +270,11 @@ public class ExploreActivity extends BaseFragmentActivity {
             }
 
             VisibleRegion vr = savedInstanceState.getParcelable("mapRegion");
-            mLastMapBounds = new LatLngBounds(new LatLng(vr.nearLeft.latitude, vr.farLeft.longitude), new LatLng(vr.farRight.latitude, vr.farRight.longitude));
+            if (vr != null) {
+                mLastMapBounds = new LatLngBounds(new LatLng(vr.nearLeft.latitude, vr.farLeft.longitude), new LatLng(vr.farRight.latitude, vr.farRight.longitude));
+            } else {
+                mLastMapBounds = null;
+            }
         }
 
         onDrawerCreate(savedInstanceState);
