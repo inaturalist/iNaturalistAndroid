@@ -1132,7 +1132,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         refreshActionBar();
         refreshTabTitles();
         refreshObservations();
-        refreshResultsView(VIEW_TYPE_SPECIES, TaxonAdapter.class);
+        refreshResultsView(VIEW_TYPE_SPECIES, UserSpeciesAdapter.class);
         refreshResultsView(VIEW_TYPE_OBSERVERS, ProjectUserAdapter.class);
         refreshResultsView(VIEW_TYPE_IDENTIFIERS, ProjectUserAdapter.class);
     }
