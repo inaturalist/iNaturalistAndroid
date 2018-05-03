@@ -457,7 +457,9 @@ public class ImageUtils {
             tempFile = new File (tempFileName);
 
             TiffOutputSet sourceSet = getSanselanOutputSet(sourceFileStream, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
+            if (sourceSet == null) return false;
             TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
+            if (destSet == null) return false;
 
             // If the EXIF data endianess of the source and destination files
             // differ then fail. This only happens if the source and
@@ -554,6 +556,11 @@ public class ImageUtils {
         TiffOutputSet outputSet = null;
 
         IImageMetadata metadata = Sanselan.getMetadata(stream, null);
+        if (!(metadata instanceof  JpegImageMetadata)) {
+            // Not a JPEG -> No EXIF data
+            return null;
+        }
+
         JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
         if (jpegMetadata != null) {
             exif = jpegMetadata.getExif();
