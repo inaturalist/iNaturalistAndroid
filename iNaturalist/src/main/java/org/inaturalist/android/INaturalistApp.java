@@ -161,11 +161,6 @@ public class INaturalistApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
-        setDefaultFont("DEFAULT", R.font.whitney);
-        setDefaultFont("MONOSPACE", R.font.whitney);
-        setDefaultFont("SERIF", R.font.whitney);
-        setDefaultFont("SANS_SERIF", R.font.whitney);
-
         Fabric.with(this, new Crashlytics());
         FacebookSdk.sdkInitialize(getApplicationContext());
         AnalyticsClient.initAnalyticsClient(this);

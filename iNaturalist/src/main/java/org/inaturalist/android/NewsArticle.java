@@ -139,8 +139,7 @@ public class NewsArticle extends AppCompatActivity {
                                 "line-height: 22pt;" +
                                 "margin: 0;" +
                                 "padding: 0;" +
-                                "font-family: Whitney, \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
-                                //"font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
+                                "font-family: \"HelveticaNeue-UltraLight\", \"Segoe UI\", \"Roboto Light\", sans-serif;" +
                                 "font-size: medium;" +
                             "} " +
                             "div {max-width: 100%;} " +
