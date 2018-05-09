@@ -13,6 +13,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
@@ -386,10 +387,14 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 ;
                     }
 
-                    BaseTarget target = new BaseTarget<BitmapDrawable>() {
+                    BaseTarget target = new BaseTarget<Drawable>() {
                         @Override
-                        public void onResourceReady(BitmapDrawable bitmap, Transition<? super BitmapDrawable> transition) {
-                            imageView.setImageBitmap(ImageUtils.scaleDownBitmapIfNeeded(mActivity, bitmap.getBitmap()));
+                        public void onResourceReady(Drawable bitmap, Transition<? super Drawable> transition) {
+                            if (bitmap instanceof BitmapDrawable) {
+                                imageView.setImageBitmap(ImageUtils.scaleDownBitmapIfNeeded(mActivity, ((BitmapDrawable)bitmap).getBitmap()));
+                            } else {
+                                imageView.setImageDrawable(bitmap);
+                            }
 
                             loading.setVisibility(View.GONE);
                             imageView.setVisibility(View.VISIBLE);
