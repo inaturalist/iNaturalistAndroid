@@ -401,7 +401,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
         mTaxonName.setText(taxonName);
         mTaxonScientificName.setText(TaxonUtils.getTaxonScientificName(mTaxon.getJSONObject()));
-        mTaxonScientificName.setTypeface(null, mTaxon.getInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+        Integer rankLevel = mTaxon.getInt("rank_level");
+        mTaxonScientificName.setTypeface(null, (rankLevel == null ? 0 : rankLevel) <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
 
         String wikiSummary = mTaxon.getString("wikipedia_summary");
 
