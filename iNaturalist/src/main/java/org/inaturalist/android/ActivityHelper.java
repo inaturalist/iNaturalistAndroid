@@ -378,7 +378,7 @@ public class ActivityHelper {
             // No need to add anything other than the above marker
             cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
 
-        } else if ((currentUser != null) && (observation.user_login.equals(currentUser)) &&
+        } else if ((currentUser != null) && (observation.user_login != null) && (observation.user_login.equals(currentUser)) &&
                 (observation.positional_accuracy != null)) {
             // Show circle of private positional accuracy
             cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
