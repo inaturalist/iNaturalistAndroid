@@ -2150,12 +2150,11 @@ public class ObservationEditor extends AppCompatActivity {
                         // Make a copy of the image into the phone's camera folder
                         String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
                         String copyPath = addPhotoToGallery(path);
-
-                        Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
-
-                        mPhotosAdded.add(createdUri.toString());
+                        Uri createdUri = null;
 
                         if (copyPath != null) {
+                            createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
+                            mPhotosAdded.add(createdUri.toString());
                             mCameraPhotos.add(copyPath);
                         }
 
