@@ -359,18 +359,22 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
     private void refreshViewState() {
         BetterJSONObject taxon = new BetterJSONObject(mMission.getJSONObject("taxon"));
-        BetterJSONObject defaultPhoto = new BetterJSONObject(taxon.getJSONObject("default_photo"));
+        JSONObject defaultPhotoJson = taxon.getJSONObject("default_photo");
 
-        UrlImageViewHelper.setUrlDrawable(mMissionBackground, defaultPhoto.getString("medium_url"), new UrlImageViewCallback() {
-            @Override
-            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-            }
+        if (defaultPhotoJson != null) {
+            BetterJSONObject defaultPhoto = new BetterJSONObject(taxon.getJSONObject("default_photo"));
 
-            @Override
-            public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                return loadedBitmap;
-            }
-        });
+            UrlImageViewHelper.setUrlDrawable(mMissionBackground, defaultPhoto.getString("medium_url"), new UrlImageViewCallback() {
+                @Override
+                public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                }
+
+                @Override
+                public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
+                    return loadedBitmap;
+                }
+            });
+        }
 
         mTaxonName.setText(taxon.getString("preferred_common_name"));
         mCollapsingToolbar.setTitle(taxon.getString("preferred_common_name"));
