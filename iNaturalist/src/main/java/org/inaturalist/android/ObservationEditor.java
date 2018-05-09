@@ -3122,6 +3122,8 @@ public class ObservationEditor extends AppCompatActivity {
                 taxon = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.TAXON_RESULT);
             }
 
+            if (taxon == null) return;
+
             if (!taxon.getInt("id").equals(mObservation.taxon_id)) {
                 // Discard result - It's a taxon result from a previous observation (happens with slow connection + swiping fast between observations)
                 return;
