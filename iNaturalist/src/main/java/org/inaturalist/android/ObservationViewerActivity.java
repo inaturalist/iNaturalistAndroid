@@ -1472,6 +1472,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             OnClickListener showUser = new OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (userObj == null) return;
                     Intent intent = new Intent(ObservationViewerActivity.this, UserProfile.class);
                     intent.putExtra("user", new BetterJSONObject(userObj));
                     startActivity(intent);
