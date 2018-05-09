@@ -100,14 +100,14 @@ dependencies {
     compile project(':library')
     compile project(':urlImageViewHelper')
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:27.0.0'
+    compile 'com.android.support:appcompat-v7:27.0.2'
     compile files('libs/FlurryAnalytics-4.2.0.jar')
     compile('com.crashlytics.sdk.android:crashlytics:2.4.0@aar') {
         transitive = true;
     }
     compile 'jp.wasabeef:picasso-transformations:2.1.2'
-    compile 'com.android.support:design:27.0.0'
-    compile 'com.android.support:support-v4:27.0.0'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:support-v4:27.0.2'
     compile 'com.google.android.gms:play-services:9.6.1'
     compile 'org.apache.commons:commons-collections4:4.0'
     compile 'org.apache.commons:commons-lang3:3.1'
@@ -124,18 +124,18 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:7.3.0'
     compile 'com.google.android.gms:play-services-identity:7.3.0'
     compile 'com.google.android.gms:play-services-gcm:7.3.0'
-    compile 'com.android.support:preference-v7:27.0.0'
+    compile 'com.android.support:preference-v7:27.0.2'
     compile 'com.amplitude:android-sdk:2.13.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.mikhaellopez:circularprogressbar:1.1.1'
-    compile 'com.android.support:exifinterface:27.0.0'
+    compile 'com.android.support:exifinterface:27.0.2'
     compile 'io.jsonwebtoken:jjwt:0.7.0'
     compile 'com.github.budowski:android-maps-utils:0.5.2'
     compile project(':smoothrescale')
     compile 'com.drewnoakes:metadata-extractor:2.11.0'
     compile 'com.github.bumptech.glide:glide:4.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
-    androidTestCompile 'com.android.support:support-annotations:27.0.0'
+    androidTestCompile 'com.android.support:support-annotations:27.0.2'
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support.test:rules:0.4.1'
     androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
