@@ -810,7 +810,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         refreshFilterBar(mFilterBar[resultsType]);
 
-        if (mTotalResults[resultsType] == NOT_LOADED) {
+        if ((mTotalResults[resultsType] == NOT_LOADED) || (mResults[resultsType] == null)) {
             mLoadingList[resultsType].setVisibility(View.VISIBLE);
             mList[resultsType].setVisibility(View.GONE);
             mListEmpty[resultsType].setVisibility(View.GONE);
@@ -895,7 +895,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             }
         });
 
-        if (mTotalResults[VIEW_TYPE_OBSERVATIONS] == NOT_LOADED) {
+        if ((mTotalResults[VIEW_TYPE_OBSERVATIONS] == NOT_LOADED) || (mResults[VIEW_TYPE_OBSERVATIONS] == null)) {
             if (mObservationsViewMode == OBSERVATIONS_VIEW_MODE_GRID) {
                 mLoadingObservationsGrid.setVisibility(View.VISIBLE);
             } else {
