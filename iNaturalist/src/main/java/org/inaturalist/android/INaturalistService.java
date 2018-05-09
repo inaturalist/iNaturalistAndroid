@@ -356,6 +356,9 @@ public class INaturalistService extends IntentService {
         mCredentials = mPreferences.getString("credentials", null);
         mLoginType = LoginType.valueOf(mPreferences.getString("login_type", LoginType.OAUTH_PASSWORD.toString()));
         mApp = (INaturalistApp) getApplicationContext();
+
+        if (intent == null) return;
+
         String action = intent.getAction();
 
         if (action == null) return;
