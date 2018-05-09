@@ -570,6 +570,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     public void onUpdateViewed(Observation obs, int position) {
         try {
             if (mActivities == null) return;
+            if (position >= mActivities.size()) return;
 
             JSONObject item = obs.id ==  mActivities.get(position).getInt("resource_id") ? mActivities.get(position) : mFollowingActivities.get(position) ;
             if (!item.getBoolean("viewed")) {
