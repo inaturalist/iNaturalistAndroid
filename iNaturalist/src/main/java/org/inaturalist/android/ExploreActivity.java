@@ -1075,7 +1075,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             mResults[i] = null;
         }
 
-        mObservationsMap.clear();
+        if (mObservationsMap != null) mObservationsMap.clear();
 
         if (resetOffsets) {
             mListViewIndex = new HashMap<>();
