@@ -47,9 +47,8 @@
 
 
      <Preference
-        android:layout="@layout/custom_preference_with_header"
+        android:layout="@layout/custom_preference"
         android:key="about"
-        android:summary="@string/credits"
         android:title="@string/about" />
 
      <Preference

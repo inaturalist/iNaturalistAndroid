@@ -251,6 +251,11 @@
 
         <activity
             android:configChanges="orientation"
+            android:name=".About" >
+        </activity>
+
+        <activity
+            android:configChanges="orientation"
             android:name=".ObservationSearchActivity" >
         </activity>
 

@@ -44,6 +44,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mNetworkPreference;
     private Preference mContactSupport;
     private Preference mVersion;
+    private Preference mAbout;
 
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
@@ -68,6 +69,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mLanguagePreference = (ListPreference) getPreferenceManager().findPreference("language");
         mNetworkPreference = (Preference) getPreferenceManager().findPreference("inat_network");
         mContactSupport = (Preference) getPreferenceManager().findPreference("contact_support");
+        mAbout = (Preference) getPreferenceManager().findPreference("about");
         mVersion = (Preference) getPreferenceManager().findPreference("version");
 
         mHelper = new ActivityHelper(getActivity());
@@ -235,6 +237,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
+                return false;
+            }
+        });
+
+        mAbout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), About.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 return false;
             }
         });
