@@ -1021,7 +1021,13 @@ public class ObservationEditor extends AppCompatActivity {
                                     if (save()) {
                                         if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
                                             // New observation - Update cached obs count
-                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE);
+                                            JSONObject params = new JSONObject();
+                                            try {
+                                                params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                            AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
 
                                             SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = prefs.edit();
@@ -1045,7 +1051,13 @@ public class ObservationEditor extends AppCompatActivity {
                 if (save()) {
                     if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
                         // New observation - Update cached obs count
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE);
+                        JSONObject params = new JSONObject();
+                        try {
+                            params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
 
                         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();

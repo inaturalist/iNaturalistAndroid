@@ -130,6 +130,7 @@ public class AnalyticsClient {
     public static final String EVENT_NAME_NEW_OBS_NO_PHOTO = "New Obs - No Photo";
     public static final String EVENT_NAME_NEW_OBS_CANCEL = "New Obs - Cancel";
     public static final String EVENT_NAME_NEW_OBS_SAVE = "New Obs - Save New Observation";
+    public static final String EVENT_PARAM_ONLINE_REACHABILITY = "Online Reachability";
 
     // iNat networks/partners
     public static final String EVENT_NAME_PARTNER_ALERT_PRESENTED = "Partner Alert Presented";
