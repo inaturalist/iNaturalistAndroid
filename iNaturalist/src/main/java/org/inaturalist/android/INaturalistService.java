@@ -47,12 +47,13 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.DefaultRedirectHandler;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -1181,6 +1182,7 @@ public class INaturalistService extends IntentService {
                 mIsSyncing = true;
                 mApp.setIsSyncing(mIsSyncing);
 
+                syncRemotelyDeletedObs();
                 boolean successful = getUserObservations(0);
 
                 if (successful) {
@@ -1280,6 +1282,7 @@ public class INaturalistService extends IntentService {
 
         mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
 
+        syncRemotelyDeletedObs();
         // First, download remote observations (new/updated)
         if (!getUserObservations(0)) throw new SyncFailedException();
 
@@ -3392,15 +3395,58 @@ public class INaturalistService extends IntentService {
 
 
     @SuppressLint("NewApi")
+    private boolean syncRemotelyDeletedObs() throws AuthenticationException, CancelSyncException {
+        if (ensureCredentials() == false) {
+            return false;
+        }
+        String url = API_HOST + "/observations/deleted";
+
+        long lastSync = mPreferences.getLong("last_sync_time", 0);
+        Timestamp lastSyncTS = new Timestamp(lastSync);
+        //url += String.format("?since=%s", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
+        url += String.format("?since=%s", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd").format(lastSyncTS)));
+
+        JSONArray json = get(url, true);
+        if (json != null && json.length() > 0) {
+            // Delete any local observations which were deleted remotely by the user
+            JSONArray results = null;
+            try {
+                results = json.getJSONObject(0).getJSONArray("results");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+            if (results.length() == 0) return true;
+
+            ArrayList<String> ids = new ArrayList<>();
+            for (int i = 0; i < results.length(); i++) {
+                ids.add(String.valueOf(results.optInt(i)));
+            }
+            String deletedIds = StringUtils.join(ids, ",");
+
+            getContentResolver().delete(Observation.CONTENT_URI, "(id IN ("+deletedIds+"))", null);
+            // Delete associated project-fields and photos
+            int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+            int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+            int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
+        }
+
+        checkForCancelSync();
+
+        return (json != null);
+    }
+
+    @SuppressLint("NewApi")
     private boolean getUserObservations(int maxCount) throws AuthenticationException, CancelSyncException {
         if (ensureCredentials() == false) {
             return false;
         }
-        String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json";
+        String url = API_HOST + "/observations?user_id=" + mLogin;
 
         long lastSync = mPreferences.getLong("last_sync_time", 0);
         Timestamp lastSyncTS = new Timestamp(lastSync);
-        url += String.format("?updated_since=%s&order_by=date_added&order=desc&extra=observation_photos,projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
+        url += String.format("&updated_since=%s&order_by=created_at&order=desc&extra=observation_photos,projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
 
         if (maxCount > 0) {
             // Retrieve only a certain number of observations
@@ -3417,25 +3463,15 @@ public class INaturalistService extends IntentService {
         JSONArray json = get(url, true);
         if (json != null && json.length() > 0) {
             Log.d(TAG, "getUserObservations");
-            syncJson(json, true);
-            return true;
-        } else {
-            if (mResponseHeaders != null) {
-                // Delete any local observations which were deleted remotely by the user
-                for (Header header : mResponseHeaders) {
-                    if (!header.getName().equalsIgnoreCase("X-Deleted-Observations")) continue;
-
-                    String deletedIds = header.getValue().trim();
-                    getContentResolver().delete(Observation.CONTENT_URI, "(id IN ("+deletedIds+"))", null);
-                    // Delete associated project-fields and photos
-                    int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-                    int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-                    int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-                    break;
-                }
-
-                mResponseHeaders = null;
+            JSONArray results = null;
+            try {
+                results = json.getJSONObject(0).getJSONArray("results");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return false;
             }
+            syncJson(results, true);
+            return true;
         }
 
         checkForCancelSync();
@@ -3941,22 +3977,13 @@ public class INaturalistService extends IntentService {
     }
 
     private JSONArray request(String url, String method, ArrayList<NameValuePair> params, JSONObject jsonContent, boolean authenticated, boolean useJWTToken, boolean allowAnonymousJWTToken) throws AuthenticationException {
-        DefaultHttpClient client = new DefaultHttpClient();
-        // Handle redirects (301/302) for all HTTP methods (including POST)
-        client.setRedirectHandler(new DefaultRedirectHandler() {
-            @Override
-            public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
-                boolean isRedirect = super.isRedirectRequested(response, context);
-                if (!isRedirect) {
-                    int responseCode = response.getStatusLine().getStatusCode();
-                    if (responseCode == 301 || responseCode == 302) {
-                        return true;
-                    }
-                }
-                return isRedirect;
-            }
-        });
-        client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(mApp));
+        CloseableHttpClient client = HttpClientBuilder.create()
+                // Faster reading of data
+                .disableContentCompression()
+                // Handle redirects (301/302) for all HTTP methods (including POST)
+                .setRedirectStrategy(new LaxRedirectStrategy())
+                .setUserAgent(getUserAgent(mApp))
+                .build();
 
 //        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
 //                authenticated ? mCredentials : "<null>",
@@ -3983,7 +4010,7 @@ public class INaturalistService extends IntentService {
             StringEntity entity = null;
             try {
                 entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
-            } catch (UnsupportedEncodingException exc) {
+            } catch (Exception exc) {
                 exc.printStackTrace();
             }
 
@@ -4411,27 +4438,6 @@ public class INaturalistService extends IntentService {
                         // Happens when the photo already exists - ignore
                     }
                 }
-            }
-        }
-
-
-        if (isUser) {
-            if (mResponseHeaders != null) {
-                // Delete any local observations which were deleted remotely by the user
-                for (Header header : mResponseHeaders) {
-                    if (!header.getName().equalsIgnoreCase("X-Deleted-Observations")) continue;
-
-                    String deletedIds = header.getValue().trim();
-                    getContentResolver().delete(Observation.CONTENT_URI, "(id IN ("+deletedIds+"))", null);
-                    // Delete associated project-fields and photos
-                    int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-                    int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-                    int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
-
-                    break;
-                }
-
-                mResponseHeaders = null;
             }
         }
 

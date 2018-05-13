@@ -197,6 +197,9 @@ public class ObservationPhoto implements BaseColumns, Serializable {
             if ((this.photo_url == null) && (photo.has("url"))) this.photo_url = photo.optString("url");
         }
 
+        if ((this.photo_url == null) && (o.has("url"))) {
+            this.photo_url = o.getString("url");
+        }
 
         if (this.photo_url != null) {
             String extension = this.photo_url.substring(this.photo_url.lastIndexOf(".") + 1);
