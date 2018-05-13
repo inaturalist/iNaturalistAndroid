@@ -5,6 +5,5 @@ gen
 res/values/com_crashlytics_export_strings.xml
 build
 .idea
-.gradle
 .iml
 local.properties
