@@ -46,10 +46,12 @@
         android:title="@string/contact_support" />
 
 
+    <!--
      <Preference
         android:layout="@layout/custom_preference"
         android:key="about"
         android:title="@string/about" />
+        -->
 
      <Preference
         android:layout="@layout/custom_preference_with_header"
