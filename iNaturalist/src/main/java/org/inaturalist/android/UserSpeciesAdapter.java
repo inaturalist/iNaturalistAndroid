@@ -160,15 +160,15 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
                     if ((photoInner != null) && (!photoInner.isNull("medium_url"))) photoUrl = photoInner.optString("medium_url");
                 }
             } else if (item.has("default_photo")) {
-                JSONObject defaultPhoto = item.getJSONObject("default_photo");
-                if (defaultPhoto.has("medium_url")) photoUrl = defaultPhoto.getString("medium_url");
+                JSONObject defaultPhoto = item.optJSONObject("default_photo");
+                if ((defaultPhoto != null) && (defaultPhoto.has("medium_url"))) photoUrl = defaultPhoto.getString("medium_url");
             }
 
             speciesPic.setVisibility(View.INVISIBLE);
             speciesIconicPic.setVisibility(View.VISIBLE);
             speciesIconicPic.setImageResource(TaxonUtils.observationIcon(item));
 
-            if (photoUrl != null) {
+            if ((photoUrl != null) && (photoUrl.length() > 0)) {
                 if ((mViewType == VIEW_TYPE_GRID) && (convertView == null)) {
                     speciesPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
                 }
