@@ -3550,7 +3550,7 @@ public class INaturalistService extends IntentService {
             } else {
                 remoteField = fields.get(Integer.valueOf(localField.field_id));
 
-                if (remoteField.updated_at.before(localField._updated_at)) {
+                if ((remoteField.updated_at != null) && (remoteField.updated_at.before(localField._updated_at))) {
                     shouldOverwriteRemote = true;
                 }
             }
