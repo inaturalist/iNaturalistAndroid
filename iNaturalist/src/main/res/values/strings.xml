@@ -705,5 +705,9 @@
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
     <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech helped developing the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. More information may be found at visipedia.org</string>
     <string name="credits_title">Credits</string>
+    <string name="attribute">Attribute</string>
+    <string name="value">Value</string>
+    <string name="disagree">Disagree</string>
+    <string name="annotations">Annotations</string>
 </resources>
 
