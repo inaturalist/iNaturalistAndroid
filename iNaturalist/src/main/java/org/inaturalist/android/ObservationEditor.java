@@ -1965,7 +1965,10 @@ public class ObservationEditor extends AppCompatActivity {
                 Integer setFirstPhotoIndex = data.getIntExtra(ObservationPhotosViewer.SET_DEFAULT_PHOTO_INDEX, -1);
                 Integer deletePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DELETE_PHOTO_INDEX, -1);
                 if (setFirstPhotoIndex > -1) {
-                    ((GalleryCursorAdapter)mGallery.getAdapter()).setAsFirstPhoto(setFirstPhotoIndex);
+                    GalleryCursorAdapter adapter = ((GalleryCursorAdapter)mGallery.getAdapter());
+                    if (setFirstPhotoIndex < adapter.getCount()) {
+                        adapter.setAsFirstPhoto(setFirstPhotoIndex);
+                    }
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
                 } else if (deletePhotoIndex > -1) {
