@@ -727,7 +727,13 @@ public class ExploreActivity extends BaseFragmentActivity {
                 break;
         }
 
-        filterBar.setText(builder.substring(0, builder.length() - 2));
+        if (builder.length() == 0) {
+            filterBar.setText("");
+            filterBar.setVisibility(View.GONE);
+        } else {
+            filterBar.setText(builder.substring(0, builder.length() - 2));
+            filterBar.setVisibility(View.VISIBLE);
+        }
 
     }
 
