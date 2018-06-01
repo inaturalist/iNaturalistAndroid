@@ -549,7 +549,7 @@
   <string name="species_search">Tür arama</string>
   <string name="were_not_confident">Bir öneri hazırlayacak kadar emin değiliz, ancak en iyi önerimiz burada: %1$d</string>
   <string name="top_species_suggestions">İşte en iyi tür önerimiz burada: %1$d</string>
-  <string name="pretty_sure_rank">Biz oldukça bu% 1$s\'s emin konum:</string>
+  <string name="pretty_sure_rank">Biz oldukça bu%1$s\'s emin konum:</string>
   <string name="what_did_you_see">Ne gördünüz?</string>
   <string name="suggest_species">Tür önerisi</string>
   <string name="suggest_species_description">Fotoğraflara benzer görsellere dayalı türler önerin.</string>

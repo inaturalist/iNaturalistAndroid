@@ -31,7 +31,7 @@
   <string name="syncing_x_observations">%1$d megfigyelés szinkronizálása...</string>
   <string name="syncing">Szinkronizálás...</string>
   <string name="updating_observations">Megfigyelések frissítése...</string>
-  <string name="updating_x_observations">Frissítés %1$ d a %2$d meglévő megfigyelések...</string>
+  <string name="updating_x_observations">Frissítés %1$d a %2$d meglévő megfigyelések...</string>
   <string name="posting_observations">Új megfigyelések közzététele...</string>
   <string name="posting_x_observations">Hozzászólás %1$d az %2$d új megfigyelésekről...</string>
   <string name="observation_sync_complete">A megfigyelési szinkron teljes</string>
