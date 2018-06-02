@@ -44,7 +44,7 @@ android {
     defaultConfig {
         applicationId "org.inaturalist.android"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 26
         multiDexEnabled true
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
