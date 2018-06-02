@@ -202,7 +202,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="release_to_refresh">Suelta para actualizar...</string>
   <string name="refreshing">Actualizando...</string>
   <string name="sync_x_observations">Sincronizando %1$d observaciones</string>
-  <string name="sync_1_observation">Sincronizando %1$d observaciones</string>
+  <string name="sync_1_observation">Sincronizando 1 observación</string>
   <string name="sync_observations">Sincronización de observaciones</string>
   <string name="lets_get_started">¡Vamos a empezar!</string>
   <string name="view_nearby_observations">Observaciones cercanas</string>

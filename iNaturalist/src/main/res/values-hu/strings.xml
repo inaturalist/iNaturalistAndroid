@@ -201,7 +201,7 @@
   <string name="release_to_refresh">A frissítéshez engedd el...</string>
   <string name="refreshing">Frissítés...</string>
   <string name="sync_x_observations">Szinkron %1$d megfigyelések</string>
-  <string name="sync_1_observation">Szinkron %1$d megfigyelések</string>
+  <string name="sync_1_observation">Szinkron 1 megfigyelések</string>
   <string name="sync_observations">Szinkron megfigyelések</string>
   <string name="lets_get_started">Lássunk neki!</string>
   <string name="view_nearby_observations">Közeli megfigyelések</string>
