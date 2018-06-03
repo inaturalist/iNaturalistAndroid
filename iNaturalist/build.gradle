@@ -37,6 +37,10 @@ android {
     buildToolsVersion '26.0.2'
     useLibrary 'org.apache.http.legacy'
 
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
     dexOptions {
         javaMaxHeapSize "4g"
     }
