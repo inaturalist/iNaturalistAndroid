@@ -68,6 +68,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.media.ExifInterface;
@@ -291,6 +292,9 @@ public class ObservationEditor extends AppCompatActivity {
         final Intent intent = getIntent();
         String action = intent != null ? intent.getAction() : null;
         String type = intent != null ? intent.getType() : null;
+
+        StrictMode.VmPolicy.Builder newBuilder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(newBuilder.build());
 
         if ((savedInstanceState == null) && (intent != null) && (intent.getData() != null)) {
             int uriMatch = ObservationProvider.URI_MATCHER.match(intent.getData());
