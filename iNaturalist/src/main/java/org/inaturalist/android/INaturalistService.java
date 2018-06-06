@@ -69,6 +69,7 @@ import com.google.android.gms.location.LocationServices;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -93,6 +94,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -329,7 +331,9 @@ public class INaturalistService extends IntentService {
         GOOGLE,
         FACEBOOK,
         OAUTH_PASSWORD
-    };
+    }
+
+    ;
 
 
     public INaturalistService() {
@@ -1259,7 +1263,7 @@ public class INaturalistService extends IntentService {
             eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, mApp.getAutoSync() ? AnalyticsClient.EVENT_VALUE_AUTOMATIC_UPLOAD : AnalyticsClient.EVENT_VALUE_MANUAL_FULL_UPLOAD);
             Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                     Observation.PROJECTION,
-                    "is_deleted = 1 AND user_login = '"+mLogin+"'",
+                    "is_deleted = 1 AND user_login = '" + mLogin + "'",
                     null,
                     Observation.DEFAULT_SORT_ORDER);
 
@@ -1268,7 +1272,7 @@ public class INaturalistService extends IntentService {
 
             c = getContentResolver().query(Observation.CONTENT_URI,
                     Observation.PROJECTION,
-                    "(_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '"+mLogin+"') OR " +
+                    "(_updated_at > _synced_at AND _synced_at IS NOT NULL AND user_login = '" + mLogin + "') OR " +
                             "(id IS NULL AND _updated_at > _created_at)",
                     null,
                     Observation.SYNC_ORDER);
@@ -1413,7 +1417,8 @@ public class INaturalistService extends IntentService {
         float currentProgress = mCurrentObservationProgress;
         float step = (100.0f / mTotalProgressForObservation);
         float newProgress = currentProgress + step;
-        if (newProgress >= 99) newProgress = 100f; // Round to 100 in case of fractions (since otherwise, we'll get to 99.99999 and similar
+        if (newProgress >= 99)
+            newProgress = 100f; // Round to 100 in case of fractions (since otherwise, we'll get to 99.99999 and similar
         mCurrentObservationProgress = newProgress;
 
         // Notify the client of the new progress (so we'll update the progress bars)
@@ -1436,7 +1441,7 @@ public class INaturalistService extends IntentService {
                 ObservationPhoto.PROJECTION,
                 "((_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL) OR (is_deleted = 1)) AND " +
                         "((observation_id = ?) OR (_observation_id = ?))",
-                new String[] { String.valueOf(externalObsId), String.valueOf(observation._id) },
+                new String[]{String.valueOf(externalObsId), String.valueOf(observation._id)},
                 ObservationPhoto.DEFAULT_SORT_ORDER);
         photoCount = c.getCount();
         c.close();
@@ -1446,7 +1451,7 @@ public class INaturalistService extends IntentService {
                 ProjectFieldValue.PROJECTION,
                 "((_synced_at IS NULL) OR (_updated_at > _synced_at AND _synced_at IS NOT NULL)) AND " +
                         "((observation_id = ?) OR (observation_id = ?))",
-                new String[] { String.valueOf(externalObsId), String.valueOf(observation._id) },
+                new String[]{String.valueOf(externalObsId), String.valueOf(observation._id)},
                 ProjectFieldValue.DEFAULT_SORT_ORDER);
         projectFieldCount = c.getCount();
         c.close();
@@ -1456,7 +1461,7 @@ public class INaturalistService extends IntentService {
                 ProjectObservation.PROJECTION,
                 "((is_deleted = 1) OR (is_new = 1)) AND " +
                         "((observation_id = ?) OR (observation_id = ?))",
-                new String[] { String.valueOf(externalObsId), String.valueOf(observation._id) },
+                new String[]{String.valueOf(externalObsId), String.valueOf(observation._id)},
                 ProjectObservation.DEFAULT_SORT_ORDER);
         projectObservationCount = c.getCount();
         c.close();
@@ -1492,7 +1497,7 @@ public class INaturalistService extends IntentService {
 
             String url = HOST + "/observations/" + Uri.encode(mLogin) + ".json?extra=observation_photos,projects,fields";
             Locale deviceLocale = getResources().getConfiguration().locale;
-            String deviceLanguage =   deviceLocale.getLanguage();
+            String deviceLanguage = deviceLocale.getLanguage();
             url += "&locale=" + deviceLanguage;
             JSONArray json = get(url, true);
             if (json != null && json.length() > 0) {
@@ -1520,7 +1525,9 @@ public class INaturalistService extends IntentService {
         params.add(new BasicNameValuePair("image", photoFilename));
 
         JSONArray json = request(url, "post", params, null, true, true, true);
-        if (json == null || json.length() == 0) { return null; }
+        if (json == null || json.length() == 0) {
+            return null;
+        }
 
         JSONObject res;
 
@@ -1539,7 +1546,9 @@ public class INaturalistService extends IntentService {
         String url = API_HOST + "/taxa/" + id + "?locale=" + deviceLanguage;
 
         JSONArray json = get(url);
-        if (json == null || json.length() == 0) { return null; }
+        if (json == null || json.length() == 0) {
+            return null;
+        }
 
         JSONObject res;
 
@@ -1560,7 +1569,9 @@ public class INaturalistService extends IntentService {
         String url = String.format("%s/taxa/%d.json?locale=%s", HOST, id, deviceLanguage);
 
         JSONArray json = get(url);
-        if (json == null || json.length() == 0) { return null; }
+        if (json == null || json.length() == 0) {
+            return null;
+        }
 
         JSONObject res;
 
@@ -1583,7 +1594,7 @@ public class INaturalistService extends IntentService {
         Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI,
                 ProjectObservation.PROJECTION,
                 "is_deleted = 1 AND observation_id = ?",
-                new String[] { String.valueOf(observation.id) },
+                new String[]{String.valueOf(observation.id)},
                 ProjectObservation.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
@@ -1609,7 +1620,7 @@ public class INaturalistService extends IntentService {
                 throw new SyncFailedException();
             }
 
-            getContentResolver().delete(ProjectObservation.CONTENT_URI, "_id = ?", new String[] { String.valueOf(projectObservation._id) });
+            getContentResolver().delete(ProjectObservation.CONTENT_URI, "_id = ?", new String[]{String.valueOf(projectObservation._id)});
 
             c.moveToNext();
         }
@@ -1620,7 +1631,7 @@ public class INaturalistService extends IntentService {
         c = getContentResolver().query(ProjectObservation.CONTENT_URI,
                 ProjectObservation.PROJECTION,
                 "is_new = 1 AND observation_id = ?",
-                new String[] { String.valueOf(observation.id) },
+                new String[]{String.valueOf(observation.id)},
                 ProjectObservation.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
@@ -1765,7 +1776,7 @@ public class INaturalistService extends IntentService {
             return false;
         }
 
-        Cursor c2 = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = '"+observationId+"'", null, Observation.DEFAULT_SORT_ORDER);
+        Cursor c2 = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = '" + observationId + "'", null, Observation.DEFAULT_SORT_ORDER);
         c2.moveToFirst();
         if (c2.getCount() == 0) {
             c2.close();
@@ -1774,7 +1785,7 @@ public class INaturalistService extends IntentService {
         Observation observation = new Observation(c2);
         c2.close();
 
-        c2 = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+projectId+"'", null, Project.DEFAULT_SORT_ORDER);
+        c2 = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '" + projectId + "'", null, Project.DEFAULT_SORT_ORDER);
         c2.moveToFirst();
         if (c2.getCount() == 0) {
             c2.close();
@@ -1833,7 +1844,7 @@ public class INaturalistService extends IntentService {
                     ContentValues cv = projectObservation.getContentValues();
                     Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI,
                             ProjectObservation.PROJECTION,
-                            "project_id = "+projectObservation.project_id+" AND observation_id = "+projectObservation.observation_id,
+                            "project_id = " + projectObservation.project_id + " AND observation_id = " + projectObservation.observation_id,
                             null, ProjectObservation.DEFAULT_SORT_ORDER);
                     if (c.getCount() == 0) {
                         getContentResolver().insert(ProjectObservation.CONTENT_URI, cv);
@@ -1891,7 +1902,7 @@ public class INaturalistService extends IntentService {
             int id = entry.getKey();
             JSONObject jsonProject = entry.getValue();
 
-            Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = ?", new String[] { String.valueOf(id) }, null);
+            Cursor c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = ?", new String[]{String.valueOf(id)}, null);
 
             if (c.getCount() == 0) {
                 Project project = new Project(new BetterJSONObject(jsonProject));
@@ -1909,7 +1920,7 @@ public class INaturalistService extends IntentService {
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
                 "is_deleted = 1 AND _observation_id = ?",
-                new String[] { String.valueOf(observation._id) },
+                new String[]{String.valueOf(observation._id)},
                 ObservationPhoto.DEFAULT_SORT_ORDER);
 
         // for each observation DELETE to /observation_photos/:id
@@ -1928,7 +1939,7 @@ public class INaturalistService extends IntentService {
             increaseProgressForObservation(observation);
 
             getContentResolver().delete(ObservationPhoto.CONTENT_URI,
-                    "id = ? or _id = ?", new String[] { String.valueOf(op.id), String.valueOf(op._id)  });
+                    "id = ? or _id = ?", new String[]{String.valueOf(op.id), String.valueOf(op._id)});
             c.moveToNext();
         }
 
@@ -1944,7 +1955,7 @@ public class INaturalistService extends IntentService {
         // Remotely delete any locally-removed observations
         Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                 Observation.PROJECTION,
-                "is_deleted = 1 AND user_login = '"+mLogin+"'",
+                "is_deleted = 1 AND user_login = '" + mLogin + "'",
                 null,
                 Observation.DEFAULT_SORT_ORDER);
 
@@ -2004,7 +2015,7 @@ public class INaturalistService extends IntentService {
 
     private JSONObject addFavorite(int observationId) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        JSONArray result = post(HOST + "/votes/vote/observation/" + observationId + ".json", (JSONObject)null);
+        JSONArray result = post(HOST + "/votes/vote/observation/" + observationId + ".json", (JSONObject) null);
 
         if (result != null) {
             try {
@@ -2054,7 +2065,7 @@ public class INaturalistService extends IntentService {
     }
 
     private void setUserViewedUpdate(int obsId) throws AuthenticationException {
-        put(HOST + "/observations/" + obsId + "/viewed_updates", (JSONObject)null);
+        put(HOST + "/observations/" + obsId + "/viewed_updates", (JSONObject) null);
     }
 
     private void restoreIdentification(int identificationId) throws AuthenticationException {
@@ -2097,7 +2108,7 @@ public class INaturalistService extends IntentService {
 
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                         Observation.PROJECTION,
-                        "id = "+ remoteObservation.id, null, Observation.DEFAULT_SORT_ORDER);
+                        "id = " + remoteObservation.id, null, Observation.DEFAULT_SORT_ORDER);
 
                 // update local observation
                 c.moveToFirst();
@@ -2181,7 +2192,7 @@ public class INaturalistService extends IntentService {
         params.add(new BasicNameValuePair("user[preferred_photo_license]", license));
         params.add(new BasicNameValuePair("user[preferred_sound_license]", license));
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         params.add(new BasicNameValuePair("user[locale]", deviceLanguage));
 
         post(HOST + "/users.json", params, false);
@@ -2295,8 +2306,10 @@ public class INaturalistService extends IntentService {
         Observation obs = new Observation(new BetterJSONObject(json));
 
         // Save the downloaded observation
-        if (mProjectObservations == null) mProjectObservations = new ArrayList<SerializableJSONArray>();
-        if (mProjectFieldValues == null) mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
+        if (mProjectObservations == null)
+            mProjectObservations = new ArrayList<SerializableJSONArray>();
+        if (mProjectFieldValues == null)
+            mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
 
         JSONArray arr = new JSONArray();
         arr.put(json);
@@ -2351,7 +2364,7 @@ public class INaturalistService extends IntentService {
             c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
                     "_updated_at > _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND observation_id = ? AND ((is_deleted == 0) OR (is_deleted IS NULL))",
-                    new String[] { String.valueOf(observationId) },
+                    new String[]{String.valueOf(observationId)},
                     ObservationPhoto.DEFAULT_SORT_ORDER);
 
             int updatedCount = c.getCount();
@@ -2361,7 +2374,7 @@ public class INaturalistService extends IntentService {
                 checkForCancelSync();
 
                 op = new ObservationPhoto(c);
-                ArrayList <NameValuePair> params = op.getParams();
+                ArrayList<NameValuePair> params = op.getParams();
                 String inatNetwork = mApp.getInaturalistNetworkMember();
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
                 params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
@@ -2396,7 +2409,7 @@ public class INaturalistService extends IntentService {
         // query observation photos where _synced_at is null (i.e. new photos)
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND (id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND (id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -2415,7 +2428,7 @@ public class INaturalistService extends IntentService {
                 continue;
             }
 
-            ArrayList <NameValuePair> params = op.getParams();
+            ArrayList<NameValuePair> params = op.getParams();
 
             String imgFilePath = op.photo_filename;
             if (imgFilePath == null) {
@@ -2440,7 +2453,7 @@ public class INaturalistService extends IntentService {
                 // Local (cached) photo was deleted - probably because the user deleted the app's cache
 
                 // First, delete this photo record
-                getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = ?", new String[] { String.valueOf(op._id) });
+                getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = ?", new String[]{String.valueOf(op._id)});
 
                 // Set errors for this obs - to notify the user that we couldn't upload the obs photos
                 JSONArray errors = new JSONArray();
@@ -2490,7 +2503,7 @@ public class INaturalistService extends IntentService {
 
         c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
-                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[] { String.valueOf(observation._id), String.valueOf(observation.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation._id), String.valueOf(observation.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
         c.close();
 
@@ -2513,18 +2526,25 @@ public class INaturalistService extends IntentService {
             @Override
             public void run() {
                 Picasso.with(INaturalistService.this).load(url).into(new Target() {
-                    @Override public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                         // cache is now warmed up
                     }
-                    @Override public void onBitmapFailed(Drawable errorDrawable) { }
-                    @Override public void onPrepareLoad(Drawable placeHolderDrawable) { }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                    }
                 });
             }
         });
     }
 
     private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -2540,7 +2560,7 @@ public class INaturalistService extends IntentService {
                 "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
                         "_updated_at < ? AND " +
                         "photo_filename IS NOT NULL",
-                new String[] { String.valueOf(cacheTime) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                new String[]{String.valueOf(cacheTime)}, ObservationPhoto.DEFAULT_SORT_ORDER);
 
         while (!c.isAfterLast()) {
             ObservationPhoto op = new ObservationPhoto(c);
@@ -2600,7 +2620,7 @@ public class INaturalistService extends IntentService {
     private String getGuideXML(Integer guideId) throws AuthenticationException {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
 
         String url = HOST + "/guides/" + guideId.toString() + ".xml?locale=" + deviceLanguage;
 
@@ -2683,7 +2703,7 @@ public class INaturalistService extends IntentService {
 
     private BetterJSONObject searchAutoComplete(String type, String query, int page) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/" + type + "/autocomplete?geo=true&locale=" + deviceLanguage + "&per_page=50&page=" + page + "&q=" + Uri.encode(query);
         JSONArray json = get(url, false);
         if (json == null) return null;
@@ -2713,9 +2733,9 @@ public class INaturalistService extends IntentService {
 
     private SerializableJSONArray getUserUpdates(boolean following) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/updates?locale=" + deviceLanguage + "&per_page=200&observations_by=" +
-                (following ? "following": "owner");
+                (following ? "following" : "owner");
         JSONArray json = request(url, "get", null, null, true, true, false); // Use JWT Token authentication
         if (json == null) return null;
         if (json.length() == 0) return null;
@@ -2739,7 +2759,7 @@ public class INaturalistService extends IntentService {
 
     private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         String url = String.format("%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&order=desc&return_bounds=true&%s",
                 API_HOST,
                 command == null ? "" : "/" + command,
@@ -2763,7 +2783,7 @@ public class INaturalistService extends IntentService {
 
     private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + deviceLanguage;
         JSONArray json = get(url, false);
         if (json == null) return null;
@@ -2805,7 +2825,7 @@ public class INaturalistService extends IntentService {
 
     private BetterJSONObject getProjectObservations(int projectId) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations?project_id=" + projectId + "&per_page=200&locale=" + deviceLanguage;
         JSONArray json = get(url);
         if (json == null) return new BetterJSONObject();
@@ -2840,12 +2860,12 @@ public class INaturalistService extends IntentService {
 
     private BetterJSONObject getMissions(Location location, String username, Integer taxonId, float expandLocationByDegress) {
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?locale=" + deviceLanguage +
                 "&verifiable=true&hrank=species&oauth_application_id=2,3";
 
         if (expandLocationByDegress == 0) {
-            url += "&lat=" + location.getLatitude()+ "&lng=" + location.getLongitude();
+            url += "&lat=" + location.getLatitude() + "&lng=" + location.getLongitude();
         } else {
             // Search for taxa in a bounding box expanded by a certain number of degrees (used to expand
             // our search in case we can't find any close taxa)
@@ -2889,7 +2909,7 @@ public class INaturalistService extends IntentService {
 
     private BetterJSONObject getProjectSpecies(int projectId) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         String url = API_HOST + "/observations/species_counts?project_id=" + projectId + "&locale=" + deviceLanguage;
         JSONArray json = get(url);
         try {
@@ -2999,7 +3019,7 @@ public class INaturalistService extends IntentService {
         List<GuideXML> offlineGuides = GuideXML.getAllOfflineGuides(this);
         List<JSONObject> guidesJson = new ArrayList<JSONObject>();
 
-        for (GuideXML guide: offlineGuides) {
+        for (GuideXML guide : offlineGuides) {
             JSONObject guideJson = new JSONObject();
             if (guideIds.contains(guide.getID())) {
                 // Guide already found in current guide results - no need to add it again
@@ -3028,8 +3048,8 @@ public class INaturalistService extends IntentService {
             return new SerializableJSONArray();
         }
 
-        double lat  = location.getLatitude();
-        double lon  = location.getLongitude();
+        double lat = location.getLatitude();
+        double lon = location.getLongitude();
 
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
@@ -3050,8 +3070,8 @@ public class INaturalistService extends IntentService {
             return new SerializableJSONArray();
         }
 
-        double lat  = location.getLatitude();
-        double lon  = location.getLongitude();
+        double lat = location.getLatitude();
+        double lon = location.getLongitude();
 
         String inatNetwork = mApp.getInaturalistNetworkMember();
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
@@ -3070,7 +3090,7 @@ public class INaturalistService extends IntentService {
         for (int i = 0; i < json.length(); i++) {
             Cursor c;
             try {
-                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
+                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '" + json.getJSONObject(i).getInt("id") + "'", null, Project.DEFAULT_SORT_ORDER);
                 c.moveToFirst();
                 int count = c.getCount();
                 c.close();
@@ -3103,7 +3123,7 @@ public class INaturalistService extends IntentService {
         for (int i = 0; i < json.length(); i++) {
             Cursor c;
             try {
-                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '"+json.getJSONObject(i).getInt("id")+"'", null, Project.DEFAULT_SORT_ORDER);
+                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '" + json.getJSONObject(i).getInt("id") + "'", null, Project.DEFAULT_SORT_ORDER);
                 c.moveToFirst();
                 int count = c.getCount();
                 c.close();
@@ -3137,7 +3157,7 @@ public class INaturalistService extends IntentService {
 
         if (projectId != -1) {
             // First, delete all previous project fields (for that project)
-            getContentResolver().delete(ProjectField.CONTENT_URI, "(project_id IS NOT NULL) and (project_id = "+projectId+")", null);
+            getContentResolver().delete(ProjectField.CONTENT_URI, "(project_id IS NOT NULL) and (project_id = " + projectId + ")", null);
 
             // Next, re-add all project fields
             for (int i = 0; i < projectFields.size(); i++) {
@@ -3149,11 +3169,11 @@ public class INaturalistService extends IntentService {
 
 
     public void flagObservationAsCaptive(int obsId) throws AuthenticationException {
-        post(String.format("%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), (JSONObject)null);
+        post(String.format("%s/observations/%d/quality/wild.json?agree=false", HOST, obsId), (JSONObject) null);
     }
 
     public void joinProject(int projectId) throws AuthenticationException {
-        post(String.format("%s/projects/%d/join.json", HOST, projectId), (JSONObject)null);
+        post(String.format("%s/projects/%d/join.json", HOST, projectId), (JSONObject) null);
 
         try {
             JSONArray result = get(String.format("%s/projects/%d.json", HOST, projectId));
@@ -3228,7 +3248,7 @@ public class INaturalistService extends IntentService {
     private SerializableJSONArray getCheckList(int id) throws AuthenticationException {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
 
         String url = String.format("%s/lists/%d.json?per_page=50&locale=%s", HOST, id, deviceLanguage);
 
@@ -3343,11 +3363,11 @@ public class INaturalistService extends IntentService {
         String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=" + maxCount + "&id_below=" + lastId;
 
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         url += "&locale=" + deviceLanguage;
 
         mProjectObservations = new ArrayList<SerializableJSONArray>();
-        mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
+        mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
 
         JSONArray json = get(url, true);
         if (json != null && json.length() > 0) {
@@ -3362,7 +3382,7 @@ public class INaturalistService extends IntentService {
                     Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                             Observation.PROJECTION,
                             "_id = ?",
-                            new String[] { String.valueOf( currentId )},
+                            new String[]{String.valueOf(currentId)},
                             Observation.DEFAULT_SORT_ORDER);
 
                     if (currentId < minId) {
@@ -3425,7 +3445,7 @@ public class INaturalistService extends IntentService {
             }
             String deletedIds = StringUtils.join(ids, ",");
 
-            getContentResolver().delete(Observation.CONTENT_URI, "(id IN ("+deletedIds+"))", null);
+            getContentResolver().delete(Observation.CONTENT_URI, "(id IN (" + deletedIds + "))", null);
             // Delete associated project-fields and photos
             int count1 = getContentResolver().delete(ObservationPhoto.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
             int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + deletedIds + ")", null);
@@ -3454,11 +3474,11 @@ public class INaturalistService extends IntentService {
         }
 
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         url += "&locale=" + deviceLanguage;
 
         mProjectObservations = new ArrayList<SerializableJSONArray>();
-        mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer,ProjectFieldValue>>();
+        mProjectFieldValues = new Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>>();
 
         JSONArray json = get(url, true);
         if (json != null && json.length() > 0) {
@@ -3489,7 +3509,7 @@ public class INaturalistService extends IntentService {
         Cursor c = getContentResolver().query(ProjectFieldValue.CONTENT_URI,
                 ProjectFieldValue.PROJECTION,
                 "_updated_at > _synced_at AND _synced_at IS NOT NULL AND observation_id = ?",
-                new String[] { String.valueOf( observation.id )},
+                new String[]{String.valueOf(observation.id)},
                 ProjectFieldValue.DEFAULT_SORT_ORDER);
 
         c.moveToFirst();
@@ -3663,7 +3683,7 @@ public class INaturalistService extends IntentService {
             Cursor obsc = getContentResolver().query(Observation.CONTENT_URI,
                     Observation.PROJECTION,
                     "id = ? AND _synced_at IS NOT NULL AND _id != ?",
-                    new String[] { localField.observation_id.toString(), localField.observation_id.toString() },
+                    new String[]{localField.observation_id.toString(), localField.observation_id.toString()},
                     ProjectFieldValue.DEFAULT_SORT_ORDER);
             int count = obsc.getCount();
             obsc.close();
@@ -3863,7 +3883,7 @@ public class INaturalistService extends IntentService {
         }
 
         Locale deviceLocale = getResources().getConfiguration().locale;
-        String deviceLanguage =   deviceLocale.getLanguage();
+        String deviceLanguage = deviceLocale.getLanguage();
         url += "&locale=" + deviceLanguage;
 
 
@@ -3946,7 +3966,8 @@ public class INaturalistService extends IntentService {
     }
 
     private String getJWTToken() {
-        if (mPreferences == null) mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+        if (mPreferences == null)
+            mPreferences = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String jwtToken = mPreferences.getString("jwt_token", null);
         Long jwtTokenExpiration = mPreferences.getLong("jwt_token_expiration", 0);
 
@@ -4028,7 +4049,8 @@ public class INaturalistService extends IntentService {
                 if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]")) {
                     // If the key equals to "image", we use FileBody to transfer the data
                     String value = params.get(i).getValue();
-                    if (value != null) entity.addPart(params.get(i).getName(), new FileBody(new File (value)));
+                    if (value != null)
+                        entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
                 } else {
                     // Normal string data
                     try {
@@ -4135,8 +4157,7 @@ public class INaturalistService extends IntentService {
                     Log.e(TAG, response.getStatusLine().toString());
                     //Log.e(TAG, response.getStatusMessage());
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             //request.abort();
             Log.w(TAG, "Error for URL " + url, e);
         }
@@ -4144,7 +4165,9 @@ public class INaturalistService extends IntentService {
     }
 
     private boolean ensureCredentials() throws AuthenticationException {
-        if (mCredentials != null) { return true; }
+        if (mCredentials != null) {
+            return true;
+        }
 
         // request login unless passive
         if (!mPassive) {
@@ -4189,7 +4212,7 @@ public class INaturalistService extends IntentService {
         }
 
         try {
-            ((HttpPost)request).setEntity(new UrlEncodedFormEntity(postParams));
+            ((HttpPost) request).setEntity(new UrlEncodedFormEntity(postParams));
         } catch (UnsupportedEncodingException e1) {
             e1.printStackTrace();
             return null;
@@ -4227,14 +4250,13 @@ public class INaturalistService extends IntentService {
 
                 String returnedUsername = json.getString("login");
 
-                return new String[] { accessToken, returnedUsername };
+                return new String[]{accessToken, returnedUsername};
 
             } else {
                 Log.e(TAG, "Authentication failed: " + content);
                 return null;
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             request.abort();
             Log.w(TAG, "Error for URL " + url, e);
         } catch (JSONException e) {
@@ -4248,7 +4270,7 @@ public class INaturalistService extends IntentService {
 
 
     /** Create a file Uri for saving an image or video */
-    private Uri getOutputMediaFileUri(Observation observation){
+    private Uri getOutputMediaFileUri(Observation observation) {
         ContentValues values = new ContentValues();
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String name = "observation_" + observation.created_at.getTime() + "_" + timeStamp;
@@ -4261,7 +4283,7 @@ public class INaturalistService extends IntentService {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         ArrayList<Integer> existingIds = new ArrayList<Integer>();
         ArrayList<Integer> newIds = new ArrayList<Integer>();
-        HashMap<Integer,Observation> jsonObservationsById = new HashMap<Integer,Observation>();
+        HashMap<Integer, Observation> jsonObservationsById = new HashMap<Integer, Observation>();
         Observation observation;
         Observation jsonObservation;
 
@@ -4304,7 +4326,7 @@ public class INaturalistService extends IntentService {
         // TODO why doesn't selectionArgs work for id IN (?)
         Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                 Observation.PROJECTION,
-                "id IN ("+joinedIds+")", null, Observation.DEFAULT_SORT_ORDER);
+                "id IN (" + joinedIds + ")", null, Observation.DEFAULT_SORT_ORDER);
 
         // update existing
         c.moveToFirst();
@@ -4331,10 +4353,10 @@ public class INaturalistService extends IntentService {
             Cursor pc = getContentResolver().query(
                     ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
-                    "(observation_id = "+observation.id + ")",
+                    "(observation_id = " + observation.id + ")",
                     null, null);
             pc.moveToFirst();
-            while(pc.isAfterLast() == false) {
+            while (pc.isAfterLast() == false) {
                 int photoId = pc.getInt(pc.getColumnIndexOrThrow(ObservationPhoto.ID));
                 if (photoId != 0) {
                     existingObservationPhotoIds.add(photoId);
@@ -4359,7 +4381,7 @@ public class INaturalistService extends IntentService {
                 opcv.put(ObservationPhoto.ID, photo.id);
                 try {
                     getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
-                } catch(SQLException ex) {
+                } catch (SQLException ex) {
                     // Happens when the photo already exists - ignore
                 }
             }
@@ -4415,7 +4437,7 @@ public class INaturalistService extends IntentService {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
                     c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
-                            "_id = ?", new String[] { String.valueOf(photo.id) }, ObservationPhoto.DEFAULT_SORT_ORDER);
+                            "_id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
                     if (c.getCount() > 0) {
                         // Photo already exists - don't save
                         c.close();
@@ -4434,7 +4456,7 @@ public class INaturalistService extends IntentService {
                     opcv.put(ObservationPhoto._ID, photo.id);
                     try {
                         getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
-                    } catch(SQLException ex) {
+                    } catch (SQLException ex) {
                         // Happens when the photo already exists - ignore
                     }
                 }
@@ -4507,9 +4529,11 @@ public class INaturalistService extends IntentService {
     }
 
     private Location getLocationFromGPS() {
-        LocationManager locationManager = (LocationManager)mApp.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) mApp.getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         String provider = locationManager.getBestProvider(criteria, false);
+        if (provider == null) return null;
+
         Location location = locationManager.getLastKnownLocation(provider);
         Log.e(TAG, "getLocationFromGPS: " + location);
 

@@ -1,14 +1,18 @@
 package org.inaturalist.android;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -22,6 +26,7 @@ import com.flurry.android.FlurryAgent;
 public class OnboardingActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
     private static final int REQUEST_CODE_SIGNUP = 0x1000;
     private static final int REQUEST_CODE_LOGIN = 0x1001;
+    private static final int PERMISSIONS_REQUEST = 0x1002;
 
     public static final String LOGIN = "login";
     public static final String SHOW_SKIP = "show_skip";
@@ -157,7 +162,12 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return;
                 }
-                mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+
+                if (ContextCompat.checkSelfPermission(OnboardingActivity.this, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(OnboardingActivity.this, new String[] { Manifest.permission.GET_ACCOUNTS }, PERMISSIONS_REQUEST);
+                } else {
+                    mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                }
             }
         });
 
@@ -169,6 +179,16 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
         }
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+            }
+        }
+    }
+
 
     @Override
     public void onLoginSuccessful() {

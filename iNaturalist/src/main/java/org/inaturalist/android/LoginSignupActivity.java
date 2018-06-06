@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +12,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
@@ -31,6 +34,8 @@ import com.facebook.login.widget.LoginButton;
 import com.flurry.android.FlurryAgent;
 
 public class LoginSignupActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
+
+    private static final int PERMISSIONS_REQUEST = 0x1000;
 
     private static String TAG = "LoginSignupActivity";
     private INaturalistApp mApp;
@@ -351,8 +356,13 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return;
                 }
-                recreateSignInTaskIfNeeded();
-                mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+
+                if (ContextCompat.checkSelfPermission(LoginSignupActivity.this, android.Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(LoginSignupActivity.this, new String[] { android.Manifest.permission.GET_ACCOUNTS }, PERMISSIONS_REQUEST);
+                } else {
+                    recreateSignInTaskIfNeeded();
+                    mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                }
             }
         });
 
@@ -394,6 +404,17 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         ((EditText)findViewById(R.id.hide_focus)).requestFocus();
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                recreateSignInTaskIfNeeded();
+                mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+            }
+        }
+    }
+
 
     private void checkFields() {
         if (((mEmail.getText().length() == 0) && (mIsSignup)) || (mPassword.getText().length() < (mIsSignup ? 6 : 1)) || (mUsername.getText().length() == 0)) {

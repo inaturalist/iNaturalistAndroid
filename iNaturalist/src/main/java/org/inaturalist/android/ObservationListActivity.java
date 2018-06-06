@@ -2,7 +2,9 @@ package org.inaturalist.android;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +21,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.content.BroadcastReceiver;
@@ -35,6 +38,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -58,6 +63,7 @@ import android.widget.Toast;
 
 public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback, DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
 	public static String TAG = "INAT:ObservationListActivity";
+    private static final int PERMISSIONS_REQUEST = 0x100;
 
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
 
@@ -326,6 +332,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         mHelper = new ActivityHelper(this);
 
         mApp = (INaturalistApp)getApplication();
+
+        if (!arePermissionsGranted()) {
+            requestPermissions();
+        }
 
         if (savedInstanceState != null) {
             mLastMessage = savedInstanceState.getString("mLastMessage");
@@ -1564,4 +1574,59 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             settings.edit().putInt("unread_activities", unreadActivities).commit();
         }
     }
+
+
+    // Checks if all requested permissions were granted by the user
+    private boolean arePermissionsGranted() {
+        String[] requestedPermissions = retrievePermissions();
+
+        for (String permission: requestedPermissions) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Requests the user for needed permissions
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, retrievePermissions(), PERMISSIONS_REQUEST);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    recreate();
+                }
+            }
+        }
+    }
+
+    // Returns requested permissions (found in AndroidManifest.xml)
+    private String[] retrievePermissions() {
+        try {
+            // android.permission.GET_ACCOUNTS
+            String[] permissions = this
+                    .getPackageManager()
+                    .getPackageInfo(this.getPackageName(), PackageManager.GET_PERMISSIONS)
+                    .requestedPermissions;
+
+            // Remove GET_ACCOUNTS permission from the list (something we'll only ask on G+ login)
+            ArrayList<String> permissionsList = new ArrayList<>(Arrays.asList(permissions));
+            if (permissionsList.contains(android.Manifest.permission.GET_ACCOUNTS)) {
+                permissionsList.remove(android.Manifest.permission.GET_ACCOUNTS);
+                return permissionsList.toArray(new String[permissionsList.size()]);
+            } else {
+                return permissions;
+            }
+
+
+        } catch (PackageManager.NameNotFoundException e) {
+            return new String[] { };
+        }
+    }
+
 }
