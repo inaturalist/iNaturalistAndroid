@@ -1,9 +1,11 @@
 package org.inaturalist.android;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -113,7 +115,7 @@ public class ObservationEditor extends AppCompatActivity {
     public static final int RESULT_DELETED = 0x1000;
     public static final int RESULT_RETURN_TO_OBSERVATION_LIST = 0x1001;
     public static final int RESULT_REFRESH_OBS = 0x1002;
-    private Uri mUri;
+    @State(AndroidStateBundlers.UriBundler.class) public Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
     private EditText mSpeciesGuessTextView;
@@ -130,8 +132,8 @@ public class ObservationEditor extends AppCompatActivity {
     private ProgressBar mLocationProgressView;
     private View mLocationRefreshButton;
     private TextView mProjectSelector;
-    private Uri mFileUri;
-    private Observation mObservation;
+    @State(AndroidStateBundlers.UriBundler.class)  public Uri mFileUri;
+    @State public Observation mObservation;
     private LocationManager mLocationManager;
     private LocationListener mLocationListener;
     private Location mCurrentLocation;
@@ -139,8 +141,8 @@ public class ObservationEditor extends AppCompatActivity {
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
     private boolean mCanceled = false;
-    private boolean mIsCaptive = false;
-    private boolean mChoseNewPhoto = false;
+    @State public boolean mIsCaptive = false;
+    @State public boolean mChoseNewPhoto = false;
     private List<Uri> mSharePhotos = null;
 
     private TaxonReceiver mTaxonReceiver;
@@ -150,8 +152,8 @@ public class ObservationEditor extends AppCompatActivity {
     private ImageButton mViewOnInat;
     private TableLayout mProjectFieldsTable;
 
-    private ArrayList<String> mPhotosAdded;
-    private ArrayList<ObservationPhoto> mPhotosRemoved;
+    @State public ArrayList<String> mPhotosAdded;
+    @State public ArrayList<ObservationPhoto> mPhotosRemoved;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
@@ -175,29 +177,29 @@ public class ObservationEditor extends AppCompatActivity {
     private ProjectReceiver mProjectReceiver;
         
     
-    private ArrayList<BetterJSONObject> mProjects = null;
+    @State public ArrayList<BetterJSONObject> mProjects = null;
     
-	private boolean mProjectFieldsUpdated = false;
+	@State public boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
-    private boolean mIsConfirmation;
-    private boolean mPictureTaken;
+    @State public boolean mIsConfirmation;
+    @State public boolean mPictureTaken;
     private ImageView mSpeciesGuessIcon;
-    private String mPreviousTaxonSearch = "";
-    private String mTaxonPicUrl;
+    @State public String mPreviousTaxonSearch = "";
+    @State public String mTaxonPicUrl;
     private boolean mIsTaxonUnknown;
     private boolean mIsCustomTaxon;
     private TextView mProjectCount;
-    private String mFirstPositionPhotoId;
-    private boolean mGettingLocation;
+    @State public String mFirstPositionPhotoId;
+    @State public boolean mGettingLocation;
     private ImageView mLocationIcon;
     private TextView mLocationGuess;
     private TextView mFindingCurrentLocation;
-    private boolean mLocationManuallySet;
-    private boolean mReturnToObservationList;
+    @State public boolean mLocationManuallySet;
+    @State public boolean mReturnToObservationList;
     private boolean mTaxonTextChanged = false;
     private boolean mTaxonSearchStarted = false;
-    private boolean mPhotosChanged = false;
-    private ArrayList<String> mCameraPhotos;
+    @State public boolean mPhotosChanged = false;
+    @State public ArrayList<String> mCameraPhotos;
     private ViewGroup mSpeciesNameOnboarding;
     private View mCloseSpeciesNameOnboarding;
     private String mScientificName;
@@ -289,6 +291,8 @@ public class ObservationEditor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
+
         final Intent intent = getIntent();
         String action = intent != null ? intent.getAction() : null;
         String type = intent != null ? intent.getType() : null;
@@ -313,9 +317,6 @@ public class ObservationEditor extends AppCompatActivity {
         } else if ((intent != null) && (action != null) && (Intent.ACTION_SEND_MULTIPLE.equals(action))) {
             // Multiple share photo with iNaturalist
             mSharePhotos = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-        } else if (savedInstanceState != null) {
-            // Show the observation editor screen
-            mIsConfirmation = savedInstanceState.getBoolean("mIsConfirmation", false);
         }
 
         mCameraPhotos = new ArrayList<String>();
@@ -404,33 +405,9 @@ public class ObservationEditor extends AppCompatActivity {
             mPhotosAdded = new ArrayList<String>();
             mPhotosRemoved = new ArrayList<ObservationPhoto>();
         } else {
-            String fileUri = savedInstanceState.getString("mFileUri");
-            if (fileUri != null) {mFileUri = Uri.parse(fileUri);}
-            String obsUri = savedInstanceState.getString("mUri");
-            if (obsUri != null) {
-                mUri = Uri.parse(obsUri);
-            } else {
+            if (mUri == null) {
                 mUri = intent.getData();
             }
-
-            mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
-            mProjects = (ArrayList<BetterJSONObject>) savedInstanceState.getSerializable("mProjects");
-            mProjectIds = savedInstanceState.getIntegerArrayList("mProjectIds");
-            mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) savedInstanceState.getSerializable("mProjectFieldValues");
-            mProjectFieldsUpdated = savedInstanceState.getBoolean("mProjectFieldsUpdated");
-            mPictureTaken = savedInstanceState.getBoolean("mPictureTaken", false);
-            mPreviousTaxonSearch = savedInstanceState.getString("mPreviousTaxonSearch");
-            mTaxonPicUrl = savedInstanceState.getString("mTaxonPicUrl");
-            mIsCaptive = savedInstanceState.getBoolean("mIsCaptive", false);
-            mFirstPositionPhotoId = savedInstanceState.getString("mFirstPositionPhotoId");
-            mGettingLocation = savedInstanceState.getBoolean("mGettingLocation");
-            mLocationManuallySet = savedInstanceState.getBoolean("mLocationManuallySet");
-            mReturnToObservationList = savedInstanceState.getBoolean("mReturnToObservationList");
-            mPhotosChanged = savedInstanceState.getBoolean("mPhotosChanged");
-            mPhotosAdded = savedInstanceState.getStringArrayList("mPhotosAdded");
-            mPhotosRemoved = (ArrayList<ObservationPhoto>) savedInstanceState.getSerializable("mPhotosRemoved");
-            mCameraPhotos = savedInstanceState.getStringArrayList("mCameraPhotos");
-            mChoseNewPhoto = savedInstanceState.getBoolean("mChoseNewPhoto");
         }
 
 
@@ -1107,34 +1084,17 @@ public class ObservationEditor extends AppCompatActivity {
         return true;
     }
 
+    @State public String big = new String(new char[1_000_000]);
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
+
         // Save away the original text, so we still have it if the activity
         // needs to be killed while paused.
-        if (mFileUri != null) { outState.putString("mFileUri", mFileUri.toString()); }
-        if (mUri != null) { outState.putString("mUri", mUri.toString()); }
         uiToObservation();
-        outState.putSerializable("mObservation", mObservation);
-        outState.putSerializable("mProjects", mProjects);
-        outState.putIntegerArrayList("mProjectIds", mProjectIds);
         uiToProjectFieldValues();
-        outState.putSerializable("mProjectFieldValues", mProjectFieldValues);
-        outState.putBoolean("mProjectFieldsUpdated", mProjectFieldsUpdated);
-        outState.putBoolean("mIsConfirmation", mIsConfirmation);
-        outState.putBoolean("mPictureTaken", mPictureTaken);
-        outState.putString("mPreviousTaxonSearch", mPreviousTaxonSearch);
-        outState.putString("mTaxonPicUrl", mTaxonPicUrl);
-        outState.putBoolean("mIsCaptive", mIsCaptive);
-        outState.putString("mFirstPositionPhotoId", mFirstPositionPhotoId);
-        outState.putBoolean("mGettingLocation", mGettingLocation);
-        outState.putBoolean("mLocationManuallySet", mLocationManuallySet);
-        outState.putBoolean("mReturnToObservationList", mReturnToObservationList);
-        outState.putBoolean("mPhotosChanged", mPhotosChanged);
-        outState.putStringArrayList("mPhotosAdded", mPhotosAdded);
-        outState.putSerializable("mPhotosRemoved", mPhotosRemoved);
-        outState.putStringArrayList("mCameraPhotos", mCameraPhotos);
-        outState.putBoolean("mChoseNewPhoto", mChoseNewPhoto);
-        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -1590,9 +1550,9 @@ public class ObservationEditor extends AppCompatActivity {
             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DATE_CHANGED);
         }
     };
-    private ArrayList<Integer> mProjectIds;
+    @State public ArrayList<Integer> mProjectIds;
     private ArrayList<ProjectField> mProjectFields;
-    private HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
+    @State public HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
 
     @Override
     protected Dialog onCreateDialog(int id) {

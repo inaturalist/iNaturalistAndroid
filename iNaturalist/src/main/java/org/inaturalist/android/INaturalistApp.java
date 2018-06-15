@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 
 import com.crashlytics.android.Crashlytics;
+import com.evernote.android.state.StateSaver;
 import com.facebook.FacebookSdk;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -12,6 +13,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.livefront.bridge.Bridge;
+import com.livefront.bridge.SavedStateHandler;
 import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
 
@@ -64,6 +67,9 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.content.res.ResourcesCompat;
@@ -167,6 +173,17 @@ public class INaturalistApp extends MultiDexApplication {
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_APP_LAUNCH);
 
+        Bridge.initialize(getApplicationContext(), new SavedStateHandler() {
+            @Override
+            public void saveInstanceState(@NonNull Object target, @NonNull Bundle state) {
+                StateSaver.saveInstanceState(target, state);
+            }
+
+            @Override
+            public void restoreInstanceState(@NonNull Object target, @Nullable Bundle state) {
+                StateSaver.restoreInstanceState(target, state);
+            }
+        });
 
 
         // Build a custom Picasso instance that uses more memory for image cache (50% of free memory
