@@ -699,7 +699,7 @@
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="i_am_sure_that_this_is_not"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Submit</string>
     <string name="change_password">Change Password</string>
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>

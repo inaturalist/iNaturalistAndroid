@@ -2318,15 +2318,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
         String taxonName = String.format("%s (%s)", name, scientificName);
         String communityTaxonName = String.format("%s (%s)", TaxonUtils.getTaxonName(this, taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
 
-        /*
-        questionText.setText(Html.fromHtml(String.format(getString(R.string.do_you_think_this_could_be), taxonName)));
-        noDisagreemenRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_dont_know_but), scientificName)));
-        disagreementRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_am_sure_that_this_is_not), communityTaxonName)));
-        */
-
         questionText.setText(Html.fromHtml(String.format(getString(R.string.do_you_think_this_could_be), communityTaxonName)));
         noDisagreemenRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_dont_know_but), taxonName)));
-        disagreementRadioButton.setText(Html.fromHtml(String.format(getString(R.string.i_am_sure_that_this_is_not), taxonName)));
+        disagreementRadioButton.setText(Html.fromHtml(String.format(getString(R.string.no_but_it_is_a_member_of_taxon), taxonName)));
 
         mHelper.confirm(getString(R.string.potential_disagreement), dialogContent, new DialogInterface.OnClickListener() {
             @Override
