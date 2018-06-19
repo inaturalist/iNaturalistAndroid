@@ -30,6 +30,8 @@ def import_crowdin_for_android(zip_path, options=None):
   dir_path = os.path.join(tempfile.mkdtemp(), extless_basename(zip_path))
   call_cmd("unzip", zip_path, "-d", dir_path)
   for path in glob("{}/*".format(dir_path)):
+    if options.locale and options.locale not in path:
+      continue
     crowdin_locale = extless_basename(path)
     locale, *sublocale = crowdin_locale.split("-")
     sublocale = None if len(sublocale) == 0 else sublocale[0]
@@ -60,26 +62,26 @@ def validate_android_translations(options=None):
   errors = {}
   warnings = {}
   for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
+    if options.locale and options.locale not in path:
+      continue
     if options.verbose:
       print("Checking {}".format(path))
     errors[path] = {}
     warnings[path] = {}
-    # if "values-cs" not in path:
-    #   continue
     tree = ET.parse(path)
     for node in tree.findall("string"):
       key = node.get("name")
+      if options.key and options.key not in key:
+        continue
       if key not in en_strings:
         continue
-      # if key != "observation_count":
-      #   continue
       en_string = en_strings[key]
-      # print(key)
-      # print(en_string)
-      # print(node.text)
+      if options.debug:
+        print("\tkey:         {}".format(key))
+        print("\ten_string:   {}".format(en_string))
+        print("\ttranslation: {}".format(node.text))
       # Ensure all variables in the English string are in the translation
       for match in re.finditer(ANDROID_FORMAT_PATTERN, en_string):
-        # variable = match.group(0)
         translation_mismatch = None
         number_of_usages = 0
         for tm in re.finditer(ANDROID_FORMAT_PATTERN, node.text):
@@ -88,18 +90,21 @@ def validate_android_translations(options=None):
           if indexes_match:
             number_of_usages += 1
           if indexes_match and not conversions_match:
-            # print("\tconversion mismatch")
             translation_mismatch = tm
         # if variable missing in node.text:
-        if translation_mismatch:
+        if translation_mismatch or number_of_usages == 0:
           if key not in errors[path]:
             errors[path][key] = []
           errors[path][key].append("Missing variable {}".format(match.group(0)))
+          if options.debug:
+            print("\t\t{}".format(errors[path][key][-1]))
         # if too many usages
         if number_of_usages > 1:
           if key not in warnings[path]:
             warnings[path][key] = []
           warnings[path][key].append("Too many usages of {}".format(match.group(0)))
+          if options.debug:
+            print("\t\t{}".format(warnings[path][key][-1]))
       # Warn about variables that are no longer present in English
       if node.text:
         en_indexes = [m.group("argument_index") for m in re.finditer(ANDROID_FORMAT_PATTERN, en_string)]
@@ -108,9 +113,13 @@ def validate_android_translations(options=None):
             if key not in errors[path]:
               errors[path][key] = []
             errors[path][key].append("Extraneous variable {}".format(tm.group(0)))
+            if options.debug:
+              print("\t\t{}".format(errors[path][key][-1]))
 
   # Print validation errors
   for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
+    if options.locale and options.locale not in path:
+      continue
     keys = list(errors[path].keys()) + list(warnings[path].keys())
     keys = [k for k in keys if k != None]
     keys = set(keys)
@@ -140,8 +149,11 @@ def main():
     Note: Python 3 required.
   """.strip()
   parser.add_option("-v", "--verbose", action="store_true", dest="verbose")
+  parser.add_option("-d", "--debug", action="store_true", dest="debug")
   parser.add_option("-f", "--file", action="store", type="string", dest="zip_path",
     help="Path to crowdin export zip file. This will replace all local versions of these files with the crowdin versions.")
+  parser.add_option("-l", "--locale", action="store", dest="locale", help="Only import and/or validate this locale")
+  parser.add_option("-k", "--key", action="store", dest="key", help="Only validate keys containing this substring")
   (options, args) = parser.parse_args()
   if options.zip_path:
     import_crowdin_for_android(options.zip_path, options)
