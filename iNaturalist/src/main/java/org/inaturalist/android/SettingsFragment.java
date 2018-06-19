@@ -241,7 +241,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        /*
         mAbout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -250,7 +249,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
             }
         });
-        */
 
         // Show app version
         try {
