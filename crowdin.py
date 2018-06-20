@@ -4,8 +4,8 @@
 #
 
 from glob import glob
-from subprocess import run
-from sys import argv
+from subprocess import run, PIPE
+import sys
 import os
 import re
 import shutil
@@ -26,7 +26,7 @@ def extless_basename(path):
 
 def import_crowdin_for_android(zip_path, options=None):
   if zip_path == __file__:
-    zip_path = argv[1]
+    zip_path = sys.argv[1]
   dir_path = os.path.join(tempfile.mkdtemp(), extless_basename(zip_path))
   call_cmd("unzip", zip_path, "-d", dir_path)
   for path in glob("{}/*".format(dir_path)):
@@ -136,6 +136,33 @@ def validate_android_translations(options=None):
         for warning in warnings[path][key]:
           print("\t\tWarning: {}".format(warning))
 
+def find_unused_keys(options=None):
+  en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
+  keys = set()
+  for node in en_tree.findall("string"):
+    keys.add(node.get("name"))
+  for node in en_tree.findall("string-array"):
+    keys.add(node.get("name"))
+  print("Looking for unused keys...")
+  unused = []
+  for key in sorted(keys):
+    if options.debug:
+      print("Checking {}".format(key))
+    else:
+      print("\rChecking {0:{1}}".format(key, 100), end="\r", flush=True)
+    result = run(["egrep", "-r", "(R\.(string|array)\.|@(string|array)\/){}".format(key), "./iNaturalist/src/main/"],
+      stdout=PIPE)
+    lines = result.stdout.decode('utf-8').strip().split("\n")
+    if not lines[0]:
+      lines = []
+    if options.debug:
+      print("\t{} uses".format(len(lines)))
+    if len(lines) == 0:
+      unused.append(key)
+  print("\r\n{} potentially unused keys (check for dynamic key generation):".format(len(unused)), flush=True)
+  for key in unused:
+    print(key)
+
 def main():
   parser = OptionParser("Usage: %prog [options]")
   parser.description = """
@@ -154,10 +181,14 @@ def main():
     help="Path to crowdin export zip file. This will replace all local versions of these files with the crowdin versions.")
   parser.add_option("-l", "--locale", action="store", dest="locale", help="Only import and/or validate this locale")
   parser.add_option("-k", "--key", action="store", dest="key", help="Only validate keys containing this substring")
+  parser.add_option("-u", "--find-unused", action="store_true", dest="find_unused", help="Show keys that don't seem to be used any more")
   (options, args) = parser.parse_args()
   if options.zip_path:
     import_crowdin_for_android(options.zip_path, options)
   validate_android_translations(options)
+  if options.find_unused:
+    print("\n\n")
+    find_unused_keys(options)
 
 if __name__ == "__main__":
   main()
