@@ -143,6 +143,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private boolean mFromObsEdit = false;
     private ViewGroup mLoadingMoreResults;
+    private boolean mRequestedPermissions = false;
 
 
     @Override
@@ -333,9 +334,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         mApp = (INaturalistApp)getApplication();
 
-        if (!arePermissionsGranted()) {
-            requestPermissions();
-        }
 
         if (savedInstanceState != null) {
             mLastMessage = savedInstanceState.getString("mLastMessage");
@@ -343,6 +341,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             mIsGrid = savedInstanceState.getBooleanArray("mIsGrid");
             mViewType = savedInstanceState.getString("mViewType");
             mUser = (BetterJSONObject) savedInstanceState.getSerializable("user");
+            mRequestedPermissions = savedInstanceState.getBoolean("mRequestedPermissions");
 
             mSpecies = loadListFromBundle(savedInstanceState, "mSpecies");
             mIdentifications = loadListFromBundle(savedInstanceState, "mIdentifications");
@@ -365,6 +364,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
             mFromObsEdit = getIntent().getBooleanExtra(PARAM_FROM_OBS_EDITOR, false);
+        }
+
+
+        if (!arePermissionsGranted() && !mRequestedPermissions) {
+            mRequestedPermissions = true;
+            requestPermissions();
         }
         
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
@@ -777,6 +782,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     protected void onSaveInstanceState(Bundle outState) {
         if (mLastMessage != null) outState.putString("mLastMessage", mLastMessage);
         outState.putBoolean("mUserCanceledSync", mUserCanceledSync);
+        outState.putBoolean("mRequestedPermissions", mRequestedPermissions);
         outState.putBooleanArray("mIsGrid", mIsGrid);
         outState.putString("mViewType", mViewType);
         outState.putSerializable("user", mUser);
