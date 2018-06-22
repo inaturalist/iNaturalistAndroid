@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.Manifest;
 import android.support.v4.content.PermissionChecker;
@@ -110,12 +112,12 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     private int mActiveViewType;
 
-    private int[] mTotalResults = { NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED };
+    private int[] mTotalResults = {NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
 
     private ExploreSearchFilters mSearchFilters;
 
     // Current search results
-    private List<JSONObject>[] mResults = (List<JSONObject>[]) new List[] {null, null, null, null };
+    private List<JSONObject>[] mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
 
     private ExploreResultsReceiver mExploreResultsReceiver;
     private LocationReceiver mLocationReceiver;
@@ -139,13 +141,13 @@ public class ExploreActivity extends BaseFragmentActivity {
     private ImageView mRedoObservationSearchIcon;
     private TextView mRedoObservationsSearchText;
 
-    private ListView[] mList = new ListView[] { null, null, null, null };
-    private ArrayAdapter[] mListAdapter =  new ArrayAdapter[] { null, null, null, null };
-    private ProgressBar[] mLoadingList = new ProgressBar[] { null, null, null, null };
-    private TextView[] mListEmpty = new TextView[] { null, null, null, null };
-    private ViewGroup[] mListHeader = new ViewGroup[] { null, null, null, null };
-    private TextView[] mFilterBar = new TextView[] { null, null, null, null };
-    private ViewGroup[] mLoadingMoreResults = new ViewGroup[] { null, null, null, null };
+    private ListView[] mList = new ListView[]{null, null, null, null};
+    private ArrayAdapter[] mListAdapter = new ArrayAdapter[]{null, null, null, null};
+    private ProgressBar[] mLoadingList = new ProgressBar[]{null, null, null, null};
+    private TextView[] mListEmpty = new TextView[]{null, null, null, null};
+    private ViewGroup[] mListHeader = new ViewGroup[]{null, null, null, null};
+    private TextView[] mFilterBar = new TextView[]{null, null, null, null};
+    private ViewGroup[] mLoadingMoreResults = new ViewGroup[]{null, null, null, null};
 
 
     private static final int OBSERVATIONS_VIEW_MODE_GRID = 0;
@@ -153,35 +155,33 @@ public class ExploreActivity extends BaseFragmentActivity {
     private int mObservationsViewMode = OBSERVATIONS_VIEW_MODE_GRID;
 
 
-    private int[] mCurrentResultsPage = { 0, 0, 0, 0 };
-    private boolean[] mLoadingNextResults = { false, false, false, false };
+    private int[] mCurrentResultsPage = {0, 0, 0, 0};
+    private boolean[] mLoadingNextResults = {false, false, false, false};
     private int mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
     private LatLngBounds mLastMapBounds = null;
     private boolean mMapMoved = false;
     private LatLngBounds mInitialLocationBounds;
-    private int[] mLastTotalResults = { NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED };
+    private int[] mLastTotalResults = {NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
     private boolean mMapReady = false;
     private boolean mShouldMoveMapAccordingToSearchFilters = false;
 
     @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
+        FlurryAgent.logEvent(this.getClass().getSimpleName());
+    }
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();
-		FlurryAgent.onEndSession(this);
-	}
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
 
     private boolean isLocationPermissionGranted() {
         return (
                 (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
-                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
         );
     }
 
@@ -242,8 +242,8 @@ public class ExploreActivity extends BaseFragmentActivity {
         if (savedInstanceState == null) {
             mActiveViewType = VIEW_TYPE_OBSERVATIONS;
 
-            mTotalResults = new int[] { NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED };
-            mResults = (List<JSONObject>[]) new List[] {null, null, null, null };
+            mTotalResults = new int[]{NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
+            mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
 
             mSearchFilters = new ExploreSearchFilters();
             mLastMapBounds = null;
@@ -258,7 +258,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsMapType = savedInstanceState.getInt("mObservationsMapType", GoogleMap.MAP_TYPE_TERRAIN);
             mMapMoved = savedInstanceState.getBoolean("mMapMoved");
 
-            mResults = (List<JSONObject>[]) new List[] {null, null, null, null };
+            mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
             mResults[VIEW_TYPE_OBSERVATIONS] = mHelper.loadListFromBundle(savedInstanceState, "mObservations");
             mResults[VIEW_TYPE_SPECIES] = mHelper.loadListFromBundle(savedInstanceState, "mSpecies");
             mResults[VIEW_TYPE_OBSERVERS] = mHelper.loadListFromBundle(savedInstanceState, "mObservers");
@@ -377,7 +377,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         BaseFragmentActivity.safeUnregisterReceiver(mExploreResultsReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mLocationReceiver, this);
 
-        mLoadingNextResults = new boolean[] { false, false, false, false };
+        mLoadingNextResults = new boolean[]{false, false, false, false};
     }
 
     @Override
@@ -404,7 +404,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         refreshViewState();
     }
 
-     // Method to add a TabHost
+    // Method to add a TabHost
     private void addTab(int position, View tabContent) {
         TabLayout.Tab tab = mTabLayout.getTabAt(position);
         tab.setCustomView(tabContent);
@@ -486,7 +486,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             } else {
                 width = getWindowManager().getDefaultDisplay().getWidth();
             }
-            width = (int)(width * 0.270);
+            width = (int) (width * 0.270);
         }
 
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
@@ -516,7 +516,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         } else {
             width = getWindowManager().getDefaultDisplay().getWidth();
         }
-        width = (int)(width * 0.270);
+        width = (int) (width * 0.270);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
 
@@ -625,12 +625,12 @@ public class ExploreActivity extends BaseFragmentActivity {
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
 
             for (int i = 0; i < results.length(); i++) {
-				try {
-					JSONObject item = results.getJSONObject(i);
-					resultsArray.add(item);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+                try {
+                    JSONObject item = results.getJSONObject(i);
+                    resultsArray.add(item);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             if ((mCurrentResultsPage[index] <= 1) || (mResults[index] == null)) {
@@ -830,7 +830,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mListEmpty[resultsType].setVisibility(View.GONE);
             }
 
-            if (mListHeader[resultsType] != null) mListHeader[resultsType].setVisibility(View.VISIBLE);
+            if (mListHeader[resultsType] != null)
+                mListHeader[resultsType].setVisibility(View.VISIBLE);
 
             Runnable setResults = new Runnable() {
                 @Override
@@ -856,15 +857,16 @@ public class ExploreActivity extends BaseFragmentActivity {
             mList[resultsType].setOnScrollListener(new AbsListView.OnScrollListener() {
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                    if((firstVisibleItem + visibleItemCount >= totalItemCount - 9) && (totalItemCount > 0) &&
-                        (mResults[resultsType] != null) && ((mResults[resultsType].size() - 1) > mList[resultsType].getLastVisiblePosition())) {
+                    if ((firstVisibleItem + visibleItemCount >= totalItemCount - 9) && (totalItemCount > 0) &&
+                            (mResults[resultsType] != null) && ((mResults[resultsType].size() - 1) > mList[resultsType].getLastVisiblePosition())) {
                         // The end has been reached - load more results
                         loadNextResultsPage(resultsType, false);
                     }
                 }
 
                 @Override
-                public void onScrollStateChanged(AbsListView view, int scrollState){ }
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
+                }
             });
 
             loadListViewOffset(mList[resultsType], getIntent().getExtras(), "mList" + resultsType);
@@ -888,7 +890,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 intent.putExtra("observation", item.toString());
                 intent.putExtra("read_only", true);
                 intent.putExtra("reload", true);
-				startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
+                startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);
 
                 try {
                     JSONObject eventParams = new JSONObject();
@@ -945,7 +947,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         mObservationsGrid.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if((firstVisibleItem + visibleItemCount >= totalItemCount - 9) && (totalItemCount > 0) &&
+                if ((firstVisibleItem + visibleItemCount >= totalItemCount - 9) && (totalItemCount > 0) &&
                         (mResults[VIEW_TYPE_OBSERVATIONS] != null) && ((mResults[VIEW_TYPE_OBSERVATIONS].size() - 1) > mObservationsGrid.getLastVisiblePosition())) {
                     // The end has been reached - load more observations
                     loadNextResultsPage(VIEW_TYPE_OBSERVATIONS, false);
@@ -953,7 +955,8 @@ public class ExploreActivity extends BaseFragmentActivity {
             }
 
             @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState){ }
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
         });
 
 
@@ -1071,11 +1074,12 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsChangeMapLayers.setImageResource(R.drawable.ic_satellite_black_48dp);
         }
 
-        if ((mObservationsMap != null) && (mObservationsMap.getMapType() != mObservationsMapType)) mObservationsMap.setMapType(mObservationsMapType);
+        if ((mObservationsMap != null) && (mObservationsMap.getMapType() != mObservationsMapType))
+            mObservationsMap.setMapType(mObservationsMapType);
     }
 
     private void resetResults(boolean resetOffsets) {
-         // Reset old results while we're loading the new ones
+        // Reset old results while we're loading the new ones
         for (int i = 0; i < mTotalResults.length; i++) {
             mTotalResults[i] = NOT_LOADED;
             mResults[i] = null;
@@ -1111,13 +1115,13 @@ public class ExploreActivity extends BaseFragmentActivity {
                 case VIEW_TYPE_OBSERVATIONS:
                     action = INaturalistService.ACTION_EXPLORE_GET_OBSERVATIONS;
                     break;
-                 case VIEW_TYPE_SPECIES:
+                case VIEW_TYPE_SPECIES:
                     action = INaturalistService.ACTION_EXPLORE_GET_SPECIES;
                     break;
-                 case VIEW_TYPE_IDENTIFIERS:
+                case VIEW_TYPE_IDENTIFIERS:
                     action = INaturalistService.ACTION_EXPLORE_GET_IDENTIFIERS;
                     break;
-                 case VIEW_TYPE_OBSERVERS:
+                case VIEW_TYPE_OBSERVERS:
                     action = INaturalistService.ACTION_EXPLORE_GET_OBSERVERS;
                     break;
             }
@@ -1144,7 +1148,6 @@ public class ExploreActivity extends BaseFragmentActivity {
     }
 
 
-
     public class ExplorePagerAdapter extends PagerAdapter {
         final int PAGE_COUNT = 4;
         private Context mContext;
@@ -1169,10 +1172,10 @@ public class ExploreActivity extends BaseFragmentActivity {
                 case VIEW_TYPE_SPECIES:
                     layoutResource = R.layout.project_species;
                     break;
-                 case VIEW_TYPE_IDENTIFIERS:
+                case VIEW_TYPE_IDENTIFIERS:
                     layoutResource = R.layout.project_identifiers;
                     break;
-                 case VIEW_TYPE_OBSERVERS:
+                case VIEW_TYPE_OBSERVERS:
                     layoutResource = R.layout.project_people;
                     break;
             }
@@ -1185,7 +1188,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mLoadingObservationsGrid = (ProgressBar) layout.findViewById(R.id.loading_observations_grid);
                 mObservationsGridEmpty = (TextView) layout.findViewById(R.id.observations_grid_empty);
                 mObservationsGrid = (GridViewExtended) layout.findViewById(R.id.observations_grid);
-                ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
+                ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
+                    @SuppressLint("MissingPermission")
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
                         mObservationsMap = googleMap;
@@ -1203,7 +1207,12 @@ public class ExploreActivity extends BaseFragmentActivity {
                             }
                         });
 
-                        mObservationsMap.setMyLocationEnabled(true);
+                        if (isLocationPermissionGranted()) {
+                            mObservationsMap.setMyLocationEnabled(true);
+                        } else {
+                            mObservationsMap.setMyLocationEnabled(false);
+                        }
+
                         mObservationsMap.getUiSettings().setMyLocationButtonEnabled(false);
                         mObservationsMap.getUiSettings().setMapToolbarEnabled(false);
                         mObservationsMap.getUiSettings().setCompassEnabled(false);
@@ -1271,10 +1280,16 @@ public class ExploreActivity extends BaseFragmentActivity {
                     }
                 });
 
+                mObservationsMapMyLocation.setVisibility(isLocationPermissionGranted() ? View.GONE : View.VISIBLE);
+
                 if (mLastMapBounds == null) {
-                    // Initially zoom to current location
                     if (isLocationPermissionGranted()) {
+                        // Initially zoom to current location
                         mObservationsMapMyLocation.performClick();
+                    } else {
+                        // No location permissions given - show a world map
+                        mSearchFilters.mapBounds = null;
+                        mSearchFilters.isCurrentLocation = false;
                     }
                 }
 

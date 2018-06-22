@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.Manifest;
 
 import com.flurry.android.FlurryAgent;
 import com.squareup.picasso.Picasso;
@@ -434,8 +437,11 @@ public class ExploreSearchActivity extends AppCompatActivity {
             } else if (mActiveSearchType == SEARCH_TYPE_LOCATION) {
                 // Show location search history
                 mResults = loadPlaceSearchHistory();
-                // Always add a "My location" result to the beginning of the search history
-                mResults.add(0, getMyLocationResult());
+
+                if (isLocationPermissionGranted()) {
+                    // Always add a "My location" result to the beginning of the search history
+                    mResults.add(0, getMyLocationResult());
+                }
 
                 if (mResults.size() == 0) {
                     // A special case - no place history results yet, don't show the "no results found" message
@@ -638,4 +644,12 @@ public class ExploreSearchActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    private boolean isLocationPermissionGranted() {
+        return (
+                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
+                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        );
+    }
+
 }
