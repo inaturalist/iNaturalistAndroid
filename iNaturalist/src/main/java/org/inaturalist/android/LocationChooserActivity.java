@@ -125,10 +125,10 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             	DisplayMetrics metrics = new DisplayMetrics();
             	getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-            	int screenWidth = metrics.widthPixels;
-            	
+                int screenWidth = (int) (metrics.widthPixels * 0.4 * 0.2);
+
                 double equatorLength = 40075004; // in meters
-                double widthInPixels = screenWidth * 0.4 * 0.5;
+                double widthInPixels = screenWidth * 0.4 * 0.40;
                 double metersPerPixel = equatorLength / 256;
                 int zoomLevel = 1;
                 while ((metersPerPixel * widthInPixels) > mAccuracy) {
@@ -230,7 +230,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 DisplayMetrics metrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-                int screenWidth = metrics.widthPixels;
+                int screenWidth = (int) (metrics.widthPixels * 0.4 * 0.2);
 
                 //////////////
                 double equatorLength = 40075004; // in meters
@@ -240,7 +240,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                     metersPerPixel /= 2;
                     ++zoomLevel;
                 }
-                double accuracy = (double) ((screenWidth * 0.4 * 0.5) * metersPerPixel);
+                double accuracy = (double) ((screenWidth * 0.4 * 0.8) * metersPerPixel);
                 Log.e(TAG, "Meters per radius = " + accuracy + "; zoom = " + zoomLevel);
 
                 ////////////
