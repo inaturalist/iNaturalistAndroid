@@ -1280,7 +1280,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     }
                 });
 
-                mObservationsMapMyLocation.setVisibility(isLocationPermissionGranted() ? View.GONE : View.VISIBLE);
+                mObservationsMapMyLocation.setVisibility(isLocationPermissionGranted() ? View.VISIBLE : View.INVISIBLE);
 
                 if (mLastMapBounds == null) {
                     if (isLocationPermissionGranted()) {
@@ -1478,7 +1478,10 @@ public class ExploreActivity extends BaseFragmentActivity {
                 }
 
                 resetResults(true);
-                loadAllResults();
+
+                if ((!mSearchFilters.isCurrentLocation) || (mSearchFilters.place != null)) {
+                    loadAllResults();
+                }
             }
         }
 	}
