@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -257,9 +258,16 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             do {
                 String photoFileName = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                String originalPhotoFilename = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+
                 if ((photoFileName != null) && (!(new File(photoFileName).exists()))) {
                     // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                    String originalPhotoFilename = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                    photoFileName = originalPhotoFilename;
+                }
+
+                if ((originalPhotoFilename != null) && (new File(originalPhotoFilename).exists())) {
+                    // Prefer to show original photo file, if still exists, since it has the original resolution (not
+                    // resized down to 2048x2048)
                     photoFileName = originalPhotoFilename;
                 }
 
@@ -337,11 +345,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 // Offline photo
                 Bitmap bitmapImage = null;
                 try {
-                    int newHeight = mViewPager.getMeasuredHeight();
-                    int newWidth = mViewPager.getMeasuredHeight();
-
-                    bitmapImage = ImageUtils.decodeSampledBitmapFromUri(mActivity.getContentResolver(),
-                            Uri.fromFile(new File(imagePath)), newWidth, newHeight);
+                    bitmapImage = BitmapFactory.decodeFile(imagePath);
 
                     // Scale down the image if it's too big for the GL renderer
                     bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(mActivity, bitmapImage);
