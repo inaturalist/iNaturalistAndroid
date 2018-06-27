@@ -369,6 +369,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     imageView.setVisibility(View.INVISIBLE);
                     attacher = new PhotoViewAttacher(imageView);
 
+                    // Deduct the original-sized URL
+                    imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/')) + "/original" + imageUrl.substring(imageUrl.lastIndexOf('.'));
+
                     // Show a photo
                     
                     String thumbnailUrl = mImageThumbnails.get(position);
