@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -144,7 +145,7 @@ public class TaxonUtils {
                 e.printStackTrace();
                 return R.drawable.ic_taxa_unknown;
             }
-        } else if (o.has("taxon")) {
+        } else if (o.has("taxon") && !o.isNull("taxon")) {
             try {
                 iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
             } catch (JSONException e) {
