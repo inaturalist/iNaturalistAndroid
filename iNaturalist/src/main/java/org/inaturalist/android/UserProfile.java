@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewCompat;
@@ -366,9 +367,14 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     }
 
     private void refreshViewType() {
-        mObservationsContainer.setVisibility(View.GONE);
-        mSpeciesContainer.setVisibility(View.GONE);
-        mIdentificationsContainer.setVisibility(View.GONE);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mObservationsContainer.setVisibility(View.GONE);
+                mSpeciesContainer.setVisibility(View.GONE);
+                mIdentificationsContainer.setVisibility(View.GONE);
+            }
+        });
 
         TabWidget tabWidget = mTabHost.getTabWidget();
         for (int i = 0; i < tabWidget.getChildCount(); i++) {
@@ -382,17 +388,37 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         }
 
         int selectedTab = 0;
+        ViewGroup container = null;
 
-    	if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
+        if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
             selectedTab = 0;
-    		mObservationsContainer.setVisibility(View.VISIBLE);
-    	} else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
+            container = mObservationsContainer;
+        } else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
             selectedTab = 1;
-            mSpeciesContainer.setVisibility(View.VISIBLE);
+            container = mSpeciesContainer;
         } else if (mViewType.equals(VIEW_TYPE_IDENTIFICATIONS)) {
             selectedTab = 2;
-            mIdentificationsContainer.setVisibility(View.VISIBLE);
+            container = mIdentificationsContainer;
         }
+
+
+        // Hack to fix annoying issue (#541) where the layouts initially received a height of 0px
+        container.setVisibility(View.VISIBLE);
+        ViewGroup.LayoutParams params = container.getLayoutParams();
+        params.height = 1;
+        container.setLayoutParams(params);
+        container.requestLayout();
+
+        final ViewGroup finalContainer = container;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ViewGroup.LayoutParams params = finalContainer.getLayoutParams();
+                params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                finalContainer.setLayoutParams(params);
+                finalContainer.requestLayout();
+            }
+        }, 1);
 
         mTabHost.setCurrentTab(selectedTab);
         View tab = tabWidget.getChildAt(selectedTab);
