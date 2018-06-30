@@ -879,6 +879,9 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void choosePhoto() {
+        if (!isExternalStoragePermissionGranted()) {
+            return;
+        }
 
         mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
         mFileUri = getPath(ObservationEditor.this, mFileUri);
@@ -1605,6 +1608,10 @@ public class ObservationEditor extends AppCompatActivity {
         );
     }
 
+    private boolean isExternalStoragePermissionGranted() {
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
 
     // Kicks off place service
     private void getLocation() {
@@ -2144,7 +2151,14 @@ public class ObservationEditor extends AppCompatActivity {
                     public void run() {
                         // Make a copy of the image into the phone's camera folder
                         String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
-                        String copyPath = addPhotoToGallery(path);
+                        String copyPath = null;
+
+                        if (isExternalStoragePermissionGranted()) {
+                            copyPath = addPhotoToGallery(path);
+                        } else {
+                            copyPath = path;
+                        }
+
                         Uri createdUri = null;
 
                         if (copyPath != null) {
