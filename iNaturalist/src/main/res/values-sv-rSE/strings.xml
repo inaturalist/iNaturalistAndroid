@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Ja, licensiera mina observationsdata så att forskare kan använda mina uppgifter. <b>Jag vill veta mer om detta</b>]]></string>
   <string name="content_licensing">Upphovsrätt</string>
   <string name="content_licensing_description">Markera i denna ruta om du vill tillämpa en Creative Commons Attribution-NonCommercial License för dina foton. Du kan välja en annan licens eller ta bort licensen senare, men detta är den bästa licensen för att dela dina foton med forskare.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Användarnamn eller e-post</string>
   <string name="forgot">Glömt bort?</string>
   <string name="or_login_with">Eller logga in i med:</string>
   <string name="quantity">Antal</string>
   <string name="registering">Registrerar...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Kunde inte registrera användare</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Logga in / Registrera dig</string>
   <string name="please_sign_in_via_settings_for_guides">Du måste vara inloggad för att se dina fältguider.</string>
   <string name="please_sign_in_for_updates">Du måste vara inloggad för att se dina uppdateringar.</string>

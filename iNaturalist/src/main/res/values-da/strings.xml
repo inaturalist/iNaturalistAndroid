@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Ja, licensér mit indhold, så forskerne kan benytte mine data. <b>Få mere at vide</b>]]></string>
   <string name="content_licensing">Indholdslicensering</string>
   <string name="content_licensing_description">Markér dette afkrydsningsfelt, hvis du vil anvende en Creative Commons Kildeangivelse - Ikke-kommerciel licens til dine fotos. Du kan vælge en anden licens eller fjerne licensen senere, men dette er den bedste licens til deling med forskere.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Brugernavn eller e-mail</string>
   <string name="forgot">Glemt?</string>
   <string name="or_login_with">Eller log ind med:</string>
   <string name="quantity">Antal</string>
   <string name="registering">Registrerer...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Kunne ikke registrere bruger</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Log ind/Tilmeld</string>
   <string name="please_sign_in_via_settings_for_guides">Du skal være logget ind for at kunne se dine guider.</string>
   <string name="please_sign_in_for_updates">Du skal være logget ind for at kunne se dine opdateringer.</string>

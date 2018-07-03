@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Si, licencia mis contenidos para que la comunidad científica pueda usar mis datos. <b>Aprende más</b>]]></string>
   <string name="content_licensing">Licenciar Contenido</string>
   <string name="content_licensing_description">Selecciona esta casilla si deseas aplicar una licencia Creative Commons de Reconocimiento- No Comercial a tus fotografías. Puedes elegir diferentes licencias o quitar las licencias más tarde, pero ésta es la mejor licencia para compartir con los investigadores.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Nombre de usuario o e-mail</string>
   <string name="forgot">¿Lo olvidaste?</string>
   <string name="or_login_with">O inicia sesión con:</string>
   <string name="quantity">Cant.</string>
   <string name="registering">Registrando...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">No se pudo registrar el usuario</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Iniciar sesión o registrarse</string>
   <string name="please_sign_in_via_settings_for_guides">Debes haber iniciado la sesión para ver tus guías.</string>
   <string name="please_sign_in_for_updates">Debes haber iniciado la sesión para ver tus actualizaciones.</string>

@@ -222,12 +222,15 @@
   <string name="use_my_license"><![CDATA[Oui, accordez une licence à mon contenu pour que les scientifiques puissent l'utiliser. <b>Apprenez-en davantage</b>]]></string>
   <string name="content_licensing">Contenu de la licence</string>
   <string name="content_licensing_description">Cochez cette case si vous voulez appliquer une licence d\'attribution non commerciale Creative Commons à vos photos. Vous pouvez choisir une licence différente ou supprimer la licence plus tard, mais il s\'agit de la meilleure licence pour échanger avec les chercheurs.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Nom d\'utilisateur ou e-mail</string>
   <string name="forgot">Mot de passe oublié?</string>
   <string name="or_login_with">Ou connectez-vous avec:</string>
   <string name="quantity">Qté</string>
   <string name="registering">Inscription...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">L\'inscription n\'a pas pu s\'effectuer</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Connexion / Inscription</string>
   <string name="please_sign_in_via_settings_for_guides">Vous devez être connecté pour voir vos guides.</string>
   <string name="please_sign_in_for_updates">Vous devez être connecté pour voir vos actualisations.</string>

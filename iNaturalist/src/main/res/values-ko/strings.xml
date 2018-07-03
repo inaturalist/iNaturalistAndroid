@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[예, 게시물 사용 권한을 설정하여 과학자들이 나의 게시물을 이용할 수 있게 합니다. <b>더 알아보기</b>]]></string>
   <string name="content_licensing">게시물 사용 권한</string>
   <string name="content_licensing_description">게시하신 사진에 비영리사용-저작자표시 허가을 부여하고 싶다면 \'여기\'를 누르세요. 회원님은 다른 저작권 형태를 부과하거나 저작권을 삭제 할 수 있습니다. 하지만 비영리사용-저작자표시가 연구자들과 공유하기 가장 좋은 방법입니다.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">아이디 또는 이메일</string>
   <string name="forgot">잊어 버리셨습니까?</string>
   <string name="or_login_with">또는 다음으로 로그인 함:</string>
   <string name="quantity">수량</string>
   <string name="registering">등록 중...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">사용자를 등록할 수 없습니다.</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">로그인 / 회원 가입</string>
   <string name="please_sign_in_via_settings_for_guides">작성한 안내서를 보려면 로그인 해야 합니다.</string>
   <string name="please_sign_in_for_updates">회원님의 업데이트를 보려면 로그인 해야 합니다.</string>

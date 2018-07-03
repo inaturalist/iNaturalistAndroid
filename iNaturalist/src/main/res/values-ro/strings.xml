@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Da, licențiază conținutul meu pentru ca oamenii de știință să poată folosi datele mele. <b>Află mai multe</b>]]></string>
   <string name="content_licensing">Conținut de licențiere</string>
   <string name="content_licensing_description">Bifează această căsuță dacă vrei să aplici o licență de atribuire creativ non comercială forografiilor tale. Poți să alegi o licență diferită sau să alegi o altă licență mai târziu, dar aceasta este cea mai bună licență pentru partajarea cu cercetătorii.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Nume utilizator sau email</string>
   <string name="forgot">Ai uitat?</string>
   <string name="or_login_with">Sau autentifică-te cu:</string>
   <string name="quantity">Cant</string>
   <string name="registering">Înregistrare...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Nu s-a putut înregistra utilizatorul</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Autentificare / Înregistrare</string>
   <string name="please_sign_in_via_settings_for_guides">Pentru a vedea ghidurile, trebuie să fi autentificat.</string>
   <string name="please_sign_in_for_updates">Pentru a vedea actualizările, trebuie să fi autentificat.</string>

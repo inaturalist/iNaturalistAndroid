@@ -222,12 +222,15 @@
   <string name="use_my_license"><![CDATA[ نعم، ممكن للعلماء استخدام المحتوى الذي انشره <b>معرفة المزيد</b>]]></string>
   <string name="content_licensing">ترخيص المحتوى</string>
   <string name="content_licensing_description">حدد هذا الخيار للسماح باستخدام  الصور التي تقوم بتحميلها. يمكنك تغيير هذا في وقت لاحق، ولكن هذا هو الخيار الأفضل لتبادل مع المحققين.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">اسم المستخدم او البريد الالكتروني</string>
   <string name="forgot">لا اذكر</string>
   <string name="or_login_with">او الدخول بواسطة</string>
   <string name="quantity">الكميه</string>
   <string name="registering">جاري التسجيل…</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">لم يتم التسجيل</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">تسجيل الدخول/دخول</string>
   <string name="please_sign_in_via_settings_for_guides">الرجاء الدخول بواسطة شباك الاعدادات للاطلاع على الارشادات</string>
   <string name="please_sign_in_for_updates">الرجاء الدخول بواسطة شباك الاعدادات للاطلاع على المستجدات </string>

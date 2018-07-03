@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Kyllä, lisensoi sisältöni, niin tiedemiehet voivat käyttää tietojani. <b>Lisätietoja</b>]]></string>
   <string name="content_licensing">Sisällön lisensointi</string>
   <string name="content_licensing_description">Check this box if you want to apply a Create Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Käyttäjänimi tai sähköposti</string>
   <string name="forgot">Unohtuiko?</string>
   <string name="or_login_with">Tai kirjaudu sisään:</string>
   <string name="quantity">Määrä</string>
   <string name="registering">Rekisteröidään...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Käyttäjää ei voi rekisteröidä</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Kirjaudu sisään / Rekisteröidy</string>
   <string name="please_sign_in_via_settings_for_guides">Sinun tulee olla sisäänkirjautuneena katsoaksesi oppaitasi.</string>
   <string name="please_sign_in_for_updates">Sinun tulee olla sisäänkirjautuneena katsoaksesi päivityksiäsi.</string>

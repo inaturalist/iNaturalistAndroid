@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Ya, lisensikan konten saya sehingga para ilmuwan dapat menggunakan data saya. <b>Pelajari lebih lanjut</b>]]></string>
   <string name="content_licensing">Perizinan konten</string>
   <string name="content_licensing_description">Centang kotak ini jika Anda ingin membuat lisensi Commons Attribution-NonCommercial untuk foto Anda. Anda dapat memilih sebuah lisensi yang berbeda atau menghapus lisensi nantinya, tapi ini adalah lisensi terbaik untuk berbagi dengan para peneliti.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Nama Pengguna atau Email</string>
   <string name="forgot">Lupa?</string>
   <string name="or_login_with">Atau masuk dengan:</string>
   <string name="quantity">Qty</string>
   <string name="registering">Mendaftarkan...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Tidak bisa mendaftarkan pengguna</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Masuk / mendaftar</string>
   <string name="please_sign_in_via_settings_for_guides">Anda harus login untuk melihat panduan Anda.</string>
   <string name="please_sign_in_for_updates">Anda harus login untuk melihat pembaruan Anda.</string>

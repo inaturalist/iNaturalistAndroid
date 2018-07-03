@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Ja, mein Content soll so lizenziert werden, dass Wissenschaftler meine Beobachtungen nutzen können. <b>Mehr Informationen</b>]]></string>
   <string name="content_licensing">Content-Lizensierung</string>
   <string name="content_licensing_description">Benutze eine Create Commons Attribution-NonCommercial-Lizenz für meine Fotos - dies ist die beste Lizenz, um meine Fotos der Wissenschaft zur Verfügung zu stellen. Du kannst später eine andere Lizenz wählen oder die Lizenz entfernen.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Benutzername oder E-Mail</string>
   <string name="forgot">Vergessen?</string>
   <string name="or_login_with">Oder anmelden mit:</string>
   <string name="quantity">Menge</string>
   <string name="registering">Registrierung läuft...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Registrierung fehlgeschlagen</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Einloggen / Anmelden</string>
   <string name="please_sign_in_via_settings_for_guides">Du musst eingeloggt sein, um deine Guides anzusehen.</string>
   <string name="please_sign_in_for_updates">Du musst eingeloggt sein, um deine Updates anzusehen.</string>

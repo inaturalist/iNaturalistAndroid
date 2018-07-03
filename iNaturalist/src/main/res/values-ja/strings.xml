@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[私の観察データを科学研究用に提供することに同意します。<b>詳細について</b>]]></string>
   <string name="content_licensing">コンテンツのライセンス</string>
   <string name="content_licensing_description">ここにチェックを入れると投稿した写真に「表示—非営利」のクリエイティブ・コモンズ・ライセンスが適用されます。別のライセンスの選択もできますし、後でライセンスを削除することもできますが、このライセンスは観察データを科学研究目的に提供するには推奨しているものです。</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">ユーザー名またはメールアドレス</string>
   <string name="forgot">お忘れの方</string>
   <string name="or_login_with">または別のアカウントでログイン:</string>
   <string name="quantity">数量</string>
   <string name="registering">登録しています...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">ユーザーを登録できませんでした</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">ログインまたは新規登録</string>
   <string name="please_sign_in_via_settings_for_guides">ガイドを表示するはログインが必要です。</string>
   <string name="please_sign_in_for_updates">更新を表示するはログインが必要です。</string>

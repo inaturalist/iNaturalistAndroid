@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Áno, licensujte môj obsah, takže vedci môžu použiť moje údaje. <b>Prečítajte si viac</b>]]></string>
   <string name="content_licensing">Licensovanie obsahu</string>
   <string name="content_licensing_description">Začiarknite toto políčko, ak chcete použiť Create Commons Attribution-NonCommercial licenciu pre vaše fotografie. Môžete vybrať rôzne licencie alebo odobrať licenciu neskôr, ale toto je najlepšia licencia pre zdieľanie s výskumnými pracovníkmi.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Meno používateľa alebo e-mail</string>
   <string name="forgot">Zabudli ste?</string>
   <string name="or_login_with">Alebo prihlásiť sa s pomocou:</string>
   <string name="quantity">Počet</string>
   <string name="registering">Registrácia...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Nemožno zaregistrovať používateľa</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Prihlásiť / zaregistrovať</string>
   <string name="please_sign_in_via_settings_for_guides">Pre zobrazenie projektov, do ktorých prispievate musíte byť prihlásený.</string>
   <string name="please_sign_in_for_updates">Pre zobrazenie aktualizácií musíte byť prihlásený.</string>

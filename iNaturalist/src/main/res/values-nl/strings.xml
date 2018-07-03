@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Ja, kies een licentie zodat onderzoekers mijn data kunnen gebruiken. <b>Meer info</b>]]></string>
   <string name="content_licensing">Licenties</string>
   <string name="content_licensing_description">Schakel dit selectievakje in als u een Creative Commons Attribution-NonCommercial-licentie wilt toevoegen aan uw foto\'s. U kunt een andere licentie kiezen of de licentie later verwijderen, maar dit is de meest geschikte licentie om foto\'s met onderzoekers te delen.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Gebruikersnaam of E-mailadres</string>
   <string name="forgot">Vergeten?</string>
   <string name="or_login_with">Of Log in met:</string>
   <string name="quantity">Aantal</string>
   <string name="registering">Registreren...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Kon de gebruiker niet registreren</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Inloggen of nu Registreren</string>
   <string name="please_sign_in_via_settings_for_guides">Je moet ingelogd zijn om jouw veldgidsen te bekijken.</string>
   <string name="please_sign_in_for_updates">Je moet ingelogd zijn om jouw updates te bekijken.</string>

@@ -199,7 +199,7 @@
   <string name="download">Download</string>
   <string name="failed_to_download_guide">Impossibile scaricare guida</string>
   <string name="internet_connection_seems_to_be_offline">Accesso Internet attualmente non disponibile.</string>
-  <string name="downloading">Scaricando...</string>
+  <string name="downloading">Scaricamento...</string>
   <string name="extracting">Estraendo...</string>
   <string name="downloaded">Scaricato</string>
   <string name="delete_download">Cancella download</string>
@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Sì, licenzia i miei contenuti così che gli scienziati possano utilizzare i miei dati. <b>Ulteriori informazioni</b>]]></string>
   <string name="content_licensing">Licenze dei contenuti</string>
   <string name="content_licensing_description">Spunta questa casella se vuoi che la licenza Creative Commons Attribuzione-Non Commerciale sia applicata alle tue foto. Puoi scegliere una licenza diversa o rimuovere la licenza in futuro, ma questa è la migliore licenza per condividere con i ricercatori.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Nome Utente o Email</string>
   <string name="forgot">Dimenticata?</string>
   <string name="or_login_with">O accedi con:</string>
   <string name="quantity">Q.tà</string>
   <string name="registering">Registrazione...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Impossibile registrare utente</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Accedi / Registrati</string>
   <string name="please_sign_in_via_settings_for_guides">Devi aver effettuato l\'accesso per visualizzare le tue guide.</string>
   <string name="please_sign_in_for_updates">Devi aver effettuato l\'accesso per visualizzare i tuoi aggiornamenti.</string>
@@ -302,7 +305,7 @@
   <string name="view_on_wikipedia">Articolo di Wikipedia</string>
   <string name="photo"><![CDATA[Foto: <b><a href="%1$s">%2$s</a></b>]]></string>
   <string name="photo_attr"><![CDATA[Foto: <b>%1$s</b>]]></string>
-  <string name="finding_current_location">Cercando la posizione corrente...</string>
+  <string name="finding_current_location">Rilevamento della posizione...</string>
   <string name="flag_as_captive">Contrassegna come in cattività/coltivata</string>
   <string name="observation_flagged_as_captive">L\'osservazione è stata contrassegnata come in cattività/coltivata</string>
   <string name="are_you_sure_you_want_to_flag_as_captive">Sei sicuro di voler contrassegnare questa osservazione come in cattività/coltivata? (Premendo sì chiuderai la finestra d viisualizzazione)</string>
@@ -409,7 +412,7 @@
   <string name="no_results_found">Nessun risultato trovato...</string>
   <string name="syncing_x_out_of_y_observations">Sincronizzando %1$d di %2$d osservazioni...</string>
   <string name="deleting_observations">Cancellando osservazioni...</string>
-  <string name="preparing">Preparando...</string>
+  <string name="preparing">In preparazione...</string>
   <string name="add_edit_remark">Aggiungi/modifica nota</string>
   <string name="restore">Ripristina</string>
   <string name="compare">Confronta</string>

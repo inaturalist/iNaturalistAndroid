@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Да, лицензия моего контента такова, что ученые могут использовать мои данные. <b>Подробнее</b>]]></string>
   <string name="content_licensing">Лицензирование контента</string>
   <string name="content_licensing_description">Установите этот флажок, если вы хотите применять лицензию Creative Commons Attribution-NonCommercial для ваших фотографий. Вы можете выбрать другую лицензии или удалить эту лицензию позже, но это оптимальная лицензия для совместного использования с исследователями.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Имя пользователя или электронная почта</string>
   <string name="forgot">Забыли?</string>
   <string name="or_login_with">Или войдите через:</string>
   <string name="quantity">Кол-во</string>
   <string name="registering">Регистрация...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Не удалось зарегистрировать пользователя</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Войти / Зарегистрироваться</string>
   <string name="please_sign_in_via_settings_for_guides">Вы должны войти для просмотра ваших руководств.</string>
   <string name="please_sign_in_for_updates">Вы должны войти для просмотра ваших обновлений.</string>

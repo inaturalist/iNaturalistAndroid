@@ -221,12 +221,15 @@
   <string name="use_my_license"><![CDATA[Sí, llicencia els meus continguts per què la comunitat científica pugui emprar les meves dades. <b>Après més</b>]]></string>
   <string name="content_licensing">Llicenciar el Contingut</string>
   <string name="content_licensing_description">Seleccioneu aquesta casella si voleu aplicar una llicència Creative Commons de Reconeixement No Comercial per a les vostres fotos. Podeu triar una llicència diferent o treure la llicència més tard, però aquesta és la millor llicència per compartir amb investigadors.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Nom d\'usuari o correu electrònic</string>
   <string name="forgot">Oblidat?</string>
   <string name="or_login_with">O iniciar sessió amb:</string>
   <string name="quantity">Qtat.</string>
   <string name="registering">Registrant...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">No s\'ha pogut registrar l\'usuari</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Inicieu sessió / Registreu-vos</string>
   <string name="please_sign_in_via_settings_for_guides">Heu d\'haver iniciat sessió per veure les vostres guies.</string>
   <string name="please_sign_in_for_updates">Heu d\'haver iniciat sessió per veure les vostres actualitzacions.</string>

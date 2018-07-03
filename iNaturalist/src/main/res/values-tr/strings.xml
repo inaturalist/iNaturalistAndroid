@@ -222,12 +222,15 @@
   <string name="use_my_license"><![CDATA[Evet, bilim adamlarının verilerimi kullanabilmesi için içeriğimi lisanslıyorum. <b>Daha Fazla Bilgi Edin</b>]]></string>
   <string name="content_licensing">İçerik lisansı</string>
   <string name="content_licensing_description">Fotoğraflarınıza bir Commons Attribution-ticari olmayan lisans uygulamak istiyorsanız bu kutuyu işaretleyin. Farklı bir lisans seçebilir veya lisansı daha sonra kaldırabilirsiniz, ancak bu araştırmacılar ile paylaşmak için en iyi lisansdır.</string>
+  <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Kullanıcı Adı veya E-posta</string>
   <string name="forgot">Unuttun mu?</string>
   <string name="or_login_with">Ya da birlikte oturum aç:</string>
   <string name="quantity">Adet</string>
   <string name="registering">Kaydediliyor...</string>
+  <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Kullanıcı kaydı yapılamadı</string>
+  <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Oturum Aç/Kaydol</string>
   <string name="please_sign_in_via_settings_for_guides">Kılavuzlarınızı görüntüleyebilmek için giriş yapmanız gerekmektedir.</string>
   <string name="please_sign_in_for_updates">Güncellemelerinizi görüntüleyebilmek için giriş yapmanız gerekmektedir.</string>
