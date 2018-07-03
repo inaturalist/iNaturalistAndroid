@@ -986,7 +986,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                             }
                         });
             }
-        }, true, mReadOnly);
+        }, mReadOnly);
         mCommentsIdsList.setAdapter(mAdapter);
 
         mAddId.setOnClickListener(new OnClickListener() {

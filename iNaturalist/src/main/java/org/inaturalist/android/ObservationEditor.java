@@ -51,6 +51,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -74,6 +75,7 @@ import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.media.ExifInterface;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -106,6 +108,8 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.Manifest;
+
 
 public class ObservationEditor extends AppCompatActivity {
     private final static String TAG = "INAT: ObservationEditor";
@@ -875,6 +879,9 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void choosePhoto() {
+        if (!isExternalStoragePermissionGranted()) {
+            return;
+        }
 
         mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
         mFileUri = getPath(ObservationEditor.this, mFileUri);
@@ -1594,8 +1601,24 @@ public class ObservationEditor extends AppCompatActivity {
      * Location
      */
 
+    private boolean isLocationPermissionGranted() {
+        return (
+                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
+                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        );
+    }
+
+    private boolean isExternalStoragePermissionGranted() {
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+
     // Kicks off place service
     private void getLocation() {
+        if (!isLocationPermissionGranted()) {
+            return;
+        }
+
         if (mLocationListener != null) {
             return;
         }
@@ -2128,7 +2151,14 @@ public class ObservationEditor extends AppCompatActivity {
                     public void run() {
                         // Make a copy of the image into the phone's camera folder
                         String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
-                        String copyPath = addPhotoToGallery(path);
+                        String copyPath = null;
+
+                        if (isExternalStoragePermissionGranted()) {
+                            copyPath = addPhotoToGallery(path);
+                        } else {
+                            copyPath = path;
+                        }
+
                         Uri createdUri = null;
 
                         if (copyPath != null) {

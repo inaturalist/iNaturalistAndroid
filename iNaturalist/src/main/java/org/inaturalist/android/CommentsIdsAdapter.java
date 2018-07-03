@@ -54,7 +54,6 @@ import android.widget.Toast;
 public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implements OnClickListener {
     private static String TAG = "CommentsIdsAdapter";
     private final Handler mMainHandler;
-    private final boolean mIsNewLayout;
     private final ActivityHelper mHelper;
     private BetterJSONObject mObservation;
     private List<BetterJSONObject> mItems;
@@ -80,7 +79,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		return false; 
 	}
 
-	public CommentsIdsAdapter(Context context, BetterJSONObject observation, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean isNewLayout, boolean readOnly) {
+	public CommentsIdsAdapter(Context context, BetterJSONObject observation, List<BetterJSONObject> objects, int taxonId, OnIDAdded onIDAddedCb, boolean readOnly) {
 		super(context, R.layout.comment_id_item, objects);
 
         mObservation = observation;
@@ -91,7 +90,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		mContext = context;
 		mTaxonId = taxonId;
 		mOnIDAddedCb = onIDAddedCb;
-        mIsNewLayout = isNewLayout;
         mHelper = new ActivityHelper(mContext);
 
 		SharedPreferences prefs = mContext.getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
@@ -108,7 +106,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 	public View getView(final int position, View convertView, ViewGroup parent) { 
 		final Resources res = mContext.getResources();
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		final View view = inflater.inflate(mIsNewLayout ? R.layout.comment_id_item_obs_viewer : R.layout.comment_id_item, parent, false);
+		final View view = inflater.inflate(R.layout.comment_id_item_obs_viewer, parent, false);
 		final BetterJSONObject item = mItems.get(position);
 
 		try {
@@ -121,15 +119,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
             Timestamp postDate = item.getTimestamp("updated_at");
             if (postDate == null) postDate = item.getTimestamp("created_at");
 
-            if (mIsNewLayout) {
-                postedOn.setText(String.format(res.getString(item.getString("type").equals("comment") ? R.string.comment_title : R.string.id_title),
-                        username, formatIdDate(mContext, postDate)));
-            } else {
-                SimpleDateFormat format = new SimpleDateFormat("LLL d, yyyy");
-                postedOn.setText(String.format(res.getString(R.string.posted_by),
-                        (mLogin != null) && username.equalsIgnoreCase(mLogin) ? res.getString(R.string.you) : username,
-                        format.format(postDate)));
-            }
+			postedOn.setText(String.format(res.getString(item.getString("type").equals("comment") ? R.string.comment_title : R.string.id_title),
+					username, formatIdDate(mContext, postDate)));
 
 			OnClickListener showUser = new OnClickListener() {
 				@Override
@@ -169,9 +160,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                         });
 
             } else {
-                if (mIsNewLayout) {
-                    userPic.setAlpha(100);
-                }
+				userPic.setAlpha(100);
             }
 
 			final ImageView moreMenu = (ImageView) view.findViewById(R.id.more_menu);
@@ -281,16 +270,14 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				idLayout.setVisibility(View.GONE);
                 loading.setVisibility(View.GONE);
 				if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
-                if (mIsNewLayout) idAgreeLayout.setVisibility(View.GONE);
+                idAgreeLayout.setVisibility(View.GONE);
 
 				comment.setText(Html.fromHtml(item.getString("body")));
 				Linkify.addLinks(comment, Linkify.ALL);
 				comment.setMovementMethod(LinkMovementMethod.getInstance());
 
-                if (mIsNewLayout) {
-                    postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
-                    if (hasUserIcon) userPic.setAlpha(255);
-                }
+				postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
+				if (hasUserIcon) userPic.setAlpha(255);
 
 			} else {
 				// Identification
@@ -302,16 +289,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					comment.setMovementMethod(LinkMovementMethod.getInstance());
 
                     comment.setVisibility(View.VISIBLE);
-
-                    if (!mIsNewLayout) {
-                        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) comment.getLayoutParams();
-                        layoutParams.setMargins(
-                                layoutParams.leftMargin,
-                                layoutParams.topMargin + 25,
-                                layoutParams.rightMargin,
-                                layoutParams.bottomMargin);
-                        comment.setLayoutParams(layoutParams);
-                    }
 				} else {
 					comment.setVisibility(View.GONE);
 				}
@@ -341,13 +318,11 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					// An outdated identification - show as faded-out
 					idName.setTextColor(idName.getTextColors().withAlpha(100));
 					idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(100));
-					if (!mIsNewLayout) postedOn.setTextColor(postedOn.getTextColors().withAlpha(100));
 					idPic.setAlpha(100);
 					userPic.setAlpha(100);
 				} else {
 					idName.setTextColor(idName.getTextColors().withAlpha(255));
 					idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(255));
-					if (!mIsNewLayout) postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
 					idPic.setAlpha(255);
 					if (hasUserIcon) userPic.setAlpha(255);
 				}
@@ -364,10 +339,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 						}
 
                         loading.setVisibility(View.VISIBLE);
-
-						if (!mIsNewLayout) {
-                            agree.setVisibility(View.GONE);
-                        }
 						mAgreeing.set(position, true);
 					}
 				});
@@ -407,79 +378,48 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				if (!foundPreviousSameTaxon && didNotIdThisBefore) {
 					// First taxon id of its kind AND the current user didn't ID this taxon before -
 					// show agree button
-                    if (mIsNewLayout) {
-                        idAgreeLayout.setVisibility(View.VISIBLE);
-                    } else {
-                        agree.setVisibility(View.VISIBLE);
-                    }
+					idAgreeLayout.setVisibility(View.VISIBLE);
 				} else {
 					// Second (or more) taxon id of its kind - don't show agree button
-                    if (mIsNewLayout) {
-                        idAgreeLayout.setVisibility(View.GONE);
-                    } else {
-                        agree.setVisibility(View.GONE);
-                    }
+					idAgreeLayout.setVisibility(View.GONE);
 				}
 
                 if (moreMenu != null) moreMenu.setVisibility(View.GONE);
 
 				if ((mLogin != null) && (username.equalsIgnoreCase(mLogin))) {
-					if (!mIsNewLayout) {
-                        ((Button)agree).setText(R.string.remove);
-                        agree.setVisibility(View.VISIBLE);
-                    } else {
-                        idAgreeLayout.setVisibility(View.GONE);
-                        if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
-                    }
+					idAgreeLayout.setVisibility(View.GONE);
+					if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
 
 					if ((isCurrent == null) || (!isCurrent)) {
 						// Faded IDs should not have a "Remove" button
-                        if (mIsNewLayout) {
-                            idAgreeLayout.setVisibility(View.GONE);
-                        } else {
-                            agree.setVisibility(View.GONE);
-                        }
+						idAgreeLayout.setVisibility(View.GONE);
 					}
-				} else {
-					if (!mIsNewLayout) ((Button)agree).setText(R.string.agree);
 				}
 
 				if ((mAgreeing.get(position) != null) && (mAgreeing.get(position) == true)) {
                     loading.setVisibility(View.VISIBLE);
-
-                    if (!mIsNewLayout) {
-                        agree.setVisibility(View.GONE);
-                    } else {
-                        idAgreeLayout.setVisibility(View.GONE);
-                    }
+					idAgreeLayout.setVisibility(View.GONE);
 				}
 
 				if (mLogin == null) {
 					// Can't agree if not logged in
-                    if (!mIsNewLayout) {
-                        agree.setVisibility(View.GONE);
-                    } else {
-                        idAgreeLayout.setVisibility(View.GONE);
-                    }
+					idAgreeLayout.setVisibility(View.GONE);
 				}
 
-                if (mIsNewLayout) {
-					OnClickListener listener = new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(mContext, TaxonActivity.class);
-                            JSONObject taxon = mItems.get(position).getJSONObject("taxon");
-                            intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
-                            intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
-                            intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
-                            mContext.startActivity(intent);
-                        }
-                    };
-                    idLayout.setOnClickListener(listener);
-                    idName.setOnClickListener(listener);
-                    idTaxonName.setOnClickListener(listener);
-
-                }
+				OnClickListener listener = new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(mContext, TaxonActivity.class);
+						JSONObject taxon = mItems.get(position).getJSONObject("taxon");
+						intent.putExtra(TaxonActivity.TAXON, new BetterJSONObject(taxon));
+						intent.putExtra(TaxonActivity.OBSERVATION, mObservation);
+						intent.putExtra(TaxonActivity.DOWNLOAD_TAXON, true);
+						mContext.startActivity(intent);
+					}
+				};
+				idLayout.setOnClickListener(listener);
+				idName.setOnClickListener(listener);
+				idTaxonName.setOnClickListener(listener);
 
 
                 boolean isActive = item.getJSONObject("taxon").optBoolean("is_active", true);
@@ -521,7 +461,6 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		}
 		
 		view.setTag(item);
-        if (!mIsNewLayout) view.setOnClickListener(this);
 
 		return view;
 	}
