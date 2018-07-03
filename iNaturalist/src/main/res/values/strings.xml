@@ -226,6 +226,7 @@
     <string name="quantity">Qty</string>
     <string name="registering">Registering...</string>
     <string name="could_not_register_user">Couldn\'t register user</string>
+    <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Log In / Sign Up</string>
     <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
     <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
