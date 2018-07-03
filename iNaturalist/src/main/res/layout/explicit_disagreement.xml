@@ -27,7 +27,7 @@
              android:id="@+id/disagreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/i_am_sure_that_this_is_not"
+            android:text="@string/no_but_it_is_a_member_of_taxon"
             />
     </RadioGroup>
 
