@@ -24,6 +24,7 @@
     <string name="photo_not_specified">Photo not specified</string>
     <string name="set_date">Date</string>
     <string name="set_time">Time</string>
+    <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">Blast, something went wrong: %1$s</string>
     <string name="edit">Edit</string>
     <string name="oh_no">Oh no! %1$s</string>
@@ -81,6 +82,7 @@
     <string name="discard_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Agree?</string>
     <string name="no_comments">No comments/identifications yet</string>
     <string name="posted_by">Posted by %1$s on %2$s</string>
@@ -422,7 +424,8 @@
     <string name="conservation_status_extinct">Extinct</string>
     <string name="map_of_observations">Map of Observations</string>
     <string name="taxonomy">Taxonomy</string>
-    <string name="about_this_section">About this Section</string>
+    <string name="about_this_section">About This Section</string>
+    <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
     <string name="more_info_on_inat">More Info on iNaturalist.org</string>
     <string name="view_suggestions">View Suggestions</string>
@@ -528,9 +531,13 @@
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Search Map Area</string>
+    <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dm</string>
+    <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <string name="date_hour">%dh</string>
+    <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
     <string name="date_day">%dd</string>
+    <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
     <string name="new_observation">New Observation</string>
     <string name="inactive_taxon">Inactive Taxon</string>
