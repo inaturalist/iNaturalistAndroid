@@ -432,6 +432,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 });
             }
             if (attacher != null) {
+                attacher.setMaximumScale(7.0f);
                 final PhotoViewAttacher finalAttacher1 = attacher;
                 attacher.setOnMatrixChangeListener(new PhotoViewAttacher.OnMatrixChangedListener() {
                     @Override
