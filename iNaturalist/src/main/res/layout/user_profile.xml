@@ -210,7 +210,7 @@
         android:id="@+id/species_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:background="#F5F5F5"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
@@ -252,7 +252,7 @@
         android:id="@+id/observations_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:background="#F5F5F5"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >

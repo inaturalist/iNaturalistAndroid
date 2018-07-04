@@ -199,8 +199,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mViewType = VIEW_TYPE_OBSERVATIONS;
 
             mObservationsContainer.setVisibility(View.VISIBLE);
-            mSpeciesContainer.setVisibility(View.GONE);
-            mIdentificationsContainer.setVisibility(View.GONE);
+            mSpeciesContainer.setVisibility(View.INVISIBLE);
+            mIdentificationsContainer.setVisibility(View.INVISIBLE);
 
         } else {
             mUser = (BetterJSONObject) savedInstanceState.getSerializable("user");
@@ -370,9 +370,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mObservationsContainer.setVisibility(View.GONE);
-                mSpeciesContainer.setVisibility(View.GONE);
-                mIdentificationsContainer.setVisibility(View.GONE);
+                mObservationsContainer.setVisibility(View.INVISIBLE);
+                mSpeciesContainer.setVisibility(View.INVISIBLE);
+                mIdentificationsContainer.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -401,24 +401,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             container = mIdentificationsContainer;
         }
 
-
-        // Hack to fix annoying issue (#541) where the layouts initially received a height of 0px
         container.setVisibility(View.VISIBLE);
-        ViewGroup.LayoutParams params = container.getLayoutParams();
-        params.height = 1;
-        container.setLayoutParams(params);
-        container.requestLayout();
-
-        final ViewGroup finalContainer = container;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ViewGroup.LayoutParams params = finalContainer.getLayoutParams();
-                params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-                finalContainer.setLayoutParams(params);
-                finalContainer.requestLayout();
-            }
-        }, 1);
 
         mTabHost.setCurrentTab(selectedTab);
         View tab = tabWidget.getChildAt(selectedTab);
@@ -665,6 +648,21 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 
             }
         }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ViewGroup containers[] = { mSpeciesContainer, mObservationsContainer, mIdentificationsContainer };
+
+                for (ViewGroup container: containers) {
+                    ViewGroup.LayoutParams params = container.getLayoutParams();
+                    params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                    container.setLayoutParams(params);
+                    container.requestLayout();
+                }
+            }
+        }, 1);
+
     }
 
 
