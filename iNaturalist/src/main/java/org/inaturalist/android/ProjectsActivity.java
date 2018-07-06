@@ -200,4 +200,9 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
             }
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        ((INaturalistApp) getApplicationContext()).onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

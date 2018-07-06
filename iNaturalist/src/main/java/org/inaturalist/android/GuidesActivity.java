@@ -184,4 +184,10 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
         getMenuInflater().inflate(R.menu.search_menu, menu);
         return true;
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        ((INaturalistApp) getApplicationContext()).onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

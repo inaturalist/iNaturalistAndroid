@@ -63,7 +63,6 @@ import android.widget.Toast;
 
 public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback, DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
 	public static String TAG = "INAT:ObservationListActivity";
-    private static final int PERMISSIONS_REQUEST = 0x100;
 
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
 
@@ -143,7 +142,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     private boolean mFromObsEdit = false;
     private ViewGroup mLoadingMoreResults;
-    private boolean mRequestedPermissions = false;
 
 
     @Override
@@ -341,7 +339,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             mIsGrid = savedInstanceState.getBooleanArray("mIsGrid");
             mViewType = savedInstanceState.getString("mViewType");
             mUser = (BetterJSONObject) savedInstanceState.getSerializable("user");
-            mRequestedPermissions = savedInstanceState.getBoolean("mRequestedPermissions");
 
             mSpecies = loadListFromBundle(savedInstanceState, "mSpecies");
             mIdentifications = loadListFromBundle(savedInstanceState, "mIdentifications");
@@ -367,11 +364,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
 
 
-        if (!arePermissionsGranted() && !mRequestedPermissions) {
-            mRequestedPermissions = true;
-            requestPermissions();
-        }
-        
         SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String username = pref.getString("username", null);
         if (username == null) {
@@ -782,7 +774,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     protected void onSaveInstanceState(Bundle outState) {
         if (mLastMessage != null) outState.putString("mLastMessage", mLastMessage);
         outState.putBoolean("mUserCanceledSync", mUserCanceledSync);
-        outState.putBoolean("mRequestedPermissions", mRequestedPermissions);
         outState.putBooleanArray("mIsGrid", mIsGrid);
         outState.putString("mViewType", mViewType);
         outState.putSerializable("user", mUser);
@@ -1578,60 +1569,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             SharedPreferences settings = mApp.getPrefs();
             settings.edit().putInt("unread_activities", unreadActivities).commit();
-        }
-    }
-
-
-    // Checks if all requested permissions were granted by the user
-    private boolean arePermissionsGranted() {
-        String[] requestedPermissions = retrievePermissions();
-
-        for (String permission: requestedPermissions) {
-            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    // Requests the user for needed permissions
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(this, retrievePermissions(), PERMISSIONS_REQUEST);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                    recreate();
-                }
-            }
-        }
-    }
-
-    // Returns requested permissions (found in AndroidManifest.xml)
-    private String[] retrievePermissions() {
-        try {
-            // android.permission.GET_ACCOUNTS
-            String[] permissions = this
-                    .getPackageManager()
-                    .getPackageInfo(this.getPackageName(), PackageManager.GET_PERMISSIONS)
-                    .requestedPermissions;
-
-            // Remove GET_ACCOUNTS permission from the list (something we'll only ask on G+ login)
-            ArrayList<String> permissionsList = new ArrayList<>(Arrays.asList(permissions));
-            if (permissionsList.contains(android.Manifest.permission.GET_ACCOUNTS)) {
-                permissionsList.remove(android.Manifest.permission.GET_ACCOUNTS);
-                return permissionsList.toArray(new String[permissionsList.size()]);
-            } else {
-                return permissions;
-            }
-
-
-        } catch (PackageManager.NameNotFoundException e) {
-            return new String[] { };
         }
     }
 

@@ -17,6 +17,7 @@ import com.livefront.bridge.Bridge;
 import com.livefront.bridge.SavedStateHandler;
 import com.squareup.picasso.LruCache;
 import com.squareup.picasso.Picasso;
+import android.Manifest;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -59,6 +60,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -72,6 +74,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v4.content.res.ResourcesCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
@@ -82,6 +86,9 @@ import android.widget.ImageView;
 
 public class INaturalistApp extends MultiDexApplication {
     private final static String TAG = "INAT: Application";
+
+    private static final int PERMISSIONS_REQUEST = 0x1234;
+
     private SharedPreferences mPrefs;
     private NotificationManager mNotificationManager;
 	private boolean mIsSyncing = false;
@@ -777,5 +784,80 @@ public class INaturalistApp extends MultiDexApplication {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+
+    public interface OnRequestPermissionResult {
+        void onPermissionGranted();
+        void onPermissionDenied();
+    }
+
+    private OnRequestPermissionResult mPermissionsCb = null;
+
+    public void requestCameraPermission(Activity activity, OnRequestPermissionResult cb) {
+        requestPermissions(activity, new String[] { Manifest.permission.CAMERA }, cb);
+    }
+
+    public void requestLocationPermission(Activity activity, OnRequestPermissionResult cb) {
+        requestPermissions(activity, new String[] { Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION }, cb);
+    }
+
+    public void requestExternalStoragePermission(Activity activity, OnRequestPermissionResult cb) {
+        requestPermissions(activity, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, cb);
+    }
+
+    private void requestPermissions(final Activity activity, final String[] permissions, OnRequestPermissionResult cb) {
+        mPermissionsCb = cb;
+
+        // Run on a background thread, not to block / mess up the UI thread
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                ActivityCompat.requestPermissions(activity, permissions, PERMISSIONS_REQUEST);
+            }
+        }).start();
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if ((requestCode != PERMISSIONS_REQUEST) || (mPermissionsCb == null)) {
+            return;
+        }
+
+        boolean granted = permissions.length > 0 ? true : false;
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                granted = false;
+            }
+        }
+
+        if (granted) {
+            mPermissionsCb.onPermissionGranted();
+        } else {
+            mPermissionsCb.onPermissionDenied();
+        }
+    }
+
+
+    public boolean isCameraPermissionGranted() {
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
+    }
+
+
+    public boolean isLocationPermissionGranted() {
+        return (
+                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
+                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        );
+    }
+
+    public boolean isExternalStoragePermissionGranted() {
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
 
 }

@@ -209,6 +209,7 @@ public class ObservationEditor extends AppCompatActivity {
     private String mScientificName;
     private ImageView mClearSpeciesGuess;
     private int mTaxonRankLevel;
+    @State public boolean mAskedForLocationPermission = false;
 
     @Override
 	protected void onStart()
@@ -861,10 +862,21 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void takePhoto() {
-        /*
-        mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
-        mFileUri = getPath(ObservationEditor.this, mFileUri);
-        */
+        if (!mApp.isCameraPermissionGranted()) {
+            mApp.requestCameraPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                @Override
+                public void onPermissionGranted() {
+                    takePhoto();
+                }
+
+                @Override
+                public void onPermissionDenied() {
+
+                }
+            });
+            return;
+        }
+
         // Temp file for the photo
         mFileUri = Uri.fromFile(new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg"));
 
@@ -879,7 +891,18 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void choosePhoto() {
-        if (!isExternalStoragePermissionGranted()) {
+        if (!mApp.isExternalStoragePermissionGranted()) {
+            mApp.requestExternalStoragePermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                @Override
+                public void onPermissionGranted() {
+                    choosePhoto();
+                }
+
+                @Override
+                public void onPermissionDenied() {
+
+                }
+            });
             return;
         }
 
@@ -1601,21 +1624,26 @@ public class ObservationEditor extends AppCompatActivity {
      * Location
      */
 
-    private boolean isLocationPermissionGranted() {
-        return (
-                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
-                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        );
-    }
-
-    private boolean isExternalStoragePermissionGranted() {
-        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
-    }
-
 
     // Kicks off place service
+    @SuppressLint("MissingPermission")
     private void getLocation() {
-        if (!isLocationPermissionGranted()) {
+        if (!mApp.isLocationPermissionGranted()) {
+            if (!mAskedForLocationPermission) {
+                mAskedForLocationPermission = true;
+
+                mApp.requestLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                    @Override
+                    public void onPermissionGranted() {
+                        getLocation();
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+                    }
+                });
+            }
+
             return;
         }
 
@@ -2153,7 +2181,7 @@ public class ObservationEditor extends AppCompatActivity {
                         String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
                         String copyPath = null;
 
-                        if (isExternalStoragePermissionGranted()) {
+                        if (mApp.isExternalStoragePermissionGranted()) {
                             copyPath = addPhotoToGallery(path);
                         } else {
                             copyPath = path;
@@ -3141,5 +3169,10 @@ public class ObservationEditor extends AppCompatActivity {
             JSONObject idPhoto = taxon.getJSONObject("default_photo");
             setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

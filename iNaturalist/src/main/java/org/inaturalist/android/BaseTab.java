@@ -135,7 +135,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             if (!isNetworkAvailable()) {
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
-            } else if (requiresLocation() && !mApp.isLocationEnabled(this)) {
+            } else if (requiresLocation() && !mApp.isLocationPermissionGranted()) {
             	// No projects due to no place services enabled
             	mEmptyListLabel.setText(getLocationRequiredText());
                 mSettings.setVisibility(View.VISIBLE);
@@ -165,7 +165,9 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     private TextView mEmptyListLabel;
     private EditText mSearchText;
     private ProgressBar mProgressBar;
-	protected INaturalistApp mApp; 	
+	protected INaturalistApp mApp;
+	private boolean mAskedForLocationPermission = false;
+
     
     /*
      * Methods that should be overriden by subclasses
@@ -245,8 +247,6 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     @Override
     public void onPause() {
         super.onPause();
-
-        BaseFragmentActivity.safeUnregisterReceiver(mProjectsReceiver, getActivity());
     }
 
 
@@ -330,9 +330,41 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
         if (mProjects == null) {
             // Get the user's projects
-            Log.i(TAG, "Calling " + getActionName());
-            Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-            getActivity().startService(serviceIntent);
+            if (requiresLocation() && !mApp.isLocationPermissionGranted()) {
+                mEmptyListLabel.setText(getLocationRequiredText());
+                mSettings.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
+                mEmptyListLabel.setVisibility(View.VISIBLE);
+                mProjectList.setVisibility(View.GONE);
+
+
+                if (!mAskedForLocationPermission) {
+                    mAskedForLocationPermission = true;
+
+                    mApp.requestLocationPermission(getActivity(), new INaturalistApp.OnRequestPermissionResult() {
+                        @Override
+                        public void onPermissionGranted() {
+                            Log.i(TAG, "Calling " + getActionName());
+                            Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
+                            getActivity().startService(serviceIntent);
+
+                            mEmptyListLabel.setVisibility(View.GONE);
+                            mSettings.setVisibility(View.GONE);
+                            mProgressBar.setVisibility(View.VISIBLE);
+                            mProjectList.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onPermissionDenied() {
+
+                        }
+                    });
+                }
+            } else {
+                Log.i(TAG, "Calling " + getActionName());
+                Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
+                getActivity().startService(serviceIntent);
+            }
         } else {
             // Load previously downloaded projects
             Log.i(TAG, "Previously loaded projects: " + mProjects.toString());

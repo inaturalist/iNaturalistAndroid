@@ -35,7 +35,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
     public ObservationGridAdapter(Context context, int dimension, List<JSONObject> objects) {
         super(context, R.layout.guide_taxon_item, objects);
 
-        mItems = objects;
+        mItems = objects != null ? objects : new ArrayList<JSONObject>();
         mOriginalItems = new ArrayList<JSONObject>(mItems);
         mContext = context;
         mDimension = dimension;

@@ -67,6 +67,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     private ViewGroup mMissionsByCategoryContainer;
 
     private int mMissionsCurrentExpansionLevel = 0;
+    private boolean mAskedForLocationPermissions = false;
 
     @Override
 	protected void onStart()
@@ -133,6 +134,7 @@ public class MissionsActivity extends BaseFragmentActivity {
         if (savedInstanceState != null) {
             mMissions = loadListFromBundle(savedInstanceState, "mMissions");
             mMissionsCurrentExpansionLevel = savedInstanceState.getInt("mMissionsCurrentExpansionLevel");
+            mAskedForLocationPermissions = savedInstanceState.getBoolean("mAskedForLocationPermissions");
         }
 
 
@@ -320,9 +322,28 @@ public class MissionsActivity extends BaseFragmentActivity {
 
         if (mMissions == null) {
             // Ask for the recommended missions
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, this, INaturalistService.class);
-            serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-            startService(serviceIntent);
+            if (mApp.isLocationPermissionGranted()) {
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
+                startService(serviceIntent);
+            } else if (!mAskedForLocationPermissions) {
+                mAskedForLocationPermissions = true;
+
+                mApp.requestLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                    @Override
+                    public void onPermissionGranted() {
+                        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
+                        serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
+                        startService(serviceIntent);
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+                        mMissions = new ArrayList<>();
+                        refreshViewState();
+                    }
+                });
+            }
         }
 
         refreshViewState();
@@ -332,6 +353,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     protected void onSaveInstanceState(Bundle outState) {
         saveListToBundle(outState, mMissions, "mMissions");
         outState.putInt("mMissionsCurrentExpansionLevel", mMissionsCurrentExpansionLevel);
+        outState.putBoolean("mAskedForLocationPermissions", mAskedForLocationPermissions);
 
         super.onSaveInstanceState(outState);
     }
@@ -372,7 +394,10 @@ public class MissionsActivity extends BaseFragmentActivity {
             int numberOfColumns = gridView.getNumColumns();
             int numberOfRows = (int)Math.ceil((float)numberOfItems / numberOfColumns);
 
-            int spacing = gridView.getVerticalSpacing();
+            int spacing = 0;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                spacing = gridView.getVerticalSpacing();
+            }
             int columnWidth = gridView.getColumnWidth();
 
             int newHeight = (numberOfRows * columnWidth) + ((numberOfRows - 1) * spacing);
@@ -404,5 +429,10 @@ public class MissionsActivity extends BaseFragmentActivity {
         super.onPause();
 
         BaseFragmentActivity.safeUnregisterReceiver(mMissionsReceiver, this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

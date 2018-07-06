@@ -164,6 +164,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private int[] mLastTotalResults = {NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
     private boolean mMapReady = false;
     private boolean mShouldMoveMapAccordingToSearchFilters = false;
+    private boolean mLocationPermissionRequested = false;
 
     @Override
     protected void onStart() {
@@ -176,13 +177,6 @@ public class ExploreActivity extends BaseFragmentActivity {
     protected void onStop() {
         super.onStop();
         FlurryAgent.onEndSession(this);
-    }
-
-    private boolean isLocationPermissionGranted() {
-        return (
-                (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) &&
-                        (PermissionChecker.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        );
     }
 
 
@@ -236,6 +230,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         });
 
         mHelper = new ActivityHelper(this);
+        mApp = (INaturalistApp) getApplicationContext();
 
         setContentView(R.layout.explore);
 
@@ -257,6 +252,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             mLoadingNextResults = savedInstanceState.getBooleanArray("mLoadingNextResults");
             mObservationsMapType = savedInstanceState.getInt("mObservationsMapType", GoogleMap.MAP_TYPE_TERRAIN);
             mMapMoved = savedInstanceState.getBoolean("mMapMoved");
+            mLocationPermissionRequested = savedInstanceState.getBoolean("mLocationPermissionRequested");
 
             mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
             mResults[VIEW_TYPE_OBSERVATIONS] = mHelper.loadListFromBundle(savedInstanceState, "mObservations");
@@ -281,6 +277,30 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         // Tab Initialization
         initializeTabs();
+
+
+        if (!mApp.isLocationPermissionGranted()) {
+            if (!mLocationPermissionRequested) {
+                mLocationPermissionRequested = true;
+
+                mApp.requestLocationPermission(ExploreActivity.this, new INaturalistApp.OnRequestPermissionResult() {
+                    @SuppressLint("MissingPermission")
+                    @Override
+                    public void onPermissionGranted() {
+                        mObservationsMapMyLocation.setVisibility(View.VISIBLE);
+                        mObservationsMapMyLocation.performClick();
+                        mObservationsMap.setMyLocationEnabled(true);
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+
+                    }
+                });
+
+            }
+        }
+
     }
 
     @Override
@@ -292,6 +312,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         outState.putBooleanArray("mLoadingNextResults", mLoadingNextResults);
         outState.putInt("mObservationsMapType", mObservationsMapType);
         outState.putBoolean("mMapMoved", mMapMoved);
+        outState.putBoolean("mLocationPermissionRequested", mLocationPermissionRequested);
 
         outState.putSerializable("mSearchFilters", mSearchFilters);
 
@@ -383,9 +404,6 @@ public class ExploreActivity extends BaseFragmentActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (mApp == null) {
-            mApp = (INaturalistApp) getApplicationContext();
-        }
 
         mExploreResultsReceiver = new ExploreResultsReceiver();
         IntentFilter filter = new IntentFilter();
@@ -399,7 +417,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         IntentFilter filter2 = new IntentFilter();
         filter2.addAction(INaturalistService.GET_CURRENT_LOCATION_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mLocationReceiver, filter2, this);
-
 
         refreshViewState();
     }
@@ -1207,7 +1224,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                             }
                         });
 
-                        if (isLocationPermissionGranted()) {
+                        if (mApp.isLocationPermissionGranted()) {
                             mObservationsMap.setMyLocationEnabled(true);
                         } else {
                             mObservationsMap.setMyLocationEnabled(false);
@@ -1246,7 +1263,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                         }
 
 
-                        if (!isLocationPermissionGranted()) {
+                        if (!mApp.isLocationPermissionGranted()) {
                             // No location permissions granted - treat it as a global search
                             mSearchFilters.mapBounds = null;
                             mSearchFilters.isCurrentLocation = false;
@@ -1280,10 +1297,10 @@ public class ExploreActivity extends BaseFragmentActivity {
                     }
                 });
 
-                mObservationsMapMyLocation.setVisibility(isLocationPermissionGranted() ? View.VISIBLE : View.INVISIBLE);
+                mObservationsMapMyLocation.setVisibility(mApp.isLocationPermissionGranted() ? View.VISIBLE : View.INVISIBLE);
 
                 if (mLastMapBounds == null) {
-                    if (isLocationPermissionGranted()) {
+                    if (mApp.isLocationPermissionGranted()) {
                         // Initially zoom to current location
                         mObservationsMapMyLocation.performClick();
                     } else {
@@ -1567,5 +1584,10 @@ public class ExploreActivity extends BaseFragmentActivity {
             mMapMoved = false;
             mObservationsMap.moveCamera(cameraUpdate);
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
