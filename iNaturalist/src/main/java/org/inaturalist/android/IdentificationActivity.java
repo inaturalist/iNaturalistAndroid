@@ -203,7 +203,13 @@ public class IdentificationActivity extends AppCompatActivity {
                 mTaxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
                 mIconicTaxonName = data.getStringExtra(TaxonSearchActivity.ICONIC_TAXON_NAME);
                 mTaxonName.setText(data.getStringExtra(TaxonSearchActivity.TAXON_NAME));
-                mTaxonName.setTypeface(null, Typeface.ITALIC);
+
+                if (data.getIntExtra(TaxonSearchActivity.RANK_LEVEL, 100) <= 20) {
+                    mTaxonName.setTypeface(null, Typeface.ITALIC);
+                } else {
+                    mTaxonName.setTypeface(null, Typeface.NORMAL);
+                }
+
                 mIdName.setText(data.getStringExtra(TaxonSearchActivity.ID_NAME));
                 UrlImageViewHelper.setUrlDrawable(mIdPic, data.getStringExtra(TaxonSearchActivity.ID_PIC_URL));
             } else {
