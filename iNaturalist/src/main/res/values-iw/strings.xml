@@ -105,7 +105,7 @@
     <string name="com_facebook_usersettingsfragment_not_logged_in">"לא מחובר"</string>
     <string name="com_facebook_placepicker_subtitle_format">"%1$s • %2$,d היו כאן"</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">"%1$s"</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">"%1$s • %2$,d היו כאן"</string>
+    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
     <string name="com_facebook_picker_done_button_text">"סיום"</string>
     <string name="com_facebook_choose_friends">"בחירת חברים"</string>
     <string name="com_facebook_nearby">"בקרבת מקום"</string>
