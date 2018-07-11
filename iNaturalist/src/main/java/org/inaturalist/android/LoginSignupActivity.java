@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -44,6 +45,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
     public static final String BACKGROUND_ID = "background_id";
     public static final String SIGNUP = "signup";
+    public static final String PASSWORD_CHANGED = "password_changed";
 
     private ImageView mEmailIcon;
     private EditText mEmail;
@@ -62,6 +64,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
     private UserRegisterReceiver mUserRegisterReceiver;
     private TextView mTerms;
+    private boolean mPasswordChanged;
 
     @Override
     protected void onStart() {
@@ -132,6 +135,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
         int backgroundId = getIntent().getIntExtra(BACKGROUND_ID, 0);
         mIsSignup = getIntent().getBooleanExtra(SIGNUP, false);
+        mPasswordChanged = getIntent().getBooleanExtra(PASSWORD_CHANGED, false);
 
         switch (backgroundId) {
             case 2:
@@ -329,6 +333,23 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_FORGOT_PASSWORD);
                 }
             });
+
+            if (mPasswordChanged) {
+                // User changed his password on the website - ask for new password
+                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                String username = prefs.getString("username", "");
+                mUsername.setText(username);
+                usernameContainer.setVisibility(username.length() == 0 ? View.VISIBLE : View.GONE);
+
+                View loginButtons = findViewById(R.id.login_buttons_container);
+                loginButtons.setVisibility(View.GONE);
+                View loginWith = findViewById(R.id.login_with);
+                loginWith.setVisibility(View.GONE);
+                backButton.setVisibility(View.GONE);
+
+                View passwordChanges = findViewById(R.id.password_changed);
+                passwordChanges.setVisibility(View.VISIBLE);
+            }
         } else {
             View loginButtons = findViewById(R.id.login_buttons_container);
             loginButtons.setVisibility(View.GONE);
@@ -425,10 +446,12 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     }
 
     public void onBackPressed(){
-        mSignInTask.pause();
-        setResult(RESULT_CANCELED);
-        finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        if (!mPasswordChanged) {
+            mSignInTask.pause();
+            setResult(RESULT_CANCELED);
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
     }
 
     @Override

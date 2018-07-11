@@ -554,8 +554,16 @@ public class BaseFragmentActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             Log.i(TAG, "Got GET_USER_DETAILS_RESULT");
             BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
+            boolean authenticationFailed = intent.getBooleanExtra(INaturalistService.AUTHENTICATION_FAILED, false);
 
-            if (user == null) {
+            if (authenticationFailed) {
+                // This means the user has changed his password on the website
+                Intent intent2 = new Intent(BaseFragmentActivity.this, LoginSignupActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent2.putExtra(LoginSignupActivity.SIGNUP, false);
+                intent2.putExtra(LoginSignupActivity.PASSWORD_CHANGED, true);
+                startActivity(intent2);
+
+            } else if (user == null) {
                 return;
             }
 

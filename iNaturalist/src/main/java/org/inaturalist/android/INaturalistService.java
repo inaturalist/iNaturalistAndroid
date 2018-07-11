@@ -111,6 +111,7 @@ public class INaturalistService extends IntentService {
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
     public static final String USER = "user";
+    public static final String AUTHENTICATION_FAILED = "authentication_failed";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String FOLLOWING = "following";
@@ -1004,10 +1005,20 @@ public class INaturalistService extends IntentService {
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_USER_DETAILS)) {
-                BetterJSONObject user = getUserDetails();
+                BetterJSONObject user = null;
+                boolean authenticationFailed = false;
+
+                try {
+                    user = getUserDetails();
+                } catch (AuthenticationException exc) {
+                    // This means the user has changed his password on the website
+                    exc.printStackTrace();
+                    authenticationFailed = true;
+                }
 
                 Intent reply = new Intent(ACTION_GET_USER_DETAILS_RESULT);
                 reply.putExtra(USER, user);
+                reply.putExtra(AUTHENTICATION_FAILED, authenticationFailed);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_TAXA_FOR_GUIDE)) {
