@@ -45,6 +45,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_person_white_24dp" />
         </RelativeLayout>
+
         <ImageView
             android:id="@+id/right_arrow"
             android:layout_width="24dp"
@@ -55,61 +56,54 @@
             android:src="@drawable/ic_arrow_forward_white_24dp"
             />
 
-        <RelativeLayout
-            android:id="@+id/user_details"
-            android:layout_centerVertical="true"
+        <TextView
+            android:id="@+id/observation_count"
+            android:layout_toRightOf="@id/side_menu_user_pic_container"
+            android:layout_toLeftOf="@id/right_arrow"
+            android:layout_alignBottom="@id/right_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toStartOf="@id/right_arrow"
-            android:layout_toEndOf="@id/side_menu_user_pic_container">
+            android:textSize="14sp"
+            android:textColor="#bbffffff"
+            android:text="124 observations"
+            android:textAllCaps="true"
+            android:paddingBottom="8dp"
+            />
 
-            <TextView
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:id="@+id/side_menu_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textColor="#ffffff"
-                android:text="@string/not_logged_in"
-                android:paddingBottom="10dp"
-                android:visibility="invisible"
-                />
+        <TextView
+            android:id="@+id/side_menu_username"
+            android:layout_toRightOf="@id/side_menu_user_pic_container"
+            android:layout_toLeftOf="@id/right_arrow"
+            android:layout_above="@id/right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#ffffff"
+            android:text="@string/not_logged_in"
+            android:paddingBottom="10dp"
+            android:visibility="invisible"
+            />
 
-            <Button
-                android:id="@+id/menu_login"
-                android:background="@drawable/circular_button"
-                android:textColor="#ffffff"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/login_signup"
-                android:lines="1"
-                android:textSize="12sp"
-                android:paddingTop="0dp"
-                android:paddingBottom="2dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:height="25dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="7dp"
-                />
+        <Button
+            android:id="@+id/menu_login"
+            android:layout_toRightOf="@id/side_menu_user_pic_container"
+            android:layout_above="@id/right_arrow"
+            android:background="@drawable/circular_button"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_signup"
+            android:lines="1"
+            android:textSize="12sp"
+            android:paddingTop="0dp"
+            android:paddingBottom="2dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:height="25dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            />
 
-            <TextView
-                android:layout_alignParentLeft="true"
-                android:id="@+id/observation_count"
-                android:layout_below="@id/side_menu_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#bbffffff"
-                android:text="124 observations"
-                android:textAllCaps="true"
-                android:paddingBottom="8dp"
-                />
-
-        </RelativeLayout>
 
 
     </RelativeLayout>
