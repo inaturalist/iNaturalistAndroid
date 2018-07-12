@@ -13,8 +13,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -34,16 +32,10 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BaseTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.transition.Transition;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Request;
 import com.squareup.picasso.RequestCreator;
 
 import org.apache.commons.lang3.StringUtils;
@@ -461,6 +453,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         } else {
             obsImage.setVisibility(View.INVISIBLE);
             holder.photoFilename = null;
+            mImageViewToUrlExpected.put(obsImage, null);
         }
 
         Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
@@ -855,7 +848,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 if (imageView != null) {
                     imageView.setImageBitmap(bitmap);
                     imageView.setVisibility(View.VISIBLE);
-                    mImageViewToUrl.put(imageView, mFilename);
+                    mImageViewToUrlAfterLoading.put(imageView, mFilename);
                 }
             }
         }
@@ -868,10 +861,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     }
 
 
-    private Map<ImageView, String> mImageViewToUrl = new HashMap<>();
+    private Map<ImageView, String> mImageViewToUrlAfterLoading = new HashMap<>();
+    private Map<ImageView, String> mImageViewToUrlExpected = new HashMap<>();
 
     private void loadObsImage(final int position, final ImageView imageView, final String name, boolean isOnline, final boolean largeVersion) {
-        if (mImageViewToUrl.containsKey(imageView) && mImageViewToUrl.get(imageView).equals(name)){
+        mImageViewToUrlExpected.put(imageView, name);
+
+        if (mImageViewToUrlAfterLoading.containsKey(imageView) && mImageViewToUrlAfterLoading.get(imageView).equals(name)){
             imageView.setVisibility(View.VISIBLE);
             return;
         }
@@ -934,9 +930,17 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             request.into(imageView, new Callback() {
                         @Override
                         public void onSuccess() {
+                            if (mImageViewToUrlExpected.containsKey(imageView)) {
+                                String expectedUrl = mImageViewToUrlExpected.get(imageView);
+                                if ((expectedUrl == null) || (!expectedUrl.equals(name))) {
+                                    // This ImageView has already been re-used for another URL (happens when scrolling fast)
+                                    return;
+                                }
+                            }
+
                             imageView.setVisibility(View.VISIBLE);
 
-                            mImageViewToUrl.put(imageView, newImageUrl);
+                            mImageViewToUrlAfterLoading.put(imageView, newImageUrl);
 
                             if (!largeVersion) {
                                 loadObsImage(position, imageView, name, true, true);
