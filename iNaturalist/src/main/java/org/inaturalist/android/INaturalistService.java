@@ -1942,8 +1942,11 @@ public class INaturalistService extends IntentService {
                 if (op.id != null) {
                     JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
                     if (result == null) {
-                        c.close();
-                        throw new SyncFailedException();
+                        if (mLastStatusCode != HttpStatus.SC_NOT_FOUND) {
+                            // Ignore the case where the photo was remotely deleted
+                            c.close();
+                            throw new SyncFailedException();
+                        }
                     }
                 }
             }
