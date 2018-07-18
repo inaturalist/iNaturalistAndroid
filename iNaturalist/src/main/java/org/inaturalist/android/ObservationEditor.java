@@ -793,8 +793,31 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mSharePhotos != null) {
             stopGetLocation();
+
             // Share photos(s) with iNaturalist (override any place with the one from the shared images)
-            importPhotos(mSharePhotos, true);
+            if (!mApp.isExternalStoragePermissionGranted()) {
+                mApp.requestExternalStoragePermission(ObservationEditor.this, new INaturalistApp.OnRequestPermissionResult() {
+                    @Override
+                    public void onPermissionGranted() {
+                        importPhotos(mSharePhotos, true);
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+                        mCanceled = true;
+                        if (!mDeleted) {
+                            if (isDeleteable()) {
+                                delete(true);
+                            }
+                        }
+                        setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
+                        finish();
+                    }
+                });
+                return;
+            } else {
+                importPhotos(mSharePhotos, true);
+            }
         }
 
     }
@@ -1223,7 +1246,9 @@ public class ObservationEditor extends AppCompatActivity {
                 }
 
                 if (mObservation.latitude == null && mCurrentLocation == null) {
-                    getLocation();
+                    if (mSharePhotos == null) {
+                        getLocation();
+                    }
                 }
             }
         }

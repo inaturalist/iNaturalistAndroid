@@ -287,6 +287,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     @SuppressLint("MissingPermission")
                     @Override
                     public void onPermissionGranted() {
+                        mLoadingNextResults = new boolean[]{false, false, false, false};
                         mObservationsMapMyLocation.setVisibility(View.VISIBLE);
                         mObservationsMapMyLocation.performClick();
                         mObservationsMap.setMyLocationEnabled(true);

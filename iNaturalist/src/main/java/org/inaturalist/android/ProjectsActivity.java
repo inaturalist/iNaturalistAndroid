@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -57,7 +58,7 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         getSupportActionBar().setElevation(0);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(3);
 
         // Tab Initialization
         initialiseTabHost();
@@ -75,6 +76,13 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         mPageAdapter = new MyPageAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mPageAdapter);
         mViewPager.setOnPageChangeListener(this);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((BaseTab) mPageAdapter.getItem(mViewPager.getCurrentItem())).loadProjects();
+            }
+        }, 1000);
     }
     
     // Method to add a TabHost
@@ -108,6 +116,10 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
 
         tabWidget.getChildAt(pos).findViewById(R.id.bottom_line).setVisibility(View.VISIBLE);
         ((TextView)tabWidget.getChildAt(pos).findViewById(R.id.tab_title)).setTextColor(Color.parseColor("#000000"));
+
+        if (mPageAdapter != null) {
+            ((BaseTab) mPageAdapter.getItem(pos)).loadProjects();
+        }
     }
 
     @Override

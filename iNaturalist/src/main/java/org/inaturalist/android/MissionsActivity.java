@@ -46,6 +46,7 @@ public class MissionsActivity extends BaseFragmentActivity {
             { R.string.arachnids, R.drawable.ic_taxa_arachnids, Color.parseColor("#FDEAE6"), 47119 }
     };
 
+    private static final int MISSION_ONBOARDING_REQUEST_CODE = 0x1000;
 
     // How much to expand the recommended missions search by (in terms of degrees), in case
     // a previous search yielded no results.
@@ -151,7 +152,7 @@ public class MissionsActivity extends BaseFragmentActivity {
         if (!settings.getBoolean("shown_missions_onboarding", false)) {
             // Show the missions onboarding screen
             Intent intent = new Intent(MissionsActivity.this, MissionsOnboardingActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, MISSION_ONBOARDING_REQUEST_CODE);
         }
 
     }
@@ -327,26 +328,33 @@ public class MissionsActivity extends BaseFragmentActivity {
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
                 startService(serviceIntent);
             } else if (!mAskedForLocationPermissions) {
-                mAskedForLocationPermissions = true;
-
-                mApp.requestLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
-                    @Override
-                    public void onPermissionGranted() {
-                        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
-                        serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-                        startService(serviceIntent);
-                    }
-
-                    @Override
-                    public void onPermissionDenied() {
-                        mMissions = new ArrayList<>();
-                        refreshViewState();
-                    }
-                });
+                SharedPreferences settings = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+                if (settings.getBoolean("shown_missions_onboarding", false)) {
+                    askForLocationPermissions();
+                }
             }
         }
 
         refreshViewState();
+    }
+
+    private void askForLocationPermissions() {
+        mAskedForLocationPermissions = true;
+
+        mApp.requestLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+            @Override
+            public void onPermissionGranted() {
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
+                serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
+                startService(serviceIntent);
+            }
+
+            @Override
+            public void onPermissionDenied() {
+                mMissions = new ArrayList<>();
+                refreshViewState();
+            }
+        });
     }
 
     @Override
@@ -435,4 +443,16 @@ public class MissionsActivity extends BaseFragmentActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == MISSION_ONBOARDING_REQUEST_CODE) {
+            if (!mAskedForLocationPermissions) {
+                askForLocationPermissions();
+            }
+        }
+    }
+
 }

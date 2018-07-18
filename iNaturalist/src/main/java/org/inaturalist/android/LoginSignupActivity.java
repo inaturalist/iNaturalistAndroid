@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -379,7 +380,12 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 }
 
                 if (ContextCompat.checkSelfPermission(LoginSignupActivity.this, android.Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(LoginSignupActivity.this, new String[] { android.Manifest.permission.GET_ACCOUNTS }, PERMISSIONS_REQUEST);
+                    mHelper.confirm(R.string.just_so_you_know, R.string.ask_for_g_plus_permissions, R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(LoginSignupActivity.this, new String[] { android.Manifest.permission.GET_ACCOUNTS }, PERMISSIONS_REQUEST);
+                        }
+                    });
                 } else {
                     recreateSignInTaskIfNeeded();
                     mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);

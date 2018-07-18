@@ -60,6 +60,8 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     private Button mLogin;
     private Button mSettings;
 
+    private boolean mLoadingProjects = false;
+
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private ActivityHelper mHelper;
 
@@ -328,6 +330,14 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         mSearchText = (EditText) v.findViewById(R.id.search_filter);
         mSearchText.setVisibility(View.GONE);
 
+        return v;
+    }
+
+    public void loadProjects() {
+        if (mLoadingProjects) return;
+
+        mLoadingProjects = true;
+
         if (mProjects == null) {
             // Get the user's projects
             if (requiresLocation() && !mApp.isLocationPermissionGranted()) {
@@ -370,8 +380,6 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             Log.i(TAG, "Previously loaded projects: " + mProjects.toString());
             loadProjectsIntoUI();
         }
-        
-        return v;
     }
 
 
