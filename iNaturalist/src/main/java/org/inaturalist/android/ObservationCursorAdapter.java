@@ -102,7 +102,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         mContext = (Activity)context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
 
-        getPhotoInfo();
+        getPhotoInfo(true);
 
         mGetAdditionalObsReceiver = new GetAdditionalObsReceiver();
         IntentFilter filter = new IntentFilter();
@@ -202,14 +202,15 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             changeCursor(newCursor);
         }
 
-        getPhotoInfo();
+        getPhotoInfo(true);
     }
 
     /**
      * Retrieves photo ids and orientations for photos associated with the listed observations.
      */
-    public void getPhotoInfo() {
-        loadPhotoInfo();
+    public void getPhotoInfo(boolean loadFromCache) {
+        if (loadFromCache) loadPhotoInfo();
+
         Cursor c = getCursor();
         int originalPosition = c.getPosition();
         if (c.getCount() == 0) return;
@@ -276,7 +277,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     public void refreshPhotoInfo() {
         mPhotoInfo = new HashMap<String, String[]>();
-        getPhotoInfo();
+        getPhotoInfo(false);
     }
 
     private static class ViewHolder {

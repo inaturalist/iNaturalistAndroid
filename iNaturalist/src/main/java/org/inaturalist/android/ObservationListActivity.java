@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -261,9 +262,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     
     /** Shows the sync required bottom bar, if needed */
     private void refreshSyncBar() {
-        int syncCount = 0;
-        int photoSyncCount = 0;
-
         if (mApp.getAutoSync()) {
             // Auto sync is on - no need for manual sync (only if the sync wasn't paused by the user)
             if (!mUserCanceledSync) {
@@ -272,18 +270,25 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             }
         }
 
+        HashMap<Long, Boolean> obsToSync = new HashMap<>();
+
         Cursor c = getContentResolver().query(Observation.CONTENT_URI, 
         		Observation.PROJECTION, 
         		"((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL)) AND (_updated_at > _created_at)",
         		null, 
         		Observation.SYNC_ORDER);
-        syncCount = c.getCount();
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            obsToSync.put(c.getLong(c.getColumnIndex(Observation._ID)), true);
+            c.moveToNext();
+        }
+
         c.close();
         
         Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
         		new String[]{
         		ObservationPhoto._ID, 
-        		ObservationPhoto._OBSERVATION_ID, 
+        		ObservationPhoto._OBSERVATION_ID,
         		ObservationPhoto._PHOTO_ID, 
         		ObservationPhoto.PHOTO_URL,
         		ObservationPhoto._UPDATED_AT,
@@ -294,12 +299,20 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             "(is_deleted = 1)",
             null, 
             ObservationPhoto._ID);
-        photoSyncCount = opc.getCount();
+
+        boolean photosChanged = false;
+        opc.moveToFirst();
+        while (!opc.isAfterLast()) {
+            obsToSync.put(opc.getLong(opc.getColumnIndex(ObservationPhoto._OBSERVATION_ID)), true);
+            opc.moveToNext();
+            photosChanged = true;
+        }
+
         opc.close();
 
         if (mSyncingTopBar != null) {
-            if ((syncCount > 0) || (photoSyncCount > 0)) {
-                int count = (syncCount > 0 ? syncCount : photoSyncCount);
+            if (obsToSync.keySet().size() > 0) {
+                int count = obsToSync.keySet().size();
                 if (count == 1) {
                     mSyncingStatus.setText(R.string.sync_1_observation);
                 } else {
@@ -308,6 +321,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mSyncingTopBar.setVisibility(View.VISIBLE);
                 mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
                 mCancelSync.setText(R.string.upload);
+
+                if (photosChanged) {
+                    mObservationListAdapter.refreshPhotoInfo();
+                }
             } else {
                 mSyncingTopBar.setVisibility(View.GONE);
             }
