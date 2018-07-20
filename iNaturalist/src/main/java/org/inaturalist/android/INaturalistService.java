@@ -3482,6 +3482,10 @@ public class INaturalistService extends IntentService {
         Timestamp lastSyncTS = new Timestamp(lastSync);
         url += String.format("&updated_since=%s&order_by=created_at&order=desc&extra=observation_photos,projects,fields", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
 
+        if (maxCount == 0) {
+            maxCount = 200;
+        }
+
         if (maxCount > 0) {
             // Retrieve only a certain number of observations
             url += String.format("&per_page=%d&page=1", maxCount);
