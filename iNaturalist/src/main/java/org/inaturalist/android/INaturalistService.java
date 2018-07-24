@@ -4436,6 +4436,18 @@ public class INaturalistService extends IntentService {
         Collections.sort(newIds);
         for (int i = 0; i < newIds.size(); i++) {
             jsonObservation = jsonObservationsById.get(newIds.get(i));
+
+            Cursor c2 = getContentResolver().query(Observation.CONTENT_URI,
+                    Observation.PROJECTION,
+                    "id = ?", new String[]{String.valueOf(jsonObservation.id)}, Observation.DEFAULT_SORT_ORDER);
+            int count = c2.getCount();
+            c2.close();
+
+            if (count > 0) {
+                Log.d(TAG, "Observation " + jsonObservation.id + " already exists locally - not adding");
+                continue;
+            }
+
             cv = jsonObservation.getContentValues();
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
             cv.put(Observation.LAST_COMMENTS_COUNT, jsonObservation.comments_count);
