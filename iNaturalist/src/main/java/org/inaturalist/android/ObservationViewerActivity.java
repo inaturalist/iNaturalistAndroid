@@ -1300,6 +1300,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
         int dataQuality = DATA_QUALITY_CASUAL_GRADE;
         int reasonText = 0;
 
+        Log.d(TAG, "refreshDataQuality: " + mObservation.id);
+
         if (((mObservation.latitude == null) && (mObservation.longitude == null)) && ((mObservation.private_latitude == null) && (mObservation.private_longitude == null))) {
             // No place
             dataQuality = DATA_QUALITY_CASUAL_GRADE;
@@ -1322,6 +1324,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
         } else {
             dataQuality = DATA_QUALITY_RESEARCH_GRADE;
         }
+
+        Log.d(TAG, "refreshDataQuality 2: " + dataQuality + ":" + (reasonText != 0 ? getString(reasonText) : "N/A"));
+
         if (mObservation.quality_grade != null) {
             int observedDataQuality = -1;
             if (mObservation.quality_grade.equals(QUALITY_GRADE_CASUAL_GRADE)) {
@@ -1339,7 +1344,13 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 // Remove the reasoning
                 reasonText = 0;
             }
+
+            Log.d(TAG, "refreshDataQuality 3: " + dataQuality);
         }
+
+        Log.d(TAG, "refreshDataQuality 4: " + mObservation.quality_grade + ":" + mIdCount + ":" + mObservation.captive + ":" + mFlagAsCaptive + ":" +
+            ((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getCount() + ":" + mObservation.observed_on + ":" + mObservation.latitude + ":" + mObservation.private_latitude +
+            ":" + mObservation.longitude + ":" + mObservation.private_longitude);
 
 
         // TODO - "Observation is casual grade because the community voted that they cannot identify it from the photo."
