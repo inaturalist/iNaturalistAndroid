@@ -211,7 +211,7 @@
         <Button
             android:id="@+id/sign_up"
             android:background="@drawable/circular_button"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/sign_up"
             android:textColor="@drawable/circular_button_text"
