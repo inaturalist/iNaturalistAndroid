@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -58,6 +59,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -171,7 +173,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         refreshCursor(null);
     }
 
-    public void refreshCursor(String speciesGuess) {
+    private List<Object> getQuery(String speciesGuess) {
         SharedPreferences prefs = mContext.getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         String conditions = "(_synced_at IS NULL";
@@ -191,6 +193,16 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             selectionArgs = new String[] { "%" + speciesGuess + "%", "%" + speciesGuess + "%" };
         }
 
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(conditions);
+        list.add(selectionArgs);
+        return list;
+    }
+
+    public void refreshCursor(String speciesGuess) {
+        List<Object> results = getQuery(speciesGuess);
+        String conditions = (String) results.get(0);
+        String[] selectionArgs = (String[]) results.get(1);
 
         Cursor newCursor = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
                 conditions, selectionArgs, Observation.DEFAULT_SORT_ORDER);
@@ -205,15 +217,29 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         getPhotoInfo(true);
     }
 
+    private Cursor getNewCursor() {
+        List<Object> results = getQuery(null);
+        String conditions = (String) results.get(0);
+        String[] selectionArgs = (String[]) results.get(1);
+
+        Cursor newCursor = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION,
+                conditions, selectionArgs, Observation.DEFAULT_SORT_ORDER);
+
+        return newCursor;
+    }
+
     /**
      * Retrieves photo ids and orientations for photos associated with the listed observations.
      */
     public void getPhotoInfo(boolean loadFromCache) {
         if (loadFromCache) loadPhotoInfo();
 
-        Cursor c = getCursor();
+        Cursor c = getNewCursor();
         int originalPosition = c.getPosition();
-        if (c.getCount() == 0) return;
+        if (c.getCount() == 0) {
+            c.close();
+            return;
+        }
 
         ArrayList<Long> obsIds = new ArrayList<>();
         ArrayList<Long> externalObsIds = new ArrayList<>();
@@ -233,6 +259,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         c.moveToPosition(originalPosition);
+        c.close();
 
         // Add any photos that were added/changed
         Cursor onlinePc = mContext.getContentResolver().query(ObservationPhoto.CONTENT_URI,
