@@ -2,6 +2,7 @@ package org.inaturalist.android;
 import java.util.HashMap;
 import org.inaturalist.android.R;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -277,6 +278,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         }
         if (mMap == null) {
             ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     mMap = googleMap;
@@ -284,7 +286,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                     // Check if we were successful in obtaining the map.
                     if (mMap != null) {
                         // The Map is verified. It is now safe to manipulate the map.
-                        mMap.setMyLocationEnabled(true);
+                        if (mApp.isLocationPermissionGranted()) {
+                            mMap.setMyLocationEnabled(true);
+                        }
                         if (!mMarkerObservations.isEmpty()) {
                             LatLngBounds.Builder builder = new LatLngBounds.Builder();
                             for (Observation o: mMarkerObservations.values()) {

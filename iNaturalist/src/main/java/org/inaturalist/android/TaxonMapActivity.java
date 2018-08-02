@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -123,11 +124,14 @@ public class TaxonMapActivity extends AppCompatActivity {
         setContentView(R.layout.taxon_map);
 
         ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.observations_map)).getMapAsync(new OnMapReadyCallback() {
+            @SuppressLint("MissingPermission")
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
 
-                mMap.setMyLocationEnabled(true);
+                if (mApp.isLocationPermissionGranted()) {
+                    mMap.setMyLocationEnabled(true);
+                }
                 mMap.getUiSettings().setZoomControlsEnabled(true);
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 

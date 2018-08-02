@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -352,6 +353,21 @@ public class ProfileEditor extends AppCompatActivity {
 
 
     private void takePhoto() {
+        if (!mApp.isCameraPermissionGranted()) {
+            mApp.requestCameraPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                @Override
+                public void onPermissionGranted() {
+                    takePhoto();
+                }
+
+                @Override
+                public void onPermissionDenied() {
+
+                }
+            });
+            return;
+        }
+
         // Temp file for the photo
         mFileUri = Uri.fromFile(new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg"));
 
@@ -363,10 +379,26 @@ public class ProfileEditor extends AppCompatActivity {
     }
 
     private void choosePhoto() {
-        final Intent galleryIntent = new Intent();
-        galleryIntent.setType("image/*");
-        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-        this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+        if (mApp.isExternalStoragePermissionGranted()) {
+            final Intent galleryIntent = new Intent();
+            galleryIntent.setType("image/*");
+            galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+            this.startActivityForResult(galleryIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+
+            return;
+        }
+
+        mApp.requestExternalStoragePermission(ProfileEditor.this, new INaturalistApp.OnRequestPermissionResult() {
+            @Override
+            public void onPermissionGranted() {
+                choosePhoto();
+            }
+
+            @Override
+            public void onPermissionDenied() {
+            }
+        });
     }
 
     @Override
@@ -477,6 +509,11 @@ public class ProfileEditor extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 }
