@@ -227,7 +227,7 @@
   <string name="or_login_with">Или войдите через:</string>
   <string name="quantity">Кол-во</string>
   <string name="registering">Регистрация...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Следующий рекомендуемый шаг</string>
   <string name="could_not_register_user">Не удалось зарегистрировать пользователя</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Войти / Зарегистрироваться</string>
@@ -264,7 +264,7 @@
   <string name="needs_your_attention">Требует вашего внимания...</string>
   <string name="observation">Наблюдение</string>
   <string name="share">Поделиться</string>
-  <string name="unable_to_acquire_location">Не удалось получить расположение</string>
+  <string name="unable_to_acquire_location">Не удается определить местоположение</string>
   <string name="casual_grade">Класс (Casual Grade) случайных наблюдений</string>
   <string name="needs_id">Требуется ID</string>
   <string name="research_grade">Статус (Research Grade) исследовательский уровень</string>

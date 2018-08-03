@@ -227,7 +227,7 @@
   <string name="or_login_with">Oder anmelden mit:</string>
   <string name="quantity">Menge</string>
   <string name="registering">Registrierung läuft...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Empfohlener nächster Schritt</string>
   <string name="could_not_register_user">Registrierung fehlgeschlagen</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Einloggen / Anmelden</string>

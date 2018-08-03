@@ -227,7 +227,7 @@
   <string name="or_login_with">或透過以下方式登入:</string>
   <string name="quantity">數量</string>
   <string name="registering">註冊中...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">建議下一步</string>
   <string name="could_not_register_user">無法註冊使用者</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">登入 / 註冊</string>

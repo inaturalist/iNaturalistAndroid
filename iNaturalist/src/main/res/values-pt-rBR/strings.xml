@@ -94,7 +94,7 @@
   <string name="remarks">Remarcações...</string>
   <string name="enter_taxon_name">Digite o nome do táxon</string>
   <string name="no_projects">Nenhum projeto encontrado!</string>
-  <string name="no_guides">Nenhuma guia encontrada!</string>
+  <string name="no_guides">Nenhum guia encontrado!</string>
   <string name="loading_projects">Carregando Projetos...</string>
   <string name="joined_projects">Juntou-se</string>
   <string name="nearby_projects">Nas proximidades</string>
@@ -227,7 +227,7 @@
   <string name="or_login_with">Ou entrar com:</string>
   <string name="quantity">Qtd</string>
   <string name="registering">Registrando...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Próximo Passo Recomendado</string>
   <string name="could_not_register_user">Não foi possível registrar-se na rede</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Iniciar sessão ou cadastrar-se</string>
@@ -354,9 +354,9 @@
   <string name="stop">Cancelar</string>
   <string name="resume">Continuar</string>
   <string name="cleaning_up">Limpando...</string>
-  <string name="syncing">A sincronizar...</string>
+  <string name="syncing">Sincronizando...</string>
   <string name="syncing_observation_fields">Sincronizando observações...</string>
-  <string name="syncing_observations">A sincronizar observações...</string>
+  <string name="syncing_observations">Sincronizando observações...</string>
   <string name="syncing_paused">Pausado</string>
   <string name="upload">Enviar</string>
   <string name="search_observations">Busque Observações...</string>
@@ -545,24 +545,24 @@
   <string name="date_week">%dw</string>
   <string name="new_observation">Nova observação</string>
   <string name="inactive_taxon">Taxon inativo</string>
-  <string name="no_identifications_found">Seguir aqui as identificações que sugeriu nas observações de outras pessoas.</string>
-  <string name="no_species_found">Estas são as espécies que mais vezes observou. \n\nNota: São estimadas 9 milhões de espécies, por isso, vá lá fora e observa!</string>
+  <string name="no_identifications_found">Seguir aqui as identificações que você sugeriu nas observações de outras pessoas.</string>
+  <string name="no_species_found">Esta é uma lista das espécies que você mais observou.\n\nObs: Há cerca de 9 milhões de espécies no planeta, então saia e observe-as!</string>
   <string name="make_an_observation">Faça uma observação</string>
-  <string name="no_observations_found_new">As observações são os registos dos seus encontros com organismos em determinados momentos e locais.</string>
+  <string name="no_observations_found_new">Observações são os registos dos seus encontros com organismos em determinados momentos e locais.</string>
   <string name="discard_comment">Você tem certeza de que deseja excluir este comentário?</string>
   <string name="leave_comment">Deixe um comentário...</string>
   <string name="swipe">Deslizar</string>
   <string name="swipe_indicator">></string>
   <string name="select_google_account">Qual conta do Google?</string>
   <string name="potential_disagreement">Possível desacordo</string>
-  <string name="do_you_think_this_could_be"><![CDATA[A prova fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
+  <string name="do_you_think_this_could_be"><![CDATA[A evidência fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
   <string name="i_dont_know_but"><![CDATA[Não sei, mas tenho a certeza que se trata de <b>%1$s</b>.]]></string>
   <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Não, mas faz parte de <b>%1$s</b>.]]></string>
   <string name="submit">Enviar</string>
   <string name="change_password">Alterar senha</string>
   <string name="search_projects_youve_joined">Procurar projetos dos quais você faz parte...</string>
-  <string name="must_be_connected_to_load_more_obs">Precisa de uma ligação Internet para carregar mais observações</string>
+  <string name="must_be_connected_to_load_more_obs">Você precisa de conexão com a Internet para carregar mais observações</string>
   <string name="inat_about_title">iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da Sociedade Geográfica Nacional.</string>
-  <string name="inat_credits">iNaturalist é feita por cada pessoa que participa na nossa comunidade. As pessoas que criaram o programa, mantêm a infraestrutura e fomentam as colaborações são Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Carrie Seltzer, Alex Shepard e Ken-ichi Ueda. Caltech &amp; Cornell Tech ajudaram a desenvolver o sistema de visão computacional que reconhece as espécies a partir das fotografias. Agradecemos o trabalho de Grant Van Horn, Serge Belongie e Pietro Perona. Informações adicionais encontram-se em visipedia.org</string>
+  <string name="inat_credits">iNaturalist é feito por cada pessoa que participa na nossa comunidade. As pessoas que criaram o programa, mantêm a infraestrutura e fomentam as colaborações são Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Carrie Seltzer, Alex Shepard e Ken-ichi Ueda. Caltech &amp; Cornell Tech ajudaram a desenvolver o sistema de visão computacional que reconhece as espécies a partir das fotografias. Agradecemos o trabalho de Grant Van Horn, Serge Belongie e Pietro Perona. Informações adicionais encontram-se em visipedia.org</string>
   <string name="credits_title">Créditos</string>
 </resources>

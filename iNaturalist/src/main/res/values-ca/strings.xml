@@ -227,7 +227,7 @@
   <string name="or_login_with">O iniciar sessió amb:</string>
   <string name="quantity">Qtat.</string>
   <string name="registering">Registrant...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Següent pas recomanat</string>
   <string name="could_not_register_user">No s\'ha pogut registrar l\'usuari</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Inicieu sessió / Registreu-vos</string>

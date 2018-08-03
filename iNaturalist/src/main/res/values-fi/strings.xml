@@ -20,9 +20,9 @@
   <string name="signed_in">Kirjauduttu!</string>
   <string name="please_sign_in">Kirjaudu sisään</string>
   <string name="please_sign_in_description">Kirjaudu sisään iNaturalist-tilillesi tai rekisteröi uusi.</string>
-  <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
+  <string name="please_enable_location_services">Ota sijaintipalvelut käyttöön löytääksesi nykyisen sijaintisi...</string>
   <string name="go_to_settings">Mene asetuksiin</string>
-  <string name="photo_not_specified">Photo not specified</string>
+  <string name="photo_not_specified">Kuvaa ei ole määritetty</string>
   <string name="set_date">Pvm</string>
   <string name="set_time">Aika</string>
   <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
@@ -73,14 +73,14 @@
   <string name="com_facebook_nearby">Lähellä</string>
   <string name="com_facebook_loading">Ladataan...</string>
   <string name="com_facebook_internet_permission_error_title">AndroidManifest-virhe</string>
-  <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
+  <string name="com_facebook_internet_permission_error_message">WebView kirjautuminen edellyttää INTERNET-oikeuksia</string>
   <string name="com_facebook_requesterror_web_login">Facebook-tilisi on lukittu. Jatka kirjautumalla sisään osoitteessa www.facebook.com.</string>
   <string name="com_facebook_requesterror_relogin">Kirjaudu sisään tähän sovellukseen yhdistääksesi uudelleen Facebook-tilisi.</string>
   <string name="com_facebook_requesterror_password_changed">Facebook-salasanasi on vaihtunut. Kirjaudu sisään tähän sovellukseen uudelleen ja ota uudelleen yhteys Facebook-tiliisi.</string>
   <string name="com_facebook_requesterror_reconnect">Kirjaudu sisään tähän sovellukseen yhdistääksesi uudelleen Facebook-tilisi.</string>
   <string name="com_facebook_requesterror_permissions">Tällä sovelluksella ei ole oikeuksia tehdä tätä. Jos haluat vaihtaa käyttöoikeuksia, yritä kirjautua sovellukseen uudelleen.</string>
   <string name="edit_observation">Muokkaa havaintoa</string>
-  <string name="discard_changes">Oletko varma että haluat hylätä tallentamattomat muutokset?</string>
+  <string name="discard_changes">Haluatko varmasti hylätä tallentamattomat muutokset?</string>
   <string name="yes">Kyllä</string>
   <string name="no">Ei</string>
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
@@ -109,14 +109,14 @@
   <string name="invalid_project_field">Kirjoita kelvollinen arvo kentälle \'%1s\'</string>
   <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
   <string name="select_projects">Valitse liitytyistä projekteista</string>
-  <string name="not_connected">You must be connected to the Internet in order to do that!</string>
+  <string name="not_connected">Sinun on oltava yhteydessä Internetiin tehdäksesi sen!</string>
   <string name="search_projects">Hae projekteja...</string>
   <string name="search_guides">Hae oppaista...</string>
   <string name="save_observation">Tallenna havainto</string>
   <string name="about">Tietoja</string>
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Geoyksityisyys</string>
-  <string name="delete_confirmation">Oletko varma, että haluat poistaa tämän havainnon?</string>
+  <string name="delete_confirmation">Haluatko varmasti poistaa tämän havainnon?</string>
   <string name="next">Seuraava</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Oppaat</string>
@@ -125,7 +125,7 @@
   <string name="all_guides">Kaikki</string>
   <string name="no_taxa">Tälle oppaalle ei löytynyt taksoneita!</string>
   <string name="search_taxa">Hae taksoni...</string>
-  <string name="no_internet_guides">Guides require an Internet connection</string>
+  <string name="no_internet_guides">Oppaat edellyttävät Internet-yhteyttä</string>
   <string name="no_internet_projects">Projektit edellyttävät Internet-yhteyttä</string>
   <string name="locale_gl">Galician</string>
   <string name="locale_eu">Baski</string>
@@ -136,8 +136,8 @@
   <string name="contact_support">Ota yhteyttä tukeen</string>
   <string name="credits">Suunnitellut ja rakentanut iNaturalist.org Kalifornian tiedeakatemian tuella</string>
   <string name="leave_project">Lähde projektista</string>
-  <string name="leave_project_confirmation">Oletko varma, että haluat jättää tämän projektin?</string>
-  <string name="discard_location_changes">Oletko varma, että haluat hylätä tallentamattomat muutokset?</string>
+  <string name="leave_project_confirmation">Haluatko varmasti jättää tämän projektin?</string>
+  <string name="discard_location_changes">Haluatko varmasti hylätä tallentamattomat muutokset?</string>
   <string name="edit_location">Muokkaa sijaintia</string>
   <string name="get_current_location">Hanki tämänhetkinen sijainti</string>
   <string name="pull_to_refresh">Vedä päivittääksesi...</string>
@@ -160,19 +160,19 @@
     <item>Tutki ja vietä aikaa luonnossa</item>
     <item>Mene ulos! Löydä jotain villiä, ja ota selvä kokokuva.</item>
     <item>Jaa havaintosi iNaturalist-yhteisön kanssa.</item>
-    <item>Check back for comments and identifications on your observation!</item>
-    <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+    <item>Tarkista kommentit ja tunnistamiset havainnossasi!</item>
+    <item><![CDATA[<b>Tutkimusaste</b> havainnot jaetaan tutkijoiden kanssa jotta he ymmärtäisivät ja suojelisivat luontoa paremmin.]]></item>
   </string-array>
   <string-array name="geoprivacy_items">
-    <item>Avaa</item>
+    <item>Avoin</item>
     <item>Piilotettu</item>
     <item>Yksityinen</item>
   </string-array>
-  <string name="alert_sign_out">Oletko varma, että haluat kirjautua ulos? Tämä tulee poistamaan kaikki havaintosi tässä laitteessa. Se ei vaikuta havaintoihin, jotka olet ladannut iNaturalistiin.</string>
-  <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+  <string name="alert_sign_out">Haluatko varmasti kirjautua ulos? Tämä tulee poistamaan kaikki havaintosi tässä laitteessa. Se ei vaikuta havaintoihin, jotka olet ladannut iNaturalistiin.</string>
+  <string name="alert_unsupported_media_type">Ongelma ladatessa kuvaa tästä lähteestä</string>
   <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
   <string name="explore">Tutki</string>
-  <string name="restricted_to_current_map_area">Restricted to current map area</string>
+  <string name="restricted_to_current_map_area">Rajoitettu nykyiseen kartta-alueeseen</string>
   <string name="search">Hae</string>
   <string name="details">Tiedot</string>
   <string name="observation_photos">Havaintokuvat</string>
@@ -184,18 +184,18 @@
   <string name="text"><![CDATA[<b>Teksti:</b> %1$s]]></string>
   <!-- The dialog content asking the user to switch to another iNat network -->
   <string name="alert_message_use_inaturalist">Pää iNaturalist-verkko. Napauttamalla OK asetat sovelluksesi osaksi maailmanlaajuista iNaturalist-verkkoa.</string>
-  <string name="alert_message_use_naturalista">iNaturalist is a member of the iNaturalist Network in Mexico. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="alert_message_use_naturewatchnz">NatureWatch NZ is a member of the iNaturalist Network in New Zealand. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Would you like to use this network to localize your experience and share data accordingly?</string>
+  <string name="alert_message_use_naturalista">iNaturalist on iNaturalist-verkon jäsen Meksikossa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
+  <string name="alert_message_use_naturewatchnz">NatureWatch NZ on iNaturalist-verkon jäsen Uudessa-Seelannissa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
+  <string name="alert_message_use_inaturalistcanada">iNaturalist Canada on iNaturalist-verkon jäsen Kanadassa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
+  <string name="alert_message_use_naturalistacolombia">Naturalista Canada on iNaturalist-verkon jäsen Kolumbiassa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
   <string name="description">Kuvaus</string>
   <string name="editor">Editori</string>
   <string name="license">Lisenssi</string>
   <string name="download_for_offline_use">Lataa offline-käyttöön</string>
   <string name="download_not_available">Lataus ei ole käytettävissä</string>
-  <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
+  <string name="guide_editor_must_enable_this_feature">Ohje-editorin on otettava tämä ominaisuus käyttöön.</string>
   <string name="are_you_sure">Oletko varma?</string>
-  <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
+  <string name="download_guide_alert">Tämä lataa %1$s tietoja, joten voit käyttää tätä opasta jopa silloin kun sinulla ei ole Internet-yhteyttä.</string>
   <string name="download">Lataa</string>
   <string name="failed_to_download_guide">Oppaan lataaminen epäonnistui</string>
   <string name="internet_connection_seems_to_be_offline">Internet-yhteys näyttäisi olevan offline-tilassa.</string>
@@ -205,8 +205,8 @@
   <string name="delete_download">Poista lataus</string>
   <string name="re_download">Lataa uudelleen</string>
   <string name="error">Virhe</string>
-  <string name="could_not_retrieve_guide">Could not retrieve the guide details - probably a network error.</string>
-  <string name="inat_support_email_subject">Help with iNaturalist (version %1$s - %2$s; user id - %3$s)</string>
+  <string name="could_not_retrieve_guide">Oppaan tietoja ei voitu hakea - todennäköisesti verkkovirhe.</string>
+  <string name="inat_support_email_subject">Auta iNaturalistia (versio %1$s - %2$s; käyttäjätunniste - %3$s)</string>
   <string name="send_email">Lähetä sähköposti...</string>
   <string name="login_with">Kirjaudu käyttäen</string>
   <string name="facebook">Facebook</string>
@@ -220,14 +220,14 @@
   <string name="min_6_chars">Väh. 6 merkkiä</string>
   <string name="use_my_license"><![CDATA[Kyllä, lisensoi sisältöni, niin tiedemiehet voivat käyttää tietojani. <b>Lisätietoja</b>]]></string>
   <string name="content_licensing">Sisällön lisensointi</string>
-  <string name="content_licensing_description">Check this box if you want to apply a Create Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+  <string name="content_licensing_description">Valitse tämä valintaruutu, jos haluat käyttää Creative Commons Nimeä-EiKaupallinen lisenssiä kuviisi. Voit valita eri lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on paras lisenssi jaettavaksi tutkijoiden kanssa.</string>
   <!-- Try to keep this about the length of the English text -->
   <string name="username_or_email">Käyttäjänimi tai sähköposti</string>
   <string name="forgot">Unohtuiko?</string>
   <string name="or_login_with">Tai kirjaudu sisään:</string>
   <string name="quantity">Määrä</string>
   <string name="registering">Rekisteröidään...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Suositeltu seuraava vaihe</string>
   <string name="could_not_register_user">Käyttäjää ei voi rekisteröidä</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Kirjaudu sisään / Rekisteröidy</string>
@@ -242,10 +242,10 @@
   <string name="upload_photo">Valitse kuva</string>
   <string name="menu_text">Ei kuvia</string>
   <string name="first">1: nen</string>
-  <string name="make_first">Make 1st</string>
+  <string name="make_first">Tee ensimmäinen</string>
   <string name="notes">Merkinnät</string>
   <string name="location_is">Sijainti on</string>
-  <string name="is_captive">It is captive or cultivated</string>
+  <string name="is_captive">Onko se vangittu tai viljelty</string>
   <string name="location_visibility">Sijainnin näkyvyys</string>
   <string name="set_location">Sijainti</string>
   <string name="coordinates_lat">Leveyspiiri:</string>
@@ -256,26 +256,26 @@
   <string name="no_thanks">Ei kiitos</string>
   <string name="turn_on">Ota käyttöön</string>
   <string name="introducing_auto_sync">Esittelyssä Auto-Sync!</string>
-  <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
+  <string name="turn_on_auto_sync">Ota automaattinen synkronointi käyttöön asetuksissa ja havaintosi tallennetaan automaattisesti iNaturalistiin.</string>
   <string name="automatic_upload">Automaattinen lähetys (Automaattinen synkronointi)</string>
   <string name="waiting_to_upload">Odotetaan lähettämistä...</string>
   <string name="uploading">Lähetetään...</string>
-  <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
+  <string name="failed_to_add_to_project">Virhe lisätessä projektiin \'%1$s\': %2$s</string>
   <string name="needs_your_attention">Tarvitsee huomiotasi...</string>
   <string name="observation">Havainto</string>
   <string name="share">Jaa</string>
-  <string name="unable_to_acquire_location">Unable to acquire location</string>
-  <string name="casual_grade">Casual Grade</string>
+  <string name="unable_to_acquire_location">Sijaintia ei voi hakea</string>
+  <string name="casual_grade">Rentoaste</string>
   <string name="needs_id">Tarvitsee tunnisteen</string>
   <string name="research_grade">Tutkimusaste</string>
   <string name="data_quality">Tietojen laatu</string>
-  <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
-  <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
-  <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
-  <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
-  <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
-  <string name="included_in_projects">Included in %1$d projects</string>
-  <string name="included_in_projects_singular">Included in %1$d project</string>
+  <string name="casual_grade_add_location"><![CDATA[ Lisää <b>sijainti</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
+  <string name="casual_grade_add_date"><![CDATA[ Lisää <b>päivämäärä</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
+  <string name="casual_grade_add_photo"><![CDATA[ Lisää <b>kuva</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ Havainto on rentoasteinen koska se on <b>vangittu/viljelty</b>. ]]></string>
+  <string name="needs_id_more_ids"><![CDATA[ Havainto tarvitsee <b>lisää tunnistamisia</b> yhteisöltä tullakseen "Tutkimusaste" tilaan. ]]></string>
+  <string name="included_in_projects">Sisältyy %1$d projektiin</string>
+  <string name="included_in_projects_singular">Sisältyy %1$d projektiin</string>
   <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
   <string name="agree2">Hyväksy</string>
   <string name="id_title">%1$s:n tunniste • %2$s</string>
@@ -295,11 +295,11 @@
   <string name="location_coords">Lat: %1$s Lon: %2$s Acc. %3$s</string>
   <string name="location_coords_no_acc">Leveysaste: %1$s Pituusaste: %2$s</string>
   <string name="location">Sijainti</string>
-  <string name="login_in_to_add_comments_ids">Log In or Sign Up to leave a comment or suggest an identification...</string>
-  <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
-  <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+  <string name="login_in_to_add_comments_ids">Kirjaudu sisään tai rekisteröidy kommentoidaksesi tai ehdottaaksesi tunnistamista...</string>
+  <string name="login_in_to_fav">Kirjaudu sisään tai rekisteröidy nähdäksesi suositukset tai suositellaksesi tätä havaintoa...</string>
+  <string name="sync_obs_to_see_favs">Synkronoi tämä havainto nähdäksesi suositukset...</string>
   <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-  <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+  <string name="sync_obs_to_add_comments_ids">Synkronoi tämä havainto jättääksesi kommentin tai ehdottaaksesi tunnistamista...</string>
   <string name="no_photo">Ei kuvia</string>
   <string name="about_this_species">Tietoja tästä lajista</string>
   <string name="view_on_wikipedia">Wikipedia-artikkeli</string>
@@ -308,22 +308,22 @@
   <string name="finding_current_location">Haetaan nykyistä sijaintia...</string>
   <string name="flag_as_captive">Liputa vangituksi/viljellyksi</string>
   <string name="observation_flagged_as_captive">Havainto liputettiin vangituksi/viljellyksi</string>
-  <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+  <string name="are_you_sure_you_want_to_flag_as_captive">Haluatko varmasti liputtaa tämän havainnon vangituksi/viljellyksi (Vaihtoehdon kyllä painaminen sulkee myös havainnon katseluikkunan)</string>
   <string name="do_you_agree_to_the_following">Hyväksytkö seuraavan?</string>
   <string name="terms">Ehdot</string>
   <string name="observation_rules">Havaintosäännöt</string>
   <string name="couldnt_load_project_details">Ei voida ladata projektin tietoja: %1$s</string>
-  <string name="project_observations">Havainnot</string>
-  <string name="project_species">Lajit</string>
+  <string name="project_observations">Havaintoa</string>
+  <string name="project_species">Lajia</string>
   <string name="project_people">Ihmiset</string>
   <string name="project_identifiers">Tunnisteet</string>
   <string name="no_people_found">Ihmistä ei löytynyt</string>
   <string name="rank">Luokka</string>
-  <string name="identifications">Tunnistamiset</string>
-  <string name="no_news_found">No news items found</string>
+  <string name="identifications">Tunnistamista</string>
+  <string name="no_news_found">Uutiseriä ei löytynyt</string>
   <string name="news">Uutiset</string>
   <string name="article">Artikkeli</string>
-  <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
+  <string name="couldnt_load_project_news">Ei voitu ladata projektiuutisia: %1$s</string>
   <string name="article_by">Artikkeli käyttäjältä</string>
   <string name="couldnt_load_user_details">Ei voitu ladata käyttäjätietoja: %1$s</string>
   <string name="more_bio"><![CDATA[<b><font color="#ffffff">Lisää»</font></b>]]></string>
@@ -338,16 +338,16 @@
   <string name="view_profile">Näytä profiili</string>
   <string name="are_you_sure_you_want_to_remove_photo">Haluatko varmasti poistaa kuvasi?</string>
   <string name="updating_profile">Päivitetään profiilia...</string>
-  <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
-  <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
+  <string name="there_was_a_problem_updating_profile">Virhe päivitettäessä profiiliasi!</string>
+  <string name="there_was_a_problem_updating_profile_params">Virhe päivitettäessä profiiliasi: %1$s</string>
   <string name="logged_in_as_html"><![CDATA[Kirjautunut sisään nimellä <b>%1$s</b>]]></string>
   <string name="log_out">Kirjaudu ulos</string>
   <string name="not_logged_in">Ei sisäänkirjautuneena</string>
-  <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
+  <string name="auto_upload_description">Tallenna automaattisesti uudet havainnot ja muokkaukset havaintoihin</string>
   <string name="language">Kieli</string>
   <string name="version">Versio</string>
-  <string name="inat_network">iNaturalist Network</string>
-  <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community on national scales. Such national focus can help make nature more accessible to people of different backgrounds.</string>
+  <string name="inat_network">iNaturalist-verkko</string>
+  <string name="inat_network_description">iNaturalist-verkko on kehys iNaturalist-yhteisön lokalisoimiseksi kansallisella asteikolla. Tällainen kansallinen keskittyminen voi auttaa tekemään luonnosta helpommin saatavan eri taustaisille ihmisille.</string>
   <string name="more_info">Lisätietoja</string>
   <string name="select_network">Valitse verkko</string>
   <string name="help">Apua</string>
@@ -362,20 +362,20 @@
   <string name="search_observations">Hae havaintoja...</string>
   <string name="withdraw">Peruuta</string>
   <!-- Dialog title for when you are updating the description of an identification -->
-  <string name="update_id_description">Update Identification Description</string>
+  <string name="update_id_description">Päivitä tunnistamisen kuvaus</string>
   <string name="your_identification">Tunnisteesi: %1$s</string>
   <string name="onboarding_species_name">Nimeä näkemäsi jos voit, mutta on OK jos et voi. Muut saattavat auttaa sinua tunnistamaan sen!</string>
   <string name="got_it">Selvä!</string>
   <string name="upload_complete">Lähetys onnistui!</string>
-  <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
+  <string name="onboarding_upload_description">Tarkista pian uudelleen tunnistamiset ja kommentit havainno(i)ssasi.</string>
   <string name="importing_photos">Tuodaan kuva/kuvia...</string>
-  <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
+  <string name="multi_select_description">Tuo monia kuvia pitkään painamalla yksittäisessä kuvassa</string>
   <string name="preparing_photo">Valmistellaan kuvaa...</string>
   <string name="recommended_for_you">Sinulle suositeltu</string>
   <string name="missions">Tehtävät</string>
   <string name="view_all">Näytä kaikki</string>
   <string name="browse_by_category">Selaa luokittain</string>
-  <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
+  <string name="couldnt_load_recommended_missions">Ei voitu ladata suositeltuja tehtäviä: %1$s</string>
   <string name="plants">Kasvit</string>
   <string name="mammals">Nisäkkäät</string>
   <string name="insects">Hyönteiset</string>
@@ -387,15 +387,15 @@
   <string name="birds">Linnut</string>
   <string name="arachnids">Hämähäkkieläimet</string>
   <string name="no_connectivity">Ei yhteyttä</string>
-  <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
-  <string name="what_to_look_for">What To Look For</string>
+  <string name="no_recommended_missions">Näyttää siltä, ettei tällä alueella ole suosituksia. Kokeile siirtyä uuteen paikkaan.</string>
+  <string name="what_to_look_for">Mitä etsiä</string>
   <string name="have_been_seen_here">On nähty täällä</string>
-  <string name="observe">Observe</string>
-  <string name="nearby_missions">Nearby Missions</string>
+  <string name="observe">Havaitse</string>
+  <string name="nearby_missions">Läheiset tehtävät</string>
   <string name="searching_your_area">Haetaan aluettasi...</string>
-  <string name="expanding_your_search_area">Expanding your search area...</string>
+  <string name="expanding_your_search_area">Laajennetaan hakualuettasi...</string>
   <string name="introducing_missions">Esittelyssä tehtävät!</string>
-  <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
+  <string name="missions_onboarding_description">Tehtävät ovat reaaliaikaisia suosituksia siitä, mitä etsiä ympäriltäsi. Tällä tavalla voit tutkia sinulle uusia lajeja! (Edellyttää liitettävyyttä)</string>
   <string name="ok_got_it">Selvä, ymmärsin!</string>
   <string name="new_badge">Uusi</string>
   <string name="could_not_download_observations">Ei voitu ladata viimeisimpiä havaintoja - Yhteysongelmia. Yritä myöhemmin uudelleen.</string>
@@ -403,14 +403,14 @@
   <string name="my_content">Oma sisältö</string>
   <string name="following">Seuraa</string>
   <string name="no_updates_yet">Ei päivityksiä vielä. Pysy kanavalla!</string>
-  <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
-  <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
-  <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
-  <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-  <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
-  <string name="new_activities">%1s new</string>
+  <string name="you_will_only_receive_updates_when_creating">(Saat päivityksiä vain, kun olet luonut havaintoja)</string>
+  <string name="you_will_only_receive_updates_when_following">(Saat päivityksiä vain, kun seuraat havaintoja)</string>
+  <string name="user_activity_id"><![CDATA[<b>%1$s</b> ehdotti tunnisteen: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommentoi: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="deleted_photos_from_cache_error">Näyttää siltä, että poistit valokuvan tyhjentämällä sovelluksen välimuistin ennen lataamista. Sinun on lisättävä kuva takaisin havaintoosi galleristasi. Tulevaisuudessa, varmista, että olet ladannut kaikki valokuvasi ennen sovelluksen välimuistin tyhjentämistä.</string>
+  <string name="new_activities">%1s uutta</string>
   <string name="no_results_found">Tuloksia ei löytynyt...</string>
-  <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
+  <string name="syncing_x_out_of_y_observations">Synkronoidaan %1$d/%2$d havaintoa...</string>
   <string name="deleting_observations">Poistetaan havaintoja...</string>
   <string name="preparing">Valmistellaan...</string>
   <string name="add_edit_remark">Lisää/muokkaa huomautus</string>
@@ -419,34 +419,34 @@
   <string name="select">Valitse</string>
   <string name="source_wikipedia">(Lähde: Wikipedia)</string>
   <string name="conservation_source"><![CDATA[<b>Lähde:</b> <i>%1$s</i>]]></string>
-  <string name="conservation_status_least_concern">Of least concern</string>
-  <string name="conservation_status_near_threatened">Near threatened</string>
-  <string name="conservation_status_vulnerable">Vulnerable</string>
-  <string name="conservation_status_endangered">Endangered</string>
-  <string name="conservation_status_critically_endangered">Critically endangered</string>
-  <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
+  <string name="conservation_status_least_concern">Ainakin vähintään</string>
+  <string name="conservation_status_near_threatened">Lähes uhattu</string>
+  <string name="conservation_status_vulnerable">Haavoittuva</string>
+  <string name="conservation_status_endangered">Uhanalainen</string>
+  <string name="conservation_status_critically_endangered">Äärimmäisen uhanalainen</string>
+  <string name="conservation_status_extinct_in_the_wild">Kuollut sukupuuttoon luonnossa</string>
   <string name="conservation_status_extinct">Hävinnyt</string>
   <string name="map_of_observations">Havaintojen kartta</string>
   <string name="taxonomy">Luokittelu</string>
-  <string name="about_this_section">About This Section</string>
+  <string name="about_this_section">Tietoja tästä jaksosta</string>
   <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-  <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+  <string name="taxonomy_info">Nämä ovat linkkejä tämän kyseisen taksonin esivanhempiin. Ne ovat järjestyksessä jalostamattomasta enemmän jalostettuun. Käytä näitä linkkejä nostaaksesi elämänpuuta ylös ja alas. Esimerkiksi, jos et tiedä mikä eliö on, mutta tiedät mihin ryhmittelyyn se kuuluu, napauta taksonia listasta nähdäksesi lisätietoja siitä.</string>
   <string name="more_info_on_inat">Lisää tietoja iNaturalist.orgissa</string>
   <string name="view_suggestions">Näytä ehdotukset</string>
   <string name="species_search">Lajihaku</string>
-  <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
-  <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
-  <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
+  <string name="were_not_confident">Emme ole riittävän varmoja tehdäksemme suosituksen, mutta tässä on meidän top %1$d ehdotusta:</string>
+  <string name="top_species_suggestions">Tässä on meidän top %1$d lajiehdotuksia:</string>
+  <string name="pretty_sure_rank">Olemme melko varmoja, että se on tässä %1$s:</string>
   <string name="what_did_you_see">Mitä näet?</string>
   <string name="suggest_species">Ehdota lajia</string>
-  <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+  <string name="suggest_species_description">Ehdota lajia perustuen visuaaliseen samankaltaisuuteen valokuvissa.</string>
   <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
   <string name="visually_similar">Visuaalisesti samanlainen</string>
   <string name="visually_similar_seen_nearby">Visuaalisesti samanlainen / nähty lähistöllä</string>
   <string name="seen_nearby">Nähty lähistöllä</string>
   <string name="enlarge">Suurenna</string>
-  <string name="view_children">View Children</string>
-  <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
+  <string name="view_children">Näytä lapsi</string>
+  <string name="invalid_photo_extension">Virhe tuodessa kuvaa/kuvia: Voidaan tuoda vain kuvatiedostoja JPG/JPEG/PNG päätteillä</string>
   <string name="taxon_has_no_photos">Tällä taksonilla ei ole kuvia.</string>
   <string name="terrain">Maasto</string>
   <string name="observers">Havainnoijat</string>
@@ -454,20 +454,20 @@
   <string name="exploring_all">Tutkitaan kaikkia</string>
   <string name="nearby">Lähistöllä</string>
   <string name="couldnt_load_results">Ei voitu ladata tuloksia: %1$s</string>
-  <string name="research_grade_initials">RG</string>
+  <string name="research_grade_initials">TA</string>
   <string name="taxon_search_hint">esim. linnut, monarkki</string>
   <string name="location_search_hint">esim. kaupunki. osavaltio, puisto, maa...</string>
   <string name="no_taxon">Taksonia ei löytynyt</string>
-  <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
+  <string name="please_select_taxon">Valitse kelvollinen taksoni listasta (tai tyhjennä taksonikenttä).</string>
   <string name="sorry_no_location">Sijaintia ei löytynyt</string>
-  <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
+  <string name="location_not_found">Hakemaasi sijaintia tai paikkaa ei ole tietokannassamme. Valitse paikka alla olevista vaihtoehdoista sijaintihakukentän alapuolella tai tyhjennä hakukenttä.</string>
   <string name="undefined">Määrittelemätön</string>
-  <string name="street_segment">Street Segment</string>
+  <string name="street_segment">Katusegmentti</string>
   <string name="intersection">Risteys</string>
   <string name="town">Kaupunki</string>
   <string name="state">Osavaltio</string>
   <string name="county">Maa</string>
-  <string name="local_administrative_area">Local Administrative Area</string>
+  <string name="local_administrative_area">Paikallinen hallinnollinen alue</string>
   <string name="country">Maa</string>
   <string name="island">Saari</string>
   <string name="airport">Lentokenttä</string>
@@ -476,7 +476,7 @@
   <string name="miscellaneous">Sekalainen</string>
   <string name="nationality">Kansallisuus</string>
   <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-  <string name="supername">Supername</string>
+  <string name="supername">Supernimi</string>
   <string name="point_of_interest">Mielenkiinnon kohde</string>
   <string name="region">Alue</string>
   <string name="colloquial">Puhekielinen</string>
@@ -484,7 +484,7 @@
   <string name="historical_state">Historiallinen osavaltio</string>
   <string name="historical_county">Historiallinen valtio</string>
   <string name="continent">Manner</string>
-  <string name="estate">Estate</string>
+  <string name="estate">Tila</string>
   <string name="historical_town">Historiallinen kaupunki</string>
   <string name="aggregate">Keräymä</string>
   <string name="open_space">Avoin paikka</string>
@@ -493,7 +493,7 @@
   <string name="province">Provinssi</string>
   <string name="municipality">Kunta</string>
   <string name="parish">Kirkonkylä</string>
-  <string name="department_segment">Department Segment</string>
+  <string name="department_segment">Osastosegmentti</string>
   <string name="city_building">Kaupungin rakennus</string>
   <string name="commune">Kommuuni</string>
   <string name="governorate">Kuvernoraatti</string>
@@ -525,7 +525,7 @@
   <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
   <string name="any">Mikä tahansa</string>
   <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-  <string name="to">to</string>
+  <string name="to">–</string>
   <string name="exact_date">Tarkka päivämäärä</string>
   <string name="start">Alku</string>
   <string name="end">Loppu</string>
@@ -546,23 +546,23 @@
   <string name="new_observation">Uusi havainto</string>
   <string name="inactive_taxon">Epäaktiivinen taksoni</string>
   <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-  <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
+  <string name="no_species_found">Tämä on lista lajeista, joita olet havainnut eniten.\n\nTiedoksi: Planeetalla on noin 9 miljoonaa lajia, joten mene ulos havaitsemaan niitä!</string>
   <string name="make_an_observation">Tee havainto</string>
-  <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
+  <string name="no_observations_found_new">Havainnot ovat merkintöjä kohtaamisistasi yksittäisten eliöiden kanssa tiettyinä aikoina ja sijainneissa.</string>
   <string name="discard_comment">Haluatko varmasti hylätä tämän kommentin?</string>
   <string name="leave_comment">Jätä kommentti...</string>
   <string name="swipe">Pyyhkäise</string>
   <string name="swipe_indicator">›</string>
   <string name="select_google_account">Mikä Google-tili?</string>
   <string name="potential_disagreement">Mahdollinen erimielisyys</string>
-  <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
-  <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-  <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
+  <string name="do_you_think_this_could_be"><![CDATA[Onko todisteet riittäviä vahvistamaan, että tämä on <b>%1$s</b>?]]></string>
+  <string name="i_dont_know_but"><![CDATA[En tiedä, mutta olen varma että tämä on <b>%1$s</b>.]]></string>
+  <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ei, mutta se on <b>%1$s</b>:n osa]]></string>
   <string name="submit">Lähetä</string>
   <string name="change_password">Vaihda salasana</string>
   <string name="search_projects_youve_joined">Hae projekteja joihin olet liittynyt...</string>
-  <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-  <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-  <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech helped developing the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. More information may be found at visipedia.org</string>
+  <string name="must_be_connected_to_load_more_obs">Sinun on oltava yhteydessä Internetiin ladataksesi enemmän havaintoja</string>
+  <string name="inat_about_title">iNaturalist on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite.</string>
+  <string name="inat_credits">iNaturalist on jokaisen yhteisöömme osallistuvan henkilön tekemä. Ihmiset, jotka rakentavat ohjelmiston, ylläpitävät infrastruktuuriamme, ja edistävät yhteistyötä ovat Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer ja Ken-Ichi Ueda. Caltech ja Cornell Tech auttoivat kehittämään tietokonenäköjärjestelmän, joka tunnistaa lajit valokuvista. Kiitämme Grant Van Hornia, Serge Belongiea ja Pietro Peronaa tästä työstä. Lisätietoja voi löytyä osoitteesta visipedia.org</string>
   <string name="credits_title">Tekijät</string>
 </resources>
