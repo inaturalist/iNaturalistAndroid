@@ -347,12 +347,36 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 try {
                     bitmapImage = BitmapFactory.decodeFile(imagePath);
 
-                    // Scale down the image if it's too big for the GL renderer
-                    bitmapImage = ImageUtils.scaleDownBitmapIfNeeded(mActivity, bitmapImage);
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, imagePath);
-                    imageView.setImageBitmap(bitmapImage);
+                    int orientation = ImageUtils.getImageOrientation(imagePath);
+
+                    RequestBuilder<Drawable> imageRequest = Glide.with(mActivity)
+                            .load(new File(imagePath));
+
+                    if (orientation != 0) {
+                        imageRequest.apply(RequestOptions.bitmapTransform(new RotateTransformation(mActivity, orientation)));
+                    }
+
                     attacher = new PhotoViewAttacher(imageView);
-                    attacher.update();
+                    final PhotoViewAttacher finalAttacher2 = attacher;
+                    BaseTarget target = new BaseTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(Drawable bitmap, Transition<? super Drawable> transition) {
+                            imageView.setImageDrawable(bitmap);
+                            finalAttacher2.update();
+                        }
+
+                        @Override
+                        public void getSize(SizeReadyCallback cb) {
+                            cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL);
+                        }
+
+                        @Override
+                        public void removeCallback(SizeReadyCallback cb) {}
+                    };
+
+                    imageRequest.into(target);
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -397,12 +421,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     BaseTarget target = new BaseTarget<Drawable>() {
                         @Override
                         public void onResourceReady(Drawable bitmap, Transition<? super Drawable> transition) {
-                            if (bitmap instanceof BitmapDrawable) {
-                                imageView.setImageBitmap(ImageUtils.scaleDownBitmapIfNeeded(mActivity, ((BitmapDrawable)bitmap).getBitmap()));
-                            } else {
-                                imageView.setImageDrawable(bitmap);
-                            }
-
+                            imageView.setImageDrawable(bitmap);
                             loading.setVisibility(View.GONE);
                             imageView.setVisibility(View.VISIBLE);
                             finalAttacher.update();
