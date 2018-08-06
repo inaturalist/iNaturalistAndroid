@@ -228,7 +228,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="or_login_with">O inicia sesión con:</string>
   <string name="quantity">Cant.</string>
   <string name="registering">Registrando...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Siguiente paso recomendado</string>
   <string name="could_not_register_user">No se pudo registrar el usuario</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Inicia sesión o registrate</string>

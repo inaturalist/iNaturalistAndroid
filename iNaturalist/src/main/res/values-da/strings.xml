@@ -227,7 +227,7 @@
   <string name="or_login_with">Eller log ind med:</string>
   <string name="quantity">Antal</string>
   <string name="registering">Registrerer...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Anbefalet næste trin</string>
   <string name="could_not_register_user">Kunne ikke registrere bruger</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Log ind/Tilmeld</string>

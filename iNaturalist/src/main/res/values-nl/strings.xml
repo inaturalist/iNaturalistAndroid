@@ -158,9 +158,9 @@
   </string-array>
   <string-array name="tutorial_descriptions">
     <item>Trek de natuur in</item>
-    <item>Trek erop uit! Zoek iets wild en neem een duidelijke full frame foto.</item>
+    <item>Trek erop uit! Zoek iets wild en neem een duidelijke beeldvullende foto.</item>
     <item>Deel je waarneming met de iNaturalist community.</item>
-    <item>Controleer opnieuw voor opmerkingen en identificaties op uw waarneming!</item>
+    <item>Controleer uw waarnemingen op opmerkingen en determinaties!</item>
     <item><![CDATA[<b>Research Grade</b> observaties worden gedeeld met wetenschappers die werken om de natuur beter te begrijpen en te beschermen.]]></item>
   </string-array>
   <string-array name="geoprivacy_items">
@@ -227,7 +227,7 @@
   <string name="or_login_with">Of Log in met:</string>
   <string name="quantity">Aantal</string>
   <string name="registering">Registreren...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Aanbevolen volgende stap</string>
   <string name="could_not_register_user">Kon de gebruiker niet registreren</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Inloggen of nu Registreren</string>
@@ -296,7 +296,7 @@
   <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
   <string name="location">Locatie</string>
   <string name="login_in_to_add_comments_ids">Log In of Registreer om een opmerking te geven of een identificatie te suggereren...</string>
-  <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
+  <string name="login_in_to_fav">Log In of registreer om favorieten te zien of deze opmerkingen als favoriet te markeren...</string>
   <string name="sync_obs_to_see_favs">Sync deze waarneming om faves te zien...</string>
   <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
   <string name="sync_obs_to_add_comments_ids">Sync deze waarneming om een reactie te zien of een identificatie te suggereren...</string>
@@ -407,7 +407,7 @@
   <string name="you_will_only_receive_updates_when_following">(Je wordt alleen op de hoogte gehouden als je waarnemingen volgt)</string>
   <string name="user_activity_id"><![CDATA[<b>%1$s</b> heeft een ID voorgesteld: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
   <string name="user_activity_comment"><![CDATA[<b>%1$s</b> heeft gereageerd: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-  <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
+  <string name="deleted_photos_from_cache_error">Het lijkt erop dat u een foto hebt verwijderd door het cachegeheugen van de app wissen voordat u deze hebt ge upload. U moet de foto opnieuw toevoegen aan uw waarneming van uw galerij. Controleer in het vervolg eerst dat u al uw foto\'s hebt geüpload vóórdat u het cachegeheugen van de app wist.</string>
   <string name="new_activities">nieuwe %1s</string>
   <string name="no_results_found">Niets gevonden...</string>
   <string name="syncing_x_out_of_y_observations">%1$d van de %2$d waarnemingen aan het uploaden...</string>
@@ -420,7 +420,7 @@
   <string name="source_wikipedia">(Bron: Wikipedia)</string>
   <string name="conservation_source"><![CDATA[<b>Bron:</b> <i>%1$s</i>]]></string>
   <string name="conservation_status_least_concern">Minste zorg</string>
-  <string name="conservation_status_near_threatened">Near threatened</string>
+  <string name="conservation_status_near_threatened">Gevoelig</string>
   <string name="conservation_status_vulnerable">Kwetsbaar</string>
   <string name="conservation_status_endangered">Bedreigd</string>
   <string name="conservation_status_critically_endangered">Ernstig bedreigd</string>
@@ -439,19 +439,19 @@
   <string name="pretty_sure_rank">We zijn vrij zeker van dat het in deze %1$s is:</string>
   <string name="what_did_you_see">Wat heb je waargenomen?</string>
   <string name="suggest_species">Soort suggereren</string>
-  <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+  <string name="suggest_species_description">Stel soorten voor gebaseerd op visuele gelijkenis met andere foto\'s.</string>
   <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
   <string name="visually_similar">Op het oog vergelijkbaar</string>
-  <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
+  <string name="visually_similar_seen_nearby">Visueel vergelijkbaar / gezien in de buurt</string>
   <string name="seen_nearby">In de buurt waargenomen</string>
   <string name="enlarge">Vergroten</string>
-  <string name="view_children">View Children</string>
+  <string name="view_children">Toon kinderen</string>
   <string name="invalid_photo_extension">Fout bij importeren foto(s): kan alleen foto\'s importeren met de extensies JPG/JPEG/PNG</string>
   <string name="taxon_has_no_photos">Dit taxon heeft geen foto\'s.</string>
   <string name="terrain">Terrein</string>
   <string name="observers">Waarnemers</string>
   <string name="filters">Filters</string>
-  <string name="exploring_all">Exploring All</string>
+  <string name="exploring_all">Verken alles</string>
   <string name="nearby">In de buurt</string>
   <string name="couldnt_load_results">Kon resultaten niet laden: %1$s</string>
   <string name="research_grade_initials">RG</string>
@@ -460,10 +460,10 @@
   <string name="no_taxon">Sorry, taxon niet gevonden</string>
   <string name="please_select_taxon">Selecteer een geldig taxon van de lijst (of wis het taxon veld).</string>
   <string name="sorry_no_location">Sorry, locatie niet gevonden</string>
-  <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
+  <string name="location_not_found">De locatie of plaats die u zoekt bestaat niet in onze database. Kies een plaats uit de lijst met opties onder het zoekveld locatie of wis het zoekveld.</string>
   <string name="undefined">Onbepaald</string>
-  <string name="street_segment">Street Segment</string>
-  <string name="intersection">Intersection</string>
+  <string name="street_segment">Straat Segment</string>
+  <string name="intersection">Doorsnede</string>
   <string name="town">Stad</string>
   <string name="state">Staat</string>
   <string name="county">Land</string>
@@ -472,30 +472,30 @@
   <string name="island">Eiland</string>
   <string name="airport">Luchthaven</string>
   <string name="drainage">Drainage</string>
-  <string name="land_feature">Land Feature</string>
-  <string name="miscellaneous">Miscellaneous</string>
+  <string name="land_feature">Land functie</string>
+  <string name="miscellaneous">Diversen</string>
   <string name="nationality">Nationaliteit</string>
   <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
   <string name="supername">Supername</string>
-  <string name="point_of_interest">Point of Interest</string>
+  <string name="point_of_interest">Interessant punt (POI)</string>
   <string name="region">Regio</string>
   <string name="colloquial">Colloquial</string>
   <string name="zone">Zone</string>
-  <string name="historical_state">Historical State</string>
-  <string name="historical_county">Historical County</string>
+  <string name="historical_state">Historische staat</string>
+  <string name="historical_county">Historische staat</string>
   <string name="continent">Continent</string>
   <string name="estate">Landgoed</string>
   <string name="historical_town">Historische stad</string>
-  <string name="aggregate">Aggregate</string>
-  <string name="open_space">Open Space</string>
-  <string name="territory">Territory</string>
+  <string name="aggregate">Aggregaat</string>
+  <string name="open_space">Open ruimte</string>
+  <string name="territory">Gebied</string>
   <string name="district">District</string>
   <string name="province">Provincie</string>
   <string name="municipality">Gemeente</string>
   <string name="parish">Gemeente</string>
-  <string name="department_segment">Department Segment</string>
-  <string name="city_building">City Building</string>
-  <string name="commune">Commune</string>
+  <string name="department_segment">Departement Segment</string>
+  <string name="city_building">Stadsgebouw</string>
+  <string name="commune">Gemeente</string>
   <string name="governorate">Governorate</string>
   <string name="prefecture">Prefectuur</string>
   <string name="canton">Kanton</string>
@@ -506,7 +506,7 @@
   <string name="village_block">Dorp blok</string>
   <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
   <string name="sum">Som</string>
-  <string name="shire">Shire</string>
+  <string name="shire">Graafschap</string>
   <string name="prefecture_city">Stad van de prefectuur</string>
   <!-- Indonesian sub-sub-national place type -->
   <string name="regency">Regentschap</string>
@@ -520,7 +520,7 @@
   <string name="project">Project</string>
   <string name="user">Gebruiker</string>
   <string name="search_users">Zoek Gebruikers...</string>
-  <string name="quality_grade">Quality Grade</string>
+  <string name="quality_grade">Kwaliteitsklasse</string>
   <string name="dates">Data</string>
   <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
   <string name="any">Elke</string>
@@ -531,7 +531,7 @@
   <string name="end">Einde</string>
   <string name="months">Maanden</string>
   <string name="choose_months">Kies maanden (s)</string>
-  <string name="map_area">Map Area</string>
+  <string name="map_area">Gebied van de kaart</string>
   <string name="global">Wereldwijd</string>
   <!-- As in redo search in the current map area -->
   <string name="search_map_area">Kaart zoekgebied</string>
@@ -546,23 +546,23 @@
   <string name="new_observation">Nieuwe waarneming</string>
   <string name="inactive_taxon">Inactief Taxon</string>
   <string name="no_identifications_found">Spoor indentificaties die je voorstelt for waarnemingen van andere mensen hier.</string>
-  <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
+  <string name="no_species_found">Dit is een lijst van de soorten die u het vaakst hebt waargenomen.\n\nFYI: er zijn naar schatting 9 miljoen soorten op de planeet, dus ga naar buiten en ga kijken!</string>
   <string name="make_an_observation">Waarneming opslaan</string>
-  <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
+  <string name="no_observations_found_new">Waarnemingen worden records van uw observaties van individuele organismen op bepaalde tijdstippen en locaties.</string>
   <string name="discard_comment">Weet je zeker dat je dit commentaar wilt wissen?</string>
   <string name="leave_comment">Laat een bericht achter...</string>
   <string name="swipe">Vegen</string>
   <string name="swipe_indicator">›</string>
   <string name="select_google_account">Kies Google Account?</string>
-  <string name="potential_disagreement">Potential Disagreement</string>
-  <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
-  <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-  <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-  <string name="submit">Submit</string>
-  <string name="change_password">Change Password</string>
-  <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-  <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-  <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-  <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech helped developing the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. More information may be found at visipedia.org</string>
-  <string name="credits_title">Credits</string>
+  <string name="potential_disagreement">Potentiële onenigheid</string>
+  <string name="do_you_think_this_could_be"><![CDATA[Is het bewijs genoeg om te bevestigen dit <b>%1$s</b> is?]]></string>
+  <string name="i_dont_know_but"><![CDATA[Ik weet het niet maar ik ben zeker dit <b>%1$s</b> is.]]></string>
+  <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nee, maar het is een lid van <b>%1$s</b>.]]></string>
+  <string name="submit">Versturen</string>
+  <string name="change_password">Wachtwoord Wijzigen</string>
+  <string name="search_projects_youve_joined">Zoek projecten waar je aan deelneemt...</string>
+  <string name="must_be_connected_to_load_more_obs">U moet verbinding hebben met Internet om meer observaties te kunnen laden</string>
+  <string name="inat_about_title">iNaturalist is een gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society.</string>
+  <string name="inat_credits">iNaturalist is een gezamelijke inspanning van alle personen die deelnemen aan onze Gemeenschap. De mensen die de software bouwen, oze infrastructuur onderhouden en foster samenwerkingen zijn Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer en Ken-Ichi Ueda. Caltech en Cornell Tech die hielpen ontwikkelen van het computer visoon systeem dat soorten van foto\'s herkend. Wij danken Grant Van Horn, Serge Belongie en Pietro Perona voor dit werk. Meer informatie kan worden gevonden op visipedia.org</string>
+  <string name="credits_title">Met dank aan</string>
 </resources>
