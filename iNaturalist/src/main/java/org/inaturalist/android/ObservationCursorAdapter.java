@@ -919,8 +919,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 c.moveToPosition(oldPosition);
                 String[] photoInfo = mPhotoInfo.get(obs.uuid);
 
-                if (photoInfo[2] == null) {
-                    // No remote image - need to download obs
+                if ((photoInfo == null) || (photoInfo[2] == null)) {
+                    // No remote image - need to download ob
                     Log.d(TAG, "Local file deleted - re-downloading: " + position + ":" + name);
                     new Thread(new Runnable() {
                         @Override
