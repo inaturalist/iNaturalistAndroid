@@ -411,7 +411,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // Save Logcat output to a file
         File outputFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "logcat.txt");
         try {
-            Runtime.getRuntime().exec("logcat -f " + outputFile.getAbsolutePath());
+            Runtime.getRuntime().exec("logcat -f " + outputFile.getAbsolutePath() + " -r 8136");
         } catch (IOException e) {
             e.printStackTrace();
         }
