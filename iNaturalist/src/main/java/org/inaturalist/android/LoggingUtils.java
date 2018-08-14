@@ -5,12 +5,11 @@ import android.util.Log;
 public class LoggingUtils {
 
     public static void largeLog(String tag, String content) {
-        if (content.length() > 4000) {
-            Log.d(tag, content.substring(0, 4000));
-            largeLog(tag, content.substring(4000));
-        } else {
-            Log.d(tag, content);
-
-        }
+        int index = 0;
+        int length = content.length();
+        do {
+            Log.d(tag, content.substring(index, Math.min(index + 4000, length)));
+            index += 4000;
+        } while ((index < length) && (index < 1024 * 500));
     }
 }
