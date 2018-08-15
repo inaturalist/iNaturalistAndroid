@@ -212,8 +212,6 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         return view;
     }
 
-    Map<Integer, Boolean> blah = new HashMap<>();
-
     private void loadObsImage(int obsId, final View view, BetterJSONObject item, final int position) {
         Log.e(TAG, obsId + ": loadObsImage " + position + ":" + view);
 
@@ -230,8 +228,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
         });
 
         Cursor c = mContext.getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "id = ?", new String[] { String.valueOf(obsId) }, null);
-        if ((c.getCount() == 0) || (!blah.containsKey(obsId))) {
-            blah.put(obsId, true);
+        if (c.getCount() == 0) {
             // Couldn't find observation (must be an old one that isn't saved locally) - download it
             c.close();
 
