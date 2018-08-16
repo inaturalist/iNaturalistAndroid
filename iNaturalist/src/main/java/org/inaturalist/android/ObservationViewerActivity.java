@@ -91,6 +91,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private static final int SHARE_REQUEST_CODE = 0x104;
 
     public static final int RESULT_FLAGGED_AS_CAPTIVE = 0x300;
+    public static final int RESULT_OBSERVATION_CHANGED = 0x301;
 
     private static String TAG = "ObservationViewerActivity";
 
@@ -2206,6 +2207,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         } else if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
             if ((resultCode == ObservationEditor.RESULT_DELETED) || (resultCode == ObservationEditor.RESULT_RETURN_TO_OBSERVATION_LIST)) {
                 // User deleted the observation (or did a batch-edit)
+                setResult(RESULT_OBSERVATION_CHANGED);
                 finish();
                 return;
             } else if (resultCode == ObservationEditor.RESULT_REFRESH_OBS) {
@@ -2224,6 +2226,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 refreshProjectList();
                 refreshDataQuality();
 
+                setResult(RESULT_OBSERVATION_CHANGED);
             }
         } if (requestCode == NEW_ID_REQUEST_CODE) {
     		if (resultCode == RESULT_OK) {

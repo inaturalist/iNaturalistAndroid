@@ -63,9 +63,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ObservationListActivity extends BaseFragmentActivity implements INotificationCallback, DialogInterface.OnClickListener, ObservationCursorAdapter.OnLoadingMoreResultsListener {
-	public static String TAG = "INAT:ObservationListActivity";
+    public static String TAG = "INAT:ObservationListActivity";
 
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
+    protected static final int REQUEST_CODE_OBSERVATION_VIEWER = 0x1001;
 
     private boolean[] mIsGrid = new boolean[] { false, false, false };
 
@@ -651,6 +652,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         safeUnregisterReceiver(mUserDetailsReceiver);
         safeUnregisterReceiver(mSyncCompleteReceiver);
         safeUnregisterReceiver(mConnectivityListener);
+
+        mSyncRequested = false;
     }
 
     @Override
@@ -1087,7 +1090,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                             } else {
                                 if ((!mObservationListAdapter.isLocked(uri)) || (mObservationListAdapter.isLocked(uri) && !mApp.getIsSyncing())) {
                                     // Launch activity to view/edit the currently selected item
-                                    startActivity(new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerActivity.class));
+                                    startActivityForResult(new Intent(Intent.ACTION_VIEW, uri, ObservationListActivity.this, ObservationViewerActivity.class), REQUEST_CODE_OBSERVATION_VIEWER);
 
                                     try {
                                         JSONObject eventParams = new JSONObject();
@@ -1381,6 +1384,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 return;
             }
 
+            Log.d(TAG, String.format("Updating progress for %d: %f", obsId, progress));
+
             mObservationListAdapter.updateProgress(obsId, progress);
             mObservationListAdapter.notifyDataSetChanged();
             mObservationGridAdapter.updateProgress(obsId, progress);
@@ -1586,6 +1591,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             SharedPreferences settings = mApp.getPrefs();
             settings.edit().putInt("unread_activities", unreadActivities).commit();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        boolean triggerSync = false;
+        if (requestCode == REQUEST_CODE_OBSERVATION_VIEWER) {
+            if (resultCode == ObservationViewerActivity.RESULT_OBSERVATION_CHANGED) {
+                // Updated an existing obs
+                triggerSync = true;
+            }
+        } else if (requestCode == REQUEST_CODE_OBSERVATION_EDIT) {
+            if ((resultCode == RESULT_OK) || (resultCode == ObservationEditor.RESULT_REFRESH_OBS)) {
+                // Added a new obs
+                triggerSync = true;
+            }
+        }
+
+        if (triggerSync) {
+            // Trigger another sync if needed, since the user added/changed an observation
+            triggerSyncIfNeeded();
         }
     }
 

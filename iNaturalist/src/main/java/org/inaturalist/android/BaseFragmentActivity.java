@@ -53,6 +53,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
 	
     static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
     static final int SELECT_IMAGE_REQUEST_CODE = 2;
+    protected static final int REQUEST_CODE_OBSERVATION_EDIT = 0x1000;
+
 	private static final String TAG = "BaseFragmentActivity";
 
     // Time in mins to refresh the user details (such as user obs count)
@@ -288,19 +290,19 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
                         intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
                         intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
-                        startActivity(intent);
+                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
                         break;
                     case R.id.upload_photo:
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
 
                         intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
                         intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
-                        startActivity(intent);
+                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
                         break;
                     case R.id.text:
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
 
-                        startActivity(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class));
+                        startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class), REQUEST_CODE_OBSERVATION_EDIT);
                         break;
                 }
             }
