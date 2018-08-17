@@ -343,11 +343,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
             if (FileUtils.isLocal(imagePath)) {
                 // Offline photo
-                Bitmap bitmapImage = null;
                 try {
-                    bitmapImage = BitmapFactory.decodeFile(imagePath);
-
-                    bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, imagePath);
                     int orientation = ImageUtils.getImageOrientation(imagePath);
 
                     RequestBuilder<Drawable> imageRequest = Glide.with(mActivity)
