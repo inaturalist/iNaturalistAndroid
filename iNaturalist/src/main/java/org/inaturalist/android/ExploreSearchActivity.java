@@ -27,7 +27,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.Manifest;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
+import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -52,17 +54,17 @@ public class ExploreSearchActivity extends AppCompatActivity {
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 
-    private ExploreSearchFilters mSearchFilters;
+    @State public ExploreSearchFilters mSearchFilters;
 
     // Current search results
-    private ArrayList<JSONObject> mResults = null;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mResults = null;
 
     private TaxonSearchReceiver mTaxonResultsReceiver;
-    private String mLastSearch = "";
+    @State public String mLastSearch = "";
     private Handler mHandler;
     private boolean mIsSearching = false;
     private boolean mRefreshingUi = false;
-    private int mActiveSearchType = SEARCH_TYPE_TAXON;
+    @State public int mActiveSearchType = SEARCH_TYPE_TAXON;
 
 
     private ImageView mTaxonIcon;
@@ -97,6 +99,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         getSupportActionBar().hide();
 
@@ -126,11 +129,6 @@ public class ExploreSearchActivity extends AppCompatActivity {
             mResults = null;
             mSearchFilters = (ExploreSearchFilters) intent.getSerializableExtra(SEARCH_FILTERS);
             mActiveSearchType = SEARCH_TYPE_TAXON;
-        } else {
-            mSearchFilters = (ExploreSearchFilters) savedInstanceState.getSerializable("mSearchFilters");
-            mLastSearch = savedInstanceState.getString("mLastSearch");
-            mActiveSearchType = savedInstanceState.getInt("mActiveSearchType");
-            mResults = (ArrayList<JSONObject>) mHelper.loadListFromBundle(savedInstanceState, "mResults");
         }
 
 
@@ -289,12 +287,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("mSearchFilters", mSearchFilters);
-        outState.putString("mLastSearch", mLastSearch);
-        outState.putInt("mActiveSearchType", mActiveSearchType);
-        mHelper.saveListToBundle(outState, mResults, "mResults");
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

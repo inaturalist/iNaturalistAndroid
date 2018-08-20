@@ -23,7 +23,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
+import com.livefront.bridge.Bridge;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
@@ -43,7 +45,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_JSON = "observation_json";
-    public static final String SUGGESTIONS_JSON = "suggestions";
     public static final String SUGGESTION_INDEX = "suggestion_index";
 
     private static final String SUGGESTION_PHOTO_POSITION = "suggestion_photo_position";
@@ -53,12 +54,12 @@ public class CompareSuggestionActivity extends AppCompatActivity {
     private ActivityHelper mHelper;
 
     private static List<BetterJSONObject> mTaxonSuggestions;
-    private int mObsIdInternal;
-    private int mObsId;
-    private BetterJSONObject mObservation;
-    private int mSuggestionIndex;
-    private int mObservationPhotoPosition;
-    private int mSuggestionPhotoPosition;
+    @State public int mObsIdInternal;
+    @State public int mObsId;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mObservation;
+    @State public int mSuggestionIndex;
+    @State public int mObservationPhotoPosition;
+    @State public int mSuggestionPhotoPosition;
 
     private View mBackButton;
     private HackyViewPager mObservationPhotosViewPager;
@@ -103,6 +104,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_PROGRESS);
 
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -120,16 +122,6 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 mObservation = new BetterJSONObject(observationJson);
             }
             mSuggestionIndex = intent.getIntExtra(SUGGESTION_INDEX, 0);
-
-        } else {
-            mObsIdInternal = savedInstanceState.getInt(OBSERVATION_ID_INTERNAL);
-            mObsId = savedInstanceState.getInt(OBSERVATION_ID);
-            String observationJson = savedInstanceState.getString(OBSERVATION_JSON);
-            if (observationJson != null) mObservation = new BetterJSONObject(observationJson);
-            mTaxonSuggestions = loadListFromBundle(savedInstanceState, SUGGESTIONS_JSON);
-            mSuggestionIndex = savedInstanceState.getInt(SUGGESTION_INDEX);
-            mObservationPhotoPosition = savedInstanceState.getInt(OBSERVATION_PHOTO_POSITION);
-            mSuggestionPhotoPosition = savedInstanceState.getInt(SUGGESTION_PHOTO_POSITION);
         }
 
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -486,50 +478,14 @@ public class CompareSuggestionActivity extends AppCompatActivity {
         mAboutTaxon.setOnClickListener(showTaxonPage);
     }
 
-    private void saveListToBundle(Bundle outState, List<BetterJSONObject> list, String key) {
-        if (list != null) {
-            JSONArray arr = new JSONArray();
-            for (int i = 0; i < list.size(); i++) {
-                arr.put(list.get(i).getJSONObject().toString());
-            }
-            outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<BetterJSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(new BetterJSONObject(arr.getString(i)));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
-        outState.putInt(OBSERVATION_ID, mObsId);
-        outState.putString(OBSERVATION_JSON, mObservation != null ? mObservation.getJSONObject().toString() : null);
-        saveListToBundle(outState, mTaxonSuggestions, SUGGESTIONS_JSON);
-        outState.putInt(SUGGESTION_INDEX, mSuggestionIndex);
         mObservationPhotoPosition = mObservationPhotosViewPager.getCurrentItem();
-        outState.putInt(OBSERVATION_PHOTO_POSITION, mObservationPhotoPosition);
         mSuggestionPhotoPosition = mTaxonPhotosViewPager.getCurrentItem();
-        outState.putInt(SUGGESTION_PHOTO_POSITION, mSuggestionPhotoPosition);
 
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

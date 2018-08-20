@@ -49,7 +49,7 @@ android {
     defaultConfig {
         applicationId "org.inaturalist.android"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 26
         multiDexEnabled true
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
@@ -113,7 +113,7 @@ dependencies {
     compile 'jp.wasabeef:picasso-transformations:2.1.2'
     compile 'com.android.support:design:27.0.2'
     compile 'com.android.support:support-v4:27.0.2'
-    compile 'com.google.android.gms:play-services:9.6.1'
+    compile 'com.google.android.gms:play-services:10.2.1'
     compile 'org.apache.commons:commons-collections4:4.0'
     compile 'org.apache.commons:commons-lang3:3.1'
     //compile 'org.apache.httpcomponents:httpcore:4.4.1'
@@ -129,7 +129,7 @@ dependencies {
     compile 'joda-time:joda-time:2.4'
     compile 'com.google.android.gms:play-services-ads:7.3.0'
     compile 'com.google.android.gms:play-services-identity:7.3.0'
-    compile 'com.google.android.gms:play-services-gcm:7.3.0'
+    compile 'com.google.android.gms:play-services-gcm:10.2.1'
     compile 'com.android.support:preference-v7:27.0.2'
     compile 'com.amplitude:android-sdk:2.13.2'
     compile 'com.squareup.picasso:picasso:2.5.2'

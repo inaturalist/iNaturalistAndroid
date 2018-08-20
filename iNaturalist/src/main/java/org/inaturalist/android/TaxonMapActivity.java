@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,6 +40,7 @@ import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
+import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -67,11 +69,12 @@ public class TaxonMapActivity extends AppCompatActivity {
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-    private int mTaxonId;
-    private String mTaxonName;
-    private double mMapLatitude, mMapLongitude;
-    private float mMapZoom;
-    private BetterJSONObject mObservation;
+    @State public int mTaxonId;
+    @State public String mTaxonName;
+    @State public double mMapLatitude;
+    @State public double mMapLongitude;
+    @State public float mMapZoom;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mObservation;
 
     private GoogleMap mMap;
 
@@ -97,6 +100,7 @@ public class TaxonMapActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_PROGRESS);
 
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -112,13 +116,6 @@ public class TaxonMapActivity extends AppCompatActivity {
             mMapLatitude = intent.getDoubleExtra(MAP_LATITUDE, 0);
             mMapZoom = intent.getFloatExtra(MAP_ZOOM, 0);
             mObservation = (BetterJSONObject) intent.getSerializableExtra(OBSERVATION);
-        } else {
-        	mTaxonId = savedInstanceState.getInt(TAXON_ID);
-            mTaxonName = savedInstanceState.getString(TAXON_NAME);
-            mMapLongitude = savedInstanceState.getDouble(MAP_LONGITUDE, 0);
-            mMapLatitude = savedInstanceState.getDouble(MAP_LATITUDE, 0);
-            mMapZoom = savedInstanceState.getFloat(MAP_ZOOM, 0);
-            mObservation = (BetterJSONObject) savedInstanceState.getSerializable(OBSERVATION);
         }
 
         setContentView(R.layout.taxon_map);
@@ -216,16 +213,15 @@ public class TaxonMapActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(TAXON_ID, mTaxonId);
-        outState.putString(TAXON_NAME, mTaxonName);
-
         if (mMap != null) {
             CameraPosition position = mMap.getCameraPosition();
-            outState.putDouble(MAP_LATITUDE, position.target.latitude);
-            outState.putDouble(MAP_LONGITUDE, position.target.longitude);
-            outState.putFloat(MAP_ZOOM, position.zoom);
+            mMapLatitude = position.target.latitude;
+            mMapLongitude = position.target.longitude;
+            mMapZoom = position.zoom;
         }
+
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
 

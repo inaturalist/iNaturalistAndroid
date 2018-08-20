@@ -34,7 +34,9 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.evernote.android.state.State;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +59,7 @@ public class ObservationProjectsViewer extends AppCompatActivity {
     private EditText mSearchText;
     
     private INaturalistApp mApp;
-    private ArrayList<BetterJSONObject> mObservationProjects;
+    @State(AndroidStateBundlers.SerializableBundler.class) public ArrayList<BetterJSONObject> mObservationProjects;
 
     private ProjectAdapter mAdapter;
     private ActivityHelper mHelper;
@@ -79,6 +81,7 @@ public class ObservationProjectsViewer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -91,8 +94,6 @@ public class ObservationProjectsViewer extends AppCompatActivity {
         
         if (savedInstanceState == null) {
             mObservationProjects = (ArrayList<BetterJSONObject>) intent.getSerializableExtra(ObservationProjectsViewer.PROJECTS);
-        } else {
-            mObservationProjects = (ArrayList<BetterJSONObject>) savedInstanceState.getSerializable(ObservationProjectsViewer.PROJECTS);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -133,9 +134,8 @@ public class ObservationProjectsViewer extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(PROJECTS, mObservationProjects);
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

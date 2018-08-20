@@ -25,9 +25,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.apache.sanselan.util.IOUtils;
 import org.json.JSONException;
@@ -57,12 +59,12 @@ public class ProfileEditor extends AppCompatActivity {
     private EditText mUserPasswordText;
     private Button mViewProfile;
 
-    private Uri mFileUri;
-    private String mUserName;
-    private String mUserBio;
-    private String mUserFullName;
-    private String mUserEmail;
-    private String mUserIconUrl;
+    @State(AndroidStateBundlers.UriBundler.class) public Uri mFileUri;
+    @State public String mUserName;
+    @State public String mUserBio;
+    @State public String mUserFullName;
+    @State public String mUserEmail;
+    @State public String mUserIconUrl;
     private UserUpdateReceiver mUserUpdateReceiver;
 
     @Override
@@ -207,6 +209,7 @@ public class ProfileEditor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -265,17 +268,7 @@ public class ProfileEditor extends AppCompatActivity {
             }
         });
 
-        if (savedInstanceState != null) {
-            String fileUri = savedInstanceState.getString("mUserIconUrl");
-            if (fileUri != null) {mFileUri = Uri.parse(fileUri);}
-
-            mUserName = savedInstanceState.getString("mUserName");
-            mUserFullName = savedInstanceState.getString("mUserFullName");
-            mUserEmail = savedInstanceState.getString("mUserEmail");
-            mUserBio = savedInstanceState.getString("mUserBio");
-            mUserIconUrl = savedInstanceState.getString("mUserIconUrl");
-
-        } else {
+        if (savedInstanceState == null) {
             SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
             mUserName = prefs.getString("username", "");
             mUserFullName = prefs.getString("user_full_name", "");
@@ -309,15 +302,13 @@ public class ProfileEditor extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("mUserName", mUserNameText.getText().toString());
-        outState.putString("mUserFullName", mUserFullNameText.getText().toString());
-        outState.putString("mUserEmail", mUserEmailText.getText().toString());
-        outState.putString("mUserBio", mUserBioText.getText().toString());
-        outState.putString("mUserIconUrl", mUserIconUrl);
-
-        if (mFileUri != null) { outState.putString("mFileUri", mFileUri.toString()); }
+        mUserName = mUserNameText.getText().toString();
+        mUserFullName = mUserFullNameText.getText().toString();
+        mUserEmail = mUserEmailText.getText().toString();
+        mUserBio = mUserBioText.getText().toString();
 
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     private void refreshUserDetails() {

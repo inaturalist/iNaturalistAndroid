@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import com.evernote.android.state.State;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.flurry.android.FlurryAgent;
+import com.livefront.bridge.Bridge;
 
 import java.sql.Timestamp;
 
@@ -46,17 +48,17 @@ public class IdentificationActivity extends AppCompatActivity {
     private TextView mTaxonName;
     private TextView mIdName;
     private ImageView mIdPic;
-    private boolean mSuggestId;
-    private String mObsPhotoFilename;
-    private String mObsPhotoUrl;
-    private double mLatitude;
-    private double mLongitude;
-    private Timestamp mObservedOn;
-    private int mObsId;
-    private int mObsIdInternal;
+    @State public boolean mSuggestId;
+    @State public String mObsPhotoFilename;
+    @State public String mObsPhotoUrl;
+    @State public double mLatitude;
+    @State public double mLongitude;
+    @State public Timestamp mObservedOn;
+    @State public int mObsId;
+    @State public int mObsIdInternal;
 
     private INaturalistApp mApp;
-    private String mObservationJson;
+    @State public String mObservationJson;
 
     @Override
 	protected void onStart()
@@ -91,7 +93,8 @@ public class IdentificationActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        Bridge.restoreInstanceState(this, savedInstanceState);
+
         setContentView(R.layout.new_identification);
 
         if (savedInstanceState == null) {
@@ -105,16 +108,6 @@ public class IdentificationActivity extends AppCompatActivity {
             mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
             mObservationJson = intent.getStringExtra(OBSERVATION);
-        } else {
-            mSuggestId = savedInstanceState.getBoolean(SUGGEST_ID, false);
-            mObsPhotoFilename = savedInstanceState.getString(OBS_PHOTO_FILENAME);
-            mObsPhotoUrl = savedInstanceState.getString(OBS_PHOTO_URL);
-            mLongitude = savedInstanceState.getDouble(LONGITUDE, 0);
-            mLatitude = savedInstanceState.getDouble(LATITUDE, 0);
-            mObservedOn = (Timestamp) savedInstanceState.getSerializable(OBSERVED_ON);
-            mObsId = savedInstanceState.getInt(OBSERVATION_ID);
-            mObsIdInternal = savedInstanceState.getInt(OBSERVATION_ID_INTERNAL);
-            mObservationJson = savedInstanceState.getString(OBSERVATION);
         }
 
         if (mApp == null) {
@@ -224,17 +217,8 @@ public class IdentificationActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(SUGGEST_ID, mSuggestId);
-        outState.putString(OBS_PHOTO_FILENAME, mObsPhotoFilename);
-        outState.putString(OBS_PHOTO_URL, mObsPhotoUrl);
-        outState.putDouble(LONGITUDE, mLongitude);
-        outState.putDouble(LATITUDE, mLatitude);
-        outState.putSerializable(OBSERVED_ON, mObservedOn);
-        outState.putInt(OBSERVATION_ID, mObsId);
-        outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
-        outState.putString(OBSERVATION, mObservationJson);
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
         

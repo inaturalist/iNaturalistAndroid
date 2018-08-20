@@ -29,7 +29,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
+import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
@@ -58,7 +61,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
 
-    private ExploreSearchFilters mSearchFilters;
+    @State public ExploreSearchFilters mSearchFilters;
 
     private Handler mHandler;
 
@@ -134,6 +137,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setElevation(0);
@@ -150,8 +154,6 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             mSearchFilters = (ExploreSearchFilters) intent.getSerializableExtra(SEARCH_FILTERS);
-        } else {
-            mSearchFilters = (ExploreSearchFilters) savedInstanceState.getSerializable("mSearchFilters");
         }
 
 
@@ -408,8 +410,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("mSearchFilters", mSearchFilters);
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

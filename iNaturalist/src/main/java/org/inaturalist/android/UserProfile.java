@@ -34,9 +34,11 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,10 +55,10 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 	private final static String VIEW_TYPE_SPECIES = "species";
     private final static String VIEW_TYPE_IDENTIFICATIONS = "identifications";
 
-    private String mViewType;
+    @State public String mViewType;
 
     private INaturalistApp mApp;
-    private BetterJSONObject mUser;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mUser;
 
     private TabHost mTabHost;
     private ActivityHelper mHelper;
@@ -79,27 +81,27 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     private ViewGroup mIdentificationsContainer;
     private TextView mIdentificationsListEmpty;
 
-    private ArrayList<JSONObject> mObservations;
-    private ArrayList<JSONObject> mSpecies;
-    private ArrayList<JSONObject> mIdentifications;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mObservations;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mSpecies;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mIdentifications;
 
     private UserDetailsReceiver mUserDetailsReceiver;
 
-    private int mTotalObservations;
-    private int mTotalSpecies;
-    private int mTotalIdentifications;
+    @State public int mTotalObservations;
+    @State public int mTotalSpecies;
+    @State public int mTotalIdentifications;
 
     private AppBarLayout mAppBarLayout;
     private boolean mUserPicHidden;
     private ViewGroup mUserPicContainer;
     private TextView mUserName;
     private TextView mUserBio;
-    private int mObservationListIndex;
-    private int mObservationListOffset;
-    private int mSpeciesListIndex;
-    private int mSpeciesListOffset;
-    private int mIdentificationsListIndex;
-    private int mIdentificationsListOffset;
+    @State public int mObservationListIndex;
+    @State public int mObservationListOffset;
+    @State public int mSpeciesListIndex;
+    @State public int mSpeciesListOffset;
+    @State public int mIdentificationsListIndex;
+    @State public int mIdentificationsListOffset;
 
     @Override
 	protected void onStart()
@@ -131,6 +133,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -201,24 +204,6 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mObservationsContainer.setVisibility(View.VISIBLE);
             mSpeciesContainer.setVisibility(View.INVISIBLE);
             mIdentificationsContainer.setVisibility(View.INVISIBLE);
-
-        } else {
-            mUser = (BetterJSONObject) savedInstanceState.getSerializable("user");
-            mViewType = savedInstanceState.getString("mViewType");
-            mObservationListIndex = savedInstanceState.getInt("mObservationListIndex");
-            mObservationListOffset = savedInstanceState.getInt("mObservationListOffset");
-            mSpeciesListIndex = savedInstanceState.getInt("mSpeciesListIndex");
-            mSpeciesListOffset = savedInstanceState.getInt("mSpeciesListOffset");
-            mIdentificationsListIndex = savedInstanceState.getInt("mIdentificationsListIndex");
-            mIdentificationsListOffset = savedInstanceState.getInt("IdentificationsmListOffset");
-
-            mObservations = loadListFromBundle(savedInstanceState, "mObservations");
-            mSpecies = loadListFromBundle(savedInstanceState, "mSpecies");
-            mIdentifications = loadListFromBundle(savedInstanceState, "mIdentifications");
-
-            mTotalIdentifications = savedInstanceState.getInt("mTotalIdentifications");
-            mTotalObservations = savedInstanceState.getInt("mTotalObservations");
-            mTotalSpecies = savedInstanceState.getInt("mTotalSpecies");
         }
 
         // Tab Initialization
@@ -241,54 +226,14 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         refreshUserDetails();
     }
 
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("user", mUser);
-        outState.putString("mViewType", mViewType);
-        saveListToBundle(outState, mObservations, "mObservations");
-        saveListToBundle(outState, mSpecies, "mSpecies");
-        saveListToBundle(outState, mIdentifications, "mIdentifications");
-        outState.putInt("mTotalIdentifications", mTotalIdentifications);
-        outState.putInt("mTotalObservations", mTotalObservations);
-        outState.putInt("mTotalSpecies", mTotalSpecies);
-
         if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
             View firstVisibleRow = mObservationsList.getChildAt(0);
 
             if (firstVisibleRow != null && mObservationsList != null) {
                 mObservationListOffset = firstVisibleRow.getTop() - mObservationsList.getPaddingTop();
                 mObservationListIndex = mObservationsList.getFirstVisiblePosition();
-
-                outState.putInt("mObservationListIndex", mObservationListIndex);
-                outState.putInt("mObservationListOffset", mObservationListOffset);
             }
         } else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
             View firstVisibleRow = mSpeciesList.getChildAt(0);
@@ -296,9 +241,6 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             if (firstVisibleRow != null && mSpeciesList != null) {
                 mSpeciesListOffset = firstVisibleRow.getTop() - mSpeciesList.getPaddingTop();
                 mSpeciesListIndex = mSpeciesList.getFirstVisiblePosition();
-
-                outState.putInt("mSpeciesListIndex", mSpeciesListIndex);
-                outState.putInt("mSpeciesListOffset", mSpeciesListOffset);
             }
         } else if (mViewType.equals(VIEW_TYPE_IDENTIFICATIONS)) {
             View firstVisibleRow = mIdentificationsList.getChildAt(0);
@@ -306,14 +248,12 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             if (firstVisibleRow != null && mIdentificationsList != null) {
                 mIdentificationsListOffset = firstVisibleRow.getTop() - mIdentificationsList.getPaddingTop();
                 mIdentificationsListIndex = mIdentificationsList.getFirstVisiblePosition();
-
-                outState.putInt("mIdentificationsListIndex", mIdentificationsListIndex);
-                outState.putInt("mIdentificationsListOffset", mIdentificationsListOffset);
             }
         }
 
 
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

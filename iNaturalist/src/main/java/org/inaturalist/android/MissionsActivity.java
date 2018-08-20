@@ -23,7 +23,9 @@ import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +59,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
     private MissionsReceiver mMissionsReceiver;
-    private ArrayList<JSONObject> mMissions;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mMissions;
     private ProgressBar mLoading;
     private GridViewExtended mCategories;
     private TextView mViewAll;
@@ -67,8 +69,8 @@ public class MissionsActivity extends BaseFragmentActivity {
     private ViewGroup mNoMissionsContainer;
     private ViewGroup mMissionsByCategoryContainer;
 
-    private int mMissionsCurrentExpansionLevel = 0;
-    private boolean mAskedForLocationPermissions = false;
+    @State public int mMissionsCurrentExpansionLevel = 0;
+    @State public boolean mAskedForLocationPermissions = false;
 
     @Override
 	protected void onStart()
@@ -88,6 +90,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         setContentView(R.layout.missions);
 	    onDrawerCreate(savedInstanceState);
@@ -131,13 +134,6 @@ public class MissionsActivity extends BaseFragmentActivity {
 
         mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
-
-        if (savedInstanceState != null) {
-            mMissions = loadListFromBundle(savedInstanceState, "mMissions");
-            mMissionsCurrentExpansionLevel = savedInstanceState.getInt("mMissionsCurrentExpansionLevel");
-            mAskedForLocationPermissions = savedInstanceState.getBoolean("mAskedForLocationPermissions");
-        }
-
 
         mCategories.setAdapter(new CategoriesAdapter(this, CATEGORIES, mCategories));
         new Handler().postDelayed(new Runnable() {
@@ -359,41 +355,9 @@ public class MissionsActivity extends BaseFragmentActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        saveListToBundle(outState, mMissions, "mMissions");
-        outState.putInt("mMissionsCurrentExpansionLevel", mMissionsCurrentExpansionLevel);
-        outState.putBoolean("mAskedForLocationPermissions", mAskedForLocationPermissions);
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
-
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
 
     public int setGridViewHeightBasedOnItems(final GridViewExtended gridView) {
     	ListAdapter adapter = gridView.getAdapter();

@@ -13,9 +13,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
 
 import android.app.NotificationManager;
@@ -87,7 +89,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
     private long mLastTime = 0;
     private TextView mNoResults;
-    private boolean mSuggestId;
+    @State public boolean mSuggestId;
 
     private int mObsIdInternal;
     private int mObsId;
@@ -499,6 +501,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         if (mApp == null) { mApp = (INaturalistApp) getApplicationContext(); }
 
@@ -529,8 +532,6 @@ public class TaxonSearchActivity extends AppCompatActivity {
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
             mObsId = intent.getIntExtra(OBSERVATION_ID, -1);
             mObservationJson = intent.getStringExtra(OBSERVATION_JSON);
-        } else {
-            mSuggestId = savedInstanceState.getBoolean(SUGGEST_ID, false);
         }
 
         mAdapter = new TaxonAutoCompleteAdapter(getApplicationContext(), R.layout.taxon_result_item);
@@ -645,8 +646,8 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(SUGGEST_ID, mSuggestId);
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
 

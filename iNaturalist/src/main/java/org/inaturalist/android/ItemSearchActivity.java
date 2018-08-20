@@ -33,9 +33,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +72,8 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
     private boolean mReturnResult;
     private boolean mIsUser;
 
-    private String mSearchString = "";
+    @State public String mSearchString = "";
+    @State(AndroidStateBundlers.JSONListBundler.class) public List<JSONObject> mProjects;
 
     private ProjectsAdapter mAdapter;
 
@@ -120,6 +123,7 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         if (mApp == null) { mApp = (INaturalistApp) getApplicationContext(); }
 
@@ -156,9 +160,8 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
         if (savedInstanceState == null) {
             mAdapter = new ProjectsAdapter(this, mSearchUrl, this, new ArrayList<JSONObject>(), mIsUser ? R.drawable.ic_account_circle_black_48dp : R.drawable.ic_work_black_24dp, mIsUser);
         } else {
-            mSearchString = savedInstanceState.getString("mSearchString");
             mSearchEditText.setText(mSearchString);
-            mAdapter = new ProjectsAdapter(this, mSearchUrl, this, loadListFromBundle(savedInstanceState, "mProjects"), mIsUser ? R.drawable.ic_account_circle_black_48dp : R.drawable.ic_work_black_24dp, mIsUser);
+            mAdapter = new ProjectsAdapter(this, mSearchUrl, this, mProjects, mIsUser ? R.drawable.ic_account_circle_black_48dp : R.drawable.ic_work_black_24dp, mIsUser);
         }
         if (mHintText != null) mSearchEditText.setHint(mHintText);
 
@@ -246,36 +249,10 @@ public class ItemSearchActivity extends AppCompatActivity implements AdapterView
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        saveListToBundle(outState, mAdapter.getItems(), "mProjects");
-        outState.putString("mSearchString", mSearchString);
+        mProjects = mAdapter.getItems();
 
         super.onSaveInstanceState(outState);
-    }
-    private void saveListToBundle(Bundle outState, List<JSONObject> list, String key) {
-        if (list != null) {
-            JSONArray arr = new JSONArray(list);
-            outState.putString(key, arr.toString());
-        }
+        Bridge.saveInstanceState(this, outState);
     }
 
-    private List<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        List<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
 }

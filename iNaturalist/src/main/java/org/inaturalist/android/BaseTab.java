@@ -16,8 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.evernote.android.state.State;
 import com.google.android.gms.common.api.Status;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import android.app.Activity;
 import android.app.Application;
@@ -56,7 +58,7 @@ import android.widget.TextView;
 public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoading, INaturalistApp.OnLocationStatus {
 
     private ProjectsAdapter mAdapter;
-    private ArrayList<JSONObject> mProjects = null;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mProjects = null;
     private Button mLogin;
     private Button mSettings;
 
@@ -214,36 +216,8 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        saveListToBundle(outState, mProjects, "mProjects");
         super.onSaveInstanceState(outState);
-    }
-
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override
@@ -255,13 +229,12 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        Bridge.restoreInstanceState(this, savedInstanceState);
+
         Log.i(TAG, "onCreate - " + getActionName() + ":" + getClass().getName());
 
         if (savedInstanceState == null) {
             mProjects = null;
-        } else {
-            mProjects = loadListFromBundle(savedInstanceState, "mProjects");
         }
     }
     

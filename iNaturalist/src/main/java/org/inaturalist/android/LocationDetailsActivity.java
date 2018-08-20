@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.livefront.bridge.Bridge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,14 +41,14 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
 
     private GoogleMap mMap;
     private INaturalistApp mApp;
-	private Double mLatitude;
-	private Double mLongitude;
+	@State public Double mLatitude;
+	@State public Double mLongitude;
 	private LocationManager mLocationManager;
-	private double mAccuracy;
+	@State public double mAccuracy;
     private TextView mLocationCoordinates;
-    private Observation mObservation;
+    @State public Observation mObservation;
     private BetterJSONObject mObservationJson;
-    private boolean mIsReadOnly;
+    @State public boolean mIsReadOnly;
     private ActivityHelper mHelper;
 
     @Override
@@ -67,6 +69,7 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -87,15 +90,6 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
         actionBar.setLogo(R.drawable.ic_arrow_back_gray_24dp);
         actionBar.setTitle(R.string.location);
-
-        if (savedInstanceState != null) {
-            mObservation = (Observation) savedInstanceState.getSerializable("observation");
-            mIsReadOnly = savedInstanceState.getBoolean(READ_ONLY);
-            mLongitude = savedInstanceState.getDouble("mLongitude");
-            mLatitude = savedInstanceState.getDouble("mLatitude");
-            mAccuracy = savedInstanceState.getDouble("mAccuracy");
-        }
-
 
         setContentView(R.layout.location_detail);
         
@@ -167,12 +161,8 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("observation", mObservation);
-        outState.putBoolean(READ_ONLY, mIsReadOnly);
-        outState.putDouble("mLongitude", mLongitude);
-        outState.putDouble("mLatitude", mLatitude);
-        outState.putDouble("mAccuracy", mAccuracy);
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
  
     @Override

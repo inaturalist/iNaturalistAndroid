@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +44,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,7 +62,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     public static final String LOCATION_EXPANSION = "location_expansion";
 
     private INaturalistApp mApp;
-    private BetterJSONObject mMission;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mMission;
 
     private TabHost mTabHost;
     private ActivityHelper mHelper;
@@ -75,7 +77,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     private ViewGroup mMapContainer;
     private ViewGroup mMissionLocationContainer;
 
-    private ArrayList<JSONObject> mObservations;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mObservations;
     private ProgressBar mLoadingMap;
     private NearbyObservationsReceiver mNearbyReceiver;
     private boolean mTaxonNameHidden;
@@ -83,12 +85,12 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     private Button mObserve;
     private ViewPager mNearbyMissionsViewPager;
     private MissionsPagerAdapter mNearbyMissionsPageAdapter;
-    private ArrayList<JSONObject> mNearByMissions;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mNearByMissions;
     private TextView mAboutTaxonText;
     private ViewGroup mViewOnWikipedia;
     private ProgressBar mLoadingAbout;
-    private String mAboutText;
-    private String mWikiTitle;
+    @State public String mAboutText;
+    @State public String mWikiTitle;
     private TaxonReceiver mTaxonReceiver;
     private ProgressBar mLoadingNearbyObservations;
     private ViewPager mNearbyObservationsViewPager;
@@ -125,6 +127,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -182,14 +185,6 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
             startService(serviceIntent);
-
-
-        } else {
-            mAboutText = savedInstanceState.getString("mAboutText");
-            mWikiTitle = savedInstanceState.getString("mWikiTitle");
-            mMission = (BetterJSONObject) savedInstanceState.getSerializable("mission");
-            mObservations = loadListFromBundle(savedInstanceState, "mObservations");
-            mNearByMissions = loadListFromBundle(savedInstanceState, "mNearbyMissions");
         }
 
 
@@ -282,43 +277,10 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
         }
     }
 
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("mAboutText", mAboutText);
-        outState.putString("mWikiTitle", mWikiTitle);
-        outState.putSerializable("mission", mMission);
-        saveListToBundle(outState, mObservations, "mObservations");
-        saveListToBundle(outState, mNearByMissions, "mNearbyMissions");
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

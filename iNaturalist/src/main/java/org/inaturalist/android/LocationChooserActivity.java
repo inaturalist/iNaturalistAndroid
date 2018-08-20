@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,6 +34,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.livefront.bridge.Bridge;
 
 public class LocationChooserActivity extends AppCompatActivity implements LocationListener {
     public final static String TAG = "LocationChooserActivity";
@@ -43,13 +45,13 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private GoogleMap mMap;
     private HashMap<String, Observation> mMarkerObservations;
     private INaturalistApp mApp;
-	private double mLatitude;
-	private double mLongitude;
+	@State public double mLatitude;
+	@State public double mLongitude;
 	private boolean mZoomToLocation = false;
 	private LocationManager mLocationManager;
-	private double mAccuracy;
+	@State public double mAccuracy;
     private ActivityHelper mHelper;
-    private String mIconicTaxonName;
+    @State public String mIconicTaxonName;
 
     @Override
 	protected void onStart()
@@ -69,16 +71,19 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         
         //mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
-        mLongitude = getIntent().getDoubleExtra(LONGITUDE, 0);
-        mLatitude = getIntent().getDoubleExtra(LATITUDE, 0);
-        mAccuracy = getIntent().getDoubleExtra(ACCURACY, 0);
-        mIconicTaxonName = getIntent().getStringExtra(ICONIC_TAXON_NAME);
+        if (savedInstanceState == null) {
+            mLongitude = getIntent().getDoubleExtra(LONGITUDE, 0);
+            mLatitude = getIntent().getDoubleExtra(LATITUDE, 0);
+            mAccuracy = getIntent().getDoubleExtra(ACCURACY, 0);
+            mIconicTaxonName = getIntent().getStringExtra(ICONIC_TAXON_NAME);
+        }
 
         if ((mLongitude != 0) && (mLatitude != 0) && (savedInstanceState == null)) {
         	mZoomToLocation = true;
@@ -89,15 +94,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(Html.fromHtml(getString(R.string.details)));
-
-        if (savedInstanceState != null) {
-        	mLongitude = savedInstanceState.getDouble("longitude");
-        	mLatitude = savedInstanceState.getDouble("latitude");
-            mAccuracy = savedInstanceState.getDouble("accuracy");
-            mIconicTaxonName = savedInstanceState.getString("iconic_taxon_name");
-        }
-
-
 
         setContentView(R.layout.location_chooser);
     }
@@ -161,11 +157,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putDouble("longitude", mLongitude);
-        outState.putDouble("latitude", mLatitude);
-        outState.putDouble("accuracy", mAccuracy);
-        outState.putString("iconic_taxon_name", mIconicTaxonName);
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
  
     @Override

@@ -25,9 +25,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +43,7 @@ public class NewsArticle extends AppCompatActivity {
     public static final String KEY_IS_USER_FEED = "is_user_feed";
 
     private INaturalistApp mApp;
-    private BetterJSONObject mArticle;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mArticle;
 
     private ActivityHelper mHelper;
 
@@ -50,7 +52,7 @@ public class NewsArticle extends AppCompatActivity {
     private TextView mArticleContent;
     private TextView mUsername;
     private ImageView mUserPic;
-    private boolean mIsUserFeed;
+    @State public boolean mIsUserFeed;
 
     @Override
 	protected void onStart()
@@ -82,6 +84,7 @@ public class NewsArticle extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -107,9 +110,6 @@ public class NewsArticle extends AppCompatActivity {
         if (savedInstanceState == null) {
             mArticle = (BetterJSONObject) intent.getSerializableExtra(KEY_ARTICLE);
             mIsUserFeed = intent.getBooleanExtra(KEY_IS_USER_FEED, false);
-        } else {
-            mArticle = (BetterJSONObject) savedInstanceState.getSerializable(KEY_ARTICLE);
-            mIsUserFeed = savedInstanceState.getBoolean(KEY_IS_USER_FEED);
         }
 
 
@@ -222,10 +222,8 @@ public class NewsArticle extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(KEY_ARTICLE, mArticle);
-        outState.putBoolean(KEY_IS_USER_FEED, mIsUserFeed);
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

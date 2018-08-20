@@ -1141,13 +1141,14 @@ public class ObservationEditor extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Bridge.saveInstanceState(this, outState);
-
         // Save away the original text, so we still have it if the activity
         // needs to be killed while paused.
         uiToObservation();
         uiToProjectFieldValues();
+
+
+        super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override
