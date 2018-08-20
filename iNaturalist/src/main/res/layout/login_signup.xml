@@ -216,6 +216,8 @@
             android:text="@string/sign_up"
             android:textColor="@drawable/circular_button_text"
             android:layout_marginTop="13dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:textSize="16sp"
             android:layout_height="40dp" />
     </LinearLayout>
