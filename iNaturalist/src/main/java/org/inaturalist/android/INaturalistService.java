@@ -4455,6 +4455,12 @@ public class INaturalistService extends IntentService {
             for (int j = 0; j < jsonObservation.photos.size(); j++) {
                 ObservationPhoto photo = jsonObservation.photos.get(j);
                 photo._observation_id = jsonObservation._id;
+
+                if (photo.id == null) {
+                    Log.w(TAG, "syncJson: Null photo ID! " + photo);
+                    continue;
+                }
+
                 observationPhotoIds.add(photo.id);
                 if (existingObservationPhotoIds.contains(photo.id)) {
                     Log.d(TAG, "syncJson: photo " + photo.id + " has already been added, skipping...");
@@ -4479,10 +4485,11 @@ public class INaturalistService extends IntentService {
             // indicating they were deleted elsewhere
             String joinedPhotoIds = StringUtils.join(observationPhotoIds, ",");
             String where = "observation_id = " + observation.id + " AND id IS NOT NULL";
-            if (joinedPhotoIds.length() > 0) {
+            if (observationPhotoIds.size() > 0) {
                 where += " AND id NOT in (" + joinedPhotoIds + ")";
             }
             Log.d(TAG, "syncJson: Deleting local photos: " + where);
+            Log.d(TAG, "syncJson: Deleting local photos, IDs: " + observationPhotoIds);
             int deleteCount = getContentResolver().delete(
                     ObservationPhoto.CONTENT_URI,
                     where,
@@ -4542,9 +4549,17 @@ public class INaturalistService extends IntentService {
                 Log.d(TAG, "syncJson: Saving new obs' photos: " + jsonObservation + ":" + jsonObservation.photos);
                 for (int j = 0; j < jsonObservation.photos.size(); j++) {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
-                    c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
-                            ObservationPhoto.PROJECTION,
-                            "_id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+
+                    if (photo.uuid == null) {
+                        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                                ObservationPhoto.PROJECTION,
+                                "_id = ?", new String[]{String.valueOf(photo.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                    } else {
+                        c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+                                ObservationPhoto.PROJECTION,
+                                "uuid = ?", new String[]{String.valueOf(photo.uuid)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                    }
+
                     if (c.getCount() > 0) {
                         // Photo already exists - don't save
                         Log.d(TAG, "syncJson: Photo already exists - skipping: " + photo.id);

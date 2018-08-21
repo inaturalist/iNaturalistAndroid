@@ -400,7 +400,7 @@ public class Observation implements BaseColumns, Serializable {
         try {
             this.photos = new ArrayList<ObservationPhoto>();
             JSONArray photos;
-            photos = o.getJSONObject().getJSONArray(o.has("photos") ? "photos" : "observation_photos");
+            photos = o.getJSONObject().getJSONArray(o.has("observation_photos") ? "observation_photos" : "photos");
             for (int i = 0; i < photos.length(); i++) {
                 BetterJSONObject json = new BetterJSONObject((JSONObject)photos.get(i));
                 ObservationPhoto photo = new ObservationPhoto(json);
