@@ -13,10 +13,15 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -28,11 +33,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.LayoutParams;
@@ -344,35 +351,24 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             if (FileUtils.isLocal(imagePath)) {
                 // Offline photo
                 try {
-                    int orientation = ImageUtils.getImageOrientation(imagePath);
-
-                    RequestBuilder<Drawable> imageRequest = Glide.with(mActivity)
-                            .load(new File(imagePath));
-
-                    if (orientation != 0) {
-                        imageRequest.apply(RequestOptions.bitmapTransform(new RotateTransformation(mActivity, orientation)));
-                    }
-
                     attacher = new PhotoViewAttacher(imageView);
                     final PhotoViewAttacher finalAttacher2 = attacher;
-                    BaseTarget target = new BaseTarget<Drawable>() {
-                        @Override
-                        public void onResourceReady(Drawable bitmap, Transition<? super Drawable> transition) {
-                            imageView.setImageDrawable(bitmap);
-                            finalAttacher2.update();
-                        }
+                    GlideApp.with(mActivity)
+                            .load(new File(imagePath))
+                            .listener(new RequestListener<Drawable>() {
+                                @Override
+                                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                    return false;
+                                }
 
-                        @Override
-                        public void getSize(SizeReadyCallback cb) {
-                            cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL);
-                        }
-
-                        @Override
-                        public void removeCallback(SizeReadyCallback cb) {}
-                    };
-
-                    imageRequest.into(target);
-
+                                @Override
+                                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                    imageView.setImageDrawable(resource);
+                                    finalAttacher2.update();
+                                    return true;
+                                }
+                            })
+                            .into(imageView);
 
                 } catch (Exception e) {
                     e.printStackTrace();

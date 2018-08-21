@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.util.Log;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -18,7 +19,6 @@ public class RotateTransformation extends BitmapTransformation {
 
         this.rotateRotationAngle = rotateRotationAngle;
     }
-
     @Override
     protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
         Matrix matrix = new Matrix();
@@ -30,6 +30,6 @@ public class RotateTransformation extends BitmapTransformation {
 
     @Override
     public void updateDiskCacheKey(MessageDigest messageDigest) {
-        messageDigest.update(("rotate" + rotateRotationAngle).getBytes());
+        messageDigest.update(("rotate12312321" + rotateRotationAngle).getBytes());
     }
 }
