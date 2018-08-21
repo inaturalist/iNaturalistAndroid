@@ -46,6 +46,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     public static final String OBSERVATION = "observation";
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
+    public static final String FROM_SUGGESTION = "from_suggestion";
 
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
 
@@ -312,6 +313,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
                 bundle.putInt(TaxonSearchActivity.TAXON_ID, taxon.optInt("id"));
                 bundle.putInt(TaxonSearchActivity.RANK_LEVEL, taxon.optInt("rank_level"));
+                bundle.putBoolean(TaxonSuggestionsActivity.FROM_SUGGESTION, true);
 
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
@@ -416,6 +418,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
                 // Copy results from taxon search directly back to the caller (e.g. observation editor)
                 Intent intent = new Intent();
                 Bundle bundle = data.getExtras();
+                bundle.putBoolean(TaxonSuggestionsActivity.FROM_SUGGESTION, false);
                 intent.putExtras(bundle);
                 setResult(RESULT_OK, intent);
 

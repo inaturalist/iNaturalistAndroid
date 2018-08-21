@@ -131,6 +131,7 @@ public class AnalyticsClient {
     public static final String EVENT_NAME_NEW_OBS_CANCEL = "New Obs - Cancel";
     public static final String EVENT_NAME_NEW_OBS_SAVE = "New Obs - Save New Observation";
     public static final String EVENT_PARAM_ONLINE_REACHABILITY = "Online Reachability";
+    public static final String EVENT_PARAM_FROM_VISION_SUGGESTION = "owners_identification_from_vision";
 
     // iNat networks/partners
     public static final String EVENT_NAME_PARTNER_ALERT_PRESENTED = "Partner Alert Presented";
@@ -260,6 +261,7 @@ public class AnalyticsClient {
                 String currentActivityName = getCurrentActivityName();
                 if (!parameters.has(EVENT_PARAM_VIA)) parameters.put(EVENT_PARAM_VIA, currentActivityName);
             }
+
             Amplitude.getInstance().logEvent(eventName, parameters);
 
         } catch (JSONException e) {

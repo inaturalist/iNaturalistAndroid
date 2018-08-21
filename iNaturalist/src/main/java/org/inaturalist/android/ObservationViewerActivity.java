@@ -848,6 +848,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     try {
                         JSONObject eventParams = new JSONObject();
                         eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_VIEW_OBS_AGREE);
+                        eventParams.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, false);
 
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
                     } catch (JSONException e) {
@@ -2237,6 +2238,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 String taxonName = data.getStringExtra(IdentificationActivity.TAXON_NAME);
                 String speciesGuess = data.getStringExtra(IdentificationActivity.SPECIES_GUESS);
     			final String idRemarks = data.getStringExtra(IdentificationActivity.ID_REMARKS);
+                final boolean fromSuggestion = data.getBooleanExtra(IdentificationActivity.FROM_SUGGESTION, false);
 
     			checkForTaxonDisagreement(taxonId, taxonName, speciesGuess, new onDisagreement() {
                     @Override
@@ -2251,6 +2253,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                         try {
                             JSONObject eventParams = new JSONObject();
                             eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, AnalyticsClient.EVENT_VALUE_VIEW_OBS_ADD);
+                            eventParams.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, fromSuggestion);
 
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
                         } catch (JSONException e) {

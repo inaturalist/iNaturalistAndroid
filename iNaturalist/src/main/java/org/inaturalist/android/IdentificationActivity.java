@@ -37,6 +37,7 @@ public class IdentificationActivity extends AppCompatActivity {
     public static final String OBSERVATION_ID = "observation_id";
     public static final String OBSERVATION_ID_INTERNAL = "observation_id_internal";
     public static final String OBSERVATION = "observation";
+    public static final String FROM_SUGGESTION = "from_suggestion";
 
 
     private ActionBar mTopActionBar;
@@ -57,6 +58,7 @@ public class IdentificationActivity extends AppCompatActivity {
 
     private INaturalistApp mApp;
     private String mObservationJson;
+    private boolean mFromSuggestion = false;
 
     @Override
 	protected void onStart()
@@ -115,6 +117,7 @@ public class IdentificationActivity extends AppCompatActivity {
             mObsId = savedInstanceState.getInt(OBSERVATION_ID);
             mObsIdInternal = savedInstanceState.getInt(OBSERVATION_ID_INTERNAL);
             mObservationJson = savedInstanceState.getString(OBSERVATION);
+            mFromSuggestion = savedInstanceState.getBoolean(FROM_SUGGESTION);
         }
 
         if (mApp == null) {
@@ -148,6 +151,7 @@ public class IdentificationActivity extends AppCompatActivity {
                 bundle.putString(SPECIES_GUESS, mIdName.getText().toString());
                 bundle.putString(ICONIC_TAXON_NAME, mIconicTaxonName);
                 bundle.putString(TAXON_NAME, mTaxonName.getText().toString());
+                bundle.putBoolean(FROM_SUGGESTION, mFromSuggestion);
                 intent.putExtras(bundle);
 
                 setResult(RESULT_OK, intent);
@@ -203,6 +207,7 @@ public class IdentificationActivity extends AppCompatActivity {
                 mTaxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
                 mIconicTaxonName = data.getStringExtra(TaxonSearchActivity.ICONIC_TAXON_NAME);
                 mTaxonName.setText(data.getStringExtra(TaxonSearchActivity.TAXON_NAME));
+                mFromSuggestion = data.getBooleanExtra(TaxonSuggestionsActivity.FROM_SUGGESTION, false);
 
                 if (data.getIntExtra(TaxonSearchActivity.RANK_LEVEL, 100) <= 20) {
                     mTaxonName.setTypeface(null, Typeface.ITALIC);
@@ -233,6 +238,7 @@ public class IdentificationActivity extends AppCompatActivity {
         outState.putInt(OBSERVATION_ID, mObsId);
         outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
         outState.putString(OBSERVATION, mObservationJson);
+        outState.putBoolean(FROM_SUGGESTION, mFromSuggestion);
 
         super.onSaveInstanceState(outState);
     }

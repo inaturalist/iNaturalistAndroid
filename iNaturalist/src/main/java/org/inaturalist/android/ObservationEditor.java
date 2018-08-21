@@ -210,6 +210,7 @@ public class ObservationEditor extends AppCompatActivity {
     private ImageView mClearSpeciesGuess;
     private int mTaxonRankLevel;
     @State public boolean mAskedForLocationPermission = false;
+    @State public boolean mFromSuggestion = false;
 
     @Override
 	protected void onStart()
@@ -1058,6 +1059,7 @@ public class ObservationEditor extends AppCompatActivity {
                                             JSONObject params = new JSONObject();
                                             try {
                                                 params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+                                                params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
@@ -1088,6 +1090,7 @@ public class ObservationEditor extends AppCompatActivity {
                         JSONObject params = new JSONObject();
                         try {
                             params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
+                            params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -2061,6 +2064,7 @@ public class ObservationEditor extends AppCompatActivity {
                 Integer taxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
                 Integer rankLevel = data.getIntExtra(TaxonSearchActivity.RANK_LEVEL, 0);
                 boolean isCustomTaxon = data.getBooleanExtra(TaxonSearchActivity.IS_CUSTOM, false);
+                mFromSuggestion = data.getBooleanExtra(TaxonSuggestionsActivity.FROM_SUGGESTION, false);
 
                 if (taxonId == TaxonSearchActivity.UNKNOWN_TAXON_ID) {
                     clearSpeciesGuess();
