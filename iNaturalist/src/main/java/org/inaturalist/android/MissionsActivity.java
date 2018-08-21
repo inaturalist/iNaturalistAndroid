@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -140,13 +141,7 @@ public class MissionsActivity extends BaseFragmentActivity {
 
 
         mCategories.setAdapter(new CategoriesAdapter(this, CATEGORIES, mCategories));
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setGridViewHeightBasedOnItems(mCategories);
-            }
-        }, 100);
-
+        resizeMissionCategories();
 
         SharedPreferences settings = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         if (!settings.getBoolean("shown_missions_onboarding", false)) {
@@ -395,6 +390,39 @@ public class MissionsActivity extends BaseFragmentActivity {
     }
 
 
+    private void resizeMissionCategories() {
+        final Handler handler = new Handler();
+        if ((mCategories.getVisibility() == View.VISIBLE) && (mCategories.getWidth() == 0)) {
+            // UI not initialized yet - try later
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    resizeMissionCategories();
+                }
+            }, 100);
+
+            return;
+        }
+
+        mCategories.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        int height = setGridViewHeightBasedOnItems(mCategories);
+                    }
+                }, 100);
+            }
+        });
+    }
+
+
+
     public int setGridViewHeightBasedOnItems(final GridViewExtended gridView) {
     	ListAdapter adapter = gridView.getAdapter();
     	if (adapter != null) {
@@ -408,9 +436,12 @@ public class MissionsActivity extends BaseFragmentActivity {
             }
             int columnWidth = gridView.getColumnWidth();
 
+
             int newHeight = (numberOfRows * columnWidth) + ((numberOfRows - 1) * spacing);
 
+
             ViewGroup.LayoutParams params = gridView.getLayoutParams();
+
             if (params.height != newHeight) {
                 params.height = newHeight;
                 gridView.setLayoutParams(params);
