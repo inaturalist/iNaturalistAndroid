@@ -565,5 +565,6 @@
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
     <string name="just_so_you_know">Just So You Know...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>
 

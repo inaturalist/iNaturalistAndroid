@@ -15,10 +15,13 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.facebook.login.widget.LoginButton;
@@ -112,6 +115,11 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
+
+        TextView signUpWithEmailText = findViewById(R.id.sign_up_with_email_text);
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String networkName = mApp.getStringResourceByName("network_" + inatNetwork);
+        signUpWithEmailText.setText(Html.fromHtml(String.format(getString(R.string.new_to_inat_sign_up_now), networkName)));
 
         View login = (View) findViewById(R.id.login_with_email);
         login.setOnClickListener(new View.OnClickListener() {
