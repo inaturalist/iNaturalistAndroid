@@ -1484,6 +1484,7 @@ public class ObservationEditor extends AppCompatActivity {
         if ((Intent.ACTION_INSERT.equals(getIntent().getAction())) || (mObservation.isDirty()) || (mProjectFieldsUpdated) || (updatedProjects)) {
 
             try {
+                mObservation.owners_identification_from_vision = mFromSuggestion;
                 ContentValues cv = mObservation.getContentValues();
                 if (mObservation.latitude_changed()) {
                     cv.put(Observation.POSITIONING_METHOD, "gps");

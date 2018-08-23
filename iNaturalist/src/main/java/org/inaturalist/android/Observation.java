@@ -101,6 +101,7 @@ public class Observation implements BaseColumns, Serializable {
     public Boolean is_deleted_was;
     public SerializableJSONArray projects;
     public String uuid;
+    public Boolean owners_identification_from_vision;
 
 
     public static final String TAG = "Observation";
@@ -154,6 +155,7 @@ public class Observation implements BaseColumns, Serializable {
     public static final String LAST_IDENTIFICATIONS_COUNT = "last_identifications_count";
     public static final String IS_DELETED = "is_deleted";
     public static final String UUID = "uuid";
+    public static final String OWNERS_IDENTIFICATION_FROM_VISION = "owners_identification_from_vision";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -197,6 +199,7 @@ public class Observation implements BaseColumns, Serializable {
         Observation.LAST_IDENTIFICATIONS_COUNT,
         Observation.IS_DELETED,
         Observation.UUID,
+        Observation.OWNERS_IDENTIFICATION_FROM_VISION
     };
 
     static {
@@ -221,6 +224,7 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.PLACE_GUESS, Observation.PLACE_GUESS);
         PROJECTION_MAP.put(Observation.PRIVATE_PLACE_GUESS, Observation.PRIVATE_PLACE_GUESS);
         PROJECTION_MAP.put(Observation.UUID, Observation.UUID);
+        PROJECTION_MAP.put(Observation.OWNERS_IDENTIFICATION_FROM_VISION, Observation.OWNERS_IDENTIFICATION_FROM_VISION);
         PROJECTION_MAP.put(Observation.POSITIONAL_ACCURACY, Observation.POSITIONAL_ACCURACY);
         PROJECTION_MAP.put(Observation.POSITIONING_DEVICE, Observation.POSITIONING_DEVICE);
         PROJECTION_MAP.put(Observation.POSITIONING_METHOD, Observation.POSITIONING_METHOD);
@@ -286,6 +290,7 @@ public class Observation implements BaseColumns, Serializable {
         this.private_place_guess = bc.getString(PRIVATE_PLACE_GUESS);
         this.private_place_guess_was = this.private_place_guess;
         this.uuid = bc.getString(UUID);
+        this.owners_identification_from_vision = bc.getBoolean(OWNERS_IDENTIFICATION_FROM_VISION);
         this.positional_accuracy = bc.getInteger(POSITIONAL_ACCURACY);
         this.positional_accuracy_was = this.positional_accuracy;
         this.positioning_device = bc.getString(POSITIONING_DEVICE);
@@ -363,6 +368,7 @@ public class Observation implements BaseColumns, Serializable {
         this.private_place_guess = o.getString("private_place_guess");
         this.private_place_guess_was = this.private_place_guess;
         this.uuid = o.getString("uuid");
+        this.owners_identification_from_vision = o.getBoolean("owners_identification_from_vision");
         this.positional_accuracy = o.getInteger("positional_accuracy");
         this.positional_accuracy_was = this.positional_accuracy;
         this.positioning_device = o.getString("positioning_device");
@@ -520,6 +526,7 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("captive_flag", captive);
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
         bo.put("uuid", uuid);
+        bo.put("owners_identification_from_vision", owners_identification_from_vision != null ? owners_identification_from_vision : false);
         bo.put("positional_accuracy", positional_accuracy);
         bo.put("positioning_device", positioning_device);
         bo.put("positioning_method", positioning_method);
@@ -574,6 +581,7 @@ public class Observation implements BaseColumns, Serializable {
         if (!areFieldsEqual(this.place_guess, observation.place_guess)) return false;
         if (!areFieldsEqual(this.private_place_guess, observation.private_place_guess)) return false;
         if (!areFieldsEqual(this.uuid, observation.uuid)) return false;
+        if (!areFieldsEqual(this.owners_identification_from_vision, observation.owners_identification_from_vision)) return false;
         if (!areFieldsEqual(this.positional_accuracy, observation.positional_accuracy)) return false;
         if (!areFieldsEqual(this.positioning_device, observation.positioning_device)) return false;
         if (!areFieldsEqual(this.positioning_method, observation.positioning_method)) return false;
@@ -615,6 +623,7 @@ public class Observation implements BaseColumns, Serializable {
             this.place_guess = observation.place_guess;
             this.private_place_guess = observation.private_place_guess;
             this.uuid = observation.uuid;
+            this.owners_identification_from_vision = observation.owners_identification_from_vision;
             this.positional_accuracy = observation.positional_accuracy;
             this.positioning_device = observation.positioning_device;
             this.positioning_method = observation.positioning_method;
@@ -653,6 +662,7 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.place_guess == null) && (observation.place_guess != null)) { this.place_guess = observation.place_guess; isModified = true; }
             if ((this.private_place_guess == null) && (observation.private_place_guess != null)) { this.private_place_guess = observation.private_place_guess; isModified = true; }
             if ((this.uuid == null) && (observation.uuid != null)) { this.uuid = observation.uuid; isModified = true; }
+            if ((this.owners_identification_from_vision == null) && (observation.owners_identification_from_vision != null)) { this.owners_identification_from_vision = observation.owners_identification_from_vision; isModified = true; }
             if ((this.positional_accuracy == null) && (observation.positional_accuracy != null)) { this.positional_accuracy = observation.positional_accuracy; isModified = true; }
             if ((this.positioning_device == null) && (observation.positioning_device != null)) { this.positioning_device = observation.positioning_device; isModified = true; }
             if ((this.positioning_method == null) && (observation.positioning_method != null)) { this.positioning_method = observation.positioning_method; isModified = true; }
@@ -693,6 +703,7 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(PLACE_GUESS, place_guess);
         cv.put(PRIVATE_PLACE_GUESS, private_place_guess);
         cv.put(UUID, uuid);
+        cv.put(OWNERS_IDENTIFICATION_FROM_VISION, owners_identification_from_vision != null ? owners_identification_from_vision : false);
         cv.put(POSITIONAL_ACCURACY, positional_accuracy);
         cv.put(POSITIONING_DEVICE, positioning_device);
         cv.put(POSITIONING_METHOD, positioning_method);
@@ -730,6 +741,7 @@ public class Observation implements BaseColumns, Serializable {
         if (captive != null) { params.add(new BasicNameValuePair("observation[captive_flag]", captive.toString())); }
         if (place_guess != null) { params.add(new BasicNameValuePair("observation[place_guess]", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess.toString() : place_guess.toString())); }
         if (uuid != null) { params.add(new BasicNameValuePair("observation[uuid]", uuid)); }
+        if (owners_identification_from_vision != null) { params.add(new BasicNameValuePair("observation[owners_identification_from_vision]", owners_identification_from_vision != null ? owners_identification_from_vision.toString() : "false")); }
         params.add(new BasicNameValuePair("observation[positional_accuracy]", positional_accuracy != null ? positional_accuracy.toString() : ""));
         if (positioning_device != null) { params.add(new BasicNameValuePair("observation[positioning_device]", positioning_device.toString())); }
         if (positioning_method != null) { params.add(new BasicNameValuePair("observation[positioning_method]", positioning_method.toString())); }
@@ -787,7 +799,8 @@ public class Observation implements BaseColumns, Serializable {
                 + "last_identifications_count INTEGER,"
                 + "activity_viewed_at INTEGER,"
                 + "last_activity_at INTEGER,"
-                + "is_deleted INTEGER"
+                + "is_deleted INTEGER,"
+                + "owners_identification_from_vision INTEGER"
                 + ");";
     }
 

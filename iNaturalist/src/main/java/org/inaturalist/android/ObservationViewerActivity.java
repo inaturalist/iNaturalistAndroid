@@ -843,6 +843,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                     mReloadTaxon = true;
                     serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                     serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.getJSONObject("taxon").getInt("id"));
+                    serviceIntent.putExtra(INaturalistService.FROM_VISION, false);
                     startService(serviceIntent);
 
                     try {
@@ -2248,6 +2249,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                         serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
                         serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
                         serviceIntent.putExtra(INaturalistService.DISAGREEMENT, disagreement);
+                        serviceIntent.putExtra(INaturalistService.FROM_VISION, fromSuggestion);
                         startService(serviceIntent);
 
                         try {

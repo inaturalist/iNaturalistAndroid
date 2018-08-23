@@ -146,6 +146,7 @@ public class INaturalistService extends IntentService {
     public static final String COMMENT_BODY = "comment_body";
     public static final String IDENTIFICATION_BODY = "id_body";
     public static final String DISAGREEMENT = "disagreement";
+    public static final String FROM_VISION = "from_vision";
     public static final String PROJECT_ID = "project_id";
     public static final String CHECK_LIST_ID = "check_list_id";
     public static final String ACTION_CHECK_LIST_RESULT = "action_check_list_result";
@@ -437,7 +438,7 @@ public class INaturalistService extends IntentService {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 boolean disagreement = intent.getBooleanExtra(DISAGREEMENT, false);
-                addIdentification(observationId, taxonId, null, disagreement);
+                addIdentification(observationId, taxonId, null, disagreement, false);
 
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false);
@@ -513,7 +514,8 @@ public class INaturalistService extends IntentService {
                 int taxonId = intent.getIntExtra(TAXON_ID, 0);
                 String body = intent.getStringExtra(IDENTIFICATION_BODY);
                 boolean disagreement = intent.getBooleanExtra(DISAGREEMENT, false);
-                addIdentification(observationId, taxonId, body, disagreement);
+                boolean fromVision = intent.getBooleanExtra(FROM_VISION, false);
+                addIdentification(observationId, taxonId, body, disagreement, fromVision);
 
                 // Wait a little before refreshing the observation details - so we'll let the server update the ID
                 // list (otherwise, it won't return the new ID)
@@ -2135,12 +2137,13 @@ public class INaturalistService extends IntentService {
         JSONArray arrayResult = put(HOST + "/identifications/" + identificationId + ".json", params);
     }
 
-    private void addIdentification(int observationId, int taxonId, String body, boolean disagreement) throws AuthenticationException {
+    private void addIdentification(int observationId, int taxonId, String body, boolean disagreement, boolean fromVision) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification[observation_id]", new Integer(observationId).toString()));
         params.add(new BasicNameValuePair("identification[taxon_id]", new Integer(taxonId).toString()));
         if (body != null) params.add(new BasicNameValuePair("identification[body]", body));
         params.add(new BasicNameValuePair("identification[disagreement]", String.valueOf(disagreement)));
+        params.add(new BasicNameValuePair("identification[vision]", String.valueOf(fromVision)));
 
         JSONArray arrayResult = post(HOST + "/identifications.json", params);
 
