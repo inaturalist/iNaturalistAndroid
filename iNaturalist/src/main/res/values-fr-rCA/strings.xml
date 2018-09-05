@@ -46,7 +46,6 @@
   <string name="take_picture">Prendre une photo</string>
   <string name="save">Enregistrer</string>
   <string name="no_observations_yet">Aucune observation n\'est disponible à l\'heure actuelle.</string>
-  <string name="sign_in">Se connecter</string>
   <string name="or">ou</string>
   <string name="signed_out">Déconnexion</string>
   <string name="view">Vue</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">D\'accord?</string>
   <string name="no_comments">Aucun commentaire/aucune identification à l\'heure actuelle</string>
-  <string name="posted_by">Publié par %1$s le %2$s</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">vous</string>
   <string name="add_comment">Ajouter un commentaire</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Géoconfidentialité</string>
   <string name="delete_confirmation">Désirez-vous vraiment supprimer cette observation?</string>
-  <string name="next">Suivant</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Guides</string>
   <string name="my_guides">Vôtre</string>
@@ -189,6 +186,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ est un membre du réseau iNaturalist en Nouvelle Zélande. Souhaitez-vous utiliser ce réseau pour y localiser votre expérience et ainsi partager vos données?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada est un membre du réseau iNaturalist au Canada. En cliquant sur OK vous localiserez votre expérience et partagerez ainsi vos données?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista est un membre du réseau iNaturalist en Colombie. Souhaitez-vous utiliser ce réseau pour y localiser votre expérience et ainsi partager vos données?</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiversity4all fait parti du réseau iNaturalist du Portugal. souhaitez-vous vous servir de ce réseau afin d\'intégrer votre expérience et partager vos données?</string>
   <string name="description">Description</string>
   <string name="editor">Éditeur</string>
   <string name="license">Licence</string>
@@ -566,4 +564,8 @@
   <string name="inat_about_title">iNaturalist est une initiative conjointe de la California Academy and the National Geographic Society.</string>
   <string name="inat_credits">iNaturalist faite par chaque personne qui participe à notre communauté. Les personnes qui élaborent le logiciel, entretetiennent notre infrastructure, et les partenaires alimentaires Joëlle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer et Ken-Ichi Ueda. Caltech et Cornell Tech ont participé au développement du système de vision d’ordinateur qui reconnaît les espèces de photographies. Nous remercions Grant Van Horn, Serge Belongie et Pietro Perona de ce travail. On trouvera plus d’informations à visipedia.org</string>
   <string name="credits_title">Bienfaits</string>
+  <string name="password_changed">Le mot de passe de l\'application utilisée n\'est plus valide-avez-vous changé votre mot de passe? Veuillez entrer le nouveau mot de passe</string>
+  <string name="just_so_you_know">Pour votre information...</string>
+  <string name="ask_for_g_plus_permissions">Google nous oblige à demander l\'autorisation d\'accéder à vos contacts afin de pouvoir utiliser votre Compte Google, même si nous n\'avons pas accès à vos contacts pour une raison ou pour une autre. Si vous ne nous accordez pas cela, vous serez obligé de vous inscrire ou de vous connecter avec votre mot\'d\'utilisateur et un mot de passe.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>

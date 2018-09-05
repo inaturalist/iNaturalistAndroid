@@ -46,7 +46,6 @@
   <string name="take_picture">拍攝照片</string>
   <string name="save">儲存</string>
   <string name="no_observations_yet">仍未有觀察記錄！</string>
-  <string name="sign_in">登入</string>
   <string name="or">或者</string>
   <string name="signed_out">登出</string>
   <string name="view">檢視</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">同意嗎？</string>
   <string name="no_comments">沒有評論/尚未能鑑定</string>
-  <string name="posted_by">由 %1$s 在 %2$s 發佈</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">您</string>
   <string name="add_comment">添加評論</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">地理資訊隱私權</string>
   <string name="delete_confirmation">您確定您想要刪除此觀察記錄嗎？</string>
-  <string name="next">下一個</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">指南</string>
   <string name="my_guides">您的</string>
@@ -188,6 +185,7 @@
   <string name="alert_message_use_naturewatchnz">iNaturalist 是 iNaturalist 網路在紐西蘭的成員。您想要使用此網路來將您的使用經驗本土化，並相應地共用資料嗎？</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist 是 iNaturalist 網路在加拿大的成員。您想要使用此網路來將您的使用經驗本土化，並相應地共用資料嗎？</string>
   <string name="alert_message_use_naturalistacolombia">iNaturalist 是 iNaturalist 網路在哥倫比亞的成員。您想要使用此網路來將您的使用經驗本土化，並相應地共用資料嗎？</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiversity4all 是 iNaturalist 網路在葡萄牙的成員。您想要使用此網路來當地語系化您的使用經驗，並相應地共用資料嗎？</string>
   <string name="description">描述</string>
   <string name="editor">編輯器</string>
   <string name="license">許可證</string>
@@ -565,4 +563,8 @@
   <string name="inat_about_title">iNaturalist 是加州科學院(California Academy of Science)和國家地理學會(National Geographic Society)的共同計畫。</string>
   <string name="inat_credits">iNaturalist 是由每個參與我們社群的人們共同建立的。Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer 以及 Ken-Ichi Ueda 等人開發軟體、維護基礎設施並促成合作。加州理工大學 (Caltech) 和康乃爾理工學院 (Cornell Tech) 協助開發自照片集中學習以辨識物種之電腦視覺系統。我們感謝 Grant Van Horn, Serge Belongie 和 Pietro Perona 協助這項工作。更多資訊請拜訪 visipedia.org 。</string>
   <string name="credits_title">貢獻者</string>
+  <string name="password_changed">app 所使用的密碼不再有效 - 您是否在網站上更改了密碼？請在這裡輸入新的密碼</string>
+  <string name="just_so_you_know">只是要您知道...</string>
+  <string name="ask_for_g_plus_permissions">Google 要求我們在使用您的 Google 帳號之前要詢問存取您聯絡人之權限，即使我們沒有任何理由去存取您的聯絡人資訊。如果您拒絕此許可，您將需要使用帳號及密碼來登入。</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>

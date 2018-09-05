@@ -46,7 +46,6 @@
   <string name="take_picture">Foto aufnehmen</string>
   <string name="save">Speichern</string>
   <string name="no_observations_yet">Noch keine Beobachtungen!</string>
-  <string name="sign_in">Anmelden</string>
   <string name="or">oder</string>
   <string name="signed_out">Abmelden</string>
   <string name="view">Anzeigen</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">Einverstanden?</string>
   <string name="no_comments">Noch keine Kommentare/Identifizierungen</string>
-  <string name="posted_by">Veröffentlicht von %1$s am %2$s</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">Sie</string>
   <string name="add_comment">Kommentar hinzufügen</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Geoprivatsphäre</string>
   <string name="delete_confirmation">Möchtest du diese Beobachtung wirklich löschen?</string>
-  <string name="next">Weiter</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Guides</string>
   <string name="my_guides">Deine</string>
@@ -188,6 +185,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatchNZ ist ein Mitglied des iNaturalist-Netzwerks in Neuseeland. Möchtest du diesem Netzwerk beitreten, um deine Erfahrungen passend zu lokalisieren und zu teilen?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Kanada ist ein Mitglied des iNaturalist-Netzwerks in Kanada. Möchtest du diesem Netzwerk beitreten, um deine Erfahrungen passend zu lokalisieren und zu teilen?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista ist ein Mitglied des iNaturalist-Netzwerks in Kolumbien. Möchtest du diesem Netzwerk beitreten, um deine Erfahrungen passend zu lokalisieren und zu teilen?</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiveristy4all ist Mitglied des iNaturalist Network in Portugal. Möchten Sie dieses Netzwerk nutzen, um Ihre Erfahrungen zu bündeln und Daten entsprechend auszutauschen?</string>
   <string name="description">Beschreibung</string>
   <string name="editor">Editor</string>
   <string name="license">Lizenz</string>
@@ -565,4 +563,8 @@
   <string name="inat_about_title">iNaturalist ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society.</string>
   <string name="inat_credits">iNaturalist entsteht durch jede einzelne Person, die an unserer Gemeinschaft teilnimmt. Die Leute, welche die Software entwickeln, unsere Infrastruktur pflegen und die Zusammenarbeit fördern, sind Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer und Ken-Ichi Ueda. Caltech und Cornell Tech halfen bei der Entwicklung des Computer-Vision-Systems, das Arten anhand von Fotos erkennt. Wir danken Grant Van Horn, Serge Belongie und Pietro Perona für diese Arbeit. Weitere Informationen finden Sie unter visipedia.org</string>
   <string name="credits_title">Danksagungen</string>
+  <string name="password_changed">Das von der App verwendete Passwort funktioniert nicht mehr. Haben Sie Ihr Passwort auf der Website geändert? Bitte geben Sie hier das Neue ein</string>
+  <string name="just_so_you_know">Nur damit Sie es wissen …</string>
+  <string name="ask_for_g_plus_permissions">Google verlangt, dass wir um Erlaubnis bitten, auf Ihre Kontakte zuzugreifen, um Ihr Google-Konto nutzen zu können, auch wenn wir niemals auf Ihre Kontakte zugreifen. Wenn Sie diese Erlaubnis verweigern, müssen Sie sich mit einem Benutzernamen und Passwort anmelden.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>
