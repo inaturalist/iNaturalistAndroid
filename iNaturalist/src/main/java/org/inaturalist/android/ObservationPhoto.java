@@ -195,10 +195,6 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         if (o.has("photo")) {
             JSONObject photo = o.getJSONObject("photo");
             if ((this.photo_url == null) && (photo.has("url"))) this.photo_url = photo.optString("url");
-
-            if (this.id == null) {
-                this.id = photo.optInt("id");
-            }
         }
 
         if ((this.photo_url == null) && (o.has("url"))) {
