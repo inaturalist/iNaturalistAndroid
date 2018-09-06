@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,6 +47,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class ProjectDetails extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
  	private final static String VIEW_TYPE_OBSERVATIONS = "observations";
@@ -105,6 +107,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     private ViewGroup mProjectPicContainer;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private Button mShowMoreObs;
 
     private boolean mJoinedOrLeftProject = false;
 
@@ -835,6 +838,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
                 default:
                     mLoadingObservationsGrid = (ProgressBar) layout.findViewById(R.id.loading_observations_grid);
                     mObservationsGridEmpty = (TextView) layout.findViewById(R.id.observations_grid_empty);
+                    mShowMoreObs = (Button) layout.findViewById(R.id.show_more_observations);
                     mObservationsGrid = (GridViewExtended) layout.findViewById(R.id.observations_grid);
                     mObservationsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -857,6 +861,42 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
                         }
                     });
+
+                    mShowMoreObs.setVisibility(View.GONE);
+                    mObservationsGrid.setOnScrollListener(new AbsListView.OnScrollListener() {
+                        @Override
+                        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                            if ((firstVisibleItem + visibleItemCount >= totalItemCount - 3) && (totalItemCount > 0) &&
+                                    (mObservations != null) && (mObservations.size() > 0)) {
+                                // The end has been reached - show the more obs button
+                                mShowMoreObs.setVisibility(View.VISIBLE);
+                            } else {
+                                mShowMoreObs.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onScrollStateChanged(AbsListView view, int scrollState) {
+                        }
+                    });
+
+                    mShowMoreObs.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // Show explore screen with filtering by on this project, globally (not current user location)
+                            ExploreSearchFilters searchFilters = new ExploreSearchFilters();
+                            searchFilters.project = mProject.getJSONObject();
+                            searchFilters.isCurrentLocation = false;
+                            searchFilters.mapBounds = null;
+                            searchFilters.place = null;
+                            searchFilters.qualityGrade = new HashSet<>();
+
+                            Intent intent = new Intent(ProjectDetails.this, ExploreActivity.class);
+                            intent.putExtra(ExploreActivity.SEARCH_FILTERS, searchFilters);
+                            startActivity(intent);
+                        }
+                    });
+
 
                     ViewCompat.setNestedScrollingEnabled(mObservationsGrid, true);
                     break;

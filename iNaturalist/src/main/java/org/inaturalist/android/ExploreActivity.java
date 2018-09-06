@@ -96,6 +96,8 @@ public class ExploreActivity extends BaseFragmentActivity {
     private static final int SEARCH_REQUEST_CODE = 0x101;
     private static final int FILTERS_REQUEST_CODE = 0x102;
 
+    public static final String SEARCH_FILTERS = "search_filters";
+
     private static final float MY_LOCATION_ZOOM_LEVEL = 10;
     private static final String TAG = "ExploreActivity";
 
@@ -234,14 +236,35 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         setContentView(R.layout.explore);
 
+        final Intent intent = getIntent();
+
         if (savedInstanceState == null) {
             mActiveViewType = VIEW_TYPE_OBSERVATIONS;
 
             mTotalResults = new int[]{NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
             mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
 
-            mSearchFilters = new ExploreSearchFilters();
             mLastMapBounds = null;
+
+            if (intent.hasExtra(SEARCH_FILTERS)) {
+                mSearchFilters = (ExploreSearchFilters) intent.getSerializableExtra(SEARCH_FILTERS);
+
+                /*
+                if (mMapReady) {
+                    moveMapAccordingToSearchFilters();
+                } else {
+                    // Map not loaded yet - wait for it load before moving
+                    mShouldMoveMapAccordingToSearchFilters = true;
+                }
+                */
+
+                //resetResults(true);
+
+            } else {
+                mSearchFilters = new ExploreSearchFilters();
+                mSearchFilters.isCurrentLocation = true;
+            }
+
 
         } else {
             mActiveViewType = savedInstanceState.getInt("mActiveViewType");
@@ -301,6 +324,12 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             }
         }
+
+        if (!mSearchFilters.isCurrentLocation) {
+            resetResults(true);
+            loadAllResults();
+        }
+
 
     }
 
@@ -1293,6 +1322,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Log.e("AAA", "GET MY LOCATION");
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
                         startService(serviceIntent);
                     }
@@ -1301,7 +1331,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsMapMyLocation.setVisibility(mApp.isLocationPermissionGranted() ? View.VISIBLE : View.INVISIBLE);
 
                 if (mLastMapBounds == null) {
-                    if (mApp.isLocationPermissionGranted()) {
+                    if (mApp.isLocationPermissionGranted() && (mSearchFilters.isCurrentLocation)) {
                         // Initially zoom to current location
                         mObservationsMapMyLocation.performClick();
                     } else {

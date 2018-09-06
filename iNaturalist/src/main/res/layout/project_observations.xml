@@ -42,4 +42,19 @@
         android:gravity="center"
         />
 
+    <Button
+        android:id="@+id/show_more_observations"
+        android:background="@drawable/circular_button"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/see_more_observations"
+        android:textColor="@drawable/circular_button_text"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_height="40dp" />
+
 </RelativeLayout>
