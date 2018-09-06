@@ -46,7 +46,6 @@
   <string name="take_picture">Tirar uma foto</string>
   <string name="save">Guardar</string>
   <string name="no_observations_yet">Ainda não existem observações!</string>
-  <string name="sign_in">Iniciar sessão</string>
   <string name="or">ou</string>
   <string name="signed_out">Terminar sessão</string>
   <string name="view">Ver</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">Concorda?</string>
   <string name="no_comments">Ainda sem comentários/identificações</string>
-  <string name="posted_by">Publicado por %1$s em %2$s</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">você</string>
   <string name="add_comment">Adicionar comentário</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Geoprivacidade</string>
   <string name="delete_confirmation">Tem a certeza que deseja eliminar esta observação?</string>
-  <string name="next">Seguinte</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Guias</string>
   <string name="my_guides">Os meus</string>
@@ -164,7 +161,7 @@
     <item><![CDATA[<b>Grau de Pesquisa</b> das observações são partilhadas com os cientistas que trabalham para o conhecimento e a protecção da natureza.]]></item>
   </string-array>
   <string-array name="geoprivacy_items">
-    <item>Abrir</item>
+    <item>Pública</item>
     <item>Oculta</item>
     <item>Privada</item>
   </string-array>
@@ -188,6 +185,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ é membro da Rede iNaturalist na Nova Zelândia. Gostaria de usar esta rede para localizar a sua experiência e, como tal, partilhar os seus dados?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada é membro da Rede iNaturalist no Canadá. Gostaria de usar esta rede para localizar a sua experiência e, como tal, partilhar os seus dados?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista é membro da Rede iNaturalist na Colômbia. Gostaria de usar esta rede para localizar a sua experiência e, como tal, partilhar os seus dados?</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiversity4All é membro da Rede iNaturalist em Portugal. Gostaria de usar esta rede para localizar a sua experiência e, como tal, partilhar os seus dados?</string>
   <string name="description">Descrição</string>
   <string name="editor">Editor</string>
   <string name="license">Licença</string>
@@ -248,8 +246,8 @@
   <string name="is_captive">É de cativeiro ou cultivada</string>
   <string name="location_visibility">Visibilidade da Localização</string>
   <string name="set_location">Localização</string>
-  <string name="coordinates_lat">Latitude:</string>
-  <string name="coordinates_lon">Longitude:</string>
+  <string name="coordinates_lat">Lat.:</string>
+  <string name="coordinates_lon">Long.:</string>
   <string name="coordinates_acc">Precisão</string>
   <string name="required">* Obrigatório</string>
   <string name="downloading_observations">A atualizar observações...</string>
@@ -292,8 +290,8 @@
   <string name="faved">Adicionado como Favorito</string>
   <string name="be_the_first_to_fave_this_obs">Seja o primeiro a definir como favorita esta observação...</string>
   <string name="leave_a_comment">Deixe um comentário ou sugira uma identificação...</string>
-  <string name="location_coords">Latitude: %1$s Longitude: %2$s Precisão %3$s</string>
-  <string name="location_coords_no_acc">Latitude: %1$s Longitude: %2$s</string>
+  <string name="location_coords">Lat.: %1$s Long.: %2$s Precisão %3$s</string>
+  <string name="location_coords_no_acc">Lat.: %1$s Long.: %2$s</string>
   <string name="location">Localização</string>
   <string name="login_in_to_add_comments_ids">Inicie Sessão ou Registe-se para deixar um comentário ou sugerir uma identificação...</string>
   <string name="login_in_to_fav">Inicie Sessão ou Registe-se para ver os favoritos ou definir como favorita esta observação...</string>
@@ -371,7 +369,7 @@
   <string name="importing_photos">A importar foto(s)...</string>
   <string name="multi_select_description">Importar várias fotos ao pressionar continuamente numa única foto</string>
   <string name="preparing_photo">A preparar a foto...</string>
-  <string name="recommended_for_you">Recomendado(s) para Si</string>
+  <string name="recommended_for_you">Recomendada(s) para Si</string>
   <string name="missions">Missões</string>
   <string name="view_all">Ver Tudo</string>
   <string name="browse_by_category">Navegar por Categoria</string>
@@ -536,13 +534,13 @@
   <!-- As in redo search in the current map area -->
   <string name="search_map_area">Procurar na Área do Mapa</string>
   <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-  <string name="date_minute">%dm</string>
+  <string name="date_minute">%dmin</string>
   <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
   <string name="date_hour">%dh</string>
   <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
   <string name="date_day">%dd</string>
   <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-  <string name="date_week">%dw</string>
+  <string name="date_week">%dsem.</string>
   <string name="new_observation">Nova Observação</string>
   <string name="inactive_taxon">Táxon Inativo</string>
   <string name="no_identifications_found">Seguir aqui as identificações que sugeriu nas observações de outras pessoas.</string>
@@ -565,4 +563,8 @@
   <string name="inat_about_title">iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da Sociedade Geográfica Nacional.</string>
   <string name="inat_credits">iNaturalist é feita por cada pessoa que participa na nossa comunidade. As pessoas que criaram o programa, mantêm a infraestrutura e fomentam as colaborações são Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Carrie Seltzer, Alex Shepard e Ken-ichi Ueda. Caltech &amp; Cornell Tech ajudaram a desenvolver o sistema de visão computacional que reconhece as espécies a partir das fotografias. Agradecemos o trabalho de Grant Van Horn, Serge Belongie e Pietro Perona. Informações adicionais encontram-se em visipedia.org</string>
   <string name="credits_title">Créditos</string>
+  <string name="password_changed">A palavra-passe que usa na aplicação deixou de funcionar - alterou a sua palavra-passe no website? Por favor, insira a nova palavra-passe aqui</string>
+  <string name="just_so_you_know">Só para saber...</string>
+  <string name="ask_for_g_plus_permissions">O Google requer que solicitemos permissão para aceder aos seus contatos para usar a sua Conta do Google, embora não acedemos aos seus contatos por nenhuma razão. Se negar essa permissão, terá de se registar ou iniciar sessão com um nome de utilizador e palavra-passe.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>

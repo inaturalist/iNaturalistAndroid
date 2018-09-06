@@ -46,7 +46,6 @@
   <string name="take_picture">Tag billede</string>
   <string name="save">Gem</string>
   <string name="no_observations_yet">Ingen observationer endnu!</string>
-  <string name="sign_in">Log ind</string>
   <string name="or">eller</string>
   <string name="signed_out">Log ud</string>
   <string name="view">Vis</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">Enig?</string>
   <string name="no_comments">Ingen kommentarer/identifikationer endnu</string>
-  <string name="posted_by">Indsendt af %1$s på %2$s</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">dig</string>
   <string name="add_comment">Tilføj kommentar</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Geo-privatliv</string>
   <string name="delete_confirmation">Sikker på, at du vil slette denne observation?</string>
-  <string name="next">Næste</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Guider</string>
   <string name="my_guides">Dine</string>
@@ -188,6 +185,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ er et medlem af iNaturalist Networks i New Zealand. Ønsker du at benytte dette netværk til at lokalisere din oplevelse og dele dine data i overensstemmelse hermed?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada er et medlem af iNaturalist Network i Canada. Ønsker du at benytte dette netværk til at lokalisere din oplevelse og dele dine data i overensstemmelse hermed?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista er et medlem af iNaturalist Network i Columbia. Ønsker du at benytte dette netværk til at lokalisere din oplevelse og dele dine data i overensstemmelse hermed?</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiveristy4all er et medlem af iNaturalist Network i Columbia. Vil du benytte dette netværk til lokalisering af din oplevelse og dele dine data i overensstemmelse hermed?</string>
   <string name="description">Beskrivelse</string>
   <string name="editor">Redigeringsværktøj</string>
   <string name="license">Licens</string>
@@ -565,4 +563,8 @@
   <string name="inat_about_title">iNaturalist er et fælles initiativ fra California Academy of Sciences og National Geographic Society.</string>
   <string name="inat_credits">iNaturalist udgøres af hver enkelt person, som deltager i vores fællesskab. De personer, som udvikler software, opretholder vores infrastruktur og fremmer samarbejde er Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer og Ken-Ichi Ueda. Caltech og Cornell Tech bidrog til at udvikle det computervisionssystem, der genkender arter fra fotos. Vi takker Grant Van Horn, Serge Belongie og Pietro Perona for dette arbejde. Yderligere opysninger kan findes på visipedia.org</string>
   <string name="credits_title">Krediteringer</string>
+  <string name="password_changed">Adgangskoden, som app\'en benytter, fungerer ikke længere - du har muligvis ændret den på webstedet. Angiv den nye adgangskode her</string>
+  <string name="just_so_you_know">Blot så du ved det...</string>
+  <string name="ask_for_g_plus_permissions">For at kunne benytte din Google-konto, kræver Google, at vi anmoder om tilladelse til at tilgå dine kontaktpersoner, selvom vi under ingen omstændigheder tilgår dine kontakter. Nægter du denne tilladelse, vil du skulle tilmelde dig eller logge ind med brugernavn og adgangskode.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>
