@@ -2639,7 +2639,7 @@ public class INaturalistService extends IntentService {
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                 "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
                         "_updated_at < ? AND " +
-                        "photo_filename IS NOT NULL",
+                        "photo_filename IS NOT NULL AND observation_id IS NOT NULL",
                 new String[]{String.valueOf(cacheTime)}, ObservationPhoto.DEFAULT_SORT_ORDER);
 
         while (!c.isAfterLast()) {
