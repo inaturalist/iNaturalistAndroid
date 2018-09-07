@@ -469,13 +469,15 @@ public class BaseFragmentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == android.R.id.home) {
+            if (mDrawerLayout != null) {
+                if (mDrawerLayout.isDrawerOpen(mSideMenu)) {
+                    mDrawerLayout.closeDrawer(mSideMenu);
+                } else {
+                    mDrawerLayout.openDrawer(mSideMenu);
+                }
 
-            if (mDrawerLayout.isDrawerOpen(mSideMenu)) {
-                mDrawerLayout.closeDrawer(mSideMenu);
-            } else {
-        		mDrawerLayout.openDrawer(mSideMenu);
-        	}
-        	return true;
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
 
