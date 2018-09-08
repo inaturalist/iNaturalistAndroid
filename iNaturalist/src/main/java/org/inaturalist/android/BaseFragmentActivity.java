@@ -566,8 +566,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 intent2.putExtra(LoginSignupActivity.SIGNUP, false);
                 intent2.putExtra(LoginSignupActivity.PASSWORD_CHANGED, true);
                 startActivity(intent2);
+            }
 
-            } else if (user == null) {
+            if (user == null) {
                 return;
             }
 
