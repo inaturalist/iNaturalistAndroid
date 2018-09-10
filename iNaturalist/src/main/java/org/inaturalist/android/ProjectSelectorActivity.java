@@ -9,7 +9,11 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.evernote.android.state.State;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -62,19 +66,19 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     private EditText mSearchText;
     
     private INaturalistApp mApp;
-    private int mObservationId;
-    private ArrayList<Integer> mObservationProjects;
+    @State public int mObservationId;
+    @State public ArrayList<Integer> mObservationProjects;
 
     private ProjectReceiver mProjectReceiver;
-    private boolean mIsConfirmation;
+    @State public boolean mIsConfirmation;
     private ProjectAdapter mAdapter;
     private ActivityHelper mHelper;
     private ArrayList mProjectFields;
-    private HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
+    @State(AndroidStateBundlers.SerializableBundler.class) public HashMap<Integer, ProjectFieldValue> mProjectFieldValues = null;
 
     private HashMap<Integer, List<ProjectFieldViewer>> mProjectFieldViewers;
 
-    private boolean mShownSearchBox = true;
+    @State public boolean mShownSearchBox = true;
 
     private int mLastProjectFieldFocused = -1;
     private int mLastProjectIdFocused = -1;
@@ -207,6 +211,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -224,12 +229,6 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             mObservationProjects = intent.getIntegerArrayListExtra(INaturalistService.PROJECT_ID);
             mIsConfirmation = intent.getBooleanExtra(ProjectSelectorActivity.IS_CONFIRMATION, false);
             mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) intent.getSerializableExtra(ProjectSelectorActivity.PROJECT_FIELDS);
-        } else {
-            mObservationId = (int) savedInstanceState.getInt(INaturalistService.OBSERVATION_ID, 0);
-            mObservationProjects = savedInstanceState.getIntegerArrayList(INaturalistService.PROJECT_ID);
-            mIsConfirmation = savedInstanceState.getBoolean(ProjectSelectorActivity.IS_CONFIRMATION);
-            mShownSearchBox = savedInstanceState.getBoolean("mShownSearchBox");
-            mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) savedInstanceState.getSerializable(ProjectSelectorActivity.PROJECT_FIELDS);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -290,15 +289,10 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(INaturalistService.OBSERVATION_ID, mObservationId);
-        outState.putIntegerArrayList(INaturalistService.PROJECT_ID, mObservationProjects);
-        outState.putBoolean(ProjectSelectorActivity.IS_CONFIRMATION, mIsConfirmation);
-        outState.putBoolean("mShownSearchBox", mShownSearchBox);
-
         saveProjectFieldValues();
-        outState.putSerializable(PROJECT_FIELDS, mProjectFieldValues);
 
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

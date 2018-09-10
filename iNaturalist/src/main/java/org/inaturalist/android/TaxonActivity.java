@@ -30,6 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,6 +44,7 @@ import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -82,11 +84,11 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-	private BetterJSONObject mTaxon;
+	@State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mTaxon;
     private TaxonBoundsReceiver mTaxonBoundsReceiver;
     private TaxonReceiver mTaxonReceiver;
-    private boolean mDownloadTaxon;
-    private BetterJSONObject mObservation;
+    @State public boolean mDownloadTaxon;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mObservation;
 
     private ViewGroup mPhotosContainer;
     private ViewGroup mNoPhotosContainer;
@@ -110,9 +112,9 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private ImageView mTaxonicIcon;
     private ViewGroup mTaxonInactive;
 
-    private boolean mMapBoundsSet = false;
-    private int mTaxonSuggestion = TAXON_SUGGESTION_NONE;
-    private boolean mIsTaxonomyListExpanded = false;
+    @State public boolean mMapBoundsSet = false;
+    @State public int mTaxonSuggestion = TAXON_SUGGESTION_NONE;
+    @State public boolean mIsTaxonomyListExpanded = false;
 
     @Override
     protected void onStart()
@@ -191,6 +193,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         requestWindowFeature(Window.FEATURE_PROGRESS);
 
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         final ActionBar actionBar = getSupportActionBar();
 
@@ -206,13 +209,6 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             mTaxonSuggestion = intent.getIntExtra(TAXON_SUGGESTION, TAXON_SUGGESTION_NONE);
             mMapBoundsSet = false;
             mIsTaxonomyListExpanded = false;
-        } else {
-        	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable(TAXON);
-            mObservation = (BetterJSONObject) savedInstanceState.getSerializable(OBSERVATION);
-            mDownloadTaxon = savedInstanceState.getBoolean(DOWNLOAD_TAXON);
-            mMapBoundsSet = savedInstanceState.getBoolean("mMapBoundsSet");
-            mTaxonSuggestion = savedInstanceState.getInt(TAXON_SUGGESTION);
-            mIsTaxonomyListExpanded = savedInstanceState.getBoolean("mIsTaxonomyListExpanded");
         }
 
         setContentView(R.layout.taxon_page);
@@ -542,13 +538,10 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(TAXON, mTaxon);
-        outState.putSerializable(OBSERVATION, mObservation);
-        outState.putBoolean(DOWNLOAD_TAXON, mDownloadTaxon);
-        outState.putBoolean("mMapBoundsSet", mMapBoundsSet);
-        outState.putInt(TAXON_SUGGESTION, mTaxonSuggestion);
-        outState.putBoolean("mIsTaxonomyListExpanded", ((TaxonomyAdapter)mTaxonomyList.getAdapter()).isExpanded());
+        mIsTaxonomyListExpanded = ((TaxonomyAdapter)mTaxonomyList.getAdapter()).isExpanded();
+
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

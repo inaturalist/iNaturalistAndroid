@@ -15,10 +15,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.livefront.bridge.Bridge;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -68,7 +70,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     public final static String PARAM_FROM_OBS_EDITOR = "from_obs_editor";
     protected static final int REQUEST_CODE_OBSERVATION_VIEWER = 0x1001;
 
-    private boolean[] mIsGrid = new boolean[] { false, false, false };
+    @State public boolean[] mIsGrid = new boolean[] { false, false, false };
 
     private NewsReceiver mNewsReceiver;
 
@@ -84,20 +86,20 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 	private ActivityHelper mHelper;
 
-	private String mLastMessage;
+	@State public String mLastMessage;
 
     private INaturalistApp mApp;
     private TextView mSyncingStatus;
     private TextView mCancelSync;
 
-    private boolean mUserCanceledSync = false; // When the user chose to pause/stop sync while in auto sync mode
+    @State public boolean mUserCanceledSync = false; // When the user chose to pause/stop sync while in auto sync mode
     private boolean mSyncRequested = false;
     private Menu mMenu;
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-    private String mViewType;
+    @State public String mViewType;
 
     private final static String VIEW_TYPE_OBSERVATIONS = "observations";
 	private final static String VIEW_TYPE_SPECIES = "species";
@@ -121,18 +123,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private PullToRefreshListView mObservationsList;
     private PullToRefreshGridViewExtended mObservationsGrid;
 
-    private ArrayList<JSONObject> mSpecies;
-    private ArrayList<JSONObject> mIdentifications;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mSpecies;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mIdentifications;
     
-    private int mTotalIdentifications = 0;
-    private int mTotalSpecies = 0;
+    @State public int mTotalIdentifications = 0;
+    @State public int mTotalSpecies = 0;
 
     private UserSpeciesAdapter mSpeciesListAdapter;
     private UserSpeciesAdapter mSpeciesGridAdapter;
     private UserIdentificationsAdapter mIdentificationsListAdapter;
     private UserIdentificationsAdapter mIdentificationsGridAdapter;
 
-    private BetterJSONObject mUser;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mUser;
     private UserDetailsReceiver mUserDetailsReceiver;
     private ObservationSyncProgressReceiver mObservationSyncProgressReceiver;
 
@@ -142,7 +144,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private boolean mSelectedBottomGrid = false;
     private TextView mAddButtonText;
 
-    private boolean mFromObsEdit = false;
+    @State public boolean mFromObsEdit = false;
     private ViewGroup mLoadingMoreResults;
 
 
@@ -338,6 +340,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
+
         setContentView(R.layout.observation_list);
 
         setTitle(R.string.observations);
@@ -351,21 +355,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         mApp = (INaturalistApp)getApplication();
 
 
-        if (savedInstanceState != null) {
-            mLastMessage = savedInstanceState.getString("mLastMessage");
-            mUserCanceledSync = savedInstanceState.getBoolean("mUserCanceledSync");
-            mIsGrid = savedInstanceState.getBooleanArray("mIsGrid");
-            mViewType = savedInstanceState.getString("mViewType");
-            mUser = (BetterJSONObject) savedInstanceState.getSerializable("user");
-
-            mSpecies = loadListFromBundle(savedInstanceState, "mSpecies");
-            mIdentifications = loadListFromBundle(savedInstanceState, "mIdentifications");
-
-            mTotalIdentifications = savedInstanceState.getInt("mTotalIdentifications");
-            mTotalSpecies = savedInstanceState.getInt("mTotalSpecies");
-            mFromObsEdit = savedInstanceState.getBoolean("mFromObsEdit");
-
-        } else {
+        if (savedInstanceState == null) {
             SharedPreferences settings = mApp.getPrefs();
             String isGridArray = settings.getString("me_screen_list_grid", null);
             if (isGridArray != null) {
@@ -792,20 +782,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if (mLastMessage != null) outState.putString("mLastMessage", mLastMessage);
-        outState.putBoolean("mUserCanceledSync", mUserCanceledSync);
-        outState.putBooleanArray("mIsGrid", mIsGrid);
-        outState.putString("mViewType", mViewType);
-        outState.putSerializable("user", mUser);
-
-        outState.putInt("mTotalIdentifications", mTotalIdentifications);
-        outState.putInt("mTotalSpecies", mTotalSpecies);
-        outState.putBoolean("mFromObsEdit", mFromObsEdit);
-
-        saveListToBundle(outState, mSpecies, "mSpecies");
-        saveListToBundle(outState, mIdentifications, "mIdentifications");
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
  
     
@@ -1513,35 +1491,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
         startService(serviceIntent);
-    }
-
-
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
     }
 
     private class NewsReceiver extends BroadcastReceiver {

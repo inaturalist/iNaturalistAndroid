@@ -10,9 +10,11 @@ import org.json.JSONObject;
 import uk.co.senab.photoview.HackyViewPager;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -33,10 +35,10 @@ public class TaxonTagPhotosViewer extends AppCompatActivity {
 	private INaturalistApp mApp;
 	private ActivityHelper mHelper;
 	private HackyViewPager mViewPager;
-    private String mGuideId;
-    private String mGuideXmlFilename;
-    private String mTagName;
-    private String mTagValue;
+    @State public String mGuideId;
+    @State public String mGuideXmlFilename;
+    @State public String mTagName;
+    @State public String mTagValue;
     private GuideXML mGuideXml;
 
     @Override
@@ -58,6 +60,7 @@ public class TaxonTagPhotosViewer extends AppCompatActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setHomeButtonEnabled(true);
@@ -77,11 +80,7 @@ public class TaxonTagPhotosViewer extends AppCompatActivity {
             mTagValue = intent.getStringExtra("tag_value");
             actionBar.setTitle(mTagName + "=" + mTagValue);
         } else {
-            mTagName = savedInstanceState.getString("tag_name");
-            mTagValue = savedInstanceState.getString("tag_value");
             actionBar.setTitle(mTagName + "=" + mTagValue);
-            mGuideId = savedInstanceState.getString("guide_id");
-            mGuideXmlFilename = savedInstanceState.getString("guide_xml_filename");
         }
 
 
@@ -109,11 +108,8 @@ public class TaxonTagPhotosViewer extends AppCompatActivity {
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("guide_id", mGuideId);
-        outState.putString("guide_xml_filename", mGuideXmlFilename);
-        outState.putString("tag_name", mTagName);
-        outState.putString("tag_value", mTagValue);
 		super.onSaveInstanceState(outState);
+		Bridge.saveInstanceState(this, outState);
 	}
 
 

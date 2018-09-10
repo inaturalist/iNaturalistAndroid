@@ -45,6 +45,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -66,6 +67,7 @@ import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonFeature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygon;
+import com.livefront.bridge.Bridge;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
@@ -112,11 +114,13 @@ public class ExploreActivity extends BaseFragmentActivity {
     private static final int VIEW_TYPE_OBSERVERS = 2;
     private static final int VIEW_TYPE_IDENTIFIERS = 3;
 
-    private int mActiveViewType;
+    @State public int mActiveViewType;
 
-    private int[] mTotalResults = {NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
+    @State public int[] mTotalResults = {NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
 
-    private ExploreSearchFilters mSearchFilters;
+    @State public ExploreSearchFilters mSearchFilters;
+
+    @State public VisibleRegion mMapRegion;
 
     // Current search results
     private List<JSONObject>[] mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
@@ -151,22 +155,27 @@ public class ExploreActivity extends BaseFragmentActivity {
     private TextView[] mFilterBar = new TextView[]{null, null, null, null};
     private ViewGroup[] mLoadingMoreResults = new ViewGroup[]{null, null, null, null};
 
+    @State(AndroidStateBundlers.JSONListBundler.class) public List<JSONObject> mObservations;
+    @State(AndroidStateBundlers.JSONListBundler.class) public List<JSONObject> mSpecies;
+    @State(AndroidStateBundlers.JSONListBundler.class) public List<JSONObject> mObservers;
+    @State(AndroidStateBundlers.JSONListBundler.class) public List<JSONObject> mIdentifiers;
+
 
     private static final int OBSERVATIONS_VIEW_MODE_GRID = 0;
     private static final int OBSERVATIONS_VIEW_MODE_MAP = 1;
-    private int mObservationsViewMode = OBSERVATIONS_VIEW_MODE_GRID;
+    @State public int mObservationsViewMode = OBSERVATIONS_VIEW_MODE_GRID;
 
 
-    private int[] mCurrentResultsPage = {0, 0, 0, 0};
-    private boolean[] mLoadingNextResults = {false, false, false, false};
-    private int mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
+    @State public int[] mCurrentResultsPage = {0, 0, 0, 0};
+    @State public boolean[] mLoadingNextResults = {false, false, false, false};
+    @State public int mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
     private LatLngBounds mLastMapBounds = null;
-    private boolean mMapMoved = false;
+    @State public boolean mMapMoved = false;
     private LatLngBounds mInitialLocationBounds;
     private int[] mLastTotalResults = {NOT_LOADED, NOT_LOADED, NOT_LOADED, NOT_LOADED};
     private boolean mMapReady = false;
     private boolean mShouldMoveMapAccordingToSearchFilters = false;
-    private boolean mLocationPermissionRequested = false;
+    @State public boolean mLocationPermissionRequested = false;
 
     @Override
     protected void onStart() {
@@ -216,6 +225,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setElevation(0);
@@ -267,28 +277,18 @@ public class ExploreActivity extends BaseFragmentActivity {
 
 
         } else {
-            mActiveViewType = savedInstanceState.getInt("mActiveViewType");
-            mTotalResults = savedInstanceState.getIntArray("mTotalResults");
-            mObservationsViewMode = savedInstanceState.getInt("mObservationsViewMode");
-            mSearchFilters = (ExploreSearchFilters) savedInstanceState.getSerializable("mSearchFilters");
-            mCurrentResultsPage = savedInstanceState.getIntArray("mCurrentResultsPage");
-            mLoadingNextResults = savedInstanceState.getBooleanArray("mLoadingNextResults");
-            mObservationsMapType = savedInstanceState.getInt("mObservationsMapType", GoogleMap.MAP_TYPE_TERRAIN);
-            mMapMoved = savedInstanceState.getBoolean("mMapMoved");
-            mLocationPermissionRequested = savedInstanceState.getBoolean("mLocationPermissionRequested");
-
             mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
-            mResults[VIEW_TYPE_OBSERVATIONS] = mHelper.loadListFromBundle(savedInstanceState, "mObservations");
-            mResults[VIEW_TYPE_SPECIES] = mHelper.loadListFromBundle(savedInstanceState, "mSpecies");
-            mResults[VIEW_TYPE_OBSERVERS] = mHelper.loadListFromBundle(savedInstanceState, "mObservers");
-            mResults[VIEW_TYPE_IDENTIFIERS] = mHelper.loadListFromBundle(savedInstanceState, "mIdentifiers");
+            mResults[VIEW_TYPE_OBSERVATIONS] = mObservations;
+            mResults[VIEW_TYPE_SPECIES] = mSpecies;
+            mResults[VIEW_TYPE_OBSERVERS] = mObservers;
+            mResults[VIEW_TYPE_IDENTIFIERS] = mIdentifiers;
 
             for (int i = 0; i < mResults.length; i++) {
                 mListViewIndex.put("mList" + i, savedInstanceState.getInt("mList" + i + "Index"));
                 mListViewOffset.put("mList" + i, savedInstanceState.getInt("mList" + i + "Offset"));
             }
 
-            VisibleRegion vr = savedInstanceState.getParcelable("mapRegion");
+            VisibleRegion vr = mMapRegion;
             if (vr != null) {
                 mLastMapBounds = new LatLngBounds(new LatLng(vr.nearLeft.latitude, vr.farLeft.longitude), new LatLng(vr.farRight.latitude, vr.farRight.longitude));
             } else {
@@ -335,21 +335,10 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt("mActiveViewType", mActiveViewType);
-        outState.putIntArray("mTotalResults", mTotalResults);
-        outState.putInt("mObservationsViewMode", mObservationsViewMode);
-        outState.putIntArray("mCurrentResultsPage", mCurrentResultsPage);
-        outState.putBooleanArray("mLoadingNextResults", mLoadingNextResults);
-        outState.putInt("mObservationsMapType", mObservationsMapType);
-        outState.putBoolean("mMapMoved", mMapMoved);
-        outState.putBoolean("mLocationPermissionRequested", mLocationPermissionRequested);
-
-        outState.putSerializable("mSearchFilters", mSearchFilters);
-
-        mHelper.saveListToBundle(outState, mResults[VIEW_TYPE_OBSERVATIONS], "mObservations");
-        mHelper.saveListToBundle(outState, mResults[VIEW_TYPE_SPECIES], "mSpecies");
-        mHelper.saveListToBundle(outState, mResults[VIEW_TYPE_OBSERVERS], "mObservers");
-        mHelper.saveListToBundle(outState, mResults[VIEW_TYPE_IDENTIFIERS], "mIdentifiers");
+        mObservations = mResults[VIEW_TYPE_OBSERVATIONS];
+        mSpecies = mResults[VIEW_TYPE_SPECIES];
+        mObservers = mResults[VIEW_TYPE_OBSERVERS];
+        mIdentifiers = mResults[VIEW_TYPE_IDENTIFIERS];
 
         saveListViewOffset(mObservationsGrid, outState, "mList" + VIEW_TYPE_OBSERVATIONS);
         saveListViewOffset(mList[VIEW_TYPE_SPECIES], outState, "mList" + VIEW_TYPE_SPECIES);
@@ -357,12 +346,11 @@ public class ExploreActivity extends BaseFragmentActivity {
         saveListViewOffset(mList[VIEW_TYPE_IDENTIFIERS], outState, "mList" + VIEW_TYPE_IDENTIFIERS);
 
         if (mObservationsMap != null) {
-            VisibleRegion vr = mObservationsMap.getProjection().getVisibleRegion();
-            outState.putParcelable("mapRegion", vr);
+            mMapRegion = mObservationsMap.getProjection().getVisibleRegion();
         }
 
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     Map<String, Integer> mListViewIndex = new HashMap<>();
@@ -1289,7 +1277,18 @@ public class ExploreActivity extends BaseFragmentActivity {
 
                         if (mShouldMoveMapAccordingToSearchFilters) {
                             mShouldMoveMapAccordingToSearchFilters = false;
-                            moveMapAccordingToSearchFilters();
+
+                            if (mMapReady) {
+                                moveMapAccordingToSearchFilters();
+                            } else {
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (mMapReady) moveMapAccordingToSearchFilters();
+                                    }
+                                }, 1000);
+
+                            }
                         }
 
 

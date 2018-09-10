@@ -21,7 +21,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
+import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -52,14 +54,14 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-	private List<BetterJSONObject> mTaxonSuggestions;
-    private BetterJSONObject mTaxonCommonAncestor;
+	@State(AndroidStateBundlers.BetterJSONListBundler.class) public List<BetterJSONObject> mTaxonSuggestions;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mTaxonCommonAncestor;
     private TaxonSuggestionsReceiver mTaxonSuggestionsReceiver;
-    private String mObsPhotoFilename;
-    private String mObsPhotoUrl;
-    private double mLatitude;
-    private double mLongitude;
-    private Timestamp mObservedOn;
+    @State public String mObsPhotoFilename;
+    @State public String mObsPhotoUrl;
+    @State public double mLatitude;
+    @State public double mLongitude;
+    @State public Timestamp mObservedOn;
 
     private ImageView mObsPhoto;
     private View mBackButton;
@@ -71,10 +73,10 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
     private TextView mNoNetwork;
     private TextView mCommonAncestorDescription;
     private ListView mCommonAncestorList;
-    private int mObsId;
-    private int mObsIdInternal;
-    private String mObservationJson;
-    private int mLastTaxonPosition;
+    @State public int mObsId;
+    @State public int mObsIdInternal;
+    @State public String mObservationJson;
+    @State public int mLastTaxonPosition;
 
     @Override
     protected void onStart()
@@ -133,6 +135,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_PROGRESS);
 
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         final ActionBar actionBar = getSupportActionBar();
 
@@ -152,19 +155,6 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             mObsId = intent.getIntExtra(OBSERVATION_ID, 0);
             mObsIdInternal = intent.getIntExtra(OBSERVATION_ID_INTERNAL, -1);
             mObservationJson = intent.getStringExtra(OBSERVATION);
-        } else {
-        	mObsPhotoFilename = savedInstanceState.getString(OBS_PHOTO_FILENAME);
-            mObsPhotoUrl = savedInstanceState.getString(OBS_PHOTO_URL);
-            mLongitude = savedInstanceState.getDouble(LONGITUDE, 0);
-            mLatitude = savedInstanceState.getDouble(LATITUDE, 0);
-            mObservedOn = (Timestamp) savedInstanceState.getSerializable(OBSERVED_ON);
-            mObservationJson = savedInstanceState.getString(OBSERVATION);
-            mTaxonSuggestions = loadListFromBundle(savedInstanceState, "mTaxonSuggestions");
-            String taxonAncestorJson = savedInstanceState.getString("mTaxonCommonAncestor", null);
-            if (taxonAncestorJson != null) mTaxonCommonAncestor = new BetterJSONObject(taxonAncestorJson);
-            mObsId = savedInstanceState.getInt(OBSERVATION_ID);
-            mObsIdInternal = savedInstanceState.getInt(OBSERVATION_ID_INTERNAL);
-            mLastTaxonPosition = savedInstanceState.getInt("mLastTaxonPosition");
         }
 
         setContentView(R.layout.taxon_suggestions);
@@ -210,19 +200,8 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(OBS_PHOTO_FILENAME, mObsPhotoFilename);
-        outState.putString(OBS_PHOTO_URL, mObsPhotoUrl);
-        outState.putDouble(LONGITUDE, mLongitude);
-        outState.putDouble(LATITUDE, mLatitude);
-        outState.putSerializable(OBSERVED_ON, mObservedOn);
-        outState.putString(OBSERVATION, mObservationJson);
-        if (mTaxonCommonAncestor != null) outState.putString("mTaxonCommonAncestor", mTaxonCommonAncestor.getJSONObject().toString());
-        saveListToBundle(outState, mTaxonSuggestions, "mTaxonSuggestions");
-        outState.putInt(OBSERVATION_ID, mObsId);
-        outState.putInt(OBSERVATION_ID_INTERNAL, mObsIdInternal);
-        outState.putInt("mLastTaxonPosition", mLastTaxonPosition);
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override
@@ -374,40 +353,6 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
         startActivityForResult(intent, TAXON_SEARCH_REQUEST_CODE);
     }
 
-    private void saveListToBundle(Bundle outState, List<BetterJSONObject> list, String key) {
-        if (list != null) {
-            outState.putString(key, listToString(list));
-        }
-    }
-
-    private String listToString(List<BetterJSONObject> list) {
-        JSONArray arr = new JSONArray();
-        for (int i = 0; i < list.size(); i++) {
-            arr.put(list.get(i).getJSONObject().toString());
-        }
-        return arr.toString();
-    }
-
-    private ArrayList<BetterJSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(new BetterJSONObject(arr.getString(i)));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

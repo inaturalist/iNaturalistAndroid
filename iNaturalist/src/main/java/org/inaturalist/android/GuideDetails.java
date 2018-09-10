@@ -50,9 +50,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
+
 import android.support.v7.app.AppCompatActivity;
 
 public class GuideDetails extends AppCompatActivity implements INaturalistApp.OnDownloadFileProgress {
@@ -61,9 +64,11 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
     private static final double MAX_TAXA = 100; // Max number of taxa to show in the grid
 
     private INaturalistApp mApp;
-	private BetterJSONObject mGuide;
+	@State public BetterJSONObject mGuide;
     private GuideXML mGuideXml;
-    private String mGuideXmlFilename;
+    @State public String mGuideXmlFilename;
+    @State public String mFilterSearchText;
+    @State public ArrayList<String> mFilterTags;
 	private ProgressBar mProgress;
 	private GridViewExtended mGuideTaxaGrid;
 	private TextView mTaxaEmpty;
@@ -89,18 +94,18 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
     private View mDownloadGuide;
     private View mDownloadingGuide;
     private ProgressBar mDownloadingProgress;
-    private boolean mIsDownloading;
+    @State public boolean mIsDownloading;
     private ImageView mDownloadGuideImage;
     private TextView mDescription;
     private TextView mEditorName;
     private TextView mLicense;
-    private int mDownloadProgress;
+    @State public int mDownloadProgress;
     private TextView mDownloadingSubtitle;
     private ActivityHelper mHelper;
     private Button mRecommendedNextStep;
     private List<GuideTaxonXML> mCurrentTaxaResults;
     private List<GuideMenuItem> mSideMenuItems;
-    private String mRecommendedPrediate;
+    @State public String mRecommendedPrediate;
     private ImageButton mReset;
 
     @Override
@@ -789,6 +794,8 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
+
         setContentView(R.layout.guide_details);
 
         mHandler = new Handler();
@@ -917,15 +924,10 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
                 mGuide = (BetterJSONObject) guide;
             }
         } else {
-            mGuide = (BetterJSONObject) savedInstanceState.getSerializable("guide");
-            mGuideXmlFilename = savedInstanceState.getString("guideXmlFilename");
             if (mGuideXmlFilename != null) mGuideXml = new GuideXML(GuideDetails.this, mGuide.getInt("id").toString(), mGuideXmlFilename);
 
-            mFilter.setSearchText(savedInstanceState.getString("filterSearchText"));
-            mFilter.setTags(savedInstanceState.getStringArrayList("filterTags"));
-            mIsDownloading = savedInstanceState.getBoolean("isDownloading");
-            mDownloadProgress = savedInstanceState.getInt("downloadProgress", 0);
-            mRecommendedPrediate = savedInstanceState.getString("recommendedPredicate");
+            mFilter.setSearchText(mFilterSearchText);
+            mFilter.setTags(mFilterTags);
         }
 
         if (mGuide == null) {
@@ -1049,14 +1051,11 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("guide", mGuide);
-        outState.putString("guideXmlFilename", mGuideXmlFilename);
-        outState.putString("filterSearchText", mFilter.getSearchText());
-        outState.putStringArrayList("filterTags", (ArrayList<String>) mFilter.getAllTags());
-        outState.putBoolean("isDownloading", mIsDownloading);
-        outState.putInt("downloadProgress", mDownloadProgress);
-        outState.putString("recommendedPredicate", mRecommendedPrediate);
+        mFilterSearchText = mFilter.getSearchText();
+        mFilterTags = (ArrayList<String>) mFilter.getAllTags();
+
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     private boolean isLoggedIn() {

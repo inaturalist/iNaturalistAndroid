@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +46,7 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
 
     private GoogleMap mMap;
     private INaturalistApp mApp;
-    private ArrayList<JSONObject> mObservations;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mObservations;
     private HashMap<String, JSONObject> mMarkerObservations;
 
     @Override
@@ -65,6 +67,7 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
@@ -81,8 +84,6 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
             if (mObservations == null) {
                 finish();
             }
-        } else {
-            mObservations = loadListFromBundle(savedInstanceState, OBSERVATIONS);
         }
 
 
@@ -176,8 +177,8 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        saveListToBundle(outState, mObservations, OBSERVATIONS);
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
  
     @Override
@@ -247,18 +248,6 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
             });
 
         }
-    }
-
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-            JSONArray arr = new JSONArray(list);
-            outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        String obsString = savedInstanceState.getString(key);
-        return loadListFromValue(obsString);
     }
 
     private ArrayList<JSONObject> loadListFromValue(String obsString) {

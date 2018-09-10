@@ -17,9 +17,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +37,7 @@ public class ProfilePhotoViewer extends AppCompatActivity {
     private static String TAG = "ProfilePhotoViewer";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-	private JSONObject mUser;
+	@State(AndroidStateBundlers.JSONObjectBundler.class) public JSONObject mUser;
 	private HackyViewPager mViewPager;
 
     public static final String USER = "observation";
@@ -59,7 +61,8 @@ public class ProfilePhotoViewer extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+		Bridge.restoreInstanceState(this, savedInstanceState);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -73,8 +76,6 @@ public class ProfilePhotoViewer extends AppCompatActivity {
         try {
         	if (savedInstanceState == null) {
                 mUser = new JSONObject(intent.getStringExtra(USER));
-        	} else {
-                mUser = new JSONObject(savedInstanceState.getString("mUser"));
 			}
 
 			String fullName = mUser.getString("name");
@@ -96,9 +97,8 @@ public class ProfilePhotoViewer extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("mUser", mUser.toString());
-
         super.onSaveInstanceState(outState);
+		Bridge.saveInstanceState(this, outState);
     }
  
     

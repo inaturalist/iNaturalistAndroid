@@ -20,8 +20,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +44,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
     private ActivityHelper mHelper;
     private INaturalistApp mApp;
-    private String mViewType;
+    @State public String mViewType;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     
@@ -61,9 +63,9 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
     private NewsReceiver mNewsReceiver;
 
-    private ArrayList<JSONObject> mNews;
-    private ArrayList<JSONObject> mActivities;
-    private ArrayList<JSONObject> mFollowingActivities;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mNews;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mActivities;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mFollowingActivities;
     private ProjectNewsAdapter mNewsListAdapter;
     private UserActivitiesAdapter mActivitiesListAdapter;
     private UserActivitiesAdapter mFollowingActivitiesListAdapter;
@@ -71,6 +73,8 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
+
         setContentView(R.layout.user_activity);
 
         setTitle(R.string.activity);
@@ -83,19 +87,9 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
         mApp = (INaturalistApp)getApplication();
 
-        if (savedInstanceState != null) {
-            mViewType = savedInstanceState.getString("mViewType");
-            mNews = loadListFromBundle(savedInstanceState, "mNews");
-            mActivities = loadListFromBundle(savedInstanceState, "mActivities");
-            mFollowingActivities = loadListFromBundle(savedInstanceState, "mFollowingActivities");
-
-        } else {
-            SharedPreferences settings = mApp.getPrefs();
+        if (savedInstanceState == null) {
             mViewType = VIEW_TYPE_MY_CONTENT;
         }
-
-        SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-        String username = pref.getString("username", null);
 
         onDrawerCreate(savedInstanceState);
 
@@ -527,42 +521,10 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     }
 
 
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-            JSONArray arr = new JSONArray(list);
-            outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("mViewType", mViewType);
-        saveListToBundle(outState, mNews, "mNews");
-        saveListToBundle(outState, mActivities, "mActivities");
-        saveListToBundle(outState, mFollowingActivities, "mFollowingActivities");
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
 

@@ -12,9 +12,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -59,15 +61,15 @@ public class GuideTaxonActivity extends AppCompatActivity {
     private static String TAG = "GuideTaxonActivity";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-	private BetterJSONObject mTaxon;
-	private boolean mGuideTaxon;
-    private String mTaxonId;
-    private String mGuideXmlFilename;
+	@State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mTaxon;
+	@State public boolean mGuideTaxon;
+    @State public String mTaxonId;
+    @State public String mGuideXmlFilename;
     private GuideXML mGuideXml;
     private GuideTaxonXML mGuideTaxonXml;
-    private String mGuideId;
-    private boolean mShowAdd;
-    private boolean mDownloadTaxon;
+    @State public String mGuideId;
+    @State public boolean mShowAdd;
+    @State public boolean mDownloadTaxon;
     private TaxonReceiver mTaxonReceiver;
 
     @Override
@@ -111,6 +113,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_PROGRESS);
 
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -127,14 +130,6 @@ public class GuideTaxonActivity extends AppCompatActivity {
             mGuideXmlFilename = intent.getStringExtra("guide_xml_filename");
             mShowAdd = intent.getBooleanExtra("show_add", true);
             mDownloadTaxon = intent.getBooleanExtra("download_taxon", false);
-        } else {
-        	mTaxon = (BetterJSONObject) savedInstanceState.getSerializable("taxon");
-        	mGuideTaxon = savedInstanceState.getBoolean("guide_taxon", true);
-            mGuideId = savedInstanceState.getString("guide_id");
-            mTaxonId = savedInstanceState.getString("taxon_id");
-            mGuideXmlFilename = savedInstanceState.getString("guide_xml_filename");
-            mShowAdd = savedInstanceState.getBoolean("show_add");
-            mDownloadTaxon = savedInstanceState.getBoolean("download_taxon");
         }
 
         if ((mGuideTaxon) && (mGuideXmlFilename != null)) {
@@ -414,14 +409,8 @@ public class GuideTaxonActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("taxon", mTaxon);
-        outState.putBoolean("guide_taxon", mGuideTaxon);
-        outState.putString("taxon_id", mTaxonId);
-        outState.putString("guide_id", mGuideId);
-        outState.putString("guide_xml_filename", mGuideXmlFilename);
-        outState.putBoolean("show_add", mShowAdd);
-        outState.putBoolean("download_taxon", mDownloadTaxon);
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
      public class GalleryPhotoAdapter extends BaseAdapter {

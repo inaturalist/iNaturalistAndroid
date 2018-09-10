@@ -53,6 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -60,6 +61,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -108,8 +110,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-	private Observation mObservation;
-    private boolean mFlagAsCaptive;
+	@State(AndroidStateBundlers.SerializableBundler.class) public Observation mObservation;
+    @State public boolean mFlagAsCaptive;
 
     private Uri mUri;
     private Cursor mCursor;
@@ -124,7 +126,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private TextView mIdName;
     private TextView mTaxonicName;
     private ViewGroup mIdRow;
-    private JSONObject mTaxon;
+    @State(AndroidStateBundlers.JSONObjectBundler.class) public JSONObject mTaxon;
     private TabHost mTabHost;
 
 	private final static String VIEW_TYPE_INFO = "info";
@@ -152,9 +154,9 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     private ObservationReceiver mObservationReceiver;
 
-    private ArrayList<BetterJSONObject> mFavorites = null;
-    private ArrayList<BetterJSONObject> mCommentsIds = null;
-    private int mIdCount = 0;
+    @State(AndroidStateBundlers.BetterJSONListBundler.class) public ArrayList<BetterJSONObject> mFavorites = null;
+    @State(AndroidStateBundlers.BetterJSONListBundler.class) public ArrayList<BetterJSONObject> mCommentsIds = null;
+    @State public int mIdCount = 0;
     private ArrayList<Integer> mProjectIds;
     private ViewGroup mActivityTabContainer;
     private ViewGroup mInfoTabContainer;
@@ -190,24 +192,24 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private ViewGroup mLocationLabelContainer;
 
     private PhotosViewPagerAdapter mPhotosAdapter = null;
-    private ArrayList<BetterJSONObject> mProjects;
+    @State(AndroidStateBundlers.BetterJSONListBundler.class) public ArrayList<BetterJSONObject> mProjects;
     private ImageView mIdArrow;
     private ViewGroup mUnknownLocationContainer;
-    private boolean mReadOnly;
+    @State public boolean mReadOnly;
     private boolean mLoadingObservation;
-    private String mObsJson;
-    private String mTaxonJson;
+    @State public String mObsJson;
+    @State public String mTaxonJson;
     private boolean mShowComments;
-    private int mCommentCount;
-    private String mTaxonImage;
-    private String mTaxonIdName;
-    private String mTaxonName;
-    private int mTaxonRankLevel;
-    private String mActiveTab;
+    @State public int mCommentCount;
+    @State public String mTaxonImage;
+    @State public String mTaxonIdName;
+    @State public String mTaxonName;
+    @State public int mTaxonRankLevel;
+    @State public String mActiveTab;
     private boolean mReloadObs;
     private boolean mLoadObsJson = false;
     private ViewGroup mPhotosContainer;
-    private boolean mReloadTaxon;
+    @State public boolean mReloadTaxon;
     private boolean mScrollToCommentsBottom;
     private ScrollView mScrollView;
     private ViewGroup mTaxonInactive;
@@ -392,6 +394,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setLogo(R.drawable.ic_arrow_back);
@@ -560,31 +563,6 @@ public class ObservationViewerActivity extends AppCompatActivity {
             } else {
                 mUri = intent.getData();
             }
-
-            mObservation = (Observation) savedInstanceState.getSerializable("mObservation");
-            mIdCount = savedInstanceState.getInt("mIdCount");
-            mCommentCount = savedInstanceState.getInt("mCommentCount");
-            mReadOnly = savedInstanceState.getBoolean("mReadOnly");
-            mReloadTaxon = savedInstanceState.getBoolean("mReloadTaxon");
-            mObsJson = savedInstanceState.getString("mObsJson");
-            mTaxonJson = savedInstanceState.getString("mTaxonJson");
-            mFlagAsCaptive = savedInstanceState.getBoolean("mFlagAsCaptive");
-            mTaxonName = savedInstanceState.getString("mTaxonName");
-            mTaxonRankLevel = savedInstanceState.getInt("mTaxonRankLevel");
-            mTaxonIdName = savedInstanceState.getString("mTaxonIdName");
-            mTaxonImage = savedInstanceState.getString("mTaxonImage");
-            try {
-                String taxonJson = savedInstanceState.getString("mTaxon");
-                if (taxonJson != null) mTaxon = new JSONObject(savedInstanceState.getString("mTaxon"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            mActiveTab = savedInstanceState.getString("mActiveTab");
-
-            mCommentsIds = loadListFromBundle(savedInstanceState, "mCommentsIds");
-            mFavorites = loadListFromBundle(savedInstanceState, "mFavorites");
-            mProjects = loadListFromBundle(savedInstanceState, "mProjects");
         }
 
         if (mCursor == null) {
@@ -1896,59 +1874,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("mObservation", mObservation);
-        outState.putInt("mIdCount", mIdCount);
-        outState.putInt("mCommentCount", mCommentCount);
-        outState.putBoolean("mReadOnly", mReadOnly);
-        outState.putBoolean("mReloadTaxon", mReloadTaxon);
-        outState.putString("mObsJson", mObsJson);
-        outState.putString("mTaxonJson", mTaxonJson);
-        outState.putBoolean("mFlagAsCaptive", mFlagAsCaptive);
-
-        outState.putString("mTaxonIdName", mTaxonIdName);
-        outState.putString("mTaxonName", mTaxonName);
-        outState.putInt("mTaxonRankLevel", mTaxonRankLevel);
-        outState.putString("mTaxonImage", mTaxonImage);
-        outState.putString("mTaxon", mTaxon != null ? mTaxon.toString() : null);
-
-        outState.putString("mActiveTab", mActiveTab);
-
-        saveListToBundle(outState, mCommentsIds, "mCommentsIds");
-        saveListToBundle(outState, mFavorites, "mFavorites");
-        saveListToBundle(outState, mProjects, "mProjects");
-
         super.onSaveInstanceState(outState);
-    }
-
-    private void saveListToBundle(Bundle outState, ArrayList<BetterJSONObject> list, String key) {
-        if (list != null) {
-            JSONArray arr = new JSONArray();
-            for (int i = 0; i < list.size(); i++) {
-                arr.put(list.get(i).getJSONObject().toString());
-            }
-            outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<BetterJSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(new BetterJSONObject(arr.getString(i)));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
+        Bridge.saveInstanceState(this, outState);
     }
 
     private class ObservationReceiver extends BroadcastReceiver {

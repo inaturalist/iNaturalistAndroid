@@ -23,9 +23,11 @@ import com.bumptech.glide.request.target.BaseTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import android.app.Activity;
 import android.content.Context;
@@ -60,7 +62,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     private static String TAG = "ObservationPhotosViewer";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-	private JSONObject mObservation;
+	@State(AndroidStateBundlers.JSONObjectBundler.class) public JSONObject mObservation;
 	private HackyViewPager mViewPager;
 
 	public static final String IS_NEW_OBSERVATION = "is_new_observation";
@@ -74,13 +76,13 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     public static final String SET_DEFAULT_PHOTO_INDEX = "set_default_photo_index";
     public static final String DELETE_PHOTO_INDEX = "delete_photo_index";
 
-    private boolean mIsNewObservation;
-    private int mObservationId;
-    private int mCurrentPhotoIndex;
+    @State public boolean mIsNewObservation;
+    @State public int mObservationId;
+    @State public int mCurrentPhotoIndex;
     private View mDeletePhoto;
-    private boolean mReadOnly;
-    private int mObservationIdInternal;
-    private boolean mIsTaxon;
+    @State public boolean mReadOnly;
+    @State public int mObservationIdInternal;
+    @State public boolean mIsTaxon;
 
     @Override
 	protected void onStart()
@@ -101,7 +103,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        Bridge.restoreInstanceState(this, savedInstanceState);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -129,16 +132,6 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
                 mReadOnly = intent.getBooleanExtra(READ_ONLY, false);
                 mIsTaxon = intent.getBooleanExtra(IS_TAXON, false);
-        	} else {
-                mIsNewObservation = savedInstanceState.getBoolean("mIsNewObservation");
-        		if (!mIsNewObservation) {
-                    mObservation = new JSONObject(savedInstanceState.getString("observation"));
-                } else {
-                    mObservationId = savedInstanceState.getInt("mObservationId");
-                    mObservationIdInternal = savedInstanceState.getInt("mObservationIdInternal");
-                }
-                mReadOnly = savedInstanceState.getBoolean("mReadOnly");
-                mIsTaxon = savedInstanceState.getBoolean("mIsTaxon");
         	}
         } catch (JSONException e) {
         	e.printStackTrace();
@@ -204,23 +197,10 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if (!mIsNewObservation && mObservation != null) {
-            outState.putString("observation", mObservation.toString());
-        }
-
-        outState.putBoolean("mIsNewObservation", mIsNewObservation);
-        if (mIsNewObservation) {
-            outState.putInt("mObservationId", mObservationId);
-            outState.putInt("mObservationIdInternal", mObservationIdInternal);
-        }
-
         mCurrentPhotoIndex = mViewPager.getCurrentItem();
-        outState.putInt("mCurrentPhotoIndex", mCurrentPhotoIndex);
-
-        outState.putBoolean("mReadOnly", mReadOnly);
-        outState.putBoolean("mIsTaxon", mIsTaxon);
 
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
  
     

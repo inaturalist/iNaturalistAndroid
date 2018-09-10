@@ -1,7 +1,9 @@
 package org.inaturalist.android;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,7 +31,7 @@ import java.util.regex.Pattern;
 
 public class ProjectDetailsAbout extends AppCompatActivity {
     public static final String KEY_PROJECT = "project";
-    private BetterJSONObject mProject;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mProject;
 
     @Override
 	protected void onStart()
@@ -49,6 +51,7 @@ public class ProjectDetailsAbout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         setContentView(R.layout.project_details_about);
 
@@ -68,8 +71,6 @@ public class ProjectDetailsAbout extends AppCompatActivity {
         final Intent intent = getIntent();
         if (savedInstanceState == null) {
             mProject = (BetterJSONObject) intent.getSerializableExtra(KEY_PROJECT);
-        } else {
-            mProject = (BetterJSONObject) savedInstanceState.getSerializable(KEY_PROJECT);
         }
 
         title.setText(mProject.getString("title"));
@@ -105,8 +106,8 @@ public class ProjectDetailsAbout extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(KEY_PROJECT, mProject);
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

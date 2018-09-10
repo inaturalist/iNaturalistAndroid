@@ -4,9 +4,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -59,10 +61,10 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
     private Button mJoinLeaveProject;
 
-    private String mViewType;
+    @State public String mViewType;
 
     private INaturalistApp mApp;
-    private BetterJSONObject mProject;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mProject;
 
     private ActivityHelper mHelper;
     private Button mAboutProject;
@@ -90,17 +92,17 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     private ViewGroup mIdentifiersListHeader;
     private TextView mIdentifiersListEmpty;
 
-    private ArrayList<JSONObject> mObservations;
-    private ArrayList<JSONObject> mSpecies;
-    private ArrayList<JSONObject> mObservers;
-    private ArrayList<JSONObject> mIdentifiers;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mObservations;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mSpecies;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mObservers;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mIdentifiers;
 
     private ProjectDetailsReceiver mProjectDetailsReceiver;
 
-    private int mTotalObservations;
-    private int mTotalSpecies;
-    private int mTotalObervers;
-    private int mTotalIdentifiers;
+    @State public int mTotalObservations;
+    @State public int mTotalSpecies;
+    @State public int mTotalObervers;
+    @State public int mTotalIdentifiers;
 
     private AppBarLayout mAppBarLayout;
     private boolean mProjectPicHidden;
@@ -109,7 +111,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     private ViewPager mViewPager;
     private Button mShowMoreObs;
 
-    private boolean mJoinedOrLeftProject = false;
+    @State public boolean mJoinedOrLeftProject = false;
 
     @Override
 	protected void onStart()
@@ -141,6 +143,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -164,22 +167,6 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         if (savedInstanceState == null) {
             mProject = new BetterJSONObject(intent.getStringExtra("project"));
             mViewType = VIEW_TYPE_OBSERVATIONS;
-
-        } else {
-            mProject = new BetterJSONObject(savedInstanceState.getString("project"));
-            mViewType = savedInstanceState.getString("mViewType");
-
-            mObservations = loadListFromBundle(savedInstanceState, "mObservations");
-            mSpecies = loadListFromBundle(savedInstanceState, "mSpecies");
-            mObservers = loadListFromBundle(savedInstanceState, "mObservers");
-            mIdentifiers = loadListFromBundle(savedInstanceState, "mIdentifiers");
-
-            mTotalIdentifiers = savedInstanceState.getInt("mTotalIdentifiers");
-            mTotalObervers = savedInstanceState.getInt("mTotalObervers");
-            mTotalObservations = savedInstanceState.getInt("mTotalObservations");
-            mTotalSpecies = savedInstanceState.getInt("mTotalSpecies");
-
-            mJoinedOrLeftProject = savedInstanceState.getBoolean("mJoinedOrLeftProject");
         }
 
         // Tab Initialization
@@ -296,34 +283,6 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
     }
 
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
     private void joinProject() {
         if (!isLoggedIn()) {
             // User not logged-in - redirect to onboarding screen
@@ -341,19 +300,8 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("project", mProject.getJSONObject().toString());
-        outState.putString("mViewType", mViewType);
-        saveListToBundle(outState, mObservations, "mObservations");
-        saveListToBundle(outState, mSpecies, "mSpecies");
-        saveListToBundle(outState, mObservers, "mObservers");
-        saveListToBundle(outState, mIdentifiers, "mIdentifiers");
-        outState.putInt("mTotalIdentifiers", mTotalIdentifiers);
-        outState.putInt("mTotalObervers", mTotalObervers);
-        outState.putInt("mTotalObservations", mTotalObservations);
-        outState.putInt("mTotalSpecies", mTotalSpecies);
-        outState.putBoolean("mJoinedOrLeftProject", mJoinedOrLeftProject);
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override

@@ -22,9 +22,11 @@ import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,15 +43,15 @@ public class MissionsGridActivity extends AppCompatActivity {
     private PullToRefreshGridViewExtended mMissionsGrid;
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
-    private ArrayList<JSONObject> mMissions;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mMissions;
     private ProgressBar mLoading;
     private TextView mLoadingDescription;
     private ViewGroup mNoMissionsContainer;
 
     private MissionsReceiver mMissionsReceiver;
 
-    private int mMissionsCurrentExpansionLevel = 0;
-    private int mTaxonId = -1;
+    @State public int mMissionsCurrentExpansionLevel = 0;
+    @State public int mTaxonId = -1;
 
     @Override
 	protected void onStart()
@@ -69,6 +71,7 @@ public class MissionsGridActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         Intent intent = getIntent();
 
@@ -105,11 +108,6 @@ public class MissionsGridActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             mMissionsCurrentExpansionLevel = intent.getIntExtra(MissionsGridActivity.MISSIONS_EXPANSION_LEVEL, 0);
             mTaxonId = intent.getIntExtra(TAXON_ID, -1);
-
-        } else {
-            mMissions = loadListFromBundle(savedInstanceState, "mMissions");
-            mMissionsCurrentExpansionLevel = savedInstanceState.getInt("mMissionsCurrentExpansionLevel");
-            mTaxonId = savedInstanceState.getInt("mTaxonId");
         }
     }
 
@@ -196,40 +194,10 @@ public class MissionsGridActivity extends AppCompatActivity {
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        saveListToBundle(outState, mMissions, "mMissions");
-        outState.putInt("mMissionsCurrentExpansionLevel", mMissionsCurrentExpansionLevel);
-        outState.putInt("mTaxonId", mTaxonId);
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

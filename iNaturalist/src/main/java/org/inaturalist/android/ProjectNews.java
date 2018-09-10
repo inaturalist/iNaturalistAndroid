@@ -25,9 +25,11 @@ import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +39,7 @@ import java.util.ArrayList;
 
 public class ProjectNews extends BaseFragmentActivity {
     private INaturalistApp mApp;
-    private BetterJSONObject mProject;
+    @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mProject;
 
     private ActivityHelper mHelper;
 
@@ -46,9 +48,9 @@ public class ProjectNews extends BaseFragmentActivity {
     private ProgressBar mLoadingNewsList;
     private TextView mNewsListEmpty;
 
-    private ArrayList<JSONObject> mNews;
+    @State(AndroidStateBundlers.JSONListBundler.class) public ArrayList<JSONObject> mNews;
     private ProjectNewsReceiver mProjectNewsReceiver;
-    private Boolean mIsUserFeed;
+    @State public Boolean mIsUserFeed;
 
     @Override
 	protected void onStart()
@@ -82,6 +84,7 @@ public class ProjectNews extends BaseFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bridge.restoreInstanceState(this, savedInstanceState);
 
         mHelper = new ActivityHelper(this);
 
@@ -127,11 +130,6 @@ public class ProjectNews extends BaseFragmentActivity {
         if (savedInstanceState == null) {
             mProject = (BetterJSONObject) intent.getSerializableExtra("project");
             mIsUserFeed = intent.getBooleanExtra("is_user_feed", false);
-
-        } else {
-            mProject = (BetterJSONObject) savedInstanceState.getSerializable("project");
-            mNews = loadListFromBundle(savedInstanceState, "mNews");
-            mIsUserFeed = savedInstanceState.getBoolean("mIsUserFeed");
         }
 
         if ((mProject == null) && (!mIsUserFeed)) {
@@ -152,41 +150,10 @@ public class ProjectNews extends BaseFragmentActivity {
         refreshViewState();
     }
 
-    private void saveListToBundle(Bundle outState, ArrayList<JSONObject> list, String key) {
-        if (list != null) {
-        	JSONArray arr = new JSONArray(list);
-        	outState.putString(key, arr.toString());
-        }
-    }
-
-    private ArrayList<JSONObject> loadListFromBundle(Bundle savedInstanceState, String key) {
-        ArrayList<JSONObject> results = new ArrayList<JSONObject>();
-
-        String obsString = savedInstanceState.getString(key);
-        if (obsString != null) {
-            try {
-                JSONArray arr = new JSONArray(obsString);
-                for (int i = 0; i < arr.length(); i++) {
-                    results.add(arr.getJSONObject(i));
-                }
-
-                return results;
-            } catch (JSONException exc) {
-                exc.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("project", mProject);
-        outState.putBoolean("mIsUserFeed", mIsUserFeed);
-        saveListToBundle(outState, mNews, "mNews");
-
         super.onSaveInstanceState(outState);
+        Bridge.saveInstanceState(this, outState);
     }
 
     @Override
