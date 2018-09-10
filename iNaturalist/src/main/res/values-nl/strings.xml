@@ -46,7 +46,6 @@
   <string name="take_picture">Maak een foto</string>
   <string name="save">Opslaan</string>
   <string name="no_observations_yet">Nog geen observaties!</string>
-  <string name="sign_in">Inloggen</string>
   <string name="or">of</string>
   <string name="signed_out">Uitloggen</string>
   <string name="view">Tonen</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">Mee eens?</string>
   <string name="no_comments">Nog geen opmerkingen/identificaties</string>
-  <string name="posted_by">Gepost door %1$s op %2$s</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">jij</string>
   <string name="add_comment">Reactie toevoegen</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Geoprivacy</string>
   <string name="delete_confirmation">Weet u zeker dat u deze waarneming wilt verwijderen?</string>
-  <string name="next">Volgende</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Gidsen</string>
   <string name="my_guides">Jouw</string>
@@ -188,6 +185,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ is onderdeel van het iNaturalist netwerk in Nieuw-Zeeland. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is onderdeel van het iNaturalist netwerk in Canada. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista is onderdeel van het iNaturalist netwerk in Colombia. Wil je gebruik maken van dit netwerk om je ervaringen en gegevens te delen?</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is onderdeel van het iNaturalist netwerk in Portugal. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
   <string name="description">Beschrijving</string>
   <string name="editor">Redacteur</string>
   <string name="license">Licentie</string>
@@ -496,7 +494,7 @@
   <string name="department_segment">Departement Segment</string>
   <string name="city_building">Stadsgebouw</string>
   <string name="commune">Gemeente</string>
-  <string name="governorate">Governorate</string>
+  <string name="governorate">Gouvernement</string>
   <string name="prefecture">Prefectuur</string>
   <string name="canton">Kanton</string>
   <string name="republic">Republiek</string>
@@ -565,4 +563,8 @@
   <string name="inat_about_title">iNaturalist is een gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society.</string>
   <string name="inat_credits">iNaturalist is een gezamelijke inspanning van alle personen die deelnemen aan onze Gemeenschap. De mensen die de software bouwen, oze infrastructuur onderhouden en foster samenwerkingen zijn Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer en Ken-Ichi Ueda. Caltech en Cornell Tech die hielpen ontwikkelen van het computer visoon systeem dat soorten van foto\'s herkend. Wij danken Grant Van Horn, Serge Belongie en Pietro Perona voor dit werk. Meer informatie kan worden gevonden op visipedia.org</string>
   <string name="credits_title">Met dank aan</string>
+  <string name="password_changed">Het wachtwoord dat de app gebruikt werkt niet meer - heb je jouw wachtwoord verandert op de website? Voer het nieuwe wachtwoord dan ook hier in</string>
+  <string name="just_so_you_know">Het is maar dat je het weet...</string>
+  <string name="ask_for_g_plus_permissions">Google verplicht ons om toestemming te vragen om uw contactpersonen te gebruiken voor uw Google-Account, hoewel we geen contact opnemen met uw contactpersonen om welke reden dan ook. Als u deze machtiging weigert moet u zich aanmelden of inloggen met een gebruikersnaam en wachtwoord.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>

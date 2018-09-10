@@ -46,7 +46,6 @@
   <string name="take_picture">Scatta una foto</string>
   <string name="save">Salva</string>
   <string name="no_observations_yet">Nessuna osservazione per ora!</string>
-  <string name="sign_in">Accedi</string>
   <string name="or">o</string>
   <string name="signed_out">Esci</string>
   <string name="view">Visualizza</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">D’accordo?</string>
   <string name="no_comments">Nessun commento/identificazione per ora</string>
-  <string name="posted_by">Pubblicato da %1$s su %2$s</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">te</string>
   <string name="add_comment">Aggiungi commento</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Geoprivacy</string>
   <string name="delete_confirmation">Sei sicuro di voler cancellare questa osservazione?</string>
-  <string name="next">Avanti</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Guide</string>
   <string name="my_guides">Le tue</string>
@@ -188,6 +185,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ è un membro della rete iNaturalist in Nuova Zelanda. Vuoi utilizzare questa rete per localizzare la tua esperienza e condividere i dati?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada è un membro della rete iNaturalist in Canada. Vuoi utilizzare questa rete per localizzare la tua esperienza e condividere i dati?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista è un membro della rete iNaturalist in Colombia. Vuoi utilizzare questa rete per localizzare la tua esperienza e condividere i dati?</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiveristy4all è un membro della rete iNaturalist in Portogallo. Vuoi utilizzare questa rete per localizzare la tua esperienza e condividere i dati?</string>
   <string name="description">Descrizione</string>
   <string name="editor">Editor</string>
   <string name="license">Licenza</string>
@@ -565,4 +563,8 @@
   <string name="inat_about_title">iNaturalist è un\'iniziativa congiunta della California Academy of Sciences e la National Geographic Society.</string>
   <string name="inat_credits">iNaturalist è fatto da ogni singola persona che partecipa alla nostra comunità. Le persone che costruiscono il software, mantengono la nostra infrastruttura e favoriscono collaborazioni sono Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer e Ken-Ichi Ueda. Caltech e Cornell Tech hanno aiutato a sviluppare il sistema di visione artificiale che riconosce specie dalle fotografie. Ringraziamo Grant Van Horn, Serge Belongie e Pietro Perona per questo lavoro. Maggiori informazioni possono essere trovate su visipedia.org</string>
   <string name="credits_title">Ringraziamenti</string>
+  <string name="password_changed">La password utilizzata dall\'app non funziona più - hai cambiato la password sul sito web? Si prega di inserire la nuova password qui</string>
+  <string name="just_so_you_know">Solo perchè tu lo sappia...</string>
+  <string name="ask_for_g_plus_permissions">Google ci richiede di chiedere il permesso per accedere ai tuoi contatti al fine di utilizzare il tuo account Google, anche se non accediamo ai tuoi contatti per nessun motivo. Se neghi questa autorizzazione, dovrai registrarti o accedere con un nome utente e una password.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>

@@ -46,7 +46,6 @@
   <string name="take_picture">Сделать снимок</string>
   <string name="save">Сохранить</string>
   <string name="no_observations_yet">Пока нет наблюдений!</string>
-  <string name="sign_in">Вход</string>
   <string name="or">или</string>
   <string name="signed_out">Выйти</string>
   <string name="view">Вид</string>
@@ -86,7 +85,6 @@
   <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
   <string name="agree">Согласен?</string>
   <string name="no_comments">Пока нет комментариев/определений</string>
-  <string name="posted_by">Написал %1$s на %2$s</string>
   <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
   <string name="you">Вы</string>
   <string name="add_comment">Добавить комментарий</string>
@@ -117,7 +115,6 @@
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Конфиденциальность геоданных</string>
   <string name="delete_confirmation">Вы уверены, что хотите удалить это наблюдение?</string>
-  <string name="next">Далее</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Инструкции</string>
   <string name="my_guides">Ваше</string>
@@ -188,6 +185,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ является частью сети iNaturalist в Новой Зеландии. Вы хотели бы использовать эту сеть для локализации вашего опыта и соответствующего обмена данными?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada является частью сети iNaturalist в Канаде. Вы хотели бы использовать эту сеть для локализации вашего опыта и соответствующего обмена данными?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista является частью сети iNaturalist в Колумбии. Вы хотели бы использовать эту сеть для локализации вашего опыта и соответствующего обмена данными?</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiveristy4all является частью сети iNaturalist в Португалии. Вы хотели бы использовать эту сеть для локализации вашего опыта и соответствующего обмена данными?</string>
   <string name="description">Описание</string>
   <string name="editor">Редактор</string>
   <string name="license">Лицензия</string>
@@ -435,7 +433,7 @@
   <string name="more_info_on_inat">Более подробная информация о iNaturalist.org</string>
   <string name="view_suggestions">Посмотреть предложения</string>
   <string name="species_search">Поиск видов</string>
-  <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
+  <string name="were_not_confident">Мы не уверены полностью, что можем давать рекомендации, но вот наши Топ %1$d предложений:</string>
   <string name="top_species_suggestions">Вот наш топ %1$d видов предложения:</string>
   <string name="pretty_sure_rank">Мы уверены, что это в этой %1$s:</string>
   <string name="what_did_you_see">Что Вы видели?</string>
@@ -566,4 +564,8 @@
   <string name="inat_about_title">iNaturalist - совместная инициатива Калифорнийской академии наук и Национального географического общества.</string>
   <string name="inat_credits">iNaturalist создаётся каждым человеком, который участвует в нашем сообществе. Люди, которые создают программное обеспечение, поддерживают нашу инфраструктуру и содействуют сотрудничеству, - это Джоэль Бельмонте, Ярон Будовски, Тони Айвэн, Патрик Лири, Скотт Лоари, Алекс Шепард, Кэрри Зельцер и Кен-Ичи Уэда. Caltech и Cornell Tech помогли разработать систему компьютерного зрения, которая распознает виды по фотографиям. Мы благодарим Гранта Ван Хорна, Сержа Белонги и Пьетро Перону за эту работу. Более подробную информацию можно найти по адресу visipedia.org</string>
   <string name="credits_title">Благодарность</string>
+  <string name="password_changed">Используемый пароль приложения больше не действителен - вы изменили свой пароль на веб-сайте? Пожалуйста, введите новый</string>
+  <string name="just_so_you_know">Итак, вы знаете...</string>
+  <string name="ask_for_g_plus_permissions">Google требует от нас запрашивать разрешение на доступ к контактам для того, чтобы использовать учетную запись Google, даже если мы не используем доступ к контактам по любой причине. Если вы не даёте это разрешение, вам нужно будет зарегистрироваться или войти с именем пользователя и паролем.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
 </resources>
