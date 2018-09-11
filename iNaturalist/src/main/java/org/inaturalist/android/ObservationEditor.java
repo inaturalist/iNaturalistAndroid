@@ -2205,77 +2205,27 @@ public class ObservationEditor extends AppCompatActivity {
                 mHelper.loading(getString(R.string.preparing_photo));
 
                 new Thread(new Runnable() {
-
                     @Override
                     public void run() {
-                        // Make a copy of the image into the phone's camera folder
-                        String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
-                        String copyPath = null;
-
-                        if (mApp.isExternalStoragePermissionGranted()) {
-                            copyPath = addPhotoToGallery(path);
-                        } else {
-                            copyPath = path;
-                        }
-
-                        Uri createdUri = null;
-
-                        if (copyPath != null) {
-                            createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
-                            mPhotosAdded.add(createdUri.toString());
-                            mCameraPhotos.add(copyPath);
-                        }
-
-                        // Delete original photo (before resize)
-                        File f = new File(path);
-                        f.delete();
-
-                        if (createdUri == null) {
-                            runOnUiThread(new Runnable() {
+                        if (!mApp.isExternalStoragePermissionGranted()) {
+                            // We need external storage permissions in order to save the captured photo into the phone's gallery
+                            mApp.requestExternalStoragePermission(ObservationEditor.this, new INaturalistApp.OnRequestPermissionResult() {
                                 @Override
-                                public void run() {
-                                    mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
+                                public void onPermissionGranted() {
+                                    prepareCapturedPhoto(selectedImageUri);
+                                }
+
+                                @Override
+                                public void onPermissionDenied() {
+                                    prepareCapturedPhoto(selectedImageUri);
                                 }
                             });
-                            mFileUri = null;
+
                             return;
                         }
 
+                        prepareCapturedPhoto(selectedImageUri);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                updateImages();
-                                // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
-                                if (!mLocationManuallySet && !mGettingLocation) {
-                                    getLocation();
-                                }
-
-                                mHelper.stopLoading();
-
-
-                                // #479 - Annoying hack to handle the case if the user tries to rotate the screen after the import.
-                                // For some reason, when returning from an ACTION_IMAGE_CAPTURE activity, the ObservationEditor activity
-                                // isn't in full focus, and rotating the screen doesn't affect it, unless we force a focus on one of its UI elements.
-                                mDescriptionTextView.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mDescriptionTextView.requestFocus();
-                                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                        imm.showSoftInput(mDescriptionTextView, InputMethodManager.SHOW_IMPLICIT);
-
-                                        try {
-                                            Thread.sleep(500);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-                                    }
-                                }, 100);
-                            }
-                        });
 
                     }
                 }).start();
@@ -2299,6 +2249,79 @@ public class ObservationEditor extends AppCompatActivity {
                 getLocation();
             }
         }
+    }
+
+    private void prepareCapturedPhoto(Uri selectedImageUri) {
+        // Make a copy of the image into the phone's camera folder
+        String path = FileUtils.getPath(ObservationEditor.this, selectedImageUri);
+        String copyPath = null;
+
+        if (mApp.isExternalStoragePermissionGranted()) {
+            copyPath = addPhotoToGallery(path);
+        } else {
+            // User didn't grant permissions - do not copy captured photo into gallery
+            copyPath = path;
+        }
+
+        Uri createdUri = null;
+
+        if (copyPath != null) {
+            createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
+            mPhotosAdded.add(createdUri.toString());
+            mCameraPhotos.add(copyPath);
+        }
+
+        // Delete original photo (before resize)
+        File f = new File(path);
+        f.delete();
+
+        if (createdUri == null) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mHelper.alert(getResources().getString(R.string.alert_unsupported_media_type));
+                }
+            });
+            mFileUri = null;
+            return;
+        }
+
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                updateImages();
+                // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
+                if (!mLocationManuallySet && !mGettingLocation) {
+                    getLocation();
+                }
+
+                mHelper.stopLoading();
+
+
+                // #479 - Annoying hack to handle the case if the user tries to rotate the screen after the import.
+                // For some reason, when returning from an ACTION_IMAGE_CAPTURE activity, the ObservationEditor activity
+                // isn't in full focus, and rotating the screen doesn't affect it, unless we force a focus on one of its UI elements.
+                mDescriptionTextView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mDescriptionTextView.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(mDescriptionTextView, InputMethodManager.SHOW_IMPLICIT);
+
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                    }
+                }, 100);
+            }
+        });
+
     }
 
     private void importPhotos(final List<Uri> photos, final boolean overrideLocation) {
