@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.InputType;
@@ -42,6 +43,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     private static final String TAG = "SignInTask";
 
     private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+
     private AccessTokenTracker mFacebookAccessTokenTracker = null;
 
     private SharedPreferences mPreferences;
@@ -59,6 +61,8 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
     private static final int REQUEST_CODE_LOGIN = 0x3000;
     private static final int REQUEST_CODE_ADD_ACCOUNT = 0x3001;
+    private static final int REQUEST_CODE_CHOOSE_GOOGLE_ACCOUNT = 0x3002;
+
 
     private String mGoogleUsername;
 
@@ -267,6 +271,59 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         } else if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
             // User finished entering his password
             signIn(INaturalistService.LoginType.GOOGLE, mGoogleUsername, null);
+
+        } else if ((requestCode == REQUEST_CODE_CHOOSE_GOOGLE_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
+            String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+            String accountType = data.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE);
+
+            final Account[] availableAccounts = AccountManager.get(mActivity).getAccountsByType(accountType);
+            Account loginAccount = null;
+
+            for (int i = 0; i < availableAccounts.length; i++) {
+                if (availableAccounts[i].name.equalsIgnoreCase(accountName)) {
+                    // Found the account
+                    loginAccount = availableAccounts[i];
+                    break;
+                }
+            }
+
+            final String boundUsername = accountName;
+            final String boundInvalidated = mInvalidated ? "invalidated" : null;
+            final AccountManagerCallback<Bundle> cb = new AccountManagerCallback<Bundle>() {
+                public void run(AccountManagerFuture<Bundle> future) {
+                    try {
+                        final Bundle result = future.getResult();
+                        final String accountName = result.getString(AccountManager.KEY_ACCOUNT_NAME);
+                        final String authToken = result.getString(AccountManager.KEY_AUTHTOKEN);
+                        final Intent authIntent = result.getParcelable(AccountManager.KEY_INTENT);
+                        if (accountName != null && authToken != null) {
+//	                        Log.d(TAG, String.format("Token: %s", authToken));
+                            execute(boundUsername, authToken, INaturalistService.LoginType.GOOGLE.toString(), boundInvalidated);
+
+                        } else if (authIntent != null) {
+                            int flags = authIntent.getFlags();
+                            flags &= ~Intent.FLAG_ACTIVITY_NEW_TASK;
+                            authIntent.setFlags(flags);
+                            mActivity.startActivityForResult(authIntent, REQUEST_CODE_LOGIN);
+                        } else {
+                            Log.e(TAG, "AccountManager was unable to obtain an authToken.");
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "Auth Error", e);
+                    }
+                }
+            };
+
+            if (loginAccount == null) {
+                return;
+            }
+
+            AccountManager.get(mActivity).getAuthToken(loginAccount,
+                    GOOGLE_AUTH_TOKEN_TYPE,
+                    null,
+                    mActivity,
+                    cb,
+                    null);
         }
     }
 
@@ -282,95 +339,17 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 	        String googleUsername = null;
 	        Account account = null;
 
-	        // See if given account exists
-	        final Account[] availableAccounts = AccountManager.get(mActivity).getAccountsByType("com.google");
-	        boolean accountFound = false;
+	        // Let the user choose an existing G+ account to login with
 
-	        if (username != null) {
-	            googleUsername = username.toLowerCase();
-	            for (int i = 0; i < availableAccounts.length; i++) {
-	                if (availableAccounts[i].name.equalsIgnoreCase(googleUsername)) {
-	                    // Found the account
-//	                    Log.d(TAG, "googleUsername: " + googleUsername);
-	                    accountFound = true;
-	                    break;
-	                }
-	            }
-	        }
+            Intent intent;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                intent = AccountManager.get(mActivity).newChooseAccountIntent(null, null, new String[]{"com.google"}, null, null, null, null);
+            } else {
+                intent = AccountManager.get(mActivity).newChooseAccountIntent(null, null, new String[]{"com.google"}, false, null, null, null, null);
+            }
 
-            final String boundUsername = googleUsername;
-	        final String boundInvalidated = invalidated ? "invalidated" : null;
-	        final AccountManagerCallback<Bundle> cb = new AccountManagerCallback<Bundle>() {
-	            public void run(AccountManagerFuture<Bundle> future) {
-	                try {
-	                    final Bundle result = future.getResult();
-	                    final String accountName = result.getString(AccountManager.KEY_ACCOUNT_NAME);
-	                    final String authToken = result.getString(AccountManager.KEY_AUTHTOKEN);
-	                    final Intent authIntent = result.getParcelable(AccountManager.KEY_INTENT);
-	                    if (accountName != null && authToken != null) {
-//	                        Log.d(TAG, String.format("Token: %s", authToken));
-	                        execute(boundUsername, authToken, INaturalistService.LoginType.GOOGLE.toString(), boundInvalidated);
-
-	                    } else if (authIntent != null) {
-	                        int flags = authIntent.getFlags();
-	                        flags &= ~Intent.FLAG_ACTIVITY_NEW_TASK;
-	                        authIntent.setFlags(flags);
-	                        mActivity.startActivityForResult(authIntent, REQUEST_CODE_LOGIN);
-	                    } else {
-	                        Log.e(TAG, "AccountManager was unable to obtain an authToken.");
-	                    }
-	                } catch (Exception e) {
-	                    Log.e(TAG, "Auth Error", e);
-	                }
-	            }
-	        };
-
-	        if (availableAccounts.length > 1) {
-                // More than one Google account - Show multiple choice to select account
-                List<String> emails = new ArrayList<String>();
-                for (int i = 0; i < availableAccounts.length; i++) {
-                    emails.add(availableAccounts[i].name);
-                }
-
-                mHelper.selection(mActivity.getString(R.string.select_google_account), emails.toArray(new String[emails.size()]), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        AccountManager.get(mActivity).getAuthToken(availableAccounts[which],
-                                GOOGLE_AUTH_TOKEN_TYPE,
-                                null,
-                                mActivity,
-                                cb,
-                                null);
-                    }
-                });
-
-                return;
-
-            } else if (availableAccounts.length == 1) {
-	            accountFound = true;
-	            account = availableAccounts[0];
-
-	        } else if (googleUsername == null) {
-	            askForGoogleEmail();
-	            return;
-	        } else {
-	            // Redirect user to add account dialog
-	            mGoogleUsername = googleUsername;
-	            mActivity.startActivityForResult(new Intent(Settings.ACTION_ADD_ACCOUNT), REQUEST_CODE_ADD_ACCOUNT);
-	            return;
-	        }
-
-	        // Google account login
-
-	        if (account == null) {
-	            account = new Account(googleUsername, "com.google");
-	        }
-	        AccountManager.get(mActivity).getAuthToken(account,
-	                GOOGLE_AUTH_TOKEN_TYPE,
-	                null,
-	                mActivity,
-	                cb,
-	                null);
+            mInvalidated = invalidated;
+            mActivity.startActivityForResult(intent, REQUEST_CODE_CHOOSE_GOOGLE_ACCOUNT);
 
 	    } else {
 	        // "Regular" login
@@ -437,5 +416,6 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             mFacebookAccessTokenTracker.startTracking();
         }
     }
+
 }
 
