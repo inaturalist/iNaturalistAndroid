@@ -895,7 +895,6 @@ public class ObservationEditor extends AppCompatActivity {
 
                 @Override
                 public void onPermissionDenied() {
-
                 }
             });
             return;

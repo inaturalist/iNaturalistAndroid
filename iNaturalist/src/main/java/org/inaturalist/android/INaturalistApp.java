@@ -791,7 +791,7 @@ public class INaturalistApp extends MultiDexApplication {
         void onPermissionDenied();
     }
 
-    private OnRequestPermissionResult mPermissionsCb = null;
+    private Map<String, OnRequestPermissionResult> mPermissionsCbByPermissionName = new HashMap<>();
 
     public void requestCameraPermission(Activity activity, OnRequestPermissionResult cb) {
         requestPermissions(activity, new String[] { Manifest.permission.CAMERA }, cb);
@@ -806,7 +806,9 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
     private void requestPermissions(final Activity activity, final String[] permissions, OnRequestPermissionResult cb) {
-        mPermissionsCb = cb;
+        for (String permission: permissions) {
+            mPermissionsCbByPermissionName.put(permission, cb);
+        }
 
         // Run on a background thread, not to block / mess up the UI thread
         new Thread(new Runnable() {
@@ -824,7 +826,7 @@ public class INaturalistApp extends MultiDexApplication {
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if ((requestCode != PERMISSIONS_REQUEST) || (mPermissionsCb == null)) {
+        if (requestCode != PERMISSIONS_REQUEST) {
             return;
         }
 
@@ -835,10 +837,16 @@ public class INaturalistApp extends MultiDexApplication {
             }
         }
 
-        if (granted) {
-            mPermissionsCb.onPermissionGranted();
-        } else {
-            mPermissionsCb.onPermissionDenied();
+
+        for (String permission: permissions) {
+            OnRequestPermissionResult cb = mPermissionsCbByPermissionName.get(permission);
+            if (cb != null) {
+                if (granted) {
+                    cb.onPermissionGranted();
+                } else {
+                    cb.onPermissionDenied();
+                }
+            }
         }
     }
 

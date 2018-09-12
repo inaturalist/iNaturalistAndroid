@@ -1321,7 +1321,6 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.e("AAA", "GET MY LOCATION");
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
                         startService(serviceIntent);
                     }
