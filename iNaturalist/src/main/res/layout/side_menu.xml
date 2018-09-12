@@ -56,19 +56,6 @@
             android:src="@drawable/ic_arrow_forward_white_24dp"
             />
 
-        <TextView
-            android:id="@+id/observation_count"
-            android:layout_toRightOf="@id/side_menu_user_pic_container"
-            android:layout_toLeftOf="@id/right_arrow"
-            android:layout_alignBottom="@id/right_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#bbffffff"
-            android:text="124 observations"
-            android:textAllCaps="true"
-            android:paddingBottom="8dp"
-            />
 
         <TextView
             android:id="@+id/side_menu_username"
@@ -83,6 +70,22 @@
             android:paddingBottom="10dp"
             android:visibility="invisible"
             />
+
+         <TextView
+            android:id="@+id/observation_count"
+            android:layout_toRightOf="@id/side_menu_user_pic_container"
+            android:layout_toLeftOf="@id/right_arrow"
+            android:layout_below="@id/side_menu_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#bbffffff"
+            android:text="90 observations"
+            android:textAllCaps="true"
+            android:maxLines="2"
+            android:ellipsize="none"
+            />
+
 
         <Button
             android:id="@+id/menu_login"
