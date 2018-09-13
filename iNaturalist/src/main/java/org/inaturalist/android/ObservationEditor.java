@@ -1345,7 +1345,7 @@ public class ObservationEditor extends AppCompatActivity {
         List<String> names = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_items));
         int index = mGeoprivacy.getSelectedItemPosition();
         String selectedName = names.get(index > -1 ? index : 0);
-        ((TextView)findViewById(R.id.location_visibility_description)).setText(getString(R.string.location_is) + " " + selectedName);
+        ((TextView)findViewById(R.id.location_visibility_description)).setText(getString(R.string.location_visibility) + ": " + selectedName);
     }
 
     private void observationToUi() {
