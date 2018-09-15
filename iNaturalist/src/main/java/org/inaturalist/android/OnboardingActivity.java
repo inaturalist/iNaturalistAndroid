@@ -172,7 +172,17 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
                     return;
                 }
 
-                mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.O) &&
+                    (ContextCompat.checkSelfPermission(OnboardingActivity.this, android.Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED)) {
+                    mHelper.confirm(R.string.just_so_you_know, R.string.ask_for_g_plus_permissions, R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(OnboardingActivity.this, new String[]{android.Manifest.permission.GET_ACCOUNTS}, PERMISSIONS_REQUEST);
+                        }
+                    });
+                } else {
+                    mSignInTask.signIn(INaturalistService.LoginType.GOOGLE, null, null);
+                }
             }
         });
 
