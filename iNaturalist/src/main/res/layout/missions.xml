@@ -106,7 +106,6 @@
                     android:textColor="#FF74AC00"
                     android:layout_marginRight="16dp"
                     android:textSize="14sp"
-                    android:textAllCaps="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignBottom="@id/recommended_for_you"
                     />

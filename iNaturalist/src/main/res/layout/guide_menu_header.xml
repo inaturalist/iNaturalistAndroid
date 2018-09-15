@@ -21,7 +21,6 @@
 
         <TextView
             android:id="@+id/quantity"
-            android:textAllCaps="true"
             android:layout_width="55dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
@@ -35,7 +34,6 @@
 
         <TextView
             android:id="@+id/title"
-            android:textAllCaps="true"
             android:layout_toStartOf="@id/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

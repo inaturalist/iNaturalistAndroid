@@ -36,7 +36,6 @@
         android:layout_gravity="center_horizontal"
         android:text="Observations"
         android:paddingBottom="10dp"
-        android:textAllCaps="true"
         />
 
    <View

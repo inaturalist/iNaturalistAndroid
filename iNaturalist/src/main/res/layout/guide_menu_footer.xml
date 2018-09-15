@@ -14,7 +14,6 @@
         >
 
         <TextView
-            android:textAllCaps="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
@@ -49,11 +48,10 @@
         >
 
         <TextView
-            android:textAllCaps="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
-            android:text="@string/about"
+            android:text="@string/about_caps"
             android:textSize="12dp"
             android:textColor="#FFFFFF"
             />

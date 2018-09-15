@@ -364,7 +364,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         UserProfile.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_SPECIES).setIndicator(
                 createTabContent(getString(R.string.project_species), 2000)));
         UserProfile.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_IDENTIFICATIONS).setIndicator(
-                createTabContent(getString(R.string.identifications), 3000)));
+                createTabContent(getString(R.string.identifications_caps), 3000)));
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 

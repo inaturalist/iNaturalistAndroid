@@ -20,7 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
-        android:textAllCaps="true"
         android:textSize="16sp"
         android:textColor="@color/inatapptheme_color"
         android:layout_alignParentBottom="true"

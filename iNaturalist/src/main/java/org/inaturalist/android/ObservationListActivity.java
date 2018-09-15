@@ -1283,7 +1283,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         addTab(0, createTabContent(getString(R.string.project_observations), 1000));
         addTab(1, createTabContent(getString(R.string.project_species), 2000));
-        addTab(2, createTabContent(getString(R.string.identifications), 3000));
+        addTab(2, createTabContent(getString(R.string.identifications_caps), 3000));
 
         TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
             @Override

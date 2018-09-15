@@ -81,7 +81,6 @@
             android:textSize="14sp"
             android:textColor="#bbffffff"
             android:text="90 observations"
-            android:textAllCaps="true"
             android:maxLines="2"
             android:ellipsize="none"
             />
@@ -312,7 +311,6 @@
                     android:background="#FFF66923"
                     android:textSize="9sp"
                     android:text="@string/new_badge"
-                    android:textAllCaps="true"
                     android:layout_marginLeft="8dp"
                     android:padding="4dp"
                     />

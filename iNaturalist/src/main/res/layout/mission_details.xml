@@ -196,7 +196,6 @@
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="16dp"
-                    android:textAllCaps="false"
                     style="?android:attr/borderlessButtonStyle"
                     />
             </LinearLayout>

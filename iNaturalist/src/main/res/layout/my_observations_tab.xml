@@ -51,7 +51,6 @@
             android:layout_gravity="center_horizontal"
             android:text="Observations"
             android:paddingBottom="5dp"
-            android:textAllCaps="true"
             />
     </LinearLayout>
 </RelativeLayout>

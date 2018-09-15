@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:text="@string/project_observations"
+            android:text="@string/observations_regular"
             android:textSize="13sp" />
 
     </RelativeLayout>
