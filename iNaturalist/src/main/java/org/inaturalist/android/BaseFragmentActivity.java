@@ -230,10 +230,10 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         if (obsCount > -1) {
             if (obsCount == 1) {
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_single), obsCount));
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_single_all_caps), obsCount));
             } else {
                 DecimalFormat formatter = new DecimalFormat("#,###,###");
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), formatter.format(obsCount)));
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_all_caps), formatter.format(obsCount)));
             }
         } else {
             String conditions = "(_synced_at IS NULL";
@@ -246,9 +246,9 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
             int count = cursor.getCount();
             if (count == 1) {
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_single), count));
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_single_all_caps), count));
             } else {
-                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count), count));
+                ((TextView) findViewById(R.id.observation_count)).setText(String.format(getString(R.string.observation_count_all_caps), count));
             }
 
             cursor.close();

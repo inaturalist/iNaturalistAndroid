@@ -17,7 +17,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
-            android:text="@string/description"
+            android:text="@string/description_all_caps"
             android:textSize="12dp"
             android:textColor="#FFFFFF"
             />
@@ -51,7 +51,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
-            android:text="@string/about_caps"
+            android:text="@string/about_all_caps"
             android:textSize="12dp"
             android:textColor="#FFFFFF"
             />

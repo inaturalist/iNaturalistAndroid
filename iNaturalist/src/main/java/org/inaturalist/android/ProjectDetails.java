@@ -363,10 +363,10 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        addTab(0, createTabContent(getString(R.string.project_observations), 1000));
-        addTab(1, createTabContent(getString(R.string.project_species), 2000));
-        addTab(2, createTabContent(getString(R.string.project_people), 3000));
-        addTab(3, createTabContent(getString(R.string.project_identifiers), 4000));
+        addTab(0, createTabContent(getString(R.string.observations_all_caps), 1000));
+        addTab(1, createTabContent(getString(R.string.species_all_caps), 2000));
+        addTab(2, createTabContent(getString(R.string.people_all_caps), 3000));
+        addTab(3, createTabContent(getString(R.string.identifiers_all_caps), 4000));
 
         TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
             @Override

@@ -339,7 +339,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
-                }, null, R.string.got_it, 0);
+                }, null, R.string.got_it_all_caps, 0);
             }
         });
 

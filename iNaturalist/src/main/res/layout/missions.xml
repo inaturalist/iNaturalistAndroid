@@ -102,7 +102,7 @@
                     android:id="@+id/view_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/view_all"
+                    android:text="@string/view_all_all_caps"
                     android:textColor="#FF74AC00"
                     android:layout_marginRight="16dp"
                     android:textSize="14sp"

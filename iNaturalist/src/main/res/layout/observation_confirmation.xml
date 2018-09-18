@@ -189,7 +189,7 @@
             android:id="@+id/onboarding_species_name_close"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/got_it"
+            android:text="@string/got_it_all_caps"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_below="@id/onboarding_species_name_description"

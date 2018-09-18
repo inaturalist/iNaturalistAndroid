@@ -169,7 +169,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/agree2"
+                    android:text="@string/agree_all_caps"
                     android:layout_gravity="center_vertical"
                     android:textColor="#86AB03"
                     android:layout_marginLeft="7dp"

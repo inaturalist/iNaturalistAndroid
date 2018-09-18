@@ -100,7 +100,8 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Leave</string>
     <string name="join">Join</string>
-    <string name="join_caps">JOIN</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="join_all_caps">JOIN</string>
     <string name="loading_check_list">Loading Check List...</string>
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
@@ -186,7 +187,8 @@
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-    <string name="description">DESCRIPTION</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="description_all_caps">DESCRIPTION</string>
     <string name="editor">Editor</string>
     <string name="license">License</string>
     <string name="download_for_offline_use">Download for offline use</string>
@@ -223,7 +225,8 @@
     <string name="username_or_email">Username or Email</string>
     <string name="forgot">Forgot?</string>
     <string name="or_login_with">Or Log In With:</string>
-    <string name="quantity">QTY</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="quantity_all_caps">QTY</string>
     <string name="registering">Registering...</string>
     <string name="recommended_next_step">Recommended Next Step</string>
     <string name="could_not_register_user">Couldn\'t register user</string>
@@ -233,9 +236,11 @@
     <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="http://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="http://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Activity</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
     <!-- Number of observations. Do not change the format to $d -->
-    <string name="observation_count">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single">%1$d OBSERVATION</string>
+    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
     <string name="camera">Take Photo</string>
     <string name="upload_photo">Choose Image</string>
     <string name="menu_text">No Photo</string>
@@ -275,7 +280,8 @@
     <string name="included_in_projects">Included in %1$d projects</string>
     <string name="included_in_projects_singular">Included in %1$d project</string>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
-    <string name="agree2">AGREE</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="agree_all_caps">AGREE</string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Delete</string>
@@ -311,17 +317,23 @@
     <string name="terms">Terms</string>
     <string name="observation_rules">Observation Rules</string>
     <string name="couldnt_load_project_details">Couldn\'t load project details: %1$s</string>
-    <string name="project_observations">OBSERVATIONS</string>
-    <string name="project_species">SPECIES</string>
-    <string name="project_people">PEOPLE</string>
-    <string name="project_identifiers">IDENTIFIERS</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="observations_all_caps">OBSERVATIONS</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="species_all_caps">SPECIES</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="people_all_caps">PEOPLE</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="identifiers_all_caps">IDENTIFIERS</string>
     <string name="no_people_found">No people found</string>
     <string name="rank">Rank</string>
     <string name="identifications">Identifications</string>
-    <string name="identifications_caps">IDENTIFICATIONS</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="identifications_all_caps">IDENTIFICATIONS</string>
     <string name="no_news_found">No news items found</string>
     <string name="news">News</string>
-    <string name="news_caps">NEWS</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="news_all_caps">NEWS</string>
     <string name="article">Article</string>
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
     <string name="article_by">Article By</string>
@@ -365,7 +377,8 @@
     <string name="update_id_description">Update Identification Description</string>
     <string name="your_identification">Your ID: %1$s</string>
     <string name="onboarding_species_name">Name what you saw if you can, but it\'s OK if you can\'t. Others may help you identify it!</string>
-    <string name="got_it">GOT IT!</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="got_it_all_caps">GOT IT!</string>
     <string name="upload_complete">Upload Complete!</string>
     <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
     <string name="importing_photos">Importing photo(s)...</string>
@@ -373,7 +386,8 @@
     <string name="preparing_photo">Preparing photo...</string>
     <string name="recommended_for_you">Recommended for You</string>
     <string name="missions">Missions</string>
-    <string name="view_all">VIEW ALL</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="view_all_all_caps">VIEW ALL</string>
     <string name="browse_by_category">Browse By Category</string>
     <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
     <string name="plants">Plants</string>
@@ -397,7 +411,8 @@
     <string name="introducing_missions">Introducing Missions!</string>
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">Ok, got it!</string>
-    <string name="new_badge">NEW</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="new_all_caps">NEW</string>
     <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
     <string name="no_news_yet">No news yet. Stay tuned!</string>
     <string name="my_content">My Content</string>
@@ -449,7 +464,8 @@
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Terrain</string>
-    <string name="observers">Observers</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="observers_all_caps">OBSERVERS</string>
     <string name="filters">Filters</string>
     <string name="exploring_all">Exploring All</string>
     <string name="nearby">Nearby</string>
@@ -571,6 +587,7 @@
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
     <string name="observations_regular">Observations</string>
-    <string name="about_caps">ABOUT</string>
+    <!-- All capital letters - like a title (unless capital letters change the meaning of the word) -->
+    <string name="about_all_caps">ABOUT</string>
 </resources>
 

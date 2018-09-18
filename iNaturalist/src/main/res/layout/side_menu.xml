@@ -310,7 +310,7 @@
                     android:textColor="#ffffff"
                     android:background="#FFF66923"
                     android:textSize="9sp"
-                    android:text="@string/new_badge"
+                    android:text="@string/new_all_caps"
                     android:layout_marginLeft="8dp"
                     android:padding="4dp"
                     />
