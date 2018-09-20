@@ -325,7 +325,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             }
         }
 
-        if (!mSearchFilters.isCurrentLocation) {
+        if ((mSearchFilters != null) && (!mSearchFilters.isCurrentLocation)) {
             resetResults(true);
             loadAllResults();
         }
@@ -673,7 +673,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mResults[index] = resultsArray;
                 mTotalResults[index] = totalResults;
 
-                if ((index == VIEW_TYPE_OBSERVATIONS) && ((mCurrentResultsPage[index] == 1))) {
+                if ((index == VIEW_TYPE_OBSERVATIONS) && ((mCurrentResultsPage[index] == 1)) && (mObservationsMap != null)) {
                     // New search - clear all observation markers on map
                     mObservationsMap.clear();
                 }
