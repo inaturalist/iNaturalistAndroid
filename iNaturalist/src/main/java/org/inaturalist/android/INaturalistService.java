@@ -1866,6 +1866,9 @@ public class INaturalistService extends IntentService {
 
     private void storeProjectObservations() {
         for (int j = 0; j < mProjectObservations.size(); j++) {
+            SerializableJSONArray arr = mProjectObservations.get(j);
+            if (arr == null) continue;
+
             JSONArray projectObservations = mProjectObservations.get(j).getJSONArray();
 
             for (int i = 0; i < projectObservations.length(); i++) {
