@@ -615,6 +615,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
             if (item.isSectionHeader()) {
                 // Header section
                 view = inflater.inflate(R.layout.guide_menu_header, parent, false);
+                mApp.setStringResourceForView(view, R.id.quantity, "quantity_all_caps", "quantity");
                 title = (TextView) view.findViewById(R.id.title);
                 if ((mRecommendedPrediate != null) && (itemText.equals(mRecommendedPrediate))) {
                     // Current predicate is the recommended one
@@ -998,6 +999,8 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
  
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View footerView = inflater.inflate(R.layout.guide_menu_footer, null, false);
+        mApp.setStringResourceForView(footerView, R.id.description_title, "description_all_caps", "description");
+        mApp.setStringResourceForView(footerView, R.id.about_title, "about_all_caps", "about");
         mDescription = (TextView) footerView.findViewById(R.id.description);
         mEditorName = (TextView) footerView.findViewById(R.id.editorName);
         mLicense = (TextView) footerView.findViewById(R.id.license);

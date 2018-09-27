@@ -342,6 +342,7 @@ public class ObservationEditor extends AppCompatActivity {
             mHelper = new ActivityHelper(this);
         }
 
+        mApp.setStringResourceForView(this, R.id.onboarding_species_name_close, "got_it_all_caps", "got_it");
 
         if (mSharePhotos != null) {
             // Share photos(s) with iNaturalist

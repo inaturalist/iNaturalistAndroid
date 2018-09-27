@@ -136,6 +136,8 @@ public class MissionsActivity extends BaseFragmentActivity {
         mApp = (INaturalistApp)getApplication();
         mHelper = new ActivityHelper(this);
 
+        mApp.setStringResourceForView(this, R.id.view_all, "view_all_all_caps", "view_all");
+
         mCategories.setAdapter(new CategoriesAdapter(this, CATEGORIES, mCategories));
         resizeMissionCategories();
 

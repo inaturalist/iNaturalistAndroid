@@ -109,6 +109,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		final View view = inflater.inflate(R.layout.comment_id_item_obs_viewer, parent, false);
 		final BetterJSONObject item = mItems.get(position);
 
+		((INaturalistApp) mContext.getApplicationContext()).setStringResourceForView(view, R.id.id_agree_text, "agree_all_caps", "agree2");
+
 		try {
 			final TextView comment = (TextView) view.findViewById(R.id.comment);
 			RelativeLayout idLayout = (RelativeLayout) view.findViewById(R.id.id_layout);

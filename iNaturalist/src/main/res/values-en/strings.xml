@@ -572,4 +572,5 @@
   <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
   <string name="see_more_observations">See more observations</string>
   <string name="about_all_caps">ABOUT</string>
+  <string name="observations_regular">Observations</string>
 </resources>

@@ -360,11 +360,11 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mTabHost.setup();
 
         UserProfile.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_OBSERVATIONS).setIndicator(
-                createTabContent(getString(R.string.observations_all_caps), 1000)));
+                createTabContent(mApp.getStringResourceByName("observations_all_caps", "project_observations"), 1000)));
         UserProfile.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_SPECIES).setIndicator(
-                createTabContent(getString(R.string.species_all_caps), 2000)));
+                createTabContent(mApp.getStringResourceByName("species_all_caps", "project_species"), 2000)));
         UserProfile.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec(VIEW_TYPE_IDENTIFICATIONS).setIndicator(
-                createTabContent(getString(R.string.identifications_all_caps), 3000)));
+                createTabContent(mApp.getStringResourceByName("identifications_all_caps", "identifications"), 3000)));
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 

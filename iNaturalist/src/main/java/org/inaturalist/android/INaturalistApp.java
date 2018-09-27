@@ -82,7 +82,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class INaturalistApp extends MultiDexApplication {
     private final static String TAG = "INAT: Application";
@@ -204,7 +206,11 @@ public class INaturalistApp extends MultiDexApplication {
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         INaturalistApp.context = getApplicationContext();
-        deviceLocale = getResources().getConfiguration().locale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            deviceLocale = getResources().getConfiguration().getLocales().get(0);
+        } else {
+            deviceLocale = getResources().getConfiguration().locale;
+        }
         applyLocaleSettings();
 
         // Create the root offline guides directory, if needed
@@ -543,6 +549,37 @@ public class INaturalistApp extends MultiDexApplication {
     		return getString(resId);
     	}
     }
+
+    public String getStringResourceByName(String name, String fallbackName) {
+    	int resId = getResourceIdByName(name, "string");
+    	if (resId == 0) {
+    		return getStringResourceByName(fallbackName);
+    	} else {
+    	    try {
+                return getString(resId);
+            } catch (Resources.NotFoundException exc) {
+    	        return getStringResourceByName(fallbackName);
+            }
+    	}
+    }
+
+    public void setStringResourceForView(Object parentView, int viewId, String name, String fallbackName) {
+        View view = null;
+        if (parentView instanceof Activity) {
+            view = ((Activity)parentView).findViewById(viewId);
+        } else {
+            view = ((View) parentView).findViewById(viewId);
+        }
+
+        if (view == null) return;
+
+        if (view instanceof TextView) {
+            ((TextView) view).setText(getStringResourceByName(name, fallbackName));
+        } else if (view instanceof Button) {
+            ((Button) view).setText(getStringResourceByName(name, fallbackName));
+        }
+    }
+
 
     private int getResourceIdByName(String aString, String type) {
     	String packageName = getPackageName();

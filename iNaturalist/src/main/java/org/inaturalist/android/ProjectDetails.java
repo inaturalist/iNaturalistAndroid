@@ -173,8 +173,11 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         initializeTabs();
 
         mJoinLeaveProject = (Button) findViewById(R.id.join_leave_project);
+        mApp.setStringResourceForView(this, R.id.join_leave_project, "join_all_caps", "join");
         mAboutProject = (Button) findViewById(R.id.about_project);
+        mApp.setStringResourceForView(this, R.id.about_project, "about_all_caps", "about");
         mProjectNews = (Button) findViewById(R.id.project_news);
+        mApp.setStringResourceForView(this, R.id.project_news, "news_all_caps", "news");
 
         if (mProject == null) {
             finish();
@@ -363,10 +366,10 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        addTab(0, createTabContent(getString(R.string.observations_all_caps), 1000));
-        addTab(1, createTabContent(getString(R.string.species_all_caps), 2000));
-        addTab(2, createTabContent(getString(R.string.people_all_caps), 3000));
-        addTab(3, createTabContent(getString(R.string.identifiers_all_caps), 4000));
+        addTab(0, createTabContent(mApp.getStringResourceByName("observations_all_caps", "project_observations"), 1000));
+        addTab(1, createTabContent(mApp.getStringResourceByName("species_all_caps", "project_species"), 2000));
+        addTab(2, createTabContent(mApp.getStringResourceByName("people_all_caps", "project_people"), 3000));
+        addTab(3, createTabContent(mApp.getStringResourceByName("identifiers_all_caps", "project_identifiers"), 4000));
 
         TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
             @Override
@@ -748,6 +751,9 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
             LayoutInflater inflater = LayoutInflater.from(mContext);
             ViewGroup layout = (ViewGroup) inflater.inflate(layoutResource, collection, false);
 
+            if (position == 2) {
+                mApp.setStringResourceForView(layout, R.id.observations_title, "observations_regular", "project_observations");
+            }
 
 
             switch (position) {

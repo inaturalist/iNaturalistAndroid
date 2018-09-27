@@ -167,6 +167,7 @@
                     android:background="@drawable/circular_green_background"
                     />
                 <TextView
+                    android:id="@+id/id_agree_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/agree_all_caps"

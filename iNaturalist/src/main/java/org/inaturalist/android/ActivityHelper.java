@@ -199,12 +199,21 @@ public class ActivityHelper {
         confirm(titleBar, msg, okListener, cancelListener, okText, cancelText);
     }
 
+     public void confirm(String title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, String okText, String cancelText) {
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View titleBar = inflater.inflate(R.layout.dialog_title, null, false);
+        ((TextView)titleBar.findViewById(R.id.title)).setText(title);
+
+        confirm(titleBar, msg, okListener, cancelListener, okText, cancelText);
+    }
+
+
 
     public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
         confirm(title, msg, okListener, cancelListener, R.string.ok, R.string.cancel);
     }
 
-    public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, int okText, int cancelText) {
+    public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, String okText, String cancelText) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -236,6 +245,10 @@ public class ActivityHelper {
         alert.show();
         alert.getButton(alert.BUTTON_POSITIVE).setTextColor(Color.parseColor("#85B623"));
         alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#85B623"));
+    }
+
+    public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, int okText, int cancelText) {
+        confirm(title, msg, okListener, cancelListener, mContext.getString(okText), mContext.getString(cancelText));
     }
 
     public void loading(String title, String msg) {

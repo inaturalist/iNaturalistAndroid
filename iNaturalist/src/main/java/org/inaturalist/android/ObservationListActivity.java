@@ -334,7 +334,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         }
     	
     }
-    
+
     
     /** Called when the activity is first created. */
     @Override
@@ -951,6 +951,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             ((ViewGroup) layout.findViewById(R.id.loading_more_results)).setVisibility(View.GONE);
 
+            mApp.setStringResourceForView(layout, R.id.onboarding_syncing_close, "got_it_all_caps", "got_it");
+
             switch (position) {
                 case 2:
                     mLoadingIdentifications = (ProgressBar) layout.findViewById(R.id.loading);
@@ -1281,9 +1283,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        addTab(0, createTabContent(getString(R.string.observations_all_caps), 1000));
-        addTab(1, createTabContent(getString(R.string.species_all_caps), 2000));
-        addTab(2, createTabContent(getString(R.string.identifications_all_caps), 3000));
+        addTab(0, createTabContent(mApp.getStringResourceByName("observations_all_caps", "project_observations"), 1000));
+        addTab(1, createTabContent(mApp.getStringResourceByName("species_all_caps", "project_species"), 2000));
+        addTab(2, createTabContent(mApp.getStringResourceByName("identifications_all_caps", "identifications"), 3000));
 
         TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
             @Override

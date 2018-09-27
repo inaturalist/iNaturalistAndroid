@@ -71,11 +71,12 @@
             android:textSize="13sp" />
 
         <TextView
+            android:id="@+id/observations_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:text="@string/observations_regular"
+            android:text="@string/do_you_agree_to_the_following"
             android:textSize="13sp" />
 
     </RelativeLayout>
