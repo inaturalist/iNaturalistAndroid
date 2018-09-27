@@ -248,7 +248,7 @@ public class ActivityHelper {
     }
 
     public void confirm(View title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, int okText, int cancelText) {
-        confirm(title, msg, okListener, cancelListener, mContext.getString(okText), mContext.getString(cancelText));
+        confirm(title, msg, okListener, cancelListener, mContext.getString(okText), cancelText != 0 ? mContext.getString(cancelText) : null);
     }
 
     public void loading(String title, String msg) {

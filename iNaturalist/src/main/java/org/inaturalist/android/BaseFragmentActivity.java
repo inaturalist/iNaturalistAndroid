@@ -553,7 +553,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
     // Tries to unregister receiver before registering it
     public static void safeRegisterReceiver(BroadcastReceiver receiver, IntentFilter filter, Context context) {
         safeUnregisterReceiver(receiver, context);
-        context.registerReceiver(receiver, filter);
+        try {
+            context.registerReceiver(receiver, filter);
+        } catch (Exception e) {
+
+        }
     }
 
     private class UserDetailsReceiver extends BroadcastReceiver {
