@@ -31,8 +31,9 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
     private ViewPager mViewPager;
     private TabHost mTabHost;
     private List<Fragment> mFragments;
-    
-	@Override
+    private INaturalistApp mApp;
+
+    @Override
 	protected void onStart()
 	{
 		super.onStart();
@@ -57,6 +58,8 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
 
         getSupportActionBar().setElevation(0);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setOffscreenPageLimit(3);
 
@@ -91,10 +94,10 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         tabHost.addTab(tabSpec);
     }
 
-    private View createTabContent(int titleRes) {
+    private View createTabContent(String titleRes, String fallbackRes) {
         View view = LayoutInflater.from(this).inflate(R.layout.tab, null);
         TextView tabTitle = (TextView) view.findViewById(R.id.tab_title);
-        tabTitle.setText(titleRes);
+        tabTitle.setText(mApp.getStringResourceByName(titleRes, fallbackRes));
 
         return view;
     }
@@ -156,9 +159,9 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("joined_projects").setIndicator(createTabContent(R.string.joined_projects)));
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_projects").setIndicator(createTabContent(R.string.nearby_projects)));
-        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("featured_projects").setIndicator(createTabContent(R.string.featured_projects)));
+        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("joined_projects").setIndicator(createTabContent("joined_projects_all_caps", "joined_projects")));
+        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_projects").setIndicator(createTabContent("nearby_projects_all_caps", "nearby_projects")));
+        ProjectsActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("featured_projects").setIndicator(createTabContent("featured_projects_all_caps", "featured_projects")));
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 

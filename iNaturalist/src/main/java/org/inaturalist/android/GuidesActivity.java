@@ -28,6 +28,7 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
     private ViewPager mViewPager;
     private TabHost mTabHost;
     private List<Fragment> mFragments;
+    private INaturalistApp mApp;
 
     @Override
 	protected void onStart()
@@ -58,6 +59,8 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
         setTheme(R.style.NoActionBarShadowTheme);
         super.onCreate(savedInstanceState);
 
+        mApp = (INaturalistApp) getApplicationContext();
+        
         setContentView(R.layout.guides);
 	    onDrawerCreate(savedInstanceState);
 
@@ -98,13 +101,14 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
         tabHost.addTab(tabSpec);
     }
 
-    private View createTabContent(int titleRes) {
+    private View createTabContent(String titleRes, String fallbackRes) {
         View view = LayoutInflater.from(this).inflate(R.layout.tab, null);
         TextView tabTitle = (TextView) view.findViewById(R.id.tab_title);
-        tabTitle.setText(titleRes);
+        tabTitle.setText(mApp.getStringResourceByName(titleRes, fallbackRes));
 
         return view;
     }
+
 
 
     // Manages the Tab changes, synchronizing it with Pages
@@ -164,9 +168,9 @@ public class GuidesActivity extends BaseFragmentActivity implements OnTabChangeL
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
-        GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("all_guides").setIndicator(createTabContent(R.string.all_guides)));
-        GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("my_guides").setIndicator(createTabContent(R.string.my_guides)));
-        GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_guides").setIndicator(createTabContent(R.string.nearby_guides)));
+        GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("all_guides").setIndicator(createTabContent("all_guides_all_caps", "all_guides")));
+        GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("my_guides").setIndicator(createTabContent("my_guides_all_caps", "my_guides")));
+        GuidesActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("nearby_guides").setIndicator(createTabContent("nearby_guides_all_caps", "nearby_guides")));
 
         mTabHost.getTabWidget().setDividerDrawable(null);
 

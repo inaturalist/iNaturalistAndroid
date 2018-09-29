@@ -94,10 +94,10 @@
   <string name="no_projects">No projects found!</string>
   <string name="no_guides">No guides found!</string>
   <string name="loading_projects">Loading projects...</string>
-  <string name="joined_projects">Joined</string>
-  <string name="nearby_projects">Nearby</string>
+  <string name="joined_projects_all_caps">JOINED</string>
+  <string name="nearby_projects_all_caps">NEARBY</string>
   <!-- Tab title for the list of featured projects in the Projects screen -->
-  <string name="featured_projects">Featured</string>
+  <string name="featured_projects_all_caps">FEATURED</string>
   <!-- Verb, used as a label for actions like leaving a project -->
   <string name="leave">Leave</string>
   <string name="join">Join</string>
@@ -118,9 +118,9 @@
   <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Guides</string>
-  <string name="my_guides">Yours</string>
-  <string name="nearby_guides">Nearby</string>
-  <string name="all_guides">All</string>
+  <string name="my_guides_all_caps">YOURS</string>
+  <string name="nearby_guides_all_caps">NEARBY</string>
+  <string name="all_guides_all_caps">ALL</string>
   <string name="no_taxa">No taxa found for this guide!</string>
   <string name="search_taxa">Search taxa...</string>
   <string name="no_internet_guides">Guides require an Internet connection</string>
