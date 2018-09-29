@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffffff"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent">
 
-    <RelativeLayout
-        android:id="@+id/project_list_container"
-        android:background="#ffffff"
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/search_filter"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical" >
-
-            <EditText
-                android:id="@+id/search_filter"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:drawableLeft="@drawable/ic_fa_search"
-                android:drawablePadding="5dp"
-                android:background="#EBEBEB"
-                android:padding="10dp"
-                android:hint="@string/search_projects" />
-
-            <ListView
-                android:id="@+id/project_list"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/project_list_empty"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/loading_projects" />
-    </RelativeLayout>
+            android:visibility="gone"
+            android:drawableLeft="@drawable/ic_fa_search"
+            android:drawablePadding="5dp"
+            android:background="#EBEBEB"
+            android:padding="10dp"
+            android:hint="@string/search_projects" />
 
-</LinearLayout>
+        <ListView
+            android:id="@+id/project_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/project_list_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/loading_projects" />
+
+</RelativeLayout>

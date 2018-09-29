@@ -20,8 +20,13 @@ public class Project implements BaseColumns, Serializable {
     public String title;
     public String description;
     public String icon_url;
+    public String project_type;
     public Integer check_list_id;
-    
+
+
+    public static final String PROJECT_TYPE_COLLECTION = "collection";
+    public static final String PROJECT_TYPE_UMBRELLA = "umbrella";
+
     public static final String TABLE_NAME = "projects";
     
     public static final int PROJECTS_URI_CODE = 1979;
@@ -38,6 +43,7 @@ public class Project implements BaseColumns, Serializable {
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
     public static final String ICON_URL = "icon_url";
+    public static final String PROJECT_TYPE = "project_type";
     public static final String CHECK_LIST_ID = "check_list_id";
 
 
@@ -47,7 +53,8 @@ public class Project implements BaseColumns, Serializable {
         Project.DESCRIPTION,
         Project.TITLE,
         Project.ICON_URL,
-        Project.CHECK_LIST_ID
+        Project.CHECK_LIST_ID,
+        Project.PROJECT_TYPE
     };
 
     static {
@@ -58,6 +65,7 @@ public class Project implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Project.TITLE, Project.TITLE);
         PROJECTION_MAP.put(Project.ICON_URL, Project.ICON_URL);
         PROJECTION_MAP.put(Project.CHECK_LIST_ID, Project.CHECK_LIST_ID);
+        PROJECTION_MAP.put(Project.PROJECT_TYPE, Project.PROJECT_TYPE);
     }
 
     public Project() {}
@@ -71,6 +79,7 @@ public class Project implements BaseColumns, Serializable {
         this.description = bc.getString(DESCRIPTION);
         this.title = bc.getString(TITLE);
         this.icon_url = bc.getString(ICON_URL);
+        this.project_type = bc.getString(PROJECT_TYPE);
         this.check_list_id = bc.getInt(CHECK_LIST_ID);
     }
 
@@ -79,7 +88,8 @@ public class Project implements BaseColumns, Serializable {
         this.title = o.getString("title");
         this.description = o.getString("description");
         this.icon_url = o.getString("icon_url");
-        
+        this.project_type = o.getString("project_type");
+
         try {
             this.check_list_id = o.getJSONObject("project_list").getInt("id");
         } catch (JSONException e) {
@@ -94,6 +104,7 @@ public class Project implements BaseColumns, Serializable {
         obj.put("title", title);
         obj.put("description", description);
         obj.put("icon_url", icon_url);
+        obj.put("project_type", project_type);
         BetterJSONObject projectList = new BetterJSONObject();
         projectList.put("id", check_list_id);
         obj.put("project_list", projectList.getJSONObject());
@@ -122,6 +133,7 @@ public class Project implements BaseColumns, Serializable {
         cv.put(DESCRIPTION, description);
         cv.put(TITLE, title);
         cv.put(ICON_URL, icon_url);
+        cv.put(PROJECT_TYPE, project_type);
         cv.put(CHECK_LIST_ID, check_list_id);
 
         return cv;
@@ -133,6 +145,7 @@ public class Project implements BaseColumns, Serializable {
                 + "title TEXT,"
                 + "description TEXT,"
                 + "icon_url TEXT,"
+                + "project_type TEXT,"
                 + "id INTEGER,"
                 + "check_list_id INTEGER"
                 + ");";

@@ -553,5 +553,6 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
 </resources>
 

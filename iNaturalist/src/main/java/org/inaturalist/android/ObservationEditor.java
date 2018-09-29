@@ -174,6 +174,7 @@ public class ObservationEditor extends AppCompatActivity {
     public static final String SPECIES_GUESS = "species_guess";
 	public static final String OBSERVATION_PROJECT = "observation_project";
     public static final String TAXON = "taxon";
+    public static final String OBSERVATION_JSON = "observation_json";
 
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Spinner mGeoprivacy;
@@ -211,6 +212,7 @@ public class ObservationEditor extends AppCompatActivity {
     private int mTaxonRankLevel;
     @State public boolean mAskedForLocationPermission = false;
     @State public boolean mFromSuggestion = false;
+    @State public String mObsJson;
 
     @Override
 	protected void onStart()
@@ -563,7 +565,28 @@ public class ObservationEditor extends AppCompatActivity {
                 intent.putExtra(INaturalistService.OBSERVATION_ID, (mObservation.id == null ? mObservation._id : mObservation.id));
                 intent.putExtra(ProjectSelectorActivity.IS_CONFIRMATION, true);
                 intent.putExtra(ProjectSelectorActivity.PROJECT_FIELDS, mProjectFieldValues);
+
+                // Show both "regular" projects and umbrella/collection projects the observation belongs to
                 intent.putIntegerArrayListExtra(INaturalistService.PROJECT_ID, mProjectIds);
+
+                ArrayList<Integer> allProjects = new ArrayList<>();
+
+                if (mObsJson != null) {
+                    try {
+                        JSONObject json = new JSONObject(mObsJson);
+                        if (json.has("non_traditional_projects") && !json.isNull("non_traditional_projects")) {
+                            JSONArray umbrellaProjects = json.getJSONArray("non_traditional_projects");
+                            for (int i = 0; i < umbrellaProjects.length(); i++) {
+                                allProjects.add(umbrellaProjects.getJSONObject(i).getInt("project_id"));
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                intent.putIntegerArrayListExtra(ProjectSelectorActivity.UMBRELLA_PROJECT_IDs, allProjects);
+
                 startActivityForResult(intent, PROJECT_SELECTOR_REQUEST_CODE);
             }
         });
@@ -655,6 +678,8 @@ public class ObservationEditor extends AppCompatActivity {
         initUi();
 
         if (intent != null) {
+            mObsJson = intent.getStringExtra(OBSERVATION_JSON);
+
             String taxonJson = (String) mApp.getServiceResult(TAXON);
             if (taxonJson != null) {
                 BetterJSONObject taxon = new BetterJSONObject(taxonJson);

@@ -58,6 +58,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     public static final String PROJECT_IDS = "project_ids";
     public static final String PROJECT_FIELDS = "project_fields";
     public static final String IS_CONFIRMATION = "is_confirmation";
+    public static final String UMBRELLA_PROJECT_IDs = "umbrella_project_ids";
 
     private ImageButton mSaveButton;
     
@@ -84,6 +85,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     private int mLastProjectIdFocused = -1;
     private int mLastProjectFieldIndex;
     private int mLastProjectFieldTop;
+    @State public ArrayList<Integer> mUmbrellaProjects;
 
     private class ProjectReceiver extends BroadcastReceiver {
         private ArrayList<JSONObject> mProjects;
@@ -121,6 +123,29 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                     }
                 }
             });
+
+            // Separate into sub lists - "regular" projects and umbrella/collection projects
+            ArrayList<JSONObject> regularProjects = new ArrayList<>();
+            ArrayList<JSONObject> collectionProjects = new ArrayList<>();
+
+            for (JSONObject project : mProjects) {
+                String projectType = project.optString("project_type", "");
+                if ((projectType.equals(Project.PROJECT_TYPE_COLLECTION)) || (projectType.equals(Project.PROJECT_TYPE_UMBRELLA))) {
+                    collectionProjects.add(project);
+                } else {
+                    regularProjects.add(project);
+                }
+            }
+
+            // Create a final list, first regular projects, a separator/header and then collection/umbrella projects
+            mProjects = regularProjects;
+            try {
+                mProjects.add(new JSONObject(String.format("{ \"is_header\": true, \"title\": \"%s\" }", getString(R.string.collection_and_umbrella_projects))));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mProjects.addAll(collectionProjects);
+
 
             if (projectList.length() > 0) {
                 mLoadingProjects.setVisibility(View.GONE);
@@ -227,6 +252,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         if (savedInstanceState == null) {
             mObservationId = (int) intent.getIntExtra(INaturalistService.OBSERVATION_ID, 0);
             mObservationProjects = intent.getIntegerArrayListExtra(INaturalistService.PROJECT_ID);
+            mUmbrellaProjects = intent.getIntegerArrayListExtra(UMBRELLA_PROJECT_IDs);
             mIsConfirmation = intent.getBooleanExtra(ProjectSelectorActivity.IS_CONFIRMATION, false);
             mProjectFieldValues = (HashMap<Integer, ProjectFieldValue>) intent.getSerializableExtra(ProjectSelectorActivity.PROJECT_FIELDS);
         }
@@ -370,7 +396,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                         ArrayList<JSONObject> results = new ArrayList<JSONObject>(mOriginalItems.size());
                         for (JSONObject item : mOriginalItems) {
                             try {
-                                if (item.getString("title").toLowerCase().indexOf(search) > -1) {
+                                if ((item.optBoolean("is_header", false)) || (item.getString("title").toLowerCase().indexOf(search) > -1)) {
                                     results.add(item);
                                 }
                             } catch (JSONException e) {
@@ -411,14 +437,27 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View view = inflater.inflate(mIsConfirmation ? R.layout.project_selector_confirmation_item : R.layout.project_selector_item, parent, false);
             BetterJSONObject item = new BetterJSONObject(mItems.get(position));
+            boolean isHeader = ((item.getBoolean("is_header") != null) && (item.getBoolean("is_header") == true));
+            String projectType = item.getString("project_type");
+            boolean isUmbrellaProject = ((projectType != null) && ((projectType.equals(Project.PROJECT_TYPE_COLLECTION)) || (projectType.equals(Project.PROJECT_TYPE_UMBRELLA))));
+
+            View view = null;
+            if (isHeader) {
+                view = inflater.inflate(R.layout.project_header, parent, false);
+            } else {
+                view = inflater.inflate(mIsConfirmation ? R.layout.project_selector_confirmation_item : R.layout.project_selector_item, parent, false);
+            }
 
             saveProjectFieldValues();
 
-            TextView projectName = (TextView) view.findViewById(R.id.project_name);
+            TextView projectName = (TextView) view.findViewById(isHeader ? R.id.header_title : R.id.project_name);
             final String projectTitle = item.getString("title");
             projectName.setText(projectTitle);
+
+            if (isHeader) {
+                return view;
+            }
 
             TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
             final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
@@ -457,81 +496,101 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             }
 
             view.setTag(R.id.TAG_PROJECT, item);
+
             final int projectId = item.getInt("id");
-            view.setTag(R.id.TAG_IS_CHECKED, mObservationProjects.contains(Integer.valueOf(projectId)));
-            if (mObservationProjects.contains(Integer.valueOf(projectId))) {
-                // Checked on
-                if (mIsConfirmation) {
-                    view.findViewById(R.id.project_selected_icon).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.project_unselected_icon).setVisibility(View.GONE);
-                    view.setBackgroundColor(Color.parseColor("#f1f6e8"));
 
-                    // Show the project fields
-                    TableLayout projectFieldsTable = (TableLayout) view.findViewById(R.id.project_fields);
-                    List<ProjectField> fields = ProjectFieldViewer.sortProjectFields(projectId, mProjectFields);
+            if (isUmbrellaProject) {
+                boolean contains = mUmbrellaProjects.contains(Integer.valueOf(projectId));
 
-                    List<ProjectFieldViewer> viewers = new ArrayList<ProjectFieldViewer>();
-                    mProjectFieldViewers.put(projectId, viewers);
+                view.findViewById(R.id.project_selected_icon).setVisibility(View.GONE);
+                view.findViewById(R.id.project_unselected_icon).setVisibility(View.GONE);
 
-                    if (fields.size() > 0) {
-                        projectFieldsTable.setVisibility(View.VISIBLE);
-                        ((ViewGroup)view.findViewById(R.id.project_top_container)).setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(View currentView) {
-                                mProjectList.performItemClick(
-                                        view,
-                                        position,
-                                        projectId);
-                            }
-                        });
-                    } else {
-                        projectFieldsTable.setVisibility(View.GONE);
-                    }
+                if (contains) {
+                    // Checked on
+                    view.findViewById(R.id.umbrella_project_selected).setVisibility(View.VISIBLE);
+                } else {
+                    // Checked off
+                    view.findViewById(R.id.umbrella_project_selected).setVisibility(View.GONE);
+                }
 
-                    for (final ProjectField field : fields) {
-                        ProjectFieldValue fieldValue = mProjectFieldValues.get(field.field_id);
-                        final ProjectFieldViewer fieldViewer = new ProjectFieldViewer(ProjectSelectorActivity.this, field, fieldValue, true);
+            } else {
+                view.setTag(R.id.TAG_IS_CHECKED, mObservationProjects.contains(Integer.valueOf(projectId)));
+                view.findViewById(R.id.umbrella_project_selected).setVisibility(View.GONE);
+                if (mObservationProjects.contains(Integer.valueOf(projectId))) {
+                    // Checked on
+                    if (mIsConfirmation) {
+                        view.findViewById(R.id.project_selected_icon).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.project_unselected_icon).setVisibility(View.GONE);
+                        view.setBackgroundColor(Color.parseColor("#f1f6e8"));
 
-                        viewers.add(fieldViewer);
+                        // Show the project fields
+                        TableLayout projectFieldsTable = (TableLayout) view.findViewById(R.id.project_fields);
+                        List<ProjectField> fields = ProjectFieldViewer.sortProjectFields(projectId, mProjectFields);
 
-                        if (field.is_required) {
-                            view.findViewById(R.id.is_required).setVisibility(View.VISIBLE);
+                        List<ProjectFieldViewer> viewers = new ArrayList<ProjectFieldViewer>();
+                        mProjectFieldViewers.put(projectId, viewers);
+
+                        if (fields.size() > 0) {
+                            projectFieldsTable.setVisibility(View.VISIBLE);
+                            final View finalView = view;
+                            ((ViewGroup) view.findViewById(R.id.project_top_container)).setOnClickListener(new OnClickListener() {
+                                @Override
+                                public void onClick(View currentView) {
+                                    mProjectList.performItemClick(
+                                            finalView,
+                                            position,
+                                            projectId);
+                                }
+                            });
+                        } else {
+                            projectFieldsTable.setVisibility(View.GONE);
                         }
 
-                        fieldViewer.setOnFocusedListener(new ProjectFieldViewer.FocusedListener() {
-                            @Override
-                            public void onFocused() {
-                                mLastProjectFieldFocused = field.field_id;
-                                mLastProjectIdFocused = projectId;
+                        for (final ProjectField field : fields) {
+                            ProjectFieldValue fieldValue = mProjectFieldValues.get(field.field_id);
+                            final ProjectFieldViewer fieldViewer = new ProjectFieldViewer(ProjectSelectorActivity.this, field, fieldValue, true);
 
-                                mLastProjectFieldIndex = mProjectList.getFirstVisiblePosition();
-                                View v = mProjectList.getChildAt(0);
-                                mLastProjectFieldTop = (v == null) ? 0 : (v.getTop() - mProjectList.getPaddingTop());
+                            viewers.add(fieldViewer);
+
+                            if (field.is_required) {
+                                view.findViewById(R.id.is_required).setVisibility(View.VISIBLE);
                             }
-                        });
 
-                        projectFieldsTable.addView(fieldViewer.getView());
+                            fieldViewer.setOnFocusedListener(new ProjectFieldViewer.FocusedListener() {
+                                @Override
+                                public void onFocused() {
+                                    mLastProjectFieldFocused = field.field_id;
+                                    mLastProjectIdFocused = projectId;
+
+                                    mLastProjectFieldIndex = mProjectList.getFirstVisiblePosition();
+                                    View v = mProjectList.getChildAt(0);
+                                    mLastProjectFieldTop = (v == null) ? 0 : (v.getTop() - mProjectList.getPaddingTop());
+                                }
+                            });
+
+                            projectFieldsTable.addView(fieldViewer.getView());
+                        }
+
+                        focusProjectField();
+
+                    } else {
+                        ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
+                        projectSelected.setImageResource(R.drawable.ic_action_accept);
+                        projectName.setTypeface(Typeface.DEFAULT_BOLD);
+                        projectDescription.setTypeface(Typeface.DEFAULT_BOLD);
                     }
-
-                    focusProjectField();
-
                 } else {
-                    ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
-                    projectSelected.setImageResource(R.drawable.ic_action_accept);
-                    projectName.setTypeface(Typeface.DEFAULT_BOLD);
-                    projectDescription.setTypeface(Typeface.DEFAULT_BOLD);
-                }
-            } else {
-                // Checked off
-                if (mIsConfirmation) {
-                    view.findViewById(R.id.project_selected_icon).setVisibility(View.GONE);
-                    view.findViewById(R.id.project_unselected_icon).setVisibility(View.VISIBLE);
-                    view.setBackgroundColor(Color.parseColor("#ffffff"));
-                } else {
-                    ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
-                    projectSelected.setImageResource(android.R.color.transparent);
-                    projectName.setTypeface(Typeface.DEFAULT);
-                    projectDescription.setTypeface(Typeface.DEFAULT);
+                    // Checked off
+                    if (mIsConfirmation) {
+                        view.findViewById(R.id.project_selected_icon).setVisibility(View.GONE);
+                        view.findViewById(R.id.project_unselected_icon).setVisibility(View.VISIBLE);
+                        view.setBackgroundColor(Color.parseColor("#ffffff"));
+                    } else {
+                        ImageView projectSelected = (ImageView) view.findViewById(R.id.project_selected);
+                        projectSelected.setImageResource(android.R.color.transparent);
+                        projectName.setTypeface(Typeface.DEFAULT);
+                        projectDescription.setTypeface(Typeface.DEFAULT);
+                    }
                 }
             }
 
@@ -569,6 +628,14 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     @Override
     public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
         BetterJSONObject project = (BetterJSONObject) view.getTag(R.id.TAG_PROJECT);
+        String projectType = project.getString("project_type");
+        boolean isUmbrellaProject = ((projectType != null) && ((projectType.equals(Project.PROJECT_TYPE_COLLECTION)) || (projectType.equals(Project.PROJECT_TYPE_UMBRELLA))));
+
+        if (isUmbrellaProject) {
+            // Umbrella/collection projects cannot be selected / expanded
+            return;
+        }
+
         Integer projectId = Integer.valueOf(project.getInt("id"));
         
         if (mObservationProjects.contains(projectId)) {

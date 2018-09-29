@@ -1806,6 +1806,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         case R.id.edit_observation:
             Intent intent = new Intent(Intent.ACTION_EDIT, mUri, this, ObservationEditor.class);
             if (mTaxon != null) mApp.setServiceResult(ObservationEditor.TAXON, mTaxon.toString());
+            if (mObsJson != null) intent.putExtra(ObservationEditor.OBSERVATION_JSON, mObsJson);
             startActivityForResult(intent, REQUEST_CODE_EDIT_OBSERVATION);
             return true;
         case R.id.flag_captive:

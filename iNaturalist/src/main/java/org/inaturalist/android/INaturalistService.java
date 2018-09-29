@@ -2342,7 +2342,7 @@ public class INaturalistService extends IntentService {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
 
-        String url = String.format("%s/observations/%d?locale=%s", API_HOST, id, deviceLanguage);
+        String url = String.format("%s/observations/%d?locale=%s&include_new_projects=true", API_HOST, id, deviceLanguage);
 
         JSONArray json = get(url, authenticated);
         if (json == null || json.length() == 0) {
