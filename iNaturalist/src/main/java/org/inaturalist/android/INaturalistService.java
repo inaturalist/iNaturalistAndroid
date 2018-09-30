@@ -2658,11 +2658,13 @@ public class INaturalistService extends IntentService {
                     if (json != null) {
                         Observation obs = new Observation(new BetterJSONObject(json));
                         for (int i = 0; i < obs.photos.size(); i++) {
-                            if (obs.photos.get(0).id.equals(op.id)) {
-                                // Found the appropriate photo - update the URL
-                                op.photo_url = obs.photos.get(i).photo_url;
-                                foundPhoto = true;
-                                break;
+                            if ((obs.photos.get(0).id != null) && (op.id != null)) {
+                                if (obs.photos.get(0).id.equals(op.id)) {
+                                    // Found the appropriate photo - update the URL
+                                    op.photo_url = obs.photos.get(i).photo_url;
+                                    foundPhoto = true;
+                                    break;
+                                }
                             }
                         }
                     }
