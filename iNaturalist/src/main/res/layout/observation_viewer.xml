@@ -793,7 +793,7 @@
             android:paddingRight="16dp"
             android:paddingTop="10dp"
             android:layout_width="fill_parent"
-            android:layout_height="146dp">
+            android:layout_height="184dp">
 
             <TextView
                 android:layout_width="wrap_content"
