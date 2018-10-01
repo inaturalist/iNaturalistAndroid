@@ -554,5 +554,19 @@
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="description">Description</string>
+    <string name="quantity">Qty</string>
+    <!-- Number of observations. Do not change the format to $d -->
+    <string name="observation_count">%1$s Observations</string>
+    <string name="observation_count_single">%1$d Observation</string>
+    <string name="agree2">Agree</string>
+    <string name="project_observations">Observations</string>
+    <string name="project_species">Species</string>
+    <string name="project_people">People</string>
+    <string name="project_identifiers">Identifiers</string>
+    <string name="got_it">Got it!</string>
+    <string name="view_all">View All</string>
+    <string name="new_badge">New</string>
+    <string name="observers">Observers</string>
 </resources>
 
