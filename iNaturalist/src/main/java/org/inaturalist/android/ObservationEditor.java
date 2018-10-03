@@ -684,7 +684,15 @@ public class ObservationEditor extends AppCompatActivity {
             if (taxonJson != null) {
                 BetterJSONObject taxon = new BetterJSONObject(taxonJson);
                 JSONObject idPhoto = taxon.getJSONObject("default_photo");
-                int rankLevel = taxon.getInt("rank_level") != null ? taxon.getInt("rank_level") : 0;
+                int rankLevel = 0;
+                if (!taxon.isNull("rank_level")) {
+                    Object rankLevelValue = taxon.get("rank_level");
+                    if (rankLevelValue instanceof Integer) {
+                        rankLevel = (Integer) rankLevelValue;
+                    } else if (rankLevelValue instanceof Double) {
+                        rankLevel = ((Double) rankLevelValue).intValue();
+                    }
+                }
                 setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), rankLevel, false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
                 mApp.setServiceResult(TAXON, null);
             } else if (mObservation.taxon_id != null) {

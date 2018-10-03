@@ -1342,6 +1342,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         };
         mViewPager.addOnPageChangeListener(pageListener);
 
+        if (mViewType == null) {
+            mViewType = VIEW_TYPE_OBSERVATIONS;
+        }
+
         if (mViewType.equals(VIEW_TYPE_OBSERVATIONS)) {
             tabListener.onTabSelected(mTabLayout.getTabAt(0));
         } else if (mViewType.equals(VIEW_TYPE_SPECIES)) {
