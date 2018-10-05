@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:id="@+id/main_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/attribute_name"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="Life Stage very very very long"
+            android:textSize="15sp"
+            android:textColor="#808080"
+            android:layout_gravity="top"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/expand"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/baseline_arrow_drop_down_black_48"
+                    android:tint="#C3C3C3" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_toLeftOf="@id/expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/user_pic"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="top"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/usericon" />
+
+                    <TextView
+                        android:id="@+id/attribute_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Larva very very long"
+                        android:textSize="15sp"
+                        android:textColor="#808080"
+                        android:layout_gravity="top"
+                        />
+
+                    <ImageView
+                        android:id="@+id/delete_attribute_value"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="5dp"
+                        android:tint="#C3C3C3"
+                        android:src="@drawable/baseline_cancel_black_24" />
+
+                    <TextView
+                        android:id="@+id/select_attribute_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select"
+                        android:textSize="15sp"
+                        android:textColor="@color/inatapptheme_color"
+                        android:layout_gravity="top"
+                        />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/expanded_section"
+                android:orientation="horizontal"
+                android:paddingTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/agree_container"
+                    android:clickable="true"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="left|bottom"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                     <ImageView
+                        android:id="@+id/agree_prefix"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/inatapptheme_color"
+                        android:src="@drawable/ic_check_black_24dp" />
+
+                    <ImageView
+                        android:id="@+id/agree_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="#C3C3C3"
+                        android:src="@drawable/baseline_thumb_up_black_36" />
+
+                    <TextView
+                        android:id="@+id/agree_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agree2"
+                        android:textSize="13sp"
+                        android:tint="#C3C3C3"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/disagree_container"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/disagree_prefix"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="#FF0000"
+                        android:src="@drawable/ic_close_black_48dp" />
+
+                    <ImageView
+                        android:id="@+id/disagree_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:tint="#C3C3C3"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/baseline_thumb_down_black_36" />
+
+                    <TextView
+                        android:id="@+id/disagree_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/disagree"
+                        android:textSize="13sp"
+                        android:tint="#C3C3C3"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/main_view"
+        android:layout_alignTop="@id/main_view"
+        android:clickable="true"
+        android:background="#88000000">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</RelativeLayout>

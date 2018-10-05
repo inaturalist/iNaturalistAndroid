@@ -86,7 +86,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
-public class ObservationViewerActivity extends AppCompatActivity {
+public class ObservationViewerActivity extends AppCompatActivity implements AnnotationsAdapter.OnAnnotationActions {
     private static final int NEW_ID_REQUEST_CODE = 0x101;
     private static final int REQUEST_CODE_LOGIN = 0x102;
     private static final int REQUEST_CODE_EDIT_OBSERVATION = 0x103;
@@ -218,6 +218,14 @@ public class ObservationViewerActivity extends AppCompatActivity {
     private EditText mAddCommentText;
     private ImageView mAddCommentDone;
     private MentionsAutoComplete mCommentMentions;
+    private AttributesReceiver mAttributesReceiver;
+    private ChangeAttributesReceiver mChangeAttributesReceiver;
+    @State public SerializableJSONArray mAttributes;
+
+    private ViewGroup mAnnotationSection;
+    private ListView mAnnotationsList;
+    private ProgressBar mLoadingAnnotations;
+    private ViewGroup mAnnotationsContent;
 
     @Override
 	protected void onStart() {
@@ -232,6 +240,55 @@ public class ObservationViewerActivity extends AppCompatActivity {
 		FlurryAgent.onEndSession(this);
 	}
 
+
+    @Override
+    public void onAnnotationCollapsedExpanded() {
+        // Annotation has been expanded / collapsed - resize the list to show it
+        (new Handler()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ActivityHelper.setListViewHeightBasedOnItems(mAnnotationsList);
+                mAnnotationsList.requestLayout();
+            }
+        }, 50);
+    }
+
+    @Override
+    public void onDeleteAnnotationValue(String uuid) {
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.UUID, uuid);
+        startService(serviceIntent);
+    }
+
+    @Override
+    public void onAnnotationAgree(String uuid) {
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.UUID, uuid);
+        startService(serviceIntent);
+    }
+
+    @Override
+    public void onAnnotationDisagree(String uuid) {
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_DISAGREE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.UUID, uuid);
+        startService(serviceIntent);
+    }
+
+    @Override
+    public void onAnnotationVoteDelete(String uuid) {
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION_VOTE, null, ObservationViewerActivity.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.UUID, uuid);
+        startService(serviceIntent);
+    }
+
+    @Override
+    public void onSetAnnotationValue(int annotationId, int valueId) {
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_SET_ANNOTATION_VALUE, null, ObservationViewerActivity.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.ATTRIBUTE_ID, annotationId);
+        serviceIntent.putExtra(INaturalistService.VALUE_ID, valueId);
+        serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+        startService(serviceIntent);
+    }
 
     private class PhotosViewPagerAdapter extends PagerAdapter {
         private Cursor mImageCursor = null;
@@ -389,6 +446,19 @@ public class ObservationViewerActivity extends AppCompatActivity {
         setupMap();
         resizeActivityList();
         resizeFavList();
+        refreshAttributes();
+
+        mAttributesReceiver = new AttributesReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.GET_ATTRIBUTES_FOR_TAXON_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mAttributesReceiver, filter, ObservationViewerActivity.this);
+
+        mChangeAttributesReceiver = new ChangeAttributesReceiver();
+        IntentFilter filter2 = new IntentFilter(INaturalistService.DELETE_ANNOTATION_RESULT);
+        filter2.addAction(INaturalistService.AGREE_ANNOTATION_RESULT);
+        filter2.addAction(INaturalistService.DISAGREE_ANNOTATION_RESULT);
+        filter2.addAction(INaturalistService.DELETE_ANNOTATION_VOTE_RESULT);
+        filter2.addAction(INaturalistService.SET_ANNOTATION_VALUE_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mChangeAttributesReceiver, filter2, ObservationViewerActivity.this);
     }
 
     @Override
@@ -407,6 +477,11 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mHelper = new ActivityHelper(this);
 
         reloadObservation(savedInstanceState, false);
+
+        mAnnotationSection = (ViewGroup) findViewById(R.id.annotations_section);
+        mAnnotationsList = (ListView) findViewById(R.id.annotations_list);
+        mLoadingAnnotations = (ProgressBar) findViewById(R.id.loading_annotations);
+        mAnnotationsContent = (ViewGroup) findViewById(R.id.annotations_content);
 
         mAddCommentBackground = (View) findViewById(R.id.add_comment_background);
         mAddCommentContainer = (ViewGroup) findViewById(R.id.add_comment_container);
@@ -528,6 +603,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
         loadObservationIntoUI();
         getCommentIdList();
         refreshDataQuality();
+        refreshAttributes();
     }
 
     private void reloadObservation(Bundle savedInstanceState, boolean forceReload) {
@@ -586,6 +662,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             startService(serviceIntent);
+
         }
 
     }
@@ -1879,6 +1956,49 @@ public class ObservationViewerActivity extends AppCompatActivity {
         Bridge.saveInstanceState(this, outState);
     }
 
+    private class ChangeAttributesReceiver extends BroadcastReceiver {
+
+		@Override
+	    public void onReceive(Context context, Intent intent) {
+            Log.e(TAG, "ChangeAttributesReceiver");
+
+            // Re-download the observation JSON so we'll refresh the annotations
+
+            mObservationReceiver = new ObservationReceiver();
+            IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
+            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
+
+            mLoadObsJson = true;
+
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            startService(serviceIntent);
+	    }
+
+	}
+
+    private class AttributesReceiver extends BroadcastReceiver {
+
+		@Override
+	    public void onReceive(Context context, Intent intent) {
+            Log.e(TAG, "AttributesReceiver");
+
+            BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, ObservationViewerActivity.this);
+
+            BetterJSONObject resultsObj = (BetterJSONObject) mApp.getServiceResult(INaturalistService.GET_ATTRIBUTES_FOR_TAXON_RESULT);
+
+            if (resultsObj == null) {
+                return;
+            }
+
+            mAttributes  = resultsObj.getJSONArray("results");
+
+            refreshAttributes();
+	    }
+
+	}
+
     private class ObservationReceiver extends BroadcastReceiver {
 
 		@Override
@@ -2024,6 +2144,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
             resizeFavList();
             refreshProjectList();
             refreshDataQuality();
+            refreshAttributes();
 	    }
 
 	}
@@ -2059,6 +2180,12 @@ public class ObservationViewerActivity extends AppCompatActivity {
         if (taxon == null) return;
 
         mTaxonJson = taxon.toString();
+
+
+        // Now that we have full taxon details, we can retrieve the annotations/attributes for that taxon
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.TAXON, new BetterJSONObject(mTaxonJson));
+        startService(serviceIntent);
     }
 
     private void reloadPhotos() {
@@ -2066,6 +2193,47 @@ public class ObservationViewerActivity extends AppCompatActivity {
         mPhotosAdapter = new PhotosViewPagerAdapter();
         mPhotosViewPager.setAdapter(mPhotosAdapter);
         mIndicator.setViewPager(mPhotosViewPager);
+    }
+
+    private void refreshAttributes() {
+        if (mAttributes == null) {
+            mAnnotationSection.setVisibility(View.VISIBLE);
+            mLoadingAnnotations.setVisibility(View.VISIBLE);
+            mAnnotationsContent.setVisibility(View.GONE);
+            return;
+
+        } else if (mAttributes.getJSONArray().length() == 0) {
+            mAnnotationSection.setVisibility(View.GONE);
+            return;
+        }
+
+        mAnnotationsContent.setVisibility(View.VISIBLE);
+        mAnnotationSection.setVisibility(View.VISIBLE);
+        mLoadingAnnotations.setVisibility(View.GONE);
+
+        JSONArray obsAnnotations = null;
+
+        if (mObsJson != null) {
+            try {
+                JSONObject obs = new JSONObject(mObsJson);
+                obsAnnotations = obs.getJSONArray("annotations");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, new JSONObject(mTaxonJson), mAttributes.getJSONArray(), obsAnnotations));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        ActivityHelper.resizeList(mAnnotationsList);
+
+        if (mAnnotationsList.getAdapter().getCount() == 0) {
+            // No visible annotation - hide the entire section
+            mAnnotationSection.setVisibility(View.GONE);
+        }
     }
 
     private void resizeFavList() {
@@ -2155,6 +2323,7 @@ public class ObservationViewerActivity extends AppCompatActivity {
                 resizeFavList();
                 refreshProjectList();
                 refreshDataQuality();
+                refreshAttributes();
 
                 setResult(RESULT_OBSERVATION_CHANGED);
             }
@@ -2340,6 +2509,8 @@ public class ObservationViewerActivity extends AppCompatActivity {
         super.onPause();
 
         BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
     }
 
 }

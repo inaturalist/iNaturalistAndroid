@@ -568,5 +568,9 @@
     <string name="view_all">View All</string>
     <string name="new_badge">New</string>
     <string name="observers">Observers</string>
+    <string name="attribute">Attribute</string>
+    <string name="value">Value</string>
+    <string name="disagree">Disagree</string>
+    <string name="annotations">Annotations</string>
 </resources>
 
