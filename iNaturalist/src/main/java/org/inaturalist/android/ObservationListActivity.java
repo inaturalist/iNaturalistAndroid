@@ -557,6 +557,10 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     }
 
     private void triggerSyncIfNeeded() {
+        if (!mApp.loggedIn()) {
+            return;
+        }
+
         boolean hasOldObs = hasOldObservations();
         if ((mApp.getAutoSync() && !mApp.getIsSyncing() && (!mSyncRequested)) || (hasOldObs)) {
             int syncCount = 0;
