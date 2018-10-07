@@ -176,6 +176,8 @@ public class ExploreActivity extends BaseFragmentActivity {
     private boolean mMapReady = false;
     private boolean mShouldMoveMapAccordingToSearchFilters = false;
     @State public boolean mLocationPermissionRequested = false;
+    @State public SerializableJSONArray mAllAnnotations;
+    private AnnotationsReceiver mAnnotationsReceiver;
 
     @Override
     protected void onStart() {
@@ -213,7 +215,8 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             case R.id.filters:
                 intent = new Intent(ExploreActivity.this, ExploreFiltersActivity.class);
-                intent.putExtra(ExploreSearchActivity.SEARCH_FILTERS, mSearchFilters);
+                intent.putExtra(ExploreFiltersActivity.SEARCH_FILTERS, mSearchFilters);
+                intent.putExtra(ExploreFiltersActivity.ALL_ANNOTATIONS, mAllAnnotations);
                 startActivityForResult(intent, FILTERS_REQUEST_CODE);
 
                 return true;
@@ -415,6 +418,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         super.onPause();
         BaseFragmentActivity.safeUnregisterReceiver(mExploreResultsReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mLocationReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mAnnotationsReceiver, this);
 
         mLoadingNextResults = new boolean[]{false, false, false, false};
     }
@@ -435,6 +439,20 @@ public class ExploreActivity extends BaseFragmentActivity {
         IntentFilter filter2 = new IntentFilter();
         filter2.addAction(INaturalistService.GET_CURRENT_LOCATION_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mLocationReceiver, filter2, this);
+
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
+        startService(serviceIntent);
+
+        mAnnotationsReceiver = new AnnotationsReceiver();
+        IntentFilter filter3 = new IntentFilter();
+        filter3.addAction(INaturalistService.GET_ALL_ATTRIBUTES_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mAnnotationsReceiver, filter3, this);
+
+        if (mAllAnnotations == null) {
+            Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_ALL_ATTRIBUTES, null, ExploreActivity.this, INaturalistService.class);
+            startService(serviceIntent2);
+        }
+
 
         refreshViewState();
     }
@@ -601,6 +619,40 @@ public class ExploreActivity extends BaseFragmentActivity {
         }
     }
 
+    private class AnnotationsReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle extras = intent.getExtras();
+
+            boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
+            BetterJSONObject resultsObject;
+            SerializableJSONArray resultsJSON;
+
+            if (isSharedOnApp) {
+                resultsObject = (BetterJSONObject) mApp.getServiceResult(intent.getAction());
+            } else {
+                resultsObject = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.RESULTS);
+            }
+
+            JSONArray results = null;
+
+            if (resultsObject != null) {
+                resultsJSON = resultsObject.getJSONArray("results");
+                Integer count = resultsObject.getInt("total_results");
+                if (count != null) {
+                    results = resultsJSON.getJSONArray();
+                }
+            }
+
+            if (results == null) {
+                return;
+            }
+
+            mAllAnnotations = new SerializableJSONArray(results);
+        }
+    }
+
     private class ExploreResultsReceiver extends BroadcastReceiver {
 
         @Override
@@ -761,6 +813,18 @@ public class ExploreActivity extends BaseFragmentActivity {
                 }
                 break;
         }
+
+        if ((mSearchFilters.annotationNameId != null) && (mSearchFilters.annotationName != null)) {
+            builder.append(mSearchFilters.annotationName);
+
+            if ((mSearchFilters.annotationValueId != null) && (mSearchFilters.annotationValue != null)) {
+                builder.append(" = ");
+                builder.append(mSearchFilters.annotationValue);
+            }
+
+            builder.append(", ");
+        }
+
 
         if (builder.length() == 0) {
             filterBar.setText("");

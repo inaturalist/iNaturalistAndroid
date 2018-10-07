@@ -133,6 +133,7 @@ public class INaturalistService extends IntentService {
     public static final String EXPLORE_GET_IDENTIFIERS_RESULT = "explore_get_identifiers_result";
     public static final String EXPLORE_GET_OBSERVERS_RESULT = "explore_get_observers_result";
     public static final String GET_ATTRIBUTES_FOR_TAXON_RESULT = "get_attributes_for_taxon_result";
+    public static final String GET_ALL_ATTRIBUTES_RESULT = "get_all_attributes_result";
     public static final String DELETE_ANNOTATION_RESULT = "delete_annotation_result";
     public static final String DELETE_ANNOTATION_VOTE_RESULT = "delete_annotation_vote_result";
     public static final String SET_ANNOTATION_VALUE_RESULT = "set_annotation_value_result";
@@ -245,6 +246,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_UPDATE_USER_DETAILS = "update_user_details";
     public static String ACTION_CLEAR_OLD_PHOTOS_CACHE = "clear_old_photos_cache";
     public static String ACTION_GET_ATTRIBUTES_FOR_TAXON = "get_attributes_for_taxon";
+    public static String ACTION_GET_ALL_ATTRIBUTES = "get_all_attributes";
     public static String ACTION_DELETE_ANNOTATION = "delete_annotation";
     public static String ACTION_AGREE_ANNOTATION = "agree_annotation";
     public static String ACTION_DELETE_ANNOTATION_VOTE = "delete_annotation_vote";
@@ -649,6 +651,14 @@ public class INaturalistService extends IntentService {
 
                 Intent reply = new Intent(DISAGREE_ANNOTATION_RESULT);
                 reply.putExtra(SUCCESS, results != null);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_ALL_ATTRIBUTES)) {
+                BetterJSONObject results = getAllAttributes();
+
+                Intent reply = new Intent(GET_ALL_ATTRIBUTES_RESULT);
+                mApp.setServiceResult(GET_ALL_ATTRIBUTES_RESULT, results);
+                reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_ATTRIBUTES_FOR_TAXON)) {
@@ -1741,6 +1751,27 @@ public class INaturalistService extends IntentService {
 
         try {
             res = (JSONObject) json.get(0);
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject getAllAttributes() throws AuthenticationException {
+        Locale deviceLocale = getResources().getConfiguration().locale;
+        String deviceLanguage = deviceLocale.getLanguage();
+
+
+        String url = API_HOST + "/controlled_terms?locale=" + deviceLanguage;
+
+        JSONArray json = get(url);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            if (!res.has("results")) return null;
             return new BetterJSONObject(res);
         } catch (JSONException e) {
             return null;

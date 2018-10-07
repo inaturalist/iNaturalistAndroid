@@ -53,6 +53,12 @@ public class ExploreSearchFilters implements Serializable {
     private String projectJson;
     private String userJson;
 
+    public Integer annotationNameId;
+    public String annotationName;
+    public Integer annotationValueId;
+    public String annotationValue;
+
+
     public ExploreSearchFilters() {
         resetToDefault();
     }
@@ -73,6 +79,11 @@ public class ExploreSearchFilters implements Serializable {
         observedOnMonths = new HashSet<>();
 
         dateFilterType = DATE_TYPE_ANY;
+
+        annotationNameId = null;
+        annotationValueId = null;
+        annotationName = null;
+        annotationValue = null;
     }
 
     public boolean isDirty() {
@@ -82,7 +93,8 @@ public class ExploreSearchFilters implements Serializable {
                 (!qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH)) ||
                 (dateFilterType != ExploreSearchFilters.DATE_TYPE_ANY) ||
                 (observedOn != null) || (observedOnMinDate != null) ||
-                (observedOnMaxDate != null) || (!observedOnMonths.isEmpty()));
+                (observedOnMaxDate != null) || (!observedOnMonths.isEmpty()) ||
+                (annotationNameId != null) || (annotationValueId != null));
     }
 
     private void writeObject(ObjectOutputStream oos) throws IOException {
@@ -165,6 +177,14 @@ public class ExploreSearchFilters implements Serializable {
         } else if (dateFilterType == DATE_TYPE_MIN_MAX_DATE) {
             if (observedOnMinDate != null) url.append("&d1=" + formatDate(observedOnMinDate));
             if (observedOnMaxDate != null) url.append("&d2=" + formatDate(observedOnMaxDate));
+        }
+
+        if (annotationNameId != null) {
+            url.append("&term_id=" + annotationNameId);
+
+            if (annotationValueId != null) {
+                url.append("&term_value_id=" + annotationValueId);
+            }
         }
 
         if (url.length() == 0) return url.toString();

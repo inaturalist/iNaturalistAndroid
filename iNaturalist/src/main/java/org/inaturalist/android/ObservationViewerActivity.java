@@ -1989,6 +1989,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             BetterJSONObject resultsObj = (BetterJSONObject) mApp.getServiceResult(INaturalistService.GET_ATTRIBUTES_FOR_TAXON_RESULT);
 
             if (resultsObj == null) {
+                mAttributes = new SerializableJSONArray();
+                refreshAttributes();
                 return;
             }
 
@@ -2173,11 +2175,29 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             taxonId = observation.optInt("community_taxon_id");
         }
 
-        if (taxonId == -1) return;
+        if (taxonId == -1) {
+            mAttributes = new SerializableJSONArray();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    refreshAttributes();
+                }
+            });
+            return;
+        }
 
         JSONObject taxon = downloadTaxon(taxonId);
 
-        if (taxon == null) return;
+        if (taxon == null) {
+            mAttributes = new SerializableJSONArray();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    refreshAttributes();
+                }
+            });
+            return;
+        }
 
         mTaxonJson = taxon.toString();
 

@@ -572,5 +572,9 @@
     <string name="value">Value</string>
     <string name="disagree">Disagree</string>
     <string name="annotations">Annotations</string>
+    <!-- Used when filtering observations with annotations -->
+    <string name="with_annotation">With Annotation</string>
+    <string name="annotation_name">Annotation Name</string>
+    <string name="none">None</string>
 </resources>
 

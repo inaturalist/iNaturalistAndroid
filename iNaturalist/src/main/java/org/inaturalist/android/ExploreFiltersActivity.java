@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -35,6 +36,7 @@ import com.flurry.android.FlurryAgent;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.text.SimpleDateFormat;
@@ -50,6 +52,7 @@ import java.util.TreeSet;
 
 public class ExploreFiltersActivity extends AppCompatActivity {
     public static final String SEARCH_FILTERS = "search_filters";
+    public static final String ALL_ANNOTATIONS = "all_annotations";
 
     private static final String[] ICONIC_TAXA = {
             "Plantae", "Aves", "Insecta", "Amphibia", "Reptilia", "Fungi", "Animalia", "Chromista", "Protozoa", "Actinopterygii", "Mammalia", "Mollusca", "Arachnida"
@@ -87,8 +90,12 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     private Spinner mDateMin;
     private Spinner mDateMax;
     private Spinner mDateMonths;
+    private Spinner mAnnotationName;
+    private TextView mAnnotationEqual;
+    private Spinner mAnnotationValue;
 
     private MenuItem mResetFilters;
+    @State public SerializableJSONArray mAllAnnotations;
 
 
     @Override
@@ -154,8 +161,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             mSearchFilters = (ExploreSearchFilters) intent.getSerializableExtra(SEARCH_FILTERS);
+            mAllAnnotations = (SerializableJSONArray) intent.getSerializableExtra(ALL_ANNOTATIONS);
         }
-
 
         mHandler = new Handler();
 
@@ -181,6 +188,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mDateMin = (Spinner) findViewById(R.id.date_min);
         mDateMax = (Spinner) findViewById(R.id.date_max);
         mDateMonths = (Spinner) findViewById(R.id.date_months);
+        mAnnotationName = (Spinner) findViewById(R.id.annotation_name);
+        mAnnotationEqual = (TextView) findViewById(R.id.annotation_equal);
+        mAnnotationValue = (Spinner) findViewById(R.id.annotation_value);
 
         mDateAny.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -406,6 +416,101 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        mAnnotationName.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() != MotionEvent.ACTION_UP) {
+                    return false;
+                }
+                if (mAllAnnotations == null) return false;
+
+                String[] items = new String[mAllAnnotations.getJSONArray().length() + 1];
+
+                items[0] = getString(R.string.none);
+
+                for (int i = 0; i < mAllAnnotations.getJSONArray().length(); i++) {
+                    JSONObject item = mAllAnnotations.getJSONArray().optJSONObject(i);
+                    items[i + 1] = item.optString("label");
+                }
+
+                mHelper.selection(getString(R.string.annotation_name), items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0) {
+                            // None
+                            mSearchFilters.annotationNameId = null;
+                            mSearchFilters.annotationName = null;
+                        } else {
+                            // A specific annotation name
+                            mSearchFilters.annotationNameId = mAllAnnotations.getJSONArray().optJSONObject(i - 1).optInt("id");
+                            mSearchFilters.annotationName = mAllAnnotations.getJSONArray().optJSONObject(i - 1).optString("label");
+                        }
+
+                        mSearchFilters.annotationValueId = null;
+                        mSearchFilters.annotationValue = null;
+
+                        refreshViewState();
+                    }
+                });
+
+                return true;
+            }
+        });
+
+        mAnnotationValue.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() != MotionEvent.ACTION_UP) {
+                    return false;
+                }
+                if (mAllAnnotations == null) return false;
+                if (mSearchFilters.annotationNameId == null) return false;
+
+
+                JSONObject annotation = null;
+                for (int i = 0; i < mAllAnnotations.getJSONArray().length(); i++) {
+                    annotation = mAllAnnotations.getJSONArray().optJSONObject(i);
+
+                    if (annotation.optInt("id") == mSearchFilters.annotationNameId) {
+                        break;
+                    }
+                }
+
+                if (annotation == null) return false;
+
+                final JSONArray values = annotation.optJSONArray("values");
+
+                String[] items = new String[values.length() + 1];
+                items[0] = getString(R.string.none);
+
+                for (int i = 0; i < values.length(); i++) {
+                    JSONObject value = values.optJSONObject(i);
+                    items[i + 1] = value.optString("label");
+                }
+
+                mHelper.selection(annotation.optString("label"), items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0) {
+                            // None
+                            mSearchFilters.annotationValueId = null;
+                            mSearchFilters.annotationValue = null;
+                        } else {
+                            // A specific annotation value
+                            mSearchFilters.annotationValueId = values.optJSONObject(i - 1).optInt("id");
+                            mSearchFilters.annotationValue = values.optJSONObject(i - 1).optString("label");
+                        }
+
+                        refreshViewState();
+                    }
+                });
+
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -559,6 +664,29 @@ public class ExploreFiltersActivity extends AppCompatActivity {
             setSpinnerText(mDateMonths, getString(R.string.months));
         } else {
             setSpinnerText(mDateMonths, StringUtils.join(months, ", "));
+        }
+
+        if ((mSearchFilters.annotationNameId == null) || (mAllAnnotations == null)) {
+            // No annotation name selected
+            setSpinnerText(mAnnotationName, getString(R.string.none));
+            mAnnotationEqual.setVisibility(View.GONE);
+            mAnnotationValue.setVisibility(View.GONE);
+        } else {
+            // Show a specific annotation name with an option to select annotation value
+            if (mSearchFilters.annotationName != null) {
+                setSpinnerText(mAnnotationName, mSearchFilters.annotationName);
+                mAnnotationEqual.setVisibility(View.VISIBLE);
+                mAnnotationValue.setVisibility(View.VISIBLE);
+
+                if (mSearchFilters.annotationValueId != null) {
+                    if (mSearchFilters.annotationValue != null) {
+                        setSpinnerText(mAnnotationValue, mSearchFilters.annotationValue);
+                    }
+
+                } else {
+                    setSpinnerText(mAnnotationValue, getString(R.string.none));
+                }
+            }
         }
 
         refreshResetFiltersButton();
