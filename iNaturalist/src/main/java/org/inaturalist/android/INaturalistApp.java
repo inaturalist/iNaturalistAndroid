@@ -550,6 +550,16 @@ public class INaturalistApp extends MultiDexApplication {
     	}
     }
 
+    public String getStringResourceByNameOrNull(String aString) {
+    	int resId = getResourceIdByName(aString, "string");
+    	if (resId == 0) {
+    		return null;
+    	} else {
+    		return getString(resId);
+    	}
+    }
+
+
     public String getStringResourceByName(String name, String fallbackName) {
     	int resId = getResourceIdByName(name, "string");
     	if (resId == 0) {

@@ -576,5 +576,21 @@
     <string name="with_annotation">With Annotation</string>
     <string name="annotation_name">Annotation Name</string>
     <string name="none">None</string>
+    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_larva">Larva</string>
+    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_female">Female</string>
+    <string name="annotation_value_male">Male</string>
 </resources>
 

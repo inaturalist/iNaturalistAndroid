@@ -169,7 +169,8 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                         }
                         Set<String> values = mAttributeValuesAdded.get(currentAttributeValueId);
 
-                        values.add(observationAnnotations.getJSONObject(i).getJSONObject("controlled_value").getString("label"));
+                        String translatedValue = getAnnotationTranslatedValue(mApp, observationAnnotations.getJSONObject(i).getJSONObject("controlled_value").getString("label"), true);
+                        values.add(translatedValue);
 
                         break;
                     }
@@ -275,7 +276,8 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                 }
             });
 
-            attributeName.setText(attribute.getString("label"));
+            String translatedName = getAnnotationTranslatedValue(mApp, attribute.getString("label"), false);
+            attributeName.setText(translatedName);
 
             loading.setVisibility(View.GONE);
 
@@ -296,14 +298,14 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                 final ArrayList<Integer> valuesIdsToDisplay = new ArrayList<>();
 
                 for (int i = 0; i < attribute.getJSONArray("values").length(); i++) {
-                    String value = attribute.getJSONArray("values").getJSONObject(i).getString("label");
-                    if (!valuesAddedAlready.contains(value)) {
-                        valuesToDisplay.add(value);
+                    String translatedValue = getAnnotationTranslatedValue(mApp, attribute.getJSONArray("values").getJSONObject(i).getString("label"), true);
+                    if (!valuesAddedAlready.contains(translatedValue)) {
+                        valuesToDisplay.add(translatedValue);
                         valuesIdsToDisplay.add(attribute.getJSONArray("values").getJSONObject(i).getInt("id"));
                     }
                 }
 
-                final String fieldName = attribute.getString("label");
+                final String fieldName = translatedName;
                 final int attributeId = attribute.getInt("id");
 
                 // Show a value selection dialog
@@ -370,7 +372,8 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                     deleteValue.setVisibility(View.GONE);
                 }
 
-                attributeValue.setText(annotationValue.getJSONObject("controlled_value").getString("label"));
+                String translatedValue = getAnnotationTranslatedValue(mApp, annotationValue.getJSONObject("controlled_value").getString("label"), true) ;
+                attributeValue.setText(translatedValue);
                 deleteValue.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -495,6 +498,40 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
         }
 
         return view;
+
+    }
+
+
+    // Gets the translated value of an annotation label (according to current locale).
+    // isValue param determines whether this is the annotation name or value.
+    public static String getAnnotationTranslatedValue(INaturalistApp app, String label, boolean isValue)  {
+        String translated = app.getStringResourceByNameOrNull(
+                String.format("%s_%s", isValue ? "annotation_value" : "annotation_name", toSnakeCase(label)));
+
+        if (translated == null) {
+            // Couldn't find a translation - return original label
+            return label;
+        } else {
+            return translated;
+        }
+
+    }
+
+    // Convert a string into snake case (e.g. "My String!!!" -> "my_string___"). Replaces any invalid character (non letter/digit) with an underscore.
+    private static String toSnakeCase(String string) {
+        StringBuilder builder = new StringBuilder(string);
+        final int len = builder.length();
+
+        for (int i = 0; i < len; i++) {
+            char c = builder.charAt(i);
+            if (!Character.isLetterOrDigit(c)) {
+                builder.setCharAt(i, '_');
+            } else {
+                builder.setCharAt(i, Character.toLowerCase(c));
+            }
+        }
+
+        return builder.toString();
     }
 
 }

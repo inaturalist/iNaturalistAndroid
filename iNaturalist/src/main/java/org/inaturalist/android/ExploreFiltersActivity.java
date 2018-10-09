@@ -432,7 +432,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
                 for (int i = 0; i < mAllAnnotations.getJSONArray().length(); i++) {
                     JSONObject item = mAllAnnotations.getJSONArray().optJSONObject(i);
-                    items[i + 1] = item.optString("label");
+                    String translatedName = AnnotationsAdapter.getAnnotationTranslatedValue(mApp, item.optString("label"), false);
+                    items[i + 1] = translatedName;
                 }
 
                 mHelper.selection(getString(R.string.annotation_name), items, new DialogInterface.OnClickListener() {
@@ -445,7 +446,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                         } else {
                             // A specific annotation name
                             mSearchFilters.annotationNameId = mAllAnnotations.getJSONArray().optJSONObject(i - 1).optInt("id");
-                            mSearchFilters.annotationName = mAllAnnotations.getJSONArray().optJSONObject(i - 1).optString("label");
+                            String translatedName = AnnotationsAdapter.getAnnotationTranslatedValue(mApp, mAllAnnotations.getJSONArray().optJSONObject(i - 1).optString("label"), false);
+                            mSearchFilters.annotationName = translatedName;
                         }
 
                         mSearchFilters.annotationValueId = null;
@@ -487,10 +489,13 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
                 for (int i = 0; i < values.length(); i++) {
                     JSONObject value = values.optJSONObject(i);
-                    items[i + 1] = value.optString("label");
+                    String translatedValue = AnnotationsAdapter.getAnnotationTranslatedValue(mApp, value.optString("label"), true);
+                    items[i + 1] = translatedValue;
                 }
 
-                mHelper.selection(annotation.optString("label"), items, new DialogInterface.OnClickListener() {
+                String translatedName = AnnotationsAdapter.getAnnotationTranslatedValue(mApp, annotation.optString("label"), false);
+
+                mHelper.selection(translatedName, items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
@@ -500,7 +505,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                         } else {
                             // A specific annotation value
                             mSearchFilters.annotationValueId = values.optJSONObject(i - 1).optInt("id");
-                            mSearchFilters.annotationValue = values.optJSONObject(i - 1).optString("label");
+                            String translateValue = AnnotationsAdapter.getAnnotationTranslatedValue(mApp, values.optJSONObject(i - 1).optString("label"), true);
+                            mSearchFilters.annotationValue = translateValue;
                         }
 
                         refreshViewState();
