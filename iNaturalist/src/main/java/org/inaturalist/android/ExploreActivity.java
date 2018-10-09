@@ -1307,6 +1307,11 @@ public class ExploreActivity extends BaseFragmentActivity {
                             @Override
                             public void onMapLoaded() {
                                 mMapReady = true;
+
+                                if (mShouldMoveMapAccordingToSearchFilters) {
+                                    mShouldMoveMapAccordingToSearchFilters = false;
+                                    moveMapAccordingToSearchFilters();
+                                }
                             }
                         });
 
