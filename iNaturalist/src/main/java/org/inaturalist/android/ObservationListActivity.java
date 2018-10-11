@@ -233,6 +233,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     refreshSyncBar();
                     refreshViewState();
 
+                    // Get updated species count (in case user added a new observation with a new taxon)
+                    getUserDetails(INaturalistService.ACTION_GET_SPECIFIC_USER_DETAILS);
 
                     try {
                         JSONObject eventParams = new JSONObject();
@@ -1180,7 +1182,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         conditions += " OR user_login = '" + login + "'";
                     }
                     conditions += ") AND (is_deleted = 0 OR is_deleted is NULL) "; // Don't show deleted observations
-                    conditions += " AND ((id > " + mApp.getPrefs().getInt("last_downloaded_id", 0) + ")"; // Don't show obs that was downloaded through activity screen, etc. (not "naturally" by user)
+                    conditions += " AND ((id >= " + mApp.getPrefs().getInt("last_downloaded_id", 0) + ")"; // Don't show obs that was downloaded through activity screen, etc. (not "naturally" by user)
                     conditions += " OR (_synced_at IS NULL))";
 
                     final Cursor cursor = getContentResolver().query(getIntent().getData(), Observation.PROJECTION,
