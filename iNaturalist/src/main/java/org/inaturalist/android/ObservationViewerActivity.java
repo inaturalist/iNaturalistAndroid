@@ -2222,7 +2222,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mAnnotationsContent.setVisibility(View.GONE);
             return;
 
-        } else if (mAttributes.getJSONArray().length() == 0) {
+        } else if ((mAttributes.getJSONArray().length() == 0) || (mTaxonJson == null)) {
             mAnnotationSection.setVisibility(View.GONE);
             return;
         }
