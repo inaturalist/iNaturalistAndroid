@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada é um membro da rede iNaturalist no Canadá. Gostaria de usar esta rede para ajustar sua localização e compartilhar dados com a rede local?</string>
   <string name="alert_message_use_naturalistacolombia">É um membro da rede iNaturalist na Colômbia. Gostaria de usar esta rede para ajustar sua localização e compartilhar dados com a rede local?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiversity4All é membro da Rede iNaturalist em Portugal. Gostaria de usar esta rede para localizar a sua experiência e, como tal, partilhar os seus dados?</string>
-  <string name="description">Descrição</string>
   <string name="editor">Editor</string>
   <string name="license">Licença</string>
   <string name="download_for_offline_use">Download para uso offline</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Nome de usuário ou E-mail</string>
   <string name="forgot">Esqueceu?</string>
   <string name="or_login_with">Ou entrar com:</string>
-  <string name="quantity">Qtd</string>
   <string name="registering">Registrando...</string>
   <string name="recommended_next_step">Próximo Passo Recomendado</string>
   <string name="could_not_register_user">Não foi possível registrar-se na rede</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">Você precisa estar conectado para ver suas atualizações.</string>
   <string name="by_using_inat_terms"><![CDATA[Ao utilizar iNaturalist você concorda com os <b><a href="http://www.inaturalist.org/pages/terms"> Termos de Serviço</a></b> e <b><a href="http://www.inaturalist.org/pages/privacy"> Política de privacidade</a></b>]]></string>
   <string name="activity">Atividade</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s observações</string>
-  <string name="observation_count_single">Observação %1$d</string>
   <string name="camera">Tirar foto</string>
   <string name="upload_photo">Escolher Imagem</string>
   <string name="menu_text">Sem foto</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">Incluído em %1$d projetos</string>
   <string name="included_in_projects_singular">Incluído em projetos de %1$d</string>
   <string name="geoprivacy_explanation"><![CDATA[ Geoprivacidade é um ajuste que, você mesmo pode configurar em suas observações e, controlar como as coordenadas espaciais (latitude e longitude) são exibidas. Aqui estão as opções: <br/> <b>abra</b> - Por padrão, todos podem ver suas coordenadas, a menos que seja de uma espécie ameaçada. <br/> <b>oculto</b> - Coordenadas públicas são exibidas como pontos aleatórios dentro de uma área de 0,2 por 0,2 grau que contém as coordenadas verdadeiras, o que funciona bem para áreas de 22 x 22 km quadrados de incerteza no Equador, diminuindo conforme se aproxima dos pólos. Coordenadas verdadeiras apenas estão disponíveis para você e administradores de projetos, aos quais você conceda acesso ao adicionar sua observação. <br/> <b>privada</b> - coordenada completamente escondida do público e nos mapas, as verdadeiras coordenadas estarão visíveis apenas para você e administradores de projetos, aos quais você conceda acesso ao adicionar sua observação. <br/> <br/> Lembre-se que, administradores de projetos individuais poderão acessar suas coordenadas independente de suas configurações de geoprivacidade, então se você está preocupado com quem tem acesso as suas coordenadas, se certifique de confiar nos administradores de projetos que você participa. ]]></string>
-  <string name="agree2">Concordo</string>
   <string name="id_title">Identificação de %1$s: %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Apagar</string>
@@ -311,10 +305,6 @@
   <string name="terms">Termos</string>
   <string name="observation_rules">Regras de Observação</string>
   <string name="couldnt_load_project_details">Não foi possível carregar os detalhes do projeto: %1$s</string>
-  <string name="project_observations">Observações</string>
-  <string name="project_species">Espécies</string>
-  <string name="project_people">Pessoas</string>
-  <string name="project_identifiers">Identificadores</string>
   <string name="no_people_found">Pessoas não encontradas</string>
   <string name="rank">Classificação</string>
   <string name="identifications">Identificações</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">Atualizar Descrição de Identificação</string>
   <string name="your_identification">Seu ID: %1$s</string>
   <string name="onboarding_species_name">Nomeie o que você viu se, possível, mas se não, tudo bem. Outros membros poderão ajudá-lo a identificar!</string>
-  <string name="got_it">Entendido!</string>
   <string name="upload_complete">Envio Concluído!</string>
   <string name="onboarding_upload_description">Volte em breve para verificar identificações e comentários em sua(s) observação(ões).</string>
   <string name="importing_photos">Importando foto(s)...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">Preparando a foto...</string>
   <string name="recommended_for_you">Recomendado para você</string>
   <string name="missions">Missões</string>
-  <string name="view_all">Visualizar Tudo</string>
   <string name="browse_by_category">Procurar por Categoria</string>
   <string name="couldnt_load_recommended_missions">Não foi possível carregar missões recomendadas: %1$s</string>
   <string name="plants">Plantas</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">Introdução à Missões!</string>
   <string name="missions_onboarding_description">Missões são recomendações, super legais, em tempo real, do que, procurar ao seu redor. Desta forma você pode descobrir espécies que são novidade para você! (Requer conexão)</string>
   <string name="ok_got_it">Certo, entendi!</string>
-  <string name="new_badge">Novo</string>
   <string name="could_not_download_observations">Não foi possível baixar as observações mais recentes - Problemas de Conexão. Tente novamente mais tarde.</string>
   <string name="no_news_yet">Nenhuma notícia ainda. Fique atento!</string>
   <string name="my_content">Meu conteúdo</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">Erro ao importar foto(s): É possível importar fotos apenas com extensões JPG/JPEG/PNG</string>
   <string name="taxon_has_no_photos">Este táxon não tem fotos.</string>
   <string name="terrain">Terreno</string>
-  <string name="observers">Observadores</string>
   <string name="filters">Filtros</string>
   <string name="exploring_all">Explorar todos</string>
   <string name="nearby">Nas Proximidades</string>
@@ -566,5 +552,45 @@
   <string name="password_changed">A palavra-passe que usa na aplicação deixou de funcionar - alterou a sua palavra-passe no website? Por favor, insira a nova palavra-passe aqui</string>
   <string name="just_so_you_know">Só para saber...</string>
   <string name="ask_for_g_plus_permissions">O Google requer que solicitemos permissão para aceder aos seus contatos para usar a sua Conta do Google, embora não acedemos aos seus contatos por nenhuma razão. Se negar essa permissão, terá de se registar ou iniciar sessão com um nome de utilizador e palavra-passe.</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[Novo no %1$s? <b>Regista-se agora!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Descrição</string>
+  <string name="quantity">Qtd</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s observações</string>
+  <string name="observation_count_single">Observação %1$d</string>
+  <string name="agree2">Concordo</string>
+  <string name="project_observations">Observações</string>
+  <string name="project_species">Espécies</string>
+  <string name="project_people">Pessoas</string>
+  <string name="project_identifiers">Identificadores</string>
+  <string name="got_it">Entendido!</string>
+  <string name="view_all">Visualizar Tudo</string>
+  <string name="new_badge">Novo</string>
+  <string name="observers">Observadores</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

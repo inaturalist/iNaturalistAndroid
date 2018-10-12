@@ -3,8 +3,8 @@
 <resources>
   <string name="app_name">Naturalista</string>
   <string name="email_address">Dirección de correo electrónico</string>
-  <string name="delete_observation">Borra observación</string>
-  <string name="observation_deleted">Observación borrada</string>
+  <string name="delete_observation">Elimina observación</string>
+  <string name="observation_deleted">Observación eliminada</string>
   <string name="species_guess_hint">Nombre de la especie...</string>
   <string name="ok">OK</string>
   <string name="cancel">Cancela</string>
@@ -15,25 +15,25 @@
   <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
   <string name="satellite">Satélite</string>
   <string name="couldnt_load_nearby_observations">No se han podido cargar las observaciones cercanas: %1$s</string>
-  <string name="username_invalid">Nombre de usuario o contraseña no válidos, por favor inicia sesión de nuevo.</string>
+  <string name="username_invalid">Nombre de usuario o contraseña inválidos, por favor inicia sesión de nuevo.</string>
   <string name="signing_in">Iniciando sesión...</string>
   <string name="signed_in">¡Sesión iniciada!</string>
   <string name="please_sign_in">Por favor, inicia sesión</string>
   <string name="please_sign_in_description">Por favor, inicia sesión en tu cuenta de NaturaLista o registra una nueva.</string>
   <string name="please_enable_location_services">Por favor activa los servicios de ubicación para encontrar tu ubicación actual...</string>
-  <string name="go_to_settings">Ir a ajustes</string>
+  <string name="go_to_settings">Ir a configuración</string>
   <string name="photo_not_specified">Foto no especificada</string>
   <string name="set_date">Establecer fecha</string>
   <string name="set_time">Establecer hora</string>
   <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
-  <string name="something_went_wrong">¡Rayos!, algo ha ido mal: %1$s</string>
+  <string name="something_went_wrong">¡Rayos!, algo ha salido mal: %1$s</string>
   <string name="edit">Edita</string>
   <string name="oh_no">¡Oh no! %1$s</string>
   <string name="observations">Observaciones</string>
   <string name="map">Mapa</string>
   <string name="settings">Configuración</string>
   <string name="projects">Proyectos</string>
-  <string name="delete_photo">Borrar foto</string>
+  <string name="delete_photo">Elimina foto</string>
   <string name="menu">Menú</string>
   <string name="layers">Capas</string>
   <string name="my_location">Mi ubicación</string>
@@ -47,18 +47,18 @@
   <string name="save">Guarda</string>
   <string name="no_observations_yet">¡Aún no hay observaciones!</string>
   <string name="or">o</string>
-  <string name="signed_out">Cerrar sesión</string>
+  <string name="signed_out">Cierra sesión</string>
   <string name="view">Ver</string>
   <string name="username">Nombre de usuario</string>
   <string name="password">Contraseña</string>
   <string name="unknown">Desconocido</string>
   <string name="unknown_species">Especie desconocida</string>
   <string name="com_facebook_dialogloginactivity_ok_button">Ok</string>
-  <string name="com_facebook_loginview_log_out_button">Cerrar la sesión</string>
+  <string name="com_facebook_loginview_log_out_button">Cierra la sesión</string>
   <string name="com_facebook_loginview_log_in_button">Inicia sesión</string>
   <string name="com_facebook_loginview_logged_in_as">Sesión iniciada como %1$s</string>
   <string name="com_facebook_loginview_logged_in_using_facebook">Sesión iniciada usando Facebook</string>
-  <string name="com_facebook_loginview_log_out_action">Cerrar la sesión</string>
+  <string name="com_facebook_loginview_log_out_action">Cierra la sesión</string>
   <string name="com_facebook_loginview_cancel_action">Cancela</string>
   <string name="com_facebook_logo_content_description">Logo de Facebook</string>
   <string name="com_facebook_usersettingsfragment_log_in_button">Inicia sesión...</string>
@@ -68,7 +68,7 @@
   <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
   <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d estuvieron aquí</string>
   <string name="com_facebook_picker_done_button_text">Hecho</string>
-  <string name="com_facebook_choose_friends">Elegir amigos</string>
+  <string name="com_facebook_choose_friends">Elige amigos</string>
   <string name="com_facebook_nearby">Cercanas</string>
   <string name="com_facebook_loading">Cargando...</string>
   <string name="com_facebook_internet_permission_error_title">Error de Androide </string>
@@ -107,7 +107,7 @@
   <string name="invalid_project_field">Por favor, introduce un valor válido para el campo \'%1s\'</string>
   <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
   <string name="select_projects">Selecciona los proyectos</string>
-  <string name="not_connected">¡Es necesario estar conectado a internet con el fin de hacer eso!</string>
+  <string name="not_connected">Debes estar conectado a Internet para sincronizar.</string>
   <string name="search_projects">Busca proyectos...</string>
   <string name="search_guides">Busca guías...</string>
   <string name="save_observation">Guarda tu observación</string>
@@ -137,7 +137,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="leave_project_confirmation">¿Estás seguro que deseas abandonar este proyecto?</string>
   <string name="discard_location_changes">¿Estás seguro que deseas descartar los cambios no guardados?</string>
   <string name="edit_location">Edita la ubicación</string>
-  <string name="get_current_location">Obten la ubicación actual</string>
+  <string name="get_current_location">Obtén la ubicación actual</string>
   <string name="pull_to_refresh">Desliza para actualizar...</string>
   <string name="release_to_refresh">Suelta para actualizar...</string>
   <string name="refreshing">Actualizando...</string>
@@ -146,7 +146,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="sync_observations">Sincronización de observaciones</string>
   <string name="lets_get_started">¡Vamos a empezar!</string>
   <string name="view_nearby_observations">Observaciones cercanas</string>
-  <string name="skip_for_now">Omitir por ahora</string>
+  <string name="skip_for_now">Omite por ahora</string>
   <string-array name="tutorial_titles">
     <item></item>
     <item>Observar</item>
@@ -182,15 +182,14 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="text"><![CDATA[<b>Texto:</b> %1$s]]></string>
   <!-- The dialog content asking the user to switch to another iNat network -->
   <string name="alert_message_use_inaturalist">Usa la red principal de iNaturalist. Al hacer clic en \'OK\' fijará tu aplicación como parte de la red global de iNaturalist.</string>
-  <string name="alert_message_use_naturalista">iNaturalist es miembro de la Red iNaturalist en México. ¿Deseas usar esta red para ubicar tu experiencia y tus compartir datos?</string>
+  <string name="alert_message_use_naturalista">Naturalista es miembro de la Red iNaturalist en México. ¿Deseas usar esta red para ubicar tu experiencia y tus compartir datos?</string>
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ es miembro de la Red iNaturalist en Nueva Zelanda. ¿Deseas usar esta red para ubicar tu experiencia y compartir tus datos?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canadá es miembro de la Red iNaturalist en Canadá. ¿Deseas usar esta red para ubicar tu experiencia y compartir tus datos?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista es miembro de la Red iNaturalist en Colombia. ¿Deseas usar esta red para ubicar tu experiencia y compartir tus datos?</string>
-  <string name="alert_message_use_biodiveristy4all">Biodiversity4all es miembro de la Red iNaturalist en Portugal. ¿Desea usar esta red para localizar su experiencia y compartir datos en consecuencia?</string>
-  <string name="description">Descripción</string>
+  <string name="alert_message_use_biodiveristy4all">Biodiversity4all es miembro de la Red iNaturalist en Portugal. ¿Deseas usar esta red para localizar tu experiencia y compartir datos en consecuencia?</string>
   <string name="editor">Editor</string>
   <string name="license">Licencia</string>
-  <string name="download_for_offline_use">Descargar para uso fuera de línea</string>
+  <string name="download_for_offline_use">Descarga para uso fuera de línea</string>
   <string name="download_not_available">Descarga no disponible</string>
   <string name="guide_editor_must_enable_this_feature">El editor de la guía debe activar esta función.</string>
   <string name="are_you_sure">¿Estás seguro?</string>
@@ -224,26 +223,22 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="username_or_email">Nombre de usuario o e-mail</string>
   <string name="forgot">¿Lo olvidaste?</string>
   <string name="or_login_with">O inicia sesión con:</string>
-  <string name="quantity">Cant.</string>
   <string name="registering">Registrando...</string>
   <string name="recommended_next_step">Siguiente paso recomendado</string>
   <string name="could_not_register_user">No se pudo registrar el usuario</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
-  <string name="login_signup">Inicia sesión o registrate</string>
+  <string name="login_signup">Inicia sesión / Regístrate</string>
   <string name="please_sign_in_via_settings_for_guides">Debes haber iniciado la sesión para ver tus guías.</string>
   <string name="please_sign_in_for_updates">Debes haber iniciado la sesión para ver tus actualizaciones.</string>
   <string name="by_using_inat_terms"><![CDATA[Al usar iNaturalist aceptas los <b><a href="http://www.inaturalist.org/pages/terms"> Términos de servicio</a></b> y la<b><a href="http://www.inaturalist.org/pages/privacy"> Política de privacidad</a></b>]]></string>
   <string name="activity">Actividad</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s observaciones</string>
-  <string name="observation_count_single">%1$d observación</string>
   <string name="camera">Toma foto</string>
   <string name="upload_photo">Elige imagen</string>
   <string name="menu_text">Descarta foto</string>
   <string name="first">1º</string>
   <string name="make_first">Hacer 1º</string>
   <string name="notes">Notas</string>
-  <string name="location_is">Ubicación</string>
+  <string name="location_is">La ubicación es</string>
   <string name="is_captive">Está cautiva o cultivada</string>
   <string name="location_visibility">Visibilidad de la ubicación</string>
   <string name="set_location">Establecer ubicación</string>
@@ -275,8 +270,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="needs_id_more_ids"><![CDATA[ La observación necesita <b>más identificaciones</b> de la comunidad para convertirse en "grado de investigación". ]]></string>
   <string name="included_in_projects">Incluido en %1$d proyectos</string>
   <string name="included_in_projects_singular">Incluido en %1$d proyectos</string>
-  <string name="geoprivacy_explanation"><![CDATA[ La Geoprivacidad es una característica que puedes incorporar a las observaciones que controla cómo se muestran las coordenadas espaciales (latitud y longitud). Estas son las opciones: <br/> <b>abierta</b> - todos pueden ver las coordenadas excepto si el taxón está amenazado. <br/> <b>oscurecida</b> - las coordenadas públicas se muestran como un punto al azar en una área de 0,2 por 0,2 grados que contiene las coordenadas reales, lo que representa una área cuadrada de 22 x 22 km de incertidumbre en el ecuador, que disminuye a medida se acerca a los polos. Las coordenadas reales únicamente son visibles por ti y los administradores de los proyectos a los que incorporas la observación. <br/> <b>privada</b> - coordenadas completamente ocultas en los mapas públicos, las coordenadas reales únicamente son visibles para ti y los administradores de los proyectos a los que incorporas la observación. <br/> <br/> Ten en cuenta que los administradores de proyectos individuales pueden ver siempre las coordenadas, independientemente de la geoprivacidad que especifiques, por tanto si estás preocupado por quién tiene acceso a las coordenadas, es necesario que os aseguréis que confías en los administradores de los proyectos en los que participas. ]]></string>
-  <string name="agree2">De acuerdo</string>
+  <string name="geoprivacy_explanation"><![CDATA[ La Geoprivacidad es una característica que puedes incorporar a las observaciones que controla cómo se muestran las coordenadas espaciales (latitud y longitud). Estas son las opciones: <br/> <b>abierta</b> - todos pueden ver las coordenadas excepto si el taxón está amenazado. <br/> <b>oscurecida</b> - las coordenadas públicas se muestran como un punto al azar en una área de 0,2 por 0,2 grados que contiene las coordenadas reales, lo que representa una área cuadrada de 22 x 22 km de incertidumbre en el ecuador, que disminuye a medida se acerca a los polos. Las coordenadas reales únicamente son visibles por ti y los administradores de los proyectos a los que incorporas la observación. <br/> <b>privada</b> - coordenadas completamente ocultas en los mapas públicos, las coordenadas reales únicamente son visibles para ti y los administradores de los proyectos a los que incorporas la observación. <br/> <br/> Ten en cuenta que los administradores de proyectos individuales pueden ver siempre las coordenadas, independientemente de la geoprivacidad que especifiques, por lo tanto si estás preocupado por quién tiene acceso a las coordenadas, es necesario que te asegures que confías en los administradores de los proyectos en los que participas. ]]></string>
   <string name="id_title">Identificación de %1$s • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Elimina</string>
@@ -285,9 +279,9 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="delete_id_message">¿Estás seguro de querer borrar esta identificación?</string>
   <string name="delete_comment_message">¿Está seguro de que quieres borrar el comentario?</string>
   <string name="comment">Comentario</string>
-  <string name="suggest_id">Sugerir ID</string>
+  <string name="suggest_id">Sugiere ID</string>
   <string name="update_comment">Actualiza comentario</string>
-  <string name="fave_this_observation">Hacer esta observación favorita</string>
+  <string name="fave_this_observation">Marcar esta observación como favorita</string>
   <string name="faved">Favorito</string>
   <string name="be_the_first_to_fave_this_obs">Se el primero en hacer favorita esta observación...</string>
   <string name="leave_a_comment">Deja un comentario o sugiere una identificación...</string>
@@ -298,7 +292,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="login_in_to_fav">Inicia sesión o regístrate para ver favoritos o hacer favorita esta observación...</string>
   <string name="sync_obs_to_see_favs">Sincronizar esta observación para ver favoritos...</string>
   <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-  <string name="sync_obs_to_add_comments_ids">Sincronizar esta observación para dejar un comentario o sugerir una identificación...</string>
+  <string name="sync_obs_to_add_comments_ids">Sincroniza esta observación para dejar un comentario o sugerir una identificación...</string>
   <string name="no_photo">No hay foto</string>
   <string name="about_this_species">Sobre esta especie</string>
   <string name="view_on_wikipedia">Artículo de Wikipedia</string>
@@ -307,19 +301,15 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="finding_current_location">Buscando localización actual...</string>
   <string name="flag_as_captive">Marca como en cautiverio/cultivado</string>
   <string name="observation_flagged_as_captive">Observación marcada como cautiverio/cultivada</string>
-  <string name="are_you_sure_you_want_to_flag_as_captive">¿Estás seguro que deseas marcar esta observación como cautiverio/cultivada? (Presionando sí también se cerrará la ventana del visor de observación)</string>
+  <string name="are_you_sure_you_want_to_flag_as_captive">¿Estás seguro que deseas marcar esta observación como cautiverio/cultivada? (Presionando \"sí\" también se cerrará la ventana del visor de observación)</string>
   <string name="do_you_agree_to_the_following">¿Estás de acuerdo con lo siguiente?</string>
   <string name="terms">Condiciones</string>
   <string name="observation_rules">Reglas de observación</string>
   <string name="couldnt_load_project_details">No pudo cargar los detalles del proyecto: %1$s</string>
-  <string name="project_observations">Observaciones</string>
-  <string name="project_species">Especies</string>
-  <string name="project_people">Personas</string>
-  <string name="project_identifiers">Identificadores</string>
   <string name="no_people_found">No se encontraron personas</string>
   <string name="rank">Clasificación</string>
   <string name="identifications">Identificaciones</string>
-  <string name="no_news_found">No se encontraron nuevos elementos</string>
+  <string name="no_news_found">No se encontraron noticias</string>
   <string name="news">Noticias</string>
   <string name="article">Artículo</string>
   <string name="couldnt_load_project_news">No pudo cargar las noticias del proyecto: %1$s</string>
@@ -330,8 +320,8 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="add_to_projects">Añade al proyecto(s)</string>
   <string name="are_you_sure_you_want_to_save_obs_without_coords">¿Está seguro que deseas guardar la observación sin coordenadas?</string>
   <string name="users_identification">Identificación de %1$s • %2$s</string>
-  <string name="edit_profile">Editar perfil</string>
-  <string name="remove_photo">Eliminar foto</string>
+  <string name="edit_profile">Edita perfil</string>
+  <string name="remove_photo">Elimina foto</string>
   <string name="name">Nombre</string>
   <string name="tell_us_about_yourself">Cuéntanos algo acerca de ti...</string>
   <string name="view_profile">Ver perfil</string>
@@ -351,7 +341,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="select_network">Selecciona red</string>
   <string name="help">Ayuda</string>
   <string name="stop">Detener</string>
-  <string name="resume">Continuar</string>
+  <string name="resume">Continua</string>
   <string name="cleaning_up">Limpiando...</string>
   <string name="syncing">Sincronizando...</string>
   <string name="syncing_observation_fields">Sincronizando campos de observaciones...</string>
@@ -359,12 +349,11 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="syncing_paused">Pausa</string>
   <string name="upload">Subir</string>
   <string name="search_observations">Busca observaciones...</string>
-  <string name="withdraw">Retirar</string>
+  <string name="withdraw">Retira</string>
   <!-- Dialog title for when you are updating the description of an identification -->
   <string name="update_id_description">Actualiza la descripción de la identificación</string>
   <string name="your_identification">Tu identificación:%1$s</string>
-  <string name="onboarding_species_name">Nombra lo que has visto si puedes, pero está bien si no puedes. ¡Otros te pueden ayudar a identificarla!</string>
-  <string name="got_it">¡Entendido!</string>
+  <string name="onboarding_species_name">Si puedes ponle nombre a lo que has visto, pero si no puedes, no te preocupes. ¡Otros te pueden ayudar a identificarlo!</string>
   <string name="upload_complete">¡Carga completa!</string>
   <string name="onboarding_upload_description">Revisa pronto las identificaciones y comentarios en tu(s) observación(es).</string>
   <string name="importing_photos">Importando foto(s)...</string>
@@ -372,7 +361,6 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="preparing_photo">Preparando la foto...</string>
   <string name="recommended_for_you">Recomendado para ti</string>
   <string name="missions">Misiones</string>
-  <string name="view_all">Ver todos</string>
   <string name="browse_by_category">Búsqueda por categoría</string>
   <string name="couldnt_load_recommended_missions">No pudo cargar las misiones recomendadas: %1$s</string>
   <string name="plants">Plantas</string>
@@ -386,17 +374,16 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="birds">Aves</string>
   <string name="arachnids">Arácnidos</string>
   <string name="no_connectivity">Sin conectividad</string>
-  <string name="no_recommended_missions">Parece que no hay ninguna recomendación en esta área. Mueva a una nueva ubicación.</string>
+  <string name="no_recommended_missions">Parece que no hay ninguna recomendación en esta área. Muévete a una nueva ubicación.</string>
   <string name="what_to_look_for">Qué buscar</string>
   <string name="have_been_seen_here">Se han visto aquí</string>
-  <string name="observe">Observar</string>
+  <string name="observe">Observa</string>
   <string name="nearby_missions">Misiones cercanas</string>
   <string name="searching_your_area">Buscando en tu área</string>
   <string name="expanding_your_search_area">Ampliando tu área de búsqueda</string>
   <string name="introducing_missions">Presentando misiones</string>
-  <string name="missions_onboarding_description">Las misiones son recomendaciones en tiempo real de que puedes buscar a tu alrededor. ¡De esta manera puedes descubrir especies nuevas para tu lista! (Requiere conexión)</string>
+  <string name="missions_onboarding_description">Las misiones son recomendaciones en tiempo real de qué puedes buscar a tu alrededor. ¡De esta manera puedes descubrir especies nuevas para tu lista! (Requiere conexión)</string>
   <string name="ok_got_it">¡Entendido!</string>
-  <string name="new_badge">Nuevo</string>
   <string name="could_not_download_observations">No se pudieron descargar las últimas observaciones - problemas de conexión. Inténtalo más tarde.</string>
   <string name="no_news_yet">No hay noticias aún. ¡Está atento!</string>
   <string name="my_content">Mi contenido</string>
@@ -406,14 +393,14 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="you_will_only_receive_updates_when_following">(Recibirás actualizaciones cuando hayas subido observaciones)</string>
   <string name="user_activity_id"><![CDATA[<b>%1$s</b> sugirió un ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
   <string name="user_activity_comment"><![CDATA[<b>%1$s</b> comentó: "%2$s" <font color="#8B8B8B">%3$s</font>]]></string>
-  <string name="deleted_photos_from_cache_error">Parece que has eliminado una foto al limpiar la caché de la aplicación antes de subirla. Necesitarás volver a agregar la foto a su observación de la galería. En el futuro, por favor, asegúrate que han subido todas tus fotos antes de eliminar la caché de la aplicación.</string>
+  <string name="deleted_photos_from_cache_error">Parece que has eliminado una foto al limpiar la caché de la aplicación antes de subirla. Necesitarás volver a agregar la foto a tu observación de la galería. En el futuro, por favor, asegúrate que han subido todas tus fotos antes de eliminar la caché de la aplicación.</string>
   <string name="new_activities">%1s nuevo</string>
   <string name="no_results_found">No se encontraron resultados...</string>
   <string name="syncing_x_out_of_y_observations">Sincronizando %1$d de %2$d observaciones...</string>
   <string name="deleting_observations">Borrando observaciones...</string>
   <string name="preparing">Preparando...</string>
-  <string name="add_edit_remark">Agregar/editar comentario</string>
-  <string name="restore">Restaurar</string>
+  <string name="add_edit_remark">Agrega/edita comentario</string>
+  <string name="restore">Restaura</string>
   <string name="compare">Compara</string>
   <string name="select">Selecciona</string>
   <string name="source_wikipedia">(Fuente: Wikipedia)</string>
@@ -438,7 +425,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="pretty_sure_rank">Estamos bastante seguros de que está entre estos %1$s:</string>
   <string name="what_did_you_see">¿Qué viste?</string>
   <string name="suggest_species">Sugiere especies</string>
-  <string name="suggest_species_description">Sugerir la especie basándose en la similitud visual con fotos.</string>
+  <string name="suggest_species_description">Sugiere la especie basándose en la similitud visual con fotos.</string>
   <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
   <string name="visually_similar">Visualmente similar</string>
   <string name="visually_similar_seen_nearby">Visualmente similar / visto cerca</string>
@@ -448,9 +435,8 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="invalid_photo_extension">Error al importar foto(s): sólo puede importar archivos de fotos con extensiones JPEG/JPG/PNG</string>
   <string name="taxon_has_no_photos">Este taxón tiene no tiene fotos.</string>
   <string name="terrain">Terreno</string>
-  <string name="observers">Observadores</string>
   <string name="filters">Filtros</string>
-  <string name="exploring_all">Explorarlo todo</string>
+  <string name="exploring_all">Explorando todo</string>
   <string name="nearby">Cercano</string>
   <string name="couldnt_load_results">No se han podido cargar los resultados: %1$s</string>
   <string name="research_grade_initials">GI</string>
@@ -480,7 +466,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="region">Región</string>
   <string name="colloquial">Coloquial</string>
   <string name="zone">Zona</string>
-  <string name="historical_state">Estado histórico</string>
+  <string name="historical_state">Propiedad histórica</string>
   <string name="historical_county">Municipio histórico</string>
   <string name="continent">Continente</string>
   <string name="estate">Propiedad</string>
@@ -518,7 +504,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="show_only_my_observations">Muestra únicamente mis observaciones</string>
   <string name="project">Proyecto</string>
   <string name="user">Usuario</string>
-  <string name="search_users">Buscar usuarios...</string>
+  <string name="search_users">Busca usuarios...</string>
   <string name="quality_grade">Grado de calidad</string>
   <string name="dates">Fechas</string>
   <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
@@ -529,7 +515,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="start">Empieza</string>
   <string name="end">Termina</string>
   <string name="months">Meses</string>
-  <string name="choose_months">Seleccione mes (es)</string>
+  <string name="choose_months">Selecciona un mes (es)</string>
   <string name="map_area">Mapa del área</string>
   <string name="global">Global</string>
   <!-- As in redo search in the current map area -->
@@ -542,7 +528,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="date_day">%dd</string>
   <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
   <string name="date_week">%dw</string>
-  <string name="new_observation">Nuevas observaciones</string>
+  <string name="new_observation">Nueva observación</string>
   <string name="inactive_taxon">Taxón inactivo</string>
   <string name="no_identifications_found">Sigue aquí las identificaciones que sugieres para las observaciones de otras personas.</string>
   <string name="no_species_found">Esta es una lista de las especies que mas has observado.\n\nFYI: Se estima que existen 9 millones de especies en el planeta, así que ¡sal y empieza a observar!</string>
@@ -564,8 +550,48 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
   <string name="inat_about_title">iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society.</string>
   <string name="inat_credits">iNaturalist está hecho por cada una de las personas que participa en nuestra comunidad. Las personas que construyen software, mantienen nuestra infraestructura y fomentan colaboraciones son Joëlle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer y Ken-Ichi Ueda. Caltech y el Tech de Cornell ayudaron a desarrollar el sistema de reconocimiento de imágenes de las especies. Agradecemos a Grant Van Horn, Serge Belongie y Pietro Perona por este trabajo. Puedes encontrar más información en visipedia.org</string>
   <string name="credits_title">Créditos</string>
-  <string name="password_changed">La contraseña de la aplicación ya no es correcta - ¿cambió su contraseña en el sitio web? Introduzca la nueva aquí</string>
-  <string name="just_so_you_know">Para que sepa...</string>
-  <string name="ask_for_g_plus_permissions">Google nos obliga a pedir permiso para acceder a tus contactos para poder utilizar tu cuenta de Google, a pesar de que no accedemos a sus contactos por cualquier otra razón. Si rechaza este permiso, necesitará registrarse o iniciar sesión con un usuario y contraseña.</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="password_changed">La contraseña de la aplicación ya no es correcta - ¿cambiaste tu contraseña en el sitio web? Introduce la nueva aquí</string>
+  <string name="just_so_you_know">Para que sepas...</string>
+  <string name="ask_for_g_plus_permissions">Google nos obliga a pedir permiso para acceder a tus contactos para poder utilizar tu cuenta de Google, a pesar de que no accedemos a tus contactos por cualquier otra razón. Si rechazas este permiso, necesitarás registrarse o iniciar sesión con un usuario y contraseña.</string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[¿Nuevo en %1$s? <b>¡Regístrate ahora!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Descripción</string>
+  <string name="quantity">Cant.</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s observaciones</string>
+  <string name="observation_count_single">%1$d observación</string>
+  <string name="agree2">De acuerdo</string>
+  <string name="project_observations">Observaciones</string>
+  <string name="project_species">Especies</string>
+  <string name="project_people">Personas</string>
+  <string name="project_identifiers">Identificadores</string>
+  <string name="got_it">¡Entendido!</string>
+  <string name="view_all">Ver todos</string>
+  <string name="new_badge">Nuevo</string>
+  <string name="observers">Observadores</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

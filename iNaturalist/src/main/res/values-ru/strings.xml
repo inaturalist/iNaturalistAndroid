@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada является частью сети iNaturalist в Канаде. Вы хотели бы использовать эту сеть для локализации вашего опыта и соответствующего обмена данными?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista является частью сети iNaturalist в Колумбии. Вы хотели бы использовать эту сеть для локализации вашего опыта и соответствующего обмена данными?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all является частью сети iNaturalist в Португалии. Вы хотели бы использовать эту сеть для локализации вашего опыта и соответствующего обмена данными?</string>
-  <string name="description">Описание</string>
   <string name="editor">Редактор</string>
   <string name="license">Лицензия</string>
   <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Имя пользователя или электронная почта</string>
   <string name="forgot">Забыли?</string>
   <string name="or_login_with">Или войдите через:</string>
-  <string name="quantity">Кол-во</string>
   <string name="registering">Регистрация...</string>
   <string name="recommended_next_step">Следующий рекомендуемый шаг</string>
   <string name="could_not_register_user">Не удалось зарегистрировать пользователя</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">Вы должны войти для просмотра ваших обновлений.</string>
   <string name="by_using_inat_terms"><![CDATA[Используя iNaturalist вы соглашаетесь с <b><a href="http://www.inaturalist.org/pages/terms"> Условиями использования</a></b> и <b><a href="http://www.inaturalist.org/pages/privacy"> Политикой конфиденциальности</a></b>]]></string>
   <string name="activity">Деятельность</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s наблюдений</string>
-  <string name="observation_count_single">наблюдение %1$d</string>
   <string name="camera">Сфотографировать</string>
   <string name="upload_photo">Выбрать изображение</string>
   <string name="menu_text">Нет фото</string>
@@ -276,7 +271,6 @@
   <string name="included_in_projects_singular">Включено в проект %1$d</string>
   <string name="geoprivacy_explanation"><![CDATA[ Конфиденциальность геоданных (Geoprivacy) - это настройка, которую вы можете задать в своих наблюдениях, она управляет пространственным отображением 
  координат (широты и долготы). Вот варианты:<br/><b>доступно</b> - Каждый может видеть координаты, если таксон не находится под угрозой. <br/><b>скрыто</b> - общедоступные координаты показываются как случайные точки в пределах области 0,2 на 0,2 градуса, которая содержит истинные координаты, что представляет собой квадратную область неопределенности около 22x22 км на экваторе, размер уменьшается по мере приближения к полюсам. Истинные координаты видны только вам и кураторам проектов, к которым вы добавляете наблюдение. <br/><b>частные</b> - Координаты полностью скрыты от общедоступных карт, истинные координаты видны только вам и кураторам проектов, к которым вы добавляете наблюдение. <br/><br/> Обратите внимание на то, что кураторы отдельных проектов всегда могут видеть координаты, независимо от настройки конфиденциальности геоданных, поэтому, если вас беспокоит, кто имеет доступ к координатам, вы должны быть уверены, что доверяете кураторам проектов, в которых Вы участвуете. ]]></string>
-  <string name="agree2">Согласен</string>
   <string name="id_title">%1$s\'s ID • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Удалить</string>
@@ -312,10 +306,6 @@
   <string name="terms">Условия</string>
   <string name="observation_rules">Правила наблюдений</string>
   <string name="couldnt_load_project_details">Не удается загрузить подробности проекта: %1$s</string>
-  <string name="project_observations">Наблюдения</string>
-  <string name="project_species">Виды</string>
-  <string name="project_people">Участники</string>
-  <string name="project_identifiers">Идентификаторы</string>
   <string name="no_people_found">Люди не найдены</string>
   <string name="rank">Ранг</string>
   <string name="identifications">Идентификации</string>
@@ -364,7 +354,6 @@
   <string name="update_id_description">Описание обновления идентификации</string>
   <string name="your_identification">Ваш ID: %1$s</string>
   <string name="onboarding_species_name">Назовите, что вы видели, если можете, но это нормально, если вы не сможете. Другие могут помочь вам определить это!</string>
-  <string name="got_it">Готово!</string>
   <string name="upload_complete">Загрузка завершена!</string>
   <string name="onboarding_upload_description">Возвращайтесь вскоре для проверки комментариев и идентификаций вашего наблюдения(ий).</string>
   <string name="importing_photos">Импорт фото...</string>
@@ -372,7 +361,6 @@
   <string name="preparing_photo">Подготовка фото...</string>
   <string name="recommended_for_you">Рекомендовано вам</string>
   <string name="missions">Цели</string>
-  <string name="view_all">Просмотреть все</string>
   <string name="browse_by_category">Посмотреть по категориям</string>
   <string name="couldnt_load_recommended_missions">Не удалось загрузить рекомендованные цели: %1$s</string>
   <string name="plants">Растения</string>
@@ -396,7 +384,6 @@
   <string name="introducing_missions">Представляем миссии!</string>
   <string name="missions_onboarding_description">Миссии - это рекомендации в реальном времени о том, что искать вокруг вас. Таким образом, вы можете обнаружить новые для вас виды! (Требуется подключение)</string>
   <string name="ok_got_it">Ок, понятно!</string>
-  <string name="new_badge">Новый</string>
   <string name="could_not_download_observations">Не удалось загрузить последние обновления - проблемы с подключением. Повторите попытку позже.</string>
   <string name="no_news_yet">Новостей пока нет. Оставайтесь с нами!</string>
   <string name="my_content">Мой контент</string>
@@ -448,7 +435,6 @@
   <string name="invalid_photo_extension">Ошибка импорта фотографии(й): можно импортировать файлы только с расширениями JPG/JPEG/PNG</string>
   <string name="taxon_has_no_photos">Для этого таксона фотографии нет</string>
   <string name="terrain">Ландшафт</string>
-  <string name="observers">Наблюдатели</string>
   <string name="filters">Фильтры</string>
   <string name="exploring_all">Изучение всех</string>
   <string name="nearby">Поблизости</string>
@@ -567,5 +553,45 @@
   <string name="password_changed">Используемый пароль приложения больше не действителен - вы изменили свой пароль на веб-сайте? Пожалуйста, введите новый</string>
   <string name="just_so_you_know">Итак, вы знаете...</string>
   <string name="ask_for_g_plus_permissions">Google требует от нас запрашивать разрешение на доступ к контактам для того, чтобы использовать учетную запись Google, даже если мы не используем доступ к контактам по любой причине. Если вы не даёте это разрешение, вам нужно будет зарегистрироваться или войти с именем пользователя и паролем.</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[Новичок на %1$s? <b>Зарегистрируйтесь прямо сейчас!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Описание</string>
+  <string name="quantity">Кол-во</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s наблюдений</string>
+  <string name="observation_count_single">наблюдение %1$d</string>
+  <string name="agree2">Согласен</string>
+  <string name="project_observations">Наблюдения</string>
+  <string name="project_species">Виды</string>
+  <string name="project_people">Участники</string>
+  <string name="project_identifiers">Идентификаторы</string>
+  <string name="got_it">Готово!</string>
+  <string name="view_all">Просмотреть все</string>
+  <string name="new_badge">Новый</string>
+  <string name="observers">Наблюдатели</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

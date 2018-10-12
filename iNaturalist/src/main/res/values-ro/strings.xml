@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada este un membru al rețelei iNaturalist Canada. Ați vrea să folosiți rețeaua pentru a localiza experiența pentru a distribui datele?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista este un membru al rețelei iNaturalist din Columbia. Ați vrea să folosiți rețeaua pentru a localiza experiența pentru a distribui datele?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="description">Descriere</string>
   <string name="editor">Editor</string>
   <string name="license">Licență</string>
   <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Nume utilizator sau email</string>
   <string name="forgot">Ai uitat?</string>
   <string name="or_login_with">Sau autentifică-te cu:</string>
-  <string name="quantity">Cant</string>
   <string name="registering">Înregistrare...</string>
   <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Nu s-a putut înregistra utilizatorul</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">Pentru a vedea actualizările, trebuie să fi autentificat.</string>
   <string name="by_using_inat_terms"><![CDATA[Prin utilizarea iNaturalist ești de acord cu <b><a href="http://www.inaturalist.org/pages/terms">Condiții de utilizare</a></b>și<b><a href="http://www.inaturalist.org/pages/privacy">Politica de confidențialitate</a></b>]]></string>
   <string name="activity">Activitate</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s observații</string>
-  <string name="observation_count_single">%1$d observație</string>
   <string name="camera">Faceți o fotografie</string>
   <string name="upload_photo">Alege imagine</string>
   <string name="menu_text">Nici o imagine</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">Inclus în proiectele %1$d</string>
   <string name="included_in_projects_singular">Inclus în proiectul %1$d</string>
   <string name="geoprivacy_explanation"><![CDATA[ Confidențialitatea geografică este o setare pe care o puteți face observațiilor, care controlează felul în care coordonatele spațiale (latitudine și longitudine) sunt afișate. Aici sunt opțiunile: <br/><b>deschide</b> - În cazul în care taxonul nu este amenințat, toată lumea poate vedea coordonatele. <br/><b>obscur</b> - Coordonate publice care sunt aratate ca un punct aleatoriu într-o zonă cu 0,2 grade de 0,2 grade care conține coordonatele reale și care funcționează la o arie de 22x22 km pătrați de incertitudine la ecuator, scăzând pe măsură ce vă apropiați de poli. Coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație.<br/><b>privat</b> - Coordonatele complet ascunse din hartă, coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație. <br/><br/>Reține că cei care au proiecte individuale pot să vadă întotdeauna coordonatele indiferent de setările de confidențialitate geografică, și dacă vă faceți griji cu privire la cine are acces la coordonate are trebui să aveți încredere în persoanele care participă în proiectele în care participați și dumneavoastră. ]]></string>
-  <string name="agree2">De acord</string>
   <string name="id_title">%1$s\'s ID • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Șterge</string>
@@ -311,10 +305,6 @@
   <string name="terms">Termeni</string>
   <string name="observation_rules">Regulile observației</string>
   <string name="couldnt_load_project_details">Nu s-au putut încărca detaliile proiectului: %1$s</string>
-  <string name="project_observations">Observații</string>
-  <string name="project_species">Specii</string>
-  <string name="project_people">Oameni</string>
-  <string name="project_identifiers">Identificatori</string>
   <string name="no_people_found">Nu s-a găsit nici o persoană</string>
   <string name="rank">Grad</string>
   <string name="identifications">Identificări</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">Actualizare descrierea identificării</string>
   <string name="your_identification">ID-ul tău: %1$s</string>
   <string name="onboarding_species_name">Specifică ce ai văzut, dar este în regulă dacă nu știi. Te pot ajuta alții cu identificarea!</string>
-  <string name="got_it">Am înțeles!</string>
   <string name="upload_complete">Încărcare completă!</string>
   <string name="onboarding_upload_description">Verifică dacă ai primit comentarii și identificării, la observațiile tale.</string>
   <string name="importing_photos">Se importă fotografie(iile)...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">Se pregătește fotografia...</string>
   <string name="recommended_for_you">Recomandate pentru tine</string>
   <string name="missions">Misiuni</string>
-  <string name="view_all">Vizualizați tot</string>
   <string name="browse_by_category">Navighează după categorie</string>
   <string name="couldnt_load_recommended_missions">Nu s-au putut încărca misiunile recomandate: %1$s</string>
   <string name="plants">Plante</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">Introducerea Misiunilor!</string>
   <string name="missions_onboarding_description">Misiunile sunt recomandări în timp real pentru ce ai putea să cauți în zona din apropierea ta. În acest fel poți descoperi specii noi pentru tine! (Necesită conexiune la internet)</string>
   <string name="ok_got_it">Ok, am înțeles!</string>
-  <string name="new_badge">Nou</string>
   <string name="could_not_download_observations">Nu s-au putut descărcat ultimele observații - Probleme de conexiune. Încearcă mai târziu.</string>
   <string name="no_news_yet">Nici o știre încă. Stai pe fază!</string>
   <string name="my_content">Conținutul me</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">Eroare la importarea imagini(lor): Se pot importa doar fișiere cu extensia JPG/JPEG/PNG</string>
   <string name="taxon_has_no_photos">Acest taxon nu are fotografii.</string>
   <string name="terrain">Teren</string>
-  <string name="observers">Observers</string>
   <string name="filters">Filters</string>
   <string name="exploring_all">Exploring All</string>
   <string name="nearby">Nearby</string>
@@ -567,4 +553,44 @@
   <string name="just_so_you_know">Just So You Know...</string>
   <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
   <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Descriere</string>
+  <string name="quantity">Cant</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s observații</string>
+  <string name="observation_count_single">%1$d observație</string>
+  <string name="agree2">De acord</string>
+  <string name="project_observations">Observații</string>
+  <string name="project_species">Specii</string>
+  <string name="project_people">Oameni</string>
+  <string name="project_identifiers">Identificatori</string>
+  <string name="got_it">Am înțeles!</string>
+  <string name="view_all">Vizualizați tot</string>
+  <string name="new_badge">Nou</string>
+  <string name="observers">Observers</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

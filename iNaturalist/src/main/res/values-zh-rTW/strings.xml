@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada 是 iNaturalist 網路在加拿大的成員。您想要使用此網路來當地語系化您的使用經驗，並相應地共用資料？</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista 是 iNaturalist 網路在哥倫比亞的成員。您想要使用此網路來當地語系化您的使用經驗，並相應地共用資料？</string>
   <string name="alert_message_use_biodiveristy4all">Biodiversity4all 是 iNaturalist 網路在葡萄牙的成員。您想要使用此網路來當地語系化您的使用經驗，並相應地共用資料嗎？</string>
-  <string name="description">描述</string>
   <string name="editor">編輯</string>
   <string name="license">授權</string>
   <string name="download_for_offline_use">下載供離線使用</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">使用者名稱或電子郵件</string>
   <string name="forgot">忘了嗎？</string>
   <string name="or_login_with">或透過以下方式登入:</string>
-  <string name="quantity">數量</string>
   <string name="registering">註冊中...</string>
   <string name="recommended_next_step">建議下一步</string>
   <string name="could_not_register_user">無法註冊使用者</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">您必須登入以查看您的更新資訊。</string>
   <string name="by_using_inat_terms"><![CDATA[使用 iNaturalist 即代表您同意<b><a href="http://www.inaturalist.org/pages/terms">服務條款</a></b>和<b><a href="HTTP://www.inaturalist.org/pages/privacy">隱私政策</a></b>]]></string>
   <string name="activity">活動</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s 筆觀察記錄</string>
-  <string name="observation_count_single">%1$d 筆觀察記錄</string>
   <string name="camera">拍照</string>
   <string name="upload_photo">選擇圖片</string>
   <string name="menu_text">沒有照片</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">包括在 %1$d 專案中</string>
   <string name="included_in_projects_singular">包括在 %1$d 專案中</string>
   <string name="geoprivacy_explanation"><![CDATA[地理資訊隱私權(Geoprivacy)的設定控制了您的觀察記錄中如何顯示空間座標 （緯度和經度）。選項為： <br/> <b>開放</b>—每個人都可以看到座標，除非此分類群受到威脅。 <br/><b>遮敝</b>—公開的座標是在 0.2 x 0.2 度範圍內隨機顯示，其中包含了真實座標，這相當於大約在赤道有 22 x 22 公里面積的開放座標，而隨著接近兩極此面積會逐漸減少。真實的座標是僅對您和您向其中新增加的觀察專案策展人可見。<br/> <b>私人</b>—座標在公開地圖上是完全隱藏的，只有您和您加入到觀察專案中的策展人才能看到真實的座標。 <br/> <br/>注意：個別專案策展人不管您的地理資訊隱私權如何設定，他還是可以看到您的座標，所以如果對於誰可以存取座標有疑慮的話，您應該確保您信任您所參與的專案策展人。]]></string>
-  <string name="agree2">同意</string>
   <string name="id_title">%1$s 的 ID • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">刪除</string>
@@ -311,10 +305,6 @@
   <string name="terms">使用條款</string>
   <string name="observation_rules">觀察記錄的規則</string>
   <string name="couldnt_load_project_details">無法載入專案詳細資訊： %1$s</string>
-  <string name="project_observations">觀察記錄</string>
-  <string name="project_species">物種</string>
-  <string name="project_people">人員</string>
-  <string name="project_identifiers">鑑定者</string>
   <string name="no_people_found">找不到使用者</string>
   <string name="rank">等級</string>
   <string name="identifications">辨認</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">更新鑑定描述</string>
   <string name="your_identification">您的 ID: %1$s</string>
   <string name="onboarding_species_name">請辨認你所看到的動物。如果你不肯定物種的名稱，沒關係，其他人也可以幫助你辨認它！</string>
-  <string name="got_it">明白！</string>
   <string name="upload_complete">上傳完成！</string>
   <string name="onboarding_upload_description">請稍後回來查看其他人對你的觀察記錄的辨認及評論。</string>
   <string name="importing_photos">正在匯入照片中...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">準備照片中...</string>
   <string name="recommended_for_you">向您推薦</string>
   <string name="missions">任務</string>
-  <string name="view_all">檢視全部</string>
   <string name="browse_by_category">按類別瀏覽</string>
   <string name="couldnt_load_recommended_missions">無法載入推薦的任務: %1$s</string>
   <string name="plants">植物</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">介紹任務！</string>
   <string name="missions_onboarding_description">「任務」是對於您附近找尋生物的即時建議。透過這種方式您可以發現沒看過的新物種 ！（需要網路連線）</string>
   <string name="ok_got_it">OK，瞭解！</string>
-  <string name="new_badge">新的</string>
   <string name="could_not_download_observations">由於網絡問題，最新的觀察記錄未能載入。請稍後再試。</string>
   <string name="no_news_yet">尚未更新。請保持關注！</string>
   <string name="my_content">我的資料</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">匯入照片時出錯： 只能匯入照片的副檔名為JPG/JPEG/PNG</string>
   <string name="taxon_has_no_photos">這分類群沒有照片。</string>
   <string name="terrain">地形</string>
-  <string name="observers">觀察者</string>
   <string name="filters">篩選</string>
   <string name="exploring_all">探索全部項目</string>
   <string name="nearby">附近的</string>
@@ -566,5 +552,45 @@
   <string name="password_changed">app 所使用的密碼不再有效 - 您是否在網站上更改了密碼？請在這裡輸入新的密碼</string>
   <string name="just_so_you_know">只是要您知道...</string>
   <string name="ask_for_g_plus_permissions">Google 要求我們在使用您的 Google 帳號之前要詢問存取您聯絡人之權限，即使我們沒有任何理由去存取您的聯絡人資訊。如果您拒絕此許可，您將需要使用帳號及密碼來登入。</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[初次使用 %1$s？<b>立即註冊！</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">描述</string>
+  <string name="quantity">數量</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s 筆觀察記錄</string>
+  <string name="observation_count_single">%1$d 筆觀察記錄</string>
+  <string name="agree2">同意</string>
+  <string name="project_observations">觀察記錄</string>
+  <string name="project_species">物種</string>
+  <string name="project_people">人員</string>
+  <string name="project_identifiers">鑑定者</string>
+  <string name="got_it">明白！</string>
+  <string name="view_all">檢視全部</string>
+  <string name="new_badge">新的</string>
+  <string name="observers">觀察者</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

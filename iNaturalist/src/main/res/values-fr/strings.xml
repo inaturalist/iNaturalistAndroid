@@ -187,7 +187,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada est un membre du réseau iNaturalist au Canada. En cliquant sur OK vous localiserez votre expérience et partagerez ainsi vos données?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista est un membre du réseau iNaturalist en Colombie. Souhaitez-vous utiliser ce réseau pour y localiser votre expérience et ainsi partager vos données?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiversity4all fait parti du réseau iNaturalist du Portugal. souhaitez-vous vous servir de ce réseau afin d\'intégrer votre expérience et partager vos données?</string>
-  <string name="description">Description</string>
   <string name="editor">Éditeur</string>
   <string name="license">Licence</string>
   <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
@@ -224,7 +223,6 @@
   <string name="username_or_email">Nom d\'utilisateur ou e-mail</string>
   <string name="forgot">Mot de passe oublié?</string>
   <string name="or_login_with">Ou connectez-vous avec:</string>
-  <string name="quantity">Qté</string>
   <string name="registering">Inscription...</string>
   <string name="recommended_next_step">Étape suivante recommandée</string>
   <string name="could_not_register_user">L\'inscription n\'a pas pu s\'effectuer</string>
@@ -234,9 +232,6 @@
   <string name="please_sign_in_for_updates">Vous devez être connecté pour voir vos actualisations.</string>
   <string name="by_using_inat_terms"><![CDATA[En utilisant iNaturalist vous acceptez les <b><a href="http://www.inaturalist.org/pages/terms"> conditions d’utilisation</a></b> et <b><a href="http://www.inaturalist.org/pages/privacy"> la politique de confidentialité</a></b>]]></string>
   <string name="activity">Activité</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s observations</string>
-  <string name="observation_count_single">%1$d observation</string>
   <string name="camera">Prendre une photo</string>
   <string name="upload_photo">Choisir une image</string>
   <string name="menu_text">Ignorer la photo</string>
@@ -276,7 +271,6 @@
   <string name="included_in_projects">Inclus dans %1$d projets</string>
   <string name="included_in_projects_singular">Inclus dans %1$d projet</string>
   <string name="geoprivacy_explanation"><![CDATA[Le Geoprivacy est un paramètre que vous pouvez utiliser dans vos observations et qui contrôle l'affichage des coordonnées spaciales (latitude et longitude). En voici les options : ]]></string>
-  <string name="agree2">D\'accord</string>
   <string name="id_title">ID • %2$s de %1$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Supprimer</string>
@@ -312,10 +306,6 @@
   <string name="terms">Termes</string>
   <string name="observation_rules">Règles au sujet des observations</string>
   <string name="couldnt_load_project_details">Les détails du projet n\'ont pu être téléchargés: %1$s</string>
-  <string name="project_observations">Observations</string>
-  <string name="project_species">Espèces</string>
-  <string name="project_people">Personnes</string>
-  <string name="project_identifiers">Identifiants</string>
   <string name="no_people_found">Aucune personne trouvée</string>
   <string name="rank">Classement</string>
   <string name="identifications">Identification</string>
@@ -364,7 +354,6 @@
   <string name="update_id_description">Mise à jour la description d’Identification</string>
   <string name="your_identification">Votre ID : %1$s</string>
   <string name="onboarding_species_name">Nommez ce que vous avez vu, mais c’est correct si vous ne pouvez pas. D’autres peuvent vous aider à l’identifier !</string>
-  <string name="got_it">J\'ai compris!</string>
   <string name="upload_complete">Téléchargement complet !</string>
   <string name="onboarding_upload_description">Revenez jeter un coup d’œil bientôt pour voir l’activité de la communauté au sujet de votre observation</string>
   <string name="importing_photos">Téléchargement de photos...</string>
@@ -372,7 +361,6 @@
   <string name="preparing_photo">Preparation de photo...</string>
   <string name="recommended_for_you">Recommandé pour vous</string>
   <string name="missions">Missions</string>
-  <string name="view_all">Afficher tout</string>
   <string name="browse_by_category">Recherche par catégorie</string>
   <string name="couldnt_load_recommended_missions">Impossible de charger des missions recommandées: %1$s</string>
   <string name="plants">Plantes</string>
@@ -396,7 +384,6 @@
   <string name="introducing_missions">Voici les Missions !</string>
   <string name="missions_onboarding_description">Les missions sont des recommandations en temps réel de ce que vous pouvez chercher autour de vous. De cette façon vous pouvez découvrir de nouvelles espèces! (Nécessite une connectivité)</string>
   <string name="ok_got_it">OK, j\'ai compris !</string>
-  <string name="new_badge">Nouveau</string>
   <string name="could_not_download_observations">Pas pu télécharger les observations les plus récentes - problèmes de connexion. Réessayez plus tard.</string>
   <string name="no_news_yet">Pas encore de nouvelles. Restez à l’écoute !</string>
   <string name="my_content">Mon contenu</string>
@@ -448,7 +435,6 @@
   <string name="invalid_photo_extension">Erreur lors de l’importation de photo(s) : seuls les fichiers image avec les extensions JPG/JPEG/PNG peuvent être importés</string>
   <string name="taxon_has_no_photos">Ce taxon n’a pas de photos.</string>
   <string name="terrain">Terrain</string>
-  <string name="observers">Observateurs</string>
   <string name="filters">Filtres</string>
   <string name="exploring_all">Tout explorer</string>
   <string name="nearby">À proximité</string>
@@ -567,5 +553,45 @@
   <string name="password_changed">Le mot de passe de l\'application utilisée n\'est plus valide-avez-vous changé votre mot de passe? Veuillez entrer le nouveau mot de passe</string>
   <string name="just_so_you_know">Pour votre information...</string>
   <string name="ask_for_g_plus_permissions">Google nous oblige à demander l\'autorisation d\'accéder à vos contacts afin de pouvoir utiliser votre Compte Google, même si nous n\'avons pas accès à vos contacts pour une raison ou pour une autre. Si vous ne nous accordez pas cela, vous serez obligé de vous inscrire ou de vous connecter avec votre mot\'d\'utilisateur et un mot de passe.</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[Nouveau sur %1$s? <b>Inscrivez-vous dès maintenant !</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Description</string>
+  <string name="quantity">Qté</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s observations</string>
+  <string name="observation_count_single">%1$d observation</string>
+  <string name="agree2">D\'accord</string>
+  <string name="project_observations">Observations</string>
+  <string name="project_species">Espèces</string>
+  <string name="project_people">Personnes</string>
+  <string name="project_identifiers">Identifiants</string>
+  <string name="got_it">J\'ai compris!</string>
+  <string name="view_all">Afficher tout</string>
+  <string name="new_badge">Nouveau</string>
+  <string name="observers">Observateurs</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

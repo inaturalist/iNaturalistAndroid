@@ -186,8 +186,7 @@
   <string name="alert_message_use_naturewatchnz">NatureWatch NZ Meksika\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
   <string name="alert_message_use_inaturalistcanada">iNaturalist Kanada, Kanada\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista Kolombiya\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
-  <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="description">Açıklama </string>
+  <string name="alert_message_use_biodiveristy4all">Biodiveristy4all Portekiz\'de bulunan iNaturalist Network\'ün bir üyesidir. Bu ağı deneyiminizi yerelleştirmek ve verileri buna göre paylaşmak için kullanmak ister misiniz?</string>
   <string name="editor">Editör</string>
   <string name="license">Lisans</string>
   <string name="download_for_offline_use">Çevrimdışı kullanım için indirme</string>
@@ -224,9 +223,8 @@
   <string name="username_or_email">Kullanıcı Adı veya E-posta</string>
   <string name="forgot">Unuttun mu?</string>
   <string name="or_login_with">Ya da birlikte oturum aç:</string>
-  <string name="quantity">Adet</string>
   <string name="registering">Kaydediliyor...</string>
-  <string name="recommended_next_step">Recommended Next Step</string>
+  <string name="recommended_next_step">Önerilen Sonraki Adım</string>
   <string name="could_not_register_user">Kullanıcı kaydı yapılamadı</string>
   <!-- Short label for a button in the side bar, not much more than 16 characters -->
   <string name="login_signup">Oturum Aç/Kaydol</string>
@@ -234,9 +232,6 @@
   <string name="please_sign_in_for_updates">Güncellemelerinizi görüntüleyebilmek için giriş yapmanız gerekmektedir.</string>
   <string name="by_using_inat_terms"><![CDATA[İNaturalist kullanarak <b> < a href = "http://www.inaturalist.org/pages/terms" > hizmet şartları </a> </b> ve <b> < a href = "http://www.inaturalist.org/pages/privacy" > Gizlilik Politikası </a> </b>]]></string>
   <string name="activity">Faaliyet</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s Gözlemler</string>
-  <string name="observation_count_single">%1$d Gözlem</string>
   <string name="camera">Resim Çek</string>
   <string name="upload_photo">Resim seçin</string>
   <string name="menu_text">Fotoğraf yok</string>
@@ -276,7 +271,6 @@
   <string name="included_in_projects">%1$d projelere dahil</string>
   <string name="included_in_projects_singular">%1$d Projeye dahil</string>
   <string name="geoprivacy_explanation"><![CDATA[Geoprivacy, kayma koordinatları (Enlem ve Boylam) nasıl görüntüleneceğini denetleyen gözlemler üzerinde yapabileceğiniz bir ayardır. Burada seçenekler şunlardır: <br/> <b> Open </b>-herkes takson tehdit olmadıkça koordinatları görebilirsiniz. <br/> <b> örtülü </b>-genel koordinatları bir 0,2 ile 0,2 derece alanı içinde rastgele bir nokta olarak gösterilen doğru koordinatları içeren, ekvatorda belirsizlik bir 22x22 km kare alanı hakkında çalışır, Polonyalılar yaklaşım azalır. Gerçek koordinatlar sadece sizin ve gözlem eklediğiniz projelerin küratörleri görülebilir. <br/> <b> Private </b>-koordinatları tamamen gizli haritaları, gerçek koordinatları sadece sizin ve gözlem eklediğiniz projelerin küratörler görülebilir. <br/> <br/> Bireysel projelerin küratörleri her zaman geoprivacy ayarınız ne olursa olsun koordinatları görebilirsiniz, bu nedenle eğer size Katıldığınız projelerin küratörleri güvendiğiniz emin olmalıdır koordinatlara erişimi olan endişe ediyorsanız unutmayın.]]></string>
-  <string name="agree2">Kabul et</string>
   <string name="id_title">%1$s\'im kiimliği • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Sil</string>
@@ -296,9 +290,9 @@
   <string name="location">Konum</string>
   <string name="login_in_to_add_comments_ids">Yorum yapmak ve öneride bulunmak için, giriş yapın veya kaydolun.</string>
   <string name="login_in_to_fav">Favorileri görmek ve gözlem yapabilmek için giriş yapın veya kayıt olun.</string>
-  <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+  <string name="sync_obs_to_see_favs">Favorileri görmek için bu incelemeyi senkronize edin...</string>
   <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-  <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+  <string name="sync_obs_to_add_comments_ids">Yorum bırakmak veya kullanıcı belirtmek için bu incelemeyi senkronize edin...</string>
   <string name="no_photo">Fotoğraf yok</string>
   <string name="about_this_species">Bu türler hakkında</string>
   <string name="view_on_wikipedia">Vikipedi Makalesi</string>
@@ -312,10 +306,6 @@
   <string name="terms">Şartlar</string>
   <string name="observation_rules">Gözlem Kuralları</string>
   <string name="couldnt_load_project_details">Proje detayları yüklenemedi: %1$s</string>
-  <string name="project_observations">Gözlemler</string>
-  <string name="project_species">Türler</string>
-  <string name="project_people">Kişiler</string>
-  <string name="project_identifiers">Tanımlayıcılar</string>
   <string name="no_people_found">Hiç kimse bulunamadı</string>
   <string name="rank">Rütbe</string>
   <string name="identifications">Tanımlamalar</string>
@@ -353,9 +343,9 @@
   <string name="stop">Dur</string>
   <string name="resume">Devam et</string>
   <string name="cleaning_up">Temizleniyor...</string>
-  <string name="syncing">Syncing...</string>
+  <string name="syncing">Senkronize ediliyor...</string>
   <string name="syncing_observation_fields">Gözlem alanlarını eşitleniyor...</string>
-  <string name="syncing_observations">Syncing observations...</string>
+  <string name="syncing_observations">Gözlemler güncelleniyor...</string>
   <string name="syncing_paused">Duraklatıldı</string>
   <string name="upload">Yükle</string>
   <string name="search_observations">Gözlemler aranıyor...</string>
@@ -364,7 +354,6 @@
   <string name="update_id_description">Kimlik tanımlamasını güncelle.</string>
   <string name="your_identification">Kimliğin: %1$s</string>
   <string name="onboarding_species_name">Eğer mümkünse ne gördüğünü söyle. Diğerleri belirlemenize yardımcı olabilir!</string>
-  <string name="got_it">Anladım!</string>
   <string name="upload_complete">Yükleme Tamamlandı!</string>
   <string name="onboarding_upload_description">Gözlem(ler)indeki tanımlama ve yorumlar için daha sonra tekrar kontrol et.</string>
   <string name="importing_photos">Fotoğraf(lar) içe aktarılıyor...</string>
@@ -372,7 +361,6 @@
   <string name="preparing_photo">Fotoğraf hazırlanıyor...</string>
   <string name="recommended_for_you">Sizin için Önerilen</string>
   <string name="missions">Görevler</string>
-  <string name="view_all">Hepsini göster</string>
   <string name="browse_by_category">Bu kategoriye Gözat</string>
   <string name="couldnt_load_recommended_missions">Önerilen görevler yüklenemedi: %1$s</string>
   <string name="plants">Bitkiler</string>
@@ -396,7 +384,6 @@
   <string name="introducing_missions">Görevlerin Tanıtımı!</string>
   <string name="missions_onboarding_description">Misyonlar etrafında ne aramak için gerçek zamanlı öneriler vardır. Bu şekilde size yeni türler keşfedebilirsiniz! (bağlantı gerektirir)</string>
   <string name="ok_got_it">Tamam, anladım!</string>
-  <string name="new_badge">Yeni</string>
   <string name="could_not_download_observations">Son gözlemleriniz yüklenemedi - Bağlantı hatası. Daha sonra tekrar deneyin.</string>
   <string name="no_news_yet">Henüz haber yok. Bizi izlemeye devam edin!</string>
   <string name="my_content">Içeriğim</string>
@@ -448,7 +435,6 @@
   <string name="invalid_photo_extension">Fotoğraf(lar) alma hatası: Yalnızca JPG/JPEG/PNG uzantılı fotoğraflar alınabilir.</string>
   <string name="taxon_has_no_photos">Bu taksonda hiç fotoğraf bulunmuyor.</string>
   <string name="terrain">Arazi</string>
-  <string name="observers">Gözlemciler</string>
   <string name="filters">Filtreler</string>
   <string name="exploring_all">Tümü keşfediliyor</string>
   <string name="nearby">Yakındaki</string>
@@ -560,12 +546,52 @@
   <string name="submit">Gönder</string>
   <string name="change_password">Şifre Değiştir</string>
   <string name="search_projects_youve_joined">Katıldığın projeleri ara...</string>
-  <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
+  <string name="must_be_connected_to_load_more_obs">Daha fazla içerik yüklemek için internete bağlı olmalısınız</string>
   <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
   <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech helped developing the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. More information may be found at visipedia.org</string>
   <string name="credits_title">Credits</string>
   <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
-  <string name="just_so_you_know">Just So You Know...</string>
+  <string name="just_so_you_know">Bilginiz olsun...</string>
   <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
   <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Açıklama </string>
+  <string name="quantity">Adet</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s Gözlemler</string>
+  <string name="observation_count_single">%1$d Gözlem</string>
+  <string name="agree2">Kabul et</string>
+  <string name="project_observations">Gözlemler</string>
+  <string name="project_species">Türler</string>
+  <string name="project_people">Kişiler</string>
+  <string name="project_identifiers">Tanımlayıcılar</string>
+  <string name="got_it">Anladım!</string>
+  <string name="view_all">Hepsini göster</string>
+  <string name="new_badge">Yeni</string>
+  <string name="observers">Gözlemciler</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

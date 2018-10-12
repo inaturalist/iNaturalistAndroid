@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada je členem Sítě iNaturalist v Kanadě. Chtěli byste tuto síť využít k lokalizaci vašich zkušeností a sdílet data odpovídajícím způsobem?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista je členem Sítě iNaturalist v Kolumbii. Chtěli byste tuto síť využít k lokalizaci vašich zkušeností a sdílet data tímto způsobem?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="description">Popis</string>
   <string name="editor">Editor</string>
   <string name="license">Licence</string>
   <string name="download_for_offline_use">Stáhnout pro offline použití</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Uživatelské jméno nebo e-mail</string>
   <string name="forgot">Zapomněl(a) jste?</string>
   <string name="or_login_with">Nebo se přihlásit přes:</string>
-  <string name="quantity">Množství</string>
   <string name="registering">Registrace...</string>
   <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">Nelze registrovat uživatele</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">Musíte být přihlášen k zobrazení vašich aktualizací.</string>
   <string name="by_using_inat_terms"><![CDATA[Užíváním iNaturalist souhlasíte s <b><a href="http://www.inaturalist.org/pages/terms"> Podmínkami služeb</a></b> a <b><a href="http://www.inaturalist.org/pages/privacy"> Zásadami ochrany osobních údajů</a></b>]]></string>
   <string name="activity">Aktivita</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s pozorování</string>
-  <string name="observation_count_single">%1$d pozorování</string>
   <string name="camera">Pořídit snímek</string>
   <string name="upload_photo">Zvolit obrázek</string>
   <string name="menu_text">Žádné fotografie</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">Zahrnuto v %1$d projektech</string>
   <string name="included_in_projects_singular">Zahrnuto v %1$d projektu</string>
   <string name="geoprivacy_explanation"><![CDATA[ "Geosoukromí" je nastavení vašeho pozorování, řídí, jak se zobrazují vaše prostorové souřadnice (zeměpisná šířka a délka). Zde jsou možnosti: <br/> <b> otevřeno </ b> - Každý může vidět souřadnice, pokud není daný taxon ohrožen. <br/> <b> zakryté </ b> - veřejné souřadnice jsou zobrazeny jako náhodný bod v oblasti 0,2 na 0,2 stupně, který obsahuje skutečné souřadnice, což je asi plocha 22 x 22 km, nepřesné jsou na rovníku, směrem k pólům nepřesnost klesá. Pravé souřadnice jsou viditelné pouze vám a kurátorům projektů, ke kterým přidáte pozorování. <br/> <b> soukromé </ b> - souřadnice jsou zcela skryté na veřejných mapách, pravé souřadnice jsou viditelné pouze pro vás a kurátory projektů, ke kterým přidáte pozorování. <br/> <br/> Vezměte na vědomí, že kurátoři jednotlivých projektů mohou vždy vidět souřadnice bez ohledu na vaše nastavení "geosoukromí", takže pokud máte obavy o to, kdo má přístup k souřadnicím, měli byste si být jisti, že důvěřujete kurátorům projektů, kterých se účastníte. ]]></string>
-  <string name="agree2">Souhlasím</string>
   <string name="id_title">%1$s\'s identifikace • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Odstranit</string>
@@ -311,10 +305,6 @@
   <string name="terms">Podmínky</string>
   <string name="observation_rules">Pravidla pozorování</string>
   <string name="couldnt_load_project_details">Není možné načíst podrobnosti o projektu: %1$s</string>
-  <string name="project_observations">Pozorování</string>
-  <string name="project_species">Druhy</string>
-  <string name="project_people">Lidé</string>
-  <string name="project_identifiers">Identifikátory</string>
   <string name="no_people_found">Lidé nenalezeni</string>
   <string name="rank">Hodnocení</string>
   <string name="identifications">Identifikace</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">Aktualizovat popis identifikací</string>
   <string name="your_identification">Vaše identifikace: %1$s</string>
   <string name="onboarding_species_name">Pojmenujte, co jste viděli, jestli to umíte, jestli ne, je to OK. Ostatní vám pomohou s identifikací!</string>
-  <string name="got_it">Mám to!</string>
   <string name="upload_complete">Nahrávání dokončeno!</string>
   <string name="onboarding_upload_description">Zkontrolujte brzy identifikace a připomínky vašeho pozorování.</string>
   <string name="importing_photos">Import fotografií...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">Příprava fotografie...</string>
   <string name="recommended_for_you">Doporučeno pro vás</string>
   <string name="missions">Cíl</string>
-  <string name="view_all">Zobrazit vše</string>
   <string name="browse_by_category">Procházet podle kategorií</string>
   <string name="couldnt_load_recommended_missions">Nelze načíst doporučené úkoly: %1$s</string>
   <string name="plants">Rostliny</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">Představujeme mise!</string>
   <string name="missions_onboarding_description">Mise jsou doporučení v reálném čase, co hledat kolem vás. Tímto způsobem můžete objevovat nové druhy! (Vyžaduje připojení)</string>
   <string name="ok_got_it">Ok, rozumím!</string>
-  <string name="new_badge">Nový</string>
   <string name="could_not_download_observations">Nelze stáhnout poslední pozorování - Problémy s připojením. Zkuste to později.</string>
   <string name="no_news_yet">Zatím žádné zprávy. Sledujte novinky!</string>
   <string name="my_content">Můj obsah</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">Chyba při importu fotek: Umožňuje importovat pouze fotky s příponami JPG / JPEG / PNG</string>
   <string name="taxon_has_no_photos">Tento taxon nemá žádné fotografie.</string>
   <string name="terrain">Terén</string>
-  <string name="observers">Pozorovatelé</string>
   <string name="filters">Filtry</string>
   <string name="exploring_all">Prozkoumat vše</string>
   <string name="nearby">V okolí</string>
@@ -567,4 +553,44 @@
   <string name="just_so_you_know">Just So You Know...</string>
   <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
   <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Popis</string>
+  <string name="quantity">Množství</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s pozorování</string>
+  <string name="observation_count_single">%1$d pozorování</string>
+  <string name="agree2">Souhlasím</string>
+  <string name="project_observations">Pozorování</string>
+  <string name="project_species">Druhy</string>
+  <string name="project_people">Lidé</string>
+  <string name="project_identifiers">Identifikátory</string>
+  <string name="got_it">Mám to!</string>
+  <string name="view_all">Zobrazit vše</string>
+  <string name="new_badge">Nový</string>
+  <string name="observers">Pozorovatelé</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

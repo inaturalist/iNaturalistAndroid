@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist カナダは、カナダでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista は、コロンビアでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="description">説明</string>
   <string name="editor">編集者</string>
   <string name="license">ライセンス</string>
   <string name="download_for_offline_use">オフラインでも使用できるようにダウンロードする</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">ユーザー名またはメールアドレス</string>
   <string name="forgot">お忘れの方</string>
   <string name="or_login_with">または別のアカウントでログイン:</string>
-  <string name="quantity">数量</string>
   <string name="registering">登録しています...</string>
   <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">ユーザーを登録できませんでした</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">更新を表示するはログインが必要です。</string>
   <string name="by_using_inat_terms"><![CDATA[INaturalist を使用することで <b><a href="http://www.inaturalist.org/pages/terms">サービスの利用規約</a></b> および <b><a href="http://www.inaturalist.org/pages/privacy">プライバシー ポリシー</a></b> に同意します]]></string>
   <string name="activity">活動</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s件の観察記録</string>
-  <string name="observation_count_single">%1$d件の観察記録</string>
   <string name="camera">写真を撮影</string>
   <string name="upload_photo">画像を選択</string>
   <string name="menu_text">写真をスキップ</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">%1$dプロジェクトに含まれています</string>
   <string name="included_in_projects_singular">%1$dプロジェクトに含まれています</string>
   <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy は、あなたが観察をすることができる空間座標 (緯度と経度) の表示方法を制御する設定です。ここでのオプションは: <br/><b>オープン</b> - 分類群を侵害しない限り、だれでも座標を見ることができます。<br/><b>隠蔽</b> - 赤道面座標系を含む 0.2 × 0.2 度の領域内のランダム点として表示される公共測地座標系で、極に近づくにつれて減少する、赤道では不確実な約 22 x 22 km の正方形の領域ということになります。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><b>プライベート</b> - 座標は公図から完全に隠蔽されます。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><br/>個々のプロジェクトのキュレーターは Geoprivacy の設定に関係なく、常に座標を見ることができるため、誰が座標にアクセスするかについて不安がある場合は、参加しているプロジェクトのキュレーターを確認する必要があることにご注意ください。 ]]></string>
-  <string name="agree2">賛成</string>
   <string name="id_title">%1$s\'s ID • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">削除</string>
@@ -311,10 +305,6 @@
   <string name="terms">利用規約</string>
   <string name="observation_rules">観察ルール</string>
   <string name="couldnt_load_project_details">プロジェクトの詳細を読み込みできませんでした: %1$s</string>
-  <string name="project_observations">観察記録</string>
-  <string name="project_species">種</string>
-  <string name="project_people">人</string>
-  <string name="project_identifiers">ID提供者</string>
   <string name="no_people_found">人が見つかりません</string>
   <string name="rank">順位</string>
   <string name="identifications">ID</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">同定の説明を更新します</string>
   <string name="your_identification">あなたの ID: %1$s</string>
   <string name="onboarding_species_name">可能な場合は、見たものの名前を付けてください。できない場合は問題ありません。 他の人がそれを識別するのを助けてくれるかもしれません!</string>
-  <string name="got_it">了解!</string>
   <string name="upload_complete">アップロード完了!</string>
   <string name="onboarding_upload_description">すぐに観察結果を確認して、コメントしてください。</string>
   <string name="importing_photos">写真をインポートしています...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">写真を準備しています...</string>
   <string name="recommended_for_you">あなたへのおすすめ</string>
   <string name="missions">ミッション</string>
-  <string name="view_all">全て表示</string>
   <string name="browse_by_category">カテゴリ別に閲覧</string>
   <string name="couldnt_load_recommended_missions">推奨されるミッションを読み込みできませんでした: %1$s</string>
   <string name="plants">植物</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">ミッションの紹介!</string>
   <string name="missions_onboarding_description">ミッションは、リアルタイムでおすすめするあなたの周りで探すべきものです。この方法で新しい種を発見することができます! (ネットワーク接続が必要です)</string>
   <string name="ok_got_it">OK、分りました!</string>
-  <string name="new_badge">新規</string>
   <string name="could_not_download_observations">最新の観察記録をダウンロードできませんでした - 接続に問題があります。後でもう一度やり直してください。</string>
   <string name="no_news_yet">ニュースはまだありません。お楽しみに!</string>
   <string name="my_content">自分のデータ</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">写真のインポートエラー: 拡張子が JPG/JPEG/PNG の写真ファイルのみインポートできます</string>
   <string name="taxon_has_no_photos">この分類群には、写真がありません。</string>
   <string name="terrain">地形</string>
-  <string name="observers">観察者</string>
   <string name="filters">フィルター</string>
   <string name="exploring_all">すべての探索</string>
   <string name="nearby">現在地の近く</string>
@@ -567,4 +553,44 @@
   <string name="just_so_you_know">Just So You Know...</string>
   <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
   <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">説明</string>
+  <string name="quantity">数量</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s件の観察記録</string>
+  <string name="observation_count_single">%1$d件の観察記録</string>
+  <string name="agree2">賛成</string>
+  <string name="project_observations">観察記録</string>
+  <string name="project_species">種</string>
+  <string name="project_people">人</string>
+  <string name="project_identifiers">ID提供者</string>
+  <string name="got_it">了解!</string>
+  <string name="view_all">全て表示</string>
+  <string name="new_badge">新規</string>
+  <string name="observers">観察者</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

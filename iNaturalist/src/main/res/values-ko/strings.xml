@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Would you like to use this network to localize your experience and share data accordingly?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Would you like to use this network to localize your experience and share data accordingly?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="description">설명</string>
   <string name="editor">편집기</string>
   <string name="license">게시물 사용 권한</string>
   <string name="download_for_offline_use">오프라인 사용을 위한 저장</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">아이디 또는 이메일</string>
   <string name="forgot">잊어 버리셨습니까?</string>
   <string name="or_login_with">또는 다음으로 로그인 함:</string>
-  <string name="quantity">수량</string>
   <string name="registering">등록 중...</string>
   <string name="recommended_next_step">Recommended Next Step</string>
   <string name="could_not_register_user">사용자를 등록할 수 없습니다.</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">회원님의 업데이트를 보려면 로그인 해야 합니다.</string>
   <string name="by_using_inat_terms"><![CDATA[iNaturalist를 이용하시려면 다음의 <b><a href="http://www.inaturalist.org/pages/terms">서비스 이용약관</a></b>과 <b><a href="http://www.inaturalist.org/pages/privacy"> 개인정보 보호 정책</a></b>에 동의하셔야 합니다.]]></string>
   <string name="activity">탐사 활동</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s 관찰 기록</string>
-  <string name="observation_count_single">%1$d 관찰 기록</string>
   <string name="camera">사진 촬영</string>
   <string name="upload_photo">사진 선택</string>
   <string name="menu_text">사진 등록 건너뛰기</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">%1$d 프로젝트에 포함됩니다.</string>
   <string name="included_in_projects_singular">%1$d 프로젝트에 포함됩니다.</string>
   <string name="geoprivacy_explanation"><![CDATA[ 위치정보 보호는 회원님이 관찰한 생물의 위치 좌표(위도와 경도)를 바꿀 수 있습니다. 다음과 같은 선택지가 있습니다: <br/><b>공개</b> - 모든 사람이 멸종위기가 아닌 생물 종의 좌표를 볼 수 있습니다.<br/> <b>위치 불명료</b>- 생물 종이 발견된 좌표로부터 위도 0.2º x 경도 0.2º 범위 내에서 무작위적으로 위치 좌표를 표시합니다. 이것은 적도 기준으로 484제곱킬로미터(22㎞x22㎞) 범위 내(극지방으로 갈 수록 좁아집니다)에서 위치 정보를 모호하게 만드는 것 입니다. 정확한 위치 정보는 관찰자와 관찰 기록을 등록한 프로젝트의 책임자만 알 수 있습니다.<br/><b>비공개</b> - 관찰 생물이 발견된 위치 좌표를 공개하지 않습니다. 관찰자와 관찰 기록을 등록한 프로젝트의 책임자에게만 위치 정보가 공개됩니다. <br/><br/>관찰 기록을 등록한 프로젝트의 책임자는 회원님이 설정한 장소 공개여부와 관계 없이 항상 생물의 정확한 위치 좌표를 알 수 있습니다. 그래서 사람들이 정확한 위치 좌표에 접근하는 것이 우려된다면 참여하고 있는 프로젝트의 책임자를 항상 신뢰 할 수 있어야 합니다. ]]></string>
-  <string name="agree2">동의함</string>
   <string name="id_title">%1$s의 생물 종 정보 • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">삭제</string>
@@ -311,10 +305,6 @@
   <string name="terms">요구 사항</string>
   <string name="observation_rules">관찰 규칙</string>
   <string name="couldnt_load_project_details">프로젝트 세부 정보를 불러올 수 없습니다: %1$s</string>
-  <string name="project_observations">관찰 기록</string>
-  <string name="project_species">종</string>
-  <string name="project_people">사람</string>
-  <string name="project_identifiers">생물 종 정보 확인자</string>
   <string name="no_people_found">검색한 사람을 찾지 못했습니다</string>
   <string name="rank">순위</string>
   <string name="identifications">생물 종 정보 확인</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">Update Identification Description</string>
   <string name="your_identification">Your ID: %1$s</string>
   <string name="onboarding_species_name">Name what you saw if you can, but it\'s OK if you can\'t. Others may help you identify it!</string>
-  <string name="got_it">Got it!</string>
   <string name="upload_complete">Upload Complete!</string>
   <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
   <string name="importing_photos">Importing photo(s)...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">Preparing photo...</string>
   <string name="recommended_for_you">Recommended for You</string>
   <string name="missions">Missions</string>
-  <string name="view_all">View All</string>
   <string name="browse_by_category">Browse By Category</string>
   <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
   <string name="plants">Plants</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">Introducing Missions!</string>
   <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
   <string name="ok_got_it">Ok, got it!</string>
-  <string name="new_badge">New</string>
   <string name="could_not_download_observations">Could not download latest observations - Connection problems. Try again later.</string>
   <string name="no_news_yet">No news yet. Stay tuned!</string>
   <string name="my_content">My Content</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
   <string name="taxon_has_no_photos">This taxon has no photos.</string>
   <string name="terrain">Terrain</string>
-  <string name="observers">Observers</string>
   <string name="filters">Filters</string>
   <string name="exploring_all">Exploring All</string>
   <string name="nearby">Nearby</string>
@@ -567,4 +553,44 @@
   <string name="just_so_you_know">Just So You Know...</string>
   <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
   <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">설명</string>
+  <string name="quantity">수량</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s 관찰 기록</string>
+  <string name="observation_count_single">%1$d 관찰 기록</string>
+  <string name="agree2">동의함</string>
+  <string name="project_observations">관찰 기록</string>
+  <string name="project_species">종</string>
+  <string name="project_people">사람</string>
+  <string name="project_identifiers">생물 종 정보 확인자</string>
+  <string name="got_it">Got it!</string>
+  <string name="view_all">View All</string>
+  <string name="new_badge">New</string>
+  <string name="observers">Observers</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

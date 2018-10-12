@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is onderdeel van het iNaturalist netwerk in Canada. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista is onderdeel van het iNaturalist netwerk in Colombia. Wil je gebruik maken van dit netwerk om je ervaringen en gegevens te delen?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is onderdeel van het iNaturalist netwerk in Portugal. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
-  <string name="description">Beschrijving</string>
   <string name="editor">Redacteur</string>
   <string name="license">Licentie</string>
   <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Gebruikersnaam of E-mailadres</string>
   <string name="forgot">Vergeten?</string>
   <string name="or_login_with">Of Log in met:</string>
-  <string name="quantity">Aantal</string>
   <string name="registering">Registreren...</string>
   <string name="recommended_next_step">Aanbevolen volgende stap</string>
   <string name="could_not_register_user">Kon de gebruiker niet registreren</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">Je moet ingelogd zijn om jouw updates te bekijken.</string>
   <string name="by_using_inat_terms"><![CDATA[Door iNaturalist te gebruiken gaat u akkoord met de <b><a href="http://www.inaturalist.org/pages/terms"> Terms of Service</a></b> and <b><a href="http://www.inaturalist.org/pages/privacy"> Privacy Policy</a></b>]]></string>
   <string name="activity">Activiteit</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s waarnemingen</string>
-  <string name="observation_count_single">%1$d waarneming</string>
   <string name="camera">Foto Maken</string>
   <string name="upload_photo">Selecteer afbeelding</string>
   <string name="menu_text">Geen afbeelding</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">Opgenomen in %1$d projecten</string>
   <string name="included_in_projects_singular">Opgenomen in %1$d project</string>
   <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is een instelling die bepaalt hoe de ruimtelijke coördinaten (breedte- en lengtegraad) worden weergegeven. Dit zijn de opties:<br/><b>openbaar:</b> - Iedereen kan de coördinaten zien tenzij het taxon niet wordt bedreigd. <br/><b>gedimd</b> - De coördinaten worden weergegeven als een willekeurig punt binnen een gebied van 0,2 bij 0,2 graden dat de werkelijke coördinaten bevat, wat overeenkomt met een gebied van ongeveer 22 x 22 km onzekerheid aan de evenaar, aflopend richting de polen. Alleen jij en de curatoren van projecten waaraan je je waarneming toevoegt, kunnen de echte coördinaten zien. <br/><b> privé</b> - coördinaten worden niet weergegeven op openbare kaarten. Alleen u en de curatoren van projecten waaraan u uw waarneming toevoegt, kunnen de echte coördinaten zien. <br/><br/>Projectcuratoren van betrokken projecten kunnen altijd de echte coördinaten zien. Als u de privacy van de coördinaten van uw waarnemingen belangrijk vindt, moet u alleen deelnemen aan projecten waarvan u de trustees vertrouwt. ]]></string>
-  <string name="agree2">Akkoord</string>
   <string name="id_title">%1$s\'s ID • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Verwijder</string>
@@ -311,10 +305,6 @@
   <string name="terms">Voorwaarden</string>
   <string name="observation_rules">Observatieregels</string>
   <string name="couldnt_load_project_details">Kon projectdetails niet laden: %1$s</string>
-  <string name="project_observations">Waarnemingen</string>
-  <string name="project_species">Soort</string>
-  <string name="project_people">Personen</string>
-  <string name="project_identifiers">Kenmerken</string>
   <string name="no_people_found">Geen personen gevonden</string>
   <string name="rank">Rang</string>
   <string name="identifications">Identificaties</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">Werk de beschrijving van de identificatie bij</string>
   <string name="your_identification">Uw identificatie: %1$s</string>
   <string name="onboarding_species_name">Benoem wat u zag als je kunt, maar het is OK als je dat niet kunt. Anderen kunnen helpen identificeren!</string>
-  <string name="got_it">Ik snap het!</string>
   <string name="upload_complete">Upload voltooid!</string>
   <string name="onboarding_upload_description">Kom snel terug voor identificaties en opmerkingen op jouw waarnemingen.</string>
   <string name="importing_photos">Foto(\'s) importeren...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">Voorbereiden foto...</string>
   <string name="recommended_for_you">Voor u aanbevolen</string>
   <string name="missions">Missies</string>
-  <string name="view_all">Alles bekijken</string>
   <string name="browse_by_category">Zoek op categorie</string>
   <string name="couldnt_load_recommended_missions">Kan aanbevolen missies niet laden: %1$s</string>
   <string name="plants">Planten</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">Maak kennis met missies!</string>
   <string name="missions_onboarding_description">Missies zijn realtime suggesties voor waar u naar op zoek bent in uw omgeving. Dus u kunt nieuwe soorten ontdekken! (Internetverbinding Vereist)</string>
   <string name="ok_got_it">Oke, ik snap het!</string>
-  <string name="new_badge">Nieuw</string>
   <string name="could_not_download_observations">Laatste waarnemingen kunnen niet worden gedownload - verbindingsproblemen. Probeer het later opnieuw.</string>
   <string name="no_news_yet">Nog geen updates. Blijf op de hoogte!</string>
   <string name="my_content">Mijn inhoud</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">Fout bij importeren foto(s): kan alleen foto\'s importeren met de extensies JPG/JPEG/PNG</string>
   <string name="taxon_has_no_photos">Dit taxon heeft geen foto\'s.</string>
   <string name="terrain">Terrein</string>
-  <string name="observers">Waarnemers</string>
   <string name="filters">Filters</string>
   <string name="exploring_all">Verken alles</string>
   <string name="nearby">In de buurt</string>
@@ -566,5 +552,45 @@
   <string name="password_changed">Het wachtwoord dat de app gebruikt werkt niet meer - heb je jouw wachtwoord verandert op de website? Voer het nieuwe wachtwoord dan ook hier in</string>
   <string name="just_so_you_know">Het is maar dat je het weet...</string>
   <string name="ask_for_g_plus_permissions">Google verplicht ons om toestemming te vragen om uw contactpersonen te gebruiken voor uw Google-Account, hoewel we geen contact opnemen met uw contactpersonen om welke reden dan ook. Als u deze machtiging weigert moet u zich aanmelden of inloggen met een gebruikersnaam en wachtwoord.</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[Nieuw bij %1$s? <b>Registreer je nu!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Beschrijving</string>
+  <string name="quantity">Aantal</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s waarnemingen</string>
+  <string name="observation_count_single">%1$d waarneming</string>
+  <string name="agree2">Akkoord</string>
+  <string name="project_observations">Waarnemingen</string>
+  <string name="project_species">Soort</string>
+  <string name="project_people">Personen</string>
+  <string name="project_identifiers">Kenmerken</string>
+  <string name="got_it">Ik snap het!</string>
+  <string name="view_all">Alles bekijken</string>
+  <string name="new_badge">Nieuw</string>
+  <string name="observers">Waarnemers</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

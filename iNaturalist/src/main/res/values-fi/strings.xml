@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada on iNaturalist-verkon jäsen Kanadassa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista Canada on iNaturalist-verkon jäsen Kolumbiassa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-  <string name="description">Kuvaus</string>
   <string name="editor">Editori</string>
   <string name="license">Lisenssi</string>
   <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Käyttäjänimi tai sähköposti</string>
   <string name="forgot">Unohtuiko?</string>
   <string name="or_login_with">Tai kirjaudu sisään:</string>
-  <string name="quantity">Määrä</string>
   <string name="registering">Rekisteröidään...</string>
   <string name="recommended_next_step">Suositeltu seuraava vaihe</string>
   <string name="could_not_register_user">Käyttäjää ei voi rekisteröidä</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">Sinun tulee olla sisäänkirjautuneena katsoaksesi päivityksiäsi.</string>
   <string name="by_using_inat_terms"><![CDATA[Käyttämällä iNaturalistia, hyväksyt <b><a href="http://www.inaturalist.org/pages/terms">Käyttöehdot</a></b> ja <b><a href="http://www.inaturalist.org/pages/privacy">Tietosuojakäytännön</a></b>]]></string>
   <string name="activity">Toiminta</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s havaintoa</string>
-  <string name="observation_count_single">%1$d havainto</string>
   <string name="camera">Ota kuva</string>
   <string name="upload_photo">Valitse kuva</string>
   <string name="menu_text">Ei kuvia</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">Sisältyy %1$d projektiin</string>
   <string name="included_in_projects_singular">Sisältyy %1$d projektiin</string>
   <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
-  <string name="agree2">Hyväksy</string>
   <string name="id_title">%1$s:n tunniste • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Poista</string>
@@ -311,10 +305,6 @@
   <string name="terms">Ehdot</string>
   <string name="observation_rules">Havaintosäännöt</string>
   <string name="couldnt_load_project_details">Ei voida ladata projektin tietoja: %1$s</string>
-  <string name="project_observations">Havaintoa</string>
-  <string name="project_species">Lajia</string>
-  <string name="project_people">Ihmiset</string>
-  <string name="project_identifiers">Tunnisteet</string>
   <string name="no_people_found">Ihmistä ei löytynyt</string>
   <string name="rank">Luokka</string>
   <string name="identifications">Tunnistamista</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">Päivitä tunnistamisen kuvaus</string>
   <string name="your_identification">Tunnisteesi: %1$s</string>
   <string name="onboarding_species_name">Nimeä näkemäsi jos voit, mutta on OK jos et voi. Muut saattavat auttaa sinua tunnistamaan sen!</string>
-  <string name="got_it">Selvä!</string>
   <string name="upload_complete">Lähetys onnistui!</string>
   <string name="onboarding_upload_description">Tarkista pian uudelleen tunnistamiset ja kommentit havainno(i)ssasi.</string>
   <string name="importing_photos">Tuodaan kuva/kuvia...</string>
@@ -371,14 +360,13 @@
   <string name="preparing_photo">Valmistellaan kuvaa...</string>
   <string name="recommended_for_you">Sinulle suositeltu</string>
   <string name="missions">Tehtävät</string>
-  <string name="view_all">Näytä kaikki</string>
   <string name="browse_by_category">Selaa luokittain</string>
   <string name="couldnt_load_recommended_missions">Ei voitu ladata suositeltuja tehtäviä: %1$s</string>
   <string name="plants">Kasvit</string>
   <string name="mammals">Nisäkkäät</string>
   <string name="insects">Hyönteiset</string>
   <string name="reptiles">Matelijat</string>
-  <string name="fish">Kala</string>
+  <string name="fish">Fish</string>
   <string name="mollusks">Simpukat</string>
   <string name="amphibians">Sammakkoeläimet</string>
   <string name="fungi">Sienet</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">Esittelyssä tehtävät!</string>
   <string name="missions_onboarding_description">Tehtävät ovat reaaliaikaisia suosituksia siitä, mitä etsiä ympäriltäsi. Tällä tavalla voit tutkia sinulle uusia lajeja! (Edellyttää liitettävyyttä)</string>
   <string name="ok_got_it">Selvä, ymmärsin!</string>
-  <string name="new_badge">Uusi</string>
   <string name="could_not_download_observations">Ei voitu ladata viimeisimpiä havaintoja - Yhteysongelmia. Yritä myöhemmin uudelleen.</string>
   <string name="no_news_yet">Ei vielä uutisia. Pysy kanavalla!</string>
   <string name="my_content">Oma sisältö</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">Virhe tuodessa kuvaa/kuvia: Voidaan tuoda vain kuvatiedostoja JPG/JPEG/PNG päätteillä</string>
   <string name="taxon_has_no_photos">Tällä taksonilla ei ole kuvia.</string>
   <string name="terrain">Maasto</string>
-  <string name="observers">Havainnoijat</string>
   <string name="filters">Suodattimet</string>
   <string name="exploring_all">Tutkitaan kaikkia</string>
   <string name="nearby">Lähistöllä</string>
@@ -567,4 +553,44 @@
   <string name="just_so_you_know">Just So You Know...</string>
   <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
   <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Kuvaus</string>
+  <string name="quantity">Määrä</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s havaintoa</string>
+  <string name="observation_count_single">%1$d havainto</string>
+  <string name="agree2">Hyväksy</string>
+  <string name="project_observations">Havaintoa</string>
+  <string name="project_species">Lajia</string>
+  <string name="project_people">Ihmiset</string>
+  <string name="project_identifiers">Identifiers</string>
+  <string name="got_it">Selvä!</string>
+  <string name="view_all">Näytä kaikki</string>
+  <string name="new_badge">Uusi</string>
+  <string name="observers">Observers</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>

@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNaturalist Canada er et medlem af iNaturalist Network i Canada. Ønsker du at benytte dette netværk til at lokalisere din oplevelse og dele dine data i overensstemmelse hermed?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista er et medlem af iNaturalist Network i Columbia. Ønsker du at benytte dette netværk til at lokalisere din oplevelse og dele dine data i overensstemmelse hermed?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiveristy4all er et medlem af iNaturalist Network i Columbia. Vil du benytte dette netværk til lokalisering af din oplevelse og dele dine data i overensstemmelse hermed?</string>
-  <string name="description">Beskrivelse</string>
   <string name="editor">Redigeringsværktøj</string>
   <string name="license">Licens</string>
   <string name="download_for_offline_use">Download til offlinebrug</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Brugernavn eller e-mail</string>
   <string name="forgot">Glemt?</string>
   <string name="or_login_with">Eller log ind med:</string>
-  <string name="quantity">Antal</string>
   <string name="registering">Registrerer...</string>
   <string name="recommended_next_step">Anbefalet næste trin</string>
   <string name="could_not_register_user">Kunne ikke registrere bruger</string>
@@ -233,9 +231,6 @@
   <string name="please_sign_in_for_updates">Du skal være logget ind for at kunne se dine opdateringer.</string>
   <string name="by_using_inat_terms"><![CDATA[Ved afbenyttelse af iNaturalist accepterer du <b><a href="http://www.inaturalist.org/pages/terms"> Tjenestevilkår</a></b> og <b><a href="http://www.inaturalist.org/pages/privacy"> Fortrolighedspolitik</a></b>]]></string>
   <string name="activity">Aktivitet</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s observationer</string>
-  <string name="observation_count_single">%1$d observation</string>
   <string name="camera">Tag foto</string>
   <string name="upload_photo">Vælg billede</string>
   <string name="menu_text">Overspring foto</string>
@@ -275,7 +270,6 @@
   <string name="included_in_projects">Inkluderet i %1$d projekter</string>
   <string name="included_in_projects_singular">Inkluderet i %1$d projekter</string>
   <string name="geoprivacy_explanation"><![CDATA[ Geo-fortrolighed er en indstilling, du kan vælge til dine observationer, der styrer hvordan de rumlige koordinater (bredde- og længdegrad) vises. Her er mulighederne:<br/><b>Åben</b> - Alle kan se koordinaterne, medmindre taxonen er truet.<br/><b>Sløret</b> - Offentlige koordinater vises som et tilfældigt punkt inden for et 0,2 x 0,2 graders område indeholdende de sande koordinater, som omregnet svarer til ca. 22 kvadratkilometers usikkerhed ved ækvator, og som mindskes, når du nærmer dig polerne. Sande koordinater er kun synlige for dig og bestyrerne af projektet, til hvilket du tilføjer observationen.<br/><b>Privat</b> - Koordinater helt skjult fra offentlige landkort. Sande koordinater er kun synlige for dig og bestyrerene af det project, til hvilket du tilføjer observationen. <br/><br/>Bemærk, at bestyrere for individuelle projekter altid kan se koordinaterne uanset din geo-fortrolighedsindstillinger, så er du bekymret over, hvem der har adgang til koordinaterne, skal du være sikker på, at du kan stole på bestyrerne i de projekter, hvor du deltager. ]]></string>
-  <string name="agree2">Acceptér</string>
   <string name="id_title">%1$s\'s ID • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Slet</string>
@@ -311,10 +305,6 @@
   <string name="terms">Vilkår</string>
   <string name="observation_rules">Observationsregler</string>
   <string name="couldnt_load_project_details">Kunne ikke indlæse projektdetaljer: %1$s</string>
-  <string name="project_observations">Observationer</string>
-  <string name="project_species">Arter</string>
-  <string name="project_people">Folk</string>
-  <string name="project_identifiers">Identifikatorer</string>
   <string name="no_people_found">Ingen folk fundet</string>
   <string name="rank">Rangering</string>
   <string name="identifications">Identifikationer</string>
@@ -363,7 +353,6 @@
   <string name="update_id_description">Opdatering af identifikationsbeskrivelse</string>
   <string name="your_identification">Din ID: %1$s</string>
   <string name="onboarding_species_name">Navngiv, hvad du så, hvis du kan, men det er OK, hvis du ikke kan. Andre kan måske hjælpe dig med at identificere det!</string>
-  <string name="got_it">Forstået!</string>
   <string name="upload_complete">Upload fuldført!</string>
   <string name="onboarding_upload_description">Vend tilbage snart for at tjekke identifikationer og kommentarer på din(-e) observation(-er).</string>
   <string name="importing_photos">Importerer foto(-s)...</string>
@@ -371,7 +360,6 @@
   <string name="preparing_photo">Forbereder foto...</string>
   <string name="recommended_for_you">Anbefalet til dig</string>
   <string name="missions">Missioner</string>
-  <string name="view_all">Vis alle</string>
   <string name="browse_by_category">Gennemse efter kategori</string>
   <string name="couldnt_load_recommended_missions">Mislykkedes at indlæse anbefalede missioner: %1$s</string>
   <string name="plants">Planter</string>
@@ -395,7 +383,6 @@
   <string name="introducing_missions">Introducerer missioner!</string>
   <string name="missions_onboarding_description">Missioner er realtidsanbefalinger til, hvad du bør kigges efter omkring dig. På denne måde kan du opdage for dig hidtil ukendte arter! (kræver Internetadgang)</string>
   <string name="ok_got_it">OK, forstået!</string>
-  <string name="new_badge">Ny</string>
   <string name="could_not_download_observations">Kunne ikke downloade seneste observationer - forbindelsesproblemer. Prøv venligst igen senere.</string>
   <string name="no_news_yet">Endnu ingen nyheder, men tjek igen senere!</string>
   <string name="my_content">Mit Indhold</string>
@@ -447,7 +434,6 @@
   <string name="invalid_photo_extension">Fejl under import af foto(s): Kan kun importere fotofiltyperne JPG/JPEG/PNG</string>
   <string name="taxon_has_no_photos">Denne klassificering har ingen fotos.</string>
   <string name="terrain">Terrain</string>
-  <string name="observers">Observatører</string>
   <string name="filters">Filtre</string>
   <string name="exploring_all">Udforsker alt</string>
   <string name="nearby">I nærheden</string>
@@ -566,5 +552,45 @@
   <string name="password_changed">Adgangskoden, som app\'en benytter, fungerer ikke længere - du har muligvis ændret den på webstedet. Angiv den nye adgangskode her</string>
   <string name="just_so_you_know">Blot så du ved det...</string>
   <string name="ask_for_g_plus_permissions">For at kunne benytte din Google-konto, kræver Google, at vi anmoder om tilladelse til at tilgå dine kontaktpersoner, selvom vi under ingen omstændigheder tilgår dine kontakter. Nægter du denne tilladelse, vil du skulle tilmelde dig eller logge ind med brugernavn og adgangskode.</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[Ny her hos %1$s? <b>Tilmeld dig nu!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Beskrivelse</string>
+  <string name="quantity">Antal</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s observationer</string>
+  <string name="observation_count_single">%1$d observation</string>
+  <string name="agree2">Acceptér</string>
+  <string name="project_observations">Observationer</string>
+  <string name="project_species">Arter</string>
+  <string name="project_people">Folk</string>
+  <string name="project_identifiers">Identifikatorer</string>
+  <string name="got_it">Forstået!</string>
+  <string name="view_all">Vis alle</string>
+  <string name="new_badge">Ny</string>
+  <string name="observers">Observatører</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>
