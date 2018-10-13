@@ -603,6 +603,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                         @Override
                         public void onFinish() {
                             mInitialLocationBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
+                            mObservationsMapContainer.setVisibility(View.GONE);
 
                             if (shouldRedoSearch) {
                                 mLastMapBounds = mInitialLocationBounds;
