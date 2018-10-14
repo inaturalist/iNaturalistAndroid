@@ -14,12 +14,12 @@
   <string name="street">Вулиця</string>
   <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
   <string name="satellite">Супутник</string>
-  <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
+  <string name="couldnt_load_nearby_observations">Не вдалося завантажити спостереження неподалік: %1$s</string>
   <string name="username_invalid">Ім\'я користувача чи пароль неправильні. Увійдіть знову.</string>
   <string name="signing_in">Входимо...</string>
   <string name="signed_in">Увійшли!</string>
   <string name="please_sign_in">Будь ласка, увійдіть</string>
-  <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
+  <string name="please_sign_in_description">Будь ласка, увійдіть до Вашого облікового запису iNaturalist або зареєструйте новий.</string>
   <string name="please_enable_location_services">Будь ласка, увімкніть геолокацію, щоб знайти своє поточне місцеозташування...</string>
   <string name="go_to_settings">Перейти до налаштувань</string>
   <string name="photo_not_specified">Фото не вказано</string>
@@ -101,9 +101,9 @@
   <!-- Verb, used as a label for actions like leaving a project -->
   <string name="leave">Покинути</string>
   <string name="join">Приєднатися</string>
-  <string name="loading_check_list">Loading Check List...</string>
-  <string name="no_check_list">No Taxa in Check List!</string>
-  <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
+  <string name="loading_check_list">Завантаження чекліста...</string>
+  <string name="no_check_list">В чеклісті відсутні таксони!</string>
+  <string name="failed_to_add_obs_to_project">Не вдалося додати спостереження \"%1$s\" до проекту \"%2$s\": %3$s</string>
   <string name="invalid_project_field">Будь ласка, введіть коректне значення для поля \'%1s\'</string>
   <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
   <string name="select_projects">Оберіть з приєднаних проектів</string>
@@ -111,32 +111,32 @@
   <string name="search_projects">Пошук проектів...</string>
   <string name="search_guides">Пошук посібників...</string>
   <string name="save_observation">Зберегти спостереження</string>
-  <string name="about">About</string>
+  <string name="about">Про</string>
   <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
   <string name="geoprivacy">Геоприватність</string>
   <string name="delete_confirmation">Ви дійсно бажаєте видалити це спостереження?</string>
   <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
   <string name="guides">Посібники</string>
-  <string name="my_guides">Ваше</string>
+  <string name="my_guides">Ваші</string>
   <string name="nearby_guides">Поблизу</string>
   <string name="all_guides">Усі</string>
   <string name="no_taxa">Для цього посібника таксонів немає!</string>
   <string name="search_taxa">Пошук таксонів...</string>
   <string name="no_internet_guides">Посібники потребують підключення до інтернету</string>
-  <string name="no_internet_projects">Projects require an Internet connection</string>
+  <string name="no_internet_projects">Проекти потребують підключення до інтернету</string>
   <string name="locale_gl">Галісійська</string>
   <string name="locale_eu">Баскійська</string>
   <string name="use_device_language_settings">Використання мовних параметрів пристрою</string>
   <string name="choose_location">Вибрати місцерозташування</string>
   <string name="done">Готово</string>
   <string name="please_sign_in_via_settings">Для перегляду проектів, до яких ви приєдналися ви повинні ввійти.</string>
-  <string name="contact_support">Зверніться в службу підтримки</string>
+  <string name="contact_support">Звернутися до служби підтримки</string>
   <string name="credits">Спроектовано та зроблено сайтом iNuturalist за підтримки Каліфорнійської академії наук</string>
   <string name="leave_project">Покинути проект</string>
   <string name="leave_project_confirmation">Ви впевнені, що ви хочете покинути цей проект?</string>
   <string name="discard_location_changes">Ви справді хочете відхилити незбережені зміни?</string>
   <string name="edit_location">Редагувати місцезнаходження</string>
-  <string name="get_current_location">ОтриматипПоточне місцезнаходження</string>
+  <string name="get_current_location">Визначити місцезнаходження</string>
   <string name="pull_to_refresh">Потягніть, щоб оновити...</string>
   <string name="release_to_refresh">Відпустіть, щоб оновити...</string>
   <string name="refreshing">Оновлення...</string>
@@ -144,21 +144,21 @@
   <string name="sync_1_observation">Синхронізувати 1 спостереження</string>
   <string name="sync_observations">Синхронізація спостережень</string>
   <string name="lets_get_started">Давайте почнемо!</string>
-  <string name="view_nearby_observations">Перегляд спостережень поблизу</string>
+  <string name="view_nearby_observations">Переглянути спостереження поблизу</string>
   <string name="skip_for_now">Поки що пропустити</string>
   <string-array name="tutorial_titles">
     <item></item>
-    <item>Спостерігати</item>
-    <item>Поділитися</item>
-    <item>Дізнатися</item>
-    <item>Зробити внесок</item>
+    <item>Спостерігайте</item>
+    <item>Діліться</item>
+    <item>Дізнавайтеся</item>
+    <item>Допомагайте</item>
   </string-array>
   <string-array name="tutorial_descriptions">
     <item>Вивчайте та зливайтеся з природою</item>
     <item>Вийдіть на вулицю! Знайдіть що-небудь дике та зробіть чіткі, повнокадрові фото.</item>
-    <item>Поділіться нашим спостереженням з спільнотою iNaturalist.</item>
+    <item>Поділіться вашими спостереженням з спільнотою iNaturalist.</item>
     <item>Поверніться назад для перевірки коментарів та ідентифікацій Вашого спостереження!</item>
-    <item><![CDATA[Спостереження <b>Дослідницький клас</b> використовуються спільно з ученими для кращого розуміння та захисту природи.]]></item>
+    <item><![CDATA[Спостереження з статусом <b>Дослідницький клас (Research Grade)</b> використовуються спільно з ученими для кращого розуміння та захисту природи.]]></item>
   </string-array>
   <string-array name="geoprivacy_items">
     <item>Публічна</item>
@@ -169,10 +169,10 @@
   <string name="alert_unsupported_media_type">Вибачте, але виникли труднощі з завантаження фото з цього джерела</string>
   <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
   <string name="explore">Дослідити</string>
-  <string name="restricted_to_current_map_area">Restricted to current map area</string>
+  <string name="restricted_to_current_map_area">Обмежено поточною ділянкою карти</string>
   <string name="search">Пошук</string>
   <string name="details">Деталі</string>
-  <string name="observation_photos">Фото спостережень</string>
+  <string name="observation_photos">Фото спостереження</string>
   <string name="remove">Видалити?</string>
   <string name="no_observations_found">Спостережень не знайдено</string>
   <string name="license_none">Немає, усі права захищені</string>
@@ -186,7 +186,6 @@
   <string name="alert_message_use_inaturalistcanada">iNatureWatch Canada є частиною мережі iNuturalist у Канаді. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
   <string name="alert_message_use_naturalistacolombia">Naturalista є частиною мережі iNuturalist у Колумбії. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
   <string name="alert_message_use_biodiveristy4all">Biodiversity4all є частиною мережі iNuturalist у Португалії. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
-  <string name="description">Опис</string>
   <string name="editor">Редактор</string>
   <string name="license">Ліцензія</string>
   <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -223,7 +222,6 @@
   <string name="username_or_email">Ім’я користувача або Email</string>
   <string name="forgot">Забули?</string>
   <string name="or_login_with">Або увійди через:</string>
-  <string name="quantity">К-сть</string>
   <string name="registering">Реєстрація...</string>
   <string name="recommended_next_step">Наступний рекомендований крок</string>
   <string name="could_not_register_user">Не вдалося зареєструвати користувача</string>
@@ -233,16 +231,13 @@
   <string name="please_sign_in_for_updates">Ви повинні увійти в систему для перегляду ваших оновлень.</string>
   <string name="by_using_inat_terms"><![CDATA[Користуючись iNaturalist ви погоджуєтеся з <b><a href="http://www.inaturalist.org/pages/terms">Умовами надання послуг</a></b> та <b><a href="http://www.inaturalist.org/pages/privacy">Політикою конфіденційності</a></b>]]></string>
   <string name="activity">Діяльність</string>
-  <!-- Number of observations. Do not change the format to $d -->
-  <string name="observation_count">%1$s спостережень</string>
-  <string name="observation_count_single">%1$d спостереження</string>
   <string name="camera">Зробити фото</string>
   <string name="upload_photo">Вибрати зображення</string>
   <string name="menu_text">Немає фото</string>
-  <string name="first">1-й</string>
+  <string name="first">Перше</string>
   <string name="make_first">Зробити першим</string>
   <string name="notes">Нотатки</string>
-  <string name="location_is">Місцезнаходження</string>
+  <string name="location_is">Видимість</string>
   <string name="is_captive">Це утримується в неволі або культивується</string>
   <string name="location_visibility">Видимість місцерозташування</string>
   <string name="set_location">Місцезнаходження</string>
@@ -270,12 +265,11 @@
   <string name="casual_grade_add_location"><![CDATA[ Додайте <b>місцерозташування</b> для переходу цього спостереження в статус «Потрібен ID». ]]></string>
   <string name="casual_grade_add_date"><![CDATA[ Додайте <b>дату</b> для переходу цього спостереження в статус «Потрібен ID». ]]></string>
   <string name="casual_grade_add_photo"><![CDATA[ Додайте <b>фото</b> для переходу цього спостереження в статус «Потрібен ID». ]]></string>
-  <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
-  <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ Спостереженню присвоєно Звичайний статус (Casual Grade) тому що це спостереження об'єкта <b>утримується в неволі або культивується</b>. ]]></string>
+  <string name="needs_id_more_ids"><![CDATA[ Щоб отримати "Дослідницький статус" (Research Grade) спостереженню потрібно <b>більше ідентифікацій</b> від спільноти. ]]></string>
   <string name="included_in_projects">Включено в проекти %1$d</string>
   <string name="included_in_projects_singular">Включено в проект %1$d</string>
   <string name="geoprivacy_explanation"><![CDATA[ Геоприватність - це параметр налаштування, який ви можете задати в своїх спостереженнях. Він керує показом просторових координат (широти й довготи). Ось варіанти: <br/><b>публічна</b> - кожен може побачити координати, якщо таксон не перебуває під загрозою. <br/><b>прихована</b> - загальнодоступні координати показуються як випадкова точка в межах області 0,2 на 0,2 градуса, яка в свою чергу містить справжні координати, що представляє собою квадратну область невизначеності близько 22x22 км на екваторі, розмір зменшується в міру наближення до полюсів. Справжні координати видно тільки вам і кураторам проектів, до яких Ви додаєте спостереження. <br/><b>приватна</b> - координати повністю приховані, справжні координати видно лише Вам і кураторам проектів, до яких Ви додаєте спостереження. <br/><br/> Зверніть увагу на те, що куратори окремих проектів завжди можуть бачити координати, незалежно від налаштувань конфіденційності геоданих, тому, якщо Вас турбує, хто має доступ до координат, Ви повинні бути впевнені, що довіряєте кураторам проектів, в яких Ви берете участь. ]]></string>
-  <string name="agree2">Згоден</string>
   <string name="id_title">%1$s\'s ID • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Видалити</string>
@@ -294,7 +288,7 @@
   <string name="location_coords_no_acc">Широта: %1$s Довгота: %2$s</string>
   <string name="location">Місцезнаходження</string>
   <string name="login_in_to_add_comments_ids">Увійдіть або зареєструйтеся, щоб мати змогу залишити коментар або запропонувати ідентифікацію...</string>
-  <string name="login_in_to_fav">Log In or Sign Up to see faves or fave this observation...</string>
+  <string name="login_in_to_fav">Увійдіть або зареєструйтеся, щоб мати змогу переглянути Улюблені або додати до Улюблених це спостереження...</string>
   <string name="sync_obs_to_see_favs">Для перегляду Улюблених синхронізуйте це спостереження...</string>
   <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
   <string name="sync_obs_to_add_comments_ids">Синхронізуйте спостереження, щоб мати змогу залишити коментар або запропонувати ідентифікацію...</string>
@@ -303,18 +297,14 @@
   <string name="view_on_wikipedia">Стаття на Вікіпедії</string>
   <string name="photo"><![CDATA[Фото: <b><a href="%1$s">%2$s</a></b>]]></string>
   <string name="photo_attr"><![CDATA[Фото: <b>%1$s</b>]]></string>
-  <string name="finding_current_location">Пошук поточного місцерозташування...</string>
+  <string name="finding_current_location">Пошук місцерозташування...</string>
   <string name="flag_as_captive">Позначити як Поневолений / Культивований</string>
   <string name="observation_flagged_as_captive">Спостереження було позначено як Поневолений / Культивований</string>
-  <string name="are_you_sure_you_want_to_flag_as_captive">Are you sure you want to flag this observation as captive/cultivated? (Pressing yes will also close the observation viewer window)</string>
+  <string name="are_you_sure_you_want_to_flag_as_captive">Ви справді бажаєте позначити це спостереження як Поневолений / Культивований? (Після натискання \"Так\" вікно перегляду закриється)</string>
   <string name="do_you_agree_to_the_following">Чи згідні ви з наступним?</string>
   <string name="terms">Умови</string>
   <string name="observation_rules">Правила спостережень</string>
   <string name="couldnt_load_project_details">Не вдалося завантажити подробиці проекту: %1$s</string>
-  <string name="project_observations">Спостереження</string>
-  <string name="project_species">Види</string>
-  <string name="project_people">Люди</string>
-  <string name="project_identifiers">Ідентифікатори</string>
   <string name="no_people_found">Люди не знайдені</string>
   <string name="rank">Ранг</string>
   <string name="identifications">Ідентифікації</string>
@@ -341,11 +331,11 @@
   <string name="logged_in_as_html"><![CDATA[Увійшли як: <b>%1$s</b>]]></string>
   <string name="log_out">Вийти</string>
   <string name="not_logged_in">Вхід не здійснено</string>
-  <string name="auto_upload_description">Автоматично відвантажувати нові спостереження та правки до них</string>
+  <string name="auto_upload_description">Автоматично відвантажувати нові спостереження та зміни до існуючих</string>
   <string name="language">Мова</string>
   <string name="version">Версія</string>
   <string name="inat_network">Мережа iNaturalist</string>
-  <string name="inat_network_description">Мережа Inaturalist є основою для локалізації спільнот iNaturalist на національних рівнях. Таке фокусування на національностях може допомогти зробити природу доступнішою для людей з різних верств суспільства.</string>
+  <string name="inat_network_description">Мережа iNaturalist є основою для локалізації спільнот iNaturalist на національних рівнях. Таке фокусування на національностях може допомогти зробити природу доступнішою для людей з різних верств суспільства.</string>
   <string name="more_info">Додаткові відомості</string>
   <string name="select_network">Оберіть мережу</string>
   <string name="help">Допомога</string>
@@ -363,15 +353,13 @@
   <string name="update_id_description">Опис оновлення ідентифікації</string>
   <string name="your_identification">Ваш ID: %1$s</string>
   <string name="onboarding_species_name">Назвіть те, що ви бачили, якщо можете, але це нормально, якщо ви не зможете. Інші можуть допомогти вам ідентифікувати це!</string>
-  <string name="got_it">Зрозуміло!</string>
   <string name="upload_complete">Вивантаження завершено!</string>
-  <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
+  <string name="onboarding_upload_description">Поверніться через деякий час для перевірки коментарів та ідентифікацій для вашого спостереження(-нь).</string>
   <string name="importing_photos">Імпортування фото...</string>
   <string name="multi_select_description">Імпорт декількох фото шляхом довгого натискання на одне фото</string>
   <string name="preparing_photo">Підготовка фото...</string>
   <string name="recommended_for_you">Рекомендовано для Вас</string>
   <string name="missions">Завдання</string>
-  <string name="view_all">Переглянути все</string>
   <string name="browse_by_category">Перегляд за категоріями</string>
   <string name="couldnt_load_recommended_missions">Не вдалося завантажити рекомендовані завдання: %1$s</string>
   <string name="plants">Рослини</string>
@@ -385,26 +373,25 @@
   <string name="birds">Птахи</string>
   <string name="arachnids">Павукоподібні</string>
   <string name="no_connectivity">З\'єднання відсутнє</string>
-  <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
+  <string name="no_recommended_missions">Схоже, немає ніяких рекомендацій для цієї місцевості. Спробуйте переміститися в нове місце.</string>
   <string name="what_to_look_for">Що шукати</string>
   <string name="have_been_seen_here">Бачили тут</string>
   <string name="observe">Спостерігати</string>
   <string name="nearby_missions">Завдання поблизу</string>
   <string name="searching_your_area">Пошук у вашій місцевості...</string>
-  <string name="expanding_your_search_area">Expanding your search area...</string>
+  <string name="expanding_your_search_area">Розширюємо ділянку пошуку...</string>
   <string name="introducing_missions">Представляємо вам завдання!</string>
-  <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
+  <string name="missions_onboarding_description">Завдання - це рекомендації в реальному часі про те, що шукати навколо вас. Таким чином, ви можете виявити нові для вас види! (Необхідне підключення)</string>
   <string name="ok_got_it">Гаразд, зрозуміло!</string>
-  <string name="new_badge">Новий</string>
   <string name="could_not_download_observations">Не вдалося завантажити останні спостереження - проблеми з підключенням. Спробуйте пізніше.</string>
   <string name="no_news_yet">Новин поки немає. Залишайтеся з нами!</string>
   <string name="my_content">Мій контент</string>
-  <string name="following">Following</string>
+  <string name="following">Слідкую</string>
   <string name="no_updates_yet">Оновлень поки немає. Слідкуйте за оновленнями!</string>
-  <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
-  <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
-  <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
-  <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="you_will_only_receive_updates_when_creating">(Ви отримуватимете оновлення лише тоді, коли ви створите спостереження)</string>
+  <string name="you_will_only_receive_updates_when_following">(Ви отримуватимете оновлення лише тоді, коли ви будете підписані на спостереження)</string>
+  <string name="user_activity_id"><![CDATA[<b>%1$s</b> запропонував ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+  <string name="user_activity_comment"><![CDATA[<b>%1$s</b> прокоментував: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
   <string name="deleted_photos_from_cache_error">Схоже, ви видалили фото під час очищення кешу програми до того, як відвантажили його. Вам потрібно заново додати його до вашого спостереження із вашої галереї. Надалі, будь ласка, переконуйтеся, що ви відвантажили всі свої фотографії, перш ніж очистити кеш програми.</string>
   <string name="new_activities">%1s нових</string>
   <string name="no_results_found">Нічого не знайдено...</string>
@@ -417,7 +404,7 @@
   <string name="select">Обрати</string>
   <string name="source_wikipedia">(джерело: Wikipedia)</string>
   <string name="conservation_source"><![CDATA[<b>Джерело:</b> <i>%1$s</i>]]></string>
-  <string name="conservation_status_least_concern">Of least concern</string>
+  <string name="conservation_status_least_concern">Найменша загроза</string>
   <string name="conservation_status_near_threatened">Близький до загрозливого</string>
   <string name="conservation_status_vulnerable">Вразливий</string>
   <string name="conservation_status_endangered">Під загрозою зникнення</string>
@@ -428,26 +415,25 @@
   <string name="taxonomy">Таксономія</string>
   <string name="about_this_section">Про цей розділ</string>
   <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-  <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+  <string name="taxonomy_info">Це посилання на предків цього конкретного таксона. Вони розташовуються в порядку від загальних до більш чітко визначених. Використовуйте ці посилання для переміщення вгору та вниз по Дереву життя. Наприклад, якщо ви не знаєте, який це організм, але ви знаєте, до якої групи він залежить, торкніться на таксон зі списку, щоб побачити більше інформації.</string>
   <string name="more_info_on_inat">Детальніше на iNaturalist.org</string>
   <string name="view_suggestions">Подивитись пропозиції</string>
   <string name="species_search">Пошук видів</string>
-  <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
-  <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
-  <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
+  <string name="were_not_confident">Ми не впевнені, що можемо давати рекомендації, але ось наш топ-%1$d пропозицій:</string>
+  <string name="top_species_suggestions">Ось наш топ-%1$d пропонованих видів:</string>
+  <string name="pretty_sure_rank">Ми впевнені, що це %1$s:</string>
   <string name="what_did_you_see">Що ви бачите?</string>
-  <string name="suggest_species">Suggest Species</string>
-  <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+  <string name="suggest_species">Запропонувати вид</string>
+  <string name="suggest_species_description">Запропонувати вид на основі схожості з фото.</string>
   <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
-  <string name="visually_similar">Visually Similar</string>
-  <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-  <string name="seen_nearby">Seen Nearby</string>
+  <string name="visually_similar">Візуально схожі</string>
+  <string name="visually_similar_seen_nearby">Візуально схожі / Зустрічалися поблизу</string>
+  <string name="seen_nearby">Зустрічалися поблизу</string>
   <string name="enlarge">Збільшити</string>
   <string name="view_children">Показати підцарства</string>
-  <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
+  <string name="invalid_photo_extension">Помилка імпортування фото: можна імпортувати лише файли з розширенням JPG, JPEG, PNG</string>
   <string name="taxon_has_no_photos">Цей таксон немає фотографій.</string>
   <string name="terrain">Ландшафт</string>
-  <string name="observers">Спостерігачі</string>
   <string name="filters">Фільтри</string>
   <string name="exploring_all">Дослідити все</string>
   <string name="nearby">Поблизу</string>
@@ -459,7 +445,7 @@
   <string name="please_select_taxon">Оберіть вірний таксон зі списку (або очистіть поле таксон).</string>
   <string name="sorry_no_location">Вибачте, місцерозташування не знайдено</string>
   <string name="location_not_found">Розташування або місце, яке ви шукали відсутнє у нашій базі даних. Будь ласка, оберіть місце зі списку, який знаходиться під полем пошуку, або очистіть поле пошуку.</string>
-  <string name="undefined">Undefined</string>
+  <string name="undefined">Невизначено</string>
   <string name="street_segment">Вуличний сектор</string>
   <string name="intersection">Перетин</string>
   <string name="town">Місто</string>
@@ -543,13 +529,13 @@
   <string name="date_week">%d тж.</string>
   <string name="new_observation">Нове спостереження</string>
   <string name="inactive_taxon">Неактивний таксон</string>
-  <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
+  <string name="no_identifications_found">Відстежувати ідентифікації, які ви пропонуєте для спостережень інших людей.</string>
   <string name="no_species_found">Це список видів, за якими ви спостерігали найбільше. \n\n До Вашого відома: на Землі нараховується близько 9 мільйонів видів, тому вийдіть і спостерігайте за ними!</string>
-  <string name="make_an_observation">Зробіть спостереження</string>
+  <string name="make_an_observation">Нове спостереження</string>
   <string name="no_observations_found_new">Спостереження - це записи ваших зустрічей з окремими організмами в певний час та місці.</string>
   <string name="discard_comment">Ви справді хочете відхилити цей коментар?</string>
   <string name="leave_comment">Залишити коментар...</string>
-  <string name="swipe">Жести</string>
+  <string name="swipe">Гортайте</string>
   <string name="swipe_indicator">›</string>
   <string name="select_google_account">Який обліковий запис Google?</string>
   <string name="potential_disagreement">Потенційні розбіжності</string>
@@ -561,10 +547,50 @@
   <string name="search_projects_youve_joined">Пошук проектів, до яких ви приєдналися...</string>
   <string name="must_be_connected_to_load_more_obs">Щоб завантажити більше спостережень ви повинні підключитися до інтернету</string>
   <string name="inat_about_title">iNaturalist це спільна ініціатива Каліфорнійської академії наук та Національного географічного товариства.</string>
-  <string name="inat_credits">iNaturalist створюється кожною людиною, яка є членом нашої спільноти. Люди, які створюють програмне забезпечення, підтримують нашу інфраструктуру й сприяють співпраці, - це Джоель Бельмонте, Ярон Будовський, Тоні Айване, Патрік Лірі, Скотт Лоарі, Алекс Шепард, Кері Зельцер і Кен-ічі Уеда. Caltech і Cornell Tech допомогли розробити систему комп\'ютерного зору, яка розпізнає види по фотографіях. Ми дякуємо Гранту Ван Хорна, Сержу Белонг і П\'єтро Перону за цю роботу. Більш детальну інформацію можна знайти за адресою visipedia.org</string>
-  <string name="credits_title">Credits</string>
+  <string name="inat_credits">iNaturalist створюється кожною людиною, яка є членом нашої спільноти. Люди, які створюють програмне забезпечення, підтримують нашу інфраструктуру й сприяють співпраці, - це Джоель Бельмонте, Ярон Будовський, Тоні Айване, Патрік Лірі, Скотт Лоарі, Алекс Шепард, Кері Зельцер і Кен-ічі Уеда. Caltech and Cornell Tech допомогли розробити систему комп\'ютерного зору, яка розпізнає види по фотографіях. Ми дякуємо Гранту Ван Хорна, Сержу Белонг і П\'єтро Перону за цю роботу. Більш детальну інформацію можна знайти за адресою visipedia.org</string>
+  <string name="credits_title">Подяка</string>
   <string name="password_changed">Пароль, який використовується додатком не працює - можливо, Ви змінили його на веб-сайті? Будь ласка, введіть новий пароль тут</string>
-  <string name="just_so_you_know">Just So You Know...</string>
+  <string name="just_so_you_know">До вашого відома...</string>
   <string name="ask_for_g_plus_permissions">Google вимагає від нас запитувати дозвіл на доступ до контактів для того, щоб використовувати обліковий запис Google, навіть якщо ми не використовуємо доступ до контактів з будь-якої причини. Якщо ви не даєте на це дозвіл, вам потрібно буде зареєструватися або увійти з ім\'ям користувача і паролем.</string>
-  <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+  <string name="new_to_inat_sign_up_now"><![CDATA[Новенький на %1$s? <b>Зареєструйтеся просто зараз!</b>]]></string>
+  <string name="see_more_observations">See more observations</string>
+  <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+  <string name="description">Опис</string>
+  <string name="quantity">К-сть</string>
+  <!-- Number of observations. Do not change the format to $d -->
+  <string name="observation_count">%1$s спостережень</string>
+  <string name="observation_count_single">%1$d спостереження</string>
+  <string name="agree2">Згоден</string>
+  <string name="project_observations">Спостереження</string>
+  <string name="project_species">Види</string>
+  <string name="project_people">Люди</string>
+  <string name="project_identifiers">Ідентифікатори</string>
+  <string name="got_it">Зрозуміло!</string>
+  <string name="view_all">Переглянути все</string>
+  <string name="new_badge">Нове</string>
+  <string name="observers">Спостерігачі</string>
+  <string name="attribute">Attribute</string>
+  <string name="value">Value</string>
+  <string name="disagree">Disagree</string>
+  <string name="annotations">Annotations</string>
+  <!-- Used when filtering observations with annotations -->
+  <string name="with_annotation">With Annotation</string>
+  <string name="annotation_name">Annotation Name</string>
+  <string name="none">None</string>
+  <string name="annotation_name_plant_phenology">Plant Phenology</string>
+  <string name="annotation_name_life_stage">Life Stage</string>
+  <string name="annotation_name_sex">Sex</string>
+  <string name="annotation_value_flowering">Flowering</string>
+  <string name="annotation_value_fruiting">Fruiting</string>
+  <string name="annotation_value_budding">Budding</string>
+  <string name="annotation_value_adult">Adult</string>
+  <string name="annotation_value_teneral">Teneral</string>
+  <string name="annotation_value_pupa">Pupa</string>
+  <string name="annotation_value_nymph">Nymph</string>
+  <string name="annotation_value_larva">Larva</string>
+  <string name="annotation_value_egg">Egg</string>
+  <string name="annotation_value_juvenile">Juvenile</string>
+  <string name="annotation_value_subimago">Subimago</string>
+  <string name="annotation_value_female">Female</string>
+  <string name="annotation_value_male">Male</string>
 </resources>
