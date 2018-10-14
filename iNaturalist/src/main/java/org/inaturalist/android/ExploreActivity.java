@@ -1284,7 +1284,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             ViewGroup layout = (ViewGroup) inflater.inflate(layoutResource, collection, false);
 
             if (position == VIEW_TYPE_OBSERVERS) {
-                mApp.setStringResourceForView(layout, R.id.observations_title, "observations_regular", "agree2");
+                mApp.setStringResourceForView(layout, R.id.observations_title, "observations_regular", "project_observations");
             }
 
 
