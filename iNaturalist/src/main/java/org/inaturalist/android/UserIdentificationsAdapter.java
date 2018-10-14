@@ -118,7 +118,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             }
 
             if ((photos != null) && (photos.length() > 0)) {
-                photoUrl = photos.getJSONObject(0).getString("medium_url");
+                photoUrl = photos.getJSONObject(0).getString("url");
                 loadObsImage(position, idPic, photoUrl);
             }
 

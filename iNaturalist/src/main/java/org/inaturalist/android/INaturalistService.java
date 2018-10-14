@@ -903,7 +903,7 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
                 String username = intent.getStringExtra(USERNAME);
-                SerializableJSONArray identifications = getUserIdentifications(username);
+                BetterJSONObject identifications = getUserIdentifications(username);
 
                 Intent reply = new Intent(IDENTIFICATIONS_RESULT);
                 mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
@@ -3048,11 +3048,18 @@ public class INaturalistService extends IntentService {
     }
 
 
-    private SerializableJSONArray getUserIdentifications(String username) throws AuthenticationException {
-        String url = HOST + "/identifications/" + username + ".json?per_page=200";
+    private BetterJSONObject getUserIdentifications(String username) throws AuthenticationException {
+        String url = API_HOST + "/identifications?user_id=" + username + "&own_observation=false&per_page=200";
         JSONArray json = get(url, false);
+
         if (json == null) return null;
-        return new SerializableJSONArray(json);
+        if (json.length() == 0) return null;
+        try {
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private BetterJSONObject getExploreResults(String command, ExploreSearchFilters filters, int pageNumber, int pageSize, String orderBy) throws AuthenticationException {
