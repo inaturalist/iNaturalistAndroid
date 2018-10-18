@@ -446,6 +446,10 @@ public class INaturalistService extends IntentService {
                     mPreferences.edit().putInt("last_downloaded_id", lastId).commit();
                 }
                 c.close();
+                if (success) {
+                    long lastSync = System.currentTimeMillis();
+                    mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+                }
                 if (!success) throw new SyncFailedException();
                 syncObservationFields();
                 postProjectObservations();
@@ -1271,28 +1275,30 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_PULL_OBSERVATIONS)) {
                 // Download observations without uploading any new ones
-                mIsSyncing = true;
-                mApp.setIsSyncing(mIsSyncing);
+                if (!mIsSyncing && !mApp.getIsSyncing()) {
+                    mIsSyncing = true;
+                    mApp.setIsSyncing(mIsSyncing);
 
-                syncRemotelyDeletedObs();
-                boolean successful = getUserObservations(0);
+                    syncRemotelyDeletedObs();
+                    boolean successful = getUserObservations(0);
 
-                if (successful) {
-                    // Update last sync time
-                    long lastSync = System.currentTimeMillis();
-                    mPreferences.edit().putLong("last_sync_time", lastSync).commit();
-                    mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
-                } else {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), R.string.could_not_download_observations, Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    if (successful) {
+                        // Update last sync time
+                        long lastSync = System.currentTimeMillis();
+                        mPreferences.edit().putLong("last_sync_time", lastSync).commit();
+                        mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
+                    } else {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), R.string.could_not_download_observations, Toast.LENGTH_LONG).show();
+                            }
+                        });
 
+                    }
                 }
 
-            } else {
+            } else if (action.equals(ACTION_SYNC)) {
                 if (!mIsSyncing && !mApp.getIsSyncing()) {
                     mIsSyncing = true;
                     mApp.setIsSyncing(mIsSyncing);
@@ -1329,7 +1335,7 @@ public class INaturalistService extends IntentService {
         } finally {
             mApp.setObservationIdBeingSynced(INaturalistApp.NO_OBSERVATION);
 
-            if (mIsSyncing && !dontStopSync) {
+            if (mIsSyncing && !dontStopSync && (action.equals(ACTION_SYNC) || action.equals(ACTION_FIRST_SYNC) || action.equals(ACTION_PULL_OBSERVATIONS))) {
                 mIsSyncing = false;
                 mApp.setIsSyncing(mIsSyncing);
 
@@ -1378,9 +1384,13 @@ public class INaturalistService extends IntentService {
 
         mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
 
+        Log.d(TAG, "syncObservations: Calling syncRemotelyDeletedObs");
         syncRemotelyDeletedObs();
         // First, download remote observations (new/updated)
+        Log.d(TAG, "syncObservations: Calling getUserObservations");
         if (!getUserObservations(0)) throw new SyncFailedException();
+
+        Log.d(TAG, "syncObservations: After calling getUserObservations");
 
         // Gather the list of observations that need syncing (because they're new, been updated
         // or had their photos/project fields updated
@@ -1491,24 +1501,32 @@ public class INaturalistService extends IntentService {
                 postObservation(observation);
                 increaseProgressForObservation(observation);
             }
+            Log.d(TAG, "syncObservations: Finished Syncing " + observation._id + " - now uploading photos");
+
             postPhotos(observation);
+            Log.d(TAG, "syncObservations: Finished uploading photos " + observation._id);
             deleteObservationPhotos(observation); // Delete locally-removed observation photos
             syncObservationFields(observation);
             postProjectObservations(observation);
+            Log.d(TAG, "syncObservations: Finished delete photos, obs fields and project obs - " + observation._id);
 
             c.moveToNext();
         }
 
         c.close();
 
+        Log.d(TAG, "syncObservations: Calling delete obs");
         deleteObservations(); // Delete locally-removed observations
 
+        Log.d(TAG, "syncObservations: Calling saveJoinedProj");
         // General project data
         saveJoinedProjects();
+        Log.d(TAG, "syncObservations: Calling storeProjObs");
         storeProjectObservations();
 
         redownloadOldObservations();
 
+        Log.d(TAG, "syncObservations: Done");
         mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
     }
 
@@ -3727,6 +3745,12 @@ public class INaturalistService extends IntentService {
         String url = API_HOST + "/observations/deleted";
 
         long lastSync = mPreferences.getLong("last_sync_time", 0);
+
+        if (lastSync == 0) {
+            Log.d(TAG, "syncRemotelyDeletedObs: First time syncing, no need to delete observations");
+            return true;
+        }
+
         Timestamp lastSyncTS = new Timestamp(lastSync);
         //url += String.format("?since=%s", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(lastSyncTS)));
         url += String.format("?since=%s", URLEncoder.encode(new SimpleDateFormat("yyyy-MM-dd").format(lastSyncTS)));
