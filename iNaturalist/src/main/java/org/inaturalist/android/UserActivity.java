@@ -534,14 +534,36 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
             if (mActivities == null) return;
             if (position >= mActivities.size()) return;
 
-            JSONObject item = obs.id ==  mActivities.get(position).getInt("resource_id") ? mActivities.get(position) : mFollowingActivities.get(position) ;
+            ArrayList<JSONObject> activities = (obs.id ==  mActivities.get(position).getInt("resource_id")) ? mActivities : mFollowingActivities;
+            JSONObject item = activities.get(position);
+
+            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            int unreadActivities = prefs.getInt("unread_activities", 1);
+
             if (!item.getBoolean("viewed")) {
-                SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
-                int unreadActivities = prefs.getInt("unread_activities", 1) - 1;
-                prefs.edit().putInt("unread_activities", unreadActivities > 0 ? unreadActivities : 0).commit();
+                // Find all other activities that have the same resource ID (e.g. if there are several updates
+                // for the same observation) and mark them all as read/viewed.
+                for (int i = 0; i < activities.size(); i++) {
+                    JSONObject activity = activities.get(i);
+
+                    if (activity.getInt("resource_id") == item.getInt("resource_id")) {
+                        if (!activity.getBoolean("viewed")) {
+                            activity.put("viewed", true);
+                            unreadActivities--;
+                        }
+                    }
+                }
             }
 
-            item.put("viewed", true);
+            prefs.edit().putInt("unread_activities", unreadActivities > 0 ? unreadActivities : 0).commit();
+
+            if (activities == mActivities) {
+                mActivitiesListAdapter.notifyDataSetChanged();
+            } else {
+                mFollowingActivitiesListAdapter.notifyDataSetChanged();
+            }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
