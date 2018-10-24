@@ -849,8 +849,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
             // Create a new instance of DatePickerDialog and return it
             DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-            if (maxDate != null) dialog.getDatePicker().setMaxDate(maxDate.getTime());
             if (minDate != null) dialog.getDatePicker().setMinDate(minDate.getTime());
+            if (maxDate != null) dialog.getDatePicker().setMaxDate(maxDate.getTime());
 
             return dialog;
         }
