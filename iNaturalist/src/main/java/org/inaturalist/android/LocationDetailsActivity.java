@@ -219,7 +219,9 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
                     // Check if we were successful in obtaining the map.
                     if (mMap != null) {
                         // The Map is verified. It is now safe to manipulate the map.
-                        mMap.setMyLocationEnabled(true);
+                        if (mApp.isLocationPermissionGranted()) {
+                            mMap.setMyLocationEnabled(true);
+                        }
                         mMap.getUiSettings().setZoomControlsEnabled(false);
 
                         mMap.clear();
