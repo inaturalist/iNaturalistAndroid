@@ -440,9 +440,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         filter2.addAction(INaturalistService.GET_CURRENT_LOCATION_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mLocationReceiver, filter2, this);
 
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
-        startService(serviceIntent);
-
         mAnnotationsReceiver = new AnnotationsReceiver();
         IntentFilter filter3 = new IntentFilter();
         filter3.addAction(INaturalistService.GET_ALL_ATTRIBUTES_RESULT);
