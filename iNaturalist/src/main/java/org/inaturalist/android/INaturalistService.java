@@ -3432,8 +3432,8 @@ public class INaturalistService extends IntentService {
 
     private SerializableJSONArray getFeaturedProjects() throws AuthenticationException {
         String inatNetwork = mApp.getInaturalistNetworkMember();
-        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
-        String url = inatHost + "/projects.json?featured=true";
+        String siteId = mApp.getStringResourceByName("inat_site_id_" + inatNetwork);
+        String url = API_HOST + "/projects?featured=true&site_id=" + siteId;
 
         JSONArray json = get(url);
 
@@ -3441,17 +3441,25 @@ public class INaturalistService extends IntentService {
             return new SerializableJSONArray();
         }
 
+        JSONArray results;
+
+        try {
+            results = json.getJSONObject(0).getJSONArray("results");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new SerializableJSONArray();
+        }
 
         // Determine which projects are already joined
-        for (int i = 0; i < json.length(); i++) {
+        for (int i = 0; i < results.length(); i++) {
             Cursor c;
             try {
-                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '" + json.getJSONObject(i).getInt("id") + "'", null, Project.DEFAULT_SORT_ORDER);
+                c = getContentResolver().query(Project.CONTENT_URI, Project.PROJECTION, "id = '" + results.getJSONObject(i).getInt("id") + "'", null, Project.DEFAULT_SORT_ORDER);
                 c.moveToFirst();
                 int count = c.getCount();
                 c.close();
                 if (count > 0) {
-                    json.getJSONObject(i).put("joined", true);
+                    results.getJSONObject(i).put("joined", true);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -3460,7 +3468,7 @@ public class INaturalistService extends IntentService {
 
         }
 
-        return new SerializableJSONArray(json);
+        return new SerializableJSONArray(results);
     }
 
     private void addProjectFields(JSONArray jsonFields) {
