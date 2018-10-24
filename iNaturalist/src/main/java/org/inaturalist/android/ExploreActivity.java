@@ -839,6 +839,8 @@ public class ExploreActivity extends BaseFragmentActivity {
         final TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
         final TextView subTitle = (TextView) actionBar.getCustomView().findViewById(R.id.sub_title);
 
+        if (mSearchFilters == null) return;
+
         if (mSearchFilters.taxon != null) {
             // Searching for a specific taxa
             title.setText(TaxonUtils.getTaxonName(this, mSearchFilters.taxon));
