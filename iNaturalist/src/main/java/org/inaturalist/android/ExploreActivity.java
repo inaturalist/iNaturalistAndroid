@@ -327,17 +327,17 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             }
         }
-
-        if ((mSearchFilters != null) && (!mSearchFilters.isCurrentLocation)) {
-            resetResults(true);
-            loadAllResults();
-        }
-
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        // To handle memory issues - don't save any results that are not part of the current active tab
+        for (int i = 0; i < mResults.length; i++) {
+            if (mActiveViewType != i) {
+                mResults[i] = null;
+            }
+        }
+
         mObservations = mResults[VIEW_TYPE_OBSERVATIONS];
         mSpecies = mResults[VIEW_TYPE_SPECIES];
         mObservers = mResults[VIEW_TYPE_OBSERVERS];
@@ -452,6 +452,16 @@ public class ExploreActivity extends BaseFragmentActivity {
 
 
         refreshViewState();
+
+        if (!((mApp.isLocationPermissionGranted() && (mSearchFilters != null) && (mSearchFilters.isCurrentLocation) && (mLastMapBounds == null)))) {
+            // When the activity is paused, we only save the results of the current tab (to conserve memory).
+            // In this part we load the results of the rest of the tabs, if not already in the process of loading.
+            for (int i = 0; i < mResults.length; i++) {
+                if ((!mLoadingNextResults[i]) && (mResults[i] == null)) {
+                    loadNextResultsPage(i, true);
+                }
+            }
+        }
     }
 
     // Method to add a TabHost
@@ -1362,15 +1372,6 @@ public class ExploreActivity extends BaseFragmentActivity {
                                 }, 1000);
 
                             }
-                        }
-
-
-                        if (!mApp.isLocationPermissionGranted()) {
-                            // No location permissions granted - treat it as a global search
-                            mSearchFilters.mapBounds = null;
-                            mSearchFilters.isCurrentLocation = false;
-                            resetResults(true);
-                            loadAllResults();
                         }
                     }
                 });
