@@ -215,7 +215,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/about"
+                        android:text="@string/about_taxon_short"
                         android:textSize="16sp"
                         android:textColor="#ffffff"
                         android:paddingLeft="7dp"
