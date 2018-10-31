@@ -216,7 +216,7 @@
   <string name="log_in">Se connecter</string>
   <string name="sign_up">Inscrivez-vous</string>
   <string name="min_6_chars">Min. 6 caractères</string>
-  <string name="use_my_license"><![CDATA[Oui, accordez une licence à mon contenu pour que les scientifiques puissent l'utiliser. <b>Apprenez-en davantage</b>]]></string>
+  <string name="use_my_license"><![CDATA[Oui, accordez une licence à mon contenu pour que les scientifiques puissent l\'utiliser. <b>Apprenez-en davantage</b>]]></string>
   <string name="content_licensing">Contenu de la licence</string>
   <string name="content_licensing_description">Cochez cette case si vous voulez appliquer une licence d\'attribution non commerciale Creative Commons à vos photos. Vous pouvez choisir une licence différente ou supprimer la licence plus tard, mais il s\'agit de la meilleure licence pour échanger avec les chercheurs.</string>
   <!-- Try to keep this about the length of the English text -->
@@ -266,11 +266,11 @@
   <string name="casual_grade_add_location"><![CDATA[ Ajouter un <b>emplacement</b> pour passer cette observation au statut "Besoin d'identifier''. ]]></string>
   <string name="casual_grade_add_date"><![CDATA[ Ajouter une <b>date</b> pour passer cette observation au statut "Besoin d'identifier''. ]]></string>
   <string name="casual_grade_add_photo"><![CDATA[ Ajouter une <b>photo</b> pour passer cette observation au statut "Besoin d'identifier''. ]]></string>
-  <string name="casual_grade_captive"><![CDATA[ L'observation a un classement occasionnel car elle est <b>en captivité/cultivé</b>. ]]></string>
-  <string name="needs_id_more_ids"><![CDATA[ L'observation doit avoir <b>d'autres identifications</b>de la part de la communauté pour passer au statut ''Classement Recherche''. ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ L\'observation a un classement occasionnel car elle est <b>en captivité/cultivé</b>. ]]></string>
+  <string name="needs_id_more_ids"><![CDATA[ L\'observation doit avoir <b>d\'autres identifications</b>de la part de la communauté pour passer au statut \'\'Classement Recherche\'\'. ]]></string>
   <string name="included_in_projects">Inclus dans %1$d projets</string>
   <string name="included_in_projects_singular">Inclus dans %1$d projet</string>
-  <string name="geoprivacy_explanation"><![CDATA[Le Geoprivacy est un paramètre que vous pouvez utiliser dans vos observations et qui contrôle l'affichage des coordonnées spaciales (latitude et longitude). En voici les options : ]]></string>
+  <string name="geoprivacy_explanation"><![CDATA[Le Geoprivacy est un paramètre que vous pouvez utiliser dans vos observations et qui contrôle l\'affichage des coordonnées spaciales (latitude et longitude). En voici les options : ]]></string>
   <string name="id_title">ID • %2$s de %1$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Supprimer</string>
@@ -540,8 +540,8 @@
   <string name="swipe_indicator">›</string>
   <string name="select_google_account">Quel compte Google ?</string>
   <string name="potential_disagreement">Désaccord potentiel</string>
-  <string name="do_you_think_this_could_be"><![CDATA[Les preuves fournies sont-elles suffisantes pour confirmer que c'est bien <b>%1$s</b>?]]></string>
-  <string name="i_dont_know_but"><![CDATA[Je ne sais pas pas mais je persuadé qu'il s'agit bien de çà <b>%1$s</b>.]]></string>
+  <string name="do_you_think_this_could_be"><![CDATA[Les preuves fournies sont-elles suffisantes pour confirmer que c\'est bien <b>%1$s</b>?]]></string>
+  <string name="i_dont_know_but"><![CDATA[Je ne sais pas pas mais je persuadé qu\'il s\'agit bien de çà <b>%1$s</b>.]]></string>
   <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Non, mais il fait partie des <b>%1$s</b>.]]></string>
   <string name="submit">Envoyer</string>
   <string name="change_password">Modifier le mot de passe</string>

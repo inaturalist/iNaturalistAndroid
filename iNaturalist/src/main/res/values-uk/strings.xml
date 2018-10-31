@@ -265,7 +265,7 @@
   <string name="casual_grade_add_location"><![CDATA[ Додайте <b>місцерозташування</b> для переходу цього спостереження в статус «Потрібен ID». ]]></string>
   <string name="casual_grade_add_date"><![CDATA[ Додайте <b>дату</b> для переходу цього спостереження в статус «Потрібен ID». ]]></string>
   <string name="casual_grade_add_photo"><![CDATA[ Додайте <b>фото</b> для переходу цього спостереження в статус «Потрібен ID». ]]></string>
-  <string name="casual_grade_captive"><![CDATA[ Спостереженню присвоєно Звичайний статус (Casual Grade) тому що це спостереження об'єкта <b>утримується в неволі або культивується</b>. ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ Спостереженню присвоєно Звичайний статус (Casual Grade) тому що це спостереження об\'єкта <b>утримується в неволі або культивується</b>. ]]></string>
   <string name="needs_id_more_ids"><![CDATA[ Щоб отримати "Дослідницький статус" (Research Grade) спостереженню потрібно <b>більше ідентифікацій</b> від спільноти. ]]></string>
   <string name="included_in_projects">Включено в проекти %1$d</string>
   <string name="included_in_projects_singular">Включено в проект %1$d</string>

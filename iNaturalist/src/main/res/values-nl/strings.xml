@@ -177,7 +177,7 @@
   <string name="no_observations_found">Geen waarnemingen gevonden</string>
   <string name="license_none">Geen, alle rechten voorbehouden</string>
   <string name="sources_and_attribution">Bronvermelding</string>
-  <string name="photos"><![CDATA[<b>Foto's:</b> %1$s]]></string>
+  <string name="photos"><![CDATA[<b>Foto\'s:</b> %1$s]]></string>
   <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
   <!-- The dialog content asking the user to switch to another iNat network -->
   <string name="alert_message_use_inaturalist">Het iNaturalist netwerk. Door op OK te klikken, wordt jouw app onderdeel van het mondiale iNaturalist-netwerk.</string>
@@ -265,7 +265,7 @@
   <string name="casual_grade_add_location"><![CDATA[ Voeg een <b>locatie</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
   <string name="casual_grade_add_date"><![CDATA[ Voeg een <b>datum</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
   <string name="casual_grade_add_photo"><![CDATA[ Voeg een <b>foto</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
-  <string name="casual_grade_captive"><![CDATA[ Waarneming krijgt 'casual grade' omdat ze <b>in gevangenschap/gekweekt</b> heeft. ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ Waarneming krijgt \'casual grade\' omdat ze <b>in gevangenschap/gekweekt</b> heeft. ]]></string>
   <string name="needs_id_more_ids"><![CDATA[ Observatie heeft <b>meer identificaties</b> nodig van de gemeenschap om de onderzoekskwaliteit te bereiken. ]]></string>
   <string name="included_in_projects">Opgenomen in %1$d projecten</string>
   <string name="included_in_projects_singular">Opgenomen in %1$d project</string>
