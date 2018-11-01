@@ -110,7 +110,14 @@
     <string name="search_projects">Search projects...</string>
     <string name="search_guides">Search guides...</string>
     <string name="save_observation">Save observation</string>
-    <string name="about">About</string>
+    <!-- Header for a description an individual guide -->
+    <string name="about_guide">About</string>
+    <string name="about_guide_all_caps">ABOUT</string>
+    <!-- Header for a description an individual project -->
+    <string name="about_project">About</string>
+    <string name="about_project_all_caps">ABOUT</string>
+    <string name="about_this_app">About</string>
+    <string name="about_taxon_short">About</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacy</string>
     <string name="delete_confirmation">Are you sure you want to delete this observation?</string>
@@ -568,29 +575,71 @@
     <string name="view_all">View All</string>
     <string name="new_badge">New</string>
     <string name="observers">Observers</string>
+    <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Attribute</string>
+    <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">Value</string>
+    <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">Disagree</string>
+    <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <string name="annotations">Annotations</string>
     <!-- Used when filtering observations with annotations -->
     <string name="with_annotation">With Annotation</string>
+    <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
     <string name="annotation_name">Annotation Name</string>
+    <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">None</string>
+    <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Life Stage</string>
+    <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sex</string>
+    <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Flowering</string>
+    <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Fruiting</string>
+    <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Budding</string>
+    <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
+    <!-- Adjective describing the odonate life stage between nymph and adult -->
     <string name="annotation_value_teneral">Teneral</string>
+    <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Pupa</string>
+    <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <string name="annotation_value_nymph">Nymph</string>
+    <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
     <string name="annotation_value_egg">Egg</string>
+    <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenile</string>
+    <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Female</string>
     <string name="annotation_value_male">Male</string>
+    <string name="joined_projects_all_caps">JOINED</string>
+    <string name="nearby_projects_all_caps">NEARBY</string>
+    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="join_all_caps">JOIN</string>
+    <string name="my_guides_all_caps">YOURS</string>
+    <string name="nearby_guides_all_caps">NEARBY</string>
+    <string name="all_guides_all_caps">ALL</string>
+    <string name="description_all_caps">DESCRIPTION</string>
+    <string name="quantity_all_caps">QTY</string>
+    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
+    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
+    <string name="agree_all_caps">AGREE</string>
+    <string name="observations_all_caps">OBSERVATIONS</string>
+    <string name="species_all_caps">SPECIES</string>
+    <string name="people_all_caps">PEOPLE</string>
+    <string name="identifiers_all_caps">IDENTIFIERS</string>
+    <string name="identifications_all_caps">IDENTIFICATIONS</string>
+    <string name="news_all_caps">NEWS</string>
+    <string name="got_it_all_caps">GOT IT!</string>
+    <string name="view_all_all_caps">VIEW ALL</string>
+    <string name="new_all_caps">NEW</string>
+    <string name="observers_all_caps">OBSERVERS</string>
+    <string name="observations_regular">Observations</string>
 </resources>
 

@@ -1436,25 +1436,18 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                         SharedPreferences settings = mApp.getPrefs();
                         settings.edit().putInt("observation_count", mUser.getInt("observations_count")).commit();
                     }
-                    if (mUser.has("identifications_count") && !mUser.isNull("identifications_count")) {
-                        mTotalIdentifications = mUser.getInt("identifications_count");
-                    }
 
                     refreshUserDetails();
 
                     refreshViewState();
 
                     return;
-                } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
-                    // Species count result
+                } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT) || intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
+                    // Species/identifications count result
                     resultsObject = (BetterJSONObject) object;
                     totalResults = resultsObject.getInt("total_results") == null ? 0 : resultsObject.getInt("total_results");
                     SerializableJSONArray resultsArray = resultsObject.getJSONArray("results");
                     results = resultsArray != null ? resultsArray.getJSONArray() : new JSONArray();
-                } else {
-                    // Identifications result
-                    results = ((SerializableJSONArray) object).getJSONArray();
-                    totalResults = results.length();
                 }
             }
 
@@ -1479,6 +1472,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mTotalSpecies = totalResults;
             } else if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
                 mIdentifications = resultsArray;
+                mTotalIdentifications = totalResults;
             }
 
             refreshViewState();

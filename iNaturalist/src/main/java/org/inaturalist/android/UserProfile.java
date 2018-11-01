@@ -436,17 +436,12 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 refreshUserDetails();
 
                 mTotalObservations = mUser.getInt("observations_count");
-                mTotalIdentifications = mUser.getInt("identifications_count");
                 return;
-            } else if (intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) {
-                // Life list result (species)
+            } else if ((intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) || (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT))) {
+                // Life list result (species) / identifications result
                 resultsObject = (BetterJSONObject) object;
                 totalResults = resultsObject.getInt("total_results");
                 results = resultsObject.getJSONArray("results").getJSONArray();
-            } else {
-                // Observations / Identifications result
-                results = ((SerializableJSONArray) object).getJSONArray();
-                totalResults = results.length();
             }
 
             ArrayList<JSONObject> resultsArray = new ArrayList<JSONObject>();
@@ -472,6 +467,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 mTotalSpecies = totalResults;
             } else if (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT)) {
                 mIdentifications = resultsArray;
+                mTotalIdentifications = totalResults;
             }
 
             refreshViewState();

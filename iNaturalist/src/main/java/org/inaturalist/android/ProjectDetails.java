@@ -175,7 +175,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
         mJoinLeaveProject = (Button) findViewById(R.id.join_leave_project);
         mApp.setStringResourceForView(this, R.id.join_leave_project, "join_all_caps", "join");
         mAboutProject = (Button) findViewById(R.id.about_project);
-        mApp.setStringResourceForView(this, R.id.about_project, "about_all_caps", "about");
+        mApp.setStringResourceForView(this, R.id.about_project, "about_project_all_caps", "about_project");
         mProjectNews = (Button) findViewById(R.id.project_news);
         mApp.setStringResourceForView(this, R.id.project_news, "news_all_caps", "news");
 

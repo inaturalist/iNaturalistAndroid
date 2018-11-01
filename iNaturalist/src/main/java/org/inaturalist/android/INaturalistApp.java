@@ -70,6 +70,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDex;
@@ -221,10 +222,6 @@ public class INaturalistApp extends MultiDexApplication {
         if (username != null) {
             setShownOnboarding(true);
         }
-
-
-        int missionViewCount = getPrefs().getInt("mission_view_count", 0);
-        getPrefs().edit().putInt("mission_view_count", ++missionViewCount).commit();
     }
     
     
@@ -561,15 +558,45 @@ public class INaturalistApp extends MultiDexApplication {
 
 
     public String getStringResourceByName(String name, String fallbackName) {
-    	int resId = getResourceIdByName(name, "string");
-    	if (resId == 0) {
-    		return getStringResourceByName(fallbackName);
-    	} else {
-    	    try {
-                return getString(resId);
+        Configuration configuration = new Configuration(getResources().getConfiguration());
+        int resId = getResourceIdByName(name, "string");
+        String value = null;
+
+        if ((resId != 0) && (!locale.getLanguage().equals("en"))) {
+            String defaultLanguageValue = null;
+
+            try {
+                value = getString(resId);
             } catch (Resources.NotFoundException exc) {
-    	        return getStringResourceByName(fallbackName);
+                return getStringResourceByName(fallbackName);
             }
+
+            Locale defaultLocale = new Locale("en");
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                LocaleList localeList = new LocaleList(defaultLocale);
+                configuration.setLocales(localeList);
+                defaultLanguageValue = createConfigurationContext(configuration).getResources().getString(resId);
+
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                configuration.setLocale(defaultLocale);
+                defaultLanguageValue = createConfigurationContext(configuration).getString(resId);
+            }
+
+            if ((defaultLanguageValue != null) && (value.equals(defaultLanguageValue))) {
+                // That means the current locale doesn't have the translated value - resolve to the fallback name
+                return getStringResourceByName(fallbackName);
+            }
+
+        } else if (resId == 0) {
+            // Resource not found
+            return getStringResourceByName(fallbackName);
+        }
+
+        try {
+            return getString(resId);
+        } catch (Resources.NotFoundException exc) {
+            return getStringResourceByName(fallbackName);
     	}
     }
 

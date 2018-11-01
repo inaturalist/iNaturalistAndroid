@@ -59,7 +59,7 @@ public class ProjectDetailsAbout extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
-        actionBar.setTitle(R.string.about);
+        actionBar.setTitle(R.string.about_project);
 
         TextView title = (TextView) findViewById(R.id.project_title);
         TextView projectDescription = (TextView) findViewById(R.id.project_description);

@@ -265,7 +265,7 @@
   <string name="casual_grade_add_location"><![CDATA[ Adicione um <b>local</b> para que esta observação alcance o status de "Precisa de ID". ]]></string>
   <string name="casual_grade_add_date"><![CDATA[ Adicione uma <b>data</b> para que esta observação alcance o status de "Precisa de ID". ]]></string>
   <string name="casual_grade_add_photo"><![CDATA[ Adicione uma <b>foto</b> para que esta observação alcance o status de "Precisa de ID". ]]></string>
-  <string name="casual_grade_captive"><![CDATA[ Observação de 'Nível Casual' porque a espécie é de <b>cativeiro/cultivada</b>. ]]></string>
+  <string name="casual_grade_captive"><![CDATA[ Observação de \'Nível Casual\' porque a espécie é de <b>cativeiro/cultivada</b>. ]]></string>
   <string name="needs_id_more_ids"><![CDATA[ Observação precisa de<b>mais identificações</b> da Comunidade para receber o status de "Nível de Pesquisa". ]]></string>
   <string name="included_in_projects">Incluído em %1$d projetos</string>
   <string name="included_in_projects_singular">Incluído em projetos de %1$d</string>

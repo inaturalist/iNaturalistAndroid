@@ -8,7 +8,6 @@
     <!-- Styles -->
     <style name="OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_more_vert_black_24dp</item>
-        <item name="android:contentDescription">@string/overflow_menu</item>
     </style>
 
     <style name="_iNatAppTheme" parent="@style/Theme.AppCompat.Light">

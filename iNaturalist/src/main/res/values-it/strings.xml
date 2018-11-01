@@ -229,7 +229,7 @@
   <string name="login_signup">Accedi / Registrati</string>
   <string name="please_sign_in_via_settings_for_guides">Devi aver effettuato l\'accesso per visualizzare le tue guide.</string>
   <string name="please_sign_in_for_updates">Devi aver effettuato l\'accesso per visualizzare i tuoi aggiornamenti.</string>
-  <string name="by_using_inat_terms"><![CDATA[Utilizzando iNaturalist accetti i <b><a href="http://www.inaturalist.org/pages/terms"> Termini di servizio</a></b> e <b><a href="http://www.inaturalist.org/pages/privacy"> l'Informativa sulla privacy</a></b>]]></string>
+  <string name="by_using_inat_terms"><![CDATA[Utilizzando iNaturalist accetti i <b><a href="http://www.inaturalist.org/pages/terms"> Termini di servizio</a></b> e <b><a href="http://www.inaturalist.org/pages/privacy"> l\'Informativa sulla privacy</a></b>]]></string>
   <string name="activity">Attività</string>
   <string name="camera">Scatta una Foto</string>
   <string name="upload_photo">Scegli immagine</string>
@@ -266,10 +266,10 @@
   <string name="casual_grade_add_date"><![CDATA[ Aggiungi una <b>data</b> per far progredire questa osservazione al livello "Ha bisogno ID". ]]></string>
   <string name="casual_grade_add_photo"><![CDATA[ Aggiungi una <b>foto</b> per far progredire questa osservazione al livello "Ha bisogno ID". ]]></string>
   <string name="casual_grade_captive"><![CDATA[ Osservazione è di livello Casuale perché è <b>in cattività/coltivata</b>. ]]></string>
-  <string name="needs_id_more_ids"><![CDATA[ L'osservazione ha bisogno di <b>ulteriori identificazioni</b> della community per raggiungere il "Livello Ricerca". ]]></string>
+  <string name="needs_id_more_ids"><![CDATA[ L\'osservazione ha bisogno di <b>ulteriori identificazioni</b> della community per raggiungere il "Livello Ricerca". ]]></string>
   <string name="included_in_projects">Incluse nei progetti di %1$d</string>
   <string name="included_in_projects_singular">Incluso nel progetto %1$d</string>
-  <string name="geoprivacy_explanation"><![CDATA[La Geoprivacy è un'impostazione che controlla come vengono visualizzate le coordinate spaziali (Latitudine e longitudine). Ecco le opzioni: <br/><b>pubblica</b> - tutti possono vedere le coordinate a meno che il taxon non sia minacciato. <br/><b>oscurata</b> - le coordinate sono visualizzate come un punto casuale all'interno di una zona di 0,2 per 0,2 gradi che contiene le coordinate vere, che corrisponde ad un'area di circa 22 x 22 km di incertezza all'equatore, diminuendo verso i poli. Le Coordinate vere vengono visualizzate solo da te e dai curatori dei progetti a cui aggiungi l'osservazione. <br/><b>privata</b> - coordinate completamente nascostee, coordinate reali visibili solo a te e ai curatori dei progetti a cui aggiungi l'osservazione. <br/><br/> I curatori dei singoli progetti possono sempre vedere le coordinate precise indipendentemente dalla tua impostazione della geoprivacy, quindi se sei preoccupato su chi può aver accesso alle coordinate, dovresti essere certo di fidarti dei curatori dei progetti a cui ti unisci. ]]></string>
+  <string name="geoprivacy_explanation"><![CDATA[La Geoprivacy è un\'impostazione che controlla come vengono visualizzate le coordinate spaziali (Latitudine e longitudine). Ecco le opzioni: <br/><b>pubblica</b> - tutti possono vedere le coordinate a meno che il taxon non sia minacciato. <br/><b>oscurata</b> - le coordinate sono visualizzate come un punto casuale all\'interno di una zona di 0,2 per 0,2 gradi che contiene le coordinate vere, che corrisponde ad un\'area di circa 22 x 22 km di incertezza all\'equatore, diminuendo verso i poli. Le Coordinate vere vengono visualizzate solo da te e dai curatori dei progetti a cui aggiungi l\'osservazione. <br/><b>privata</b> - coordinate completamente nascostee, coordinate reali visibili solo a te e ai curatori dei progetti a cui aggiungi l\'osservazione. <br/><br/> I curatori dei singoli progetti possono sempre vedere le coordinate precise indipendentemente dalla tua impostazione della geoprivacy, quindi se sei preoccupato su chi può aver accesso alle coordinate, dovresti essere certo di fidarti dei curatori dei progetti a cui ti unisci. ]]></string>
   <string name="id_title">ID di %1$s • %2$s</string>
   <string name="comment_title">%1$s • %2$s</string>
   <string name="delete">Cancella</string>

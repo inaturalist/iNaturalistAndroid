@@ -327,17 +327,17 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             }
         }
-
-        if ((mSearchFilters != null) && (!mSearchFilters.isCurrentLocation)) {
-            resetResults(true);
-            loadAllResults();
-        }
-
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        // To handle memory issues - don't save any results that are not part of the current active tab
+        for (int i = 0; i < mResults.length; i++) {
+            if (mActiveViewType != i) {
+                mResults[i] = null;
+            }
+        }
+
         mObservations = mResults[VIEW_TYPE_OBSERVATIONS];
         mSpecies = mResults[VIEW_TYPE_SPECIES];
         mObservers = mResults[VIEW_TYPE_OBSERVERS];
@@ -440,9 +440,6 @@ public class ExploreActivity extends BaseFragmentActivity {
         filter2.addAction(INaturalistService.GET_CURRENT_LOCATION_RESULT);
         BaseFragmentActivity.safeRegisterReceiver(mLocationReceiver, filter2, this);
 
-        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
-        startService(serviceIntent);
-
         mAnnotationsReceiver = new AnnotationsReceiver();
         IntentFilter filter3 = new IntentFilter();
         filter3.addAction(INaturalistService.GET_ALL_ATTRIBUTES_RESULT);
@@ -455,6 +452,16 @@ public class ExploreActivity extends BaseFragmentActivity {
 
 
         refreshViewState();
+
+        if (!((mApp.isLocationPermissionGranted() && (mSearchFilters != null) && (mSearchFilters.isCurrentLocation) && (mLastMapBounds == null)))) {
+            // When the activity is paused, we only save the results of the current tab (to conserve memory).
+            // In this part we load the results of the rest of the tabs, if not already in the process of loading.
+            for (int i = 0; i < mResults.length; i++) {
+                if ((!mLoadingNextResults[i]) && (mResults[i] == null)) {
+                    loadNextResultsPage(i, true);
+                }
+            }
+        }
     }
 
     // Method to add a TabHost
@@ -603,6 +610,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                         @Override
                         public void onFinish() {
                             mInitialLocationBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
+                            mObservationsMapContainer.setVisibility(View.GONE);
 
                             if (shouldRedoSearch) {
                                 mLastMapBounds = mInitialLocationBounds;
@@ -840,6 +848,8 @@ public class ExploreActivity extends BaseFragmentActivity {
         ActionBar actionBar = getSupportActionBar();
         final TextView title = (TextView) actionBar.getCustomView().findViewById(R.id.title);
         final TextView subTitle = (TextView) actionBar.getCustomView().findViewById(R.id.sub_title);
+
+        if (mSearchFilters == null) return;
 
         if (mSearchFilters.taxon != null) {
             // Searching for a specific taxa
@@ -1283,7 +1293,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             ViewGroup layout = (ViewGroup) inflater.inflate(layoutResource, collection, false);
 
             if (position == VIEW_TYPE_OBSERVERS) {
-                mApp.setStringResourceForView(layout, R.id.observations_title, "observations_regular", "agree2");
+                mApp.setStringResourceForView(layout, R.id.observations_title, "observations_regular", "project_observations");
             }
 
 
@@ -1362,15 +1372,6 @@ public class ExploreActivity extends BaseFragmentActivity {
                                 }, 1000);
 
                             }
-                        }
-
-
-                        if (!mApp.isLocationPermissionGranted()) {
-                            // No location permissions granted - treat it as a global search
-                            mSearchFilters.mapBounds = null;
-                            mSearchFilters.isCurrentLocation = false;
-                            resetResults(true);
-                            loadAllResults();
                         }
                     }
                 });

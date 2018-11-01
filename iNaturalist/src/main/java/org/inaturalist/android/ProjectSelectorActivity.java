@@ -628,6 +628,9 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     @Override
     public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
         BetterJSONObject project = (BetterJSONObject) view.getTag(R.id.TAG_PROJECT);
+
+        if (project == null) return;
+
         String projectType = project.getString("project_type");
         boolean isUmbrellaProject = ((projectType != null) && ((projectType.equals(Project.PROJECT_TYPE_COLLECTION)) || (projectType.equals(Project.PROJECT_TYPE_UMBRELLA))));
 
