@@ -994,6 +994,11 @@ public class ObservationEditor extends AppCompatActivity {
     }
     
     private boolean onBack() {
+        if ((mCursor ==  null) || (mCursor.getCount() == 0)) {
+            finish();
+            return false;
+        }
+
         Observation observationCopy = new Observation(mCursor);
         uiToObservation();
         if (!mObservation.isDirty() && !mPhotosChanged) {
