@@ -115,6 +115,13 @@ def validate_android_translations(options=None):
             errors[path][key].append("Extraneous variable {}".format(tm.group(0)))
             if options.debug:
               print("\t\t{}".format(errors[path][key][-1]))
+      # if unescaped single quotes
+      if node.text and re.search(r"[^\\]'", node.text):
+        if key not in errors[path]:
+          errors[path][key] = []
+        errors[path][key].append("Unescaped single quote")
+        if options.debug:
+          print("\t\t{}".format(errors[path][key][-1]))
 
   # Print validation errors
   for path in glob("iNaturalist/src/main/res/values-*/strings.xml"):
