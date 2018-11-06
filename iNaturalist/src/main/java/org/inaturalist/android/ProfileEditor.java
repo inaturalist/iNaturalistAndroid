@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -211,10 +212,14 @@ public class ProfileEditor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+        StrictMode.VmPolicy.Builder newBuilder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(newBuilder.build());
+
         mHelper = new ActivityHelper(this);
 
         final Intent intent = getIntent();
         setContentView(R.layout.edit_profile);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
