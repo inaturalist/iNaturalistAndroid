@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -250,7 +251,7 @@ public class MissionsActivity extends BaseFragmentActivity {
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
                     serviceIntent.putExtra(INaturalistService.EXPAND_LOCATION_BY_DEGREES, nextExpansion);
-                    startService(serviceIntent);
+                    ContextCompat.startForegroundService(MissionsActivity.this, serviceIntent);
                 }
             }
 
@@ -319,7 +320,7 @@ public class MissionsActivity extends BaseFragmentActivity {
             if (mApp.isLocationPermissionGranted()) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
             } else if (!mAskedForLocationPermissions) {
                 SharedPreferences settings = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 if (settings.getBoolean("shown_missions_onboarding", false)) {
@@ -339,7 +340,7 @@ public class MissionsActivity extends BaseFragmentActivity {
             public void onPermissionGranted() {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_RECOMMENDED_MISSIONS, null, MissionsActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(MissionsActivity.this, serviceIntent);
             }
 
             @Override

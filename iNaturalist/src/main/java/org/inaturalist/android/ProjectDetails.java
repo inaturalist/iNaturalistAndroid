@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
@@ -253,7 +254,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
                                     Intent serviceIntent = new Intent(INaturalistService.ACTION_LEAVE_PROJECT, null, ProjectDetails.this, INaturalistService.class);
                                     serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-                                    startService(serviceIntent);
+                                    ContextCompat.startForegroundService(ProjectDetails.this, serviceIntent);
                                 }
                             }, new DialogInterface.OnClickListener() {
                                 @Override
@@ -298,7 +299,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_JOIN_PROJECT, null, ProjectDetails.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
@@ -478,7 +479,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     private void getProjectDetails(String action) {
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     private class ProjectDetailsReceiver extends BroadcastReceiver {

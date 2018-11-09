@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
@@ -255,7 +256,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
         // Run the first observation sync
         Intent serviceIntent = new Intent(INaturalistService.ACTION_FIRST_SYNC, null, mActivity, INaturalistService.class);
-        mActivity.startService(serviceIntent);
+        ContextCompat.startForegroundService(mActivity, serviceIntent);
     }
 
 

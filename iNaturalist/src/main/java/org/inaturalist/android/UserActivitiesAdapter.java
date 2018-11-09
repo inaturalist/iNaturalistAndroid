@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -242,7 +243,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             if (!mObsIdBeingDownloaded.containsKey(obsId) || !mObsIdBeingDownloaded.get(obsId)) {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
-                mContext.startService(serviceIntent);
+                ContextCompat.startForegroundService(mContext, serviceIntent);
                 Log.e(TAG, obsId + ": Start download: " + mObsIdBeingDownloaded.containsKey(obsId));
             } else {
                 Log.e(TAG, obsId + ": Downloading");
@@ -343,7 +344,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 // Mark observation update as viewed
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obs.id);
-                mContext.startService(serviceIntent);
+                ContextCompat.startForegroundService(mContext, serviceIntent);
             }
         };
 

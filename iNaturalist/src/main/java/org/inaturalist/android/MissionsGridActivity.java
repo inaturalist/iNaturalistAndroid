@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -155,7 +156,7 @@ public class MissionsGridActivity extends AppCompatActivity {
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
                 serviceIntent.putExtra(INaturalistService.EXPAND_LOCATION_BY_DEGREES, nextExpansion);
                 if (mTaxonId > -1) serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
             }
         }
 
@@ -229,7 +230,7 @@ public class MissionsGridActivity extends AppCompatActivity {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_MISSIONS_BY_TAXON, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
 
             } else {
                 // Load recommended missions (already loaded in the previous screen - the main missions activity)

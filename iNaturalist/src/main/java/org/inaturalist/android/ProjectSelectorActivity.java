@@ -24,6 +24,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.projection.MediaProjection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -351,7 +352,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
         BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, ProjectSelectorActivity.this, INaturalistService.class);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     // Update project field values from UI

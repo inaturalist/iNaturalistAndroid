@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -184,7 +185,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, taxonId);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         }
 
 
@@ -313,7 +314,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             getObservationsIntent.putExtra("location_expansion", mLocationExpansion);
             getObservationsIntent.putExtra("taxon_id", taxonId);
             getObservationsIntent.putExtra("per_page", MAX_MAP_RESULTS);
-            startService(getObservationsIntent);
+            ContextCompat.startForegroundService(this, getObservationsIntent);
         }
 
         refreshViewState();

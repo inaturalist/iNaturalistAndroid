@@ -14,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextWatcher;
@@ -204,7 +205,7 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_USERS, null, mContext, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, searchText);
         serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, 1);
-        mContext.startService(serviceIntent);
+        ContextCompat.startForegroundService(mContext, serviceIntent);
     }
 
     @Override

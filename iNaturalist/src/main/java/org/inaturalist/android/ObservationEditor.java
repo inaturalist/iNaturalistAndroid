@@ -75,6 +75,7 @@ import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.media.ExifInterface;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -704,7 +705,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, mObservation.taxon_id);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
             }
         }
 
@@ -1239,7 +1240,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mProjects == null) {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         } else {
             refreshProjectList();
         }

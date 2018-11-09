@@ -24,6 +24,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -218,7 +219,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             if (System.currentTimeMillis() - lastRefreshTime > 1000 * 60 * USER_REFRESH_TIME_MINS) {
                 // Get fresh user details from the server
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
             }
         } else {
             findViewById(R.id.menu_login).setVisibility(View.VISIBLE);

@@ -23,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.text.Editable;
@@ -1047,7 +1048,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
             int guideId = mGuide.getInt("id");
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GUIDE_XML, null, GuideDetails.this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.ACTION_GUIDE_ID, guideId);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         }
     }
 

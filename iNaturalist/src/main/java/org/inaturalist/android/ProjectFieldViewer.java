@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
@@ -406,7 +407,7 @@ public class ProjectFieldViewer {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId);
-                mContext.startService(serviceIntent);
+                ContextCompat.startForegroundService(mContext, serviceIntent);
             } else {
                 mIdName.setText("");
                 mIdTaxonName.setText("");

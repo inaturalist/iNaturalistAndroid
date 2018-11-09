@@ -21,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -1121,7 +1122,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         if (mOnLoadingMoreResultsListener != null) mOnLoadingMoreResultsListener.onLoadingMoreResultsStart();
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ADDITIONAL_OBS, null, mContext, INaturalistService.class);
-        mContext.startService(serviceIntent);
+        ContextCompat.startForegroundService(mContext, serviceIntent);
     }
 
     public static int getIconicTaxonDrawable(String iconicTaxonName) {

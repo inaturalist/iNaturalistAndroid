@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -218,7 +219,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
 
         Intent serviceIntent = new Intent(INaturalistService.ACTION_SEARCH_USER_OBSERVATIONS, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, query);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
@@ -307,7 +308,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
                     // This observation has a non-project custom field - add it as well
                     Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_PROJECT_FIELD, null, this, INaturalistService.class);
                     serviceIntent.putExtra(INaturalistService.FIELD_ID, fieldValue.field_id);
-                    startService(serviceIntent);
+                    ContextCompat.startForegroundService(this, serviceIntent);
                 }
                 c.close();
             }

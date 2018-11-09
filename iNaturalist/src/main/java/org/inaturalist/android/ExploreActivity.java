@@ -447,7 +447,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
         if (mAllAnnotations == null) {
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_ALL_ATTRIBUTES, null, ExploreActivity.this, INaturalistService.class);
-            startService(serviceIntent2);
+            ContextCompat.startForegroundService(this, serviceIntent2);
         }
 
 
@@ -1238,7 +1238,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.FILTERS, mSearchFilters);
             serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, mCurrentResultsPage[resultsType] + 1);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
 
             if (mCurrentResultsPage[resultsType] > 0) {
                 mLoadingMoreResults[resultsType].setVisibility(View.VISIBLE);
@@ -1396,7 +1396,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     @Override
                     public void onClick(View v) {
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, ExploreActivity.this, INaturalistService.class);
-                        startService(serviceIntent);
+                        ContextCompat.startForegroundService(ExploreActivity.this, serviceIntent);
                     }
                 });
 

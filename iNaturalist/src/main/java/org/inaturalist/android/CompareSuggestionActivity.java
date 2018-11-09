@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -176,7 +177,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.optInt("id"));
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
             }
         }
     }

@@ -13,6 +13,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -564,7 +565,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_OBSERVATION_BOUNDS, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
 
         }
 
@@ -577,7 +578,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         }
     }
 

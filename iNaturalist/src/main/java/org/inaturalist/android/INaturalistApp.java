@@ -76,6 +76,7 @@ import android.support.annotation.Nullable;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v4.content.res.ResourcesCompat;
 import android.telephony.TelephonyManager;
@@ -384,7 +385,7 @@ public class INaturalistApp extends MultiDexApplication {
             // Update the server of the network change
             Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_USER_NETWORK, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.NETWORK_SITE_ID, Integer.valueOf(getStringResourceByName("inat_site_id_" + memberNetwork)));
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         }
 	}
 

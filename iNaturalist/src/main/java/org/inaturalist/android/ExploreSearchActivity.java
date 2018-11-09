@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -331,7 +332,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
         Intent serviceIntent = new Intent(searchType == SEARCH_TYPE_TAXON ? INaturalistService.ACTION_SEARCH_TAXA : INaturalistService.ACTION_SEARCH_PLACES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.QUERY, query);
         serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, 1);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
 
         refreshViewState(false);
     }

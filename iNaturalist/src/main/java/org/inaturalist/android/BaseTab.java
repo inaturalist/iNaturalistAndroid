@@ -34,6 +34,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -329,7 +330,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
                         public void onPermissionGranted() {
                             Log.i(TAG, "Calling " + getActionName());
                             Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-                            getActivity().startService(serviceIntent);
+                            ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
                             mEmptyListLabel.setVisibility(View.GONE);
                             mSettings.setVisibility(View.GONE);
@@ -346,7 +347,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             } else {
                 Log.i(TAG, "Calling " + getActionName());
                 Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-                getActivity().startService(serviceIntent);
+                ContextCompat.startForegroundService(getActivity(), serviceIntent);
             }
         } else {
             // Load previously downloaded projects
@@ -408,7 +409,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
         Log.i(TAG, "Re-Calling " + getActionName());
         Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
-        getActivity().startService(serviceIntent);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }
 
     @Override

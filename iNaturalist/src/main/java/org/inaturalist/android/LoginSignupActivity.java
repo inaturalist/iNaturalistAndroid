@@ -414,7 +414,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                     serviceIntent.putExtra(INaturalistService.USERNAME, mUsername.getText().toString());
                     serviceIntent.putExtra(INaturalistService.PASSWORD, mPassword.getText().toString());
                     serviceIntent.putExtra(INaturalistService.LICENSE, (mUseCCLicense ? "CC-BY-NC" : "on"));
-                    startService(serviceIntent);
+                    ContextCompat.startForegroundService(LoginSignupActivity.this, serviceIntent);
 
                     mHelper.loading(getString(R.string.registering));
                 }

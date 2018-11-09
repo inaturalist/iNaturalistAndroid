@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -227,7 +228,7 @@ public class TaxonSuggestionsActivity extends AppCompatActivity {
             serviceIntent.putExtra(INaturalistService.LONGITUDE, mLongitude);
             serviceIntent.putExtra(INaturalistService.LATITUDE, mLatitude);
             serviceIntent.putExtra(INaturalistService.OBSERVED_ON, mObservedOn);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
 
             mLoadingSuggestions.setVisibility(View.VISIBLE);
             mSuggestionsContainer.setVisibility(View.GONE);

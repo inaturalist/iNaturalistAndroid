@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -257,28 +258,28 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     public void onDeleteAnnotationValue(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
     public void onAnnotationAgree(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_AGREE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
     public void onAnnotationDisagree(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DISAGREE_ANNOTATION, null, ObservationViewerActivity.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
     public void onAnnotationVoteDelete(String uuid) {
         Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_ANNOTATION_VOTE, null, ObservationViewerActivity.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.UUID, uuid);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
@@ -287,7 +288,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         serviceIntent.putExtra(INaturalistService.ATTRIBUTE_ID, annotationId);
         serviceIntent.putExtra(INaturalistService.VALUE_ID, valueId);
         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     private class PhotosViewPagerAdapter extends PagerAdapter {
@@ -661,7 +662,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
 
         }
 
@@ -763,7 +764,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_REMOVE_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 
                 mFavIndex = getFavoritedByUsername(username);
 
@@ -789,7 +790,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_FAVORITE, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 
                 SharedPreferences pref = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
                 String username = pref.getString("username", null);
@@ -899,7 +900,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                     serviceIntent.putExtra(INaturalistService.TAXON_ID, taxon.getJSONObject("taxon").getInt("id"));
                     serviceIntent.putExtra(INaturalistService.FROM_VISION, false);
-                    startService(serviceIntent);
+                    ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 
                     try {
                         JSONObject eventParams = new JSONObject();
@@ -926,7 +927,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 mReloadTaxon = true;
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, taxon.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
             }
 
             @Override
@@ -964,7 +965,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, body);
                                 serviceIntent.putExtra(INaturalistService.TAXON_ID, id.getInt("taxon_id"));
-                                startService(serviceIntent);
+                                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -984,7 +985,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_RESTORE_ID, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.IDENTIFICATION_ID, id.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
             }
 
 
@@ -997,7 +998,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_DELETE_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
             }
 
             @Override
@@ -1034,7 +1035,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 serviceIntent.putExtra(INaturalistService.COMMENT_ID, comment.getInt("id"));
                                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                                 serviceIntent.putExtra(INaturalistService.COMMENT_BODY, commentBody);
-                                startService(serviceIntent);
+                                ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
                             }
                         },
                         new DialogInterface.OnClickListener() {
@@ -1110,7 +1111,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_ADD_COMMENT, null, ObservationViewerActivity.this, INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
                         serviceIntent.putExtra(INaturalistService.COMMENT_BODY, comment);
-                        startService(serviceIntent);
+                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 
                         mCommentsIds = null;
                         refreshActivity();
@@ -1339,7 +1340,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
 
             if (mReadOnly) {
                 // Show loading progress bars for the photo and map
@@ -1919,7 +1920,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         // Flag as captive
                         Intent serviceIntent = new Intent(INaturalistService.ACTION_FLAG_OBSERVATION_AS_CAPTIVE, null, ObservationViewerActivity.this, INaturalistService.class);
                         serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-                        startService(serviceIntent);
+                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 
                         Toast.makeText(getApplicationContext(), R.string.observation_flagged_as_captive, Toast.LENGTH_LONG).show();
                         setResult(RESULT_FLAGGED_AS_CAPTIVE);
@@ -1973,7 +1974,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, ObservationViewerActivity.this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 	    }
 
 	}
@@ -2205,7 +2206,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         // Now that we have full taxon details, we can retrieve the annotations/attributes for that taxon
         Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_ATTRIBUTES_FOR_TAXON, null, ObservationViewerActivity.this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.TAXON, new BetterJSONObject(mTaxonJson));
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     private void reloadPhotos() {
@@ -2367,7 +2368,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         serviceIntent.putExtra(INaturalistService.IDENTIFICATION_BODY, idRemarks);
                         serviceIntent.putExtra(INaturalistService.DISAGREEMENT, disagreement);
                         serviceIntent.putExtra(INaturalistService.FROM_VISION, fromSuggestion);
-                        startService(serviceIntent);
+                        ContextCompat.startForegroundService(ObservationViewerActivity.this, serviceIntent);
 
                         try {
                             JSONObject eventParams = new JSONObject();
@@ -2406,7 +2407,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent2.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
-            startService(serviceIntent2);
+            ContextCompat.startForegroundService(this, serviceIntent2);
         }
     }
 

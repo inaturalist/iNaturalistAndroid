@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -185,7 +186,7 @@ public class ProjectNews extends BaseFragmentActivity {
                 serviceIntent = new Intent(INaturalistService.ACTION_GET_PROJECT_NEWS, null, ProjectNews.this, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.PROJECT_ID, mProject.getInt("id"));
             }
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         }
     }
 

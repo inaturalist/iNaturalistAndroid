@@ -18,6 +18,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -91,7 +92,7 @@ public class ObservationProvider extends ContentProvider {
                 db.execSQL(ProjectField.sqlCreate());
                 // Re-populate the table
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS_ONLINE, null, mContext, INaturalistService.class);
-                mContext.startService(serviceIntent);
+                ContextCompat.startForegroundService(mContext, serviceIntent);
             }
             if (oldVersion < 11) {
                 // Add a "is_deleted" column to ObservationPhoto

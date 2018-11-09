@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -459,7 +460,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                     serviceIntent.putExtra(INaturalistService.FOLLOWING, refreshView == mActivityList ? false : true);
                 }
 
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(UserActivity.this, serviceIntent);
             }
         });
     }
@@ -484,7 +485,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         // Get the user's news feed
         if (mNews == null) {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         }
 
         if (mApp.loggedIn()) {
@@ -492,13 +493,13 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                 // Get the user's activities
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
                 serviceIntent2.putExtra(INaturalistService.FOLLOWING, false);
-                startService(serviceIntent2);
+                ContextCompat.startForegroundService(this, serviceIntent2);
             }
             if (mFollowingActivities == null) {
                 // Get the user's activities (following obs)
                 Intent serviceIntent3 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
                 serviceIntent3.putExtra(INaturalistService.FOLLOWING, true);
-                startService(serviceIntent3);
+                ContextCompat.startForegroundService(this, serviceIntent3);
             }
         } else {
             // Only works if user is logged in

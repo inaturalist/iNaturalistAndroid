@@ -33,6 +33,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -561,7 +562,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxonId != null ? mTaxonId : mTaxon.getInt("id"));
-            startService(serviceIntent);
+            ContextCompat.startForegroundService(this, serviceIntent);
         }
     }
 }

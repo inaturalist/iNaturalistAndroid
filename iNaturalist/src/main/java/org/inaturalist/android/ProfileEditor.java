@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -147,7 +148,7 @@ public class ProfileEditor extends AppCompatActivity {
                     }
                 }
 
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
 
                 mHelper.loading(getString(R.string.updating_profile));
 

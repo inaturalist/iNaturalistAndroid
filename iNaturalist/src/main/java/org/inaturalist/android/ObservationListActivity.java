@@ -404,12 +404,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         // Clear out any old cached photos
         Intent serviceIntent = new Intent(INaturalistService.ACTION_CLEAR_OLD_PHOTOS_CACHE, null, ObservationListActivity.this, INaturalistService.class);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
 
         // Get the user's activities
         serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.FOLLOWING, false);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     private void refreshViewState() {
@@ -596,7 +596,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                startService(serviceIntent);
+                ContextCompat.startForegroundService(this, serviceIntent);
 
                 if (mSyncingTopBar != null) {
                     mSyncingStatus.setText(R.string.syncing);
@@ -873,7 +873,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         // Start sync
         Intent serviceIntent = new Intent(INaturalistService.ACTION_PULL_OBSERVATIONS, null, ObservationListActivity.this, INaturalistService.class);
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
@@ -1164,7 +1164,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 // Re-sync
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                                startService(serviceIntent);
+                                ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
                                 Log.d(TAG, "Start sync by button");
 
@@ -1496,7 +1496,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private void getUserDetails(String action) {
         Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.USERNAME, mApp.currentUserLogin());
-        startService(serviceIntent);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     private class NewsReceiver extends BroadcastReceiver {
