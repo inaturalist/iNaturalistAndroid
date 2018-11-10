@@ -11,8 +11,10 @@ import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.ListPreference;
@@ -62,6 +64,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		if (mApp == null) {
             mApp = (INaturalistApp) getActivity().getApplicationContext();
         }
+
+        StrictMode.VmPolicy.Builder newBuilder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(newBuilder.build());
 
         mUsernamePreference = getPreferenceManager().findPreference("username");
         mAutoSyncPreference = (CheckBoxPreference) getPreferenceManager().findPreference("auto_sync");
@@ -433,9 +438,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Uri path = Uri.fromFile(outputFile);
         emailIntent .putExtra(Intent.EXTRA_STREAM, path);
         if (info == null) {
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (user id - %s)", username == null ? "N/A" : username));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (user id - %s; Android API = %d)", username == null ? "N/A" : username, Build.VERSION.SDK_INT));
         } else {
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (version %s - %s; user id - %s)", info.versionName, info.versionCode, username == null ? "N/A" : username));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (version %s - %s; user id - %s; Android API = %d)", info.versionName, info.versionCode, username == null ? "N/A" : username, Build.VERSION.SDK_INT));
         }
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
 
