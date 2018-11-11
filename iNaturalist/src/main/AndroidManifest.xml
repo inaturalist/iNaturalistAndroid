@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.inaturalist.android"
     android:installLocation="auto"
-    android:versionCode="320"
-    android:versionName="1.10.15" >
+    android:versionCode="321"
+    android:versionName="1.10.16" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
