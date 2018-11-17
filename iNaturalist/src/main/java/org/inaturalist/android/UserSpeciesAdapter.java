@@ -52,6 +52,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
     public static final int VIEW_TYPE_LIST = 0x1000;
     public static final int VIEW_TYPE_GRID = 0x1001;
     public static final int VIEW_TYPE_CARDS = 0x1002;
+    private AbsListView.OnScrollListener mOriginalScrollListener;
 
     public UserSpeciesAdapter(Context context, ArrayList<JSONObject> results) {
         this(context, results, VIEW_TYPE_LIST, null);
@@ -67,6 +68,11 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
         mObservationLoaded = new HashMap<>();
     }
+
+    public void setOnScrollListener(AbsListView.OnScrollListener listener) {
+        mOriginalScrollListener = listener;
+    }
+
 
     @Override
     public int getCount() {
@@ -222,11 +228,17 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
         } else {
             picasso.pauseTag(mContext);
         }
+
+        if (mOriginalScrollListener != null) {
+            mOriginalScrollListener.onScrollStateChanged(view, scrollState);
+        }
     }
 
     @Override
     public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-
+        if (mOriginalScrollListener != null) {
+            mOriginalScrollListener.onScroll(absListView, i, i1, i2);
+        }
     }
 }
 

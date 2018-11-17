@@ -27,7 +27,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -50,6 +52,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 
 public class UserProfile extends AppCompatActivity implements TabHost.OnTabChangeListener, AppBarLayout.OnOffsetChangedListener {
  	private final static String VIEW_TYPE_OBSERVATIONS = "observations";
@@ -104,6 +107,10 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     @State public int mIdentificationsListIndex;
     @State public int mIdentificationsListOffset;
 
+    private Button mShowMoreObservations;
+    private Button mShowMoreIdentifications;
+    private Button mShowMoreSpecies;
+
     @Override
 	protected void onStart()
 	{
@@ -154,11 +161,13 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mObservationsListEmpty = (TextView) findViewById(R.id.observations_list_empty);
         mObservationsList = (ListView) findViewById(R.id.observations_list);
         mObservationsContainer = (ViewGroup) findViewById(R.id.observations_container);
+        mShowMoreObservations = (Button) findViewById(R.id.show_more_observations);
 
         mLoadingSpeciesList = (ProgressBar) findViewById(R.id.loading_species_list);
         mSpeciesListEmpty = (TextView) findViewById(R.id.species_list_empty);
         mSpeciesList = (ListView) findViewById(R.id.species_list);
         mSpeciesContainer = (ViewGroup) findViewById(R.id.species_container);
+        mShowMoreSpecies = (Button) findViewById(R.id.show_more_species);
 
         mSpeciesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -175,6 +184,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         mIdentificationsListEmpty = (TextView) findViewById(R.id.identifications_list_empty);
         mIdentificationsList = (ListView) findViewById(R.id.identifications_list);
         mIdentificationsContainer = (ViewGroup) findViewById(R.id.identifications_container);
+        mShowMoreIdentifications = (Button) findViewById(R.id.show_more_identifications);
 
         mObservationsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -187,6 +197,73 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 startActivity(intent);
             }
         });
+
+        mObservationsList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if ((firstVisibleItem + visibleItemCount >= totalItemCount - 3) && (totalItemCount > 0) &&
+                        (mObservations != null) && (mObservations.size() > 0)) {
+                    // The end has been reached - show the more obs button
+                    mShowMoreObservations.setVisibility(View.VISIBLE);
+                } else {
+                    mShowMoreObservations.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+        });
+
+        mSpeciesList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if ((firstVisibleItem + visibleItemCount >= totalItemCount - 3) && (totalItemCount > 0) &&
+                        (mSpecies != null) && (mSpecies.size() > 0)) {
+                    // The end has been reached - show the more obs button
+                    mShowMoreSpecies.setVisibility(View.VISIBLE);
+                } else {
+                    mShowMoreSpecies.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+        });
+
+        View.OnClickListener showMore = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Show explore screen with filtering by on this project, globally (not current user location)
+                ExploreSearchFilters searchFilters = new ExploreSearchFilters();
+                searchFilters.isCurrentLocation = false;
+                searchFilters.mapBounds = null;
+                searchFilters.place = null;
+                searchFilters.qualityGrade = new HashSet<>();
+                searchFilters.user = mUser.getJSONObject();
+
+                Intent intent = new Intent(UserProfile.this, ExploreActivity.class);
+                intent.putExtra(ExploreActivity.SEARCH_FILTERS, searchFilters);
+                int activeTab = ExploreActivity.VIEW_TYPE_OBSERVATIONS;
+
+                if (view == mShowMoreObservations) {
+                    activeTab = ExploreActivity.VIEW_TYPE_OBSERVATIONS;
+                } else if (view == mShowMoreSpecies) {
+                    activeTab = ExploreActivity.VIEW_TYPE_SPECIES;
+                } else if (view == mShowMoreIdentifications) {
+                    activeTab = ExploreActivity.VIEW_TYPE_IDENTIFIERS;
+                }
+
+                intent.putExtra(ExploreActivity.ACTIVE_TAB, activeTab);
+                startActivity(intent);
+            }
+        };
+
+        mShowMoreObservations.setOnClickListener(showMore);
+        mShowMoreSpecies.setOnClickListener(showMore);
+        mShowMoreIdentifications.setOnClickListener(showMore);
+
 
         ViewCompat.setNestedScrollingEnabled(mObservationsList, true);
         ViewCompat.setNestedScrollingEnabled(mIdentificationsList, true);
@@ -292,6 +369,14 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mObservationsList.setSelectionFromTop(mSpeciesListIndex, mSpeciesListOffset);
         } else if (mViewType.equals(VIEW_TYPE_IDENTIFICATIONS)) {
             mObservationsList.setSelectionFromTop(mIdentificationsListIndex, mIdentificationsListOffset);
+        }
+
+
+        if ((mObservations != null) && (mObservations.size() > 0) && (mObservationsList.getLastVisiblePosition() >= mObservations.size() - 3)) {
+            mShowMoreObservations.setVisibility(View.VISIBLE);
+        }
+        if ((mSpecies != null) && (mSpecies.size() > 0) && (mSpeciesList.getLastVisiblePosition() >= mSpecies.size() - 3)) {
+            mShowMoreSpecies.setVisibility(View.VISIBLE);
         }
     }
 
@@ -438,7 +523,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 
                 mTotalObservations = mUser.getInt("observations_count");
                 return;
-            } else if ((intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) || (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT))) {
+            } else if ((intent.getAction().equals(INaturalistService.SPECIES_COUNT_RESULT)) || (intent.getAction().equals(INaturalistService.IDENTIFICATIONS_RESULT) ||
+                    (intent.getAction().equals(INaturalistService.USER_OBSERVATIONS_RESULT)))) {
                 // Life list result (species) / identifications result
                 resultsObject = (BetterJSONObject) object;
                 totalResults = resultsObject.getInt("total_results");
@@ -492,6 +578,10 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
     private void refreshViewState() {
         TabWidget tabWidget = mTabHost.getTabWidget();
         DecimalFormat formatter = new DecimalFormat("#,###,###");
+
+        mShowMoreObservations.setVisibility(View.GONE);
+        mShowMoreIdentifications.setVisibility(View.GONE);
+        mShowMoreSpecies.setVisibility(View.GONE);
 
         if (mObservations == null) {
             ((TextView)tabWidget.getChildAt(0).findViewById(R.id.count)).setVisibility(View.GONE);

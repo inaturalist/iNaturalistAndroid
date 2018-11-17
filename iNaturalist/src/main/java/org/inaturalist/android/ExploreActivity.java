@@ -99,6 +99,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     private static final int FILTERS_REQUEST_CODE = 0x102;
 
     public static final String SEARCH_FILTERS = "search_filters";
+    public static final String ACTIVE_TAB = "active_tab";
 
     private static final float MY_LOCATION_ZOOM_LEVEL = 10;
     private static final String TAG = "ExploreActivity";
@@ -109,10 +110,10 @@ public class ExploreActivity extends BaseFragmentActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-    private static final int VIEW_TYPE_OBSERVATIONS = 0;
-    private static final int VIEW_TYPE_SPECIES = 1;
-    private static final int VIEW_TYPE_OBSERVERS = 2;
-    private static final int VIEW_TYPE_IDENTIFIERS = 3;
+    public static final int VIEW_TYPE_OBSERVATIONS = 0;
+    public static final int VIEW_TYPE_SPECIES = 1;
+    public static final int VIEW_TYPE_OBSERVERS = 2;
+    public static final int VIEW_TYPE_IDENTIFIERS = 3;
 
     @State public int mActiveViewType;
 
@@ -261,23 +262,22 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             if (intent.hasExtra(SEARCH_FILTERS)) {
                 mSearchFilters = (ExploreSearchFilters) intent.getSerializableExtra(SEARCH_FILTERS);
-
-                /*
-                if (mMapReady) {
-                    moveMapAccordingToSearchFilters();
-                } else {
-                    // Map not loaded yet - wait for it load before moving
-                    mShouldMoveMapAccordingToSearchFilters = true;
-                }
-                */
-
-                //resetResults(true);
-
             } else {
                 mSearchFilters = new ExploreSearchFilters();
                 mSearchFilters.isCurrentLocation = true;
             }
 
+
+            if (intent.hasExtra(ACTIVE_TAB)) {
+                mActiveViewType = intent.getIntExtra(ACTIVE_TAB, VIEW_TYPE_OBSERVATIONS);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mViewPager.setCurrentItem(mActiveViewType);
+                    }
+                }, 100);
+            }
 
         } else {
             mResults = (List<JSONObject>[]) new List[]{null, null, null, null};

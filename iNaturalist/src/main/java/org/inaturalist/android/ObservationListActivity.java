@@ -57,6 +57,7 @@ import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -146,6 +147,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
     @State public boolean mFromObsEdit = false;
     private ViewGroup mLoadingMoreResults;
+
+    private Button mShowMoreSpecies;
+    private Button mShowMoreIdentifications;
 
 
     @Override
@@ -501,6 +505,25 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mSpeciesList.setOnScrollListener(mSpeciesListAdapter);
                 mSpeciesGrid.setOnScrollListener(mSpeciesGridAdapter);
 
+                AbsListView.OnScrollListener onScroll = new AbsListView.OnScrollListener() {
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                        if ((firstVisibleItem + visibleItemCount >= totalItemCount - 3) && (totalItemCount > 0) &&
+                                (mSpecies != null) && (mSpecies.size() > 0)) {
+                            // The end has been reached - show the more species button
+                            mShowMoreSpecies.setVisibility(View.VISIBLE);
+                        } else {
+                            mShowMoreSpecies.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                    }
+                };
+
+                mSpeciesGridAdapter.setOnScrollListener(onScroll);
+                mSpeciesListAdapter.setOnScrollListener(onScroll);
 
             }
         }
@@ -556,6 +579,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 
         refreshGridListMenuIcon();
+
     }
 
     private void triggerSyncIfNeeded() {
@@ -959,6 +983,33 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             mApp.setStringResourceForView(layout, R.id.onboarding_syncing_close, "got_it_all_caps", "got_it");
 
+
+            View.OnClickListener showMore = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Show explore screen with filtering by on this project, globally (not current user location)
+                    ExploreSearchFilters searchFilters = new ExploreSearchFilters();
+                    searchFilters.isCurrentLocation = false;
+                    searchFilters.mapBounds = null;
+                    searchFilters.place = null;
+                    searchFilters.qualityGrade = new HashSet<>();
+                    searchFilters.user = mUser.getJSONObject();
+
+                    Intent intent = new Intent(ObservationListActivity.this, ExploreActivity.class);
+                    intent.putExtra(ExploreActivity.SEARCH_FILTERS, searchFilters);
+                    int activeTab = ExploreActivity.VIEW_TYPE_OBSERVATIONS;
+
+                    if (view == mShowMoreSpecies) {
+                        activeTab = ExploreActivity.VIEW_TYPE_SPECIES;
+                    } else if (view == mShowMoreIdentifications) {
+                        activeTab = ExploreActivity.VIEW_TYPE_IDENTIFIERS;
+                    }
+
+                    intent.putExtra(ExploreActivity.ACTIVE_TAB, activeTab);
+                    startActivity(intent);
+                }
+            };
+
             switch (position) {
                 case 2:
                     mLoadingIdentifications = (ProgressBar) layout.findViewById(R.id.loading);
@@ -970,6 +1021,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsList.setMode(PullToRefreshBase.Mode.DISABLED);
                     mIdentificationsGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
                     mIdentificationsGrid.setMode(PullToRefreshBase.Mode.DISABLED);
+                    mShowMoreIdentifications = (Button) layout.findViewById(R.id.show_more);
+                    mShowMoreIdentifications.setText(R.string.see_more_identifications);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
@@ -1001,6 +1054,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mIdentificationsList.setOnItemClickListener(onIdentificationsClick);
                     mIdentificationsGrid.setOnItemClickListener(onIdentificationsClick);
 
+                    mShowMoreIdentifications.setOnClickListener(showMore);
+
                     break;
 
                 case 1:
@@ -1013,6 +1068,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     mSpeciesList.setMode(PullToRefreshBase.Mode.DISABLED);
                     mSpeciesGrid = (PullToRefreshGridViewExtended) layout.findViewById(R.id.grid);
                     mSpeciesGrid.setMode(PullToRefreshBase.Mode.DISABLED);
+                    mShowMoreSpecies = (Button) layout.findViewById(R.id.show_more);
+                    mShowMoreSpecies.setText(R.string.see_more_species);
 
                     layout.findViewById(R.id.syncing_top_bar).setVisibility(View.GONE);
                     layout.findViewById(R.id.add_observation).setVisibility(View.GONE);
@@ -1035,6 +1092,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                     mSpeciesList.setOnItemClickListener(onSpeciesClick);
                     mSpeciesGrid.setOnItemClickListener(onSpeciesClick);
+
+                    mShowMoreSpecies.setOnClickListener(showMore);
 
                     break;
 

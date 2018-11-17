@@ -41,6 +41,8 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
     private PullToRefreshGridViewExtended mGrid;
     private HashMap<Integer, Boolean> mObservationLoaded;
 
+    private AbsListView.OnScrollListener mOriginalScrollListener;
+
     public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username, boolean isGrid, PullToRefreshGridViewExtended grid) {
         super(context, android.R.layout.simple_list_item_1);
 
@@ -57,6 +59,10 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
     public UserIdentificationsAdapter(Context context, ArrayList<JSONObject> results, String username) {
         this(context, results, username, false, null);
+    }
+
+    public void setOnScrollListener(AbsListView.OnScrollListener listener) {
+        mOriginalScrollListener = listener;
     }
 
     @Override
@@ -206,10 +212,16 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
         } else {
             picasso.pauseTag(mContext);
         }
+
+        if (mOriginalScrollListener != null) {
+            mOriginalScrollListener.onScrollStateChanged(listView, scrollState);
+        }
     }
     @Override
     public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-
+        if (mOriginalScrollListener != null) {
+            mOriginalScrollListener.onScroll(absListView, i, i1, i2);
+        }
     }
 }
 

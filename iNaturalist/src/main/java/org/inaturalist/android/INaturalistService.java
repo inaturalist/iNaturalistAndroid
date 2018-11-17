@@ -893,10 +893,10 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_GET_USER_OBSERVATIONS)) {
                 String username = intent.getStringExtra(USERNAME);
-                SerializableJSONArray observations = getUserObservations(username);
+                JSONObject observations = getUserObservations(username);
 
                 Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
-                mApp.setServiceResult(USER_OBSERVATIONS_RESULT, observations);
+                mApp.setServiceResult(USER_OBSERVATIONS_RESULT, new BetterJSONObject(observations));
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
@@ -3058,14 +3058,13 @@ public class INaturalistService extends IntentService {
     }
 
 
-    private SerializableJSONArray getUserObservations(String username) throws AuthenticationException {
-        String url = API_HOST + "/observations?user_id=" + username;
+    private JSONObject getUserObservations(String username) throws AuthenticationException {
+        String url = API_HOST + "/observations?per_page=30&user_id=" + username;
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
         try {
-            JSONArray results = json.getJSONObject(0).getJSONArray("results");
-            return new SerializableJSONArray(results);
+            return json.getJSONObject(0);
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -3092,7 +3091,7 @@ public class INaturalistService extends IntentService {
 
 
     private BetterJSONObject getUserIdentifications(String username) throws AuthenticationException {
-        String url = API_HOST + "/identifications?user_id=" + username + "&own_observation=false&per_page=200";
+        String url = API_HOST + "/identifications?user_id=" + username + "&own_observation=false&per_page=30";
         JSONArray json = get(url, false);
 
         if (json == null) return null;
@@ -3134,7 +3133,7 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + deviceLanguage;
+        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&per_page=30&user_id=" + username + "&locale=" + deviceLanguage;
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
