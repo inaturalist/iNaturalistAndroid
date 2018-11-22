@@ -487,11 +487,17 @@ public class INaturalistService extends IntentService {
 
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false);
-                Observation observation = new Observation(new BetterJSONObject(observationJson));
 
                 Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                if (observationJson != null) {
+                    Observation observation = new Observation(new BetterJSONObject(observationJson));
+                    reply.putExtra(OBSERVATION_RESULT, observation);
+                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                } else {
+                    reply.putExtra(OBSERVATION_RESULT, (Serializable)null);
+                    reply.putExtra(OBSERVATION_JSON_RESULT, (String)null);
+                }
+
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_RESTORE_ID)) {
@@ -1520,7 +1526,7 @@ public class INaturalistService extends IntentService {
             increaseProgressForObservation(observation);
 
             mApp.setObservationIdBeingSynced(observation._id);
-            Log.d(TAG, "syncObservations: Syncing " + observation._id);
+            Log.d(TAG, "syncObservations: Syncing " + observation._id + ": " + observation.toString());
 
             if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at)))) {
                 postObservation(observation);

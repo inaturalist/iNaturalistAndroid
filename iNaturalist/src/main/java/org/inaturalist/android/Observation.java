@@ -503,7 +503,7 @@ public class Observation implements BaseColumns, Serializable {
 
     @Override
     public String toString() {
-        return "Observation(id: " + id + ", _id: " + _id + ", uuid: " + uuid + ", photos: " + photos + ")";
+        return "Observation(id: " + id + ", _id: " + _id + ", uuid: " + uuid + ", _synced_at: " + _synced_at + ", _updated_at: " + _updated_at + ", photos: " + photos + ")";
     }
 
     public JSONObject toJSONObject() {
