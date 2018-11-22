@@ -369,6 +369,20 @@ public class INaturalistService extends IntentService {
     public void onCreate() {
         super.onCreate();
 
+        startIntentForeground();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.i(TAG, "Service onStartCommand");
+
+        startIntentForeground();
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+
+    private void startIntentForeground() {
         if (Build.VERSION.SDK_INT >= 26) {
             // See: https://stackoverflow.com/a/46449975/1233767
             String CHANNEL_ID = "my_channel_01";
