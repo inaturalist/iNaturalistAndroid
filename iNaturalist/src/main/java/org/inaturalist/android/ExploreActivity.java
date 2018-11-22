@@ -923,7 +923,9 @@ public class ExploreActivity extends BaseFragmentActivity {
             return;
         }
 
-        refreshFilterBar(mFilterBar[resultsType]);
+        if (mFilterBar[resultsType] != null) {
+            refreshFilterBar(mFilterBar[resultsType]);
+        }
 
         if ((mTotalResults[resultsType] == NOT_LOADED) || (mResults[resultsType] == null)) {
             mLoadingList[resultsType].setVisibility(View.VISIBLE);
