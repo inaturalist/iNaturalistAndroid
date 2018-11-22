@@ -605,6 +605,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         getCommentIdList();
         refreshDataQuality();
         refreshAttributes();
+
+        // Mark observation updates as viewed
+        if (mObservation._synced_at != null) {
+            Intent serviceIntent = new Intent(INaturalistService.ACTION_VIEWED_UPDATE, null, this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
+            ContextCompat.startForegroundService(this, serviceIntent);
+        }
     }
 
     private void reloadObservation(Bundle savedInstanceState, boolean forceReload) {
