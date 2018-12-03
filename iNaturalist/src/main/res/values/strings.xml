@@ -130,9 +130,9 @@
     <string name="search_taxa">Search taxa...</string>
     <string name="no_internet_guides">Guides require an Internet connection</string>
     <string name="no_internet_projects">Projects require an Internet connection</string>
-	<string name="locale_gl">Galician</string>
-	<string name="locale_eu">Basque</string>
-	<string name="use_device_language_settings">Use device language settings</string>
+    <string name="locale_gl">Galician</string>
+    <string name="locale_eu">Basque</string>
+    <string name="use_device_language_settings">Use device language settings</string>
     <string name="choose_location">Choose Location</string>
     <string name="done">Done</string>
     <string name="please_sign_in_via_settings">You must be logged in to view projects you\'ve joined.</string>
@@ -153,23 +153,23 @@
     <string name="view_nearby_observations">View Nearby Observations</string>
     <string name="skip_for_now">Skip for Now</string>
     <string-array name="tutorial_titles">
-	    <item></item>
-	    <item>Observe</item>
-	    <item>Share</item>
-	    <item>Learn</item>
-	    <item>Contribute</item>
+        <item></item>
+        <item>Observe</item>
+        <item>Share</item>
+        <item>Learn</item>
+        <item>Contribute</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-	    <item>Explore and Connect with Nature</item>
-	    <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-	    <item>Share your observation with the iNaturalist community.</item>
-	    <item>Check back for comments and identifications on your observation!</item>
-	    <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
+        <item>Explore and Connect with Nature</item>
+        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
+        <item>Share your observation with the iNaturalist community.</item>
+        <item>Check back for comments and identifications on your observation!</item>
+        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-	    <item>Open</item>
-	    <item>Obscured</item>
-	    <item>Private</item>
+        <item>Open</item>
+        <item>Obscured</item>
+        <item>Private</item>
     </string-array>
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
@@ -643,5 +643,20 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos of sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>
 

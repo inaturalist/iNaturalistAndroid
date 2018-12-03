@@ -789,6 +789,7 @@
             />
 
         <RelativeLayout
+            android:id="@+id/data_quality_graph"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="10dp"

@@ -148,6 +148,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private ImageView mResearchGradeIcon;
     private TextView mTipText;
     private ViewGroup mDataQualityReason;
+    private ViewGroup mDataQualityGraph;
     private TextView mIncludedInProjects;
     private ViewGroup mIncludedInProjectsContainer;
     private ProgressBar mLoadingPhotos;
@@ -525,6 +526,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mResearchGradeIcon = (ImageView) findViewById(R.id.research_grade_icon);
         mTipText = (TextView) findViewById(R.id.tip_text);
         mDataQualityReason = (ViewGroup) findViewById(R.id.data_quality_reason);
+        mDataQualityGraph = (ViewGroup) findViewById(R.id.data_quality_graph);
         mIncludedInProjects = (TextView) findViewById(R.id.included_in_projects);
         mIncludedInProjectsContainer = (ViewGroup) findViewById(R.id.included_in_projects_container);
         mActivityTabContainer = (ViewGroup) findViewById(R.id.activity_tab_content);
@@ -1462,6 +1464,20 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         } else {
             mDataQualityReason.setVisibility(View.GONE);
         }
+
+        OnClickListener showDataQualityAssessment = new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mObsJson != null) {
+                    Intent intent = new Intent(ObservationViewerActivity.this, DataQualityAssessment.class);
+                    intent.putExtra(DataQualityAssessment.OBSERVATION, new BetterJSONObject(mObsJson));
+                    startActivity(intent);
+                }
+            }
+        };
+
+        mDataQualityReason.setOnClickListener(showDataQualityAssessment);
+        mDataQualityGraph.setOnClickListener(showDataQualityAssessment);
     }
 
 

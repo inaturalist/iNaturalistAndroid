@@ -35,6 +35,28 @@ public class AndroidStateBundlers {
         }
     }
 
+    public static final class JSONArrayBundler implements Bundler<JSONArray> {
+        @Override
+        public void put(@NonNull String key, @NonNull JSONArray value, @NonNull Bundle bundle) {
+            bundle.putString(key, value.toString());
+        }
+
+        @Nullable
+        @Override
+        public JSONArray get(@NonNull String key, @NonNull Bundle bundle) {
+            if (bundle.containsKey(key)) {
+                try {
+                    return new JSONArray(bundle.getString(key));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
+    }
+
     public static final class UriBundler implements Bundler<Uri> {
         @Override
         public void put(@NonNull String key, @NonNull Uri value, @NonNull Bundle bundle) {

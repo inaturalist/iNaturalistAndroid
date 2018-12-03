@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -60,7 +61,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.crashlytics.android.Crashlytics;
-import com.drew.metadata.mov.QuickTimeAtomHandler;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -70,7 +70,6 @@ import com.google.android.gms.location.LocationServices;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.Notification;
@@ -98,7 +97,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -119,6 +117,7 @@ public class INaturalistService extends IntentService {
     public static final String AUTHENTICATION_FAILED = "authentication_failed";
     public static final String IDENTIFICATION_ID = "identification_id";
     public static final String OBSERVATION_ID = "observation_id";
+    public static final String METRIC = "metric";
     public static final String ATTRIBUTE_ID = "attribute_id";
     public static final String VALUE_ID = "value_id";
     public static final String FOLLOWING = "following";
@@ -140,8 +139,15 @@ public class INaturalistService extends IntentService {
     public static final String GET_ALL_ATTRIBUTES_RESULT = "get_all_attributes_result";
     public static final String DELETE_ANNOTATION_RESULT = "delete_annotation_result";
     public static final String DELETE_ANNOTATION_VOTE_RESULT = "delete_annotation_vote_result";
+    public static final String DELETE_DATA_QUALITY_VOTE_RESULT = "delete_data_quality_vote_result";
     public static final String SET_ANNOTATION_VALUE_RESULT = "set_annotation_value_result";
+    public static final String DATA_QUALITY_METRICS_RESULT = "data_quality_metrics_result";
     public static final String AGREE_ANNOTATION_RESULT = "agree_annotation_result";
+    public static final String DELETE_ID_CAN_BE_IMPROVED_VOTE_RESULT = "delete_id_can_be_improved_vote_result";
+    public static final String ID_CAN_BE_IMPROVED_RESULT = "id_can_be_improved_result";
+    public static final String ID_CANNOT_BE_IMPROVED_RESULT = "id_cannot_be_improved_result";
+    public static final String AGREE_DATA_QUALITY_RESULT = "agree_data_quality_result";
+    public static final String DISAGREE_DATA_QUALITY_RESULT = "disagree_data_quality_result";
     public static final String DISAGREE_ANNOTATION_RESULT = "disagree_annotation_result";
     public static final String UPDATES_RESULT = "updates_results";
     public static final String UPDATES_FOLLOWING_RESULT = "updates_following_results";
@@ -253,7 +259,14 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_ALL_ATTRIBUTES = "get_all_attributes";
     public static String ACTION_DELETE_ANNOTATION = "delete_annotation";
     public static String ACTION_AGREE_ANNOTATION = "agree_annotation";
+    public static String ACTION_AGREE_DATA_QUALITY = "agree_data_quality";
+    public static String ACTION_DISAGREE_DATA_QUALITY = "disagree_data_quality";
+    public static String ACTION_DELETE_ID_CAN_BE_IMPROVED_VOTE = "delete_id_can_be_improved_vote";
+    public static String ACTION_ID_CAN_BE_IMPROVED_VOTE = "id_can_be_improved_vote";
+    public static String ACTION_ID_CANNOT_BE_IMPROVED_VOTE = "id_cannot_be_improved_vote";
     public static String ACTION_DELETE_ANNOTATION_VOTE = "delete_annotation_vote";
+    public static String ACTION_DELETE_DATA_QUALITY_VOTE = "delete_data_quality_vote";
+    public static String ACTION_GET_DATA_QUALITY_METRICS = "get_data_quality_metrics";
     public static String ACTION_SET_ANNOTATION_VALUE = "set_annotation_value";
     public static String ACTION_DISAGREE_ANNOTATION = "disagree_annotation";
     public static String ACTION_GET_PROJECT_NEWS = "get_project_news";
@@ -676,6 +689,30 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(SUCCESS, results != null);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_DELETE_ID_CAN_BE_IMPROVED_VOTE)) {
+                int obsId = intent.getIntExtra(OBSERVATION_ID, 0);
+                BetterJSONObject result = deleteIdCanBeImprovedVote(obsId);
+
+                Intent reply = new Intent(DELETE_ID_CAN_BE_IMPROVED_VOTE_RESULT);
+                reply.putExtra(DELETE_ID_CAN_BE_IMPROVED_VOTE_RESULT, result);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_ID_CAN_BE_IMPROVED_VOTE)) {
+                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                BetterJSONObject result = voteIdCanBeImproved(observationId, true);
+
+                Intent reply = new Intent(ID_CAN_BE_IMPROVED_RESULT);
+                reply.putExtra(ID_CAN_BE_IMPROVED_RESULT, result);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_ID_CANNOT_BE_IMPROVED_VOTE)) {
+                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                BetterJSONObject result = voteIdCanBeImproved(observationId, false);
+
+                Intent reply = new Intent(ID_CANNOT_BE_IMPROVED_RESULT);
+                reply.putExtra(ID_CANNOT_BE_IMPROVED_RESULT, result);
+                sendBroadcast(reply);
+
             } else if (action.equals(ACTION_SET_ANNOTATION_VALUE)) {
                 int obsId = intent.getIntExtra(OBSERVATION_ID, 0);
                 int attributeId = intent.getIntExtra(ATTRIBUTE_ID, 0);
@@ -685,6 +722,44 @@ public class INaturalistService extends IntentService {
                 Intent reply = new Intent(SET_ANNOTATION_VALUE_RESULT);
                 reply.putExtra(SUCCESS, results != null);
                 sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_DATA_QUALITY_METRICS)) {
+                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                BetterJSONObject results = getDataQualityMetrics(observationId);
+
+                Intent reply = new Intent(DATA_QUALITY_METRICS_RESULT);
+                reply.putExtra(DATA_QUALITY_METRICS_RESULT, results);
+                sendBroadcast(reply);
+
+
+             } else if (action.equals(ACTION_DELETE_DATA_QUALITY_VOTE)) {
+                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                String metric = intent.getStringExtra(METRIC);
+                BetterJSONObject result = deleteDataQualityMetricVote(observationId, metric);
+
+                Intent reply = new Intent(DELETE_DATA_QUALITY_VOTE_RESULT);
+                reply.putExtra(SUCCESS, result != null);
+                sendBroadcast(reply);
+
+
+            } else if (action.equals(ACTION_AGREE_DATA_QUALITY)) {
+                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                String metric = intent.getStringExtra(METRIC);
+                BetterJSONObject results = agreeDataQualityMetric(observationId, metric, true);
+
+                Intent reply = new Intent(AGREE_DATA_QUALITY_RESULT);
+                reply.putExtra(SUCCESS, results != null);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_DISAGREE_DATA_QUALITY)) {
+                Integer observationId = intent.getIntExtra(OBSERVATION_ID, 0);
+                String metric = intent.getStringExtra(METRIC);
+                BetterJSONObject results = agreeDataQualityMetric(observationId, metric, false);
+
+                Intent reply = new Intent(DISAGREE_DATA_QUALITY_RESULT);
+                reply.putExtra(SUCCESS, results != null);
+                sendBroadcast(reply);
+
 
             } else if (action.equals(ACTION_AGREE_ANNOTATION)) {
                 String uuid = intent.getStringExtra(UUID);
@@ -1762,6 +1837,7 @@ public class INaturalistService extends IntentService {
         }
     }
 
+
     private BetterJSONObject agreeAnnotation(String uuid, boolean agree) throws AuthenticationException {
         String url = API_HOST + "/votes/vote/annotation/" + uuid;
 
@@ -1790,6 +1866,109 @@ public class INaturalistService extends IntentService {
 
     private BetterJSONObject deleteAnnotationVote(String uuid) throws AuthenticationException {
         String url = API_HOST + "/votes/unvote/annotation/" + uuid;
+
+        JSONArray json = delete(url, null);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject voteIdCanBeImproved(int obsId, boolean yes) throws AuthenticationException {
+        String url = API_HOST + "/votes/vote/observation/" + obsId;
+
+        JSONObject params = new JSONObject();
+
+        try {
+            params.put("vote", yes ? "yes" : "no");
+            params.put("id", obsId);
+            params.put("scope", "needs_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        JSONArray json = post(url, params);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject deleteIdCanBeImprovedVote(int obsId) throws AuthenticationException {
+        String url = String.format("%s/votes/unvote/observation/%d?id=%d&scope=needs_id", API_HOST, obsId, obsId);
+
+        JSONArray json = delete(url, null);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject getDataQualityMetrics(Integer observationId) throws AuthenticationException {
+        String url = String.format("%s/observations/%d/quality_metrics?id=%d", API_HOST, observationId, observationId);
+
+        JSONArray json = get(url, true);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            if (!res.has("results")) return null;
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject agreeDataQualityMetric(Integer observationId, String metric, boolean agree) throws AuthenticationException {
+        String url = String.format("%s/observations/%d/quality/%s", API_HOST, observationId, metric);
+
+        JSONObject params = new JSONObject();
+
+        try {
+            params.put("agree", agree ? "true" : "false");
+            params.put("id", observationId);
+            params.put("metric", metric);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        JSONArray json = post(url, params);
+        if (json == null || json.length() == 0) { return null; }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject deleteDataQualityMetricVote(Integer observationId, String metric) throws AuthenticationException {
+        String url = String.format("%s/observations/%d/quality/%s?id=%d&metric=%s", API_HOST, observationId, metric, observationId, metric);
 
         JSONArray json = delete(url, null);
         if (json == null || json.length() == 0) { return null; }
