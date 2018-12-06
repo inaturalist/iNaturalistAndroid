@@ -672,7 +672,6 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, mObservation.id);
             ContextCompat.startForegroundService(this, serviceIntent);
-
         }
 
     }
@@ -2064,6 +2063,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	        ArrayList<BetterJSONObject> results = new ArrayList<BetterJSONObject>();
             ArrayList<BetterJSONObject> favResults = new ArrayList<BetterJSONObject>();
             ArrayList<BetterJSONObject> projectResults = new ArrayList<BetterJSONObject>();
+
+            // #560 - refresh data quality grade
+            mObservation.captive = observation.captive;
+            mObservation.quality_grade = observation.quality_grade;
 
             mIdCount = 0;
             mCommentCount = 0;
