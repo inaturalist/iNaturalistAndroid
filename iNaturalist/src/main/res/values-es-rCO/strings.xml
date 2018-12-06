@@ -71,7 +71,7 @@
     <string name="com_facebook_choose_friends">Elegir amigos</string>
     <string name="com_facebook_nearby">Cercano</string>
     <string name="com_facebook_loading">Cargando...</string>
-    <string name="com_facebook_internet_permission_error_title">Error de Androide</string>
+    <string name="com_facebook_internet_permission_error_title">Error de Androide </string>
     <string name="com_facebook_internet_permission_error_message">La conexión con WebView necesita permiso a INTERNET</string>
     <string name="com_facebook_requesterror_web_login">Tu cuenta de Facebook está bloqueada. Por favor inicia sesión en www.facebook.com para continuar.</string>
     <string name="com_facebook_requesterror_relogin">Vuelve a iniciar sesión en esta aplicación para volver a conectar con tu cuenta de Facebook.</string>
@@ -250,7 +250,7 @@
     <string name="set_location">Establecer ubicación</string>
     <string name="coordinates_lat">Lat:</string>
     <string name="coordinates_lon">Lon:</string>
-    <string name="coordinates_acc">Prec.</string>
+    <string name="coordinates_acc">Prec. </string>
     <string name="required">*Obligatorio</string>
     <string name="downloading_observations">Cargando observaciones...</string>
     <string name="no_thanks">No gracias</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">Necesita ID</string>
     <string name="research_grade">Grado de investigación</string>
     <string name="data_quality">Calidad de los datos</string>
-    <string name="casual_grade_add_location"><![CDATA[Añadir una <b>Ubicación</b> para avanzar en esta observación al estado "Necesita ID".]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Agregar una <b>fecha</b> para adelantar esta observación al estado "Necesita ID".]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[Agregar una <b>foto</b> para adelantar esta observación al estado "Necesita ID".]]></string>
-    <string name="casual_grade_captive"><![CDATA[Observación de grado casual porque es <b>cautivo/cultivado</b>.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[La observación necesita <b>más identificaciones</b> de la comunidad para convertirse en "grado de investigación".]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Añadir una <b>Ubicación</b> para avanzar en esta observación al estado "Necesita ID". ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Agregar una <b>fecha</b> para adelantar esta observación al estado "Necesita ID". ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Agregar una <b>foto</b> para adelantar esta observación al estado "Necesita ID". ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observación de grado casual porque es <b>cautivo/cultivado</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ La observación necesita <b>más identificaciones</b> de la comunidad para convertirse en "grado de investigación". ]]></string>
     <string name="included_in_projects">Incluido en %1$d proyectos</string>
     <string name="included_in_projects_singular">Incluido en %1$d proyecto</string>
-    <string name="geoprivacy_explanation"><![CDATA[La Geoprivacidad es una característica que puedes incorporar a las observaciones que controla cómo se muestran las coordenadas espaciales (latitud y longitud). Estas son las opciones: <br/> <b>abierta</b> - todos pueden ver las coordenadas excepto si el taxón está amenazado. <br/> <b>oscurecida</b> - las coordenadas públicas se muestran como un punto al azar en una área de 0,2 por 0,2 grados que contiene las coordenadas reales, lo que representa una área cuadrada de 22 x 22 km de incertidumbre en el ecuador, que disminuye a medida se acerca a los polos. Las coordenadas reales únicamente son visibles por ti y los administradores de los proyectos a los que incorporas la observación. <br/> <b>privada</b> - coordenadas completamente ocultas en los mapas públicos, las coordenadas reales únicamente son visibles para ti y los administradores de los proyectos a los que incorporas la observación. <br/> <br/> Ten en cuenta que los administradores de proyectos individuales pueden ver siempre las coordenadas, independientemente de la geoprivacidad que especifiques, por tanto si estás preocupado por quién tiene acceso a las coordenadas, es necesario que os aseguréis que confías en los administradores de los proyectos en los que participas.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ La Geoprivacidad es una característica que puedes incorporar a las observaciones que controla cómo se muestran las coordenadas espaciales (latitud y longitud). Estas son las opciones: <br/> <b>abierta</b> - todos pueden ver las coordenadas excepto si el taxón está amenazado. <br/> <b>oscurecida</b> - las coordenadas públicas se muestran como un punto al azar en una área de 0,2 por 0,2 grados que contiene las coordenadas reales, lo que representa una área cuadrada de 22 x 22 km de incertidumbre en el ecuador, que disminuye a medida se acerca a los polos. Las coordenadas reales únicamente son visibles por ti y los administradores de los proyectos a los que incorporas la observación. <br/> <b>privada</b> - coordenadas completamente ocultas en los mapas públicos, las coordenadas reales únicamente son visibles para ti y los administradores de los proyectos a los que incorporas la observación. <br/> <br/> Ten en cuenta que los administradores de proyectos individuales pueden ver siempre las coordenadas, independientemente de la geoprivacidad que especifiques, por tanto si estás preocupado por quién tiene acceso a las coordenadas, es necesario que os aseguréis que confías en los administradores de los proyectos en los que participas. ]]></string>
     <string name="id_title">ID de %1$s • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Borrar</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">Google nos obliga a pedir permiso para acceder a tus contactos para poder utilizar tu cuenta de Google, a pesar de que no accedemos a sus contactos por cualquier otra razón. Si rechaza este permiso, necesitará registrarse o iniciar sesión con un usuario y contraseña.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[¿Nuevo en %1$s? <b>¡Regístrate ahora!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Descripción</string>
     <string name="quantity">Cant.</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>

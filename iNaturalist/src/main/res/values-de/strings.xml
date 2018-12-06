@@ -269,14 +269,14 @@
     <string name="needs_id">Benötigt ID</string>
     <string name="research_grade">Forschungsqualität</string>
     <string name="data_quality">Datenqualität</string>
-    <string name="casual_grade_add_location"><![CDATA[Füge einen <b>Ort</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen.]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Füge ein <b>Datum</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen.]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[Füge ein <b>Foto</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen.]]></string>
-    <string name="casual_grade_captive"><![CDATA[Beobachtung ist als Hobbyqualität markiert, da sie <b>in Gefangenschaft/kultiviert</b> ist.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[Beobachtung benötigt <b>mehr Identifikationen</b> von der Community, um Forschungsqualität zu erreichen.]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Füge einen <b>Ort</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Füge ein <b>Datum</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Füge ein <b>Foto</b> hinzu, um diese Beobachtung in den “Benötigt ID”-Status aufsteigen zu lassen. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Beobachtung ist als Hobbyqualität markiert, da sie <b>in Gefangenschaft/kultiviert</b> ist. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Beobachtung benötigt <b>mehr Identifikationen</b> von der Community, um Forschungsqualität zu erreichen. ]]></string>
     <string name="included_in_projects">Zu %1$d Projekten hinzugefügt</string>
     <string name="included_in_projects_singular">Zu %1$d Projekt hinzugefügt</string>
-    <string name="geoprivacy_explanation"><![CDATA[Geoprivatsphäre ist eine Einstellung für deine Beobachtungen, die bestimmt, wie deren Koordinaten (Längen- und Breitengrad) dargestellt werden. Dies sind die Optionen: <br/><b>offen</b> - Wenn die Art nicht bedroht ist, kann jeder die Koordinaten sehen. <br/><b>versteckt</b> - Öffentliche Koordinaten werden als zufälliger Punkt in einer 0.2*0.2°-Gebiet um die wahren Koordinaten angezeigt. Dies entspricht am Äquator 22 Qaudratkilometer, weniger nahe der Pole. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen. <br/><b>privat</b> - Koordinaten werden nicht in den öffentlichen Karten dargestellt. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen.<br/><br/>Projektkuratoren beteiligter Projekte können immer die wahren Koordinaten sehen. Solltest du dich um die Privatheit der Koordinaten deiner Beobachtungen sorgen, solltest du also nur an Projekten teilnehmen, deren Kuratoren du vertraust.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivatsphäre ist eine Einstellung für deine Beobachtungen, die bestimmt, wie deren Koordinaten (Längen- und Breitengrad) dargestellt werden. Dies sind die Optionen: <br/><b>offen</b> - Wenn die Art nicht bedroht ist, kann jeder die Koordinaten sehen. <br/><b>versteckt</b> - Öffentliche Koordinaten werden als zufälliger Punkt in einer 0.2*0.2°-Gebiet um die wahren Koordinaten angezeigt. Dies entspricht am Äquator 22 Qaudratkilometer, weniger nahe der Pole. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen. <br/><b>privat</b> - Koordinaten werden nicht in den öffentlichen Karten dargestellt. Nur du und Kuratoren von Projekten, denen du deine Beobachtung hinzufügst, können die wahren Koordinaten sehen.<br/><br/>Projektkuratoren beteiligter Projekte können immer die wahren Koordinaten sehen. Solltest du dich um die Privatheit der Koordinaten deiner Beobachtungen sorgen, solltest du also nur an Projekten teilnehmen, deren Kuratoren du vertraust. ]]></string>
     <string name="id_title">%1$ss ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Löschen</string>
@@ -561,7 +561,9 @@
     <string name="ask_for_g_plus_permissions">Google verlangt, dass wir um Erlaubnis bitten, auf Ihre Kontakte zuzugreifen, um Ihr Google-Konto nutzen zu können, auch wenn wir niemals auf Ihre Kontakte zugreifen. Wenn Sie diese Erlaubnis verweigern, müssen Sie sich mit einem Benutzernamen und Passwort anmelden.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Neu bei %1$s? <b>Jetzt anmelden!</b>]]></string>
     <string name="see_more_observations">Weitere Beobachtungen anzeigen</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="see_more_species">Weitere Arten anzeigen</string>
+    <string name="see_more_identifications">Weitere Identifikationen anzeigen</string>
+    <string name="collection_and_umbrella_projects">Sammlungs- und Schirmprojekte</string>
     <string name="description">Beschreibung</string>
     <string name="quantity">Menge</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -605,7 +607,7 @@
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Ausgewachsen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Nach der Häutung</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Puppe</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
@@ -614,7 +616,7 @@
     <string name="annotation_value_larva">Larve</string>
     <string name="annotation_value_egg">Ei</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Jugendlich</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Weiblich</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">Neu</string>
     <string name="observers_all_caps">Beobachter</string>
     <string name="observations_regular">Beobachtungen</string>
+    <string name="data_quality_assessment">Bewertung der Datenqualität</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Angegebenes Datum</string>
+    <string name="location_specified">Angegebener Ort</string>
+    <string name="has_photos_or_sounds">Enthält Fotos oder Tonaufnahmen</string>
+    <string name="has_id_supported_by_two_or_more">Enthält Kennung, die von zwei oder mehreren unterstützt wird</string>
+    <string name="date_is_accurate">Datum ist genau</string>
+    <string name="location_is_accurate">Ort ist genau</string>
+    <string name="organism_is_wild">Frei lebender Organismus</string>
+    <string name="evidence_of_organism">Nachweis des Organismus</string>
+    <string name="recent_evidence_of_an_organism">Neueste Beweise für einen Organismus</string>
+    <string name="community_id_at_species_level_or_lower">Gemeinschafts-ID auf Artenebene oder niedriger</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Kann die Gemeinschaftskennung auf Grundlage der Erkenntnisse noch bestätigt oder verbessert werden?</string>
+    <string name="no_as_good_as_it_can_be">Nein, es ist so gut wie es nur sein kann</string>
 </resources>

@@ -250,7 +250,7 @@
     <string name="set_location">場所を設定</string>
     <string name="coordinates_lat">緯度:</string>
     <string name="coordinates_lon">経度:</string>
-    <string name="coordinates_acc">精度</string>
+    <string name="coordinates_acc">精度 </string>
     <string name="required">* 必須</string>
     <string name="downloading_observations">観察記録をダウンロードしています...</string>
     <string name="no_thanks">いいえ、結構です</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">要ID</string>
     <string name="research_grade">研究用</string>
     <string name="data_quality">データ品質</string>
-    <string name="casual_grade_add_location"><![CDATA[<b>場所</b>を追加して、この観察記録を"IDが必要"の状態に進めます。]]></string>
-    <string name="casual_grade_add_date"><![CDATA[<b>日付</b>を追加して、この観察記録を"IDが必要"の状態に進めます。]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[<b>写真</b>を追加して、この観察記録を"IDが必要"の状態に進めます。]]></string>
-    <string name="casual_grade_captive"><![CDATA[<b>飼育/栽培</b>のため、観察記録は一般用です。]]></string>
-    <string name="needs_id_more_ids"><![CDATA[観察記録が、「研究用」の状態になるには、コミュニティから<b>さらに同定</b>が必要です。]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ <b>場所</b>を追加して、この観察記録を"IDが必要"の状態に進めます。 ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ <b>日付</b>を追加して、この観察記録を"IDが必要"の状態に進めます。 ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ <b>写真</b>を追加して、この観察記録を"IDが必要"の状態に進めます。 ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ <b>飼育/栽培</b>のため、観察記録は一般用です。 ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ 観察記録が、「研究用」の状態になるには、コミュニティから<b>さらに同定</b>が必要です。 ]]></string>
     <string name="included_in_projects">%1$dプロジェクトに含まれています</string>
     <string name="included_in_projects_singular">%1$dプロジェクトに含まれています</string>
-    <string name="geoprivacy_explanation"><![CDATA[Geoprivacy は、あなたが観察をすることができる空間座標 (緯度と経度) の表示方法を制御する設定です。ここでのオプションは: <br/><b>オープン</b> - 分類群を侵害しない限り、だれでも座標を見ることができます。<br/><b>隠蔽</b> - 赤道面座標系を含む 0.2 × 0.2 度の領域内のランダム点として表示される公共測地座標系で、極に近づくにつれて減少する、赤道では不確実な約 22 x 22 km の正方形の領域ということになります。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><b>プライベート</b> - 座標は公図から完全に隠蔽されます。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><br/>個々のプロジェクトのキュレーターは Geoprivacy の設定に関係なく、常に座標を見ることができるため、誰が座標にアクセスするかについて不安がある場合は、参加しているプロジェクトのキュレーターを確認する必要があることにご注意ください。]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy は、あなたが観察をすることができる空間座標 (緯度と経度) の表示方法を制御する設定です。ここでのオプションは: <br/><b>オープン</b> - 分類群を侵害しない限り、だれでも座標を見ることができます。<br/><b>隠蔽</b> - 赤道面座標系を含む 0.2 × 0.2 度の領域内のランダム点として表示される公共測地座標系で、極に近づくにつれて減少する、赤道では不確実な約 22 x 22 km の正方形の領域ということになります。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><b>プライベート</b> - 座標は公図から完全に隠蔽されます。赤道面座標系は、あなたとあなたが観察記録を追加したプロジェクトのキュレーターにのみ表示されます。<br/><br/>個々のプロジェクトのキュレーターは Geoprivacy の設定に関係なく、常に座標を見ることができるため、誰が座標にアクセスするかについて不安がある場合は、参加しているプロジェクトのキュレーターを確認する必要があることにご注意ください。 ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">削除</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">説明</string>
     <string name="quantity">数量</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>

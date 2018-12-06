@@ -250,7 +250,7 @@
     <string name="set_location">Poloha</string>
     <string name="coordinates_lat">Zeměpisná šířka:</string>
     <string name="coordinates_lon">Zem. délka:</string>
-    <string name="coordinates_acc">Účet.</string>
+    <string name="coordinates_acc">Účet. </string>
     <string name="required">Požadováno</string>
     <string name="downloading_observations">Stahování pozorování...</string>
     <string name="no_thanks">Ne, děkuji</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">Potřebuje identifikaci</string>
     <string name="research_grade">Výzkumný stupeň</string>
     <string name="data_quality">Kvalita dat</string>
-    <string name="casual_grade_add_location"><![CDATA[Přidat <b>umístění</b> k postoupení tohoto pozorování do stavu "Potřebuje ID".]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Přidat <b>datum</b> k postoupení tohoto pozorování do stavu "Potřebuje ID".]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[Přidat <b>foto</b> k postoupení tohoto pozorování do stavu "Potřebuje ID".]]></string>
-    <string name="casual_grade_captive"><![CDATA[Pozorování je zařazeno do neformální třídy, protože to žije <b>v zajetí/je pěstováno</b>.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[K pozorování je potřeba <b>více identifikací</b> z komunity, aby pozorování přešlo do stavu "výzkumný stupeň".]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Přidat <b>umístění</b> k postoupení tohoto pozorování do stavu "Potřebuje ID". ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Přidat <b>datum</b> k postoupení tohoto pozorování do stavu "Potřebuje ID". ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Přidat <b>foto</b> k postoupení tohoto pozorování do stavu "Potřebuje ID". ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Pozorování je zařazeno do neformální třídy, protože to žije <b>v zajetí/je pěstováno</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ K pozorování je potřeba <b>více identifikací</b> z komunity, aby pozorování přešlo do stavu "výzkumný stupeň". ]]></string>
     <string name="included_in_projects">Zahrnuto v %1$d projektech</string>
     <string name="included_in_projects_singular">Zahrnuto v %1$d projektu</string>
-    <string name="geoprivacy_explanation"><![CDATA["Geosoukromí" je nastavení vašeho pozorování, řídí, jak se zobrazují vaše prostorové souřadnice (zeměpisná šířka a délka). Zde jsou možnosti: <br/> <b> otevřeno </ b> - Každý může vidět souřadnice, pokud není daný taxon ohrožen. <br/> <b> zakryté </ b> - veřejné souřadnice jsou zobrazeny jako náhodný bod v oblasti 0,2 na 0,2 stupně, který obsahuje skutečné souřadnice, což je asi plocha 22 x 22 km, nepřesné jsou na rovníku, směrem k pólům nepřesnost klesá. Pravé souřadnice jsou viditelné pouze vám a kurátorům projektů, ke kterým přidáte pozorování. <br/> <b> soukromé </ b> - souřadnice jsou zcela skryté na veřejných mapách, pravé souřadnice jsou viditelné pouze pro vás a kurátory projektů, ke kterým přidáte pozorování. <br/> <br/> Vezměte na vědomí, že kurátoři jednotlivých projektů mohou vždy vidět souřadnice bez ohledu na vaše nastavení "geosoukromí", takže pokud máte obavy o to, kdo má přístup k souřadnicím, měli byste si být jisti, že důvěřujete kurátorům projektů, kterých se účastníte.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ "Geosoukromí" je nastavení vašeho pozorování, řídí, jak se zobrazují vaše prostorové souřadnice (zeměpisná šířka a délka). Zde jsou možnosti: <br/> <b> otevřeno </ b> - Každý může vidět souřadnice, pokud není daný taxon ohrožen. <br/> <b> zakryté </ b> - veřejné souřadnice jsou zobrazeny jako náhodný bod v oblasti 0,2 na 0,2 stupně, který obsahuje skutečné souřadnice, což je asi plocha 22 x 22 km, nepřesné jsou na rovníku, směrem k pólům nepřesnost klesá. Pravé souřadnice jsou viditelné pouze vám a kurátorům projektů, ke kterým přidáte pozorování. <br/> <b> soukromé </ b> - souřadnice jsou zcela skryté na veřejných mapách, pravé souřadnice jsou viditelné pouze pro vás a kurátory projektů, ke kterým přidáte pozorování. <br/> <br/> Vezměte na vědomí, že kurátoři jednotlivých projektů mohou vždy vidět souřadnice bez ohledu na vaše nastavení "geosoukromí", takže pokud máte obavy o to, kdo má přístup k souřadnicím, měli byste si být jisti, že důvěřujete kurátorům projektů, kterých se účastníte. ]]></string>
     <string name="id_title">%1$s\'s identifikace • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Odstranit</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Popis</string>
     <string name="quantity">Množství</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>
