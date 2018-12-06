@@ -180,11 +180,7 @@ public class ObservationEditor extends AppCompatActivity {
     private List<ProjectFieldViewer> mProjectFieldViewers;
     private Spinner mGeoprivacy;
     private String mSpeciesGuess;
-    private ProjectReceiver mProjectReceiver;
-        
-    
-    @State public ArrayList<BetterJSONObject> mProjects = null;
-    
+
 	@State public boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
     @State public boolean mIsConfirmation;
@@ -226,49 +222,12 @@ public class ObservationEditor extends AppCompatActivity {
 	@Override
 	protected void onStop()
 	{
-        // http://stackoverflow.com/questions/20776925/failed-binder-transaction-after-starting-an-activity#20803653
-        // Remove what could be a giant array for users with a lot of projects. If you don't,
-        // activities launched from this view (e.g. TaxonSearchActivity) are likely to experience a
-        // lag before interactivity due to a FAILED BINDER TRANSACTION
-        if (mProjects != null) {
-            mProjects.removeAll(mProjects);
-        }
         super.onStop();
         FlurryAgent.onEndSession(this);
 	}
 
-    private class ProjectReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            mProjects = new ArrayList<BetterJSONObject>();
-        	SerializableJSONArray serializableArray = (SerializableJSONArray) intent.getSerializableExtra(INaturalistService.PROJECTS_RESULT);
-            JSONArray projectList = new JSONArray();
-        	
-        	if (serializableArray != null) {
-        		projectList = serializableArray.getJSONArray();
-        	}
-
-            for (int i = 0; i < projectList.length(); i++) {
-                try {
-                    mProjects.add(new BetterJSONObject(projectList.getJSONObject(i)));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            Collections.sort(mProjects, new Comparator<BetterJSONObject>() {
-                @Override
-                public int compare(BetterJSONObject lhs, BetterJSONObject rhs) {
-                    return lhs.getString("title").compareTo(rhs.getString("title"));
-                }
-            });
-
-            refreshProjectList();
-        }
-    }
-
     private void refreshProjectList() {
-        if (mProjectIds.size() == 0) {
+        if ((mProjectIds == null) || (mProjectIds.size() == 0)) {
             mProjectCount.setVisibility(View.GONE);
             mProjectSelector.setTextColor(Color.parseColor("#8A000000"));
             mProjectSelector.setText(R.string.add_to_projects);
@@ -803,11 +762,6 @@ public class ObservationEditor extends AppCompatActivity {
 
         refreshProjectFields();
 
-        mProjectReceiver = new ProjectReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_JOINED_PROJECTS_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mProjectReceiver, filter, this);
-
-
         if (intent != null) {
             mReturnToObservationList = intent.getBooleanExtra(RETURN_TO_OBSERVATION_LIST, false);
         }
@@ -1197,7 +1151,6 @@ public class ObservationEditor extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        BaseFragmentActivity.safeUnregisterReceiver(mProjectReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, this);
 
         if (mProjectFieldViewers != null) {
@@ -1238,13 +1191,7 @@ public class ObservationEditor extends AppCompatActivity {
             mApp = (INaturalistApp) getApplicationContext();
         }
 
-        if (mProjects == null) {
-            Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_JOINED_PROJECTS, null, this, INaturalistService.class);
-            ContextCompat.startForegroundService(this, serviceIntent);
-        } else {
-            refreshProjectList();
-        }
-
+        refreshProjectList();
     }
 
     private void initObservation() {
