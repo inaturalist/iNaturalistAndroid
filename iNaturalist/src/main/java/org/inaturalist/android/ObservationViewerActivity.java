@@ -13,6 +13,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -1467,6 +1469,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         OnClickListener showDataQualityAssessment = new OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!isNetworkAvailable()) {
+                    Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 if (mObsJson != null) {
                     Intent intent = new Intent(ObservationViewerActivity.this, DataQualityAssessment.class);
                     intent.putExtra(DataQualityAssessment.OBSERVATION, new BetterJSONObject(mObsJson));
@@ -2559,5 +2566,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 
 }
