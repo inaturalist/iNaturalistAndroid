@@ -250,7 +250,7 @@
     <string name="set_location">מיקום</string>
     <string name="coordinates_lat">קו רוחב:</string>
     <string name="coordinates_lon">קו אורך:</string>
-    <string name="coordinates_acc">דיוק.</string>
+    <string name="coordinates_acc">דיוק. </string>
     <string name="required">שדה חובה</string>
     <string name="downloading_observations">הורדת תצפיות...</string>
     <string name="no_thanks">לא, תודה</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">צריך מזהה</string>
     <string name="research_grade">ברמה מחקרית</string>
     <string name="data_quality">איכות הנתונים</string>
-    <string name="casual_grade_add_location"><![CDATA[הוסף/יפי <b>מיקום</b> כדי לקדם תצפית למצב "דרוש מספר מזהה".]]></string>
-    <string name="casual_grade_add_date"><![CDATA[הוסף/יפי <b>תאריך</b> כדי לקדם תצפית למצב "דרוש מספר מזהה".]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[הוסף/יפי <b>תמונה</b> כדי לקדם תצפית למצב "דרוש מספר מזהה".]]></string>
-    <string name="casual_grade_captive"><![CDATA[תצפית לא ברמה מחקרית כי נצפה <b>בע"ח בשבי/צמח מתורבת</b>.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[תצפית צריכה <b>זיהויים נוספים</b> מהקהילה בכדי להגיע לסטטוס "ציון מחקר".]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ הוסף/יפי <b>מיקום</b> כדי לקדם תצפית למצב "דרוש מספר מזהה". ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ הוסף/יפי <b>תאריך</b> כדי לקדם תצפית למצב "דרוש מספר מזהה". ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ הוסף/יפי <b>תמונה</b> כדי לקדם תצפית למצב "דרוש מספר מזהה". ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ תצפית לא ברמה מחקרית כי נצפה <b>בע"ח בשבי/צמח מתורבת</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ תצפית צריכה <b>זיהויים נוספים</b> מהקהילה בכדי להגיע לסטטוס "ציון מחקר". ]]></string>
     <string name="included_in_projects">כלול ב %1$d פרויקטים</string>
     <string name="included_in_projects_singular">כלול ב %1$d פרויקט</string>
-    <string name="geoprivacy_explanation"><![CDATA[Geoprivacy היא הגדרה של תצפית הקובעת איך יוצג המיקום (קו אורך וקו אורך). האפשרויות הן:<br/><b>פתוח</b> - קואורדינטות גלויות אלא אם הזן בסכנה. <br/><b>מוסתר</b> - הקואורדינטות נמצאות בנקודה רנדומלית בטווח של. 2 מעלות, בשטח שמכיל את הקואורדינטות האמיתיות, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. הקואורדינטות גלויות לך ולאחראי על הפרויקט. <br/><b>פרטי</b> - הקואורדינטות מוסתרות, הקואורדינטות גלויות לך ולאחראי על הפרויקט אליו הוספת את התצפיות. <br/><br/>Note that האחראים על הפרויקט תמיד יראו את המיקומים, לא תלוי ברמת הפרטיות, אם את/ה רוצים לשמור על הגישה למיקומים, בדקו היטב מי האחראים לפרוייקטים שאתם שותפים בם.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy היא הגדרה של תצפית הקובעת איך יוצג המיקום (קו אורך וקו אורך). האפשרויות הן:<br/><b>פתוח</b> - קואורדינטות גלויות אלא אם הזן בסכנה. <br/><b>מוסתר</b> - הקואורדינטות נמצאות בנקודה רנדומלית בטווח של. 2 מעלות, בשטח שמכיל את הקואורדינטות האמיתיות, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. הקואורדינטות גלויות לך ולאחראי על הפרויקט. <br/><b>פרטי</b> - הקואורדינטות מוסתרות, הקואורדינטות גלויות לך ולאחראי על הפרויקט אליו הוספת את התצפיות. <br/><br/>Note that האחראים על הפרויקט תמיד יראו את המיקומים, לא תלוי ברמת הפרטיות, אם את/ה רוצים לשמור על הגישה למיקומים, בדקו היטב מי האחראים לפרוייקטים שאתם שותפים בם. ]]></string>
     <string name="id_title">%1$s\'s מזהה • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">מחק/י</string>
@@ -363,7 +363,7 @@
     <string name="upload_complete">ההעלאה הושלמה!</string>
     <string name="onboarding_upload_description">חזור/חיזרי בקרוב לראות זיהויים ותגובות על התצפית/יות שלך.</string>
     <string name="importing_photos">מייבא תמונה/ות</string>
-    <string name="multi_select_description">לייבא יותר מתמונה אחת, לחץ/צי לחיצה ארוכה על תמונה אחת</string>
+    <string name="multi_select_description">לייבא יותר מתמונה אחת, לחץ/צי לחיצה ארוכה על תמונה אחת </string>
     <string name="preparing_photo">מכין תמונה...</string>
     <string name="recommended_for_you">מומלץ עבורך</string>
     <string name="missions">משימות</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">גוגל מחייבת אותנו לבקש את רשותכם לגשת לאנשי הקשר שלכם, כדי להשתמש בחשבון הגוגל. למרות שלא נעשה שימוש ברשימת אנשי הקשר, אם לא תאשרו את השימוש, לא תוכלו להתחבר באמצעות חשבון הגוגל.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[חדש כאן ב %1$s? <b>הרשם/מי!</b>]]></string>
     <string name="see_more_observations">תצפיות נוספות</string>
+    <string name="see_more_species">לראות מינים נוספים</string>
+    <string name="see_more_identifications">לראות זיהויים נוספים</string>
     <string name="collection_and_umbrella_projects">אוספים ופרויקטי אוסף</string>
     <string name="description">תיאור</string>
     <string name="quantity">כמות</string>
@@ -621,7 +623,7 @@
     <string name="annotation_value_male">זכר</string>
     <string name="joined_projects_all_caps">הצטרפו</string>
     <string name="nearby_projects_all_caps">בקרבת מקום</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="featured_projects_all_caps">תכונות</string>
     <string name="join_all_caps">הצטרפו</string>
     <string name="my_guides_all_caps">שלך</string>
     <string name="nearby_guides_all_caps">בקרבת מקום</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">חדש</string>
     <string name="observers_all_caps">מתצפתים</string>
     <string name="observations_regular">תצפיות</string>
+    <string name="data_quality_assessment">הערכת איכות הנתונים</string>
+    <string name="research_grade_qualification">אישור על ציון מחקר מדעי</string>
+    <string name="date_specified">התאריך שצוין</string>
+    <string name="location_specified">המיקום שצוין</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">יש מזהה נתמך על ידי שניים או יותר</string>
+    <string name="date_is_accurate">תאריך מדויק</string>
+    <string name="location_is_accurate">מיקום מדויק</string>
+    <string name="organism_is_wild">אורגניזם פראי</string>
+    <string name="evidence_of_organism">ראיה לאורגניזם</string>
+    <string name="recent_evidence_of_an_organism">ראיות אחרונות לאורגניזם</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">בהתבסס על הראיות, האם אפשר לאשר או לשפר הזיהוי הקהילתי?</string>
+    <string name="no_as_good_as_it_can_be">לא, זה הכי טוב שיש</string>
 </resources>

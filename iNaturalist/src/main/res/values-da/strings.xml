@@ -250,7 +250,7 @@
     <string name="set_location">Placering</string>
     <string name="coordinates_lat">Br.gr:</string>
     <string name="coordinates_lon">Læ.gr:</string>
-    <string name="coordinates_acc">Nøj.</string>
+    <string name="coordinates_acc">Nøj. </string>
     <string name="required">* Kræves</string>
     <string name="downloading_observations">Downloader observationer...</string>
     <string name="no_thanks">Nej tak</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">Kræver ID</string>
     <string name="research_grade">Forskningskvalitet</string>
     <string name="data_quality">Datakvalitet</string>
-    <string name="casual_grade_add_location"><![CDATA[Tilføj en <b>placering</b> for at fremrykke denne observation til "Behøver ID"-status.]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Tilføj en <b>dato</b> for at fremrykke denne observation til "Behøver ID"-status.]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[Tilføj et <b>foto</b> for at fremrykke denne observation til "Behøver ID"-status.]]></string>
-    <string name="casual_grade_captive"><![CDATA[Observation er i uspecificeret kvalitet, da kategoriseringen <b>fangeskab/opdyrket</b>.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[Observation behøver <b>yderligere identifikationer</b> fra fællesskabet for at opnå status som "Forskningskvalitet".]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Tilføj en <b>placering</b> for at fremrykke denne observation til "Behøver ID"-status. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Tilføj en <b>dato</b> for at fremrykke denne observation til "Behøver ID"-status. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Tilføj et <b>foto</b> for at fremrykke denne observation til "Behøver ID"-status. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observation er i uspecificeret kvalitet, da kategoriseringen <b>fangeskab/opdyrket</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observation behøver <b>yderligere identifikationer</b> fra fællesskabet for at opnå status som "Forskningskvalitet". ]]></string>
     <string name="included_in_projects">Inkluderet i %1$d projekter</string>
     <string name="included_in_projects_singular">Inkluderet i %1$d projekter</string>
-    <string name="geoprivacy_explanation"><![CDATA[Geo-fortrolighed er en indstilling, du kan vælge til dine observationer, der styrer hvordan de rumlige koordinater (bredde- og længdegrad) vises. Her er mulighederne:<br/><b>Åben</b> - Alle kan se koordinaterne, medmindre taxonen er truet.<br/><b>Sløret</b> - Offentlige koordinater vises som et tilfældigt punkt inden for et 0,2 x 0,2 graders område indeholdende de sande koordinater, som omregnet svarer til ca. 22 kvadratkilometers usikkerhed ved ækvator, og som mindskes, når du nærmer dig polerne. Sande koordinater er kun synlige for dig og bestyrerne af projektet, til hvilket du tilføjer observationen.<br/><b>Privat</b> - Koordinater helt skjult fra offentlige landkort. Sande koordinater er kun synlige for dig og bestyrerene af det project, til hvilket du tilføjer observationen. <br/><br/>Bemærk, at bestyrere for individuelle projekter altid kan se koordinaterne uanset din geo-fortrolighedsindstillinger, så er du bekymret over, hvem der har adgang til koordinaterne, skal du være sikker på, at du kan stole på bestyrerne i de projekter, hvor du deltager.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geo-fortrolighed er en indstilling, du kan vælge til dine observationer, der styrer hvordan de rumlige koordinater (bredde- og længdegrad) vises. Her er mulighederne:<br/><b>Åben</b> - Alle kan se koordinaterne, medmindre taxonen er truet.<br/><b>Sløret</b> - Offentlige koordinater vises som et tilfældigt punkt inden for et 0,2 x 0,2 graders område indeholdende de sande koordinater, som omregnet svarer til ca. 22 kvadratkilometers usikkerhed ved ækvator, og som mindskes, når du nærmer dig polerne. Sande koordinater er kun synlige for dig og bestyrerne af projektet, til hvilket du tilføjer observationen.<br/><b>Privat</b> - Koordinater helt skjult fra offentlige landkort. Sande koordinater er kun synlige for dig og bestyrerene af det project, til hvilket du tilføjer observationen. <br/><br/>Bemærk, at bestyrere for individuelle projekter altid kan se koordinaterne uanset din geo-fortrolighedsindstillinger, så er du bekymret over, hvem der har adgang til koordinaterne, skal du være sikker på, at du kan stole på bestyrerne i de projekter, hvor du deltager. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Slet</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">For at kunne benytte din Google-konto, kræver Google, at vi anmoder om tilladelse til at tilgå dine kontaktpersoner, selvom vi under ingen omstændigheder tilgår dine kontakter. Nægter du denne tilladelse, vil du skulle tilmelde dig eller logge ind med brugernavn og adgangskode.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Ny her hos %1$s? <b>Tilmeld dig nu!</b>]]></string>
     <string name="see_more_observations">Se flere observationer</string>
+    <string name="see_more_species">Se flere arter</string>
+    <string name="see_more_identifications">Se flere identifikationer</string>
     <string name="collection_and_umbrella_projects">Samling og Paraplyprojekter</string>
     <string name="description">Beskrivelse</string>
     <string name="quantity">Antal</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NY</string>
     <string name="observers_all_caps">OBSERVATØRER</string>
     <string name="observations_regular">Observationer</string>
+    <string name="data_quality_assessment">Datakvalitetsvurdering</string>
+    <string name="research_grade_qualification">Forskningskvalitetskvalifikation</string>
+    <string name="date_specified">Dato angivet</string>
+    <string name="location_specified">Placering angivet</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Har ID understøttet af to eller flere</string>
+    <string name="date_is_accurate">Dato er korrekt</string>
+    <string name="location_is_accurate">Placering er korrekt</string>
+    <string name="organism_is_wild">Organisme er vildtlevende</string>
+    <string name="evidence_of_organism">Bevis for organisme</string>
+    <string name="recent_evidence_of_an_organism">Nylige beviser på en organisme</string>
+    <string name="community_id_at_species_level_or_lower">Fællesskabs-ID på artsniveau eller lavere</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Kan Fællesskabs-ID\'et stadig bekræftes eller forbedres baseret på beviset?</string>
+    <string name="no_as_good_as_it_can_be">Nej, det er så godt, som det kan blive</string>
 </resources>

@@ -250,7 +250,7 @@
     <string name="set_location">장소 등록하기</string>
     <string name="coordinates_lat">위도:</string>
     <string name="coordinates_lon">경도</string>
-    <string name="coordinates_acc">위치 오차</string>
+    <string name="coordinates_acc">위치 오차 </string>
     <string name="required">*필수</string>
     <string name="downloading_observations">관찰 기록 저장 중...</string>
     <string name="no_thanks">아니요, 괜찮습니다.</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">생물 종 정보 필요</string>
     <string name="research_grade">연구 자료 등급</string>
     <string name="data_quality">자료의 등급</string>
-    <string name="casual_grade_add_location"><![CDATA[<b>관찰 지역</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다.]]></string>
-    <string name="casual_grade_add_date"><![CDATA[<b>날짜</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다.]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[<b>사진</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다.]]></string>
-    <string name="casual_grade_captive"><![CDATA[<b>사육/재배</b> 중인 생물의 관찰 기록은 "일반 등급" 으로 설정 됩니다.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[관찰 기록이 "연구 등급"으로 심사되려면 사람들의 <b>생물 식별이 더</b> 필요합니다.]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ <b>관찰 지역</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ <b>날짜</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ <b>사진</b>을 추가하면 이 관찰 기록의 등급이 "생물 식별 필요"로 올라갑니다. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ <b>사육/재배</b> 중인 생물의 관찰 기록은 "일반 등급" 으로 설정 됩니다. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ 관찰 기록이 "연구 등급"으로 심사되려면 사람들의 <b>생물 식별이 더</b> 필요합니다. ]]></string>
     <string name="included_in_projects">%1$d 프로젝트에 포함됩니다.</string>
     <string name="included_in_projects_singular">%1$d 프로젝트에 포함됩니다.</string>
-    <string name="geoprivacy_explanation"><![CDATA[위치정보 보호는 회원님이 관찰한 생물의 위치 좌표(위도와 경도)를 바꿀 수 있습니다. 다음과 같은 선택지가 있습니다: <br/><b>공개</b> - 모든 사람이 멸종위기가 아닌 생물 종의 좌표를 볼 수 있습니다.<br/> <b>위치 불명료</b>- 생물 종이 발견된 좌표로부터 위도 0.2º x 경도 0.2º 범위 내에서 무작위적으로 위치 좌표를 표시합니다. 이것은 적도 기준으로 484제곱킬로미터(22㎞x22㎞) 범위 내(극지방으로 갈 수록 좁아집니다)에서 위치 정보를 모호하게 만드는 것 입니다. 정확한 위치 정보는 관찰자와 관찰 기록을 등록한 프로젝트의 책임자만 알 수 있습니다.<br/><b>비공개</b> - 관찰 생물이 발견된 위치 좌표를 공개하지 않습니다. 관찰자와 관찰 기록을 등록한 프로젝트의 책임자에게만 위치 정보가 공개됩니다. <br/><br/>관찰 기록을 등록한 프로젝트의 책임자는 회원님이 설정한 장소 공개여부와 관계 없이 항상 생물의 정확한 위치 좌표를 알 수 있습니다. 그래서 사람들이 정확한 위치 좌표에 접근하는 것이 우려된다면 참여하고 있는 프로젝트의 책임자를 항상 신뢰 할 수 있어야 합니다.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ 위치정보 보호는 회원님이 관찰한 생물의 위치 좌표(위도와 경도)를 바꿀 수 있습니다. 다음과 같은 선택지가 있습니다: <br/><b>공개</b> - 모든 사람이 멸종위기가 아닌 생물 종의 좌표를 볼 수 있습니다.<br/> <b>위치 불명료</b>- 생물 종이 발견된 좌표로부터 위도 0.2º x 경도 0.2º 범위 내에서 무작위적으로 위치 좌표를 표시합니다. 이것은 적도 기준으로 484제곱킬로미터(22㎞x22㎞) 범위 내(극지방으로 갈 수록 좁아집니다)에서 위치 정보를 모호하게 만드는 것 입니다. 정확한 위치 정보는 관찰자와 관찰 기록을 등록한 프로젝트의 책임자만 알 수 있습니다.<br/><b>비공개</b> - 관찰 생물이 발견된 위치 좌표를 공개하지 않습니다. 관찰자와 관찰 기록을 등록한 프로젝트의 책임자에게만 위치 정보가 공개됩니다. <br/><br/>관찰 기록을 등록한 프로젝트의 책임자는 회원님이 설정한 장소 공개여부와 관계 없이 항상 생물의 정확한 위치 좌표를 알 수 있습니다. 그래서 사람들이 정확한 위치 좌표에 접근하는 것이 우려된다면 참여하고 있는 프로젝트의 책임자를 항상 신뢰 할 수 있어야 합니다. ]]></string>
     <string name="id_title">%1$s의 생물 종 정보 • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">삭제</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">설명</string>
     <string name="quantity">수량</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>

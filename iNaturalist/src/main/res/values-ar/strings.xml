@@ -74,9 +74,9 @@
     <string name="com_facebook_internet_permission_error_title">خطأ إذن  في الإنترنت- AndroidManifest</string>
     <string name="com_facebook_internet_permission_error_message">مطلوب إذن وصول الإنترنت</string>
     <string name="com_facebook_requesterror_web_login">حساب الفيسبوك الخاص بك مقفل. الرجاء الدخول بالموقع www.facebook.com لمواصلة</string>
-    <string name="com_facebook_requesterror_relogin">الرجاء الدخول بالتطبيق ثانيتا</string>
-    <string name="com_facebook_requesterror_password_changed">تم تغيير كلمة السر الفيسبوك. لرجاء الدخول بالتطبيق ثانيتا</string>
-    <string name="com_facebook_requesterror_reconnect">لرجاء الدخول بالتطبيق ثانيتا</string>
+    <string name="com_facebook_requesterror_relogin">الرجاء الدخول بالتطبيق ثانيتا </string>
+    <string name="com_facebook_requesterror_password_changed">تم تغيير كلمة السر الفيسبوك. لرجاء الدخول بالتطبيق ثانيتا </string>
+    <string name="com_facebook_requesterror_reconnect">لرجاء الدخول بالتطبيق ثانيتا  </string>
     <string name="com_facebook_requesterror_permissions">لا أذونات إلى التطبيق. لرجاء الدخول بالتطبيق ثانيتا .</string>
     <string name="edit_observation">تحرير الارصاد</string>
     <string name="discard_changes">متاكد? هناك تغييرات لم يتم حفظها ستفقد.</string>
@@ -154,29 +154,27 @@
     <string name="view_nearby_observations">عرض الملاحظات القريبة</string>
     <string name="skip_for_now">التخطي الآن</string>
     <string-array name="tutorial_titles">
-      <item/>
-      <item>رصد</item>
-      <item>مشاركة</item>
-      <item>تعلّم</item>
-      <item>تبرع</item>
+        <item></item>
+        <item>رصد</item>
+        <item>مشاركة</item>
+        <item>تعلّم</item>
+        <item>تبرع</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-      <item>Explore and Connect with Nature</item>
-      <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
-      <item>شارك ملاحظتك مع مجتمع iNaturalist.</item>
-      <item>Check back for comments and identifications on your observation!</item>
-      <item>
-        <![CDATA[<b>Research Grade</b>observations are shared with scientists working to better understand and protect nature.]]>
-      </item>
+        <item>Explore and Connect with Nature</item>
+        <item>Get outside! Find something wild, and take a clear, full frame photo.</item>
+        <item>شارك ملاحظتك مع مجتمع iNaturalist.</item>
+        <item>Check back for comments and identifications on your observation!</item>
+        <item><![CDATA[<b>Research Grade</b> observations are shared with scientists working to better understand and protect nature.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-      <item>مرئي</item>
-      <item>ضبابي</item>
-      <item>خصوصي</item>
+        <item>مرئي</item>
+        <item>ضبابي</item>
+        <item>خصوصي</item>
     </string-array>
     <string name="alert_sign_out">متاكد من الخروج? الخروج يحذف أي ارصاد على الجهاز. اارصاد   ل- iNaturalist لن تتأثر.</string>
-    <string name="alert_unsupported_media_type">\&quot;آسف.حاليا نحن لا ندعم تحميل الصور من- Google Drive, Dropbox וإلخ
-  حفظ الصور على الجهاز وحاول مرة أخرى.\&quot;</string>
+    <string name="alert_unsupported_media_type">\"آسف.حاليا نحن لا ندعم تحميل الصور من- Google Drive, Dropbox וإلخ
+حفظ الصور على الجهاز وحاول مرة أخرى.\"</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">خريطة</string>
     <string name="restricted_to_current_map_area">منطقة محدودة خريطة الحالية</string>
@@ -187,12 +185,8 @@
     <string name="no_observations_found">لم يتم العثور على ارصاد</string>
     <string name="license_none">بدون. جميع الحقوق محفوظة</string>
     <string name="sources_and_attribution">مرجع لمصدر</string>
-    <string name="photos">
-      <![CDATA[<b>الصور:</b>%1$s]]>
-    </string>
-    <string name="text">
-      <![CDATA[<b>نص:</b>%1$s]]>
-    </string>
+    <string name="photos"><![CDATA[<b>الصور:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>نص:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">الشبكه الرئيسيه ل iNaturalist. االضغط على موافق تجعل إعداد الجهاز كجزء من شبكة عالمية من  iNaturalist.</string>
     <string name="alert_message_use_naturalista">iNaturalist is a member of the iNaturalist Network in Mexico. Would you like to use this network to localize your experience and share data accordingly?</string>
@@ -229,9 +223,7 @@
     <string name="log_in">دخول</string>
     <string name="sign_up">تسجيل</string>
     <string name="min_6_chars">على الاقل 6 احرف</string>
-    <string name="use_my_license">
-      <![CDATA[نعم، ممكن للعلماء استخدام المحتوى الذي انشره <b>معرفة المزيد</b>]]>
-    </string>
+    <string name="use_my_license"><![CDATA[ نعم، ممكن للعلماء استخدام المحتوى الذي انشره <b>معرفة المزيد</b>]]></string>
     <string name="content_licensing">ترخيص المحتوى</string>
     <string name="content_licensing_description">حدد هذا الخيار للسماح باستخدام  الصور التي تقوم بتحميلها. يمكنك تغيير هذا في وقت لاحق، ولكن هذا هو الخيار الأفضل لتبادل مع المحققين.</string>
     <!-- Try to keep this about the length of the English text -->
@@ -244,10 +236,8 @@
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">تسجيل الدخول/دخول</string>
     <string name="please_sign_in_via_settings_for_guides">الرجاء الدخول بواسطة شباك الاعدادات للاطلاع على الارشادات</string>
-    <string name="please_sign_in_for_updates">الرجاء الدخول بواسطة شباك الاعدادات للاطلاع على المستجدات</string>
-    <string name="by_using_inat_terms">
-      <![CDATA[By using iNaturalist you agree to the <b><a href="http://www.inaturalist.org/pages/terms">Terms of Service</a></b>and <b><a href="http://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]>
-    </string>
+    <string name="please_sign_in_for_updates">الرجاء الدخول بواسطة شباك الاعدادات للاطلاع على المستجدات </string>
+    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="http://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="http://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">تحديثات</string>
     <string name="camera">تصوير</string>
     <string name="upload_photo">اختيار صورة</string>
@@ -263,7 +253,7 @@
     <string name="coordinates_lon">خط الطول:</string>
     <string name="coordinates_acc">Acc.</string>
     <string name="required">* حقل اجباري</string>
-    <string name="downloading_observations">تحميل ارصاد</string>
+    <string name="downloading_observations">   تحميل ارصاد</string>
     <string name="no_thanks">لا شكراً</string>
     <string name="turn_on">Turn On</string>
     <string name="introducing_auto_sync">إدخال المزامنة التلقائية!</string>
@@ -280,26 +270,14 @@
     <string name="needs_id">Needs ID</string>
     <string name="research_grade">Research Grade</string>
     <string name="data_quality">جودة البيانات</string>
-    <string name="casual_grade_add_location">
-      <![CDATA[Add a <b>location</b>to advance this observation to “Needs ID” status.]]>
-    </string>
-    <string name="casual_grade_add_date">
-      <![CDATA[Add a <b>date</b>to advance this observation to “Needs ID” status.]]>
-    </string>
-    <string name="casual_grade_add_photo">
-      <![CDATA[Add a <b>photo</b>to advance this observation to “Needs ID” status.]]>
-    </string>
-    <string name="casual_grade_captive">
-      <![CDATA[Observation is casual grade because it is <b>captive/cultivated</b>.]]>
-    </string>
-    <string name="needs_id_more_ids">
-      <![CDATA[Observation needs <b>more identifications</b>from the community to become "Research Grade" status.]]>
-    </string>
+    <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observation is casual grade because it is <b>captive/cultivated</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observation needs <b>more identifications</b> from the community to become "Research Grade" status. ]]></string>
     <string name="included_in_projects">Included in %1$d projects</string>
     <string name="included_in_projects_singular">Included in %1$d project</string>
-    <string name="geoprivacy_explanation">
-      <![CDATA[Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b>- Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b>- Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b>- Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate.]]>
-    </string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">معرف %1$s •%2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">حذف</string>
@@ -325,12 +303,8 @@
     <string name="no_photo">No Photo</string>
     <string name="about_this_species">About this Species</string>
     <string name="view_on_wikipedia">Wikipedia Article</string>
-    <string name="photo">
-      <![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]>
-    </string>
-    <string name="photo_attr">
-      <![CDATA[Photo: <b>%1$s</b>]]>
-    </string>
+    <string name="photo"><![CDATA[Photo: <b><a href="%1$s">%2$s</a></b>]]></string>
+    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Finding current location...</string>
     <string name="flag_as_captive">Flag as Captive/Cultivated</string>
     <string name="observation_flagged_as_captive">Observation was flagged as captive/cultivated</string>
@@ -348,9 +322,7 @@
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
     <string name="article_by">Article By</string>
     <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
-    <string name="more_bio">
-      <![CDATA[<b><font color="#ffffff">More »</font></b>]]>
-    </string>
+    <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
     <string name="no_location">No Location</string>
     <string name="add_to_projects">Add to project(s)</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
@@ -364,9 +336,7 @@
     <string name="updating_profile">Updating Profile...</string>
     <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
     <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
-    <string name="logged_in_as_html">
-      <![CDATA[Logged in as <b>%1$s</b>]]>
-    </string>
+    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
     <string name="log_out">Log out</string>
     <string name="not_logged_in">Not logged in</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
@@ -428,12 +398,8 @@
     <string name="no_updates_yet">No updates yet. Stay tuned!</string>
     <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
     <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
-    <string name="user_activity_id">
-      <![CDATA[<b>%1$s</b>suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]>
-    </string>
-    <string name="user_activity_comment">
-      <![CDATA[<b>%1$s</b>commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]>
-    </string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> suggested an ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s new</string>
     <string name="no_results_found">No Results Found...</string>
@@ -445,9 +411,7 @@
     <string name="compare">Compare</string>
     <string name="select">Select</string>
     <string name="source_wikipedia">(Source: Wikipedia)</string>
-    <string name="conservation_source">
-      <![CDATA[<b>Source:</b><i>%1$s</i>]]>
-    </string>
+    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
     <string name="conservation_status_least_concern">Of least concern</string>
     <string name="conservation_status_near_threatened">Near threatened</string>
     <string name="conservation_status_vulnerable">Vulnerable</string>
@@ -469,9 +433,7 @@
     <string name="what_did_you_see">What did you see?</string>
     <string name="suggest_species">Suggest Species</string>
     <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
-    <string name="taxon_name">
-      <![CDATA[<b>%1$s</b>]]>
-    </string>
+    <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
     <string name="visually_similar">Visually Similar</string>
     <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
     <string name="seen_nearby">Seen Nearby</string>
@@ -585,15 +547,9 @@
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Which Google Account?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
-    <string name="do_you_think_this_could_be">
-      <![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]>
-    </string>
-    <string name="i_dont_know_but">
-      <![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]>
-    </string>
-    <string name="no_but_it_is_a_member_of_taxon">
-      <![CDATA[No, but it is a member of <b>%1$s</b>.]]>
-    </string>
+    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Submit</string>
     <string name="change_password">Change Password</string>
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
@@ -604,10 +560,10 @@
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
     <string name="just_so_you_know">Just So You Know...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now">
-      <![CDATA[New to %1$s? <b>Sign up now!</b>]]>
-    </string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">وصف</string>
     <string name="quantity">الكميه</string>
@@ -689,4 +645,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>
