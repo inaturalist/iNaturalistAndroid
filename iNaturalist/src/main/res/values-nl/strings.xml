@@ -250,7 +250,7 @@
     <string name="set_location">Locatie</string>
     <string name="coordinates_lat">Breedtegraad:</string>
     <string name="coordinates_lon">Lengtegraad:</string>
-    <string name="coordinates_acc">Acc.</string>
+    <string name="coordinates_acc">Acc. </string>
     <string name="required">* Vereist</string>
     <string name="downloading_observations">Waarnemingen aan het inladen...</string>
     <string name="no_thanks">Nee bedankt</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">Determinatie vereist</string>
     <string name="research_grade">Onderzoekskwaliteit</string>
     <string name="data_quality">Gegevenskwaliteit</string>
-    <string name="casual_grade_add_location"><![CDATA[Voeg een <b>locatie</b> toe om deze waarneming te upgraden naar "Needs ID" status.]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Voeg een <b>datum</b> toe om deze waarneming te upgraden naar "Needs ID" status.]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[Voeg een <b>foto</b> toe om deze waarneming te upgraden naar "Needs ID" status.]]></string>
-    <string name="casual_grade_captive"><![CDATA[Waarneming krijgt \'casual grade\' omdat ze <b>in gevangenschap/gekweekt</b> heeft.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[Observatie heeft <b>meer identificaties</b> nodig van de gemeenschap om de onderzoekskwaliteit te bereiken.]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Voeg een <b>locatie</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Voeg een <b>datum</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Voeg een <b>foto</b> toe om deze waarneming te upgraden naar "Needs ID" status. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Waarneming krijgt \'casual grade\' omdat ze <b>in gevangenschap/gekweekt</b> heeft. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observatie heeft <b>meer identificaties</b> nodig van de gemeenschap om de onderzoekskwaliteit te bereiken. ]]></string>
     <string name="included_in_projects">Opgenomen in %1$d projecten</string>
     <string name="included_in_projects_singular">Opgenomen in %1$d project</string>
-    <string name="geoprivacy_explanation"><![CDATA[Geoprivacy is een instelling die bepaalt hoe de ruimtelijke coördinaten (breedte- en lengtegraad) worden weergegeven. Dit zijn de opties:<br/><b>openbaar:</b> - Iedereen kan de coördinaten zien tenzij het taxon niet wordt bedreigd. <br/><b>gedimd</b> - De coördinaten worden weergegeven als een willekeurig punt binnen een gebied van 0,2 bij 0,2 graden dat de werkelijke coördinaten bevat, wat overeenkomt met een gebied van ongeveer 22 x 22 km onzekerheid aan de evenaar, aflopend richting de polen. Alleen jij en de curatoren van projecten waaraan je je waarneming toevoegt, kunnen de echte coördinaten zien. <br/><b> privé</b> - coördinaten worden niet weergegeven op openbare kaarten. Alleen u en de curatoren van projecten waaraan u uw waarneming toevoegt, kunnen de echte coördinaten zien. <br/><br/>Projectcuratoren van betrokken projecten kunnen altijd de echte coördinaten zien. Als u de privacy van de coördinaten van uw waarnemingen belangrijk vindt, moet u alleen deelnemen aan projecten waarvan u de trustees vertrouwt.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is een instelling die bepaalt hoe de ruimtelijke coördinaten (breedte- en lengtegraad) worden weergegeven. Dit zijn de opties:<br/><b>openbaar:</b> - Iedereen kan de coördinaten zien tenzij het taxon niet wordt bedreigd. <br/><b>gedimd</b> - De coördinaten worden weergegeven als een willekeurig punt binnen een gebied van 0,2 bij 0,2 graden dat de werkelijke coördinaten bevat, wat overeenkomt met een gebied van ongeveer 22 x 22 km onzekerheid aan de evenaar, aflopend richting de polen. Alleen jij en de curatoren van projecten waaraan je je waarneming toevoegt, kunnen de echte coördinaten zien. <br/><b> privé</b> - coördinaten worden niet weergegeven op openbare kaarten. Alleen u en de curatoren van projecten waaraan u uw waarneming toevoegt, kunnen de echte coördinaten zien. <br/><br/>Projectcuratoren van betrokken projecten kunnen altijd de echte coördinaten zien. Als u de privacy van de coördinaten van uw waarnemingen belangrijk vindt, moet u alleen deelnemen aan projecten waarvan u de trustees vertrouwt. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Verwijder</string>
@@ -560,7 +560,9 @@
     <string name="just_so_you_know">Het is maar dat je het weet...</string>
     <string name="ask_for_g_plus_permissions">Google verplicht ons om toestemming te vragen om uw contactpersonen te gebruiken voor uw Google-Account, hoewel we geen contact opnemen met uw contactpersonen om welke reden dan ook. Als u deze machtiging weigert moet u zich aanmelden of inloggen met een gebruikersnaam en wachtwoord.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Nieuw bij %1$s? <b>Registreer je nu!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
+    <string name="see_more_observations">Kijk bij meer waarnemingen</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Beschrijving</string>
     <string name="quantity">Aantal</string>
@@ -579,27 +581,27 @@
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Attribute</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Waarde</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">Oneens</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Aantekeningen</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Met de aantekening</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
     <string name="annotation_name">Annotation Name</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Geen</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Plant fenologie</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Levensstadium</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">Geslacht</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Bloeiend</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">In vrucht</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
@@ -611,14 +613,14 @@
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <string name="annotation_value_nymph">Nymph</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">Larve</string>
+    <string name="annotation_value_egg">Ei</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenile</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
+    <string name="annotation_value_female">Vrouw</string>
+    <string name="annotation_value_male">Man</string>
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
     <string name="featured_projects_all_caps">FEATURED</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>

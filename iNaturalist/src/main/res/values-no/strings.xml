@@ -250,7 +250,7 @@
     <string name="set_location">Posisjon</string>
     <string name="coordinates_lat">Breddegrad:</string>
     <string name="coordinates_lon">Lengdegrad:</string>
-    <string name="coordinates_acc">Nøyaktighet</string>
+    <string name="coordinates_acc">Nøyaktighet </string>
     <string name="required">* Nødvendig</string>
     <string name="downloading_observations">Laster ned observasjoner...</string>
     <string name="no_thanks">Nei takk</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">Trenger ID</string>
     <string name="research_grade">Utforskningsgrad</string>
     <string name="data_quality">Datakvalitet</string>
-    <string name="casual_grade_add_location"><![CDATA[Legg til et <b>sted</b> for å fremheve denne observasjonen til “trenger-ID-status".]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Legg til en <b>dato</b> for å fremheve denne observasjonen til “trenger-ID-status".]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[Legg til et <b>fotografi</b> for å fremheve denne observasjonen til “trenger-ID-status".]]></string>
-    <string name="casual_grade_captive"><![CDATA[Observasjon er i uformell klasse fordi den er <b>bevart/kultivert</b>.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[Observasjon trenger <b>flere identifikasjoner</b> fra fellesskapet for å få "søkeklassestatus".]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Legg til et <b>sted</b> for å fremheve denne observasjonen til “trenger-ID-status". ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Legg til en <b>dato</b> for å fremheve denne observasjonen til “trenger-ID-status". ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Legg til et <b>fotografi</b> for å fremheve denne observasjonen til “trenger-ID-status". ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observasjon er i uformell klasse fordi den er <b>bevart/kultivert</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observasjon trenger <b>flere identifikasjoner</b> fra fellesskapet for å få "søkeklassestatus". ]]></string>
     <string name="included_in_projects">Inkludert i %1$d prosjekter</string>
     <string name="included_in_projects_singular">Inkludert i %1$d prosjekt</string>
-    <string name="geoprivacy_explanation"><![CDATA[Geoprivat er en innstilling du kan bruke på observasjonene dine som kontrollerer hvordan de romlige koordinatene (breddegrad og lengdegrad) vises. Her er innstillingene:<br/><b>åpn</b> - Alle kan se koordinater med mindre gruppen er utrydningstruet. <br/><b>skjult</b> - Offentlige koordinater vises som tilfeldige punkter innen et 0.2-av-0.2-gradsområde som virker cirka 22x22km² fra ekvator og minsker når du nærmer deg polene. Sanne koordinater er bare synlige for deg og administratorene i prosjektene du legger observasjonen din til. <br/><b>privat</b> - <br/><br/>Notér at moderatorene i individuelle prosjekter alltid kan se koordinater uansett hvilken geoprivatinnstilling du bruker, så hvis du er bekymret over hvem som har tilgang til koordinater bør du være sikker på at du kan stole på administratorene i prosjektene du deltar i.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Geoprivat er en innstilling du kan bruke på observasjonene dine som kontrollerer hvordan de romlige koordinatene (breddegrad og lengdegrad) vises. Her er innstillingene:<br/><b>åpn</b> - Alle kan se koordinater med mindre gruppen er utrydningstruet. <br/><b>skjult</b> - Offentlige koordinater vises som tilfeldige punkter innen et 0.2-av-0.2-gradsområde som virker cirka 22x22km² fra ekvator og minsker når du nærmer deg polene. Sanne koordinater er bare synlige for deg og administratorene i prosjektene du legger observasjonen din til. <br/><b>privat</b> - <br/><br/>Notér at moderatorene i individuelle prosjekter alltid kan se koordinater uansett hvilken geoprivatinnstilling du bruker, så hvis du er bekymret over hvem som har tilgang til koordinater bør du være sikker på at du kan stole på administratorene i prosjektene du deltar i. ]]></string>
     <string name="id_title">%1$s sin ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Slett</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Beskrivelse</string>
     <string name="quantity">Antall</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>

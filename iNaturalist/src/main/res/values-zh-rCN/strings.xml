@@ -112,13 +112,13 @@
     <string name="search_guides">搜寻指南...</string>
     <string name="save_observation">储存观察记录</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">简介</string>
+    <string name="about_guide_all_caps">简介</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">简介</string>
+    <string name="about_project_all_caps">简介</string>
+    <string name="about_this_app">简介</string>
+    <string name="about_taxon_short">简介</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">地理资讯隐私权</string>
     <string name="delete_confirmation">您确定您想要删除此观察记录吗？</string>
@@ -269,11 +269,11 @@
     <string name="needs_id">需要 ID</string>
     <string name="research_grade">研究等级</string>
     <string name="data_quality">资料品质</string>
-    <string name="casual_grade_add_location"><![CDATA[新增一个<b>位置</b>资讯，让此笔观察记录进展至「需要 ID」状态。]]></string>
-    <string name="casual_grade_add_date"><![CDATA[新增一个<b>日期</b>资讯，让此笔观察记录进展至「需要 ID」状态。]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[新增一张<b>照片</b>，让此笔观察记录进展至「需要 ID」状态。]]></string>
-    <string name="casual_grade_captive"><![CDATA[观察记录列为一般等级因为它是圈养/栽培的。]]></string>
-    <string name="needs_id_more_ids"><![CDATA[观察记录需要从社群中取得<b>更多的鉴定</b>以成为「研究等级」。]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ 新增一个<b>位置</b>资讯，让此笔观察记录进展至「需要 ID」状态。 ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ 新增一个<b>日期</b>资讯，让此笔观察记录进展至「需要 ID」状态。 ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ 新增一张<b>照片</b>，让此笔观察记录进展至「需要 ID」状态。 ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ 观察记录列为一般等级因为它是圈养/栽培的。 ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ 观察记录需要从社群中取得<b>更多的鉴定</b>以成为「研究等级」。 ]]></string>
     <string name="included_in_projects">包括在 %1$d 任务中</string>
     <string name="included_in_projects_singular">包括在 %1$d 任务中</string>
     <string name="geoprivacy_explanation"><![CDATA[地理资讯隐私权(Geoprivacy)的设定控制了您的观察记录中如何显示空间座标 （纬度和经度）。选项为： <br/> <b>开放</b>—每个人都可以看到座标，除非此分类群受到威胁。 <br/><b>遮敝</b>—公开的座标是在 0.2 x 0.2 度范围内随机显示，其中包含了真实座标，这相当于大约在赤道有 22 x 22 公里面积的开放座标，而随着接近两极此面积会逐渐减少。真实的座标是仅对您和您向其中新增加的观察专案策展人可见。<br/> <b>私人</b>—座标在公开地图上是完全隐藏的，只有您和您加入到观察专案中的策展人才能看到真实的座标。 <br/> <br/>注意：个别专案策展人不管您的地理资讯隐私权如何设定，他还是可以看到您的座标，所以如果对于谁可以存取座标有疑虑的话，您应该确保您信任您所参与的专案策展人。]]></string>
@@ -296,9 +296,9 @@
     <string name="location">位置</string>
     <string name="login_in_to_add_comments_ids">登入或注册来留下你的评论或鉴定建议...</string>
     <string name="login_in_to_fav">登入或注册能来看我的最爱或将此观察记录设为最爱...</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="sync_obs_to_see_favs">同步该记录并查看点赞量</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">同步该记录以添加评论或提交鉴定</string>
     <string name="no_photo">没有照片</string>
     <string name="about_this_species">关于这个物种</string>
     <string name="view_on_wikipedia">维基百科文章</string>
@@ -444,7 +444,7 @@
     <string name="filters">搜索条件</string>
     <string name="exploring_all">浏览全部</string>
     <string name="nearby">附近</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="couldnt_load_results">无法加载结果: %1$s</string>
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">例如：鸟类，君主斑蝶</string>
     <string name="location_search_hint">例如：城市，州，公园，国家</string>
@@ -453,115 +453,117 @@
     <string name="sorry_no_location">抱歉，未找到相关位置信息</string>
     <string name="location_not_found">未能在我们的数据库中找到您所搜索的位置信息。请在位置搜索栏下的选项中选择一个位置，或者清除位置搜索栏中的内容</string>
     <string name="undefined">未定义的</string>
-    <string name="street_segment">Street Segment</string>
-    <string name="intersection">Intersection</string>
-    <string name="town">Town</string>
-    <string name="state">州</string>
-    <string name="county">County</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
+    <string name="street_segment">街道区段</string>
+    <string name="intersection">交叉点</string>
+    <string name="town">镇</string>
+    <string name="state">州（state)</string>
+    <string name="county">县</string>
+    <string name="local_administrative_area">地方管辖区域</string>
     <string name="country">国家</string>
     <string name="island">岛屿</string>
     <string name="airport">机场</string>
-    <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
-    <string name="miscellaneous">Miscellaneous</string>
-    <string name="nationality">Nationality</string>
+    <string name="drainage">下水道</string>
+    <string name="land_feature">地貌特征</string>
+    <string name="miscellaneous">其他</string>
+    <string name="nationality">国籍</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
-    <string name="point_of_interest">Point of Interest</string>
-    <string name="region">Region</string>
-    <string name="colloquial">Colloquial</string>
-    <string name="zone">Zone</string>
-    <string name="historical_state">Historical State</string>
-    <string name="historical_county">Historical County</string>
+    <string name="supername">国家以上的行政区域</string>
+    <string name="point_of_interest">感兴趣的地方</string>
+    <string name="region">区域</string>
+    <string name="colloquial">口语化的</string>
+    <string name="zone">区域</string>
+    <string name="historical_state">旧省份</string>
+    <string name="historical_county">旧郡县</string>
     <string name="continent">大陆</string>
-    <string name="estate">Estate</string>
-    <string name="historical_town">Historical Town</string>
-    <string name="aggregate">Aggregate</string>
-    <string name="open_space">Open Space</string>
-    <string name="territory">Territory</string>
-    <string name="district">District</string>
+    <string name="estate">财产</string>
+    <string name="historical_town">旧城镇</string>
+    <string name="aggregate">聚集</string>
+    <string name="open_space">空地</string>
+    <string name="territory">领土</string>
+    <string name="district">区</string>
     <string name="province">省份</string>
-    <string name="municipality">Municipality</string>
-    <string name="parish">Parish</string>
-    <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
-    <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
-    <string name="division">Division</string>
-    <string name="subdivision">Subdivision</string>
+    <string name="municipality">自治市/区</string>
+    <string name="parish">行政区</string>
+    <string name="department_segment">部门</string>
+    <string name="city_building">城市建筑</string>
+    <string name="commune">合作社</string>
+    <string name="governorate">行省</string>
+    <string name="prefecture">州 (Prefecture)</string>
+    <string name="canton">郡</string>
+    <string name="republic">共和国</string>
+    <string name="division">分区</string>
+    <string name="subdivision">子分区</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">局部街区</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
-    <string name="sum">Sum</string>
-    <string name="shire">Shire</string>
-    <string name="prefecture_city">Prefecture City</string>
+    <string name="sum">区（蒙古）</string>
+    <string name="shire">郡（英国）</string>
+    <string name="prefecture_city">州府</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
-    <string name="local_authority">Local Authority</string>
-    <string name="poblacion">Poblacion</string>
-    <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
-    <string name="dates">Dates</string>
+    <string name="regency">市（印尼）</string>
+    <string name="constituency">选区</string>
+    <string name="local_authority">地方行政区域</string>
+    <string name="poblacion">城区（菲律宾）</string>
+    <string name="delegation">代表</string>
+    <string name="apply_filters">使用搜索条件</string>
+    <string name="reset">重置</string>
+    <string name="show_only_my_observations">只显示我的观察记录</string>
+    <string name="project">项目</string>
+    <string name="user">用户</string>
+    <string name="search_users">搜索用户...</string>
+    <string name="quality_grade">质量级别</string>
+    <string name="dates">日期</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">任意</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
-    <string name="map_area">Map Area</string>
-    <string name="global">Global</string>
+    <string name="to">至</string>
+    <string name="exact_date">精确日期</string>
+    <string name="start">开始</string>
+    <string name="end">结尾</string>
+    <string name="months">月份</string>
+    <string name="choose_months">选择月份</string>
+    <string name="map_area">地图区域</string>
+    <string name="global">全球的</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">在地图所示范围内搜索</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%dm</string>
+    <string name="date_minute">%d分钟前</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dh</string>
+    <string name="date_hour">%d小时前</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%dd</string>
+    <string name="date_day">%d天前</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
-    <string name="discard_comment">Are you sure you want to discard this comment?</string>
-    <string name="leave_comment">Leave a comment...</string>
-    <string name="swipe">Swipe</string>
+    <string name="date_week">%d周前</string>
+    <string name="new_observation">新的观察记录</string>
+    <string name="inactive_taxon">无效分类单元</string>
+    <string name="no_identifications_found">追踪您替其他用户的观察记录所做的鉴定</string>
+    <string name="no_species_found">这份名单显示的是您观察次数最多的物种。\n\n 贴士：地球上有超过九百万的物种，赶快出门开始观察吧！</string>
+    <string name="make_an_observation">提交观察记录</string>
+    <string name="no_observations_found_new">观察记录指的是您在特定的时间和位置和物种个体之间的邂逅</string>
+    <string name="discard_comment">确定放弃评论吗？</string>
+    <string name="leave_comment">添加评论...</string>
+    <string name="swipe">滑动</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
-    <string name="potential_disagreement">Potential Disagreement</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech helped developing the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. More information may be found at visipedia.org</string>
-    <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
-    <string name="just_so_you_know">Just So You Know...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="select_google_account">哪一个 Google 账户？</string>
+    <string name="potential_disagreement">潜在的分歧</string>
+    <string name="do_you_think_this_could_be"><![CDATA[已有的证据是否可以确保这是<b>%1$s</b>？]]></string>
+    <string name="i_dont_know_but"><![CDATA[我不知道，但我确定这是<b>%1$s</b>。]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[不，但这确实属于<b>%1$s</b>。]]></string>
+    <string name="submit">提交</string>
+    <string name="change_password">更改密码</string>
+    <string name="search_projects_youve_joined">搜索您所加入的项目...</string>
+    <string name="must_be_connected_to_load_more_obs">您必须连接到网络才能加载更多观察记录</string>
+    <string name="inat_about_title">iNaturalist 是由美国加利福尼亚科学院以及美国国家地理共同发起的平台。</string>
+    <string name="inat_credits">iNaturalist 是由我们社群中每一个参与者所打造的。参与编写软件，维护系统框架，促进多方合作的同事们有：Joelle Belmonte、Yaron Budowski、Tony Iwane、Patrick Leary、Scott Loarie、Alex Shepard 和 Ken-ichi Ueda。加州理工学院和康奈尔理工学院为开发基于图片的物种鉴定的计算机视觉系统提供了帮助。我们感谢 Grant Van Horn，Serge Belongie 和 Pietro Perona 为此作出的努力。更多信息敬请访问 visipedia.org</string>
+    <string name="credits_title">贡献者</string>
+    <string name="password_changed">您在此应用中设置的密码无法通过验证。您是否在网页版中更改了密码呢？请在此输入新的密码</string>
+    <string name="just_so_you_know">只是让您知道...</string>
+    <string name="ask_for_g_plus_permissions">为了使用您的 Google 账户，Google 要求我们征得访问您通讯录的许可，虽然我们并不会以任何原因访问您的通讯录。如果您不同意该许可，您则需要通过账号-密码来注册或登录。</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[初次访问%1$s? <b>注册吧！</b>]]></string>
+    <string name="see_more_observations">检视更多观察记录</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
+    <string name="collection_and_umbrella_projects">搜集型和统筹型项目</string>
     <string name="description">描述</string>
     <string name="quantity">数量</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -577,69 +579,83 @@
     <string name="new_badge">新的</string>
     <string name="observers">观察者</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">属性</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">取值</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">反对</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">注释</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">附带注释</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">属性名</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">无</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">植物物候</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">生活史阶段</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">性别</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">开花阶段</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">附果阶段</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">花苞阶段</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">成体</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">初成体</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">蛹</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">若虫</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">幼虫</string>
+    <string name="annotation_value_egg">卵</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">幼体</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
+    <string name="annotation_value_subimago">亚成体</string>
+    <string name="annotation_value_female">雌性</string>
+    <string name="annotation_value_male">雄性</string>
+    <string name="joined_projects_all_caps">已加入</string>
+    <string name="nearby_projects_all_caps">周边</string>
+    <string name="featured_projects_all_caps">精选</string>
+    <string name="join_all_caps">加入</string>
+    <string name="my_guides_all_caps">你的</string>
+    <string name="nearby_guides_all_caps">周边</string>
+    <string name="all_guides_all_caps">所有</string>
+    <string name="description_all_caps">描述</string>
+    <string name="quantity_all_caps">数量</string>
+    <string name="observation_count_all_caps">%1$s观察记录们</string>
+    <string name="observation_count_single_all_caps">%1$d观察记录</string>
+    <string name="agree_all_caps">同意</string>
+    <string name="observations_all_caps">观察记录</string>
+    <string name="species_all_caps">物种</string>
+    <string name="people_all_caps">用户</string>
+    <string name="identifiers_all_caps">鉴定者</string>
+    <string name="identifications_all_caps">鉴定记录</string>
+    <string name="news_all_caps">新闻</string>
+    <string name="got_it_all_caps">知道了！</string>
+    <string name="view_all_all_caps">检示所有</string>
+    <string name="new_all_caps">新增</string>
+    <string name="observers_all_caps">观察者</string>
+    <string name="observations_regular">观察记录</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>

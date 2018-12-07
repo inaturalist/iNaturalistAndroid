@@ -250,7 +250,7 @@
     <string name="set_location">Locație</string>
     <string name="coordinates_lat">Lat:</string>
     <string name="coordinates_lon">Long:</string>
-    <string name="coordinates_acc">Acc.</string>
+    <string name="coordinates_acc">Acc. </string>
     <string name="required">* Necesare</string>
     <string name="downloading_observations">Se descarcă observațiile...</string>
     <string name="no_thanks">Nu Mulțumesc</string>
@@ -269,14 +269,14 @@
     <string name="needs_id">Necesită ID</string>
     <string name="research_grade">Grad de cercetare</string>
     <string name="data_quality">Calitatea datelor</string>
-    <string name="casual_grade_add_location"><![CDATA[Adaugă o <b>locație</b> pentru a avansa această observație la starea “Necesită ID”.]]></string>
-    <string name="casual_grade_add_date"><![CDATA[Adaugă o <b>dată</b> pentru a avansa această observație la starea “Necesită ID”.]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[Adaugă o <b>imagine</b> pentru a avansa această observație la starea “Necesită ID”.]]></string>
-    <string name="casual_grade_captive"><![CDATA[Observația are un grad casual deoarece este <b>captivă/cultivatp</b>.]]></string>
-    <string name="needs_id_more_ids"><![CDATA[Observația are nevoie de <b>mai multe identificări</b>de la comunitate pentru a avea status "Grad de Cercetare".]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Adaugă o <b>locație</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Adaugă o <b>dată</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Adaugă o <b>imagine</b> pentru a avansa această observație la starea “Necesită ID”. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Observația are un grad casual deoarece este <b>captivă/cultivatp</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observația are nevoie de <b>mai multe identificări</b>de la comunitate pentru a avea status "Grad de Cercetare". ]]></string>
     <string name="included_in_projects">Inclus în proiectele %1$d</string>
     <string name="included_in_projects_singular">Inclus în proiectul %1$d</string>
-    <string name="geoprivacy_explanation"><![CDATA[Confidențialitatea geografică este o setare pe care o puteți face observațiilor, care controlează felul în care coordonatele spațiale (latitudine și longitudine) sunt afișate. Aici sunt opțiunile: <br/><b>deschide</b> - În cazul în care taxonul nu este amenințat, toată lumea poate vedea coordonatele. <br/><b>obscur</b> - Coordonate publice care sunt aratate ca un punct aleatoriu într-o zonă cu 0,2 grade de 0,2 grade care conține coordonatele reale și care funcționează la o arie de 22x22 km pătrați de incertitudine la ecuator, scăzând pe măsură ce vă apropiați de poli. Coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație.<br/><b>privat</b> - Coordonatele complet ascunse din hartă, coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație. <br/><br/>Reține că cei care au proiecte individuale pot să vadă întotdeauna coordonatele indiferent de setările de confidențialitate geografică, și dacă vă faceți griji cu privire la cine are acces la coordonate are trebui să aveți încredere în persoanele care participă în proiectele în care participați și dumneavoastră.]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ Confidențialitatea geografică este o setare pe care o puteți face observațiilor, care controlează felul în care coordonatele spațiale (latitudine și longitudine) sunt afișate. Aici sunt opțiunile: <br/><b>deschide</b> - În cazul în care taxonul nu este amenințat, toată lumea poate vedea coordonatele. <br/><b>obscur</b> - Coordonate publice care sunt aratate ca un punct aleatoriu într-o zonă cu 0,2 grade de 0,2 grade care conține coordonatele reale și care funcționează la o arie de 22x22 km pătrați de incertitudine la ecuator, scăzând pe măsură ce vă apropiați de poli. Coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație.<br/><b>privat</b> - Coordonatele complet ascunse din hartă, coordonatele adevărate sunt vizibile doar pentru tine și pentru persoanele pe care le-ai adăugat la observație. <br/><br/>Reține că cei care au proiecte individuale pot să vadă întotdeauna coordonatele indiferent de setările de confidențialitate geografică, și dacă vă faceți griji cu privire la cine are acces la coordonate are trebui să aveți încredere în persoanele care participă în proiectele în care participați și dumneavoastră. ]]></string>
     <string name="id_title">%1$s\'s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Șterge</string>
@@ -561,6 +561,8 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
+    <string name="see_more_species">See more species</string>
+    <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Descriere</string>
     <string name="quantity">Cant</string>
@@ -642,4 +644,18 @@
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
+    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="date_specified">Date specified</string>
+    <string name="location_specified">Location specified</string>
+    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="date_is_accurate">Date is accurate</string>
+    <string name="location_is_accurate">Location is accurate</string>
+    <string name="organism_is_wild">Organism is wild</string>
+    <string name="evidence_of_organism">Evidence of organism</string>
+    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
 </resources>
