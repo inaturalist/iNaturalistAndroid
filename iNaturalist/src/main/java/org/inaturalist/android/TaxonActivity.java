@@ -6,20 +6,23 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,17 @@ import android.widget.TextView;
 
 import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -43,8 +57,6 @@ import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -55,11 +67,19 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 import uk.co.senab.photoview.HackyViewPager;
 
@@ -68,6 +88,9 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private static final int MAX_TAXON_PHOTOS = 8;
 
     private static String TAG = "TaxonActivity";
+
+    // The various colors we can use for the lines
+    private static final String[] ATTRIBUTE_LINE_COLORS = { "#FC6910", "#1A63A5", "#006400", "#551A8B", "#FFFF00", "#640000", "#FF69B4" };
 
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
 
@@ -112,10 +135,20 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private ListView mTaxonomyList;
     private ImageView mTaxonicIcon;
     private ViewGroup mTaxonInactive;
+    private TabLayout mSeasonabilityTabLayout;
+    private ViewPager mSeasonabilityViewPager;
+    private ProgressBar mLoadingSeasonability;
+    private ProgressBar mLoadingHistogram;
 
     @State public boolean mMapBoundsSet = false;
     @State public int mTaxonSuggestion = TAXON_SUGGESTION_NONE;
     @State public boolean mIsTaxonomyListExpanded = false;
+    private HistogramReceiver mHistogramReceiver;
+    
+    private List<Integer> mHistogram = null;
+    private List<Integer> mResearchGradeHistogram = null;
+    private TreeMap<String,Map<String,List<Integer>>> mPopularFieldsByAttributes = null;
+    private ArrayList<LineChart> mSeasonabilityGraph;
 
     @Override
     protected void onStart()
@@ -130,6 +163,392 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     {
         super.onStop();
         FlurryAgent.onEndSession(this);
+    }
+
+    private class HistogramReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            BetterJSONObject results;
+
+            results = (BetterJSONObject) intent.getSerializableExtra(intent.getAction());
+
+            Log.d(TAG, "HistogramReceiver - " + intent.getAction());
+
+            if (intent.getAction().equals(INaturalistService.HISTOGRAM_RESULT)) {
+                JSONObject months = results.getJSONObject("results").optJSONObject("month_of_year");
+                List<Integer> monthValues = new ArrayList<>();
+
+                for (int i = 1; i <= 12; i++) {
+                    monthValues.add(months.optInt(String.valueOf(i)));
+                }
+
+                if (intent.getBooleanExtra(INaturalistService.RESEARCH_GRADE, false)) {
+                    mResearchGradeHistogram = monthValues;
+                } else {
+                    mHistogram = monthValues;
+                }
+
+            } else if (intent.getAction().equals(INaturalistService.POPULAR_FIELD_VALUES_RESULT)) {
+                JSONArray values = results.getJSONArray("results").getJSONArray();
+                TreeMap<String, Map<String, List<Integer>>> attributes = new TreeMap<>();
+
+                // Save a list of fields (e.g. flowering, budding, ...) and a list of months for each
+                for (int i = 0; i < values.length(); i++) {
+                    JSONObject value = values.optJSONObject(i);
+
+                    String attributeName = value.optJSONObject("controlled_attribute").optString("label");
+                    String valueName = value.optJSONObject("controlled_value").optString("label");
+
+                    if (!attributes.containsKey(attributeName)) {
+                        attributes.put(attributeName, new HashMap<String, List<Integer>>());
+                    }
+
+                    Map<String, List<Integer>> attribute = attributes.get(attributeName);
+
+
+                    JSONObject months = value.optJSONObject("month_of_year");
+                    List<Integer> monthValues = new ArrayList<>();
+                    for (int c = 1; c <= 12; c++) {
+                        monthValues.add(months.optInt(String.valueOf(c)));
+                    }
+
+                    attribute.put(valueName, monthValues);
+                }
+
+                mPopularFieldsByAttributes = attributes;
+            }
+
+            refreshSeasonality();
+
+        }
+    }
+
+    private void initSeasonabilityCharts() {
+        TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (mPopularFieldsByAttributes == null) {
+                    return;
+                }
+
+                mSeasonabilityViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        };
+        mSeasonabilityTabLayout.setOnTabSelectedListener(tabListener);
+
+        ViewPager.OnPageChangeListener pageListener = new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        };
+        mSeasonabilityViewPager.addOnPageChangeListener(pageListener);
+    }
+
+    private void refreshSeasonality() {
+        if (mPopularFieldsByAttributes == null) {
+            // Results still loading
+            mLoadingSeasonability.setVisibility(View.VISIBLE);
+            mSeasonabilityTabLayout.setVisibility(View.GONE);
+            mSeasonabilityViewPager.setVisibility(View.GONE);
+            return;
+        }
+
+        mLoadingSeasonability.setVisibility(View.GONE);
+        mSeasonabilityTabLayout.setVisibility(View.VISIBLE);
+        mSeasonabilityViewPager.setVisibility(View.VISIBLE);
+
+        mSeasonabilityViewPager.setOffscreenPageLimit(mPopularFieldsByAttributes.size()); // So we wouldn't have to recreate the views every time
+
+        if (mSeasonabilityViewPager.getAdapter() == null) {
+            mSeasonabilityGraph = new ArrayList<LineChart>(Collections.nCopies(mPopularFieldsByAttributes.size() + 1, (LineChart)null));
+
+            SeasonabilityPagerAdapter adapter = new SeasonabilityPagerAdapter(this);
+            mSeasonabilityViewPager.setAdapter(adapter);
+            mSeasonabilityTabLayout.setupWithViewPager(mSeasonabilityViewPager);
+
+            // Add the tabs
+            addTab(0, getString(R.string.seasonality));
+
+            int i = 1;
+            for (String attributeName : mPopularFieldsByAttributes.keySet()) {
+                addTab(i, attributeName);
+                i++;
+            }
+        } else {
+            // Just refresh the data
+            refreshSeasonalityChart(0);
+            int i = 1;
+            for (String attributeName : mPopularFieldsByAttributes.keySet()) {
+                refreshSeasonalityChart(i);
+                i++;
+            }
+        }
+    }
+
+    private void addTab(int position, String tabContent) {
+        TabLayout.Tab tab = mSeasonabilityTabLayout.getTabAt(position);
+        tab.setText(tabContent);
+    }
+
+    private void refreshSeasonalityChart(int position) {
+        LineChart graph = mSeasonabilityGraph.get(position);
+
+        if (graph == null) return;
+
+        if (position > 0) {
+            // Build the data for the chart
+            String attributeName = (String) mPopularFieldsByAttributes.keySet().toArray()[position - 1];
+
+            // Add a line for each possible value of this attribute
+            Map<String, List<Integer>> valuesForAttribute = mPopularFieldsByAttributes.get(attributeName);
+
+            List<ILineDataSet> dataSets = new ArrayList<>();
+            List<Integer> totalCounts = new ArrayList<>(Collections.nCopies(12, 0));
+
+            int c = 0;
+            for (String valueName : valuesForAttribute.keySet()) {
+                List<Integer> months = valuesForAttribute.get(valueName);
+                List<Entry> valuesData = new ArrayList<>();
+
+                for (int i = 0; i < 12; i++) {
+                    valuesData.add(new Entry(i, months.get(i)));
+                    totalCounts.set(i, totalCounts.get(i) + months.get(i));
+                }
+
+                // Add the line
+                LineDataSet lineDataSet = new LineDataSet(valuesData, valueName);
+                lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                lineDataSet.setColor(Color.parseColor(ATTRIBUTE_LINE_COLORS[c]));
+                lineDataSet.setFillColor(Color.parseColor(ATTRIBUTE_LINE_COLORS[c]));
+                lineDataSet.setCircleColor(Color.parseColor(ATTRIBUTE_LINE_COLORS[c]));
+                lineDataSet.setCircleHoleColor(Color.parseColor(ATTRIBUTE_LINE_COLORS[c]));
+                lineDataSet.setDrawValues(false);
+                lineDataSet.setDrawFilled(true);
+                lineDataSet.setHighlightEnabled(false);
+                lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
+                dataSets.add(lineDataSet);
+
+                c++;
+            }
+
+            if (mHistogram != null) {
+                // Add a data set for no annotations
+                List<Entry> valuesData = new ArrayList<>();
+                for (int i = 0; i < 12; i++) {
+                    int noAnnotations = mHistogram.get(i) - totalCounts.get(i);
+                    valuesData.add(new Entry(i, noAnnotations < 0 ? 0 : noAnnotations));
+                }
+                LineDataSet lineDataSet = new LineDataSet(valuesData, getString(R.string.no_annotation));
+                lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                lineDataSet.setColor(Color.parseColor("#D3D3D3"));
+                lineDataSet.setFillColor(Color.parseColor("#D3D3D3"));
+                lineDataSet.setCircleColor(Color.parseColor("#D3D3D3"));
+                lineDataSet.setCircleHoleColor(Color.parseColor("#D3D3D3"));
+                lineDataSet.setDrawFilled(true);
+                lineDataSet.setDrawValues(false);
+                lineDataSet.setHighlightEnabled(false);
+                lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
+                dataSets.add(lineDataSet);
+            }
+
+            LineData data = new LineData(dataSets);
+            graph.setData(data);
+
+        } else if (position == 0) {
+            if ((mHistogram != null) && (mResearchGradeHistogram != null) && (mLoadingHistogram != null)) {
+                mLoadingHistogram.setVisibility(View.GONE);
+                graph.setVisibility(View.VISIBLE);
+
+                List<ILineDataSet> dataSets = new ArrayList<>();
+
+
+                // Add verifiable histogram
+                List<Entry> valuesData = new ArrayList<>();
+
+                for (int i = 0; i < 12; i++) {
+                    valuesData.add(new Entry(i, mHistogram.get(i)));
+                }
+
+                // Add the line
+                LineDataSet lineDataSet = new LineDataSet(valuesData, getString(R.string.verifiable));
+                lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                lineDataSet.setColor(Color.parseColor("#D3D3D3"));
+                lineDataSet.setCircleColor(Color.parseColor("#D3D3D3"));
+                lineDataSet.setCircleHoleColor(Color.parseColor("#D3D3D3"));
+                lineDataSet.setDrawValues(false);
+                lineDataSet.setHighlightEnabled(false);
+                lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
+
+                dataSets.add(lineDataSet);
+
+                // Add research grade histogram
+                valuesData = new ArrayList<>();
+
+                for (int i = 0; i < 12; i++) {
+                    valuesData.add(new Entry(i, mResearchGradeHistogram.get(i)));
+                }
+
+                // Add the line
+                lineDataSet = new LineDataSet(valuesData, getString(R.string.research_grade));
+                lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                lineDataSet.setFillColor(getResources().getColor(R.color.inatapptheme_color));
+                lineDataSet.setDrawFilled(true);
+                lineDataSet.setColor(getResources().getColor(R.color.inatapptheme_color));
+                lineDataSet.setDrawValues(false);
+                lineDataSet.setHighlightEnabled(false);
+                lineDataSet.setCircleColor(getResources().getColor(R.color.inatapptheme_color));
+                lineDataSet.setCircleHoleColor(getResources().getColor(R.color.inatapptheme_color));
+                lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
+                dataSets.add(lineDataSet);
+
+                LineData data = new LineData(dataSets);
+                graph.setData(data);
+
+            } else {
+                if (mLoadingHistogram != null) mLoadingHistogram.setVisibility(View.VISIBLE);
+                graph.setVisibility(View.GONE);
+            }
+        }
+
+
+        // Show X axis as textual months
+        XAxis xAxis = graph.getXAxis();
+        xAxis.setValueFormatter(new MonthAxisFormatter());
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularityEnabled(true);
+        xAxis.setGranularity(1);
+        xAxis.setLabelCount(12, true);
+
+        if ((mObservation != null) && (mObservation.getString("observed_on") != null)) {
+            // Show vertical line where the date of the observation is
+
+            // Position = observed on date
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null;
+            try {
+                date = format.parse(mObservation.getString("observed_on"));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if (date != null) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+                float lastDayMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+                float monthPosition = cal.get(Calendar.MONTH) + (dayOfMonth / lastDayMonth);
+
+                LimitLine ll = new LimitLine(monthPosition, "");
+
+                ll.setLineColor(mHelper.observationColor(new Observation(mObservation)));
+                ll.setLineWidth(1f);
+
+                xAxis.addLimitLine(ll);
+            }
+        }
+
+
+        YAxis yAxis = graph.getAxisLeft();
+        yAxis.setGranularityEnabled(true);
+        yAxis.setGranularity(1);
+        yAxis.setAxisMinimum(0);
+
+        yAxis = graph.getAxisRight();
+        yAxis.setGranularityEnabled(true);
+        yAxis.setGranularity(1);
+        yAxis.setAxisMinimum(0);
+
+        graph.getDescription().setEnabled(false);
+
+        graph.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        graph.getLegend().setFormToTextSpace(5);
+        graph.getLegend().setTextSize(15);
+
+        // Refresh
+        graph.invalidate();
+
+    }
+
+    public class SeasonabilityPagerAdapter extends PagerAdapter {
+        private Context mContext;
+
+        public SeasonabilityPagerAdapter(Context context) {
+            mContext = context;
+        }
+
+        @Override
+        public int getCount() {
+            return mPopularFieldsByAttributes.size() + 1;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup collection, int position) {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.seasonality_graph, collection, false);
+
+            LineChart graph = (LineChart) layout.findViewById(R.id.graph);
+
+            if (position > 0) {
+                // At this point in time, all popular-value based stats are already loaded
+                layout.findViewById(R.id.loading).setVisibility(View.GONE);
+            } else {
+                mLoadingHistogram = (ProgressBar) layout.findViewById(R.id.loading);
+            }
+
+            mSeasonabilityGraph.set(position, graph);
+
+            refreshSeasonalityChart(position);
+
+            collection.addView(layout);
+
+            return layout;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+    }
+
+    public class MonthAxisFormatter implements IAxisValueFormatter {
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            // Show month in localized name (Jan, Feb, etc.) instead of number
+            int month = (int) Math.floor(value);
+
+            SimpleDateFormat format = new SimpleDateFormat("MMM");
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.MONTH, month);
+            String monthName = format.format(cal.getTime());
+
+            return monthName;
+        }
     }
 
     private class TaxonReceiver extends BroadcastReceiver {
@@ -150,7 +569,6 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             if (taxon == null) {
                 // Connection error
-                // TODO
                 return;
             }
 
@@ -213,6 +631,10 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         }
 
         setContentView(R.layout.taxon_page);
+
+        mSeasonabilityTabLayout = (TabLayout) findViewById(R.id.seasonability_tabs);
+        mSeasonabilityViewPager = (ViewPager) findViewById(R.id.seasonability_view_pager);
+        mLoadingSeasonability = (ProgressBar) findViewById(R.id.loading_seasonability);
 
         mScrollView = (ScrollView) findViewById(R.id.scroll_view);
         mPhotosContainer = (ViewGroup) findViewById(R.id.taxon_photos_container);
@@ -360,6 +782,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         loadTaxon();
+
+        initSeasonabilityCharts();
     }
 
     private String conservationStatusCodeToName(String code) {
@@ -580,6 +1004,30 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
             ContextCompat.startForegroundService(this, serviceIntent);
         }
+
+        //
+        // Get histogram data
+        //
+
+        mHistogramReceiver = new HistogramReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.HISTOGRAM_RESULT);
+        filter.addAction(INaturalistService.POPULAR_FIELD_VALUES_RESULT);
+        BaseFragmentActivity.safeRegisterReceiver(mHistogramReceiver, filter, this);
+
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_HISTOGRAM, null, this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
+        ContextCompat.startForegroundService(this, serviceIntent);
+
+        serviceIntent = new Intent(INaturalistService.ACTION_GET_HISTOGRAM, null, this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
+        serviceIntent.putExtra(INaturalistService.RESEARCH_GRADE, true);
+        ContextCompat.startForegroundService(this, serviceIntent);
+
+        serviceIntent = new Intent(INaturalistService.ACTION_GET_POPULAR_FIELD_VALUES, null, this, INaturalistService.class);
+        serviceIntent.putExtra(INaturalistService.TAXON_ID, mTaxon.getInt("id"));
+        ContextCompat.startForegroundService(this, serviceIntent);
+
+        refreshSeasonality();
     }
 
 

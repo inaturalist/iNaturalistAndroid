@@ -124,6 +124,8 @@ public class INaturalistService extends IntentService {
     public static final String FIELD_ID = "field_id";
     public static final String COMMENT_ID = "comment_id";
     public static final String OBSERVATION_RESULT = "observation_result";
+    public static final String HISTOGRAM_RESULT = "histogram_result";
+    public static final String POPULAR_FIELD_VALUES_RESULT = "popular_field_values_result";
     public static final String USER_OBSERVATIONS_RESULT = "user_observations_result";
     public static final String USER_SEARCH_OBSERVATIONS_RESULT = "user_search_observations_result";
     public static final String OBSERVATION_JSON_RESULT = "observation_json_result";
@@ -161,6 +163,7 @@ public class INaturalistService extends IntentService {
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
+    public static final String RESEARCH_GRADE = "research_grade";
     public static final String TAXON = "taxon";
     public static final String UUID = "uuid";
     public static final String NETWORK_SITE_ID = "network_site_id";
@@ -221,6 +224,8 @@ public class INaturalistService extends IntentService {
             android.os.Build.DEVICE + " " +
             android.os.Build.MODEL + " " +
             android.os.Build.PRODUCT + ")";
+    public static String ACTION_GET_HISTOGRAM = "action_get_histogram";
+    public static String ACTION_GET_POPULAR_FIELD_VALUES = "action_get_popular_field_values";
     public static String ACTION_REGISTER_USER = "register_user";
     public static String ACTION_PASSIVE_SYNC = "passive_sync";
     public static String ACTION_GET_ADDITIONAL_OBS = "get_additional_observations";
@@ -505,6 +510,26 @@ public class INaturalistService extends IntentService {
                 if (!success) throw new SyncFailedException();
                 syncObservationFields();
                 postProjectObservations();
+
+            } else if (action.equals(ACTION_GET_HISTOGRAM)) {
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                boolean researchGrade = intent.getBooleanExtra(RESEARCH_GRADE, false);
+                BetterJSONObject results = getHistogram(taxonId, researchGrade);
+
+                Intent reply = new Intent(HISTOGRAM_RESULT);
+                reply.putExtra(HISTOGRAM_RESULT, results);
+                reply.putExtra(RESEARCH_GRADE, researchGrade);
+
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_GET_POPULAR_FIELD_VALUES)) {
+                int taxonId = intent.getIntExtra(TAXON_ID, 0);
+                BetterJSONObject results = getPopularFieldValues(taxonId);
+
+                Intent reply = new Intent(POPULAR_FIELD_VALUES_RESULT);
+                reply.putExtra(POPULAR_FIELD_VALUES_RESULT, results);
+
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_AGREE_ID)) {
                 int observationId = intent.getIntExtra(OBSERVATION_ID, 0);
@@ -1753,6 +1778,48 @@ public class INaturalistService extends IntentService {
 
         c.close();
 
+    }
+
+    private BetterJSONObject getHistogram(int taxonId, boolean researchGrade) throws AuthenticationException {
+        String url = String.format("%s/observations/histogram?taxon_id=%d&", API_HOST, taxonId);
+
+        if (researchGrade) {
+            url += "quality_grade=research";
+        } else {
+            url += "verifiable=true";
+        }
+
+        JSONArray json = get(url);
+        if (json == null || json.length() == 0) {
+            return null;
+        }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private BetterJSONObject getPopularFieldValues(int taxonId) throws AuthenticationException {
+        String url = String.format("%s/observations/popular_field_values?taxon_id=%d&verifiable=true", API_HOST, taxonId);
+
+        JSONArray json = get(url);
+        if (json == null || json.length() == 0) {
+            return null;
+        }
+
+        JSONObject res;
+
+        try {
+            res = (JSONObject) json.get(0);
+            return new BetterJSONObject(res);
+        } catch (JSONException e) {
+            return null;
+        }
     }
 
     private BetterJSONObject getTaxonSuggestions(String photoFilename, Double latitude, Double longitude, Timestamp observedOn) throws AuthenticationException {
