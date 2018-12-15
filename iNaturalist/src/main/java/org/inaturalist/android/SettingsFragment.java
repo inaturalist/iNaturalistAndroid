@@ -38,6 +38,7 @@ import java.io.IOException;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
+    private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android";
 
     private Preference mUsernamePreference;
     private CheckBoxPreference mAutoSyncPreference;
@@ -47,6 +48,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mContactSupport;
     private Preference mVersion;
     private Preference mAbout;
+    private Preference mDonate;
 
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
@@ -75,6 +77,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mNetworkPreference = (Preference) getPreferenceManager().findPreference("inat_network");
         mContactSupport = (Preference) getPreferenceManager().findPreference("contact_support");
         mAbout = (Preference) getPreferenceManager().findPreference("about");
+        mDonate = (Preference) getPreferenceManager().findPreference("donate");
         mVersion = (Preference) getPreferenceManager().findPreference("version");
 
         mHelper = new ActivityHelper(getActivity());
@@ -254,6 +257,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
             }
         });
+
+        mDonate.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                // Open donation page
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(DONATION_URL));
+                startActivity(browserIntent);
+                return false;
+            }
+        });
+
 
         // Show app version
         try {

@@ -52,6 +52,11 @@
         android:title="@string/about_this_app" />
 
      <Preference
+        android:layout="@layout/custom_preference"
+        android:key="donate"
+        android:title="@string/donate_to_inaturalist" />
+
+     <Preference
         android:layout="@layout/custom_preference_with_header"
         android:key="version"
         android:summary="1.2.3 (456)"

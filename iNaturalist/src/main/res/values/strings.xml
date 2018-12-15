@@ -661,5 +661,6 @@
     <string name="seasonality">Seasonality</string>
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>
 
