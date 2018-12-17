@@ -38,7 +38,7 @@ import java.io.IOException;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
-    private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android";
+    private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
 
     private Preference mUsernamePreference;
     private CheckBoxPreference mAutoSyncPreference;
