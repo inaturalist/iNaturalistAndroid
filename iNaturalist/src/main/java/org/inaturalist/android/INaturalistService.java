@@ -387,6 +387,8 @@ public class INaturalistService extends IntentService {
     public void onCreate() {
         super.onCreate();
 
+        Log.i(TAG, "Service onCreate");
+
         startIntentForeground();
     }
 
@@ -402,11 +404,13 @@ public class INaturalistService extends IntentService {
 
     private void startIntentForeground() {
         if (Build.VERSION.SDK_INT >= 26) {
+            Log.i(TAG, "Service startIntentForeground");
+
             // See: https://stackoverflow.com/a/46449975/1233767
-            String CHANNEL_ID = "my_channel_01";
+            String CHANNEL_ID = "inaturalist_service";
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     "Channel human readable title",
-                    NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager.IMPORTANCE_LOW);
 
             ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
 
