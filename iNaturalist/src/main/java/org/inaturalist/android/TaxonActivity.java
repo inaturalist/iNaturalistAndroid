@@ -90,7 +90,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     private static String TAG = "TaxonActivity";
 
     // The various colors we can use for the lines
-    private static final String[] ATTRIBUTE_LINE_COLORS = { "#FC6910", "#1A63A5", "#006400", "#551A8B", "#FFFF00", "#640000", "#FF69B4" };
+    private static final String[] ATTRIBUTE_LINE_COLORS = { "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf" };
 
     private static final int TAXON_SEARCH_REQUEST_CODE = 302;
 
@@ -439,6 +439,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         xAxis.setGranularityEnabled(true);
         xAxis.setGranularity(1);
         xAxis.setLabelCount(12, true);
+        xAxis.setDrawGridLines(false);
 
         if ((mObservation != null) && (mObservation.getString("observed_on") != null)) {
             // Show vertical line where the date of the observation is
@@ -460,6 +461,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
                 float monthPosition = cal.get(Calendar.MONTH) + (dayOfMonth / lastDayMonth);
 
+                if (monthPosition > 11) monthPosition = 11;
+
                 LimitLine ll = new LimitLine(monthPosition, "");
 
                 ll.setLineColor(mHelper.observationColor(new Observation(mObservation)));
@@ -474,17 +477,22 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         yAxis.setGranularityEnabled(true);
         yAxis.setGranularity(1);
         yAxis.setAxisMinimum(0);
+        yAxis.setDrawGridLines(false);
 
         yAxis = graph.getAxisRight();
         yAxis.setGranularityEnabled(true);
         yAxis.setGranularity(1);
         yAxis.setAxisMinimum(0);
+        yAxis.setDrawGridLines(false);
+
 
         graph.getDescription().setEnabled(false);
 
-        graph.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        graph.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         graph.getLegend().setFormToTextSpace(5);
         graph.getLegend().setTextSize(15);
+
+        graph.animateXY(500, 500);
 
         // Refresh
         graph.invalidate();
