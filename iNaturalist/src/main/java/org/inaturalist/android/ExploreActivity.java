@@ -755,6 +755,8 @@ public class ExploreActivity extends BaseFragmentActivity {
 
 
     private void refreshFilterBar(TextView filterBar) {
+        if (mSearchFilters == null) return;
+
         if (!mSearchFilters.isDirty()) {
             // Filters are default - don't display the filter bar
             filterBar.setVisibility(View.GONE);
@@ -1559,6 +1561,8 @@ public class ExploreActivity extends BaseFragmentActivity {
     }
 
     private void moveMapAccordingToSearchFilters() {
+        if (mSearchFilters == null) return;
+
         if (mSearchFilters.place != null) {
             // New place selected for search - zoom the map to that location
             zoomMapToPlace(mSearchFilters.place);
