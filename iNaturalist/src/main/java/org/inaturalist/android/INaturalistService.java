@@ -1020,7 +1020,7 @@ public class INaturalistService extends IntentService {
                 JSONObject observations = getUserObservations(username);
 
                 Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
-                mApp.setServiceResult(USER_OBSERVATIONS_RESULT, new BetterJSONObject(observations));
+                mApp.setServiceResult(USER_OBSERVATIONS_RESULT, observations != null ? new BetterJSONObject(observations) : null);
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 reply.putExtra(USERNAME, username);
                 sendBroadcast(reply);
