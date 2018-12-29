@@ -4811,12 +4811,23 @@ public class INaturalistService extends IntentService {
         if (!mPassive) {
             throw new AuthenticationException();
         }
-        stopSelf();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            stopForeground(true);
+        } else {
+            stopSelf();
+        }
+
         return false;
     }
 
     private void requestCredentials() {
-        stopSelf();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            stopForeground(true);
+        } else {
+            stopSelf();
+        }
+
         mApp.sweepingNotify(AUTH_NOTIFICATION, getString(R.string.please_sign_in), getString(R.string.please_sign_in_description), null);
     }
 
