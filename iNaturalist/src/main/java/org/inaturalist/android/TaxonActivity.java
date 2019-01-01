@@ -274,8 +274,6 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         mSeasonabilityTabLayout.setVisibility(View.VISIBLE);
         mSeasonabilityViewPager.setVisibility(View.VISIBLE);
 
-        mSeasonabilityViewPager.setOffscreenPageLimit(mPopularFieldsByAttributes.size()); // So we wouldn't have to recreate the views every time
-
         if (mSeasonabilityViewPager.getAdapter() == null) {
             mSeasonabilityGraph = new ArrayList<LineChart>(Collections.nCopies(mPopularFieldsByAttributes.size() + 1, (LineChart)null));
 
@@ -291,6 +289,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 addTab(i, attributeName);
                 i++;
             }
+
+            mSeasonabilityViewPager.setOffscreenPageLimit(mPopularFieldsByAttributes.size()); // So we wouldn't have to recreate the views every time
         } else {
             // Just refresh the data
             refreshSeasonalityChart(0);
