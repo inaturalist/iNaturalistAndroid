@@ -18,9 +18,9 @@
     <string name="username_invalid">Username or password was invalid, please sign in again.</string>
     <string name="signing_in">Signing in...</string>
     <string name="signed_in">Signed in!</string>
-    <string name="please_sign_in">Please sign in</string>
-    <string name="please_sign_in_description">Please sign in to your iNaturalist account or sign up for a new one.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
+    <string name="please_sign_in">Please sign in </string>
+    <string name="please_sign_in_description">Please sign innto your iNaturalist account or sign up for a new one.</string>
+    <string name="please_enable_location_services">Please enable your location services in order to find your current location...</string>
     <string name="go_to_settings">Go to Settings</string>
     <string name="photo_not_specified">Photo not specified</string>
     <string name="set_date">Date</string>
@@ -658,4 +658,8 @@
     <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
     <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="seasonality">Seasonality</string>
+    <string name="verifiable">Verifiable</string>
+    <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>

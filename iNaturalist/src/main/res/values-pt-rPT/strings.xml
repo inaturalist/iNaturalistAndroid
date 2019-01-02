@@ -561,9 +561,9 @@
     <string name="ask_for_g_plus_permissions">O Google requer que solicitemos permissão para aceder aos seus contatos para usar a sua Conta do Google, embora não acedemos aos seus contatos por nenhuma razão. Se negar essa permissão, terá de se registar ou iniciar sessão com um nome de utilizador e palavra-passe.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Novo no %1$s? <b>Regista-se agora!</b>]]></string>
     <string name="see_more_observations">Ver mais observações</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="see_more_species">Ver mais espécies</string>
+    <string name="see_more_identifications">Ver mais identificações</string>
+    <string name="collection_and_umbrella_projects">Coleção e Projetos Umbrela</string>
     <string name="description">Descrição</string>
     <string name="quantity">Quantidade</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -579,9 +579,9 @@
     <string name="new_badge">Novo</string>
     <string name="observers">Observadores</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Atributo</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Valor</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">Discorda(m)</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
@@ -593,21 +593,21 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Nenhuma</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Fenologia da Planta</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Fase da Vida</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Género</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Floração</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Frutificação</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Brotamento</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Estágio Teneral</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Pupa</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
@@ -618,44 +618,48 @@
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenil</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_subimago">Estágio Subimago</string>
     <string name="annotation_value_female">Fêmea</string>
     <string name="annotation_value_male">Macho</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
+    <string name="joined_projects_all_caps">A QUE ADERIU</string>
+    <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
+    <string name="featured_projects_all_caps">EM DESTAQUE</string>
+    <string name="join_all_caps">ADERIR</string>
+    <string name="my_guides_all_caps">OS MEUS</string>
+    <string name="nearby_guides_all_caps">NAS PROXIMIDADES</string>
+    <string name="all_guides_all_caps">TODOS</string>
+    <string name="description_all_caps">DESCRIÇÃO</string>
+    <string name="quantity_all_caps">QUANTIDADE</string>
     <string name="observation_count_all_caps">%1$s OBSERVAÇÕES</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
+    <string name="observation_count_single_all_caps">%1$d OBSERVAÇÃO</string>
+    <string name="agree_all_caps">CONCORDO</string>
     <string name="observations_all_caps">OBSERVAÇÕES</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
+    <string name="species_all_caps">ESPÉCIES</string>
+    <string name="people_all_caps">PESSOAS</string>
+    <string name="identifiers_all_caps">IDENTIFICADORES</string>
+    <string name="identifications_all_caps">IDENTIFICAÇÕES</string>
     <string name="news_all_caps">NOTÍCIAS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
+    <string name="got_it_all_caps">PERCEBI!</string>
     <string name="view_all_all_caps">VER TODOS</string>
-    <string name="new_all_caps">NEW</string>
+    <string name="new_all_caps">NOVO</string>
     <string name="observers_all_caps">OBSERVADORES</string>
     <string name="observations_regular">Observações</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="data_quality_assessment">Avaliação da Qualidade dos Dados</string>
+    <string name="research_grade_qualification">Qualificação do Grau de Pesquisa</string>
+    <string name="date_specified">Data especificada</string>
+    <string name="location_specified">Localização especificada</string>
+    <string name="has_photos_or_sounds">Tem fotos ou sons</string>
+    <string name="has_id_supported_by_two_or_more">Tem Identificação suportada por dois ou mais</string>
+    <string name="date_is_accurate">A Data é precisa</string>
+    <string name="location_is_accurate">A Localização é precisa</string>
+    <string name="organism_is_wild">O organismo é selvagem</string>
+    <string name="evidence_of_organism">Evidência de organismo</string>
+    <string name="recent_evidence_of_an_organism">Evidência recente de um organismo</string>
+    <string name="community_id_at_species_level_or_lower">Identificação pela Comunidade ao nível da espécie ou inferior</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Com base nas evidências, pode a Identificação pela Comunidade ser confirmada ou melhorada?</string>
+    <string name="no_as_good_as_it_can_be">Não, está tão bom como pode ser</string>
+    <string name="seasonality">Seasonality</string>
+    <string name="verifiable">Verifiable</string>
+    <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>
