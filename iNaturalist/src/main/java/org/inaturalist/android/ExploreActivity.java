@@ -1407,7 +1407,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mObservationsMapMyLocation.setVisibility(mApp.isLocationPermissionGranted() ? View.VISIBLE : View.INVISIBLE);
 
                 if (mLastMapBounds == null) {
-                    if (mApp.isLocationPermissionGranted() && (mSearchFilters.isCurrentLocation)) {
+                    if (mApp.isLocationPermissionGranted() && (mSearchFilters != null) && (mSearchFilters.isCurrentLocation)) {
                         // Initially zoom to current location
                         mObservationsMapMyLocation.performClick();
                     } else {
