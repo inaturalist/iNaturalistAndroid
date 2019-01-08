@@ -308,6 +308,8 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     }
 
     private void refreshSeasonalityChart(int position) {
+        if (position >= mSeasonabilityGraph.size()) return;
+
         LineChart graph = mSeasonabilityGraph.get(position);
 
         if (graph == null) return;
