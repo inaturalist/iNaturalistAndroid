@@ -124,7 +124,7 @@
     <string name="delete_confirmation">Segur que vols esborrar aquesta observació?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guies</string>
-    <string name="my_guides">Vostres</string>
+    <string name="my_guides">Vostre</string>
     <string name="nearby_guides">Properes</string>
     <string name="all_guides">Totes</string>
     <string name="no_taxa">No s\'han trobat taxons per aquesta guía!</string>
@@ -625,7 +625,7 @@
     <string name="nearby_projects_all_caps">PROPER</string>
     <string name="featured_projects_all_caps">DESTACAT</string>
     <string name="join_all_caps">UNIU-VOS</string>
-    <string name="my_guides_all_caps">VOSTRES</string>
+    <string name="my_guides_all_caps">VOSTRE</string>
     <string name="nearby_guides_all_caps">PROPER</string>
     <string name="all_guides_all_caps">TOTS</string>
     <string name="description_all_caps">DESCRIPCIÓ</string>
@@ -644,18 +644,22 @@
     <string name="new_all_caps">NOU</string>
     <string name="observers_all_caps">OBSERVADORS</string>
     <string name="observations_regular">Observacions</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="data_quality_assessment">Avaluació de la qualitat de dades</string>
+    <string name="research_grade_qualification">Qualificat com a Grau de Recerca</string>
+    <string name="date_specified">Data especificada</string>
+    <string name="location_specified">Localització especificada</string>
+    <string name="has_photos_or_sounds">Té fotos o sons</string>
+    <string name="has_id_supported_by_two_or_more">Té una ID recolzada per dos o més</string>
+    <string name="date_is_accurate">La data és acurada</string>
+    <string name="location_is_accurate">La localització és acurada</string>
+    <string name="organism_is_wild">Organisme salvatge</string>
+    <string name="evidence_of_organism">Evidència de l\'organisme</string>
+    <string name="recent_evidence_of_an_organism">Evidència recent d\'un organisme</string>
+    <string name="community_id_at_species_level_or_lower">ID de la comunitat a nivell específic o inferior</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Basat en l\'evidència, pot confirmar o millorar la ID de la Comunitat?</string>
+    <string name="no_as_good_as_it_can_be">No, és el millor que pot ser</string>
+    <string name="seasonality">Seasonality</string>
+    <string name="verifiable">Verifiable</string>
+    <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>

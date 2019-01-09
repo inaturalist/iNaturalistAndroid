@@ -84,7 +84,7 @@
     <string name="no">Ei</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Hyväksy?</string>
-    <string name="no_comments">Ei kommentteja/määrityksiä vielä</string>
+    <string name="no_comments">Ei kommentteja/tunnistuksia vielä</string>
     <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
     <string name="you">sinä</string>
     <string name="add_comment">Lisää kommentti</string>
@@ -155,7 +155,7 @@
     <string name="skip_for_now">Ohita toistaiseksi</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Havaittu</item>
+        <item>Havaitse</item>
         <item>Jaa</item>
         <item>Opi</item>
         <item>Avusta</item>
@@ -172,7 +172,7 @@
         <item>Piilotettu</item>
         <item>Yksityinen</item>
     </string-array>
-    <string name="alert_sign_out">Haluatko varmasti kirjautua ulos? Tämä tulee poistamaan kaikki havaintosi tässä laitteessa. Se ei vaikuta havaintoihin, jotka olet ladannut iNaturalistiin.</string>
+    <string name="alert_sign_out">Haluatko varmasti kirjautua ulos? Tämä tulee poistamaan kaikki havaintosi tässä laitteessa. Se ei vaikuta havaintoihin, jotka olet tallentanut iNaturalistiin.</string>
     <string name="alert_unsupported_media_type">Ongelma ladatessa kuvaa tästä lähteestä</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Tutki</string>
@@ -257,9 +257,9 @@
     <string name="turn_on">Ota käyttöön</string>
     <string name="introducing_auto_sync">Esittelyssä Auto-Sync!</string>
     <string name="turn_on_auto_sync">Ota automaattinen synkronointi käyttöön asetuksissa ja havaintosi tallennetaan automaattisesti iNaturalistiin.</string>
-    <string name="automatic_upload">Automaattinen lähetys (Automaattinen synkronointi)</string>
-    <string name="waiting_to_upload">Odotetaan lähettämistä...</string>
-    <string name="uploading">Lähetetään...</string>
+    <string name="automatic_upload">Automaattitallennus (Automaattinen synkronointi)</string>
+    <string name="waiting_to_upload">Odotetaan tallentamista...</string>
+    <string name="uploading">Tallennetaan...</string>
     <string name="failed_to_add_to_project">Virhe lisätessä projektiin \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Tarvitsee huomiotasi...</string>
     <string name="observation">Havainto</string>
@@ -273,14 +273,14 @@
     <string name="casual_grade_add_date"><![CDATA[ Lisää <b>päivämäärä</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Lisää <b>kuva</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Havainto on rentoasteinen koska se on <b>vangittu/viljelty</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Havainto tarvitsee <b>lisää tunnistamisia</b> yhteisöltä tullakseen "Tutkimusaste" tilaan. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Havainto tarvitsee <b>lisää tunnistuksia</b> yhteisöltä tullakseen "Tutkimusaste" tilaan. ]]></string>
     <string name="included_in_projects">Sisältyy %1$d projektiin</string>
     <string name="included_in_projects_singular">Sisältyy %1$d projektiin</string>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s:n tunniste • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Poista</string>
-    <string name="delete_id">Peruuta tunnistaminen</string>
+    <string name="delete_id">Peruuta tunnistus</string>
     <string name="delete_comment">Poista kommentti</string>
     <string name="delete_id_message">Haluatko varmasti peruuttaa tämän tunnistamisen?</string>
     <string name="delete_comment_message">Haluatko varmasti poistaa tämän kommentin?</string>
@@ -314,7 +314,7 @@
     <string name="couldnt_load_project_details">Ei voida ladata projektin tietoja: %1$s</string>
     <string name="no_people_found">Ihmistä ei löytynyt</string>
     <string name="rank">Sija</string>
-    <string name="identifications">Tunnistamiset</string>
+    <string name="identifications">Tunnistukset</string>
     <string name="no_news_found">Uutiseriä ei löytynyt</string>
     <string name="news">Uutiset</string>
     <string name="article">Artikkeli</string>
@@ -338,11 +338,11 @@
     <string name="logged_in_as_html"><![CDATA[Kirjautunut sisään nimellä <b>%1$s</b>]]></string>
     <string name="log_out">Kirjaudu ulos</string>
     <string name="not_logged_in">Ei sisäänkirjautuneena</string>
-    <string name="auto_upload_description">Lähetä automaattisesti uudet havainnot ja muokkaukset havaintoihin</string>
+    <string name="auto_upload_description">Tallenna automaattisesti uudet havainnot ja muokkaukset havaintoihin</string>
     <string name="language">Kieli</string>
     <string name="version">Versio</string>
     <string name="inat_network">iNaturalist Network -verkko</string>
-    <string name="inat_network_description">iNaturalist Network -verkko on kehys iNaturalist-yhteisön lokalisoimiseksi kansallisella asteikolla. Tällainen kansallinen keskittyminen voi auttaa tekemään luonnosta helpommin saatavan eri taustaisille ihmisille.</string>
+    <string name="inat_network_description">iNaturalist Network -verkko on kehys iNaturalist-yhteisön paikallistamiseksi kansallisilla asteikoilla. Tällainen kansallinen kohdistaminen voi auttaa tekemään luonnosta avoimemman eri taustaisille ihmisille.</string>
     <string name="more_info">Lisätietoja</string>
     <string name="select_network">Valitse verkko</string>
     <string name="help">Apua</string>
@@ -353,15 +353,15 @@
     <string name="syncing_observation_fields">Synkronoidaan havaintokenttiä...</string>
     <string name="syncing_observations">Synkronoidaan havaintoja...</string>
     <string name="syncing_paused">Keskeytetty</string>
-    <string name="upload">Lataa</string>
+    <string name="upload">Tallenna</string>
     <string name="search_observations">Hae havaintoja...</string>
     <string name="withdraw">Peruuta</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="update_id_description">Päivitä tunnistamisen kuvaus</string>
+    <string name="update_id_description">Päivitä tunnistuksen kuvaus</string>
     <string name="your_identification">Tunnisteesi: %1$s</string>
     <string name="onboarding_species_name">Nimeä näkemäsi jos voit, mutta on OK jos et voi. Muut saattavat auttaa sinua tunnistamaan sen!</string>
-    <string name="upload_complete">Lähetys onnistui!</string>
-    <string name="onboarding_upload_description">Tarkista pian uudelleen tunnistamiset ja kommentit havainno(i)ssasi.</string>
+    <string name="upload_complete">Tallennus onnistui!</string>
+    <string name="onboarding_upload_description">Tarkista pian uudelleen tunnistukset ja kommentit havainno(i)ssasi.</string>
     <string name="importing_photos">Tuodaan kuva/kuvia...</string>
     <string name="multi_select_description">Tuo monia kuvia pitkään painamalla yksittäisessä kuvassa</string>
     <string name="preparing_photo">Valmistellaan kuvaa...</string>
@@ -399,7 +399,7 @@
     <string name="you_will_only_receive_updates_when_following">(Saat päivityksiä vain, kun seuraat havaintoja)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> ehdotti tunnisteen: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommentoi: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">Näyttää siltä, että poistit valokuvan tyhjentämällä sovelluksen välimuistin ennen lataamista. Sinun on lisättävä kuva takaisin havaintoosi galleristasi. Tulevaisuudessa, varmista, että olet ladannut kaikki valokuvasi ennen sovelluksen välimuistin tyhjentämistä.</string>
+    <string name="deleted_photos_from_cache_error">Näyttää siltä, että poistit valokuvan tyhjentämällä sovelluksen välimuistin ennen tallentamista. Sinun on lisättävä kuva takaisin havaintoosi galleristasi. Tulevaisuudessa, varmista, että olet tallentanut kaikki valokuvasi ennen sovelluksen välimuistin tyhjentämistä.</string>
     <string name="new_activities">%1s uutta</string>
     <string name="no_results_found">Tuloksia ei löytynyt...</string>
     <string name="syncing_x_out_of_y_observations">Synkronoidaan %1$d/%2$d havaintoa...</string>
@@ -536,7 +536,7 @@
     <string name="date_week">%dw</string>
     <string name="new_observation">Uusi havainto</string>
     <string name="inactive_taxon">Epäaktiivinen taksoni</string>
-    <string name="no_identifications_found">Ehdottamasi jälkitunnistamiset muiden henkilöiden havainnoille täällä.</string>
+    <string name="no_identifications_found">Ehdottamasi jälkitunnistukset muiden henkilöiden havainnoille täällä.</string>
     <string name="no_species_found">Tämä on lista lajeista, joita olet havainnut eniten.\n\nTiedoksi: Planeetalla on noin 9 miljoonaa lajia, joten mene ulos havaitsemaan niitä!</string>
     <string name="make_an_observation">Tee havainto</string>
     <string name="no_observations_found_new">Havainnot ovat merkintöjä kohtaamisistasi yksittäisten eliöiden kanssa tiettyinä aikoina ja sijainneissa.</string>
@@ -559,10 +559,10 @@
     <string name="password_changed">Sovelluksen käyttämä salasana ei enää toimi - vaihdoitko salasanasi verkkosivulla? Kirjoita uusi täällä</string>
     <string name="just_so_you_know">Just So You Know...</string>
     <string name="ask_for_g_plus_permissions">Google vaatii meitä kysymään lupaa päästä yhteystietoihisi käyttääksemme Google-tiliäsi, vaikka emme käytä yhteystietojasi mistään syystä. Jos kiellät tämän luvan, sinun täytyy rekisteröityä tai kirjautua käyttämällä käyttäjänimeä ja salasanaa.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[Uusi %1$s ssa? <b>Rekisteröidy nyt!</b>]]></string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Uusi %1$sissa? <b>Rekisteröidy nyt!</b>]]></string>
     <string name="see_more_observations">Näytä lisää havaintoja</string>
     <string name="see_more_species">Näytä enemmän lajeja</string>
-    <string name="see_more_identifications">Näytä enemmän tunnistamisia</string>
+    <string name="see_more_identifications">Näytä enemmän tunnistuksia</string>
     <string name="collection_and_umbrella_projects">Kokoelma- ja sateenvarjoprojektit</string>
     <string name="description">Kuvaus</string>
     <string name="quantity">Määrä</string>
@@ -623,7 +623,7 @@
     <string name="annotation_value_male">Koiras</string>
     <string name="joined_projects_all_caps">LIITYTTY</string>
     <string name="nearby_projects_all_caps">LÄHELLÄ</string>
-    <string name="featured_projects_all_caps">ESILLÄ</string>
+    <string name="featured_projects_all_caps">SUOSITELLUT</string>
     <string name="join_all_caps">LIITY</string>
     <string name="my_guides_all_caps">SINUN</string>
     <string name="nearby_guides_all_caps">LÄHELLÄ</string>
@@ -637,25 +637,29 @@
     <string name="species_all_caps">LAJIA</string>
     <string name="people_all_caps">IHMISET</string>
     <string name="identifiers_all_caps">TUNNISTAJAA</string>
-    <string name="identifications_all_caps">TUNNISTAMISTA</string>
+    <string name="identifications_all_caps">TUNNISTUSTA</string>
     <string name="news_all_caps">UUTISET</string>
     <string name="got_it_all_caps">SELVÄ!</string>
     <string name="view_all_all_caps">NÄYTÄ KAIKKI</string>
     <string name="new_all_caps">UUSI</string>
-    <string name="observers_all_caps">HAVANNOIJAA</string>
+    <string name="observers_all_caps">HAVAINNOIJAA</string>
     <string name="observations_regular">Havaintoa</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="data_quality_assessment">Tietojen laadunarviointi</string>
+    <string name="research_grade_qualification">Tutkimusasteen pätevyys</string>
+    <string name="date_specified">Päivämäärä määritetty</string>
+    <string name="location_specified">Sijainti määritetty</string>
+    <string name="has_photos_or_sounds">On kuvia tai ääniä</string>
+    <string name="has_id_supported_by_two_or_more">Onko tunnistetta kannattamassa kaksi tai enemmän</string>
     <string name="date_is_accurate">Päivämäärä on oikea</string>
     <string name="location_is_accurate">Sijainti on oikea</string>
     <string name="organism_is_wild">Eliö on villi</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="evidence_of_organism">Todiste eliöstä</string>
+    <string name="recent_evidence_of_an_organism">Viimeaikaiset todisteet eliöstä</string>
     <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Perustuen näyttöön, voiko yhteisön tunnistetta edelleen vahvistaa tai parantaa?</string>
     <string name="no_as_good_as_it_can_be">Ei, se on niin hyvä kuin se voi olla</string>
+    <string name="seasonality">Seasonality</string>
+    <string name="verifiable">Verifiable</string>
+    <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>

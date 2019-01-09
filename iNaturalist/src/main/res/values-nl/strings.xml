@@ -112,13 +112,13 @@
     <string name="search_guides">Zoek in gidsen...</string>
     <string name="save_observation">Waarneming opslaan</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">Over</string>
+    <string name="about_guide_all_caps">OVER</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">Over</string>
+    <string name="about_project_all_caps">OVER</string>
+    <string name="about_this_app">Over</string>
+    <string name="about_taxon_short">Over</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacy</string>
     <string name="delete_confirmation">Weet u zeker dat u deze waarneming wilt verwijderen?</string>
@@ -561,9 +561,9 @@
     <string name="ask_for_g_plus_permissions">Google verplicht ons om toestemming te vragen om uw contactpersonen te gebruiken voor uw Google-Account, hoewel we geen contact opnemen met uw contactpersonen om welke reden dan ook. Als u deze machtiging weigert moet u zich aanmelden of inloggen met een gebruikersnaam en wachtwoord.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Nieuw bij %1$s? <b>Registreer je nu!</b>]]></string>
     <string name="see_more_observations">Kijk bij meer waarnemingen</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="see_more_species">Bekijk meer soorten</string>
+    <string name="see_more_identifications">Bekijk meer determinaties</string>
+    <string name="collection_and_umbrella_projects">Collectie en Parapluprojecten</string>
     <string name="description">Beschrijving</string>
     <string name="quantity">Aantal</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -579,7 +579,7 @@
     <string name="new_badge">Nieuw</string>
     <string name="observers">Waarnemers</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Kenmerk</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">Waarde</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
@@ -589,7 +589,7 @@
     <!-- Used when filtering observations with annotations -->
     <string name="with_annotation">Met de aantekening</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Aantekening aangemaakt</string>
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Geen</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
@@ -603,59 +603,63 @@
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">In vrucht</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Ontluikende</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Volwassen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
     <string name="annotation_value_teneral">Teneral</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">Pop</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Nimf</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larve</string>
     <string name="annotation_value_egg">Ei</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Juveniel</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Vrouw</string>
     <string name="annotation_value_male">Man</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
+    <string name="joined_projects_all_caps">SLOOT ZICH AAN BIJ</string>
+    <string name="nearby_projects_all_caps">IN DE BUURT</string>
     <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
+    <string name="join_all_caps">DOE MEE</string>
+    <string name="my_guides_all_caps">Jouw</string>
+    <string name="nearby_guides_all_caps">IN DE BUURT</string>
+    <string name="all_guides_all_caps">Alle</string>
+    <string name="description_all_caps">BESCHRIJVING</string>
+    <string name="quantity_all_caps">Antl</string>
+    <string name="observation_count_all_caps">%1$s WAARNEMINGEN</string>
+    <string name="observation_count_single_all_caps">%1$d WAARNEMING</string>
+    <string name="agree_all_caps">EENS</string>
+    <string name="observations_all_caps">WAARNEMINGEN</string>
+    <string name="species_all_caps">SOORTEN</string>
+    <string name="people_all_caps">MENSEN</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="identifications_all_caps">Determinaties</string>
+    <string name="news_all_caps">NIEUWS</string>
+    <string name="got_it_all_caps">BEGREPEN!</string>
+    <string name="view_all_all_caps">ALLES TONEN</string>
+    <string name="new_all_caps">NIEUW</string>
+    <string name="observers_all_caps">WAARNEMERS</string>
+    <string name="observations_regular">Waarnemingen</string>
+    <string name="data_quality_assessment">Kwaliteitsbeoordeling van de gegevens</string>
+    <string name="research_grade_qualification">Onderzoekskwaliteit kwalificatie</string>
+    <string name="date_specified">Genoemde datum</string>
+    <string name="location_specified">Opgegeven Locatie</string>
+    <string name="has_photos_or_sounds">Foto\'s of geluiden aanwezig</string>
+    <string name="has_id_supported_by_two_or_more">Id is ondersteund door meer dan een.</string>
+    <string name="date_is_accurate">Datum klopt</string>
+    <string name="location_is_accurate">Locatie is nauwkeurig</string>
+    <string name="organism_is_wild">Organisme is wild</string>
+    <string name="evidence_of_organism">Bewijs van organisme</string>
+    <string name="recent_evidence_of_an_organism">Recente gegevens van een organisme</string>
+    <string name="community_id_at_species_level_or_lower">Community-ID op de soortsniveau of lager</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Op basis van het bewijs, kan de Community-ID nog worden bevestigd of verbeterd?</string>
+    <string name="no_as_good_as_it_can_be">Nee, het kan niet beter</string>
+    <string name="seasonality">Seasonality</string>
+    <string name="verifiable">Verifiable</string>
+    <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>

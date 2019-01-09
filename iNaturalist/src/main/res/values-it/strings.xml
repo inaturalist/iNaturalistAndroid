@@ -658,4 +658,8 @@
     <string name="community_id_at_species_level_or_lower">ID della comunità a livello di specie o inferiore</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Sulla base delle prove, l\'ID della community può ancora essere confermato o migliorato?</string>
     <string name="no_as_good_as_it_can_be">No, è buono come può essere</string>
+    <string name="seasonality">Stagionalità</string>
+    <string name="verifiable">Verificabile</string>
+    <string name="no_annotation">Nessuna annotazione</string>
+    <string name="donate_to_inaturalist">Fai una donazione a iNaturalist</string>
 </resources>
