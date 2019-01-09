@@ -648,7 +648,7 @@
     <string name="research_grade_qualification">Forskningskvalitetskvalifikation</string>
     <string name="date_specified">Dato angivet</string>
     <string name="location_specified">Placering angivet</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_photos_or_sounds">Hae fotos eller lyde</string>
     <string name="has_id_supported_by_two_or_more">Har ID understøttet af to eller flere</string>
     <string name="date_is_accurate">Dato er korrekt</string>
     <string name="location_is_accurate">Placering er korrekt</string>
@@ -658,4 +658,8 @@
     <string name="community_id_at_species_level_or_lower">Fællesskabs-ID på artsniveau eller lavere</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Kan Fællesskabs-ID\'et stadig bekræftes eller forbedres baseret på beviset?</string>
     <string name="no_as_good_as_it_can_be">Nej, det er så godt, som det kan blive</string>
+    <string name="seasonality">Sæsonudsving</string>
+    <string name="verifiable">Verificerbar</string>
+    <string name="no_annotation">Ingen anmærkning</string>
+    <string name="donate_to_inaturalist">iNaturalist-donation</string>
 </resources>

@@ -112,13 +112,13 @@
     <string name="search_guides">Buscar guías...</string>
     <string name="save_observation">Guarda tu observación</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">Acerca de</string>
+    <string name="about_guide_all_caps">ACERCA DE</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">Acerca de</string>
+    <string name="about_project_all_caps">ACERCA DE</string>
+    <string name="about_this_app">Acerca de</string>
+    <string name="about_taxon_short">Acerca de</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacidad</string>
     <string name="delete_confirmation">¿Estás seguro de que deseas borrar esta observación?</string>
@@ -560,10 +560,10 @@
     <string name="just_so_you_know">Para que sepa...</string>
     <string name="ask_for_g_plus_permissions">Google nos obliga a pedir permiso para acceder a tus contactos para poder utilizar tu cuenta de Google, a pesar de que no accedemos a sus contactos por cualquier otra razón. Si rechaza este permiso, necesitará registrarse o iniciar sesión con un usuario y contraseña.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[¿Nuevo en %1$s? <b>¡Regístrate ahora!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="see_more_observations">Ver más observaciones</string>
+    <string name="see_more_species">Ver más especies</string>
+    <string name="see_more_identifications">Ver más identificaciones</string>
+    <string name="collection_and_umbrella_projects">Proyectos Colección y Paraguas</string>
     <string name="description">Descripción</string>
     <string name="quantity">Cant.</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -579,83 +579,87 @@
     <string name="new_badge">Nuevo</string>
     <string name="observers">Observadores</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Atributo</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Valor</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">En desacuerdo</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Anotaciones</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Con anotación</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Nombre de la anotación</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Ninguno</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Fenología vegetal</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Estadio biológico</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">Sexo</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Floración</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Fructificando</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Germinando</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
     <string name="annotation_value_teneral">Teneral</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Pupa</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Ninfa</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_egg">Huevo</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Juvenil</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="annotation_value_female">Hembra</string>
+    <string name="annotation_value_male">Macho</string>
+    <string name="joined_projects_all_caps">UNIDO</string>
+    <string name="nearby_projects_all_caps">CERCANO</string>
+    <string name="featured_projects_all_caps">DESTACADO</string>
+    <string name="join_all_caps">ÚNETE</string>
+    <string name="my_guides_all_caps">TUYO</string>
+    <string name="nearby_guides_all_caps">CERCANO</string>
+    <string name="all_guides_all_caps">TODOS</string>
+    <string name="description_all_caps">DESCRIPCIÓN</string>
+    <string name="quantity_all_caps">CANTIDAD</string>
+    <string name="observation_count_all_caps">%1$s OBSERVACIONES</string>
+    <string name="observation_count_single_all_caps">%1$d OBSERVACIÓN</string>
+    <string name="agree_all_caps">DE ACUERDO</string>
+    <string name="observations_all_caps">OBSERVACIONES</string>
+    <string name="species_all_caps">ESPECIE</string>
+    <string name="people_all_caps">PERSONAS</string>
+    <string name="identifiers_all_caps">IDENTIFICADORES</string>
+    <string name="identifications_all_caps">IDENTIFICACIONES</string>
+    <string name="news_all_caps">NUEVOS</string>
+    <string name="got_it_all_caps">¡DE ACUERDO!</string>
+    <string name="view_all_all_caps">VER TODOS</string>
+    <string name="new_all_caps">NUEVO</string>
+    <string name="observers_all_caps">OBSERVADORES</string>
+    <string name="observations_regular">Observaciones</string>
+    <string name="data_quality_assessment">Evaluación de la calidad de los datos</string>
+    <string name="research_grade_qualification">Calificado como de Grado de Investigación</string>
+    <string name="date_specified">Fecha especificada</string>
+    <string name="location_specified">Ubicación especificada</string>
+    <string name="has_photos_or_sounds">Tiene fotos o sonidos</string>
+    <string name="has_id_supported_by_two_or_more">Tiene una ID apoyada por dos o más</string>
+    <string name="date_is_accurate">La fecha es ajustada</string>
+    <string name="location_is_accurate">La ubicación es ajustada</string>
+    <string name="organism_is_wild">Organismo salvaje</string>
+    <string name="evidence_of_organism">Evidencia del organismo</string>
+    <string name="recent_evidence_of_an_organism">Evidencia reciente de un organismo</string>
+    <string name="community_id_at_species_level_or_lower">ID de la comunidad a nivel específico o inferior</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Basado en la evidencia, ¿Puede confirmar o mejorar la ID de la Comunidad?</string>
+    <string name="no_as_good_as_it_can_be">No, es lo máximo posible</string>
+    <string name="seasonality">Seasonality</string>
+    <string name="verifiable">Verifiable</string>
+    <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>

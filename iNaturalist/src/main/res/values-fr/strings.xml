@@ -112,13 +112,13 @@
     <string name="search_guides">Recherche de guides...</string>
     <string name="save_observation">Enregistrer l\'observation</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">À propos</string>
+    <string name="about_guide_all_caps">À PROPOS</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">À propos</string>
+    <string name="about_project_all_caps">À PROPOS</string>
+    <string name="about_this_app">À propos</string>
+    <string name="about_taxon_short">À propos</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Géoconfidentialité</string>
     <string name="delete_confirmation">Désirez-vous vraiment supprimer cette observation?</string>
@@ -276,7 +276,7 @@
     <string name="needs_id_more_ids"><![CDATA[ L\'observation doit avoir <b>d\'autres identifications</b> de la part de la communauté pour passer au statut "Classement Recherche". ]]></string>
     <string name="included_in_projects">Inclus dans %1$d projets</string>
     <string name="included_in_projects_singular">Inclus dans %1$d projet</string>
-    <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
+    <string name="geoprivacy_explanation"><![CDATA[ La géoconfidentialité est un paramètre que vous pouvez définir sur vos observations et qui contrôle l\'affichage des coordonnées spatiales (latitude et longitude). Voici les options: <br/><b>ouverte</b> - Tout le monde peut voir les coordonnées sauf si le taxon est menacé. <br/> <b>masquée</b> - Les coordonnées publiques sont indiquées sous forme de point aléatoire dans une zone de 0,2 sur 0,2 degré contenant les vraies coordonnées, ce qui correspond à une zone d\'incertitude d\'environ 22 km sur 22 km à l\'équateur, qui rétrécit à l\'approche des pôles. Les vraies coordonnées ne sont visibles que par vous et les responsables des projets auxquels vous ajoutez l\'observation. <br/><b> privée</b> - Coordonnées totalement masquées des cartes publiques, vraies coordonnées uniquement visibles par vous et les responsables des projets auxquels vous ajoutez l\'observation.<br/><br/>Notez que les responsables de projets individuels peuvent toujours voir les coordonnées, quel que soit le paramètre de géoconfidentialité. Par conséquent, si êtes préoccupé par qui a accès aux coordonnées, assurez-vous que vous faites confiance aux responsables des projets auxquels vous participez. ]]></string>
     <string name="id_title">ID • %2$s de %1$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Supprimer</string>
@@ -560,10 +560,10 @@
     <string name="just_so_you_know">Pour votre information...</string>
     <string name="ask_for_g_plus_permissions">Google nous oblige à demander l\'autorisation d\'accéder à vos contacts afin de pouvoir utiliser votre Compte Google, même si nous n\'avons pas accès à vos contacts pour une raison ou pour une autre. Si vous ne nous accordez pas cela, vous serez obligé de vous inscrire ou de vous connecter avec votre mot\'d\'utilisateur et un mot de passe.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Nouveau sur %1$s? <b>Inscrivez-vous dès maintenant !</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="see_more_observations">Afficher plus d\'observations</string>
+    <string name="see_more_species">Afficher plus d\'espèces</string>
+    <string name="see_more_identifications">Afficher plus d\'identifications</string>
+    <string name="collection_and_umbrella_projects">Projets collection et parapluie</string>
     <string name="description">Description</string>
     <string name="quantity">Qté</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -579,67 +579,67 @@
     <string name="new_badge">Nouveau</string>
     <string name="observers">Observateurs</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Attribut</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Valeur</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">Pas d\'accord</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <string name="annotations">Annotations</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Avec annotation</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Nom de l\'annotation</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Aucune</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Phénologie végétale</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Stade de vie</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">Sexe</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Floraison</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Fructification</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Bourgeonnement</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Adulte</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Immature</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">Pupe</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Nymphe</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">Larve</string>
+    <string name="annotation_value_egg">Œuf</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Juvénile</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
+    <string name="annotation_value_female">Femelle</string>
+    <string name="annotation_value_male">Mâle</string>
+    <string name="joined_projects_all_caps">JOINT</string>
+    <string name="nearby_projects_all_caps">À PROXIMITÉ</string>
+    <string name="featured_projects_all_caps">EN VEDETTE</string>
+    <string name="join_all_caps">JOINDRE</string>
+    <string name="my_guides_all_caps">VÔTRE</string>
+    <string name="nearby_guides_all_caps">À PROXIMITÉ</string>
+    <string name="all_guides_all_caps">TOUT</string>
     <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
+    <string name="quantity_all_caps">QTÉ</string>
     <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
     <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
+    <string name="agree_all_caps">D’ACCORD</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
+    <string name="species_all_caps">ESPÈCE</string>
+    <string name="people_all_caps">PERSONNES</string>
+    <string name="identifiers_all_caps">IDENTIFIANTS</string>
     <string name="identifications_all_caps">IDENTIFICATIONS</string>
     <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
+    <string name="got_it_all_caps">J\'AI COMPRIS !</string>
     <string name="view_all_all_caps">VIEW ALL</string>
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">OBSERVERS</string>
@@ -652,10 +652,14 @@
     <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
     <string name="date_is_accurate">Date is accurate</string>
     <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
+    <string name="organism_is_wild">L\'organisme est sauvage</string>
+    <string name="evidence_of_organism">Preuve de l\'organisme</string>
+    <string name="recent_evidence_of_an_organism">Preuve récente d\'un organisme</string>
+    <string name="community_id_at_species_level_or_lower">Identification de la communauté au niveau de l\'espèce ou inférieur</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">D\'après les preuves, l\'identification de la communauté peut-elle être confirmée ou améliorée ?</string>
     <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="seasonality">Seasonality</string>
+    <string name="verifiable">Verifiable</string>
+    <string name="no_annotation">No Annotation</string>
+    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
 </resources>
