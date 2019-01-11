@@ -81,6 +81,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
@@ -690,7 +691,8 @@ public class ObservationEditor extends AppCompatActivity {
                 // Set the adapter
                 String[] items = {
                         getResources().getString(R.string.get_current_location),
-                        getResources().getString(R.string.edit_location)
+                        getResources().getString(R.string.edit_location),
+                        getResources().getString(R.string.edit_locality_notes)
                 };
                 builder.setAdapter(
                         new ArrayAdapter<String>(ObservationEditor.this,
@@ -708,7 +710,7 @@ public class ObservationEditor extends AppCompatActivity {
                             // Get current place
                             mLocationManuallySet = true;
                             getLocation();
-                        } else {
+                        } else if (position == 1) {
                             // Edit place
                             Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
                             Double lat, lon;
@@ -720,6 +722,41 @@ public class ObservationEditor extends AppCompatActivity {
                             intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
 
                             startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
+                        } else {
+                            // Edit locality notes
+                            final EditText input = new EditText(ObservationEditor.this);
+                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT);
+                            input.setLayoutParams(lp);
+                            input.setMaxLines(1);
+                            input.setSingleLine(true);
+
+                            String placeGuess = mObservation.place_guess != null ? mObservation.place_guess : "";
+                            input.setText(placeGuess);
+                            input.setSelection(0, placeGuess.length());
+
+                            mHelper.confirm(R.string.edit_locality_notes, input, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    // OK - update place guess
+                                    setPlaceGuess(input.getText().toString());
+                                }
+                            }, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    // Cancel
+                                }
+                            });
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    input.requestFocus();
+                                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+                                }
+                            }, 300);
                         }
                     }
                 });
@@ -1436,6 +1473,8 @@ public class ObservationEditor extends AppCompatActivity {
             findViewById(R.id.is_captive_on_icon).setVisibility(View.GONE);
             findViewById(R.id.is_captive_off_icon).setVisibility(View.VISIBLE);
         }
+
+        mLocationGuess.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
 
         if ((mObservation.place_guess != null) || (mObservation.private_place_guess != null)) {
             mLocationGuess.setText(mObservation.private_place_guess != null ? mObservation.private_place_guess : mObservation.place_guess);

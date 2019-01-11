@@ -142,6 +142,7 @@
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="edit_location">Edit Location</string>
+    <string name="edit_locality_notes">Edit Locality Notes</string>
     <string name="get_current_location">Get current location</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
     <string name="release_to_refresh">Release to refresh...</string>
