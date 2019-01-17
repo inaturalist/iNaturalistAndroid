@@ -43,6 +43,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mUsernamePreference;
     private CheckBoxPreference mAutoSyncPreference;
     private CheckBoxPreference mSuggestSpeciesPreference;
+    private CheckBoxPreference mShowScientificNameFirstPreference;
     private ListPreference mLanguagePreference;
     private Preference mNetworkPreference;
     private Preference mContactSupport;
@@ -73,6 +74,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mUsernamePreference = getPreferenceManager().findPreference("username");
         mAutoSyncPreference = (CheckBoxPreference) getPreferenceManager().findPreference("auto_sync");
         mSuggestSpeciesPreference = (CheckBoxPreference) getPreferenceManager().findPreference("suggest_species");
+        mShowScientificNameFirstPreference = (CheckBoxPreference) getPreferenceManager().findPreference("prefers_scientific_name_first");
         mLanguagePreference = (ListPreference) getPreferenceManager().findPreference("language");
         mNetworkPreference = (Preference) getPreferenceManager().findPreference("inat_network");
         mContactSupport = (Preference) getPreferenceManager().findPreference("contact_support");
@@ -194,6 +196,29 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
+        mShowScientificNameFirstPreference.setChecked(mApp.getShowScientificNameFirst());
+        mShowScientificNameFirstPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                boolean newValue = mShowScientificNameFirstPreference.isChecked();
+                mShowScientificNameFirstPreference.setChecked(newValue);
+                mApp.setShowScientificNameFirst(newValue);
+
+                if (mApp.loggedIn()) {
+                    Intent serviceIntent = new Intent(INaturalistService.ACTION_UPDATE_CURRENT_USER_DETAILS, null, getActivity(), INaturalistService.class);
+                    JSONObject userDetails = new JSONObject();
+                    try {
+                        userDetails.put("prefers_scientific_name_first", newValue);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
+                    ContextCompat.startForegroundService(getActivity(), serviceIntent);
+                }
+
+                return false;
+            }
+        });
 
         refreshLanguageSettings();
         mLanguagePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -391,6 +416,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mPrefEditor.remove("jwt_token_expiration");
         mPrefEditor.remove("pref_observation_errors");
         mPrefEditor.remove("unread_activities");
+        mPrefEditor.remove("prefers_scientific_name_first");
 		mPrefEditor.commit();
 
 

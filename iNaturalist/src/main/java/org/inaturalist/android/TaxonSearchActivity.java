@@ -62,6 +62,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
     public static final String SUGGEST_ID = "suggest_id";
     public static final String TAXON_ID = "taxon_id";
     public static final String RANK_LEVEL = "rank_level";
+    public static final String RANK = "rank";
 	public static final String ID_NAME = "id_name";
 	public static final String TAXON_NAME = "taxon_name";
 	public static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
@@ -438,15 +439,15 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
             taxonScientificName.setVisibility(View.VISIBLE);
 
-            taxonName.setText(getTaxonName(taxon));
-            taxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon));
-
-            int rankLevel = taxon.optInt("rank_level", 99);
-            if (rankLevel <= 20) {
-                taxonScientificName.setTypeface(null, Typeface.ITALIC);
+            if (mApp.getShowScientificNameFirst()) {
+                // Show scientific name first, before common name
+                TaxonUtils.setTaxonScientificName(taxonName, taxon);
+                taxonScientificName.setText(TaxonUtils.getTaxonName(mContext, taxon));
             } else {
-                taxonScientificName.setTypeface(null, Typeface.NORMAL);
+                TaxonUtils.setTaxonScientificName(taxonScientificName, taxon);
+                taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
             }
+
 
             if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
                 JSONObject defaultPhoto = taxon.optJSONObject("default_photo");
@@ -586,6 +587,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                     bundle.putBoolean(TaxonSearchActivity.IS_CUSTOM, false);
                     bundle.putInt(TaxonSearchActivity.TAXON_ID, item.getInt("id"));
                     bundle.putInt(TaxonSearchActivity.RANK_LEVEL, item.getInt("rank_level"));
+                    bundle.putString(TaxonSearchActivity.RANK, item.getString("rank"));
 
                 }
                 bundle.putInt(TaxonSearchActivity.FIELD_ID, mFieldId);

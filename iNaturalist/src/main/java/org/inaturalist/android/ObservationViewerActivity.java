@@ -12,7 +12,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -20,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -207,7 +205,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     @State public int mCommentCount;
     @State public String mTaxonImage;
     @State public String mTaxonIdName;
-    @State public String mTaxonName;
+    @State public String mTaxonScientificName;
     @State public int mTaxonRankLevel;
     @State public String mActiveTab;
     private boolean mReloadObs;
@@ -1673,6 +1671,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             mTaxonicName.setText(mObservation.species_guess);
         }
 
+
         if (mObservation.id == null) {
             mSharePhoto.setVisibility(View.GONE);
         }
@@ -1684,23 +1683,26 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         } else if (mObservation.taxon_id != null) {
             mIdArrow.setVisibility(View.VISIBLE);
 
-            if ((mTaxonName == null) || (mTaxonIdName == null) || (mTaxonImage == null)) {
+            if ((mTaxonScientificName == null) || (mTaxonIdName == null) || (mTaxonImage == null)) {
                 downloadObsTaxonAndUpdate();
             } else {
                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
                 if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
-                    mIdName.setText(mTaxonName);
-                    mTaxonicName.setText(mTaxonName);
+                    mIdName.setText(mTaxonScientificName);
+                    mTaxonicName.setText(mTaxonScientificName);
                 } else {
-                    mIdName.setText(mTaxonIdName);
-                    mTaxonicName.setText(mTaxonName);
                     mTaxonicName.setVisibility(View.VISIBLE);
-                    if (mTaxonRankLevel <= 20) {
-                        mTaxonicName.setTypeface(null, Typeface.ITALIC);
+
+                    if (mApp.getShowScientificNameFirst()) {
+                        // Show scientific name first, before common name
+                        TaxonUtils.setTaxonScientificName(mIdName, mTaxonScientificName, mTaxonRankLevel);
+                        mTaxonicName.setText(mTaxonIdName);
                     } else {
-                        mTaxonicName.setTypeface(null, Typeface.NORMAL);
+                        TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxonScientificName, mTaxonRankLevel);
+                        mIdName.setText(mTaxonIdName);
                     }
+
                 }
             }
         }
@@ -1801,26 +1803,23 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                try {
-                                    mTaxonImage = imageUrl;
-                                    UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
+                                mTaxonImage = imageUrl;
+                                UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
-                                    mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
-                                    mTaxonName = TaxonUtils.getTaxonScientificName(taxon);
+                                mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
+                                mTaxonScientificName = TaxonUtils.getTaxonScientificName(taxon);
+                                mTaxonRankLevel = taxon.optInt("rank_level", 0);
 
+                                if (mApp.getShowScientificNameFirst()) {
+                                    // Show scientific name first, before common name
+                                    mTaxonicName.setText(mTaxonIdName);
+                                    TaxonUtils.setTaxonScientificName(mIdName, taxon);
+                                } else {
                                     mIdName.setText(mTaxonIdName);
-                                    mTaxonicName.setText(mTaxonName);
-                                    mTaxonicName.setVisibility(View.VISIBLE);
-
-                                    mTaxonRankLevel = taxon.getInt("rank_level");
-                                    if (mTaxonRankLevel <= 20) {
-                                        mTaxonicName.setTypeface(null, Typeface.ITALIC);
-                                    } else {
-                                        mTaxonicName.setTypeface(null, Typeface.NORMAL);
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    TaxonUtils.setTaxonScientificName(mTaxonicName, taxon);
                                 }
+
+                                mTaxonicName.setVisibility(View.VISIBLE);
                             }
                         });
                     } catch (JSONException e) {
@@ -2156,7 +2155,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     mObservation.preferred_common_name = observation.preferred_common_name;
                     mObservation.iconic_taxon_name = observation.iconic_taxon_name;
 
-                    mTaxonName = null;
+                    mTaxonScientificName = null;
                     mTaxonIdName = null;
                     mTaxonImage = null;
                 }

@@ -24,6 +24,14 @@
         android:summary="@string/suggest_species_description"
         android:title="@string/suggest_species" />
 
+     <CheckBoxPreference
+        android:layout="@layout/custom_preference"
+        android:defaultValue="false"
+        android:widgetLayout="@layout/custom_checkbox_preference"
+        android:key="prefers_scientific_name_first"
+        android:summary="@string/prefers_scientific_name_first_description"
+        android:title="@string/prefers_scientific_name_first" />
+
 
     <ListPreference
         android:layout="@layout/custom_preference"

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -453,11 +454,13 @@ public class CompareSuggestionActivity extends AppCompatActivity {
             }
         });
 
-        String taxonName = TaxonUtils.getTaxonName(this, taxon);
-        String scientificName = taxon.optString("name");
-        String htmlText = String.format(getString(R.string.taxon_name), taxonName);
-
-        mTaxonName.setText(Html.fromHtml(htmlText));
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name instead of common name
+            TaxonUtils.setTaxonScientificName(mTaxonName, taxon, true);
+        } else {
+            mTaxonName.setText(TaxonUtils.getTaxonName(this, taxon));
+            mTaxonName.setTypeface(null, Typeface.BOLD);
+        }
 
         View.OnClickListener showTaxonPage = new View.OnClickListener() {
             @Override

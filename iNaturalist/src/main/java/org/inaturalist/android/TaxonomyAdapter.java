@@ -24,6 +24,7 @@ import java.util.List;
 class TaxonomyAdapter extends ArrayAdapter<String> {
     private final TaxonomyListener mTaxonomyListener;
     private final boolean mShowChildren;
+    private final INaturalistApp mApp;
     private BetterJSONObject mTaxon;
     private List<JSONObject> mAncestors;
     private Context mContext;
@@ -45,6 +46,7 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
         mTaxon = taxon;
         mTaxonomyListener = onViewChildren;
         mShowChildren = showChildren;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
         refreshAncestors();
     }
 
@@ -153,9 +155,15 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
 
 
         // Get the taxon display name according to device locale
-        taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
-        taxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon));
-        taxonScientificName.setTypeface(null, taxon.optInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name first, before common name
+            TaxonUtils.setTaxonScientificName(taxonName, taxon);
+            taxonScientificName.setText(TaxonUtils.getTaxonName(mContext, taxon));
+        } else {
+            TaxonUtils.setTaxonScientificName(taxonScientificName, taxon);
+            taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
+        }
 
         if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
             JSONObject defaultPhoto = taxon.optJSONObject("default_photo");

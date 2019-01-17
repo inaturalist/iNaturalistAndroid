@@ -39,7 +39,6 @@
             android:textColor="#8A000000"
             android:textSize="12sp"
             android:layout_marginTop="0dp"
-            android:textStyle="italic"
             android:text="TextView" />
     </LinearLayout>
 

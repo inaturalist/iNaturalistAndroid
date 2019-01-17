@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -160,6 +159,8 @@ public class INaturalistService extends IntentService {
     public static final String GET_CURRENT_LOCATION_RESULT = "get_current_location_result";
     public static final String TAXON_OBSERVATION_BOUNDS_RESULT = "taxon_observation_bounds_result";
     public static final String USER_DETAILS_RESULT = "user_details_result";
+    public static final String REFRESH_CURRENT_USER_SETTINGS_RESULT = "refresh_current_user_settings_result";
+    public static final String UPDATE_CURRENT_USER_DETAILS_RESULT = "update_current_user_details_result";
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
     public static final String TAXON_ID = "taxon_id";
@@ -322,6 +323,8 @@ public class INaturalistService extends IntentService {
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
+    public static String ACTION_REFRESH_CURRENT_USER_SETTINGS = "refresh_current_user_settings";
+    public static String ACTION_UPDATE_CURRENT_USER_DETAILS = "update_current_user_details";
     public static String ACTION_GET_CURRENT_LOCATION = "get_current_location";
     public static String ACTION_GET_LIFE_LIST = "get_life_list";
     public static String ACTION_GET_USER_SPECIES_COUNT = "get_species_count";
@@ -915,6 +918,23 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(IS_SHARED_ON_APP, true);
                 sendBroadcast(reply);
 
+             } else if (action.equals(ACTION_UPDATE_CURRENT_USER_DETAILS)) {
+                BetterJSONObject params = (BetterJSONObject) intent.getSerializableExtra(USER);
+                BetterJSONObject user = updateCurrentUserDetails(params.getJSONObject());
+
+                Intent reply = new Intent(UPDATE_CURRENT_USER_DETAILS_RESULT);
+                reply.putExtra(USER, user);
+                sendBroadcast(reply);
+
+            } else if (action.equals(ACTION_REFRESH_CURRENT_USER_SETTINGS)) {
+                BetterJSONObject user = getCurrentUserDetails();
+
+                // Update settings
+                mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
+
+                Intent reply = new Intent(REFRESH_CURRENT_USER_SETTINGS_RESULT);
+                reply.putExtra(USER, user);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
@@ -3267,6 +3287,40 @@ public class INaturalistService extends IntentService {
             return null;
         }
 
+    }
+
+
+    private BetterJSONObject getCurrentUserDetails() throws AuthenticationException {
+        String url = API_HOST + "/users/me";
+        JSONArray json = get(url, true);
+        try {
+            if (json == null) return null;
+            if (json.length() == 0) return null;
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private BetterJSONObject updateCurrentUserDetails(JSONObject params) throws AuthenticationException {
+        JSONObject input = new JSONObject();
+        try {
+            input.put("user", params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray json = request(API_HOST + "/users/" + mApp.currentUserLogin(), "put", null, input, true, true, false);
+
+        try {
+            if (json == null) return null;
+            if (json.length() == 0) return null;
+            return new BetterJSONObject(json.getJSONObject(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 

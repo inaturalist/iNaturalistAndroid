@@ -647,6 +647,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         String description = c.getString(c.getColumnIndexOrThrow(Observation.DESCRIPTION));
         String preferredCommonName = c.getString(c.getColumnIndexOrThrow(Observation.PREFERRED_COMMON_NAME));
+
         progress.setVisibility(View.GONE);
         if (!mIsGrid) {
             placeGuess.setTextColor(Color.parseColor("#666666"));
@@ -654,14 +655,31 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             speciesGuess.setTextColor(Color.parseColor("#000000"));
         }
 
-        if (preferredCommonName != null) {
-            speciesGuess.setText(preferredCommonName);
-        } else if ((speciesGuessValue != null) && (speciesGuessValue.trim().length() > 0)) {
-            speciesGuess.setText("\"" + speciesGuessValue + "\"");
-        } else if ((description != null) && (description.length() > 0)) {
-            speciesGuess.setText(description);
+        String scientificName = c.getString(c.getColumnIndexOrThrow(Observation.SCIENTIFIC_NAME));
+        if (mApp.getShowScientificNameFirst() && (scientificName != null)) {
+            // Show scientific name instead of common name
+            Integer rankLevel = c.getInt(c.getColumnIndexOrThrow(Observation.RANK_LEVEL));
+            String rank = c.getString(c.getColumnIndexOrThrow(Observation.RANK));
+            JSONObject taxon = new JSONObject();
+            try {
+                taxon.put("name", scientificName);
+                taxon.put("rank", rank);
+                taxon.put("rank_level", rankLevel);
+
+                TaxonUtils.setTaxonScientificName(speciesGuess, taxon);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         } else {
-            speciesGuess.setText(R.string.unknown_species);
+            if (preferredCommonName != null) {
+                speciesGuess.setText(preferredCommonName);
+            } else if ((speciesGuessValue != null) && (speciesGuessValue.trim().length() > 0)) {
+                speciesGuess.setText("\"" + speciesGuessValue + "\"");
+            } else if ((description != null) && (description.length() > 0)) {
+                speciesGuess.setText(description);
+            } else {
+                speciesGuess.setText(R.string.unknown_species);
+            }
         }
 
         holder.hasErrors = hasErrors;

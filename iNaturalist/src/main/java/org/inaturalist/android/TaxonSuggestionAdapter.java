@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class TaxonSuggestionAdapter extends ArrayAdapter<String> {
+    private final INaturalistApp mApp;
     private List<BetterJSONObject> mResultList;
     private Context mContext;
     private OnTaxonSuggestion mOnTaxonSuggestion;
@@ -42,6 +43,7 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
         mResultList = results;
         mOnTaxonSuggestion = onTaxonSuggestion;
         mShowCompare = showCompare;
@@ -103,9 +105,16 @@ class TaxonSuggestionAdapter extends ArrayAdapter<String> {
         });
 
         // Get the taxon display name according to device locale
-        taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
-        taxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon));
-        taxonScientificName.setTypeface(null, taxon.optInt("rank_level") <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name first, before common name
+            TaxonUtils.setTaxonScientificName(taxonName, taxon);
+            taxonScientificName.setText(TaxonUtils.getTaxonName(mContext, taxon));
+        } else {
+            TaxonUtils.setTaxonScientificName(taxonScientificName, taxon);
+            taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
+        }
+
 
         if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
             JSONObject defaultPhoto = taxon.optJSONObject("default_photo");

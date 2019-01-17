@@ -71,7 +71,6 @@
             android:id="@+id/species_science_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
             android:lines="1"
             android:ellipsize="end"
             android:text="Name" />

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 class TaxonAdapter extends ArrayAdapter<String> {
+    private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
 
@@ -30,6 +31,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
+        mApp = (INaturalistApp) context.getApplicationContext();
         mResultList = results;
     }
 
@@ -57,20 +59,19 @@ class TaxonAdapter extends ArrayAdapter<String> {
             ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
             TextView idName = (TextView) view.findViewById(R.id.id_name);
             TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
-            String commonName = item.optString("preferred_common_name", null);
-            if ((commonName == null) || (commonName.length() == 0)) {
-                commonName = item.optString("english_common_name");
-            }
 
-            if ((commonName != null) && (commonName.length() > 0)) {
-                idName.setText(commonName);
-                idTaxonName.setText(TaxonUtils.getTaxonScientificName(item));
+            String commonName = TaxonUtils.getTaxonName(mContext, item);
+
+            if (mApp.getShowScientificNameFirst()) {
+                // Show scientific name first, before common name
+                TaxonUtils.setTaxonScientificName(idName, item);
+                idTaxonName.setText(commonName);
             } else {
-                idName.setText(TaxonUtils.getTaxonScientificName(item));
-                idTaxonName.setVisibility(View.GONE);
+                // Show common name first
+                TaxonUtils.setTaxonScientificName(idTaxonName, item);
+                idName.setText(commonName);
             }
 
-            idTaxonName.setTypeface(null, item.optInt("rank_level", 0) <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
             if (item.has("default_photo") && !item.isNull("default_photo")) {
                 JSONObject defaultPhoto = item.getJSONObject("default_photo");
                 Picasso.with(mContext)

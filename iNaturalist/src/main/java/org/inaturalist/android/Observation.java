@@ -102,6 +102,9 @@ public class Observation implements BaseColumns, Serializable {
     public SerializableJSONArray projects;
     public String uuid;
     public Boolean owners_identification_from_vision;
+    public String scientific_name;
+    public Integer rank_level;
+    public String rank;
 
 
     public static final String TAG = "Observation";
@@ -156,6 +159,9 @@ public class Observation implements BaseColumns, Serializable {
     public static final String IS_DELETED = "is_deleted";
     public static final String UUID = "uuid";
     public static final String OWNERS_IDENTIFICATION_FROM_VISION = "owners_identification_from_vision";
+    public static final String SCIENTIFIC_NAME = "scientific_name";
+    public static final String RANK_LEVEL = "rank_level";
+    public static final String RANK = "rank";
 
 
     public static final String[] PROJECTION = new String[] {
@@ -199,7 +205,10 @@ public class Observation implements BaseColumns, Serializable {
         Observation.LAST_IDENTIFICATIONS_COUNT,
         Observation.IS_DELETED,
         Observation.UUID,
-        Observation.OWNERS_IDENTIFICATION_FROM_VISION
+        Observation.OWNERS_IDENTIFICATION_FROM_VISION,
+        Observation.SCIENTIFIC_NAME,
+        Observation.RANK_LEVEL,
+        Observation.RANK
     };
 
     static {
@@ -225,6 +234,9 @@ public class Observation implements BaseColumns, Serializable {
         PROJECTION_MAP.put(Observation.PRIVATE_PLACE_GUESS, Observation.PRIVATE_PLACE_GUESS);
         PROJECTION_MAP.put(Observation.UUID, Observation.UUID);
         PROJECTION_MAP.put(Observation.OWNERS_IDENTIFICATION_FROM_VISION, Observation.OWNERS_IDENTIFICATION_FROM_VISION);
+        PROJECTION_MAP.put(Observation.SCIENTIFIC_NAME, Observation.SCIENTIFIC_NAME);
+        PROJECTION_MAP.put(Observation.RANK_LEVEL, Observation.RANK_LEVEL);
+        PROJECTION_MAP.put(Observation.RANK, Observation.RANK);
         PROJECTION_MAP.put(Observation.POSITIONAL_ACCURACY, Observation.POSITIONAL_ACCURACY);
         PROJECTION_MAP.put(Observation.POSITIONING_DEVICE, Observation.POSITIONING_DEVICE);
         PROJECTION_MAP.put(Observation.POSITIONING_METHOD, Observation.POSITIONING_METHOD);
@@ -291,6 +303,9 @@ public class Observation implements BaseColumns, Serializable {
         this.private_place_guess_was = this.private_place_guess;
         this.uuid = bc.getString(UUID);
         this.owners_identification_from_vision = bc.getBoolean(OWNERS_IDENTIFICATION_FROM_VISION);
+        this.scientific_name = bc.getString(SCIENTIFIC_NAME);
+        this.rank_level = bc.getInteger(RANK_LEVEL);
+        this.rank = bc.getString(RANK);
         this.positional_accuracy = bc.getInteger(POSITIONAL_ACCURACY);
         this.positional_accuracy_was = this.positional_accuracy;
         this.positioning_device = bc.getString(POSITIONING_DEVICE);
@@ -459,6 +474,10 @@ public class Observation implements BaseColumns, Serializable {
             if (taxon.has("id")) this.taxon_id = taxon.optInt("id");
             if (taxon.has("iconic_taxon_name")) this.iconic_taxon_name = taxon.optString("iconic_taxon_name");
             if (taxon.has("iconic_taxon_id")) this.iconic_taxon_id = taxon.optInt("iconic_taxon_id");
+
+            this.rank_level = taxon.optInt("rank_level");
+            this.scientific_name = taxon.optString("name", "");
+            this.rank = taxon.optString("rank");
         }
 
         JSONObject user = o.getJSONObject("user");
@@ -527,6 +546,9 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("place_guess", (private_place_guess != null) && (private_place_guess.length() > 0) ? private_place_guess : place_guess);
         bo.put("uuid", uuid);
         bo.put("owners_identification_from_vision", owners_identification_from_vision != null ? owners_identification_from_vision : false);
+        bo.put("scientific_name", scientific_name);
+        bo.put("rank_level", rank_level);
+        bo.put("rank", rank);
         bo.put("positional_accuracy", positional_accuracy);
         bo.put("positioning_device", positioning_device);
         bo.put("positioning_method", positioning_method);
@@ -582,6 +604,9 @@ public class Observation implements BaseColumns, Serializable {
         if (!areFieldsEqual(this.private_place_guess, observation.private_place_guess)) return false;
         if (!areFieldsEqual(this.uuid, observation.uuid)) return false;
         if (!areFieldsEqual(this.owners_identification_from_vision, observation.owners_identification_from_vision)) return false;
+        if (!areFieldsEqual(this.rank_level, observation.rank_level)) return false;
+        if (!areFieldsEqual(this.rank, observation.rank)) return false;
+        if (!areFieldsEqual(this.scientific_name, observation.scientific_name)) return false;
         if (!areFieldsEqual(this.positional_accuracy, observation.positional_accuracy)) return false;
         if (!areFieldsEqual(this.positioning_device, observation.positioning_device)) return false;
         if (!areFieldsEqual(this.positioning_method, observation.positioning_method)) return false;
@@ -624,6 +649,9 @@ public class Observation implements BaseColumns, Serializable {
             this.private_place_guess = observation.private_place_guess;
             this.uuid = observation.uuid;
             this.owners_identification_from_vision = observation.owners_identification_from_vision;
+            this.rank_level = observation.rank_level;
+            this.rank = observation.rank;
+            this.scientific_name = observation.scientific_name;
             this.positional_accuracy = observation.positional_accuracy;
             this.positioning_device = observation.positioning_device;
             this.positioning_method = observation.positioning_method;
@@ -663,6 +691,9 @@ public class Observation implements BaseColumns, Serializable {
             if ((this.private_place_guess == null) && (observation.private_place_guess != null)) { this.private_place_guess = observation.private_place_guess; isModified = true; }
             if ((this.uuid == null) && (observation.uuid != null)) { this.uuid = observation.uuid; isModified = true; }
             if ((this.owners_identification_from_vision == null) && (observation.owners_identification_from_vision != null)) { this.owners_identification_from_vision = observation.owners_identification_from_vision; isModified = true; }
+            if ((this.scientific_name == null) && (observation.scientific_name != null)) { this.scientific_name = observation.scientific_name; isModified = true; }
+            if ((this.rank_level == null) && (observation.rank_level != null)) { this.rank_level = observation.rank_level; isModified = true; }
+            if ((this.rank == null) && (observation.rank != null)) { this.rank = observation.rank; isModified = true; }
             if ((this.positional_accuracy == null) && (observation.positional_accuracy != null)) { this.positional_accuracy = observation.positional_accuracy; isModified = true; }
             if ((this.positioning_device == null) && (observation.positioning_device != null)) { this.positioning_device = observation.positioning_device; isModified = true; }
             if ((this.positioning_method == null) && (observation.positioning_method != null)) { this.positioning_method = observation.positioning_method; isModified = true; }
@@ -704,6 +735,9 @@ public class Observation implements BaseColumns, Serializable {
         cv.put(PRIVATE_PLACE_GUESS, private_place_guess);
         cv.put(UUID, uuid);
         cv.put(OWNERS_IDENTIFICATION_FROM_VISION, owners_identification_from_vision != null ? owners_identification_from_vision : false);
+        cv.put(SCIENTIFIC_NAME, scientific_name);
+        cv.put(RANK_LEVEL, rank_level != null ? rank_level : 99);
+        cv.put(RANK, rank);
         cv.put(POSITIONAL_ACCURACY, positional_accuracy);
         cv.put(POSITIONING_DEVICE, positioning_device);
         cv.put(POSITIONING_METHOD, positioning_method);
@@ -800,7 +834,10 @@ public class Observation implements BaseColumns, Serializable {
                 + "activity_viewed_at INTEGER,"
                 + "last_activity_at INTEGER,"
                 + "is_deleted INTEGER,"
-                + "owners_identification_from_vision INTEGER"
+                + "owners_identification_from_vision INTEGER,"
+                + "scientific_name TEXT,"
+                + "rank_level INTEGER,"
+                + "rank TEXT"
                 + ");";
     }
 

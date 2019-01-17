@@ -1,7 +1,5 @@
 package org.inaturalist.android;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +14,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -232,6 +229,9 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
         if ((requestCode == REQUEST_CODE_LOGIN) || (requestCode == REQUEST_CODE_SIGNUP)) {
             if (resultCode == RESULT_OK) {
                 // Successfully registered / logged-in from the sub-activity we've opened
+                Intent serviceIntent = new Intent(INaturalistService.ACTION_REFRESH_CURRENT_USER_SETTINGS, null, this, INaturalistService.class);
+                ContextCompat.startForegroundService(this, serviceIntent);
+
                 mSignInTask.pause();
                 setResult(RESULT_OK);
                 finish();

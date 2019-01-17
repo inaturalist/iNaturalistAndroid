@@ -18,14 +18,37 @@ import java.util.Locale;
 
 /** Various app-wide taxon-related utility functions */
 public class TaxonUtils {
-    public static void setTaxonScientificName(TextView textView, JSONObject item) {
-        textView.setText(item.optString("name"));
-        if (item.optInt("rank_level", 0) <= 20) {
+    public static void setTaxonScientificName(TextView textView, String taxonName, int rankLevel) {
+        textView.setText(taxonName);
+        if (rankLevel <= 20) {
             textView.setTypeface(null, Typeface.ITALIC);
         } else {
             textView.setTypeface(null, Typeface.NORMAL);
         }
     }
+
+    public static void setTaxonScientificName(TextView textView, JSONObject item) {
+        setTaxonScientificName(textView, item, false);
+    }
+
+    public static void setTaxonScientificName(TextView textView, JSONObject item, boolean bold) {
+        textView.setText(getTaxonScientificName(item));
+        if (item.optInt("rank_level", 0) <= 20) {
+            textView.setTypeface(null, bold ? Typeface.BOLD_ITALIC : Typeface.ITALIC);
+        } else {
+            textView.setTypeface(null, bold ? Typeface.BOLD : Typeface.NORMAL);
+        }
+    }
+
+    public static String getTaxonScientificNameHtml(JSONObject item, boolean bold) {
+        String name = getTaxonScientificName(item);
+        if (item.optInt("rank_level", 0) <= 20) {
+            name = "<i>" + name + "</i>";
+        }
+
+        return bold ? "<b>" + name + "</b>" : name;
+    }
+
 
     public static String getTaxonRank(JSONObject item) {
         int rankLevel = item.optInt("rank_level", 0);
@@ -48,7 +71,6 @@ public class TaxonUtils {
             return String.format("%s %s", rank, scientificName);
         }
     }
-
 
     public static String getTaxonName(Context context, JSONObject item) {
         JSONObject defaultName;
@@ -93,6 +115,10 @@ public class TaxonUtils {
                     }
                 }
             }
+        }
+
+        if (displayName == null) {
+            displayName = context.getResources().getString(R.string.unknown);
         }
 
         return displayName;

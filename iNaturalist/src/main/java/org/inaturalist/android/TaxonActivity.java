@@ -830,10 +830,15 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         final String taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
         getSupportActionBar().setTitle(taxonName);
 
-        mTaxonName.setText(taxonName);
-        mTaxonScientificName.setText(TaxonUtils.getTaxonScientificName(mTaxon.getJSONObject()));
-        Integer rankLevel = mTaxon.getInt("rank_level");
-        mTaxonScientificName.setTypeface(null, (rankLevel == null ? 0 : rankLevel) <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name first, before common name
+            TaxonUtils.setTaxonScientificName(mTaxonName, mTaxon.getJSONObject());
+            mTaxonScientificName.setText(TaxonUtils.getTaxonName(this, mTaxon.getJSONObject()));
+        } else {
+            TaxonUtils.setTaxonScientificName(mTaxonScientificName, mTaxon.getJSONObject());
+            mTaxonName.setText(TaxonUtils.getTaxonName(this, mTaxon.getJSONObject()));
+        }
+
 
         String wikiSummary = mTaxon.getString("wikipedia_summary");
 
@@ -936,7 +941,14 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     @Override
     public void onViewChildren(BetterJSONObject taxon) {
         TaxonomyAdapter childrenAdapter = new TaxonomyAdapter(TaxonActivity.this, mTaxon, true, this);
-        String taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
+        String taxonName;
+
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name instead of common name
+            taxonName = TaxonUtils.getTaxonScientificName(mTaxon.getJSONObject());
+        } else {
+            taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
+        }
         mHelper.selection(taxonName, childrenAdapter);
     }
 

@@ -177,7 +177,6 @@
             <TextView
                 android:id="@+id/id_sub_name"
                 android:textSize="14sp"
-                android:textStyle="italic"
                 android:textColor="#66000000"
                 android:text="@string/unknown"
                 android:textIsSelectable="true"

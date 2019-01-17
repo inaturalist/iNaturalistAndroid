@@ -27,6 +27,7 @@ import java.util.Locale;
 
 public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
+    private final INaturalistApp mApp;
     private List<JSONObject> mItems;
     private Context mContext;
     private ArrayList<JSONObject> mOriginalItems;
@@ -38,6 +39,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         mItems = objects != null ? objects : new ArrayList<JSONObject>();
         mOriginalItems = new ArrayList<JSONObject>(mItems);
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
         mDimension = dimension;
     }
 
@@ -65,19 +67,16 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         final JSONObject taxon = item.optJSONObject("taxon");
 
         if (taxon != null) {
-            String idNameString = getTaxonName(taxon);
-            if (idNameString != null) {
-                idName.setText(idNameString);
+            if (mApp.getShowScientificNameFirst()) {
+                // Show scientific name instead of common name
+                TaxonUtils.setTaxonScientificName(idName, taxon);
             } else {
-                idName.setText(mContext.getResources().getString(R.string.unknown));
+                String idNameStr = item.isNull("species_guess") ?
+                        TaxonUtils.getTaxonName(mContext, taxon) :
+                        item.optString("species_guess", mContext.getResources().getString(R.string.unknown));
+                idName.setText(idNameStr);
             }
-        } else {
-            String idNameStr = item.isNull("species_guess") ?
-                    mContext.getResources().getString(R.string.unknown) :
-                    item.optString("species_guess", mContext.getResources().getString(R.string.unknown));
-            idName.setText(idNameStr);
         }
-
 
         final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_photo);
         final ImageView taxonIcon = (ImageView) view.findViewById(R.id.taxon_icon);

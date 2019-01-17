@@ -280,6 +280,19 @@ public class INaturalistApp extends MultiDexApplication {
         settingsEditor.apply();
     }
 
+    public boolean getShowScientificNameFirst() {
+    	SharedPreferences settings = getPrefs();
+        return settings.getBoolean("prefers_scientific_name_first", false);
+	}
+
+	public void setShowScientificNameFirst(boolean value) {
+    	SharedPreferences settings = getPrefs();
+    	Editor settingsEditor = settings.edit();
+
+    	settingsEditor.putBoolean("prefers_scientific_name_first", value);
+    	settingsEditor.apply();
+	}
+
 
 	public boolean getAutoSync() {
     	SharedPreferences settings = getPrefs();

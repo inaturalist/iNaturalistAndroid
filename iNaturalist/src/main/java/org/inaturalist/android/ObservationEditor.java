@@ -654,7 +654,7 @@ public class ObservationEditor extends AppCompatActivity {
                         rankLevel = ((Double) rankLevelValue).intValue();
                     }
                 }
-                setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), rankLevel, false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+                setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), rankLevel, taxon.getString("rank"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
                 mApp.setServiceResult(TAXON, null);
             } else if (mObservation.taxon_id != null) {
                 // Taxon info not loaded - download it now
@@ -1383,6 +1383,9 @@ public class ObservationEditor extends AppCompatActivity {
         }
         updateObservationVisibilityDescription();
 
+        mSpeciesGuessTextView.setTypeface(null, Typeface.NORMAL);
+        mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
         if (mIsTaxonUnknown) {
@@ -1397,9 +1400,13 @@ public class ObservationEditor extends AppCompatActivity {
             if (mObservation.species_guess != null) {
                 mClearSpeciesGuess.setVisibility(View.VISIBLE);
                 if (mScientificName != null) {
-                    mSpeciesGuessSub.setText(mScientificName);
-                    mSpeciesGuessSub.setVisibility(View.VISIBLE);
-                    mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+                    if (mApp.getShowScientificNameFirst()) {
+                        // Show scientific name first, before common name
+                        mSpeciesGuessSub.setText(mSpeciesGuess);
+                        TaxonUtils.setTaxonScientificName(mSpeciesGuessTextView, mScientificName, mTaxonRankLevel);
+                    } else {
+                        TaxonUtils.setTaxonScientificName(mSpeciesGuessSub, mScientificName, mTaxonRankLevel);
+                    }
                 } else {
                     if (mApp.getSuggestSpecies()) {
                         mSpeciesGuessSub.setText(R.string.view_suggestions);
@@ -2090,13 +2097,14 @@ public class ObservationEditor extends AppCompatActivity {
                 String idPicUrl = data.getStringExtra(TaxonSearchActivity.ID_PIC_URL);
                 Integer taxonId = data.getIntExtra(TaxonSearchActivity.TAXON_ID, 0);
                 Integer rankLevel = data.getIntExtra(TaxonSearchActivity.RANK_LEVEL, 0);
+                String rank = data.getStringExtra(TaxonSearchActivity.RANK);
                 boolean isCustomTaxon = data.getBooleanExtra(TaxonSearchActivity.IS_CUSTOM, false);
                 mFromSuggestion = data.getBooleanExtra(TaxonSuggestionsActivity.FROM_SUGGESTION, false);
 
                 if (taxonId == TaxonSearchActivity.UNKNOWN_TAXON_ID) {
                     clearSpeciesGuess();
                 } else {
-                    setTaxon(idName, taxonName, rankLevel, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
+                    setTaxon(idName, taxonName, rankLevel, rank, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
                 }
 
                 try {
@@ -2115,6 +2123,9 @@ public class ObservationEditor extends AppCompatActivity {
                 mSpeciesGuessTextView.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
                 mTaxonTextChanged = false;
 
+                mSpeciesGuessTextView.setTypeface(null, Typeface.NORMAL);
+                mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+
                 mClearSpeciesGuess.setVisibility(mIsTaxonUnknown ? View.GONE : View.VISIBLE);
 
                 if (mIsTaxonUnknown || (mScientificName == null)) {
@@ -2125,9 +2136,14 @@ public class ObservationEditor extends AppCompatActivity {
                         mSpeciesGuessSub.setVisibility(View.GONE);
                     }
                 } else {
-                    mSpeciesGuessSub.setText(mScientificName);
-                    mSpeciesGuessSub.setVisibility(View.VISIBLE);
-                    mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
+                    if (mApp.getShowScientificNameFirst()) {
+                        // Show scientific name first, before common name
+                        mSpeciesGuessSub.setText(mIsTaxonUnknown ? "Unknown" : mObservation.species_guess);
+                        TaxonUtils.setTaxonScientificName(mSpeciesGuessTextView, mScientificName, mTaxonRankLevel);
+                    } else {
+                        TaxonUtils.setTaxonScientificName(mSpeciesGuessSub, mScientificName, mTaxonRankLevel);
+                    }
+
                 }
             }
 
@@ -3084,20 +3100,34 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
 
-    private void setTaxon(String idName, String scientificName, int rankLevel, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
+    private void setTaxon(String idName, String scientificName, int rankLevel, String rank, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
         String speciesGuess = String.format("%s", idName);
         mObservation.preferred_common_name = isCustomTaxon ? null : idName;
         mSpeciesGuess = speciesGuess;
         mObservation.species_guess = speciesGuess;
         mObservation.taxon_id = isCustomTaxon ? null : taxonId;
+        mObservation.scientific_name = scientificName;
+        mObservation.rank = rank;
+        mObservation.rank_level = rankLevel;
         mTaxonTextChanged = true;
-        mSpeciesGuessTextView.setText(mSpeciesGuess);
-        mSpeciesGuessSub.setText(scientificName);
+
+        mSpeciesGuessTextView.setTypeface(null, Typeface.NORMAL);
+        mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
+
         mSpeciesGuessSub.setVisibility(View.VISIBLE);
+
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name first, before common name
+            mSpeciesGuessSub.setText(mSpeciesGuess);
+            TaxonUtils.setTaxonScientificName(mSpeciesGuessTextView, scientificName, mTaxonRankLevel);
+        } else {
+            mSpeciesGuessTextView.setText(mSpeciesGuess);
+            TaxonUtils.setTaxonScientificName(mSpeciesGuessSub, scientificName, mTaxonRankLevel);
+        }
+
         mClearSpeciesGuess.setVisibility(View.VISIBLE);
         mScientificName = scientificName;
         mTaxonRankLevel = rankLevel;
-        mSpeciesGuessSub.setTypeface(null, mTaxonRankLevel <= 20 ? Typeface.ITALIC : Typeface.NORMAL);
         mTaxonTextChanged = false;
         mPreviousTaxonSearch = mSpeciesGuess;
         mTaxonPicUrl = isCustomTaxon ? null : idPicUrl;
@@ -3203,9 +3233,10 @@ public class ObservationEditor extends AppCompatActivity {
         mObservation.taxon_id = null;
         mTaxonTextChanged = true;
         mSpeciesGuessTextView.setText("Unknown");
+        mSpeciesGuessTextView.setTypeface(null, Typeface.NORMAL);
+        mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
         if (mApp.getSuggestSpecies()) {
             mSpeciesGuessSub.setText(R.string.view_suggestions);
-            mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
         } else {
             mSpeciesGuessSub.setVisibility(View.GONE);
         }
@@ -3246,7 +3277,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             JSONObject idPhoto = taxon.getJSONObject("default_photo");
-            setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), taxon.getInt("rank_level"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+            setTaxon(getTaxonName(taxon.getJSONObject()), TaxonUtils.getTaxonScientificName(taxon.getJSONObject()), taxon.getInt("rank_level"), taxon.getString("rank"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
         }
     }
 

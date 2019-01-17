@@ -55,7 +55,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
     private static String TAG = "CommentsIdsAdapter";
     private final Handler mMainHandler;
     private final ActivityHelper mHelper;
-    private BetterJSONObject mObservation;
+	private final INaturalistApp mApp;
+	private BetterJSONObject mObservation;
     private List<BetterJSONObject> mItems;
 	private Context mContext;
 	private ArrayList<Boolean> mAgreeing;
@@ -91,6 +92,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		mTaxonId = taxonId;
 		mOnIDAddedCb = onIDAddedCb;
         mHelper = new ActivityHelper(mContext);
+        mApp = (INaturalistApp) mContext.getApplicationContext();
 
 		SharedPreferences prefs = mContext.getSharedPreferences("iNaturalistPreferences", Activity.MODE_PRIVATE);
 		mLogin = prefs.getString("username", null);
@@ -304,27 +306,27 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                 }
 
 				TextView idName = (TextView) view.findViewById(R.id.id_name);
+				TextView idScientificName = (TextView) view.findViewById(R.id.id_taxon_name);
 
-				idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
-				TextView idTaxonName = (TextView) view.findViewById(R.id.id_taxon_name);
-				idTaxonName.setText(TaxonUtils.getTaxonScientificName(item.getJSONObject("taxon")));
-				
-				int rankLevel = item.getJSONObject("taxon").optInt("rank_level");
-                idTaxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-				if (rankLevel <= 20) {
-					idTaxonName.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+				if (mApp.getShowScientificNameFirst()) {
+					// Show scientific name first, before common name
+					TaxonUtils.setTaxonScientificName(idName, item.getJSONObject("taxon"));
+					idScientificName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
+				} else {
+					TaxonUtils.setTaxonScientificName(idScientificName, item.getJSONObject("taxon"));
+					idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
 				}
 
 				Boolean isCurrent = item.getBoolean("current");
 				if ((isCurrent == null) || (!isCurrent)) {
 					// An outdated identification - show as faded-out
 					idName.setTextColor(idName.getTextColors().withAlpha(100));
-					idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(100));
+					idScientificName.setTextColor(idScientificName.getTextColors().withAlpha(100));
 					idPic.setAlpha(100);
 					userPic.setAlpha(100);
 				} else {
 					idName.setTextColor(idName.getTextColors().withAlpha(255));
-					idTaxonName.setTextColor(idTaxonName.getTextColors().withAlpha(255));
+					idScientificName.setTextColor(idScientificName.getTextColors().withAlpha(255));
 					idPic.setAlpha(255);
 					if (hasUserIcon) userPic.setAlpha(255);
 				}
@@ -421,7 +423,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				};
 				idLayout.setOnClickListener(listener);
 				idName.setOnClickListener(listener);
-				idTaxonName.setOnClickListener(listener);
+				idScientificName.setOnClickListener(listener);
 
 
                 boolean isActive = item.getJSONObject("taxon").optBoolean("is_active", true);
@@ -429,8 +431,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				taxonInactive.setVisibility(isActive ? View.GONE : View.VISIBLE);
 
 				if (!isActive) {
-                    idTaxonName.setPaintFlags(idTaxonName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                    idName.setPaintFlags(idTaxonName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    idScientificName.setPaintFlags(idScientificName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    idName.setPaintFlags(idScientificName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 }
 
 				taxonInactive.setOnClickListener(new View.OnClickListener() {

@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
+    private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private int mViewType;
@@ -62,6 +63,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
         super(context, android.R.layout.simple_list_item_1);
 
         mContext = context;
+        mApp = (INaturalistApp) context.getApplicationContext();
         mResultList = results;
         mViewType = viewType;
         mGrid = grid;
@@ -140,21 +142,20 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
             }
 
             TextView scienceName = (TextView) view.findViewById(R.id.species_science_name);
-            JSONObject defaultName = item.optJSONObject("default_name");
 
-            if (defaultName != null) {
-                speciesName.setText(defaultName.getString("name"));
-                if (mViewType == VIEW_TYPE_LIST) scienceName.setText(TaxonUtils.getTaxonScientificName(item));
+            String commonName = TaxonUtils.getTaxonName(mContext, item);
+
+            speciesName.setTypeface(null, Typeface.NORMAL);
+            if (mViewType == VIEW_TYPE_LIST) scienceName.setTypeface(null, Typeface.NORMAL);
+
+            if (mApp.getShowScientificNameFirst()) {
+                // Show scientific name first, before common name
+                TaxonUtils.setTaxonScientificName(speciesName, item);
+                if (mViewType == VIEW_TYPE_LIST) scienceName.setText(commonName);
             } else {
-                String preferredCommonName = item.optString("preferred_common_name", "");
-                if (preferredCommonName.length() == 0) preferredCommonName = item.optString("english_common_name");
-                if (preferredCommonName.length() == 0) {
-                    speciesName.setText(item.getString("name"));
-                    if (mViewType == VIEW_TYPE_LIST) scienceName.setVisibility(View.GONE);
-                } else {
-                    speciesName.setText(preferredCommonName);
-                    if (mViewType == VIEW_TYPE_LIST) scienceName.setText(TaxonUtils.getTaxonScientificName(item));
-                }
+                // Show common name first
+                if (mViewType == VIEW_TYPE_LIST) TaxonUtils.setTaxonScientificName(scienceName, item);
+                speciesName.setText(commonName);
             }
 
             String photoUrl = item.optString("photo_url");
