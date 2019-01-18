@@ -172,7 +172,11 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             results = (BetterJSONObject) intent.getSerializableExtra(intent.getAction());
 
-            Log.d(TAG, "HistogramReceiver - " + intent.getAction());
+           Log.d(TAG, "HistogramReceiver - " + intent.getAction());
+
+            if (results == null) {
+                return;
+            }
 
             if (intent.getAction().equals(INaturalistService.HISTOGRAM_RESULT)) {
                 JSONObject months = results.getJSONObject("results").optJSONObject("month_of_year");
