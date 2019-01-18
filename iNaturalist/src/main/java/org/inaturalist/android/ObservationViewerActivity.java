@@ -207,6 +207,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     @State public String mTaxonIdName;
     @State public String mTaxonScientificName;
     @State public int mTaxonRankLevel;
+    @State public String mTaxonRank;
     @State public String mActiveTab;
     private boolean mReloadObs;
     private boolean mLoadObsJson = false;
@@ -1696,10 +1697,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                     if (mApp.getShowScientificNameFirst()) {
                         // Show scientific name first, before common name
-                        TaxonUtils.setTaxonScientificName(mIdName, mTaxonScientificName, mTaxonRankLevel);
+                        TaxonUtils.setTaxonScientificName(mIdName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
                         mTaxonicName.setText(mTaxonIdName);
                     } else {
-                        TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxonScientificName, mTaxonRankLevel);
+                        TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
                         mIdName.setText(mTaxonIdName);
                     }
 
@@ -1809,6 +1810,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 mTaxonIdName = TaxonUtils.getTaxonName(ObservationViewerActivity.this, mTaxon);
                                 mTaxonScientificName = TaxonUtils.getTaxonScientificName(taxon);
                                 mTaxonRankLevel = taxon.optInt("rank_level", 0);
+                                mTaxonRank = taxon.optString("rank");
 
                                 if (mApp.getShowScientificNameFirst()) {
                                     // Show scientific name first, before common name

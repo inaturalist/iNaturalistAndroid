@@ -18,12 +18,16 @@ import java.util.Locale;
 
 /** Various app-wide taxon-related utility functions */
 public class TaxonUtils {
-    public static void setTaxonScientificName(TextView textView, String taxonName, int rankLevel) {
-        textView.setText(taxonName);
-        if (rankLevel <= 20) {
-            textView.setTypeface(null, Typeface.ITALIC);
-        } else {
-            textView.setTypeface(null, Typeface.NORMAL);
+    public static void setTaxonScientificName(TextView textView, String taxonName, int rankLevel, String rank) {
+        JSONObject taxon = new JSONObject();
+        try {
+            taxon.put("rank", rank);
+            taxon.put("rank_level", rankLevel);
+            taxon.put("name", taxonName);
+
+            setTaxonScientificName(textView, taxon);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
