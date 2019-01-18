@@ -732,7 +732,12 @@ public class ObservationEditor extends AppCompatActivity {
                             input.setMaxLines(1);
                             input.setSingleLine(true);
 
-                            String placeGuess = mObservation.place_guess != null ? mObservation.place_guess : "";
+                            String placeGuess;
+                            if ((mObservation.private_place_guess != null) && (mObservation.private_place_guess.length() > 0)) {
+                                placeGuess = mObservation.private_place_guess;
+                            } else {
+                                placeGuess = mObservation.place_guess != null ? mObservation.place_guess : "";
+                            }
                             input.setText(placeGuess);
                             input.setSelection(0, placeGuess.length());
 
