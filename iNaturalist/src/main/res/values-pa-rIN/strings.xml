@@ -6,8 +6,8 @@
     <string name="delete_observation">Delete observation</string>
     <string name="observation_deleted">Observation deleted</string>
     <string name="species_guess_hint">Species name</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
+    <string name="ok">ਠੀਕ ਹੈ</string>
+    <string name="cancel">ਰੱਦ ਕਰੋ</string>
     <string name="loading">Loading...</string>
     <string name="sync_required">Sync required</string>
     <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Are you sure you want to leave this project?</string>
     <string name="discard_location_changes">Are you sure you want to discard unsaved changes?</string>
     <string name="edit_location">Edit Location</string>
+    <string name="edit_locality_notes">Edit Locality Notes</string>
     <string name="get_current_location">Get current location</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
     <string name="release_to_refresh">Release to refresh...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
     <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech helped developing the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. More information may be found at visipedia.org</string>
+    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
     <string name="credits_title">Credits</string>
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
     <string name="just_so_you_know">Just So You Know...</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="prefers_scientific_name_first">Show scientific names first</string>
+    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
 </resources>

@@ -52,7 +52,7 @@
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
     <string name="unknown">Onbekend</string>
-    <string name="unknown_species">Onbekende specificatie</string>
+    <string name="unknown_species">Onbekende soort</string>
     <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
     <string name="com_facebook_loginview_log_out_button">Uitloggen</string>
     <string name="com_facebook_loginview_log_in_button">Inloggen</string>
@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Weet u zeker dat u dit project wil verlaten?</string>
     <string name="discard_location_changes">Weet je zeker dat je deze wijzigingen niet wilt opslaan?</string>
     <string name="edit_location">Locatie bewerken</string>
+    <string name="edit_locality_notes">Plaatsnotities bewerken</string>
     <string name="get_current_location">Verkrijgen van huidige locatie</string>
     <string name="pull_to_refresh">Trek naar beneden om te verversen...</string>
     <string name="release_to_refresh">Laat los om te verversen...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Zoek projecten waar je aan deelneemt...</string>
     <string name="must_be_connected_to_load_more_obs">U moet verbinding hebben met Internet om meer observaties te kunnen laden</string>
     <string name="inat_about_title">iNaturalist is een gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist is een gezamelijke inspanning van alle personen die deelnemen aan onze Gemeenschap. De mensen die de software bouwen, oze infrastructuur onderhouden en foster samenwerkingen zijn Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer en Ken-Ichi Ueda. Caltech en Cornell Tech die hielpen ontwikkelen van het computer visoon systeem dat soorten van foto\'s herkend. Wij danken Grant Van Horn, Serge Belongie en Pietro Perona voor dit werk. Meer informatie kan worden gevonden op visipedia.org</string>
+    <string name="inat_credits">iNaturalist is een gezamelijke inspanning van alle personen die deelnemen aan onze Gemeenschap. De mensen die de software bouwen, onze infrastructuur onderhouden en de samenwerking bevorderden zijn Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer en Ken-Ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech en Cornell Tech die hielpen met het ontwikkelen van het computer vision systeem dat soorten van foto\'s herkend. Wij danken Grant Van Horn, Serge Belongie en Pietro Perona voor dit werk. Meer informatie vind je op visipedia.org</string>
     <string name="credits_title">Met dank aan</string>
     <string name="password_changed">Het wachtwoord dat de app gebruikt werkt niet meer - heb je jouw wachtwoord verandert op de website? Voer het nieuwe wachtwoord dan ook hier in</string>
     <string name="just_so_you_know">Het is maar dat je het weet...</string>
@@ -623,7 +624,7 @@
     <string name="annotation_value_male">Man</string>
     <string name="joined_projects_all_caps">SLOOT ZICH AAN BIJ</string>
     <string name="nearby_projects_all_caps">IN DE BUURT</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
+    <string name="featured_projects_all_caps">FUNCTIES</string>
     <string name="join_all_caps">DOE MEE</string>
     <string name="my_guides_all_caps">Jouw</string>
     <string name="nearby_guides_all_caps">IN DE BUURT</string>
@@ -658,8 +659,10 @@
     <string name="community_id_at_species_level_or_lower">Community-ID op de soortsniveau of lager</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Op basis van het bewijs, kan de Community-ID nog worden bevestigd of verbeterd?</string>
     <string name="no_as_good_as_it_can_be">Nee, het kan niet beter</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="seasonality">Seizoensgebonden</string>
+    <string name="verifiable">Controleerbare</string>
+    <string name="no_annotation">Geen aantekeningen</string>
+    <string name="donate_to_inaturalist">Doneren aan iNaturalist</string>
+    <string name="prefers_scientific_name_first">Wetenschappelijke namen eerst</string>
+    <string name="prefers_scientific_name_first_description">Wetenschappelijke namen voor lokale namen weergeven.</string>
 </resources>

@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">בטוחים שאתם רוצים לעזוב את הפרויקט?</string>
     <string name="discard_location_changes">האם את/ה בטוח/ה שברצונך לבטל את השינויים שלא נשמרו?</string>
     <string name="edit_location">ערוך/ערכי מיקום</string>
+    <string name="edit_locality_notes">עריכת הערות של מיקום</string>
     <string name="get_current_location">מצא/י מיקום נוכחי</string>
     <string name="pull_to_refresh">משוך/משכי לרענון הדף...</string>
     <string name="release_to_refresh">שחרר/י כדי לרענן...</string>
@@ -554,7 +555,9 @@
     <string name="search_projects_youve_joined">חפש/י פרויקטים שהצטרפת אליהם...</string>
     <string name="must_be_connected_to_load_more_obs">נדרש חיבור לאינטרנט כדי להעלות תצפיות נוספות</string>
     <string name="inat_about_title">iNaturalist הוא יוזמה משותפת של האקדמיה למדעים של קליפורניה ונשיונל ג\'יאוגרפיק.</string>
-    <string name="inat_credits">iNaturalist הוא תוצרת של כל אחד ואחת מהמשתתפים בקהילה שלנו. המתכנתים שלנו, מתחזקים את התשתית ומטפחים שיתופי פעולה הם Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech עזרו בפיתוח מערכת הראייה הממוחשבת המזהה זנים מצילומים. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. מידע נוסף ניתן למצוא ב visipedia.org</string>
+    <string name="inat_credits">iNaturalist הוא תוצרת של כל אחד ואחת מהמשתתפים בקהילה שלנו. המתכנתים שלנו, המתחזקים את התשתית ומטפחים שיתופי פעולה הם Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer ו Ken-ichi Ueda.
+(המעצב הקודם שלנו Joelle Belmonte עיצב את מרבית אפליקצית האנדרויד).
+ Caltech ו Cornell Tech עזרו בפיתוח מערכת הראייה הממוחשבת המזהה זנים מצילומים. אנו מודים ל Grant Van Horn, Serge Belongie ו Pietro Perona עבור מאמציהם בפרויקט זה. מידע נוסף ניתן למצוא ב visipedia.org</string>
     <string name="credits_title">קרדיט</string>
     <string name="password_changed">הסיסמא לאפליקציה לא עדכנית, האם שינית את הססמא באתר? נסו אותה כאן</string>
     <string name="just_so_you_know">לידיעתכם...</string>
@@ -648,18 +651,20 @@
     <string name="research_grade_qualification">אישור על ציון מחקר מדעי</string>
     <string name="date_specified">התאריך שצוין</string>
     <string name="location_specified">המיקום שצוין</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
+    <string name="has_photos_or_sounds">מכיל תמונות או צלילים</string>
     <string name="has_id_supported_by_two_or_more">יש מזהה נתמך על ידי שניים או יותר</string>
     <string name="date_is_accurate">תאריך מדויק</string>
     <string name="location_is_accurate">מיקום מדויק</string>
     <string name="organism_is_wild">אורגניזם פראי</string>
     <string name="evidence_of_organism">ראיה לאורגניזם</string>
     <string name="recent_evidence_of_an_organism">ראיות אחרונות לאורגניזם</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
+    <string name="community_id_at_species_level_or_lower">רמת זיהוי קהילתי של מינים או רמה נמוכה יותר</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">בהתבסס על הראיות, האם אפשר לאשר או לשפר הזיהוי הקהילתי?</string>
     <string name="no_as_good_as_it_can_be">לא, זה הכי טוב שיש</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="seasonality">עונתי</string>
+    <string name="verifiable">ניתן לאימות</string>
+    <string name="no_annotation">ללא הערות</string>
+    <string name="donate_to_inaturalist">תרמו ל iNaturalist</string>
+    <string name="prefers_scientific_name_first">הצג שמות מדעיים תחילה</string>
+    <string name="prefers_scientific_name_first_description">הצג שמות מדעיים לפני שמות נפוצים.</string>
 </resources>

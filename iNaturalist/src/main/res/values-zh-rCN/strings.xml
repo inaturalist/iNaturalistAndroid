@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">您确定要离开此任务群组吗？</string>
     <string name="discard_location_changes">您确定要放弃未储存的修改吗？</string>
     <string name="edit_location">编辑位置</string>
+    <string name="edit_locality_notes">Edit Locality Notes</string>
     <string name="get_current_location">取得目前位置</string>
     <string name="pull_to_refresh">下拉来重新整理...</string>
     <string name="release_to_refresh">放开以重新整理...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">搜索您所加入的项目...</string>
     <string name="must_be_connected_to_load_more_obs">您必须连接到网络才能加载更多观察记录</string>
     <string name="inat_about_title">iNaturalist 是由美国加利福尼亚科学院以及美国国家地理共同发起的平台。</string>
-    <string name="inat_credits">iNaturalist 是由我们社群中每一个参与者所打造的。参与编写软件，维护系统框架，促进多方合作的同事们有：Joelle Belmonte、Yaron Budowski、Tony Iwane、Patrick Leary、Scott Loarie、Alex Shepard 和 Ken-ichi Ueda。加州理工学院和康奈尔理工学院为开发基于图片的物种鉴定的计算机视觉系统提供了帮助。我们感谢 Grant Van Horn，Serge Belongie 和 Pietro Perona 为此作出的努力。更多信息敬请访问 visipedia.org</string>
+    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
     <string name="credits_title">贡献者</string>
     <string name="password_changed">您在此应用中设置的密码无法通过验证。您是否在网页版中更改了密码呢？请在此输入新的密码</string>
     <string name="just_so_you_know">只是让您知道...</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="prefers_scientific_name_first">Show scientific names first</string>
+    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
 </resources>

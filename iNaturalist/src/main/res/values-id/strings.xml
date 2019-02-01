@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Apakah Anda yakin Anda ingin meninggalkan proyek ini?</string>
     <string name="discard_location_changes">Apakah Anda yakin Anda ingin membuang perubahan yang belum disimpan?</string>
     <string name="edit_location">Mengedit lokasi</string>
+    <string name="edit_locality_notes">Edit Locality Notes</string>
     <string name="get_current_location">Mendapatkan lokasi</string>
     <string name="pull_to_refresh">Tarik untuk me-refresh...</string>
     <string name="release_to_refresh">Lepas untuk me-refresh...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Cari proyek Anda gabung...</string>
     <string name="must_be_connected_to_load_more_obs">Anda harus terhubung ke Internet untuk memuat lebih pengamatan</string>
     <string name="inat_about_title">iNaturalist adalah inisiatif oleh Akademi Sains California dan National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist ini dibuat oleh setiap orang yang berpartisipasi dalam komunitas kami. Orang-orang yang membangun perangkat lunak, mempertahankan infrastruktur kami, dan membina kolaborasi Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer dan Ken-Ichi Ueda. Caltech dan Cornell Tech membantu mengembangkan sistem visi komputer yang mengakui spesies dari foto. Kami terima Grant Van Horn, Serge Belongie dan Pietro Perona untuk pekerjaan ini. Informasi lebih lanjut dapat ditemukan di visipedia.org</string>
+    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
     <string name="credits_title">Kredit</string>
     <string name="password_changed">Password app tidak lagi bekerja - Apakah Anda mengubah sandi situs web? Masukkan yang baru di sini</string>
     <string name="just_so_you_know">Hanya Jadi Anda tahu...</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="prefers_scientific_name_first">Show scientific names first</string>
+    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
 </resources>

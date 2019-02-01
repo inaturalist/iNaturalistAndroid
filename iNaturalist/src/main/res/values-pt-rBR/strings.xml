@@ -112,8 +112,8 @@
     <string name="search_guides">Procurar guias...</string>
     <string name="save_observation">Salvar Observação</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">Acerca de</string>
-    <string name="about_guide_all_caps">ACERCA DE</string>
+    <string name="about_guide">Sobre </string>
+    <string name="about_guide_all_caps">SOBRE </string>
     <!-- Header for a description an individual project -->
     <string name="about_project">Acerca de</string>
     <string name="about_project_all_caps">ACERCA DE</string>
@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Tem certeza que deseja sair deste projeto?</string>
     <string name="discard_location_changes">Tem certeza que deseja descartar as alterações que não estão salvas?</string>
     <string name="edit_location">Editar Local</string>
+    <string name="edit_locality_notes">Editar Notas de Localização</string>
     <string name="get_current_location">Obter a localização atual</string>
     <string name="pull_to_refresh">Deslize para atualizar...</string>
     <string name="release_to_refresh">Solte para atualizar...</string>
@@ -554,11 +555,11 @@
     <string name="search_projects_youve_joined">Procurar projetos dos quais você faz parte...</string>
     <string name="must_be_connected_to_load_more_obs">Você precisa de conexão com a Internet para carregar mais observações</string>
     <string name="inat_about_title">iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da Sociedade Geográfica Nacional.</string>
-    <string name="inat_credits">iNaturalist é feito por cada pessoa que participa na nossa comunidade. As pessoas que criaram o programa, mantêm a infraestrutura e fomentam as colaborações são Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Carrie Seltzer, Alex Shepard e Ken-ichi Ueda. Caltech &amp; Cornell Tech ajudaram a desenvolver o sistema de visão computacional que reconhece as espécies a partir das fotografias. Agradecemos o trabalho de Grant Van Horn, Serge Belongie e Pietro Perona. Informações adicionais encontram-se em visipedia.org</string>
+    <string name="inat_credits">O iNaturalist é constituído por todas as pessoas que participam na nossa comunidade. Os que desenvolvem o software, que mantêm a nossa infraestrutura e promovem colaborações são Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (Joelle Belmonte, a nossa anterior designer, projetou grande parte da atual aplicação para Android). A Caltech e a Universidade de Cornell ajudaram a desenvolver o sistema de visão computacional que reconhece espécies a partir das fotografias. Agradecemos o trabalho de Grant Van Horn, Serge Belongie e Pietro Perona. Informações adicionais encontram-se em visipedia.org.</string>
     <string name="credits_title">Créditos</string>
     <string name="password_changed">A palavra-passe que usa na aplicação deixou de funcionar - alterou a sua palavra-passe no website? Por favor, insira a nova palavra-passe aqui</string>
-    <string name="just_so_you_know">Só para saber...</string>
-    <string name="ask_for_g_plus_permissions">O Google requer que solicitemos permissão para aceder aos seus contatos para usar a sua Conta do Google, embora não acedemos aos seus contatos por nenhuma razão. Se negar essa permissão, terá de se registar ou iniciar sessão com um nome de utilizador e palavra-passe.</string>
+    <string name="just_so_you_know">Só assim você sabe</string>
+    <string name="ask_for_g_plus_permissions">O Google exige que solicitemos permissão para acessar seus contatos para usar sua Conta do Google, mesmo que não acessemos seus contatos por qualquer motivo. Se você negar essa permissão, precisará se inscrever ou fazer login com um nome de usuário e senha.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Novo no %1$s? <b>Regista-se agora!</b>]]></string>
     <string name="see_more_observations">Ver mais observações</string>
     <string name="see_more_species">Ver mais espécies</string>
@@ -640,7 +641,7 @@
     <string name="identifications_all_caps">IDENTIFICAÇÕES</string>
     <string name="news_all_caps">NOTÍCIAS</string>
     <string name="got_it_all_caps">PERCEBI!</string>
-    <string name="view_all_all_caps">VER TODOS</string>
+    <string name="view_all_all_caps">VER TUDO</string>
     <string name="new_all_caps">NOVO</string>
     <string name="observers_all_caps">OBSERVADORES</string>
     <string name="observations_regular">Observações</string>
@@ -658,8 +659,10 @@
     <string name="community_id_at_species_level_or_lower">Identificação pela Comunidade ao nível da espécie ou inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Com base nas evidências, pode a Identificação pela Comunidade ser confirmada ou melhorada?</string>
     <string name="no_as_good_as_it_can_be">Não, está tão bom como pode ser</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="seasonality">Sazonalidade</string>
+    <string name="verifiable">Verificável</string>
+    <string name="no_annotation">Sem Anotação</string>
+    <string name="donate_to_inaturalist">Fazer um Donativo ao iNaturalist</string>
+    <string name="prefers_scientific_name_first">Mostrar os nomes científicos em primeiro</string>
+    <string name="prefers_scientific_name_first_description">Mostrar os nomes científicos antes dos nomes comuns.</string>
 </resources>

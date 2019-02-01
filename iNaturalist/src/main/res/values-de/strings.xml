@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Bist du sicher, dass du dieses Projekt verlassen willst?</string>
     <string name="discard_location_changes">Bist du sicher, dass du die Änderungen verwerfen möchtest?</string>
     <string name="edit_location">Standort bearbeiten</string>
+    <string name="edit_locality_notes">Lokale Notizen bearbeiten</string>
     <string name="get_current_location">Aktuellen Standort abrufen</string>
     <string name="pull_to_refresh">Ziehen, um zu aktualisieren...</string>
     <string name="release_to_refresh">Zum Aktualisieren loslassen...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Projekte suchen, denen Sie beigetreten sind...</string>
     <string name="must_be_connected_to_load_more_obs">Sie müssen mit dem Internet verbunden sein, um weitere Beobachtungen zu laden</string>
     <string name="inat_about_title">iNaturalist ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist entsteht durch jede einzelne Person, die an unserer Gemeinschaft teilnimmt. Die Leute, welche die Software entwickeln, unsere Infrastruktur pflegen und die Zusammenarbeit fördern, sind Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer und Ken-Ichi Ueda. Caltech und Cornell Tech halfen bei der Entwicklung des Computer-Vision-Systems, das Arten anhand von Fotos erkennt. Wir danken Grant Van Horn, Serge Belongie und Pietro Perona für diese Arbeit. Weitere Informationen finden Sie unter visipedia.org</string>
+    <string name="inat_credits">iNaturalist wird von jeder einzelnen Person gemacht, die in unserer Gemeinschaft mitwirkt. Die Leute, die die Software entwickeln, unsere Infrastruktur warten und die Zusammenarbeit fördern, sind Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer und Ken-ichi Ueda (unsere ehemalige Designerin Joelle Belmonte hat einen Großteil der aktuellen Android-App entwickelt). Caltech und die Cornell University halfen bei der Entwicklung des Computer Vision Systems, das Arten anhand von Fotos erkennt. Wir danken Grant Van Horn, Serge Belongie und Pietro Perona für diese Arbeit. Weitere Informationen finden Sie unter visipedia.org</string>
     <string name="credits_title">Danksagungen</string>
     <string name="password_changed">Das von der App verwendete Passwort funktioniert nicht mehr. Haben Sie Ihr Passwort auf der Website geändert? Bitte geben Sie hier das Neue ein</string>
     <string name="just_so_you_know">Nur damit Sie es wissen …</string>
@@ -658,8 +659,10 @@
     <string name="community_id_at_species_level_or_lower">Gemeinschafts-ID auf Artenebene oder niedriger</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Kann die Gemeinschaftskennung auf Grundlage der Erkenntnisse noch bestätigt oder verbessert werden?</string>
     <string name="no_as_good_as_it_can_be">Nein, es ist so gut wie es nur sein kann</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="seasonality">Saisonabhängigkeit</string>
+    <string name="verifiable">Nachweisbar</string>
+    <string name="no_annotation">Keine Anmerkungen</string>
+    <string name="donate_to_inaturalist">An iNaturalist spenden</string>
+    <string name="prefers_scientific_name_first">Wissenschaftliche Namen zuerst anzeigen</string>
+    <string name="prefers_scientific_name_first_description">Wissenschaftliche Namen vor allgemeinen Namen anzeigen.</string>
 </resources>
