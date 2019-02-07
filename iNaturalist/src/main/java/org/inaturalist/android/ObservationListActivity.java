@@ -414,6 +414,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, this, INaturalistService.class);
         serviceIntent.putExtra(INaturalistService.FOLLOWING, false);
         ContextCompat.startForegroundService(this, serviceIntent);
+
+        if (mApp.loggedIn()) {
+            // Refresh user settings on app open
+            Intent serviceIntent2 = new Intent(INaturalistService.ACTION_REFRESH_CURRENT_USER_SETTINGS, null, this, INaturalistService.class);
+            ContextCompat.startForegroundService(this, serviceIntent2);
+        }
     }
 
     private void refreshViewState() {

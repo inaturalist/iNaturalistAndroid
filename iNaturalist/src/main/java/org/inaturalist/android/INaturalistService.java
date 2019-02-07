@@ -3296,7 +3296,8 @@ public class INaturalistService extends IntentService {
         try {
             if (json == null) return null;
             if (json.length() == 0) return null;
-            return new BetterJSONObject(json.getJSONObject(0));
+            JSONObject user = json.getJSONObject(0).getJSONArray("results").getJSONObject(0);
+            return new BetterJSONObject(user);
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

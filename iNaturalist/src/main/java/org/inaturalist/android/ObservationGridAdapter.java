@@ -71,9 +71,7 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                 // Show scientific name instead of common name
                 TaxonUtils.setTaxonScientificName(idName, taxon);
             } else {
-                String idNameStr = item.isNull("species_guess") ?
-                        TaxonUtils.getTaxonName(mContext, taxon) :
-                        item.optString("species_guess", mContext.getResources().getString(R.string.unknown));
+                String idNameStr = TaxonUtils.getTaxonName(mContext, taxon);
                 idName.setText(idNameStr);
             }
         } else {

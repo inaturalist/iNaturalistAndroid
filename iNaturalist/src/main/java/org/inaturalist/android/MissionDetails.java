@@ -339,12 +339,22 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             });
         }
 
-        mTaxonName.setText(taxon.getString("preferred_common_name"));
-        mCollapsingToolbar.setTitle(taxon.getString("preferred_common_name"));
         mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         mCollapsingToolbar.setCollapsedTitleTextColor(Color.parseColor("#000000"));
         mCollapsingToolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        mTaxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+
+
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name first, before common name
+            TaxonUtils.setTaxonScientificName(mTaxonName, taxon.getJSONObject());
+            mCollapsingToolbar.setTitle(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+            mTaxonScientificName.setText(taxon.getString("preferred_common_name"));
+        } else {
+            mTaxonName.setText(taxon.getString("preferred_common_name"));
+            mCollapsingToolbar.setTitle(taxon.getString("preferred_common_name"));
+            mTaxonScientificName.setText(TaxonUtils.getTaxonScientificName(taxon.getJSONObject()));
+        }
+
 
         if (mObservations == null) {
             mLoadingMap.setVisibility(View.VISIBLE);

@@ -32,6 +32,7 @@ import java.util.Locale;
 
 public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
+    private final INaturalistApp mApp;
     private List<JSONObject> mItems;
     private Context mContext;
     private int mViewType;
@@ -45,6 +46,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
         mItems = objects;
         mContext = context;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
         mViewType = viewType;
     }
 
@@ -72,15 +74,21 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
         TextView idName = (TextView) view.findViewById(R.id.species_guess);
 
-        if (!item.isNull("taxon")) {
-            try {
-                idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        if (mApp.getShowScientificNameFirst()) {
+            // Show scientific name first, before common name
+            TaxonUtils.setTaxonScientificName(idName, item.optJSONObject("taxon"));
         } else {
-            idName.setText(item.isNull("species_guess") ? mContext.getResources().getString(R.string.unknown) : item.optString("species_guess", mContext.getResources().getString(R.string.unknown)));
+            if (!item.isNull("taxon")) {
+                try {
+                    idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                idName.setText(item.isNull("species_guess") ? mContext.getResources().getString(R.string.unknown) : item.optString("species_guess", mContext.getResources().getString(R.string.unknown)));
+            }
         }
+
 
 
         if (mViewType == VIEW_TYPE_GRID) {

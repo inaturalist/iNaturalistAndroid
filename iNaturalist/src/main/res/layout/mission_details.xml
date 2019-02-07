@@ -91,7 +91,6 @@
                     android:text="(Sceloporus occidentalis)"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:textStyle="italic"
                     />
 
             </LinearLayout>

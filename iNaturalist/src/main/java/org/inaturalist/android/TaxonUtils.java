@@ -15,10 +15,56 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /** Various app-wide taxon-related utility functions */
 public class TaxonUtils {
+    private static final Map<String, Float> RANK_NAME_TO_LEVEL;
+
+    static {
+        Map<String, Float> rankNameToLevel = new HashMap<>();
+
+        rankNameToLevel.put("root", 100f);
+        rankNameToLevel.put("kingdom", 70f);
+        rankNameToLevel.put("subkingdom", 67f);
+        rankNameToLevel.put("phylum", 60f);
+        rankNameToLevel.put("subphylum", 57f);
+        rankNameToLevel.put("superclass", 53f);
+        rankNameToLevel.put("class", 50f);
+        rankNameToLevel.put("subclass", 47f);
+        rankNameToLevel.put("infraclass", 45f);
+        rankNameToLevel.put("superorder", 43f);
+        rankNameToLevel.put("order", 40f);
+        rankNameToLevel.put("suborder", 37f);
+        rankNameToLevel.put("infraorder", 35f);
+        rankNameToLevel.put("parvorder", 34.5f);
+        rankNameToLevel.put("zoosection", 34f);
+        rankNameToLevel.put("zoosubsection", 33.5f);
+        rankNameToLevel.put("superfamily", 33f);
+        rankNameToLevel.put("epifamily", 32f);
+        rankNameToLevel.put("family", 30f);
+        rankNameToLevel.put("subfamily", 27f);
+        rankNameToLevel.put("supertribe", 26f);
+        rankNameToLevel.put("tribe", 25f);
+        rankNameToLevel.put("subtribe", 24f);
+        rankNameToLevel.put("genus", 20f);
+        rankNameToLevel.put("genushybrid", 20f);
+        rankNameToLevel.put("subgenus", 15f);
+        rankNameToLevel.put("section", 13f);
+        rankNameToLevel.put("subsection", 12f);
+        rankNameToLevel.put("species", 10f);
+        rankNameToLevel.put("hybrid", 10f);
+        rankNameToLevel.put("subspecies", 5f);
+        rankNameToLevel.put("variety", 5f);
+        rankNameToLevel.put("form", 5f);
+        rankNameToLevel.put("infrahybrid", 5f);
+
+        RANK_NAME_TO_LEVEL = Collections.unmodifiableMap(rankNameToLevel);
+    }
+
     public static void setTaxonScientificName(TextView textView, String taxonName, int rankLevel, String rank) {
         JSONObject taxon = new JSONObject();
         try {
@@ -43,16 +89,31 @@ public class TaxonUtils {
     public static String getTaxonScientificNameHtml(JSONObject item, boolean bold) {
         String name = item.optString("name", "");
         String rank = getTaxonRank(item);
-        if (item.optInt("rank_level", 0) <= 20) {
+        if (getTaxonRankLevel(item) <= 20) {
             name = (rank.equals("") ? "" : (rank + " ")) + "<i>" + name + "</i>";
         }
 
         return bold ? "<b>" + name + "</b>" : name;
     }
 
+    public static double getTaxonRankLevel(JSONObject item) {
+        if (item.has("rank_level")) return item.optDouble("rank_level");
+
+        // Try to deduce rank level from rank
+        if (item.has("rank")) {
+            if (RANK_NAME_TO_LEVEL.containsKey(item.optString("rank"))) {
+                return RANK_NAME_TO_LEVEL.get(item.optString("rank").toLowerCase());
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
 
     public static String getTaxonRank(JSONObject item) {
-        int rankLevel = item.optInt("rank_level", 0);
+        double rankLevel = getTaxonRankLevel(item);
 
         if (rankLevel < 15) {
             // Lower than subgenus - don't return anything
