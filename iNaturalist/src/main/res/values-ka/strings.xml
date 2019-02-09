@@ -28,7 +28,7 @@
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">ვახ, რაღაც შეცდომა მოხდა: %1$s</string>
     <string name="edit">შეცვლა</string>
-    <string name="oh_no">Oh no! %1$s</string>
+    <string name="oh_no">ვაჰ, არა! %1$s</string>
     <string name="observations">ჩემი დაკვირვებები</string>
     <string name="map">რუკა</string>
     <string name="settings">პარამეტრები</string>
@@ -57,12 +57,12 @@
     <string name="com_facebook_loginview_log_out_button">გამოსვლა</string>
     <string name="com_facebook_loginview_log_in_button">შესვლა</string>
     <string name="com_facebook_loginview_logged_in_as">შესული ხართ, როგორც: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logged in using Facebook</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">შესული ხართ Facebook-ით</string>
     <string name="com_facebook_loginview_log_out_action">გამოსვლა</string>
     <string name="com_facebook_loginview_cancel_action">გაუქმება</string>
     <string name="com_facebook_logo_content_description">Facebook-ის ლოგო</string>
     <string name="com_facebook_usersettingsfragment_log_in_button">შესვლა&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logged In</string>
+    <string name="com_facebook_usersettingsfragment_logged_in">შესული ხართ</string>
     <string name="com_facebook_usersettingsfragment_not_logged_in">არ ხართ შესული</string>
     <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
@@ -78,7 +78,7 @@
     <string name="com_facebook_requesterror_password_changed">თქვენი Facebook-ის პაროლი შეცვლილია. გთხოვთ თავიდან შედით აპლიკაციაში, რომ დააკავშიროთ თქვენს Facebook-ის ანგარიშთან.</string>
     <string name="com_facebook_requesterror_reconnect">გთხოვთ შეხვიდეთ აპლიკაციაში, რომ თავიდან დააკავშიროთ Facebook-ის ანგარიში.</string>
     <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
-    <string name="edit_observation">Edit Observation</string>
+    <string name="edit_observation">დაკვირვების რედაქტირება</string>
     <string name="discard_changes">ნამდვილად გსურთ ყველა შესანახი ცვლილებების გაუქმება?</string>
     <string name="yes">დიახ</string>
     <string name="no">არა</string>
@@ -109,16 +109,16 @@
     <string name="select_projects">მონიშნეთ გაწევრიანებული პროექტებიდან</string>
     <string name="not_connected">ინტერნეტთან კავშირი გჭირდებათ ამის გასაკეთებლად!</string>
     <string name="search_projects">პროექტების ძიება...</string>
-    <string name="search_guides">Search guides...</string>
+    <string name="search_guides">მეგზურების ძებნა...</string>
     <string name="save_observation">დაკვირვების წაშლა</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">ჩვენზე</string>
+    <string name="about_guide_all_caps">ჩვენზე</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">ჩვენზე</string>
+    <string name="about_project_all_caps">ჩვენზე</string>
+    <string name="about_this_app">ჩვენზე</string>
+    <string name="about_taxon_short">ჩვენზე</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacy</string>
     <string name="delete_confirmation">ნამდვილად გსურთ ამ დაკვირვების წაშლა?</string>
@@ -127,11 +127,11 @@
     <string name="my_guides">თქვენი</string>
     <string name="nearby_guides">ახლო</string>
     <string name="all_guides">ყველა</string>
-    <string name="no_taxa">No taxa found for this guide!</string>
-    <string name="search_taxa">Search taxa...</string>
-    <string name="no_internet_guides">Guides require an Internet connection</string>
+    <string name="no_taxa">ამ მეგზურისთვის ტაქსონი არ მოიძებნა!</string>
+    <string name="search_taxa">ტაქსონის ძებნა...</string>
+    <string name="no_internet_guides">მეგზურებისთვის საჭიროა კავშირი ინტერნეტთან</string>
     <string name="no_internet_projects">პროექტისთვის საჭიროა კავშირი ინტერნეტთან</string>
-    <string name="locale_gl">Galician</string>
+    <string name="locale_gl">გალიციური</string>
     <string name="locale_eu">ბასკური</string>
     <string name="use_device_language_settings">მოწყობილობის ენის პარამეტრების გამოყენება</string>
     <string name="choose_location">აირჩიეთ ადგილმდებარეობა</string>
@@ -142,8 +142,9 @@
     <string name="leave_project">პროექტის მიტოვება</string>
     <string name="leave_project_confirmation">დარწმუნებული ხართ, რომ გინდათ ამ პროექტის მიტოვება?</string>
     <string name="discard_location_changes">ნამდვილად გსურთ ყველა შესანახი ცვლილებების გაუქმება?</string>
-    <string name="edit_location">Edit Location</string>
-    <string name="get_current_location">Get current location</string>
+    <string name="edit_location">ადგილმდებარეობის შეცვლა</string>
+    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="get_current_location">მიმდინარე ადგილმდებარეობის მითითება</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
     <string name="release_to_refresh">Release to refresh...</string>
     <string name="refreshing">მიმდინარეობს განახლება...</string>
@@ -155,10 +156,10 @@
     <string name="skip_for_now">გამოტოვება</string>
     <string-array name="tutorial_titles">
         <item></item>
-        <item>Observe</item>
+        <item>დააკვირდით</item>
         <item>გაზიარება</item>
         <item>სწავლა</item>
-        <item>Contribute</item>
+        <item>შეიტანეთ წვლილი</item>
     </string-array>
     <string-array name="tutorial_descriptions">
         <item>Explore and Connect with Nature</item>
@@ -180,8 +181,8 @@
     <string name="search">ძებნა</string>
     <string name="details">დეტალები</string>
     <string name="observation_photos">დაკვირვების ფოტოები</string>
-    <string name="remove">Remove?</string>
-    <string name="no_observations_found">No observations found</string>
+    <string name="remove">მოვაშოროთ?</string>
+    <string name="no_observations_found">დაკვირვებები არ მოიძებნა</string>
     <string name="license_none">None, all rights reserved</string>
     <string name="sources_and_attribution">Sources and Attribution</string>
     <string name="photos"><![CDATA[<b>ფოტო:</b> %1$s]]></string>
@@ -197,11 +198,11 @@
     <string name="license">ლიცენზია</string>
     <string name="download_for_offline_use">Download for offline use</string>
     <string name="download_not_available">Download not available</string>
-    <string name="guide_editor_must_enable_this_feature">Guide editor must enable this feature.</string>
+    <string name="guide_editor_must_enable_this_feature">მეგზურის რედაქტორმა უნდა დაუშვას ეს ფუნქცია.</string>
     <string name="are_you_sure">დარწმუნებული ხართ?</string>
     <string name="download_guide_alert">This will download %1$s of data so you can use this guide even when you don\'t have Internet access.</string>
     <string name="download">გადმოწერა</string>
-    <string name="failed_to_download_guide">Failed to download guide</string>
+    <string name="failed_to_download_guide">მეგზური ვერ ჩამოიტვირთა</string>
     <string name="internet_connection_seems_to_be_offline">The Internet connection appears to be offline.</string>
     <string name="downloading">იტვირთება...</string>
     <string name="extracting">Extracting...</string>
@@ -228,14 +229,14 @@
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">მომხმარებლის სახელი, ან ელფოსტა</string>
     <string name="forgot">დაგავიწყდათ?</string>
-    <string name="or_login_with">Or Log In With:</string>
+    <string name="or_login_with">ან შედით ამით:</string>
     <string name="registering">რეგისტრაცია...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="recommended_next_step">რეკომენდებული შემდეგი ნაბიჯი</string>
     <string name="could_not_register_user">მომხმარებელი ვერ დავარეგისტრირეთ</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">შესვლა / რეგისტრაცია</string>
-    <string name="please_sign_in_via_settings_for_guides">You must be logged in to view your guides.</string>
-    <string name="please_sign_in_for_updates">You must be logged in to view your updates.</string>
+    <string name="please_sign_in_via_settings_for_guides">შესული უნდა იყოთ, რომ ნახოთ თქვენი მეგზურები.</string>
+    <string name="please_sign_in_for_updates">შესული უნდა იყოთ, რომ ნახოთ თქვენი განახლებები.</string>
     <string name="by_using_inat_terms"><![CDATA[iNaturalist-ის გამოყენებით თქვენ ეთანხმებით <b><a href="http://www.inaturalist.org/pages/terms">მოხმარების პირობებს</a></b> და <b><a href="http://www.inaturalist.org/pages/privacy">კონფიდენციალურობის პოლიტიკას</a></b>]]></string>
     <string name="activity">აქტივობა</string>
     <string name="camera">ფოტოს გადაღება</string>
@@ -245,7 +246,7 @@
     <string name="make_first">Make 1st</string>
     <string name="notes">ჩანიშვნები</string>
     <string name="location_is">ადგილმდებარეობა არის</string>
-    <string name="is_captive">It is captive or cultivated</string>
+    <string name="is_captive">დატყვევებულია, ან კულტივირებული</string>
     <string name="location_visibility">ადგილმდებარეობის ხილვადობა</string>
     <string name="set_location">ადგილმდებარეობა</string>
     <string name="coordinates_lat">განედი:</string>
@@ -351,10 +352,10 @@
     <string name="cleaning_up">იწმინდება...</string>
     <string name="syncing">Syncing...</string>
     <string name="syncing_observation_fields">Syncing observation fields...</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observations">დაკვირვებების სინქრონიზაცია...</string>
     <string name="syncing_paused">შეჩერებული</string>
     <string name="upload">ატვირთვა</string>
-    <string name="search_observations">Search Observations...</string>
+    <string name="search_observations">დაკვირვებების ძებნა...</string>
     <string name="withdraw">Withdraw</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
@@ -403,7 +404,7 @@
     <string name="new_activities">%1s ახალი</string>
     <string name="no_results_found">No Results Found...</string>
     <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
-    <string name="deleting_observations">Deleting Observations...</string>
+    <string name="deleting_observations">დაკვირვებების წაშლა...</string>
     <string name="preparing">Preparing...</string>
     <string name="add_edit_remark">Add/Edit Remark</string>
     <string name="restore">აღდგენა</string>
@@ -439,7 +440,7 @@
     <string name="enlarge">გადიდება</string>
     <string name="view_children">View Children</string>
     <string name="invalid_photo_extension">შეცდომა ფოტო(ები)ს იმპორტისას: მხოლოდ შემდეგი ფორმატის ფოტოების იმპორტია შესაძლებელი – JPG/JPEG/PNG</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
+    <string name="taxon_has_no_photos">ამ ტაქსონს არ აქვს ფოტოები.</string>
     <string name="terrain">რელიეფი</string>
     <string name="filters">ფილტრები</string>
     <string name="exploring_all">Exploring All</string>
@@ -448,7 +449,7 @@
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">e.g. birds, monarch</string>
     <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
+    <string name="no_taxon">უკაცრავად, ტაქსონი არ მოიძებნა</string>
     <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
     <string name="sorry_no_location">Sorry, location not found</string>
     <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
@@ -535,7 +536,7 @@
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dკ</string>
     <string name="new_observation">ახალი დაკვირვება</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
+    <string name="inactive_taxon">არააქტიური ტაქსონი</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
     <string name="make_an_observation">Make an observation</string>
@@ -544,7 +545,7 @@
     <string name="leave_comment">დატოვეთ კომენტარი...</string>
     <string name="swipe">Swipe</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
+    <string name="select_google_account">Google-ის რომელი ანგარიში?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[არ ვიცი, მაგრამ მგონი ეს არის <b>%1$s</b>.]]></string>
@@ -554,13 +555,13 @@
     <string name="search_projects_youve_joined">მოძებნეთ პროექტებში, რომლებშიც გაწევრიანებული ხართ...</string>
     <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer and Ken-Ichi Ueda. Caltech and Cornell Tech helped developing the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie and Pietro Perona for this work. More information may be found at visipedia.org</string>
+    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
     <string name="credits_title">Credits</string>
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
     <string name="just_so_you_know">Just So You Know...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
+    <string name="see_more_observations">მეტი დაკვირვებების ნახვა</string>
     <string name="see_more_species">See more species</string>
     <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
@@ -625,33 +626,33 @@
     <string name="nearby_projects_all_caps">NEARBY</string>
     <string name="featured_projects_all_caps">FEATURED</string>
     <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
+    <string name="my_guides_all_caps">თქვენი</string>
+    <string name="nearby_guides_all_caps">შორიახლოს</string>
+    <string name="all_guides_all_caps">ყველა</string>
     <string name="description_all_caps">DESCRIPTION</string>
     <string name="quantity_all_caps">QTY</string>
     <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
     <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
     <string name="agree_all_caps">AGREE</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
+    <string name="species_all_caps">სახეობა</string>
+    <string name="people_all_caps">ადამიანები</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
     <string name="identifications_all_caps">IDENTIFICATIONS</string>
     <string name="news_all_caps">NEWS</string>
     <string name="got_it_all_caps">GOT IT!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
+    <string name="new_all_caps">ახალი</string>
     <string name="observers_all_caps">OBSERVERS</string>
     <string name="observations_regular">Observations</string>
     <string name="data_quality_assessment">Data Quality Assessment</string>
     <string name="research_grade_qualification">Research Grade Qualification</string>
     <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
+    <string name="location_specified">მდებარეობა მითითებულია</string>
     <string name="has_photos_or_sounds">Has photos or sounds</string>
     <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
     <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
+    <string name="location_is_accurate">მდებარეობა ზუსტია</string>
     <string name="organism_is_wild">Organism is wild</string>
     <string name="evidence_of_organism">Evidence of organism</string>
     <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="prefers_scientific_name_first">Show scientific names first</string>
+    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
 </resources>

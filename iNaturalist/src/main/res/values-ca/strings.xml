@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Esteu segur que voleu sortir d\'aquest projecte?</string>
     <string name="discard_location_changes">Segur que voleu descartar els canvis no desats?</string>
     <string name="edit_location">Edita la ubicació</string>
+    <string name="edit_locality_notes">Editar notes de localització</string>
     <string name="get_current_location">Obtenir la localització actual</string>
     <string name="pull_to_refresh">Llisca per a refrescar...</string>
     <string name="release_to_refresh">Deixa anar per a refrescar...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Cerca els projectes als que us heu unit...</string>
     <string name="must_be_connected_to_load_more_obs">Heu d\'estar connectat a internet per carregar més observacions</string>
     <string name="inat_about_title">iNaturalist és una iniciativa conjunta de l\'Acadèmia de Ciències de Califòrnia i la Societat Nacional Geogràfica.</string>
-    <string name="inat_credits">iNaturalist és feta per cada persona que participa de la nostra comunitat. Les persones que desenvolupen el programari, manté la nostra infraestructura, i comparteixen col·laboracions són Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer i Ken-Ichi Ueda. Caltech i Cornell Tech han ajudat a desenvolupar el sistema d\'identificació visual artificial que permet reconèixer les espècies a partir de fotografies. Agraïm Grant Van Horn, Serge Belongie i Pietro Perona pel seu treball. Més informació a visipedia.org</string>
+    <string name="inat_credits">iNaturalist és el resultat de totes les persones que participen de la nostra comunitat. Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer i Ken-ichi Ueda han desevolupat el programari, mantenen la infraestructura i promouen les col·laboracions (el nostre ex-dissenyador Joelle Belmonte va dissenyar gran part de l\'actual Android app). Caltech i la Universitat de Cornell va ajudar a desenvolupar el sistema de visió artificial que reconeix l\'espècie a partir de fotografies. Agraïm a Grant Van Horn, Serge Belongie i Pietro Perona aquesta feina. Podeu trobar més informació a visipedia.org</string>
     <string name="credits_title">Crèdits</string>
     <string name="password_changed">La contrasenya l\'app ja no és correcta- va canviar la contrasenya en el lloc web? Si us plau introdueixi la nova aquí</string>
     <string name="just_so_you_know">Perquè sapigueu...</string>
@@ -658,8 +659,10 @@
     <string name="community_id_at_species_level_or_lower">ID de la comunitat a nivell específic o inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Basat en l\'evidència, pot confirmar o millorar la ID de la Comunitat?</string>
     <string name="no_as_good_as_it_can_be">No, és el millor que pot ser</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="seasonality">Estacionalitat</string>
+    <string name="verifiable">Verificable</string>
+    <string name="no_annotation">Sense Anotacions</string>
+    <string name="donate_to_inaturalist">Fer una donació a iNaturalist</string>
+    <string name="prefers_scientific_name_first">Mostrar primer els noms científics</string>
+    <string name="prefers_scientific_name_first_description">Mostra els noms científics abans dels noms comuns.</string>
 </resources>

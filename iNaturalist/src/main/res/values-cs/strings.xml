@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Jste si jisti, že chcete opustit tento projekt?</string>
     <string name="discard_location_changes">Jste si jisti, že chcete zrušit neuložené změny?</string>
     <string name="edit_location">Upravit umístění</string>
+    <string name="edit_locality_notes">Edit Locality Notes</string>
     <string name="get_current_location">Získat aktuální polohu</string>
     <string name="pull_to_refresh">Pro obnovení posuňte dolů...</string>
     <string name="release_to_refresh">Pro obnovení uvolněte...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Vyhledat projekty, ke kterým jste se připojili...</string>
     <string name="must_be_connected_to_load_more_obs">Pro nahrání více pozorování musíte být připojen/a k internetu</string>
     <string name="inat_about_title">iNaturalist je společná iniciativa California Academy of Sciences a National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist je dílem každého, kdo se zapojí do naší komunity. o vývoj softwaru, údržbu infrastruktury a rozvoj spolupráce se starají Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer a Ken-Ichi Ueda. Caltech a Cornell Tech pomohli tím, že vyvinuli systém počítačové analýzy obrazu, který rozpozná druhy na fotografiích. Grant Van Horn, Serge Belongie a Pietro Perona si to zaslouží velký dík. Více informace najdete na visipedia.org</string>
+    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
     <string name="credits_title">Autoři</string>
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
     <string name="just_so_you_know">Just So You Know...</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="prefers_scientific_name_first">Show scientific names first</string>
+    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
 </resources>

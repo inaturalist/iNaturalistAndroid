@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">您確定要離開此任務群組？</string>
     <string name="discard_location_changes">確定要放棄修改嗎？</string>
     <string name="edit_location">更改位置</string>
+    <string name="edit_locality_notes">編輯地點備註</string>
     <string name="get_current_location">獲取目前的位置</string>
     <string name="pull_to_refresh">拉下更新...</string>
     <string name="release_to_refresh">拉開頁面更新...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">搜尋您已加入的專案...</string>
     <string name="must_be_connected_to_load_more_obs">您必須連接到網路才能載入更多的觀察記錄</string>
     <string name="inat_about_title">iNaturalist 是加州科學院(California Academy of Science)和國家地理學會(National Geographic Society)的共同計畫。</string>
-    <string name="inat_credits">iNaturalist 是由每個參與我們社群的人們共同建立的。Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer 以及 Ken-Ichi Ueda 等人開發軟體、維護基礎設施並促成合作。加州理工大學 (Caltech) 和康乃爾理工學院 (Cornell Tech) 協助開發自照片集中學習以辨識物種之電腦視覺系統。我們感謝 Grant Van Horn, Serge Belongie 和 Pietro Perona 協助這項工作。更多資訊請拜訪 visipedia.org 。</string>
+    <string name="inat_credits">iNaturalist 是由每個參與我們社群的人們共同建立的。Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer 以及 Ken-Ichi Ueda 等人開發軟體、維護基礎設施並促成合作（我們前設計師 Joellie Belmonte 設計現在 Android app 許多部分）。加州理工大學 (Caltech) 和康乃爾理工學院 (Cornell Tech) 協助開發自照片集中學習以辨識物種之電腦視覺系統。我們感謝 Grant Van Horn, Serge Belongie 和 Pietro Perona 協助這項工作。更多資訊請參見 visipedia.org 。</string>
     <string name="credits_title">貢獻者</string>
     <string name="password_changed">app 所使用的密碼不再有效 - 您是否在網站上更改了密碼？請在這裡輸入新的密碼</string>
     <string name="just_so_you_know">只是要您知道...</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">可確認的</string>
     <string name="no_annotation">無註記</string>
     <string name="donate_to_inaturalist">捐款給 iNaturalist</string>
+    <string name="prefers_scientific_name_first">學名顯示優先</string>
+    <string name="prefers_scientific_name_first_description">在俗名之前顯示學名</string>
 </resources>

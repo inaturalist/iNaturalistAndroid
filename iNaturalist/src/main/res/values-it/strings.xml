@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Sei sicuro di volere lasciare questo progetto?</string>
     <string name="discard_location_changes">Sei sicuro di voler ignorare le modifiche non salvate?</string>
     <string name="edit_location">Modifica posizione</string>
+    <string name="edit_locality_notes">Modifica le Note sulla Località</string>
     <string name="get_current_location">Ottieni posizione attuale</string>
     <string name="pull_to_refresh">Clicca per aggiornare...</string>
     <string name="release_to_refresh">Rilascia per aggiornare...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Progetti di ricerca a cui hai aderito...</string>
     <string name="must_be_connected_to_load_more_obs">È necessario essere connessi a Internet per caricare più osservazioni</string>
     <string name="inat_about_title">iNaturalist è un\'iniziativa congiunta della California Academy of Sciences e la National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist è fatto da ogni singola persona che partecipa alla nostra comunità. Le persone che costruiscono il software, mantengono la nostra infrastruttura e favoriscono collaborazioni sono Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer e Ken-Ichi Ueda. Caltech e Cornell Tech hanno aiutato a sviluppare il sistema di visione artificiale che riconosce specie dalle fotografie. Ringraziamo Grant Van Horn, Serge Belongie e Pietro Perona per questo lavoro. Maggiori informazioni possono essere trovate su visipedia.org</string>
+    <string name="inat_credits">iNaturalist è fatto da ogni singola persona che partecipa alla nostra comunità. Le persone che costruiscono il software, mantengono la nostra infrastruttura e promuovono collaborazioni sono Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, e Ken-ichi Ueda (la nostra ex designer Joelle Belmonte ha progettato gran parte dell\'attuale app Android). Caltech e Cornell University hanno contribuito allo sviluppo del sistema di visione artificiale che riconosce le specie dalle fotografie. Ringraziamo Grant Van Horn, Serge Belongie e Pietro Perona per questo lavoro. Maggiori informazioni possono essere trovate su visipedia.org</string>
     <string name="credits_title">Ringraziamenti</string>
     <string name="password_changed">La password utilizzata dall\'app non funziona più - hai cambiato la password sul sito web? Si prega di inserire la nuova password qui</string>
     <string name="just_so_you_know">Solo perchè tu lo sappia...</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">Verificabile</string>
     <string name="no_annotation">Nessuna annotazione</string>
     <string name="donate_to_inaturalist">Fai una donazione a iNaturalist</string>
+    <string name="prefers_scientific_name_first">Mostra prima i nomi scientifici</string>
+    <string name="prefers_scientific_name_first_description">Mostra nomi scientifici prima dei nomi comuni.</string>
 </resources>

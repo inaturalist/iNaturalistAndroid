@@ -143,6 +143,7 @@
     <string name="leave_project_confirmation">Er du sikker på at du vil forlade dette projekt?</string>
     <string name="discard_location_changes">Sikker på, at du vil kasserer ikke-gemte ændringer?</string>
     <string name="edit_location">Redigér placering</string>
+    <string name="edit_locality_notes">Redigér lokalitetsnotater</string>
     <string name="get_current_location">Hent nuværende placering</string>
     <string name="pull_to_refresh">Træk for at opdatere...</string>
     <string name="release_to_refresh">Slip for at opdatere...</string>
@@ -554,7 +555,7 @@
     <string name="search_projects_youve_joined">Søg i projekter du deltager i...</string>
     <string name="must_be_connected_to_load_more_obs">Du skal have Internetforbindelse for at indlæse flere observationer</string>
     <string name="inat_about_title">iNaturalist er et fælles initiativ fra California Academy of Sciences og National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist udgøres af hver enkelt person, som deltager i vores fællesskab. De personer, som udvikler software, opretholder vores infrastruktur og fremmer samarbejde er Joelle Belmonte, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Alex Shepard, Carrie Seltzer og Ken-Ichi Ueda. Caltech og Cornell Tech bidrog til at udvikle det computervisionssystem, der genkender arter fra fotos. Vi takker Grant Van Horn, Serge Belongie og Pietro Perona for dette arbejde. Yderligere opysninger kan findes på visipedia.org</string>
+    <string name="inat_credits">iNaturalist er produktet af hver enkelt person, der deltager i vores fællesskab. De personer, som udvikler softwaren, opretholder vores infrastruktur og fremmer samarbejdet er Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer og Ken-ichi Ueda (vores tidligere designer Joelle Belmonte designede meget af den aktuelle Android-app). Caltech og Cornell University hjalp med at udvikle computersynssystemet, der genkender arter fra fotos. Vi takker Grant Van Horn, Serge Belongie og Pietro Perona for dette arbejde. Flere oplysninger findes på visipedia.org</string>
     <string name="credits_title">Krediteringer</string>
     <string name="password_changed">Adgangskoden, som app\'en benytter, fungerer ikke længere - du har muligvis ændret den på webstedet. Angiv den nye adgangskode her</string>
     <string name="just_so_you_know">Blot så du ved det...</string>
@@ -662,4 +663,6 @@
     <string name="verifiable">Verificerbar</string>
     <string name="no_annotation">Ingen anmærkning</string>
     <string name="donate_to_inaturalist">iNaturalist-donation</string>
+    <string name="prefers_scientific_name_first">Vis videnskabelige navne først</string>
+    <string name="prefers_scientific_name_first_description">Vis videnskabelige navne før almindelige navne.</string>
 </resources>
