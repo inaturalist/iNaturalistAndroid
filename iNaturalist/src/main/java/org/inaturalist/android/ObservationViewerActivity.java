@@ -604,7 +604,6 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         refreshFavorites();
 
         reloadPhotos();
-        loadObservationIntoUI();
         getCommentIdList();
         refreshDataQuality();
         refreshAttributes();
@@ -1689,19 +1688,31 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             } else {
                 UrlImageViewHelper.setUrlDrawable(mIdPic, mTaxonImage);
 
-                if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
-                    mIdName.setText(mTaxonScientificName);
-                    mTaxonicName.setText(mTaxonScientificName);
-                } else {
-                    mTaxonicName.setVisibility(View.VISIBLE);
+                if (mTaxon == null) {
+                    if ((mTaxonIdName == null) || (mTaxonIdName.length() == 0)) {
+                        mIdName.setText(mTaxonScientificName);
+                        mTaxonicName.setText(mTaxonScientificName);
+                    } else {
+                        mTaxonicName.setVisibility(View.VISIBLE);
 
+                        if (mApp.getShowScientificNameFirst()) {
+                            // Show scientific name first, before common name
+                            TaxonUtils.setTaxonScientificName(mIdName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
+                            mTaxonicName.setText(mTaxonIdName);
+                        } else {
+                            TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
+                            mIdName.setText(mTaxonIdName);
+                        }
+
+                    }
+                } else {
                     if (mApp.getShowScientificNameFirst()) {
                         // Show scientific name first, before common name
-                        TaxonUtils.setTaxonScientificName(mIdName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
-                        mTaxonicName.setText(mTaxonIdName);
+                        TaxonUtils.setTaxonScientificName(mIdName, mTaxon);
+                        mTaxonicName.setText(TaxonUtils.getTaxonName(this, mTaxon));
                     } else {
-                        TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxonScientificName, mTaxonRankLevel, mTaxonRank);
-                        mIdName.setText(mTaxonIdName);
+                        TaxonUtils.setTaxonScientificName(mTaxonicName, mTaxon);
+                        mIdName.setText(TaxonUtils.getTaxonName(this, mTaxon));
                     }
 
                 }

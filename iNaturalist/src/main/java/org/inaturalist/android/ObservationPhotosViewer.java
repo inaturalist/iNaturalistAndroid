@@ -139,7 +139,13 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
 
         if (mIsTaxon) {
-            actionBar.setTitle(TaxonUtils.getTaxonName(this, mObservation));
+            if (mApp.getShowScientificNameFirst()) {
+                // Show scientific name first, before common name
+                actionBar.setTitle(TaxonUtils.getTaxonScientificName(mObservation));
+            } else {
+                actionBar.setTitle(TaxonUtils.getTaxonName(this, mObservation));
+            }
+
         } else {
             actionBar.setTitle(R.string.observation_photos);
         }

@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -36,18 +37,14 @@ public class TaxonUtils {
     }
 
     public static void setTaxonScientificName(TextView textView, JSONObject item, boolean bold) {
-        textView.setText(getTaxonScientificName(item));
-        if (item.optInt("rank_level", 0) <= 20) {
-            textView.setTypeface(null, bold ? Typeface.BOLD_ITALIC : Typeface.ITALIC);
-        } else {
-            textView.setTypeface(null, bold ? Typeface.BOLD : Typeface.NORMAL);
-        }
+        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(item, bold)));
     }
 
     public static String getTaxonScientificNameHtml(JSONObject item, boolean bold) {
-        String name = getTaxonScientificName(item);
+        String name = item.optString("name", "");
+        String rank = getTaxonRank(item);
         if (item.optInt("rank_level", 0) <= 20) {
-            name = "<i>" + name + "</i>";
+            name = (rank.equals("") ? "" : (rank + " ")) + "<i>" + name + "</i>";
         }
 
         return bold ? "<b>" + name + "</b>" : name;
@@ -81,7 +78,6 @@ public class TaxonUtils {
         String displayName = null;
 
         // Get the taxon display name according to device locale
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Locale deviceLocale = context.getResources().getConfiguration().locale;
         String deviceLexicon =   deviceLocale.getLanguage();
 

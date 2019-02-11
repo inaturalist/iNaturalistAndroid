@@ -832,15 +832,16 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
         }
 
         final String taxonName = TaxonUtils.getTaxonName(this, mTaxon.getJSONObject());
-        getSupportActionBar().setTitle(taxonName);
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
             TaxonUtils.setTaxonScientificName(mTaxonName, mTaxon.getJSONObject());
             mTaxonScientificName.setText(TaxonUtils.getTaxonName(this, mTaxon.getJSONObject()));
+            getSupportActionBar().setTitle(TaxonUtils.getTaxonScientificName(mTaxon.getJSONObject()));
         } else {
             TaxonUtils.setTaxonScientificName(mTaxonScientificName, mTaxon.getJSONObject());
             mTaxonName.setText(TaxonUtils.getTaxonName(this, mTaxon.getJSONObject()));
+            getSupportActionBar().setTitle(taxonName);
         }
 
 

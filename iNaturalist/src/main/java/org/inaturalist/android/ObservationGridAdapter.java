@@ -76,6 +76,8 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                         item.optString("species_guess", mContext.getResources().getString(R.string.unknown));
                 idName.setText(idNameStr);
             }
+        } else {
+            idName.setText(R.string.unknown_species);
         }
 
         final ImageView taxonPic = (ImageView) view.findViewById(R.id.taxon_photo);
@@ -152,61 +154,6 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         view.setTag(item);
 
         return view;
-    }
-
-    private String getTaxonName(JSONObject item) {
-        JSONObject defaultName;
-        String displayName = null;
-
-        // Get the taxon display name according to device locale
-        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        Locale deviceLocale = mContext.getResources().getConfiguration().locale;
-        String deviceLexicon =   deviceLocale.getLanguage();
-
-        try {
-            JSONArray taxonNames = item.getJSONArray("taxon_names");
-            for (int i = 0; i < taxonNames.length(); i++) {
-                JSONObject taxonName = taxonNames.getJSONObject(i);
-                String lexicon = taxonName.getString("lexicon");
-                if (lexicon.equals(deviceLexicon)) {
-                    // Found the appropriate lexicon for the taxon
-                    displayName = taxonName.getString("name");
-                    break;
-                }
-            }
-        } catch (JSONException e3) {
-            //e3.printStackTrace();
-        }
-
-        if (displayName == null) {
-            // Couldn't extract the display name from the taxon names list - use the default one
-            try {
-                displayName = item.getString("unique_name");
-            } catch (JSONException e2) {
-                displayName = null;
-            }
-            try {
-                defaultName = item.getJSONObject("default_name");
-                displayName = defaultName.getString("name");
-            } catch (JSONException e1) {
-                // alas
-                JSONObject commonName = item.optJSONObject("common_name");
-                if (commonName != null) {
-                    displayName = commonName.optString("name");
-                } else {
-                    displayName = item.optString("preferred_common_name");
-                    if ((displayName == null) || (displayName.length() == 0)) {
-                        displayName = item.optString("english_common_name");
-                        if ((displayName == null) || (displayName.length() == 0)) {
-                            displayName = item.optString("name");
-                        }
-                    }
-                }
-            }
-        }
-
-        return displayName;
-
     }
 }
 
