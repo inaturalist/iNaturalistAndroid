@@ -929,12 +929,14 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_REFRESH_CURRENT_USER_SETTINGS)) {
                 BetterJSONObject user = getCurrentUserDetails();
 
-                // Update settings
-                mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
+                if (user != null) {
+                    // Update settings
+                    mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
 
-                Intent reply = new Intent(REFRESH_CURRENT_USER_SETTINGS_RESULT);
-                reply.putExtra(USER, user);
-                sendBroadcast(reply);
+                    Intent reply = new Intent(REFRESH_CURRENT_USER_SETTINGS_RESULT);
+                    reply.putExtra(USER, user);
+                    sendBroadcast(reply);
+                }
 
             } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
