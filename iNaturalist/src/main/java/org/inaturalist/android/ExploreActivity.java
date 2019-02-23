@@ -755,7 +755,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
 
     private void refreshFilterBar(TextView filterBar) {
-        if (mSearchFilters == null) return;
+        if ((mSearchFilters == null) || (mMapHide == null)) return;
         if (filterBar == null) return;
 
         if (!mSearchFilters.isDirty()) {
