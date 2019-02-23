@@ -655,7 +655,7 @@ public class ObservationEditor extends AppCompatActivity {
                         rankLevel = ((Double) rankLevelValue).intValue();
                     }
                 }
-                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), rankLevel, taxon.getString("rank"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+                setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), rankLevel, taxon.getString("rank"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"), false);
                 mApp.setServiceResult(TAXON, null);
             } else if (mObservation.taxon_id != null) {
                 // Taxon info not loaded - download it now
@@ -1322,7 +1322,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void uiToObservation() {
         if ((((mObservation.species_guess == null) && (mSpeciesGuessTextView.getText().length() > 0) && (!mIsTaxonUnknown)) || (mObservation.species_guess != null)) && (!mTaxonSearchStarted)) {
-            mObservation.species_guess = mSpeciesGuessTextView.getText().toString();
+            mObservation.species_guess = mSpeciesGuess;
 
             if (mObservation.id == null) {
                 // New observation, user adding an identification
@@ -1388,6 +1388,8 @@ public class ObservationEditor extends AppCompatActivity {
             mGeoprivacy.setSelection(0);
         }
         updateObservationVisibilityDescription();
+
+        mSpeciesGuess = mObservation.species_guess;
 
         mSpeciesGuessTextView.setTypeface(null, Typeface.NORMAL);
         mSpeciesGuessSub.setTypeface(null, Typeface.NORMAL);
@@ -2110,7 +2112,7 @@ public class ObservationEditor extends AppCompatActivity {
                 if (taxonId == TaxonSearchActivity.UNKNOWN_TAXON_ID) {
                     clearSpeciesGuess();
                 } else {
-                    setTaxon(idName, taxonName, rankLevel, rank, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName);
+                    setTaxon(idName, taxonName, rankLevel, rank, isCustomTaxon, taxonId, idPicUrl, iconicTaxonName, true);
                 }
 
                 try {
@@ -3106,11 +3108,12 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
 
-    private void setTaxon(String idName, String scientificName, int rankLevel, String rank, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName) {
-        String speciesGuess = String.format("%s", idName);
+    private void setTaxon(String idName, String scientificName, int rankLevel, String rank, boolean isCustomTaxon, int taxonId, String idPicUrl, String iconicTaxonName, boolean setSpeciesGuess) {
         mObservation.preferred_common_name = isCustomTaxon ? null : idName;
-        mSpeciesGuess = speciesGuess;
-        mObservation.species_guess = speciesGuess;
+        if (setSpeciesGuess) {
+            mSpeciesGuess = idName;
+            mObservation.species_guess = idName;
+        }
         mObservation.taxon_id = isCustomTaxon ? null : taxonId;
         mObservation.scientific_name = scientificName;
         mObservation.rank = rank;
@@ -3284,7 +3287,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             JSONObject idPhoto = taxon.getJSONObject("default_photo");
-            setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), taxon.getString("rank"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"));
+            setTaxon(getTaxonName(taxon.getJSONObject()), taxon.getString("name"), taxon.getInt("rank_level"), taxon.getString("rank"), false, taxon.getInt("id"), idPhoto != null ? idPhoto.optString("square_url") : null, taxon.getString("iconic_taxon_name"), false);
         }
     }
 
