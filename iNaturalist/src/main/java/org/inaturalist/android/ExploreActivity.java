@@ -1411,7 +1411,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     if (mApp.isLocationPermissionGranted() && (mSearchFilters != null) && (mSearchFilters.isCurrentLocation)) {
                         // Initially zoom to current location
                         mObservationsMapMyLocation.performClick();
-                    } else {
+                    } else if (mSearchFilters != null) {
                         // No location permissions given - show a world map
                         mSearchFilters.mapBounds = null;
                         mSearchFilters.isCurrentLocation = false;
