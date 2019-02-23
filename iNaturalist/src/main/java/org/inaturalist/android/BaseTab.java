@@ -124,8 +124,10 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     }
     
     private void loadProjectsIntoUI() {
-        mAdapter = new ProjectsAdapter(getActivity(), null, this, mProjects, getDefaultIcon());
-        mProjectList.setAdapter(mAdapter);
+        if (getActivity() != null) {
+            mAdapter = new ProjectsAdapter(getActivity(), null, this, mProjects, getDefaultIcon());
+            mProjectList.setAdapter(mAdapter);
+        }
 
         mProjectList.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
