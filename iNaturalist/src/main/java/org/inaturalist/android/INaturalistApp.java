@@ -53,6 +53,7 @@ import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -400,6 +401,18 @@ public class INaturalistApp extends MultiDexApplication {
             serviceIntent.putExtra(INaturalistService.NETWORK_SITE_ID, Integer.valueOf(getStringResourceByName("inat_site_id_" + memberNetwork)));
             ContextCompat.startForegroundService(this, serviceIntent);
         }
+
+
+        // Update app icon label
+
+        String packageName = getPackageName();
+        final String[] inatNetworks = getINatNetworks();
+		for (int i = 0; i < inatNetworks.length; i++) {
+            getPackageManager().setComponentEnabledSetting(
+                    new ComponentName(packageName, String.format("%s.%s.%s", packageName, ObservationListActivity.class.getSimpleName(), inatNetworks[i])),
+                    inatNetworks[i].equalsIgnoreCase(memberNetwork) ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+		}
+
 	}
 
     // Called by isLocationEnabled to notify the rest of the app if place is enabled/disabled

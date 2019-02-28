@@ -30,7 +30,6 @@
     <application
         android:name=".INaturalistApp"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/iNatAppTheme">
@@ -130,11 +129,86 @@
             android:configChanges="orientation"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalist"
+            android:targetActivity=".ObservationListActivity"
+            android:enabled="true"
+            android:configChanges="orientation"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.inaturalistcanada"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_inaturalistcanada">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.naturalistacolombia"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_naturalistacolombia">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.naturalista"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_naturalista">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.naturewatchnz"
+            android:targetActivity=".ObservationListActivity"
+            android:configChanges="orientation"
+            android:enabled="false"
+            android:label="@string/network_naturewatchnz">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.naturewatchnz"
+            android:targetActivity=".ObservationListActivity"
+            android:enabled="false"
+            android:configChanges="orientation"
+            android:label="@string/network_naturewatchnz">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".ObservationListActivity.biodiveristy4all"
+            android:targetActivity=".ObservationListActivity"
+            android:enabled="false"
+            android:configChanges="orientation"
+            android:label="@string/network_biodiveristy4all">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
         <activity
             android:name=".ObservationEditor"
             android:configChanges="orientation"
