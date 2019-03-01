@@ -637,12 +637,15 @@ public class INaturalistService extends IntentService {
 
                 // Reload the observation at the end (need to refresh comment/ID list)
                 JSONObject observationJson = getObservationJson(observationId, false);
-                Observation observation = new Observation(new BetterJSONObject(observationJson));
 
-                Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
-                reply.putExtra(OBSERVATION_RESULT, observation);
-                reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
-                sendBroadcast(reply);
+                if (observationJson != null) {
+                    Observation observation = new Observation(new BetterJSONObject(observationJson));
+
+                    Intent reply = new Intent(ACTION_OBSERVATION_RESULT);
+                    reply.putExtra(OBSERVATION_RESULT, observation);
+                    reply.putExtra(OBSERVATION_JSON_RESULT, observationJson.toString());
+                    sendBroadcast(reply);
+                }
 
             } else if (action.equals(ACTION_ADD_PROJECT_FIELD)) {
                 int fieldId = intent.getIntExtra(FIELD_ID, 0);
