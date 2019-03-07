@@ -988,10 +988,12 @@ public class ObservationEditor extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
+        Log.d(TAG, "onBackPressed");
         onBack();
     }
     
     private boolean onBack() {
+        Log.d(TAG, "onBack 1");
         if ((mCursor ==  null) || (mCursor.getCount() == 0)) {
             finish();
             return false;
@@ -1010,6 +1012,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             mCanceled = true;
+            Log.d(TAG, "onBack 2 - " + mReturnToObservationList);
             setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
             finish();
             return false;
@@ -1039,6 +1042,7 @@ public class ObservationEditor extends AppCompatActivity {
                 },
                 null);
 
+        Log.d(TAG, "onBack 3 - " + mReturnToObservationList);
         return true;
     }
 
@@ -1245,7 +1249,12 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (mObservation == null) {
-            mObservation = new Observation(mCursor);
+            if (mCursor.getCount() > 0) {
+                mObservation = new Observation(mCursor);
+            } else {
+                mObservation = new Observation();
+                return;
+            }
         }
 
         if ((mSpeciesGuess != null) && (mObservation.species_guess == null)) {

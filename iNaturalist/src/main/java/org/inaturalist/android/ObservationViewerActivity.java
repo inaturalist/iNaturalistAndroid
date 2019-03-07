@@ -2361,6 +2361,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Log.d(TAG, "onActivityResult - " + requestCode + ":" + resultCode);
         if (requestCode == SHARE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // TODO - RESULT_OK is never returned + need to add "destination" param (what type of share was performed)
@@ -2369,8 +2370,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_CANCELLED);
             }
         } else if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
+            Log.d(TAG, "onActivityResult - EDIT_OBS: " + requestCode + ":" + resultCode);
             if ((resultCode == ObservationEditor.RESULT_DELETED) || (resultCode == ObservationEditor.RESULT_RETURN_TO_OBSERVATION_LIST)) {
                 // User deleted the observation (or did a batch-edit)
+                Log.d(TAG, "onActivityResult - EDIT_OBS: Finish");
                 setResult(RESULT_OBSERVATION_CHANGED);
                 finish();
                 return;
