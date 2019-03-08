@@ -142,7 +142,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             if (!isNetworkAvailable()) {
             	// No projects due to no Internet connection
             	mEmptyListLabel.setText(getNoInternetText());
-            } else if (requiresLocation() && !mApp.isLocationPermissionGranted()) {
+            } else if (requiresLocation() && (!mApp.isLocationPermissionGranted() || !mApp.isLocationEnabled(this))) {
             	// No projects due to no place services enabled
             	mEmptyListLabel.setText(getLocationRequiredText());
                 mSettings.setVisibility(View.VISIBLE);
@@ -158,7 +158,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             mSearchText.setEnabled(false);
         }       
     }
-    
+
     private boolean isNetworkAvailable() {
     	ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
     	NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
