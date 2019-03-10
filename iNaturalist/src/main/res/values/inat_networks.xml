@@ -19,6 +19,16 @@
     <string name="network_naturalistacolombia">Naturalista Colombia</string>
     <string name="network_biodiveristy4all">Biodiveristy4all</string>
 
+    <!-- If value==1 -> change app name/title in the Android launcher, when network is changed.
+    Otherwise, just keep it as the original app name ("iNaturalist") -->
+    <string name="change_app_title_inaturalist">1</string>
+    <string name="change_app_title_naturalista">0</string>
+    <string name="change_app_title_naturewatchnz">0</string>
+    <string name="change_app_title_inaturalistcanada">0</string>
+    <string name="change_app_title_naturalistacolombia">0</string>
+    <string name="change_app_title_biodiveristy4all">1</string>
+
+
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
     <string name="inat_country_inaturalist"></string> <!-- Empty - any country -->
     <string name="inat_country_naturalista">mx</string> <!-- Mexico -->

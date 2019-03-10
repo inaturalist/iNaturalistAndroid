@@ -407,10 +407,18 @@ public class INaturalistApp extends MultiDexApplication {
 
         String packageName = getPackageName();
         final String[] inatNetworks = getINatNetworks();
+
+        String networkForLabel = memberNetwork;
+
+        if (!getStringResourceByName("change_app_title_" + memberNetwork).equalsIgnoreCase("1")) {
+            // Don't change app icon label for this network
+            networkForLabel = inatNetworks[0];
+        }
+
 		for (int i = 0; i < inatNetworks.length; i++) {
             getPackageManager().setComponentEnabledSetting(
                     new ComponentName(packageName, String.format("%s.%s.%s", packageName, ObservationListActivity.class.getSimpleName(), inatNetworks[i])),
-                    inatNetworks[i].equalsIgnoreCase(memberNetwork) ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                    inatNetworks[i].equalsIgnoreCase(networkForLabel) ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 		}
 
 	}
