@@ -359,6 +359,9 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
     private void saveProjectFieldValues() {
         for (Integer projectId : mProjectFieldViewers.keySet()) {
             List<ProjectFieldViewer> viewers = mProjectFieldViewers.get(projectId);
+
+            if (viewers == null) continue;
+
             for (ProjectFieldViewer viewer : viewers) {
                 String newValue = viewer.getValue();
                 int fieldId = viewer.getField().field_id;
