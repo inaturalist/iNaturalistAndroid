@@ -404,7 +404,7 @@ public class ActivityHelper {
                     (observation.positional_accuracy.equals(publicAcc))) {
                 // Show circle of public positional accuracy
                 cameraUpdate = addCircle(map, latlng, publicAcc, observation, updateCamera);
-            } else {
+            } else if ((currentUser == null) || (observation.user_login == null) || (!observation.user_login.equals(currentUser))) {
                 // Show uncertainty cell
                 Double cellSize = 0.2;
                 Double coords[] = new Double[] { lat, lon };
