@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ é um membro da rede iNaturalist na Nova Zelândia. Gostaria de usar esta rede para ajustar sua localização e compartilhar dados com a rede local?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada é um membro da rede iNaturalist no Canadá. Gostaria de usar esta rede para ajustar sua localização e compartilhar dados com a rede local?</string>
     <string name="alert_message_use_naturalistacolombia">É um membro da rede iNaturalist na Colômbia. Gostaria de usar esta rede para ajustar sua localização e compartilhar dados com a rede local?</string>
-    <string name="alert_message_use_biodiveristy4all">Biodiversity4All é membro da Rede iNaturalist em Portugal. Gostaria de usar esta rede para localizar a sua experiência e, como tal, partilhar os seus dados?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All é membro da Rede iNaturalist em Portugal. Gostaria de usar esta rede para localizar a sua experiência e, como tal, partilhar os seus dados?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Download para uso offline</string>

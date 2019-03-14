@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ Meksika\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Kanada, Kanada\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista Kolombiya\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
-    <string name="alert_message_use_biodiveristy4all">Biodiveristy4all Portekiz\'de bulunan iNaturalist Network\'ün bir üyesidir. Bu ağı deneyiminizi yerelleştirmek ve verileri buna göre paylaşmak için kullanmak ister misiniz?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all Portekiz\'de bulunan iNaturalist Network\'ün bir üyesidir. Bu ağı deneyiminizi yerelleştirmek ve verileri buna göre paylaşmak için kullanmak ister misiniz?</string>
     <string name="editor">Editör</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indirme</string>

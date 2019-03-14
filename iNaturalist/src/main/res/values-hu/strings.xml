@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ is a member of the iNaturalist Network in New Zealand. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Would you like to use this network to localize your experience and share data accordingly?</string>
-    <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="editor">Editor</string>
     <string name="license">License</string>
     <string name="download_for_offline_use">Letöltés kapcsolat nélküli használatra</string>

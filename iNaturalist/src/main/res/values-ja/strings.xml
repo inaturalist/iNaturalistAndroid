@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ は、ニュージーランドでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist カナダは、カナダでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista は、コロンビアでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
-    <string name="alert_message_use_biodiveristy4all">Biodiveristy4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="editor">編集者</string>
     <string name="license">ライセンス</string>
     <string name="download_for_offline_use">オフラインでも使用できるようにダウンロードする</string>

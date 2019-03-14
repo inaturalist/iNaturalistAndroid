@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ on iNaturalist Network -verkon jäsen Uudessa-Seelannissa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada on iNaturalist Network -verkon jäsen Kanadassa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista Canada on iNaturalist Network -verkon jäsen Kolumbiassa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
-    <string name="alert_message_use_biodiveristy4all">Biodiveristy4all on iNaturalist Network -verkon jäsen Portugalissa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all on iNaturalist Network -verkon jäsen Portugalissa. Haluaisitko käyttää tätä verkkoa paikallistamaan kokemuksesi ja jakamaan tietoja sen mukaisesti?</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>

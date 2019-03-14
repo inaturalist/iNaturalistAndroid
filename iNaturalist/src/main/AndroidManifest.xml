@@ -199,11 +199,11 @@
             </intent-filter>
         </activity-alias>
         <activity-alias
-            android:name=".ObservationListActivity.biodiveristy4all"
+            android:name=".ObservationListActivity.biodiversity4all"
             android:targetActivity=".ObservationListActivity"
             android:enabled="false"
             android:configChanges="orientation"
-            android:label="@string/network_biodiveristy4all">
+            android:label="@string/network_biodiversity4all">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
