@@ -71,6 +71,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.LocaleList;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -405,9 +406,7 @@ public class INaturalistApp extends MultiDexApplication {
 
         // Update app icon label
 
-        String packageName = getPackageName();
         final String[] inatNetworks = getINatNetworks();
-
         String networkForLabel = memberNetwork;
 
         if (!getStringResourceByName("change_app_title_" + memberNetwork).equalsIgnoreCase("1")) {
@@ -415,13 +414,29 @@ public class INaturalistApp extends MultiDexApplication {
             networkForLabel = inatNetworks[0];
         }
 
-		for (int i = 0; i < inatNetworks.length; i++) {
-            getPackageManager().setComponentEnabledSetting(
-                    new ComponentName(packageName, String.format("%s.%s.%s", packageName, ObservationListActivity.class.getSimpleName(), inatNetworks[i])),
-                    inatNetworks[i].equalsIgnoreCase(networkForLabel) ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-		}
-
+        enableComponent(networkForLabel);
 	}
+
+	private void enableComponent(final String networkForLabel) {
+        String packageName = getPackageName();
+        final String[] inatNetworks = getINatNetworks();
+
+        if (ObservationListActivity.sActivityCreated) {
+            for (int i = 0; i < inatNetworks.length; i++) {
+                getPackageManager().setComponentEnabledSetting(
+                        new ComponentName(packageName, String.format("%s.%s.%s", packageName, ObservationListActivity.class.getSimpleName(), inatNetworks[i])),
+                        inatNetworks[i].equalsIgnoreCase(networkForLabel) ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            }
+        } else {
+            // Edge case - observation list activity wasn't created yet, we can't disable the component yet (will cause a run time exception)
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    enableComponent(networkForLabel);
+                }
+            }, 1000);
+        }
+    }
 
     // Called by isLocationEnabled to notify the rest of the app if place is enabled/disabled
     public interface OnLocationStatus {

@@ -151,6 +151,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private Button mShowMoreSpecies;
     private Button mShowMoreIdentifications;
 
+    public static boolean sActivityCreated = false;
+
 
     @Override
 	protected void onStart()
@@ -346,6 +348,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sActivityCreated = true;
+
         Bridge.restoreInstanceState(this, savedInstanceState);
 
         setContentView(R.layout.observation_list);
