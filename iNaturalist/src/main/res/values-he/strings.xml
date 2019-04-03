@@ -185,7 +185,7 @@
     <string name="no_observations_found">לא נמצאו תצפיות</string>
     <string name="license_none">כל הזכויות שמורות</string>
     <string name="sources_and_attribution">מקורות וייחוס</string>
-    <string name="photos"><![CDATA[תמונות:%1$s]]></string>
+    <string name="photos"><![CDATA[<b>תמונות:</b> %1$s]]></string>
     <string name="text"><![CDATA[טקסט: %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">הרשת המרכזית של iNaturalist. לחיצה על אישור תגדיר את ה app שלך כחלק מהרשת העולמית של iNaturalist.</string>
@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ שייך לרשת iNaturalist בניו זילנד. האם את/ה מעוניין/נת ברשת זו לשפה שלך ולשתף נתונים בהתאם?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist שייך לרשת iNaturalist בקנדה. האם את/ה מעוניין/נת להשתמש ברשת זו לשפה שלך ולשתף נתונים בהתאם?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista שייך לרשת iNaturalist בקולומביה. האם את/ה מעוניין/נת ברשת זו לשפה שלך ולשתף נתונים בהתאם?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all שייך לרשת iNaturalist בפורטוגל. האם את/ה מעוניין/נת ברשת זו לשפה שלך ולשתף נתונים בהתאם?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiveristy4all שייך לרשת iNaturalist בפורטוגל. האם את/ה מעוניין/נת להשתמש ברשת זו כדי להתאים את השימוש וההתנסות לאיזור שלך ולשתף נתונים בהתאם?</string>
     <string name="editor">עורך</string>
     <string name="license">רשיון</string>
     <string name="download_for_offline_use">הורדה לשימוש ללא אינטרנט</string>

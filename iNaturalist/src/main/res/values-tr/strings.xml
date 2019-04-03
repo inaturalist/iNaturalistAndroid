@@ -118,7 +118,7 @@
     <string name="about_project">Hakkında</string>
     <string name="about_project_all_caps">HAKKINDA</string>
     <string name="about_this_app">Hakkında</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_taxon_short">Hakkında</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Coğrafi gizlilik</string>
     <string name="delete_confirmation">Bu gözlemi silmek istediğinden emin misin?</string>
@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">Bu proje silmek istediğinizden emin misiniz?</string>
     <string name="discard_location_changes">Değişikliklerinizi kaydetmeden iptal etmek istediğinizden emin misiniz?</string>
     <string name="edit_location">Konumu Düzenle</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Konum Notlarını Düzenle</string>
     <string name="get_current_location">Şu anki yerini tespit et</string>
     <string name="pull_to_refresh">Yenilemek için çekin...</string>
     <string name="release_to_refresh">Yeniden Yükle...</string>
@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ Meksika\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Kanada, Kanada\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista Kolombiya\'da iNaturalist Network\'un bir üyesi. bu ağı kullanarak tecrübenizi belirlemek ve buna bağlı olarak veri paylaşmak ister misiniz?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all Portekiz\'de bulunan iNaturalist Network\'ün bir üyesidir. Bu ağı deneyiminizi yerelleştirmek ve verileri buna göre paylaşmak için kullanmak ister misiniz?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all Portekiz\'deki iNaturalist Ağı\'nın bir üyesidir. Deneyiminizi yerelleştirmek ve bu doğrultuda verileri paylaşmak için bu ağı kullanmak ister misiniz?</string>
     <string name="editor">Editör</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indirme</string>
@@ -495,7 +495,7 @@
     <string name="division">Bölüm</string>
     <string name="subdivision">Alt bölüm</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">Köy bloğu</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Toplam</string>
     <string name="shire">Yönetim bölgesi</string>
@@ -537,34 +537,34 @@
     <string name="date_week">%dw</string>
     <string name="new_observation">Yeni gözlem</string>
     <string name="inactive_taxon">Etkin olmayan takson</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
+    <string name="no_identifications_found">Buradaki diğer kişilerin incelemeleri için önerdiğiniz kimlikleri izleyin.</string>
+    <string name="no_species_found">Bu, en çok gözlemlediğin türlerin bir listesi.\n\nFYI: Gezegende tahmini 9 milyon tür var, o yüzden oraya çık ve onları gözlemle!</string>
     <string name="make_an_observation">Gözlem yap</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
+    <string name="no_observations_found_new">Gözlemler, belirli zamanlarda ve yerlerde bireysel organizmalar ile karşılaştığınız kayıtlardır.</string>
     <string name="discard_comment">Bu yorumu silmek istediğinize emin misiniz?</string>
     <string name="leave_comment">Yorum bırak...</string>
     <string name="swipe">Kaydır</string>
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Hangi Google hesabı?</string>
     <string name="potential_disagreement">Potansiyel anlaşmazlık</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="do_you_think_this_could_be"><![CDATA[Kanıt bunu doğrulamak için yeterli mi <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Hayır, ama bir üyesi <b>%1$s</b>.]]></string>
     <string name="submit">Gönder</string>
     <string name="change_password">Şifre Değiştir</string>
     <string name="search_projects_youve_joined">Katıldığın projeleri ara...</string>
     <string name="must_be_connected_to_load_more_obs">Daha fazla içerik yüklemek için internete bağlı olmalısınız</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
+    <string name="inat_about_title">iNaturalist, California Bilimler Akademisi ve National Geographic Society tarafından ortak bir girişimdir.</string>
+    <string name="inat_credits">iNaturalist, topluluğumuza katılan her kişi tarafından yapılır. Yazılımı oluşturan, altyapımızı sürdüren ve işbirliğini geliştiren insanlar Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer ve Ken-ichi Ueda (eski tasarımcı Joelle Belmonte Geçerli Android uygulamasının çoğunu tasarladı). Caltech ve Cornell Üniversitesi, fotoğraflardan gelen türleri tanıyan bilgisayarlı görme sisteminin geliştirilmesine yardımcı oldu. Bu çalışma için Grant Van Horn, Serge Belongie ve Pietro Perona\'ya teşekkür ediyoruz. Daha fazla bilgi visipedia.org adresinde bulunabilir</string>
     <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
+    <string name="password_changed">Uygulamanın kullandığı şifre artık çalışmıyor - web sitesindeki şifrenizi değiştirdiniz mi? Lütfen yenisini buraya girin</string>
     <string name="just_so_you_know">Bilginiz olsun...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="ask_for_g_plus_permissions">Google, Google hesabınızı kullanmak için kişilerinize erişim izni talep etmemizi gerektiriyor, ancak kişilerinize herhangi bir nedenle erişemiyoruz. Bu izni reddederseniz, bir kullanıcı adı ve şifre ile kaydolmanız veya giriş yapmanız gerekir.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Yeni misin%1$s? <b>Şimdi kaydolun!</b>]]></string>
+    <string name="see_more_observations">Daha fazla gözlemlere bakın</string>
+    <string name="see_more_species">Daha fazla türe bakın</string>
+    <string name="see_more_identifications">Daha fazla tanımlamaya bakın</string>
+    <string name="collection_and_umbrella_projects">Koleksiyon ve Şemsiye Projeleri</string>
     <string name="description">Açıklama </string>
     <string name="quantity">Adet</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -580,89 +580,89 @@
     <string name="new_badge">Yeni</string>
     <string name="observers">Gözlemciler</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Öznitelik</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Değer</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">Katılmıyorum</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Açıklamalar</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Ek Açıklama</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Ek Açıklama Adı</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Hiç biri</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Bitki Fenolojisi</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Yaşam Evresi</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Cinsiyet</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Çiçekli</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Meyve</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Tomurcuklanan</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Yetişkin</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Genel</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">Krizalit</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Peri</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_egg">Yumurta</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Çocuk</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
+    <string name="annotation_value_female">Dişi</string>
     <string name="annotation_value_male">Erkek</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="joined_projects_all_caps">KATILDI</string>
+    <string name="nearby_projects_all_caps">YAKINDAKİ</string>
+    <string name="featured_projects_all_caps">ÖZELLİKLİ</string>
+    <string name="join_all_caps">KATIL</string>
+    <string name="my_guides_all_caps">SİZİN</string>
+    <string name="nearby_guides_all_caps">YAKINDAKİ</string>
+    <string name="all_guides_all_caps">TÜMÜ</string>
+    <string name="description_all_caps">AÇIKLAMA</string>
+    <string name="quantity_all_caps">MİKTAR</string>
+    <string name="observation_count_all_caps">%1$s GÖZLEMLER</string>
+    <string name="observation_count_single_all_caps">%1$d GÖZLEM</string>
+    <string name="agree_all_caps">ONAYLIYORUM</string>
+    <string name="observations_all_caps">GÖZLEMLER</string>
+    <string name="species_all_caps">TÜRLER</string>
+    <string name="people_all_caps">İNSANLAR</string>
+    <string name="identifiers_all_caps">TANIMLAYICILAR</string>
+    <string name="identifications_all_caps">TANIMLAMALAR</string>
+    <string name="news_all_caps">HABER</string>
+    <string name="got_it_all_caps">ANLADIM!</string>
+    <string name="view_all_all_caps">TÜMÜNÜ GÖSTER</string>
+    <string name="new_all_caps">YENİ</string>
+    <string name="observers_all_caps">GÖZLEMCİLER</string>
+    <string name="observations_regular">Gözlemler</string>
+    <string name="data_quality_assessment">Veri Kalitesi Değerlendirmesi</string>
+    <string name="research_grade_qualification">Araştırma Notu Yeterliliği</string>
+    <string name="date_specified">Belirtilen tarih</string>
+    <string name="location_specified">Belirtilen konum</string>
+    <string name="has_photos_or_sounds">Fotoğraflar veya sesler var</string>
+    <string name="has_id_supported_by_two_or_more">İki veya daha fazla kişi tarafından desteklenen kimliği var</string>
+    <string name="date_is_accurate">Tarihi doğru</string>
+    <string name="location_is_accurate">Yeri doğru</string>
+    <string name="organism_is_wild">Vahşi organizmadır</string>
+    <string name="evidence_of_organism">Organizmanın kanıtı</string>
+    <string name="recent_evidence_of_an_organism">Bir organizmanın son kanıtı</string>
+    <string name="community_id_at_species_level_or_lower">Tür düzeyinde veya altında Topluluk Kimliği</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Kanıtlara dayanarak, Topluluk kimliği hala teyit edilebilir mi yoksa geliştirilebilir mi?</string>
+    <string name="no_as_good_as_it_can_be">Hayır, olabildiği kadar iyi</string>
+    <string name="seasonality">Mevsimsellik</string>
+    <string name="verifiable">Doğrulanabilir</string>
+    <string name="no_annotation">Ek Açıklama Yok</string>
+    <string name="donate_to_inaturalist">İnaturalist\'e bağış yapın</string>
+    <string name="prefers_scientific_name_first">Önce bilimsel isimleri göster</string>
+    <string name="prefers_scientific_name_first_description">Bilimsel isimleri ortak isimlerden önce gösterin.</string>
 </resources>

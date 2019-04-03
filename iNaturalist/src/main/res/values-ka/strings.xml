@@ -100,7 +100,7 @@
     <string name="featured_projects">Featured</string>
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">მიტოვება</string>
-    <string name="join">Join</string>
+    <string name="join">შეერთება</string>
     <string name="loading_check_list">Loading Check List...</string>
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">დაკვირვება \'%1$s\' ვერ დაემატა პროექტს \'%2$s\': %3$s</string>
@@ -176,7 +176,7 @@
     <string name="alert_sign_out">Are you sure you want to sign out? This will delete all your observations on this device. It will not affect any observations you\'ve uploaded to iNaturalist.</string>
     <string name="alert_unsupported_media_type">უკაცრავად, ამ წყაროდან ფოტოს ჩატვირთვისას შეცდომა მოხდა</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
-    <string name="explore">Explore</string>
+    <string name="explore">გამოიკვლიეთ</string>
     <string name="restricted_to_current_map_area">Restricted to current map area</string>
     <string name="search">ძებნა</string>
     <string name="details">დეტალები</string>
@@ -251,7 +251,7 @@
     <string name="set_location">ადგილმდებარეობა</string>
     <string name="coordinates_lat">განედი:</string>
     <string name="coordinates_lon">გრძედი:</string>
-    <string name="coordinates_acc">Acc. </string>
+    <string name="coordinates_acc">სიზუს. </string>
     <string name="required">* საჭიროა</string>
     <string name="downloading_observations">დაკვირვებების ჩამოტვირთვა...</string>
     <string name="no_thanks">არა, მადლობა</string>
@@ -346,7 +346,7 @@
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community on national scales. Such national focus can help make nature more accessible to people of different backgrounds.</string>
     <string name="more_info">მეტი ინფორმაცია</string>
     <string name="select_network">ქსელის მონიშვნა</string>
-    <string name="help">Help</string>
+    <string name="help">დახმარება</string>
     <string name="stop">შეჩერება</string>
     <string name="resume">გაგრძელება</string>
     <string name="cleaning_up">იწმინდება...</string>
@@ -470,9 +470,9 @@
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
     <string name="point_of_interest">Point of Interest</string>
-    <string name="region">Region</string>
+    <string name="region">რეგიონი</string>
     <string name="colloquial">Colloquial</string>
-    <string name="zone">Zone</string>
+    <string name="zone">ზონა</string>
     <string name="historical_state">Historical State</string>
     <string name="historical_county">Historical County</string>
     <string name="continent">Continent</string>
@@ -481,50 +481,50 @@
     <string name="aggregate">Aggregate</string>
     <string name="open_space">Open Space</string>
     <string name="territory">Territory</string>
-    <string name="district">ოლქი</string>
+    <string name="district">უბანი</string>
     <string name="province">პროვინცია</string>
-    <string name="municipality">Municipality</string>
+    <string name="municipality">მუნიციპალიტეტი</string>
     <string name="parish">Parish</string>
     <string name="department_segment">Department Segment</string>
     <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
+    <string name="commune">თემი</string>
     <string name="governorate">Governorate</string>
     <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
+    <string name="canton">კანტონი</string>
     <string name="republic">რესპუბლიკა</string>
-    <string name="division">Division</string>
+    <string name="division">განყოფილება</string>
     <string name="subdivision">Subdivision</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
     <string name="village_block">Village block</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
-    <string name="sum">Sum</string>
-    <string name="shire">Shire</string>
+    <string name="sum">სუმი</string>
+    <string name="shire">საგრაფო</string>
     <string name="prefecture_city">Prefecture City</string>
     <!-- Indonesian sub-sub-national place type -->
     <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
+    <string name="constituency">ოლქი</string>
     <string name="local_authority">ადგილობრივი ხელისუფლება</string>
     <string name="poblacion">Poblacion</string>
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Apply Filters</string>
-    <string name="reset">Reset</string>
+    <string name="reset">ჩამოყრა</string>
     <string name="show_only_my_observations">მხოლოდ ჩემი დაკვირვებები მაჩვენე</string>
     <string name="project">პროექტი</string>
-    <string name="user">User</string>
+    <string name="user">მომხ.</string>
     <string name="search_users">Search Users...</string>
     <string name="quality_grade">Quality Grade</string>
     <string name="dates">თარიღები</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">რაიმე</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">–</string>
     <string name="exact_date">Exact Date</string>
     <string name="start">დაწყება</string>
-    <string name="end">End</string>
+    <string name="end">ბოლო</string>
     <string name="months">თვეები</string>
     <string name="choose_months">შეარჩიეთ თვეები</string>
     <string name="map_area">Map Area</string>
-    <string name="global">Global</string>
+    <string name="global">გლობალური</string>
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Search Map Area</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
@@ -543,14 +543,14 @@
     <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
     <string name="discard_comment">ნამდვილად გსურთ ამ კომენტარის გაუქმება?</string>
     <string name="leave_comment">დატოვეთ კომენტარი...</string>
-    <string name="swipe">Swipe</string>
+    <string name="swipe">გასრიალება</string>
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Google-ის რომელი ანგარიში?</string>
     <string name="potential_disagreement">Potential Disagreement</string>
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[არ ვიცი, მაგრამ მგონი ეს არის <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
+    <string name="submit">გაგზავნა</string>
     <string name="change_password">პაროლის შეცვლა</string>
     <string name="search_projects_youve_joined">მოძებნეთ პროექტებში, რომლებშიც გაწევრიანებული ხართ...</string>
     <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
@@ -582,7 +582,7 @@
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Attribute</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">მონაცემი</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">Disagree</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
@@ -592,7 +592,7 @@
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
     <string name="annotation_name">Annotation Name</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">არცერთი</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Plant Phenology</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
@@ -602,45 +602,45 @@
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Flowering</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">მსხმოიარობა</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">დაკვირტვა</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">ზრდასრული</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">ახალკანგამოცვლილი</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">ჭუპრი</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">ნიმფა</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_larva">მატლი</string>
+    <string name="annotation_value_egg">კვერცხი</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">ახალგაზრდა</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
+    <string name="annotation_value_female">მდედრობითი</string>
+    <string name="annotation_value_male">მამრ.</string>
+    <string name="joined_projects_all_caps">შეერთებული</string>
+    <string name="nearby_projects_all_caps">შორიახლოს</string>
     <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
+    <string name="join_all_caps">შეერთება</string>
     <string name="my_guides_all_caps">თქვენი</string>
     <string name="nearby_guides_all_caps">შორიახლოს</string>
     <string name="all_guides_all_caps">ყველა</string>
     <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
+    <string name="quantity_all_caps">რაოდ.</string>
     <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
     <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
+    <string name="agree_all_caps">ვეთანხმები</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
     <string name="species_all_caps">სახეობა</string>
     <string name="people_all_caps">ადამიანები</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
     <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
+    <string name="news_all_caps">სიახლეები</string>
+    <string name="got_it_all_caps">გასაგებია!</string>
     <string name="view_all_all_caps">VIEW ALL</string>
     <string name="new_all_caps">ახალი</string>
     <string name="observers_all_caps">OBSERVERS</string>

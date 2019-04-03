@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">Désirez-vous vraiment quitter ce projet?</string>
     <string name="discard_location_changes">Désirez-vous vraiment ignorer les modifications non enregistrées?</string>
     <string name="edit_location">Modifier l\'emplacement</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Modifier les Notes de la localité</string>
     <string name="get_current_location">Déterminer l\'emplacement actuel</string>
     <string name="pull_to_refresh">Tirez pour actualiser...</string>
     <string name="release_to_refresh">Relacher pour actualiser...</string>
@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ est un membre du réseau iNaturalist en Nouvelle Zélande. Souhaitez-vous utiliser ce réseau pour y localiser votre expérience et ainsi partager vos données?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada est un membre du réseau iNaturalist au Canada. En cliquant sur OK vous localiserez votre expérience et partagerez ainsi vos données?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista est un membre du réseau iNaturalist en Colombie. Souhaitez-vous utiliser ce réseau pour y localiser votre expérience et ainsi partager vos données?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all fait parti du réseau iNaturalist du Portugal. souhaitez-vous vous servir de ce réseau afin d\'intégrer votre expérience et partager vos données?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all fait parti du réseau iNaturalist au Portugal. Souhaitez-vous vous servir de ce réseau afin d\'intégrer votre expérience et partager vos données?</string>
     <string name="editor">Éditeur</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
@@ -659,10 +659,10 @@
     <string name="community_id_at_species_level_or_lower">Identification de la communauté au niveau de l\'espèce ou inférieur</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">D\'après les preuves, l\'identification de la communauté peut-elle être confirmée ou améliorée ?</string>
     <string name="no_as_good_as_it_can_be">Non, c\'est aussi bon que possible</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="seasonality">Saisonnalité</string>
+    <string name="verifiable">Vérifiable</string>
+    <string name="no_annotation">Aucune annotation</string>
+    <string name="donate_to_inaturalist">Faire un don à iNaturalist</string>
+    <string name="prefers_scientific_name_first">Afficher les noms scientifiques en premier</string>
+    <string name="prefers_scientific_name_first_description">Afficher les noms scientifiques avant les noms communs.</string>
 </resources>

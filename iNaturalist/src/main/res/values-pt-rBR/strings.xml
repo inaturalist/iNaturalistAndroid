@@ -115,10 +115,10 @@
     <string name="about_guide">Sobre </string>
     <string name="about_guide_all_caps">SOBRE </string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">Acerca de</string>
-    <string name="about_project_all_caps">ACERCA DE</string>
-    <string name="about_this_app">Acerca de</string>
-    <string name="about_taxon_short">Acerca de</string>
+    <string name="about_project">Sobre</string>
+    <string name="about_project_all_caps">SOBRE</string>
+    <string name="about_this_app">Sobre</string>
+    <string name="about_taxon_short">Sobre</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivavidade</string>
     <string name="delete_confirmation">Tem certeza que deseja excluir esta observação?</string>
@@ -423,13 +423,13 @@
     <string name="taxonomy">Taxonomia</string>
     <string name="about_this_section">Sobre esta seção</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">Estes são \"links\" para os ancestrais deste determinado táxon. Eles estão ordenados do mais abrangente ao mais refinado. Use esses \"links\" para mover-se para cima e para baixo pela árvore da vida. Por exemplo, se você não sabe o que um organismo é, mas sabe à que grupo pertence, clique em um táxon da lista para exibir mais informações sobre este.</string>
+    <string name="taxonomy_info">Estes são \"links\" para os ancestrais deste determinado táxon. Eles estão ordenados do mais abrangente ao mais refinado. Use esses \"links\" para mover-se para cima e para baixo pela árvore da vida. Por exemplo, se você não sabe o que um organismo é, mas sabe a que grupo pertence, clique em um táxon da lista para exibir mais informações sobre este.</string>
     <string name="more_info_on_inat">Mais em iNaturalist.org</string>
     <string name="view_suggestions">Ver sugestões</string>
     <string name="species_search">Pesquisa de espécies</string>
     <string name="were_not_confident">Nós não estamos confiantes o bastante para fazer uma recomendação, mas aqui estão as nossas %1$d melhores sugestões:</string>
     <string name="top_species_suggestions">Confira nossas %1$d melhores sugestões de espécies:</string>
-    <string name="pretty_sure_rank">Nós temos certeza que está nesta %1$s:</string>
+    <string name="pretty_sure_rank">Nós temos certeza que está neste(a) %1$s:</string>
     <string name="what_did_you_see">O que você viu?</string>
     <string name="suggest_species">Sugerir espécie</string>
     <string name="suggest_species_description">Sugerir espécies com base na semelhança visual às fotos</string>
@@ -452,7 +452,7 @@
     <string name="no_taxon">Desculpe, não encontramos este táxon</string>
     <string name="please_select_taxon">Por favor selecione um táxon válido da lista (ou limpe o campo)</string>
     <string name="sorry_no_location">Desculpe, não encontramos este local</string>
-    <string name="location_not_found">A localização ou local que você procurou não consta em nosso banco de dados. Por favor escolha um local da lista de opções abaixo do campo de localização ou limpe o campo de busca.</string>
+    <string name="location_not_found">A localização ou local que você procurou não consta em nosso banco de dados. Por favor escolha um local da lista de opções abaixo do campo de busca de localizações ou limpe o campo de busca.</string>
     <string name="undefined">Indefinido</string>
     <string name="street_segment">Segmento de rua</string>
     <string name="intersection">Interseção</string>
@@ -555,16 +555,16 @@
     <string name="search_projects_youve_joined">Procurar projetos dos quais você faz parte...</string>
     <string name="must_be_connected_to_load_more_obs">Você precisa de conexão com a Internet para carregar mais observações</string>
     <string name="inat_about_title">iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da Sociedade Geográfica Nacional.</string>
-    <string name="inat_credits">O iNaturalist é constituído por todas as pessoas que participam na nossa comunidade. Os que desenvolvem o software, que mantêm a nossa infraestrutura e promovem colaborações são Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (Joelle Belmonte, a nossa anterior designer, projetou grande parte da atual aplicação para Android). A Caltech e a Universidade de Cornell ajudaram a desenvolver o sistema de visão computacional que reconhece espécies a partir das fotografias. Agradecemos o trabalho de Grant Van Horn, Serge Belongie e Pietro Perona. Informações adicionais encontram-se em visipedia.org.</string>
+    <string name="inat_credits">iNaturalist é criado por cada pessoa que participa na nossa comunidade. Os que desenvolvem o software, mantêm a nossa infraestrutura e promovem colaborações são Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (Joelle Belmonte, a nossa antiga designer, projetou grande parte da atual aplicação para Android). A Caltech e a Universidade de Cornell ajudaram a desenvolver o sistema de visão computacional que reconhece espécies a partir das fotografias. Agradecemos o trabalho de Grant Van Horn, Serge Belongie e Pietro Perona. Informações adicionais podem ser encontradas em visipedia.org</string>
     <string name="credits_title">Créditos</string>
-    <string name="password_changed">A palavra-passe que usa na aplicação deixou de funcionar - alterou a sua palavra-passe no website? Por favor, insira a nova palavra-passe aqui</string>
+    <string name="password_changed">A senha do aplicativo não funciona mais - você alterou sua senha no site? Por favor, insira a nova senha aqui</string>
     <string name="just_so_you_know">Só assim você sabe</string>
     <string name="ask_for_g_plus_permissions">O Google exige que solicitemos permissão para acessar seus contatos para usar sua Conta do Google, mesmo que não acessemos seus contatos por qualquer motivo. Se você negar essa permissão, precisará se inscrever ou fazer login com um nome de usuário e senha.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[Novo no %1$s? <b>Regista-se agora!</b>]]></string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Novo no %1$s? <b>Cadastre-se agora!</b>]]></string>
     <string name="see_more_observations">Ver mais observações</string>
     <string name="see_more_species">Ver mais espécies</string>
     <string name="see_more_identifications">Ver mais identificações</string>
-    <string name="collection_and_umbrella_projects">Coleção e Projetos Umbrela</string>
+    <string name="collection_and_umbrella_projects">Coleção e Projetos Guarda-chuva</string>
     <string name="description">Descrição</string>
     <string name="quantity">Qtd</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -584,7 +584,7 @@
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
     <string name="value">Valor</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Discorda(m)</string>
+    <string name="disagree">Discordar</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
     <string name="annotations">Anotações</string>
     <!-- Used when filtering observations with annotations -->
@@ -596,15 +596,15 @@
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Fenologia da Planta</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Fase da Vida</string>
+    <string name="annotation_name_life_stage">Estágio de vida</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Género</string>
+    <string name="annotation_name_sex">Sexo</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Floração</string>
+    <string name="annotation_value_flowering">Florido</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Frutificação</string>
+    <string name="annotation_value_fruiting">Frutificando</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Brotamento</string>
+    <string name="annotation_value_budding">Em botão</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -619,13 +619,13 @@
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenil</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Estágio Subimago</string>
+    <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Fêmea</string>
     <string name="annotation_value_male">Macho</string>
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
     <string name="featured_projects_all_caps">EM DESTAQUE</string>
-    <string name="join_all_caps">ADERIR</string>
+    <string name="join_all_caps">JUNTE-SE</string>
     <string name="my_guides_all_caps">OS MEUS</string>
     <string name="nearby_guides_all_caps">NAS PROXIMIDADES</string>
     <string name="all_guides_all_caps">TODOS</string>
@@ -640,13 +640,13 @@
     <string name="identifiers_all_caps">IDENTIFICADORES</string>
     <string name="identifications_all_caps">IDENTIFICAÇÕES</string>
     <string name="news_all_caps">NOTÍCIAS</string>
-    <string name="got_it_all_caps">PERCEBI!</string>
+    <string name="got_it_all_caps">ENTENDI!</string>
     <string name="view_all_all_caps">VER TUDO</string>
     <string name="new_all_caps">NOVO</string>
     <string name="observers_all_caps">OBSERVADORES</string>
     <string name="observations_regular">Observações</string>
     <string name="data_quality_assessment">Avaliação da Qualidade dos Dados</string>
-    <string name="research_grade_qualification">Qualificação do Grau de Pesquisa</string>
+    <string name="research_grade_qualification">Qualificação de Nível de Pesquisa</string>
     <string name="date_specified">Data especificada</string>
     <string name="location_specified">Localização especificada</string>
     <string name="has_photos_or_sounds">Tem fotos ou sons</string>
@@ -658,11 +658,11 @@
     <string name="recent_evidence_of_an_organism">Evidência recente de um organismo</string>
     <string name="community_id_at_species_level_or_lower">Identificação pela Comunidade ao nível da espécie ou inferior</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Com base nas evidências, pode a Identificação pela Comunidade ser confirmada ou melhorada?</string>
-    <string name="no_as_good_as_it_can_be">Não, está tão bom como pode ser</string>
+    <string name="no_as_good_as_it_can_be">Não, está tão bom quanto pode ser</string>
     <string name="seasonality">Sazonalidade</string>
     <string name="verifiable">Verificável</string>
     <string name="no_annotation">Sem Anotação</string>
-    <string name="donate_to_inaturalist">Fazer um Donativo ao iNaturalist</string>
-    <string name="prefers_scientific_name_first">Mostrar os nomes científicos em primeiro</string>
-    <string name="prefers_scientific_name_first_description">Mostrar os nomes científicos antes dos nomes comuns.</string>
+    <string name="donate_to_inaturalist">Fazer uma Doação ao iNaturalist</string>
+    <string name="prefers_scientific_name_first">Mostrar nomes científicos primeiro</string>
+    <string name="prefers_scientific_name_first_description">Mostrar nomes científicos antes de nomes comuns.</string>
 </resources>

@@ -20,8 +20,8 @@
     <string name="signed_in">로그인 성공!</string>
     <string name="please_sign_in">로그인 해주세요</string>
     <string name="please_sign_in_description">iNaturalist 계정으로 로그인 하시거나 새로운 계정으로 가입하시기 바랍니다.</string>
-    <string name="please_enable_location_services">Please enable location services in order to find your current location...</string>
-    <string name="go_to_settings">Go to Settings</string>
+    <string name="please_enable_location_services">당신의 현재 위치를 찾기 위해 위치 서비스를 활성화 하십시오.</string>
+    <string name="go_to_settings">설정으로 이동</string>
     <string name="photo_not_specified">사진이 선정되지 않음</string>
     <string name="set_date">설정 일자</string>
     <string name="set_time">설정 시간</string>

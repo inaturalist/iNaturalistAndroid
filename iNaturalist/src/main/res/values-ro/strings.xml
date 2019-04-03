@@ -112,13 +112,13 @@
     <string name="search_guides">Caută ghiduri...</string>
     <string name="save_observation">Salvează observarea</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">Despre</string>
+    <string name="about_guide_all_caps">DESPRE</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">Despre</string>
+    <string name="about_project_all_caps">DESPRE</string>
+    <string name="about_this_app">Despre</string>
+    <string name="about_taxon_short">Despre</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Confidențialitatea locației</string>
     <string name="delete_confirmation">Ești sigur că vrei să ștergi această observare?</string>
@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">Ești sigur că vrei să ieși din acest proiect?</string>
     <string name="discard_location_changes">Ești sigur că dorești să renunți la modificările nesalvate?</string>
     <string name="edit_location">Editează locația</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Editare Note Localizare</string>
     <string name="get_current_location">Obține locația curentă</string>
     <string name="pull_to_refresh">Trage pentru a reîmprospăta...</string>
     <string name="release_to_refresh">Dă drumul pentru a reîmprospăta...</string>
@@ -174,7 +174,7 @@
         <item>Privată</item>
     </string-array>
     <string name="alert_sign_out">Ești sigur că vrei să te deconectezi? Asta va șterge toate observările tale de pe acest dispozitiv. Observările pe care le-ai încărcat pe iNaturalist nu vor fi afectate.</string>
-    <string name="alert_unsupported_media_type">Sorry, but there was a problem loading the photo from this source</string>
+    <string name="alert_unsupported_media_type">Ne pare rău, dar a intervenit o problemă la încărcarea fotografiei din această sursă</string>
     <!-- Second person verb, used as a section title as in the "Explore" screen where you explore observations made by other people -->
     <string name="explore">Explorează</string>
     <string name="restricted_to_current_map_area">Limitate la harta curentă</string>
@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ este membră a Rețelei iNaturalist din Noua Zeelandă. Ați vrea să folosiți rețeaua pentru a localiza experiența și pentru a distribui datele?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada este un membru al rețelei iNaturalist Canada. Ați vrea să folosiți rețeaua pentru a localiza experiența pentru a distribui datele?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista este un membru al rețelei iNaturalist din Columbia. Ați vrea să folosiți rețeaua pentru a localiza experiența pentru a distribui datele?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all este membru al rețelei iNaturalist din Portugalia. Doriți să folosiți această rețea pentru a vă localiza experiența și a împărtăși datele?</string>
     <string name="editor">Editor</string>
     <string name="license">Licență</string>
     <string name="download_for_offline_use">Descarcă pentru utilizare offline</string>
@@ -231,7 +231,7 @@
     <string name="forgot">Ai uitat?</string>
     <string name="or_login_with">Sau autentifică-te cu:</string>
     <string name="registering">Înregistrare...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="recommended_next_step">Următorul pas recomandat</string>
     <string name="could_not_register_user">Nu s-a putut înregistra utilizatorul</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Autentificare / Înregistrare</string>
@@ -297,9 +297,9 @@
     <string name="location">Locație</string>
     <string name="login_in_to_add_comments_ids">Autentifică-te sau înregistrează-te pentru a lăsa un comentariu sau a sugera o idetificare...</string>
     <string name="login_in_to_fav">Autentifică-te sau înregistrează-te pentru a vedea favoritele sau a favoriza această observație...</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="sync_obs_to_see_favs">Sincronizați această observaţie pentru a vedea favoritele...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">Sincronizează această observație pentru a lăsa un comentariu sau a sugera o identificare...</string>
     <string name="no_photo">Nici o imagine</string>
     <string name="about_this_species">Despre această specie</string>
     <string name="view_on_wikipedia">Articol Wikipedia</string>
@@ -350,9 +350,9 @@
     <string name="stop">Stop</string>
     <string name="resume">Reluați</string>
     <string name="cleaning_up">Se curăță...</string>
-    <string name="syncing">Syncing...</string>
+    <string name="syncing">Sincronizare...</string>
     <string name="syncing_observation_fields">Se sincronizează câmpurile observațiilor...</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observations">Sincronizare observații...</string>
     <string name="syncing_paused">Întrerupt</string>
     <string name="upload">Încărcare</string>
     <string name="search_observations">Se caută Observații...</string>
@@ -442,37 +442,37 @@
     <string name="invalid_photo_extension">Eroare la importarea imagini(lor): Se pot importa doar fișiere cu extensia JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Acest taxon nu are fotografii.</string>
     <string name="terrain">Teren</string>
-    <string name="filters">Filters</string>
-    <string name="exploring_all">Exploring All</string>
-    <string name="nearby">Nearby</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
-    <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">e.g. birds, monarch</string>
-    <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
-    <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
-    <string name="sorry_no_location">Sorry, location not found</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
-    <string name="undefined">Undefined</string>
-    <string name="street_segment">Street Segment</string>
-    <string name="intersection">Intersection</string>
-    <string name="town">Town</string>
-    <string name="state">State</string>
-    <string name="county">County</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
-    <string name="country">Country</string>
-    <string name="island">Island</string>
-    <string name="airport">Airport</string>
+    <string name="filters">Filtre</string>
+    <string name="exploring_all">Explorează tot</string>
+    <string name="nearby">În apropiere</string>
+    <string name="couldnt_load_results">Nu au putut fi încărcate rezultatele: %1$s</string>
+    <string name="research_grade_initials">NC</string>
+    <string name="taxon_search_hint">ex. păsări, fluture monarh</string>
+    <string name="location_search_hint">ex. oraş, stat, parc, ţară...</string>
+    <string name="no_taxon">Ne pare rău, taxonul nu a fost găsit</string>
+    <string name="please_select_taxon">Vă rugăm să selectați un taxon valid din listă (sau să goliți câmpul taxon).</string>
+    <string name="sorry_no_location">Ne pare rău, locaţia nu a fost găsită</string>
+    <string name="location_not_found">Locația căutată nu se găsește în baza noastră de date. Vă rugăm să selectați un loc din lista de opțiuni situată sub câmpul căutare locație sau goliți câmpul căutare.</string>
+    <string name="undefined">Nedefinit</string>
+    <string name="street_segment">Segment de stradă</string>
+    <string name="intersection">Intersecție</string>
+    <string name="town">Oraş</string>
+    <string name="state">Stat</string>
+    <string name="county">Județ</string>
+    <string name="local_administrative_area">Unitate administrativă locală</string>
+    <string name="country">Țară</string>
+    <string name="island">Insulă</string>
+    <string name="airport">Aeroport</string>
     <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
-    <string name="miscellaneous">Miscellaneous</string>
-    <string name="nationality">Nationality</string>
+    <string name="land_feature">Caracteristică teren</string>
+    <string name="miscellaneous">Varia</string>
+    <string name="nationality">Naţionalitate</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
-    <string name="point_of_interest">Point of Interest</string>
-    <string name="region">Region</string>
-    <string name="colloquial">Colloquial</string>
-    <string name="zone">Zone</string>
+    <string name="supername">Regiune</string>
+    <string name="point_of_interest">Punct de interes</string>
+    <string name="region">Regiune</string>
+    <string name="colloquial">Colocvial</string>
+    <string name="zone">Zonă</string>
     <string name="historical_state">Historical State</string>
     <string name="historical_county">Historical County</string>
     <string name="continent">Continent</string>
@@ -508,17 +508,17 @@
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Apply Filters</string>
     <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
+    <string name="show_only_my_observations">Arată doar observaţiile mele</string>
+    <string name="project">Proiect</string>
+    <string name="user">Utilizator</string>
+    <string name="search_users">Căutare utilizatori...</string>
+    <string name="quality_grade">Nivel de calitate</string>
     <string name="dates">Dates</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Any</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
+    <string name="exact_date">Data exactă</string>
     <string name="start">Start</string>
     <string name="end">End</string>
     <string name="months">Months</string>
@@ -539,10 +539,10 @@
     <string name="inactive_taxon">Inactive Taxon</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
-    <string name="discard_comment">Are you sure you want to discard this comment?</string>
-    <string name="leave_comment">Leave a comment...</string>
+    <string name="make_an_observation">Realizați o observație</string>
+    <string name="no_observations_found_new">Observațiile sunt înregistrări ale întâlnirilor dvs. cu organisme individuale în anumite momente și locuri.</string>
+    <string name="discard_comment">Sunteți sigur că vreți să renuntați la acest comentariu?</string>
+    <string name="leave_comment">Adăugați un comentariu...</string>
     <string name="swipe">Swipe</string>
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Which Google Account?</string>

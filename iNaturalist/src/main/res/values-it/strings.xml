@@ -147,7 +147,7 @@
     <string name="get_current_location">Ottieni posizione attuale</string>
     <string name="pull_to_refresh">Clicca per aggiornare...</string>
     <string name="release_to_refresh">Rilascia per aggiornare...</string>
-    <string name="refreshing">Aggiornando...</string>
+    <string name="refreshing">Aggiornamento...</string>
     <string name="sync_x_observations">Sincronizza %1$d osservazioni</string>
     <string name="sync_1_observation">Sincronizza 1 osservazione</string>
     <string name="sync_observations">Sincronizza Osservazioni</string>
@@ -253,7 +253,7 @@
     <string name="coordinates_lon">Lon:</string>
     <string name="coordinates_acc">Acc. </string>
     <string name="required">* Obbligatorio</string>
-    <string name="downloading_observations">Scaricando le osservazioni...</string>
+    <string name="downloading_observations">Scaricamento delle osservazioni...</string>
     <string name="no_thanks">No grazie</string>
     <string name="turn_on">Accendi</string>
     <string name="introducing_auto_sync">Introducento Auto-Sync!</string>
