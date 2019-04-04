@@ -1171,7 +1171,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             }
         });
 
-        if (mSearchFilters.place != null) {
+        if ((mSearchFilters != null) && (mSearchFilters.place != null)) {
             // Show the boundaries/border of the place on the map
             addPlaceLayerToMap(mSearchFilters.place);
         }
