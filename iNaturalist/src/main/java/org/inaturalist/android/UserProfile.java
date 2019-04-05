@@ -817,7 +817,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 @Override
                 public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
                     if (loadedBitmap != null) {
-                        imageView.setImageBitmap(ImageUtils.blur(UserProfile.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(loadedBitmap.getConfig(), true))));
+                        Bitmap.Config config = loadedBitmap.getConfig();
+                        imageView.setImageBitmap(ImageUtils.blur(UserProfile.this, ImageUtils.centerCropBitmap(loadedBitmap.copy(config != null ? config : Bitmap.Config.ARGB_8888, true))));
                     }
                 }
 
