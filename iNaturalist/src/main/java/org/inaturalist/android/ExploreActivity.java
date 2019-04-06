@@ -316,7 +316,10 @@ public class ExploreActivity extends BaseFragmentActivity {
                         mLoadingNextResults = new boolean[]{false, false, false, false};
                         mObservationsMapMyLocation.setVisibility(View.VISIBLE);
                         mObservationsMapMyLocation.performClick();
-                        mObservationsMap.setMyLocationEnabled(true);
+
+                        if (mObservationsMap != null) {
+                            mObservationsMap.setMyLocationEnabled(true);
+                        }
                     }
 
                     @Override
