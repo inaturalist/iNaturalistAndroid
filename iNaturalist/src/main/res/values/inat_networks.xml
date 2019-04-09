@@ -9,6 +9,7 @@
         <item>naturalista</item>
         <item>naturewatchnz</item>
         <item>biodiversity4all</item>
+        <item>inaturalistpanama</item>
     </string-array>
 
     <!-- The names of the iNat networks -->
@@ -18,6 +19,7 @@
     <string name="network_inaturalistcanada">iNaturalist Canada</string>
     <string name="network_naturalistacolombia">Naturalista Colombia</string>
     <string name="network_biodiversity4all">Biodiversity4all</string>
+    <string name="network_inaturalistpanama">iNaturalist Panamá</string>
 
     <!-- If value==1 -> change app name/title in the Android launcher, when network is changed.
     Otherwise, just keep it as the original app name ("iNaturalist") -->
@@ -27,6 +29,7 @@
     <string name="change_app_title_inaturalistcanada">0</string>
     <string name="change_app_title_naturalistacolombia">0</string>
     <string name="change_app_title_biodiversity4all">1</string>
+    <string name="change_app_title_inaturalistpanama">0</string>
 
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
@@ -36,6 +39,7 @@
     <string name="inat_country_inaturalistcanada">ca</string> <!-- Canada -->
     <string name="inat_country_naturalistacolombia">co</string> <!-- Colombia -->
     <string name="inat_country_biodiversity4all">pt</string> <!-- Portugal -->
+    <string name="inat_country_inaturalistpanama">pa</string> <!-- Panama -->
 
      <!-- The country display name to use for each network type - used when detecting the user's country -->
     <string name="inat_country_name_inaturalist">Global</string>
@@ -44,17 +48,7 @@
     <string name="inat_country_name_inaturalistcanada">Canada</string>
     <string name="inat_country_name_naturalistacolombia">Colombia</string>
     <string name="inat_country_name_biodiversity4all">Portugal</string>
-
-
-    <!-- When opening the explore screen, these are the default coordinates / bounding box to show
-     on the map (swlng,swlat,nelng,nelat): You can use http://isithackday.com/geoplanet-explorer/index.php to find
-       out the bounding box of countries/cities -->
-    <string name="inat_country_coordinates_inaturalist"></string> <!-- Empty - use user's current place instead -->
-    <string name="inat_country_coordinates_naturalista">14.54808,-117.123596,32.718319,-86.74501</string> <!-- Mexico -->
-    <string name="inat_country_coordinates_naturewatchnz">-50.85445,165.566357,-33.069679,178.559693</string> <!-- New Zealand -->
-    <string name="inat_country_coordinates_inaturalistcanada">41.681019,-141.002701,83.110619,-52.620201</string> <!-- Canada -->
-    <string name="inat_country_coordinates_naturalistacolombia">-4.23048,-81.728111,13.39029,-66.869827</string> <!-- Colombia -->
-    <string name="inat_country_coordinates_biodiversity4all">36.838268541, -9.52657060387, 42.280468655, -6.3890876937</string> <!-- Portugal -->
+    <string name="inat_country_name_inaturalistpanama">Panama</string>
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">https://www.inaturalist.org</string>
@@ -63,6 +57,7 @@
     <string name="inat_host_inaturalistcanada">http://www.inaturalist.ca</string>
     <string name="inat_host_naturalistacolombia">http://colombia.inaturalist.org</string>
     <string name="inat_host_biodiversity4all">https://www.biodiversity4all.org/</string>
+    <string name="inat_host_inaturalistpanama">https://panama.inaturalist.org/</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>
@@ -71,6 +66,7 @@
     <string name="inat_site_id_inaturalistcanada">5</string>
     <string name="inat_site_id_naturalistacolombia">6</string>
     <string name="inat_site_id_biodiversity4all">8</string>
+    <string name="inat_site_id_inaturalistpanama">13</string>
 
     <!-- The lexicon name to use for each network type - used when searching for taxa (so we'll
     	know which display name to use for the results) -->
@@ -80,6 +76,7 @@
     <string name="inat_lexicon_inaturalistcanada">English</string>
     <string name="inat_lexicon_naturalistacolombia">Spanish</string>
     <string name="inat_lexicon_biodiversity4all">Portuguese</string>
+    <string name="inat_lexicon_inaturalistpanama">Spanish</string>
 
     <!-- The logo drawable name to use for each network type -->
     <string name="inat_logo_inaturalist">logo_text</string>
@@ -88,4 +85,5 @@
     <string name="inat_logo_inaturalistcanada">logo_inaturalistcanada</string>
     <string name="inat_logo_naturalistacolombia">logo_naturalista_colombia</string>
     <string name="inat_logo_biodiversity4all">logo_biodiversity4all</string>
+    <string name="inat_logo_inaturalistpanama">logo_panama</string>
 </resources>
