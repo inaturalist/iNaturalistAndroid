@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatRadioButton;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,9 @@ import java.util.List;
 
 public class About extends AppCompatActivity {
     private static final String TAG = "About";
+
+    private TextView mAboutText;
+    private INaturalistApp mApp;
 
 
     @Override
@@ -67,6 +72,35 @@ public class About extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setTitle(R.string.about_this_app);
+        
+        mApp = (INaturalistApp) getApplicationContext();
+
+
+        mAboutText = findViewById(R.id.inat_credits);
+
+        StringBuilder credits = new StringBuilder();
+
+        credits.append(getString(R.string.inat_credits));
+
+        // Add per-network credit
+        final String[] inatNetworks = mApp.getINatNetworks();
+
+        credits.append("<br/><br/>");
+        credits.append(getString(R.string.inat_credits_networks_pre));
+        credits.append("<br/><br/>");
+
+        for (String network : inatNetworks) {
+            String networkCredit = mApp.getStringResourceByName("network_credit_" + network, "n/a");
+            if (networkCredit.equals("n/a")) continue;
+
+            credits.append(networkCredit);
+            credits.append("<br/><br/>");
+        }
+
+        credits.append(getString(R.string.inat_credits_post));
+
+        mAboutText.setText(Html.fromHtml(credits.toString()));
+        mAboutText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
