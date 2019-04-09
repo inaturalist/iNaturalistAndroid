@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatchNZ ist ein Mitglied des iNaturalist-Netzwerks in Neuseeland. Möchtest du diesem Netzwerk beitreten, um deine Erfahrungen passend zu lokalisieren und zu teilen?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Kanada ist ein Mitglied des iNaturalist-Netzwerks in Kanada. Möchtest du diesem Netzwerk beitreten, um deine Erfahrungen passend zu lokalisieren und zu teilen?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista ist ein Mitglied des iNaturalist-Netzwerks in Kolumbien. Möchtest du diesem Netzwerk beitreten, um deine Erfahrungen passend zu lokalisieren und zu teilen?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all ist Mitglied des iNaturalist Network in Portugal. Möchten Sie dieses Netzwerk nutzen, um Ihre Erfahrungen zu bündeln und Daten entsprechend auszutauschen?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all ist Mitglied des iNaturalist Network in Portugal. Möchten Sie dieses Netzwerk nutzen, um Ihre Erfahrungen zu dokumentieren und Daten entsprechend auszutauschen?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
@@ -544,7 +544,7 @@
     <string name="discard_comment">Möchten Sie diesen Kommentar wirklich löschen?</string>
     <string name="leave_comment">Kommentar hinzufügen...</string>
     <string name="swipe">Wischen</string>
-    <string name="swipe_indicator">></string>
+    <string name="swipe_indicator">›</string>
     <string name="select_google_account">Google-Konto auswählen</string>
     <string name="potential_disagreement">Mögliche Unstimmigkeit</string>
     <string name="do_you_think_this_could_be"><![CDATA[Ist der Nachweis ausreichend, um zu bestätigen, das dies ein <b>%1$s</b> ist?]]></string>
@@ -619,7 +619,7 @@
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Jugendlich</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_subimago">Insektenkunde</string>
     <string name="annotation_value_female">Weiblich</string>
     <string name="annotation_value_male">Männlich</string>
     <string name="joined_projects_all_caps">VERBUNDEN</string>
@@ -646,7 +646,7 @@
     <string name="observers_all_caps">Beobachter</string>
     <string name="observations_regular">Beobachtungen</string>
     <string name="data_quality_assessment">Bewertung der Datenqualität</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="research_grade_qualification">Forschungsgrad Qualifikation</string>
     <string name="date_specified">Angegebenes Datum</string>
     <string name="location_specified">Angegebener Ort</string>
     <string name="has_photos_or_sounds">Enthält Fotos oder Tonaufnahmen</string>

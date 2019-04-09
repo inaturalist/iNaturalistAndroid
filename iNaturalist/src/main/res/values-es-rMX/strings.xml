@@ -115,7 +115,7 @@
     <string name="about_guide">Acerca de</string>
     <string name="about_guide_all_caps">ACERCA DE</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">Acerca de</string>
+    <string name="about_project">Información</string>
     <string name="about_project_all_caps">ACERCA DE</string>
     <string name="about_this_app">Acerca de</string>
     <string name="about_taxon_short">Acerca de</string>
@@ -194,7 +194,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ es miembro de la Red iNaturalist en Nueva Zelanda. ¿Deseas usar esta red para ubicar tu experiencia y compartir tus datos?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canadá es miembro de la Red iNaturalist en Canadá. ¿Deseas usar esta red para ubicar tu experiencia y compartir tus datos?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista es miembro de la Red iNaturalist en Colombia. ¿Deseas usar esta red para ubicar tu experiencia y compartir tus datos?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all es miembro de la Red iNaturalist en Portugal. ¿Deseas usar esta red para localizar tu experiencia y compartir datos en consecuencia?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all es miembro de la Red iNaturalist en Portugal. ¿Desea usar esta red para localizar su experiencia y compartir datos en consecuencia?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descarga para uso fuera de línea</string>

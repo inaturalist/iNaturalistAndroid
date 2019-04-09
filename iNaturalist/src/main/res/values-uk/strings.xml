@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">Ви впевнені, що ви хочете покинути цей проект?</string>
     <string name="discard_location_changes">Ви справді хочете відхилити незбережені зміни?</string>
     <string name="edit_location">Редагувати місцезнаходження</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Редагувати нотатки місцевості</string>
     <string name="get_current_location">Визначити місцезнаходження</string>
     <string name="pull_to_refresh">Потягніть, щоб оновити...</string>
     <string name="release_to_refresh">Відпустіть, щоб оновити...</string>
@@ -650,12 +650,12 @@
     <string name="date_specified">Дату вказано</string>
     <string name="location_specified">Місцезнаходження вказано</string>
     <string name="has_photos_or_sounds">Має фотографії або звуки</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="has_id_supported_by_two_or_more">Підтримка ідентифікації двома та більше учасниками</string>
     <string name="date_is_accurate">Дата є точною</string>
     <string name="location_is_accurate">Місцезнаходження є точним</string>
     <string name="organism_is_wild">Дикий організм</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
+    <string name="evidence_of_organism">Свідчення існування організму</string>
+    <string name="recent_evidence_of_an_organism">Останні свідчення існування організму</string>
     <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
     <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
     <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
@@ -663,6 +663,6 @@
     <string name="verifiable">Перевіряється</string>
     <string name="no_annotation">Анотацій немає</string>
     <string name="donate_to_inaturalist">Пожертвувати на iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="prefers_scientific_name_first">Показувати наукові назви першими</string>
+    <string name="prefers_scientific_name_first_description">Показувати наукові назви перед загальними.</string>
 </resources>

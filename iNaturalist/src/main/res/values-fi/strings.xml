@@ -29,7 +29,7 @@
     <string name="something_went_wrong">Kirottua, jotain meni pieleen: %1$s</string>
     <string name="edit">Muokkaa</string>
     <string name="oh_no">Voi ei! %1$s</string>
-    <string name="observations">Havaintoni</string>
+    <string name="observations">Omat havainnot</string>
     <string name="map">Kartta</string>
     <string name="settings">Asetukset</string>
     <string name="projects">Projektit</string>
@@ -508,7 +508,7 @@
     <string name="delegation">Delegaatio</string>
     <string name="apply_filters">Käytä suodattimia</string>
     <string name="reset">Nollaa</string>
-    <string name="show_only_my_observations">Näytä vain havaintoni</string>
+    <string name="show_only_my_observations">Näytä vain omat havainnot</string>
     <string name="project">Projekti</string>
     <string name="user">Käyttäjä</string>
     <string name="search_users">Hae käyttäjiä...</string>
@@ -663,6 +663,6 @@
     <string name="verifiable">Todennettavissa</string>
     <string name="no_annotation">Ei huomautusta</string>
     <string name="donate_to_inaturalist">Lahjoita iNaturalistille</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="prefers_scientific_name_first">Näytä tieteelliset nimet ensin</string>
+    <string name="prefers_scientific_name_first_description">Näytä tieteelliset nimet ennen yleisnimiä.</string>
 </resources>

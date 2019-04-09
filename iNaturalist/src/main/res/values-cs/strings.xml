@@ -112,13 +112,13 @@
     <string name="search_guides">Průvodce vyhledáváním...</string>
     <string name="save_observation">Uložit pozorování</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">O aplikaci</string>
+    <string name="about_guide_all_caps">O aplikaci</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">O aplikaci</string>
+    <string name="about_project_all_caps">O aplikaci</string>
+    <string name="about_this_app">O aplikaci</string>
+    <string name="about_taxon_short">O aplikaci</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Zachování soukromé geografické polohy</string>
     <string name="delete_confirmation">Jste si jisti, že chcete odstranit toto pozorování?</string>
@@ -350,9 +350,9 @@
     <string name="stop">Zastavit</string>
     <string name="resume">Pokračovat</string>
     <string name="cleaning_up">Probíhá čištění...</string>
-    <string name="syncing">Syncing...</string>
+    <string name="syncing">Synchronizuji...</string>
     <string name="syncing_observation_fields">Synchronizace polí pozorování...</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observations">Synchronizuji pozorování...</string>
     <string name="syncing_paused">Pozastaveno</string>
     <string name="upload">Nahrát</string>
     <string name="search_observations">Hledat pozorování...</string>

@@ -185,8 +185,8 @@
     <string name="no_observations_found">No observations found</string>
     <string name="license_none">None, all rights reserved</string>
     <string name="sources_and_attribution">Sources and Attribution</string>
-    <string name="photos"><![CDATA[<b>Photos:</b> %1$s]]></string>
-    <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
+    <string name="photos"><![CDATA[<b>Fotók:</b> %1$s]]></string>
+    <string name="text"><![CDATA[<b>Szöveg:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">The main iNaturalist Network. Clicking OK will set your app as part of the global iNaturalist network.</string>
     <string name="alert_message_use_naturalista">iNaturalist is a member of the iNaturalist Network in Mexico. Would you like to use this network to localize your experience and share data accordingly?</string>
@@ -194,8 +194,8 @@
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Would you like to use this network to localize your experience and share data accordingly?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
-    <string name="editor">Editor</string>
-    <string name="license">License</string>
+    <string name="editor">Szerkesztő</string>
+    <string name="license">Licensz</string>
     <string name="download_for_offline_use">Letöltés kapcsolat nélküli használatra</string>
     <string name="download_not_available">A letöltés nem érhető el</string>
     <string name="guide_editor_must_enable_this_feature">Az útmutató-szerkesztőnek bekapcsolva kell lennie ehhez a funkcióhoz.</string>

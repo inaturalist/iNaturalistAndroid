@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">Apakah Anda yakin Anda ingin meninggalkan proyek ini?</string>
     <string name="discard_location_changes">Apakah Anda yakin Anda ingin membuang perubahan yang belum disimpan?</string>
     <string name="edit_location">Mengedit lokasi</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Sunting catatan wilayah</string>
     <string name="get_current_location">Mendapatkan lokasi</string>
     <string name="pull_to_refresh">Tarik untuk me-refresh...</string>
     <string name="release_to_refresh">Lepas untuk me-refresh...</string>
@@ -483,50 +483,50 @@
     <string name="territory">Wilayah</string>
     <string name="district">Distrik</string>
     <string name="province">Provinsi</string>
-    <string name="municipality">Municipality</string>
+    <string name="municipality">Kotamadya</string>
     <string name="parish">Parish</string>
-    <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
-    <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
-    <string name="division">Division</string>
-    <string name="subdivision">Subdivision</string>
+    <string name="department_segment">Bagian Departemen</string>
+    <string name="city_building">Bangunan Kota</string>
+    <string name="commune">Komune</string>
+    <string name="governorate">Gubernurat</string>
+    <string name="prefecture">Prefektur</string>
+    <string name="canton">Kanton</string>
+    <string name="republic">Republik</string>
+    <string name="division">Divisi</string>
+    <string name="subdivision">Subdivisi</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">Kampung/Desa</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Sum</string>
     <string name="shire">Shire</string>
-    <string name="prefecture_city">Prefecture City</string>
+    <string name="prefecture_city">Prefektur Kota</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
-    <string name="local_authority">Local Authority</string>
+    <string name="regency">Kabupaten</string>
+    <string name="constituency">Daerah pemilihan</string>
+    <string name="local_authority">Otoritas lokal</string>
     <string name="poblacion">Poblacion</string>
-    <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
-    <string name="dates">Dates</string>
+    <string name="delegation">Perwakilan</string>
+    <string name="apply_filters">Terapkan Filter</string>
+    <string name="reset">Atur Ulang</string>
+    <string name="show_only_my_observations">Hanya tampilkan pengamatan saya</string>
+    <string name="project">Proyek</string>
+    <string name="user">Pengguna</string>
+    <string name="search_users">Cari pengguna...</string>
+    <string name="quality_grade">Kualitas Kelas</string>
+    <string name="dates">Tanggal</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">Apa saja</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
-    <string name="map_area">Map Area</string>
+    <string name="to">untuk</string>
+    <string name="exact_date">Tanggal yang tepat</string>
+    <string name="start">Mulai</string>
+    <string name="end">Akhir</string>
+    <string name="months">Bulan</string>
+    <string name="choose_months">Pilih bulan</string>
+    <string name="map_area">Area Peta</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">Cari Area Peta</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dm</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
@@ -536,8 +536,8 @@
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
     <string name="new_observation">Pengamatan Baru</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
+    <string name="inactive_taxon">Takson tidak aktif</string>
+    <string name="no_identifications_found">Melacak mengurusinya Anda menyarankan untuk pengamatan oleh orang lain di sini.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
     <string name="make_an_observation">Make an observation</string>
     <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>

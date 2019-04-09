@@ -4,7 +4,7 @@
     <string name="app_name">iNaturalist</string>
     <string name="email_address">E-mailadres</string>
     <string name="delete_observation">Verwijder observatie</string>
-    <string name="observation_deleted">Observatie verwijderd</string>
+    <string name="observation_deleted">Waarneming verwijderd</string>
     <string name="species_guess_hint">Soort naam...</string>
     <string name="ok">OK</string>
     <string name="cancel">Annuleer</string>
@@ -42,7 +42,7 @@
     <string name="view_on_inat">Kijk op iNaturalist.org</string>
     <string name="reload">Opnieuw Laden</string>
     <string name="view_in_browser">Bekijk in browser</string>
-    <string name="add_observation">Observatie toevoegen</string>
+    <string name="add_observation">Waarneming toevoegen</string>
     <string name="take_picture">Maak een foto</string>
     <string name="save">Opslaan</string>
     <string name="no_observations_yet">Nog geen observaties!</string>
@@ -193,7 +193,7 @@
     <string name="alert_message_use_naturewatchnz">NatureWatch NZ is onderdeel van het iNaturalist netwerk in Nieuw-Zeeland. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is onderdeel van het iNaturalist netwerk in Canada. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista is onderdeel van het iNaturalist netwerk in Colombia. Wil je gebruik maken van dit netwerk om je ervaringen en gegevens te delen?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all is onderdeel van het iNaturalist netwerk in Portugal. Wil je gebruik maken van dit netwerk om jouw ervaringen en gegevens te delen?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4all is onderdeel van het iNaturalist netwerk in Portugal. Wil je gebruik maken van dit netwerk om je ervaringen en gegevens te delen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -242,7 +242,7 @@
     <string name="camera">Foto Maken</string>
     <string name="upload_photo">Selecteer afbeelding</string>
     <string name="menu_text">Geen afbeelding</string>
-    <string name="first">Eerste</string>
+    <string name="first">1ste</string>
     <string name="make_first">1ste maken</string>
     <string name="notes">Opmerkingen</string>
     <string name="location_is">Locatie is</string>
@@ -288,7 +288,7 @@
     <string name="comment">Commentaar</string>
     <string name="suggest_id">Suggereer een determinatie</string>
     <string name="update_comment">Commentaar bijwerken</string>
-    <string name="fave_this_observation">Voeg deze waarneming toe aan je favorieten</string>
+    <string name="fave_this_observation">Maak deze waarneming favoriet</string>
     <string name="faved">Aan favorieten toegevoegd</string>
     <string name="be_the_first_to_fave_this_obs">Wees de eerste om deze aanblik te beoordelen als uw favoriet...</string>
     <string name="leave_a_comment">Geef een opmerking of suggereer een identificatie...</string>
@@ -381,7 +381,7 @@
     <string name="birds">Vogels</string>
     <string name="arachnids">Spinachtigen</string>
     <string name="no_connectivity">Geen verbinding</string>
-    <string name="no_recommended_missions">Het lijkt erop dat er geen aanbevelingen zijn voor dit gebied. Probeer te verplaatsen naar een andere locatie.</string>
+    <string name="no_recommended_missions">Er zijn geen aanbevelingen voor dit gebied. Probeer een andere locatie.</string>
     <string name="what_to_look_for">Waar naar te kijken</string>
     <string name="have_been_seen_here">Werden hier gezien</string>
     <string name="observe">Waarnemen</string>
@@ -537,7 +537,7 @@
     <string name="date_week">%dw</string>
     <string name="new_observation">Nieuwe waarneming</string>
     <string name="inactive_taxon">Inactief Taxon</string>
-    <string name="no_identifications_found">Spoor indentificaties die je voorstelt for waarnemingen van andere mensen hier.</string>
+    <string name="no_identifications_found">Volg determinaties die je voorstelt voor waarnemingen van anderen.</string>
     <string name="no_species_found">Dit is een lijst van de soorten die u het vaakst hebt waargenomen.\n\nFYI: er zijn naar schatting 9 miljoen soorten op de planeet, dus ga naar buiten en ga kijken!</string>
     <string name="make_an_observation">Waarneming opslaan</string>
     <string name="no_observations_found_new">Waarnemingen worden records van uw observaties van individuele organismen op bepaalde tijdstippen en locaties.</string>
@@ -574,7 +574,7 @@
     <string name="project_observations">Waarnemingen</string>
     <string name="project_species">Soort</string>
     <string name="project_people">Personen</string>
-    <string name="project_identifiers">Kenmerken</string>
+    <string name="project_identifiers">Identificeerders</string>
     <string name="got_it">Ik snap het!</string>
     <string name="view_all">Alles bekijken</string>
     <string name="new_badge">Nieuw</string>
