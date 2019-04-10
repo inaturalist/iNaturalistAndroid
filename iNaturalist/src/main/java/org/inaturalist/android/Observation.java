@@ -510,12 +510,14 @@ public class Observation implements BaseColumns, Serializable {
 
         if (o.has("location")) {
             String location = o.getString("location");
-            if ((location != null) && (location.length() > 0)) {
+            if ((location != null) && (location.length() > 0) && (!location.equals("null"))) {
                 String[] locationSplit = location.split(",");
-                this.latitude = Double.parseDouble(locationSplit[0]);
-                this.latitude_was = this.latitude;
-                this.longitude = Double.parseDouble(locationSplit[1]);
-                this.longitude_was = this.longitude;
+                if ((locationSplit.length == 2) && (!locationSplit[0].equals("null")) && (!locationSplit[1].equals("null"))) {
+                    this.latitude = Double.parseDouble(locationSplit[0]);
+                    this.latitude_was = this.latitude;
+                    this.longitude = Double.parseDouble(locationSplit[1]);
+                    this.longitude_was = this.longitude;
+                }
             }
         }
     }
