@@ -15,7 +15,7 @@
     <!-- The names of the iNat networks -->
     <string name="network_inaturalist">iNaturalist</string>
     <string name="network_naturalista">NaturaLista</string>
-    <string name="network_naturewatchnz">iNautralist NZ - Mātaki Taiao</string>
+    <string name="network_naturewatchnz">iNaturalist NZ - Mātaki Taiao</string>
     <string name="network_inaturalistcanada">iNaturalist Canada</string>
     <string name="network_naturalistacolombia">Naturalista Colombia</string>
     <string name="network_biodiversity4all">Biodiversity4all</string>
