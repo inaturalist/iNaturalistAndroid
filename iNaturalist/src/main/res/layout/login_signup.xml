@@ -208,6 +208,18 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#eeffffff"
+            android:text="@string/forgot"
+            android:id="@+id/forgot_password"
+            android:textAlignment="center"
+            android:layout_marginTop="5dp"
+            />
+
+
         <Button
             android:id="@+id/sign_up"
             android:background="@drawable/circular_button"

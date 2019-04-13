@@ -55,6 +55,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private ImageView mUsernameIcon;
     private EditText mUsername;
     private TextView mPasswordWarning;
+    private TextView mForgotPassword;
     private TextView mCheckboxDescription;
     private ImageView mCheckbox;
     private boolean mUseCCLicense;
@@ -249,7 +250,11 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         mPasswordIcon.getDrawable().setAlpha(0x7f);
         mUsernameIcon.getDrawable().setAlpha(0x7f);
 
+        mForgotPassword = (TextView) findViewById(R.id.forgot_password);
+        mForgotPassword.setVisibility(!mIsSignup ? View.VISIBLE : View.GONE);
+
         mPasswordWarning = (TextView) findViewById(R.id.password_warning);
+        mPasswordWarning.setVisibility(mIsSignup ? View.VISIBLE : View.GONE);
         mPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -261,7 +266,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (mPassword.getText().length() >= (mIsSignup ? 6 : 1)) {
+                if ((!mIsSignup) || (mPassword.getText().length() >= 6)) {
                     mPasswordWarning.setVisibility(View.GONE);
                 } else {
                     mPasswordWarning.setVisibility(View.VISIBLE);
@@ -319,8 +324,8 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             parent.addView(usernameContainer, 0);
 
             mSignup.setText(R.string.log_in);
-            mPasswordWarning.setText(R.string.forgot);
-            mPasswordWarning.setOnClickListener(new View.OnClickListener() {
+            mPasswordWarning.setVisibility(View.GONE);
+            mForgotPassword.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // Open the forgot password page on the user's browser
