@@ -80,6 +80,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -122,6 +123,9 @@ public class ExploreActivity extends BaseFragmentActivity {
     @State public ExploreSearchFilters mSearchFilters;
 
     @State public VisibleRegion mMapRegion;
+
+    @State(AndroidStateBundlers.ListBundler.class) public List<Integer> mListViewIndex = new ArrayList<>(Arrays.asList(0 ,0, 0, 0));
+    @State(AndroidStateBundlers.ListBundler.class) public List<Integer> mListViewOffset = new ArrayList<>(Arrays.asList(0 ,0, 0, 0));
 
     // Current search results
     private List<JSONObject>[] mResults = (List<JSONObject>[]) new List[]{null, null, null, null};
@@ -286,11 +290,6 @@ public class ExploreActivity extends BaseFragmentActivity {
             mResults[VIEW_TYPE_OBSERVERS] = mObservers;
             mResults[VIEW_TYPE_IDENTIFIERS] = mIdentifiers;
 
-            for (int i = 0; i < mResults.length; i++) {
-                mListViewIndex.put("mList" + i, savedInstanceState.getInt("mList" + i + "Index"));
-                mListViewOffset.put("mList" + i, savedInstanceState.getInt("mList" + i + "Offset"));
-            }
-
             VisibleRegion vr = mMapRegion;
             if (vr != null) {
                 mLastMapBounds = new LatLngBounds(new LatLng(vr.nearLeft.latitude, vr.farLeft.longitude), new LatLng(vr.farRight.latitude, vr.farRight.longitude));
@@ -346,10 +345,10 @@ public class ExploreActivity extends BaseFragmentActivity {
         mObservers = mResults[VIEW_TYPE_OBSERVERS];
         mIdentifiers = mResults[VIEW_TYPE_IDENTIFIERS];
 
-        saveListViewOffset(mObservationsGrid, outState, "mList" + VIEW_TYPE_OBSERVATIONS);
-        saveListViewOffset(mList[VIEW_TYPE_SPECIES], outState, "mList" + VIEW_TYPE_SPECIES);
-        saveListViewOffset(mList[VIEW_TYPE_OBSERVERS], outState, "mList" + VIEW_TYPE_OBSERVERS);
-        saveListViewOffset(mList[VIEW_TYPE_IDENTIFIERS], outState, "mList" + VIEW_TYPE_IDENTIFIERS);
+        saveListViewOffset(mObservationsGrid, VIEW_TYPE_OBSERVATIONS);
+        saveListViewOffset(mList[VIEW_TYPE_SPECIES], VIEW_TYPE_SPECIES);
+        saveListViewOffset(mList[VIEW_TYPE_OBSERVERS], VIEW_TYPE_OBSERVERS);
+        saveListViewOffset(mList[VIEW_TYPE_IDENTIFIERS], VIEW_TYPE_IDENTIFIERS);
 
         if (mObservationsMap != null) {
             mMapRegion = mObservationsMap.getProjection().getVisibleRegion();
@@ -359,23 +358,13 @@ public class ExploreActivity extends BaseFragmentActivity {
         Bridge.saveInstanceState(this, outState);
     }
 
-    Map<String, Integer> mListViewIndex = new HashMap<>();
-    Map<String, Integer> mListViewOffset = new HashMap<>();
-
-    private void loadListViewOffset(final AbsListView listView, Bundle extras, String key) {
+    private void loadListViewOffset(final AbsListView listView, int listIndex) {
         if (listView == null) return;
 
         Integer index, offset;
 
-        if (extras == null) {
-            index = mListViewIndex.get(key);
-            offset = mListViewOffset.get(key);
-            if (index == null) index = 0;
-            if (offset == null) offset = 0;
-        } else {
-            index = extras.getInt(key + "Index");
-            offset = extras.getInt(key + "Offset");
-        }
+        index = mListViewIndex.get(listIndex);
+        offset = mListViewOffset.get(listIndex);
 
         final Integer finalIndex = index, finalOffset = offset;
         listView.post(new Runnable() {
@@ -397,7 +386,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
     }
 
-    private void saveListViewOffset(AbsListView listView, Bundle outState, String key) {
+    private void saveListViewOffset(AbsListView listView, int listIndex) {
         if (listView != null) {
             View firstVisibleRow = listView.getChildAt(0);
 
@@ -405,13 +394,8 @@ public class ExploreActivity extends BaseFragmentActivity {
                 Integer offset = firstVisibleRow.getTop() - listView.getPaddingTop();
                 Integer index = listView.getFirstVisiblePosition();
 
-                mListViewIndex.put(key, index);
-                mListViewOffset.put(key, offset);
-
-                if (outState != null) {
-                    outState.putInt(key + "Index", index);
-                    outState.putInt(key + "Offset", offset);
-                }
+                mListViewIndex.set(listIndex, index);
+                mListViewOffset.set(listIndex, offset);
             }
         }
     }
@@ -746,10 +730,10 @@ public class ExploreActivity extends BaseFragmentActivity {
                 mResults[index].addAll(resultsArray);
                 mTotalResults[index] = totalResults;
 
-                saveListViewOffset(mObservationsGrid, getIntent().getExtras(), "mList" + VIEW_TYPE_OBSERVATIONS);
-                saveListViewOffset(mList[VIEW_TYPE_SPECIES], getIntent().getExtras(), "mList" + VIEW_TYPE_SPECIES);
-                saveListViewOffset(mList[VIEW_TYPE_OBSERVERS], getIntent().getExtras(), "mList" + VIEW_TYPE_OBSERVERS);
-                saveListViewOffset(mList[VIEW_TYPE_IDENTIFIERS], getIntent().getExtras(), "mList" + VIEW_TYPE_IDENTIFIERS);
+                saveListViewOffset(mObservationsGrid, VIEW_TYPE_OBSERVATIONS);
+                saveListViewOffset(mList[VIEW_TYPE_SPECIES], VIEW_TYPE_SPECIES);
+                saveListViewOffset(mList[VIEW_TYPE_OBSERVERS], VIEW_TYPE_OBSERVERS);
+                saveListViewOffset(mList[VIEW_TYPE_IDENTIFIERS], VIEW_TYPE_IDENTIFIERS);
             }
 
             refreshViewState();
@@ -986,7 +970,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                 }
             });
 
-            loadListViewOffset(mList[resultsType], getIntent().getExtras(), "mList" + resultsType);
+            loadListViewOffset(mList[resultsType], resultsType);
         }
     }
 
@@ -1075,7 +1059,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             mObservationsGrid.setVisibility(View.VISIBLE);
         }
 
-        loadListViewOffset(mObservationsGrid, getIntent().getExtras(), "mList" + VIEW_TYPE_OBSERVATIONS);
+        loadListViewOffset(mObservationsGrid, VIEW_TYPE_OBSERVATIONS);
 
 
         mObservationsGrid.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -1222,8 +1206,8 @@ public class ExploreActivity extends BaseFragmentActivity {
         if (mObservationsMap != null) mObservationsMap.clear();
 
         if (resetOffsets) {
-            mListViewIndex = new HashMap<>();
-            mListViewOffset = new HashMap<>();
+            mListViewIndex = new ArrayList<>(Arrays.asList(0 ,0, 0, 0));
+            mListViewOffset = new ArrayList<>(Arrays.asList(0 ,0, 0, 0));
         }
     }
 

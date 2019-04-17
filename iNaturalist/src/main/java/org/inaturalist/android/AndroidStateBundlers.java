@@ -18,6 +18,31 @@ import java.util.List;
 /** Where all the android-state custom bundlers are implemented */
 public class AndroidStateBundlers {
 
+    public static final class ListBundler implements Bundler<List<Integer>> {
+        @Override
+        public void put(@NonNull String key, @NonNull List<Integer> value, @NonNull Bundle bundle) {
+            String str = value.toString();
+            bundle.putString(key, str.substring(1, str.length() - 1));
+        }
+
+        @Nullable
+        @Override
+        public List<Integer> get(@NonNull String key, @NonNull Bundle bundle) {
+            if (bundle.containsKey(key)) {
+                String parts[] = bundle.getString(key).split(",");
+                List<Integer> results = new ArrayList<>();
+                for (String value : parts) {
+                    results.add(Integer.valueOf(value.trim()));
+                }
+
+                return results;
+
+            } else {
+                return null;
+            }
+        }
+    }
+
     public static final class SerializableBundler implements Bundler<Serializable> {
         @Override
         public void put(@NonNull String key, @NonNull Serializable value, @NonNull Bundle bundle) {
