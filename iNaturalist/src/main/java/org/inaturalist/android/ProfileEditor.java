@@ -284,11 +284,6 @@ public class ProfileEditor extends AppCompatActivity {
         }
 
         refreshUserDetails();
-
-        mUserUpdateReceiver = new UserUpdateReceiver();
-        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_UPDATE_USER_DETAILS_RESULT);
-        Log.i(TAG, "Registering ACTION_UPDATE_USER_DETAILS_RESULT");
-        BaseFragmentActivity.safeRegisterReceiver(mUserUpdateReceiver, filter, this);
     }
 
     @Override
@@ -304,6 +299,11 @@ public class ProfileEditor extends AppCompatActivity {
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
         }
+
+        mUserUpdateReceiver = new UserUpdateReceiver();
+        IntentFilter filter = new IntentFilter(INaturalistService.ACTION_UPDATE_USER_DETAILS_RESULT);
+        Log.i(TAG, "Registering ACTION_UPDATE_USER_DETAILS_RESULT");
+        BaseFragmentActivity.safeRegisterReceiver(mUserUpdateReceiver, filter, this);
     }
 
     @Override
