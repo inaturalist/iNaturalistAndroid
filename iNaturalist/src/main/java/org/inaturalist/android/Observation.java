@@ -452,6 +452,17 @@ public class Observation implements BaseColumns, Serializable {
         this.last_identifications_count = this.identifications_count;
 
         this.projects = o.getJSONArray("project_observations");
+        if ((o.has("non_traditional_projects")) && (o.getJSONArray("non_traditional_projects").getJSONArray().length() > 0)) {
+            // Also add umbrella projects
+            JSONArray projects = this.projects.getJSONArray();
+            JSONArray umbrellaProjects = o.getJSONObject().optJSONArray("non_traditional_projects");
+            for (int i = 0; i < umbrellaProjects.length(); i++) {
+                projects.put(umbrellaProjects.optJSONObject(i));
+            }
+
+            this.projects = new SerializableJSONArray(projects);
+        }
+
         this.field_values = o.getJSONArray("observation_field_values");
 
         this.preferred_common_name = null;

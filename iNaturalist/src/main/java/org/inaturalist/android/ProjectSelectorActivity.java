@@ -472,6 +472,11 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             ImageView projectPic = (ImageView) view.findViewById(R.id.project_pic);
             String iconUrl = item.getString("icon_url");
 
+            if ((iconUrl == null) && (item.has("project"))){
+                JSONObject project = item.getJSONObject("project");
+                iconUrl = project.optString("icon");
+            }
+
             if ((iconUrl != null) && (iconUrl.length() > 0)) {
                 projectPic.setVisibility(View.VISIBLE);
                 if (mIsConfirmation) {
