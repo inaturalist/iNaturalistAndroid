@@ -1,6 +1,12 @@
 package org.inaturalist.android;
 
 import com.cocosw.bottomsheet.BottomSheet;
+import com.drew.imaging.ImageMetadataReader;
+import com.drew.imaging.ImageProcessingException;
+import com.drew.lang.Rational;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.exif.GpsDirectory;
 import com.evernote.android.state.State;
 import com.flurry.android.FlurryAgent;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -2534,6 +2540,24 @@ public class ObservationEditor extends AppCompatActivity {
 
             } else {
                 // No coordinates - don't override the observation coordinates
+            }
+
+            try {
+                // Read GPSHPositioningError EXIF tag to get positional accuracy
+                is.close();
+                is = getContentResolver().openInputStream(photoUri);
+                Metadata metadata = ImageMetadataReader.readMetadata(is);
+
+                Directory directory = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+                if (directory != null) {
+                    Rational value = directory.getRational(GpsDirectory.TAG_H_POSITIONING_ERROR);
+                    if (value != null) {
+                        mObservation.positional_accuracy = value.intValue();
+                    }
+                }
+
+            } catch (ImageProcessingException e) {
+                e.printStackTrace();
             }
 
 
