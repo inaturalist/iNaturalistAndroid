@@ -579,7 +579,11 @@ public class ObservationEditor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mTaxonSearchStarted = true;
-                if ((mGallery.getAdapter().getCount() == 0) || (!mApp.getSuggestSpecies())) {
+                if (
+                        (mGallery.getAdapter().getCount() == 0) ||
+                        (!mApp.getSuggestSpecies()) ||
+                        ((mSpeciesGuess != null) && (mSpeciesGuess.length() > 0) && (mObservation.taxon_id == null))
+                ) {
                     // No photos / suggest species setting is off - show the regular species search (by name)
                     Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
                     intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mApp.getShowScientificNameFirst() ? mObservation.scientific_name : mSpeciesGuessTextView.getText().toString());
