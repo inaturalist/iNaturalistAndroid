@@ -78,19 +78,35 @@ public class TaxonUtils {
         }
     }
 
+    public static void setTaxonScientificNameWithRank(TextView textView, JSONObject item) {
+        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(item, false, true)));
+    }
+
+
     public static void setTaxonScientificName(TextView textView, JSONObject item) {
         setTaxonScientificName(textView, item, false);
     }
 
     public static void setTaxonScientificName(TextView textView, JSONObject item, boolean bold) {
-        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(item, bold)));
+        textView.setText(Html.fromHtml(getTaxonScientificNameHtml(item, bold, false)));
     }
 
-    public static String getTaxonScientificNameHtml(JSONObject item, boolean bold) {
-        String name = item.optString("name", "");
+    public static String getTaxonScientificNameHtml(JSONObject item, boolean bold, boolean alwaysShowRank) {
+        String rankName = item.optString("name", "");
         String rank = getTaxonRank(item);
-        if (getTaxonRankLevel(item) <= 20) {
-            name = (rank.equals("") ? "" : (rank + " ")) + "<i>" + name + "</i>";
+        double rankLevel = getTaxonRankLevel(item);
+        String name;
+
+        if ((alwaysShowRank) || (rankLevel <= 20)) {
+            name = (rank.equals("") ? "" : (rank + " "));
+        } else {
+            name = "";
+        }
+
+        if (rankLevel <= 20) {
+            name += "<i>" + rankName + "</i>";
+        } else {
+            name += rankName;
         }
 
         return bold ? "<b>" + name + "</b>" : name;

@@ -158,10 +158,10 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
 
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
-            TaxonUtils.setTaxonScientificName(taxonName, taxon);
+            TaxonUtils.setTaxonScientificNameWithRank(taxonName, taxon);
             taxonScientificName.setText(TaxonUtils.getTaxonName(mContext, taxon));
         } else {
-            TaxonUtils.setTaxonScientificName(taxonScientificName, taxon);
+            TaxonUtils.setTaxonScientificNameWithRank(taxonScientificName, taxon);
             taxonName.setText(TaxonUtils.getTaxonName(mContext, taxon));
         }
 
