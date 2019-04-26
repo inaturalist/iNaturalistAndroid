@@ -1826,13 +1826,18 @@ public class ObservationEditor extends AppCompatActivity {
 
                 Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
                 try {
-                    List<Address> addresses = geocoder.getFromLocation(mObservation.latitude, mObservation.longitude, 1);
+                    final StringBuilder location = new StringBuilder();
+                    List<Address> addresses = geocoder.getFromLocation(mObservation.latitude, mObservation.longitude, 10);
                     if((null != addresses) && (addresses.size() > 0)) {
-                        Address address = addresses.get(0);
-                        final StringBuilder location = new StringBuilder();
-                        for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
-                            location.append(address.getAddressLine(i));
-                            location.append(" ");
+                        for (Address address : addresses) {
+                            if (address.getThoroughfare() == null) {
+                                for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                                    location.append(address.getAddressLine(i));
+                                    location.append(" ");
+                                }
+
+                                break;
+                            }
                         }
 
                         runOnUiThread(new Runnable() {
