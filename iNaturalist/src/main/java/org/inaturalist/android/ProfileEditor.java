@@ -69,6 +69,8 @@ public class ProfileEditor extends AppCompatActivity {
     @State public String mUserIconUrl;
     private UserUpdateReceiver mUserUpdateReceiver;
 
+    private UserDetailsReceiver mUserDetailsReceiver;
+
     @Override
 	protected void onStart()
 	{
@@ -281,9 +283,20 @@ public class ProfileEditor extends AppCompatActivity {
             mUserBio = prefs.getString("user_bio", "");
             mUserEmail = prefs.getString("user_email", "");
             mUserIconUrl = prefs.getString("user_icon_url", null);
+
+            if ((mUserEmail == null) || (mUserEmail.length() == 0)) {
+                mHelper.loading(getString(R.string.loading));
+                downloadUserProfile();
+            }
         }
 
         refreshUserDetails();
+    }
+
+    private void downloadUserProfile() {
+        // Get fresh user details from the server
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_DETAILS, null, this, INaturalistService.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
@@ -291,6 +304,7 @@ public class ProfileEditor extends AppCompatActivity {
         super.onPause();
 
         BaseFragmentActivity.safeUnregisterReceiver(mUserUpdateReceiver, this);
+        BaseFragmentActivity.safeUnregisterReceiver(mUserDetailsReceiver, this);
     }
 
     @Override
@@ -304,6 +318,11 @@ public class ProfileEditor extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_UPDATE_USER_DETAILS_RESULT);
         Log.i(TAG, "Registering ACTION_UPDATE_USER_DETAILS_RESULT");
         BaseFragmentActivity.safeRegisterReceiver(mUserUpdateReceiver, filter, this);
+
+        mUserDetailsReceiver = new UserDetailsReceiver();
+        IntentFilter filter2 = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
+        Log.i(TAG, "Registering ACTION_GET_USER_DETAILS_RESULT");
+        BaseFragmentActivity.safeRegisterReceiver(mUserDetailsReceiver, filter2, this);
     }
 
     @Override
@@ -511,6 +530,44 @@ public class ProfileEditor extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+    private class UserDetailsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "Got GET_USER_DETAILS_RESULT");
+            BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
+
+            mHelper.stopLoading();
+
+            if (user == null) {
+                return;
+            }
+
+            SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            editor.putInt("observation_count", user.getInt("observations_count"));
+            String iconUrl = user.has("medium_user_icon_url") ? user.getString("medium_user_icon_url") : user.getString("user_icon_url");
+            editor.putString("user_icon_url", iconUrl);
+            editor.putString("user_bio", user.getString("description"));
+            editor.putString("user_email", user.getString("email"));
+            editor.putString("user_full_name", user.getString("name"));
+            editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
+            String newUsername = user.getString("login");
+
+            editor.putString("username", newUsername);
+            editor.apply();
+
+            mUserName = prefs.getString("username", "");
+            mUserFullName = prefs.getString("user_full_name", "");
+            mUserBio = prefs.getString("user_bio", "");
+            mUserEmail = prefs.getString("user_email", "");
+            mUserIconUrl = prefs.getString("user_icon_url", null);
+
+            refreshUserDetails();
+        }
     }
 
 }
