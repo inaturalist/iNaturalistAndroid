@@ -367,6 +367,10 @@ public class ObservationEditor extends AppCompatActivity {
                 }
                 mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
                 mObservation = new Observation(mCursor);
+                if (mObservation.uuid == null) {
+                    mObservation.uuid = UUID.randomUUID().toString();
+                }
+
                 updateImageOrientation(mFileUri);
                 createObservationPhotoForPhoto(mFileUri);
                 setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
@@ -1261,8 +1265,12 @@ public class ObservationEditor extends AppCompatActivity {
         if (mObservation == null) {
             if (mCursor.getCount() > 0) {
                 mObservation = new Observation(mCursor);
+                if (mObservation.uuid == null) {
+                    mObservation.uuid = UUID.randomUUID().toString();
+                }
             } else {
                 mObservation = new Observation();
+                mObservation.uuid = UUID.randomUUID().toString();
                 return;
             }
         }
@@ -1373,10 +1381,6 @@ public class ObservationEditor extends AppCompatActivity {
             mObservation.positional_accuracy = null;
         } else {
             mObservation.positional_accuracy = ((Float) Float.parseFloat(mAccuracyView.getText().toString())).intValue();
-        }
-
-        if (mObservation.uuid == null) {
-            mObservation.uuid = UUID.randomUUID().toString();
         }
 
         List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
@@ -2806,38 +2810,38 @@ public class ObservationEditor extends AppCompatActivity {
         private static final int PHOTO_DIMENSIONS = 200;
 
         private Context mContext;
-        private Cursor mCursor;
+        private Cursor mGalleryCursor;
         private HashMap<Integer, View> mViews;
 
         public Cursor getCursor() {
-            return mCursor;
+            return mGalleryCursor;
         }
 
         public GalleryCursorAdapter(Context c, Cursor cur) {
             mContext = c;
-            mCursor = cur;
+            mGalleryCursor = cur;
             mViews = new HashMap<Integer, View>();
         }
 
         public int getCount() {
-            return mCursor.getCount();
+            return mGalleryCursor.getCount();
         }
 
         public Object getItem(int position) {
-            mCursor.moveToPosition(position);
-            return mCursor;
+            mGalleryCursor.moveToPosition(position);
+            return mGalleryCursor;
         }
 
         public long getItemId(int position) {
-            mCursor.moveToPosition(position);
-            return mCursor.getLong(mCursor.getColumnIndexOrThrow(ObservationPhoto.ID));
+            mGalleryCursor.moveToPosition(position);
+            return mGalleryCursor.getLong(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.ID));
         }
 
         public String getItemIdString(int position) {
-            mCursor.moveToPosition(position);
-            String id = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+            mGalleryCursor.moveToPosition(position);
+            String id = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
             if (id == null) {
-                return mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                return mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
             } else {
                 return id;
             }
@@ -2850,8 +2854,8 @@ public class ObservationEditor extends AppCompatActivity {
             mFirstPositionPhotoId = photoId;
 
             // Set current photo to be positioned first
-            mCursor.moveToPosition(position);
-            ObservationPhoto op = new ObservationPhoto(mCursor);
+            mGalleryCursor.moveToPosition(position);
+            ObservationPhoto op = new ObservationPhoto(mGalleryCursor);
             op.position = 0;
             if (op.photo_filename != null) {
                 getContentResolver().update(ObservationPhoto.CONTENT_URI, op.getContentValues(), "photo_filename = '" + op.photo_filename + "'", null);
@@ -2867,15 +2871,15 @@ public class ObservationEditor extends AppCompatActivity {
 
         public void refreshPhotoPositions(Integer position) {
             int currentPosition = position == null ? 0 : 1;
-            int count = mCursor.getCount();
+            int count = mGalleryCursor.getCount();
 
             if (count == 0) return;
 
-            mCursor.moveToPosition(0);
+            mGalleryCursor.moveToPosition(0);
 
             do {
-                if ((position == null) || (mCursor.getPosition() != position.intValue()))  {
-                    ObservationPhoto currentOp = new ObservationPhoto(mCursor);
+                if ((position == null) || (mGalleryCursor.getPosition() != position.intValue()))  {
+                    ObservationPhoto currentOp = new ObservationPhoto(mGalleryCursor);
                     currentOp.position = currentPosition;
                     if (currentOp.photo_filename != null) {
                         getContentResolver().update(ObservationPhoto.CONTENT_URI, currentOp.getContentValues(), "photo_filename = '" + currentOp.photo_filename + "'", null);
@@ -2885,7 +2889,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     currentPosition++;
                 }
-            } while (mCursor.moveToNext());
+            } while (mGalleryCursor.moveToNext());
 
         }
 
@@ -2894,7 +2898,7 @@ public class ObservationEditor extends AppCompatActivity {
                 return mViews.get(position);
             }
 
-            mCursor.moveToPosition(position);
+            mGalleryCursor.moveToPosition(position);
 
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ViewGroup container = null;
@@ -2903,9 +2907,9 @@ public class ObservationEditor extends AppCompatActivity {
             container = (ViewGroup) inflater.inflate(R.layout.observation_photo_gallery_item, null, false);
             imageView = (ImageView) container.findViewById(R.id.observation_photo);
 
-            int imageId = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
-            String imageUrl = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-            String photoFileName = mCursor.getString(mCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+            int imageId = mGalleryCursor.getInt(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
+            String imageUrl = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            String photoFileName = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
 
             if (imageUrl != null) {
                 // Online photo
@@ -2964,7 +2968,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             View isFirst = container.findViewById(R.id.observation_is_first);
-            Integer obsPhotoPosition = mCursor.getInt(mCursor.getColumnIndexOrThrow(ObservationPhoto.POSITION));
+            Integer obsPhotoPosition = mGalleryCursor.getInt(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.POSITION));
 
             if (position == 0) {
                 container.findViewById(R.id.is_first_on).setVisibility(View.VISIBLE);
