@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">Jste si jisti, že chcete opustit tento projekt?</string>
     <string name="discard_location_changes">Jste si jisti, že chcete zrušit neuložené změny?</string>
     <string name="edit_location">Upravit umístění</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Upravit poznámky k místu</string>
     <string name="get_current_location">Získat aktuální polohu</string>
     <string name="pull_to_refresh">Pro obnovení posuňte dolů...</string>
     <string name="release_to_refresh">Pro obnovení uvolněte...</string>
@@ -189,11 +189,12 @@
     <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Hlavní síť iNaturalist. Kliknutím na tlačítko OK nastavíte vaší aplikaci jako součást celosvětové sítě iNaturalist.</string>
-    <string name="alert_message_use_naturalista">iNaturalist je členem Sítě iNaturalist v Mexiku. Chtěli byste tuto síť využít k lokalizaci vašich zkušeností a sdílet data tímto způsobem?</string>
-    <string name="alert_message_use_naturewatchnz">NatureWatch NZ je členem Sítě iNaturalist na Novém Zélandu. Chtěli byste tuto síť využít k lokalizaci vašich zkušeností a sdílení dat tímto způsobem?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada je členem Sítě iNaturalist v Kanadě. Chtěli byste tuto síť využít k lokalizaci vašich zkušeností a sdílet data odpovídajícím způsobem?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista je členem Sítě iNaturalist v Kolumbii. Chtěli byste tuto síť využít k lokalizaci vašich zkušeností a sdílet data tímto způsobem?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Stáhnout pro offline použití</string>
@@ -231,13 +232,13 @@
     <string name="forgot">Zapomněl(a) jste?</string>
     <string name="or_login_with">Nebo se přihlásit přes:</string>
     <string name="registering">Registrace...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="recommended_next_step">Doporučený další krok</string>
     <string name="could_not_register_user">Nelze registrovat uživatele</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Přihlásit se / zaregistrovat</string>
     <string name="please_sign_in_via_settings_for_guides">Musíte být přihlášen pro zobrazení vašich průvodců.</string>
     <string name="please_sign_in_for_updates">Musíte být přihlášen k zobrazení vašich aktualizací.</string>
-    <string name="by_using_inat_terms"><![CDATA[Užíváním iNaturalist souhlasíte s <b><a href="http://www.inaturalist.org/pages/terms"> Podmínkami služeb</a></b> a <b><a href="http://www.inaturalist.org/pages/privacy"> Zásadami ochrany osobních údajů</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Aktivita</string>
     <string name="camera">Pořídit snímek</string>
     <string name="upload_photo">Zvolit obrázek</string>
@@ -297,9 +298,9 @@
     <string name="location">Poloha</string>
     <string name="login_in_to_add_comments_ids">Pro zanechání komentáře nebo navrhnutí identifikace se přihlaste nebo zaregistrujte...</string>
     <string name="login_in_to_fav">Přihlaste se nebo zaregistrujte pro shlédnutí oblíbených nebo přidání tohoto pozorování mezi oblíbené...</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="sync_obs_to_see_favs">Synchronizujte toto pozorování, abyste mohli vidět oblíbené...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">Synchronizujte toto pozorování za účelem zanechání komentáře nebo navržení identifikace...</string>
     <string name="no_photo">Žádné fotografie</string>
     <string name="about_this_species">O tomto druhu</string>
     <string name="view_on_wikipedia">Článek z Wikipedie</string>
@@ -343,9 +344,9 @@
     <string name="language">Jazyk</string>
     <string name="version">Verze</string>
     <string name="inat_network">síť iNaturalist</string>
-    <string name="inat_network_description">Síť iNaturalist je rámcem pro lokalizaci komunit iNaturalist v národních měřítkách. Toto národní zaměření může přispět k tomu, aby byla příroda přístupnější pro lidi z různým prostředí.</string>
+    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">Další informace</string>
-    <string name="select_network">Vyberte síť</string>
+    <string name="select_network">Select Network Affiliation</string>
     <string name="help">Pomoc</string>
     <string name="stop">Zastavit</string>
     <string name="resume">Pokračovat</string>
@@ -403,7 +404,7 @@
     <string name="deleted_photos_from_cache_error">Zdá se, že čištěním mezipaměti před náhráváním, se vám podařilo vymazat fotku. Budete muset přidat fotku z pozorování z vaší galerie. V budoucnu se ujistěte, že jste nahráli všechny své fotky před čištěním mezipaměti aplikace.</string>
     <string name="new_activities">%1s nové</string>
     <string name="no_results_found">Nebyly nalezeny žádné výsledky...</string>
-    <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
+    <string name="syncing_x_out_of_y_observations">Synchronizace %1$d z %2$d pozorování</string>
     <string name="deleting_observations">Mazání pozorování...</string>
     <string name="preparing">Připravuje se...</string>
     <string name="add_edit_remark">Přidat/Upravit poznámku</string>
@@ -537,34 +538,36 @@
     <string name="date_week">%dw</string>
     <string name="new_observation">Nové pozorování</string>
     <string name="inactive_taxon">Neaktivní taxon</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
+    <string name="no_identifications_found">Sledování identifikace, které navrhujete pro pozorování jiných lidí zde\"</string>
+    <string name="no_species_found">Toto je seznam druhů, které jste pozorovali nejvíce, \n\nFYI: Na planetě je odhadováno 9 milionů druhů, takže se tam vydejte a pozorujte je!</string>
     <string name="make_an_observation">Provést pozorování</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
+    <string name="no_observations_found_new">Pozorování jsou záznamy vašich setkání s jednotlivými organizmy v určitých časech a lokalitách.</string>
     <string name="discard_comment">Jste si jisti, že chcete smazat tento komentář?</string>
     <string name="leave_comment">Přidat komentář...</string>
     <string name="swipe">Táhnout prstem</string>
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Který Google účet?</string>
     <string name="potential_disagreement">Potenciální neshoda</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
+    <string name="do_you_think_this_could_be"><![CDATA[Jsou důkazy dostatečně potvrzující, že je to <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[Nevím, ale jsem si jist, že je to <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Ne, ale je členem <b>%1$s</b>.]]></string>
     <string name="submit">Potvrdit</string>
     <string name="change_password">Změnit heslo</string>
     <string name="search_projects_youve_joined">Vyhledat projekty, ke kterým jste se připojili...</string>
     <string name="must_be_connected_to_load_more_obs">Pro nahrání více pozorování musíte být připojen/a k internetu</string>
     <string name="inat_about_title">iNaturalist je společná iniciativa California Academy of Sciences a National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
+    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Autoři</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
-    <string name="just_so_you_know">Just So You Know...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="password_changed">Heslo, které aplikace používá, již nefunguje - změnili jste heslo na webových stránkách? Zadejte prosím nové</string>
+    <string name="just_so_you_know">Jen abyste věděli..</string>
+    <string name="ask_for_g_plus_permissions">Společnost Google vyžaduje, abychom požádali o povolení přístupu k vašim kontaktům, abychom mohli používat váš účet Google, a to i přesto, že z žádného důvodu k vašim kontaktům nemáme přístup. Pokud toto povolení odmítnete, budete se muset zaregistrovat nebo přihlásit pomocí uživatelského jména a hesla.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Noví %1$s? <b>Zaregistrujte se nyní!</b>]]></string>
+    <string name="see_more_observations">Podívejte se na další pozorování</string>
+    <string name="see_more_species">Podívejte se na další druhy</string>
+    <string name="see_more_identifications">Podívejte se na víc identifikací</string>
+    <string name="collection_and_umbrella_projects">Kolekce a zastřešující projekty</string>
     <string name="description">Popis</string>
     <string name="quantity">Množství</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -580,89 +583,95 @@
     <string name="new_badge">Nový</string>
     <string name="observers">Pozorovatelé</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Atributy</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Hodnota</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">Nesouhlasím</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Anotace</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">S anotací</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Název anotace</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Žádný</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Fenologie rostlin</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Životní etapa</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">Pohlaví</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Kvetoucí</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Plození</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Pučení</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Dospělý</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Obecná</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">Kukla</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Nymfa</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_egg">Vejce</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Nedospělý </string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="annotation_value_female">Žena</string>
+    <string name="annotation_value_male">Muž</string>
+    <string name="joined_projects_all_caps">PŘIDAL SE</string>
+    <string name="nearby_projects_all_caps">NEDALEKÉ</string>
+    <string name="featured_projects_all_caps">ZTVÁRNĚNÝ</string>
+    <string name="join_all_caps">PŘIPOJIT SE</string>
+    <string name="my_guides_all_caps">VAŠE</string>
+    <string name="nearby_guides_all_caps">NEDALEKÉ</string>
+    <string name="all_guides_all_caps">Vše</string>
+    <string name="description_all_caps">POPIS</string>
+    <string name="quantity_all_caps">Množství</string>
+    <string name="observation_count_all_caps">%1$s POZOROVÁNÍ</string>
+    <string name="observation_count_single_all_caps">%1$d POZOROVÁNÍ</string>
+    <string name="agree_all_caps">SOUHLASÍM</string>
+    <string name="observations_all_caps">POZOROVÁNÍ</string>
+    <string name="species_all_caps">DRUH</string>
+    <string name="people_all_caps">LIDÉ</string>
+    <string name="identifiers_all_caps">IDENTIFIKÁTORY</string>
+    <string name="identifications_all_caps">IDENTIFIKACE</string>
+    <string name="news_all_caps">NOVÉ</string>
+    <string name="got_it_all_caps">ROZUMÍM</string>
+    <string name="view_all_all_caps">ZOBRAZIT VŠE</string>
+    <string name="new_all_caps">NOVÉ</string>
+    <string name="observers_all_caps">POZOROVATELÉ</string>
+    <string name="observations_regular">Pozorování</string>
+    <string name="data_quality_assessment">Hodnocení kvality údajů</string>
+    <string name="research_grade_qualification">Kvalifikace výzkumu</string>
+    <string name="date_specified">Datum zadáno</string>
+    <string name="location_specified">Zadáno umístění</string>
+    <string name="has_photos_or_sounds">Obsahuje fotky nebo zvuky</string>
+    <string name="has_id_supported_by_two_or_more">Obsahuje ID podporováno dvěma nebo víc</string>
+    <string name="date_is_accurate">Datum je přesné</string>
+    <string name="location_is_accurate">Umístění je přesné</string>
+    <string name="organism_is_wild">Organismus je divoký</string>
+    <string name="evidence_of_organism">Důkazy o organismech</string>
+    <string name="recent_evidence_of_an_organism">Nedávné důkazy o organismu</string>
+    <string name="community_id_at_species_level_or_lower">ID společenství na úrovni druhu nebo nižší</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Na základě důkazů může být ID společenství ještě potvrzeno nebo vylepšeno?</string>
+    <string name="no_as_good_as_it_can_be">Ne, je to tak dobré, jak to může být</string>
+    <string name="seasonality">Sezónnost</string>
+    <string name="verifiable">Ověřitelné</string>
+    <string name="no_annotation">Bez anotace</string>
+    <string name="donate_to_inaturalist">Přispět k iNaturalistu</string>
+    <string name="prefers_scientific_name_first">Nejprve zobrazte vědecká jména</string>
+    <string name="prefers_scientific_name_first_description">Zobrazovat vědecké názvy před běžnými názvy.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
 </resources>

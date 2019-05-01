@@ -189,11 +189,12 @@
     <string name="text"><![CDATA[<b>本文:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">iNaturalistの一般ネットワークです。この設定にしていただくと、このアプリはiNaturalistの世界ネットワークを使用します。</string>
-    <string name="alert_message_use_naturalista">iNaturalist は、メキシコでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
-    <string name="alert_message_use_naturewatchnz">NatureWatch NZ は、ニュージーランドでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist カナダは、カナダでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista は、コロンビアでの iNaturalist ネットワークのメンバーです。このネットワークを使用して、あなたの経験をローカライズし、それに応じてデータを共有しますか?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all is a member of the iNaturalist Network in Portugal. Would you like to use this network to localize your experience and share data accordingly?</string>
+    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">編集者</string>
     <string name="license">ライセンス</string>
     <string name="download_for_offline_use">オフラインでも使用できるようにダウンロードする</string>
@@ -237,7 +238,7 @@
     <string name="login_signup">ログインまたは新規登録</string>
     <string name="please_sign_in_via_settings_for_guides">ガイドを表示するはログインが必要です。</string>
     <string name="please_sign_in_for_updates">更新を表示するはログインが必要です。</string>
-    <string name="by_using_inat_terms"><![CDATA[INaturalist を使用することで <b><a href="http://www.inaturalist.org/pages/terms">サービスの利用規約</a></b> および <b><a href="http://www.inaturalist.org/pages/privacy">プライバシー ポリシー</a></b> に同意します]]></string>
+    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">活動</string>
     <string name="camera">写真を撮影</string>
     <string name="upload_photo">画像を選択</string>
@@ -343,9 +344,9 @@
     <string name="language">言語</string>
     <string name="version">バージョン</string>
     <string name="inat_network">iNaturalistネットワーク</string>
-    <string name="inat_network_description">iNaturalist ネットワークは、国家規模で iNaturalist コミュニティをローカライズするためのフレームワークです。このような国家意識は、異なった背景の人々が自然によりアクセシブルになることを支援することができます。</string>
+    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">詳細情報</string>
-    <string name="select_network">ネットワークを選択</string>
+    <string name="select_network">Select Network Affiliation</string>
     <string name="help">ヘルプ</string>
     <string name="stop">停止</string>
     <string name="resume">再開</string>
@@ -506,14 +507,14 @@
     <string name="local_authority">Local Authority</string>
     <string name="poblacion">Poblacion</string>
     <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
+    <string name="apply_filters">フィルターを適用</string>
+    <string name="reset">リセット</string>
+    <string name="show_only_my_observations">私の観察のみを表示します。</string>
     <string name="project">Project</string>
     <string name="user">User</string>
     <string name="search_users">Search Users...</string>
     <string name="quality_grade">Quality Grade</string>
-    <string name="dates">Dates</string>
+    <string name="dates">日付</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Any</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -523,10 +524,10 @@
     <string name="end">End</string>
     <string name="months">Months</string>
     <string name="choose_months">Choose months(s)</string>
-    <string name="map_area">Map Area</string>
-    <string name="global">Global</string>
+    <string name="map_area">地図表示エリア</string>
+    <string name="global">グローバル</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">地図エリアを検索する</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dm</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
@@ -535,10 +536,10 @@
     <string name="date_day">%dd</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
+    <string name="new_observation">新しい観察</string>
+    <string name="inactive_taxon">アクティブでない分類群</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
+    <string name="no_species_found">こちらはあなたが観察した種のリストです。\n\n地球上には推定９百万種が存在します。世界に出て、観察しましょう！</string>
     <string name="make_an_observation">Make an observation</string>
     <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
     <string name="discard_comment">Are you sure you want to discard this comment?</string>
@@ -551,11 +552,13 @@
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
     <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
+    <string name="change_password">パスワードの変更</string>
     <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
     <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits">iNaturalist is made by every single person who participates in our community. The people who build the software, maintain our infrastructure, and foster collaborations are Amanda Bullington, Yaron Budowski, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Alex Shepard, Carrie Seltzer, and Ken-ichi Ueda (our former designer Joelle Belmonte designed much of the current Android app). Caltech and Cornell University helped develop the computer vision system that recognizes species from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for this work. More information may be found at visipedia.org</string>
+    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
     <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
     <string name="just_so_you_know">Just So You Know...</string>
@@ -582,11 +585,11 @@
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
     <string name="attribute">Attribute</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">値</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">同意しない</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">注釈</string>
     <!-- Used when filtering observations with annotations -->
     <string name="with_annotation">With Annotation</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
@@ -620,8 +623,8 @@
     <string name="annotation_value_juvenile">Juvenile</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
+    <string name="annotation_value_female">メス</string>
+    <string name="annotation_value_male">オス</string>
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
     <string name="featured_projects_all_caps">FEATURED</string>
@@ -640,13 +643,13 @@
     <string name="identifiers_all_caps">IDENTIFIERS</string>
     <string name="identifications_all_caps">IDENTIFICATIONS</string>
     <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="got_it_all_caps">了解</string>
+    <string name="view_all_all_caps">すべて表示</string>
+    <string name="new_all_caps">新機能</string>
+    <string name="observers_all_caps">オブザーバー</string>
+    <string name="observations_regular">観察記録</string>
+    <string name="data_quality_assessment">データ品質評価</string>
+    <string name="research_grade_qualification">研究グレードの品質</string>
     <string name="date_specified">Date specified</string>
     <string name="location_specified">Location specified</string>
     <string name="has_photos_or_sounds">Has photos or sounds</string>
@@ -665,4 +668,10 @@
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
     <string name="prefers_scientific_name_first">Show scientific names first</string>
     <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
 </resources>
