@@ -154,15 +154,10 @@ public class ObservationPhoto implements BaseColumns, Serializable {
     }
 
     public ObservationPhoto(BetterJSONObject o) {
-        this(o, true);
-    }
-    public ObservationPhoto(BetterJSONObject o, boolean isObservationPhoto) {
         this._created_at = o.getTimestamp("_created_at");
         this._created_at_was = this._created_at;
         this._observation_id = o.getInteger("_observation_id");
         this._observation_id_was = this._observation_id;
-        this._photo_id = isObservationPhoto ? o.getInteger("_photo_id") : o.getInteger("id");
-        this._photo_id_was = this._photo_id;
         this._synced_at = o.getTimestamp("_synced_at");
         this._synced_at_was = this._synced_at;
         this._updated_at = o.getTimestamp("_updated_at");
@@ -174,8 +169,12 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         this.id_was = this.id;
         this.observation_id = o.getInteger("observation_id");
         this.observation_id_was = this.observation_id;
-        this.photo_id = o.getInteger("photo_id");
-        this.photo_id_was = this.photo_id;
+        if (o.has("photo_id")) {
+            this.photo_id = o.getInteger("photo_id");
+            this.photo_id_was = this.photo_id;
+            this._photo_id = o.getInteger("photo_id");
+            this._photo_id_was = this._photo_id;
+        }
         this.position = o.getInteger("position");
         this.position_was = this.position;
         this.updated_at = o.getTimestamp("updated_at");
@@ -195,6 +194,11 @@ public class ObservationPhoto implements BaseColumns, Serializable {
         if (o.has("photo")) {
             JSONObject photo = o.getJSONObject("photo");
             if ((this.photo_url == null) && (photo.has("url"))) this.photo_url = photo.optString("url");
+
+            this.photo_id = photo.optInt("id");
+            this.photo_id_was = this.photo_id;
+            this._photo_id = this.photo_id;
+            this._photo_id_was = this._photo_id;
         }
 
         if ((this.photo_url == null) && (o.has("url"))) {

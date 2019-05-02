@@ -421,14 +421,12 @@ public class Observation implements BaseColumns, Serializable {
         try {
             this.photos = new ArrayList<ObservationPhoto>();
             JSONArray photos;
-            photos = o.getJSONObject().getJSONArray(o.has("observation_photos") ? "observation_photos" : "photos");
+            photos = o.getJSONObject().getJSONArray("observation_photos");
             for (int i = 0; i < photos.length(); i++) {
                 BetterJSONObject json = new BetterJSONObject((JSONObject)photos.get(i));
                 ObservationPhoto photo = new ObservationPhoto(json);
                 photo.observation_id = o.getInt("id");
                 photo._observation_id = this._id;
-                
-                photo._photo_id = photo.photo_id;
                 this.photos.add(photo);
             }
         } catch (JSONException e) {

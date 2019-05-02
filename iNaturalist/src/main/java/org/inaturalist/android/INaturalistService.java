@@ -3113,7 +3113,7 @@ public class INaturalistService extends IntentService {
 
                 JSONObject json = response.getJSONObject(0);
                 BetterJSONObject j = new BetterJSONObject(json);
-                ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j, false);
+                ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
                 Log.d(TAG, "postPhotos: Response for POST: ");
                 LoggingUtils.largeLog(TAG, json.toString());
                 Log.d(TAG, "postPhotos: Response for POST 2: " + jsonObservationPhoto);
