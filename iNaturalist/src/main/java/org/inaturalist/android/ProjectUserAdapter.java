@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,17 +68,13 @@ class ProjectUserAdapter extends ArrayAdapter<String> {
             countText.setText(formatter.format(count));
 
             if (item.has("icon_url") && !item.isNull("icon_url")) {
-                UrlImageViewHelper.setUrlDrawable(userPic, item.getString("icon_url"), R.drawable.ic_account_circle_black_24dp, new UrlImageViewCallback() {
-                    @Override
-                    public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) { }
-
-                    @Override
-                    public Bitmap onPreSetBitmap(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
-                        // Return a circular version of the profile picture
-                        Bitmap centerCrop = ImageUtils.centerCropBitmap(loadedBitmap);
-                        return ImageUtils.getCircleBitmap(centerCrop);
-                    }
-                });
+                Picasso.with(mContext).
+                        load(item.getString("icon_url")).
+                        placeholder(R.drawable.ic_account_circle_black_24dp).
+                        fit().
+                        centerCrop().
+                        transform(new UserActivitiesAdapter.CircleTransform()).
+                        into(userPic);
             } else {
                 userPic.setImageResource(R.drawable.ic_account_circle_black_24dp);
             }
