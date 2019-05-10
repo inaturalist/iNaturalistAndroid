@@ -988,24 +988,8 @@ public class ExploreActivity extends BaseFragmentActivity {
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 JSONObject item = (JSONObject) view.getTag();
 
-                // Send over only the basic observation details (to avoid memory issues)
-                JSONObject basicObs = new JSONObject();
-                try {
-                    basicObs.put("id", item.optInt("id"));
-                    basicObs.put("description", item.optString("description"));
-                    basicObs.put("location", item.optString("location"));
-                    basicObs.put("user", item.optJSONObject("user"));
-                    basicObs.put("taxon", item.optJSONObject("taxon"));
-                    basicObs.put("species_guess", item.optString("species_guess"));
-                    basicObs.put("photos", item.optJSONArray("photos"));
-                    basicObs.put("observed_on", item.optString("observed_on"));
-                    basicObs.put("captive", item.optBoolean("captive"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
                 Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
-                intent.putExtra("observation", basicObs.toString());
+                intent.putExtra("observation", item.toString());
                 intent.putExtra("read_only", true);
                 intent.putExtra("reload", true);
                 startActivityForResult(intent, VIEW_OBSERVATION_REQUEST_CODE);

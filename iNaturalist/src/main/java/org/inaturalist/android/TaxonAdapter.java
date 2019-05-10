@@ -75,7 +75,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
             if (item.has("default_photo") && !item.isNull("default_photo")) {
                 JSONObject defaultPhoto = item.getJSONObject("default_photo");
                 Picasso.with(mContext)
-                        .load(defaultPhoto.getString("square_url"))
+                        .load(defaultPhoto.getString("medium_url"))
                         .transform(new RoundedCornersTransformation(3, 0))
                         .placeholder(TaxonUtils.observationIcon(item))
                         .fit()

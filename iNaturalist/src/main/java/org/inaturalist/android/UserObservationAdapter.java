@@ -118,7 +118,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
         JSONArray observationPhotos;
         try {
-            observationPhotos = item.getJSONArray("photos");
+            observationPhotos = item.has("observation_photos") ? item.getJSONArray("observation_photos") : item.getJSONArray("photos");
         } catch (JSONException e1) {
             e1.printStackTrace();
             observationPhotos = new JSONArray();
@@ -131,9 +131,16 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
                 String url;
                 observationPhoto = observationPhotos.getJSONObject(0);
 
-                url = (observationPhoto.isNull("small_url") ? observationPhoto.optString("original_url") : observationPhoto.optString("small_url"));
-                if ((url == null) || (url.length() == 0)) {
-                    url = observationPhoto.optString("url");
+                if (observationPhoto.has("photo")) {
+                    url = (observationPhoto.optJSONObject("photo").isNull("small_url") ? observationPhoto.optJSONObject("photo").optString("original_url") : observationPhoto.optJSONObject("photo").optString("small_url"));
+                    if ((url == null) || (url.length() == 0)) {
+                        url = observationPhoto.optJSONObject("photo").optString("url");
+                    }
+                } else {
+                    url = (observationPhoto.isNull("small_url") ? observationPhoto.optString("original_url") : observationPhoto.optString("small_url"));
+                    if ((url == null) || (url.length() == 0)) {
+                        url = observationPhoto.optString("url");
+                    }
                 }
 
                 Picasso.with(mContext)

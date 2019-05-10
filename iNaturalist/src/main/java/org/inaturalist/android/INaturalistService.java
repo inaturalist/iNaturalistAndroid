@@ -406,7 +406,7 @@ public class INaturalistService extends IntentService {
 
 
     private void startIntentForeground() {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Log.i(TAG, "Service startIntentForeground");
 
             // See: https://stackoverflow.com/a/46449975/1233767
@@ -675,6 +675,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_PROJECT_OBSERVATIONS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectObservations(projectId);
+                results = getMinimalObservationResults(results);
 
                 mApp.setServiceResult(ACTION_PROJECT_OBSERVATIONS_RESULT, results);
                 Intent reply = new Intent(ACTION_PROJECT_OBSERVATIONS_RESULT);
@@ -684,6 +685,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_PROJECT_IDENTIFIERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectIdentifiers(projectId);
+                results = getMinimalObserverResults(results);
 
                 Intent reply = new Intent(ACTION_PROJECT_IDENTIFIERS_RESULT);
                 mApp.setServiceResult(ACTION_PROJECT_IDENTIFIERS_RESULT, results);
@@ -693,6 +695,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_PROJECT_OBSERVERS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectObservers(projectId);
+                results = getMinimalObserverResults(results);
 
                 Intent reply = new Intent(ACTION_PROJECT_OBSERVERS_RESULT);
                 mApp.setServiceResult(ACTION_PROJECT_OBSERVERS_RESULT, results);
@@ -702,6 +705,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_PROJECT_SPECIES)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
                 BetterJSONObject results = getProjectSpecies(projectId);
+                results = getMinimalSpeciesResults(results);
 
                 Intent reply = new Intent(ACTION_PROJECT_SPECIES_RESULT);
                 mApp.setServiceResult(ACTION_PROJECT_SPECIES_RESULT, results);
@@ -979,6 +983,7 @@ public class INaturalistService extends IntentService {
                         }
 
                         BetterJSONObject missions = getMissions(location, username, taxonId, expandLocationByDegrees);
+                        missions = getMinimalSpeciesResults(missions);
 
                         Intent reply = new Intent(MISSIONS_BY_TAXON_RESULT);
                         mApp.setServiceResult(MISSIONS_BY_TAXON_RESULT, missions);
@@ -1013,6 +1018,7 @@ public class INaturalistService extends IntentService {
                         }
 
                         BetterJSONObject missions = getMissions(location, username, null, expandLocationByDegrees);
+                        missions = getMinimalSpeciesResults(missions);
 
                         Intent reply = new Intent(RECOMMENDED_MISSIONS_RESULT);
                         mApp.setServiceResult(RECOMMENDED_MISSIONS_RESULT, missions);
@@ -1024,6 +1030,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_USER_SPECIES_COUNT)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject speciesCount = getUserSpeciesCount(username);
+                speciesCount = getMinimalSpeciesResults(speciesCount);
 
                 Intent reply = new Intent(SPECIES_COUNT_RESULT);
                 mApp.setServiceResult(SPECIES_COUNT_RESULT, speciesCount);
@@ -1043,6 +1050,9 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_USER_OBSERVATIONS)) {
                 String username = intent.getStringExtra(USERNAME);
                 JSONObject observations = getUserObservations(username);
+                if (observations != null) {
+                    observations = getMinimalObservationResults(new BetterJSONObject(observations)).getJSONObject();
+                }
 
                 Intent reply = new Intent(USER_OBSERVATIONS_RESULT);
                 mApp.setServiceResult(USER_OBSERVATIONS_RESULT, observations != null ? new BetterJSONObject(observations) : null);
@@ -1082,6 +1092,7 @@ public class INaturalistService extends IntentService {
             } else if (action.equals(ACTION_GET_USER_IDENTIFICATIONS)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject identifications = getUserIdentifications(username);
+                identifications = getMinimalIdentificationResults(identifications);
 
                 Intent reply = new Intent(IDENTIFICATIONS_RESULT);
                 mApp.setServiceResult(IDENTIFICATIONS_RESULT, identifications);
@@ -1094,6 +1105,7 @@ public class INaturalistService extends IntentService {
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
                 BetterJSONObject results = getExploreResults("observers", filters, pageNumber, pageSize, null);
+                results = getMinimalObserverResults(results);
 
                 Intent reply = new Intent(EXPLORE_GET_OBSERVERS_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_OBSERVERS_RESULT, results);
@@ -1105,6 +1117,7 @@ public class INaturalistService extends IntentService {
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
                 BetterJSONObject results = getExploreResults("identifiers", filters, pageNumber, pageSize, null);
+                results = getMinimalObserverResults(results);
 
                 Intent reply = new Intent(EXPLORE_GET_IDENTIFIERS_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_IDENTIFIERS_RESULT, results);
@@ -1116,6 +1129,7 @@ public class INaturalistService extends IntentService {
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
                 BetterJSONObject results = getExploreResults("species_counts", filters, pageNumber, pageSize, null);
+                results = getMinimalSpeciesResults(results);
 
                 Intent reply = new Intent(EXPLORE_GET_SPECIES_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_SPECIES_RESULT, results);
@@ -1127,6 +1141,7 @@ public class INaturalistService extends IntentService {
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
                 BetterJSONObject observations = getExploreResults(null, filters, pageNumber, pageSize, "observation.id");
+                observations = getMinimalObservationResults(observations);
 
                 Intent reply = new Intent(EXPLORE_GET_OBSERVATIONS_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_OBSERVATIONS_RESULT, observations);
@@ -1721,6 +1736,270 @@ public class INaturalistService extends IntentService {
         reply.putExtra(PROGRESS, newProgress);
         sendBroadcast(reply);
     }
+
+    private BetterJSONObject getMinimalIdentificationResults(BetterJSONObject results) {
+        if (results == null) return null;
+
+        JSONArray identificationResults = results.getJSONArray("results").getJSONArray();
+
+        if (identificationResults != null) {
+            JSONArray minimizedResults = new JSONArray();
+
+            for (int i = 0; i < identificationResults.length(); i++) {
+                JSONObject item = identificationResults.optJSONObject(i);
+                minimizedResults.put(getMinimalIdentification(item));
+            }
+
+            results.put("results", minimizedResults);
+        }
+
+        return results;
+    }
+
+    private BetterJSONObject getMinimalObserverResults(BetterJSONObject results) {
+        if (results == null) return null;
+
+        JSONArray observerResults = results.getJSONArray("results").getJSONArray();
+
+        if (observerResults != null) {
+            JSONArray minimizedResults = new JSONArray();
+
+            for (int i = 0; i < observerResults.length(); i++) {
+                JSONObject item = observerResults.optJSONObject(i);
+                minimizedResults.put(getMinimalObserver(item));
+            }
+
+            results.put("results", minimizedResults);
+        }
+
+        return results;
+    }
+
+
+    private BetterJSONObject getMinimalSpeciesResults(BetterJSONObject results) {
+        if (results == null) return null;
+
+        // Minimize results - save only basic info for each observation (better memory usage)
+        JSONArray minimizedResults = new JSONArray();
+        JSONArray speciesResults = results.getJSONArray("results").getJSONArray();
+
+        if (speciesResults != null) {
+            for (int i = 0; i < speciesResults.length(); i++) {
+                JSONObject item = speciesResults.optJSONObject(i);
+                minimizedResults.put(getMinimalSpecies(item));
+            }
+
+            results.put("results", minimizedResults);
+        }
+
+        return results;
+    }
+
+    private BetterJSONObject getMinimalObservationResults(BetterJSONObject results) {
+        if (results == null) return null;
+
+        // Minimize results - save only basic info for each observation (better memory usage)
+        JSONArray minimizedObservations = new JSONArray();
+        JSONArray observationResults = results.getJSONArray("results").getJSONArray();
+
+        if (observationResults != null) {
+            for (int i = 0; i < observationResults.length(); i++) {
+                JSONObject item = observationResults.optJSONObject(i);
+                minimizedObservations.put(getMinimalObservation(item));
+            }
+
+            results.put("results", minimizedObservations);
+        }
+
+        return results;
+    }
+
+    // Returns a minimal version of an observation JSON (used to lower memory usage)
+    private JSONObject getMinimalObservation(JSONObject observation) {
+        JSONObject minimaldObs = new JSONObject();
+
+        try {
+            minimaldObs.put("id", observation.optInt("id"));
+            minimaldObs.put("quality_grade", observation.optString("quality_grade"));
+            if (observation.has("observed_on") && !observation.isNull("observed_on")) minimaldObs.put("observed_on", observation.optString("observed_on"));
+            if (observation.has("time_observed_at") && !observation.isNull("time_observed_at")) minimaldObs.put("time_observed_at", observation.optString("time_observed_at"));
+            if (observation.has("species_guess") && !observation.isNull("species_guess")) minimaldObs.put("species_guess", observation.optString("species_guess"));
+            if (observation.has("place_guess") && !observation.isNull("place_guess")) minimaldObs.put("place_guess", observation.optString("place_guess"));
+            if (observation.has("latitude") && !observation.isNull("latitude")) minimaldObs.put("latitude", observation.optString("latitude"));
+            if (observation.has("longitude") && !observation.isNull("longitude")) minimaldObs.put("longitude", observation.optString("longitude"));
+            if (observation.has("observed_on") && !observation.isNull("observed_on")) minimaldObs.put("observed_on", observation.optString("observed_on"));
+            if (observation.has("comments_count") && !observation.isNull("comments_count")) minimaldObs.put("comments_count", observation.optInt("comments_count"));
+            if (observation.has("identifications_count") && !observation.isNull("identifications_count")) minimaldObs.put("identifications_count", observation.optInt("identifications_count"));
+
+            minimaldObs.put("taxon", getMinimalTaxon(observation.optJSONObject("taxon")));
+            if (observation.has("iconic_taxon_name")) minimaldObs.put("iconic_taxon_name", observation.optString("iconic_taxon_name"));
+
+            if (observation.has("observation_photos")) {
+                JSONArray minimalObsPhotos = new JSONArray();
+                JSONArray obsPhotos = observation.optJSONArray("observation_photos");
+                for (int i = 0; i < obsPhotos.length(); i++) {
+                    minimalObsPhotos.put(getMinimalPhoto(obsPhotos.optJSONObject(i)));
+                }
+
+                minimaldObs.put("observation_photos", minimalObsPhotos);
+            }
+
+            if (observation.has("user")) {
+                JSONObject user = observation.optJSONObject("user");
+                minimaldObs.put("user", getMinimalUser(user));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimaldObs;
+    }
+
+
+    // Returns a minimal version of an identification JSON (used to lower memory usage)
+    private JSONObject getMinimalIdentification(JSONObject identification) {
+        JSONObject minimalObserver = new JSONObject();
+
+        if (identification == null) return null;
+
+        try {
+            if (identification.has("observation")) minimalObserver.put("observation", getMinimalObservation(identification.optJSONObject("observation")));
+            if (identification.has("taxon")) minimalObserver.put("taxon", getMinimalTaxon(identification.optJSONObject("taxon")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalObserver;
+    }
+
+    // Returns a minimal version of an observer JSON (used to lower memory usage)
+    private JSONObject getMinimalObserver(JSONObject observer) {
+        JSONObject minimalObserver = new JSONObject();
+
+        if (observer == null) return null;
+
+        try {
+            if (observer.has("observation_count")) minimalObserver.put("observation_count", observer.optInt("observation_count"));
+            if (observer.has("count")) minimalObserver.put("count", observer.optInt("count"));
+
+            if (observer.has("user")) {
+                JSONObject user = observer.optJSONObject("user");
+                minimalObserver.put("user", getMinimalUser(user));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalObserver;
+    }
+
+        // Returns a minimal version of a user JSON (used to lower memory usage)
+    private JSONObject getMinimalUser(JSONObject user) {
+        JSONObject minimalUser = new JSONObject();
+
+        if (user == null) return null;
+
+        try {
+            minimalUser.put("login", user.optString("login"));
+            minimalUser.put("icon_url", user.optString("icon_url"));
+
+            if (user.has("observations_count")) minimalUser.put("observations_count", user.optInt("observations_count"));
+            if (user.has("identifications_count")) minimalUser.put("identifications_count", user.optInt("identifications_count"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalUser;
+    }
+
+
+    // Returns a minimal version of a species JSON (used to lower memory usage)
+    private JSONObject getMinimalSpecies(JSONObject species) {
+        JSONObject minimalSpecies = new JSONObject();
+
+        if (species == null) return null;
+
+        try {
+            minimalSpecies.put("count", species.optInt("count"));
+            minimalSpecies.put("taxon", getMinimalTaxon(species.optJSONObject("taxon")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalSpecies;
+    }
+
+
+
+    // Returns a minimal version of a photo JSON (used to lower memory usage)
+    private JSONObject getMinimalPhoto(JSONObject photo) {
+        JSONObject minimalPhoto = new JSONObject();
+
+        if (photo == null) return null;
+
+        try {
+            minimalPhoto.put("id", photo.optInt("id"));
+            minimalPhoto.put("position", photo.optInt("position"));
+
+            if (photo.has("photo") && !photo.isNull("photo")) {
+                JSONObject innerPhoto = new JSONObject();
+                innerPhoto.put("id", photo.optJSONObject("photo").optInt("id"));
+                innerPhoto.put("url", photo.optJSONObject("photo").optString("url"));
+
+                minimalPhoto.put("photo", innerPhoto);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalPhoto;
+    }
+
+
+    // Returns a minimal version of a taxon JSON (used to lower memory usage)
+    private JSONObject getMinimalTaxon(JSONObject taxon) {
+        JSONObject minimalTaxon = new JSONObject();
+
+        if (taxon == null) return null;
+
+        try {
+            minimalTaxon.put("id", taxon.optInt("id"));
+            minimalTaxon.put("name", taxon.optString("name"));
+            minimalTaxon.put("rank", taxon.optString("rank"));
+            minimalTaxon.put("rank_level", taxon.optInt("rank_level"));
+            minimalTaxon.put("iconic_taxon_name", taxon.optString("iconic_taxon_name"));
+            if (taxon.has("taxon_names")) minimalTaxon.put("taxon_names", taxon.optJSONArray("taxon_names"));
+            if (taxon.has("default_name")) minimalTaxon.put("default_name", taxon.optJSONObject("default_name"));
+            if (taxon.has("common_name")) minimalTaxon.put("common_name", taxon.optJSONObject("common_name"));
+            if (taxon.has("preferred_common_name")) minimalTaxon.put("preferred_common_name", taxon.optString("preferred_common_name"));
+            if (taxon.has("english_common_name")) minimalTaxon.put("english_common_name", taxon.optString("english_common_name"));
+            if (taxon.has("observations_count")) minimalTaxon.put("observations_count", taxon.optInt("observations_count"));
+            if (taxon.has("default_photo") && !taxon.isNull("default_photo")) {
+                JSONObject minimalPhoto = new JSONObject();
+                JSONObject defaultPhoto = taxon.optJSONObject("default_photo");
+
+                if (defaultPhoto.has("medium_url") && !defaultPhoto.isNull("medium_url")) {
+                    minimalPhoto.put("medium_url", defaultPhoto.optString("medium_url"));
+                } else {
+                    minimalPhoto.put("photo_url", defaultPhoto.optString("photo_url"));
+                }
+
+                minimalTaxon.put("default_photo", minimalPhoto);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalTaxon;
+    }
+
 
     private int getTotalProgressForObservation(Observation observation) {
         int obsCount = 0;

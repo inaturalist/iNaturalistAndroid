@@ -95,12 +95,12 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
             JSONObject observation = item.getJSONObject("observation");
             JSONObject taxon = item.getJSONObject("taxon");
-            idName.setText(getTaxonName(taxon));
+            idName.setText(TaxonUtils.getTaxonName(mContext, taxon));
             if (!mIsGrid) {
                 if (!mUsername.equals(mLoggedInUsername)) {
-                    idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, getTaxonName(taxon)));
+                    idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, TaxonUtils.getTaxonName(mContext, taxon)));
                 } else {
-                    idTaxonName.setText(String.format(mContext.getString(R.string.your_identification), getTaxonName(taxon)));
+                    idTaxonName.setText(String.format(mContext.getString(R.string.your_identification), TaxonUtils.getTaxonName(mContext, taxon)));
                 }
             }
 
@@ -117,14 +117,20 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
                 idIconicPic.setLayoutParams(layoutParams);
             }
 
-            JSONArray photos = observation.optJSONArray("photos");
+            JSONArray photos = observation.has("observation_photos") ? observation.optJSONArray("observation_photos") : observation.optJSONArray("photos");
             String photoUrl = null;
             if (mIsGrid && (convertView == null)) {
                 idPic.setLayoutParams(new RelativeLayout.LayoutParams(mDimension, mDimension));
             }
 
             if ((photos != null) && (photos.length() > 0)) {
-                photoUrl = photos.getJSONObject(0).getString("url");
+                JSONObject photo = photos.getJSONObject(0);
+
+                if (photo.has("photo")) {
+                    photoUrl = photo.getJSONObject("photo").getString("url");
+                } else {
+                    photoUrl = photo.getString("url");
+                }
                 loadObsImage(position, idPic, photoUrl);
             }
 
