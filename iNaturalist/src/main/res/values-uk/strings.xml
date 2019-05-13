@@ -189,11 +189,12 @@
     <string name="text"><![CDATA[<b>Текст:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Основна мережа iNaturalist. Натискання \"ОК\" встановить вашу програму як частину глобальної мережі iNaturalist.</string>
-    <string name="alert_message_use_naturalista">iNatureWatch є частиною мережі iNuturalist в Мексиці. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
-    <string name="alert_message_use_naturewatchnz">INatureWatch NZ є частиною мережі iNuturalist у Новій Зеландії. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
-    <string name="alert_message_use_inaturalistcanada">iNatureWatch Canada є частиною мережі iNuturalist у Канаді. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista є частиною мережі iNuturalist у Колумбії. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4all є частиною мережі iNuturalist у Португалії. Ви б хотіли використовувати цю мережу для локалізації свого досвіду та відповідного обміну даними?</string>
+    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
     <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -237,7 +238,7 @@
     <string name="login_signup">Вхід / Реєстрація</string>
     <string name="please_sign_in_via_settings_for_guides">Ви повинні увійти в систему для перегляду ваших посібників.</string>
     <string name="please_sign_in_for_updates">Ви повинні увійти в систему для перегляду ваших оновлень.</string>
-    <string name="by_using_inat_terms"><![CDATA[Користуючись iNaturalist ви погоджуєтеся з <b><a href="http://www.inaturalist.org/pages/terms">Умовами надання послуг</a></b> та <b><a href="http://www.inaturalist.org/pages/privacy">Політикою конфіденційності</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Діяльність</string>
     <string name="camera">Зробити фото</string>
     <string name="upload_photo">Вибрати зображення</string>
@@ -343,9 +344,9 @@
     <string name="language">Мова</string>
     <string name="version">Версія</string>
     <string name="inat_network">Мережа iNaturalist</string>
-    <string name="inat_network_description">Мережа iNaturalist є основою для локалізації спільнот iNaturalist на національних рівнях. Таке фокусування на національностях може допомогти зробити природу доступнішою для людей з різних верств суспільства.</string>
+    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">Додаткові відомості</string>
-    <string name="select_network">Оберіть мережу</string>
+    <string name="select_network">Select Network Affiliation</string>
     <string name="help">Допомога</string>
     <string name="stop">Зупинити</string>
     <string name="resume">Відновити</string>
@@ -555,7 +556,9 @@
     <string name="search_projects_youve_joined">Пошук проектів, до яких ви приєдналися...</string>
     <string name="must_be_connected_to_load_more_obs">Щоб завантажити більше спостережень ви повинні підключитися до інтернету</string>
     <string name="inat_about_title">iNaturalist це спільна ініціатива Каліфорнійської академії наук та Національного географічного товариства.</string>
-    <string name="inat_credits">iNaturalist створюється кожною людиною, яка є членом нашої спільноти. Люди, які створюють програмне забезпечення, підтримують нашу інфраструктуру й сприяють співпраці, - це Аманда Буллінгтон, Ярон Будовський, Тоні Айване, Патрік Лірі, Скотт Лоарі, Алекс Шепард, Кері Зельцер і Кен-ічі Уеда. (наш колишній дизайнер Жоель Бельмонте розробив більшу частину програми для Android) Caltech and Cornell University допомогли розробити систему комп\'ютерного зору, яка розпізнає види по фотографіях. Ми дякуємо Гранту Ван Хорна, Сержу Белонг і П\'єтро Перону за цю роботу. Більш детальну інформацію можна знайти за адресою visipedia.org</string>
+    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Подяка</string>
     <string name="password_changed">Пароль, який використовується додатком не працює - можливо, Ви змінили його на веб-сайті? Будь ласка, введіть новий пароль тут</string>
     <string name="just_so_you_know">До вашого відома...</string>
@@ -665,4 +668,10 @@
     <string name="donate_to_inaturalist">Пожертвувати на iNaturalist</string>
     <string name="prefers_scientific_name_first">Показувати наукові назви першими</string>
     <string name="prefers_scientific_name_first_description">Показувати наукові назви перед загальними.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
 </resources>
