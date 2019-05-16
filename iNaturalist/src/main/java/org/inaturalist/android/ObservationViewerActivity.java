@@ -1737,7 +1737,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
         });
 
-        if (!mReadOnly) {
+        if (!mReadOnly && (mProjects == null)) {
             // Get IDs of project-observations
             int obsId = (mObservation.id == null ? mObservation._id : mObservation.id);
             Cursor c = getContentResolver().query(ProjectObservation.CONTENT_URI, ProjectObservation.PROJECTION,
