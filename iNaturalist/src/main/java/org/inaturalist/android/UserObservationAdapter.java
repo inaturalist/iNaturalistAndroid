@@ -74,6 +74,8 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
         TextView idName = (TextView) view.findViewById(R.id.species_guess);
 
+        boolean hasSounds = (item.has("sounds")) && (!item.isNull("sounds")) && (item.optJSONArray("sounds").length() > 0);
+
         if (mApp.getShowScientificNameFirst()) {
             // Show scientific name first, before common name
             if (!item.isNull("taxon")) {
@@ -166,6 +168,9 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
             }
         } else {
             observationPic.setVisibility(View.INVISIBLE);
+            if (hasSounds) {
+                obsIconicImage.setImageResource(R.drawable.sound);
+            }
         }
 
         if (mViewType == VIEW_TYPE_GRID) {

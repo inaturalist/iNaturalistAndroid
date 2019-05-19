@@ -63,6 +63,11 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         TextView researchGrade = (TextView) view.findViewById(R.id.is_research_grade);
         researchGrade.setVisibility(item.optString("quality_grade", "none").equals("research") ? View.VISIBLE : View.GONE);
 
+        boolean hasSounds = (item.has("sounds")) && (!item.isNull("sounds")) && (item.optJSONArray("sounds").length() > 0);
+
+        ImageView hasSoundsImage = (ImageView) view.findViewById(R.id.has_sounds);
+        hasSoundsImage.setVisibility(hasSounds ? View.VISIBLE : View.INVISIBLE);
+
         TextView idName = (TextView) view.findViewById(R.id.id_name);
         final JSONObject taxon = item.optJSONObject("taxon");
 
@@ -103,7 +108,12 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
             observationPhotos = new JSONArray();
         }
 
-        if (observationPhotos.length() > 0) {
+        if (observationPhotos.length() == 0) {
+            if (hasSounds) {
+                hasSoundsImage.setVisibility(View.INVISIBLE);
+                taxonIcon.setImageResource(R.drawable.sound);
+            }
+        } else {
             JSONObject observationPhoto;
             try {
                 String url;

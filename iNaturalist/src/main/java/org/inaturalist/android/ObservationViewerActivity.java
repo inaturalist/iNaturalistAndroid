@@ -12,6 +12,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -85,6 +87,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class ObservationViewerActivity extends AppCompatActivity implements AnnotationsAdapter.OnAnnotationActions {
@@ -296,6 +299,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     private class PhotosViewPagerAdapter extends PagerAdapter {
         private Cursor mImageCursor = null;
 
+        private List<SoundPlayer> mPlayers = new ArrayList<>();
+
         public PhotosViewPagerAdapter() {
             if (!mReadOnly) {
                 if (mObservation.id != null) {
@@ -321,12 +326,12 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public int getCount() {
-            return mReadOnly ? mObservation.photos.size() : mImageCursor.getCount();
+            return mReadOnly ? (mObservation.photos.size() + mObservation.sounds.size()) : mImageCursor.getCount();
         }
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (ImageView)object;
+            return view == object;
         }
 
         private Cursor findPhotoInStorage(Integer photoId) {
@@ -349,6 +354,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             int imageId = 0;
             String photoFilename = null;
             String imageUrl = null;
+            ObservationSound sound = null;
 
             if (!mReadOnly) {
                 imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
@@ -360,7 +366,23 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     photoFilename = originalPhotoFilename;
                 }
             } else {
-                imageUrl = mObservation.photos.get(position).photo_url;
+                if (position >= mObservation.photos.size()) {
+                    // Show sound
+                    sound = mObservation.sounds.get(position - mObservation.photos.size());
+                } else {
+                    imageUrl = mObservation.photos.get(position).photo_url;
+                }
+            }
+
+            if (sound != null) {
+                // Sound - show a sound player interface
+                SoundPlayer player = new SoundPlayer(ObservationViewerActivity.this, container, sound);
+                View view = player.getView();
+                ((ViewPager)container).addView(view, 0);
+
+                view.setTag(player);
+                mPlayers.add(player);
+                return view;
             }
 
             if (imageUrl != null) {
@@ -436,7 +458,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((ImageView) object);
+            ((ViewPager) container).removeView((View) object);
+        }
+
+        public void destroy() {
+            for (SoundPlayer player : mPlayers) {
+                if (player != null) {
+                    player.destroy();
+                }
+            }
         }
     }
 
@@ -2580,6 +2610,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.destroy();
+        }
     }
 
     private boolean isNetworkAvailable() {
