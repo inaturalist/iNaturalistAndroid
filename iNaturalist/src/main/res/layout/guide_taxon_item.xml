@@ -60,6 +60,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:scaleType="centerCrop"
+        android:tint="#ffffff"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:visibility="gone"

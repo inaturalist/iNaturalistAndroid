@@ -1834,7 +1834,7 @@ public class INaturalistService extends IntentService {
             minimaldObs.put("taxon", getMinimalTaxon(observation.optJSONObject("taxon")));
             if (observation.has("iconic_taxon_name")) minimaldObs.put("iconic_taxon_name", observation.optString("iconic_taxon_name"));
 
-            if (observation.has("observation_photos")) {
+            if (observation.has("observation_photos") && !observation.isNull("observation_photos")) {
                 JSONArray minimalObsPhotos = new JSONArray();
                 JSONArray obsPhotos = observation.optJSONArray("observation_photos");
                 for (int i = 0; i < obsPhotos.length(); i++) {
@@ -1842,6 +1842,17 @@ public class INaturalistService extends IntentService {
                 }
 
                 minimaldObs.put("observation_photos", minimalObsPhotos);
+            }
+
+
+            if (observation.has("sounds") && !observation.isNull("sounds")) {
+                JSONArray minimalObsSounds = new JSONArray();
+                JSONArray obsSounds = observation.optJSONArray("sounds");
+                for (int i = 0; i < obsSounds.length(); i++) {
+                    minimalObsSounds.put(getMinimalSound(obsSounds.optJSONObject(i)));
+                }
+
+                minimaldObs.put("sounds", minimalObsSounds);
             }
 
             if (observation.has("user")) {
@@ -1934,7 +1945,25 @@ public class INaturalistService extends IntentService {
         return minimalSpecies;
     }
 
+    // Returns a minimal version of a sound JSON (used to lower memory usage)
+    private JSONObject getMinimalSound(JSONObject sound) {
+        JSONObject minimalSound = new JSONObject();
 
+        if (sound == null) return null;
+
+        try {
+            minimalSound.put("id", sound.optInt("id"));
+            minimalSound.put("file_url", sound.optString("file_url"));
+            minimalSound.put("file_content_type", sound.optString("file_content_type"));
+            minimalSound.put("attribution", sound.optString("attribution"));
+            minimalSound.put("subtype", sound.optString("subtype"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalSound;
+    }
 
     // Returns a minimal version of a photo JSON (used to lower memory usage)
     private JSONObject getMinimalPhoto(JSONObject photo) {

@@ -161,9 +161,13 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
     public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
         if (!fromUser) return;
 
-        if (mMediaPlayer.isPlaying()) {
-            mMediaPlayer.seekTo(mSeekBar.getProgress());
+        if (!mMediaPlayer.isPlaying()) {
+            mMediaPlayer.start();
+            mPlayerButton.setImageResource(R.drawable.pause);
+            updateProgress();
         }
+
+        mMediaPlayer.seekTo(mSeekBar.getProgress());
     }
 
     @Override
