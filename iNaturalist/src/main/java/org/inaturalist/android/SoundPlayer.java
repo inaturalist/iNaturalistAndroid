@@ -56,6 +56,12 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
         mMediaPlayer.setOnBufferingUpdateListener(this);
         mMediaPlayer.setOnCompletionListener(this);
 
+        if (sound.file_url == null) {
+            mIsError = true;
+            mSeekBar.setEnabled(false);
+            return;
+        }
+
         try {
             mMediaPlayer.setDataSource(mContext, Uri.parse(sound.file_url));
             mMediaPlayer.prepare();
@@ -65,6 +71,7 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
         } catch (IOException e) {
             e.printStackTrace();
             mIsError = true;
+            mSeekBar.setEnabled(false);
             return;
         }
 
