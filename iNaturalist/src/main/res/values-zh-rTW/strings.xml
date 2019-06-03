@@ -189,12 +189,12 @@
     <string name="text"><![CDATA[<b>文字：</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">主要的 iNaturalist 網路。點選「好的」按鈕將設定您的 app 為全球 iNaturalist 網路的一部分。</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista 是 iNaturalist 附屬網路在墨西哥的成員。支援 NaturaLista 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ 是 iNaturalist 附屬網路在紐西蘭的成員。支援 iNaturalist NZ 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada 是 iNaturalist 附屬網路在加拿大的成員。支援 iNaturalist Canada 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista 是 iNaturalist 附屬網路在哥倫比亞的成員。支援 Naturalista 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All 是 iNaturalist 附屬網路在葡萄牙的成員。支援 Biodiversity4All 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá 是 iNaturalist 附屬網路在巴拿馬的成員。支援 iNaturalist Panamá 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="editor">編輯</string>
     <string name="license">授權</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -238,7 +238,7 @@
     <string name="login_signup">登入 / 註冊</string>
     <string name="please_sign_in_via_settings_for_guides">您必須登入以查看您的指南。</string>
     <string name="please_sign_in_for_updates">您必須登入以查看您的更新資訊。</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[使用 iNaturalist 即代表您同意<b><a href="http://www.inaturalist.org/pages/terms">服務條款</a></b>和<b><a href="HTTP://www.inaturalist.org/pages/privacy">隱私權政策</a></b>]]></string>
     <string name="activity">活動</string>
     <string name="camera">拍照</string>
     <string name="upload_photo">選擇圖片</string>
@@ -344,9 +344,9 @@
     <string name="language">語言</string>
     <string name="version">版本</string>
     <string name="inat_network">iNaturalist 網路</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">iNaturalist 附屬網路是給各地 iNaturalist 社群在地化的框架。在地的機構支援網站服務，而這些機構和 iNaturalist 簽署協議，以鼓勵使用 iNaturalist 並且能裨益當地的生物多樣性。</string>
     <string name="more_info">更多資訊</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">選擇附屬網路</string>
     <string name="help">説明</string>
     <string name="stop">停止</string>
     <string name="resume">繼續</string>
@@ -556,9 +556,9 @@
     <string name="search_projects_youve_joined">搜尋您已加入的專案...</string>
     <string name="must_be_connected_to_load_more_obs">您必須連接到網路才能載入更多的觀察記錄</string>
     <string name="inat_about_title">iNaturalist 是加州科學院(California Academy of Science)和國家地理學會(National Geographic Society)的共同計畫。</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits"><![CDATA[iNaturalist 是由每個參與我們社群的人們共同建立的。Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard 以及 Ken-Ichi Ueda 等人開發軟體、維護基礎設施並促成合作。<br/><br/>加州理工大學 (Caltech) 和康乃爾理工學院 (Cornell Tech) 協助開發自照片中學習，並提供物種鑑定上建議的電腦視覺系統。我們感謝 Grant Van Horn, Serge Belongie 和 Pietro Perona 協助這項工作。更多資訊請拜訪 <a href="http://www.visipedia.org">visipedia.org</a>。特別感謝 NVIDIA 提供協助。]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[感謝相關夥伴組織的協助下，以下國家支援在地語系化、全面整合並建構於原有 iNaturalist 網站基礎上之 iNaturalist 附屬網路。]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist 也深深感謝開源開發者, 他們提供了我們每天所依賴的大量軟體。有關開源貢獻, 請參閱 <a href="https://github.com/inaturalist/iNaturalistAndroid">HTTPs://github.com/inaturalist/iNaturalistAndroid</a> 。<br/> 我們感謝 crowdin.com. com 社區的志願者提供的翻譯協助, 特別是Eduardo Martínez、林政道(Lin, Cheng-Tao)、KestrelLam、cgalindo、vilseskog、NCAA、ldacosta、radana、Mykola Pukhalskyi、danieseseglie 和 katunchik。<br/>由國際自然保護聯盟(IUCN)和聯合國環境署-世界保護監測中心 (UNEP-WCMC, 2015年) 所提供 IUCN 第二類地點、世界保護區資料庫(The World Database on Protected Areas; WDPA) [On-line], [11/2014], 英國劍橋: 聯合國環境署-世界保護監測中心提供。可在: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">貢獻者</string>
     <string name="password_changed">app 所使用的密碼不再有效 - 您是否在網站上更改了密碼？請在這裡輸入新的密碼</string>
     <string name="just_so_you_know">只是要您知道...</string>
@@ -668,10 +668,10 @@
     <string name="donate_to_inaturalist">捐款給 iNaturalist</string>
     <string name="prefers_scientific_name_first">學名顯示優先</string>
     <string name="prefers_scientific_name_first_description">在俗名之前顯示學名</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[加拿大：由加拿大野生動物聯盟(Canadian Wildlife Federation)、安大略皇家博物館(Royal Ontario Museum)、NatureServe Canada，和加拿大公園局(Parks Canada)共同營運 iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)。]]></string>
+    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: 洪堡研究所營運的 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[墨西哥：營運 NaturaLista 的國家生物多樣性使用及知識委員會(Comisión nacional para el conocimiento y uso de la biodiversidad; CONABIO)  (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[紐西蘭：營運 iNaturalist NZ  的紐西蘭生物多樣性紀錄網路— Mātaki Taiao (New Zealand Biodiversity Recording Network; inaturalist.nz)。]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 營運 Biodisy4all 的全民生物多樣性協會 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[巴拿馬: 營運 iNaturalistPa 的環境部 (Ministerio de Ambiente; <a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
 </resources>

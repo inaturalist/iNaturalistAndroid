@@ -270,7 +270,7 @@
     <string name="casual_grade">Casual Grade</string>
     <string name="needs_id">ID სჭირდება</string>
     <string name="research_grade">Research Grade</string>
-    <string name="data_quality">Data Quality</string>
+    <string name="data_quality">მონაცემთა ხარისხი</string>
     <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Add a <b>date</b> to advance this observation to “Needs ID” status. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Add a <b>photo</b> to advance this observation to “Needs ID” status. ]]></string>
