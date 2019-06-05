@@ -240,6 +240,8 @@
                 <data android:mimeType="vnd.android.cursor.dir/vnd.google.observation" />
                 <data android:mimeType="vnd.android.cursor.item/vnd.google.observation_photo" />
                 <data android:mimeType="vnd.android.cursor.dir/vnd.google.observation_photo" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.google.observation_sound" />
+                <data android:mimeType="vnd.android.cursor.dir/vnd.google.observation_sound" />
                 <data android:mimeType="vnd.android.cursor.item/vnd.google.inatproject" />
                 <data android:mimeType="vnd.android.cursor.dir/vnd.google.inatproject" />
                 <data android:mimeType="vnd.android.cursor.item/vnd.google.projectobservation" />
@@ -312,7 +314,7 @@
 
         <provider
             android:name=".ObservationProvider"
-            android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_photo;org.inaturalist.android.project;org.inaturalist.android.project_observation;org.inaturalist.android.project_field;org.inaturalist.android.project_field_value"></provider>
+            android:authorities="org.inaturalist.android.observation;org.inaturalist.android.observation_sound;org.inaturalist.android.observation_photo;org.inaturalist.android.project;org.inaturalist.android.project_observation;org.inaturalist.android.project_field;org.inaturalist.android.project_field_value"></provider>
 
         <activity
             android:name=".ProfileEditor"
@@ -372,6 +374,10 @@
             android:label=""></activity>
         <activity
             android:name=".ExploreFiltersActivity"
+            android:configChanges="orientation"
+            android:label=""></activity>
+        <activity
+            android:name=".ObservationSoundViewer"
             android:configChanges="orientation"
             android:label=""></activity>
 

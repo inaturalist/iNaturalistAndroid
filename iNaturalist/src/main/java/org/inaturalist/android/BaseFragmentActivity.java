@@ -299,6 +299,16 @@ public class BaseFragmentActivity extends AppCompatActivity {
                         intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
                         startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
                         break;
+                    case R.id.record_sound:
+                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                        intent.putExtra(ObservationEditor.RECORD_SOUND, true);
+                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+                        break;
+                    case R.id.import_sound:
+                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                        intent.putExtra(ObservationEditor.CHOOSE_SOUND, true);
+                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+                        break;
                     case R.id.text:
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
 

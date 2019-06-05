@@ -296,8 +296,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 
-    private class PhotosViewPagerAdapter extends PagerAdapter {
+    private class PhotosViewPagerAdapter extends PagerAdapter implements SoundPlayer.OnPlayerStatusChange {
         private Cursor mImageCursor = null;
+        private Cursor mSoundCursor = null;
 
         private List<SoundPlayer> mPlayers = new ArrayList<>();
 
@@ -309,12 +310,22 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString(), mObservation.id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
+                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{mObservation._id.toString(), mObservation.id.toString()},
+                            ObservationSound.DEFAULT_SORT_ORDER);
                 } else {
                     mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
                             "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
+                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{mObservation._id.toString()},
+                            ObservationSound.DEFAULT_SORT_ORDER);
                 }
                 mImageCursor.moveToFirst();
             }
@@ -326,7 +337,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public int getCount() {
-            return mReadOnly ? (mObservation.photos.size() + mObservation.sounds.size()) : mImageCursor.getCount();
+            return mReadOnly ?
+                    (mObservation.photos.size() + mObservation.sounds.size()) :
+                    mImageCursor.getCount() + mSoundCursor.getCount();
         }
 
         @Override
@@ -334,19 +347,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             return view == object;
         }
 
-        private Cursor findPhotoInStorage(Integer photoId) {
-            Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    new String[]{MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
-                    MediaStore.MediaColumns._ID + " = " + photoId, null, null);
-
-            imageCursor.moveToFirst();
-            return imageCursor;
-        }
-
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            if (!mReadOnly) mImageCursor.moveToPosition(position);
-
             ImageView imageView = new ImageView(ObservationViewerActivity.this);
             imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -357,14 +359,26 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             ObservationSound sound = null;
 
             if (!mReadOnly) {
-                imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
-                imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-                photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
-                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                    String originalPhotoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
-                    photoFilename = originalPhotoFilename;
+                if (position >= mImageCursor.getCount()) {
+                    // Sound
+                    mSoundCursor.moveToPosition(position - mImageCursor.getCount());
+
+                    sound = new ObservationSound(mSoundCursor);
+
+                } else {
+                    // Photo
+                    mImageCursor.moveToPosition(position);
+
+                    imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
+                    imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                    photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                    if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
+                        // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
+                        String originalPhotoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                        photoFilename = originalPhotoFilename;
+                    }
                 }
+
             } else {
                 if (position >= mObservation.photos.size()) {
                     // Show sound
@@ -376,7 +390,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
             if (sound != null) {
                 // Sound - show a sound player interface
-                SoundPlayer player = new SoundPlayer(ObservationViewerActivity.this, container, sound);
+                SoundPlayer player = new SoundPlayer(ObservationViewerActivity.this, container, sound, this);
                 View view = player.getView();
                 ((ViewPager)container).addView(view, 0);
 
@@ -467,6 +481,21 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     player.destroy();
                 }
             }
+        }
+
+        @Override
+        public void onPlay(SoundPlayer player) {
+            // Pause all other players
+            for (SoundPlayer p : mPlayers) {
+                if ((p != null) && (p != player)) {
+                    player.pause();
+                }
+            }
+        }
+
+        @Override
+        public void onPause(SoundPlayer player) {
+
         }
     }
 

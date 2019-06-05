@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -36,7 +35,6 @@ import android.widget.Toast;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -72,6 +70,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     private int mDimension;
     private HashMap<String, String[]> mPhotoInfo = new HashMap<String, String[]>();
+    private HashMap<String, Boolean> mHasSounds = new HashMap<>();
     private boolean mIsGrid;
 
     private final Activity mContext;
@@ -144,11 +143,13 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     // Loads the photo info map from a cached file (for faster loading)
     private void loadPhotoInfo() {
         mPhotoInfo = new HashMap<>();
+        mHasSounds = new HashMap<>();
 
         File file = new File(mContext.getFilesDir(), "observations_photo_info.dat");
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
             mPhotoInfo = (HashMap<String, String[]>) inputStream.readObject();
+            mHasSounds = (HashMap<String, Boolean>) inputStream.readObject();
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -163,6 +164,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
             outputStream.writeObject(mPhotoInfo);
+            outputStream.writeObject(mHasSounds);
             outputStream.flush();
             outputStream.close();
         } catch (IOException e) {
@@ -300,11 +302,35 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
         onlinePc.close();
 
+                // Add any photos that were added/changed
+        Cursor soundCursor = mContext.getContentResolver().query(ObservationSound.CONTENT_URI,
+                new String[]{ ObservationSound._OBSERVATION_ID, ObservationSound.OBSERVATION_ID },
+                "(_observation_id IN (" + StringUtils.join(obsIds, ",") + ") OR observation_id IN (" + StringUtils.join(externalObsIds, ",") + "))",
+                null,
+                ObservationSound.DEFAULT_SORT_ORDER);
+
+        soundCursor.moveToFirst();
+        while (!soundCursor.isAfterLast()) {
+            Long obsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID));
+            String obsUUID = obsUUIDs.get(obsId);
+
+            soundCursor.moveToNext();
+
+            if (mHasSounds.containsKey(obsUUID)) {
+                continue;
+            }
+
+            mHasSounds.put(obsUUID, true);
+        }
+
+        soundCursor.close();
+
         savePhotoInfo();
     }
 
     public void refreshPhotoInfo() {
         mPhotoInfo = new HashMap<String, String[]>();
+        mHasSounds = new HashMap<>();
         getPhotoInfo(false);
     }
 
@@ -319,6 +345,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public ViewGroup leftContainer;
         public View progress;
         public View progressInner;
+        public View soundsIndicator;
 
         public ImageView commentIcon;
         public ImageView idIcon;
@@ -354,6 +381,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             progress = view.findViewById(R.id.progress);
             progressInner = view.findViewById(R.id.progress_inner);
+
+            soundsIndicator = view.findViewById(R.id.has_sounds);
         }
 
     }
@@ -373,6 +402,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
         String[] photoInfo = obsUUID != null ? mPhotoInfo.get(obsUUID) : null;
+        Boolean hasSounds = (obsUUID != null && mHasSounds.get(obsUUID) != null);
         boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
         boolean isBeingSynced = (mApp.getObservationIdBeingSynced() == obsId);
 
@@ -425,6 +455,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         View progress = holder.progress;
         View progressInner = holder.progressInner;
 
+        View soundsIndicator = holder.soundsIndicator;
+
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
@@ -444,6 +476,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
             layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
             obsIconicImage.setLayoutParams(layoutParams);
+
+            if (hasSounds && (photoInfo != null)) {
+                soundsIndicator.setVisibility(View.VISIBLE);
+            } else {
+                soundsIndicator.setVisibility(View.GONE);
+            }
         }
 
 
@@ -483,6 +521,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsImage.setVisibility(View.INVISIBLE);
             holder.photoFilename = null;
             mImageViewToUrlExpected.put(obsImage, null);
+
+            if (hasSounds) {
+                obsIconicImage.setImageResource(R.drawable.sound);
+            }
         }
 
         Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));

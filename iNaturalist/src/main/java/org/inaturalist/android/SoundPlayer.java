@@ -33,11 +33,19 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
 
     private int mSoundLengthMs;
 
+    private OnPlayerStatusChange mOnStatusChange;
 
-    public SoundPlayer(Context context, ViewGroup container, ObservationSound sound) {
+    public interface OnPlayerStatusChange {
+        void onPlay(SoundPlayer player);
+        void onPause(SoundPlayer player);
+    }
+
+
+    public SoundPlayer(Context context, ViewGroup container, ObservationSound sound, OnPlayerStatusChange onStatusChange) {
         mContext = context;
         mApp = (INaturalistApp) mContext.getApplicationContext();
         mSound = sound;
+        mOnStatusChange = onStatusChange;
 
         mHandler = new Handler();
         mHelper = new ActivityHelper(mContext);
@@ -56,14 +64,14 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
         mMediaPlayer.setOnBufferingUpdateListener(this);
         mMediaPlayer.setOnCompletionListener(this);
 
-        if (sound.file_url == null) {
+        if ((sound.file_url == null) && (sound.filename == null)) {
             mIsError = true;
             mSeekBar.setEnabled(false);
             return;
         }
 
         try {
-            mMediaPlayer.setDataSource(mContext, Uri.parse(sound.file_url));
+            mMediaPlayer.setDataSource(mContext, Uri.parse(sound.filename != null ? sound.filename : sound.file_url));
             mMediaPlayer.prepare();
             mSoundLengthMs = mMediaPlayer.getDuration();
             mSeekBar.setMax(mSoundLengthMs);
@@ -93,17 +101,18 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
                     String obsUrl = inatHost + "/observations/" + mSound.observation_id;
 
                     String alertText = String.format(mContext.getString(R.string.cant_play_soundcloud), obsUrl);
-                    //confirm(String title, Object msg, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
                     mHelper.alert(mContext.getString(R.string.soundcloud), alertText);
                     return;
                 }
 
                 if (!mMediaPlayer.isPlaying()) {
+                    mOnStatusChange.onPlay(SoundPlayer.this);
                     mPlayerButton.setImageResource(R.drawable.pause);
                     mMediaPlayer.start();
 
                     updateProgress();
                 } else {
+                    mOnStatusChange.onPause(SoundPlayer.this);
                     mPlayerButton.setImageResource(R.drawable.play);
                     mMediaPlayer.pause();
                 }
@@ -169,6 +178,7 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
         if (!fromUser) return;
 
         if (!mMediaPlayer.isPlaying()) {
+            mOnStatusChange.onPlay(this);
             mMediaPlayer.start();
             mPlayerButton.setImageResource(R.drawable.pause);
             updateProgress();
