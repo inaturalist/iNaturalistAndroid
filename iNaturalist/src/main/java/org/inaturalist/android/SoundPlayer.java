@@ -66,29 +66,25 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
         mMediaPlayer.setOnBufferingUpdateListener(this);
         mMediaPlayer.setOnCompletionListener(this);
 
-        if ((sound.file_url == null) && (sound.filename == null)) {
-            mIsError = true;
-            mSeekBar.setEnabled(false);
-            return;
-        }
-
         try {
-            mPlayerButton.setEnabled(false);
-            mSeekBar.setEnabled(false);
+            if (mSound.isSoundCloud()) {
+                mPlayerButton.setEnabled(true);
+                mSeekBar.setEnabled(false);
+            } else {
+                mPlayerButton.setEnabled(false);
+                mSeekBar.setEnabled(false);
 
-            mMediaPlayer.setDataSource(mContext, Uri.parse(sound.filename != null ? sound.filename : sound.file_url));
-            mMediaPlayer.prepare();
-            mMediaPlayer.setOnPreparedListener(this);
-            updateProgress();
+                mMediaPlayer.setDataSource(mContext, Uri.parse(sound.filename != null ? sound.filename : sound.file_url));
+                mMediaPlayer.prepare();
+                mMediaPlayer.setOnPreparedListener(this);
+
+                updateProgress();
+            }
         } catch (IOException e) {
             e.printStackTrace();
             mIsError = true;
             mSeekBar.setEnabled(false);
             return;
-        }
-
-        if (mSound.isSoundCloud()) {
-            mSeekBar.setEnabled(false);
         }
 
         mPlayerButton.setOnClickListener(new View.OnClickListener() {

@@ -115,7 +115,7 @@ public class ObservationSound implements BaseColumns, Serializable {
     }
 
     public boolean isSoundCloud() {
-        return (subtype != null) && (subtype.equals("SoundcloudSound"));
+        return (this.file_url == null) && (this.filename == null);
     }
 
     public static String sqlCreate() {

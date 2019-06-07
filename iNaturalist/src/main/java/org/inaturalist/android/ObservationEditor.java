@@ -227,7 +227,7 @@ public class ObservationEditor extends AppCompatActivity {
     @State public boolean mAskedForLocationPermission = false;
     @State public boolean mFromSuggestion = false;
     @State public String mObsJson;
-    private boolean mSharedAudio;
+    @State public boolean mSharedAudio;
 
     @Override
 	protected void onStart()
@@ -1412,9 +1412,12 @@ public class ObservationEditor extends AppCompatActivity {
 
             if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
                 if (mObservation.observed_on == null) {
-                    mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
-                    mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
-                    mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
+                    if (mSharePhotos == null) {
+                        mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
+                        mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
+                        mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
+                    }
+
                 }
 
                 if (mObservation.latitude == null && mCurrentLocation == null) {
@@ -2676,6 +2679,22 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void importSounds(final List<Uri> sounds) {
         mHelper.loading(getString(R.string.importing_sounds));
+
+
+        // Don't set any date/etc when importing a sound
+        mLocationManuallySet = true;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                stopGetLocation();
+
+                mFindingCurrentLocation.setVisibility(View.GONE);
+                mLocationRefreshButton.setVisibility(View.VISIBLE);
+
+                mLocationProgressView.setVisibility(View.GONE);
+                mLocationIcon.setVisibility(View.VISIBLE);
+            }
+        });
 
         new Thread(new Runnable() {
             @Override
