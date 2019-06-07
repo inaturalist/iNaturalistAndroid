@@ -439,7 +439,7 @@ public class Observation implements BaseColumns, Serializable {
         try {
             this.sounds = new ArrayList<ObservationSound>();
             JSONArray sounds;
-            sounds = o.getJSONObject().getJSONArray("sounds");
+            sounds = o.getJSONObject().getJSONArray("observation_sounds");
             for (int i = 0; i < sounds.length(); i++) {
                 BetterJSONObject json = new BetterJSONObject((JSONObject)sounds.get(i));
                 ObservationSound sound = new ObservationSound(json);
@@ -448,7 +448,7 @@ public class Observation implements BaseColumns, Serializable {
                 this.sounds.add(sound);
             }
         } catch (JSONException e) {
-            if (!e.getMessage().matches("No value for sounds")) {
+            if (!e.getMessage().matches("No value for observation_sounds")) {
                 e.printStackTrace();
             }
         }

@@ -6,7 +6,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ObservationSound implements BaseColumns, Serializable {
@@ -70,6 +75,10 @@ public class ObservationSound implements BaseColumns, Serializable {
         PROJECTION_MAP.put(ObservationSound.IS_DELETED, ObservationSound.IS_DELETED);
     }
 
+    public String toString() {
+        return String.format("ObservationSound (%d / %d): %s / %s", _id, id != null ? id : -1, filename, file_url);
+    }
+
     public ObservationSound() {}
 
 
@@ -90,10 +99,19 @@ public class ObservationSound implements BaseColumns, Serializable {
 
     public ObservationSound(BetterJSONObject json) {
         this.id = json.getInt("id");
-        this.file_url = json.getString("file_url");
-        this.attribution = json.getString("attribution");
-        this.file_content_type = json.getString("file_content_type");
-        this.subtype = json.getString("subtype");
+
+        if (json.has("sound")) {
+            BetterJSONObject sound = new BetterJSONObject(json.getJSONObject("sound"));
+            this.file_url = sound.getString("file_url");
+            this.attribution = sound.getString("attribution");
+            this.file_content_type = sound.getString("file_content_type");
+            this.subtype = sound.getString("subtype");
+        } else {
+            this.file_url = json.getString("file_url");
+            this.attribution = json.getString("attribution");
+            this.file_content_type = json.getString("file_content_type");
+            this.subtype = json.getString("subtype");
+        }
     }
 
     public boolean isSoundCloud() {
@@ -130,6 +148,13 @@ public class ObservationSound implements BaseColumns, Serializable {
         return cv;
     }
 
+    public ArrayList<NameValuePair> getParams() {
+        final ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        if (observation_id != null) { params.add(new BasicNameValuePair("observation_sound[observation_id]", observation_id.toString())); }
+
+        return params;
+    }
+
 
     public Uri getUri() {
         if (_id == null) {
@@ -139,5 +164,12 @@ public class ObservationSound implements BaseColumns, Serializable {
         }
     }
 
-
+    public void merge(ObservationSound observation_sound) {
+        // overwrite
+        this.id = observation_sound.id;
+        this.subtype = observation_sound.subtype;
+        this.file_content_type = observation_sound.file_content_type;
+        this.attribution = observation_sound.attribution;
+        this.file_url = observation_sound.file_url;
+    }
 }

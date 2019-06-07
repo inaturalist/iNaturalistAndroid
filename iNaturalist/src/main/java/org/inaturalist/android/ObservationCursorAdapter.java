@@ -247,6 +247,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ArrayList<Long> obsIds = new ArrayList<>();
         ArrayList<Long> externalObsIds = new ArrayList<>();
         HashMap<Long, String> obsUUIDs = new HashMap<>();
+        HashMap<Long, String> externalObsUUIDs = new HashMap<>();
 
         c.moveToFirst();
         while (!c.isAfterLast()) {
@@ -257,6 +258,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsIds.add(obsId);
             externalObsIds.add(obsExternalId);
             obsUUIDs.put(obsId, obsUUID);
+            externalObsUUIDs.put(obsExternalId, obsUUID);
 
             c.moveToNext();
         }
@@ -305,14 +307,20 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 // Add any photos that were added/changed
         Cursor soundCursor = mContext.getContentResolver().query(ObservationSound.CONTENT_URI,
                 new String[]{ ObservationSound._OBSERVATION_ID, ObservationSound.OBSERVATION_ID },
-                "(_observation_id IN (" + StringUtils.join(obsIds, ",") + ") OR observation_id IN (" + StringUtils.join(externalObsIds, ",") + "))",
+                "((_observation_id IN (" + StringUtils.join(obsIds, ",") + ") OR observation_id IN (" + StringUtils.join(externalObsIds, ",") + "))) AND " +
+                        "(is_deleted IS NULL OR is_deleted = 0)",
                 null,
                 ObservationSound.DEFAULT_SORT_ORDER);
 
         soundCursor.moveToFirst();
         while (!soundCursor.isAfterLast()) {
             Long obsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID));
+            Long externalObsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound.OBSERVATION_ID));
             String obsUUID = obsUUIDs.get(obsId);
+
+            if (obsUUID == null) {
+                obsUUID = externalObsUUIDs.get(externalObsId);
+            }
 
             soundCursor.moveToNext();
 

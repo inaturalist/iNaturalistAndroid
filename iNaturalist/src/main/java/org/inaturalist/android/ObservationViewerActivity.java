@@ -487,8 +487,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         public void onPlay(SoundPlayer player) {
             // Pause all other players
             for (SoundPlayer p : mPlayers) {
-                if ((p != null) && (p != player)) {
-                    player.pause();
+                if ((p != null) && (!p.equals(player))) {
+                    p.pause();
                 }
             }
         }

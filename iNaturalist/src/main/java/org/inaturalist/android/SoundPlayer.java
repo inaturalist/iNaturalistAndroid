@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
+public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener, MediaPlayer.OnPreparedListener {
     private MediaPlayer mMediaPlayer;
 
     private ObservationSound mSound;
@@ -34,6 +35,7 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
     private int mSoundLengthMs;
 
     private OnPlayerStatusChange mOnStatusChange;
+
 
     public interface OnPlayerStatusChange {
         void onPlay(SoundPlayer player);
@@ -71,10 +73,12 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
         }
 
         try {
+            mPlayerButton.setEnabled(false);
+            mSeekBar.setEnabled(false);
+
             mMediaPlayer.setDataSource(mContext, Uri.parse(sound.filename != null ? sound.filename : sound.file_url));
             mMediaPlayer.prepare();
-            mSoundLengthMs = mMediaPlayer.getDuration();
-            mSeekBar.setMax(mSoundLengthMs);
+            mMediaPlayer.setOnPreparedListener(this);
             updateProgress();
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,7 +129,10 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
     }
 
     public void pause() {
-        mMediaPlayer.pause();
+        if (mMediaPlayer.isPlaying()) {
+            mMediaPlayer.pause();
+            mPlayerButton.setImageResource(R.drawable.play);
+        }
     }
 
     public void destroy() {
@@ -136,6 +143,19 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
             exc.printStackTrace();
         }
     }
+
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        if (mIsError) return;
+
+        mPlayerButton.setEnabled(true);
+        mSeekBar.setEnabled(true);
+
+        mSoundLengthMs = mMediaPlayer.getDuration();
+        mSeekBar.setMax(mSoundLengthMs);
+        updateProgress();
+    }
+
 
     private void updateProgress() {
         try {

@@ -227,6 +227,7 @@ public class ObservationEditor extends AppCompatActivity {
     @State public boolean mAskedForLocationPermission = false;
     @State public boolean mFromSuggestion = false;
     @State public String mObsJson;
+    private boolean mSharedAudio;
 
     @Override
 	protected void onStart()
@@ -324,7 +325,14 @@ public class ObservationEditor extends AppCompatActivity {
         mApp.setStringResourceForView(this, R.id.onboarding_species_name_close, "got_it_all_caps", "got_it");
 
         if (mSharePhotos != null) {
-            // Share photos(s) with iNaturalist
+            // Share photo/sound(s) with iNaturalist
+
+
+            // Detect if sounds or photos are shared here
+            ContentResolver cr = getContentResolver();
+            String mimeType = cr.getType(mSharePhotos.get(0));
+            mSharedAudio = (mimeType != null) && (mimeType.startsWith("audio/"));
+
             mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
             if (mUri == null) {
                 Log.e(TAG, "Failed to insert new observation into " + Observation.CONTENT_URI);
@@ -869,7 +877,13 @@ public class ObservationEditor extends AppCompatActivity {
                 mApp.requestExternalStoragePermission(ObservationEditor.this, new INaturalistApp.OnRequestPermissionResult() {
                     @Override
                     public void onPermissionGranted() {
-                        importPhotos(mSharePhotos, true);
+                        if (!mSharedAudio) {
+                            // Images shared
+                            importPhotos(mSharePhotos, true);
+                        } else {
+                            // Sounds shared
+                            importSounds(mSharePhotos);
+                        }
                     }
 
                     @Override
@@ -886,7 +900,13 @@ public class ObservationEditor extends AppCompatActivity {
                 });
                 return;
             } else {
-                importPhotos(mSharePhotos, true);
+                if (!mSharedAudio) {
+                    // Images shared
+                    importPhotos(mSharePhotos, true);
+                } else {
+                    // Sounds shared
+                    importSounds(mSharePhotos);
+                }
             }
         }
 
@@ -2785,7 +2805,7 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         // Copy file to local cache
-        File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + extension);
+        File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + "." + extension);
         try {
             copyFileFromUri(this, soundUri, destFile);
         } catch (IOException e) {

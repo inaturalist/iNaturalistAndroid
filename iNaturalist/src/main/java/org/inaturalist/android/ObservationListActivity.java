@@ -321,6 +321,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         opc.close();
 
+
+        Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
+        		new String[]{
+        		ObservationSound._ID,
+                ObservationSound.ID,
+                ObservationSound._OBSERVATION_ID,
+        		ObservationSound.IS_DELETED
+            },
+            "(id IS NULL) OR " +
+            "(is_deleted = 1)",
+            null,
+            ObservationSound._ID);
+
+        boolean soundsChanged = false;
+        osc.moveToFirst();
+        while (!osc.isAfterLast()) {
+            obsToSync.put(osc.getLong(osc.getColumnIndex(ObservationSound._OBSERVATION_ID)), true);
+            osc.moveToNext();
+            soundsChanged = true;
+        }
+
+        osc.close();
+
         if (mSyncingTopBar != null) {
             if (obsToSync.keySet().size() > 0) {
                 int count = obsToSync.keySet().size();
@@ -333,7 +356,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
                 mCancelSync.setText(R.string.upload);
 
-                if (photosChanged) {
+                if (photosChanged || soundsChanged) {
                     mObservationListAdapter.refreshPhotoInfo();
                 }
             } else {
