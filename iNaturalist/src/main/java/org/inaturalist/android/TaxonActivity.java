@@ -178,8 +178,14 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 return;
             }
 
+            JSONObject innerResults = results.getJSONObject("results");
+
+            if (innerResults == null) {
+                return;
+            }
+
             if (intent.getAction().equals(INaturalistService.HISTOGRAM_RESULT)) {
-                JSONObject months = results.getJSONObject("results").optJSONObject("month_of_year");
+                JSONObject months = innerResults.optJSONObject("month_of_year");
                 List<Integer> monthValues = new ArrayList<>();
 
                 for (int i = 1; i <= 12; i++) {
