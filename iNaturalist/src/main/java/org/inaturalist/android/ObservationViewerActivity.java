@@ -658,7 +658,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         if ((mObservation == null) || (forceReload)) {
-            if (!mReadOnly) mObservation = new Observation(mCursor);
+            if (!mReadOnly) {
+                if (mCursor.getCount() == 0) {
+                    Log.e(TAG, "Cursor count is zero - finishing activity");
+                    finish();
+                    return;
+                }
+
+                mObservation = new Observation(mCursor);
+            }
         }
 
         if ((mObservation != null) && (mObsJson == null)) {
