@@ -14,6 +14,7 @@ import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -656,6 +657,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
 
         String scientificName = c.getString(c.getColumnIndexOrThrow(Observation.SCIENTIFIC_NAME));
+        speciesGuess.setTypeface(null, Typeface.NORMAL);
+
         if (mApp.getShowScientificNameFirst() && (scientificName != null)) {
             // Show scientific name instead of common name
             Integer rankLevel = c.getInt(c.getColumnIndexOrThrow(Observation.RANK_LEVEL));
