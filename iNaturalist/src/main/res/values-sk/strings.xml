@@ -112,7 +112,7 @@
     <string name="search_guides">Hľadať sprievodcov...</string>
     <string name="save_observation">Uložiť pozorovanie</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
+    <string name="about_guide">O</string>
     <string name="about_guide_all_caps">ABOUT</string>
     <!-- Header for a description an individual project -->
     <string name="about_project">About</string>
@@ -232,13 +232,13 @@
     <string name="forgot">Zabudli ste?</string>
     <string name="or_login_with">Alebo prihlásiť sa s pomocou:</string>
     <string name="registering">Registrácia...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="recommended_next_step">Odporúčaný ďalší krok</string>
     <string name="could_not_register_user">Nemožno zaregistrovať používateľa</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Prihlásiť / zaregistrovať</string>
     <string name="please_sign_in_via_settings_for_guides">Pre zobrazenie projektov, do ktorých prispievate musíte byť prihlásený.</string>
     <string name="please_sign_in_for_updates">Pre zobrazenie aktualizácií musíte byť prihlásený.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Používaním iNaturalist súhlasíte s <b><a href="https://www.inaturalist.org/pages/terms">podmienkami služieb</a></b> a<b><a href="https://www.inaturalist.org/pages/privacy">ochrany súkromia</a></b>]]></string>
     <string name="activity">Aktivita</string>
     <string name="camera">Odfotiť</string>
     <string name="upload_photo">Vybrať obrázok</string>
@@ -350,10 +350,10 @@
     <string name="help">Pomoc</string>
     <string name="stop">Ukončiť</string>
     <string name="resume">Obnoviť</string>
-    <string name="cleaning_up">Cleaning up...</string>
+    <string name="cleaning_up">Odstraňujem...</string>
     <string name="syncing">Synchronizujem...</string>
     <string name="syncing_observation_fields">Synchronizácia polí pozorovaní...</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observations">Synchronizácia pozorovaní...</string>
     <string name="syncing_paused">Synchronizácia pozastavená</string>
     <string name="upload">Nahrať</string>
     <string name="search_observations">Hľadať pozorovania ...</string>
@@ -395,7 +395,7 @@
     <string name="could_not_download_observations">Nepodarilo sa prevziať najnovšie pozorovania - problémy s pripojením. Skúste znova neskôr.</string>
     <string name="no_news_yet">No news yet. Stay tuned!</string>
     <string name="my_content">My Content</string>
-    <string name="following">Following</string>
+    <string name="following">Sledované osoby</string>
     <string name="no_updates_yet">No updates yet. Stay tuned!</string>
     <string name="you_will_only_receive_updates_when_creating">(You will only receive updates once you\'ve created observations)</string>
     <string name="you_will_only_receive_updates_when_following">(You will only receive updates once you\'re following observations)</string>
@@ -403,53 +403,53 @@
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s new</string>
-    <string name="no_results_found">No Results Found...</string>
+    <string name="no_results_found">Neboli nájdené žiadne výsledky...</string>
     <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
     <string name="deleting_observations">Deleting Observations...</string>
-    <string name="preparing">Preparing...</string>
+    <string name="preparing">Pripravuje sa...</string>
     <string name="add_edit_remark">Pridať/upraviť opis</string>
     <string name="restore">Restore</string>
     <string name="compare">Compare</string>
     <string name="select">Vyberte</string>
-    <string name="source_wikipedia">(Source: Wikipedia)</string>
-    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
-    <string name="conservation_status_least_concern">Of least concern</string>
-    <string name="conservation_status_near_threatened">Near threatened</string>
-    <string name="conservation_status_vulnerable">Vulnerable</string>
-    <string name="conservation_status_endangered">Endangered</string>
-    <string name="conservation_status_critically_endangered">Critically endangered</string>
-    <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
-    <string name="conservation_status_extinct">Extinct</string>
+    <string name="source_wikipedia">(Zdroj: Wikipédia)</string>
+    <string name="conservation_source"><![CDATA[<b>Zdroj:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Najmenej ohrozený</string>
+    <string name="conservation_status_near_threatened">Takmer ohrozený</string>
+    <string name="conservation_status_vulnerable">Zraniteľný</string>
+    <string name="conservation_status_endangered">Ohrozený</string>
+    <string name="conservation_status_critically_endangered">Kriticky ohrozený</string>
+    <string name="conservation_status_extinct_in_the_wild">Vyhynutý vo voľnej prírode</string>
+    <string name="conservation_status_extinct">Vyhynutý</string>
     <string name="map_of_observations">Mapa pozorovaní</string>
     <string name="taxonomy">Taxonómia</string>
     <string name="about_this_section">O tejto časti</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="taxonomy_info">Toto sú odkazy konkrétneho taxónu. Sú v poradí od všeobecnejšieho k špecifickejšiemu. Použi tieto odkazy pre pohyb nahor a nadol po strome života. Napríklad, ak nepoznáš o aký druh ide ale vieš do akej skupiny patrí, klikni na taxón zo zoznamu a získaj viac informácii.</string>
     <string name="more_info_on_inat">Viac informácií na iNaturalist.org</string>
     <string name="view_suggestions">Pozrite návrhy</string>
-    <string name="species_search">Species Search</string>
+    <string name="species_search">Vyhľadávanie druhov</string>
     <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
-    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
+    <string name="top_species_suggestions">Tu je naších top %1$d návrhov druhov:</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">Čo ste videli?</string>
     <string name="suggest_species">Návrhy druhov</string>
     <string name="suggest_species_description">Zobrazí návrhy druhov podľa vizuálnej podobnosti s fotografiami.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
-    <string name="visually_similar">Visually Similar</string>
-    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-    <string name="seen_nearby">Seen Nearby</string>
+    <string name="visually_similar">Vizuálne podobné</string>
+    <string name="visually_similar_seen_nearby">Vizuálne podobné / videné blízko</string>
+    <string name="seen_nearby">Videné blízko</string>
     <string name="enlarge">Enlarge</string>
     <string name="view_children">Pozri nižšiu úroveň</string>
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
+    <string name="taxon_has_no_photos">Tento taxón nemá žiadne fotky.</string>
+    <string name="terrain">Terén</string>
     <string name="filters">Filtre</string>
     <string name="exploring_all">Preskúmať všetko</string>
-    <string name="nearby">Nearby</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="nearby">Blízko</string>
+    <string name="couldnt_load_results">Nemožno načítať výsledky: %1$s</string>
     <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">e.g. birds, monarch</string>
-    <string name="location_search_hint">e.g. city, state, park, country...</string>
+    <string name="taxon_search_hint">napr. vtáky, babôčka</string>
+    <string name="location_search_hint">napr. mesto, štát, park...</string>
     <string name="no_taxon">Sorry, taxon not found</string>
     <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
     <string name="sorry_no_location">Sorry, location not found</string>
@@ -509,25 +509,25 @@
     <string name="delegation">Delegation</string>
     <string name="apply_filters">Aplikovať filtre</string>
     <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
+    <string name="show_only_my_observations">Zobraz iba moje pozorovania</string>
+    <string name="project">Projekt</string>
+    <string name="user">Používateľ</string>
     <string name="search_users">Search Users...</string>
     <string name="quality_grade">Kvalita určenia</string>
     <string name="dates">Dates</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">Akýkoľvek</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
-    <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
+    <string name="to">do</string>
+    <string name="exact_date">Presný dátum</string>
+    <string name="start">Začiatok</string>
+    <string name="end">Koniec</string>
+    <string name="months">Mesiace</string>
+    <string name="choose_months">Vyber mesiac(e)</string>
     <string name="map_area">Map Area</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">Prehľadajte oblasť</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dm</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
@@ -565,7 +565,7 @@
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
     <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
+    <string name="see_more_species">Pozri viac druhov</string>
     <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Popis</string>
@@ -597,32 +597,32 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">None</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Fenológia rastliny</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Životné štádium</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Pohlavie</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Kvitnutie</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Zrelosť plodov</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Pučanie</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Dospelý</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Zvliekanie</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Kukla</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
     <string name="annotation_value_nymph">Nymph</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
-    <string name="annotation_value_egg">Egg</string>
+    <string name="annotation_value_egg">Vajíčko</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Mladý</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
-    <string name="annotation_value_subimago">Subimago</string>
+    <string name="annotation_value_subimago">Subimágo</string>
     <string name="annotation_value_female">Samica</string>
     <string name="annotation_value_male">Samec</string>
     <string name="joined_projects_all_caps">JOINED</string>
@@ -638,7 +638,7 @@
     <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
     <string name="agree_all_caps">SÚHLAS</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
+    <string name="species_all_caps">DRUHY</string>
     <string name="people_all_caps">PEOPLE</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
     <string name="identifications_all_caps">IDENTIFICATIONS</string>

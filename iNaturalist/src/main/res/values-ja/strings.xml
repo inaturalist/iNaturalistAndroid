@@ -112,13 +112,13 @@
     <string name="search_guides">ガイドの検索中...</string>
     <string name="save_observation">観察記録の保存</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">このプロジェクトについて</string>
+    <string name="about_guide_all_caps">このアプリについて</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">このプロジェクトについて</string>
+    <string name="about_project_all_caps">このアプリについて</string>
+    <string name="about_this_app">このプロジェクトについて</string>
+    <string name="about_taxon_short">このプロジェクトについて</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">位置情報プライバシー</string>
     <string name="delete_confirmation">本当にこの観察記録を削除してもよろしいですか？</string>
@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">このプロジェクトを退会してもよろしいですか？</string>
     <string name="discard_location_changes">変更が保存されていませんが破棄してもよろしいですか？</string>
     <string name="edit_location">位置情報を編集</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">ローカリティの記録を編集</string>
     <string name="get_current_location">現在位置取得</string>
     <string name="pull_to_refresh">引っ張って更新します...</string>
     <string name="release_to_refresh">離して更新</string>
@@ -232,13 +232,13 @@
     <string name="forgot">お忘れの方</string>
     <string name="or_login_with">または別のアカウントでログイン:</string>
     <string name="registering">登録しています...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="recommended_next_step">次のステップを推奨</string>
     <string name="could_not_register_user">ユーザーを登録できませんでした</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">ログインまたは新規登録</string>
     <string name="please_sign_in_via_settings_for_guides">ガイドを表示するはログインが必要です。</string>
     <string name="please_sign_in_for_updates">更新を表示するはログインが必要です。</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Inaturalistのサービスを利用することで、<b><a href="https://www.inaturalist.org/pages/terms">サービス利用規約</a></b>と<b><a href="https://www.inaturalist.org/pages/privacy"><a href="https://www.inaturalist.org/pages/privacy">個人情報保護方針</a></b>に同意する。]]></string>
     <string name="activity">活動</string>
     <string name="camera">写真を撮影</string>
     <string name="upload_photo">画像を選択</string>
