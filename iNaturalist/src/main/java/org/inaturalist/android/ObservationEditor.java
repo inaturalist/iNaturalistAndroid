@@ -316,6 +316,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mSharePhotos != null) {
             // Share photos(s) with iNaturalist
+            Log.e(TAG, "Insert 1");
             mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
             if (mUri == null) {
                 Log.e(TAG, "Failed to insert new observation into " + Observation.CONTENT_URI);
@@ -342,6 +343,7 @@ public class ObservationEditor extends AppCompatActivity {
                 mUri = uri;
                 break;
             case Observation.OBSERVATIONS_URI_CODE:
+                Log.e(TAG, "Insert 2: " + uri);
                 mUri = getContentResolver().insert(uri, null);
                 if (mUri == null) {
                     Log.e(TAG, "Failed to insert new observation into " + uri);
@@ -359,6 +361,7 @@ public class ObservationEditor extends AppCompatActivity {
                     return;
                 }
                 mFileUri = getPath(this, mFileUri);
+                Log.e(TAG, "Insert 3");
                 mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
                 if (mUri == null) {
                     Log.e(TAG, "Failed to insert new observation into " + uri);
@@ -369,6 +372,7 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation = new Observation(mCursor);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
+                    Log.e(TAG, "UUID 1 - " + mObservation.uuid);
                 }
 
                 updateImageOrientation(mFileUri);
@@ -1267,10 +1271,12 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation = new Observation(mCursor);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
+                    Log.e(TAG, "UUID 2 - " + mObservation.uuid);
                 }
             } else {
                 mObservation = new Observation();
                 mObservation.uuid = UUID.randomUUID().toString();
+                Log.e(TAG, "UUID 3 - " + mObservation.uuid);
                 return;
             }
         }
