@@ -1270,10 +1270,15 @@ public class INaturalistService extends IntentService {
                         ContentValues cv = new ContentValues();
                         cv.put("user_login", mLogin);
                         // Update its sync at time so we won't update the remote servers later on (since we won't
-                        // accidently consider this an updated record)
+                        // accidentally consider this an updated record)
                         cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
-                        int count = getContentResolver().update(Observation.CONTENT_URI, cv, "user_login = ?", new String[]{prevLogin});
-                        Log.d(TAG, String.format("Updated %d observations with new user login %s from %s", count, mLogin, prevLogin));
+                        int count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NOT NULL)", new String[]{prevLogin});
+                        Log.d(TAG, String.format("Updated %d synced observations with new user login %s from %s", count, mLogin, prevLogin));
+
+                        cv = new ContentValues();
+                        cv.put("user_login", mLogin);
+                        count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NULL)", new String[]{ prevLogin });
+                        Log.d(TAG, String.format("Updated %d new observations with new user login %s from %s", count, mLogin, prevLogin));
                     }
                 }
 
@@ -3007,7 +3012,7 @@ public class INaturalistService extends IntentService {
                     if (observation._updated_at.before(remoteObservation.updated_at)) {
                         // Remote observation is newer (and thus has overwritten the local one) - update its
                         // sync at time so we won't update the remote servers later on (since we won't
-                        // accidently consider this an updated record)
+                        // accidentally consider this an updated record)
                         cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
                     }
                     if (isModified) {
@@ -5342,7 +5347,7 @@ public class INaturalistService extends IntentService {
             if (observation._updated_at.before(jsonObservation.updated_at)) {
                 // Remote observation is newer (and thus has overwritten the local one) - update its
                 // sync at time so we won't update the remote servers later on (since we won't
-                // accidently consider this an updated record)
+                // accidentally consider this an updated record)
                 cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
             }
 
