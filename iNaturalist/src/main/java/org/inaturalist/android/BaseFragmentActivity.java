@@ -149,6 +149,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             ((ImageView)findViewById(R.id.menu_guides_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_activity_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_settings_icon)).setAlpha(0.54f);
+            ((ImageView)findViewById(R.id.menu_edit_profile_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_missions_icon)).setAlpha(0.54f);
             ((ImageView)findViewById(R.id.menu_help_icon)).setAlpha(0.54f);
         }
@@ -375,6 +376,13 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(getString(R.string.inat_help_url)));
                 startActivity(i);
+            }
+        });
+
+        findViewById(R.id.menu_edit_profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityIfNew(new Intent(BaseFragmentActivity.this, ProfileEditor.class), false);
             }
         });
 
