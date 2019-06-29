@@ -180,7 +180,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             JSONObject innerResults = results.getJSONObject("results");
 
-            if (innerResults == null) {
+            if ((innerResults == null) && (intent.getAction().equals(INaturalistService.HISTOGRAM_RESULT))) {
                 return;
             }
 
