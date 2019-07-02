@@ -9,13 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.amplitude.api.Amplitude;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Encapsulates the analytics client (Amplitude) and adds some extra functionality (singleton class)
+ * Encapsulates the analytics client and adds some extra functionality (singleton class)
  */
 public class AnalyticsClient {
 
@@ -187,8 +185,6 @@ public class AnalyticsClient {
     private Activity mCurrentActivity;
 
     private AnalyticsClient(Application application) {
-        Amplitude.getInstance().initialize(application, application.getString(R.string.amplitude_api_key)).enableForegroundTracking(application);
-
         mApplication = application;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -261,8 +257,6 @@ public class AnalyticsClient {
                 String currentActivityName = getCurrentActivityName();
                 if (!parameters.has(EVENT_PARAM_VIA)) parameters.put(EVENT_PARAM_VIA, currentActivityName);
             }
-
-            Amplitude.getInstance().logEvent(eventName, parameters);
 
         } catch (JSONException e) {
             e.printStackTrace();

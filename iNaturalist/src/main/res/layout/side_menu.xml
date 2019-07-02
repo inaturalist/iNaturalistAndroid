@@ -307,6 +307,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
                 android:background="#dbdbdb" />
+
+             <LinearLayout
+                android:id="@+id/menu_edit_profile"
+                android:background="@drawable/side_menu_item_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:id="@+id/menu_edit_profile_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="7dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_person_black_24dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/edit_profile"/>
+            </LinearLayout>
+
+
             <LinearLayout
                 android:id="@+id/menu_settings"
                 android:background="@drawable/side_menu_item_background"

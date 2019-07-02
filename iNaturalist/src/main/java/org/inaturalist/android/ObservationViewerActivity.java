@@ -658,7 +658,15 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         }
 
         if ((mObservation == null) || (forceReload)) {
-            if (!mReadOnly) mObservation = new Observation(mCursor);
+            if (!mReadOnly) {
+                if (mCursor.getCount() == 0) {
+                    Log.e(TAG, "Cursor count is zero - finishing activity");
+                    finish();
+                    return;
+                }
+
+                mObservation = new Observation(mCursor);
+            }
         }
 
         if ((mObservation != null) && (mObsJson == null)) {
@@ -857,7 +865,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mObservation.identifications_count = mObservation.last_identifications_count = mIdCount;
         if (mObservation.getUri() != null) {
             ContentValues cv = mObservation.getContentValues();
-            if (!((mObservation._synced_at == null) || ((mObservation._updated_at != null) && (mObservation._updated_at.after(mObservation._synced_at))))) {
+            if (!((mObservation._synced_at == null) || (mObservation.id == null) || ((mObservation._updated_at != null) && (mObservation._updated_at.after(mObservation._synced_at))))) {
                 cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
             }
             getContentResolver().update(mObservation.getUri(), cv, null, null);
