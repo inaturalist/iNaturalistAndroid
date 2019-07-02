@@ -142,7 +142,7 @@
     <string name="leave_project">Lahku projektist</string>
     <string name="leave_project_confirmation">Oled kindel, et soovid sellest projektist lahkuda?</string>
     <string name="discard_location_changes">Oled sa kindel, et soovid salvestamata muudatused maha kanda?</string>
-    <string name="edit_location">Edit Location</string>
+    <string name="edit_location">Muuda asukohta</string>
     <string name="edit_locality_notes">Edit Locality Notes</string>
     <string name="get_current_location">Get current location</string>
     <string name="pull_to_refresh">Pull to refresh...</string>
@@ -228,10 +228,10 @@
     <string name="content_licensing">Content Licensing</string>
     <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
     <!-- Try to keep this about the length of the English text -->
-    <string name="username_or_email">Username or Email</string>
-    <string name="forgot">Forgot?</string>
+    <string name="username_or_email">Kasutajanimi või E-mail</string>
+    <string name="forgot">Unustasid?</string>
     <string name="or_login_with">Or Log In With:</string>
-    <string name="registering">Registering...</string>
+    <string name="registering">Registreerimine...</string>
     <string name="recommended_next_step">Recommended Next Step</string>
     <string name="could_not_register_user">Couldn\'t register user</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
@@ -241,21 +241,21 @@
     <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
     <string name="activity">Uudised</string>
     <string name="camera">Take Photo</string>
-    <string name="upload_photo">Choose Image</string>
-    <string name="menu_text">No Photo</string>
+    <string name="upload_photo">Vali pilt</string>
+    <string name="menu_text">Fotot pole</string>
     <string name="first">1st</string>
     <string name="make_first">Make 1st</string>
-    <string name="notes">Notes</string>
+    <string name="notes">Märkmed</string>
     <string name="location_is">Location is</string>
     <string name="is_captive">It is captive or cultivated</string>
     <string name="location_visibility">Location Visibility</string>
-    <string name="set_location">Location</string>
+    <string name="set_location">Asukoht</string>
     <string name="coordinates_lat">Lat:</string>
     <string name="coordinates_lon">Lon:</string>
     <string name="coordinates_acc">Acc. </string>
-    <string name="required">* Required</string>
+    <string name="required">* Kohustuslik</string>
     <string name="downloading_observations">Downloading observations...</string>
-    <string name="no_thanks">No Thanks</string>
+    <string name="no_thanks">Ei Aitäh</string>
     <string name="turn_on">Turn On</string>
     <string name="introducing_auto_sync">Introducing Auto-Sync!</string>
     <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
@@ -265,10 +265,10 @@
     <string name="failed_to_add_to_project">Failed to add to project \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Needs your attention...</string>
     <string name="observation">Observation</string>
-    <string name="share">Share</string>
+    <string name="share">Jaga</string>
     <string name="unable_to_acquire_location">Unable to acquire location</string>
     <string name="casual_grade">Casual Grade</string>
-    <string name="needs_id">Needs ID</string>
+    <string name="needs_id">Vajab ID\'d</string>
     <string name="research_grade">Research Grade</string>
     <string name="data_quality">Data Quality</string>
     <string name="casual_grade_add_location"><![CDATA[ Add a <b>location</b> to advance this observation to “Needs ID” status. ]]></string>
@@ -330,15 +330,15 @@
     <string name="users_identification">%1$s\'s ID: %2$s</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="remove_photo">Remove Photo</string>
-    <string name="name">Name</string>
+    <string name="name">Nimi</string>
     <string name="tell_us_about_yourself">Tell us about yourself...</string>
-    <string name="view_profile">View Profile</string>
-    <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
+    <string name="view_profile">Profiil</string>
+    <string name="are_you_sure_you_want_to_remove_photo">Kas sa oled kindel, et tahad kustutada oma foto?</string>
     <string name="updating_profile">Updating Profile...</string>
     <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
     <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
-    <string name="log_out">Log out</string>
+    <string name="log_out">Logi välja</string>
     <string name="not_logged_in">Not logged in</string>
     <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
     <string name="language">Language</string>
@@ -349,18 +349,18 @@
     <string name="select_network">Select Network Affiliation</string>
     <string name="help">Help</string>
     <string name="stop">Stop</string>
-    <string name="resume">Resume</string>
+    <string name="resume">Jätka</string>
     <string name="cleaning_up">Cleaning up...</string>
-    <string name="syncing">Syncing...</string>
+    <string name="syncing">Sünkroniseerin...</string>
     <string name="syncing_observation_fields">Syncing observation fields...</string>
     <string name="syncing_observations">Syncing observations...</string>
     <string name="syncing_paused">Paused</string>
-    <string name="upload">Upload</string>
+    <string name="upload">Lae ülesse</string>
     <string name="search_observations">Search Observations...</string>
     <string name="withdraw">Withdraw</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
-    <string name="your_identification">Your ID: %1$s</string>
+    <string name="your_identification">Sinu ID: %1$s</string>
     <string name="onboarding_species_name">Name what you saw if you can, but it\'s OK if you can\'t. Others may help you identify it!</string>
     <string name="upload_complete">Upload Complete!</string>
     <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
@@ -371,7 +371,7 @@
     <string name="missions">Missions</string>
     <string name="browse_by_category">Browse By Category</string>
     <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
-    <string name="plants">Plants</string>
+    <string name="plants">Taimed</string>
     <string name="mammals">Mammals</string>
     <string name="insects">Insects</string>
     <string name="reptiles">Reptiles</string>
@@ -403,7 +403,7 @@
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> commented: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
     <string name="new_activities">%1s new</string>
-    <string name="no_results_found">No Results Found...</string>
+    <string name="no_results_found">Tulemusi ei leitud...</string>
     <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
     <string name="deleting_observations">Deleting Observations...</string>
     <string name="preparing">Preparing...</string>
@@ -442,7 +442,7 @@
     <string name="view_children">View Children</string>
     <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
+    <string name="terrain">Maastik</string>
     <string name="filters">Filters</string>
     <string name="exploring_all">Exploring All</string>
     <string name="nearby">Nearby</string>
@@ -454,35 +454,35 @@
     <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
     <string name="sorry_no_location">Sorry, location not found</string>
     <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
-    <string name="undefined">Undefined</string>
+    <string name="undefined">Määramata</string>
     <string name="street_segment">Street Segment</string>
-    <string name="intersection">Intersection</string>
-    <string name="town">Town</string>
-    <string name="state">State</string>
-    <string name="county">County</string>
+    <string name="intersection">Ristmik</string>
+    <string name="town">Linn</string>
+    <string name="state">Osariik</string>
+    <string name="county">Maakond</string>
     <string name="local_administrative_area">Local Administrative Area</string>
-    <string name="country">Country</string>
-    <string name="island">Island</string>
-    <string name="airport">Airport</string>
+    <string name="country">Riik</string>
+    <string name="island">Saar</string>
+    <string name="airport">Lennujaam</string>
     <string name="drainage">Drainage</string>
     <string name="land_feature">Land Feature</string>
     <string name="miscellaneous">Miscellaneous</string>
     <string name="nationality">Nationality</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
     <string name="supername">Supername</string>
-    <string name="point_of_interest">Point of Interest</string>
+    <string name="point_of_interest">Huvitav paik</string>
     <string name="region">Region</string>
     <string name="colloquial">Colloquial</string>
-    <string name="zone">Zone</string>
-    <string name="historical_state">Historical State</string>
-    <string name="historical_county">Historical County</string>
-    <string name="continent">Continent</string>
+    <string name="zone">Tsoon</string>
+    <string name="historical_state">Ajalooline osariik</string>
+    <string name="historical_county">Ajalooline Maakond</string>
+    <string name="continent">Mander</string>
     <string name="estate">Estate</string>
-    <string name="historical_town">Historical Town</string>
+    <string name="historical_town">Ajalooline Linn</string>
     <string name="aggregate">Aggregate</string>
     <string name="open_space">Open Space</string>
-    <string name="territory">Territory</string>
-    <string name="district">District</string>
+    <string name="territory">Territoorium</string>
+    <string name="district">Piirkond</string>
     <string name="province">Province</string>
     <string name="municipality">Municipality</string>
     <string name="parish">Parish</string>
@@ -490,7 +490,7 @@
     <string name="city_building">City Building</string>
     <string name="commune">Commune</string>
     <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
+    <string name="prefecture">Prefektuur</string>
     <string name="canton">Canton</string>
     <string name="republic">Republic</string>
     <string name="division">Division</string>
@@ -665,8 +665,8 @@
     <string name="seasonality">Seasonality</string>
     <string name="verifiable">Verifiable</string>
     <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
+    <string name="donate_to_inaturalist">Anneta iNaturalistile</string>
+    <string name="prefers_scientific_name_first">Näita tähtsaid nimesid esimesena</string>
     <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
