@@ -402,7 +402,7 @@ public class ImageUtils {
                     // built-in Android resize methods)
                     try {
                         resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
-                    } catch (Exception exc) {
+                    } catch (Throwable exc) {
                         Log.e(TAG, "Crashed while using SmoothRescale library - resizing using Android OS");
                         exc.printStackTrace();
                         resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
