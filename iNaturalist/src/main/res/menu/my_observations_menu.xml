@@ -11,4 +11,8 @@
         android:title=""
         android:icon="@drawable/search_gray"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/mark_all_as_viewed"
+        android:title="@string/mark_all_as_viewed"
+        app:showAsAction="never" />
 </menu>

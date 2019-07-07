@@ -24,6 +24,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.livefront.bridge.Bridge;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -959,11 +960,42 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             case R.id.search_observations:
                 startActivity(new Intent(ObservationListActivity.this, ObservationSearchActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                 return true;
+
+            case R.id.mark_all_as_viewed:
+                // Update last_comment_count / last_id_count to be equal to current comment/id count (so no observation
+                // will be shown with unread notifications / pink color)
+                markAllObservationsAsRead();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
+    private void markAllObservationsAsRead() {
+
+        // Find all observations with unread notifications
+        Cursor cursor = getContentResolver().query(Observation.CONTENT_URI, Observation.PROJECTION, "((last_comments_count < comments_count) OR (last_identifications_count < identifications_count)) AND (id IS NOT NULL)", null, Observation.DEFAULT_SORT_ORDER);
+
+        if (cursor.getCount() == 0) {
+            return;
+        }
+
+        do {
+            ContentValues cv = new ContentValues();
+            BetterCursor bc = new BetterCursor(cursor);
+
+            cv.put(Observation.LAST_COMMENTS_COUNT, bc.getInt(Observation.COMMENTS_COUNT));
+            cv.put(Observation.LAST_IDENTIFICATIONS_COUNT, bc.getInt(Observation.IDENTIFICATIONS_COUNT));
+            // Update its sync at time so we won't update the remote servers later on (since we won't
+            // accidentally consider this an updated record)
+            cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+
+            int count = getContentResolver().update(ContentUris.withAppendedId(Observation.CONTENT_URI, bc.getInt(Observation._ID)), cv, null, null);
+        } while (cursor.moveToNext());
+
+        mObservationListAdapter.refreshCursor();
+        mObservationGridAdapter.refreshCursor();
+    }
 
     public class ObservationsPageAdapter extends PagerAdapter {
         final int PAGE_COUNT = 3;
