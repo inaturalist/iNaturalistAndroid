@@ -1932,7 +1932,10 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalIdentificationResults(BetterJSONObject results) {
         if (results == null) return null;
 
-        JSONArray identificationResults = results.getJSONArray("results").getJSONArray();
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
+        JSONArray identificationResults = innerResults.getJSONArray();
 
         if (identificationResults != null) {
             JSONArray minimizedResults = new JSONArray();
@@ -1951,7 +1954,10 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalObserverResults(BetterJSONObject results) {
         if (results == null) return null;
 
-        JSONArray observerResults = results.getJSONArray("results").getJSONArray();
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
+        JSONArray observerResults = innerResults.getJSONArray();
 
         if (observerResults != null) {
             JSONArray minimizedResults = new JSONArray();
@@ -1971,9 +1977,12 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalSpeciesResults(BetterJSONObject results) {
         if (results == null) return null;
 
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
         // Minimize results - save only basic info for each observation (better memory usage)
+        JSONArray speciesResults = innerResults.getJSONArray();
         JSONArray minimizedResults = new JSONArray();
-        JSONArray speciesResults = results.getJSONArray("results").getJSONArray();
 
         if (speciesResults != null) {
             for (int i = 0; i < speciesResults.length(); i++) {
@@ -1990,9 +1999,12 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalObservationResults(BetterJSONObject results) {
         if (results == null) return null;
 
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
         // Minimize results - save only basic info for each observation (better memory usage)
+        JSONArray observationResults = innerResults.getJSONArray();
         JSONArray minimizedObservations = new JSONArray();
-        JSONArray observationResults = results.getJSONArray("results").getJSONArray();
 
         if (observationResults != null) {
             for (int i = 0; i < observationResults.length(); i++) {
