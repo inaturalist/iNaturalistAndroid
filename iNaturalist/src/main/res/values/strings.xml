@@ -690,5 +690,9 @@
     <string name="importing_sounds">Importing sound(s)...</string>
     <string name="observation_sound">Observation Sound</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="start_recording">Start Recording</string>
+    <string name="resume_recording">Resume Recording</string>
+    <string name="pause_recording">Pause Recording</string>
+    <string name="stop_recording">Stop Recording</string>
 </resources>
 

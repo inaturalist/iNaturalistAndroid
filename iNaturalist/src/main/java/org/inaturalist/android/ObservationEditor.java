@@ -180,6 +180,7 @@ public class ObservationEditor extends AppCompatActivity {
     private static final int RECORD_SOUND_ACTIVITY_REQUEST_CODE = 106;
     private static final int CHOOSE_SOUNDS_REQUEST_CODE = 107;
     private static final int OBSERVATION_SOUNDS_REQUEST_CODE = 108;
+    private static final int RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE = 109;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -981,14 +982,9 @@ public class ObservationEditor extends AppCompatActivity {
         } catch (ActivityNotFoundException exc) {
             // No default sound recorder found
             exc.printStackTrace();
-            Toast.makeText(this, R.string.no_recorder_found, Toast.LENGTH_LONG).show();
 
-            // Cancel / delete this new observation
-            mCanceled = true;
-            setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
-            delete(true);
-            finish();
-            return;
+            Intent intent = new Intent(this, RecordSoundActivity.class);
+            startActivityForResult(intent, RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE);
         }
 
         // Make sure we won't try to re-record a sound in case the activity pauses/resumes.
@@ -2390,7 +2386,13 @@ public class ObservationEditor extends AppCompatActivity {
         } else if (requestCode == RECORD_SOUND_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Uri uri = data.getData();
-                prepareCapturedSound(uri);
+                prepareCapturedSound(uri, true);
+            }
+
+        } else if (requestCode == RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Uri uri = data.getData();
+                prepareCapturedSound(uri, false);
             }
 
         } else if (requestCode == CHOOSE_SOUNDS_REQUEST_CODE) {
@@ -2532,9 +2534,9 @@ public class ObservationEditor extends AppCompatActivity {
         }
     }
 
-    private void prepareCapturedSound(Uri selectedSoundUri) {
+    private void prepareCapturedSound(Uri selectedSoundUri, boolean translateUriToPath) {
         // We can't control where the audio file gets saved to - just copy it locally
-        String filePath = getAudioFilePathFromUri(selectedSoundUri);
+        String filePath = translateUriToPath ? getAudioFilePathFromUri(selectedSoundUri) : selectedSoundUri.toString();
 
         if (filePath == null) {
             Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
@@ -2818,6 +2820,7 @@ public class ObservationEditor extends AppCompatActivity {
         if ((extension == null) || (
                 (!extension.toLowerCase().equals("mp3")) &&
                 (!extension.toLowerCase().equals("wav")) &&
+                (!extension.toLowerCase().equals("3gp")) &&
                 (!extension.toLowerCase().equals("amr"))
             )) {
             return null;

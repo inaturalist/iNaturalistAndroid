@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/start_recording"
+        android:layout_width="150dp"
+        android:text="@string/start_recording"
+        android:layout_height="wrap_content" />
+
+     <Button
+        android:id="@+id/stop_recording"
+        android:layout_below="@id/start_recording"
+         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:text="@string/stop_recording"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:id="@+id/sound_player"
+        android:layout_below="@id/stop_recording"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+    </LinearLayout>
+
+</RelativeLayout>

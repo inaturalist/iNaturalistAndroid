@@ -929,6 +929,10 @@ public class INaturalistApp extends MultiDexApplication {
         requestPermissions(activity, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, cb);
     }
 
+    public void requestAudioRecordingPermission(Activity activity, OnRequestPermissionResult cb) {
+        requestPermissions(activity, new String[] { Manifest.permission.RECORD_AUDIO }, cb);
+    }
+
     private void requestPermissions(final Activity activity, final String[] permissions, OnRequestPermissionResult cb) {
         for (String permission: permissions) {
             mPermissionsCbByPermissionName.put(permission, cb);
@@ -991,5 +995,8 @@ public class INaturalistApp extends MultiDexApplication {
         return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
+    public boolean isAudioRecordingPermissionGranted() {
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED);
+    }
 
 }
