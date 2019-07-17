@@ -18,7 +18,7 @@ import com.livefront.bridge.Bridge;
 
 import java.text.SimpleDateFormat;
 
-public class RecordSoundActivity extends AppCompatActivity {
+public class RecordSoundActivity extends AppCompatActivity implements SoundRecorder.OnRecordingStopped {
     private static String TAG = "RecordSoundActivity";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -66,11 +66,9 @@ public class RecordSoundActivity extends AppCompatActivity {
         mStopRecording = (Button) findViewById(R.id.stop_recording);
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
-        // TODO
-        //mOutputFilename = getExternalCacheDir().getAbsolutePath() + "/inaturalist_sound_" + timeStamp + ".3gp";
-        mOutputFilename = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)  + "/inaturalist_sound_" + timeStamp + ".amr";
+        mOutputFilename = getExternalCacheDir().getAbsolutePath() + "/inaturalist_sound_" + timeStamp + ".wav";
 
-        mRecorder = new SoundRecorder(this, mOutputFilename);
+        mRecorder = new SoundRecorder(this, mOutputFilename, this);
 
         mStopRecording.setVisibility(View.GONE);
 
@@ -81,14 +79,12 @@ public class RecordSoundActivity extends AppCompatActivity {
             }
         });
 
+        mHelper = new ActivityHelper(this);
         mStopRecording.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mRecorder.stopRecording();
-                Intent intent = new Intent();
-                intent.setData(Uri.parse(mOutputFilename));
-                setResult(RESULT_OK, intent);
-                finish();
+                mHelper.loading();
             }
         });
     }
@@ -121,11 +117,6 @@ public class RecordSoundActivity extends AppCompatActivity {
             });
 
             return;
-        }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            // Older Androids don't support pause/resume functionality
-            mStartRecording.setVisibility(View.GONE);
         }
 
         mStartRecording.setText(mIsRecording ? R.string.resume_recording : R.string.pause_recording);
@@ -167,5 +158,15 @@ public class RecordSoundActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onRecordingStopped() {
+        mHelper.stopLoading();
+
+        Intent intent = new Intent();
+        intent.setData(Uri.parse(mOutputFilename));
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
