@@ -2398,7 +2398,7 @@ public class ObservationEditor extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                        if (getCurrentFocus() != null) imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
                     }
                 }, 100);
