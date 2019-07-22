@@ -666,7 +666,7 @@
     <string name="evidence_of_organism">Свідчення існування організму</string>
     <string name="recent_evidence_of_an_organism">Останні свідчення існування організму</string>
     <string name="community_id_at_species_level_or_lower">Ідентифікація спільнотою на рівні виду або нижче</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Грунтуючись на свідченнях, чи можна підтвердити або покращити ідентифікатор спільноти?</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Ґрунтуючись на свідченнях, чи можна підтвердити або покращити ідентифікатор спільноти?</string>
     <string name="no_as_good_as_it_can_be">Ні, це добре, наскільки можливо</string>
     <string name="seasonality">Сезонність</string>
     <string name="verifiable">Перевіряється</string>

@@ -238,7 +238,7 @@
     <string name="login_signup">Kirjaudu / rekisteröidy</string>
     <string name="please_sign_in_via_settings_for_guides">Sinun tulee olla sisäänkirjautuneena katsoaksesi oppaitasi.</string>
     <string name="please_sign_in_for_updates">Sinun tulee olla sisäänkirjautuneena katsoaksesi päivityksiäsi.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Käyttämällä iNaturalistia, hyväksyt <b><a href="https://www.inaturalist.org/pages/terms">Käyttöehdot</a></b> ja <b><a href="https://www.inaturalist.org/pages/privacy">Yksityisyyskäytännön</a></b>]]></string>
     <string name="activity">Toiminta</string>
     <string name="camera">Ota kuva</string>
     <string name="upload_photo">Valitse kuva</string>
@@ -346,7 +346,7 @@
     <string name="inat_network">iNaturalist Network -verkko</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">Lisätietoja</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">Valitse verkkokytkös</string>
     <string name="help">Apua</string>
     <string name="stop">Pysäytä</string>
     <string name="resume">Jatka</string>
