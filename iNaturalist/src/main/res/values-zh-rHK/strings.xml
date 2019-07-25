@@ -669,7 +669,7 @@
     <string name="prefers_scientific_name_first">學名優先顯示</string>
     <string name="prefers_scientific_name_first_description">在俗名之前顯示學名</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[加拿大：由加拿大野生動物聯盟(Canadian Wildlife Federation)、安大略皇家博物館(Royal Ontario Museum)、NatureServe Canada，和加拿大公園局(Parks Canada)共同營運 iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)。]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: 洪堡研究所營運的 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: 洪堡研究所營運的 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[墨西哥：營運 NaturaLista 的國家生物多樣性使用及知識委員會(Comisión nacional para el conocimiento y uso de la biodiversidad; CONABIO)  (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[紐西蘭：營運 iNaturalist NZ  的紐西蘭生物多樣性紀錄網路— Mātaki Taiao (New Zealand Biodiversity Recording Network; inaturalist.nz)。]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 營運 Biodisy4all 的全民生物多樣性協會 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>

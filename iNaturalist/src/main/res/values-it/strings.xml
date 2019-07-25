@@ -669,7 +669,7 @@
     <string name="prefers_scientific_name_first">Mostra prima i nomi scientifici</string>
     <string name="prefers_scientific_name_first_description">Mostra nomi scientifici prima dei nomi comuni.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: federazione canadese della fauna, Royal Ontario Museum, NatureServe Canada e Parks Canada che gestiscono iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Instituto Humboldt che gestisce Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt che gestisce Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Messico: Commissione nazionale per la conoscenza e l\'uso della biodiversità (CONABIO) che gestisce NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Nuova Zelanda: Nuova Zelanda Biodiversity Network che gestisce iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos che gestisce Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>

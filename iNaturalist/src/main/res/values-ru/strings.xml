@@ -670,7 +670,7 @@
     <string name="prefers_scientific_name_first">Показывать вначале научные наименования</string>
     <string name="prefers_scientific_name_first_description">Показывать научные наименования перед общими именами.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Канада: Канадская федерация дикой природы, Королевский музей Онтарио, некоммерческая организация NatureServe, Канада и правительственное учреждение Парки Канады обеспечивают работу iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Институт Гумбольдта обеспечивает работу Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Институт Гумбольдта обеспечивает работу Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Мексика: Национальная комиссия по знаниям и использованию биоразнообразия (CONABIO) обеспечивает работу NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Новая Зеландия: Новозеландская сеть регистрации биоразнообразия обеспечивает работу iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Португалия: Ассоциация «Биоразнообразие для всех» Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
