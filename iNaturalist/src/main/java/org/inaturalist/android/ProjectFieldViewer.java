@@ -588,6 +588,7 @@ public class ProjectFieldViewer {
     // Returns a sorted field list for a specific project
     public static List<ProjectField> sortProjectFields(final int projectId, ArrayList projectFields) {
         // Filter by project ID
+        projectFields = (ArrayList) projectFields.clone();
         CollectionUtils.filter(projectFields, new Predicate<ProjectField>() {
             @Override
             public boolean evaluate(ProjectField field) {
