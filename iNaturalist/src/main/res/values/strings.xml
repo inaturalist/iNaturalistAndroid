@@ -676,5 +676,9 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
+    <string name="content_hidden">Content Hidden</string>
+    <string name="show_hidden_content">Show Hidden Content</string>
+    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
 </resources>
 
