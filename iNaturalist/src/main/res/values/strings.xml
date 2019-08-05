@@ -680,7 +680,7 @@
     <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
+    <string name="record_sound">New Sound Observation</string>
     <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <string name="upload_sound">Choose Sound</string>
@@ -690,9 +690,7 @@
     <string name="importing_sounds">Importing sound(s)...</string>
     <string name="observation_sound">Observation Sound</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
-    <string name="start_recording">Start Recording</string>
-    <string name="resume_recording">Resume Recording</string>
-    <string name="pause_recording">Pause Recording</string>
-    <string name="stop_recording">Stop Recording</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sec</string>
 </resources>
 

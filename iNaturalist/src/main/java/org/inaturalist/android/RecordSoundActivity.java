@@ -1,34 +1,72 @@
 package org.inaturalist.android;
 
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.SurfaceTexture;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.TextureView;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
 import com.livefront.bridge.Bridge;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.Random;
 
-public class RecordSoundActivity extends AppCompatActivity implements SoundRecorder.OnRecordingStopped {
+public class RecordSoundActivity extends AppCompatActivity implements SoundRecorder.OnRecordingStatus {
     private static String TAG = "RecordSoundActivity";
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
     
-    private Button mStartRecording;
-    private Button mStopRecording;
+    private FloatingActionButton mStartRecording;
+    private TextView mStopRecording;
+    private TextView mRecordingTime;
+    private TextureView mVisualizerTexture;
 
+    private Long mTotalTime = null;
+    private Long mLastStartTime = null;
     private boolean mIsRecording = false;
     private SoundRecorder mRecorder;
     private String mOutputFilename;
+
+    private static final int MAX_SOUND_LINES = 1500;
+    private static final int SOUND_LINE_WIDTH = 4;
+    private static final int SOUND_LINE_SPACING = 4;
+    private byte[] mSoundsValues = new byte[MAX_SOUND_LINES];
+
+    private Handler mHandler = new Handler();
+    private Runnable mUpdateTimer = new Runnable() {
+        @Override
+        public void run() {
+            float timeSecs = 0;
+
+            if (mTotalTime != null) {
+                if (mLastStartTime != null) {
+                    timeSecs = mTotalTime + (System.currentTimeMillis() - mLastStartTime);
+                } else {
+                    timeSecs = mTotalTime;
+                }
+            }
+
+            timeSecs /= 1000;
+
+            mRecordingTime.setText(String.format(getResources().getString(R.string.seconds), timeSecs));
+
+            if (mIsRecording) {
+                mHandler.postDelayed(mUpdateTimer, 100);
+            }
+        }
+    };
 
     @Override
 	protected void onStart()
@@ -62,8 +100,30 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
 
         setContentView(R.layout.record_sound);
         
-        mStartRecording = (Button) findViewById(R.id.start_recording);
-        mStopRecording = (Button) findViewById(R.id.stop_recording);
+        mStartRecording = findViewById(R.id.start_recording);
+        mStopRecording = findViewById(R.id.stop_recording);
+        mRecordingTime = findViewById(R.id.seconds_counter);
+        mVisualizerTexture = findViewById(R.id.sound_visualizer);
+
+        mVisualizerTexture.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+            @Override
+            public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+                // TODO
+                drawCurrentSoundWave();
+            }
+            @Override
+            public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+            }
+            @Override
+            public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+                return false;
+            }
+            @Override
+            public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+            }
+        });
+
+        mRecordingTime.setText(String.format(getResources().getString(R.string.seconds), 0f));
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
         mOutputFilename = getExternalCacheDir().getAbsolutePath() + "/inaturalist_sound_" + timeStamp + ".wav";
@@ -83,10 +143,39 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
         mStopRecording.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mIsRecording = false;
                 mRecorder.stopRecording();
                 mHelper.loading();
             }
         });
+    }
+
+    private void drawCurrentSoundWave() {
+        Canvas canvas = mVisualizerTexture.lockCanvas();
+        Paint paint = new Paint();
+        paint.setColor(Color.parseColor("#cb0000"));
+        paint.setStrokeWidth(SOUND_LINE_WIDTH);
+        paint.setStyle(Paint.Style.STROKE);
+
+        for (int i = 0; i < MAX_SOUND_LINES; i++) {
+            // TODO
+            mSoundsValues[i] = (byte)(new Random().nextInt(256));
+
+            float[] line = soundValueToLine(canvas, i);
+            canvas.drawLine(line[0], line[1], line[2], line[3], paint);
+        }
+
+        mVisualizerTexture.unlockCanvasAndPost(canvas);
+    }
+
+    private float[] soundValueToLine(Canvas canvas, int byteOffset) {
+        byte soundValue = mSoundsValues[byteOffset];
+        float lineHeight = (soundValue / 256f) * canvas.getHeight();
+        float yStart = (canvas.getHeight() - lineHeight) / 2;
+        float yEnd = yStart + lineHeight;
+        float xStart = byteOffset * (SOUND_LINE_WIDTH + SOUND_LINE_SPACING);
+
+        return new float[] { xStart, yStart, xStart, yEnd };
     }
 
     private void startPauseRecording() {
@@ -119,17 +208,27 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
             return;
         }
 
-        mStartRecording.setText(mIsRecording ? R.string.resume_recording : R.string.pause_recording);
+        mStartRecording.setImageDrawable(getResources().getDrawable(mIsRecording ? R.drawable.microphone_white : R.drawable.baseline_pause_white_36));
         mStopRecording.setVisibility(View.VISIBLE);
 
         if (mIsRecording) {
             mRecorder.pauseRecording();
+            mTotalTime += (System.currentTimeMillis() - mLastStartTime);
+            mLastStartTime = null;
         } else {
+            if (mTotalTime == null) {
+                mTotalTime = 0L;
+            }
+
+            mLastStartTime = System.currentTimeMillis();
+
             if (mRecorder.hasStartedRecording()) {
                 mRecorder.resumeRecording();
             } else {
                 mRecorder.startRecording();
             }
+
+            mHandler.postDelayed(mUpdateTimer, 100);
         }
 
         mIsRecording = !mIsRecording;
@@ -158,6 +257,11 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onSoundRecording(byte[] values, int count) {
+        Log.e("AAA", "Recording: " + count + ":" + (values[0] & 0xFF));
     }
 
     @Override

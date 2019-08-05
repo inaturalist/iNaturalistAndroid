@@ -5,7 +5,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
-import android.os.Build;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 
@@ -26,12 +26,13 @@ public class SoundRecorder {
     private Context mContext;
     private String mFilename;
 
-    public interface OnRecordingStopped {
+    public interface OnRecordingStatus {
+        void onSoundRecording(byte[] values, int count);
         void onRecordingStopped();
     }
 
 
-    public SoundRecorder(Context context, String filename, OnRecordingStopped callback) {
+    public SoundRecorder(Context context, String filename, OnRecordingStatus callback) {
         mContext = context;
         mFilename = filename;
 
@@ -71,10 +72,11 @@ public class SoundRecorder {
         private static final int BUFFER_SIZE = 2 * AudioRecord.getMinBufferSize(SAMPLE_RATE, CHANNEL_MASK, ENCODING);
 
 
-        private OnRecordingStopped mCallback;
+        private OnRecordingStatus mCallback;
         private boolean mIsPaused = false;
+        private Handler mHandler = new Handler();
 
-        private RecordWaveTask(OnRecordingStopped callback) {
+        private RecordWaveTask(OnRecordingStatus callback) {
             mCallback = callback;
         }
 
@@ -114,7 +116,7 @@ public class SoundRecorder {
                 writeWavHeader(wavOut, CHANNEL_MASK, SAMPLE_RATE, ENCODING);
 
                 // Avoiding loop allocations
-                byte[] buffer = new byte[BUFFER_SIZE];
+                final byte[] buffer = new byte[BUFFER_SIZE];
                 boolean run = true;
                 int read;
                 long total = 0;
@@ -131,11 +133,20 @@ public class SoundRecorder {
                             for (int i = 0; i < read && total <= 4294967295L; i++, total++) {
                                 wavOut.write(buffer[i]);
                             }
+
                             run = false;
                         } else {
                             // Write out the entire read buffer
                             wavOut.write(buffer, 0, read);
                             total += read;
+
+                            final int finalRead = read;
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mCallback.onSoundRecording(buffer, finalRead);
+                                }
+                            });
                         }
                     }
                 }

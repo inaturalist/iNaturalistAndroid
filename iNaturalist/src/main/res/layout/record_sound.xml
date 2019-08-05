@@ -1,34 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:background="#000000"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <TextView
+        android:id="@+id/seconds_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5.6 secs"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:id="@+id/start_recording"
-        android:layout_width="150dp"
-        android:text="@string/start_recording"
-        android:layout_height="wrap_content" />
-
-     <Button
-        android:id="@+id/stop_recording"
-        android:layout_below="@id/start_recording"
-         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_width="150dp"
-        android:text="@string/stop_recording"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="83dp"
+        />
 
 
-    <LinearLayout
-        android:id="@+id/sound_player"
-        android:layout_below="@id/stop_recording"
-        android:orientation="horizontal"
+    <TextureView
+        android:id="@+id/sound_visualizer"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="220dp" />
 
-    </LinearLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/start_recording"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:src="@drawable/microphone_white"
+        android:scaleType="fitCenter"
+        fab:fab_colorNormal="#CB0000"
+        fab:fab_colorPressed="#881010"
+        fab:fab_colorRipple="#881010" />
+
+    <TextView
+        android:id="@+id/stop_recording"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="45dp"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:text="@string/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
