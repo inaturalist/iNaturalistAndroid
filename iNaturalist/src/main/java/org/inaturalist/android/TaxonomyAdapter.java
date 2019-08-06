@@ -19,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 class TaxonomyAdapter extends ArrayAdapter<String> {
@@ -62,6 +64,19 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
                 // Show all ancestors / show all children
                 for (int i = 0; i < ancestors.length(); i++) {
                     mAncestors.add(ancestors.optJSONObject(i));
+                }
+
+                if (mShowChildren) {
+                    // Sort children by scientific names
+                    Collections.sort(mAncestors, new Comparator<JSONObject>() {
+                        @Override
+                        public int compare(JSONObject o1, JSONObject o2) {
+                            String sn1 = TaxonUtils.getTaxonScientificName(o1);
+                            String sn2 = TaxonUtils.getTaxonScientificName(o2);
+
+                            return sn1.compareTo(sn2);
+                        }
+                    });
                 }
             } else {
                 // Show all ancestors up to family (including), and then the kingdom. Also show

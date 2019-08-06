@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,6 +35,7 @@ import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Handler;
 import android.text.Html;
+import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
@@ -114,7 +116,10 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		((INaturalistApp) mContext.getApplicationContext()).setStringResourceForView(view, R.id.id_agree_text, "agree_all_caps", "agree2");
 
 		try {
+			final ViewGroup userDetails = (ViewGroup) view.findViewById(R.id.user_details);
+			final ViewGroup contentHidden = (ViewGroup) view.findViewById(R.id.content_hidden);
 			final TextView comment = (TextView) view.findViewById(R.id.comment);
+			final TextView showHiddenContent = (TextView) view.findViewById(R.id.show_hidden_content);
 			RelativeLayout idLayout = (RelativeLayout) view.findViewById(R.id.id_layout);
             final RelativeLayout idAgreeLayout = (RelativeLayout) view.findViewById(R.id.id_agree_container);
 
@@ -268,6 +273,46 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				});
 			}
 
+			showHiddenContent.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					comment.setText(Html.fromHtml(item.getString("body")));
+					Linkify.addLinks(comment, Linkify.ALL);
+					comment.setMovementMethod(LinkMovementMethod.getInstance());
+					comment.setTypeface(null, Typeface.NORMAL);
+
+					contentHidden.setVisibility(View.VISIBLE);
+					showHiddenContent.setVisibility(View.GONE);
+					userDetails.setVisibility(View.VISIBLE);
+				}
+			});
+
+			contentHidden.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					JSONArray modActions = item.getJSONArray("moderator_actions").getJSONArray();
+					BetterJSONObject lastModAction = new BetterJSONObject(modActions.optJSONObject(modActions.length() - 1));
+					Calendar cal = Calendar.getInstance();
+					cal.setTimeInMillis(lastModAction.getTimestamp("created_at").getTime());
+					String date = DateFormat.format("MMM dd, yyyy", cal).toString();
+
+					String message = String.format(mContext.getString(R.string.content_hidden_because),
+							lastModAction.getJSONObject("user").optString("login"),
+							date,
+							lastModAction.getString("reason"));
+
+					if ((mLogin != null) && (username.equalsIgnoreCase(mLogin))) {
+					    // This is our own ID/comment - allow the user to contact support
+                        message += "\n" + mContext.getString(R.string.contact_support_with_link);
+                    }
+
+				    mHelper.confirm(R.string.content_hidden, message, null, null);
+				}
+			});
+
+			userDetails.setVisibility(View.VISIBLE);
+			contentHidden.setVisibility(View.GONE);
+
 			if (item.getString("type").equals("comment")) {
 				// Comment
 				comment.setVisibility(View.VISIBLE);
@@ -276,9 +321,20 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				if (moreMenu != null) moreMenu.setVisibility(View.VISIBLE);
                 idAgreeLayout.setVisibility(View.GONE);
 
-				comment.setText(Html.fromHtml(item.getString("body")));
-				Linkify.addLinks(comment, Linkify.ALL);
-				comment.setMovementMethod(LinkMovementMethod.getInstance());
+				if (item.has("hidden") && item.getBoolean("hidden")) {
+					// Hidden comment
+					comment.setText(Html.fromHtml(mContext.getString(R.string.content_hidden)));
+					comment.setTypeface(null, Typeface.ITALIC);
+					showHiddenContent.setVisibility(View.VISIBLE);
+					userDetails.setVisibility(View.INVISIBLE);
+                } else {
+					comment.setText(Html.fromHtml(item.getString("body")));
+					comment.setTypeface(null, Typeface.NORMAL);
+					Linkify.addLinks(comment, Linkify.ALL);
+					comment.setMovementMethod(LinkMovementMethod.getInstance());
+
+					showHiddenContent.setVisibility(View.GONE);
+				}
 
 				postedOn.setTextColor(postedOn.getTextColors().withAlpha(255));
 				if (hasUserIcon) userPic.setAlpha(255);
@@ -287,14 +343,24 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 				// Identification
 				idLayout.setVisibility(View.VISIBLE);
 				String body = item.getString("body");
-				if (body != null && body.length() > 0) {
+				if (item.has("hidden") && item.getBoolean("hidden")) {
+					// Hidden ID
+					comment.setText(Html.fromHtml(mContext.getString(R.string.content_hidden)));
+					comment.setVisibility(View.VISIBLE);
+					comment.setTypeface(null, Typeface.ITALIC);
+					showHiddenContent.setVisibility(View.VISIBLE);
+					contentHidden.setVisibility(View.VISIBLE);
+				} else if (body != null && body.length() > 0) {
 					comment.setText(Html.fromHtml(body));
+					comment.setTypeface(null, Typeface.NORMAL);
 					Linkify.addLinks(comment, Linkify.ALL);
 					comment.setMovementMethod(LinkMovementMethod.getInstance());
 
                     comment.setVisibility(View.VISIBLE);
+					showHiddenContent.setVisibility(View.GONE);
 				} else {
 					comment.setVisibility(View.GONE);
+					showHiddenContent.setVisibility(View.GONE);
 				}
 				ImageView idPic = (ImageView) view.findViewById(R.id.id_pic);
 				JSONObject taxonObject = item.getJSONObject("taxon");

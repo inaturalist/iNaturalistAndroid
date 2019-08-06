@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -66,6 +67,10 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
+import com.google.maps.TimeZoneApi;
+import com.google.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -111,6 +116,145 @@ public class INaturalistService extends IntentService {
     private static final int OLD_PHOTOS_CACHE_EXPIRATION_HOURS = 24 * 7; // Number of hours after which old cached photos will be deleted locally (and viewed remotely)
 
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
+
+    private static final Map<String, String> TIMEZONE_ID_TO_INAT_TIMEZONE;
+
+    static {
+        TIMEZONE_ID_TO_INAT_TIMEZONE = new HashMap();
+
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Africa/Algiers", "West Central Africa");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Africa/Cairo", "Cairo");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Africa/Casablanca", "Casablanca");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Africa/Harare", "Harare");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Africa/Johannesburg", "Pretoria");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Africa/Monrovia", "Monrovia");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Africa/Nairobi", "Nairobi");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Argentina/Buenos_Aires", "Buenos Aires");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Bogota", "Bogota");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Caracas", "Caracas");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Chicago", "Central Time (US & Canada)");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Chihuahua", "Chihuahua");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Denver", "Mountain Time (US & Canada)");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Godthab", "Greenland");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Guatemala", "Central America");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Guyana", "Georgetown");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Halifax", "Atlantic Time (Canada)");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Indiana/Indianapolis", "Indiana (East)");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Juneau", "Alaska");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/La_Paz", "La Paz");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Lima", "Lima");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Los_Angeles", "Pacific Time (US & Canada)");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Mazatlan", "Mazatlan");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Mexico_City", "Mexico City");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Monterrey", "Monterrey");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Montevideo", "Montevideo");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/New_York", "Eastern Time (US & Canada)");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Phoenix", "Arizona");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Regina", "Saskatchewan");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Santiago", "Santiago");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Sao_Paulo", "Brasilia");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/St_Johns", "Newfoundland");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("America/Tijuana", "Tijuana");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Almaty", "Almaty");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Baghdad", "Baghdad");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Baku", "Baku");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Bangkok", "Bangkok");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Chongqing", "Chongqing");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Colombo", "Sri Jayawardenepura");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Dhaka", "Dhaka");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Hong_Kong", "Hong Kong");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Irkutsk", "Irkutsk");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Jakarta", "Jakarta");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Jerusalem", "Jerusalem");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Kabul", "Kabul");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Kamchatka", "Kamchatka");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Karachi", "Karachi");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Kathmandu", "Kathmandu");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Kolkata", "Kolkata");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Krasnoyarsk", "Krasnoyarsk");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Kuala_Lumpur", "Kuala Lumpur");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Kuwait", "Kuwait");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Magadan", "Magadan");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Muscat", "Muscat");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Novosibirsk", "Novosibirsk");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Rangoon", "Rangoon");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Riyadh", "Riyadh");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Seoul", "Seoul");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Shanghai", "Beijing");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Singapore", "Singapore");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Srednekolymsk", "Srednekolymsk");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Taipei", "Taipei");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Tashkent", "Tashkent");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Tbilisi", "Tbilisi");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Tehran", "Tehran");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Tokyo", "Tokyo");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Ulaanbaatar", "Ulaanbaatar");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Urumqi", "Urumqi");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Vladivostok", "Vladivostok");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Yakutsk", "Yakutsk");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Yekaterinburg", "Ekaterinburg");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Asia/Yerevan", "Yerevan");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Atlantic/Azores", "Azores");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Atlantic/Cape_Verde", "Cape Verde Is.");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Atlantic/South_Georgia", "Mid-Atlantic");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Australia/Adelaide", "Adelaide");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Australia/Brisbane", "Brisbane");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Australia/Darwin", "Darwin");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Australia/Hobart", "Hobart");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Australia/Melbourne", "Melbourne");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Australia/Perth", "Perth");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Australia/Sydney", "Sydney");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Etc/UTC", "UTC");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Amsterdam", "Amsterdam");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Athens", "Athens");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Belgrade", "Belgrade");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Berlin", "Berlin");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Bratislava", "Bratislava");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Brussels", "Brussels");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Bucharest", "Bucharest");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Budapest", "Budapest");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Copenhagen", "Copenhagen");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Dublin", "Dublin");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Helsinki", "Helsinki");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Istanbul", "Istanbul");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Kaliningrad", "Kaliningrad");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Kiev", "Kyiv");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Lisbon", "Lisbon");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Ljubljana", "Ljubljana");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/London", "London");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Madrid", "Madrid");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Minsk", "Minsk");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Moscow", "Moscow");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Paris", "Paris");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Prague", "Prague");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Riga", "Riga");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Rome", "Rome");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Samara", "Samara");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Sarajevo", "Sarajevo");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Skopje", "Skopje");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Sofia", "Sofia");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Stockholm", "Stockholm");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Tallinn", "Tallinn");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Vienna", "Vienna");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Vilnius", "Vilnius");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Volgograd", "Volgograd");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Warsaw", "Warsaw");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Europe/Zagreb", "Zagreb");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Apia", "Samoa");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Auckland", "Auckland");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Chatham", "Chatham Is.");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Fakaofo", "Tokelau Is.");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Fiji", "Fiji");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Guadalcanal", "Solomon Is.");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Guam", "Guam");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Honolulu", "Hawaii");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Majuro", "Marshall Is.");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Midway", "Midway Island");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Noumea", "New Caledonia");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Pago_Pago", "American Samoa");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Port_Moresby", "Port Moresby");
+        TIMEZONE_ID_TO_INAT_TIMEZONE.put("Pacific/Tongatapu", "Nuku'alofa");
+    }
 
     public static final String USER = "user";
     public static final String AUTHENTICATION_FAILED = "authentication_failed";
@@ -372,6 +516,8 @@ public class INaturalistService extends IntentService {
     private int mLastStatusCode = 0;
     private Object mObservationLock = new Object();
 
+    private Location mLastLocation = null;
+
     public enum LoginType {
         PASSWORD,
         GOOGLE,
@@ -508,6 +654,25 @@ public class INaturalistService extends IntentService {
                     BetterCursor bc = new BetterCursor(c);
                     int lastId = bc.getInteger(Observation.ID);
                     mPreferences.edit().putInt("last_downloaded_id", lastId).commit();
+                } else {
+                    // No observations - probably a new user
+
+                    // Update the user's timezone (in case we registered via FB/G+)
+                    getTimezoneByCurrentLocation(new IOnTimezone() {
+                    @Override
+                    public void onTimezone(String timezoneName) {
+                        Log.d(TAG, "Detected Timezone: " + timezoneName);
+
+                        if (timezoneName != null) {
+                            try {
+                                updateUserTimezone(timezoneName);
+                            } catch (AuthenticationException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+
                 }
                 c.close();
                 if (success) {
@@ -657,12 +822,27 @@ public class INaturalistService extends IntentService {
                 String username = intent.getStringExtra(USERNAME);
                 String license = intent.getStringExtra(LICENSE);
 
-                String error = registerUser(email, password, username, license);
+                getTimezoneByCurrentLocation(new IOnTimezone() {
+                    @Override
+                    public void onTimezone(String timezoneName) {
+                        Log.d(TAG, "Detected Timezone: " + timezoneName);
 
-                Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
-                reply.putExtra(REGISTER_USER_STATUS, error == null);
-                reply.putExtra(REGISTER_USER_ERROR, error);
-                sendBroadcast(reply);
+                        String error = null;
+                        try {
+                            error = registerUser(email, password, username, license, timezoneName);
+                        } catch (AuthenticationException e) {
+                            e.printStackTrace();
+                            error = e.toString();
+                        }
+
+                        Intent reply = new Intent(ACTION_REGISTER_USER_RESULT);
+                        reply.putExtra(REGISTER_USER_STATUS, error == null);
+                        reply.putExtra(REGISTER_USER_ERROR, error);
+                        sendBroadcast(reply);
+
+                    }
+                });
+
 
             } else if (action.equals(ACTION_GET_PROJECT_NEWS)) {
                 int projectId = intent.getIntExtra(PROJECT_ID, 0);
@@ -1752,7 +1932,10 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalIdentificationResults(BetterJSONObject results) {
         if (results == null) return null;
 
-        JSONArray identificationResults = results.getJSONArray("results").getJSONArray();
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
+        JSONArray identificationResults = innerResults.getJSONArray();
 
         if (identificationResults != null) {
             JSONArray minimizedResults = new JSONArray();
@@ -1771,7 +1954,10 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalObserverResults(BetterJSONObject results) {
         if (results == null) return null;
 
-        JSONArray observerResults = results.getJSONArray("results").getJSONArray();
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
+        JSONArray observerResults = innerResults.getJSONArray();
 
         if (observerResults != null) {
             JSONArray minimizedResults = new JSONArray();
@@ -1791,9 +1977,12 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalSpeciesResults(BetterJSONObject results) {
         if (results == null) return null;
 
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
         // Minimize results - save only basic info for each observation (better memory usage)
+        JSONArray speciesResults = innerResults.getJSONArray();
         JSONArray minimizedResults = new JSONArray();
-        JSONArray speciesResults = results.getJSONArray("results").getJSONArray();
 
         if (speciesResults != null) {
             for (int i = 0; i < speciesResults.length(); i++) {
@@ -1810,9 +1999,12 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getMinimalObservationResults(BetterJSONObject results) {
         if (results == null) return null;
 
+        SerializableJSONArray innerResults = results.getJSONArray("results");
+        if (innerResults == null) return null;
+
         // Minimize results - save only basic info for each observation (better memory usage)
+        JSONArray observationResults = innerResults.getJSONArray();
         JSONArray minimizedObservations = new JSONArray();
-        JSONArray observationResults = results.getJSONArray("results").getJSONArray();
 
         if (observationResults != null) {
             for (int i = 0; i < observationResults.length(); i++) {
@@ -3028,6 +3220,29 @@ public class INaturalistService extends IntentService {
     }
 
     // Updates a user's inat network settings
+    private JSONObject updateUserTimezone(String timezone) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("user[time_zone]", timezone));
+
+        try {
+            JSONObject paramsJson = new JSONObject();
+            JSONObject userJson = new JSONObject();
+            userJson.put("time_zone", timezone);
+            paramsJson.put("user", userJson);
+            JSONArray array = put(API_HOST + "/users/" + mLogin, paramsJson);
+            if ((mResponseErrors != null) || (array == null)) {
+                // Couldn't update user
+                return null;
+            } else {
+                return array.optJSONObject(0);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // Updates a user's inat network settings
     private JSONObject updateUserNetwork(int siteId) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("user[site_id]", String.valueOf(siteId)));
@@ -3072,8 +3287,54 @@ public class INaturalistService extends IntentService {
         }
     }
 
+    interface IOnTimezone {
+        void onTimezone(String timezoneName);
+    }
+
+    private void getTimezoneByCurrentLocation(IOnTimezone cb) {
+        getLocation(new IOnLocation() {
+            @Override
+            public void onLocation(Location location) {
+                if (location == null) {
+                    // Couldn't retrieve current location
+                    cb.onTimezone(null);
+                    return;
+                }
+
+                // Convert coordinates to timezone
+                GeoApiContext context = new GeoApiContext.Builder()
+                    .apiKey(getString(R.string.gmaps2_api_key))
+                    .build();
+
+                LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                String zoneIdName = null;
+
+                try {
+                    TimeZone zone = TimeZoneApi.getTimeZone(context, currentLocation).await();
+                    zoneIdName = zone.getID();
+                } catch (Exception exc) {
+                    // Couldn't convert coordinates to timezone
+                    exc.printStackTrace();
+                    cb.onTimezone(null);
+                    return;
+                }
+
+                // Next, convert from standard zone name into iNaturalist-API-accepted name
+                if (!TIMEZONE_ID_TO_INAT_TIMEZONE.containsKey(zoneIdName)) {
+                    // Timezone is unsupported by iNaturalist
+                    cb.onTimezone(null);
+                    return;
+                }
+
+                String zoneName = TIMEZONE_ID_TO_INAT_TIMEZONE.get(zoneIdName);
+                cb.onTimezone(zoneName);
+            }
+        });
+    }
+
+
     // Registers a user - returns an error message in case of an error (null if successful)
-    private String registerUser(String email, String password, String username, String license) throws AuthenticationException {
+    private String registerUser(String email, String password, String username, String license, String timezone) throws AuthenticationException {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("user[email]", email));
         params.add(new BasicNameValuePair("user[login]", username));
@@ -3087,6 +3348,9 @@ public class INaturalistService extends IntentService {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
         params.add(new BasicNameValuePair("user[locale]", deviceLanguage));
+        if (timezone != null) {
+            params.add(new BasicNameValuePair("user[time_zone]", timezone));
+        }
 
         post(HOST + "/users.json", params, false);
         if (mResponseErrors != null) {
@@ -5586,6 +5850,8 @@ public class INaturalistService extends IntentService {
         Location location = locationManager.getLastKnownLocation(provider);
         Log.e(TAG, "getLocationFromGPS: " + location);
 
+        mLastLocation = location;
+
         return location;
     }
 
@@ -5603,6 +5869,7 @@ public class INaturalistService extends IntentService {
             // Failed - try and return last place using GPS
             return getLocationFromGPS();
         } else {
+            mLastLocation = location;
             return location;
         }
     }

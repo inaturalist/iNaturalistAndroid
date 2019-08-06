@@ -400,7 +400,13 @@ public class ImageUtils {
                 if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
                     // Resize bitmap using Lanczos algorithm (provides smoother/better results than the
                     // built-in Android resize methods)
-                    resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
+                    try {
+                        resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
+                    } catch (Throwable exc) {
+                        Log.e(TAG, "Crashed while using SmoothRescale library - resizing using Android OS");
+                        exc.printStackTrace();
+                        resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
+                    }
                 } else {
                     // The Smooth rescale library has issues with Older Android versions (causes crashes) - use
                     // built-in Android resizing

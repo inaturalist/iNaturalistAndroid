@@ -1169,7 +1169,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 // Hide keyboard
                 getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                if (getCurrentFocus() != null) imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
         }, new DialogInterface.OnClickListener() {
             @Override
