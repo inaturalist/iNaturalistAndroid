@@ -445,6 +445,7 @@
     <string name="visually_similar_seen_nearby">Візуально схожі / Зустрічалися поблизу</string>
     <string name="seen_nearby">Зустрічалися поблизу</string>
     <string name="enlarge">Збільшити</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Показати підцарства</string>
     <string name="invalid_photo_extension">Помилка імпортування фото: можна імпортувати лише файли з розширенням JPG, JPEG, PNG</string>
     <string name="taxon_has_no_photos">Цей таксон немає фотографій.</string>
@@ -675,9 +676,14 @@
     <string name="prefers_scientific_name_first">Показувати наукові назви першими</string>
     <string name="prefers_scientific_name_first_description">Показувати наукові назви перед загальними.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Канада: Канадська федерація дикої природи, Королівський музей Онтаріо, некомерційна організація NatureServe, Канада і урядова установа Парки Канади забезпечують роботу iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Інститут Гумбольдта забезпечує роботу Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[C<![CDATA[olombia: Інститут Гумбольдта забезпечує роботу Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]]]><![CDATA[>]]></string>
     <string name="network_credit_naturalista"><![CDATA[Мексика: Національний комітет із знання та використання біорізноманіття (CONABIO), забезпечує роботу NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Нова Зеландія: Новозеландська мережа реєстрації біорізноманіття забезпечує роботу iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Португалія: Асоціація «Біорізноманіття для всіх» Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Панама: Міністерство навколишнього середовища забезпечує роботу iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Помітити всі як переглянуті</string>
+    <string name="content_hidden">Content Hidden</string>
+    <string name="show_hidden_content">Show Hidden Content</string>
+    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
 </resources>

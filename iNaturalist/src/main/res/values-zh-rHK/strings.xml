@@ -439,6 +439,7 @@
     <string name="visually_similar_seen_nearby">看起來相似/附近曾見過</string>
     <string name="seen_nearby">附近曾見過</string>
     <string name="enlarge">放大</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">查看子項目</string>
     <string name="invalid_photo_extension">上載照片時出錯： 只能上載照片的副檔名為JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">這分類群沒有照片。</string>
@@ -669,9 +670,14 @@
     <string name="prefers_scientific_name_first">學名優先顯示</string>
     <string name="prefers_scientific_name_first_description">在俗名之前顯示學名</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[加拿大：由加拿大野生動物聯盟(Canadian Wildlife Federation)、安大略皇家博物館(Royal Ontario Museum)、NatureServe Canada，和加拿大公園局(Parks Canada)共同營運 iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)。]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: 洪堡研究所營運的 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[C<![CDATA[olombia: 洪堡研究所營運的 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]]]><![CDATA[>]]></string>
     <string name="network_credit_naturalista"><![CDATA[墨西哥：營運 NaturaLista 的國家生物多樣性使用及知識委員會(Comisión nacional para el conocimiento y uso de la biodiversidad; CONABIO)  (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[紐西蘭：營運 iNaturalist NZ  的紐西蘭生物多樣性紀錄網路— Mātaki Taiao (New Zealand Biodiversity Recording Network; inaturalist.nz)。]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 營運 Biodisy4all 的全民生物多樣性協會 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[巴拿馬: 營運 iNaturalistPa 的環境部 (Ministerio de Ambiente; <a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Mark all as viewed</string>
+    <string name="content_hidden">Content Hidden</string>
+    <string name="show_hidden_content">Show Hidden Content</string>
+    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
 </resources>
