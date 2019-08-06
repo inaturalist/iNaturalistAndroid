@@ -670,7 +670,7 @@
     <string name="prefers_scientific_name_first">Önce bilimsel isimleri göster</string>
     <string name="prefers_scientific_name_first_description">Bilimsel isimleri ortak isimlerden önce gösterin.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Kanada Yaban Hayatı Federasyonu, Royal Ontario Müzesi, NatureServe Kanada ve iNaturalist Canada’yı işleten Canada Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[<![CDATA[Kolombiya: Naturalista\'da çalışan Instituto Humboldt (<a href = "https://colombia.inaturalist.org">>colombia.inaturalist.org </a>)]]]]><![CDATA[>]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolombiya: Naturalista\'da çalışan Instituto Humboldt (<a href = "https://colombia.inaturalist.org">>colombia.inaturalist.org </a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Meksika: NaturaLista\'yı çalıştıran biyoçeşitliliğin (CONABIO) bilgisi ve kullanımı için Ulusal Komisyon (<a href="https://naturalista.mx"> NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Yeni Zelanda: iNaturalist NZ - Mātaki Taiao\'da faaliyet gösteren Yeni Zelanda Biyoçeşitlilik Kayıt Ağı (<a href="https://inaturalist.nz"> inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portekiz: Tüm Çalışan Biyolojik Biodiversity4All Derneği İçin Biyoçeşitlilik (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
