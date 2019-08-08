@@ -448,6 +448,7 @@
     <string name="exploring_all">לחקור את כל</string>
     <string name="nearby">בקרבת מקום</string>
     <string name="couldnt_load_results">שגיאה בהעלאת תוצאות: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG רמת מחקר</string>
     <string name="taxon_search_hint">למשל ציפורים, פרפרים</string>
     <string name="location_search_hint">למשל עיר, מדינה, פארק, ארץ...</string>

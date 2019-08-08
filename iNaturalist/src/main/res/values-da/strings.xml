@@ -448,6 +448,7 @@
     <string name="exploring_all">Udforsker alt</string>
     <string name="nearby">I nærheden</string>
     <string name="couldnt_load_results">Kunne ikke indlæse resultater: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">FK</string>
     <string name="taxon_search_hint">f.eks. fugle, monark</string>
     <string name="location_search_hint">f.eks. park, by, stat, land...</string>
@@ -676,8 +677,8 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos, som driver Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente, som driver iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markér alle som set</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content_hidden">Indhold skjult</string>
+    <string name="show_hidden_content">Vis Skjult Indhold</string>
+    <string name="content_hidden_because">Indhold skjult af @%1$s d. %2$s fordi: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontakt Support</a>]]></string>
 </resources>

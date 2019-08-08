@@ -448,6 +448,7 @@
     <string name="exploring_all">浏览全部</string>
     <string name="nearby">附近</string>
     <string name="couldnt_load_results">无法加载结果: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">例如：鸟类，君主斑蝶</string>
     <string name="location_search_hint">例如：城市，州，公园，国家</string>

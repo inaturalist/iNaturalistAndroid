@@ -448,6 +448,7 @@
     <string name="exploring_all">Tout explorer</string>
     <string name="nearby">À proximité</string>
     <string name="couldnt_load_results">Impossible de charger les résultats : %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">par ex. les oiseaux, monarque</string>
     <string name="location_search_hint">par ex. ville, état, parc, pays...</string>
@@ -655,7 +656,7 @@
     <string name="location_specified">Lieu indiqué</string>
     <string name="has_photos_or_sounds">A des photos ou des sons</string>
     <string name="has_id_supported_by_two_or_more">ID soutenue par deux ou plus</string>
-    <string name="date_is_accurate">La date est exacte</string>
+    <string name="date_is_accurate">La date est précise</string>
     <string name="location_is_accurate">Le lieu est exact</string>
     <string name="organism_is_wild">L\'organisme est sauvage</string>
     <string name="evidence_of_organism">Preuve de l\'organisme</string>
@@ -676,8 +677,8 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Association de Biodiversité Pour Tous opérant Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama : Ministère de l\'Environnement opérant iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Marquer tout comme lu</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content_hidden">Contenu masqué</string>
+    <string name="show_hidden_content">Afficher le contenu masqué</string>
+    <string name="content_hidden_because">Contenu caché par @%1$s sur %2$s car : \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contacter l\'assistance</a>]]></string>
 </resources>

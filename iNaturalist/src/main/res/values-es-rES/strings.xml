@@ -448,6 +448,7 @@
     <string name="exploring_all">Explorarlo todo</string>
     <string name="nearby">Cercano</string>
     <string name="couldnt_load_results">No se han podido cargar los resultados: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">GR</string>
     <string name="taxon_search_hint">por ejemplo: pájaros, monarca</string>
     <string name="location_search_hint">por ejemplo: ciudad, estado, parque, país...</string>

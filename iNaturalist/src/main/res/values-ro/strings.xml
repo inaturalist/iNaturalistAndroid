@@ -448,6 +448,7 @@
     <string name="exploring_all">Explorează tot</string>
     <string name="nearby">În apropiere</string>
     <string name="couldnt_load_results">Nu au putut fi încărcate rezultatele: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">NC</string>
     <string name="taxon_search_hint">ex. păsări, fluture monarh</string>
     <string name="location_search_hint">ex. oraş, stat, parc, ţară...</string>

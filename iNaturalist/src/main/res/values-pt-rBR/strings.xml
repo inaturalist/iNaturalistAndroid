@@ -448,6 +448,7 @@
     <string name="exploring_all">Explorar todos</string>
     <string name="nearby">Nas Proximidades</string>
     <string name="couldnt_load_results">Não foi possível carregar os resultados: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">por exemplo, aves, monarca</string>
     <string name="location_search_hint">por exemplo, cidade, estado, parque, país...</string>
@@ -551,7 +552,7 @@
     <string name="potential_disagreement">Possível desacordo</string>
     <string name="do_you_think_this_could_be"><![CDATA[A evidência fornecida é suficiente para confirmar que se trata de <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[Não sei, mas tenho a certeza que se trata de <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Não, mas faz parte de <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Não, mas é um membro de <b>%1$s</b>.]]></string>
     <string name="submit">Enviar</string>
     <string name="change_password">Alterar senha</string>
     <string name="search_projects_youve_joined">Procurar projetos dos quais você faz parte...</string>

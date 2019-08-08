@@ -448,6 +448,7 @@
     <string name="exploring_all">Preskúmať všetko</string>
     <string name="nearby">Blízko</string>
     <string name="couldnt_load_results">Nemožno načítať výsledky: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">PU</string>
     <string name="taxon_search_hint">napr. vtáky, babôčka</string>
     <string name="location_search_hint">napr. mesto, štát, park...</string>

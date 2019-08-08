@@ -448,6 +448,7 @@
     <string name="exploring_all">Tümü keşfediliyor</string>
     <string name="nearby">Yakındaki</string>
     <string name="couldnt_load_results">Sonuçlar yüklenemedi : %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">örn: kuşlar,şah kelebek</string>
     <string name="location_search_hint">örn: şehir,eyalet,park,ülke...</string>

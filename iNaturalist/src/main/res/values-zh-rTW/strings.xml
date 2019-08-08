@@ -448,6 +448,7 @@
     <string name="exploring_all">探索全部項目</string>
     <string name="nearby">附近的</string>
     <string name="couldnt_load_results">無法載入結果: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">研究等級</string>
     <string name="taxon_search_hint">如：鳥類、君主斑蝶</string>
     <string name="location_search_hint">例如：城市、州、公園、鄉下...</string>
@@ -675,9 +676,9 @@
     <string name="network_credit_naturewatchnz"><![CDATA[紐西蘭：營運 iNaturalist NZ  的紐西蘭生物多樣性紀錄網路— Mātaki Taiao (New Zealand Biodiversity Recording Network; inaturalist.nz)。]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 營運 Biodisy4all 的全民生物多樣性協會 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[巴拿馬: 營運 iNaturalistPa 的環境部 (Ministerio de Ambiente; <a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="mark_all_as_viewed">標記為已讀</string>
+    <string name="content_hidden">內容已隱藏</string>
+    <string name="show_hidden_content">顯示隱藏內容</string>
+    <string name="content_hidden_because">因為「%3$s」，所以在%2$s的內容被@%1$s隱藏起來。</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">聯絡支援</a>]]></string>
 </resources>

@@ -454,6 +454,7 @@
     <string name="exploring_all">Дослідити все</string>
     <string name="nearby">Поблизу</string>
     <string name="couldnt_load_results">Не вдалося завантажити результати: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">ДК</string>
     <string name="taxon_search_hint">наприклад, птахи, монарх</string>
     <string name="location_search_hint">наприклад парки, міста, області, країни...</string>

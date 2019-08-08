@@ -449,6 +449,7 @@
     <string name="exploring_all">Изучение всех</string>
     <string name="nearby">Поблизости</string>
     <string name="couldnt_load_results">Не удалось загрузить результаты: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">например, птицы, монарх</string>
     <string name="location_search_hint">например город, парк, страны...</string>

@@ -448,6 +448,7 @@
     <string name="exploring_all">すべての探索</string>
     <string name="nearby">現在地の近く</string>
     <string name="couldnt_load_results">結果を読み込みできませんでした: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">例えば、鳥、オオカバマダラ</string>
     <string name="location_search_hint">例えば、都市、都道府県、公園、国...</string>
