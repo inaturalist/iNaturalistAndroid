@@ -439,6 +439,7 @@
     <string name="visually_similar_seen_nearby">Visualment similar / vist a prop</string>
     <string name="seen_nearby">Vist a prop</string>
     <string name="enlarge">Augmenta</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Veure fills</string>
     <string name="invalid_photo_extension">Error d\'importació de foto(s): només pot importar fitxers de fotos amb extensió JPEG/JPG/PNG</string>
     <string name="taxon_has_no_photos">Aquest tàxon no té fotos.</string>
@@ -447,6 +448,7 @@
     <string name="exploring_all">Exploreu-lo tot</string>
     <string name="nearby">Als voltants</string>
     <string name="couldnt_load_results">No s\'han pogut carregar els resultats: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">GR</string>
     <string name="taxon_search_hint">p.e. ocells, monarca</string>
     <string name="location_search_hint">p.e. ciutat, estat, parc, país...</string>
@@ -669,9 +671,14 @@
     <string name="prefers_scientific_name_first">Mostrar primer els noms científics</string>
     <string name="prefers_scientific_name_first_description">Mostra els noms científics abans dels noms comuns.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: la Canadian Wildlife Federation, el Royal Ontario Museum, NatureServe Canada, i Parks Canada mantenen iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: l\'Instituto Humboldt manté Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: l\'Instituto Humboldt manté Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Mexico: la Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) manté NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Nova Zelanda: La New Zealand Biodiversity Recording Network manté iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: l\'Associação Biodiversidade Para Todos manté Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamà: el Ministerio de Ambiente manté iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Marca tot com a vist</string>
+    <string name="content_hidden">Content Hidden</string>
+    <string name="show_hidden_content">Show Hidden Content</string>
+    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
 </resources>

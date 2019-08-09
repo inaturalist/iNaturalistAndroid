@@ -439,6 +439,7 @@
     <string name="visually_similar_seen_nearby">視覺上相似/附近曾見過</string>
     <string name="seen_nearby">附近曾見過</string>
     <string name="enlarge">放大</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">查看子項目</string>
     <string name="invalid_photo_extension">匯入照片時出錯： 只能匯入照片的副檔名為JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">這分類群沒有照片。</string>
@@ -447,6 +448,7 @@
     <string name="exploring_all">探索全部項目</string>
     <string name="nearby">附近的</string>
     <string name="couldnt_load_results">無法載入結果: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">研究等級</string>
     <string name="taxon_search_hint">如：鳥類、君主斑蝶</string>
     <string name="location_search_hint">例如：城市、州、公園、鄉下...</string>
@@ -669,9 +671,14 @@
     <string name="prefers_scientific_name_first">學名顯示優先</string>
     <string name="prefers_scientific_name_first_description">在俗名之前顯示學名</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[加拿大：由加拿大野生動物聯盟(Canadian Wildlife Federation)、安大略皇家博物館(Royal Ontario Museum)、NatureServe Canada，和加拿大公園局(Parks Canada)共同營運 iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)。]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: 洪堡研究所營運的 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: 洪堡研究所營運的 Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[墨西哥：營運 NaturaLista 的國家生物多樣性使用及知識委員會(Comisión nacional para el conocimiento y uso de la biodiversidad; CONABIO)  (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[紐西蘭：營運 iNaturalist NZ  的紐西蘭生物多樣性紀錄網路— Mātaki Taiao (New Zealand Biodiversity Recording Network; inaturalist.nz)。]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[葡萄牙: 營運 Biodisy4all 的全民生物多樣性協會 (Associação Biodiversidade Para Todos; <a href="https://biodiversity4all.org">biodistiny4al. org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[巴拿馬: 營運 iNaturalistPa 的環境部 (Ministerio de Ambiente; <a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">標記為已讀</string>
+    <string name="content_hidden">內容已隱藏</string>
+    <string name="show_hidden_content">顯示隱藏內容</string>
+    <string name="content_hidden_because">因為「%3$s」，所以在%2$s的內容被@%1$s隱藏起來。</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">聯絡支援</a>]]></string>
 </resources>

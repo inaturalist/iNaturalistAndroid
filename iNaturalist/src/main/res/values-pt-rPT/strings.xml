@@ -439,6 +439,7 @@
     <string name="visually_similar_seen_nearby">Semelhante visualmente / Visto nas Proximidades</string>
     <string name="seen_nearby">Visto nas Proximidades</string>
     <string name="enlarge">Ampliar</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Ver Taxa Inferiores</string>
     <string name="invalid_photo_extension">Erro ao importar foto(s): só pode importar ficheiros de fotos com as extensões JPG/JPEG/PNG</string>
     <string name="taxon_has_no_photos">Este táxon não tem fotos.</string>
@@ -447,6 +448,7 @@
     <string name="exploring_all">Explorar Tudo</string>
     <string name="nearby">Nas Proximidades</string>
     <string name="couldnt_load_results">Não foi possível carregar resultados: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">GP</string>
     <string name="taxon_search_hint">por exemplo, aves, Monarchidae</string>
     <string name="location_search_hint">por exemplo, cidade, estado, parque, país...</string>
@@ -671,9 +673,14 @@ nossa comunidade de código aberto]]></string>
     <string name="prefers_scientific_name_first">Mostrar os nomes científicos em primeiro</string>
     <string name="prefers_scientific_name_first_description">Mostrar os nomes científicos antes dos nomes comuns.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Canadá: o Canadian Wildlife Federation, o Royal Ontario Museum, o NatureServe Canada, e os Parks Canada que gerem o iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>).]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olômbia: o Instituto Humboldt que gere o Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colômbia: o Instituto Humboldt que gere o Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[México: a Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) que gere o NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>).]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Nova Zelândia: o New Zealand Biodiversity Recording Network que gere o iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>).]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: a Associação Biodiversidade Para Todos que gere o Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>).]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamá: o Ministerio de Ambiente que gere o iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>).]]></string>
+    <string name="mark_all_as_viewed">Mark all as viewed</string>
+    <string name="content_hidden">Content Hidden</string>
+    <string name="show_hidden_content">Show Hidden Content</string>
+    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
 </resources>

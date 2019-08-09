@@ -439,6 +439,7 @@
     <string name="visually_similar_seen_nearby">Görme Şekli Benzerliği / Yakında Görülmüştür</string>
     <string name="seen_nearby">Yakında Görüldü</string>
     <string name="enlarge">Genişlet</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Çocuk Görünümü</string>
     <string name="invalid_photo_extension">Fotoğraf(lar) alma hatası: Yalnızca JPG/JPEG/PNG uzantılı fotoğraflar alınabilir.</string>
     <string name="taxon_has_no_photos">Bu taksonda hiç fotoğraf bulunmuyor.</string>
@@ -447,6 +448,7 @@
     <string name="exploring_all">Tümü keşfediliyor</string>
     <string name="nearby">Yakındaki</string>
     <string name="couldnt_load_results">Sonuçlar yüklenemedi : %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">örn: kuşlar,şah kelebek</string>
     <string name="location_search_hint">örn: şehir,eyalet,park,ülke...</string>
@@ -674,4 +676,9 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Yeni Zelanda: iNaturalist NZ - Mātaki Taiao\'da faaliyet gösteren Yeni Zelanda Biyoçeşitlilik Kayıt Ağı (<a href="https://inaturalist.nz"> inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portekiz: Tüm Çalışan Biyolojik Biodiversity4All Derneği İçin Biyoçeşitlilik (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Doğa Araştırmacısını işleten Çevre Bakanlığı (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Mark all as viewed</string>
+    <string name="content_hidden">Content Hidden</string>
+    <string name="show_hidden_content">Show Hidden Content</string>
+    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
 </resources>

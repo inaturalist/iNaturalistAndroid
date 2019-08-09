@@ -189,8 +189,8 @@
     <string name="text"><![CDATA[<b>Text:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Das iNaturalist-Hauptnetzwerk. Auswahl von OK wird deine App dem globalen iNaturalist-Netzwerk zuordnen.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista ist Mitglied des iNaturalist Network in Mexiko. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ ist Mitglied des iNaturalist Network in Neuseeland. Lokale Institutionen, die iNaturalist NZ unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
@@ -238,7 +238,7 @@
     <string name="login_signup">Einloggen / Anmelden</string>
     <string name="please_sign_in_via_settings_for_guides">Du musst eingeloggt sein, um deine Guides anzusehen.</string>
     <string name="please_sign_in_for_updates">Du musst eingeloggt sein, um deine Updates anzusehen.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Mit der Nutzung von iNaturalist erklären Sie sich mit den <b><a href="https://www.inaturalist.org/pages/terms">Geschäftsbedingungen</a></b> und <b><a href="https://www.inaturalist.org/pages/privacy">Datenschutzerklärung</a></b> einverstanden.]]></string>
     <string name="activity">Aktivität</string>
     <string name="camera">Foto machen</string>
     <string name="upload_photo">Bild auswählen</string>
@@ -344,9 +344,9 @@
     <string name="language">Sprache</string>
     <string name="version">Version</string>
     <string name="inat_network">iNaturalist Netzwerk</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">Das iNaturalist Network ist ein Regelwerk zur Lokalisierung der iNaturalist Community. Die Netzwerkstandorte werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die lokale Biodiversität zu fördern.</string>
     <string name="more_info">Weitere Infos</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">Netzwerkzuordnung auswählen</string>
     <string name="help">Hilfe</string>
     <string name="stop">Stop</string>
     <string name="resume">Fortsetzen</string>
@@ -439,6 +439,7 @@
     <string name="visually_similar_seen_nearby">Optisch Ähnliche / In der Nähe gesehen</string>
     <string name="seen_nearby">In der Nähe gesehen</string>
     <string name="enlarge">Vergrößern</string>
+    <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Kinder anzeigen</string>
     <string name="invalid_photo_extension">Fehler beim Importieren des/der Fotos: Nur Dateien mit JPG/JPEG/PNG-Endung können importiert werden</string>
     <string name="taxon_has_no_photos">Von diesem Taxon existiert kein Foto.</string>
@@ -447,6 +448,7 @@
     <string name="exploring_all">Alle entdecken</string>
     <string name="nearby">In der Nähe</string>
     <string name="couldnt_load_results">Konnte Ergebnisse nicht laden: %1$s</string>
+    <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">z.B. Vögel, Monarch</string>
     <string name="location_search_hint">z.B. Stadt, Park, Land...</string>
@@ -557,7 +559,7 @@
     <string name="must_be_connected_to_load_more_obs">Sie müssen mit dem Internet verbunden sein, um weitere Beobachtungen zu laden</string>
     <string name="inat_about_title">iNaturalist ist eine gemeinsame Initiative der California Academy of Sciences und der National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Das internationale iNaturalist-Netzwerk unterstützt lokalisierte, voll integrierte, iNaturalist-basierte Websites in den folgenden Ländern, dank der Unterstützung durch angeschlossene Partnerorganisationen.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Danksagungen</string>
     <string name="password_changed">Das von der App verwendete Passwort funktioniert nicht mehr. Haben Sie Ihr Passwort auf der Website geändert? Bitte geben Sie hier das Neue ein</string>
@@ -668,10 +670,15 @@
     <string name="donate_to_inaturalist">An iNaturalist spenden</string>
     <string name="prefers_scientific_name_first">Wissenschaftliche Namen zuerst anzeigen</string>
     <string name="prefers_scientific_name_first_description">Wissenschaftliche Namen vor allgemeinen Namen anzeigen.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia">C<![CDATA[olombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, das Royal Ontario Museum, NatureServe Canada und Parks Canada, die iNaturalist Canada betreiben (<a href="https://inaturalist.ca">inaturalist.ca</a>).]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt, das Naturalista betreibt (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexiko: Nationale Kommission für das Wissen und die Nutzung der biologischen Vielfalt (CONABIO) unter der Leitung von NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Neuseeland: Neuseeland Biodiversitätserfassungsnetzwerk mit iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Biodiversität für alle, die Biodiversity4All betreiben (<a href="https://biodiversity4all.org"> Biodiversity4All.org </a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Umweltministerium betreibt iNaturalistPa (<a href="https://panama.inaturalist.org"> panama.inaturalist.org </a>)]]></string>
+    <string name="mark_all_as_viewed">Alle als „Gesehen” kennzeichnen</string>
+    <string name="content_hidden">Inhalt ausgeblendet</string>
+    <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
+    <string name="content_hidden_because">Inhalt von @%1$s auf %2$s ausgeblendet. Grund: %3$s</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Hilfe anfordern</a>]]></string>
 </resources>
