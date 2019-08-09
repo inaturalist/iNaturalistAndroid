@@ -35,10 +35,12 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -295,6 +297,18 @@ public class INaturalistApp extends MultiDexApplication {
     	settingsEditor.apply();
 	}
 
+    public void setUserRoles(Set<String> roles) {
+    	SharedPreferences settings = getPrefs();
+    	Editor settingsEditor = settings.edit();
+
+    	settingsEditor.putStringSet("user_roles", roles);
+    	settingsEditor.apply();
+	}
+
+    public Set<String> getUserRoles() {
+    	SharedPreferences settings = getPrefs();
+        return settings.getStringSet("user_roles", new HashSet<String>());
+	}
 
 	public boolean getAutoSync() {
     	SharedPreferences settings = getPrefs();

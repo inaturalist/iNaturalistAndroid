@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
@@ -325,8 +326,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					// Hidden comment
 					comment.setText(Html.fromHtml(mContext.getString(R.string.content_hidden)));
 					comment.setTypeface(null, Typeface.ITALIC);
-					showHiddenContent.setVisibility(View.VISIBLE);
 					userDetails.setVisibility(View.INVISIBLE);
+					showHiddenContent.setVisibility(allowToShowHiddenContent(item) ? View.VISIBLE : View.GONE);
                 } else {
 					comment.setText(Html.fromHtml(item.getString("body")));
 					comment.setTypeface(null, Typeface.NORMAL);
@@ -348,8 +349,9 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					comment.setText(Html.fromHtml(mContext.getString(R.string.content_hidden)));
 					comment.setVisibility(View.VISIBLE);
 					comment.setTypeface(null, Typeface.ITALIC);
-					showHiddenContent.setVisibility(View.VISIBLE);
 					contentHidden.setVisibility(View.VISIBLE);
+					showHiddenContent.setVisibility(allowToShowHiddenContent(item) ? View.VISIBLE : View.GONE);
+
 				} else if (body != null && body.length() > 0) {
 					comment.setText(Html.fromHtml(body));
 					comment.setTypeface(null, Typeface.NORMAL);
@@ -533,6 +535,18 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 		view.setTag(item);
 
 		return view;
+	}
+
+	private boolean allowToShowHiddenContent(BetterJSONObject item) {
+		// Curators and admins can see hidden content
+		Set<String> roles = mApp.getUserRoles();
+		if (roles.contains("admin") || roles.contains("curator")) return true;
+
+		// Owner of the comment/ID can see hidden content
+		String username = item.getJSONObject("user").optString("login");
+		if (username.equalsIgnoreCase(mLogin)) return true;
+
+		return false;
 	}
 
     public static String formatIdDate(Context context, Timestamp postDate) {

@@ -1119,6 +1119,12 @@ public class INaturalistService extends IntentService {
                 if (user != null) {
                     // Update settings
                     mApp.setShowScientificNameFirst(user.getJSONObject().optBoolean("prefers_scientific_name_first", false));
+                    JSONArray arr = user.getJSONObject().optJSONArray("roles");
+                    HashSet roles = new HashSet();
+                    for (int i = 0; i < arr.length(); i++) {
+                        roles.add(arr.optString(i));
+                    }
+                    mApp.setUserRoles(roles);
 
                     Intent reply = new Intent(REFRESH_CURRENT_USER_SETTINGS_RESULT);
                     reply.putExtra(USER, user);
