@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.SurfaceTexture;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +21,9 @@ import com.flurry.android.FlurryAgent;
 import com.livefront.bridge.Bridge;
 import com.melnykov.fab.FloatingActionButton;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
-import java.util.Random;
 
 public class RecordSoundActivity extends AppCompatActivity implements SoundRecorder.OnRecordingStatus {
     private static String TAG = "RecordSoundActivity";
@@ -39,10 +41,16 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
     private SoundRecorder mRecorder;
     private String mOutputFilename;
 
-    private static final int MAX_SOUND_LINES = 1500;
+    private static final int MAX_SOUND_LINES = 300;
     private static final int SOUND_LINE_WIDTH = 4;
     private static final int SOUND_LINE_SPACING = 4;
-    private byte[] mSoundsValues = new byte[MAX_SOUND_LINES];
+    private static final float MAX_SOUND_VALUE = 500f;
+
+    private short[] mSoundsValues = new short[MAX_SOUND_LINES];
+    private int mSoundPlaybackIndex = 0;
+    private int mSoundWritingIndex = 0;
+    private int mMaxSamplesForScreenWidth = 0;
+
 
     private Handler mHandler = new Handler();
     private Runnable mUpdateTimer = new Runnable() {
@@ -67,7 +75,6 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
             }
         }
     };
-
     @Override
 	protected void onStart()
 	{
@@ -108,8 +115,12 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
         mVisualizerTexture.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-                // TODO
-                drawCurrentSoundWave();
+                Canvas canvas = mVisualizerTexture.lockCanvas();
+                int canvasWidth = canvas.getWidth();
+                mVisualizerTexture.unlockCanvasAndPost(canvas);
+
+                mMaxSamplesForScreenWidth = canvasWidth / (SOUND_LINE_WIDTH + SOUND_LINE_SPACING);
+                mSoundWritingIndex = mMaxSamplesForScreenWidth;
             }
             @Override
             public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
@@ -157,23 +168,41 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
         paint.setStrokeWidth(SOUND_LINE_WIDTH);
         paint.setStyle(Paint.Style.STROKE);
 
-        for (int i = 0; i < MAX_SOUND_LINES; i++) {
-            // TODO
-            mSoundsValues[i] = (byte)(new Random().nextInt(256));
+        Paint blackPaint = new Paint();
+        blackPaint.setColor(Color.parseColor("#000000"));
+        blackPaint.setStrokeWidth(SOUND_LINE_WIDTH);
+        blackPaint.setStyle(Paint.Style.STROKE);
 
-            float[] line = soundValueToLine(canvas, i);
+        int canvasWidth = canvas.getWidth();
+
+        for (int i = 0; (i < MAX_SOUND_LINES) && (i * (SOUND_LINE_WIDTH + SOUND_LINE_SPACING) <= canvasWidth); i++) {
+            // First, delete previous line
+            drawBlankSoundLine(canvas, i, blackPaint);
+
+            // Draw new line
+            short soundValue = mSoundsValues[(mSoundPlaybackIndex + i) % MAX_SOUND_LINES];
+            float[] line = soundValueToLine(canvas, i, soundValue);
             canvas.drawLine(line[0], line[1], line[2], line[3], paint);
         }
 
         mVisualizerTexture.unlockCanvasAndPost(canvas);
     }
 
-    private float[] soundValueToLine(Canvas canvas, int byteOffset) {
-        byte soundValue = mSoundsValues[byteOffset];
-        float lineHeight = (soundValue / 256f) * canvas.getHeight();
-        float yStart = (canvas.getHeight() - lineHeight) / 2;
-        float yEnd = yStart + lineHeight;
-        float xStart = byteOffset * (SOUND_LINE_WIDTH + SOUND_LINE_SPACING);
+    private void drawBlankSoundLine(Canvas canvas, int lineOffset, Paint blackPaint) {
+        float yStart = 0;
+        float yEnd = canvas.getHeight();
+        float xStart = lineOffset * (SOUND_LINE_WIDTH + SOUND_LINE_SPACING);
+        float xEnd = xStart;
+
+        canvas.drawLine(xStart, yStart, xEnd, yEnd, blackPaint);
+    }
+
+    private float[] soundValueToLine(Canvas canvas, int lineOffset, short soundValue) {
+        float xStart = lineOffset * (SOUND_LINE_WIDTH + SOUND_LINE_SPACING);
+
+        float centerY = canvas.getHeight() / 2f;
+        float yStart = centerY - (Math.min(1.0f, soundValue / MAX_SOUND_VALUE) * centerY);
+        float yEnd = canvas.getHeight() - yStart;
 
         return new float[] { xStart, yStart, xStart, yEnd };
     }
@@ -259,9 +288,29 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
         mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+
     @Override
     public void onSoundRecording(byte[] values, int count) {
-        Log.e("AAA", "Recording: " + count + ":" + (values[0] & 0xFF));
+        short[] shorts = new short[values.length / 2];
+        long total = 0;
+        ByteBuffer.wrap(values).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(shorts);
+
+        for (int i = 0; i < shorts.length; i++) {
+            total += shorts[i];
+        }
+
+        short average = (short) (total / shorts.length);
+
+        mSoundsValues[mSoundWritingIndex] = average;
+        mSoundWritingIndex++;
+        if (mSoundWritingIndex >= MAX_SOUND_LINES) mSoundWritingIndex = 0;
+
+        // Draw current sound wave
+        drawCurrentSoundWave();
+
+        // Move forward via the sound wave
+        mSoundPlaybackIndex += 1;
+        if (mSoundPlaybackIndex == MAX_SOUND_LINES) mSoundPlaybackIndex = 0;
     }
 
     @Override
