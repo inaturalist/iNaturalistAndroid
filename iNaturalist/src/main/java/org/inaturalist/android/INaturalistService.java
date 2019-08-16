@@ -3318,6 +3318,11 @@ public class INaturalistService extends IntentService {
                 try {
                     TimeZone zone = TimeZoneApi.getTimeZone(context, currentLocation).await();
                     zoneIdName = zone.getID();
+                } catch (NoClassDefFoundError exc) {
+                    // Not working on older Androids
+                    exc.printStackTrace();
+                    cb.onTimezone(null);
+                    return;
                 } catch (Exception exc) {
                     // Couldn't convert coordinates to timezone
                     exc.printStackTrace();
