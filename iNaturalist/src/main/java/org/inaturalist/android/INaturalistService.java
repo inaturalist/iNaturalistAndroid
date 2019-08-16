@@ -3039,7 +3039,7 @@ public class INaturalistService extends IntentService {
         // Remotely delete any locally-removed observations
         Cursor c = getContentResolver().query(Observation.CONTENT_URI,
                 Observation.PROJECTION,
-                "is_deleted = 1 AND user_login = '" + mLogin + "'",
+                "is_deleted = 1",
                 null,
                 Observation.DEFAULT_SORT_ORDER);
 
