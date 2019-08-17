@@ -426,6 +426,16 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             Intent serviceIntent2 = new Intent(INaturalistService.ACTION_REFRESH_CURRENT_USER_SETTINGS, null, this, INaturalistService.class);
             ContextCompat.startForegroundService(this, serviceIntent2);
         }
+
+        redownloadObservationsIfLocaleChanged();
+    }
+
+    private void redownloadObservationsIfLocaleChanged() {
+        if (!mApp.hasLocaleChanged()) return;
+
+        // User changed the phone's language - re-download all local observations with the new taxon names (in that new language)
+        Intent serviceIntent = new Intent(INaturalistService.ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON, null, this, INaturalistService.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     private void refreshViewState() {

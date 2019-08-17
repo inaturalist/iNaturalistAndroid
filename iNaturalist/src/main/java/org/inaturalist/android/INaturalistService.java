@@ -398,6 +398,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_GET_FEATURED_PROJECTS = "get_featured_projects";
     public static String ACTION_ADD_OBSERVATION_TO_PROJECT = "add_observation_to_project";
     public static String ACTION_REMOVE_OBSERVATION_FROM_PROJECT = "remove_observation_from_project";
+    public static String ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON = "redownload_observations_for_taxon";
     public static String ACTION_GET_ALL_GUIDES = "get_all_guides";
     public static String ACTION_GET_MY_GUIDES = "get_my_guides";
     public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
@@ -1608,6 +1609,9 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(ADD_OBSERVATION_TO_PROJECT_RESULT, result);
                 sendBroadcast(reply);
 
+            } else if (action.equals(ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON)) {
+                redownloadOldObservationsForTaxonNames();
+
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
                 int id = intent.getExtras().getInt(CHECK_LIST_ID);
                 SerializableJSONArray checkList = getCheckList(id);
@@ -2255,6 +2259,80 @@ public class INaturalistService extends IntentService {
                 photoCount + // For photos
                 projectFieldCount + // For updated/new obs project fields
                 projectObservationCount; // For updated/new observation project fields
+    }
+
+    // Re-download old local observations and update their taxon names (preferred common names) - used when user switches language
+    private void redownloadOldObservationsForTaxonNames() throws AuthenticationException {
+
+        // Get most recent observation
+        Cursor c = getContentResolver().query(Observation.CONTENT_URI,
+                Observation.PROJECTION,
+                "(id IS NOT NULL)",
+                null,
+                "id DESC");
+        c.moveToFirst();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return;
+        }
+
+        Integer currentObsId = c.getInt(c.getColumnIndexOrThrow(Observation.ID)) + 1;
+        c.moveToLast();
+        Integer lastObsId = c.getInt(c.getColumnIndexOrThrow(Observation.ID));
+        c.close();
+        JSONArray results = null;
+
+        do {
+            Log.d(TAG, "redownloadOldObservationsForTaxonNames: " + currentObsId);
+            String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=100&id_below=" + currentObsId;
+            Locale deviceLocale = getResources().getConfiguration().locale;
+            String deviceLanguage = deviceLocale.getLanguage();
+            url += "&locale=" + deviceLanguage;
+
+            JSONArray json = get(url, true);
+            Log.d(TAG, "redownloadOldObservationsForTaxonNames - downloaded");
+            if (json == null || json.length() == 0) {
+                break;
+            }
+            Log.d(TAG, "redownloadOldObservationsForTaxonNames - downloaded 2");
+            results = json.optJSONObject(0).optJSONArray("results");
+
+            Log.d(TAG, "redownloadOldObservationsForTaxonNames - downloaded 3");
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject currentObs = results.optJSONObject(i);
+                int currentId = currentObs.optInt("id");
+                c = getContentResolver().query(Observation.CONTENT_URI,
+                        Observation.PROJECTION,
+                        "id = ?",
+                        new String[]{String.valueOf(currentId)},
+                        Observation.DEFAULT_SORT_ORDER);
+                Log.d(TAG, "redownloadOldObservationsForTaxonNames - Updating taxon details for obs: " + currentId);
+                if (c.getCount() == 0) {
+                    c.close();
+                    continue;
+                }
+
+                // Update current observation's taxon preferred common name
+                Observation obs = new Observation(c);
+                c.close();
+                obs.setPreferredCommonName(currentObs);
+                Log.d(TAG, String.format("redownloadOldObservationsForTaxonNames - Common name for observation %d: %s", currentId, obs.preferred_common_name));
+                ContentValues cv = obs.getContentValues();
+
+                if (!obs._updated_at.after(obs._synced_at)) {
+                    // Update its sync at time so we won't update the remote servers later on (since we won't
+                    // accidentally consider this an updated record)
+                    cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
+                }
+                getContentResolver().update(obs.getUri(), cv, null, null);
+
+                currentObsId = obs.id;
+            }
+        } while ((results.length() > 0) && (currentObsId > lastObsId));
+
+        Log.d(TAG, "redownloadOldObservationsForTaxonNames - finished");
+        mApp.setLastLocale();
     }
 
     // Re-download any observations that have photos saved in the "old" way

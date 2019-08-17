@@ -712,6 +712,20 @@ public class INaturalistApp extends MultiDexApplication {
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
+
+    public boolean hasLocaleChanged() {
+        String lastLanguage = getPrefs().getString("last_language", null);
+        if (lastLanguage == null) {
+            setLastLocale();
+            lastLanguage = locale.getLanguage();
+        }
+        return !locale.getLanguage().equals(lastLanguage);
+    }
+
+    public void setLastLocale() {
+        String newLanguage = locale.getLanguage();
+        getPrefs().edit().putString("last_language", newLanguage).commit();
+    }
     
     public void restart(){
     	Intent i = getBaseContext().getPackageManager()

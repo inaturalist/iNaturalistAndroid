@@ -464,30 +464,7 @@ public class Observation implements BaseColumns, Serializable {
         this.field_values = o.getJSONArray("observation_field_values");
 
         this.preferred_common_name = null;
-        JSONObject taxon = o.getJSONObject("taxon");
-        if (taxon != null) {
-            if (taxon.has("common_name") && !taxon.isNull("common_name")) {
-                try {
-                    this.preferred_common_name = taxon.getJSONObject("common_name").optString("name");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                if (taxon.has("preferred_common_name") && !taxon.isNull("preferred_common_name")) {
-                    this.preferred_common_name = taxon.optString("preferred_common_name");
-                } else {
-                    this.preferred_common_name = taxon.optString("name");
-                }
-            }
-
-            if (taxon.has("id")) this.taxon_id = taxon.optInt("id");
-            if (taxon.has("iconic_taxon_name")) this.iconic_taxon_name = taxon.optString("iconic_taxon_name");
-            if (taxon.has("iconic_taxon_id")) this.iconic_taxon_id = taxon.optInt("iconic_taxon_id");
-
-            this.rank_level = taxon.optInt("rank_level");
-            this.scientific_name = taxon.optString("name", "");
-            this.rank = taxon.optString("rank");
-        }
+        setPreferredCommonName(o.getJSONObject());
 
         JSONObject user = o.getJSONObject("user");
         if (user != null) {
@@ -528,6 +505,33 @@ public class Observation implements BaseColumns, Serializable {
                     this.longitude_was = this.longitude;
                 }
             }
+        }
+    }
+
+    public void setPreferredCommonName(JSONObject o) {
+        JSONObject taxon = o.optJSONObject("taxon");
+        if (taxon != null) {
+            if (taxon.has("common_name") && !taxon.isNull("common_name")) {
+                try {
+                    this.preferred_common_name = taxon.getJSONObject("common_name").optString("name");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (taxon.has("preferred_common_name") && !taxon.isNull("preferred_common_name")) {
+                    this.preferred_common_name = taxon.optString("preferred_common_name");
+                } else {
+                    this.preferred_common_name = taxon.optString("name");
+                }
+            }
+
+            if (taxon.has("id")) this.taxon_id = taxon.optInt("id");
+            if (taxon.has("iconic_taxon_name")) this.iconic_taxon_name = taxon.optString("iconic_taxon_name");
+            if (taxon.has("iconic_taxon_id")) this.iconic_taxon_id = taxon.optInt("iconic_taxon_id");
+
+            this.rank_level = taxon.optInt("rank_level");
+            this.scientific_name = taxon.optString("name", "");
+            this.rank = taxon.optString("rank");
         }
     }
 
