@@ -2417,6 +2417,8 @@ public class ObservationEditor extends AppCompatActivity {
                 boolean errorImporting = false;
 
                 for (final Uri photo : photos) {
+                    if (photo == null) continue;
+
                     Uri createdUri = createObservationPhotoForPhoto(photo, position);
 
                     if (createdUri == null) {
