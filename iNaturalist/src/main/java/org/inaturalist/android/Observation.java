@@ -552,8 +552,8 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("iconic_taxon_name", iconic_taxon_name);
         bo.put("id", id);
         bo.put("id_please", id_please);
-        bo.put("latitude", latitude);
-        bo.put("longitude", longitude);
+        bo.put("latitude", latitude == null ? null : latitude.toString().replace(',', '.'));
+        bo.put("longitude", longitude == null ? null : longitude.toString().replace(',', '.'));
         bo.put("observed_on", observed_on);
         bo.put("observed_on_string", observed_on_string);
         bo.put("out_of_range", out_of_range);
@@ -567,8 +567,8 @@ public class Observation implements BaseColumns, Serializable {
         bo.put("positional_accuracy", positional_accuracy);
         bo.put("positioning_device", positioning_device);
         bo.put("positioning_method", positioning_method);
-        bo.put("private_latitude", private_latitude);
-        bo.put("private_longitude", private_longitude);
+        bo.put("private_latitude", private_latitude == null ? null : private_latitude.toString().replace(',', '.'));
+        bo.put("private_longitude", private_longitude == null ? null : private_longitude.toString().replace(',', '.'));
         bo.put("private_positional_accuracy", private_positional_accuracy);
         bo.put("quality_grade", quality_grade);
         bo.put("species_guess", species_guess);
