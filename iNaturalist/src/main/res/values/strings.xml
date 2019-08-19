@@ -680,7 +680,7 @@
     <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">New Sound Observation</string>
+    <string name="record_sound">Record Sound</string>
     <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <string name="upload_sound">Choose Sound</string>

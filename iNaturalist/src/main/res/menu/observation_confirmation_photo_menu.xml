@@ -2,5 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/camera" android:title="@string/camera" android:icon="@drawable/ic_photo_camera_gray_24dp"/>
     <item android:id="@+id/upload_photo" android:title="@string/upload_photo" android:icon="@drawable/ic_image_gray_24dp" />
+    <item android:id="@+id/record_sound" android:title="@string/record_sound" android:icon="@drawable/sound_menu" />
     <item android:id="@+id/upload_sound" android:title="@string/upload_sound" android:icon="@drawable/sound_menu" />
 </menu>

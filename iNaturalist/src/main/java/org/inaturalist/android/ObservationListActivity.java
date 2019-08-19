@@ -624,6 +624,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if ((mApp.getAutoSync() && !mApp.getIsSyncing() && (!mSyncRequested)) || (hasOldObs)) {
             int syncCount = 0;
             int photoSyncCount = 0;
+            int soundSyncCount = 0;
 
             if (!hasOldObs) {
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
@@ -642,6 +643,23 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 photoSyncCount = c.getCount();
                 c.close();
+
+                Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
+                        new String[]{
+                                ObservationSound._ID,
+                                ObservationSound.ID,
+                                ObservationSound._OBSERVATION_ID,
+                                ObservationSound.IS_DELETED
+                        },
+                        "(id IS NULL) OR " +
+                                "(is_deleted = 1)",
+                        null,
+                        ObservationSound._ID);
+
+                osc.moveToFirst();
+                soundSyncCount = osc.getCount();
+                osc.close();
+
             }
 
             Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
@@ -649,7 +667,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
-            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
+            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0) || (soundSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

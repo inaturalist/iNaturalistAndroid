@@ -34,17 +34,24 @@
     </RelativeLayout>
 
 
-    <ImageView
-        android:id="@+id/player_button"
+    <LinearLayout
         android:layout_above="@id/player_seekbar_container"
+        android:weightSum="1.0"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerInside"
-        android:src="@drawable/play"
-        android:tint="#000000"
-        android:padding="30dp"
-        android:layout_marginBottom="20dp"
-        />
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/player_button"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/play"
+            android:tint="#000000"
+            android:padding="30dp"
+            android:layout_marginBottom="20dp"
+            />
+    </LinearLayout>
 
 
 </RelativeLayout>

@@ -3562,6 +3562,9 @@ public class ObservationEditor extends AppCompatActivity {
                     case R.id.upload_sound:
                         chooseSound();
                         break;
+                    case R.id.record_sound:
+                        recordSound();
+                        break;
                 }
             }
         }).show();
