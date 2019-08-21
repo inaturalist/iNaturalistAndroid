@@ -84,6 +84,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v4.content.res.ResourcesCompat;
 import android.telephony.TelephonyManager;
+import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -104,7 +105,7 @@ public class INaturalistApp extends MultiDexApplication {
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a z");
     public static SimpleDateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("d MMM yyyy");
-    public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("h:mm a z");
+    public static SimpleDateFormat SHORT_TIME_FORMAT = new SimpleDateFormat("hh:mm a z");
     private static Integer SYNC_NOTIFICATION = 3;
     private static Context context;
     private Locale locale = null;
@@ -200,6 +201,7 @@ public class INaturalistApp extends MultiDexApplication {
             }
         });
 
+        SHORT_TIME_FORMAT = new SimpleDateFormat(DateFormat.is24HourFormat(getApplicationContext()) ? "HH:mm z" : "hh:mm a z");
 
         // Build a custom Picasso instance that uses more memory for image cache (50% of free memory
         // instead of the default 15%)

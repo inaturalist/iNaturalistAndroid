@@ -26,6 +26,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.InputType;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -1916,7 +1917,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 format.append(" • ");
             }
 
-            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mma");
+            String timeFormatString = DateFormat.is24HourFormat(getApplicationContext()) ? "HH:mm" : "hh:mma";
+            SimpleDateFormat timeFormat = new SimpleDateFormat(timeFormatString);
+
             format.append(timeFormat.format(time));
         }
 
