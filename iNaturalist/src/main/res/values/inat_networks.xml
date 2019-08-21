@@ -11,6 +11,7 @@
         <item>biodiversity4all</item>
         <item>inaturalistpanama</item>
         <item>inaturalistecuador</item>
+        <item>inaturalistaustralia</item>
     </string-array>
 
     <!-- The names of the iNat networks -->
@@ -22,6 +23,7 @@
     <string name="network_biodiversity4all">Biodiversity4all</string>
     <string name="network_inaturalistpanama">iNaturalist Panamá</string>
     <string name="network_inaturalistecuador">iNaturalist Ecuador</string>
+    <string name="network_inaturalistaustralia">iNaturalist Australia</string>
 
     <!-- If value==1 -> change app name/title in the Android launcher, when network is changed.
     Otherwise, just keep it as the original app name ("iNaturalist") -->
@@ -33,6 +35,7 @@
     <string name="change_app_title_biodiversity4all">1</string>
     <string name="change_app_title_inaturalistpanama">0</string>
     <string name="change_app_title_inaturalistecuador">0</string>
+    <string name="change_app_title_inaturalistaustralia">0</string>
 
 
     <!-- The ISO-3166 alpha-2 country code to use for each network type - used when detecting the user's country -->
@@ -44,6 +47,7 @@
     <string name="inat_country_biodiversity4all">pt</string> <!-- Portugal -->
     <string name="inat_country_inaturalistpanama">pa</string> <!-- Panama -->
     <string name="inat_country_inaturalistecuador">ec</string> <!-- Ecuador -->
+    <string name="inat_country_inaturalistaustralia">au</string> <!-- Australia -->
 
      <!-- The country display name to use for each network type - used when detecting the user's country -->
     <string name="inat_country_name_inaturalist">Global</string>
@@ -54,6 +58,7 @@
     <string name="inat_country_name_biodiversity4all">Portugal</string>
     <string name="inat_country_name_inaturalistpanama">Panama</string>
     <string name="inat_country_name_inaturalistecuador">Ecuador</string>
+    <string name="inat_country_name_inaturalistaustralia">Australia</string>
 
     <!-- The domain endpoint to use for each network type - used when adding new observations -->
     <string name="inat_host_inaturalist">https://www.inaturalist.org</string>
@@ -64,6 +69,7 @@
     <string name="inat_host_biodiversity4all">https://www.biodiversity4all.org/</string>
     <string name="inat_host_inaturalistpanama">https://panama.inaturalist.org/</string>
     <string name="inat_host_inaturalistecuador">https://ecuador.inaturalist.org</string>
+    <string name="inat_host_inaturalistaustralia">https://inaturalist.ala.org.au</string>
 
     <!-- The site id parameter to use for each network type - used when adding new observations -->
     <string name="inat_site_id_inaturalist">1</string>
@@ -74,6 +80,7 @@
     <string name="inat_site_id_biodiversity4all">8</string>
     <string name="inat_site_id_inaturalistpanama">13</string>
     <string name="inat_site_id_inaturalistecuador">14</string>
+    <string name="inat_site_id_inaturalistaustralia">9</string>
 
     <!-- The lexicon name to use for each network type - used when searching for taxa (so we'll
     	know which display name to use for the results) -->
@@ -85,6 +92,7 @@
     <string name="inat_lexicon_biodiversity4all">Portuguese</string>
     <string name="inat_lexicon_inaturalistpanama">Spanish</string>
     <string name="inat_lexicon_inaturalistecuador">Spanish</string>
+    <string name="inat_lexicon_inaturalistaustralia">English</string>
 
     <!-- The logo drawable name to use for each network type -->
     <string name="inat_logo_inaturalist">logo_text</string>
@@ -95,4 +103,5 @@
     <string name="inat_logo_biodiversity4all">logo_biodiversity4all</string>
     <string name="inat_logo_inaturalistpanama">logo_panama</string>
     <string name="inat_logo_inaturalistecuador">logo_ecuador</string>
+    <string name="inat_logo_inaturalistaustralia">logo_australia</string>
 </resources>
