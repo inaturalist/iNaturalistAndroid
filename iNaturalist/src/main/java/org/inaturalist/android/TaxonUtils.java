@@ -103,7 +103,7 @@ public class TaxonUtils {
             name = "";
         }
 
-        if (rankLevel <= 20) {
+        if ((rankLevel <= 20) && (rankLevel != 11) /* 11 = complex */) {
             name += "<i>" + rankName + "</i>";
         } else {
             name += rankName;
@@ -131,8 +131,8 @@ public class TaxonUtils {
     public static String getTaxonRank(JSONObject item) {
         double rankLevel = getTaxonRankLevel(item);
 
-        if (rankLevel < 15) {
-            // Lower than subgenus - don't return anything
+        if ((rankLevel < 15) && (rankLevel != 11)) {
+            // Lower than subgenus and not complex - don't return anything
             return "";
         } else {
             return StringUtils.capitalize(item.optString("rank", ""));
