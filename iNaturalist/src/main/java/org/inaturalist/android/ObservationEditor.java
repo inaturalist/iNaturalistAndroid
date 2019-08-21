@@ -594,7 +594,7 @@ public class ObservationEditor extends AppCompatActivity {
                 ) {
                     // No photos / suggest species setting is off - show the regular species search (by name)
                     Intent intent = new Intent(ObservationEditor.this, TaxonSearchActivity.class);
-                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mApp.getShowScientificNameFirst() ? mObservation.scientific_name : (mObservation.species_guess != null && mObservation.species_guess.length() > 0) ? mObservation.species_guess : mSpeciesGuessTextView.getText().toString());
+                    intent.putExtra(TaxonSearchActivity.SPECIES_GUESS, mApp.getShowScientificNameFirst() && mObservation.taxon_id != null ? mObservation.scientific_name : (mObservation.species_guess != null && mObservation.species_guess.length() > 0) ? mObservation.species_guess : mSpeciesGuessTextView.getText().toString());
                     intent.putExtra(TaxonSearchActivity.SHOW_UNKNOWN, true);
                     intent.putExtra(TaxonSearchActivity.OBSERVATION_ID, mObservation.id);
                     intent.putExtra(TaxonSearchActivity.OBSERVATION_ID_INTERNAL, mObservation._id);
