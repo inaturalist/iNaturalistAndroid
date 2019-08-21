@@ -327,7 +327,8 @@
         android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:layout_height="60dp">
+        android:minHeight="60dp"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/location_left_side"
@@ -388,13 +389,23 @@
                 android:visibility="visible"
                 />
 
+            <!--
             <LinearLayout
-                android:id="@+id/coordinates"
                 android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                -->
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/coordinates"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_below="@id/location_guess"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                app:flexWrap="wrap"
+                app:alignItems="stretch"
+                app:alignContent="stretch"
+                >
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -460,8 +471,8 @@
                     android:ellipsize="end"
                     android:lines="1"
                     />
-
-            </LinearLayout>
+            </com.google.android.flexbox.FlexboxLayout>
+            <!--</LinearLayout>-->
 
         </RelativeLayout>
     </RelativeLayout>
