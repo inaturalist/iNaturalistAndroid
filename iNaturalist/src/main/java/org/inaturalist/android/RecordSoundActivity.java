@@ -1,5 +1,6 @@
 package org.inaturalist.android;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +23,8 @@ import com.flurry.android.FlurryAgent;
 import com.livefront.bridge.Bridge;
 import com.melnykov.fab.FloatingActionButton;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
@@ -137,8 +141,9 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
         mRecordingTime.setText(String.format(getResources().getString(R.string.seconds), 0f));
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
-        mOutputFilename = getExternalCacheDir().getAbsolutePath() + "/inaturalist_sound_" + timeStamp + ".wav";
-
+        File outputDirectory = new File(getExternalFilesDir(Environment.DIRECTORY_MUSIC) + File.separator + "iNaturalist");
+        outputDirectory.mkdirs();
+        mOutputFilename = outputDirectory + File.separator + "inaturalist_sound_" + timeStamp + ".wav";
         mRecorder = new SoundRecorder(this, mOutputFilename, this);
 
         mStopRecording.setVisibility(View.GONE);
@@ -316,6 +321,23 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
     @Override
     public void onRecordingStopped() {
         mHelper.stopLoading();
+
+        // Make this sound accessible via the Android Files app (under Audio category)
+        ContentValues values = new ContentValues();
+        File file = new File(mOutputFilename);
+        values.put(MediaStore.Audio.Media.DATA, mOutputFilename);
+        values.put(MediaStore.Audio.Media.SIZE, file.length());
+        values.put(MediaStore.Audio.Media.DISPLAY_NAME, mOutputFilename.substring(mOutputFilename.lastIndexOf(File.separator) + 1));
+        values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/wav");
+        values.put(MediaStore.Audio.Media.IS_MUSIC, true);
+        values.put(MediaStore.Audio.Media.ARTIST, "iNaturalist");
+        values.put(MediaStore.Audio.Media.ALBUM, "Sound Recordings");
+        values.put(MediaStore.Audio.Media.DATE_ADDED, System.currentTimeMillis());
+        values.put(MediaStore.Audio.Media.DATE_MODIFIED, System.currentTimeMillis());
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(System.currentTimeMillis());
+        values.put(MediaStore.Audio.Media.TITLE, String.format("iNaturalist Sound Recording - %s", timeStamp));
+
+        Uri uri = getContentResolver().insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values);
 
         Intent intent = new Intent();
         intent.setData(Uri.parse(mOutputFilename));
