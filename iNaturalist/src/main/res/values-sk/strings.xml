@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Na stiahnutie pre použitie v režime offline</string>
@@ -539,7 +541,7 @@
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
     <string name="date_week">%dt</string>
     <string name="new_observation">Nové pozorovanie</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
+    <string name="inactive_taxon">Neaktívny taxón</string>
     <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
     <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
     <string name="make_an_observation">Vytvoriť pozorovanie</string>
@@ -556,17 +558,17 @@
     <string name="submit">Submit</string>
     <string name="change_password">Zmena hesla</string>
     <string name="search_projects_youve_joined">Prehľadajte projekty, na ktorých participujete...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
+    <string name="must_be_connected_to_load_more_obs">Musíte byť pripojený na internet aby ste načítali viac pozorovaní</string>
     <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
+    <string name="password_changed">Heslo, ktoré aplikácia používa, už nefunguje - zmenili ste heslo na webových stránkach? Zadajte prosím nové</string>
     <string name="just_so_you_know">Len aby ste vedeli...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
+    <string name="see_more_observations">Pozri viac pozorovaní</string>
     <string name="see_more_species">Pozri viac druhov</string>
     <string name="see_more_identifications">See more identifications</string>
     <string name="collection_and_umbrella_projects">Kolekcie a projekty Umbrella</string>
@@ -617,7 +619,7 @@
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Kukla</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Nymfa</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
     <string name="annotation_value_egg">Vajíčko</string>
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Subimágo</string>
     <string name="annotation_value_female">Samica</string>
     <string name="annotation_value_male">Samec</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
     <string name="featured_projects_all_caps">FEATURED</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">JOIN</string>
     <string name="my_guides_all_caps">YOURS</string>
     <string name="nearby_guides_all_caps">NEARBY</string>
@@ -649,21 +653,21 @@
     <string name="view_all_all_caps">VIEW ALL</string>
     <string name="new_all_caps">NEW</string>
     <string name="observers_all_caps">POZOROVATELIA</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
+    <string name="observations_regular">Pozorovania</string>
+    <string name="data_quality_assessment">Posúdenie kvality dát</string>
     <string name="research_grade_qualification">Kvalifikácia potvrdeného určenia</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="date_specified">Dátum určený</string>
+    <string name="location_specified">Poloha určená</string>
+    <string name="has_photos_or_sounds">Má fotku alebo zvuk</string>
+    <string name="has_id_supported_by_two_or_more">Má ID podporené dvoma alebo viacerými</string>
+    <string name="date_is_accurate">Dátum je presný</string>
+    <string name="location_is_accurate">Poloha je presná</string>
+    <string name="organism_is_wild">Organizmus je divoký</string>
+    <string name="evidence_of_organism">Dôkaz o organizme</string>
+    <string name="recent_evidence_of_an_organism">Nedávny dôkaz o organizme</string>
+    <string name="community_id_at_species_level_or_lower">Komunitné ID na úrovni druhu alebo nižšie</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Môže byť komunitné ID, na základe dôkazov, potvrdené alebo vylepšené?</string>
+    <string name="no_as_good_as_it_can_be">Nie, lepšie to už nebude</string>
     <string name="seasonality">Sezónnosť</string>
     <string name="verifiable">Overiteľné</string>
     <string name="no_annotation">Žiadne poznámky</string>
@@ -676,7 +680,7 @@
     <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
+    <string name="mark_all_as_viewed">Označiť všetko ako videné</string>
     <string name="content_hidden">Content Hidden</string>
     <string name="show_hidden_content">Show Hidden Content</string>
     <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>

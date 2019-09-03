@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista é membro da Rede Nacionalista na Colômbia. Instituições locais que apoiam a Naturalista terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversidade4All é membro da Rede Nacionalista em Portugal. As instituições locais que apoiam a Biodiversity4All terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
     <string name="alert_message_use_inaturalistpanama">O iNaturalist Panamá é membro da Rede Nacionalista no Panamá. As instituições locais que suportam o iNaturalist Panamá terão acesso ao seu endereço de e-mail e acesso às coordenadas verdadeiras para observações que são publicamente obscurecidas ou privadas. Por favor, não altere experimentalmente sua afiliação se você tiver mais de 1000 observações. Você gostaria de mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador é um membro da Rede iNaturalist no Equador. Instituições locais que apoiam o iNaturalist Ecuador terão acesso ao seu endereço de e-mail e às verdadeiras coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia é um membro da Rede iNaturalist na Austrália. Instituições locais que apoiam o iNaturalist Australia terão acesso ao seu endereço de e-mail e às verdadeiras coordenadas de observações obscurecidas ou privadas do público. Por favor, não altere sua afiliação experimentalmente se tiver mais de 1000 observações. Deseja mudar sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Download para uso offline</string>
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Fêmea</string>
     <string name="annotation_value_male">Macho</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
     <string name="featured_projects_all_caps">EM DESTAQUE</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">JUNTE-SE</string>
     <string name="my_guides_all_caps">OS MEUS</string>
     <string name="nearby_guides_all_caps">NAS PROXIMIDADES</string>

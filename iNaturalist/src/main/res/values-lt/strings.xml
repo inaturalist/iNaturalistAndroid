@@ -44,7 +44,7 @@
     <string name="view_in_browser">Atverti naršyklėje</string>
     <string name="add_observation">Pridėti stebėjimą</string>
     <string name="take_picture">Fotografuoti</string>
-    <string name="save">Išsaugoti</string>
+    <string name="save">Saugoti</string>
     <string name="no_observations_yet">Dar nėra stebėjimų!</string>
     <string name="or">arba</string>
     <string name="signed_out">Atsijungti</string>
@@ -84,11 +84,11 @@
     <string name="no">Ne</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
     <string name="agree">Sutinkate?</string>
-    <string name="no_comments">Dar nėra komentarų/atpažinimų</string>
+    <string name="no_comments">Dar nėra komentarų/identifikacijų</string>
     <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
     <string name="you">jūs</string>
     <string name="add_comment">Pridėti komentarą</string>
-    <string name="add_id">Pridėti atpažinimą</string>
+    <string name="add_id">Pridėti identifikaciją</string>
     <string name="remarks">Pastabos...</string>
     <string name="enter_taxon_name">Rūšies pavadinimas</string>
     <string name="no_projects">Nerasta projektų!</string>
@@ -97,10 +97,10 @@
     <string name="joined_projects">Prisijungta</string>
     <string name="nearby_projects">Netoliese</string>
     <!-- Tab title for the list of featured projects in the Projects screen -->
-    <string name="featured_projects">Specialūs</string>
+    <string name="featured_projects">Siūlomi</string>
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Palikti</string>
-    <string name="join">Prisijungti</string>
+    <string name="join">Jungtis</string>
     <string name="loading_check_list">Kraunamas sąrašas...</string>
     <string name="no_check_list">Sąraše nėra taksonų!</string>
     <string name="failed_to_add_obs_to_project">Nepavyko pridėti stebėjimo \'%1$s\' į projektą \'%2$s\': %3$s</string>
@@ -137,7 +137,7 @@
     <string name="choose_location">Pasirinkite vietą</string>
     <string name="done">Baigta</string>
     <string name="please_sign_in_via_settings">Norėdami peržiūrėti projektus, prie kurių prisijungėte, turite būti prisijungę prie programėlės.</string>
-    <string name="contact_support">Susisikti su pagalba</string>
+    <string name="contact_support">Susisiekti su pagalba</string>
     <string name="credits">Sukūrė iNaturalist.org, padedant Kalifornijos mokslo akademijai</string>
     <string name="leave_project">Palikti projektą</string>
     <string name="leave_project_confirmation">Ar tikrai norite palikti šį projektą?</string>
@@ -165,8 +165,8 @@
         <item>Tyrinėti ir susisiekti su gamta</item>
         <item>Eik į lauką! Surask ką nors laukinį ir padaryk gerą nuotrauką.</item>
         <item>Dalinkis savo stebėjimais su iNaturalist bendruomene.</item>
-        <item>Peržiūrėk komentarus ir tavo stebėto objekto atpažinimus!</item>
-        <item><![CDATA[<b>Atpažintais</b> stebėjimais dalinamės su mokslininkais, kurie siekia geriau suprasti ir išsaugoti gamtą.]]></item>
+        <item>Peržiūrėk komentarus ir tavo stebėto objekto identifikacijas!</item>
+        <item><![CDATA[<b>Identifikuotais</b> stebėjimais dalinamės su mokslininkais, kurie siekia geriau suprasti ir išsaugoti gamtą.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Atviras</item>
@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista yra Kolumbijos iNaturalist tinklo narys. Vietinės institucijos, remiančios Naturalista, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All yra Portugalijos iNaturalist tinklo narys. Vietinės institucijos, remiančios Biodiversity4All, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá yra Panamos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Panamá, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador yra Ekvadoro iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Ecuador, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia yra Australijos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Australia, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="editor">Redaktorius</string>
     <string name="license">Licencija</string>
     <string name="download_for_offline_use">Atsisiųsti naudojimui atsijungus nuo tinklo</string>
@@ -226,7 +228,7 @@
     <string name="min_6_chars">Min. 6 ženklai</string>
     <string name="use_my_license"><![CDATA[Taip, suteikite licenziją mano turiniui, kad mokslininkai galėtų naudoti mano duomenis. <b>Sužinokite daugiau</b>]]></string>
     <string name="content_licensing">Turinio licenzijos suteikimas</string>
-    <string name="content_licensing_description">Check this box if you want to apply a Creative Commons Attribution-NonCommercial license to your photos. You can choose a different license or remove the license later, but this is the best license for sharing with researchers.</string>
+    <string name="content_licensing_description">Pažymėkite šį lauką, jeigu savo nuotraukoms norite suteikti nekomercinio platinimo Creative Commons licenziją. Vėliau galėsite pasirinkti kitą licenziją arba ją panaikinti, tačiau tai yra geriausia licenzija nuotraukų dalinimuisi su tyrėjais.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Vartotojo vardas arba el. paštas</string>
     <string name="forgot">Pamiršote?</string>
@@ -242,12 +244,12 @@
     <string name="activity">Veikla</string>
     <string name="camera">Fotografuoti</string>
     <string name="upload_photo">Pasirinkite paveikslėlį</string>
-    <string name="menu_text">Nėra nuotraukų</string>
+    <string name="menu_text">Be nuotraukos</string>
     <string name="first">1-asis</string>
     <string name="make_first">Sukurti 1-ąjį</string>
     <string name="notes">Užrašai</string>
     <string name="location_is">Vieta yra</string>
-    <string name="is_captive">Ne laukinis organizmas</string>
+    <string name="is_captive">Ar tai naminis/kultivuojamas</string>
     <string name="location_visibility">Vietos matomumas</string>
     <string name="set_location">Vieta</string>
     <string name="coordinates_lat">Pl.:</string>
@@ -269,54 +271,54 @@
     <string name="unable_to_acquire_location">Nepavyko pasiekti vietos</string>
     <string name="casual_grade">Netinkamas</string>
     <string name="needs_id">Trūksta ID</string>
-    <string name="research_grade">Atpažintas</string>
+    <string name="research_grade">Identifikuotas</string>
     <string name="data_quality">Duomenų kokybė</string>
-    <string name="casual_grade_add_location"><![CDATA[ Pridėkite <b>vietą</b>, kad šis stebėjimas įgautu “Trūksta ID” statusą. ]]></string>
-    <string name="casual_grade_add_date"><![CDATA[ Pridėkite <b>datą</b>, kad šis stebėjimas įgautu “Trūksta ID” statusą. ]]></string>
-    <string name="casual_grade_add_photo"><![CDATA[ Pridėkite <b>nuotrauką</b>, kad šis stebėjimas įgautu “Trūksta ID” statusą. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Stebėjimas netinkamas, nes organizmas <b>ne laukinis</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Stebėjimui reikia <b>daugiau atpažinimų</b> iš bendruomenės, kad įgautų "Atpažinto" statusą. ]]></string>
+    <string name="casual_grade_add_location"><![CDATA[ Pridėkite <b>vietą</b>, kad šis stebėjimas įgautu „Trūksta ID“ statusą. ]]></string>
+    <string name="casual_grade_add_date"><![CDATA[ Pridėkite <b>datą</b>, kad šis stebėjimas įgautu „Trūksta ID“ statusą. ]]></string>
+    <string name="casual_grade_add_photo"><![CDATA[ Pridėkite <b>nuotrauką</b>, kad šis stebėjimas įgautu „Trūksta ID“ statusą. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Stebėjimas netinkamas, nes organizmas <b>naminis/kultivuojamas</b>. ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Stebėjimui reikia <b>daugiau identifikacijų</b> iš bendruomenės, kad įgautų „Identifikuoto“ statusą. ]]></string>
     <string name="included_in_projects">Įtrauktas į %1$d projektus</string>
     <string name="included_in_projects_singular">Įtrauktas į %1$d projektą</string>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivacy is a setting you can make on your observations that controls how the spatial coordinates (latitude and longitude) are displayed. Here are the options:<br/><b>open</b> - Everyone can see the coordinates unless the taxon is threatened. <br/><b>obscured</b> - Public coordinates shown as a random point within a 0.2 by 0.2 degree area that contains the true coordinates, which works out to about a 22x22 km square area of uncertainty at the equator, decreasing as you approach the poles. True coordinates are only visible to you and the curators of projects to which you add the observation. <br/><b>private</b> - Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. <br/><br/>Note that curators of individual projects can always see the coordinates regardless of your geoprivacy setting, so if you are concerned about who has access to the coordinates you should be sure you trust the curators of the projects in which you participate. ]]></string>
     <string name="id_title">%1$s ID • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Ištrinti</string>
-    <string name="delete_id">Atsisakyti atpažinimo</string>
+    <string name="delete_id">Atsisakyti identifikacijos</string>
     <string name="delete_comment">Ištrinti komentarą</string>
-    <string name="delete_id_message">Ar tikrai norite atsisakyti atpažinimo?</string>
+    <string name="delete_id_message">Ar tikrai norite atsisakyti identifikacijos?</string>
     <string name="delete_comment_message">Ar tikrai norite ištrinti šį komentarą?</string>
     <string name="comment">Komentuoti</string>
     <string name="suggest_id">Pasiūlyti ID</string>
-    <string name="update_comment">Atnaujinti Komentarą</string>
+    <string name="update_comment">Atnaujinti komentarą</string>
     <string name="fave_this_observation">Pamėgti šį stebėjimą</string>
-    <string name="faved">Mėgstamas</string>
+    <string name="faved">Pamėgtas</string>
     <string name="be_the_first_to_fave_this_obs">Būk pirmasis pamėgęs šį stebėjimą...</string>
-    <string name="leave_a_comment">Palikite komentarą arba padėkite atpažinti...</string>
+    <string name="leave_a_comment">Palikite komentarą arba padėkite identifikuoti...</string>
     <string name="location_coords">Pl.: %1$s Ilg.: %2$s Tiksl. %3$s</string>
     <string name="location_coords_no_acc">Pl.: %1$s Ilg.: %2$s</string>
     <string name="location">Vieta</string>
-    <string name="login_in_to_add_comments_ids">Prisijungite arba registruokitės, kad galėtumėte palikti komentarą arba padėti atpažinti...</string>
-    <string name="login_in_to_fav">Prisijungite arba registruokitės, kad matytumėte pamėgimus arba galėtumėte pamėgti šį stebėjimą...</string>
+    <string name="login_in_to_add_comments_ids">Prisijungite arba registruokitės, kad galėtumėte palikti komentarą arba padėti identifikuoti...</string>
+    <string name="login_in_to_fav">Prisijungite arba registruokitės, kad matytumėte pamėgtus stebėjimus arba galėtumėte pamėgti šį stebėjimą...</string>
     <string name="sync_obs_to_see_favs">Sinchronizuokite šį stebėjimą, kad matytumėte pamėgimus...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Susinchronizuokite šį stebėjimą, kad galėtumėte palikti komentarą arba padėti atpažinti...</string>
+    <string name="sync_obs_to_add_comments_ids">Susinchronizuokite šį stebėjimą, kad galėtumėte palikti komentarą arba padėti identifikuoti...</string>
     <string name="no_photo">Nėra nuotraukos</string>
     <string name="about_this_species">Apie šią rūšį</string>
     <string name="view_on_wikipedia">Wikipedijos straipsnis</string>
     <string name="photo"><![CDATA[Nuotrauka: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Nuotrauka: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Rasti dabartinę vietą...</string>
-    <string name="flag_as_captive">Pažymėti kaip ne laukinį</string>
-    <string name="observation_flagged_as_captive">Stebėjimas buvo pažymėtas kaip ne laukinis</string>
-    <string name="are_you_sure_you_want_to_flag_as_captive">Ar tikrai norite pažymėti šį stebėjimą kaip ne laukinį? (Paspaudę „taip“ taip pat uždarysite stebėjimo langą)</string>
-    <string name="do_you_agree_to_the_following">Do you agree to the following?</string>
+    <string name="flag_as_captive">Pažymėti kaip naminį/kultivuojamą</string>
+    <string name="observation_flagged_as_captive">Stebėjimas buvo pažymėtas kaip naminis/kultivuojamas</string>
+    <string name="are_you_sure_you_want_to_flag_as_captive">Ar tikrai norite pažymėti šį stebėjimą kaip naminį/kultivuojamą? (Paspaudę „taip“ taip pat uždarysite stebėjimo langą)</string>
+    <string name="do_you_agree_to_the_following">Ar sutinkate su teiginiu?</string>
     <string name="terms">Sąlygos</string>
     <string name="observation_rules">Stebėjimų taisyklės</string>
     <string name="couldnt_load_project_details">Nepavyksta užkrauti projekto informacijos: %1$s</string>
     <string name="no_people_found">Asmenų nerasta</string>
     <string name="rank">Rangas</string>
-    <string name="identifications">Atpažinimai</string>
+    <string name="identifications">Identifikacijos</string>
     <string name="no_news_found">Naujų elementų nerasta</string>
     <string name="news">Naujienos</string>
     <string name="article">Straipsnis</string>
@@ -345,27 +347,27 @@
     <string name="version">Versija</string>
     <string name="inat_network">iNaturalist tinklas</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
-    <string name="more_info">Daugiau informacijos</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="more_info">Daugiau info.</string>
+    <string name="select_network">Pasirinkite tinklo priskyrimą</string>
     <string name="help">Pagalba</string>
-    <string name="stop">Sustabdyti</string>
+    <string name="stop">Stabdyti</string>
     <string name="resume">Tęsti</string>
     <string name="cleaning_up">Valoma...</string>
     <string name="syncing">Sinchronizuojama...</string>
-    <string name="syncing_observation_fields">Syncing observation fields...</string>
+    <string name="syncing_observation_fields">Sinchronizuojami stebėjimų duomenų laukai...</string>
     <string name="syncing_observations">Sinchronizuojami stebėjimai...</string>
     <string name="syncing_paused">Pristabdyta</string>
     <string name="upload">Užkrauti</string>
     <string name="search_observations">Ieškoti stebėjimų...</string>
     <string name="withdraw">Atšaukti</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="update_id_description">Atnaujinti atpažinimo aprašymą</string>
+    <string name="update_id_description">Atnaujinti identifikacijos aprašymą</string>
     <string name="your_identification">Jūsų ID: %1$s</string>
-    <string name="onboarding_species_name">Įvardink tai, ką pamatei. Nieko tokio, jeigu nesugebėsi. Atpažinti rūšį tau padės kiti!</string>
+    <string name="onboarding_species_name">Įvardink tai, ką pamatei. Nieko tokio, jeigu nesugebėsi. Identifikuoti rūšį tau padės kiti!</string>
     <string name="upload_complete">Užkrovimas sėkmingas!</string>
-    <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
+    <string name="onboarding_upload_description">Po kurio laiko sugrįžkite peržiūrėti jūsų stebėjimo(-ų) identifikacijas ir komentarus.</string>
     <string name="importing_photos">Įkeliama nuotrauka(-os)...</string>
-    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
+    <string name="multi_select_description">Įkelkite daugiau nei vieną nuotrauką paspausdami ant vienos nuotraukos ir ilgai laikydami</string>
     <string name="preparing_photo">Nuotrauka ruošiama...</string>
     <string name="recommended_for_you">Rekomenduojama jums</string>
     <string name="missions">Misijos</string>
@@ -388,20 +390,20 @@
     <string name="observe">Stebėti</string>
     <string name="nearby_missions">Misijos netoliese</string>
     <string name="searching_your_area">Ieškoma jūsų vietovėje...</string>
-    <string name="expanding_your_search_area">Expanding your search area...</string>
+    <string name="expanding_your_search_area">Plečiamas jūsų paieškos plotas...</string>
     <string name="introducing_missions">Pristatomos misijos!</string>
-    <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
+    <string name="missions_onboarding_description">Misijos - rekomendacijos, ko ieškoti jūsų vietos apylinkėse. Šitaip galite atrasti sau dar nepažįstamas rūšis! (Rekalinga prieiga prie tinklo)</string>
     <string name="ok_got_it">Gerai, supratau!</string>
     <string name="could_not_download_observations">Nepavyksta atsiųsti naujausių stebėjimų - ryšio problema. Bandykite vėliau.</string>
     <string name="no_news_yet">Naujienų nėra. Likite prisijungę!</string>
     <string name="my_content">Mano turinys</string>
     <string name="following">Sekamas</string>
-    <string name="no_updates_yet">Atnaujinimų kol kas nėra. Likite prisijungę!</string>
-    <string name="you_will_only_receive_updates_when_creating">(Gausite atnaujinimus tik tada, kai būsite sukūrę stebėjimų)</string>
-    <string name="you_will_only_receive_updates_when_following">(Gausite atnaujinimus tik tada, kai seksite stebėjimus)</string>
+    <string name="no_updates_yet">Naujienų kol kas nėra. Likite prisijungę!</string>
+    <string name="you_will_only_receive_updates_when_creating">(Gausite naujienas tik tada, kai būsite sukūrę stebėjimų)</string>
+    <string name="you_will_only_receive_updates_when_following">(Gausite naujienas tik tada, kai seksite stebėjimus)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> siūlyti ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> paliko komentarą: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
+    <string name="deleted_photos_from_cache_error">Panašu, kad ištrynėte nuotrauką iš talpyklos dar nespėjus jos užkrauti. Jums teks į stebėjimą nuotrauką įkelti iš galerijos. Ateityje, prieš išvalant talpyklą, įsitikinkite, kad visos nuotraukos buvo užkrautos.</string>
     <string name="new_activities">%1s nauja</string>
     <string name="no_results_found">Rezultatų nerasta...</string>
     <string name="syncing_x_out_of_y_observations">Synchronizuojamas %1$d iš %2$d stebėjimų...</string>
@@ -425,7 +427,7 @@
     <string name="about_this_section">Apie šią skiltį</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
-    <string name="more_info_on_inat">Daugiau informacijos tinklalapyje iNaturalist.org</string>
+    <string name="more_info_on_inat">Daugiau informacijos tinklalapyje</string>
     <string name="view_suggestions">Žiūrėti pasiūlymus</string>
     <string name="species_search">Rūšies paieška</string>
     <string name="were_not_confident">Mes nesame pakankamai užtikrinti, kad teiktumėme rekomendacijas, bet čia yra mūsų top %1$d pasiūlymai:</string>
@@ -449,7 +451,7 @@
     <string name="nearby">Netoliese</string>
     <string name="couldnt_load_results">Nepavyksta užkrauti rezultatų: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
+    <string name="research_grade_initials">ID</string>
     <string name="taxon_search_hint">pvz.: paukščiai, spungė</string>
     <string name="location_search_hint">pvz.: miestas, parkas, šalis...</string>
     <string name="no_taxon">Atsiprašome, taksonas nerastas</string>
@@ -471,7 +473,7 @@
     <string name="miscellaneous">Įvairūs</string>
     <string name="nationality">Tautybė</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Šalių grupės pavadinimas</string>
+    <string name="supername">Šalių grupė</string>
     <string name="point_of_interest">Lankytina vieta</string>
     <string name="region">Regionas</string>
     <string name="colloquial">Šnekamoji kalba</string>
@@ -479,7 +481,7 @@
     <string name="historical_state">Istorinė vieta</string>
     <string name="historical_county">Istorinė apygarda</string>
     <string name="continent">Žemynas</string>
-    <string name="estate">Estate</string>
+    <string name="estate">Nuosavybė</string>
     <string name="historical_town">Istorinis miestas</string>
     <string name="aggregate">Agregatas</string>
     <string name="open_space">Atvira erdvė</string>
@@ -491,7 +493,7 @@
     <string name="department_segment">Department Segment</string>
     <string name="city_building">Miesto pastatas</string>
     <string name="commune">Bendruomenė</string>
-    <string name="governorate">Governorate</string>
+    <string name="governorate">Gubernija</string>
     <string name="prefecture">Prefektūra</string>
     <string name="canton">Kantonas</string>
     <string name="republic">Respublika</string>
@@ -540,7 +542,7 @@
     <string name="date_week">%ds</string>
     <string name="new_observation">Naujas stebėjimas</string>
     <string name="inactive_taxon">Neaktyvus taksonas</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
+    <string name="no_identifications_found">Čia galite sekti kitų žmonių stebėjimo identifikacijas, kurias jūs pasiūlote.</string>
     <string name="no_species_found">Čia yra jūsų dažniausiai stebėtų rūšių sąrašas.\n\nFYI: Planetoje gyvena apytiksliai 9 milijonai rūšių, todėl išeik laukan ir stebėk jas!</string>
     <string name="make_an_observation">Sukurti stebėjimą</string>
     <string name="no_observations_found_new">Stebėjimai - tai įrašai, kuriuose užfiksuoti pavieniai organizmai tam tikru laiku ir tam tikrose vietose.</string>
@@ -557,19 +559,19 @@
     <string name="change_password">Pakeisti slaptažodį</string>
     <string name="search_projects_youve_joined">Ieškoti projektų, prie kurių prisijungėte...</string>
     <string name="must_be_connected_to_load_more_obs">Prisijunkite prie interneto, jei norite užkrauti daugiau stebėjimų</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
+    <string name="inat_about_title">iNaturalist yra bendra California Academy of Sciences ir National Geographic Society iniciatyva.</string>
+    <string name="inat_credits"><![CDATA[iNaturalist egzistuoja dėka kiekvieno asmens, kuris dalyvauja mūsų bendruomenėje. Žmonės, kurie sukūrė programas, palaiko mūsų infrastruktūrą, remia bendruomenę ir skatina bendradarbiavimą yra Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard ir Ken-ichi Ueda.<br/><br/>CalTech ir Cornell Tech padėjo sukurti kompiuterinio matymo sistemą, kuri iš nuotraukų pasiūlo identifikacijas. Dėkojame Grant Van Horn, Serge Belongie, ir Pietro Perona, kurie padarė pažangą kompiuterinio matymo tyrimuose. Daugiau informacijos tinklalapyje <a href="http://www.visipedia.org">visipedia.org</a>. Ypatinga padėka NVIDIA už papildomą pagalbą.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist dėkoja atviro kodo kūrėjams, kurie aprūpino mus programomis, kuriomis naudojamės kasdien. Žiūrėkite <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>, kad pamatytumėte atviro kodo kontribucijas.<br/> Dėkojame crowdin.com bendruomenės vertėjams savanoriams, ypač Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN II kategorijos vietoves suteikė IUCN ir UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Juos galima rasti: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Kūrėjų sąrašas</string>
     <string name="password_changed">Slaptažodis, kuri naudoja programėlė, nebegalioja - galbūt pakeitėte slaptažodį tinklalapyje? Prašome įvesti naują slaptažodį</string>
     <string name="just_so_you_know">Svarbu žinoti...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
+    <string name="ask_for_g_plus_permissions">Kad galėtumėte naudotis savo Google paskyra, Google mūsų prašo gauti jūsų leidimą turėti prieigą prie jūsų kontaktų, tačiau mes niekada šių duomenų nenaudojame. Jeigu nesuteiksite šio leidimo, jums teks registruotis ir prisijungti su slapyvardžiu ir slaptažodžiu.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Pirmą kartą naudojatės %1$s? <b>Užsiregistruokite dabar!</b>]]></string>
     <string name="see_more_observations">Pamatykite daugiau stebėjimų</string>
     <string name="see_more_species">Pamatykite daugiau rūšių</string>
-    <string name="see_more_identifications">Pamatykite daugiau atpažinimų</string>
-    <string name="collection_and_umbrella_projects">Kolekcijos ir skėtiniai projektai</string>
+    <string name="see_more_identifications">Pamatykite daugiau identifikacijų</string>
+    <string name="collection_and_umbrella_projects">Grupiniai ir skėtiniai projektai</string>
     <string name="description">Aprašymas</string>
     <string name="quantity">Vnt</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -579,41 +581,41 @@
     <string name="project_observations">Stebėjimai</string>
     <string name="project_species">Rūšys</string>
     <string name="project_people">Žmonės</string>
-    <string name="project_identifiers">Atpažintojai</string>
+    <string name="project_identifiers">Identifikuotojai</string>
     <string name="got_it">Supratau!</string>
     <string name="view_all">Rodyti viską</string>
     <string name="new_badge">Nauja</string>
     <string name="observers">Stebėtojai</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Požymis</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Reikšmė</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
     <string name="disagree">Nesutinku</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Papildoma informacija</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Su papildoma informacija</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Papild. informac. pavadinimas</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Nėra</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
     <string name="annotation_name_plant_phenology">Augalo fenologija</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Amžiaus tarpsnis</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Lytis</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Žydintis</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Dera</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Sprogsta</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Suaugęs</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
-    <string name="annotation_value_teneral">Teneral</string>
+    <string name="annotation_value_teneral">Išsinėręs</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
     <string name="annotation_value_pupa">Lėliukė</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
@@ -622,15 +624,17 @@
     <string name="annotation_value_larva">Lerva</string>
     <string name="annotation_value_egg">Kiaušinis</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Jauniklis</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Patelė</string>
     <string name="annotation_value_male">Patinas</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRISIJUNGTA</string>
     <string name="nearby_projects_all_caps">NETOLIESE</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">PRISIJUNGTI</string>
+    <string name="featured_projects_all_caps">SIŪLOMI</string>
+    <!-- Text for a button or label that allows someone to join a project -->
+    <string name="join_all_caps">JUNGTIS</string>
     <string name="my_guides_all_caps">JŪSŲ</string>
     <string name="nearby_guides_all_caps">NETOLIESE</string>
     <string name="all_guides_all_caps">VISI</string>
@@ -642,8 +646,8 @@
     <string name="observations_all_caps">STEBĖJIMAI</string>
     <string name="species_all_caps">RŪŠYS</string>
     <string name="people_all_caps">ŽMONĖS</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">ATPAŽINIMAI</string>
+    <string name="identifiers_all_caps">IDENTIFIKUOTOJAI</string>
+    <string name="identifications_all_caps">IDENTIFIKACIJOS</string>
     <string name="news_all_caps">NAUJIENOS</string>
     <string name="got_it_all_caps">SUPRATAU!</string>
     <string name="view_all_all_caps">ŽIŪRĖTI VISKĄ</string>
@@ -655,21 +659,21 @@
     <string name="date_specified">Data nurodyta</string>
     <string name="location_specified">Vieta nurodyta</string>
     <string name="has_photos_or_sounds">Yra nuotrauka arba garsas</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
+    <string name="has_id_supported_by_two_or_more">Identifikacijai pritaria du ar daugiau vartotojų</string>
     <string name="date_is_accurate">Data tiksli</string>
     <string name="location_is_accurate">Vieta tiksli</string>
     <string name="organism_is_wild">Organizmas yra laukinis</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
+    <string name="evidence_of_organism">Pateikti organizmo buvimo įrodymai</string>
+    <string name="recent_evidence_of_an_organism">Pateikti neseni organizmo buvimo įrodymai</string>
+    <string name="community_id_at_species_level_or_lower">Bendruomenė identifikavo iki rūšies arba dar žemesnio lygio</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Sprendžiant iš pateiktų įrodymų, ar bendruomenė gali patvirtinti ar pagerinti identifikaciją?</string>
+    <string name="no_as_good_as_it_can_be">Ne, geriau identifikuoti neįmanoma</string>
     <string name="seasonality">Sezoniškumas</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
+    <string name="verifiable">Identifikuotinas</string>
+    <string name="no_annotation">Be papildomos informacijos</string>
+    <string name="donate_to_inaturalist">Aukoti iNaturalist kūrėjams</string>
     <string name="prefers_scientific_name_first">Pirmiausia rodyti mokslinius pavadinimus</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
+    <string name="prefers_scientific_name_first_description">Lotyniškus pavadinimus rodyti prieš lietuviškus.</string>
     <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Canadian Wildlife Federation, Royal Ontario Museum, NatureServe Canada ir Parks Canada kontroliuoja iNaturalist Kanada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Kolumbija: Instituto Humboldt kontroliuoja Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Meksika: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) kontroliuoja NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
@@ -677,8 +681,8 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugalija: Associação Biodiversidade Para Todos kontroliuoja Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente kontroliuoja iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Pažymėti visus kaip peržiūrėtus</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content_hidden">Turinys paslėptas</string>
+    <string name="show_hidden_content">Rodyti paslėptą turinį</string>
+    <string name="content_hidden_because">%2$s turinį paslėpė %1$s, nes: „%3$s“</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Susisiekti su pagalba</a>]]></string>
 </resources>

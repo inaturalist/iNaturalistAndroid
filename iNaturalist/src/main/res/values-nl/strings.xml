@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">NaturaLista is lid van het iNaturalist Network in Colombia. Lokale instellingen die NaturaLista ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All is lid van het iNaturalist Network in Portugal. Lokale instellingen die Biodiversity4All ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is lid van het iNaturalist Network in Panama. Lokale instellingen die iNaturalist Panamá ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is lid van het iNaturalist Network in Ecuador. Lokale instellingen die iNaturalist Ecuador ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar verborgen of privé zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is lid van het iNaturalist Network in Australia. Lokale instellingen die iNaturalist Australia ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -291,7 +293,7 @@
     <string name="update_comment">Commentaar bijwerken</string>
     <string name="fave_this_observation">Maak deze waarneming favoriet</string>
     <string name="faved">Aan favorieten toegevoegd</string>
-    <string name="be_the_first_to_fave_this_obs">Wees de eerste om deze aanblik te beoordelen als uw favoriet...</string>
+    <string name="be_the_first_to_fave_this_obs">Wees de eerste om deze waarneming toe te voegen aan je favorieten...</string>
     <string name="leave_a_comment">Geef een opmerking of suggereer een identificatie...</string>
     <string name="location_coords">Lat: %1$s Lon: %2$s Nauwk: %3$s</string>
     <string name="location_coords_no_acc">Lat: %1$s Lon: %2$s</string>
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Vrouw</string>
     <string name="annotation_value_male">Man</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">SLOOT ZICH AAN BIJ</string>
     <string name="nearby_projects_all_caps">IN DE BUURT</string>
     <string name="featured_projects_all_caps">FUNCTIES</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">DOE MEE</string>
     <string name="my_guides_all_caps">Jouw</string>
     <string name="nearby_guides_all_caps">IN DE BUURT</string>
@@ -677,8 +681,8 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markeer alle berichten als gelezen</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="content_hidden">Inhoud verborgen</string>
+    <string name="show_hidden_content">Toon verborgen inhoud</string>
+    <string name="content_hidden_because">Inhoud verborgen door @%1$s op %2$s omdat: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
 </resources>

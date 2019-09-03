@@ -112,13 +112,13 @@
     <string name="search_guides">Søk etter gaider...</string>
     <string name="save_observation">Lagre observasjon</string>
     <!-- Header for a description an individual guide -->
-    <string name="about_guide">About</string>
-    <string name="about_guide_all_caps">ABOUT</string>
+    <string name="about_guide">Om</string>
+    <string name="about_guide_all_caps">OM</string>
     <!-- Header for a description an individual project -->
-    <string name="about_project">About</string>
-    <string name="about_project_all_caps">ABOUT</string>
-    <string name="about_this_app">About</string>
-    <string name="about_taxon_short">About</string>
+    <string name="about_project">Om</string>
+    <string name="about_project_all_caps">OM</string>
+    <string name="about_this_app">Om</string>
+    <string name="about_taxon_short">Om</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivat</string>
     <string name="delete_confirmation">Er du sikker på at du vil slette denne observasjonen?</string>
@@ -143,7 +143,7 @@
     <string name="leave_project_confirmation">Er du sikker på at du vil forlate dette prosjektet?</string>
     <string name="discard_location_changes">Er du sikker på at du vil kaste ulagrede forandringer?</string>
     <string name="edit_location">Redigér posisjon</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Rediger lokalitetsnotater</string>
     <string name="get_current_location">Skaff nåværende posisjon</string>
     <string name="pull_to_refresh">Dra for å oppdatere...</string>
     <string name="release_to_refresh">Slipp for å oppdatere...</string>
@@ -189,12 +189,14 @@
     <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Hoved-iNaturalist-nettverket. Å klikke OK vil gjøre appen din til en del av det globale iNaturalist-nettverket.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is a member of the iNaturalist Network in Mexico. Local institutions supporting NaturaLista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is a member of the iNaturalist Network in New Zealand. Local institutions supporting iNaturalist NZ will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is a member of the iNaturalist Network in Canada. Local institutions supporting iNaturalist Canada will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_naturalista">NaturaLista er et medlem av iNaturalistnettverket i Mexico. Lokale institusjoner som støtter NaturaLista kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ er et medlem av iNaturalistnettverket i New Zealand. Lokale institusjoner som støtter iNaturalist NZ kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada er et medlem av iNaturalistnettverket i Canada. Lokale institusjoner som støtter iNaturalist Canada kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista er et medlem av iNaturalistnettverket i Colombia. Lokale institusjoner som støtter Naturalista kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All er et medlem av iNaturalistnettverket i Portugal. Lokale institusjoner som støtter Biodiversity4All kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá er et medlem av iNaturalistnettverket i Panama. Lokale institusjoner som støtter iNaturalist Panamá kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er et medlem av iNaturalistnettverket i Ecuador. Lokale institusjoner som støtter iNaturalist Ecuador kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia er et medlem av iNaturalistnettverket i Australia. Lokale institusjoner som støtter iNaturalist Australia kan se din e-postadresse og de reelle koordinatene for observasjoner som ellers er skjult for offentligheten eller private. Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner. Vil du endre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Lisens</string>
     <string name="download_for_offline_use">Nedlastning for av nett-bruk</string>
@@ -232,13 +234,13 @@
     <string name="forgot">Glemt?</string>
     <string name="or_login_with">Eller logg inn med:</string>
     <string name="registering">Registrerer...</string>
-    <string name="recommended_next_step">Recommended Next Step</string>
+    <string name="recommended_next_step">Anbefalt neste steg</string>
     <string name="could_not_register_user">Kunne ikke registrere bruker</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
     <string name="login_signup">Logg inn / Bli med</string>
     <string name="please_sign_in_via_settings_for_guides">Du må være logget inn for å se gaidene dine.</string>
     <string name="please_sign_in_for_updates">Du må være logget inn for å se oppdateringene dine.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[Ved å bruke iNaturalist godtar du <b><a href="https://www.inaturalist.org/pages/terms">vilkår for bruk</a></b> og <b><a href="https://www.inaturalist.org/pages/privacy">personvernreglene</a></b>]]></string>
     <string name="activity">Aktivitet</string>
     <string name="camera">Ta fotografi</string>
     <string name="upload_photo">Velg bilde</string>
@@ -298,14 +300,14 @@
     <string name="location">Posisjon</string>
     <string name="login_in_to_add_comments_ids">Logg inn eller bli med for å etterlate en kommentar eller foreslå en identifikasjon...</string>
     <string name="login_in_to_fav">Logg inn eller bli med for å se favoritter eller favorittisere denne observasjonen...</string>
-    <string name="sync_obs_to_see_favs">Sync this observation to see faves...</string>
+    <string name="sync_obs_to_see_favs">Synkroniser denne observasjonen for å se favoritter...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
-    <string name="sync_obs_to_add_comments_ids">Sync this observation in order to leave a comment or suggest an identification...</string>
+    <string name="sync_obs_to_add_comments_ids">Synkronisér denne observasjonen for å etterlate en kommentar eller foreslå en identifikasjon...</string>
     <string name="no_photo">Ingen fotografier</string>
     <string name="about_this_species">Om denne arten</string>
     <string name="view_on_wikipedia">Wikipedia-artikkel</string>
     <string name="photo"><![CDATA[Fotografi: <b><a href="%1$s">%2$s</a></b>]]></string>
-    <string name="photo_attr"><![CDATA[Photo: <b>%1$s</b>]]></string>
+    <string name="photo_attr"><![CDATA[Bilde: <b>%1$s</b>]]></string>
     <string name="finding_current_location">Finner nåværende posisjon...</string>
     <string name="flag_as_captive">Flagg som bevart/kultivert</string>
     <string name="observation_flagged_as_captive">Observasjon ble flagget som bevart/kultivert</string>
@@ -344,16 +346,16 @@
     <string name="language">Språk</string>
     <string name="version">Versjon</string>
     <string name="inat_network">iNaturalist-nettverk</string>
-    <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
+    <string name="inat_network_description">iNaturalistnettverket er et rammeverk for lokalisering av iNaturalistfellesskapet. Nettverkssteder støttes av lokale institusjoner som har underskrevet en avtale med iNaturalist om å fremme lokal bruk og gagne lokalt biologisk mangfold.</string>
     <string name="more_info">Mer informasjon</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">Velg nettverkstilknytning</string>
     <string name="help">Hjelp</string>
     <string name="stop">Stopp</string>
     <string name="resume">Fortsett</string>
-    <string name="cleaning_up">Cleaning up...</string>
-    <string name="syncing">Syncing...</string>
+    <string name="cleaning_up">Rydder opp...</string>
+    <string name="syncing">Synkroniserer...</string>
     <string name="syncing_observation_fields">Synkroniserer observasjonsområder...</string>
-    <string name="syncing_observations">Syncing observations...</string>
+    <string name="syncing_observations">Synkroniserer observasjoner...</string>
     <string name="syncing_paused">Pauset</string>
     <string name="upload">Last opp</string>
     <string name="search_observations">Søk etter observasjoner...</string>
@@ -393,183 +395,183 @@
     <string name="missions_onboarding_description">Oppdrag er sanntidsanbefalinger av hva du kan se rundt deg. På denne måten kan du utforske arter nye for deg! (Krever tilkobling)</string>
     <string name="ok_got_it">Okay, har det!</string>
     <string name="could_not_download_observations">Kunne ikke laste ned nyeste observasjoner - forbindelsesproblemer. Prøv igjen senere.</string>
-    <string name="no_news_yet">No news yet. Stay tuned!</string>
-    <string name="my_content">My Content</string>
-    <string name="following">Following</string>
-    <string name="no_updates_yet">No updates yet. Stay tuned!</string>
+    <string name="no_news_yet">Ingen nyheter enda. Følg med!</string>
+    <string name="my_content">Innholdet mitt</string>
+    <string name="following">Følger</string>
+    <string name="no_updates_yet">Ingen oppdateringer enda. Følg med!</string>
     <string name="you_will_only_receive_updates_when_creating">(Du vil bare motta oppdateringer når du har laget observasjoner)</string>
     <string name="you_will_only_receive_updates_when_following">(Du vil bare motta oppdateringer når du følger observasjoner)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> foreslo en ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> kommenterte: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">It looks like you deleted a photo by clearing the app cache before uploading. You will need to add the photo back to your observation from your gallery. In the future, please make sure you have uploaded all your photos before clearing the app cache.</string>
+    <string name="deleted_photos_from_cache_error">Det ser ut til at du har slettet et bilde ved å rydde appens cache før opplasting. Du må derfor legge bildet til observasjoner fra galleriet på nytt. Sørg for at du har lastet opp alle dine bilder før du rydder appcachen i fremtiden.</string>
     <string name="new_activities">%1s nye</string>
-    <string name="no_results_found">No Results Found...</string>
-    <string name="syncing_x_out_of_y_observations">Syncing %1$d of %2$d observations...</string>
-    <string name="deleting_observations">Deleting Observations...</string>
-    <string name="preparing">Preparing...</string>
+    <string name="no_results_found">Ingen resultat funnet...</string>
+    <string name="syncing_x_out_of_y_observations">Synkroniserer %1$d av %2$d observasjoner...</string>
+    <string name="deleting_observations">Sletter observasjoner...</string>
+    <string name="preparing">Forbereder...</string>
     <string name="add_edit_remark">Legg til/redigér merknad</string>
-    <string name="restore">Restore</string>
-    <string name="compare">Compare</string>
-    <string name="select">Select</string>
-    <string name="source_wikipedia">(Source: Wikipedia)</string>
-    <string name="conservation_source"><![CDATA[<b>Source:</b> <i>%1$s</i>]]></string>
-    <string name="conservation_status_least_concern">Of least concern</string>
-    <string name="conservation_status_near_threatened">Near threatened</string>
-    <string name="conservation_status_vulnerable">Vulnerable</string>
-    <string name="conservation_status_endangered">Endangered</string>
-    <string name="conservation_status_critically_endangered">Critically endangered</string>
-    <string name="conservation_status_extinct_in_the_wild">Extinct in the wild</string>
-    <string name="conservation_status_extinct">Extinct</string>
-    <string name="map_of_observations">Map of Observations</string>
-    <string name="taxonomy">Taxonomy</string>
-    <string name="about_this_section">About This Section</string>
+    <string name="restore">Gjenopprett</string>
+    <string name="compare">Sammenlign</string>
+    <string name="select">Velg</string>
+    <string name="source_wikipedia">(Kilde: Wikipedia)</string>
+    <string name="conservation_source"><![CDATA[<b>Kilde:</b> <i>%1$s</i>]]></string>
+    <string name="conservation_status_least_concern">Av minste bekymring</string>
+    <string name="conservation_status_near_threatened">Nær truet</string>
+    <string name="conservation_status_vulnerable">Sårbar</string>
+    <string name="conservation_status_endangered">Sterkt truet</string>
+    <string name="conservation_status_critically_endangered">Kritisk truet</string>
+    <string name="conservation_status_extinct_in_the_wild">Utdødd i vill tilstand</string>
+    <string name="conservation_status_extinct">Utdødd</string>
+    <string name="map_of_observations">Kart over observasjoner</string>
+    <string name="taxonomy">Taksonomi</string>
+    <string name="about_this_section">Om dette avsnittet</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
-    <string name="more_info_on_inat">More Info on iNaturalist.org</string>
-    <string name="view_suggestions">View Suggestions</string>
-    <string name="species_search">Species Search</string>
-    <string name="were_not_confident">We\'re not confident enough to make a recommendation, but here are our top %1$d suggestions:</string>
-    <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
-    <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
-    <string name="what_did_you_see">What did you see?</string>
-    <string name="suggest_species">Suggest Species</string>
-    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="taxonomy_info">Dette er lenker til forfedre av den bestemte takson. De er rangert fra grovere til mer raffinerte. Bruk disse lenkene til å beveg deg opp og ned på Tree of Life. F.eks. hvis du ikke vet hva en organisme er, men vet hvilken klassifisering den faller innunder, klikk på et takson fra listen for å se mer informasjon om den.</string>
+    <string name="more_info_on_inat">Vis på iNaturalist.org</string>
+    <string name="view_suggestions">Vis forslag</string>
+    <string name="species_search">Artssøk</string>
+    <string name="were_not_confident">Vi er ikke sikker nok til å komme med en anbefaling, men her er våre topp %1$d forslag:</string>
+    <string name="top_species_suggestions">Her er våre topp %1$d artsforslag:</string>
+    <string name="pretty_sure_rank">Vi er ganske sikre på at den er i denne %1$s:</string>
+    <string name="what_did_you_see">Hva så du?</string>
+    <string name="suggest_species">Foreslå arter</string>
+    <string name="suggest_species_description">Foreslå arter basert på visuelle likheter i bilder.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
-    <string name="visually_similar">Visually Similar</string>
-    <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
-    <string name="seen_nearby">Seen Nearby</string>
-    <string name="enlarge">Enlarge</string>
+    <string name="visually_similar">Visuelt like</string>
+    <string name="visually_similar_seen_nearby">Visuelt like / Sett i nærheten</string>
+    <string name="seen_nearby">Sett i nærheten</string>
+    <string name="enlarge">Forstørr</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
-    <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
-    <string name="taxon_has_no_photos">This taxon has no photos.</string>
-    <string name="terrain">Terrain</string>
-    <string name="filters">Filters</string>
-    <string name="exploring_all">Exploring All</string>
-    <string name="nearby">Nearby</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="view_children">Vis underordnede</string>
+    <string name="invalid_photo_extension">Feil under importering av bilde(r): Kan kun importere bilder med filtypene JPG/JPEG/PNG</string>
+    <string name="taxon_has_no_photos">Denne takson har ingen bilder.</string>
+    <string name="terrain">Terreng</string>
+    <string name="filters">Filtre</string>
+    <string name="exploring_all">Utforsker alle</string>
+    <string name="nearby">I nærheten</string>
+    <string name="couldnt_load_results">Kunne ikke laste inn resultater: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
-    <string name="taxon_search_hint">e.g. birds, monarch</string>
-    <string name="location_search_hint">e.g. city, state, park, country...</string>
-    <string name="no_taxon">Sorry, taxon not found</string>
-    <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
-    <string name="sorry_no_location">Sorry, location not found</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
-    <string name="undefined">Undefined</string>
-    <string name="street_segment">Street Segment</string>
-    <string name="intersection">Intersection</string>
-    <string name="town">Town</string>
-    <string name="state">State</string>
-    <string name="county">County</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
-    <string name="country">Country</string>
-    <string name="island">Island</string>
-    <string name="airport">Airport</string>
-    <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
-    <string name="miscellaneous">Miscellaneous</string>
-    <string name="nationality">Nationality</string>
+    <string name="research_grade_initials">FK</string>
+    <string name="taxon_search_hint">f.eks. fulger, monark</string>
+    <string name="location_search_hint">f.eks. by, stat, park, land...</string>
+    <string name="no_taxon">Beklager, takson ikke funnet</string>
+    <string name="please_select_taxon">Vennligst velg et gyldig takson fra listen (eller rydd taksonfeltet).</string>
+    <string name="sorry_no_location">Beklager, plassering ikke funnet</string>
+    <string name="location_not_found">Plasseringen eller stedet du har søkt etter finnes ikke i vår database. Vennligst velg et sted fra listen under søkefeltet eller rydd søkefeltet.</string>
+    <string name="undefined">Udefinert</string>
+    <string name="street_segment">Gatesegment</string>
+    <string name="intersection">Kryss</string>
+    <string name="town">By</string>
+    <string name="state">Stat</string>
+    <string name="county">Fylke</string>
+    <string name="local_administrative_area">Lokalt administrativt område</string>
+    <string name="country">Land</string>
+    <string name="island">Øy</string>
+    <string name="airport">Flyplass</string>
+    <string name="drainage">Nedbørfelt</string>
+    <string name="land_feature">Landform</string>
+    <string name="miscellaneous">Diverse</string>
+    <string name="nationality">Nasjonalitet</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
-    <string name="point_of_interest">Point of Interest</string>
+    <string name="supername">Region</string>
+    <string name="point_of_interest">Interessepunkt</string>
     <string name="region">Region</string>
-    <string name="colloquial">Colloquial</string>
-    <string name="zone">Zone</string>
-    <string name="historical_state">Historical State</string>
-    <string name="historical_county">Historical County</string>
-    <string name="continent">Continent</string>
-    <string name="estate">Estate</string>
-    <string name="historical_town">Historical Town</string>
-    <string name="aggregate">Aggregate</string>
-    <string name="open_space">Open Space</string>
-    <string name="territory">Territory</string>
-    <string name="district">District</string>
-    <string name="province">Province</string>
-    <string name="municipality">Municipality</string>
-    <string name="parish">Parish</string>
-    <string name="department_segment">Department Segment</string>
-    <string name="city_building">City Building</string>
-    <string name="commune">Commune</string>
-    <string name="governorate">Governorate</string>
-    <string name="prefecture">Prefecture</string>
-    <string name="canton">Canton</string>
-    <string name="republic">Republic</string>
-    <string name="division">Division</string>
-    <string name="subdivision">Subdivision</string>
+    <string name="colloquial">Dagligdagse</string>
+    <string name="zone">Sone</string>
+    <string name="historical_state">Historisk stat</string>
+    <string name="historical_county">Historisk fylke</string>
+    <string name="continent">Kontinent</string>
+    <string name="estate">Eiendom</string>
+    <string name="historical_town">Historisk by</string>
+    <string name="aggregate">Aggregat</string>
+    <string name="open_space">Åpent område</string>
+    <string name="territory">Territorie</string>
+    <string name="district">Distrikt</string>
+    <string name="province">Provins</string>
+    <string name="municipality">Kommune</string>
+    <string name="parish">Sogn</string>
+    <string name="department_segment">Avdelingssegment</string>
+    <string name="city_building">Bybyggning</string>
+    <string name="commune">Kommune</string>
+    <string name="governorate">Guvernement</string>
+    <string name="prefecture">Prefektur</string>
+    <string name="canton">Kanton</string>
+    <string name="republic">Republikk</string>
+    <string name="division">Divisjon</string>
+    <string name="subdivision">Underdivisjon</string>
     <!-- https://gadm.org place type, presumably describing an area larger than an individual property but smaller than a neighborhood -->
-    <string name="village_block">Village block</string>
+    <string name="village_block">Landsbyblokk</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Sum</string>
-    <string name="shire">Shire</string>
-    <string name="prefecture_city">Prefecture City</string>
+    <string name="shire">Syssel</string>
+    <string name="prefecture_city">Prefekturby</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
-    <string name="local_authority">Local Authority</string>
-    <string name="poblacion">Poblacion</string>
-    <string name="delegation">Delegation</string>
-    <string name="apply_filters">Apply Filters</string>
-    <string name="reset">Reset</string>
-    <string name="show_only_my_observations">Show Only My Observations</string>
-    <string name="project">Project</string>
-    <string name="user">User</string>
-    <string name="search_users">Search Users...</string>
-    <string name="quality_grade">Quality Grade</string>
-    <string name="dates">Dates</string>
+    <string name="regency">Regentskap</string>
+    <string name="constituency">Valgkrets</string>
+    <string name="local_authority">Lokal myndighet</string>
+    <string name="poblacion">Bosetting</string>
+    <string name="delegation">Delegasjon</string>
+    <string name="apply_filters">Bruk filtre</string>
+    <string name="reset">Nullstill</string>
+    <string name="show_only_my_observations">Vis bare mine observasjoner</string>
+    <string name="project">Prosjekt</string>
+    <string name="user">Bruker</string>
+    <string name="search_users">Søk blant brukere...</string>
+    <string name="quality_grade">Kvalitetsgrad</string>
+    <string name="dates">Dato</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
-    <string name="any">Any</string>
+    <string name="any">Alle</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
-    <string name="to">to</string>
-    <string name="exact_date">Exact Date</string>
+    <string name="to">til</string>
+    <string name="exact_date">Eksakt dato</string>
     <string name="start">Start</string>
-    <string name="end">End</string>
-    <string name="months">Months</string>
-    <string name="choose_months">Choose months(s)</string>
-    <string name="map_area">Map Area</string>
+    <string name="end">Slutt</string>
+    <string name="months">Måneder</string>
+    <string name="choose_months">Velg måned(er)</string>
+    <string name="map_area">Kartområde</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
-    <string name="search_map_area">Search Map Area</string>
+    <string name="search_map_area">Søk i kartområde</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%dm</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dh</string>
+    <string name="date_hour">%dt</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
     <string name="date_day">%dd</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dw</string>
-    <string name="new_observation">New Observation</string>
-    <string name="inactive_taxon">Inactive Taxon</string>
-    <string name="no_identifications_found">Track identifications you suggest for observations by other people here.</string>
-    <string name="no_species_found">This is a list of the species you have observed the most.\n\nFYI: There\'s an estimated 9 million species on the planet, so get out there and observe them!</string>
-    <string name="make_an_observation">Make an observation</string>
-    <string name="no_observations_found_new">Observations are records of your encounters with individual organisms at particular times and locations.</string>
-    <string name="discard_comment">Are you sure you want to discard this comment?</string>
-    <string name="leave_comment">Leave a comment...</string>
-    <string name="swipe">Swipe</string>
+    <string name="date_week">%du</string>
+    <string name="new_observation">Ny observasjon</string>
+    <string name="inactive_taxon">Inaktiv takson</string>
+    <string name="no_identifications_found">Følg identifikasjoner du har foreslått for observasjoner av andre personers her.</string>
+    <string name="no_species_found">Dette er en list av arter du har observert flest av.\n\nTil informasjon: Det finnes om lag 9 millioner arter på planeten, så kom deg ut og observer dem!</string>
+    <string name="make_an_observation">Gjør en observasjon</string>
+    <string name="no_observations_found_new">Observasjoner er registreringer over dine møter med individuelle organismer ved spesifikke tider og plasseringer.</string>
+    <string name="discard_comment">Er du sikker på at du vil forkaste denne kommentaren?</string>
+    <string name="leave_comment">Legg igjen en kommentar...</string>
+    <string name="swipe">Sveip</string>
     <string name="swipe_indicator">›</string>
-    <string name="select_google_account">Which Google Account?</string>
-    <string name="potential_disagreement">Potential Disagreement</string>
-    <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
-    <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
-    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
-    <string name="change_password">Change Password</string>
-    <string name="search_projects_youve_joined">Search projects you\'ve joined...</string>
-    <string name="must_be_connected_to_load_more_obs">You must be connected to the Internet to load more observations</string>
-    <string name="inat_about_title">iNaturalist is a joint initiative by the California Academy of Sciences and the National Geographic Society.</string>
-    <string name="inat_credits"><![CDATA[iNaturalist exists thanks to every single person who participates in our community. The people who build the software, design the interfaces, maintain our infrastructure, support the community, and foster collaborations are Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, and Ken-ichi Ueda.<br/><br/>CalTech and Cornell Tech helped develop the computer vision system that suggests identifications from photographs. We thank Grant Van Horn, Serge Belongie, and Pietro Perona for advancing the computer vision research. More information can be found at <a href="http://www.visipedia.org">visipedia.org</a>. Special thanks to NVIDIA for additional assistance.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
-    <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
-    <string name="credits_title">Credits</string>
-    <string name="password_changed">The password the app uses no longer works - did you change your password on the website? Please enter the new one here</string>
-    <string name="just_so_you_know">Just So You Know...</string>
-    <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
-    <string name="new_to_inat_sign_up_now"><![CDATA[New to %1$s? <b>Sign up now!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
-    <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
+    <string name="select_google_account">Hvilken Google-konto?</string>
+    <string name="potential_disagreement">Potensiell uenighet</string>
+    <string name="do_you_think_this_could_be"><![CDATA[Er det bevis nok til å bekrefte at dette er <b>%1$s</b>?]]></string>
+    <string name="i_dont_know_but"><![CDATA[Jeg vet ikke, men jeg er sikker på at det er <b>%1$s</b>.]]></string>
+    <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Nei, men det er et medlem av <b>%1$s</b>.]]></string>
+    <string name="submit">Send inn</string>
+    <string name="change_password">Endre passord</string>
+    <string name="search_projects_youve_joined">Søk i prosjekter du deltar i...</string>
+    <string name="must_be_connected_to_load_more_obs">Du må være tilkoblet internett for å last opp flere observasjoner</string>
+    <string name="inat_about_title">iNaturalist er et felles initiativ av California Academy of Sciences og National Geographic Society.</string>
+    <string name="inat_credits"><![CDATA[iNaturalist eksisterer takket være hver enkelt person som bidrar i samfunnet vårt. Personene som har bygd programvaren, designet brukergrensesnittet, vedlikeholder infrastrukturen vår, støtter samfunnet vårt, og og fremmer samarbeid er Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, og Ken-ichi Ueda.<br/><br/>CalTech og Cornell Tech bidro med utvikling av computersynsystemet som foreslår identifikasjoner fra bilder. Vi vil takke Grant Van Horn, Serge Belongie og Pietro Perona for å fremme computersynforskningen. Mer informasjon kan du finne på <a href="http://www.visipedia.org">visipedia.org</a>. En spesiell takk til NVIDIA for ytterligere støtte.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Det internasjonale iNaturalistnettverket støtter lokaliserte, fullstendig integrerte, iNaturalistbaserte nettsteder i følgende land, takket være støtten fra våre tilknyttede partnerorganisasjoner.]]></string>
+    <string name="inat_credits_post"><![CDATA[iNaturalist er også dypt takknemlig ovenfor utviklerne av åpen kildekode som har sørget for store deler av programvaren vi setter vår lit til hver eneste dag. Se <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for åpen kildekodebidrag. <br/> Vi er takknemlige for hjelp til oversettelse av frivillige fra crowdin.com, spesielt Eduardo Martínes, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danielseglie, og katunchik. <br/>IUCN kategori II steder tilgjengeliggjort av IUCN og UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. tilgjengelig på: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
+    <string name="credits_title">Krediteringer</string>
+    <string name="password_changed">Passordet som appen bruker fungerer ikke - har du endret passord på nettisden? Vennligst skriv inn det nye passordet her</string>
+    <string name="just_so_you_know">Bare så du vet det...</string>
+    <string name="ask_for_g_plus_permissions">Google krever at vi spør om tilgang til dine kontakter for å kunne bruke Googlekontoen din, selv om vi ikke bruker denne tilgangen under noen omstendigheter. Dersom du avslår denne tilgangen må du registrere deg eller logge inn med brukernavn og passord.</string>
+    <string name="new_to_inat_sign_up_now"><![CDATA[Ny hos %1$s? <b>Bli med nå!</b>]]></string>
+    <string name="see_more_observations">Se flere observasjoner</string>
+    <string name="see_more_species">Se flere arter</string>
+    <string name="see_more_identifications">Se flere identifikasjoner</string>
+    <string name="collection_and_umbrella_projects">Samling og paraplyprosjekter</string>
     <string name="description">Beskrivelse</string>
     <string name="quantity">Antall</string>
     <!-- Number of observations. Do not change the format to $d -->
@@ -583,102 +585,104 @@
     <string name="got_it">Har det!</string>
     <string name="view_all">Vis alle</string>
     <string name="new_badge">Nytt</string>
-    <string name="observers">Observers</string>
+    <string name="observers">Observatører</string>
     <!-- Describes the attribute being annotated, e.g. if the annotation is for life stage, "Life Stage" is the attribute. -->
-    <string name="attribute">Attribute</string>
+    <string name="attribute">Egenskap</string>
     <!-- Value of an annotation, e.g. if the annotation is for life stage and the value chosen is "Adult" then "Adult" is the value -->
-    <string name="value">Value</string>
+    <string name="value">Verdi</string>
     <!-- Label for a button allowing users to state that they think an annotation is incorrect -->
-    <string name="disagree">Disagree</string>
+    <string name="disagree">Uenig</string>
     <!-- Annotations are key/value pairs applied to observations with a controlled vocabulary -->
-    <string name="annotations">Annotations</string>
+    <string name="annotations">Merknader</string>
     <!-- Used when filtering observations with annotations -->
-    <string name="with_annotation">With Annotation</string>
+    <string name="with_annotation">Med merknad</string>
     <!-- Attribute of an annotation. Synonymous with "Attribute" but slightly more explanatory for use in a popup header -->
-    <string name="annotation_name">Annotation Name</string>
+    <string name="annotation_name">Merknadsnavn</string>
     <!-- Annotation value for when no annotation has been chosen -->
-    <string name="none">None</string>
+    <string name="none">Ingen</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Plantefenologi</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
-    <string name="annotation_name_life_stage">Life Stage</string>
+    <string name="annotation_name_life_stage">Livsstadie</string>
     <!-- Noun, describes sex of the organism -->
-    <string name="annotation_name_sex">Sex</string>
+    <string name="annotation_name_sex">Kjønn</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Flowering</string>
+    <string name="annotation_value_flowering">Blomstring</string>
     <!-- Adjective, having fruit -->
-    <string name="annotation_value_fruiting">Fruiting</string>
+    <string name="annotation_value_fruiting">Fruktbærende</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_budding">Budding</string>
+    <string name="annotation_value_budding">Spirende</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
-    <string name="annotation_value_adult">Adult</string>
+    <string name="annotation_value_adult">Voksen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
     <string name="annotation_value_teneral">Teneral</string>
     <!-- Noun for a dormant phase of holometabolous insects between larva and adult -->
-    <string name="annotation_value_pupa">Pupa</string>
+    <string name="annotation_value_pupa">Puppe</string>
     <!-- Noun for larval stage of some aquatic insects and most hemimetabolous insects -->
-    <string name="annotation_value_nymph">Nymph</string>
+    <string name="annotation_value_nymph">Nymfe</string>
     <!-- Noun for the arthropod life stage between egg and adult -->
-    <string name="annotation_value_larva">Larva</string>
+    <string name="annotation_value_larva">Larve</string>
     <string name="annotation_value_egg">Egg</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
-    <string name="annotation_value_juvenile">Juvenile</string>
+    <string name="annotation_value_juvenile">Juvenil</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
-    <string name="annotation_value_female">Female</string>
-    <string name="annotation_value_male">Male</string>
-    <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
-    <string name="featured_projects_all_caps">FEATURED</string>
-    <string name="join_all_caps">JOIN</string>
-    <string name="my_guides_all_caps">YOURS</string>
-    <string name="nearby_guides_all_caps">NEARBY</string>
-    <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
-    <string name="species_all_caps">SPECIES</string>
-    <string name="people_all_caps">PEOPLE</string>
-    <string name="identifiers_all_caps">IDENTIFIERS</string>
-    <string name="identifications_all_caps">IDENTIFICATIONS</string>
-    <string name="news_all_caps">NEWS</string>
-    <string name="got_it_all_caps">GOT IT!</string>
-    <string name="view_all_all_caps">VIEW ALL</string>
-    <string name="new_all_caps">NEW</string>
-    <string name="observers_all_caps">OBSERVERS</string>
-    <string name="observations_regular">Observations</string>
-    <string name="data_quality_assessment">Data Quality Assessment</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
-    <string name="date_specified">Date specified</string>
-    <string name="location_specified">Location specified</string>
-    <string name="has_photos_or_sounds">Has photos or sounds</string>
-    <string name="has_id_supported_by_two_or_more">Has ID supported by two or more</string>
-    <string name="date_is_accurate">Date is accurate</string>
-    <string name="location_is_accurate">Location is accurate</string>
-    <string name="organism_is_wild">Organism is wild</string>
-    <string name="evidence_of_organism">Evidence of organism</string>
-    <string name="recent_evidence_of_an_organism">Recent evidence of an organism</string>
-    <string name="community_id_at_species_level_or_lower">Community ID at species level or lower</string>
-    <string name="based_on_evidence_can_community_id_be_confirmed">Based on the evidence, can the Community ID still be confirmed or improved?</string>
-    <string name="no_as_good_as_it_can_be">No, it\'s as good as it can be</string>
-    <string name="seasonality">Seasonality</string>
-    <string name="verifiable">Verifiable</string>
-    <string name="no_annotation">No Annotation</string>
-    <string name="donate_to_inaturalist">Donate to iNaturalist</string>
-    <string name="prefers_scientific_name_first">Show scientific names first</string>
-    <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="annotation_value_female">Hunnkjønn</string>
+    <string name="annotation_value_male">Hannkjønn</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
+    <string name="joined_projects_all_caps">DELTAR</string>
+    <string name="nearby_projects_all_caps">I NÆRHETEN</string>
+    <string name="featured_projects_all_caps">FREMMHEVEDE</string>
+    <!-- Text for a button or label that allows someone to join a project -->
+    <string name="join_all_caps">BLI MED</string>
+    <string name="my_guides_all_caps">DINE</string>
+    <string name="nearby_guides_all_caps">I NÆRHETEN</string>
+    <string name="all_guides_all_caps">ALLE</string>
+    <string name="description_all_caps">BESKRIVELSE</string>
+    <string name="quantity_all_caps">ANTALL</string>
+    <string name="observation_count_all_caps">%1$s OBSERVASJONER</string>
+    <string name="observation_count_single_all_caps">%1$d OBSERVASJON</string>
+    <string name="agree_all_caps">GODTA</string>
+    <string name="observations_all_caps">OBSERVASJONER</string>
+    <string name="species_all_caps">ARTER</string>
+    <string name="people_all_caps">PERSONER</string>
+    <string name="identifiers_all_caps">IDENTIFIKATORER</string>
+    <string name="identifications_all_caps">IDENTIFIKASJONER</string>
+    <string name="news_all_caps">NYHETER</string>
+    <string name="got_it_all_caps">FORSTÅR!</string>
+    <string name="view_all_all_caps">VIS ALLE</string>
+    <string name="new_all_caps">NY</string>
+    <string name="observers_all_caps">OBSERVATØRER</string>
+    <string name="observations_regular">Observasjoner</string>
+    <string name="data_quality_assessment">Datakvalitetsvurdering</string>
+    <string name="research_grade_qualification">Forskningskvalitetskvalifikasjon</string>
+    <string name="date_specified">Dato spesifisert</string>
+    <string name="location_specified">Plassering spesifisert</string>
+    <string name="has_photos_or_sounds">Har bilde eller lyd</string>
+    <string name="has_id_supported_by_two_or_more">Har ID understøttet av to eller flere</string>
+    <string name="date_is_accurate">Dato er korrekt</string>
+    <string name="location_is_accurate">Plassering er korrekt</string>
+    <string name="organism_is_wild">Organisme er vildtlevende</string>
+    <string name="evidence_of_organism">Bevis på organisme</string>
+    <string name="recent_evidence_of_an_organism">Nylig bevis å en organisme</string>
+    <string name="community_id_at_species_level_or_lower">Samfunns-ID på artsnivå eller lavere</string>
+    <string name="based_on_evidence_can_community_id_be_confirmed">Kan samfunns-ID\'en fortsatt bekreftes eller forbedres basert på bevisene?</string>
+    <string name="no_as_good_as_it_can_be">Nei, det er så bra som det kan bli</string>
+    <string name="seasonality">Sesong</string>
+    <string name="verifiable">Verifiserbar</string>
+    <string name="no_annotation">Ingen merknader</string>
+    <string name="donate_to_inaturalist">Donere til iNaturalist</string>
+    <string name="prefers_scientific_name_first">Vis vitenskapelige navn først</string>
+    <string name="prefers_scientific_name_first_description">Vis vitenskapelige navn før vanlige navn.</string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, og Parks Canada som driver iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt, som driver Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO), som driver NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network, som driver iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos, som driver Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente, som driver iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Merk alle som lest</string>
+    <string name="content_hidden">Innhold skjult</string>
+    <string name="show_hidden_content">Vis skjult innhold</string>
+    <string name="content_hidden_because">Innhold skjult av @%1$s på %2$s fordi: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontakt Support</a>]]></string>
 </resources>
