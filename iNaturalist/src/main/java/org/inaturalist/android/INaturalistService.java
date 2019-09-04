@@ -1843,7 +1843,7 @@ public class INaturalistService extends IntentService {
         for (Integer obsId : observationIdsToSync) {
             c = getContentResolver().query(Observation.CONTENT_URI,
                     Observation.PROJECTION,
-                    "_id in (" + StringUtils.join(observationIdsToSync, ",") + ")",
+                    "_id = " + obsId,
                     null,
                     Observation.DEFAULT_SORT_ORDER);
             if (c.getCount() == 0) {
