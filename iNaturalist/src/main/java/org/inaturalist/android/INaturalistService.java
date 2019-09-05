@@ -1888,7 +1888,7 @@ public class INaturalistService extends IntentService {
             mApp.setObservationIdBeingSynced(observation._id);
             Log.d(TAG, "syncObservations: Syncing " + observation._id + ": " + observation.toString());
 
-            if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at)))) {
+            if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at))) || (observation.id == null)) {
                 postObservation(observation);
                 increaseProgressForObservation(observation);
             }
