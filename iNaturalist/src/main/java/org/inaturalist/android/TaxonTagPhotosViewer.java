@@ -11,7 +11,7 @@ import uk.co.senab.photoview.HackyViewPager;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
@@ -41,19 +41,11 @@ public class TaxonTagPhotosViewer extends AppCompatActivity {
     @State public String mTagValue;
     private GuideXML mGuideXml;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
-
-	@Override
+@Override
 	protected void onStop()
 	{
 		super.onStop();
-		FlurryAgent.onEndSession(this);
+
 	}
 
 

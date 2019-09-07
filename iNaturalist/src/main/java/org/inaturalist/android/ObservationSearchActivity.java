@@ -30,7 +30,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.flurry.android.FlurryAgent;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,14 +62,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
     private int mLastTypingTime = 0;
     private long mStartTime;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
-    @Override
+@Override
     public void onResume() {
         super.onResume();
         if (mApp == null) { mApp = (INaturalistApp) getApplicationContext(); }
@@ -89,12 +82,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
     }
 
  
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
+
 
 
     @Override

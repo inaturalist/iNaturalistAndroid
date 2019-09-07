@@ -3,7 +3,7 @@ package org.inaturalist.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.flurry.android.FlurryAgent;
+
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -33,20 +33,7 @@ public class ProjectsActivity extends BaseFragmentActivity implements OnTabChang
     private List<Fragment> mFragments;
     private INaturalistApp mApp;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

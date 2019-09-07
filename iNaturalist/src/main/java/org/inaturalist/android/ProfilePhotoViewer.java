@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
@@ -42,20 +42,7 @@ public class ProfilePhotoViewer extends AppCompatActivity {
 
     public static final String USER = "observation";
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
 
 
     @Override

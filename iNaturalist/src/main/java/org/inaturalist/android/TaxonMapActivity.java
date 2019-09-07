@@ -28,7 +28,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -82,15 +82,15 @@ public class TaxonMapActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-        FlurryAgent.logEvent(this.getClass().getSimpleName());
+
+
     }
 
     @Override
     protected void onStop()
     {
         super.onStop();
-        FlurryAgent.onEndSession(this);
+
     }
 
 

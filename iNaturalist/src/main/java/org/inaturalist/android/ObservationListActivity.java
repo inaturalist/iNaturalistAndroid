@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 import com.cocosw.bottomsheet.BottomSheet;
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -156,20 +156,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     public static boolean sActivityCreated = false;
 
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
 	
 	
 	private boolean isNetworkAvailable() {

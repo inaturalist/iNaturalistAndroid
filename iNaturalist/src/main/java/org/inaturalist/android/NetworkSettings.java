@@ -20,7 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.flurry.android.FlurryAgent;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,19 +41,11 @@ public class NetworkSettings extends AppCompatActivity {
     private int mFormerSelectedNetworkRadioButton;
 
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
-
-	@Override
+@Override
 	protected void onStop()
 	{
 		super.onStop();
-		FlurryAgent.onEndSession(this);
+
 	}
 
     @Override

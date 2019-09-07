@@ -56,7 +56,7 @@ import android.widget.Toast;
 
 import com.cocosw.bottomsheet.BottomSheet;
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -234,14 +234,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     @Override
 	protected void onStart() {
 		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
+
+
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		FlurryAgent.onEndSession(this);
+
 	}
 
 

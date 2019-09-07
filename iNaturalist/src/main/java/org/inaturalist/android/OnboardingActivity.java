@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.facebook.login.widget.LoginButton;
-import com.flurry.android.FlurryAgent;
+
 
 public class OnboardingActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
     private static final int REQUEST_CODE_SIGNUP = 0x1000;
@@ -44,14 +44,14 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
     @Override
 	protected void onStart() {
 		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
+
+
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();		
-		FlurryAgent.onEndSession(this);
+
 	}	
 
     @Override

@@ -25,7 +25,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -53,20 +53,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private ActivityHelper mHelper;
     @State public String mIconicTaxonName;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

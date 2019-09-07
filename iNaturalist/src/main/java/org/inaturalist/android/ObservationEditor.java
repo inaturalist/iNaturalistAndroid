@@ -8,7 +8,7 @@ import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.GpsDirectory;
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
@@ -219,19 +219,11 @@ public class ObservationEditor extends AppCompatActivity {
     @State public boolean mFromSuggestion = false;
     @State public String mObsJson;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
-
-	@Override
+@Override
 	protected void onStop()
 	{
         super.onStop();
-        FlurryAgent.onEndSession(this);
+
 	}
 
     private void refreshProjectList() {

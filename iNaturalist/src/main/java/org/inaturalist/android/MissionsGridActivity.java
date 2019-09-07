@@ -24,7 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.livefront.bridge.Bridge;
@@ -54,20 +54,7 @@ public class MissionsGridActivity extends AppCompatActivity {
     @State public int mMissionsCurrentExpansionLevel = 0;
     @State public int mTaxonId = -1;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

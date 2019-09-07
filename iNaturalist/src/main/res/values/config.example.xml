@@ -13,9 +13,6 @@
     <!-- http://www.inaturalist.org/oauth/applications -->
     <!-- <string name="oauth_client_id">xxx</string>  -->
 
-    <!-- Flurry Analytics API key -->
-    <!-- <string name="flurry_api_key">xxxx</string>  -->
-
     <!-- Support email address -->
     <!-- <string name="inat_support_email_address">help@yoursite.org</string> -->
 

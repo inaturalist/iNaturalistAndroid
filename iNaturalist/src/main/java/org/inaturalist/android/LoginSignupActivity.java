@@ -33,7 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.widget.LoginButton;
-import com.flurry.android.FlurryAgent;
+
 
 public class LoginSignupActivity extends AppCompatActivity implements SignInTask.SignInTaskStatus {
 
@@ -71,14 +71,14 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     @Override
     protected void onStart() {
         super.onStart();
-        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-        FlurryAgent.logEvent(this.getClass().getSimpleName());
+
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        FlurryAgent.onEndSession(this);
+
     }
 
 

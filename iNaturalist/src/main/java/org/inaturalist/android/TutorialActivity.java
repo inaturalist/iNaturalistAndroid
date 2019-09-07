@@ -24,7 +24,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.flurry.android.FlurryAgent;
+
 import com.viewpagerindicator.CirclePageIndicator;
 
 public class TutorialActivity extends BaseFragmentActivity {
@@ -35,15 +35,15 @@ public class TutorialActivity extends BaseFragmentActivity {
     protected void onStart()
     {
         super.onStart();
-        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-        FlurryAgent.logEvent(this.getClass().getSimpleName());
+
+
     }
 
     @Override
     protected void onStop()
     {
         super.onStop();
-        FlurryAgent.onEndSession(this);
+
     }
 
 

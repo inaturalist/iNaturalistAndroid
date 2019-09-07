@@ -35,7 +35,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
@@ -154,15 +154,15 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
     protected void onStart()
     {
         super.onStart();
-        FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-        FlurryAgent.logEvent(this.getClass().getSimpleName());
+
+
     }
 
     @Override
     protected void onStop()
     {
         super.onStop();
-        FlurryAgent.onEndSession(this);
+
     }
 
     private class HistogramReceiver extends BroadcastReceiver {

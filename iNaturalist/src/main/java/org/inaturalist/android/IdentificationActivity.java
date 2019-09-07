@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.flurry.android.FlurryAgent;
+
 import com.livefront.bridge.Bridge;
 
 import java.sql.Timestamp;
@@ -62,21 +62,7 @@ public class IdentificationActivity extends AppCompatActivity {
     @State public String mObservationJson;
     @State public boolean mFromSuggestion = false;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
 
-	}
-
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
     
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {

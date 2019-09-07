@@ -27,7 +27,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
@@ -53,20 +53,7 @@ public class ProjectNews extends BaseFragmentActivity {
     private ProjectNewsReceiver mProjectNewsReceiver;
     @State public Boolean mIsUserFeed;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

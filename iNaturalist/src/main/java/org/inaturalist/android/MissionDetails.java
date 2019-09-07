@@ -31,7 +31,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -98,20 +98,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     private ObservationsPagerAdapter mNearbyObservationsPageAdapter;
     private float mLocationExpansion;
 
-    @Override
-	protected void onStart()
-	{
-		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
-	}
 
-	@Override
-	protected void onStop()
-	{
-		super.onStop();		
-		FlurryAgent.onEndSession(this);
-	}	
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

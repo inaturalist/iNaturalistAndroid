@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
-import com.flurry.android.FlurryAgent;
 import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
@@ -55,14 +54,11 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
     @Override
 	protected void onStart() {
 		super.onStart();
-		FlurryAgent.onStartSession(this, INaturalistApp.getAppContext().getString(R.string.flurry_api_key));
-		FlurryAgent.logEvent(this.getClass().getSimpleName());
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		FlurryAgent.onEndSession(this);
 	}
 
     @Override
