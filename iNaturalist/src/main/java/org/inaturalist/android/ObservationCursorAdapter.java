@@ -153,6 +153,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassCastException e) {
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
