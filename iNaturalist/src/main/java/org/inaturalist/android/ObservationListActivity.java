@@ -310,6 +310,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         opc.close();
 
+
+        Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
+        		new String[]{
+        		ObservationSound._ID,
+                ObservationSound.ID,
+                ObservationSound._OBSERVATION_ID,
+        		ObservationSound.IS_DELETED
+            },
+            "(id IS NULL) OR " +
+            "(is_deleted = 1)",
+            null,
+            ObservationSound._ID);
+
+        boolean soundsChanged = false;
+        osc.moveToFirst();
+        while (!osc.isAfterLast()) {
+            obsToSync.put(osc.getLong(osc.getColumnIndex(ObservationSound._OBSERVATION_ID)), true);
+            osc.moveToNext();
+            soundsChanged = true;
+        }
+
+        osc.close();
+
         if (mSyncingTopBar != null) {
             if (obsToSync.keySet().size() > 0) {
                 int count = obsToSync.keySet().size();
@@ -322,7 +345,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
                 mCancelSync.setText(R.string.upload);
 
-                if (photosChanged) {
+                if (photosChanged || soundsChanged) {
                     mObservationListAdapter.refreshPhotoInfo();
                 }
             } else {
@@ -600,6 +623,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if ((mApp.getAutoSync() && !mApp.getIsSyncing() && (!mSyncRequested)) || (hasOldObs)) {
             int syncCount = 0;
             int photoSyncCount = 0;
+            int soundSyncCount = 0;
 
             if (!hasOldObs) {
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
@@ -618,6 +642,23 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 photoSyncCount = c.getCount();
                 c.close();
+
+                Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
+                        new String[]{
+                                ObservationSound._ID,
+                                ObservationSound.ID,
+                                ObservationSound._OBSERVATION_ID,
+                                ObservationSound.IS_DELETED
+                        },
+                        "(id IS NULL) OR " +
+                                "(is_deleted = 1)",
+                        null,
+                        ObservationSound._ID);
+
+                osc.moveToFirst();
+                soundSyncCount = osc.getCount();
+                osc.close();
+
             }
 
             Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
@@ -625,7 +666,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
 
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
-            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
+            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0) || (soundSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

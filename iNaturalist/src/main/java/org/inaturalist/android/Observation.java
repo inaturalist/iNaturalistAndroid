@@ -65,6 +65,7 @@ public class Observation implements BaseColumns, Serializable {
     public SerializableJSONArray field_values;
 
     public List<ObservationPhoto> photos;
+    public List<ObservationSound> sounds;
 
     public Timestamp _created_at_was;
     public Timestamp _synced_at_was;
@@ -434,6 +435,24 @@ public class Observation implements BaseColumns, Serializable {
                 e.printStackTrace();
             }
         }
+
+        try {
+            this.sounds = new ArrayList<ObservationSound>();
+            JSONArray sounds;
+            sounds = o.getJSONObject().getJSONArray("observation_sounds");
+            for (int i = 0; i < sounds.length(); i++) {
+                BetterJSONObject json = new BetterJSONObject((JSONObject)sounds.get(i));
+                ObservationSound sound = new ObservationSound(json);
+                sound.observation_id = o.getInt("id");
+                sound._observation_id = this._id;
+                this.sounds.add(sound);
+            }
+        } catch (JSONException e) {
+            if (!e.getMessage().matches("No value for observation_sounds")) {
+                e.printStackTrace();
+            }
+        }
+
 
         this.comments_count = o.getInteger("comments_count");
         if ((this.comments != null) && (this.comments.getJSONArray().length() != this.comments_count)) {

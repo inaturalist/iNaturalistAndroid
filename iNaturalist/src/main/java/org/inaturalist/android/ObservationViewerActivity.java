@@ -12,6 +12,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -86,6 +88,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class ObservationViewerActivity extends AppCompatActivity implements AnnotationsAdapter.OnAnnotationActions {
@@ -294,8 +297,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 
-    private class PhotosViewPagerAdapter extends PagerAdapter {
+    private class PhotosViewPagerAdapter extends PagerAdapter implements SoundPlayer.OnPlayerStatusChange {
         private Cursor mImageCursor = null;
+        private Cursor mSoundCursor = null;
+
+        private List<SoundPlayer> mPlayers = new ArrayList<>();
 
         public PhotosViewPagerAdapter() {
             if (!mReadOnly) {
@@ -305,12 +311,22 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString(), mObservation.id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
+                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{mObservation._id.toString(), mObservation.id.toString()},
+                            ObservationSound.DEFAULT_SORT_ORDER);
                 } else {
                     mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
                             "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
+                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{mObservation._id.toString()},
+                            ObservationSound.DEFAULT_SORT_ORDER);
                 }
                 mImageCursor.moveToFirst();
             }
@@ -322,27 +338,18 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public int getCount() {
-            return mReadOnly ? mObservation.photos.size() : mImageCursor.getCount();
+            return mReadOnly ?
+                    (mObservation.photos.size() + mObservation.sounds.size()) :
+                    mImageCursor.getCount() + mSoundCursor.getCount();
         }
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (ImageView)object;
-        }
-
-        private Cursor findPhotoInStorage(Integer photoId) {
-            Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    new String[]{MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
-                    MediaStore.MediaColumns._ID + " = " + photoId, null, null);
-
-            imageCursor.moveToFirst();
-            return imageCursor;
+            return view == object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            if (!mReadOnly) mImageCursor.moveToPosition(position);
-
             ImageView imageView = new ImageView(ObservationViewerActivity.this);
             imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -350,18 +357,47 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             int imageId = 0;
             String photoFilename = null;
             String imageUrl = null;
+            ObservationSound sound = null;
 
             if (!mReadOnly) {
-                imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
-                imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-                photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
-                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                    String originalPhotoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
-                    photoFilename = originalPhotoFilename;
+                if (position >= mImageCursor.getCount()) {
+                    // Sound
+                    mSoundCursor.moveToPosition(position - mImageCursor.getCount());
+
+                    sound = new ObservationSound(mSoundCursor);
+
+                } else {
+                    // Photo
+                    mImageCursor.moveToPosition(position);
+
+                    imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
+                    imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                    photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                    if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
+                        // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
+                        String originalPhotoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                        photoFilename = originalPhotoFilename;
+                    }
                 }
+
             } else {
-                imageUrl = mObservation.photos.get(position).photo_url;
+                if (position >= mObservation.photos.size()) {
+                    // Show sound
+                    sound = mObservation.sounds.get(position - mObservation.photos.size());
+                } else {
+                    imageUrl = mObservation.photos.get(position).photo_url;
+                }
+            }
+
+            if (sound != null) {
+                // Sound - show a sound player interface
+                SoundPlayer player = new SoundPlayer(ObservationViewerActivity.this, container, sound, this);
+                View view = player.getView();
+                ((ViewPager)container).addView(view, 0);
+
+                view.setTag(player);
+                mPlayers.add(player);
+                return view;
             }
 
             if (imageUrl != null) {
@@ -437,7 +473,30 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((ImageView) object);
+            ((ViewPager) container).removeView((View) object);
+        }
+
+        public void destroy() {
+            for (SoundPlayer player : mPlayers) {
+                if (player != null) {
+                    player.destroy();
+                }
+            }
+        }
+
+        @Override
+        public void onPlay(SoundPlayer player) {
+            // Pause all other players
+            for (SoundPlayer p : mPlayers) {
+                if ((p != null) && (!p.equals(player))) {
+                    p.pause();
+                }
+            }
+        }
+
+        @Override
+        public void onPause(SoundPlayer player) {
+
         }
     }
 
@@ -2591,6 +2650,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.destroy();
+        }
     }
 
     private boolean isNetworkAvailable() {

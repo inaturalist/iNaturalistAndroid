@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="50dp"
+    android:layout_height="75dp">
+    <ImageView
+        android:id="@+id/observation_sound"
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:src="@drawable/play"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        android:padding="10dp"
+        android:background="#5D5B5E"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        />
+</RelativeLayout>

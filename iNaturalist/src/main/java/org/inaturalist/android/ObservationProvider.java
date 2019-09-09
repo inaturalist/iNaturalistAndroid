@@ -25,8 +25,7 @@ import android.util.Log;
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";
     private static final String DATABASE_NAME = "inaturalist.db";
-    private static final int DATABASE_VERSION = 16;
-    private static final String[] TABLE_NAMES = new String[]{Observation.TABLE_NAME, ObservationPhoto.TABLE_NAME, Project.TABLE_NAME, ProjectObservation.TABLE_NAME, ProjectField.TABLE_NAME, ProjectFieldValue.TABLE_NAME};
+    private static final int DATABASE_VERSION = 17;
     private static final SQLiteCursorFactory sFactory;
     public static final UriMatcher URI_MATCHER;
 
@@ -37,6 +36,8 @@ public class ObservationProvider extends ContentProvider {
         URI_MATCHER.addURI(Observation.AUTHORITY, "observations/#", Observation.OBSERVATION_ID_URI_CODE);
         URI_MATCHER.addURI(ObservationPhoto.AUTHORITY, "observation_photos", ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE);
         URI_MATCHER.addURI(ObservationPhoto.AUTHORITY, "observation_photos/#", ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE);
+        URI_MATCHER.addURI(ObservationSound.AUTHORITY, "observation_sounds", ObservationSound.OBSERVATION_SOUNDS_URI_CODE);
+        URI_MATCHER.addURI(ObservationSound.AUTHORITY, "observation_sounds/#", ObservationSound.OBSERVATION_SOUND_ID_URI_CODE);
         URI_MATCHER.addURI(Project.AUTHORITY, "projects", Project.PROJECTS_URI_CODE);
         URI_MATCHER.addURI(Project.AUTHORITY, "projects/#", Project.PROJECT_ID_URI_CODE);
         URI_MATCHER.addURI(ProjectObservation.AUTHORITY, "project_observations", ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE);
@@ -63,6 +64,7 @@ public class ObservationProvider extends ContentProvider {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(Observation.sqlCreate());
             db.execSQL(ObservationPhoto.sqlCreate());
+            db.execSQL(ObservationSound.sqlCreate());
             db.execSQL(Project.sqlCreate());
             db.execSQL(ProjectObservation.sqlCreate());
             db.execSQL(ProjectField.sqlCreate());
@@ -119,6 +121,10 @@ public class ObservationProvider extends ContentProvider {
                 addColumnIfNotExists(db, Observation.TABLE_NAME, "scientific_name", "TEXT");
                 addColumnIfNotExists(db, Observation.TABLE_NAME, "rank", "TEXT");
                 addColumnIfNotExists(db, Observation.TABLE_NAME, "rank_level", "INTEGER");
+            }
+            if (oldVersion < 17) {
+                // New "observation_sounds" table
+                db.execSQL(ObservationSound.sqlCreate());
             }
         }
 
@@ -177,6 +183,17 @@ public class ObservationProvider extends ContentProvider {
             qb.setProjectionMap(ObservationPhoto.PROJECTION_MAP);
             qb.appendWhere(ObservationPhoto._ID + "=" + uri.getPathSegments().get(1));
             orderBy = TextUtils.isEmpty(sortOrder) ? ObservationPhoto.DEFAULT_SORT_ORDER : sortOrder;
+            break;
+        case ObservationSound.OBSERVATION_SOUNDS_URI_CODE:
+            qb.setTables(ObservationSound.TABLE_NAME);
+            qb.setProjectionMap(ObservationSound.PROJECTION_MAP);
+            orderBy = TextUtils.isEmpty(sortOrder) ? ObservationSound.DEFAULT_SORT_ORDER : sortOrder;
+            break;
+        case ObservationSound.OBSERVATION_SOUND_ID_URI_CODE:
+            qb.setTables(ObservationSound.TABLE_NAME);
+            qb.setProjectionMap(ObservationSound.PROJECTION_MAP);
+            qb.appendWhere(ObservationSound._ID + "=" + uri.getPathSegments().get(1));
+            orderBy = TextUtils.isEmpty(sortOrder) ? ObservationSound.DEFAULT_SORT_ORDER : sortOrder;
             break;
         case Project.PROJECTS_URI_CODE:
             qb.setTables(Project.TABLE_NAME);
@@ -283,6 +300,14 @@ public class ObservationProvider extends ContentProvider {
             tableName = ObservationPhoto.TABLE_NAME;
             contentUri = ObservationPhoto.CONTENT_URI;
             break;
+        case ObservationSound.OBSERVATION_SOUNDS_URI_CODE:
+            tableName = ObservationSound.TABLE_NAME;
+            contentUri = ObservationSound.CONTENT_URI;
+            break;
+         case ObservationSound.OBSERVATION_SOUND_ID_URI_CODE:
+            tableName = ObservationSound.TABLE_NAME;
+            contentUri = ObservationSound.CONTENT_URI;
+            break;
         case Project.PROJECTS_URI_CODE:
             tableName = Project.TABLE_NAME;
             contentUri = Project.CONTENT_URI;
@@ -338,7 +363,8 @@ public class ObservationProvider extends ContentProvider {
             values.put(Observation._CREATED_AT, values.getAsLong(Observation._SYNCED_AT));
         } else if ((uriCode != Project.PROJECTS_URI_CODE) && (uriCode != Project.PROJECT_ID_URI_CODE) &&
                 (uriCode != ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE) && (uriCode != ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE) &&
-                (uriCode != ProjectField.PROJECT_FIELDS_URI_CODE) && (uriCode != ProjectField.PROJECT_FIELD_ID_URI_CODE)) {
+                (uriCode != ProjectField.PROJECT_FIELDS_URI_CODE) && (uriCode != ProjectField.PROJECT_FIELD_ID_URI_CODE) &&
+                (uriCode != ObservationSound.OBSERVATION_SOUNDS_URI_CODE) && (uriCode != ObservationSound.OBSERVATION_SOUND_ID_URI_CODE)) {
             values.put(Observation._CREATED_AT, now);
             values.put(Observation.CREATED_AT, now);
             values.put(Observation._UPDATED_AT, now);
@@ -374,6 +400,7 @@ public class ObservationProvider extends ContentProvider {
             count = db.delete(Observation.TABLE_NAME, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             delete(ObservationPhoto.CONTENT_URI, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
+            delete(ObservationSound.CONTENT_URI, ObservationSound._OBSERVATION_ID + "=" + id, null);
             break;
         case ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE:
             count = db.delete(ObservationPhoto.TABLE_NAME, where, whereArgs);
@@ -383,6 +410,16 @@ public class ObservationProvider extends ContentProvider {
             id = uri.getPathSegments().get(1);
             contentUri = ObservationPhoto.CONTENT_URI;
             count = db.delete(ObservationPhoto.TABLE_NAME, ObservationPhoto._ID + "=" + id
+                    + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            break;
+        case ObservationSound.OBSERVATION_SOUNDS_URI_CODE:
+            count = db.delete(ObservationSound.TABLE_NAME, where, whereArgs);
+            contentUri = ObservationSound.CONTENT_URI;
+            break;
+        case ObservationSound.OBSERVATION_SOUND_ID_URI_CODE:
+            id = uri.getPathSegments().get(1);
+            contentUri = ObservationSound.CONTENT_URI;
+            count = db.delete(ObservationSound.TABLE_NAME, ObservationSound._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
         case Project.PROJECTS_URI_CODE:
@@ -474,7 +511,8 @@ public class ObservationProvider extends ContentProvider {
             values.put(Observation._UPDATED_AT, values.getAsLong(Observation._SYNCED_AT));
         } else if ((uriCode != Project.PROJECTS_URI_CODE) && (uriCode != Project.PROJECT_ID_URI_CODE) &&
                 (uriCode != ProjectObservation.PROJECT_OBSERVATIONS_URI_CODE) && (uriCode != ProjectObservation.PROJECT_OBSERVATION_ID_URI_CODE) &&
-                (uriCode != ProjectField.PROJECT_FIELDS_URI_CODE) && (uriCode != ProjectField.PROJECT_FIELD_ID_URI_CODE)) {
+                (uriCode != ProjectField.PROJECT_FIELDS_URI_CODE) && (uriCode != ProjectField.PROJECT_FIELD_ID_URI_CODE) &&
+                (uriCode != ObservationSound.OBSERVATION_SOUNDS_URI_CODE) && (uriCode != ObservationSound.OBSERVATION_SOUND_ID_URI_CODE)) {
             values.put(Observation._UPDATED_AT, System.currentTimeMillis());
         }
         
@@ -490,14 +528,21 @@ public class ObservationProvider extends ContentProvider {
             count = db.update(Observation.TABLE_NAME, values, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             
-            // update foreign key in observation_photos
             if (count > 0 && values.containsKey(Observation.ID)) {
+                // update foreign key in observation_photos
                 ContentValues cv = new ContentValues();
                 cv.put(ObservationPhoto.OBSERVATION_ID, values.getAsInteger(Observation.ID));
                 Log.d(TAG, "Update " + ObservationPhoto.TABLE_NAME + "; " + cv.toString());
                 db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
+
+                // update foreign key in observation_sounds
+                cv = new ContentValues();
+                cv.put(ObservationSound.OBSERVATION_ID, values.getAsInteger(Observation.ID));
+                Log.d(TAG, "Update " + ObservationSound.TABLE_NAME + "; " + cv.toString());
+                db.update(ObservationSound.TABLE_NAME, cv, ObservationSound._OBSERVATION_ID + "=" + id, null);
             }
-            
+
+
             // update foreign key in project_observations / project_field_values
             if ((count > 0) && (values.containsKey(Observation.ID)) && (values.get(Observation.ID) != null)) {
                 ContentValues cv = new ContentValues();
@@ -520,6 +565,17 @@ public class ObservationProvider extends ContentProvider {
             contentUri = ObservationPhoto.CONTENT_URI;
             Log.d(TAG, "Update " + ObservationPhoto.TABLE_NAME + "; " + values.toString());
             count = db.update(ObservationPhoto.TABLE_NAME, values, ObservationPhoto._ID + "=" + id
+                    + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
+            break;
+        case ObservationSound.OBSERVATION_SOUNDS_URI_CODE:
+            count = db.update(ObservationSound.TABLE_NAME, values, where, whereArgs);
+            contentUri = ObservationSound.CONTENT_URI;
+            break;
+        case ObservationSound.OBSERVATION_SOUND_ID_URI_CODE:
+            id = uri.getPathSegments().get(1);
+            contentUri = ObservationSound.CONTENT_URI;
+            Log.d(TAG, "Update " + ObservationSound.TABLE_NAME + "; " + values.toString());
+            count = db.update(ObservationSound.TABLE_NAME, values, ObservationSound._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
         case Project.PROJECTS_URI_CODE:

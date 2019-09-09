@@ -823,6 +823,15 @@ public class ExploreActivity extends BaseFragmentActivity {
             builder.append(", ");
         }
 
+        if (mSearchFilters.hasPhotos) {
+            builder.append(getString(R.string.has_photos));
+            builder.append(", ");
+        }
+        if (mSearchFilters.hasSounds) {
+            builder.append(getString(R.string.has_sounds));
+            builder.append(", ");
+        }
+
 
         if (builder.length() == 0) {
             filterBar.setText("");

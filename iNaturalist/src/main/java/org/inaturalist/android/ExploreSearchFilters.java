@@ -24,7 +24,6 @@ public class ExploreSearchFilters implements Serializable {
     public static final String QUALITY_GRADE_NEEDS_ID = "needs_id";
     public static final String QUALITY_GRADE_RESEARCH = "research";
 
-
     public boolean isCurrentLocation = false;
 
     public transient JSONObject taxon;
@@ -58,6 +57,8 @@ public class ExploreSearchFilters implements Serializable {
     public Integer annotationValueId;
     public String annotationValue;
 
+    public boolean hasPhotos = false;
+    public boolean hasSounds = false;
 
     public ExploreSearchFilters() {
         resetToDefault();
@@ -94,7 +95,8 @@ public class ExploreSearchFilters implements Serializable {
                 (dateFilterType != ExploreSearchFilters.DATE_TYPE_ANY) ||
                 (observedOn != null) || (observedOnMinDate != null) ||
                 (observedOnMaxDate != null) || (!observedOnMonths.isEmpty()) ||
-                (annotationNameId != null) || (annotationValueId != null));
+                (annotationNameId != null) || (annotationValueId != null)) ||
+                (hasPhotos) || (hasSounds);
     }
 
     private void writeObject(ObjectOutputStream oos) throws IOException {
@@ -185,6 +187,13 @@ public class ExploreSearchFilters implements Serializable {
             if (annotationValueId != null) {
                 url.append("&term_value_id=" + annotationValueId);
             }
+        }
+
+        if (hasPhotos) {
+            url.append("&photos=true");
+        }
+        if (hasSounds) {
+            url.append("&sounds=true");
         }
 
         if (url.length() == 0) return url.toString();

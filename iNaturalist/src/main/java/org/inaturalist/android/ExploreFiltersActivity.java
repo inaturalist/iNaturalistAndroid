@@ -80,6 +80,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     private View mResearchGradeCheckbox;
     private View mNeedsIdCheckbox;
     private View mCasualGradeCheckbox;
+    private View mHasPhotosCheckbox;
+    private View mHasSoundsCheckbox;
     private RadioButton mOptionDateAny;
     private RadioButton mOptionDateExact;
     private Spinner mDateExact;
@@ -171,6 +173,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mResearchGradeCheckbox = (View) findViewById(R.id.research_grade_checkbox);
         mNeedsIdCheckbox = (View) findViewById(R.id.needs_id_checkbox);
         mCasualGradeCheckbox = (View) findViewById(R.id.casual_grade_checkbox);
+        mHasPhotosCheckbox = (View) findViewById(R.id.has_photos_checkbox);
+        mHasSoundsCheckbox = (View) findViewById(R.id.has_sounds_checkbox);
         mOptionDateAny = (RadioButton) findViewById(R.id.option_date_any);
         mOptionDateExact = (RadioButton) findViewById(R.id.option_date_exact);
         mOptionDateMinMax = (RadioButton) findViewById(R.id.option_date_min_max);
@@ -299,6 +303,25 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mNeedsIdCheckbox.setOnClickListener(onDataQualityCheckbox);
         mCasualGradeCheckbox.setOnClickListener(onDataQualityCheckbox);
 
+        mHasPhotosCheckbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setSelected(!view.isSelected());
+
+                mSearchFilters.hasPhotos = view.isSelected();
+                refreshViewState();
+            }
+        });
+
+        mHasSoundsCheckbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setSelected(!view.isSelected());
+
+                mSearchFilters.hasSounds = view.isSelected();
+                refreshViewState();
+            }
+        });
 
         // Show date/calendar picker dialog
         View.OnTouchListener onShowDate = new View.OnTouchListener() {
@@ -610,6 +633,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mResearchGradeCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_RESEARCH));
         mNeedsIdCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID));
         mCasualGradeCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL));
+
+        mHasPhotosCheckbox.setSelected(mSearchFilters.hasPhotos);
+        mHasSoundsCheckbox.setSelected(mSearchFilters.hasSounds);
 
         mOptionDateAny.setChecked(false);
         mOptionDateExact.setChecked(false);

@@ -43,6 +43,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.params.ClientPNames;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -1821,6 +1822,24 @@ public class INaturalistService extends IntentService {
 
         Log.d(TAG, "syncObservations: observationIdsToSync 2: " + observationIdsToSync);
 
+        // Any observation that has new/deleted sounds
+        c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "(id IS NULL) OR (is_deleted = 1)",
+                null,
+                ObservationSound.DEFAULT_SORT_ORDER);
+
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID)));
+            c.moveToNext();
+        }
+
+        c.close();
+
+
+        Log.d(TAG, "syncObservations: observationIdsToSync 2b: " + observationIdsToSync);
+
 
         // Any observation that has new/updated project fields.
         c = getContentResolver().query(ProjectFieldValue.CONTENT_URI,
@@ -1897,6 +1916,11 @@ public class INaturalistService extends IntentService {
             postPhotos(observation);
             Log.d(TAG, "syncObservations: Finished uploading photos " + observation._id);
             deleteObservationPhotos(observation); // Delete locally-removed observation photos
+
+            postSounds(observation);
+            Log.d(TAG, "syncObservations: Finished uploading sounds " + observation._id);
+            deleteObservationSounds(observation); // Delete locally-removed observation sounds
+
             syncObservationFields(observation);
             postProjectObservations(observation);
             Log.d(TAG, "syncObservations: Finished delete photos, obs fields and project obs - " + observation._id);
@@ -2048,7 +2072,7 @@ public class INaturalistService extends IntentService {
             minimaldObs.put("taxon", getMinimalTaxon(observation.optJSONObject("taxon")));
             if (observation.has("iconic_taxon_name")) minimaldObs.put("iconic_taxon_name", observation.optString("iconic_taxon_name"));
 
-            if (observation.has("observation_photos")) {
+            if (observation.has("observation_photos") && !observation.isNull("observation_photos")) {
                 JSONArray minimalObsPhotos = new JSONArray();
                 JSONArray obsPhotos = observation.optJSONArray("observation_photos");
                 for (int i = 0; i < obsPhotos.length(); i++) {
@@ -2056,6 +2080,17 @@ public class INaturalistService extends IntentService {
                 }
 
                 minimaldObs.put("observation_photos", minimalObsPhotos);
+            }
+
+
+            if (observation.has("sounds") && !observation.isNull("sounds")) {
+                JSONArray minimalObsSounds = new JSONArray();
+                JSONArray obsSounds = observation.optJSONArray("sounds");
+                for (int i = 0; i < obsSounds.length(); i++) {
+                    minimalObsSounds.put(getMinimalSound(obsSounds.optJSONObject(i)));
+                }
+
+                minimaldObs.put("sounds", minimalObsSounds);
             }
 
             if (observation.has("user")) {
@@ -2148,7 +2183,25 @@ public class INaturalistService extends IntentService {
         return minimalSpecies;
     }
 
+    // Returns a minimal version of a sound JSON (used to lower memory usage)
+    private JSONObject getMinimalSound(JSONObject sound) {
+        JSONObject minimalSound = new JSONObject();
 
+        if (sound == null) return null;
+
+        try {
+            minimalSound.put("id", sound.optInt("id"));
+            minimalSound.put("file_url", sound.optString("file_url"));
+            minimalSound.put("file_content_type", sound.optString("file_content_type"));
+            minimalSound.put("attribution", sound.optString("attribution"));
+            minimalSound.put("subtype", sound.optString("subtype"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return minimalSound;
+    }
 
     // Returns a minimal version of a photo JSON (used to lower memory usage)
     private JSONObject getMinimalPhoto(JSONObject photo) {
@@ -2253,10 +2306,21 @@ public class INaturalistService extends IntentService {
         projectObservationCount = c.getCount();
         c.close();
 
+        int soundCount;
+        c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "((is_deleted = 1) OR (id is NULL)) AND " +
+                        "((observation_id = ?) OR (_observation_id = ?))",
+                new String[]{String.valueOf(externalObsId), String.valueOf(observation._id)},
+                ObservationSound.DEFAULT_SORT_ORDER);
+        soundCount = c.getCount();
+        c.close();
+
 
         return 1 + // We start off with some progress (one "part")
                 obsCount + // For the observation upload itself (only if new/update)
                 photoCount + // For photos
+                soundCount + // For sounds
                 projectFieldCount + // For updated/new obs project fields
                 projectObservationCount; // For updated/new observation project fields
     }
@@ -3068,6 +3132,52 @@ public class INaturalistService extends IntentService {
         return true;
     }
 
+    private boolean deleteObservationSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        // Remotely delete any locally-removed observation sounds
+        Cursor c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "is_deleted = 1 AND _observation_id = ?",
+                new String[]{String.valueOf(observation._id)},
+                ObservationSound.DEFAULT_SORT_ORDER);
+
+        String inatNetwork = mApp.getInaturalistNetworkMember();
+        String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+
+        // for each observation DELETE to /sounds/:id
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            ObservationSound os = new ObservationSound(c);
+
+            Log.d(TAG, "deleteObservationSounds: " + os);
+            if (os.id != null) {
+                Log.d(TAG, "deleteObservationSounds: Deleting " + os);
+                JSONArray result = delete(inatHost + "/observation_sounds/" + os.id + ".json", null);
+                if (result == null) {
+                    Log.d(TAG, "deleteObservationSounds: Deletion error: " + mLastStatusCode);
+                    if (mLastStatusCode != HttpStatus.SC_NOT_FOUND) {
+                        // Ignore the case where the sound was remotely deleted
+                        Log.d(TAG, "deleteObservationSounds: Not a 404 error");
+                        c.close();
+                        throw new SyncFailedException();
+                    }
+                }
+            }
+            increaseProgressForObservation(observation);
+
+            int count = getContentResolver().delete(ObservationSound.CONTENT_URI,
+                    "id = ? or _id = ?", new String[]{String.valueOf(os.id), String.valueOf(os._id)});
+            Log.d(TAG, "deleteObservationSounds: Deleted from DB: " + count);
+            c.moveToNext();
+        }
+
+        c.close();
+
+
+        checkForCancelSync();
+
+        return true;
+    }
+
     private boolean deleteObservationPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
         // Remotely delete any locally-removed observation photos
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
@@ -3572,6 +3682,115 @@ public class INaturalistService extends IntentService {
         syncJson(arr, true);
 
         return obs;
+    }
+
+    private boolean postSounds(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
+        Integer observationId = observation.id;
+        ObservationSound os;
+        int createdCount = 0;
+        ContentValues cv;
+
+        Log.d(TAG, "postSounds: " + observationId + ":" + observation);
+
+        // query observation sounds where id is null (i.e. new sounds)
+        Cursor c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "(id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation.id)}, ObservationSound.DEFAULT_SORT_ORDER);
+        Log.d(TAG, "postSounds: New sounds: " + c.getCount());
+        if (c.getCount() == 0) {
+            c.close();
+            return true;
+        }
+
+        checkForCancelSync();
+
+        // for each observation POST to /sounds
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
+            os = new ObservationSound(c);
+
+            Log.d(TAG, "postSounds: Posting sound - " + os);
+
+            if (os.file_url != null) {
+                // Online sound
+                Log.d(TAG, "postSounds: Skipping because file_url is not null");
+                c.moveToNext();
+                continue;
+            }
+
+            if ((os.filename == null) || !(new File(os.filename)).exists()) {
+                // Local (cached) sound was deleted - probably because the user deleted the app's cache
+                Log.d(TAG, "postSounds: Posting sound - filename doesn't exist: " + os.filename);
+
+                // First, delete this photo record
+                getContentResolver().delete(ObservationSound.CONTENT_URI, "_id = ?", new String[]{String.valueOf(os._id)});
+
+                // Set errors for this obs - to notify the user that we couldn't upload the obs sounds
+                JSONArray errors = new JSONArray();
+                errors.put(getString(R.string.deleted_sounds_from_cache_error));
+                mApp.setErrorsForObservation(os.observation_id, 0, errors);
+
+                // Move to next observation sound
+                c.moveToNext();
+                checkForCancelSync();
+
+                continue;
+            }
+
+            ArrayList<NameValuePair> params = os.getParams();
+            params.add(new BasicNameValuePair("audio", os.filename));
+
+            JSONArray response;
+            String inatNetwork = mApp.getInaturalistNetworkMember();
+            String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
+            response = request( inatHost + "/observation_sounds.json", "post", params, null, true, true, false);
+
+            try {
+                if (response == null || response.length() != 1) {
+                    c.close();
+                    throw new SyncFailedException();
+                }
+
+                JSONObject json = response.getJSONObject(0);
+                BetterJSONObject j = new BetterJSONObject(json);
+                ObservationSound jsonObservationSound = new ObservationSound(j);
+                Log.d(TAG, "postSounds: Response for POST: ");
+                LoggingUtils.largeLog(TAG, json.toString());
+                Log.d(TAG, "postSounds: Response for POST 2: " + jsonObservationSound);
+                os.merge(jsonObservationSound);
+                Log.d(TAG, "postSounds: Response for POST 3: " + os);
+
+                cv = os.getContentValues();
+                Log.d(TAG, "postSounds - Setting _SYNCED_AT - " + os.id + ":" + os._id + ":" + os._observation_id + ":" + os.observation_id);
+                getContentResolver().update(os.getUri(), cv, null, null);
+                createdCount += 1;
+
+                increaseProgressForObservation(observation);
+
+            } catch (JSONException e) {
+                Log.e(TAG, "JSONException: " + e.toString());
+            }
+
+            c.moveToNext();
+            checkForCancelSync();
+        }
+        c.close();
+
+
+        c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "(id IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation._id), String.valueOf(observation.id)}, ObservationSound.DEFAULT_SORT_ORDER);
+        int currentCount = c.getCount();
+        Log.d(TAG, "postSounds: currentCount = " + currentCount);
+        c.close();
+
+        if (currentCount == 0) {
+            // Sync completed successfully
+            return true;
+        } else {
+            // Sync failed
+            throw new SyncFailedException();
+        }
     }
 
     private boolean postPhotos(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
@@ -5389,11 +5608,18 @@ public class INaturalistService extends IntentService {
             Charset utf8Charset = Charset.forName("UTF-8");
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
             for (int i = 0; i < params.size(); i++) {
-                if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]")) {
+                if (params.get(i).getName().equalsIgnoreCase("image") || params.get(i).getName().equalsIgnoreCase("file") || params.get(i).getName().equalsIgnoreCase("user[icon]") || params.get(i).getName().equalsIgnoreCase("audio")) {
                     // If the key equals to "image", we use FileBody to transfer the data
                     String value = params.get(i).getValue();
-                    if (value != null)
-                        entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
+                    if (value != null) {
+                        if (params.get(i).getName().equalsIgnoreCase("audio")) {
+                            File file = new File(value);
+                            entity.addPart("file", new FileBody(file, ContentType.parse("audio/" + value.substring(value.lastIndexOf(".") + 1)), file.getName()));
+                            request.setHeader("Accept", "application/json");
+                        } else {
+                            entity.addPart(params.get(i).getName(), new FileBody(new File(value)));
+                        }
+                    }
                 } else {
                     // Normal string data
                     try {
@@ -5772,6 +5998,71 @@ public class INaturalistService extends IntentService {
                         deleteCount, observation.id, joinedPhotoIds));
             }
 
+            // Add any new sounds that were added remotely
+            ArrayList<Integer> observationSoundIds = new ArrayList<Integer>();
+            ArrayList<Integer> existingObservationSoundIds = new ArrayList<Integer>();
+            Cursor sc = getContentResolver().query(
+                    ObservationSound.CONTENT_URI,
+                    ObservationSound.PROJECTION,
+                    "(observation_id = " + observation.id + ")",
+                    null, null);
+            sc.moveToFirst();
+            while (sc.isAfterLast() == false) {
+                int soundId = sc.getInt(sc.getColumnIndexOrThrow(ObservationSound.ID));
+                if (soundId != 0) {
+                    existingObservationSoundIds.add(soundId);
+                }
+                sc.moveToNext();
+            }
+            sc.close();
+            Log.d(TAG, "syncJson: Adding sounds for obs " + observation.id + ":" + existingObservationSoundIds.toString());
+            Log.d(TAG, "syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.sounds);
+            for (int j = 0; j < jsonObservation.sounds.size(); j++) {
+                ObservationSound sound = jsonObservation.sounds.get(j);
+                sound._observation_id = jsonObservation._id;
+
+                if (sound.id == null) {
+                    Log.w(TAG, "syncJson: Null sound ID! " + sound);
+                    continue;
+                }
+
+                observationSoundIds.add(sound.id);
+                if (existingObservationSoundIds.contains(sound.id)) {
+                    Log.d(TAG, "syncJson: sound " + sound.id + " has already been added, skipping...");
+                    continue;
+                }
+                ContentValues oscv = sound.getContentValues();
+                oscv.put(ObservationSound._OBSERVATION_ID, sound.observation_id);
+                oscv.put(ObservationSound.ID, sound.id);
+                try {
+                    getContentResolver().insert(ObservationSound.CONTENT_URI, oscv);
+                } catch (SQLException ex) {
+                    // Happens when the sound already exists - ignore
+                    ex.printStackTrace();
+                }
+            }
+
+            // Delete sounds that were synced but weren't present in the remote response,
+            // indicating they were deleted elsewhere
+            String joinedSoundIds = StringUtils.join(observationSoundIds, ",");
+            where = "observation_id = " + observation.id + " AND id IS NOT NULL";
+            if (observationSoundIds.size() > 0) {
+                where += " AND id NOT in (" + joinedSoundIds + ")";
+            }
+            Log.d(TAG, "syncJson: Deleting local sounds: " + where);
+            Log.d(TAG, "syncJson: Deleting local sounds, IDs: " + observationSoundIds);
+            deleteCount = getContentResolver().delete(
+                    ObservationSound.CONTENT_URI,
+                    where,
+                    null);
+            Log.d(TAG, "syncJson: Deleting local sounds: " + deleteCount);
+
+            if (deleteCount > 0) {
+                Crashlytics.log(1, TAG, String.format("Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
+                        deleteCount, observation.id, joinedSoundIds));
+            }
+
+
             if (isModified) {
                 // Only update the DB if needed
                 Log.d(TAG, "syncJson: Updating observation: " + observation.id + ":" + observation._id);
@@ -5815,6 +6106,39 @@ public class INaturalistService extends IntentService {
         if (isUser) {
             for (int i = 0; i < newObservations.size(); i++) {
                 jsonObservation = newObservations.get(i);
+
+                // Save new observation's sounds
+                Log.d(TAG, "syncJson: Saving new obs' sounds: " + jsonObservation + ":" + jsonObservation.sounds);
+                for (int j = 0; j < jsonObservation.sounds.size(); j++) {
+                    ObservationSound sound = jsonObservation.sounds.get(j);
+
+                    c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "id = ?", new String[]{String.valueOf(sound.id)}, ObservationSound.DEFAULT_SORT_ORDER);
+
+                    if (c.getCount() > 0) {
+                        // Sound already exists - don't save
+                        Log.d(TAG, "syncJson: Sound already exists - skipping: " + sound.id);
+                        c.close();
+                        continue;
+                    }
+
+                    c.close();
+
+                    sound._observation_id = jsonObservation._id;
+
+                    ContentValues opcv = sound.getContentValues();
+                    Log.d(TAG, "syncJson: Setting _SYNCED_AT - " + sound.id + ":" + sound._id + ":" + sound._observation_id + ":" + sound.observation_id);
+                    Log.d(TAG, "syncJson: Setting _SYNCED_AT - " + sound);
+                    opcv.put(ObservationSound._OBSERVATION_ID, sound._observation_id);
+                    opcv.put(ObservationSound._ID, sound.id);
+                    try {
+                        getContentResolver().insert(ObservationSound.CONTENT_URI, opcv);
+                    } catch (SQLException ex) {
+                        // Happens when the sound already exists - ignore
+                        ex.printStackTrace();
+                    }
+                }
 
                 // Save the new observation's photos
                 Log.d(TAG, "syncJson: Saving new obs' photos: " + jsonObservation + ":" + jsonObservation.photos);
