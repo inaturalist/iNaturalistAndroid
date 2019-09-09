@@ -137,7 +137,7 @@
     <string name="choose_location">Escolher a Localização</string>
     <string name="done">Concluído</string>
     <string name="please_sign_in_via_settings">Tem de ter sessão iniciada para ver os projetos a que aderiu.</string>
-    <string name="contact_support">Contatar o Apoio</string>
+    <string name="contact_support">Contactar o Apoio</string>
     <string name="credits">Projetado e construído por iNaturalist.org com o apoio da Academia de Ciências da Califórnia</string>
     <string name="leave_project">Não seguir o Projeto</string>
     <string name="leave_project_confirmation">Tem certeza que quer deixar de seguir este projeto?</string>
@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista é membro da Rede iNaturalist na Colômbia. As instituições locais que apoiam o Naturalista terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All é membro da Rede iNaturalist em Portugal. As instituições locais que apoiam o Biodiversity4All terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá é membro da Rede iNaturalist no Panamá. As instituições locais que apoiam o iNaturalist Panamá terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador é membro da Rede iNaturalist no Equador. As instituições locais que apoiam o iNaturalist Ecuador terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia é membro da Rede iNaturalist na Austrália. As instituições locais que apoiam o iNaturalist Australia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Descarregar para usar offline</string>
@@ -471,7 +473,7 @@
     <string name="miscellaneous">Diversos</string>
     <string name="nationality">Nacionalidade</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
-    <string name="supername">Supername</string>
+    <string name="supername">Zona geográfica</string>
     <string name="point_of_interest">Ponto de Interesse</string>
     <string name="region">Região</string>
     <string name="colloquial">Coloquial</string>
@@ -491,7 +493,7 @@
     <string name="department_segment">Segmento do Departamento</string>
     <string name="city_building">Edifício de Cidade</string>
     <string name="commune">Comuna</string>
-    <string name="governorate">Governorate</string>
+    <string name="governorate">Governador</string>
     <string name="prefecture">Prefeitura</string>
     <string name="canton">Cantão</string>
     <string name="republic">República</string>
@@ -629,9 +631,11 @@ nossa comunidade de código aberto]]></string>
     <string name="annotation_value_subimago">Estágio Subimago</string>
     <string name="annotation_value_female">Fêmea</string>
     <string name="annotation_value_male">Macho</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>
     <string name="featured_projects_all_caps">EM DESTAQUE</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">ADERIR</string>
     <string name="my_guides_all_caps">OS MEUS</string>
     <string name="nearby_guides_all_caps">NAS PROXIMIDADES</string>
@@ -678,9 +682,9 @@ nossa comunidade de código aberto]]></string>
     <string name="network_credit_naturewatchnz"><![CDATA[Nova Zelândia: o New Zealand Biodiversity Recording Network que gere o iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>).]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: a Associação Biodiversidade Para Todos que gere o Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>).]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamá: o Ministerio de Ambiente que gere o iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>).]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="mark_all_as_viewed">Marcar tudo como visto</string>
+    <string name="content_hidden">Conteúdo Oculto</string>
+    <string name="show_hidden_content">Mostrar Conteúdo Oculto</string>
+    <string name="content_hidden_because">Conteúdo ocultado por @%1$s em %2$s porque: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contactar o Apoio</a>]]></string>
 </resources>

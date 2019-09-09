@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista - это член сети iNaturalist Network в Колумбии. Местные организации, поддерживающие Naturalista, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All - это член сети iNaturalist Network в Португалии. Местные организации, поддерживающие Biodiversity4All, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá - это член сети iNaturalist Network в Панаме. Местные организации, поддерживающие iNaturalist Panamá, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador - это член сети iNaturalist Network в Эквадоре. Местные организации, поддерживающие iNaturalist Ecuador, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia - это член сети iNaturalist Network в Австралии. Местные организации, поддерживающие iNaturalist Australia, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лицензия</string>
     <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -628,9 +630,11 @@
     <string name="annotation_value_subimago">Субимаго</string>
     <string name="annotation_value_female">Женский</string>
     <string name="annotation_value_male">Мужской</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ПРИСОЕДИНИЛИСЬ К</string>
     <string name="nearby_projects_all_caps">ПОБЛИЗОСТИ</string>
     <string name="featured_projects_all_caps">РЕКОМЕНДУЕМЫЕ</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">ПРИСОЕДИНИТЬСЯ</string>
     <string name="my_guides_all_caps">ВАШИ</string>
     <string name="nearby_guides_all_caps">ПОБЛИЗОСТИ</string>
@@ -678,8 +682,8 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Португалия: Ассоциация «Биоразнообразие для всех» Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Панама: Министерство окружающей среды обеспечивает работу iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Пометить все как просмотренные</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content_hidden">Скрытый контент</string>
+    <string name="show_hidden_content">Показать скрытый контент</string>
+    <string name="content_hidden_because">Контент скрыт @%1$s в %2$s поскольку \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Связаться со службой поддержки</a>]]></string>
 </resources>

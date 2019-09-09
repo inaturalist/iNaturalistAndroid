@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista is a member of the iNaturalist Network in Colombia. Local institutions supporting Naturalista will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All is a member of the iNaturalist Network in Portugal. Local institutions supporting Biodiversity4All will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador ist Mitglied des iNaturalist Network in Ecuador. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia ist Mitglied des iNaturalist Network in Australien. Lokale Institutionen, die NaturaLista unterstützen, haben Zugang zu Ihrer E-Mail-Adresse und zu den tatsächlichen Koordinaten für Beobachtungen, die öffentlich nicht einsehbar oder als „Privat” gekennzeichnet sind. Bitte ändern Sie Ihre Zugehörigkeit nicht experimentell, wenn Sie mehr als 1.000 Beobachtungen beigetragen haben. Möchten Sie Ihre Zugehörigkeit ändern?</string>
     <string name="editor">Editor</string>
     <string name="license">Lizenz</string>
     <string name="download_for_offline_use">Herunterladen für Offline Verwendung</string>
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Insektenkunde</string>
     <string name="annotation_value_female">Weiblich</string>
     <string name="annotation_value_male">Männlich</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">VERBUNDEN</string>
     <string name="nearby_projects_all_caps">In der Nähe</string>
     <string name="featured_projects_all_caps">Vorgestellt</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">Teilnehmen</string>
     <string name="my_guides_all_caps">Ihre</string>
     <string name="nearby_guides_all_caps">In der Nähe</string>

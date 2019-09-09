@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista, Kolombiya\'daki iNaturalist Ağı\'nın bir üyesidir. Naturalista\'yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamusal olarak gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All Portekiz\'deki iNaturalist Ağı\'nın bir üyesidir. Biodiversity4All Destekleyen Yerel e-posta adresinize erişebilecek ve halk tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panama, Panama’daki iNaturalist Network’ün bir üyesidir. iNaturalist Panama\'yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve halk tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editör</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indirme</string>
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Dişi</string>
     <string name="annotation_value_male">Erkek</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">KATILDI</string>
     <string name="nearby_projects_all_caps">YAKINDAKİ</string>
     <string name="featured_projects_all_caps">ÖZELLİKLİ</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">KATIL</string>
     <string name="my_guides_all_caps">SİZİN</string>
     <string name="nearby_guides_all_caps">YAKINDAKİ</string>

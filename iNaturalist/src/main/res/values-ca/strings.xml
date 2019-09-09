@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista és membre de la Xarxa iNaturalist a Colòmbia. Les Institucions locals que donen suport a Naturalista tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All és membre de la Xarxa iNaturalist a Portugal. Les Institucions locals que donen suport a Biodiversity4All tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamà és membre de la Xarxa iNaturalist a Panamà. Les Institucions locals que donen suport a iNaturalist Panamà tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador és membre de la Xarxa iNaturalist de l\'Equador. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Austalia és membre de la Xarxa iNaturalist d\'Austràlia. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Femella</string>
     <string name="annotation_value_male">Mascle</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">UNIT</string>
     <string name="nearby_projects_all_caps">PROPER</string>
     <string name="featured_projects_all_caps">DESTACAT</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">UNIU-VOS</string>
     <string name="my_guides_all_caps">VOSTRE</string>
     <string name="nearby_guides_all_caps">PROPER</string>
@@ -677,8 +681,8 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: l\'Associação Biodiversidade Para Todos manté Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panamà: el Ministerio de Ambiente manté iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Marca tot com a vist</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content_hidden">Contingut amagat</string>
+    <string name="show_hidden_content">Mostra Contingut Amagat</string>
+    <string name="content_hidden_because">Contingut amagat per @%1$s de %2$s perquè: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org"> Contacte amb el suport</a>]]></string>
 </resources>
