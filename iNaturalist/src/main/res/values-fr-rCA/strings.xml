@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista est membre du réseau iNaturalist en Colombie. Les institutions locales soutenant Naturalista auront accès à votre adresse e-mail et accès aux véritables coordonnées pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous modifier votre affiliation ?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All est membre du réseau iNaturalist au Portugal. Les institutions locales soutenant Biodiversity4All auront accès à votre adresse e-mail et accès aux véritables coordonnées pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous changer votre affiliation ?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá est membre du réseau iNaturalist au Panama. Les institutions locales soutenant iNaturalist Panamá auront accès à votre adresse e-mail et accès aux véritables coordonnées pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Voulez-vous changer votre affiliation ?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Equateur est membre du réseau iNaturalist en Equateur. Les institutions locales qui soutiennent iNaturalist Equateur auront accès à votre adresse e-mail et accès aux coordonnées réelles pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous modifier votre affiliation?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australie est membre du réseau iNaturalist en Australie. Les institutions locales qui soutiennent iNaturalist Australie auront accès à votre adresse e-mail et accès aux coordonnées réelles pour les observations masquées au public ou privées. Veuillez ne pas modifier votre affiliation expérimentalement si vous avez plus de 1000 observations. Souhaitez-vous modifier votre affiliation?</string>
     <string name="editor">Éditeur</string>
     <string name="license">Licence</string>
     <string name="download_for_offline_use">Télécharger pour utilisation en mode hors connexion</string>
@@ -449,7 +451,7 @@
     <string name="nearby">À proximité</string>
     <string name="couldnt_load_results">Impossible de charger les résultats : %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">RG</string>
+    <string name="research_grade_initials">NR</string>
     <string name="taxon_search_hint">par ex. les oiseaux, monarque</string>
     <string name="location_search_hint">par ex. ville, état, parc, pays...</string>
     <string name="no_taxon">Désolé, taxon introuvable</string>
@@ -531,7 +533,7 @@
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Rechercher une zone de carte</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%dm</string>
+    <string name="date_minute">%dmin</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
     <string name="date_hour">%dh</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Femelle</string>
     <string name="annotation_value_male">Mâle</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINT</string>
     <string name="nearby_projects_all_caps">À PROXIMITÉ</string>
     <string name="featured_projects_all_caps">EN VEDETTE</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">Joignez-vous</string>
     <string name="my_guides_all_caps">VOS</string>
     <string name="nearby_guides_all_caps">À PROXIMITÉ</string>
@@ -651,11 +655,11 @@
     <string name="observers_all_caps">OBSERVATEURS</string>
     <string name="observations_regular">Observations</string>
     <string name="data_quality_assessment">Évaluation qualitative des données</string>
-    <string name="research_grade_qualification">Qualification de recherche d\'évaluation</string>
+    <string name="research_grade_qualification">Qualification du niveau de recherche</string>
     <string name="date_specified">Date indiquée</string>
     <string name="location_specified">Lieu indiqué</string>
     <string name="has_photos_or_sounds">A des photos ou des sons</string>
-    <string name="has_id_supported_by_two_or_more">ID soutenue par deux ou plus</string>
+    <string name="has_id_supported_by_two_or_more">A une ident. soutenue par deux ou plus</string>
     <string name="date_is_accurate">La date est précise</string>
     <string name="location_is_accurate">Le lieu est exact</string>
     <string name="organism_is_wild">L\'organisme est sauvage</string>

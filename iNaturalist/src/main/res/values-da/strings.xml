@@ -195,6 +195,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista er medlem af iNaturalist Network i Colombia. Lokale institutioner, som støtter Naturalista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller private. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All er medlem af iNaturalist Network i Portugal. Lokale institutioner, som støtter Biodiversity4All, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller private. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá er medlem af iNaturalist Network i Panama. Lokale institutioner, som støtter iNaturalist Panamá, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller private. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er medlem af iNaturalist Network i Ecuador. Lokale institutioner, som støtter iNaturalist Ecuador, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller private. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien er medlem af iNaturalist Network i Australien. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller private. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Licens</string>
     <string name="download_for_offline_use">Download til offlinebrug</string>
@@ -627,9 +629,11 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Hunkøn</string>
     <string name="annotation_value_male">Hankøn</string>
+    <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">DELTAGER</string>
     <string name="nearby_projects_all_caps">I NÆRHEDEN</string>
     <string name="featured_projects_all_caps">FREMHÆVEDE</string>
+    <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">TILMELD</string>
     <string name="my_guides_all_caps">DINE</string>
     <string name="nearby_guides_all_caps">I NÆRHEDEN</string>
