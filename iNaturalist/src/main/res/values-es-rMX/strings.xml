@@ -35,7 +35,6 @@
     <string name="projects">Proyectos</string>
     <string name="delete_photo">Elimina foto</string>
     <string name="menu">Menú</string>
-    <string name="layers">Capas</string>
     <string name="my_location">Mi ubicación</string>
     <string name="nearby_observations">Observaciones cercanas</string>
     <string name="add">Añade</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Salir</string>
     <string name="join">Únete</string>
-    <string name="loading_check_list">Cargando lista de proyectos...</string>
     <string name="no_check_list">¡No hay especies o grupos en la lista!</string>
     <string name="failed_to_add_obs_to_project">No se pudo añadir la observación \'%1$s\' al proyecto \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Por favor, introduce un valor válido para el campo \'%1s\'</string>
@@ -324,7 +322,6 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="news">Noticias</string>
     <string name="article">Artículo</string>
     <string name="couldnt_load_project_news">No pudo cargar las noticias del proyecto: %1$s</string>
-    <string name="article_by">Articulo por</string>
     <string name="couldnt_load_user_details">No pudo cargar los detalles del proyecto: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff"> Más»</font></b>]]></string>
     <string name="no_location">Sin ubicación</string>

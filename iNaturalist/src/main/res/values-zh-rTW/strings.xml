@@ -35,7 +35,6 @@
     <string name="projects">專案</string>
     <string name="delete_photo">刪除照片</string>
     <string name="menu">選單</string>
-    <string name="layers">圖層</string>
     <string name="my_location">我的位置</string>
     <string name="nearby_observations">附近的觀察記錄</string>
     <string name="add">新增</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">離開</string>
     <string name="join">加入</string>
-    <string name="loading_check_list">正在載入名錄...</string>
     <string name="no_check_list">在名錄中無分類群!</string>
     <string name="failed_to_add_obs_to_project">新增觀察資料 \'%1$s\' 至專案 \'%2$s\': %3$s 失敗</string>
     <string name="invalid_project_field">請於欄位 \'%1s\' 中輸入一個有效的值</string>
@@ -323,7 +321,6 @@
     <string name="news">新聞</string>
     <string name="article">文章</string>
     <string name="couldnt_load_project_news">無法載入專案之新聞： %1$s</string>
-    <string name="article_by">文章作者</string>
     <string name="couldnt_load_user_details">無法載入使用者詳細資訊: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff"> 更多»</font></b>]]></string>
     <string name="no_location">無位置資訊</string>

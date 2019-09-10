@@ -35,7 +35,6 @@
     <string name="projects">Projetos</string>
     <string name="delete_photo">Eliminar foto</string>
     <string name="menu">Menu</string>
-    <string name="layers">Camadas</string>
     <string name="my_location">A minha Localização</string>
     <string name="nearby_observations">Observações nas Proximidades</string>
     <string name="add">Adicionar</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Não seguir</string>
     <string name="join">Aderir</string>
-    <string name="loading_check_list">A carregar a Lista de Verificação...</string>
     <string name="no_check_list">Sem táxons na Lista de Verificação!</string>
     <string name="failed_to_add_obs_to_project">Falha ao adicionar a observação \'%1$s\' ao projeto \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Por favor, insira um valor válido para o campo \'%1s\'</string>
@@ -323,7 +321,6 @@
     <string name="news">Notícias</string>
     <string name="article">Artigo</string>
     <string name="couldnt_load_project_news">Não foi possível transferir as notícias do projeto: %1$s</string>
-    <string name="article_by">Artigo por</string>
     <string name="couldnt_load_user_details">Não foi possível carregar os detalhes do utilizador: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Mais»</font></b>]]></string>
     <string name="no_location">Sem Localização</string>

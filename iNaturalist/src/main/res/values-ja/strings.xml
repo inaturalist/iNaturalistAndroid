@@ -35,7 +35,6 @@
     <string name="projects">プロジェクト</string>
     <string name="delete_photo">写真の削除</string>
     <string name="menu">メニュー：</string>
-    <string name="layers">レイヤー</string>
     <string name="my_location">現在地</string>
     <string name="nearby_observations">近隣の観察記録</string>
     <string name="add">追加</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">退会</string>
     <string name="join">参加する</string>
-    <string name="loading_check_list">チェックリストをロード中です...</string>
     <string name="no_check_list">チェックリストに分類群（taxa）がありません！</string>
     <string name="failed_to_add_obs_to_project">観察記録 \'%1$s\' をプロジェクト \'%2$s\': %3$s へ追加できませんでした</string>
     <string name="invalid_project_field">有効な数値をフィールド \'%1s\' に入力してください</string>
@@ -323,7 +321,6 @@
     <string name="news">ニュース</string>
     <string name="article">記事</string>
     <string name="couldnt_load_project_news">プロジェクトのニュースを読み込みできませんでした: %1$s</string>
-    <string name="article_by">記事の作者</string>
     <string name="couldnt_load_user_details">ユーザーの詳細を読み込みできませんでした: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">さらに »</font></b>]]></string>
     <string name="no_location">位置情報がありません</string>

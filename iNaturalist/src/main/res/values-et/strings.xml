@@ -35,7 +35,6 @@
     <string name="projects">Projektid</string>
     <string name="delete_photo">Kustuta foto</string>
     <string name="menu">Menüü</string>
-    <string name="layers">Kihid</string>
     <string name="my_location">Minu asukoht</string>
     <string name="nearby_observations">Lähedased vaatlused</string>
     <string name="add">Lisa</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Lahku</string>
     <string name="join">Liitu</string>
-    <string name="loading_check_list">Laen kontrollnimekirja...</string>
     <string name="no_check_list">Kontrollnimekirjas pole taksoneid!</string>
     <string name="failed_to_add_obs_to_project">Vaatluse \'%1$s\' lisamine projekti \'%2$s\' ebaõnnestus: %3$s</string>
     <string name="invalid_project_field">Palun sisesta väljale \'%1s\' lubatav väärtus</string>
@@ -323,7 +321,6 @@
     <string name="news">Uudised</string>
     <string name="article">Artikkel</string>
     <string name="couldnt_load_project_news">Projekti uudiste laadimine ebaõnnestus: %1$s</string>
-    <string name="article_by">Artikli autor</string>
     <string name="couldnt_load_user_details">Kasutaja andmete laadimine ebaõnnestus: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Veel »</font></b>]]></string>
     <string name="no_location">Asukoht puudub</string>

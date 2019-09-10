@@ -35,7 +35,6 @@
     <string name="projects">Projekty</string>
     <string name="delete_photo">Odstrániť fotografiu</string>
     <string name="menu">Menu</string>
-    <string name="layers">Vrstvy</string>
     <string name="my_location">Moja poloha</string>
     <string name="nearby_observations">Pozorovania v mojej blízkosti</string>
     <string name="add">Pridať</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Opustiť</string>
     <string name="join">Pripojiť sa</string>
-    <string name="loading_check_list">Nahrávam zoznam druhov...</string>
     <string name="no_check_list">V zozname nie sú žiadne druhy!</string>
     <string name="failed_to_add_obs_to_project">Nepodarilo sa pridať pozorovanie \"%1$s\" k projektu \"%2$s\": %3$s</string>
     <string name="invalid_project_field">Zadajte platnú hodnotu pre pole \"%1s\"</string>
@@ -323,7 +321,6 @@
     <string name="news">Novinky</string>
     <string name="article">Článok</string>
     <string name="couldnt_load_project_news">Nemožno načítať správy o projekte: %1$s</string>
-    <string name="article_by">Článok publikovaný používateľom</string>
     <string name="couldnt_load_user_details">Nemožno načítať údaje o užívateľovi: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Viac»</font></b>]]></string>
     <string name="no_location">Žiadne poloha</string>

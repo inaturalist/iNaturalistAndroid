@@ -35,7 +35,6 @@
     <string name="projects">Projekt</string>
     <string name="delete_photo">Radera foto</string>
     <string name="menu">Meny</string>
-    <string name="layers">Lager</string>
     <string name="my_location">Min plats</string>
     <string name="nearby_observations">Närliggande observationer</string>
     <string name="add">Lägg till</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Lämna</string>
     <string name="join">Bli medlem</string>
-    <string name="loading_check_list">Laddar checklistan...</string>
     <string name="no_check_list">Inga taxa i checklistan!</string>
     <string name="failed_to_add_obs_to_project">Det gick inte att lägga till observationen \"%1$s\" till projektet \"%2$s\": %3$s</string>
     <string name="invalid_project_field">Ange ett giltigt värde för fältet \"%1s\"</string>
@@ -323,7 +321,6 @@
     <string name="news">Nyheter</string>
     <string name="article">Artikel</string>
     <string name="couldnt_load_project_news">Kunde inte ladda projektnyheter: %1$s</string>
-    <string name="article_by">Artikel av</string>
     <string name="couldnt_load_user_details">Kunde inte ladda användaruppgifter: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff"> mer»</font></b>]]></string>
     <string name="no_location">Ingen plats</string>
