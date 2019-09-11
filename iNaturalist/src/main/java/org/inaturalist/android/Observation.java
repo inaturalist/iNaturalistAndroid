@@ -534,7 +534,6 @@ public class Observation implements BaseColumns, Serializable {
                 try {
                     this.preferred_common_name = taxon.getJSONObject("common_name").optString("name");
                 } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             } else {
                 if (taxon.has("preferred_common_name") && !taxon.isNull("preferred_common_name")) {

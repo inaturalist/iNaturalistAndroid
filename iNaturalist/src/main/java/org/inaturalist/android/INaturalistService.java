@@ -5839,7 +5839,6 @@ public class INaturalistService extends IntentService {
             request.abort();
             Log.w(TAG, "Error for URL " + url, e);
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
