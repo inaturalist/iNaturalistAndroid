@@ -2218,6 +2218,12 @@ public class ObservationEditor extends AppCompatActivity {
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
                 double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
+
+                if ((latitude == 0) && (longitude == 0)) {
+                    // Don't set position if lat/lng are exactly 0
+                    return;
+                }
+
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
                 mObservation.positional_accuracy = (int) Math.ceil(accuracy);
