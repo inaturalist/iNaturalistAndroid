@@ -6230,6 +6230,12 @@ public class INaturalistService extends IntentService {
             Log.d(TAG, "handleObservationResponse: JSON: ");
             LoggingUtils.largeLog(TAG, json.toString());
 
+            if ((json.has("error") && !json.isNull("error")) || ((mLastStatusCode >= 400) && (mLastStatusCode < 500))) {
+                // Error
+                Log.d(TAG, "handleObservationResponse - error response (probably validation error)");
+                return false;
+            }
+
             Observation jsonObservation = new Observation(o);
             Log.d(TAG, "handleObservationResponse: jsonObservation: " + jsonObservation);
             observation.merge(jsonObservation);
