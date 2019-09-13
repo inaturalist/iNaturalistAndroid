@@ -6,8 +6,8 @@
     <string name="delete_observation">Delete observation</string>
     <string name="observation_deleted">Observation deleted</string>
     <string name="species_guess_hint">Species name</string>
-    <string name="ok">ਠੀਕ ਹੈ</string>
-    <string name="cancel">ਰੱਦ ਕਰੋ</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string name="loading">Loading...</string>
     <string name="sync_required">Sync required</string>
     <string name="sync_required_message">%1$d observations, %2$d photos to sync</string>
