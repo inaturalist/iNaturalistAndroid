@@ -259,10 +259,13 @@ public class TaxonUtils {
 
         return taxonicIconNameToResource(iconicTaxonName);
  	}
+    public static BitmapDescriptor observationMarkerIcon(String iconic_taxon_name) {
+        return observationMarkerIcon(iconic_taxon_name, false);
+    }
 
- 	public static BitmapDescriptor observationMarkerIcon(String iconic_taxon_name) {
+ 	public static BitmapDescriptor observationMarkerIcon(String iconic_taxon_name, boolean stemless) {
         if (iconic_taxon_name == null) {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_unknown : R.drawable.mm_34_unknown);
         }
 
         if (iconic_taxon_name.equals("Animalia") ||
@@ -271,21 +274,21 @@ public class TaxonUtils {
                 iconic_taxon_name.equals("Reptilia") ||
                 iconic_taxon_name.equals("Aves") ||
                 iconic_taxon_name.equals("Mammalia")) {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dodger_blue);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_dodger_blue_no_dot : R.drawable.mm_34_dodger_blue);
         } else if (iconic_taxon_name.equals("Insecta") ||
                 iconic_taxon_name.equals("Arachnida") ||
                 iconic_taxon_name.equals("Mollusca")) {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_orange_red);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_orange_red_no_dot : R.drawable.mm_34_orange_red);
         } else if (iconic_taxon_name.equals("Protozoa")) {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_dark_magenta);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_dark_magenta_no_dot : R.drawable.mm_34_dark_magenta);
         } else if (iconic_taxon_name.equals("Plantae")) {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_inat_green);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_inat_green_no_dot : R.drawable.mm_34_inat_green);
         } else if (iconic_taxon_name.equals("Fungi")) {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_hot_pink);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_hot_pink_no_dot : R.drawable.mm_34_hot_pink);
         } else if (iconic_taxon_name.equals("Chromista")) {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_chromista_brown);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_chromista_brown_no_dot : R.drawable.mm_34_chromista_brown);
         } else {
-            return BitmapDescriptorFactory.fromResource(R.drawable.mm_34_unknown);
+            return BitmapDescriptorFactory.fromResource(stemless ? R.drawable.mm_34_stemless_unknown : R.drawable.mm_34_unknown);
         }
 
     }

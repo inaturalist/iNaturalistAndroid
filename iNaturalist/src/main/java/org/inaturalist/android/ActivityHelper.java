@@ -378,7 +378,6 @@ public class ActivityHelper {
             return;
         }
         LatLng latlng = new LatLng(lat, lon);
-        BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name);
         String currentUser = mApp.currentUserLogin();
         CameraUpdate cameraUpdate = null;
         int obsColor = observationColor(observation);
@@ -386,9 +385,7 @@ public class ActivityHelper {
         Integer publicAcc = null;
         publicAcc = observationJson != null ? observationJson.getInteger("public_positional_accuracy") : null;
 
-        // Add a single marker
-        MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
-        map.addMarker(opts);
+        boolean stemless = false;
 
         if (((observation.geoprivacy != null) && (observation.geoprivacy.equals("private"))) ||
                 (publicAcc == null) || (markerOnly)) {
@@ -406,6 +403,7 @@ public class ActivityHelper {
                 cameraUpdate = addCircle(map, latlng, publicAcc, observation, updateCamera);
             } else if ((currentUser == null) || (observation.user_login == null) || (!observation.user_login.equals(currentUser))) {
                 // Show uncertainty cell
+                stemless = true;
                 Double cellSize = 0.2;
                 Double coords[] = new Double[] { lat, lon };
                 Double ll[] = new Double[] {
@@ -450,6 +448,10 @@ public class ActivityHelper {
                 }
             }
 
+            // Add a single marker
+            BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, stemless);
+            MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+            map.addMarker(opts);
         }
 
         final CameraUpdate finalCameraUpdate = cameraUpdate;
