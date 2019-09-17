@@ -2685,7 +2685,6 @@ public class ObservationEditor extends AppCompatActivity {
     private void importSounds(final List<Uri> sounds) {
         mHelper.loading(getString(R.string.importing_sounds));
 
-
         // Don't set any date/etc when importing a sound
         mLocationManuallySet = true;
         runOnUiThread(new Runnable() {
@@ -2822,12 +2821,18 @@ public class ObservationEditor extends AppCompatActivity {
 
         String extension = getExtension(this, soundUri);
 
-        if ((extension == null) || (
+        if (extension == null) {
+            ContentResolver cr = getContentResolver();
+            String mimeType = cr.getType(soundUri);
+            if ((mimeType == null) || (!mimeType.startsWith("audio/"))) {
+                return null;
+            }
+        } else if (
                 (!extension.toLowerCase().equals("mp3")) &&
                 (!extension.toLowerCase().equals("wav")) &&
                 (!extension.toLowerCase().equals("3gp")) &&
                 (!extension.toLowerCase().equals("amr"))
-            )) {
+            ) {
             return null;
         }
 
