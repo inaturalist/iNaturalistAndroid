@@ -385,25 +385,42 @@ public class ActivityHelper {
         Integer publicAcc = null;
         publicAcc = observationJson != null ? observationJson.getInteger("public_positional_accuracy") : null;
 
-        boolean stemless = false;
-
         if (((observation.geoprivacy != null) && (observation.geoprivacy.equals("private"))) ||
                 (publicAcc == null) || (markerOnly)) {
+            // Add a single marker
+            BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
+            MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+            map.addMarker(opts);
+
             // No need to add anything other than the above marker
             cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
 
         } else if ((currentUser != null) && (observation.user_login != null) && (observation.user_login.equals(currentUser)) &&
                 (observation.positional_accuracy != null)) {
+            // Add a single marker
+            BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
+            MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+            map.addMarker(opts);
+
             // Show circle of private positional accuracy
             cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
         } else {
             if ((observation.positional_accuracy != null) && (publicAcc != null) &&
                     (observation.positional_accuracy.equals(publicAcc))) {
+                // Add a single marker
+                BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
+                MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+                map.addMarker(opts);
+
                 // Show circle of public positional accuracy
                 cameraUpdate = addCircle(map, latlng, publicAcc, observation, updateCamera);
             } else if ((currentUser == null) || (observation.user_login == null) || (!observation.user_login.equals(currentUser))) {
+                // Add a single marker (stemless)
+                BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, true);
+                MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+                map.addMarker(opts);
+
                 // Show uncertainty cell
-                stemless = true;
                 Double cellSize = 0.2;
                 Double coords[] = new Double[] { lat, lon };
                 Double ll[] = new Double[] {
@@ -447,11 +464,6 @@ public class ActivityHelper {
                             .build(), 10);
                 }
             }
-
-            // Add a single marker
-            BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, stemless);
-            MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
-            map.addMarker(opts);
         }
 
         final CameraUpdate finalCameraUpdate = cameraUpdate;
