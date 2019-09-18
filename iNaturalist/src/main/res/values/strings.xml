@@ -694,7 +694,7 @@
     <string name="upload_sound">Choose Sound</string>
     <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
     <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import photo files with WAV/MP3/AMR extensions</string>
+    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
     <string name="importing_sounds">Importing sound(s)...</string>
     <string name="observation_sound">Observation Sound</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
