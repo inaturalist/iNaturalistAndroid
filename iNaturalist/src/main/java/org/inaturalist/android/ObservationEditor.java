@@ -324,7 +324,15 @@ public class ObservationEditor extends AppCompatActivity {
             // Detect if sounds or photos are shared here
             ContentResolver cr = getContentResolver();
             String mimeType = cr.getType(mSharePhotos.get(0));
-            mSharedAudio = (mimeType != null) && (mimeType.startsWith("audio/"));
+            if (mimeType == null) {
+                String extension = getExtension(this, mSharePhotos.get(0));
+                mSharedAudio = (extension != null) && ((extension.toLowerCase().equals("mp3")) ||
+                (extension.toLowerCase().equals("wav")) ||
+                (extension.toLowerCase().equals("3gp")) ||
+                (extension.toLowerCase().equals("amr")));
+            } else {
+                mSharedAudio = (mimeType != null) && (mimeType.startsWith("audio/"));
+            }
 
             mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
             if (mUri == null) {
