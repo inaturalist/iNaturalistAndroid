@@ -41,6 +41,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lucasr.twowayview.TwoWayView;
+import org.tinylog.Logger;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -319,7 +320,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (mSharePhotos != null) {
             // Share photo/sound(s) with iNaturalist
-            Log.e(TAG, "Insert 1");
+            Logger.tag(TAG).error("Insert 1");
 
             // Detect if sounds or photos are shared here
             ContentResolver cr = getContentResolver();
@@ -336,7 +337,7 @@ public class ObservationEditor extends AppCompatActivity {
 
             mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
             if (mUri == null) {
-                Log.e(TAG, "Failed to insert new observation into " + Observation.CONTENT_URI);
+                Logger.tag(TAG).error("Failed to insert new observation into " + Observation.CONTENT_URI);
                 finish();
                 return;
             }
@@ -351,7 +352,7 @@ public class ObservationEditor extends AppCompatActivity {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
             if (uri == null) {
-                Log.e(TAG, "Null URI from intent.getData");
+                Logger.tag(TAG).error("Null URI from intent.getData");
                 finish();
                 return;
             }
@@ -361,10 +362,10 @@ public class ObservationEditor extends AppCompatActivity {
                 mUri = uri;
                 break;
             case Observation.OBSERVATIONS_URI_CODE:
-                Log.e(TAG, "Insert 2: " + uri);
+                Logger.tag(TAG).error("Insert 2: " + uri);
                 mUri = getContentResolver().insert(uri, null);
                 if (mUri == null) {
-                    Log.e(TAG, "Failed to insert new observation into " + uri);
+                    Logger.tag(TAG).error("Failed to insert new observation into " + uri);
                     finish();
                     return;
                 }
@@ -379,10 +380,10 @@ public class ObservationEditor extends AppCompatActivity {
                     return;
                 }
                 mFileUri = getPath(this, mFileUri);
-                Log.e(TAG, "Insert 3");
+                Logger.tag(TAG).error("Insert 3");
                 mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
                 if (mUri == null) {
-                    Log.e(TAG, "Failed to insert new observation into " + uri);
+                    Logger.tag(TAG).error("Failed to insert new observation into " + uri);
                     finish();
                     return;
                 }
@@ -390,7 +391,7 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation = new Observation(mCursor);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
-                    Log.e(TAG, "UUID 1 - " + mObservation.uuid);
+                    Logger.tag(TAG).error("UUID 1 - " + mObservation.uuid);
                 }
 
                 updateImageOrientation(mFileUri);
@@ -400,7 +401,7 @@ public class ObservationEditor extends AppCompatActivity {
                 mFileUri = null;
                 break;
             default:
-                Log.e(TAG, "Unknown action, exiting");
+                Logger.tag(TAG).error("Unknown action, exiting");
                 finish();
                 return;
             }
@@ -710,7 +711,7 @@ public class ObservationEditor extends AppCompatActivity {
                 // Taxon info not loaded - download it now
                 mTaxonReceiver = new TaxonReceiver();
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
-                Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
+                Logger.tag(TAG).info("Registering ACTION_GET_TAXON_NEW_RESULT");
                 BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
@@ -917,7 +918,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void editNextObservation(int direction) {
-        Log.v("ObservationEditor", "editNextObservation: Direction = " + direction);
+        Logger.tag(TAG).info("editNextObservation: Direction = " + direction);
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         String conditions = "(_synced_at IS NULL";
@@ -932,13 +933,13 @@ public class ObservationEditor extends AppCompatActivity {
         // Find next observation
         Long obsId, externalObsId;
         cursor.moveToFirst();
-        Log.e("ObservationEditor", "Current obs id: " + mObservation._id + ", " + mObservation.id);
+        Logger.tag(TAG).error("Current obs id: " + mObservation._id + ", " + mObservation.id);
         do {
             obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
             externalObsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation.ID));
             if (((mObservation._id != null) && (obsId.equals(mObservation._id.longValue()))) ||
                 ((mObservation.id != null) && (externalObsId.equals(mObservation.id.longValue())))) {
-                Log.e("ObservationEditor", "Found current obs with " + obsId + ", " + externalObsId);
+                Logger.tag(TAG).error("Found current obs with " + obsId + ", " + externalObsId);
                 break;
             }
         } while (cursor.moveToNext());
@@ -950,15 +951,15 @@ public class ObservationEditor extends AppCompatActivity {
 
             // Edit the next observation (if one is available)
             if (direction == 1) {
-                Log.v("ObservationEditor", "Moving to previous observation");
+                Logger.tag(TAG).info("Moving to previous observation");
                 cursor.moveToNext();
             } else {
-                Log.v("ObservationEditor", "Moving to next observation");
+                Logger.tag(TAG).info("Moving to next observation");
                 cursor.moveToPrevious();
             }
             obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
             externalObsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation.ID));
-            Log.e("ObservationEditor", "Next obs ID: " + obsId + ", " + externalObsId);
+            Logger.tag(TAG).error("Next obs ID: " + obsId + ", " + externalObsId);
             cursor.close();
             Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId != null ? obsId : externalObsId);
             Intent intent = new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class);
@@ -1106,12 +1107,12 @@ public class ObservationEditor extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "onBackPressed");
+        Logger.tag(TAG).debug("onBackPressed");
         onBack();
     }
     
     private boolean onBack() {
-        Log.d(TAG, "onBack 1");
+        Logger.tag(TAG).debug("onBack 1");
         if ((mCursor ==  null) || (mCursor.getCount() == 0)) {
             finish();
             return false;
@@ -1130,7 +1131,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             mCanceled = true;
-            Log.d(TAG, "onBack 2 - " + mReturnToObservationList);
+            Logger.tag(TAG).debug("onBack 2 - " + mReturnToObservationList);
             setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
             finish();
             return false;
@@ -1160,7 +1161,7 @@ public class ObservationEditor extends AppCompatActivity {
                 },
                 null);
 
-        Log.d(TAG, "onBack 3 - " + mReturnToObservationList);
+        Logger.tag(TAG).debug("onBack 3 - " + mReturnToObservationList);
         return true;
     }
 
@@ -1378,12 +1379,12 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation = new Observation(mCursor);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
-                    Log.e(TAG, "UUID 2 - " + mObservation.uuid);
+                    Logger.tag(TAG).error("UUID 2 - " + mObservation.uuid);
                 }
             } else {
                 mObservation = new Observation();
                 mObservation.uuid = UUID.randomUUID().toString();
-                Log.e(TAG, "UUID 3 - " + mObservation.uuid);
+                Logger.tag(TAG).error("UUID 3 - " + mObservation.uuid);
                 return;
             }
         }
@@ -1671,7 +1672,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
                 getContentResolver().update(mUri, cv, null, null);
             } catch (NullPointerException e) {
-                Log.e(TAG, "failed to save observation:" + e);
+                Logger.tag(TAG).error("failed to save observation:" + e);
             }
         }
 
@@ -1697,7 +1698,7 @@ public class ObservationEditor extends AppCompatActivity {
                     getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
                 }
             } catch (NullPointerException e) {
-                Log.e(TAG, "Failed to delete observation: " + e);
+                Logger.tag(TAG).error("Failed to delete observation: " + e);
             }
         } else {
             // Only mark as deleted (so we'll later on sync the deletion)
@@ -1908,13 +1909,13 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (locationIsGood(mCurrentLocation)) {
-            // Log.d(TAG, "place was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Logger.tag(TAG).debug("place was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
 
         if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
-            // Log.d(TAG, "place request was old and place was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Logger.tag(TAG).debug("place request was old and place was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
@@ -2458,7 +2459,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                 final Uri selectedImageUri = mFileUri;
 
-                Log.v(TAG, String.format("%s", selectedImageUri));
+                Logger.tag(TAG).info(String.format("%s", selectedImageUri));
 
                 // Image captured and saved to mFileUri specified in the Intent
                 mHelper.loading(getString(R.string.preparing_photo));
@@ -2495,7 +2496,7 @@ public class ObservationEditor extends AppCompatActivity {
             } else {
                 // Image capture failed, advise user
                 Toast.makeText(this,  String.format(getString(R.string.something_went_wrong), mFileUri.toString()), Toast.LENGTH_LONG).show();
-                Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
+                Logger.tag(TAG).error("camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
             }
             mFileUri = null; // don't let this hang around
             
@@ -2980,7 +2981,7 @@ public class ObservationEditor extends AppCompatActivity {
                     mDateSetByUser = timestamp;
                     mTimeSetByUser = timestamp;
                 } catch (ParseException e) {
-                    Log.d(TAG, "Failed to parse " + datetime + ": " + e);
+                    Logger.tag(TAG).debug("Failed to parse " + datetime + ": " + e);
                 }
             } else {
                 // No original datetime - nullify the date
@@ -2992,7 +2993,7 @@ public class ObservationEditor extends AppCompatActivity {
             is.close();
             observationToUi();
         } catch (IOException e) {
-            Log.e(TAG, "couldn't find " + photoUri);
+            Logger.tag(TAG).error("couldn't find " + photoUri);
         }
     }
 
@@ -3192,7 +3193,7 @@ public class ObservationEditor extends AppCompatActivity {
             values.put(MediaStore.Images.ImageColumns.ORIENTATION, degrees);
             getContentResolver().update(uri, values, null, null);
         } catch (Exception e) {
-        	Log.e(TAG, "Couldn't update image orientation for path: " + uri);
+        	Logger.tag(TAG).error("Couldn't update image orientation for path: " + uri);
         }
     }
 
@@ -3614,11 +3615,11 @@ public class ObservationEditor extends AppCompatActivity {
             // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image)));
         } catch (IOException e) {
-            Log.e(TAG, "Failed to create gallery photo");
+            Logger.tag(TAG).error("Failed to create gallery photo");
             e.printStackTrace();
             return null;
         } catch (Exception exc) {
-            Log.e(TAG, "Failed to write gallery photo");
+            Logger.tag(TAG).error("Failed to write gallery photo");
             if (image != null) {
                 // Don't leave around an empty file if we failed to write to it.
                 image.delete();

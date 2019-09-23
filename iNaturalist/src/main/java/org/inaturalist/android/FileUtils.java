@@ -33,6 +33,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
+import org.tinylog.Logger;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.text.DecimalFormat;
@@ -253,7 +255,7 @@ public class FileUtils {
     public static String getPath(final Context context, final Uri uri) {
 
         if (DEBUG)
-            Log.d(TAG + " File -",
+            Logger.tag(TAG).debug(" File -",
                     "Authority: " + uri.getAuthority() +
                             ", Fragment: " + uri.getFragment() +
                             ", Port: " + uri.getPort() +
@@ -422,10 +424,10 @@ public class FileUtils {
      */
     public static Bitmap getThumbnail(Context context, Uri uri, String mimeType) {
         if (DEBUG)
-            Log.d(TAG, "Attempting to get thumbnail");
+            Logger.tag(TAG).debug("Attempting to get thumbnail");
 
         if (!isMediaUri(uri)) {
-            Log.e(TAG, "You can only retrieve thumbnails for images and videos.");
+            Logger.tag(TAG).error("You can only retrieve thumbnails for images and videos.");
             return null;
         }
 
@@ -438,7 +440,7 @@ public class FileUtils {
                 if (cursor.moveToFirst()) {
                     final int id = cursor.getInt(0);
                     if (DEBUG)
-                        Log.d(TAG, "Got thumb ID: " + id);
+                        Logger.tag(TAG).debug("Got thumb ID: " + id);
 
                     if (mimeType.contains("video")) {
                         bm = MediaStore.Video.Thumbnails.getThumbnail(
@@ -457,7 +459,7 @@ public class FileUtils {
                 }
             } catch (Exception e) {
                 if (DEBUG)
-                    Log.e(TAG, "getThumbnail", e);
+                    Logger.tag(TAG).error("getThumbnail", e);
             } finally {
                 if (cursor != null)
                     cursor.close();

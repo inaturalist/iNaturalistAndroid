@@ -5,6 +5,7 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.apache.commons.lang3.StringUtils;
+import org.tinylog.Logger;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
@@ -46,6 +47,7 @@ public class GuideXML extends BaseGuideXMLParser {
 
     // The directory where all offline guides are saved to
     private final static String OFFLINE_GUIDE_PATH = "/offline_guides/";
+    private static final String TAG = "GuideXML";
 
     private String mGuideId;
     private Context mContext;
@@ -560,7 +562,7 @@ public class GuideXML extends BaseGuideXMLParser {
 
             predicatesMeanAndVariance.put(predicateName, new Pair<Double, Double>(mean, variance));
 
-            Log.e("AAA", predicateName + " = [" + StringUtils.join(predicateTagCount, ",") + "] = " + mean + ", " + variance);
+            Logger.tag(TAG).debug(predicateName + " = [" + StringUtils.join(predicateTagCount, ",") + "] = " + mean + ", " + variance);
         }
 
         // Finally, decide which of the predicates is the next recommended one
@@ -603,7 +605,7 @@ public class GuideXML extends BaseGuideXMLParser {
         }
 
         for (Map.Entry item : list) {
-            Log.e("AAA", item.getKey() + " = " + ((Pair<Double,Double>)item.getValue()).first + ", " + ((Pair<Double,Double>)item.getValue()).second);
+            Logger.tag(TAG).debug(item.getKey() + " = " + ((Pair<Double,Double>)item.getValue()).first + ", " + ((Pair<Double,Double>)item.getValue()).second);
         }
 
         if (list.size() > 0) {

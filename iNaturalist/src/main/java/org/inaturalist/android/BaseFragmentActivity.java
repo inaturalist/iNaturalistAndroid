@@ -43,6 +43,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.tinylog.Logger;
+
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 
@@ -509,7 +511,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
             mUserDetailsReceiver = new UserDetailsReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
-            Log.i(TAG, "Registering ACTION_GET_USER_DETAILS_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_GET_USER_DETAILS_RESULT");
             safeRegisterReceiver(mUserDetailsReceiver, filter);
         }
     }
@@ -578,7 +580,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
     private class UserDetailsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "Got GET_USER_DETAILS_RESULT");
+            Logger.tag(TAG).info("Got GET_USER_DETAILS_RESULT");
             BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
             boolean authenticationFailed = intent.getBooleanExtra(INaturalistService.AUTHENTICATION_FAILED, false);
 
@@ -615,12 +617,12 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 // accidentally consider this an updated record)
                 cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
                 int count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NOT NULL)", new String[]{ currentUsername });
-                Log.d(TAG, String.format("Updated %d synced observations with new user login %s from %s", count, newUsername, currentUsername));
+                Logger.tag(TAG).debug(String.format("Updated %d synced observations with new user login %s from %s", count, newUsername, currentUsername));
 
                 cv = new ContentValues();
                 cv.put("user_login", newUsername);
                 count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NULL)", new String[]{ currentUsername });
-                Log.d(TAG, String.format("Updated %d new observations with new user login %s from %s", count, newUsername, currentUsername));
+                Logger.tag(TAG).debug(String.format("Updated %d new observations with new user login %s from %s", count, newUsername, currentUsername));
             }
 
             editor.putString("username", newUsername);

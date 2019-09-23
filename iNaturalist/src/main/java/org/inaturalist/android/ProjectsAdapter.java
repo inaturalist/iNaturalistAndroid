@@ -21,6 +21,7 @@ import com.squareup.picasso.RequestCreator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -80,9 +81,9 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
             }
 
         } catch (MalformedURLException e) {
-            Log.e(TAG, "Error processing search API URL", e);
+            Logger.tag(TAG).error("Error processing search API URL", e);
         } catch (IOException e) {
-            Log.e(TAG, "Error connecting to search API", e);
+            Logger.tag(TAG).error("Error connecting to search API", e);
         } finally {
             if (conn != null) {
                 conn.disconnect();

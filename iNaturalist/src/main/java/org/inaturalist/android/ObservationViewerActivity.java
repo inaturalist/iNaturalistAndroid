@@ -74,6 +74,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lucasr.twowayview.TwoWayView;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -692,7 +693,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 mObsJson = obsJson;
 
                 if (obsJson == null) {
-                    Log.e(TAG, "Null URI from intent.getData");
+                    Logger.tag(TAG).error("Null URI from intent.getData");
                     finish();
                     return;
                 }
@@ -720,7 +721,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         if ((mObservation == null) || (forceReload)) {
             if (!mReadOnly) {
                 if (mCursor.getCount() == 0) {
-                    Log.e(TAG, "Cursor count is zero - finishing activity");
+                    Logger.tag(TAG).error("Cursor count is zero - finishing activity");
                     finish();
                     return;
                 }
@@ -732,7 +733,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         if ((mObservation != null) && (mObsJson == null)) {
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
 
             mLoadObsJson = true;
@@ -929,7 +930,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
             }
             getContentResolver().update(mObservation.getUri(), cv, null, null);
-            Log.d(TAG, "ObservationViewerActivity - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+            Logger.tag(TAG).debug("ObservationViewerActivity - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
         }
         mLoginToAddCommentId.setVisibility(View.GONE);
         mActivityLoginSignUpButtons.setVisibility(View.GONE);
@@ -1411,7 +1412,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
@@ -1435,7 +1436,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         int dataQuality = DATA_QUALITY_CASUAL_GRADE;
         int reasonText = 0;
 
-        Log.d(TAG, "refreshDataQuality: " + mObservation.id);
+        Logger.tag(TAG).debug("refreshDataQuality: " + mObservation.id);
 
         if (((mObservation.latitude == null) && (mObservation.longitude == null)) && ((mObservation.private_latitude == null) && (mObservation.private_longitude == null))) {
             // No place
@@ -1460,7 +1461,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             dataQuality = DATA_QUALITY_RESEARCH_GRADE;
         }
 
-        Log.d(TAG, "refreshDataQuality 2: " + dataQuality + ":" + (reasonText != 0 ? getString(reasonText) : "N/A"));
+        Logger.tag(TAG).debug("refreshDataQuality 2: " + dataQuality + ":" + (reasonText != 0 ? getString(reasonText) : "N/A"));
 
         if (mObservation.quality_grade != null) {
             int observedDataQuality = -1;
@@ -1480,10 +1481,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 reasonText = 0;
             }
 
-            Log.d(TAG, "refreshDataQuality 3: " + dataQuality);
+            Logger.tag(TAG).debug("refreshDataQuality 3: " + dataQuality);
         }
 
-        Log.d(TAG, "refreshDataQuality 4: " + mObservation.quality_grade + ":" + mIdCount + ":" + mObservation.captive + ":" + mFlagAsCaptive + ":" +
+        Logger.tag(TAG).debug("refreshDataQuality 4: " + mObservation.quality_grade + ":" + mIdCount + ":" + mObservation.captive + ":" + mFlagAsCaptive + ":" +
             ((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getCount() + ":" + mObservation.observed_on + ":" + mObservation.latitude + ":" + mObservation.private_latitude +
             ":" + mObservation.longitude + ":" + mObservation.private_longitude);
 
@@ -2072,13 +2073,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "ChangeAttributesReceiver");
+            Logger.tag(TAG).error("ChangeAttributesReceiver");
 
             // Re-download the observation JSON so we'll refresh the annotations
 
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
             mLoadObsJson = true;
@@ -2094,7 +2095,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "AttributesReceiver");
+            Logger.tag(TAG).error("AttributesReceiver");
 
             BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, ObservationViewerActivity.this);
 
@@ -2117,7 +2118,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "ObservationReceiver - OBSERVATION_RESULT");
+            Logger.tag(TAG).error("ObservationReceiver - OBSERVATION_RESULT");
 
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, ObservationViewerActivity.this);
 
@@ -2230,8 +2231,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     ((mObservation.taxon_id != null) && (observation.taxon_id == null)) ||
                     (mObservation.taxon_id != observation.taxon_id)) {
 
-                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
-                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
 
                     mObservation.species_guess = observation.species_guess;
                     mObservation.taxon_id = observation.taxon_id;
@@ -2249,7 +2250,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     // Update observation's taxon in DB
                     ContentValues cv = mObservation.getContentValues();
                     getContentResolver().update(mUri, cv, null, null);
-                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
                 }
             }
 
@@ -2431,7 +2432,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d(TAG, "onActivityResult - " + requestCode + ":" + resultCode);
+        Logger.tag(TAG).debug("onActivityResult - " + requestCode + ":" + resultCode);
         if (requestCode == SHARE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // TODO - RESULT_OK is never returned + need to add "destination" param (what type of share was performed)
@@ -2440,10 +2441,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_CANCELLED);
             }
         } else if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
-            Log.d(TAG, "onActivityResult - EDIT_OBS: " + requestCode + ":" + resultCode);
+            Logger.tag(TAG).debug("onActivityResult - EDIT_OBS: " + requestCode + ":" + resultCode);
             if ((resultCode == ObservationEditor.RESULT_DELETED) || (resultCode == ObservationEditor.RESULT_RETURN_TO_OBSERVATION_LIST)) {
                 // User deleted the observation (or did a batch-edit)
-                Log.d(TAG, "onActivityResult - EDIT_OBS: Finish");
+                Logger.tag(TAG).debug("onActivityResult - EDIT_OBS: Finish");
                 setResult(RESULT_OBSERVATION_CHANGED);
                 finish();
                 return;

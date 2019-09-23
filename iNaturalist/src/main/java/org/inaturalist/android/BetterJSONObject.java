@@ -22,6 +22,7 @@ import java.util.TimeZone;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import android.util.Log;
 
@@ -161,7 +162,7 @@ public class BetterJSONObject implements Serializable {
 	        try {
 	            mJSONObject.put(name, value.toString());
 	        } catch (JSONException e2) {
-	            Log.e(TAG, "Failed to put " + name + ", " + value + ": " + e2);
+	            Logger.tag(TAG).error("Failed to put " + name + ", " + value + ": " + e2);
 	        }
 	    }
 	}

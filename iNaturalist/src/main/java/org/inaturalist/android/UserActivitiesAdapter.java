@@ -45,6 +45,7 @@ import com.squareup.picasso.Transformation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -219,7 +220,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
     }
 
     private void loadObsImage(int obsId, final View view, BetterJSONObject item, final int position) {
-        Log.e(TAG, obsId + ": loadObsImage " + position + ":" + view);
+        Logger.tag(TAG).error(obsId + ": loadObsImage " + position + ":" + view);
 
         ImageView obsPic = (ImageView) view.findViewById(R.id.obs_pic);
         ImageView userPic = (ImageView) view.findViewById(R.id.user_pic);
@@ -249,9 +250,9 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_AND_SAVE_OBSERVATION, null, mContext, INaturalistService.class);
                 serviceIntent.putExtra(INaturalistService.OBSERVATION_ID, obsId);
                 ContextCompat.startForegroundService(mContext, serviceIntent);
-                Log.e(TAG, obsId + ": Start download: " + mObsIdBeingDownloaded.containsKey(obsId));
+                Logger.tag(TAG).error(obsId + ": Start download: " + mObsIdBeingDownloaded.containsKey(obsId));
             } else {
-                Log.e(TAG, obsId + ": Downloading");
+                Logger.tag(TAG).error(obsId + ": Downloading");
             }
 
             mObsIdBeingDownloaded.put(obsId, true);
@@ -265,7 +266,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
             return;
         }
-        Log.d(TAG, obsId + ": Showing");
+        Logger.tag(TAG).debug(obsId + ": Showing");
 
         final Observation obs = new Observation(c);
         c.close();
@@ -468,7 +469,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 return;
             }
 
-            Log.d(TAG, observation.id + ": Download complete");
+            Logger.tag(TAG).debug(observation.id + ": Download complete");
 
             List<Pair<View, Integer>> views = mObsIdToView.get(observation.id);
             if (views == null) return;
@@ -486,7 +487,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
                 }
 
                 // Load obs image again
-                Log.e(TAG, observation.id + ": Updating view " + position + ":" + view);
+                Logger.tag(TAG).error(observation.id + ": Updating view " + position + ":" + view);
                 loadObsImage(observation.id, view, update, position);
             }
 	    }

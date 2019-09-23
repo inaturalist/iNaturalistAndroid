@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.StringUtils;
+import org.tinylog.Logger;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -73,7 +74,7 @@ public class ObservationProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
+            Logger.tag(TAG).warn("Upgrading database from version " + oldVersion + " to " + newVersion);
 
             // Do any changes to the existing tables (e.g. add columns), according to the new DB version
 
@@ -371,7 +372,7 @@ public class ObservationProvider extends ContentProvider {
         }
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        Log.d(TAG, "Insert: " + tableName + "; values: " + values.toString());
+        Logger.tag(TAG).debug("Insert: " + tableName + "; values: " + values.toString());
         long rowId = db.insert(tableName, BaseColumns._ID, values);
         if (rowId > 0) {
             Uri newUri = ContentUris.withAppendedId(contentUri, rowId);
@@ -524,7 +525,7 @@ public class ObservationProvider extends ContentProvider {
         case Observation.OBSERVATION_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
             contentUri = Observation.CONTENT_URI;
-            Log.d(TAG, "Update " + Observation.TABLE_NAME + "; " + values.toString());
+            Logger.tag(TAG).debug("Update " + Observation.TABLE_NAME + "; " + values.toString());
             count = db.update(Observation.TABLE_NAME, values, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             
@@ -532,13 +533,13 @@ public class ObservationProvider extends ContentProvider {
                 // update foreign key in observation_photos
                 ContentValues cv = new ContentValues();
                 cv.put(ObservationPhoto.OBSERVATION_ID, values.getAsInteger(Observation.ID));
-                Log.d(TAG, "Update " + ObservationPhoto.TABLE_NAME + "; " + cv.toString());
+                Logger.tag(TAG).debug("Update " + ObservationPhoto.TABLE_NAME + "; " + cv.toString());
                 db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
 
                 // update foreign key in observation_sounds
                 cv = new ContentValues();
                 cv.put(ObservationSound.OBSERVATION_ID, values.getAsInteger(Observation.ID));
-                Log.d(TAG, "Update " + ObservationSound.TABLE_NAME + "; " + cv.toString());
+                Logger.tag(TAG).debug("Update " + ObservationSound.TABLE_NAME + "; " + cv.toString());
                 db.update(ObservationSound.TABLE_NAME, cv, ObservationSound._OBSERVATION_ID + "=" + id, null);
             }
 
@@ -547,7 +548,7 @@ public class ObservationProvider extends ContentProvider {
             if ((count > 0) && (values.containsKey(Observation.ID)) && (values.get(Observation.ID) != null)) {
                 ContentValues cv = new ContentValues();
                 cv.put(ProjectObservation.OBSERVATION_ID, values.getAsInteger(Observation.ID));
-                Log.d(TAG, "Update observation from " + id + "to " + values.getAsInteger(Observation.ID));
+                Logger.tag(TAG).debug("Update observation from " + id + "to " + values.getAsInteger(Observation.ID));
                 db.update(ProjectObservation.TABLE_NAME, cv, ProjectObservation.OBSERVATION_ID + "=" + id, null);
                 
                 cv = new ContentValues();
@@ -563,7 +564,7 @@ public class ObservationProvider extends ContentProvider {
         case ObservationPhoto.OBSERVATION_PHOTO_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
             contentUri = ObservationPhoto.CONTENT_URI;
-            Log.d(TAG, "Update " + ObservationPhoto.TABLE_NAME + "; " + values.toString());
+            Logger.tag(TAG).debug("Update " + ObservationPhoto.TABLE_NAME + "; " + values.toString());
             count = db.update(ObservationPhoto.TABLE_NAME, values, ObservationPhoto._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;
@@ -574,7 +575,7 @@ public class ObservationProvider extends ContentProvider {
         case ObservationSound.OBSERVATION_SOUND_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
             contentUri = ObservationSound.CONTENT_URI;
-            Log.d(TAG, "Update " + ObservationSound.TABLE_NAME + "; " + values.toString());
+            Logger.tag(TAG).debug("Update " + ObservationSound.TABLE_NAME + "; " + values.toString());
             count = db.update(ObservationSound.TABLE_NAME, values, ObservationSound._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
             break;

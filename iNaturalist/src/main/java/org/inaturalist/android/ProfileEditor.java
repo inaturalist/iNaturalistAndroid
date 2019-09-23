@@ -36,6 +36,7 @@ import com.livefront.bridge.Bridge;
 import org.apache.sanselan.util.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -303,12 +304,12 @@ public class ProfileEditor extends AppCompatActivity {
 
         mUserUpdateReceiver = new UserUpdateReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_UPDATE_USER_DETAILS_RESULT);
-        Log.i(TAG, "Registering ACTION_UPDATE_USER_DETAILS_RESULT");
+        Logger.tag(TAG).info("Registering ACTION_UPDATE_USER_DETAILS_RESULT");
         BaseFragmentActivity.safeRegisterReceiver(mUserUpdateReceiver, filter, this);
 
         mUserDetailsReceiver = new UserDetailsReceiver();
         IntentFilter filter2 = new IntentFilter(INaturalistService.ACTION_GET_USER_DETAILS_RESULT);
-        Log.i(TAG, "Registering ACTION_GET_USER_DETAILS_RESULT");
+        Logger.tag(TAG).info("Registering ACTION_GET_USER_DETAILS_RESULT");
         BaseFragmentActivity.safeRegisterReceiver(mUserDetailsReceiver, filter2, this);
     }
 
@@ -432,7 +433,7 @@ public class ProfileEditor extends AppCompatActivity {
 
                 mUserIconUrl = selectedImageUri.toString();
 
-                Log.v(TAG, String.format("%s: %s", isCamera, selectedImageUri));
+                Logger.tag(TAG).info(String.format("%s: %s", isCamera, selectedImageUri));
 
                 refreshUserDetails();
 
@@ -441,7 +442,7 @@ public class ProfileEditor extends AppCompatActivity {
             } else {
                 // Image capture failed, advise user
                 Toast.makeText(this,  String.format(getString(R.string.something_went_wrong), mFileUri.toString()), Toast.LENGTH_LONG).show();
-                Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
+                Logger.tag(TAG).error("camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
             }
 
         }
@@ -468,7 +469,7 @@ public class ProfileEditor extends AppCompatActivity {
     private class UserUpdateReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "Got ACTION_UPDATE_USER_DETAILS_RESULT");
+            Logger.tag(TAG).info("Got ACTION_UPDATE_USER_DETAILS_RESULT");
             BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
 
             if (user == null) {
@@ -523,7 +524,7 @@ public class ProfileEditor extends AppCompatActivity {
     private class UserDetailsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "Got GET_USER_DETAILS_RESULT");
+            Logger.tag(TAG).info("Got GET_USER_DETAILS_RESULT");
             BetterJSONObject user = (BetterJSONObject) intent.getSerializableExtra(INaturalistService.USER);
 
             mHelper.stopLoading();

@@ -35,6 +35,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -46,7 +47,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class ObservationSearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    private static final String LOG_TAG = "ObervationSearchActivity";
+    private static final String TAG = "ObervationSearchActivity";
 
     private ListAdapter mObservationsAdapter;
 
@@ -258,7 +259,7 @@ public class ObservationSearchActivity extends AppCompatActivity implements Adap
             photo._observation_id = jsonObservation._id;
 
             ContentValues opcv = photo.getContentValues();
-            Log.d(LOG_TAG, "OP - searchObservationLocally - Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
+            Logger.tag(TAG).info("OP - searchObservationLocally - Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
             opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
             opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
             opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);

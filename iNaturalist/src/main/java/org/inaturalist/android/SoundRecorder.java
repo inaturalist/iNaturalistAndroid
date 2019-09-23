@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 
+import org.tinylog.Logger;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -326,7 +328,7 @@ public class SoundRecorder {
             if ((results != null) && (results[0] instanceof Throwable)) {
                 // Error
                 throwable = (Throwable) results[0];
-                Log.e(RecordWaveTask.class.getSimpleName(), throwable.getMessage(), throwable);
+                Logger.tag(RecordWaveTask.class.getSimpleName()).error(throwable.getMessage(), throwable);
             }
         }
     }

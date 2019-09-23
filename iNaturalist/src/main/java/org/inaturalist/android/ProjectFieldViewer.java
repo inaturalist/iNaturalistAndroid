@@ -32,6 +32,7 @@ import org.apache.commons.collections4.Predicate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -402,7 +403,7 @@ public class ProjectFieldViewer {
                 // Get the taxon details
                 mTaxonReceiver = new TaxonReceiver();
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
-                Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
+                Logger.tag(TAG).info("Registering ACTION_GET_TAXON_RESULT");
                 BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, mContext);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, mContext, INaturalistService.class);

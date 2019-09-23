@@ -14,6 +14,7 @@ import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.cocosw.bottomsheet.BottomSheet;
 import com.evernote.android.state.State;
@@ -197,7 +198,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private class SyncCompleteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-        	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
+        	Logger.tag(TAG).info("Got ACTION_SYNC_COMPLETE");
 
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -661,7 +662,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
             }
 
-            Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
+            Logger.tag(TAG).debug(String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
                     hasOldObs, syncCount, photoSyncCount, mUserCanceledSync));
 
 
@@ -699,7 +700,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     public void onPause() {
         super.onPause();
 
-        Log.d(TAG, "onPause");
+        Logger.tag(TAG).debug("onPause");
 
         // save last position of list so we can resume there later
         // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
@@ -770,12 +771,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         mSyncCompleteReceiver = new SyncCompleteReceiver();
         IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
-        Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
+        Logger.tag(TAG).info("Registering ACTION_SYNC_COMPLETE");
         safeRegisterReceiver(mSyncCompleteReceiver, filter3);
 
         mConnectivityListener = new ConnectivityBroadcastReceiver();
         IntentFilter filter4 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        Log.i(TAG, "Registering CONNECTIVITY_ACTION");
+        Logger.tag(TAG).info("Registering CONNECTIVITY_ACTION");
         safeRegisterReceiver(mConnectivityListener, filter4);
 
 
@@ -1306,7 +1307,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
-                                Log.d(TAG, "Start sync by button");
+                                Logger.tag(TAG).debug("Start sync by button");
 
                             }
                         }
@@ -1514,7 +1515,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 return;
             }
 
-            Log.d(TAG, String.format("Updating progress for %d: %f", obsId, progress));
+            Logger.tag(TAG).debug(String.format("Updating progress for %d: %f", obsId, progress));
 
             mObservationListAdapter.updateProgress(obsId, progress);
             mObservationListAdapter.notifyDataSetChanged();

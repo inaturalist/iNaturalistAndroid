@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteQuery;
 import android.util.Log;
 
+import org.tinylog.Logger;
+
 /**
  * Implement the cursor factory in order to log the queries before returning 
  * the cursor
@@ -17,6 +19,7 @@ import android.util.Log;
  */
 public class SQLiteCursorFactory implements CursorFactory {
 
+    private static final String TAG = "SQLiteCursorFactory";
     private boolean debugQueries = false;
 
     private static String lastQuery = null;
@@ -35,7 +38,7 @@ public class SQLiteCursorFactory implements CursorFactory {
             String currentQuery = query.toString();
             if ((lastQuery == null) || (!lastQuery.equals(currentQuery))) {
                 lastQuery = currentQuery;
-                LoggingUtils.largeLog("SQL", currentQuery);
+                Logger.tag(TAG).debug(currentQuery);
             }
         }
         return new SQLiteCursor(db, masterQuery, editTable, query);

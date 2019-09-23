@@ -60,6 +60,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
@@ -538,14 +539,14 @@ public class INaturalistService extends IntentService {
     public void onCreate() {
         super.onCreate();
 
-        Log.i(TAG, "Service onCreate");
+        Logger.tag(TAG).info("Service onCreate");
 
         startIntentForeground();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "Service onStartCommand");
+        Logger.tag(TAG).info("Service onStartCommand");
 
         startIntentForeground();
 
@@ -555,7 +556,7 @@ public class INaturalistService extends IntentService {
 
     private void startIntentForeground() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.i(TAG, "Service startIntentForeground");
+            Logger.tag(TAG).info("Service startIntentForeground");
 
             // See: https://stackoverflow.com/a/46449975/1233767
             String CHANNEL_ID = "inaturalist_service";
@@ -601,7 +602,7 @@ public class INaturalistService extends IntentService {
 
         mPassive = action.equals(ACTION_PASSIVE_SYNC);
 
-        Log.d(TAG, "Service: " + action);
+        Logger.tag(TAG).debug("Service: " + action);
 
         try {
             if (action.equals(ACTION_NEARBY)) {
@@ -663,7 +664,7 @@ public class INaturalistService extends IntentService {
                     getTimezoneByCurrentLocation(new IOnTimezone() {
                     @Override
                     public void onTimezone(String timezoneName) {
-                        Log.d(TAG, "Detected Timezone: " + timezoneName);
+                        Logger.tag(TAG).debug("Detected Timezone: " + timezoneName);
 
                         if (timezoneName != null) {
                             try {
@@ -827,7 +828,7 @@ public class INaturalistService extends IntentService {
                 getTimezoneByCurrentLocation(new IOnTimezone() {
                     @Override
                     public void onTimezone(String timezoneName) {
-                        Log.d(TAG, "Detected Timezone: " + timezoneName);
+                        Logger.tag(TAG).debug("Detected Timezone: " + timezoneName);
 
                         String error = null;
                         try {
@@ -1461,12 +1462,12 @@ public class INaturalistService extends IntentService {
                         // accidentally consider this an updated record)
                         cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
                         int count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NOT NULL)", new String[]{prevLogin});
-                        Log.d(TAG, String.format("Updated %d synced observations with new user login %s from %s", count, mLogin, prevLogin));
+                        Logger.tag(TAG).debug(String.format("Updated %d synced observations with new user login %s from %s", count, mLogin, prevLogin));
 
                         cv = new ContentValues();
                         cv.put("user_login", mLogin);
                         count = getContentResolver().update(Observation.CONTENT_URI, cv, "(user_login = ?) AND (id IS NULL)", new String[]{ prevLogin });
-                        Log.d(TAG, String.format("Updated %d new observations with new user login %s from %s", count, mLogin, prevLogin));
+                        Logger.tag(TAG).debug(String.format("Updated %d new observations with new user login %s from %s", count, mLogin, prevLogin));
                     }
                 }
 
@@ -1731,7 +1732,7 @@ public class INaturalistService extends IntentService {
                 mIsSyncing = false;
                 mApp.setIsSyncing(mIsSyncing);
 
-                Log.i(TAG, "Sending ACTION_SYNC_COMPLETE");
+                Logger.tag(TAG).info("Sending ACTION_SYNC_COMPLETE");
 
                 // Notify the rest of the app of the completion of the sync
                 Intent reply = new Intent(ACTION_SYNC_COMPLETE);
@@ -1745,7 +1746,7 @@ public class INaturalistService extends IntentService {
 
     private void syncObservations() throws AuthenticationException, CancelSyncException, SyncFailedException {
         try {
-            Log.d(TAG, "syncObservations: enter");
+            Logger.tag(TAG).debug("syncObservations: enter");
 
             JSONObject eventParams = new JSONObject();
             eventParams.put(AnalyticsClient.EVENT_PARAM_VIA, mApp.getAutoSync() ? AnalyticsClient.EVENT_VALUE_AUTOMATIC_UPLOAD : AnalyticsClient.EVENT_VALUE_MANUAL_FULL_UPLOAD);
@@ -1756,7 +1757,7 @@ public class INaturalistService extends IntentService {
                     Observation.DEFAULT_SORT_ORDER);
 
             eventParams.put(AnalyticsClient.EVENT_PARAM_NUM_DELETES, c.getCount());
-            Log.d(TAG, "syncObservations: to be deleted: " + c.getCount());
+            Logger.tag(TAG).debug("syncObservations: to be deleted: " + c.getCount());
             c.close();
 
             c = getContentResolver().query(Observation.CONTENT_URI,
@@ -1766,7 +1767,7 @@ public class INaturalistService extends IntentService {
                     null,
                     Observation.SYNC_ORDER);
             eventParams.put(AnalyticsClient.EVENT_PARAM_NUM_UPLOADS, c.getCount());
-            Log.d(TAG, "syncObservations: uploads: " + c.getCount());
+            Logger.tag(TAG).debug("syncObservations: uploads: " + c.getCount());
             c.close();
 
             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_OBS, eventParams);
@@ -1776,13 +1777,13 @@ public class INaturalistService extends IntentService {
 
         mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
 
-        Log.d(TAG, "syncObservations: Calling syncRemotelyDeletedObs");
+        Logger.tag(TAG).debug("syncObservations: Calling syncRemotelyDeletedObs");
         syncRemotelyDeletedObs();
         // First, download remote observations (new/updated)
-        Log.d(TAG, "syncObservations: Calling getUserObservations");
+        Logger.tag(TAG).debug("syncObservations: Calling getUserObservations");
         if (!getUserObservations(0)) throw new SyncFailedException();
 
-        Log.d(TAG, "syncObservations: After calling getUserObservations");
+        Logger.tag(TAG).debug("syncObservations: After calling getUserObservations");
 
         // Gather the list of observations that need syncing (because they're new, been updated
         // or had their photos/project fields updated
@@ -1802,7 +1803,7 @@ public class INaturalistService extends IntentService {
         }
 
         c.close();
-        Log.d(TAG, "syncObservations: observationIdsToSync: " + observationIdsToSync);
+        Logger.tag(TAG).debug("syncObservations: observationIdsToSync: " + observationIdsToSync);
 
         // Any observation that has new/updated/deleted photos
         c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
@@ -1820,7 +1821,7 @@ public class INaturalistService extends IntentService {
 
         c.close();
 
-        Log.d(TAG, "syncObservations: observationIdsToSync 2: " + observationIdsToSync);
+        Logger.tag(TAG).debug("syncObservations: observationIdsToSync 2: " + observationIdsToSync);
 
         // Any observation that has new/deleted sounds
         c = getContentResolver().query(ObservationSound.CONTENT_URI,
@@ -1838,7 +1839,7 @@ public class INaturalistService extends IntentService {
         c.close();
 
 
-        Log.d(TAG, "syncObservations: observationIdsToSync 2b: " + observationIdsToSync);
+        Logger.tag(TAG).debug("syncObservations: observationIdsToSync 2b: " + observationIdsToSync);
 
 
         // Any observation that has new/updated project fields.
@@ -1855,7 +1856,7 @@ public class INaturalistService extends IntentService {
         }
 
         c.close();
-        Log.d(TAG, "syncObservations: observationIdsToSync 3: " + observationIdsToSync);
+        Logger.tag(TAG).debug("syncObservations: observationIdsToSync 3: " + observationIdsToSync);
 
         List<Integer> obsIdsToRemove = new ArrayList<>();
 
@@ -1878,13 +1879,13 @@ public class INaturalistService extends IntentService {
             c.close();
         }
 
-        Log.d(TAG, "syncObservations: obsIdsToRemove: " + obsIdsToRemove);
+        Logger.tag(TAG).debug("syncObservations: obsIdsToRemove: " + obsIdsToRemove);
 
         for (Integer obsId : obsIdsToRemove) {
             observationIdsToSync.remove(obsId);
         }
 
-        Log.d(TAG, "syncObservations: observationIdsToSync: " + observationIdsToSync);
+        Logger.tag(TAG).debug("syncObservations: observationIdsToSync: " + observationIdsToSync);
 
         c = getContentResolver().query(Observation.CONTENT_URI,
                 Observation.PROJECTION,
@@ -1905,43 +1906,43 @@ public class INaturalistService extends IntentService {
             increaseProgressForObservation(observation);
 
             mApp.setObservationIdBeingSynced(observation._id);
-            Log.d(TAG, "syncObservations: Syncing " + observation._id + ": " + observation.toString());
+            Logger.tag(TAG).debug("syncObservations: Syncing " + observation._id + ": " + observation.toString());
 
             if ((observation._synced_at == null) || ((observation._updated_at != null) && (observation._updated_at.after(observation._synced_at))) || (observation.id == null)) {
                 postObservation(observation);
                 increaseProgressForObservation(observation);
             }
-            Log.d(TAG, "syncObservations: Finished Syncing " + observation._id + " - now uploading photos");
+            Logger.tag(TAG).debug("syncObservations: Finished Syncing " + observation._id + " - now uploading photos");
 
             postPhotos(observation);
-            Log.d(TAG, "syncObservations: Finished uploading photos " + observation._id);
+            Logger.tag(TAG).debug("syncObservations: Finished uploading photos " + observation._id);
             deleteObservationPhotos(observation); // Delete locally-removed observation photos
 
             postSounds(observation);
-            Log.d(TAG, "syncObservations: Finished uploading sounds " + observation._id);
+            Logger.tag(TAG).debug("syncObservations: Finished uploading sounds " + observation._id);
             deleteObservationSounds(observation); // Delete locally-removed observation sounds
 
             syncObservationFields(observation);
             postProjectObservations(observation);
-            Log.d(TAG, "syncObservations: Finished delete photos, obs fields and project obs - " + observation._id);
+            Logger.tag(TAG).debug("syncObservations: Finished delete photos, obs fields and project obs - " + observation._id);
 
             c.moveToNext();
         }
 
         c.close();
 
-        Log.d(TAG, "syncObservations: Calling delete obs");
+        Logger.tag(TAG).debug("syncObservations: Calling delete obs");
         deleteObservations(); // Delete locally-removed observations
 
-        Log.d(TAG, "syncObservations: Calling saveJoinedProj");
+        Logger.tag(TAG).debug("syncObservations: Calling saveJoinedProj");
         // General project data
         saveJoinedProjects();
-        Log.d(TAG, "syncObservations: Calling storeProjObs");
+        Logger.tag(TAG).debug("syncObservations: Calling storeProjObs");
         storeProjectObservations();
 
         redownloadOldObservations();
 
-        Log.d(TAG, "syncObservations: Done");
+        Logger.tag(TAG).debug("syncObservations: Done");
         mPreferences.edit().putLong("last_user_details_refresh_time", 0); // Force to refresh user details
     }
 
@@ -2348,21 +2349,21 @@ public class INaturalistService extends IntentService {
         JSONArray results = null;
 
         do {
-            Log.d(TAG, "redownloadOldObservationsForTaxonNames: " + currentObsId);
+            Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames: " + currentObsId);
             String url = API_HOST + "/observations?user_id=" + Uri.encode(mLogin) + "&per_page=100&id_below=" + currentObsId;
             Locale deviceLocale = getResources().getConfiguration().locale;
             String deviceLanguage = deviceLocale.getLanguage();
             url += "&locale=" + deviceLanguage;
 
             JSONArray json = get(url, true);
-            Log.d(TAG, "redownloadOldObservationsForTaxonNames - downloaded");
+            Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - downloaded");
             if (json == null || json.length() == 0) {
                 break;
             }
-            Log.d(TAG, "redownloadOldObservationsForTaxonNames - downloaded 2");
+            Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - downloaded 2");
             results = json.optJSONObject(0).optJSONArray("results");
 
-            Log.d(TAG, "redownloadOldObservationsForTaxonNames - downloaded 3");
+            Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - downloaded 3");
             for (int i = 0; i < results.length(); i++) {
                 JSONObject currentObs = results.optJSONObject(i);
                 int currentId = currentObs.optInt("id");
@@ -2371,7 +2372,7 @@ public class INaturalistService extends IntentService {
                         "id = ?",
                         new String[]{String.valueOf(currentId)},
                         Observation.DEFAULT_SORT_ORDER);
-                Log.d(TAG, "redownloadOldObservationsForTaxonNames - Updating taxon details for obs: " + currentId);
+                Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - Updating taxon details for obs: " + currentId);
                 if (c.getCount() == 0) {
                     c.close();
                     continue;
@@ -2381,7 +2382,7 @@ public class INaturalistService extends IntentService {
                 Observation obs = new Observation(c);
                 c.close();
                 obs.setPreferredCommonName(currentObs);
-                Log.d(TAG, String.format("redownloadOldObservationsForTaxonNames - Common name for observation %d: %s", currentId, obs.preferred_common_name));
+                Logger.tag(TAG).debug(String.format("redownloadOldObservationsForTaxonNames - Common name for observation %d: %s", currentId, obs.preferred_common_name));
                 ContentValues cv = obs.getContentValues();
 
                 if (!obs._updated_at.after(obs._synced_at)) {
@@ -2395,7 +2396,7 @@ public class INaturalistService extends IntentService {
             }
         } while ((results.length() > 0) && (currentObsId > lastObsId));
 
-        Log.d(TAG, "redownloadOldObservationsForTaxonNames - finished");
+        Logger.tag(TAG).debug("redownloadOldObservationsForTaxonNames - finished");
         mApp.setLastLocale();
     }
 
@@ -2411,12 +2412,12 @@ public class INaturalistService extends IntentService {
 
         c.moveToFirst();
 
-        Log.d(TAG, "redownloadOldObservations: " + c.getCount());
+        Logger.tag(TAG).debug("redownloadOldObservations: " + c.getCount());
 
         while (!c.isAfterLast()) {
             Integer obsId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto.OBSERVATION_ID));
 
-            Log.d(TAG, "redownloadOldObservations: " + new ObservationPhoto(c));
+            Logger.tag(TAG).debug("redownloadOldObservations: " + new ObservationPhoto(c));
 
             // Delete the observation photo
             Integer obsPhotoId = c.getInt(c.getColumnIndexOrThrow(ObservationPhoto.ID));
@@ -3148,15 +3149,15 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             ObservationSound os = new ObservationSound(c);
 
-            Log.d(TAG, "deleteObservationSounds: " + os);
+            Logger.tag(TAG).debug("deleteObservationSounds: " + os);
             if (os.id != null) {
-                Log.d(TAG, "deleteObservationSounds: Deleting " + os);
+                Logger.tag(TAG).debug("deleteObservationSounds: Deleting " + os);
                 JSONArray result = delete(inatHost + "/observation_sounds/" + os.id + ".json", null);
                 if (result == null) {
-                    Log.d(TAG, "deleteObservationSounds: Deletion error: " + mLastStatusCode);
+                    Logger.tag(TAG).debug("deleteObservationSounds: Deletion error: " + mLastStatusCode);
                     if (mLastStatusCode != HttpStatus.SC_NOT_FOUND) {
                         // Ignore the case where the sound was remotely deleted
-                        Log.d(TAG, "deleteObservationSounds: Not a 404 error");
+                        Logger.tag(TAG).debug("deleteObservationSounds: Not a 404 error");
                         c.close();
                         throw new SyncFailedException();
                     }
@@ -3166,7 +3167,7 @@ public class INaturalistService extends IntentService {
 
             int count = getContentResolver().delete(ObservationSound.CONTENT_URI,
                     "id = ? or _id = ?", new String[]{String.valueOf(os.id), String.valueOf(os._id)});
-            Log.d(TAG, "deleteObservationSounds: Deleted from DB: " + count);
+            Logger.tag(TAG).debug("deleteObservationSounds: Deleted from DB: " + count);
             c.moveToNext();
         }
 
@@ -3191,16 +3192,16 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             ObservationPhoto op = new ObservationPhoto(c);
 
-            Log.d(TAG, "deleteObservationPhotos: " + op + "::::" + op._synced_at);
+            Logger.tag(TAG).debug("deleteObservationPhotos: " + op + "::::" + op._synced_at);
             if (op._synced_at != null) {
                 if (op.id != null) {
-                    Log.d(TAG, "deleteObservationPhotos: Deleting " + op);
+                    Logger.tag(TAG).debug("deleteObservationPhotos: Deleting " + op);
                     JSONArray result = delete(HOST + "/observation_photos/" + op.id + ".json", null);
                     if (result == null) {
-                        Log.d(TAG, "deleteObservationPhotos: Deletion error: " + mLastStatusCode);
+                        Logger.tag(TAG).debug("deleteObservationPhotos: Deletion error: " + mLastStatusCode);
                         if (mLastStatusCode != HttpStatus.SC_NOT_FOUND) {
                             // Ignore the case where the photo was remotely deleted
-                            Log.d(TAG, "deleteObservationPhotos: Not a 404 error");
+                            Logger.tag(TAG).debug("deleteObservationPhotos: Not a 404 error");
                             c.close();
                             throw new SyncFailedException();
                         }
@@ -3211,7 +3212,7 @@ public class INaturalistService extends IntentService {
 
             int count = getContentResolver().delete(ObservationPhoto.CONTENT_URI,
                     "id = ? or _id = ?", new String[]{String.valueOf(op.id), String.valueOf(op._id)});
-            Log.d(TAG, "deleteObservationPhotos: Deleted from DB: " + count);
+            Logger.tag(TAG).debug("deleteObservationPhotos: Deleted from DB: " + count);
             c.moveToNext();
         }
 
@@ -3231,7 +3232,7 @@ public class INaturalistService extends IntentService {
                 null,
                 Observation.DEFAULT_SORT_ORDER);
 
-        Log.d(TAG, "deleteObservations: Deleting " + c.getCount());
+        Logger.tag(TAG).debug("deleteObservations: Deleting " + c.getCount());
 
         if (c.getCount() > 0) {
             mApp.notify(getString(R.string.deleting_observations), getString(R.string.deleting_observations));
@@ -3242,7 +3243,7 @@ public class INaturalistService extends IntentService {
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             Observation observation = new Observation(c);
-            Log.d(TAG, "deleteObservations: Deleting " + observation);
+            Logger.tag(TAG).debug("deleteObservations: Deleting " + observation);
             JSONArray results = delete(HOST + "/observations/" + observation.id + ".json", null);
             if (results == null) {
                 c.close();
@@ -3253,7 +3254,7 @@ public class INaturalistService extends IntentService {
             c.moveToNext();
         }
 
-        Log.d(TAG, "deleteObservations: Deleted IDs: " + obsIds);
+        Logger.tag(TAG).debug("deleteObservations: Deleted IDs: " + obsIds);
         c.close();
 
         // Now it's safe to delete all of the observations locally
@@ -3263,7 +3264,7 @@ public class INaturalistService extends IntentService {
         int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
         int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id in (" + StringUtils.join(obsIds, ",") + ")", null);
 
-        Log.d(TAG, "deleteObservations: " + count1 + ":" + count2 + ":" + count3);
+        Logger.tag(TAG).debug("deleteObservations: " + count1 + ":" + count2 + ":" + count3);
 
         checkForCancelSync();
 
@@ -3590,18 +3591,18 @@ public class INaturalistService extends IntentService {
     private boolean postObservation(Observation observation) throws AuthenticationException, CancelSyncException, SyncFailedException {
         if (observation.id != null) {
             // Update observation
-            Log.d(TAG, "postObservation: Updating existing " + observation.id + ":" + observation._id);
+            Logger.tag(TAG).debug("postObservation: Updating existing " + observation.id + ":" + observation._id);
 
             JSONArray response = request(API_HOST + "/observations/" + observation.id, "put", null, observationToJsonObject(observation, false), true, true, false);
 
             if (response == null) {
-                Log.d(TAG, "postObservation: Error for " + observation.id + ":" + observation._id + ":" + mLastStatusCode);
+                Logger.tag(TAG).debug("postObservation: Error for " + observation.id + ":" + observation._id + ":" + mLastStatusCode);
                 // Some sort of error
                 if ((mLastStatusCode >= 400) && (mLastStatusCode < 500)) {
                     // Observation doesn't exist anymore (deleted remotely, and due to network
                     // issues we didn't get any notification of this) - so delete the observation
                     // locally.
-                    Log.d(TAG, "postObservation: Deleting obs " + observation.id + ":" + observation._id);
+                    Logger.tag(TAG).debug("postObservation: Deleting obs " + observation.id + ":" + observation._id);
 
                     getContentResolver().delete(Observation.CONTENT_URI, "id = " + observation.id, null);
                     // Delete associated project-fields and photos
@@ -3609,7 +3610,7 @@ public class INaturalistService extends IntentService {
                     int count2 = getContentResolver().delete(ProjectObservation.CONTENT_URI, "observation_id = " + observation.id, null);
                     int count3 = getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "observation_id = " + observation.id, null);
 
-                    Log.d(TAG, "postObservation: After delete: " + count1 + ":" + count2 + ":" + count3);
+                    Logger.tag(TAG).debug("postObservation: After delete: " + count1 + ":" + count2 + ":" + count3);
 
                     return true;
                 }
@@ -3627,8 +3628,8 @@ public class INaturalistService extends IntentService {
 
         String inatNetwork = mApp.getInaturalistNetworkMember();
         JSONObject observationParams = observationToJsonObject(observation, true);
-        Log.d(TAG, "postObservation: New obs");
-        Log.d(TAG, observationParams.toString());
+        Logger.tag(TAG).debug("postObservation: New obs");
+        Logger.tag(TAG).debug(observationParams.toString());
 
         boolean success = handleObservationResponse(
                 observation,
@@ -3690,13 +3691,13 @@ public class INaturalistService extends IntentService {
         int createdCount = 0;
         ContentValues cv;
 
-        Log.d(TAG, "postSounds: " + observationId + ":" + observation);
+        Logger.tag(TAG).debug("postSounds: " + observationId + ":" + observation);
 
         // query observation sounds where id is null (i.e. new sounds)
         Cursor c = getContentResolver().query(ObservationSound.CONTENT_URI,
                 ObservationSound.PROJECTION,
                 "(id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation.id)}, ObservationSound.DEFAULT_SORT_ORDER);
-        Log.d(TAG, "postSounds: New sounds: " + c.getCount());
+        Logger.tag(TAG).debug("postSounds: New sounds: " + c.getCount());
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -3709,18 +3710,18 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             os = new ObservationSound(c);
 
-            Log.d(TAG, "postSounds: Posting sound - " + os);
+            Logger.tag(TAG).debug("postSounds: Posting sound - " + os);
 
             if (os.file_url != null) {
                 // Online sound
-                Log.d(TAG, "postSounds: Skipping because file_url is not null");
+                Logger.tag(TAG).debug("postSounds: Skipping because file_url is not null");
                 c.moveToNext();
                 continue;
             }
 
             if ((os.filename == null) || !(new File(os.filename)).exists()) {
                 // Local (cached) sound was deleted - probably because the user deleted the app's cache
-                Log.d(TAG, "postSounds: Posting sound - filename doesn't exist: " + os.filename);
+                Logger.tag(TAG).debug("postSounds: Posting sound - filename doesn't exist: " + os.filename);
 
                 // First, delete this photo record
                 getContentResolver().delete(ObservationSound.CONTENT_URI, "_id = ?", new String[]{String.valueOf(os._id)});
@@ -3754,21 +3755,21 @@ public class INaturalistService extends IntentService {
                 JSONObject json = response.getJSONObject(0);
                 BetterJSONObject j = new BetterJSONObject(json);
                 ObservationSound jsonObservationSound = new ObservationSound(j);
-                Log.d(TAG, "postSounds: Response for POST: ");
-                LoggingUtils.largeLog(TAG, json.toString());
-                Log.d(TAG, "postSounds: Response for POST 2: " + jsonObservationSound);
+                Logger.tag(TAG).debug("postSounds: Response for POST: ");
+                Logger.tag(TAG).debug(json.toString());
+                Logger.tag(TAG).debug("postSounds: Response for POST 2: " + jsonObservationSound);
                 os.merge(jsonObservationSound);
-                Log.d(TAG, "postSounds: Response for POST 3: " + os);
+                Logger.tag(TAG).debug("postSounds: Response for POST 3: " + os);
 
                 cv = os.getContentValues();
-                Log.d(TAG, "postSounds - Setting _SYNCED_AT - " + os.id + ":" + os._id + ":" + os._observation_id + ":" + os.observation_id);
+                Logger.tag(TAG).debug("postSounds - Setting _SYNCED_AT - " + os.id + ":" + os._id + ":" + os._observation_id + ":" + os.observation_id);
                 getContentResolver().update(os.getUri(), cv, null, null);
                 createdCount += 1;
 
                 increaseProgressForObservation(observation);
 
             } catch (JSONException e) {
-                Log.e(TAG, "JSONException: " + e.toString());
+                Logger.tag(TAG).error("JSONException: " + e.toString());
             }
 
             c.moveToNext();
@@ -3781,7 +3782,7 @@ public class INaturalistService extends IntentService {
                 ObservationSound.PROJECTION,
                 "(id IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation._id), String.valueOf(observation.id)}, ObservationSound.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
-        Log.d(TAG, "postSounds: currentCount = " + currentCount);
+        Logger.tag(TAG).debug("postSounds: currentCount = " + currentCount);
         c.close();
 
         if (currentCount == 0) {
@@ -3799,7 +3800,7 @@ public class INaturalistService extends IntentService {
         int createdCount = 0;
         ContentValues cv;
 
-        Log.d(TAG, "postPhotos: " + observationId + ":" + observation);
+        Logger.tag(TAG).debug("postPhotos: " + observationId + ":" + observation);
 
         if (observationId != null) {
             // See if there any photos in an invalid state
@@ -3814,7 +3815,7 @@ public class INaturalistService extends IntentService {
                 op = new ObservationPhoto(c);
                 // Shouldn't happen - a photo with null external ID is marked as sync - unmark it
                 op._synced_at = null;
-                Log.d(TAG, "postPhotos: Updating with _synced_at = null: " + op);
+                Logger.tag(TAG).debug("postPhotos: Updating with _synced_at = null: " + op);
                 getContentResolver().update(op.getUri(), op.getContentValues(), null, null);
                 c.moveToNext();
             }
@@ -3847,7 +3848,7 @@ public class INaturalistService extends IntentService {
 
             int updatedCount = c.getCount();
 
-            Log.d(TAG, "postPhotos: Updating photos: " + updatedCount);
+            Logger.tag(TAG).debug("postPhotos: Updating photos: " + updatedCount);
 
             c.moveToFirst();
             while (c.isAfterLast() == false) {
@@ -3859,11 +3860,11 @@ public class INaturalistService extends IntentService {
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
                 params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
 
-                Log.d(TAG, "postPhotos: Updating " + op + ":" + params);
+                Logger.tag(TAG).debug("postPhotos: Updating " + op + ":" + params);
                 JSONArray response = put(inatHost + "/observation_photos/" + op.id + ".json", params);
                 try {
                     if (response == null || response.length() != 1) {
-                        Log.d(TAG, "postPhotos: Failed updating " + op.id);
+                        Logger.tag(TAG).debug("postPhotos: Failed updating " + op.id);
                         c.close();
                         throw new SyncFailedException();
                     }
@@ -3872,17 +3873,17 @@ public class INaturalistService extends IntentService {
                     JSONObject json = response.getJSONObject(0);
                     BetterJSONObject j = new BetterJSONObject(json);
                     ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
-                    Log.d(TAG, "postPhotos after put: " + j);
-                    Log.d(TAG, "postPhotos after put 2: " + jsonObservationPhoto);
+                    Logger.tag(TAG).debug("postPhotos after put: " + j);
+                    Logger.tag(TAG).debug("postPhotos after put 2: " + jsonObservationPhoto);
                     op.merge(jsonObservationPhoto);
-                    Log.d(TAG, "postPhotos after put 3 - merge: " + op);
+                    Logger.tag(TAG).debug("postPhotos after put 3 - merge: " + op);
                     cv = op.getContentValues();
-                    Log.d(TAG, "postPhotos: Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
+                    Logger.tag(TAG).debug("postPhotos: Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
                     cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                     getContentResolver().update(op.getUri(), cv, null, null);
                     createdCount += 1;
                 } catch (JSONException e) {
-                    Log.e(TAG, "JSONException: " + e.toString());
+                    Logger.tag(TAG).error("JSONException: " + e.toString());
                 }
 
                 c.moveToNext();
@@ -3895,7 +3896,7 @@ public class INaturalistService extends IntentService {
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                 ObservationPhoto.PROJECTION,
                 "(_synced_at IS NULL) AND (id IS NULL) AND (observation_id = ?) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
-        Log.d(TAG, "postPhotos: New photos: " + c.getCount());
+        Logger.tag(TAG).debug("postPhotos: New photos: " + c.getCount());
         if (c.getCount() == 0) {
             c.close();
             return true;
@@ -3908,11 +3909,11 @@ public class INaturalistService extends IntentService {
         while (c.isAfterLast() == false) {
             op = new ObservationPhoto(c);
 
-            Log.d(TAG, "postPhotos: Posting photo - " + op);
+            Logger.tag(TAG).debug("postPhotos: Posting photo - " + op);
 
             if (op.photo_url != null) {
                 // Online photo
-                Log.d(TAG, "postPhotos: Skipping because photo_url is not null");
+                Logger.tag(TAG).debug("postPhotos: Skipping because photo_url is not null");
                 c.moveToNext();
                 continue;
             }
@@ -3922,7 +3923,7 @@ public class INaturalistService extends IntentService {
             String imgFilePath = op.photo_filename;
             if (imgFilePath == null) {
                 // Observation photo is saved in the "old" way (prior to latest change in the way we store photos)
-                Log.d(TAG, "postPhotos: Posting photo - photo_filename is null");
+                Logger.tag(TAG).debug("postPhotos: Posting photo - photo_filename is null");
                 if (op._photo_id != null) {
                     Uri photoUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, op._photo_id);
                     Cursor pc = getContentResolver().query(photoUri,
@@ -3941,7 +3942,7 @@ public class INaturalistService extends IntentService {
             }
             if ((imgFilePath == null) || !(new File(imgFilePath)).exists()) {
                 // Local (cached) photo was deleted - probably because the user deleted the app's cache
-                Log.d(TAG, "postPhotos: Posting photo - still problematic photo filename: " + imgFilePath);
+                Logger.tag(TAG).debug("postPhotos: Posting photo - still problematic photo filename: " + imgFilePath);
 
                 // First, delete this photo record
                 getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_id = ?", new String[]{String.valueOf(op._id)});
@@ -3964,7 +3965,7 @@ public class INaturalistService extends IntentService {
             params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
 
             JSONArray response;
-            Log.d(TAG, "postPhotos: POSTing new photo: " + params);
+            Logger.tag(TAG).debug("postPhotos: POSTing new photo: " + params);
             response = post(inatHost + "/observation_photos.json", params, true);
             try {
                 if (response == null || response.length() != 1) {
@@ -3977,19 +3978,19 @@ public class INaturalistService extends IntentService {
                 JSONObject json = response.getJSONObject(0);
                 BetterJSONObject j = new BetterJSONObject(json);
                 ObservationPhoto jsonObservationPhoto = new ObservationPhoto(j);
-                Log.d(TAG, "postPhotos: Response for POST: ");
-                LoggingUtils.largeLog(TAG, json.toString());
-                Log.d(TAG, "postPhotos: Response for POST 2: " + jsonObservationPhoto);
+                Logger.tag(TAG).debug("postPhotos: Response for POST: ");
+                Logger.tag(TAG).debug(json.toString());
+                Logger.tag(TAG).debug("postPhotos: Response for POST 2: " + jsonObservationPhoto);
                 op.merge(jsonObservationPhoto);
-                Log.d(TAG, "postPhotos: Response for POST 3: " + op);
+                Logger.tag(TAG).debug("postPhotos: Response for POST 3: " + op);
 
                 cv = op.getContentValues();
-                Log.d(TAG, "postPhotos - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
+                Logger.tag(TAG).debug("postPhotos - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
                 cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                 getContentResolver().update(op.getUri(), cv, null, null);
                 createdCount += 1;
             } catch (JSONException e) {
-                Log.e(TAG, "JSONException: " + e.toString());
+                Logger.tag(TAG).error("JSONException: " + e.toString());
             }
 
             c.moveToNext();
@@ -4001,7 +4002,7 @@ public class INaturalistService extends IntentService {
                 ObservationPhoto.PROJECTION,
                 "(_synced_at IS NULL) AND ((_observation_id = ? OR observation_id = ?)) AND ((is_deleted == 0) OR (is_deleted IS NULL))", new String[]{String.valueOf(observation._id), String.valueOf(observation.id)}, ObservationPhoto.DEFAULT_SORT_ORDER);
         int currentCount = c.getCount();
-        Log.d(TAG, "postPhotos: currentCount = " + currentCount);
+        Logger.tag(TAG).debug("postPhotos: currentCount = " + currentCount);
         c.close();
 
         if (currentCount == 0) {
@@ -4101,7 +4102,7 @@ public class INaturalistService extends IntentService {
             }
 
             // Update the obs photo record with the remote photo URL
-            Log.d(TAG, "OP - clearOldCachedPhotos - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
+            Logger.tag(TAG).debug("OP - clearOldCachedPhotos - Setting _SYNCED_AT - " + op.id + ":" + op._id + ":" + op._observation_id + ":" + op.observation_id);
             op.photo_filename = null;
             ContentValues cv = op.getContentValues();
             cv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
@@ -4586,7 +4587,7 @@ public class INaturalistService extends IntentService {
     private SerializableJSONArray getNearByGuides(Location location) throws AuthenticationException {
         if (location == null) {
             // No place found - return an empty result
-            Log.e(TAG, "Current place is null");
+            Logger.tag(TAG).error("Current place is null");
             return new SerializableJSONArray();
         }
 
@@ -4597,7 +4598,7 @@ public class INaturalistService extends IntentService {
         String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
 
         String url = inatHost + String.format("/guides.json?latitude=%s&longitude=%s&per_page=200", lat, lon);
-        Log.d(TAG, url);
+        Logger.tag(TAG).debug(url);
 
         JSONArray json = get(url);
 
@@ -4608,7 +4609,7 @@ public class INaturalistService extends IntentService {
     private SerializableJSONArray getNearByProjects(Location location) throws AuthenticationException {
         if (location == null) {
             // No place found - return an empty result
-            Log.e(TAG, "Current place is null");
+            Logger.tag(TAG).error("Current place is null");
             return new SerializableJSONArray();
         }
 
@@ -4620,7 +4621,7 @@ public class INaturalistService extends IntentService {
 
         String url = inatHost + String.format("/projects.json?latitude=%s&longitude=%s", lat, lon);
 
-        Log.e(TAG, url);
+        Logger.tag(TAG).error(url);
 
         JSONArray json = get(url);
 
@@ -4974,7 +4975,7 @@ public class INaturalistService extends IntentService {
         long lastSync = mPreferences.getLong("last_sync_time", 0);
 
         if (lastSync == 0) {
-            Log.d(TAG, "syncRemotelyDeletedObs: First time syncing, no need to delete observations");
+            Logger.tag(TAG).debug("syncRemotelyDeletedObs: First time syncing, no need to delete observations");
             return true;
         }
 
@@ -5001,7 +5002,7 @@ public class INaturalistService extends IntentService {
             }
             String deletedIds = StringUtils.join(ids, ",");
 
-            Log.d(TAG, "syncRemotelyDeletedObs: " + deletedIds);
+            Logger.tag(TAG).debug("syncRemotelyDeletedObs: " + deletedIds);
 
             getContentResolver().delete(Observation.CONTENT_URI, "(id IN (" + deletedIds + "))", null);
             // Delete associated project-fields and photos
@@ -5044,7 +5045,7 @@ public class INaturalistService extends IntentService {
 
         JSONArray json = get(url, true);
         if (json != null && json.length() > 0) {
-            Log.d(TAG, "getUserObservations");
+            Logger.tag(TAG).debug("getUserObservations");
             JSONArray results = null;
             try {
                 results = json.getJSONObject(0).getJSONArray("results");
@@ -5449,7 +5450,7 @@ public class INaturalistService extends IntentService {
         url += "&locale=" + deviceLanguage;
 
 
-        Log.d(TAG, "Near by observations URL: " + url);
+        Logger.tag(TAG).debug("Near by observations URL: " + url);
 
         mNearByObservationsUrl = url;
 
@@ -5568,13 +5569,13 @@ public class INaturalistService extends IntentService {
                 .setUserAgent(getUserAgent(mApp))
                 .build();
 
-//        Log.d(TAG, String.format("%s (%b - %s): %s", method, authenticated,
+//        Logger.tag(TAG).debug(String.format("%s (%b - %s): %s", method, authenticated,
 //                authenticated ? mCredentials : "<null>",
 //                url));
 
         HttpRequestBase request;
 
-        Log.d(TAG, String.format("URL: %s - %s (params: %s / %s)", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
+        Logger.tag(TAG).debug(String.format("URL: %s - %s (params: %s / %s)", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
 
         if (method.equalsIgnoreCase("post")) {
             request = new HttpPost(url);
@@ -5625,7 +5626,7 @@ public class INaturalistService extends IntentService {
                     try {
                         entity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue(), utf8Charset));
                     } catch (UnsupportedEncodingException e) {
-                        Log.e(TAG, "failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
+                        Logger.tag(TAG).error("failed to add " + params.get(i).getName() + " to entity for a " + method + " request: " + e);
                     }
                 }
             }
@@ -5668,9 +5669,9 @@ public class INaturalistService extends IntentService {
             HttpEntity entity = response.getEntity();
             String content = entity != null ? EntityUtils.toString(entity) : null;
 
-            Log.d(TAG, "Response: " + response.getStatusLine().toString());
-            Log.d(TAG, String.format("(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
-            LoggingUtils.largeLog(TAG, content);
+            Logger.tag(TAG).debug("Response: " + response.getStatusLine().toString());
+            Logger.tag(TAG).debug(String.format("(for URL: %s - %s (params: %s / %s))", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
+            Logger.tag(TAG).debug(content);
 
             JSONArray json = null;
             mLastStatusCode = response.getStatusLine().getStatusCode();
@@ -5679,7 +5680,7 @@ public class INaturalistService extends IntentService {
                 //switch (response.getStatusCode()) {
                 case HttpStatus.SC_UNPROCESSABLE_ENTITY:
                     // Validation error - still need to return response
-                    Log.e(TAG, response.getStatusLine().toString());
+                    Logger.tag(TAG).error(response.getStatusLine().toString());
                 case HttpStatus.SC_OK:
                     try {
                         json = new JSONArray(content);
@@ -5699,7 +5700,7 @@ public class INaturalistService extends IntentService {
                             JSONObject result = json.getJSONObject(0);
                             if (result.has("errors")) {
                                 // Error response
-                                Log.e(TAG, "Got an error response: " + result.get("errors").toString());
+                                Logger.tag(TAG).error("Got an error response: " + result.get("errors").toString());
                                 mResponseErrors = result.getJSONArray("errors");
                                 return null;
                             }
@@ -5718,16 +5719,16 @@ public class INaturalistService extends IntentService {
                 case HttpStatus.SC_UNAUTHORIZED:
                     throw new AuthenticationException();
                 case HttpStatus.SC_GONE:
-                    Log.e(TAG, "GONE: " + response.getStatusLine().toString());
+                    Logger.tag(TAG).error("GONE: " + response.getStatusLine().toString());
                     // TODO create notification that informs user some observations have been deleted on the server,
                     // click should take them to an activity that lets them decide whether to delete them locally
                     // or post them as new observations
                 default:
-                    Log.e(TAG, response.getStatusLine().toString());
+                    Logger.tag(TAG).error(response.getStatusLine().toString());
             }
         } catch (IOException e) {
             //request.abort();
-            Log.w(TAG, "Error for URL " + url, e);
+            Logger.tag(TAG).warn("Error for URL " + url, e);
         }
         return null;
     }
@@ -5804,7 +5805,7 @@ public class INaturalistService extends IntentService {
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 // Upgrade to an access token
-//                Log.d(TAG, "Authorization Response: " + content);
+//                Logger.tag(TAG).debug("Authorization Response: " + content);
                 JSONObject json = new JSONObject(content);
                 String accessToken = json.getString("access_token");
 
@@ -5816,7 +5817,7 @@ public class INaturalistService extends IntentService {
                 entity = response.getEntity();
                 content = EntityUtils.toString(entity);
 
-                Log.d(TAG, String.format("RESP2: %s", content));
+                Logger.tag(TAG).debug(String.format("RESP2: %s", content));
 
                 if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
                     return null;
@@ -5832,12 +5833,12 @@ public class INaturalistService extends IntentService {
                 return new String[]{accessToken, returnedUsername};
 
             } else {
-                Log.e(TAG, "Authentication failed: " + content);
+                Logger.tag(TAG).error("Authentication failed: " + content);
                 return null;
             }
         } catch (IOException e) {
             request.abort();
-            Log.w(TAG, "Error for URL " + url, e);
+            Logger.tag(TAG).warn("Error for URL " + url, e);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -5867,8 +5868,8 @@ public class INaturalistService extends IntentService {
 
         BetterJSONObject o;
 
-        Log.d(TAG, "syncJson: " + isUser);
-        LoggingUtils.largeLog(TAG, json.toString());
+        Logger.tag(TAG).debug("syncJson: " + isUser);
+        Logger.tag(TAG).debug(json.toString());
 
         for (int i = 0; i < json.length(); i++) {
             try {
@@ -5900,7 +5901,7 @@ public class INaturalistService extends IntentService {
                     mProjectFieldValues.put(o.getInt("id"), fields);
                 }
             } catch (JSONException e) {
-                Log.e(TAG, "syncJson: JSONException: " + e.toString());
+                Logger.tag(TAG).error("syncJson: JSONException: " + e.toString());
             }
         }
         // find obs with existing ids
@@ -5918,8 +5919,8 @@ public class INaturalistService extends IntentService {
             jsonObservation = jsonObservationsById.get(observation.id);
             boolean isModified = observation.merge(jsonObservation);
 
-            Log.d(TAG, "syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
-            Log.d(TAG, "syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id);
+            Logger.tag(TAG).debug("syncJson - updating existing: " + observation.id + ":" + observation._id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+            Logger.tag(TAG).debug("syncJson - remote obs: " + jsonObservation.id + ":" + jsonObservation.preferred_common_name + ":" + jsonObservation.taxon_id);
 
             cv = observation.getContentValues();
             if (observation._updated_at.before(jsonObservation.updated_at)) {
@@ -5946,25 +5947,25 @@ public class INaturalistService extends IntentService {
                 pc.moveToNext();
             }
             pc.close();
-            Log.d(TAG, "syncJson: Adding photos for obs " + observation.id + ":" + existingObservationPhotoIds.toString());
-            Log.d(TAG, "syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.photos);
+            Logger.tag(TAG).debug("syncJson: Adding photos for obs " + observation.id + ":" + existingObservationPhotoIds.toString());
+            Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.photos);
             for (int j = 0; j < jsonObservation.photos.size(); j++) {
                 ObservationPhoto photo = jsonObservation.photos.get(j);
                 photo._observation_id = jsonObservation._id;
 
                 if (photo.id == null) {
-                    Log.w(TAG, "syncJson: Null photo ID! " + photo);
+                    Logger.tag(TAG).warn("syncJson: Null photo ID! " + photo);
                     continue;
                 }
 
                 observationPhotoIds.add(photo.id);
                 if (existingObservationPhotoIds.contains(photo.id)) {
-                    Log.d(TAG, "syncJson: photo " + photo.id + " has already been added, skipping...");
+                    Logger.tag(TAG).debug("syncJson: photo " + photo.id + " has already been added, skipping...");
                     continue;
                 }
                 ContentValues opcv = photo.getContentValues();
                 // So we won't re-add this photo as though it was a local photo
-                Log.d(TAG, "syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
+                Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
                 opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis());
                 opcv.put(ObservationPhoto._OBSERVATION_ID, photo.observation_id);
                 opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
@@ -5984,13 +5985,13 @@ public class INaturalistService extends IntentService {
             if (observationPhotoIds.size() > 0) {
                 where += " AND id NOT in (" + joinedPhotoIds + ")";
             }
-            Log.d(TAG, "syncJson: Deleting local photos: " + where);
-            Log.d(TAG, "syncJson: Deleting local photos, IDs: " + observationPhotoIds);
+            Logger.tag(TAG).debug("syncJson: Deleting local photos: " + where);
+            Logger.tag(TAG).debug("syncJson: Deleting local photos, IDs: " + observationPhotoIds);
             int deleteCount = getContentResolver().delete(
                     ObservationPhoto.CONTENT_URI,
                     where,
                     null);
-            Log.d(TAG, "syncJson: Deleting local photos: " + deleteCount);
+            Logger.tag(TAG).debug("syncJson: Deleting local photos: " + deleteCount);
 
             if (deleteCount > 0) {
                 Crashlytics.log(1, TAG, String.format("Warning: Deleted %d photos locally after sever did not contain those IDs - observation id: %s, photo ids: %s",
@@ -6014,20 +6015,20 @@ public class INaturalistService extends IntentService {
                 sc.moveToNext();
             }
             sc.close();
-            Log.d(TAG, "syncJson: Adding sounds for obs " + observation.id + ":" + existingObservationSoundIds.toString());
-            Log.d(TAG, "syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.sounds);
+            Logger.tag(TAG).debug("syncJson: Adding sounds for obs " + observation.id + ":" + existingObservationSoundIds.toString());
+            Logger.tag(TAG).debug("syncJson: JsonObservation: " + jsonObservation + ":" + jsonObservation.sounds);
             for (int j = 0; j < jsonObservation.sounds.size(); j++) {
                 ObservationSound sound = jsonObservation.sounds.get(j);
                 sound._observation_id = jsonObservation._id;
 
                 if (sound.id == null) {
-                    Log.w(TAG, "syncJson: Null sound ID! " + sound);
+                    Logger.tag(TAG).warn("syncJson: Null sound ID! " + sound);
                     continue;
                 }
 
                 observationSoundIds.add(sound.id);
                 if (existingObservationSoundIds.contains(sound.id)) {
-                    Log.d(TAG, "syncJson: sound " + sound.id + " has already been added, skipping...");
+                    Logger.tag(TAG).debug("syncJson: sound " + sound.id + " has already been added, skipping...");
                     continue;
                 }
                 ContentValues oscv = sound.getContentValues();
@@ -6048,13 +6049,13 @@ public class INaturalistService extends IntentService {
             if (observationSoundIds.size() > 0) {
                 where += " AND id NOT in (" + joinedSoundIds + ")";
             }
-            Log.d(TAG, "syncJson: Deleting local sounds: " + where);
-            Log.d(TAG, "syncJson: Deleting local sounds, IDs: " + observationSoundIds);
+            Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + where);
+            Logger.tag(TAG).debug("syncJson: Deleting local sounds, IDs: " + observationSoundIds);
             deleteCount = getContentResolver().delete(
                     ObservationSound.CONTENT_URI,
                     where,
                     null);
-            Log.d(TAG, "syncJson: Deleting local sounds: " + deleteCount);
+            Logger.tag(TAG).debug("syncJson: Deleting local sounds: " + deleteCount);
 
             if (deleteCount > 0) {
                 Crashlytics.log(1, TAG, String.format("Warning: Deleted %d sounds locally after server did not contain those IDs - observation id: %s, sound ids: %s",
@@ -6064,7 +6065,7 @@ public class INaturalistService extends IntentService {
 
             if (isModified) {
                 // Only update the DB if needed
-                Log.d(TAG, "syncJson: Updating observation: " + observation.id + ":" + observation._id);
+                Logger.tag(TAG).debug("syncJson: Updating observation: " + observation.id + ":" + observation._id);
                 getContentResolver().update(observation.getUri(), cv, null, null);
             }
             existingIds.add(observation.id);
@@ -6076,7 +6077,7 @@ public class INaturalistService extends IntentService {
         List<Observation> newObservations = new ArrayList<Observation>();
         newIds = (ArrayList<Integer>) CollectionUtils.subtract(ids, existingIds);
         Collections.sort(newIds);
-        Log.d(TAG, "syncJson: Adding new observations: " + newIds);
+        Logger.tag(TAG).debug("syncJson: Adding new observations: " + newIds);
         for (int i = 0; i < newIds.size(); i++) {
             jsonObservation = jsonObservationsById.get(newIds.get(i));
 
@@ -6087,7 +6088,7 @@ public class INaturalistService extends IntentService {
             c2.close();
 
             if (count > 0) {
-                Log.d(TAG, "syncJson: Observation " + jsonObservation.id + " already exists locally - not adding");
+                Logger.tag(TAG).debug("syncJson: Observation " + jsonObservation.id + " already exists locally - not adding");
                 continue;
             }
 
@@ -6098,7 +6099,7 @@ public class INaturalistService extends IntentService {
             Uri newObs = getContentResolver().insert(Observation.CONTENT_URI, cv);
             Long newObsId = ContentUris.parseId(newObs);
             jsonObservation._id = Integer.valueOf(newObsId.toString());
-            Log.d(TAG, "syncJson: Adding new obs: " + jsonObservation);
+            Logger.tag(TAG).debug("syncJson: Adding new obs: " + jsonObservation);
             newObservations.add(jsonObservation);
         }
 
@@ -6107,7 +6108,7 @@ public class INaturalistService extends IntentService {
                 jsonObservation = newObservations.get(i);
 
                 // Save new observation's sounds
-                Log.d(TAG, "syncJson: Saving new obs' sounds: " + jsonObservation + ":" + jsonObservation.sounds);
+                Logger.tag(TAG).debug("syncJson: Saving new obs' sounds: " + jsonObservation + ":" + jsonObservation.sounds);
                 for (int j = 0; j < jsonObservation.sounds.size(); j++) {
                     ObservationSound sound = jsonObservation.sounds.get(j);
 
@@ -6117,7 +6118,7 @@ public class INaturalistService extends IntentService {
 
                     if (c.getCount() > 0) {
                         // Sound already exists - don't save
-                        Log.d(TAG, "syncJson: Sound already exists - skipping: " + sound.id);
+                        Logger.tag(TAG).debug("syncJson: Sound already exists - skipping: " + sound.id);
                         c.close();
                         continue;
                     }
@@ -6127,8 +6128,8 @@ public class INaturalistService extends IntentService {
                     sound._observation_id = jsonObservation._id;
 
                     ContentValues opcv = sound.getContentValues();
-                    Log.d(TAG, "syncJson: Setting _SYNCED_AT - " + sound.id + ":" + sound._id + ":" + sound._observation_id + ":" + sound.observation_id);
-                    Log.d(TAG, "syncJson: Setting _SYNCED_AT - " + sound);
+                    Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + sound.id + ":" + sound._id + ":" + sound._observation_id + ":" + sound.observation_id);
+                    Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + sound);
                     opcv.put(ObservationSound._OBSERVATION_ID, sound._observation_id);
                     opcv.put(ObservationSound._ID, sound.id);
                     try {
@@ -6140,7 +6141,7 @@ public class INaturalistService extends IntentService {
                 }
 
                 // Save the new observation's photos
-                Log.d(TAG, "syncJson: Saving new obs' photos: " + jsonObservation + ":" + jsonObservation.photos);
+                Logger.tag(TAG).debug("syncJson: Saving new obs' photos: " + jsonObservation + ":" + jsonObservation.photos);
                 for (int j = 0; j < jsonObservation.photos.size(); j++) {
                     ObservationPhoto photo = jsonObservation.photos.get(j);
 
@@ -6156,7 +6157,7 @@ public class INaturalistService extends IntentService {
 
                     if (c.getCount() > 0) {
                         // Photo already exists - don't save
-                        Log.d(TAG, "syncJson: Photo already exists - skipping: " + photo.id);
+                        Logger.tag(TAG).debug("syncJson: Photo already exists - skipping: " + photo.id);
                         c.close();
                         continue;
                     }
@@ -6166,8 +6167,8 @@ public class INaturalistService extends IntentService {
                     photo._observation_id = jsonObservation._id;
 
                     ContentValues opcv = photo.getContentValues();
-                    Log.d(TAG, "syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
-                    Log.d(TAG, "syncJson: Setting _SYNCED_AT - " + photo);
+                    Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo.id + ":" + photo._id + ":" + photo._observation_id + ":" + photo.observation_id);
+                    Logger.tag(TAG).debug("syncJson: Setting _SYNCED_AT - " + photo);
                     opcv.put(ObservationPhoto._SYNCED_AT, System.currentTimeMillis()); // So we won't re-add this photo as though it was a local photo
                     opcv.put(ObservationPhoto._OBSERVATION_ID, photo._observation_id);
                     opcv.put(ObservationPhoto._PHOTO_ID, photo._photo_id);
@@ -6226,20 +6227,20 @@ public class INaturalistService extends IntentService {
             }
             JSONObject json = response.getJSONObject(0);
             BetterJSONObject o = new BetterJSONObject(json);
-            Log.d(TAG, "handleObservationResponse: Observation: " + observation);
-            Log.d(TAG, "handleObservationResponse: JSON: ");
-            LoggingUtils.largeLog(TAG, json.toString());
+            Logger.tag(TAG).debug("handleObservationResponse: Observation: " + observation);
+            Logger.tag(TAG).debug("handleObservationResponse: JSON: ");
+            Logger.tag(TAG).debug(json.toString());
 
             if ((json.has("error") && !json.isNull("error")) || ((mLastStatusCode >= 400) && (mLastStatusCode < 500))) {
                 // Error
-                Log.d(TAG, "handleObservationResponse - error response (probably validation error)");
+                Logger.tag(TAG).debug("handleObservationResponse - error response (probably validation error)");
                 return false;
             }
 
             Observation jsonObservation = new Observation(o);
-            Log.d(TAG, "handleObservationResponse: jsonObservation: " + jsonObservation);
+            Logger.tag(TAG).debug("handleObservationResponse: jsonObservation: " + jsonObservation);
             observation.merge(jsonObservation);
-            Log.d(TAG, "handleObservationResponse: merged obs: " + observation);
+            Logger.tag(TAG).debug("handleObservationResponse: merged obs: " + observation);
             ContentValues cv = observation.getContentValues();
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
             getContentResolver().update(observation.getUri(), cv, null, null);
@@ -6266,7 +6267,7 @@ public class INaturalistService extends IntentService {
         if (provider == null) return null;
 
         Location location = locationManager.getLastKnownLocation(provider);
-        Log.e(TAG, "getLocationFromGPS: " + location);
+        Logger.tag(TAG).error("getLocationFromGPS: " + location);
 
         mLastLocation = location;
 
@@ -6282,7 +6283,7 @@ public class INaturalistService extends IntentService {
             ex.printStackTrace();
         }
 
-        Log.e(TAG, "getLastKnownLocationFromClient: " + location);
+        Logger.tag(TAG).error("getLastKnownLocationFromClient: " + location);
         if (location == null) {
             // Failed - try and return last place using GPS
             return getLocationFromGPS();
@@ -6294,7 +6295,7 @@ public class INaturalistService extends IntentService {
 
     private void getLocation(final IOnLocation callback) {
         if (!mApp.isLocationEnabled(null)) {
-            Log.e(TAG, "getLocation: Location not enabled");
+            Logger.tag(TAG).error("getLocation: Location not enabled");
             // Location not enabled
             new Thread(new Runnable() {
                 @Override
@@ -6307,7 +6308,7 @@ public class INaturalistService extends IntentService {
 
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 
-        Log.e(TAG, "getLocation: resultCode = " + resultCode);
+        Logger.tag(TAG).error("getLocation: resultCode = " + resultCode);
 
         if (ConnectionResult.SUCCESS == resultCode) {
             // User Google Play services if available

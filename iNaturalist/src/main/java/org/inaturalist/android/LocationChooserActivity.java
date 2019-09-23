@@ -1,6 +1,7 @@
 package org.inaturalist.android;
 import java.util.HashMap;
 import org.inaturalist.android.R;
+import org.tinylog.Logger;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -118,9 +119,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 while ((metersPerPixel * widthInPixels) > mAccuracy) {
                     metersPerPixel /= 2;
                     ++zoomLevel;
-                    Log.e(TAG, "\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + mAccuracy);
+                    Logger.tag(TAG).error("\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + mAccuracy);
                 }
-                Log.e(TAG, "Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
+                Logger.tag(TAG).error("Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
                 zoom = zoomLevel;
         	}
         	
@@ -222,7 +223,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                     ++zoomLevel;
                 }
                 double accuracy = (double) ((screenWidth * 0.4 * 0.8) * metersPerPixel);
-                Log.e(TAG, "Meters per radius = " + accuracy + "; zoom = " + zoomLevel);
+                Logger.tag(TAG).error("Meters per radius = " + accuracy + "; zoom = " + zoomLevel);
 
                 ////////////
 
@@ -297,7 +298,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 	@Override
 	public void onLocationChanged(Location location) {
         if (location != null) {
-            Log.v("Location Changed", location.getLatitude() + " and " + location.getLongitude());
+            Logger.tag(TAG).info("Location changed: " + location.getLatitude() + " and " + location.getLongitude());
             mLocationManager.removeUpdates(this);
 
         	LatLng camLocation = new LatLng(location.getLatitude(), location.getLongitude());

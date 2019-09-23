@@ -38,6 +38,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -96,7 +97,7 @@ public class ObservationSoundViewer extends AppCompatActivity implements SoundPl
         c.moveToFirst();
 
         if (c.getCount() == 0) {
-            Log.e(TAG, "Can't find sound ID " + mSoundId);
+            Logger.tag(TAG).error("Can't find sound ID " + mSoundId);
             finish();
             return;
         }

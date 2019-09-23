@@ -15,6 +15,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.evernote.android.state.State;
 import com.google.android.gms.common.api.Status;
@@ -71,7 +72,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     private class ProjectsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "GOT " + getFilterResultName());
+            Logger.tag(TAG).info("GOT " + getFilterResultName());
 
             try {
                 getActivity().unregisterReceiver(mProjectsReceiver);
@@ -87,7 +88,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
                 if (sarr instanceof SerializableJSONArray) {
                     serializableArray = (SerializableJSONArray) sarr;
                 } else {
-                    Log.e(TAG, "Got invalid non array convertible response from server: " + sarr);
+                    Logger.tag(TAG).error("Got invalid non array convertible response from server: " + sarr);
                     serializableArray = null;
                 }
             } else {
@@ -234,7 +235,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
-        Log.i(TAG, "onCreate - " + getActionName() + ":" + getClass().getName());
+        Logger.tag(TAG).info("onCreate - " + getActionName() + ":" + getClass().getName());
 
         if (savedInstanceState == null) {
             mProjects = null;
@@ -245,7 +246,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     public void onResume() {
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
-        Log.i(TAG, "Registering " + getFilterResultName());
+        Logger.tag(TAG).info("Registering " + getFilterResultName());
         BaseFragmentActivity.safeRegisterReceiver(mProjectsReceiver, filter, getActivity());
         
         super.onResume();
@@ -262,7 +263,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG, "onCreateView: " + getActionName() + ":" + getClass().getName() + (mProjects != null ? mProjects.toString() : "null"));
+        Logger.tag(TAG).info("onCreateView: " + getActionName() + ":" + getClass().getName() + (mProjects != null ? mProjects.toString() : "null"));
         
         mApp = (INaturalistApp) getActivity().getApplication();
         mHelper = new ActivityHelper(getActivity());
@@ -330,7 +331,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
                     mApp.requestLocationPermission(getActivity(), new INaturalistApp.OnRequestPermissionResult() {
                         @Override
                         public void onPermissionGranted() {
-                            Log.i(TAG, "Calling " + getActionName());
+                            Logger.tag(TAG).info("Calling " + getActionName());
                             Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
                             ContextCompat.startForegroundService(getActivity(), serviceIntent);
 
@@ -347,13 +348,13 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
                     });
                 }
             } else {
-                Log.i(TAG, "Calling " + getActionName());
+                Logger.tag(TAG).info("Calling " + getActionName());
                 Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
                 ContextCompat.startForegroundService(getActivity(), serviceIntent);
             }
         } else {
             // Load previously downloaded projects
-            Log.i(TAG, "Previously loaded projects: " + mProjects.toString());
+            Logger.tag(TAG).info("Previously loaded projects: " + mProjects.toString());
             loadProjectsIntoUI();
         }
     }
@@ -378,7 +379,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
     
     @Override
     public void onStop() {
-        Log.i(TAG, "onStop");
+        Logger.tag(TAG).info("onStop");
        
         super.onStop();
     }
@@ -406,10 +407,10 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
 
         mProjectsReceiver = new ProjectsReceiver();
         IntentFilter filter = new IntentFilter(getFilterResultName());
-        Log.i(TAG, "Registering " + getFilterResultName());
+        Logger.tag(TAG).info("Registering " + getFilterResultName());
         BaseFragmentActivity.safeRegisterReceiver(mProjectsReceiver, filter, getActivity());
 
-        Log.i(TAG, "Re-Calling " + getActionName());
+        Logger.tag(TAG).info("Re-Calling " + getActionName());
         Intent serviceIntent = new Intent(getActionName(), null, getActivity(), INaturalistService.class);
         ContextCompat.startForegroundService(getActivity(), serviceIntent);
     }

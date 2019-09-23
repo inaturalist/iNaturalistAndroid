@@ -35,6 +35,7 @@ import org.apache.sanselan.formats.tiff.constants.TiffConstants;
 import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
 import org.apache.sanselan.formats.tiff.write.TiffOutputField;
 import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
+import org.tinylog.Logger;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -391,8 +392,8 @@ public class ImageUtils {
                 }
             }
 
-            Log.d(TAG, "Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
-            Log.d(TAG, "Resized Bitmap h:" + newHeight + "; w:" + newWidth);
+            Logger.tag(TAG).debug("Bitmap h:" + options.outHeight + "; w:" + options.outWidth);
+            Logger.tag(TAG).debug("Resized Bitmap h:" + newHeight + "; w:" + newWidth);
 
             Bitmap resizedBitmap = BitmapFactory.decodeStream(is);
 
@@ -403,7 +404,7 @@ public class ImageUtils {
                     try {
                         resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
                     } catch (Throwable exc) {
-                        Log.e(TAG, "Crashed while using SmoothRescale library - resizing using Android OS");
+                        Logger.tag(TAG).error("Crashed while using SmoothRescale library - resizing using Android OS");
                         exc.printStackTrace();
                         resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
                     }
@@ -421,7 +422,7 @@ public class ImageUtils {
             os.flush();
             os.close();
 
-            Log.d(TAG, String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
+            Logger.tag(TAG).debug(String.format("resizeImage: %s => %s", path, imageFile.getAbsolutePath()));
 
             resizedBitmap.recycle();
 

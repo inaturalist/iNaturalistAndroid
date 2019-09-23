@@ -73,6 +73,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -1532,7 +1533,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
                     if (observation != null) {
                         // Found a matching observation
-                        Log.d(TAG, "UTFGrid Observation: " + observation.toString());
+                        Logger.tag(TAG).debug("UTFGrid Observation: " + observation.toString());
 
                         Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
 

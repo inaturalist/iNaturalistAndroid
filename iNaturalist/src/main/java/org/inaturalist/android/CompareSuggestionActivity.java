@@ -32,6 +32,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -169,7 +170,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 // Get the taxon details in order to retrieve the photos
                 mTaxonReceiver = new TaxonReceiver();
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
-                Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
+                Logger.tag(TAG).info("Registering ACTION_GET_TAXON_NEW_RESULT");
                 BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);

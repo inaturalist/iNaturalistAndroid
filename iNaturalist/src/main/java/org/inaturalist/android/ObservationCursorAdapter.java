@@ -42,6 +42,7 @@ import com.squareup.picasso.RequestCreator;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -995,7 +996,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 if ((photoInfo == null) || (photoInfo[2] == null)) {
                     // No remote image - need to download ob
-                    Log.d(TAG, "Local file deleted - re-downloading: " + position + ":" + name);
+                    Logger.tag(TAG).debug("Local file deleted - re-downloading: " + position + ":" + name);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -1007,7 +1008,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 } else {
                     // Try and load remote image instead
                     imageUrl = photoInfo[2];
-                    Log.d(TAG, "Local file deleted - using remote URL: " + position + ":" + imageUrl);
+                    Logger.tag(TAG).debug("Local file deleted - using remote URL: " + position + ":" + imageUrl);
                     isOnline = true;
                 }
             }
@@ -1070,11 +1071,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (obs.id == null) {
             // Observation hasn't been uploaded yet to server - nothing we can do here
-            Log.d(TAG, "downloadRemoteObsPhoto - Observation hasn't been synced yet - " + obs._id);
+            Logger.tag(TAG).debug("downloadRemoteObsPhoto - Observation hasn't been synced yet - " + obs._id);
             return;
         }
 
-        Log.d(TAG, "downloadRemoteObsPhoto - Downloading observation JSON - " + obs.id);
+        Logger.tag(TAG).debug("downloadRemoteObsPhoto - Downloading observation JSON - " + obs.id);
         JSONObject json = getObservationJson(obs.id);
 
         if (json != null) {
@@ -1091,7 +1092,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 });
 
                 String photoUrl = remoteObs.photos.get(0).photo_url;
-                Log.d(TAG, "downloadRemoteObsPhoto - Remote obs URL - " + obs.id + ":" + photoUrl);
+                Logger.tag(TAG).debug("downloadRemoteObsPhoto - Remote obs URL - " + obs.id + ":" + photoUrl);
 
                 // Update the DB
 
@@ -1105,7 +1106,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                         ObservationPhoto.DEFAULT_SORT_ORDER);
                 if (pc.getCount() > 0) {
                     ObservationPhoto photo = new ObservationPhoto(pc);
-                    Log.d(TAG, "downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
+                    Logger.tag(TAG).debug("downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
                     photo.photo_url = photoUrl;
                     ContentValues cv = photo.getContentValues();
                     mContext.getContentResolver().update(photo.getUri(), cv, null, null);
