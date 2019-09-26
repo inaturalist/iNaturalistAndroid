@@ -24,6 +24,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.lang.reflect.Array;
 import java.text.DecimalFormat;
@@ -35,6 +36,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 class AnnotationsAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "AnnotationsAdapter";
     private final INaturalistApp mApp;
     private final OnAnnotationActions mOnAnnonationsActions;
     private final ActivityHelper mHelper;
@@ -204,7 +206,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
                     try {
                         return p1.first.getInt("id") - p2.first.getInt("id");
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                         return 0;
                     }
                 }
@@ -213,7 +215,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
             mIsAttributeExpanded = new ArrayList<Boolean>(Collections.nCopies(mAttributes.size(), false));
 
         } catch (JSONException exc) {
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
         }
     }
 
@@ -494,7 +496,7 @@ class AnnotationsAdapter extends ArrayAdapter<String> {
 
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;

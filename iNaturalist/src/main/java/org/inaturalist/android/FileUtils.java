@@ -229,7 +229,7 @@ public class FileUtils {
             }
         } catch (Exception exc) {
             // Column doesn't exist
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
         } finally {
             if (cursor != null)
                 cursor.close();

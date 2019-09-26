@@ -23,12 +23,15 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import org.tinylog.Logger;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class DebugSettingsFragment extends PreferenceFragmentCompat implements DatePickerDialog.OnDateSetListener {
+    private static final String TAG = "DebugSettingsFragment";
     private Preference mClearLogs;
     private Preference mSendLogs;
     private SeekBarPreference mDayCount;
@@ -186,7 +189,7 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
             PackageManager manager = getActivity().getPackageManager();
             info = manager.getPackageInfo(getActivity().getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             info = null;
         }
 

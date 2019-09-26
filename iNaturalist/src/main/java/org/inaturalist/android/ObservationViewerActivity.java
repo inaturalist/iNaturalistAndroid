@@ -423,7 +423,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Logger.tag(TAG).error(e);
                                 }
                             }
                         });
@@ -446,7 +446,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, photoFilename);
                     imageView.setImageBitmap(bitmapImage);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -986,11 +986,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -1598,7 +1598,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 errorsHtml.append("<br/>");
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                     errorsDescription.setText(Html.fromHtml(errorsHtml.toString()));
                 }
@@ -1905,7 +1905,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             }
                         });
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 }
             }
@@ -2183,7 +2183,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	                favResults.add(fav);
 	            }
 	        } catch (JSONException e) {
-	            e.printStackTrace();
+	            Logger.tag(TAG).error(e);
 	        }
 
             Comparator<BetterJSONObject> comp = new Comparator<BetterJSONObject>() {
@@ -2273,7 +2273,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         try {
             observation = new JSONObject(mObsJson);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return;
         }
 
@@ -2355,14 +2355,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 JSONObject obs = new JSONObject(mObsJson);
                 obsAnnotations = obs.getJSONArray("annotations");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
         try {
             mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, new JSONObject(mTaxonJson), mAttributes.getJSONArray(), obsAnnotations));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         ActivityHelper.resizeList(mAnnotationsList);
@@ -2496,7 +2496,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
 
 

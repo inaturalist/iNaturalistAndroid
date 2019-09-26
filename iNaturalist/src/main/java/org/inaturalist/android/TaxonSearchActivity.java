@@ -212,7 +212,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                                 customObs.put("is_custom", true);
                                 customObs.put("name", mCurrentSearchString);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                             if (!mSuggestId) mResultList.add(customObs);
                             notifyDataSetChanged();
@@ -273,7 +273,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                                 customObs.put("is_custom", true);
                                 customObs.put("name", mCurrentSearchString);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                             if (!mSuggestId) values.add(0, customObs);
                         }
@@ -291,7 +291,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                                     customObs.put("is_custom", true);
                                     customObs.put("name", mCurrentSearchString);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Logger.tag(TAG).error(e);
                                 }
                                 if (!mSuggestId) values.add(customObs);
                             }
@@ -387,7 +387,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                     JSONObject obs = new JSONObject(mObservationJson);
                     hasPhotos = hasPhotos || (obs.has("observation_photos") && (obs.optJSONArray("observation_photos").length() > 0));
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -592,7 +592,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -669,7 +669,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
         try {
             suggestion.put("taxon", taxon);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
         ArrayList<BetterJSONObject> suggestions = new ArrayList<>();
         suggestions.add(new BetterJSONObject(suggestion));

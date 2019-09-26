@@ -32,6 +32,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 
@@ -55,6 +56,7 @@ public class MissionsActivity extends BaseFragmentActivity {
     // How much to expand the recommended missions search by (in terms of degrees), in case
     // a previous search yielded no results.
     public final static float[] RECOMMENDED_MISSIONS_EXPANSION = { 0, 0.25f, 0.5f, 1.0f };
+    private static final String TAG = "MissionsActivity";
 
     MissionsPagerAdapter mPageAdapter;
     private ViewPager mMissionsViewPager;
@@ -218,7 +220,7 @@ public class MissionsActivity extends BaseFragmentActivity {
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 

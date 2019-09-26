@@ -9,6 +9,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.evernote.android.state.State;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -110,7 +111,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                     mProjects.add(projectList.getJSONObject(i));
                     projectIds.add(projectList.getJSONObject(i).getInt("id"));
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
             
@@ -143,7 +144,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             try {
                 mProjects.add(new JSONObject(String.format("{ \"is_header\": true, \"title\": \"%s\" }", getString(R.string.collection_and_umbrella_projects))));
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
             mProjects.addAll(collectionProjects);
 
@@ -404,7 +405,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                                     results.add(item);
                                 }
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                         } 
 

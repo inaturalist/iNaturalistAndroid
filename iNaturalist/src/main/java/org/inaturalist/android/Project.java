@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -93,7 +94,7 @@ public class Project implements BaseColumns, Serializable {
         try {
             this.check_list_id = o.getJSONObject("project_list").getInt("id");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
     

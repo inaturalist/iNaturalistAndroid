@@ -157,9 +157,9 @@ public class INaturalistApp extends MultiDexApplication {
                 staticField.setAccessible(true);
                 staticField.set(null, newMap);
             } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         } else {
             try {
@@ -167,9 +167,9 @@ public class INaturalistApp extends MultiDexApplication {
                 staticField.setAccessible(true);
                 staticField.set(null, newTypeface);
             } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
     }
@@ -367,7 +367,7 @@ public class INaturalistApp extends MultiDexApplication {
             projectErrors.put(String.valueOf(projectId), errors);
             settingsEditor.putString("pref_observation_errors", errorsByObservationId.toString());
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         settingsEditor.apply();
@@ -399,7 +399,7 @@ public class INaturalistApp extends MultiDexApplication {
             return errors;
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new JSONArray();
         }
     }
@@ -937,7 +937,7 @@ public class INaturalistApp extends MultiDexApplication {
                     input.close();
 
                 } catch (IOException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     mDownloadCallback.onDownloadError();
                 }
 
@@ -987,7 +987,7 @@ public class INaturalistApp extends MultiDexApplication {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 ActivityCompat.requestPermissions(activity, permissions, PERMISSIONS_REQUEST);

@@ -154,11 +154,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             mHasSounds = (HashMap<String, Boolean>) inputStream.readObject();
             inputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (ClassCastException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -172,7 +172,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             outputStream.flush();
             outputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -724,7 +724,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 TaxonUtils.setTaxonScientificName(speciesGuess, taxon);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         } else {
             if (preferredCommonName != null) {
@@ -1125,7 +1125,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         try {
             url = new URL(String.format("%s/observations/%d.json?locale=%s", INaturalistService.HOST, id, deviceLanguage));
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -1149,9 +1149,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             conn.disconnect();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return json;

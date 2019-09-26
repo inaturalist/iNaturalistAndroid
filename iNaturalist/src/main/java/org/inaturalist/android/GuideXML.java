@@ -82,7 +82,7 @@ public class GuideXML extends BaseGuideXMLParser {
         try {
             fr = new FileReader(path);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return;
         }
         InputSource inputSource = new InputSource(fr);
@@ -100,7 +100,7 @@ public class GuideXML extends BaseGuideXMLParser {
             // Parse the TaxonImage tags (so we'll know what are the representative image for each tag value)
             parseImageTags();
         } catch (XPathExpressionException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
     }
@@ -261,7 +261,7 @@ public class GuideXML extends BaseGuideXMLParser {
             zis.close();
         }
         catch(IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return false;
         }
 

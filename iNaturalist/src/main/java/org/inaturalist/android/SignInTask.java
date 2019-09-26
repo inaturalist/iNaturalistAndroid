@@ -135,7 +135,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
             }
@@ -210,7 +210,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN, eventParams);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
         } else {
@@ -230,7 +230,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
 

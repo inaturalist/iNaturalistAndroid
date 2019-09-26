@@ -24,6 +24,7 @@ import org.apache.commons.collections4.map.CompositeMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import java.util.Locale;
 
 public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
 
+    private static final String TAG = "UserObservationAdapter";
     private final INaturalistApp mApp;
     private List<JSONObject> mItems;
     private Context mContext;
@@ -88,7 +90,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
                 try {
                     idName.setText(TaxonUtils.getTaxonName(mContext, item.getJSONObject("taxon")));
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             } else {
                 idName.setText(item.isNull("species_guess") ? mContext.getResources().getString(R.string.unknown) : item.optString("species_guess", mContext.getResources().getString(R.string.unknown)));
@@ -122,7 +124,7 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
         try {
             observationPhotos = item.has("observation_photos") ? item.getJSONArray("observation_photos") : item.getJSONArray("photos");
         } catch (JSONException e1) {
-            e1.printStackTrace();
+            Logger.tag(TAG).error(e1);
             observationPhotos = new JSONArray();
         }
 
@@ -161,10 +163,10 @@ public class UserObservationAdapter extends ArrayAdapter<JSONObject> {
                             }
                         });
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             } catch (Exception e) {
                 // Could happen if user scrolls really fast and there a LOT of thumbnails being downloaded at once (too many threads at once)
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         } else {
             observationPic.setVisibility(View.INVISIBLE);

@@ -114,7 +114,7 @@ public class ProfileEditor extends AppCompatActivity {
 
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PROFILE_PHOTO_CHANGED, eventParams);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
 
@@ -132,7 +132,7 @@ public class ProfileEditor extends AppCompatActivity {
                         serviceIntent.putExtra(INaturalistService.ACTION_USER_PIC, newFilename);
 
                     } catch (Exception exc) {
-                        exc.printStackTrace();
+                        Logger.tag(TAG).error(exc);
                         showError(null);
                         return true;
                     }

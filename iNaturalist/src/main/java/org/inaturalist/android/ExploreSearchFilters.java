@@ -8,6 +8,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,6 +24,7 @@ public class ExploreSearchFilters implements Serializable {
     public static final String QUALITY_GRADE_CASUAL = "casual";
     public static final String QUALITY_GRADE_NEEDS_ID = "needs_id";
     public static final String QUALITY_GRADE_RESEARCH = "research";
+    private static final String TAG = "ExploreSearchFilters";
 
     public boolean isCurrentLocation = false;
 
@@ -124,7 +126,7 @@ public class ExploreSearchFilters implements Serializable {
             place = placeJson != null ? new JSONObject(placeJson) : null;
             taxon = taxonJson != null ? new JSONObject(taxonJson) : null;
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         if (ois.available() > 0) {

@@ -11,6 +11,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
+
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -432,7 +434,7 @@ public class Observation implements BaseColumns, Serializable {
             }
         } catch (JSONException e) {
             if (!e.getMessage().matches("No value for observation_photos")) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
@@ -449,7 +451,7 @@ public class Observation implements BaseColumns, Serializable {
             }
         } catch (JSONException e) {
             if (!e.getMessage().matches("No value for observation_sounds")) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 

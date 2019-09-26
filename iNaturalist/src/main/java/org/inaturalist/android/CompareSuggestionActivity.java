@@ -527,7 +527,7 @@ public class CompareSuggestionActivity extends AppCompatActivity {
                 taxonContainer.put("taxon", taxon.getJSONObject());
                 mTaxonSuggestions.set(0, new BetterJSONObject(taxonContainer));
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
             refreshCurrentTaxon();

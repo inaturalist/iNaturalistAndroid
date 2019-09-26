@@ -44,12 +44,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /** Adds mentions capabilities to an EditText */
 public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClickListener {
+    private static final String TAG = "MentionsAutoComplete";
     private final Handler mHandler;
     private final Context mContext;
     private final INaturalistApp mApp;
@@ -282,7 +284,7 @@ public class MentionsAutoComplete implements TextWatcher, AdapterView.OnItemClic
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 

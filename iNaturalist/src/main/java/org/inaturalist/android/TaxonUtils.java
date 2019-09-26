@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.Map;
 /** Various app-wide taxon-related utility functions */
 public class TaxonUtils {
     private static final Map<String, Float> RANK_NAME_TO_LEVEL;
+    private static final String TAG = "TaxonUtils";
 
     static {
         Map<String, Float> rankNameToLevel = new HashMap<>();
@@ -74,7 +76,7 @@ public class TaxonUtils {
 
             setTaxonScientificName(textView, taxon);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -245,14 +247,14 @@ public class TaxonUtils {
             try {
                 iconicTaxonName = o.getString("iconic_taxon_name");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return R.drawable.ic_taxa_unknown;
             }
         } else if (o.has("taxon") && !o.isNull("taxon")) {
             try {
                 iconicTaxonName = o.getJSONObject("taxon").optString("iconic_taxon_name");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return R.drawable.ic_taxa_unknown;
             }
         }

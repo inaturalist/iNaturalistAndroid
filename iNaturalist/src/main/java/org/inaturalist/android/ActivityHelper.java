@@ -40,6 +40,7 @@ import com.google.maps.android.SphericalUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -306,7 +307,7 @@ public class ActivityHelper {
         		mProgressDialog = null;
         	} catch (Exception exc) {
         		// Nothing to do here
-        		exc.printStackTrace();
+        		Logger.tag(TAG).error(exc);
         	}
         }
     }
@@ -474,7 +475,7 @@ public class ActivityHelper {
                     if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
                 } catch (IllegalStateException exc) {
                     // Handles weird exception is raised ("View size is too small after padding is applied")
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 }
             }
         });
@@ -498,7 +499,7 @@ public class ActivityHelper {
             }
         } catch (IllegalStateException exc) {
             // Handles weird exception is raised ("View size is too small after padding is applied")
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
         }
     }
     public void centerObservation(final GoogleMap map, Observation observation) {
@@ -521,7 +522,7 @@ public class ActivityHelper {
                     }
                 } catch (IllegalStateException exc) {
                     // Handles weird exception is raised ("View size is too small after padding is applied")
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 }
             }
         });

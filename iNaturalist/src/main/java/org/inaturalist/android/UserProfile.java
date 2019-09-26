@@ -46,6 +46,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
@@ -58,6 +59,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
  	private final static String VIEW_TYPE_OBSERVATIONS = "observations";
 	private final static String VIEW_TYPE_SPECIES = "species";
     private final static String VIEW_TYPE_IDENTIFICATIONS = "identifications";
+    private static final String TAG = "UserProfile";
 
     @State public String mViewType;
 
@@ -530,7 +532,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 

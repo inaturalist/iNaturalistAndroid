@@ -642,7 +642,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
                         break;
                     }
                 } catch (NumberFormatException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     continue;
                 }
             }

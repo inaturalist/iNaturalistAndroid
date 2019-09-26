@@ -445,7 +445,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_GEOPRIVACY_CHANGED, eventParams);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
 
                     }
@@ -471,7 +471,7 @@ public class ObservationEditor extends AppCompatActivity {
                     eventParams.put(AnalyticsClient.EVENT_PARAM_NEW_VALUE, mIsCaptive ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_CAPTIVE_CHANGED, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
             }
@@ -577,7 +577,7 @@ public class ObservationEditor extends AppCompatActivity {
                             }
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 }
 
@@ -985,7 +985,7 @@ public class ObservationEditor extends AppCompatActivity {
             startActivityForResult(intent, RECORD_SOUND_ACTIVITY_REQUEST_CODE);
         } catch (ActivityNotFoundException exc) {
             // No default sound recorder found
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
 
             Intent intent = new Intent(this, RecordSoundActivity.class);
             startActivityForResult(intent, RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE);
@@ -1227,7 +1227,7 @@ public class ObservationEditor extends AppCompatActivity {
                                                 params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
                                                 params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
                                             } catch (JSONException e) {
-                                                e.printStackTrace();
+                                                Logger.tag(TAG).error(e);
                                             }
                                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
 
@@ -1258,7 +1258,7 @@ public class ObservationEditor extends AppCompatActivity {
                             params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
                             params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
 
@@ -1448,7 +1448,7 @@ public class ObservationEditor extends AppCompatActivity {
                             errorsHtml.append("<br/>");
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
                 errorsDescription.setText(Html.fromHtml(errorsHtml.toString()));
             }
@@ -1973,7 +1973,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         })).start();
@@ -2017,7 +2017,7 @@ public class ObservationEditor extends AppCompatActivity {
                 exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, GPSEncoder.longitudeRef(longitude));
                 exif.saveAttributes();
             } catch (IOException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
         }
@@ -2283,7 +2283,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_TAXON_CHANGED, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
             } else {
@@ -2377,7 +2377,7 @@ public class ObservationEditor extends AppCompatActivity {
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_PHOTO, eventParams);
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
 
@@ -2454,7 +2454,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_PHOTO, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 final Uri selectedImageUri = mFileUri;
@@ -2561,7 +2561,7 @@ public class ObservationEditor extends AppCompatActivity {
         try {
             copyFile(new File(filePath), destFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
             return;
         }
@@ -2606,7 +2606,7 @@ public class ObservationEditor extends AppCompatActivity {
                         try {
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
 
                         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
@@ -2679,7 +2679,7 @@ public class ObservationEditor extends AppCompatActivity {
                         try {
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
 
                         if (getCurrentFocus() != null) imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
@@ -2850,7 +2850,7 @@ public class ObservationEditor extends AppCompatActivity {
         try {
             copyFileFromUri(this, soundUri, destFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
             return null;
         }
@@ -2953,7 +2953,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
 
             } catch (ImageProcessingException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
 
@@ -3433,9 +3433,9 @@ public class ObservationEditor extends AppCompatActivity {
                         }
                     }
                 } catch (FileNotFoundException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 } catch (IOException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 }
             }
 
@@ -3616,7 +3616,7 @@ public class ObservationEditor extends AppCompatActivity {
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image)));
         } catch (IOException e) {
             Logger.tag(TAG).error("Failed to create gallery photo");
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         } catch (Exception exc) {
             Logger.tag(TAG).error("Failed to write gallery photo");
@@ -3624,7 +3624,7 @@ public class ObservationEditor extends AppCompatActivity {
                 // Don't leave around an empty file if we failed to write to it.
                 image.delete();
             }
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
             return null;
         }
 
@@ -3718,7 +3718,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
             }
         } catch (JSONException e3) {
-            //e3.printStackTrace();
+            //Logger.tag(TAG).error(e3);
         }
 
         if (displayName == null) {

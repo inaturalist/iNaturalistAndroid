@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -159,7 +160,7 @@ public class NetworkSettings extends AppCompatActivity {
 
             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_PARTNER_ALERT_PRESENTED, eventParams);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
 	    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

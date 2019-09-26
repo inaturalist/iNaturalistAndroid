@@ -15,6 +15,7 @@ import org.joda.time.Duration;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.cocosw.bottomsheet.BottomSheet;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
@@ -528,8 +529,7 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                 }
             }
         } catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.tag(TAG).error(e);
 		}
 		
 		view.setTag(item);

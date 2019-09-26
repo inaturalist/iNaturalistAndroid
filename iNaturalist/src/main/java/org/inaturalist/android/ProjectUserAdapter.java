@@ -17,11 +17,13 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 class ProjectUserAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "ProjectUserAdapter";
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
 
@@ -51,7 +53,7 @@ class ProjectUserAdapter extends ArrayAdapter<String> {
             }
             item = jsonObject.getJSONObject("user");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return view;
         }
 
@@ -81,7 +83,7 @@ class ProjectUserAdapter extends ArrayAdapter<String> {
 
             view.setTag(item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;

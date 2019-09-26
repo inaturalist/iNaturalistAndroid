@@ -38,6 +38,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,6 +61,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_SEARCH_PROJECTS = 0x1000;
     private static final int REQUEST_CODE_SEARCH_USERS = 0x1001;
+    private static final String TAG = "ExploreFiltersActivity";
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -254,7 +257,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                         myUser.put("icon_url", currentUserIconUrl);
                         mSearchFilters.user = myUser;
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 } else {
                     mSearchFilters.user = null;
@@ -819,7 +822,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                     mSearchFilters.project = new JSONObject(data.getStringExtra(ItemSearchActivity.RESULT));
                     refreshViewState();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         } else if (requestCode == REQUEST_CODE_SEARCH_USERS) {
@@ -828,7 +831,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                     mSearchFilters.user = new JSONObject(data.getStringExtra(ItemSearchActivity.RESULT));
                     refreshViewState();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         }

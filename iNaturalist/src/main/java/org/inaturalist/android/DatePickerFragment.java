@@ -8,13 +8,15 @@ import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import org.tinylog.Logger;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-
+    private static final String TAG = "DialogFragment";
     private boolean mIsCanceled;
     private int mYear, mMonth, mDay;
     private TextView mDate;
@@ -40,7 +42,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
                 date = new SimpleDateFormat("yyyy-MM-dd").parse(currentDate);
                 c.setTime(date);
             } catch (ParseException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 

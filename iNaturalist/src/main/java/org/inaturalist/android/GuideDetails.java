@@ -840,7 +840,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
                                             try {
                                                 Thread.sleep(10);
                                             } catch (InterruptedException e) {
-                                                e.printStackTrace();
+                                                Logger.tag(TAG).error(e);
                                             }
                                             if ((tryCount < 2) && (view.getFirstVisiblePosition() != finalPosition)) {
                                                 // Fix for scrolling bug

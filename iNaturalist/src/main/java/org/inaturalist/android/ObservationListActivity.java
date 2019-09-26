@@ -238,7 +238,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                     // Trigger another sync if needed - in case the user added more obs in the meantime while sync was running
@@ -927,7 +927,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                     runOnUiThread(new Runnable() {
                         @Override
@@ -1128,7 +1128,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                         }
                     };
@@ -1225,7 +1225,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Logger.tag(TAG).error(e);
                                     }
 
                                 }
@@ -1265,7 +1265,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Logger.tag(TAG).error(e);
                                 }
 
                             } else {
@@ -1277,7 +1277,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_FAILED, eventParams);
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Logger.tag(TAG).error(e);
                                     }
 
                                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
@@ -1293,7 +1293,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Logger.tag(TAG).error(e);
                                     }
                                     return;
                                 }
@@ -1604,7 +1604,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 
@@ -1681,7 +1681,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     JSONObject item = results.getJSONObject(i);
                     if (!item.getBoolean("viewed")) unreadActivities++;
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 

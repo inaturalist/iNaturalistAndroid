@@ -277,7 +277,7 @@ public class ImageUtils {
         try {
             BitmapFactory.decodeStream(contentResolver.openInputStream(uri), null, options);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -291,7 +291,7 @@ public class ImageUtils {
         try {
             return BitmapFactory.decodeStream(contentResolver.openInputStream(uri), null, options);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -304,7 +304,7 @@ public class ImageUtils {
             int degrees = exifOrientationToDegrees(exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL));
             return degrees;
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             // No orientation
             return 0;
         }
@@ -405,7 +405,7 @@ public class ImageUtils {
                         resizedBitmap = Smooth.rescale(resizedBitmap, newWidth, newHeight, Smooth.AlgoParametrized1.LANCZOS, 1.0);
                     } catch (Throwable exc) {
                         Logger.tag(TAG).error("Crashed while using SmoothRescale library - resizing using Android OS");
-                        exc.printStackTrace();
+                        Logger.tag(TAG).error(exc);
                         resizedBitmap = Bitmap.createScaledBitmap(resizedBitmap, newWidth, newHeight, true);
                     }
                 } else {
@@ -443,11 +443,11 @@ public class ImageUtils {
             return imageFile.getAbsolutePath();
 
         } catch (OutOfMemoryError e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return path;
@@ -519,13 +519,13 @@ public class ImageUtils {
             return true;
 
         } catch (ImageReadException exception) {
-            exception.printStackTrace();
+            Logger.tag(TAG).error(exception);
 
         } catch (ImageWriteException exception) {
-            exception.printStackTrace();
+            Logger.tag(TAG).error(exception);
 
         } catch (IOException exception) {
-            exception.printStackTrace();
+            Logger.tag(TAG).error(exception);
 
         } finally {
             if (tempStream != null) {

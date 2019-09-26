@@ -27,12 +27,14 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
 class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
+    private static final String TAG = "UserIdentificationsAdapter";
     private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
@@ -153,7 +155,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
             view.setTag(item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;
@@ -180,7 +182,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
                 }
             }
         } catch (JSONException e3) {
-            //e3.printStackTrace();
+            //Logger.tag(TAG).error(e3);
         }
 
         if (displayName == null) {

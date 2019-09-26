@@ -15,10 +15,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.tinylog.Logger;
+
 import java.io.File;
 import java.io.IOException;
 
 public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener, MediaPlayer.OnPreparedListener {
+    private static final String TAG = "SoundPlayer";
     private MediaPlayer mMediaPlayer;
 
     private ObservationSound mSound;
@@ -82,7 +85,7 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
                 updateProgress();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             mIsError = true;
             mSeekBar.setEnabled(false);
             return;
@@ -137,7 +140,7 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
             mMediaPlayer.stop();
             mMediaPlayer.release();
         } catch (IllegalStateException exc) {
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
         }
     }
 
@@ -176,7 +179,7 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
             }
         } catch (IllegalStateException exc) {
             // Happens if our player got destroyed while playing
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
         }
     }
 

@@ -633,7 +633,7 @@ public class INaturalistService extends IntentService {
                             try {
                                 getNearbyObservations(newIntent);
                             } catch (AuthenticationException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                         }
                     });
@@ -670,7 +670,7 @@ public class INaturalistService extends IntentService {
                             try {
                                 updateUserTimezone(timezoneName);
                             } catch (AuthenticationException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                         }
                     }
@@ -800,7 +800,7 @@ public class INaturalistService extends IntentService {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 // Reload the observation at the end (need to refresh comment/ID list)
@@ -834,7 +834,7 @@ public class INaturalistService extends IntentService {
                         try {
                             error = registerUser(email, password, username, license, timezoneName);
                         } catch (AuthenticationException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                             error = e.toString();
                         }
 
@@ -1038,7 +1038,7 @@ public class INaturalistService extends IntentService {
 
                         obsFilename = tempFile.getAbsolutePath();
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                 }
@@ -1347,7 +1347,7 @@ public class INaturalistService extends IntentService {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 // Reload the observation at the end (need to refresh comment/ID list)
@@ -1483,7 +1483,7 @@ public class INaturalistService extends IntentService {
                     user = getUserDetails();
                 } catch (AuthenticationException exc) {
                     // This means the user has changed his password on the website
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     authenticationFailed = true;
                 }
 
@@ -1532,7 +1532,7 @@ public class INaturalistService extends IntentService {
                             try {
                                 guides = getNearByGuides(location);
                             } catch (AuthenticationException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
 
                             Intent reply = new Intent(ACTION_NEAR_BY_GUIDES_RESULT);
@@ -1558,7 +1558,7 @@ public class INaturalistService extends IntentService {
                             try {
                                 projects = getNearByProjects(location);
                             } catch (AuthenticationException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
 
                             Intent reply = new Intent(ACTION_NEARBY_PROJECTS_RESULT);
@@ -1709,7 +1709,7 @@ public class INaturalistService extends IntentService {
         } catch (IllegalArgumentException e) {
             // Handle weird exception raised when sendBroadcast causes serialization of BetterJSONObject
             // and that causes an IllegalArgumentException (see only once).
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             mIsSyncing = false;
         } catch (CancelSyncException e) {
             cancelSyncRequested = true;
@@ -1772,7 +1772,7 @@ public class INaturalistService extends IntentService {
 
             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_OBS, eventParams);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
@@ -2099,7 +2099,7 @@ public class INaturalistService extends IntentService {
                 minimaldObs.put("user", getMinimalUser(user));
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2117,7 +2117,7 @@ public class INaturalistService extends IntentService {
             if (identification.has("observation")) minimalObserver.put("observation", getMinimalObservation(identification.optJSONObject("observation")));
             if (identification.has("taxon")) minimalObserver.put("taxon", getMinimalTaxon(identification.optJSONObject("taxon")));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2139,7 +2139,7 @@ public class INaturalistService extends IntentService {
                 minimalObserver.put("user", getMinimalUser(user));
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2159,7 +2159,7 @@ public class INaturalistService extends IntentService {
             if (user.has("observations_count")) minimalUser.put("observations_count", user.optInt("observations_count"));
             if (user.has("identifications_count")) minimalUser.put("identifications_count", user.optInt("identifications_count"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2177,7 +2177,7 @@ public class INaturalistService extends IntentService {
             minimalSpecies.put("count", species.optInt("count"));
             minimalSpecies.put("taxon", getMinimalTaxon(species.optJSONObject("taxon")));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2197,7 +2197,7 @@ public class INaturalistService extends IntentService {
             minimalSound.put("attribution", sound.optString("attribution"));
             minimalSound.put("subtype", sound.optString("subtype"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2222,7 +2222,7 @@ public class INaturalistService extends IntentService {
                 minimalPhoto.put("photo", innerPhoto);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2261,7 +2261,7 @@ public class INaturalistService extends IntentService {
                 minimalTaxon.put("default_photo", minimalPhoto);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2547,7 +2547,7 @@ public class INaturalistService extends IntentService {
             params.put("controlled_attribute_id", attributeId);
             params.put("controlled_value_id", valueId);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
 
             return null;
         }
@@ -2575,7 +2575,7 @@ public class INaturalistService extends IntentService {
             if (!agree) params.put("vote", "bad");
             params.put("id", uuid);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2618,7 +2618,7 @@ public class INaturalistService extends IntentService {
             params.put("id", obsId);
             params.put("scope", "needs_id");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -2678,7 +2678,7 @@ public class INaturalistService extends IntentService {
             params.put("id", observationId);
             params.put("metric", metric);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -3017,7 +3017,7 @@ public class INaturalistService extends IntentService {
             try {
                 formattedErrors.put(String.format(getString(R.string.failed_to_add_to_project), project.title, unformattedErrors.getString(i)));
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
@@ -3040,7 +3040,7 @@ public class INaturalistService extends IntentService {
 
             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_FAILED, eventParams);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
 
@@ -3069,7 +3069,7 @@ public class INaturalistService extends IntentService {
                     }
                     c.close();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         }
@@ -3101,7 +3101,7 @@ public class INaturalistService extends IntentService {
                 projectIds.add(id);
                 projectByIds.put(id, jsonProject);
             } catch (JSONException exc) {
-                exc.printStackTrace();
+                Logger.tag(TAG).error(exc);
             }
         }
 
@@ -3110,7 +3110,7 @@ public class INaturalistService extends IntentService {
         try {
             int count = getContentResolver().delete(Project.CONTENT_URI, "id not in (" + StringUtils.join(projectIds, ',') + ")", null);
         } catch (Exception exc) {
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
             throw new SyncFailedException();
         }
 
@@ -3284,7 +3284,7 @@ public class INaturalistService extends IntentService {
             try {
                 return result.getJSONObject(0);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else {
@@ -3300,7 +3300,7 @@ public class INaturalistService extends IntentService {
             try {
                 return result.getJSONObject(0);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else {
@@ -3319,7 +3319,7 @@ public class INaturalistService extends IntentService {
             try {
                 return result.getJSONObject(0);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else {
@@ -3335,7 +3335,7 @@ public class INaturalistService extends IntentService {
             try {
                 return result.getJSONObject(0);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else {
@@ -3356,7 +3356,7 @@ public class INaturalistService extends IntentService {
 
             JSONArray arrayResult = put(API_HOST + "/identifications/" + identificationId, paramsJson);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -3409,7 +3409,7 @@ public class INaturalistService extends IntentService {
                 }
                 c.close();
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
     }
@@ -3432,7 +3432,7 @@ public class INaturalistService extends IntentService {
                 return array.optJSONObject(0);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -3509,12 +3509,12 @@ public class INaturalistService extends IntentService {
                     zoneIdName = zone.getID();
                 } catch (NoClassDefFoundError exc) {
                     // Not working on older Androids
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     cb.onTimezone(null);
                     return;
                 } catch (Exception exc) {
                     // Couldn't convert coordinates to timezone
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     cb.onTimezone(null);
                     return;
                 }
@@ -3558,7 +3558,7 @@ public class INaturalistService extends IntentService {
             try {
                 return mResponseErrors.getString(0);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else {
@@ -3660,7 +3660,7 @@ public class INaturalistService extends IntentService {
 
             return results.getJSONObject(0);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4085,7 +4085,7 @@ public class INaturalistService extends IntentService {
                     }
 
                 } catch (AuthenticationException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
 
@@ -4152,7 +4152,7 @@ public class INaturalistService extends IntentService {
             return outputFile.getAbsolutePath();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -4168,7 +4168,7 @@ public class INaturalistService extends IntentService {
             JSONObject user = json.getJSONObject(0).getJSONArray("results").getJSONObject(0);
             return new BetterJSONObject(user);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4178,7 +4178,7 @@ public class INaturalistService extends IntentService {
         try {
             input.put("user", params);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         JSONArray json = request(API_HOST + "/users/" + mApp.currentUserLogin(), "put", null, input, true, true, false);
@@ -4188,7 +4188,7 @@ public class INaturalistService extends IntentService {
             if (json.length() == 0) return null;
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4202,7 +4202,7 @@ public class INaturalistService extends IntentService {
             if (json.length() == 0) return null;
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4225,7 +4225,7 @@ public class INaturalistService extends IntentService {
 
             url = sb.toString();
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -4246,7 +4246,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4260,7 +4260,7 @@ public class INaturalistService extends IntentService {
         try {
             return json.getJSONObject(0);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4278,7 +4278,7 @@ public class INaturalistService extends IntentService {
             JSONArray results = json.getJSONObject(0).getJSONArray("results");
             return new SerializableJSONArray(results);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4293,7 +4293,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4318,7 +4318,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4334,7 +4334,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4347,7 +4347,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4360,7 +4360,7 @@ public class INaturalistService extends IntentService {
             if (json.length() == 0) return null;
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4375,7 +4375,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new BetterJSONObject();
         }
     }
@@ -4387,7 +4387,7 @@ public class INaturalistService extends IntentService {
         try {
             json = get(url, false);
         } catch (AuthenticationException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
         if (json == null) return null;
@@ -4396,7 +4396,7 @@ public class INaturalistService extends IntentService {
             JSONObject response = json.getJSONObject(0);
             return new BetterJSONObject(response.getJSONObject("total_bounds"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4437,7 +4437,7 @@ public class INaturalistService extends IntentService {
         try {
             json = get(url, false);
         } catch (AuthenticationException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
         if (json == null) return null;
@@ -4445,7 +4445,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4459,7 +4459,7 @@ public class INaturalistService extends IntentService {
             if (json == null) return new BetterJSONObject();
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new BetterJSONObject();
         }
     }
@@ -4485,7 +4485,7 @@ public class INaturalistService extends IntentService {
             if (json == null) return new BetterJSONObject();
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new BetterJSONObject();
         }
     }
@@ -4497,7 +4497,7 @@ public class INaturalistService extends IntentService {
             if (json == null) return new BetterJSONObject();
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new BetterJSONObject();
         }
     }
@@ -4509,7 +4509,7 @@ public class INaturalistService extends IntentService {
             if (json == null) return new SerializableJSONArray();
             return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("guide_taxa"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new SerializableJSONArray();
         }
     }
@@ -4537,7 +4537,7 @@ public class INaturalistService extends IntentService {
             try {
                 json = get(url, true);
             } catch (Exception exc) {
-                exc.printStackTrace();
+                Logger.tag(TAG).error(exc);
             }
         }
 
@@ -4553,7 +4553,7 @@ public class INaturalistService extends IntentService {
                 JSONObject guide = json.getJSONObject(i);
                 guideIds.add(String.valueOf(guide.getInt("id")));
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
             i++;
         }
@@ -4575,7 +4575,7 @@ public class INaturalistService extends IntentService {
                 guideJson.put("description", guide.getDescription());
                 // TODO - no support for "icon_url" (not found in XML file)
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
             json.put(guideJson);
@@ -4641,7 +4641,7 @@ public class INaturalistService extends IntentService {
                     json.getJSONObject(i).put("joined", true);
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 continue;
             }
 
@@ -4666,7 +4666,7 @@ public class INaturalistService extends IntentService {
         try {
             results = json.getJSONObject(0).getJSONArray("results");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new SerializableJSONArray();
         }
 
@@ -4682,7 +4682,7 @@ public class INaturalistService extends IntentService {
                     results.getJSONObject(i).put("joined", true);
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 continue;
             }
 
@@ -4702,7 +4702,7 @@ public class INaturalistService extends IntentService {
                 projectId = field.project_id;
                 projectFields.add(field);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
@@ -4740,7 +4740,7 @@ public class INaturalistService extends IntentService {
             addProjectFields(jsonProject.getJSONArray("project_observation_fields").getJSONArray());
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -4765,7 +4765,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new BetterJSONObject();
         }
     }
@@ -4790,7 +4790,7 @@ public class INaturalistService extends IntentService {
         try {
             return new BetterJSONObject(json.getJSONObject(0));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -4812,7 +4812,7 @@ public class INaturalistService extends IntentService {
         try {
             return new SerializableJSONArray(json.getJSONObject(0).getJSONArray("listed_taxa"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new SerializableJSONArray();
         }
     }
@@ -4841,7 +4841,7 @@ public class INaturalistService extends IntentService {
                 jsonProject.put("joined", true);
                 projects.put(index, jsonProject);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
             c.moveToNext();
@@ -4876,7 +4876,7 @@ public class INaturalistService extends IntentService {
                 addProjectFields(project.getJSONArray("project_observation_fields"));
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
@@ -4956,7 +4956,7 @@ public class INaturalistService extends IntentService {
 
                 return results.length();
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return -1;
             }
         } else {
@@ -4990,7 +4990,7 @@ public class INaturalistService extends IntentService {
             try {
                 results = json.getJSONObject(0).getJSONArray("results");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return false;
             }
 
@@ -5050,7 +5050,7 @@ public class INaturalistService extends IntentService {
             try {
                 results = json.getJSONObject(0).getJSONArray("results");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return false;
             }
             syncJson(results, true);
@@ -5105,7 +5105,7 @@ public class INaturalistService extends IntentService {
                             fields.put(id, new ProjectFieldValue(new BetterJSONObject(jsonField)));
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                     mProjectFieldValues.put(localField.observation_id, fields);
@@ -5275,7 +5275,7 @@ public class INaturalistService extends IntentService {
                             fields.put(id, new ProjectFieldValue(new BetterJSONObject(jsonField)));
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                     mProjectFieldValues.put(localField.observation_id, fields);
@@ -5398,7 +5398,7 @@ public class INaturalistService extends IntentService {
             return true;
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return false;
         }
     }
@@ -5551,7 +5551,7 @@ public class INaturalistService extends IntentService {
 
                 return jwtToken;
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else {
@@ -5595,7 +5595,7 @@ public class INaturalistService extends IntentService {
             try {
                 entity = new StringEntity(jsonContent.toString(), HTTP.UTF_8);
             } catch (Exception exc) {
-                exc.printStackTrace();
+                Logger.tag(TAG).error(exc);
             }
 
             if (method.equalsIgnoreCase("put")) {
@@ -5706,7 +5706,7 @@ public class INaturalistService extends IntentService {
                             }
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                     if ((content != null) && (content.length() == 0)) {
@@ -5794,7 +5794,7 @@ public class INaturalistService extends IntentService {
         try {
             ((HttpPost) request).setEntity(new UrlEncodedFormEntity(postParams));
         } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
+            Logger.tag(TAG).error(e1);
             return null;
         }
 
@@ -5840,7 +5840,7 @@ public class INaturalistService extends IntentService {
             request.abort();
             Logger.tag(TAG).warn("Error for URL " + url, e);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return null;
@@ -5974,7 +5974,7 @@ public class INaturalistService extends IntentService {
                     getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                 } catch (SQLException ex) {
                     // Happens when the photo already exists - ignore
-                    ex.printStackTrace();
+                    Logger.tag(TAG).error(ex);
                 }
             }
 
@@ -6038,7 +6038,7 @@ public class INaturalistService extends IntentService {
                     getContentResolver().insert(ObservationSound.CONTENT_URI, oscv);
                 } catch (SQLException ex) {
                     // Happens when the sound already exists - ignore
-                    ex.printStackTrace();
+                    Logger.tag(TAG).error(ex);
                 }
             }
 
@@ -6136,7 +6136,7 @@ public class INaturalistService extends IntentService {
                         getContentResolver().insert(ObservationSound.CONTENT_URI, opcv);
                     } catch (SQLException ex) {
                         // Happens when the sound already exists - ignore
-                        ex.printStackTrace();
+                        Logger.tag(TAG).error(ex);
                     }
                 }
 
@@ -6177,7 +6177,7 @@ public class INaturalistService extends IntentService {
                         getContentResolver().insert(ObservationPhoto.CONTENT_URI, opcv);
                     } catch (SQLException ex) {
                         // Happens when the photo already exists - ignore
-                        ex.printStackTrace();
+                        Logger.tag(TAG).error(ex);
                     }
                 }
             }
@@ -6203,7 +6203,7 @@ public class INaturalistService extends IntentService {
 
             return obsContainer;
         } catch (JSONException exc) {
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
             return null;
         }
     }
@@ -6245,7 +6245,7 @@ public class INaturalistService extends IntentService {
             cv.put(Observation._SYNCED_AT, System.currentTimeMillis());
             getContentResolver().update(observation.getUri(), cv, null, null);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return false;
         }
 
@@ -6280,7 +6280,7 @@ public class INaturalistService extends IntentService {
         try {
             location = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
         } catch (IllegalStateException ex) {
-            ex.printStackTrace();
+            Logger.tag(TAG).error(ex);
         }
 
         Logger.tag(TAG).error("getLastKnownLocationFromClient: " + location);
@@ -6380,7 +6380,7 @@ public class INaturalistService extends IntentService {
         try {
             info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         String userAgent = USER_AGENT.replace("%BUILD%", info != null ? String.valueOf(info.versionCode) : String.valueOf(INaturalistApp.VERSION));

@@ -463,7 +463,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             try {
                 date = format.parse(mObservation.getString("observed_on"));
             } catch (ParseException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
             if (date != null) {

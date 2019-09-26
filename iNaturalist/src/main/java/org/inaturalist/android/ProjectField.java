@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -111,7 +112,7 @@ public class ProjectField implements BaseColumns, Serializable {
             if (this.is_required == null) this.is_required = false;
             this.position = o.getInt("position");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
     

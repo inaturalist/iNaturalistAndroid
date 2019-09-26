@@ -32,6 +32,7 @@ import com.facebook.login.LoginManager;
 import org.apache.http.util.LangUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,7 @@ import java.io.IOException;
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
+    private static final String TAG = "SettingsFragment";
 
     private Preference mUsernamePreference;
     private CheckBoxPreference mAutoSyncPreference;
@@ -162,7 +164,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                     AnalyticsClient.EVENT_NAME_SETTING_DISABLED
                             , eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 return false;
@@ -188,7 +190,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                     AnalyticsClient.EVENT_NAME_SETTING_DISABLED
                             , eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
 
@@ -210,7 +212,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     try {
                         userDetails.put("prefers_scientific_name_first", newValue);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                     serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
                     ContextCompat.startForegroundService(getActivity(), serviceIntent);
@@ -268,7 +270,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     mailer.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode, username == null ? "N/A" : username));
                     startActivity(Intent.createChooser(mailer, getString(R.string.send_email)));
                 } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
                 return false;
             }
@@ -301,7 +303,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             mVersion.setSummary(String.format("%s (%d)", info.versionName, info.versionCode));
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         String network = mApp.getInaturalistNetworkMember();

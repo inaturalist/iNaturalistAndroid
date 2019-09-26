@@ -40,7 +40,7 @@ public class BetterJSONObject implements Serializable {
 		try {
 			mJSONObject = new JSONObject(json);
 		} catch (JSONException e) {
-			e.printStackTrace();
+			Logger.tag(TAG).error(e);
 			mJSONObject = new JSONObject();
 		}
 		initRegExIfNeeded();

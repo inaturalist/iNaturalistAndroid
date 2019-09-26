@@ -77,7 +77,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
             try {
                 getActivity().unregisterReceiver(mProjectsReceiver);
             } catch (Exception exc) {
-                exc.printStackTrace();
+                Logger.tag(TAG).error(exc);
             }
 
             Boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
@@ -115,7 +115,7 @@ public abstract class BaseTab extends Fragment implements ProjectsAdapter.OnLoad
                 try {
                     mProjects.add(projects.getJSONObject(i));
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 

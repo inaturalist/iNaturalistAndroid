@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import android.util.Log;
 
+import org.tinylog.Logger;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -23,6 +24,7 @@ import javax.xml.xpath.XPathFactory;
  * Base class for all XML-parsing classes (contains utility methods for parsing the XML)
  */
 public abstract class BaseGuideXMLParser {
+    private static final String TAG = "BaseGuideXMLParser";
     private XPath mXpath;
     private Node mRootNode;
     // Cache that is used for storing past results of XPath expressions (much faster this way)
@@ -79,7 +81,7 @@ public abstract class BaseGuideXMLParser {
             mCache.put(xpath, result); // Save result to cache
             return result;
         } catch (XPathExpressionException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }
@@ -116,7 +118,7 @@ public abstract class BaseGuideXMLParser {
        try {
            nodes = (NodeList)mXpath.evaluate(xpath, mRootNode, XPathConstants.NODESET);
         } catch (XPathExpressionException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 

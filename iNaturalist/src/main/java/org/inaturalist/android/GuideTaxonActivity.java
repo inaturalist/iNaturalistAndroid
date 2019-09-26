@@ -364,7 +364,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
                     String deviceLanguage =   deviceLocale.getLanguage();
                     obsUrl = "https://" + deviceLanguage + ".wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 Intent i = new Intent(Intent.ACTION_VIEW);

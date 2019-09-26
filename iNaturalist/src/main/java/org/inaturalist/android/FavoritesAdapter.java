@@ -30,6 +30,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import org.joda.time.Duration;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -40,7 +41,8 @@ import java.util.List;
 
 public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
 
-    private final Handler mMainHandler;
+	private static final String TAG = "FavoritesAdapter";
+	private final Handler mMainHandler;
     private final ActivityHelper mHelper;
     private List<BetterJSONObject> mItems;
 	private Context mContext;
@@ -103,7 +105,7 @@ public class FavoritesAdapter extends ArrayAdapter<BetterJSONObject> {
 				userPic.setAlpha(100);
             }
 		} catch (JSONException e) {
-			e.printStackTrace();
+			Logger.tag(TAG).error(e);
 		}
 		
 		view.setTag(item);

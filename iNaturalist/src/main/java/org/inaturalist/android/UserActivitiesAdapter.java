@@ -213,7 +213,7 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
             // Load obs image
             loadObsImage(obsId, view, item, position);
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;
@@ -335,14 +335,14 @@ class UserActivitiesAdapter extends ArrayAdapter<String> {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 try {
                     JSONObject item = mResultList.get(position);
                     item.put("viewed", true);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 view.setBackgroundResource(R.drawable.activity_item_background);

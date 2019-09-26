@@ -16,6 +16,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
@@ -26,6 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class ProjectNewsAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "ProjectNewsAdapter";
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private JSONObject mProject;
@@ -102,7 +104,7 @@ class ProjectNewsAdapter extends ArrayAdapter<String> {
 
             view.setTag(item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;

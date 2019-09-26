@@ -26,6 +26,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,7 @@ public class ProfilePhotoViewer extends AppCompatActivity {
 			}
 
         } catch (JSONException e) {
-        	e.printStackTrace();
+        	Logger.tag(TAG).error(e);
         }
 
         mViewPager = (HackyViewPager) findViewById(R.id.user_pic_view_pager);

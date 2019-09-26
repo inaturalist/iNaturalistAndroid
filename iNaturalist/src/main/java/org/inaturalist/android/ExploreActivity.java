@@ -712,7 +712,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     JSONObject item = results.getJSONObject(i);
                     resultsArray.add(item);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -956,7 +956,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                             mListAdapter[resultsType] = adapterClass.getDeclaredConstructor(Context.class, ArrayList.class).newInstance(ExploreActivity.this, (ArrayList<JSONObject>) mResults[resultsType]);
                             mList[resultsType].setAdapter(mListAdapter[resultsType]);
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
                     }
                 }
@@ -1010,7 +1010,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         });
@@ -1551,9 +1551,9 @@ public class ExploreActivity extends BaseFragmentActivity {
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         }).start();
@@ -1648,7 +1648,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             layer.getDefaultPolygonStyle().setStrokeWidth(px);
             return layer;
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }

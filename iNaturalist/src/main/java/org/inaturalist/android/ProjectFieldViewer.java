@@ -135,7 +135,7 @@ public class ProjectFieldViewer {
                 }
             }
         } catch (JSONException e3) {
-            e3.printStackTrace();
+            Logger.tag(TAG).error(e3);
         }
 
         if (displayName == null) {
@@ -210,7 +210,7 @@ public class ProjectFieldViewer {
                 return formatted.substring(0, 22) + ":" + formatted.substring(22);
 
             } catch (ParseException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else if (mField.data_type.equals("taxon")) {
@@ -478,7 +478,7 @@ public class ProjectFieldViewer {
                 mDateTimePicker.updateDate(date.getYear() + 1900, date.getMonth(), date.getDate());
                 mDateTimePicker.updateTime(date.getHours(), date.getMinutes());
             } catch (ParseException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
@@ -493,14 +493,14 @@ public class ProjectFieldViewer {
         try {
             s = s.substring(0, 22) + s.substring(23);
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
         Date date;
         try {
             date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(s);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -514,7 +514,7 @@ public class ProjectFieldViewer {
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(value);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 

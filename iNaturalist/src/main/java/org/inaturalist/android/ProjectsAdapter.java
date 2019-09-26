@@ -100,7 +100,7 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
                 resultsObject = new JSONObject(jsonResults.toString());
                 predsJsonArray = resultsObject.getJSONArray("results");
             } catch (JSONException e1) {
-                e1.printStackTrace();
+                Logger.tag(TAG).error(e1);
             }
         }
 

@@ -35,10 +35,12 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 
 public class ProjectNews extends BaseFragmentActivity {
+    private static final String TAG = "ProjectNews";
     private INaturalistApp mApp;
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mProject;
 
@@ -101,7 +103,7 @@ public class ProjectNews extends BaseFragmentActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEWS_OPEN_ARTICLE, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 Intent intent = new Intent(ProjectNews.this, NewsArticle.class);
@@ -216,7 +218,7 @@ public class ProjectNews extends BaseFragmentActivity {
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 
