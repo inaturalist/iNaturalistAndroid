@@ -83,7 +83,7 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
         mClearLogs.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                mHelper.confirm("Clear All Debug Logs", "Are you sure you want to delete all debug logs? Only press 'Yes' if you want clear up storage room for your phone",
+                mHelper.confirm(getString(R.string.clear_all_debug_logs), getString(R.string.are_you_sure_you_want_to_delete_logs),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -95,7 +95,7 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                             }
-                        }, "Yes", "No");
+                        }, getString(R.string.yes), getString(R.string.no));
 
                 return true;
             }
@@ -136,10 +136,10 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
         cal.set(year, month, day, 0, 0, 0);
         cal.set(Calendar.MILLISECOND, 0);
 
-        List<File> debugFiles = LoggingUtils.getAllDebugLogs(getContext(), cal.getTime(), null);
+        List<File> debugFiles = LoggingUtils.getAllDebugLogs(getContext(), cal.getTime(), null, true);
 
         if (debugFiles.size() == 0) {
-            Toast.makeText(getContext(), "No log files found for that date range - try earlier date?", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getString(R.string.no_log_files_found), Toast.LENGTH_LONG).show();
             return;
         }
 

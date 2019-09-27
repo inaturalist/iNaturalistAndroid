@@ -17,7 +17,7 @@ public class DebugSettingsActivity extends BaseFragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.debug_settings);
-        setTitle("Debug Settings");
+        setTitle(R.string.debug_settings);
 
         onDrawerCreate(savedInstanceState);
     }

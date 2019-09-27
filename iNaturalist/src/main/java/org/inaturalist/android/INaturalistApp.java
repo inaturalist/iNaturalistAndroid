@@ -210,6 +210,8 @@ public class INaturalistApp extends MultiDexApplication {
         LoggingUtils.initializeLogger(this);
         // Clear out old log files
         LoggingUtils.clearOldLogs(this, getDebugLogDayCount());
+        // Compress any uncompressed log files
+        LoggingUtils.compressDebugLogs(this);
 
         Logger.tag(TAG).debug("onCreate");
 
