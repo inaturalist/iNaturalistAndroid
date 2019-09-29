@@ -1,6 +1,5 @@
 package org.inaturalist.android;
 
-import com.cocosw.bottomsheet.BottomSheet;
 import com.crashlytics.android.Crashlytics;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
@@ -24,6 +23,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -281,45 +281,12 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
     public void showNewObsMenu() {
         mSelectedBottomGrid = false;
-        new BottomSheet.Builder(this).sheet(R.menu.observation_list_menu).listener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent;
-                mSelectedBottomGrid = true;
 
-                switch (which) {
-                    case R.id.camera:
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
 
-                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
-                        intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
-                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
-                        break;
-                    case R.id.upload_photo:
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
-
-                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
-                        intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
-                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
-                        break;
-                    case R.id.record_sound:
-                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
-                        intent.putExtra(ObservationEditor.RECORD_SOUND, true);
-                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
-                        break;
-                    case R.id.import_sound:
-                        intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
-                        intent.putExtra(ObservationEditor.CHOOSE_SOUND, true);
-                        startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
-                        break;
-                    case R.id.text:
-                        AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
-
-                        startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class), REQUEST_CODE_OBSERVATION_EDIT);
-                        break;
-                }
-            }
-        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+        View sheetView = getLayoutInflater().inflate(R.layout.new_obs_menu, null);
+        bottomSheetDialog.setContentView(sheetView);
+        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 if (!mSelectedBottomGrid) {
@@ -327,7 +294,72 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 }
                 mSelectedBottomGrid = false;
             }
-        }).show();
+        });
+        bottomSheetDialog.show();
+
+        View takePhoto = sheetView.findViewById(R.id.take_photo);
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedBottomGrid = true;
+                bottomSheetDialog.dismiss();
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
+
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.TAKE_PHOTO, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+            }
+        });
+
+        View importPhoto = sheetView.findViewById(R.id.import_photo);
+        importPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedBottomGrid = true;
+                bottomSheetDialog.dismiss();
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
+
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.CHOOSE_PHOTO, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+            }
+        });
+
+        View recordSound = sheetView.findViewById(R.id.record_sound);
+        recordSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedBottomGrid = true;
+                bottomSheetDialog.dismiss();
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.RECORD_SOUND, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+            }
+        });
+
+        View importSound = sheetView.findViewById(R.id.choose_sound);
+        importSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedBottomGrid = true;
+                bottomSheetDialog.dismiss();
+                Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
+                intent.putExtra(ObservationEditor.CHOOSE_SOUND, true);
+                startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
+            }
+        });
+
+        View noMedia = sheetView.findViewById(R.id.no_media);
+        noMedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedBottomGrid = true;
+                bottomSheetDialog.dismiss();
+                AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
+                startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class), REQUEST_CODE_OBSERVATION_EDIT);
+            }
+        });
+
     }
 
 	private void buildSideMenu() {

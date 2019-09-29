@@ -82,6 +82,7 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.media.ExifInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -199,7 +200,6 @@ public class ObservationEditor extends AppCompatActivity {
 
 	@State public boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
-    @State public boolean mIsConfirmation;
     @State public boolean mPictureTaken;
     @State public boolean mSoundRecorded;
     private ImageView mSpeciesGuessIcon;
@@ -256,11 +256,7 @@ public class ObservationEditor extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
-        if (mIsConfirmation) {
-            inflater.inflate(R.menu.observation_confirmation_menu, menu);
-        } else {
-            inflater.inflate(R.menu.observation_editor_menu, menu);
-        }
+        inflater.inflate(R.menu.observation_confirmation_menu, menu);
 
         return true;
     }
@@ -282,15 +278,8 @@ public class ObservationEditor extends AppCompatActivity {
 
         if ((savedInstanceState == null) && (intent != null) && (intent.getData() != null)) {
             int uriMatch = ObservationProvider.URI_MATCHER.match(intent.getData());
-            if ((uriMatch == Observation.OBSERVATIONS_URI_CODE) || (uriMatch == ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE)) {
-                // Show the confirmation screen
-                mIsConfirmation = true;
-            } else {
-                mIsConfirmation = false;
-            }
         } else if ((intent != null) && (action != null) && (Intent.ACTION_SEND.equals(action))) {
             // Single share photo with iNaturalist
-            mIsConfirmation = true;
             Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
             mSharePhotos = new ArrayList<>();
             mSharePhotos.add(imageUri);
@@ -303,11 +292,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         setContentView(R.layout.observation_confirmation);
 
-        if (mIsConfirmation) {
-            setTitle(R.string.details);
-        } else {
-            setTitle(R.string.edit_observation);
-        }
+        setTitle(R.string.details);
 
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
@@ -3567,26 +3552,50 @@ public class ObservationEditor extends AppCompatActivity {
 
     
     private void openImageIntent(final Activity activity) {
-        new BottomSheet.Builder(activity).sheet(R.menu.observation_confirmation_photo_menu).listener(new DialogInterface.OnClickListener() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+
+        View sheetView = getLayoutInflater().inflate(R.layout.new_obs_menu, null);
+        bottomSheetDialog.setContentView(sheetView);
+        bottomSheetDialog.show();
+
+        View takePhotoButton = sheetView.findViewById(R.id.take_photo);
+        takePhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent;
-                switch (which) {
-                    case R.id.camera:
-                        takePhoto();
-                        break;
-                    case R.id.upload_photo:
-                        choosePhoto();
-                        break;
-                    case R.id.upload_sound:
-                        chooseSound();
-                        break;
-                    case R.id.record_sound:
-                        recordSound();
-                        break;
-                }
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                takePhoto();
             }
-        }).show();
+        });
+
+        View importPhoto = sheetView.findViewById(R.id.import_photo);
+        importPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                choosePhoto();
+            }
+        });
+
+        View recordSoundButton = sheetView.findViewById(R.id.record_sound);
+        recordSoundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                recordSound();
+            }
+        });
+
+        View importSound = sheetView.findViewById(R.id.choose_sound);
+        importSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                chooseSound();
+            }
+        });
+
+        View noMedia = sheetView.findViewById(R.id.no_media_container);
+        noMedia.setVisibility(View.GONE);
     }
 
 
