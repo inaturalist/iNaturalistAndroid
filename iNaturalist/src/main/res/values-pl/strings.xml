@@ -35,7 +35,6 @@
     <string name="projects">Projekty</string>
     <string name="delete_photo">Usuń zdjęcie</string>
     <string name="menu">Menu</string>
-    <string name="layers">Warstwy</string>
     <string name="my_location">Moja lokalizacja</string>
     <string name="nearby_observations">Obserwacje w pobliżu</string>
     <string name="add">Dodaj</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Opuść</string>
     <string name="join">Dołącz</string>
-    <string name="loading_check_list">Ładuję Check Listę...</string>
     <string name="no_check_list">Brak taksonu w Check Liscie!</string>
     <string name="failed_to_add_obs_to_project">Błąd podczas dodawania obserwacji \'%1$s\' do projektu \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Proszę wpisać poprawną wartość do pola \'%1s\'</string>
@@ -323,7 +321,6 @@
     <string name="news">Aktualności</string>
     <string name="article">Artykuł</string>
     <string name="couldnt_load_project_news">Nie udało się pobrać aktualności projektu: %1$s</string>
-    <string name="article_by">Artykuł</string>
     <string name="couldnt_load_user_details">Nie udało się pobrać szczegółów użytkownika: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Więcej »</font></b>]]></string>
     <string name="no_location">Brak lokalizacji</string>

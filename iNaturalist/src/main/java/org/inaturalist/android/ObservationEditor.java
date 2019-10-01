@@ -19,6 +19,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -39,6 +41,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lucasr.twowayview.TwoWayView;
+import org.tinylog.Logger;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -47,6 +50,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ContentResolver;
@@ -57,8 +61,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -80,9 +82,9 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.media.ExifInterface;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -116,13 +118,14 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.Manifest;
 
 
 public class ObservationEditor extends AppCompatActivity {
     private final static String TAG = "INAT: ObservationEditor";
     public final static String TAKE_PHOTO = "take_photo";
+    public final static String RECORD_SOUND = "record_sound";
     public final static String CHOOSE_PHOTO = "choose_photo";
+    public final static String CHOOSE_SOUND = "choose_sounds";
     public final static String RETURN_TO_OBSERVATION_LIST = "return_to_observation_list";
     public static final int RESULT_DELETED = 0x1000;
     public static final int RESULT_RETURN_TO_OBSERVATION_LIST = 0x1001;
@@ -130,6 +133,7 @@ public class ObservationEditor extends AppCompatActivity {
     @State(AndroidStateBundlers.UriBundler.class) public Uri mUri;
     private Cursor mCursor;
     private Cursor mImageCursor;
+    private Cursor mSoundCursor;
     private EditText mSpeciesGuessTextView;
     private TextView mSpeciesGuessSub;
     private TextView mDescriptionTextView;
@@ -155,6 +159,7 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mCanceled = false;
     @State public boolean mIsCaptive = false;
     @State public boolean mChoseNewPhoto = false;
+    @State public boolean mChoseNewSound = false;
     private List<Uri> mSharePhotos = null;
 
     private TaxonReceiver mTaxonReceiver;
@@ -164,8 +169,9 @@ public class ObservationEditor extends AppCompatActivity {
     private ImageButton mViewOnInat;
     private TableLayout mProjectFieldsTable;
 
-    @State public ArrayList<String> mPhotosAdded;
+    @State public ArrayList<String> mPhotosAndSoundsAdded;
     @State public ArrayList<ObservationPhoto> mPhotosRemoved;
+    @State public ArrayList<ObservationSound> mSoundsRemoved;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int COMMENTS_IDS_REQUEST_CODE = 101;
@@ -173,6 +179,10 @@ public class ObservationEditor extends AppCompatActivity {
     private static final int LOCATION_CHOOSER_REQUEST_CODE = 103;
     private static final int OBSERVATION_PHOTOS_REQUEST_CODE = 104;
     private static final int CHOOSE_IMAGES_REQUEST_CODE = 105;
+    private static final int RECORD_SOUND_ACTIVITY_REQUEST_CODE = 106;
+    private static final int CHOOSE_SOUNDS_REQUEST_CODE = 107;
+    private static final int OBSERVATION_SOUNDS_REQUEST_CODE = 108;
+    private static final int RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE = 109;
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int DATE_DIALOG_ID = 0;
     private static final int TIME_DIALOG_ID = 1;
@@ -190,8 +200,8 @@ public class ObservationEditor extends AppCompatActivity {
 
 	@State public boolean mProjectFieldsUpdated = false;
 	private boolean mDeleted = false;
-    @State public boolean mIsConfirmation;
     @State public boolean mPictureTaken;
+    @State public boolean mSoundRecorded;
     private ImageView mSpeciesGuessIcon;
     @State public String mPreviousTaxonSearch = "";
     @State public String mTaxonPicUrl;
@@ -208,6 +218,7 @@ public class ObservationEditor extends AppCompatActivity {
     private boolean mTaxonTextChanged = false;
     private boolean mTaxonSearchStarted = false;
     @State public boolean mPhotosChanged = false;
+    @State public boolean mSoundsChanged = false;
     @State public ArrayList<String> mCameraPhotos;
     private ViewGroup mSpeciesNameOnboarding;
     private View mCloseSpeciesNameOnboarding;
@@ -218,6 +229,7 @@ public class ObservationEditor extends AppCompatActivity {
     @State public boolean mAskedForLocationPermission = false;
     @State public boolean mFromSuggestion = false;
     @State public String mObsJson;
+    @State public boolean mSharedAudio;
 
 @Override
 	protected void onStop()
@@ -244,11 +256,7 @@ public class ObservationEditor extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
-        if (mIsConfirmation) {
-            inflater.inflate(R.menu.observation_confirmation_menu, menu);
-        } else {
-            inflater.inflate(R.menu.observation_editor_menu, menu);
-        }
+        inflater.inflate(R.menu.observation_confirmation_menu, menu);
 
         return true;
     }
@@ -270,15 +278,8 @@ public class ObservationEditor extends AppCompatActivity {
 
         if ((savedInstanceState == null) && (intent != null) && (intent.getData() != null)) {
             int uriMatch = ObservationProvider.URI_MATCHER.match(intent.getData());
-            if ((uriMatch == Observation.OBSERVATIONS_URI_CODE) || (uriMatch == ObservationPhoto.OBSERVATION_PHOTOS_URI_CODE)) {
-                // Show the confirmation screen
-                mIsConfirmation = true;
-            } else {
-                mIsConfirmation = false;
-            }
         } else if ((intent != null) && (action != null) && (Intent.ACTION_SEND.equals(action))) {
             // Single share photo with iNaturalist
-            mIsConfirmation = true;
             Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
             mSharePhotos = new ArrayList<>();
             mSharePhotos.add(imageUri);
@@ -291,11 +292,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         setContentView(R.layout.observation_confirmation);
 
-        if (mIsConfirmation) {
-            setTitle(R.string.details);
-        } else {
-            setTitle(R.string.edit_observation);
-        }
+        setTitle(R.string.details);
 
         if (mApp == null) {
             mApp = (INaturalistApp) getApplicationContext();
@@ -307,25 +304,40 @@ public class ObservationEditor extends AppCompatActivity {
         mApp.setStringResourceForView(this, R.id.onboarding_species_name_close, "got_it_all_caps", "got_it");
 
         if (mSharePhotos != null) {
-            // Share photos(s) with iNaturalist
-            Log.e(TAG, "Insert 1");
+            // Share photo/sound(s) with iNaturalist
+            Logger.tag(TAG).error("Insert 1");
+
+            // Detect if sounds or photos are shared here
+            ContentResolver cr = getContentResolver();
+            String mimeType = cr.getType(mSharePhotos.get(0));
+            if (mimeType == null) {
+                String extension = getExtension(this, mSharePhotos.get(0));
+                mSharedAudio = (extension != null) && ((extension.toLowerCase().equals("mp3")) ||
+                (extension.toLowerCase().equals("wav")) ||
+                (extension.toLowerCase().equals("3gp")) ||
+                (extension.toLowerCase().equals("amr")));
+            } else {
+                mSharedAudio = (mimeType != null) && (mimeType.startsWith("audio/"));
+            }
+
             mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
             if (mUri == null) {
-                Log.e(TAG, "Failed to insert new observation into " + Observation.CONTENT_URI);
+                Logger.tag(TAG).error("Failed to insert new observation into " + Observation.CONTENT_URI);
                 finish();
                 return;
             }
             setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
             getIntent().setAction(Intent.ACTION_INSERT);
 
-            mPhotosAdded = new ArrayList<String>();
+            mPhotosAndSoundsAdded = new ArrayList<String>();
             mPhotosRemoved = new ArrayList<ObservationPhoto>();
+            mSoundsRemoved = new ArrayList<>();
 
         } else if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
             Uri uri = intent.getData();
             if (uri == null) {
-                Log.e(TAG, "Null URI from intent.getData");
+                Logger.tag(TAG).error("Null URI from intent.getData");
                 finish();
                 return;
             }
@@ -335,10 +347,10 @@ public class ObservationEditor extends AppCompatActivity {
                 mUri = uri;
                 break;
             case Observation.OBSERVATIONS_URI_CODE:
-                Log.e(TAG, "Insert 2: " + uri);
+                Logger.tag(TAG).error("Insert 2: " + uri);
                 mUri = getContentResolver().insert(uri, null);
                 if (mUri == null) {
-                    Log.e(TAG, "Failed to insert new observation into " + uri);
+                    Logger.tag(TAG).error("Failed to insert new observation into " + uri);
                     finish();
                     return;
                 }
@@ -353,10 +365,10 @@ public class ObservationEditor extends AppCompatActivity {
                     return;
                 }
                 mFileUri = getPath(this, mFileUri);
-                Log.e(TAG, "Insert 3");
+                Logger.tag(TAG).error("Insert 3");
                 mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
                 if (mUri == null) {
-                    Log.e(TAG, "Failed to insert new observation into " + uri);
+                    Logger.tag(TAG).error("Failed to insert new observation into " + uri);
                     finish();
                     return;
                 }
@@ -364,7 +376,7 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation = new Observation(mCursor);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
-                    Log.e(TAG, "UUID 1 - " + mObservation.uuid);
+                    Logger.tag(TAG).error("UUID 1 - " + mObservation.uuid);
                 }
 
                 updateImageOrientation(mFileUri);
@@ -374,13 +386,14 @@ public class ObservationEditor extends AppCompatActivity {
                 mFileUri = null;
                 break;
             default:
-                Log.e(TAG, "Unknown action, exiting");
+                Logger.tag(TAG).error("Unknown action, exiting");
                 finish();
                 return;
             }
 
-            mPhotosAdded = new ArrayList<String>();
-            mPhotosRemoved = new ArrayList<ObservationPhoto>();
+            mPhotosAndSoundsAdded = new ArrayList<>();
+            mPhotosRemoved = new ArrayList<>();
+            mSoundsRemoved = new ArrayList<>();
         } else {
             if (mUri == null) {
                 mUri = intent.getData();
@@ -417,7 +430,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_GEOPRIVACY_CHANGED, eventParams);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
 
                     }
@@ -443,7 +456,7 @@ public class ObservationEditor extends AppCompatActivity {
                     eventParams.put(AnalyticsClient.EVENT_PARAM_NEW_VALUE, mIsCaptive ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_CAPTIVE_CHANGED, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
             }
@@ -549,7 +562,7 @@ public class ObservationEditor extends AppCompatActivity {
                             }
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 }
 
@@ -580,7 +593,7 @@ public class ObservationEditor extends AppCompatActivity {
             public void onClick(View view) {
                 mTaxonSearchStarted = true;
                 if (
-                        (mGallery.getAdapter().getCount() == 0) ||
+                        (((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount() == 0) ||
                         (!mApp.getSuggestSpecies()) ||
                         ((mSpeciesGuess != null) && (mSpeciesGuess.length() > 0) && (mObservation.taxon_id == null))
                 ) {
@@ -647,6 +660,18 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
 
+        if ((intent != null) && (!mSoundRecorded)) {
+            if (intent.getBooleanExtra(RECORD_SOUND, false)) {
+                // Immediately record a sound
+                recordSound();
+            } else if (intent.getBooleanExtra(CHOOSE_SOUND, false)) {
+                // Immediately choose an existing sound
+                mChoseNewSound = true;
+                chooseSound();
+            }
+        }
+
+
         initUi();
 
         if (intent != null) {
@@ -671,7 +696,7 @@ public class ObservationEditor extends AppCompatActivity {
                 // Taxon info not loaded - download it now
                 mTaxonReceiver = new TaxonReceiver();
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
-                Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
+                Logger.tag(TAG).info("Registering ACTION_GET_TAXON_NEW_RESULT");
                 BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);
@@ -842,7 +867,13 @@ public class ObservationEditor extends AppCompatActivity {
                 mApp.requestExternalStoragePermission(ObservationEditor.this, new INaturalistApp.OnRequestPermissionResult() {
                     @Override
                     public void onPermissionGranted() {
-                        importPhotos(mSharePhotos, true);
+                        if (!mSharedAudio) {
+                            // Images shared
+                            importPhotos(mSharePhotos, true);
+                        } else {
+                            // Sounds shared
+                            importSounds(mSharePhotos);
+                        }
                     }
 
                     @Override
@@ -859,14 +890,20 @@ public class ObservationEditor extends AppCompatActivity {
                 });
                 return;
             } else {
-                importPhotos(mSharePhotos, true);
+                if (!mSharedAudio) {
+                    // Images shared
+                    importPhotos(mSharePhotos, true);
+                } else {
+                    // Sounds shared
+                    importSounds(mSharePhotos);
+                }
             }
         }
 
     }
 
     private void editNextObservation(int direction) {
-        Log.v("ObservationEditor", "editNextObservation: Direction = " + direction);
+        Logger.tag(TAG).info("editNextObservation: Direction = " + direction);
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String login = prefs.getString("username", null);
         String conditions = "(_synced_at IS NULL";
@@ -881,13 +918,13 @@ public class ObservationEditor extends AppCompatActivity {
         // Find next observation
         Long obsId, externalObsId;
         cursor.moveToFirst();
-        Log.e("ObservationEditor", "Current obs id: " + mObservation._id + ", " + mObservation.id);
+        Logger.tag(TAG).error("Current obs id: " + mObservation._id + ", " + mObservation.id);
         do {
             obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
             externalObsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation.ID));
             if (((mObservation._id != null) && (obsId.equals(mObservation._id.longValue()))) ||
                 ((mObservation.id != null) && (externalObsId.equals(mObservation.id.longValue())))) {
-                Log.e("ObservationEditor", "Found current obs with " + obsId + ", " + externalObsId);
+                Logger.tag(TAG).error("Found current obs with " + obsId + ", " + externalObsId);
                 break;
             }
         } while (cursor.moveToNext());
@@ -899,15 +936,15 @@ public class ObservationEditor extends AppCompatActivity {
 
             // Edit the next observation (if one is available)
             if (direction == 1) {
-                Log.v("ObservationEditor", "Moving to previous observation");
+                Logger.tag(TAG).info("Moving to previous observation");
                 cursor.moveToNext();
             } else {
-                Log.v("ObservationEditor", "Moving to next observation");
+                Logger.tag(TAG).info("Moving to next observation");
                 cursor.moveToPrevious();
             }
             obsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation._ID));
             externalObsId = cursor.getLong(cursor.getColumnIndexOrThrow(Observation.ID));
-            Log.e("ObservationEditor", "Next obs ID: " + obsId + ", " + externalObsId);
+            Logger.tag(TAG).error("Next obs ID: " + obsId + ", " + externalObsId);
             cursor.close();
             Uri uri = ContentUris.withAppendedId(Observation.CONTENT_URI, obsId != null ? obsId : externalObsId);
             Intent intent = new Intent(Intent.ACTION_EDIT, uri, this, ObservationEditor.class);
@@ -925,6 +962,22 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void recordSound() {
+        try {
+            Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+            startActivityForResult(intent, RECORD_SOUND_ACTIVITY_REQUEST_CODE);
+        } catch (ActivityNotFoundException exc) {
+            // No default sound recorder found
+            Logger.tag(TAG).error(exc);
+
+            Intent intent = new Intent(this, RecordSoundActivity.class);
+            startActivityForResult(intent, RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE);
+        }
+
+        // Make sure we won't try to re-record a sound in case the activity pauses/resumes.
+        mSoundRecorded = true;
     }
 
     private void takePhoto() {
@@ -955,6 +1008,47 @@ public class ObservationEditor extends AppCompatActivity {
         mPictureTaken = true;
     }
 
+    private void chooseSound() {
+        if (!mApp.isExternalStoragePermissionGranted()) {
+            mApp.requestExternalStoragePermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                @Override
+                public void onPermissionGranted() {
+                    chooseSound();
+                }
+
+                @Override
+                public void onPermissionDenied() {
+
+                }
+            });
+            return;
+        }
+
+        mFileUri = getOutputMediaFileUri(); // create a file to save the sound file
+        mFileUri = getPath(ObservationEditor.this, mFileUri);
+
+        final Intent galleryIntent = new Intent();
+        galleryIntent.setType("audio/*");
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            // Multi-sound picking is supported
+            galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
+            final SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
+            if (!prefs.getBoolean("shown_multi_select_toast", false)) {
+                // Show a toast explaining the multi-select functionality
+                Toast.makeText(this, R.string.multi_select_sound_description, Toast.LENGTH_LONG).show();
+                prefs.edit().putBoolean("shown_multi_select_toast", true).commit();
+            }
+        }
+
+        this.startActivityForResult(galleryIntent, CHOOSE_SOUNDS_REQUEST_CODE);
+
+        // Make sure we won't re-import sounds it in case the activity pauses/resumes.
+        mSoundRecorded = true;
+    }
+
     private void choosePhoto() {
         if (!mApp.isExternalStoragePermissionGranted()) {
             mApp.requestExternalStoragePermission(this, new INaturalistApp.OnRequestPermissionResult() {
@@ -971,7 +1065,7 @@ public class ObservationEditor extends AppCompatActivity {
             return;
         }
 
-        mFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
+        mFileUri = getOutputMediaFileUri(); // create a file to save the image
         mFileUri = getPath(ObservationEditor.this, mFileUri);
 
         final Intent galleryIntent = new Intent();
@@ -998,12 +1092,12 @@ public class ObservationEditor extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "onBackPressed");
+        Logger.tag(TAG).debug("onBackPressed");
         onBack();
     }
     
     private boolean onBack() {
-        Log.d(TAG, "onBack 1");
+        Logger.tag(TAG).debug("onBack 1");
         if ((mCursor ==  null) || (mCursor.getCount() == 0)) {
             finish();
             return false;
@@ -1011,7 +1105,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         Observation observationCopy = new Observation(mCursor);
         uiToObservation();
-        if (!mObservation.isDirty() && !mPhotosChanged) {
+        if (!mObservation.isDirty() && !mPhotosChanged && !mSoundsChanged) {
             // User hasn't changed anything - no need to display confirmation dialog
 
             if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
@@ -1022,7 +1116,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             mCanceled = true;
-            Log.d(TAG, "onBack 2 - " + mReturnToObservationList);
+            Logger.tag(TAG).debug("onBack 2 - " + mReturnToObservationList);
             setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
             finish();
             return false;
@@ -1045,34 +1139,41 @@ public class ObservationEditor extends AppCompatActivity {
                         }
 
                         mCanceled = true;
-                        revertPhotos();
+                        revertPhotosAndSounds();
                         setResult(mReturnToObservationList ? RESULT_RETURN_TO_OBSERVATION_LIST : RESULT_CANCELED);
                         finish();
                     }
                 },
                 null);
 
-        Log.d(TAG, "onBack 3 - " + mReturnToObservationList);
+        Logger.tag(TAG).debug("onBack 3 - " + mReturnToObservationList);
         return true;
     }
 
-    // User canceled - revert any changes made to the observation photos
-    private void revertPhotos() {
+    // User canceled - revert any changes made to the observation photos/sounds
+    private void revertPhotosAndSounds() {
         // Mark any deleted photos as non-deleted
         for (ObservationPhoto photo : mPhotosRemoved) {
             ContentValues cv = new ContentValues();
-            cv.put(Observation.IS_DELETED, 0);
+            cv.put(ObservationPhoto.IS_DELETED, 0);
             getContentResolver().update(photo.getUri(), cv, null, null);
         }
+        // Mark any deleted sounds as non-deleted
+        for (ObservationSound sound : mSoundsRemoved) {
+            ContentValues cv = new ContentValues();
+            cv.put(ObservationSound.IS_DELETED, 0);
+            getContentResolver().update(sound.getUri(), cv, null, null);
+        }
 
-        // Delete any photos that were added
-        for (String uriString : mPhotosAdded) {
+
+        // Delete any photos/sounds that were added
+        for (String uriString : mPhotosAndSoundsAdded) {
             Uri uri = Uri.parse(uriString);
             getContentResolver().delete(uri, null, null);
         }
 
         // Restore the positions of all photos
-    	updateImages();
+    	updateImagesAndSounds();
         GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
         adapter.refreshPhotoPositions(null);
     }
@@ -1111,7 +1212,7 @@ public class ObservationEditor extends AppCompatActivity {
                                                 params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
                                                 params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
                                             } catch (JSONException e) {
-                                                e.printStackTrace();
+                                                Logger.tag(TAG).error(e);
                                             }
                                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
 
@@ -1142,7 +1243,7 @@ public class ObservationEditor extends AppCompatActivity {
                             params.put(AnalyticsClient.EVENT_PARAM_ONLINE_REACHABILITY, mApp.isNetworkAvailable() ? AnalyticsClient.EVENT_PARAM_VALUE_YES : AnalyticsClient.EVENT_PARAM_VALUE_NO);
                             params.put(AnalyticsClient.EVENT_PARAM_FROM_VISION_SUGGESTION, mFromSuggestion);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SAVE, params);
 
@@ -1263,12 +1364,12 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation = new Observation(mCursor);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
-                    Log.e(TAG, "UUID 2 - " + mObservation.uuid);
+                    Logger.tag(TAG).error("UUID 2 - " + mObservation.uuid);
                 }
             } else {
                 mObservation = new Observation();
                 mObservation.uuid = UUID.randomUUID().toString();
-                Log.e(TAG, "UUID 3 - " + mObservation.uuid);
+                Logger.tag(TAG).error("UUID 3 - " + mObservation.uuid);
                 return;
             }
         }
@@ -1286,7 +1387,7 @@ public class ObservationEditor extends AppCompatActivity {
         mLocationRefreshButton.setVisibility(View.VISIBLE);
         mLocationIcon.setVisibility(View.VISIBLE);
 
-        if (!mChoseNewPhoto) {
+        if (!mChoseNewPhoto && !mChoseNewSound) {
             if (mGettingLocation) {
                 mLocationProgressView.setVisibility(View.VISIBLE);
                 mFindingCurrentLocation.setVisibility(View.VISIBLE);
@@ -1298,9 +1399,12 @@ public class ObservationEditor extends AppCompatActivity {
 
             if (Intent.ACTION_INSERT.equals(getIntent().getAction())) {
                 if (mObservation.observed_on == null) {
-                    mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
-                    mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
-                    mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
+                    if (mSharePhotos == null) {
+                        mObservation.observed_on = mObservation.observed_on_was = new Timestamp(System.currentTimeMillis());
+                        mObservation.time_observed_at = mObservation.time_observed_at_was = mObservation.observed_on;
+                        mObservation.observed_on_string = mObservation.observed_on_string_was = mApp.formatDatetime(mObservation.time_observed_at);
+                    }
+
                 }
 
                 if (mObservation.latitude == null && mCurrentLocation == null) {
@@ -1329,7 +1433,7 @@ public class ObservationEditor extends AppCompatActivity {
                             errorsHtml.append("<br/>");
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
                 errorsDescription.setText(Html.fromHtml(errorsHtml.toString()));
             }
@@ -1342,7 +1446,7 @@ public class ObservationEditor extends AppCompatActivity {
     private void updateUi() {
         observationToUi();
 
-        updateImages();
+        updateImagesAndSounds();
     }
 
     private void uiToObservation() {
@@ -1529,7 +1633,6 @@ public class ObservationEditor extends AppCompatActivity {
         if (mCursor == null) { return true; }
         Cursor c = getContentResolver().query(mUri, new String[]{Observation._ID}, null, null, null);
         if (c.getCount() == 0) { return true; }
-        //if (mImageCursor != null && mImageCursor.getCount() > 0) { return false; }
 
         if (Intent.ACTION_INSERT.equals(getIntent().getAction()) && mCanceled) return true;
         return false;
@@ -1554,7 +1657,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
                 getContentResolver().update(mUri, cv, null, null);
             } catch (NullPointerException e) {
-                Log.e(TAG, "failed to save observation:" + e);
+                Logger.tag(TAG).error("failed to save observation:" + e);
             }
         }
 
@@ -1575,8 +1678,12 @@ public class ObservationEditor extends AppCompatActivity {
                     // Delete any observation photos taken with it
                     getContentResolver().delete(ObservationPhoto.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
                 }
+                if (mSoundCursor != null && mSoundCursor.getCount() > 0) {
+                    // Delete any observation sounds taken with it
+                    getContentResolver().delete(ObservationSound.CONTENT_URI, "_observation_id=?", new String[]{mObservation._id.toString()});
+                }
             } catch (NullPointerException e) {
-                Log.e(TAG, "Failed to delete observation: " + e);
+                Logger.tag(TAG).error("Failed to delete observation: " + e);
             }
         } else {
             // Only mark as deleted (so we'll later on sync the deletion)
@@ -1593,7 +1700,7 @@ public class ObservationEditor extends AppCompatActivity {
      */
 
     /** Create a file Uri for saving an image or video */
-    private Uri getOutputMediaFileUri(int type){
+    private Uri getOutputMediaFileUri() {
         ContentValues values = new ContentValues();
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String name = "observation_" + mObservation._created_at.getTime() + "_" + timeStamp;
@@ -1787,13 +1894,13 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         if (locationIsGood(mCurrentLocation)) {
-            // Log.d(TAG, "place was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Logger.tag(TAG).debug("place was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
 
         if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
-            // Log.d(TAG, "place request was old and place was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            // Logger.tag(TAG).debug("place request was old and place was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
             stopGetLocation();
             stoppedGettingLocation = true;
         }
@@ -1851,7 +1958,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         })).start();
@@ -1895,7 +2002,7 @@ public class ObservationEditor extends AppCompatActivity {
                 exif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, GPSEncoder.longitudeRef(longitude));
                 exif.saveAttributes();
             } catch (IOException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
         }
@@ -2071,13 +2178,20 @@ public class ObservationEditor extends AppCompatActivity {
         }, 10);
 
 
-        if (requestCode == OBSERVATION_PHOTOS_REQUEST_CODE) {
+        if (requestCode == OBSERVATION_SOUNDS_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Integer deleteSoundId = data.getIntExtra(ObservationSoundViewer.DELETE_SOUND_ID, -1);
+                if (deleteSoundId > -1) {
+                    deleteSound(deleteSoundId);
+                }
+            }
+        } else if (requestCode == OBSERVATION_PHOTOS_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Integer setFirstPhotoIndex = data.getIntExtra(ObservationPhotosViewer.SET_DEFAULT_PHOTO_INDEX, -1);
                 Integer deletePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DELETE_PHOTO_INDEX, -1);
                 if (setFirstPhotoIndex > -1) {
                     GalleryCursorAdapter adapter = ((GalleryCursorAdapter)mGallery.getAdapter());
-                    if (setFirstPhotoIndex < adapter.getCount()) {
+                    if (setFirstPhotoIndex < adapter.getPhotoCount()) {
                         adapter.setAsFirstPhoto(setFirstPhotoIndex);
                     }
 
@@ -2098,6 +2212,12 @@ public class ObservationEditor extends AppCompatActivity {
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
                 double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
+
+                if ((latitude == 0) && (longitude == 0)) {
+                    // Don't set position if lat/lng are exactly 0
+                    return;
+                }
+
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
                 mObservation.positional_accuracy = (int) Math.ceil(accuracy);
@@ -2148,7 +2268,7 @@ public class ObservationEditor extends AppCompatActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_TAXON_CHANGED, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
             } else {
@@ -2242,7 +2362,7 @@ public class ObservationEditor extends AppCompatActivity {
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_PHOTO, eventParams);
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
 
@@ -2251,6 +2371,56 @@ public class ObservationEditor extends AppCompatActivity {
                 if ((getIntent() != null) && (!mPhotosChanged)) {
                     Intent intent = getIntent();
                     if (intent.getBooleanExtra(CHOOSE_PHOTO, false)) {
+                        // It's a new obs - delete it and get back to obs list
+                        delete(true);
+                        finish();
+                        return;
+                    }
+                }
+
+            }
+
+        } else if (requestCode == RECORD_SOUND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Uri uri = data.getData();
+                prepareCapturedSound(uri, true);
+            }
+
+        } else if (requestCode == RECORD_SOUND_INTERNAL_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Uri uri = data.getData();
+                prepareCapturedSound(uri, false);
+            }
+
+        } else if (requestCode == CHOOSE_SOUNDS_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                final List<Uri> sounds = new ArrayList<Uri>();
+
+                if ((android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+                    && (data.getClipData() != null)) {
+                    // Multi sound mode
+                    ClipData clipData = data.getClipData();
+
+                    for (int i = 0; i < clipData.getItemCount(); i++) {
+                        ClipData.Item item = clipData.getItemAt(i);
+                        Uri uri = item.getUri();
+                        sounds.add(uri);
+                    }
+                } else {
+                    // Single sound mode
+                    Uri selectedSoundUri = data == null ? null : data.getData();
+                    if (selectedSoundUri == null) {
+                        selectedSoundUri = mFileUri;
+                    }
+                    sounds.add(selectedSoundUri);
+                }
+
+                importSounds(sounds);
+
+            } else {
+                if ((getIntent() != null) && (!mSoundsChanged)) {
+                    Intent intent = getIntent();
+                    if (intent.getBooleanExtra(CHOOSE_SOUND, false)) {
                         // It's a new obs - delete it and get back to obs list
                         delete(true);
                         finish();
@@ -2269,12 +2439,12 @@ public class ObservationEditor extends AppCompatActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_PHOTO, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 final Uri selectedImageUri = mFileUri;
 
-                Log.v(TAG, String.format("%s", selectedImageUri));
+                Logger.tag(TAG).info(String.format("%s", selectedImageUri));
 
                 // Image captured and saved to mFileUri specified in the Intent
                 mHelper.loading(getString(R.string.preparing_photo));
@@ -2311,7 +2481,7 @@ public class ObservationEditor extends AppCompatActivity {
             } else {
                 // Image capture failed, advise user
                 Toast.makeText(this,  String.format(getString(R.string.something_went_wrong), mFileUri.toString()), Toast.LENGTH_LONG).show();
-                Log.e(TAG, "camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
+                Logger.tag(TAG).error("camera bailed, requestCode: " + requestCode + ", resultCode: " + resultCode + ", data: " + (data == null ? "null" : data.getData()));
             }
             mFileUri = null; // don't let this hang around
             
@@ -2324,6 +2494,113 @@ public class ObservationEditor extends AppCompatActivity {
                 getLocation();
             }
         }
+    }
+
+    private String getAudioFilePathFromUri(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int index = cursor.getColumnIndex(MediaStore.Audio.AudioColumns.DATA);
+        return cursor.getString(index);
+    }
+
+    public static void copyFile(File src, File dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        copyInputStream(in, dst);
+    }
+
+    public static void copyFileFromUri(Context context, Uri uri, File dst) throws IOException {
+        InputStream in = context.getContentResolver().openInputStream(uri);
+        copyInputStream(in, dst);
+    }
+
+    public static void copyInputStream(InputStream in, File dst) throws IOException {
+        try {
+            OutputStream out = new FileOutputStream(dst);
+            try {
+                // Transfer bytes from in to out
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+            } finally {
+                out.close();
+            }
+        } finally {
+            in.close();
+        }
+    }
+
+    private void prepareCapturedSound(Uri selectedSoundUri, boolean translateUriToPath) {
+        // We can't control where the audio file gets saved to - just copy it locally
+        String filePath = translateUriToPath ? getAudioFilePathFromUri(selectedSoundUri) : selectedSoundUri.toString();
+
+        if (filePath == null) {
+            Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String fileExtension = filePath.substring(filePath.lastIndexOf('.'));
+
+        File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + fileExtension);
+        try {
+            copyFile(new File(filePath), destFile);
+        } catch (IOException e) {
+            Logger.tag(TAG).error(e);
+            Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Uri createdUri = createObservationSoundForSound(Uri.fromFile(destFile));
+
+        if (createdUri == null) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mHelper.alert(getResources().getString(R.string.alert_unsupported_audio_type));
+                }
+            });
+            return;
+        }
+
+        mPhotosAndSoundsAdded.add(createdUri.toString());
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                updateImagesAndSounds();
+
+                // Retrieve current coordinates
+                if (!mLocationManuallySet && !mGettingLocation) {
+                    getLocation();
+                }
+
+                mHelper.stopLoading();
+
+
+                // #479 - Annoying hack to handle the case if the user tries to rotate the screen after the import.
+                // For some reason, when returning from an RECORD_SOUND_ACTION activity, the ObservationEditor activity
+                // isn't in full focus, and rotating the screen doesn't affect it, unless we force a focus on one of its UI elements.
+                mDescriptionTextView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mDescriptionTextView.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(mDescriptionTextView, InputMethodManager.SHOW_IMPLICIT);
+
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            Logger.tag(TAG).error(e);
+                        }
+
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                    }
+                }, 100);
+            }
+        });
+
     }
 
     private void prepareCapturedPhoto(Uri selectedImageUri) {
@@ -2342,7 +2619,7 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (copyPath != null) {
             createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
-            mPhotosAdded.add(createdUri.toString());
+            mPhotosAndSoundsAdded.add(createdUri.toString());
             mCameraPhotos.add(copyPath);
         }
 
@@ -2365,7 +2642,7 @@ public class ObservationEditor extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                updateImages();
+                updateImagesAndSounds();
                 // Retrieve current coordinates (since we can't launch the camera intent with GPS coordinates)
                 if (!mLocationManuallySet && !mGettingLocation) {
                     getLocation();
@@ -2387,7 +2664,7 @@ public class ObservationEditor extends AppCompatActivity {
                         try {
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
 
                         if (getCurrentFocus() != null) imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
@@ -2399,13 +2676,64 @@ public class ObservationEditor extends AppCompatActivity {
 
     }
 
+    private void importSounds(final List<Uri> sounds) {
+        mHelper.loading(getString(R.string.importing_sounds));
+
+        // Don't set any date/etc when importing a sound
+        mLocationManuallySet = true;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                stopGetLocation();
+
+                mFindingCurrentLocation.setVisibility(View.GONE);
+                mLocationRefreshButton.setVisibility(View.VISIBLE);
+
+                mLocationProgressView.setVisibility(View.GONE);
+                mLocationIcon.setVisibility(View.VISIBLE);
+            }
+        });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean errorImporting = false;
+
+                for (final Uri sound : sounds) {
+                    Uri createdUri = createObservationSoundForSound(sound);
+
+                    if (createdUri == null) {
+                        errorImporting = true;
+                        break;
+                    }
+
+                    mPhotosAndSoundsAdded.add(createdUri.toString());
+                }
+
+                final boolean finalErrorImporting = errorImporting;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateImagesAndSounds();
+                        mHelper.stopLoading();
+
+                        if (finalErrorImporting) {
+                            mHelper.alert(getString(R.string.invalid_audio_extension));
+                        }
+                    }
+                });
+            }
+        }).start();
+
+    }
+
     private void importPhotos(final List<Uri> photos, final boolean overrideLocation) {
         mHelper.loading(getString(R.string.importing_photos));
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                int position = mGallery.getCount();
+                int position = ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount();
                 boolean errorImporting = false;
 
                 for (final Uri photo : photos) {
@@ -2418,7 +2746,7 @@ public class ObservationEditor extends AppCompatActivity {
                         break;
                     }
 
-                    mPhotosAdded.add(createdUri.toString());
+                    mPhotosAndSoundsAdded.add(createdUri.toString());
                     position++;
 
                     // Import photo metadata (e.g. place) only when the place hasn't been set
@@ -2447,7 +2775,7 @@ public class ObservationEditor extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        updateImages();
+                        updateImagesAndSounds();
                         mHelper.stopLoading();
 
                         if (finalErrorImporting) {
@@ -2461,7 +2789,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
-        return createObservationPhotoForPhoto(photoUri, mGallery.getCount());
+        return createObservationPhotoForPhoto(photoUri, ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount());
     }
 
     public static String getExtension(Context context, Uri uri) {
@@ -2480,6 +2808,46 @@ public class ObservationEditor extends AppCompatActivity {
         }
 
         return extension;
+    }
+
+    private Uri createObservationSoundForSound(Uri soundUri) {
+        mPhotosChanged = true;
+
+        String extension = getExtension(this, soundUri);
+
+        if (extension == null) {
+            ContentResolver cr = getContentResolver();
+            String mimeType = cr.getType(soundUri);
+            if ((mimeType == null) || (!mimeType.startsWith("audio/"))) {
+                return null;
+            }
+        } else if (
+                (!extension.toLowerCase().equals("mp3")) &&
+                (!extension.toLowerCase().equals("wav")) &&
+                (!extension.toLowerCase().equals("3gp")) &&
+                (!extension.toLowerCase().equals("amr"))
+            ) {
+            return null;
+        }
+
+        // Copy file to local cache
+        File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + "." + extension);
+        try {
+            copyFileFromUri(this, soundUri, destFile);
+        } catch (IOException e) {
+            Logger.tag(TAG).error(e);
+            Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
+            return null;
+        }
+
+        ObservationSound os = new ObservationSound();
+
+        ContentValues cv = os.getContentValues();
+        cv.put(ObservationSound._OBSERVATION_ID, mObservation._id);
+        cv.put(ObservationSound.OBSERVATION_ID, mObservation.id);
+        cv.put(ObservationSound.FILENAME, destFile.getAbsolutePath());
+
+        return getContentResolver().insert(ObservationSound.CONTENT_URI, cv);
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri, int position) {
@@ -2570,7 +2938,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
 
             } catch (ImageProcessingException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
 
@@ -2598,7 +2966,7 @@ public class ObservationEditor extends AppCompatActivity {
                     mDateSetByUser = timestamp;
                     mTimeSetByUser = timestamp;
                 } catch (ParseException e) {
-                    Log.d(TAG, "Failed to parse " + datetime + ": " + e);
+                    Logger.tag(TAG).debug("Failed to parse " + datetime + ": " + e);
                 }
             } else {
                 // No original datetime - nullify the date
@@ -2610,13 +2978,40 @@ public class ObservationEditor extends AppCompatActivity {
             is.close();
             observationToUi();
         } catch (IOException e) {
-            Log.e(TAG, "couldn't find " + photoUri);
+            Logger.tag(TAG).error("couldn't find " + photoUri);
         }
+    }
+
+    private void deleteSound(int id) {
+        mSoundsChanged = true;
+
+        Cursor c = getContentResolver().query(ObservationSound.CONTENT_URI,
+                ObservationSound.PROJECTION,
+                "_id = ?",
+                new String[]{String.valueOf(id)},
+                ObservationSound.DEFAULT_SORT_ORDER);
+
+        if (c.getCount() == 0) {
+            return;
+        }
+
+        ObservationSound os = new ObservationSound(c);
+
+        c.close();
+
+        mSoundsRemoved.add(os);
+
+        // Mark sound as deleted
+        ContentValues cv = new ContentValues();
+        cv.put(ObservationSound.IS_DELETED, 1);
+        int updateCount = getContentResolver().update(os.getUri(), cv, null, null);
+
+    	updateImagesAndSounds();
     }
     
     private void deletePhoto(int position) {
     	GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-        if (position >= adapter.getCount()) {
+        if (position >= adapter.getPhotoCount()) {
             return;
         }
 
@@ -2633,7 +3028,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto.IS_DELETED, 1);
         int updateCount = getContentResolver().update(op.getUri(), cv, null, null);
 
-    	updateImages();
+    	updateImagesAndSounds();
 
         // Refresh the positions of all other photos
         adapter = (GalleryCursorAdapter) mGallery.getAdapter();
@@ -2783,26 +3178,37 @@ public class ObservationEditor extends AppCompatActivity {
             values.put(MediaStore.Images.ImageColumns.ORIENTATION, degrees);
             getContentResolver().update(uri, values, null, null);
         } catch (Exception e) {
-        	Log.e(TAG, "Couldn't update image orientation for path: " + uri);
+        	Logger.tag(TAG).error("Couldn't update image orientation for path: " + uri);
         }
     }
 
-    protected void updateImages() {
+    protected void updateImagesAndSounds() {
     	if (mObservation.id != null) {
     		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
     				ObservationPhoto.PROJECTION, 
     				"(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
-    				new String[]{mObservation._id.toString(), mObservation.id.toString()}, 
-    				ObservationPhoto.DEFAULT_SORT_ORDER);
+    				new String[]{mObservation._id.toString(), mObservation.id.toString()},
+                    ObservationPhoto.DEFAULT_SORT_ORDER);
+     		mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+    				ObservationSound.PROJECTION,
+    				"(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+    				new String[]{mObservation._id.toString(), mObservation.id.toString()},
+    				ObservationSound.DEFAULT_SORT_ORDER);
     	} else {
      		mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
     				ObservationPhoto.PROJECTION, 
     				"_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
     				new String[]{mObservation._id.toString()}, 
     				ObservationPhoto.DEFAULT_SORT_ORDER);
+            mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                    ObservationSound.PROJECTION,
+                    "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                    new String[]{mObservation._id.toString()},
+                    ObservationSound.DEFAULT_SORT_ORDER);
     	}
         mImageCursor.moveToFirst();
-        mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor));
+    	mSoundCursor.moveToFirst();
+        mGallery.setAdapter(new GalleryCursorAdapter(this, mImageCursor, mSoundCursor));
     }
 
     public class GalleryCursorAdapter extends BaseAdapter {
@@ -2811,39 +3217,65 @@ public class ObservationEditor extends AppCompatActivity {
 
         private Context mContext;
         private Cursor mGalleryCursor;
+        private Cursor mSoundCursor;
         private HashMap<Integer, View> mViews;
 
         public Cursor getCursor() {
             return mGalleryCursor;
         }
 
-        public GalleryCursorAdapter(Context c, Cursor cur) {
+        public GalleryCursorAdapter(Context c, Cursor cur, Cursor soundCur) {
             mContext = c;
             mGalleryCursor = cur;
+            mSoundCursor = soundCur;
             mViews = new HashMap<Integer, View>();
         }
 
         public int getCount() {
+            return mGalleryCursor.getCount() + mSoundCursor.getCount();
+        }
+
+        public int getPhotoCount() {
             return mGalleryCursor.getCount();
         }
 
         public Object getItem(int position) {
-            mGalleryCursor.moveToPosition(position);
-            return mGalleryCursor;
+            if (position < mGalleryCursor.getCount()) {
+                mGalleryCursor.moveToPosition(position);
+                return mGalleryCursor;
+            } else {
+                mSoundCursor.moveToPosition(position - mGalleryCursor.getCount());
+                return mSoundCursor;
+            }
         }
 
         public long getItemId(int position) {
-            mGalleryCursor.moveToPosition(position);
-            return mGalleryCursor.getLong(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.ID));
+            if (position < mGalleryCursor.getCount()) {
+                mGalleryCursor.moveToPosition(position);
+                return mGalleryCursor.getLong(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.ID));
+            } else {
+                mSoundCursor.moveToPosition(position - mGalleryCursor.getCount());
+                return mSoundCursor.getLong(mSoundCursor.getColumnIndexOrThrow(ObservationSound.ID));
+            }
         }
 
         public String getItemIdString(int position) {
-            mGalleryCursor.moveToPosition(position);
-            String id = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-            if (id == null) {
-                return mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+            if (position < mGalleryCursor.getCount()) {
+                mGalleryCursor.moveToPosition(position);
+                String id = mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                if (id == null) {
+                    return mGalleryCursor.getString(mGalleryCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                } else {
+                    return id;
+                }
             } else {
-                return id;
+                mSoundCursor.moveToPosition(position - mGalleryCursor.getCount());
+                String id = mSoundCursor.getString(mSoundCursor.getColumnIndexOrThrow(ObservationSound.FILENAME));
+                if (id == null) {
+                    return mSoundCursor.getString(mSoundCursor.getColumnIndexOrThrow(ObservationSound.FILE_URL));
+                } else {
+                    return id;
+                }
             }
         }
 
@@ -2866,7 +3298,7 @@ public class ObservationEditor extends AppCompatActivity {
             // Update the rest of the photos to be positioned afterwards
             refreshPhotoPositions(position);
 
-            updateImages();
+            updateImagesAndSounds();
         }
 
         public void refreshPhotoPositions(Integer position) {
@@ -2890,7 +3322,6 @@ public class ObservationEditor extends AppCompatActivity {
                     currentPosition++;
                 }
             } while (mGalleryCursor.moveToNext());
-
         }
 
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -2898,11 +3329,37 @@ public class ObservationEditor extends AppCompatActivity {
                 return mViews.get(position);
             }
 
-            mGalleryCursor.moveToPosition(position);
-
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ViewGroup container = null;
             ImageView imageView;
+
+            if (position >= mGalleryCursor.getCount()) {
+                // Show observation sound
+
+                mSoundCursor.moveToPosition(position - mGalleryCursor.getCount());
+
+                final ObservationSound sound = new ObservationSound(mSoundCursor);
+
+                inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                container = (ViewGroup) inflater.inflate(R.layout.observation_sound_gallery_item, null, false);
+                imageView = (ImageView) container.findViewById(R.id.observation_sound);
+
+                imageView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Open up sound player
+                        Intent intent = new Intent(ObservationEditor.this, ObservationSoundViewer.class);
+                        intent.putExtra(ObservationSoundViewer.SOUND_ID, sound._id);
+                        startActivityForResult(intent, OBSERVATION_SOUNDS_REQUEST_CODE);
+                    }
+                });
+
+                mViews.put(position, container);
+                return container;
+            }
+
+            mGalleryCursor.moveToPosition(position);
+
 
             container = (ViewGroup) inflater.inflate(R.layout.observation_photo_gallery_item, null, false);
             imageView = (ImageView) container.findViewById(R.id.observation_photo);
@@ -2961,9 +3418,9 @@ public class ObservationEditor extends AppCompatActivity {
                         }
                     }
                 } catch (FileNotFoundException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 } catch (IOException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 }
             }
 
@@ -3095,20 +3552,50 @@ public class ObservationEditor extends AppCompatActivity {
 
     
     private void openImageIntent(final Activity activity) {
-        new BottomSheet.Builder(activity).sheet(R.menu.observation_confirmation_photo_menu).listener(new DialogInterface.OnClickListener() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+
+        View sheetView = getLayoutInflater().inflate(R.layout.new_obs_menu, null);
+        bottomSheetDialog.setContentView(sheetView);
+        bottomSheetDialog.show();
+
+        View takePhotoButton = sheetView.findViewById(R.id.take_photo);
+        takePhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent;
-                switch (which) {
-                    case R.id.camera:
-                        takePhoto();
-                        break;
-                    case R.id.upload_photo:
-                        choosePhoto();
-                        break;
-                }
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                takePhoto();
             }
-        }).show();
+        });
+
+        View importPhoto = sheetView.findViewById(R.id.import_photo);
+        importPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                choosePhoto();
+            }
+        });
+
+        View recordSoundButton = sheetView.findViewById(R.id.record_sound);
+        recordSoundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                recordSound();
+            }
+        });
+
+        View importSound = sheetView.findViewById(R.id.choose_sound);
+        importSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                chooseSound();
+            }
+        });
+
+        View noMedia = sheetView.findViewById(R.id.no_media_container);
+        noMedia.setVisibility(View.GONE);
     }
 
 
@@ -3137,16 +3624,16 @@ public class ObservationEditor extends AppCompatActivity {
             // Tell the OS to scan the file (will add it to the gallery and create a thumbnail for it)
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image)));
         } catch (IOException e) {
-            Log.e(TAG, "Failed to create gallery photo");
-            e.printStackTrace();
+            Logger.tag(TAG).error("Failed to create gallery photo");
+            Logger.tag(TAG).error(e);
             return null;
         } catch (Exception exc) {
-            Log.e(TAG, "Failed to write gallery photo");
+            Logger.tag(TAG).error("Failed to write gallery photo");
             if (image != null) {
                 // Don't leave around an empty file if we failed to write to it.
                 image.delete();
             }
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
             return null;
         }
 
@@ -3240,7 +3727,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
             }
         } catch (JSONException e3) {
-            //e3.printStackTrace();
+            //Logger.tag(TAG).error(e3);
         }
 
         if (displayName == null) {

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    
+
     <ImageView
         android:id="@+id/taxon_photo"
         android:layout_width="fill_parent"
@@ -52,4 +52,17 @@
         android:visibility="gone"
         />
 
+    <ImageView
+        android:id="@+id/has_sounds"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/sound"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:tint="#ffffff"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        />
 </RelativeLayout>

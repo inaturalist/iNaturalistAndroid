@@ -32,6 +32,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,7 @@ public class MissionsGridActivity extends AppCompatActivity {
 
     public static final String MISSIONS_EXPANSION_LEVEL = "missions_expansion_level";
     public static final String TAXON_ID = "taxon_id";
+    private static final String TAG = "MissionsGridActivity";
 
     UserSpeciesAdapter mMissionsAdapter;
     private PullToRefreshGridViewExtended mMissionsGrid;
@@ -124,7 +126,7 @@ public class MissionsGridActivity extends AppCompatActivity {
                 JSONObject item = results.getJSONObject(i);
                 resultsArray.add(item);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 

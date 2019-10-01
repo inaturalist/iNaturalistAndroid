@@ -50,6 +50,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -61,6 +62,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
     private static final int MAX_MAP_RESULTS = 20;
     public static final String MISSION = "mission";
     public static final String LOCATION_EXPANSION = "location_expansion";
+    private static final String TAG = "MissionDetails";
 
     private INaturalistApp mApp;
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mMission;
@@ -156,7 +158,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                             resultsArray.add(item);
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 }
 
@@ -226,7 +228,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
                     String deviceLanguage =   deviceLocale.getLanguage();
                     obsUrl = "https://" + deviceLanguage + ".wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -252,7 +254,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_MISSIONS_OBSERVE, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         });
@@ -487,7 +489,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 

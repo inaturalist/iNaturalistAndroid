@@ -35,7 +35,6 @@
     <string name="projects">Проекти</string>
     <string name="delete_photo">Видалити фото</string>
     <string name="menu">Меню</string>
-    <string name="layers">Шари</string>
     <string name="my_location">Моє розташування</string>
     <string name="nearby_observations">Спостерігачі поблизу</string>
     <string name="add">Додати</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Покинути</string>
     <string name="join">Приєднатися</string>
-    <string name="loading_check_list">Завантаження чекліста...</string>
     <string name="no_check_list">В чеклісті відсутні таксони!</string>
     <string name="failed_to_add_obs_to_project">Не вдалося додати спостереження \"%1$s\" до проекту \"%2$s\": %3$s</string>
     <string name="invalid_project_field">Будь ласка, введіть коректне значення для поля \'%1s\'</string>
@@ -329,7 +327,6 @@
     <string name="news">Новини</string>
     <string name="article">Стаття</string>
     <string name="couldnt_load_project_news">Не вдалося завантажити новини проекту: %1$s</string>
-    <string name="article_by">Стаття автора</string>
     <string name="couldnt_load_user_details">Не вдалося завантажити дані користувача: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Детальніше »</font></b>]]></string>
     <string name="no_location">Місцезнаходження не вказано</string>

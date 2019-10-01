@@ -22,6 +22,7 @@ import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -216,7 +217,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
     private class DataQualityMetricsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "DataQualityMetricsReceiver");
+            Logger.tag(TAG).error("DataQualityMetricsReceiver");
 
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             BetterJSONObject resultsObj;
@@ -240,7 +241,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
     }
 
     private void refreshIdCanBeImproved() {
-        Log.d(TAG, "refreshIdCanBeImproved");
+        Logger.tag(TAG).debug("refreshIdCanBeImproved");
 
         mLoadingIdCanBeImproved.setVisibility(View.GONE);
 
@@ -300,7 +301,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
 
 
     private void refreshMetrics() {
-        Log.d(TAG, "refreshMetrics - " + mMetricsVotes.length());
+        Logger.tag(TAG).debug("refreshMetrics - " + mMetricsVotes.length());
 
         List<DataQualityItem> metrics = new ArrayList<>();
 
@@ -398,7 +399,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "ChangeDataQualityMetricsReceiver");
+            Logger.tag(TAG).error("ChangeDataQualityMetricsReceiver");
 
             // Re-download the new metric votes
 
@@ -413,7 +414,7 @@ public class DataQualityAssessment extends AppCompatActivity implements DataQual
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "IdCanBeImprovedReceiver");
+            Logger.tag(TAG).error("IdCanBeImprovedReceiver");
 
             boolean isSharedOnApp = intent.getBooleanExtra(INaturalistService.IS_SHARED_ON_APP, false);
             BetterJSONObject resultsObj;

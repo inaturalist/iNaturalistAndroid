@@ -33,6 +33,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
+    private static final String TAG = "UserSpeciesAdapter";
+
     private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
@@ -91,7 +94,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
                 if ((item != null) && (item.getInt("id") == otherItem.getInt("id"))) return convertView;
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
@@ -113,7 +116,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
         try {
             item = mResultList.get(position).getJSONObject("taxon");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return view;
         }
 
@@ -195,7 +198,7 @@ class UserSpeciesAdapter extends ArrayAdapter<String> implements AbsListView.OnS
 
             view.setTag(item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;

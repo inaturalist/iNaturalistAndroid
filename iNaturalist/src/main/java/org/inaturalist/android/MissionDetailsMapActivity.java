@@ -36,6 +36,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -249,7 +250,7 @@ public class MissionDetailsMapActivity extends AppCompatActivity {
 
                 return results;
             } catch (JSONException exc) {
-                exc.printStackTrace();
+                Logger.tag(TAG).error(exc);
                 return null;
             }
         } else {

@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.Locale;
 
 public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
+    private static final String TAG = "ObservationGridAdapter";
     private final INaturalistApp mApp;
     private List<JSONObject> mItems;
     private Context mContext;
@@ -62,6 +64,11 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
 
         TextView researchGrade = (TextView) view.findViewById(R.id.is_research_grade);
         researchGrade.setVisibility(item.optString("quality_grade", "none").equals("research") ? View.VISIBLE : View.GONE);
+
+        boolean hasSounds = (item.has("sounds")) && (!item.isNull("sounds")) && (item.optJSONArray("sounds").length() > 0);
+
+        ImageView hasSoundsImage = (ImageView) view.findViewById(R.id.has_sounds);
+        hasSoundsImage.setVisibility(hasSounds ? View.VISIBLE : View.INVISIBLE);
 
         TextView idName = (TextView) view.findViewById(R.id.id_name);
         final JSONObject taxon = item.optJSONObject("taxon");
@@ -99,11 +106,16 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
         try {
             observationPhotos = item.getJSONArray(isNewApi ? "photos" : "observation_photos");
         } catch (JSONException e1) {
-            e1.printStackTrace();
+            Logger.tag(TAG).error(e1);
             observationPhotos = new JSONArray();
         }
 
-        if (observationPhotos.length() > 0) {
+        if (observationPhotos.length() == 0) {
+            if (hasSounds) {
+                hasSoundsImage.setVisibility(View.INVISIBLE);
+                taxonIcon.setImageResource(R.drawable.sound);
+            }
+        } else {
             JSONObject observationPhoto;
             try {
                 String url;
@@ -142,10 +154,10 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                         });
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             } catch (Exception e) {
                 // Could happen if user scrolls really fast and there a LOT of thumbnails being downloaded at once (too many threads at once)
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 

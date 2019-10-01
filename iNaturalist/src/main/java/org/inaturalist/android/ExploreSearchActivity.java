@@ -35,6 +35,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
     private static final int SEARCH_TYPE_NONE = 2;
 
     private static final int PLACE_SEARCH_HISTORY_SIZE = 10;
+    private static final String TAG = "ExploreSearchActivity";
 
     private static ArrayList<JSONObject> DEFAULT_TAXON_RESULTS;
 
@@ -111,7 +113,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
             DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.birds) + "\", \"name\": \"Aves\", \"iconic_taxon_name\": \"Aves\", \"id\": 3, \"rank_level\": 50, \"rank\": \"class\" }"));
             DEFAULT_TAXON_RESULTS.add(new JSONObject("{ \"preferred_common_name\": \"" + getString(R.string.arachnids) + "\", \"name\": \"Arachnida\", \"iconic_taxon_name\": \"Arachnida\", \"id\": 47119, \"rank_level\": 50, \"rank\": \"class\" }"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         setContentView(R.layout.explore_search);
@@ -516,7 +518,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
 
             return results;
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new ArrayList<>();
         }
     }
@@ -545,7 +547,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
         try {
             result.put("is_recent_result", true);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
 
@@ -611,7 +613,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 
@@ -627,7 +629,7 @@ public class ExploreSearchActivity extends AppCompatActivity {
             myLocation.put("is_my_location", true);
             return myLocation;
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }

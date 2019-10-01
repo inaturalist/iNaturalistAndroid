@@ -11,6 +11,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
+
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -65,6 +67,7 @@ public class Observation implements BaseColumns, Serializable {
     public SerializableJSONArray field_values;
 
     public List<ObservationPhoto> photos;
+    public List<ObservationSound> sounds;
 
     public Timestamp _created_at_was;
     public Timestamp _synced_at_was;
@@ -431,9 +434,27 @@ public class Observation implements BaseColumns, Serializable {
             }
         } catch (JSONException e) {
             if (!e.getMessage().matches("No value for observation_photos")) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
+
+        try {
+            this.sounds = new ArrayList<ObservationSound>();
+            JSONArray sounds;
+            sounds = o.getJSONObject().getJSONArray("observation_sounds");
+            for (int i = 0; i < sounds.length(); i++) {
+                BetterJSONObject json = new BetterJSONObject((JSONObject)sounds.get(i));
+                ObservationSound sound = new ObservationSound(json);
+                sound.observation_id = o.getInt("id");
+                sound._observation_id = this._id;
+                this.sounds.add(sound);
+            }
+        } catch (JSONException e) {
+            if (!e.getMessage().matches("No value for observation_sounds")) {
+                Logger.tag(TAG).error(e);
+            }
+        }
+
 
         this.comments_count = o.getInteger("comments_count");
         if ((this.comments != null) && (this.comments.getJSONArray().length() != this.comments_count)) {
@@ -515,7 +536,6 @@ public class Observation implements BaseColumns, Serializable {
                 try {
                     this.preferred_common_name = taxon.getJSONObject("common_name").optString("name");
                 } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             } else {
                 if (taxon.has("preferred_common_name") && !taxon.isNull("preferred_common_name")) {

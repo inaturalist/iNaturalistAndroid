@@ -12,6 +12,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -72,6 +74,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.lucasr.twowayview.TwoWayView;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,6 +89,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class ObservationViewerActivity extends AppCompatActivity implements AnnotationsAdapter.OnAnnotationActions {
@@ -294,8 +298,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 
-    private class PhotosViewPagerAdapter extends PagerAdapter {
+    private class PhotosViewPagerAdapter extends PagerAdapter implements SoundPlayer.OnPlayerStatusChange {
         private Cursor mImageCursor = null;
+        private Cursor mSoundCursor = null;
+
+        private List<SoundPlayer> mPlayers = new ArrayList<>();
 
         public PhotosViewPagerAdapter() {
             if (!mReadOnly) {
@@ -305,12 +312,22 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString(), mObservation.id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
+                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "(_observation_id=? or observation_id=?) and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{mObservation._id.toString(), mObservation.id.toString()},
+                            ObservationSound.DEFAULT_SORT_ORDER);
                 } else {
                     mImageCursor = getContentResolver().query(ObservationPhoto.CONTENT_URI,
                             ObservationPhoto.PROJECTION,
                             "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
                             new String[]{mObservation._id.toString()},
                             ObservationPhoto.DEFAULT_SORT_ORDER);
+                    mSoundCursor = getContentResolver().query(ObservationSound.CONTENT_URI,
+                            ObservationSound.PROJECTION,
+                            "_observation_id=? and ((is_deleted = 0) OR (is_deleted IS NULL))",
+                            new String[]{mObservation._id.toString()},
+                            ObservationSound.DEFAULT_SORT_ORDER);
                 }
                 mImageCursor.moveToFirst();
             }
@@ -322,27 +339,18 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public int getCount() {
-            return mReadOnly ? mObservation.photos.size() : mImageCursor.getCount();
+            return mReadOnly ?
+                    (mObservation.photos.size() + mObservation.sounds.size()) :
+                    mImageCursor.getCount() + mSoundCursor.getCount();
         }
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (ImageView)object;
-        }
-
-        private Cursor findPhotoInStorage(Integer photoId) {
-            Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    new String[]{MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE, MediaStore.Images.ImageColumns.ORIENTATION},
-                    MediaStore.MediaColumns._ID + " = " + photoId, null, null);
-
-            imageCursor.moveToFirst();
-            return imageCursor;
+            return view == object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            if (!mReadOnly) mImageCursor.moveToPosition(position);
-
             ImageView imageView = new ImageView(ObservationViewerActivity.this);
             imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -350,18 +358,47 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             int imageId = 0;
             String photoFilename = null;
             String imageUrl = null;
+            ObservationSound sound = null;
 
             if (!mReadOnly) {
-                imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
-                imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
-                photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
-                if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
-                    // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
-                    String originalPhotoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
-                    photoFilename = originalPhotoFilename;
+                if (position >= mImageCursor.getCount()) {
+                    // Sound
+                    mSoundCursor.moveToPosition(position - mImageCursor.getCount());
+
+                    sound = new ObservationSound(mSoundCursor);
+
+                } else {
+                    // Photo
+                    mImageCursor.moveToPosition(position);
+
+                    imageId = mImageCursor.getInt(mImageCursor.getColumnIndexOrThrow(ObservationPhoto._ID));
+                    imageUrl = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
+                    photoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
+                    if ((photoFilename != null) && (!(new File(photoFilename).exists()))) {
+                        // Our local copy file was deleted (probably user deleted cache or similar) - try and use original filename from gallery
+                        String originalPhotoFilename = mImageCursor.getString(mImageCursor.getColumnIndexOrThrow(ObservationPhoto.ORIGINAL_PHOTO_FILENAME));
+                        photoFilename = originalPhotoFilename;
+                    }
                 }
+
             } else {
-                imageUrl = mObservation.photos.get(position).photo_url;
+                if (position >= mObservation.photos.size()) {
+                    // Show sound
+                    sound = mObservation.sounds.get(position - mObservation.photos.size());
+                } else {
+                    imageUrl = mObservation.photos.get(position).photo_url;
+                }
+            }
+
+            if (sound != null) {
+                // Sound - show a sound player interface
+                SoundPlayer player = new SoundPlayer(ObservationViewerActivity.this, container, sound, this);
+                View view = player.getView();
+                ((ViewPager)container).addView(view, 0);
+
+                view.setTag(player);
+                mPlayers.add(player);
+                return view;
             }
 
             if (imageUrl != null) {
@@ -386,7 +423,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_PHOTO_FAILED_TO_LOAD, eventParams);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Logger.tag(TAG).error(e);
                                 }
                             }
                         });
@@ -409,7 +446,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     bitmapImage = ImageUtils.rotateAccordingToOrientation(bitmapImage, photoFilename);
                     imageView.setImageBitmap(bitmapImage);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -437,7 +474,30 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((ImageView) object);
+            ((ViewPager) container).removeView((View) object);
+        }
+
+        public void destroy() {
+            for (SoundPlayer player : mPlayers) {
+                if (player != null) {
+                    player.destroy();
+                }
+            }
+        }
+
+        @Override
+        public void onPlay(SoundPlayer player) {
+            // Pause all other players
+            for (SoundPlayer p : mPlayers) {
+                if ((p != null) && (!p.equals(player))) {
+                    p.pause();
+                }
+            }
+        }
+
+        @Override
+        public void onPause(SoundPlayer player) {
+
         }
     }
 
@@ -633,7 +693,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 mObsJson = obsJson;
 
                 if (obsJson == null) {
-                    Log.e(TAG, "Null URI from intent.getData");
+                    Logger.tag(TAG).error("Null URI from intent.getData");
                     finish();
                     return;
                 }
@@ -661,7 +721,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         if ((mObservation == null) || (forceReload)) {
             if (!mReadOnly) {
                 if (mCursor.getCount() == 0) {
-                    Log.e(TAG, "Cursor count is zero - finishing activity");
+                    Logger.tag(TAG).error("Cursor count is zero - finishing activity");
                     finish();
                     return;
                 }
@@ -673,7 +733,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         if ((mObservation != null) && (mObsJson == null)) {
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
 
             mLoadObsJson = true;
@@ -870,7 +930,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 cv.put(Observation._SYNCED_AT, System.currentTimeMillis()); // No need to sync
             }
             getContentResolver().update(mObservation.getUri(), cv, null, null);
-            Log.d(TAG, "ObservationViewerActivity - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+            Logger.tag(TAG).debug("ObservationViewerActivity - refreshActivity - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
         }
         mLoginToAddCommentId.setVisibility(View.GONE);
         mActivityLoginSignUpButtons.setVisibility(View.GONE);
@@ -926,11 +986,11 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -1352,7 +1412,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, this);
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_OBSERVATION, null, this, INaturalistService.class);
@@ -1376,7 +1436,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         int dataQuality = DATA_QUALITY_CASUAL_GRADE;
         int reasonText = 0;
 
-        Log.d(TAG, "refreshDataQuality: " + mObservation.id);
+        Logger.tag(TAG).debug("refreshDataQuality: " + mObservation.id);
 
         if (((mObservation.latitude == null) && (mObservation.longitude == null)) && ((mObservation.private_latitude == null) && (mObservation.private_longitude == null))) {
             // No place
@@ -1401,7 +1461,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             dataQuality = DATA_QUALITY_RESEARCH_GRADE;
         }
 
-        Log.d(TAG, "refreshDataQuality 2: " + dataQuality + ":" + (reasonText != 0 ? getString(reasonText) : "N/A"));
+        Logger.tag(TAG).debug("refreshDataQuality 2: " + dataQuality + ":" + (reasonText != 0 ? getString(reasonText) : "N/A"));
 
         if (mObservation.quality_grade != null) {
             int observedDataQuality = -1;
@@ -1421,10 +1481,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 reasonText = 0;
             }
 
-            Log.d(TAG, "refreshDataQuality 3: " + dataQuality);
+            Logger.tag(TAG).debug("refreshDataQuality 3: " + dataQuality);
         }
 
-        Log.d(TAG, "refreshDataQuality 4: " + mObservation.quality_grade + ":" + mIdCount + ":" + mObservation.captive + ":" + mFlagAsCaptive + ":" +
+        Logger.tag(TAG).debug("refreshDataQuality 4: " + mObservation.quality_grade + ":" + mIdCount + ":" + mObservation.captive + ":" + mFlagAsCaptive + ":" +
             ((PhotosViewPagerAdapter)mPhotosViewPager.getAdapter()).getCount() + ":" + mObservation.observed_on + ":" + mObservation.latitude + ":" + mObservation.private_latitude +
             ":" + mObservation.longitude + ":" + mObservation.private_longitude);
 
@@ -1538,7 +1598,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 errorsHtml.append("<br/>");
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                     errorsDescription.setText(Html.fromHtml(errorsHtml.toString()));
                 }
@@ -1845,7 +1905,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                             }
                         });
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 }
             }
@@ -2013,13 +2073,13 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "ChangeAttributesReceiver");
+            Logger.tag(TAG).error("ChangeAttributesReceiver");
 
             // Re-download the observation JSON so we'll refresh the annotations
 
             mObservationReceiver = new ObservationReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_OBSERVATION_RESULT);
-            Log.i(TAG, "Registering ACTION_OBSERVATION_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_OBSERVATION_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mObservationReceiver, filter, ObservationViewerActivity.this);
 
             mLoadObsJson = true;
@@ -2035,7 +2095,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "AttributesReceiver");
+            Logger.tag(TAG).error("AttributesReceiver");
 
             BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, ObservationViewerActivity.this);
 
@@ -2058,7 +2118,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
 		@Override
 	    public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "ObservationReceiver - OBSERVATION_RESULT");
+            Logger.tag(TAG).error("ObservationReceiver - OBSERVATION_RESULT");
 
             BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, ObservationViewerActivity.this);
 
@@ -2123,7 +2183,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 	                favResults.add(fav);
 	            }
 	        } catch (JSONException e) {
-	            e.printStackTrace();
+	            Logger.tag(TAG).error(e);
 	        }
 
             Comparator<BetterJSONObject> comp = new Comparator<BetterJSONObject>() {
@@ -2171,8 +2231,8 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     ((mObservation.taxon_id != null) && (observation.taxon_id == null)) ||
                     (mObservation.taxon_id != observation.taxon_id)) {
 
-                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
-                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver: Updated taxon (new): " + observation.id + ":" + observation.preferred_common_name + ":" + observation.taxon_id);
 
                     mObservation.species_guess = observation.species_guess;
                     mObservation.taxon_id = observation.taxon_id;
@@ -2190,7 +2250,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     // Update observation's taxon in DB
                     ContentValues cv = mObservation.getContentValues();
                     getContentResolver().update(mUri, cv, null, null);
-                    Log.d(TAG, "ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
+                    Logger.tag(TAG).debug("ObservationViewerActivity - ObservationReceiver - update obs: " + mObservation.id + ":" + mObservation.preferred_common_name + ":" + mObservation.taxon_id);
                 }
             }
 
@@ -2213,7 +2273,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         try {
             observation = new JSONObject(mObsJson);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return;
         }
 
@@ -2295,14 +2355,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 JSONObject obs = new JSONObject(mObsJson);
                 obsAnnotations = obs.getJSONArray("annotations");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
         try {
             mAnnotationsList.setAdapter(new AnnotationsAdapter(this, this, new JSONObject(mTaxonJson), mAttributes.getJSONArray(), obsAnnotations));
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         ActivityHelper.resizeList(mAnnotationsList);
@@ -2372,7 +2432,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d(TAG, "onActivityResult - " + requestCode + ":" + resultCode);
+        Logger.tag(TAG).debug("onActivityResult - " + requestCode + ":" + resultCode);
         if (requestCode == SHARE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // TODO - RESULT_OK is never returned + need to add "destination" param (what type of share was performed)
@@ -2381,10 +2441,10 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_SHARE_CANCELLED);
             }
         } else if (requestCode == REQUEST_CODE_EDIT_OBSERVATION) {
-            Log.d(TAG, "onActivityResult - EDIT_OBS: " + requestCode + ":" + resultCode);
+            Logger.tag(TAG).debug("onActivityResult - EDIT_OBS: " + requestCode + ":" + resultCode);
             if ((resultCode == ObservationEditor.RESULT_DELETED) || (resultCode == ObservationEditor.RESULT_RETURN_TO_OBSERVATION_LIST)) {
                 // User deleted the observation (or did a batch-edit)
-                Log.d(TAG, "onActivityResult - EDIT_OBS: Finish");
+                Logger.tag(TAG).debug("onActivityResult - EDIT_OBS: Finish");
                 setResult(RESULT_OBSERVATION_CHANGED);
                 finish();
                 return;
@@ -2436,7 +2496,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                             AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_ADD_ID, eventParams);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
 
 
@@ -2591,6 +2651,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         BaseFragmentActivity.safeUnregisterReceiver(mObservationReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
+        if (mPhotosAdapter != null) {
+            mPhotosAdapter.destroy();
+        }
     }
 
     private boolean isNetworkAvailable() {

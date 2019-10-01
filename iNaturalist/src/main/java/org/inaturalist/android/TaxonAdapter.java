@@ -17,12 +17,14 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 class TaxonAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "TaxonAdapter";
     private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
@@ -47,7 +49,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
         try {
             item = mResultList.get(position).has("taxon") ? mResultList.get(position).getJSONObject("taxon") : mResultList.get(position);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return view;
         }
 
@@ -86,7 +88,7 @@ class TaxonAdapter extends ArrayAdapter<String> {
 
             view.setTag(item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;

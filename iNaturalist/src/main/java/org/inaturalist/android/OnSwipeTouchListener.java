@@ -6,6 +6,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import org.tinylog.Logger;
+
 public class OnSwipeTouchListener implements View.OnTouchListener {
 
     private final GestureDetector gestureDetector;
@@ -23,6 +25,7 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 
         private static final int SWIPE_THRESHOLD = 15;
         private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+        private static final String TAG = "GestureListener";
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -49,7 +52,7 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
                     }
                 }
             } catch (Exception exception) {
-                exception.printStackTrace();
+                Logger.tag(TAG).error(exception);
             }
             return result;
         }

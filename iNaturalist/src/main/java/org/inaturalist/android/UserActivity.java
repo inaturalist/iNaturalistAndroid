@@ -29,6 +29,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 
@@ -204,7 +205,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
                                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEWS_OPEN_ARTICLE, eventParams);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
 
 
@@ -397,7 +398,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                     JSONObject item = results.getJSONObject(i);
                     resultsArray.add(item);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -415,7 +416,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
                     try {
                         if (!activity.getBoolean("viewed")) unreadActivities++;
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 }
 
@@ -566,7 +567,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 }

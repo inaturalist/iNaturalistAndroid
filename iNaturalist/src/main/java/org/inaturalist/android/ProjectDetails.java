@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.evernote.android.state.State;
 
@@ -59,6 +60,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
     private final static String VIEW_TYPE_IDENTIFIERS = "identifiers";
 
     public static final int RESULT_REFRESH_RESULTS = 0x1000;
+    private static final String TAG = "ProjectDetails";
 
     private Button mJoinLeaveProject;
 
@@ -515,7 +517,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 
@@ -798,7 +800,7 @@ public class ProjectDetails extends AppCompatActivity implements AppBarLayout.On
 
                                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
 
                         }

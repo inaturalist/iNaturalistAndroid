@@ -11,7 +11,6 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.livefront.bridge.Bridge;
 import com.livefront.bridge.SavedStateHandler;
@@ -33,26 +32,21 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
 import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.Application;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -60,7 +54,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
@@ -85,7 +78,6 @@ import android.support.v4.content.PermissionChecker;
 import android.support.v4.content.res.ResourcesCompat;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,6 +89,8 @@ public class INaturalistApp extends MultiDexApplication {
     private final static String TAG = "INAT: Application";
 
     private static final int PERMISSIONS_REQUEST = 0x1234;
+
+    private static final int DEFAULT_DEBUG_LOG_DAY_COUNT = 3;
 
     private SharedPreferences mPrefs;
     private NotificationManager mNotificationManager;
@@ -117,6 +111,7 @@ public class INaturalistApp extends MultiDexApplication {
     private int mObservationIdBeingSynced = NO_OBSERVATION;
     private boolean mCancelSync = false;
     private GoogleApiClient mGoogleApiClient;
+    private GlobalExceptionHandler mFileLoggingTree;
 
     // The ID of the observation being currently synced
 
@@ -162,9 +157,9 @@ public class INaturalistApp extends MultiDexApplication {
                 staticField.setAccessible(true);
                 staticField.set(null, newMap);
             } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         } else {
             try {
@@ -172,11 +167,21 @@ public class INaturalistApp extends MultiDexApplication {
                 staticField.setAccessible(true);
                 staticField.set(null, newTypeface);
             } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
+    }
+
+    // How many days to save log files for
+    public int getDebugLogDayCount() {
+        return getPrefs().getInt("debug_log_day_count", DEFAULT_DEBUG_LOG_DAY_COUNT);
+    }
+
+    // How many days to save log files for
+    public void setDebugLogDayCount(int count) {
+        getPrefs().edit().putInt("debug_log_day_count", count).commit();
     }
 
     @Override
@@ -200,6 +205,15 @@ public class INaturalistApp extends MultiDexApplication {
                 StateSaver.restoreInstanceState(target, state);
             }
         });
+
+        // Initialize the logger
+        LoggingUtils.initializeLogger(this);
+        // Clear out old log files
+        LoggingUtils.clearOldLogs(this, getDebugLogDayCount());
+        // Compress any uncompressed log files
+        LoggingUtils.compressDebugLogs(this);
+
+        Logger.tag(TAG).debug("onCreate");
 
         SHORT_TIME_FORMAT = new SimpleDateFormat(DateFormat.is24HourFormat(getApplicationContext()) ? "HH:mm z" : "hh:mm a z");
 
@@ -355,7 +369,7 @@ public class INaturalistApp extends MultiDexApplication {
             projectErrors.put(String.valueOf(projectId), errors);
             settingsEditor.putString("pref_observation_errors", errorsByObservationId.toString());
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         settingsEditor.apply();
@@ -387,7 +401,7 @@ public class INaturalistApp extends MultiDexApplication {
             return errors;
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return new JSONArray();
         }
     }
@@ -527,7 +541,7 @@ public class INaturalistApp extends MultiDexApplication {
 		ImageView titleBarLogo = (ImageView) titleBarView.findViewById(R.id.title_bar_logo);
 		
 		String country = getUserCountry(context);
-		Log.d(TAG, "Detected country: " + country);
+		Logger.tag(TAG).debug("Detected country: " + country);
 		
         final String[] inatNetworks = getINatNetworks();
 
@@ -739,7 +753,7 @@ public class INaturalistApp extends MultiDexApplication {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
     	super.onConfigurationChanged(newConfig);
-    	Configuration config = new Configuration(newConfig); 
+    	Configuration config = new Configuration(newConfig);
     	if (locale != null)
         {
     		config.locale = locale;
@@ -925,7 +939,7 @@ public class INaturalistApp extends MultiDexApplication {
                     input.close();
 
                 } catch (IOException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     mDownloadCallback.onDownloadError();
                 }
 
@@ -959,6 +973,10 @@ public class INaturalistApp extends MultiDexApplication {
         requestPermissions(activity, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, cb);
     }
 
+    public void requestAudioRecordingPermission(Activity activity, OnRequestPermissionResult cb) {
+        requestPermissions(activity, new String[] { Manifest.permission.RECORD_AUDIO }, cb);
+    }
+
     private void requestPermissions(final Activity activity, final String[] permissions, OnRequestPermissionResult cb) {
         for (String permission: permissions) {
             mPermissionsCbByPermissionName.put(permission, cb);
@@ -971,7 +989,7 @@ public class INaturalistApp extends MultiDexApplication {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 ActivityCompat.requestPermissions(activity, permissions, PERMISSIONS_REQUEST);
@@ -1021,5 +1039,8 @@ public class INaturalistApp extends MultiDexApplication {
         return (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
+    public boolean isAudioRecordingPermissionGranted() {
+        return (PermissionChecker.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED);
+    }
 
 }

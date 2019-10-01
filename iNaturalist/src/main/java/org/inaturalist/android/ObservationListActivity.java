@@ -14,6 +14,7 @@ import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.cocosw.bottomsheet.BottomSheet;
 import com.evernote.android.state.State;
@@ -197,7 +198,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     private class SyncCompleteReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-        	Log.i(TAG, "Got ACTION_SYNC_COMPLETE");
+        	Logger.tag(TAG).info("Got ACTION_SYNC_COMPLETE");
 
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -237,7 +238,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
 
                     // Trigger another sync if needed - in case the user added more obs in the meantime while sync was running
@@ -310,6 +311,29 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         opc.close();
 
+
+        Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
+        		new String[]{
+        		ObservationSound._ID,
+                ObservationSound.ID,
+                ObservationSound._OBSERVATION_ID,
+        		ObservationSound.IS_DELETED
+            },
+            "(id IS NULL) OR " +
+            "(is_deleted = 1)",
+            null,
+            ObservationSound._ID);
+
+        boolean soundsChanged = false;
+        osc.moveToFirst();
+        while (!osc.isAfterLast()) {
+            obsToSync.put(osc.getLong(osc.getColumnIndex(ObservationSound._OBSERVATION_ID)), true);
+            osc.moveToNext();
+            soundsChanged = true;
+        }
+
+        osc.close();
+
         if (mSyncingTopBar != null) {
             if (obsToSync.keySet().size() > 0) {
                 int count = obsToSync.keySet().size();
@@ -322,7 +346,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 mUserCanceledSync = true; // To make it so that the button on the sync bar will trigger a sync
                 mCancelSync.setText(R.string.upload);
 
-                if (photosChanged) {
+                if (photosChanged || soundsChanged) {
                     mObservationListAdapter.refreshPhotoInfo();
                 }
             } else {
@@ -600,6 +624,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         if ((mApp.getAutoSync() && !mApp.getIsSyncing() && (!mSyncRequested)) || (hasOldObs)) {
             int syncCount = 0;
             int photoSyncCount = 0;
+            int soundSyncCount = 0;
 
             if (!hasOldObs) {
                 Cursor c = getContentResolver().query(Observation.CONTENT_URI,
@@ -618,14 +643,31 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                 photoSyncCount = c.getCount();
                 c.close();
+
+                Cursor osc = getContentResolver().query(ObservationSound.CONTENT_URI,
+                        new String[]{
+                                ObservationSound._ID,
+                                ObservationSound.ID,
+                                ObservationSound._OBSERVATION_ID,
+                                ObservationSound.IS_DELETED
+                        },
+                        "(id IS NULL) OR " +
+                                "(is_deleted = 1)",
+                        null,
+                        ObservationSound._ID);
+
+                osc.moveToFirst();
+                soundSyncCount = osc.getCount();
+                osc.close();
+
             }
 
-            Log.d(TAG, String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
+            Logger.tag(TAG).debug(String.format("triggerSyncIfNeeded: hasOldOBs: %b; syncCount: %d; photoSyncCount: %d; mUserCanceledSync: %b",
                     hasOldObs, syncCount, photoSyncCount, mUserCanceledSync));
 
 
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
-            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
+            if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0) || (soundSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
                 mSyncRequested = true;
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -658,7 +700,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
     public void onPause() {
         super.onPause();
 
-        Log.d(TAG, "onPause");
+        Logger.tag(TAG).debug("onPause");
 
         // save last position of list so we can resume there later
         // http://stackoverflow.com/questions/3014089/maintain-save-restore-scroll-position-when-returning-to-a-listview
@@ -729,12 +771,12 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         mSyncCompleteReceiver = new SyncCompleteReceiver();
         IntentFilter filter3 = new IntentFilter(INaturalistService.ACTION_SYNC_COMPLETE);
-        Log.i(TAG, "Registering ACTION_SYNC_COMPLETE");
+        Logger.tag(TAG).info("Registering ACTION_SYNC_COMPLETE");
         safeRegisterReceiver(mSyncCompleteReceiver, filter3);
 
         mConnectivityListener = new ConnectivityBroadcastReceiver();
         IntentFilter filter4 = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        Log.i(TAG, "Registering CONNECTIVITY_ACTION");
+        Logger.tag(TAG).info("Registering CONNECTIVITY_ACTION");
         safeRegisterReceiver(mConnectivityListener, filter4);
 
 
@@ -885,7 +927,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                     runOnUiThread(new Runnable() {
                         @Override
@@ -1086,7 +1128,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                         }
                     };
@@ -1183,7 +1225,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Logger.tag(TAG).error(e);
                                     }
 
                                 }
@@ -1223,7 +1265,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Logger.tag(TAG).error(e);
                                 }
 
                             } else {
@@ -1235,7 +1277,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_FAILED, eventParams);
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Logger.tag(TAG).error(e);
                                     }
 
                                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
@@ -1251,7 +1293,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
                                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_SYNC_STOPPED, eventParams);
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Logger.tag(TAG).error(e);
                                     }
                                     return;
                                 }
@@ -1265,7 +1307,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
 
-                                Log.d(TAG, "Start sync by button");
+                                Logger.tag(TAG).debug("Start sync by button");
 
                             }
                         }
@@ -1473,7 +1515,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                 return;
             }
 
-            Log.d(TAG, String.format("Updating progress for %d: %f", obsId, progress));
+            Logger.tag(TAG).debug(String.format("Updating progress for %d: %f", obsId, progress));
 
             mObservationListAdapter.updateProgress(obsId, progress);
             mObservationListAdapter.notifyDataSetChanged();
@@ -1562,7 +1604,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 					JSONObject item = results.getJSONObject(i);
 					resultsArray.add(item);
 				} catch (JSONException e) {
-					e.printStackTrace();
+					Logger.tag(TAG).error(e);
 				}
             }
 
@@ -1639,7 +1681,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                     JSONObject item = results.getJSONObject(i);
                     if (!item.getBoolean("viewed")) unreadActivities++;
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 

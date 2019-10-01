@@ -35,7 +35,6 @@
     <string name="projects">Projektit</string>
     <string name="delete_photo">Poista kuva</string>
     <string name="menu">Valikko</string>
-    <string name="layers">Kerrokset</string>
     <string name="my_location">Sijaintini</string>
     <string name="nearby_observations">Läheiset havainnot</string>
     <string name="add">Lisää</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Poistu</string>
     <string name="join">Liity</string>
-    <string name="loading_check_list">Ladataan tarkistuslistaa...</string>
     <string name="no_check_list">Ei taksoneita tarkistuslistalla!</string>
     <string name="failed_to_add_obs_to_project">Havainnon \'%1$s\' lisääminen epäonnistui projektiin \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Kirjoita kelvollinen arvo kentälle \'%1s\'</string>
@@ -323,7 +321,6 @@
     <string name="news">Uutiset</string>
     <string name="article">Artikkeli</string>
     <string name="couldnt_load_project_news">Ei voitu ladata projektiuutisia: %1$s</string>
-    <string name="article_by">Artikkeli käyttäjältä</string>
     <string name="couldnt_load_user_details">Ei voitu ladata käyttäjätietoja: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Lisää»</font></b>]]></string>
     <string name="no_location">Ei sijaintia</string>

@@ -10,6 +10,7 @@ import com.evernote.android.state.Bundler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -61,6 +62,8 @@ public class AndroidStateBundlers {
     }
 
     public static final class JSONArrayBundler implements Bundler<JSONArray> {
+        private static final String TAG = "JSONArrayBundler";
+
         @Override
         public void put(@NonNull String key, @NonNull JSONArray value, @NonNull Bundle bundle) {
             bundle.putString(key, value.toString());
@@ -73,7 +76,7 @@ public class AndroidStateBundlers {
                 try {
                     return new JSONArray(bundle.getString(key));
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                     return null;
                 }
             } else {
@@ -103,6 +106,8 @@ public class AndroidStateBundlers {
     }
 
     public static final class BetterJSONListBundler implements Bundler<List<BetterJSONObject>> {
+        private static final String TAG = "BetterJSONListBundler";
+
         @Override
         public void put(@NonNull String key, @NonNull List<BetterJSONObject> value, @NonNull Bundle bundle) {
             if (value != null) {
@@ -130,7 +135,7 @@ public class AndroidStateBundlers {
 
                     return results;
                 } catch (JSONException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     return null;
                 }
             } else {
@@ -140,6 +145,8 @@ public class AndroidStateBundlers {
     }
 
     public static final class JSONListBundler implements Bundler<List<JSONObject>> {
+        private static final String TAG = "JSONListBundler";
+
         @Override
         public void put(@NonNull String key, @NonNull List<JSONObject> value, @NonNull Bundle bundle) {
             if (value != null) {
@@ -167,7 +174,7 @@ public class AndroidStateBundlers {
 
                     return results;
                 } catch (JSONException exc) {
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                     return null;
                 }
             } else {
@@ -198,7 +205,9 @@ public class AndroidStateBundlers {
     }
 
         public static final class JSONObjectBundler implements Bundler<JSONObject> {
-        @Override
+            private static final String TAG = "JSONObjectBundler";
+
+            @Override
         public void put(@NonNull String key, @NonNull JSONObject value, @NonNull Bundle bundle) {
             bundle.putString(key, value != null ? value.toString() : null);
         }
@@ -213,7 +222,7 @@ public class AndroidStateBundlers {
                 try {
                     return new JSONObject(value);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                     return null;
                 }
 

@@ -7,6 +7,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import uk.co.senab.photoview.HackyViewPager;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -121,7 +122,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 mIsTaxon = intent.getBooleanExtra(IS_TAXON, false);
         	}
         } catch (JSONException e) {
-        	e.printStackTrace();
+        	Logger.tag(TAG).error(e);
         }
 
 
@@ -344,7 +345,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                             .into(imageView);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             } else {
                 // Online photo

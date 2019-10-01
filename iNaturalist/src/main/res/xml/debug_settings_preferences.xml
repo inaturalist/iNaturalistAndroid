@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="clear_logs"
+        android:summary="@string/clears_up_storage_room_on_your_phone"
+        android:title="@string/clear_all_debug_logs" />
+
+    <android.support.v7.preference.SeekBarPreference
+        android:layout="@layout/custom_seek_bar_preference"
+        android:key="day_count"
+        android:defaultValue="3"
+        android:max="14"
+        android:title="@string/number_of_days_to_store_logs" />
+
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="send_logs"
+        android:summary="@string/send_debug_logs_by_email"
+        android:title="@string/send_debug_logs_from_start_date" />
+</android.support.v7.preference.PreferenceScreen>

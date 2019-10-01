@@ -34,7 +34,6 @@
     <string name="projects">Projects</string>
     <string name="delete_photo">Delete photo</string>
     <string name="menu">Menu</string>
-    <string name="layers">Layers</string>
     <string name="my_location">My Location</string>
     <string name="nearby_observations">Nearby Observations</string>
     <string name="add">Add</string>
@@ -100,7 +99,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Leave</string>
     <string name="join">Join</string>
-    <string name="loading_check_list">Loading Check List...</string>
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
@@ -322,7 +320,6 @@
     <string name="news">News</string>
     <string name="article">Article</string>
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
-    <string name="article_by">Article By</string>
     <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
     <string name="no_location">No Location</string>
@@ -674,7 +671,6 @@
     <string name="donate_to_inaturalist">Donate to iNaturalist</string>
     <string name="prefers_scientific_name_first">Show scientific names first</string>
     <string name="prefers_scientific_name_first_description">Show scientific names before common names.</string>
-
     <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
     <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
     <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
@@ -686,5 +682,31 @@
     <string name="show_hidden_content">Show Hidden Content</string>
     <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content">Content</string>
+    <string name="has_photos">Has Photos</string>
+    <string name="has_sounds">Has Sounds</string>
+    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
+    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Record Sound</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
+    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
+    <string name="upload_sound">Choose Sound</string>
+    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
+    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
+    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
+    <string name="importing_sounds">Importing sound(s)...</string>
+    <string name="observation_sound">Observation Sound</string>
+    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sec</string>
+    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
+    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
+    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
+    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
+    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
+    <string name="debug_settings">Debug Settings</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
+    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
 </resources>
 

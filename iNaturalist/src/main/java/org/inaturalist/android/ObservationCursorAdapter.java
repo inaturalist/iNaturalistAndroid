@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -37,13 +36,13 @@ import android.widget.Toast;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.squareup.picasso.Callback;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -73,6 +72,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
     private int mDimension;
     private HashMap<String, String[]> mPhotoInfo = new HashMap<String, String[]>();
+    private HashMap<String, Boolean> mHasSounds = new HashMap<>();
     private boolean mIsGrid;
 
     private final Activity mContext;
@@ -145,18 +145,20 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
     // Loads the photo info map from a cached file (for faster loading)
     private void loadPhotoInfo() {
         mPhotoInfo = new HashMap<>();
+        mHasSounds = new HashMap<>();
 
         File file = new File(mContext.getFilesDir(), "observations_photo_info.dat");
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
             mPhotoInfo = (HashMap<String, String[]>) inputStream.readObject();
+            mHasSounds = (HashMap<String, Boolean>) inputStream.readObject();
             inputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (ClassCastException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -166,10 +168,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
             outputStream.writeObject(mPhotoInfo);
+            outputStream.writeObject(mHasSounds);
             outputStream.flush();
             outputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -248,6 +251,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         ArrayList<Long> obsIds = new ArrayList<>();
         ArrayList<Long> externalObsIds = new ArrayList<>();
         HashMap<Long, String> obsUUIDs = new HashMap<>();
+        HashMap<Long, String> externalObsUUIDs = new HashMap<>();
 
         c.moveToFirst();
         while (!c.isAfterLast()) {
@@ -258,6 +262,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsIds.add(obsId);
             externalObsIds.add(obsExternalId);
             obsUUIDs.put(obsId, obsUUID);
+            externalObsUUIDs.put(obsExternalId, obsUUID);
 
             c.moveToNext();
         }
@@ -303,11 +308,41 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         }
         onlinePc.close();
 
+                // Add any photos that were added/changed
+        Cursor soundCursor = mContext.getContentResolver().query(ObservationSound.CONTENT_URI,
+                new String[]{ ObservationSound._OBSERVATION_ID, ObservationSound.OBSERVATION_ID },
+                "((_observation_id IN (" + StringUtils.join(obsIds, ",") + ") OR observation_id IN (" + StringUtils.join(externalObsIds, ",") + "))) AND " +
+                        "(is_deleted IS NULL OR is_deleted = 0)",
+                null,
+                ObservationSound.DEFAULT_SORT_ORDER);
+
+        soundCursor.moveToFirst();
+        while (!soundCursor.isAfterLast()) {
+            Long obsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound._OBSERVATION_ID));
+            Long externalObsId = soundCursor.getLong(soundCursor.getColumnIndexOrThrow(ObservationSound.OBSERVATION_ID));
+            String obsUUID = obsUUIDs.get(obsId);
+
+            if (obsUUID == null) {
+                obsUUID = externalObsUUIDs.get(externalObsId);
+            }
+
+            soundCursor.moveToNext();
+
+            if (mHasSounds.containsKey(obsUUID)) {
+                continue;
+            }
+
+            mHasSounds.put(obsUUID, true);
+        }
+
+        soundCursor.close();
+
         savePhotoInfo();
     }
 
     public void refreshPhotoInfo() {
         mPhotoInfo = new HashMap<String, String[]>();
+        mHasSounds = new HashMap<>();
         getPhotoInfo(false);
     }
 
@@ -322,6 +357,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         public ViewGroup leftContainer;
         public View progress;
         public View progressInner;
+        public View soundsIndicator;
 
         public ImageView commentIcon;
         public ImageView idIcon;
@@ -357,6 +393,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             progress = view.findViewById(R.id.progress);
             progressInner = view.findViewById(R.id.progress_inner);
+
+            soundsIndicator = view.findViewById(R.id.has_sounds);
         }
 
     }
@@ -376,6 +414,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         final String obsUUID = c.getString(c.getColumnIndexOrThrow(Observation.UUID));
         String speciesGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.SPECIES_GUESS));
         String[] photoInfo = obsUUID != null ? mPhotoInfo.get(obsUUID) : null;
+        Boolean hasSounds = (obsUUID != null && mHasSounds.get(obsUUID) != null);
         boolean hasErrors = (mApp.getErrorsForObservation(externalObsId.intValue()).length() > 0);
         boolean isBeingSynced = (mApp.getObservationIdBeingSynced() == obsId);
 
@@ -428,6 +467,8 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         View progress = holder.progress;
         View progressInner = holder.progressInner;
 
+        View soundsIndicator = holder.soundsIndicator;
+
         String placeGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PLACE_GUESS));
         String privatePlaceGuessValue = c.getString(c.getColumnIndexOrThrow(Observation.PRIVATE_PLACE_GUESS));
         Double latitude = c.getDouble(c.getColumnIndexOrThrow(Observation.LATITUDE));
@@ -447,6 +488,12 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(newDimension, newDimension);
             layoutParams.setMargins(leftRightMargin, topBottomMargin, leftRightMargin, 0);
             obsIconicImage.setLayoutParams(layoutParams);
+
+            if (hasSounds && (photoInfo != null)) {
+                soundsIndicator.setVisibility(View.VISIBLE);
+            } else {
+                soundsIndicator.setVisibility(View.GONE);
+            }
         }
 
 
@@ -486,6 +533,10 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
             obsImage.setVisibility(View.INVISIBLE);
             holder.photoFilename = null;
             mImageViewToUrlExpected.put(obsImage, null);
+
+            if (hasSounds) {
+                obsIconicImage.setImageResource(R.drawable.sound);
+            }
         }
 
         Long observationTimestamp = c.getLong(c.getColumnIndexOrThrow(Observation.TIME_OBSERVED_AT));
@@ -673,7 +724,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 TaxonUtils.setTaxonScientificName(speciesGuess, taxon);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         } else {
             if (preferredCommonName != null) {
@@ -945,7 +996,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
                 if ((photoInfo == null) || (photoInfo[2] == null)) {
                     // No remote image - need to download ob
-                    Log.d(TAG, "Local file deleted - re-downloading: " + position + ":" + name);
+                    Logger.tag(TAG).debug("Local file deleted - re-downloading: " + position + ":" + name);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -957,7 +1008,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 } else {
                     // Try and load remote image instead
                     imageUrl = photoInfo[2];
-                    Log.d(TAG, "Local file deleted - using remote URL: " + position + ":" + imageUrl);
+                    Logger.tag(TAG).debug("Local file deleted - using remote URL: " + position + ":" + imageUrl);
                     isOnline = true;
                 }
             }
@@ -1020,11 +1071,11 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
         if (obs.id == null) {
             // Observation hasn't been uploaded yet to server - nothing we can do here
-            Log.d(TAG, "downloadRemoteObsPhoto - Observation hasn't been synced yet - " + obs._id);
+            Logger.tag(TAG).debug("downloadRemoteObsPhoto - Observation hasn't been synced yet - " + obs._id);
             return;
         }
 
-        Log.d(TAG, "downloadRemoteObsPhoto - Downloading observation JSON - " + obs.id);
+        Logger.tag(TAG).debug("downloadRemoteObsPhoto - Downloading observation JSON - " + obs.id);
         JSONObject json = getObservationJson(obs.id);
 
         if (json != null) {
@@ -1041,7 +1092,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                 });
 
                 String photoUrl = remoteObs.photos.get(0).photo_url;
-                Log.d(TAG, "downloadRemoteObsPhoto - Remote obs URL - " + obs.id + ":" + photoUrl);
+                Logger.tag(TAG).debug("downloadRemoteObsPhoto - Remote obs URL - " + obs.id + ":" + photoUrl);
 
                 // Update the DB
 
@@ -1055,7 +1106,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
                         ObservationPhoto.DEFAULT_SORT_ORDER);
                 if (pc.getCount() > 0) {
                     ObservationPhoto photo = new ObservationPhoto(pc);
-                    Log.d(TAG, "downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
+                    Logger.tag(TAG).debug("downloadRemoteObsPhoto - Updating DB - " + obs.id + ":" + photo.id + ":" + photoUrl);
                     photo.photo_url = photoUrl;
                     ContentValues cv = photo.getContentValues();
                     mContext.getContentResolver().update(photo.getUri(), cv, null, null);
@@ -1074,7 +1125,7 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
         try {
             url = new URL(String.format("%s/observations/%d.json?locale=%s", INaturalistService.HOST, id, deviceLanguage));
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -1098,9 +1149,9 @@ class ObservationCursorAdapter extends SimpleCursorAdapter implements AbsListVie
 
             conn.disconnect();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return json;

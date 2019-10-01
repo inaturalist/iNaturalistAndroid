@@ -17,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +25,7 @@ import java.util.Comparator;
 import java.util.List;
 
 class TaxonomyAdapter extends ArrayAdapter<String> {
+    private static final String TAG = "TaxonomyAdapter";
     private final TaxonomyListener mTaxonomyListener;
     private final boolean mShowChildren;
     private final INaturalistApp mApp;
@@ -97,7 +99,7 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
                         expandList.put("placeholder", "expand_list");
                         mAncestors.add(1, expandList);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 }
             }
@@ -110,7 +112,7 @@ class TaxonomyAdapter extends ArrayAdapter<String> {
                 viewChildren.put("placeholder", "view_children");
                 mAncestors.add(viewChildren);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
     }

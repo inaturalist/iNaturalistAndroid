@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap android:src="@drawable/quantum_ic_volume_up_grey600_36" android:tint="#4D4D4D" />
+    </item>
+</layer-list>

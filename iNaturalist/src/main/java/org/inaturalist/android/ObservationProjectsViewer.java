@@ -41,6 +41,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -179,7 +180,7 @@ public class ObservationProjectsViewer extends AppCompatActivity {
                                     results.add(item);
                                 }
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                         } 
 

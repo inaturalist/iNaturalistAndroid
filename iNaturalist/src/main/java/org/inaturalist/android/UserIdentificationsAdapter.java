@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Html;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +27,15 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
 class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsListView.OnScrollListener {
+    private static final String TAG = "UserIdentificationsAdapter";
+    private final INaturalistApp mApp;
     private ArrayList<JSONObject> mResultList;
     private Context mContext;
     private String mUsername;
@@ -51,6 +55,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
         mUsername = username;
         mIsGrid = isGrid;
         mGrid = grid;
+        mApp = (INaturalistApp) mContext.getApplicationContext();
 
         mLoggedInUsername = ((INaturalistApp)mContext.getApplicationContext()).currentUserLogin();
 
@@ -94,13 +99,27 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
             idIconicPic.setVisibility(View.VISIBLE);
 
             JSONObject observation = item.getJSONObject("observation");
-            JSONObject taxon = item.getJSONObject("taxon");
-            idName.setText(TaxonUtils.getTaxonName(mContext, taxon));
+            JSONObject taxon = observation.has("taxon") ? observation.optJSONObject("taxon") : item.getJSONObject("taxon");
+
+            if (mApp.getShowScientificNameFirst()) {
+                // Show scientific name first, before common name
+                TaxonUtils.setTaxonScientificName(idName, taxon);
+            } else {
+                idName.setText(TaxonUtils.getTaxonName(mContext, taxon));
+            }
+
             if (!mIsGrid) {
-                if (!mUsername.equals(mLoggedInUsername)) {
-                    idTaxonName.setText(String.format(mContext.getString(R.string.users_identification), mUsername, TaxonUtils.getTaxonName(mContext, taxon)));
+                String taxonName;
+                if (mApp.getShowScientificNameFirst()) {
+                    taxonName = TaxonUtils.getTaxonScientificNameHtml(taxon, false, false);
                 } else {
-                    idTaxonName.setText(String.format(mContext.getString(R.string.your_identification), TaxonUtils.getTaxonName(mContext, taxon)));
+                    taxonName = TaxonUtils.getTaxonName(mContext, taxon);
+                }
+
+                if (!mUsername.equals(mLoggedInUsername)) {
+                    idTaxonName.setText(Html.fromHtml(String.format(mContext.getString(R.string.users_identification), mUsername, taxonName)));
+                } else {
+                    idTaxonName.setText(Html.fromHtml(String.format(mContext.getString(R.string.your_identification), taxonName)));
                 }
             }
 
@@ -136,7 +155,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
 
             view.setTag(item);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         return view;
@@ -163,7 +182,7 @@ class UserIdentificationsAdapter extends ArrayAdapter<String> implements AbsList
                 }
             }
         } catch (JSONException e3) {
-            //e3.printStackTrace();
+            //Logger.tag(TAG).error(e3);
         }
 
         if (displayName == null) {

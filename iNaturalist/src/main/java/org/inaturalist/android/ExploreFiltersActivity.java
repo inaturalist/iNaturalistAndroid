@@ -38,6 +38,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,6 +61,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_SEARCH_PROJECTS = 0x1000;
     private static final int REQUEST_CODE_SEARCH_USERS = 0x1001;
+    private static final String TAG = "ExploreFiltersActivity";
 
     private INaturalistApp mApp;
     private ActivityHelper mHelper;
@@ -80,6 +83,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
     private View mResearchGradeCheckbox;
     private View mNeedsIdCheckbox;
     private View mCasualGradeCheckbox;
+    private View mHasPhotosCheckbox;
+    private View mHasSoundsCheckbox;
     private RadioButton mOptionDateAny;
     private RadioButton mOptionDateExact;
     private Spinner mDateExact;
@@ -171,6 +176,8 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mResearchGradeCheckbox = (View) findViewById(R.id.research_grade_checkbox);
         mNeedsIdCheckbox = (View) findViewById(R.id.needs_id_checkbox);
         mCasualGradeCheckbox = (View) findViewById(R.id.casual_grade_checkbox);
+        mHasPhotosCheckbox = (View) findViewById(R.id.has_photos_checkbox);
+        mHasSoundsCheckbox = (View) findViewById(R.id.has_sounds_checkbox);
         mOptionDateAny = (RadioButton) findViewById(R.id.option_date_any);
         mOptionDateExact = (RadioButton) findViewById(R.id.option_date_exact);
         mOptionDateMinMax = (RadioButton) findViewById(R.id.option_date_min_max);
@@ -250,7 +257,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                         myUser.put("icon_url", currentUserIconUrl);
                         mSearchFilters.user = myUser;
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                 } else {
                     mSearchFilters.user = null;
@@ -299,6 +306,25 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mNeedsIdCheckbox.setOnClickListener(onDataQualityCheckbox);
         mCasualGradeCheckbox.setOnClickListener(onDataQualityCheckbox);
 
+        mHasPhotosCheckbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setSelected(!view.isSelected());
+
+                mSearchFilters.hasPhotos = view.isSelected();
+                refreshViewState();
+            }
+        });
+
+        mHasSoundsCheckbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setSelected(!view.isSelected());
+
+                mSearchFilters.hasSounds = view.isSelected();
+                refreshViewState();
+            }
+        });
 
         // Show date/calendar picker dialog
         View.OnTouchListener onShowDate = new View.OnTouchListener() {
@@ -611,6 +637,9 @@ public class ExploreFiltersActivity extends AppCompatActivity {
         mNeedsIdCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_NEEDS_ID));
         mCasualGradeCheckbox.setSelected(mSearchFilters.qualityGrade.contains(ExploreSearchFilters.QUALITY_GRADE_CASUAL));
 
+        mHasPhotosCheckbox.setSelected(mSearchFilters.hasPhotos);
+        mHasSoundsCheckbox.setSelected(mSearchFilters.hasSounds);
+
         mOptionDateAny.setChecked(false);
         mOptionDateExact.setChecked(false);
         mOptionDateMinMax.setChecked(false);
@@ -793,7 +822,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                     mSearchFilters.project = new JSONObject(data.getStringExtra(ItemSearchActivity.RESULT));
                     refreshViewState();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         } else if (requestCode == REQUEST_CODE_SEARCH_USERS) {
@@ -802,7 +831,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
                     mSearchFilters.user = new JSONObject(data.getStringExtra(ItemSearchActivity.RESULT));
                     refreshViewState();
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         }

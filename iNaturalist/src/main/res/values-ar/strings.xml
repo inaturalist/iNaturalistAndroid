@@ -35,7 +35,6 @@
     <string name="projects">مشاريع</string>
     <string name="delete_photo">حذف صور</string>
     <string name="menu">قائمة</string>
-    <string name="layers">طبقات</string>
     <string name="my_location">مكاني</string>
     <string name="nearby_observations">ارصاد قريبه</string>
     <string name="add">إضافة</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">تسجيل الخروج/י</string>
     <string name="join">دخول</string>
-    <string name="loading_check_list">تحميل الجدول…</string>
     <string name="no_check_list">لا توجد  أنواع  بقائمة !</string>
     <string name="failed_to_add_obs_to_project">اضافة رصد \'%1$s\' مشروع \'%2$s\' فشل: %3$s</string>
     <string name="invalid_project_field">الرجاء إدخال معلومات صحيحه\'%1s\'</string>
@@ -324,7 +322,6 @@
     <string name="news">News</string>
     <string name="article">Article</string>
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
-    <string name="article_by">Article By</string>
     <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
     <string name="no_location">No Location</string>

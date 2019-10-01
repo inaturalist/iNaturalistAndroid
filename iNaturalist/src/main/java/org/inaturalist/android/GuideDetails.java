@@ -58,6 +58,8 @@ import com.livefront.bridge.Bridge;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.tinylog.Logger;
+
 public class GuideDetails extends AppCompatActivity implements INaturalistApp.OnDownloadFileProgress {
 
     private static final String TAG = "GuideDetails";
@@ -838,7 +840,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
                                             try {
                                                 Thread.sleep(10);
                                             } catch (InterruptedException e) {
-                                                e.printStackTrace();
+                                                Logger.tag(TAG).error(e);
                                             }
                                             if ((tryCount < 2) && (view.getFirstVisiblePosition() != finalPosition)) {
                                                 // Fix for scrolling bug
@@ -934,7 +936,7 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         
         mTaxaGuideReceiver = new GuideTaxaReceiver();
         IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GUIDE_XML_RESULT);
-        Log.i(TAG, "Registering ACTION_GUIDE_XML_RESULT");
+        Logger.tag(TAG).info("Registering ACTION_GUIDE_XML_RESULT");
         BaseFragmentActivity.safeRegisterReceiver(mTaxaGuideReceiver, filter, this);
 
         mSearchText = (EditText) findViewById(R.id.search_filter);

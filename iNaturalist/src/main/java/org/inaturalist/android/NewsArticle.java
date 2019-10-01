@@ -34,6 +34,7 @@ import com.livefront.bridge.Bridge;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -41,6 +42,7 @@ import java.util.regex.Pattern;
 public class NewsArticle extends AppCompatActivity {
     public static final String KEY_ARTICLE = "article";
     public static final String KEY_IS_USER_FEED = "is_user_feed";
+    private static final String TAG = "NewsArticle";
 
     private INaturalistApp mApp;
     @State(AndroidStateBundlers.BetterJSONObjectBundler.class) public BetterJSONObject mArticle;
@@ -164,7 +166,7 @@ public class NewsArticle extends AppCompatActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEWS_TAP_LINK, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 Uri uri = Uri.parse(url);

@@ -11,6 +11,7 @@ import org.inaturalist.android.INaturalistService.LoginType;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.evernote.android.state.State;
 
@@ -226,7 +227,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
                     try {
                         startActivity(intent);
                     } catch (ActivityNotFoundException e) {
-                        Log.e(TAG, "Failed to view photo: " + e);
+                        Logger.tag(TAG).error("Failed to view photo: " + e);
                     }
                 }
             });
@@ -363,7 +364,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
                     String deviceLanguage =   deviceLocale.getLanguage();
                     obsUrl = "https://" + deviceLanguage + ".wikipedia.org/wiki/" + URLEncoder.encode(wikiTitle, "utf-8");
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -557,7 +558,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
             // Get the taxon details
             mTaxonReceiver = new TaxonReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
-            Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_GET_TAXON_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, this, INaturalistService.class);

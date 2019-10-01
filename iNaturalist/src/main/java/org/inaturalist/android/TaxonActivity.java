@@ -64,6 +64,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -172,7 +173,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
 
             results = (BetterJSONObject) intent.getSerializableExtra(intent.getAction());
 
-           Log.d(TAG, "HistogramReceiver - " + intent.getAction());
+           Logger.tag(TAG).debug("HistogramReceiver - " + intent.getAction());
 
             if (results == null) {
                 return;
@@ -462,7 +463,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             try {
                 date = format.parse(mObservation.getString("observed_on"));
             } catch (ParseException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
             if (date != null) {
@@ -1030,7 +1031,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             // Get the taxon details
             mTaxonReceiver = new TaxonReceiver();
             IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_NEW_RESULT);
-            Log.i(TAG, "Registering ACTION_GET_TAXON_NEW_RESULT");
+            Logger.tag(TAG).info("Registering ACTION_GET_TAXON_NEW_RESULT");
             BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, this);
 
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON_NEW, null, this, INaturalistService.class);

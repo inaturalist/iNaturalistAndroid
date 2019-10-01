@@ -36,6 +36,7 @@ import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,7 +135,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
             }
@@ -209,7 +210,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN, eventParams);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
         } else {
@@ -229,7 +230,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGIN_FAILED, eventParams);
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
 
 
@@ -298,7 +299,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                         final String authToken = result.getString(AccountManager.KEY_AUTHTOKEN);
                         final Intent authIntent = result.getParcelable(AccountManager.KEY_INTENT);
                         if (accountName != null && authToken != null) {
-//	                        Log.d(TAG, String.format("Token: %s", authToken));
+//	                        Logger.tag(TAG).debug(String.format("Token: %s", authToken));
                             execute(boundUsername, authToken, INaturalistService.LoginType.GOOGLE.toString(), boundInvalidated);
 
                         } else if (authIntent != null) {
@@ -307,10 +308,10 @@ public class SignInTask extends AsyncTask<String, Void, String> {
                             authIntent.setFlags(flags);
                             mActivity.startActivityForResult(authIntent, REQUEST_CODE_LOGIN);
                         } else {
-                            Log.e(TAG, "AccountManager was unable to obtain an authToken.");
+                            Logger.tag(TAG).error("AccountManager was unable to obtain an authToken.");
                         }
                     } catch (Exception e) {
-                        Log.e(TAG, "Auth Error", e);
+                        Logger.tag(TAG).error("Auth Error", e);
                     }
                 }
             };
@@ -374,7 +375,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         int count3 = mActivity.getContentResolver().delete(ProjectObservation.CONTENT_URI, "(is_new = 1) OR (is_deleted = 1)", null);
         int count4 = mActivity.getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
 
-		Log.d(TAG, String.format("Deleted %d / %d / %d / %d unsynced observations", count1, count2, count3, count4));
+		Logger.tag(TAG).debug(String.format("Deleted %d / %d / %d / %d unsynced observations", count1, count2, count3, count4));
 
         // TODO
 		//toggle();

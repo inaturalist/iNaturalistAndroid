@@ -12,11 +12,10 @@ import java.util.Locale;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import com.evernote.android.state.State;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 import com.squareup.picasso.Picasso;
 
@@ -24,8 +23,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -41,7 +38,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -54,7 +50,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class TaxonSearchActivity extends AppCompatActivity {
-    private static final String LOG_TAG = "TaxonSearchActivity";
+    private static final String TAG = "TaxonSearchActivity";
 
 
     private static final int VIEW_TAXON_REQUEST_CODE = 0x1000;
@@ -141,10 +137,10 @@ public class TaxonSearchActivity extends AppCompatActivity {
             }
 
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "Error processing Places API URL", e);
+            Logger.tag(TAG).error("Error processing Places API URL", e);
             return resultList;
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error connecting to Places API", e);
+            Logger.tag(TAG).error("Error connecting to Places API", e);
             return resultList;
         } finally {
             if (conn != null) {
@@ -162,7 +158,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                 resultList.add(predsJsonArray.getJSONObject(i));
             }
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "Cannot process JSON results", e);
+            Logger.tag(TAG).error("Cannot process JSON results", e);
         }
 
         return resultList;
@@ -216,7 +212,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                                 customObs.put("is_custom", true);
                                 customObs.put("name", mCurrentSearchString);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                             if (!mSuggestId) mResultList.add(customObs);
                             notifyDataSetChanged();
@@ -277,7 +273,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                                 customObs.put("is_custom", true);
                                 customObs.put("name", mCurrentSearchString);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Logger.tag(TAG).error(e);
                             }
                             if (!mSuggestId) values.add(0, customObs);
                         }
@@ -295,7 +291,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                                     customObs.put("is_custom", true);
                                     customObs.put("name", mCurrentSearchString);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Logger.tag(TAG).error(e);
                                 }
                                 if (!mSuggestId) values.add(customObs);
                             }
@@ -391,7 +387,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
                     JSONObject obs = new JSONObject(mObservationJson);
                     hasPhotos = hasPhotos || (obs.has("observation_photos") && (obs.optJSONArray("observation_photos").length() > 0));
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -596,7 +592,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 
@@ -673,7 +669,7 @@ public class TaxonSearchActivity extends AppCompatActivity {
         try {
             suggestion.put("taxon", taxon);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
         ArrayList<BetterJSONObject> suggestions = new ArrayList<>();
         suggestions.add(new BetterJSONObject(suggestion));

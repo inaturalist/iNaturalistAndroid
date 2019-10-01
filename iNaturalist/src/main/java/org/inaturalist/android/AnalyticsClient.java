@@ -11,6 +11,7 @@ import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 /**
  * Encapsulates the analytics client and adds some extra functionality (singleton class)
@@ -177,6 +178,7 @@ public class AnalyticsClient {
     public static final String EVENT_VALUE_ME_TAB = "Me Tab";
     public static final String EVENT_VALUE_IDENTIFICATIONS_TAB = "Identifications Tab";
     public static final String EVENT_VALUE_PROJECT_DETAILS = "Project Details";
+    private static final String TAG = "AnalyticsClient";
 
     // Singleton instance
     private static AnalyticsClient mAnalyticsClient = null;
@@ -259,7 +261,7 @@ public class AnalyticsClient {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
     }
 

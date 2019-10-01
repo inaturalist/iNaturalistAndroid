@@ -68,7 +68,6 @@
   <string name="projects_description">Projetos</string>
   <string name="delete_photo">Excluir foto</string>
   <string name="menu">Menu</string>
-  <string name="layers">Camadas</string>
   <string name="my_location">Minha Localização</string>
   <string name="nearby_observations">Observações nas proximidades</string>
   <string name="add">Adicionar</string>
@@ -145,8 +144,7 @@
   <string name="leave">Sair</string>
   <string name="join">Junte-se</string>
   <string name="project_taxa">Lista de verificação do projeto</string>
-  <string name="loading_check_list">Carregando Lista de verificação...</string>
-  <string name="no_check_list">Sem táxons na lista de verificação!</string>
+    <string name="no_check_list">Sem táxons na lista de verificação!</string>
   <string name="failed_to_add_obs_to_project">Falha ao adicionar a observação \'%1$s\' para o projeto \'%2$s\': %3$s</string>
   <string name="invalid_project_field">Por favor, digite um valor válido para o campo \'%1s\'</string>
   <string name="id_please">Precisa de ajuda com o ID?</string>

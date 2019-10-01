@@ -32,6 +32,7 @@ import com.facebook.login.LoginManager;
 import org.apache.http.util.LangUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,7 @@ import java.io.IOException;
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
+    private static final String TAG = "SettingsFragment";
 
     private Preference mUsernamePreference;
     private CheckBoxPreference mAutoSyncPreference;
@@ -162,7 +164,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                     AnalyticsClient.EVENT_NAME_SETTING_DISABLED
                             , eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
                 return false;
@@ -188,7 +190,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                     AnalyticsClient.EVENT_NAME_SETTING_DISABLED
                             , eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
 
 
@@ -210,7 +212,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     try {
                         userDetails.put("prefers_scientific_name_first", newValue);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Logger.tag(TAG).error(e);
                     }
                     serviceIntent.putExtra(INaturalistService.USER, new BetterJSONObject(userDetails));
                     ContextCompat.startForegroundService(getActivity(), serviceIntent);
@@ -242,10 +244,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 mDebugLogsClickCount++;
 
                 if (mDebugLogsClickCount >= 3) {
-                    // Secret menu - Open up the email client with the app debug log as attachment
-                    sendDebugLog();
+                    // Open secret debug menu
                     mDebugLogsClickCount = 0;
-                    return false;
+                    Intent intent = new Intent(getActivity(), DebugSettingsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
                 }
 
                 return false;
@@ -268,7 +270,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     mailer.putExtra(Intent.EXTRA_SUBJECT, String.format(getString(R.string.inat_support_email_subject), info.versionName, info.versionCode, username == null ? "N/A" : username));
                     startActivity(Intent.createChooser(mailer, getString(R.string.send_email)));
                 } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
                 return false;
             }
@@ -301,7 +303,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             mVersion.setSummary(String.format("%s (%d)", info.versionName, info.versionCode));
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
         }
 
         String network = mApp.getInaturalistNetworkMember();
@@ -450,41 +452,4 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         refreshSettings();
         ((SettingsActivity)getActivity()).refreshUserDetails();
 	}
-
-
-    public void sendDebugLog() {
-        // Save Logcat output to a file
-        File outputFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "logcat.txt");
-        try {
-            Runtime.getRuntime().exec("logcat -f " + outputFile.getAbsolutePath() + " -r 8136");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String username = mPreferences.getString("username", null);
-        PackageInfo info = null;
-
-        try {
-            PackageManager manager = getActivity().getPackageManager();
-            info = manager.getPackageInfo(getActivity().getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            info = null;
-        }
-
-        // Send the file using email
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("vnd.android.cursor.dir/email");
-        // Add the attachment
-        Uri path = Uri.fromFile(outputFile);
-        emailIntent .putExtra(Intent.EXTRA_STREAM, path);
-        if (info == null) {
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (user id - %s; Android API = %d)", username == null ? "N/A" : username, Build.VERSION.SDK_INT));
-        } else {
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, String.format("iNaturalist Android Logs (version %s - %s; user id - %s; Android API = %d)", info.versionName, info.versionCode, username == null ? "N/A" : username, Build.VERSION.SDK_INT));
-        }
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.inat_support_email_address)});
-
-        startActivity(Intent.createChooser(emailIntent , getString(R.string.send_email)));
-    }
-
 }

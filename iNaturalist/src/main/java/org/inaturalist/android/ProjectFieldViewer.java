@@ -32,6 +32,7 @@ import org.apache.commons.collections4.Predicate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -134,7 +135,7 @@ public class ProjectFieldViewer {
                 }
             }
         } catch (JSONException e3) {
-            e3.printStackTrace();
+            Logger.tag(TAG).error(e3);
         }
 
         if (displayName == null) {
@@ -209,7 +210,7 @@ public class ProjectFieldViewer {
                 return formatted.substring(0, 22) + ":" + formatted.substring(22);
 
             } catch (ParseException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
                 return null;
             }
         } else if (mField.data_type.equals("taxon")) {
@@ -402,7 +403,7 @@ public class ProjectFieldViewer {
                 // Get the taxon details
                 mTaxonReceiver = new TaxonReceiver();
                 IntentFilter filter = new IntentFilter(INaturalistService.ACTION_GET_TAXON_RESULT);
-                Log.i(TAG, "Registering ACTION_GET_TAXON_RESULT");
+                Logger.tag(TAG).info("Registering ACTION_GET_TAXON_RESULT");
                 BaseFragmentActivity.safeRegisterReceiver(mTaxonReceiver, filter, mContext);
 
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_TAXON, null, mContext, INaturalistService.class);
@@ -477,7 +478,7 @@ public class ProjectFieldViewer {
                 mDateTimePicker.updateDate(date.getYear() + 1900, date.getMonth(), date.getDate());
                 mDateTimePicker.updateTime(date.getHours(), date.getMinutes());
             } catch (ParseException e) {
-                e.printStackTrace();
+                Logger.tag(TAG).error(e);
             }
         }
 
@@ -492,14 +493,14 @@ public class ProjectFieldViewer {
         try {
             s = s.substring(0, 22) + s.substring(23);
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
         Date date;
         try {
             date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(s);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 
@@ -513,7 +514,7 @@ public class ProjectFieldViewer {
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(value);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
 

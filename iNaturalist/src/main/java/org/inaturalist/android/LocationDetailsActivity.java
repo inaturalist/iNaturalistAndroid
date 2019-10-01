@@ -30,6 +30,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.livefront.bridge.Bridge;
 
+import org.tinylog.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,9 +118,9 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
                 while ((metersPerPixel * widthInPixels) > mAccuracy) {
                     metersPerPixel /= 2;
                     ++zoomLevel;
-                    Log.e(TAG, "\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + mAccuracy);
+                    Logger.tag(TAG).debug("\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + mAccuracy);
                 }
-                Log.e(TAG, "Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
+                Logger.tag(TAG).debug("Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
                 zoom = zoomLevel - 2;
         	}
 
@@ -228,7 +230,7 @@ public class LocationDetailsActivity extends AppCompatActivity implements Locati
 	@Override
 	public void onLocationChanged(Location location) {
         if (location != null) {
-            Log.v("Location Changed", location.getLatitude() + " and " + location.getLongitude());
+            Logger.tag(TAG).info("Location changed: " + location.getLatitude() + " and " + location.getLongitude());
             mLocationManager.removeUpdates(this);
 
         	LatLng camLocation = new LatLng(location.getLatitude(), location.getLongitude());

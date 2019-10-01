@@ -35,7 +35,6 @@
     <string name="projects">Projects</string>
     <string name="delete_photo">Delete photo</string>
     <string name="menu">Menu</string>
-    <string name="layers">Layers</string>
     <string name="my_location">My Location</string>
     <string name="nearby_observations">Nearby Observations</string>
     <string name="add">Add</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Leave</string>
     <string name="join">Join</string>
-    <string name="loading_check_list">Loading Check List...</string>
     <string name="no_check_list">No Taxa in Check List!</string>
     <string name="failed_to_add_obs_to_project">Failed to add observation \'%1$s\' to project \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Please enter a valid value for field \'%1s\'</string>
@@ -323,7 +321,6 @@
     <string name="news">News</string>
     <string name="article">Article</string>
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
-    <string name="article_by">Article By</string>
     <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">More »</font></b>]]></string>
     <string name="no_location">No Location</string>

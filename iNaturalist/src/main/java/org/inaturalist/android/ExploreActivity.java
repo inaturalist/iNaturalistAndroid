@@ -73,6 +73,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -711,7 +712,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                     JSONObject item = results.getJSONObject(i);
                     resultsArray.add(item);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
 
@@ -820,6 +821,15 @@ public class ExploreActivity extends BaseFragmentActivity {
                 builder.append(mSearchFilters.annotationValue);
             }
 
+            builder.append(", ");
+        }
+
+        if (mSearchFilters.hasPhotos) {
+            builder.append(getString(R.string.has_photos));
+            builder.append(", ");
+        }
+        if (mSearchFilters.hasSounds) {
+            builder.append(getString(R.string.has_sounds));
             builder.append(", ");
         }
 
@@ -946,7 +956,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                             mListAdapter[resultsType] = adapterClass.getDeclaredConstructor(Context.class, ArrayList.class).newInstance(ExploreActivity.this, (ArrayList<JSONObject>) mResults[resultsType]);
                             mList[resultsType].setAdapter(mListAdapter[resultsType]);
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            Logger.tag(TAG).error(e);
                         }
                     }
                 }
@@ -1000,7 +1010,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         });
@@ -1523,7 +1533,7 @@ public class ExploreActivity extends BaseFragmentActivity {
 
                     if (observation != null) {
                         // Found a matching observation
-                        Log.d(TAG, "UTFGrid Observation: " + observation.toString());
+                        Logger.tag(TAG).debug("UTFGrid Observation: " + observation.toString());
 
                         Intent intent = new Intent(ExploreActivity.this, ObservationViewerActivity.class);
 
@@ -1541,9 +1551,9 @@ public class ExploreActivity extends BaseFragmentActivity {
                         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NAVIGATE_OBS_DETAILS, eventParams);
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Logger.tag(TAG).error(e);
                 }
             }
         }).start();
@@ -1638,7 +1648,7 @@ public class ExploreActivity extends BaseFragmentActivity {
             layer.getDefaultPolygonStyle().setStrokeWidth(px);
             return layer;
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.tag(TAG).error(e);
             return null;
         }
     }

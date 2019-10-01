@@ -35,7 +35,6 @@
     <string name="projects">Prosjekter</string>
     <string name="delete_photo">Slett fotografi</string>
     <string name="menu">Meny</string>
-    <string name="layers">Lag</string>
     <string name="my_location">Posisjonen min</string>
     <string name="nearby_observations">Nære observasjoner</string>
     <string name="add">Legg til</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Dra</string>
     <string name="join">Bli med</string>
-    <string name="loading_check_list">Laster inn sjekkliste...</string>
     <string name="no_check_list">Ingen grupper i sjekklisten!</string>
     <string name="failed_to_add_obs_to_project">Kunne ikke legge til observasjon \'%1$s\' til prosjekt \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Vennligst angi en gyldig verdi til område \'%1s\'</string>
@@ -323,7 +321,6 @@
     <string name="news">Nyheter</string>
     <string name="article">Artikkel</string>
     <string name="couldnt_load_project_news">Kunne ikke laste ned prosjektnyheter: %1$s</string>
-    <string name="article_by">Artikkel av</string>
     <string name="couldnt_load_user_details">Kunne ikke laste ned brukerdetaljer: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Mer »</font></b>]]></string>
     <string name="no_location">Ingen posisjon</string>

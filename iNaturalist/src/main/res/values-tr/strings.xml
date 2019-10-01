@@ -35,7 +35,6 @@
     <string name="projects">Projeler</string>
     <string name="delete_photo">Fotoğrafı sil</string>
     <string name="menu">Menü</string>
-    <string name="layers">Katmanlar</string>
     <string name="my_location">Konumum</string>
     <string name="nearby_observations">Yakın gözlemler</string>
     <string name="add">Ekle</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Ayrıl</string>
     <string name="join">Katıl</string>
-    <string name="loading_check_list">Onay listesi yükleniyor...</string>
     <string name="no_check_list">Hiçbir takson onay listesinde değil!</string>
     <string name="failed_to_add_obs_to_project">%2$s projesine gözlem %1$s eklemek başarısız:%3$s</string>
     <string name="invalid_project_field">Lütfen \'%1s\' alanı için geçerli bir değer girin.</string>
@@ -323,7 +321,6 @@
     <string name="news">Haberler</string>
     <string name="article">Makale</string>
     <string name="couldnt_load_project_news">Proje haberi yüklenemedi: %1$s</string>
-    <string name="article_by">Makale</string>
     <string name="couldnt_load_user_details">Kullanıcı detayları yüklenemedi: %1$s</string>
     <string name="more_bio"><![CDATA[<b><yazı rengi="#ffffff">daha »</yazı></b>]]></string>
     <string name="no_location">Konum yok</string>

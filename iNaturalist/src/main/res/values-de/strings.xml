@@ -35,7 +35,6 @@
     <string name="projects">Projekte</string>
     <string name="delete_photo">Bild löschen</string>
     <string name="menu">Menü</string>
-    <string name="layers">Ebenen</string>
     <string name="my_location">Mein Standort</string>
     <string name="nearby_observations">Beobachtungen in der Nähe</string>
     <string name="add">Hinzufügen</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Verlassen</string>
     <string name="join">Beitreten</string>
-    <string name="loading_check_list">Lade Checkliste...</string>
     <string name="no_check_list">Keine Taxa in der Checkliste!</string>
     <string name="failed_to_add_obs_to_project">Hinzufügen der Beobachtung \'%1$s\' zum Projekt \'%2$s\' gescheitert: %3$s</string>
     <string name="invalid_project_field">Bitte gib einen passenden Wert in Feld \'%1s\' ein</string>
@@ -323,7 +321,6 @@
     <string name="news">News</string>
     <string name="article">Artikel</string>
     <string name="couldnt_load_project_news">Konnte Projektneuigkeiten nicht laden: %1$s</string>
-    <string name="article_by">Artikel von</string>
     <string name="couldnt_load_user_details">Konnte Nutzerdetails nicht laden: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Mehr »</font></b>]]></string>
     <string name="no_location">Kein Standort</string>

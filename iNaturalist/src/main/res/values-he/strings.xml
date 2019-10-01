@@ -35,7 +35,6 @@
     <string name="projects">פרויקטים</string>
     <string name="delete_photo">מחיקת תמונה</string>
     <string name="menu">תפריט</string>
-    <string name="layers">שכבות</string>
     <string name="my_location">המיקום שלי</string>
     <string name="nearby_observations">תצפיות באיזור</string>
     <string name="add">הוספה</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">התנתק/י</string>
     <string name="join">הצטרף/י</string>
-    <string name="loading_check_list">טעינת רשימה לבדיקה...</string>
     <string name="no_check_list">אין Taxa ברשימה!</string>
     <string name="failed_to_add_obs_to_project">נכשל בהוספת תצפית \'%1$s\' לפרויקט \'%2$s\': %3$s</string>
     <string name="invalid_project_field">נא הזן/יני ערך חוקי עבור שדה \'%1s \'</string>
@@ -323,7 +321,6 @@
     <string name="news">חדשות</string>
     <string name="article">מאמר</string>
     <string name="couldnt_load_project_news">פרויקט לא הועלה, חדשות: %1$s</string>
-    <string name="article_by">מאמר מאת</string>
     <string name="couldnt_load_user_details">לא יכול לטעון פרטי משתמש: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">עוד»</font></b>]]></string>
     <string name="no_location">ללא מיקום</string>

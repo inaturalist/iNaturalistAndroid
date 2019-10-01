@@ -40,6 +40,7 @@ import com.google.maps.android.SphericalUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -306,7 +307,7 @@ public class ActivityHelper {
         		mProgressDialog = null;
         	} catch (Exception exc) {
         		// Nothing to do here
-        		exc.printStackTrace();
+        		Logger.tag(TAG).error(exc);
         	}
         }
     }
@@ -378,7 +379,6 @@ public class ActivityHelper {
             return;
         }
         LatLng latlng = new LatLng(lat, lon);
-        BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name);
         String currentUser = mApp.currentUserLogin();
         CameraUpdate cameraUpdate = null;
         int obsColor = observationColor(observation);
@@ -386,25 +386,41 @@ public class ActivityHelper {
         Integer publicAcc = null;
         publicAcc = observationJson != null ? observationJson.getInteger("public_positional_accuracy") : null;
 
-        // Add a single marker
-        MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
-        map.addMarker(opts);
-
         if (((observation.geoprivacy != null) && (observation.geoprivacy.equals("private"))) ||
                 (publicAcc == null) || (markerOnly)) {
+            // Add a single marker
+            BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
+            MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+            map.addMarker(opts);
+
             // No need to add anything other than the above marker
             cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
 
         } else if ((currentUser != null) && (observation.user_login != null) && (observation.user_login.equals(currentUser)) &&
                 (observation.positional_accuracy != null)) {
+            // Add a single marker
+            BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
+            MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+            map.addMarker(opts);
+
             // Show circle of private positional accuracy
             cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
         } else {
             if ((observation.positional_accuracy != null) && (publicAcc != null) &&
                     (observation.positional_accuracy.equals(publicAcc))) {
+                // Add a single marker
+                BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
+                MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+                map.addMarker(opts);
+
                 // Show circle of public positional accuracy
                 cameraUpdate = addCircle(map, latlng, publicAcc, observation, updateCamera);
             } else if ((currentUser == null) || (observation.user_login == null) || (!observation.user_login.equals(currentUser))) {
+                // Add a single marker (stemless)
+                BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, true);
+                MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
+                map.addMarker(opts);
+
                 // Show uncertainty cell
                 Double cellSize = 0.2;
                 Double coords[] = new Double[] { lat, lon };
@@ -449,7 +465,6 @@ public class ActivityHelper {
                             .build(), 10);
                 }
             }
-
         }
 
         final CameraUpdate finalCameraUpdate = cameraUpdate;
@@ -460,7 +475,7 @@ public class ActivityHelper {
                     if (finalCameraUpdate != null) map.moveCamera(finalCameraUpdate);
                 } catch (IllegalStateException exc) {
                     // Handles weird exception is raised ("View size is too small after padding is applied")
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 }
             }
         });
@@ -484,7 +499,7 @@ public class ActivityHelper {
             }
         } catch (IllegalStateException exc) {
             // Handles weird exception is raised ("View size is too small after padding is applied")
-            exc.printStackTrace();
+            Logger.tag(TAG).error(exc);
         }
     }
     public void centerObservation(final GoogleMap map, Observation observation) {
@@ -507,7 +522,7 @@ public class ActivityHelper {
                     }
                 } catch (IllegalStateException exc) {
                     // Handles weird exception is raised ("View size is too small after padding is applied")
-                    exc.printStackTrace();
+                    Logger.tag(TAG).error(exc);
                 }
             }
         });
