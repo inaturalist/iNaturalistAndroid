@@ -35,7 +35,6 @@
     <string name="projects">Prosjekter</string>
     <string name="delete_photo">Slett fotografi</string>
     <string name="menu">Meny</string>
-    <string name="layers">Lag</string>
     <string name="my_location">Posisjonen min</string>
     <string name="nearby_observations">Nære observasjoner</string>
     <string name="add">Legg til</string>
@@ -101,7 +100,6 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Dra</string>
     <string name="join">Bli med</string>
-    <string name="loading_check_list">Laster inn sjekkliste...</string>
     <string name="no_check_list">Ingen grupper i sjekklisten!</string>
     <string name="failed_to_add_obs_to_project">Kunne ikke legge til observasjon \'%1$s\' til prosjekt \'%2$s\': %3$s</string>
     <string name="invalid_project_field">Vennligst angi en gyldig verdi til område \'%1s\'</string>
@@ -323,7 +321,6 @@
     <string name="news">Nyheter</string>
     <string name="article">Artikkel</string>
     <string name="couldnt_load_project_news">Kunne ikke laste ned prosjektnyheter: %1$s</string>
-    <string name="article_by">Artikkel av</string>
     <string name="couldnt_load_user_details">Kunne ikke laste ned brukerdetaljer: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Mer »</font></b>]]></string>
     <string name="no_location">Ingen posisjon</string>
@@ -685,4 +682,22 @@
     <string name="show_hidden_content">Vis skjult innhold</string>
     <string name="content_hidden_because">Innhold skjult av @%1$s på %2$s fordi: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontakt Support</a>]]></string>
+    <string name="content">Innhold</string>
+    <string name="has_photos">Har Bilder</string>
+    <string name="has_sounds">Har Lyder</string>
+    <string name="could_not_play_sound">Kunne ikke spille av lyd - sikkert en nettverksfeil</string>
+    <string name="cant_play_soundcloud"><![CDATA[For å høre på lyder fra Soundcloud, se <a href="%1$s">nettside</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Spill inn lyd</string>
+    <string name="no_recorder_found">Ingen standard lydopptaker funnet!</string>
+    <string name="couldnt_retrieve_sound">Kunne ikke hente lyd fra standard lydopptaker - prøv å importere lyden i stedet</string>
+    <string name="upload_sound">Velg lyd</string>
+    <string name="multi_select_sound_description">Importér flere fotografier ved å trykke på og holde inne et enkelt bilde</string>
+    <string name="alert_unsupported_audio_type">Unnskyld, men det var et problem under innlastningen av bildet fra denne kilden</string>
+    <string name="invalid_audio_extension">Feil under importering av lyder(r): Kan kun importere lyder med filtypene WAV/MP3/AMR</string>
+    <string name="importing_sounds">Importerer lyd(er)...</string>
+    <string name="observation_sound">Observasjonslyder</string>
+    <string name="deleted_sounds_from_cache_error">Det ser ut til at du har slettet en lyd ved å rydde appens cache før opplasting. Du må derfor legge lyden til observasjoner fra galleriet på nytt. Sørg for at du har lastet opp alle dine lyder før du rydder appcachen i fremtiden.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sek</string>
 </resources>

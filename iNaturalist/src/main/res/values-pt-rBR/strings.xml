@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Mostrar conteúdo oculto</string>
     <string name="content_hidden_because">Conteúdo oculto por @%1$s em %2$s porque: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Entre em contato com o suporte</a>]]></string>
+    <string name="content">Conteúdo</string>
+    <string name="has_photos">Tem fotos</string>
+    <string name="has_sounds">Tem sons</string>
+    <string name="could_not_play_sound">Não foi possível reproduzir som - provavelmente um problema de rede</string>
+    <string name="cant_play_soundcloud"><![CDATA[Para ouvir sons do SoundCloud, consulte o <a href="%1$s">site</a>.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">Gravar som</string>
+    <string name="no_recorder_found">Nenhum gravador de som padrão encontrado!</string>
+    <string name="couldnt_retrieve_sound">Não foi possível recuperar o som do gravador padrão - tente importar o som</string>
+    <string name="upload_sound">Escolha o som</string>
+    <string name="multi_select_sound_description">Importe vários sons pressionando longamente um único som</string>
+    <string name="alert_unsupported_audio_type">Desculpe, mas ocorreu um problema ao carregar o som desta fonte</string>
+    <string name="invalid_audio_extension">Erro ao importar som (s): Só é possível importar arquivos de fotos com extensões WAV/MP3/AMR</string>
+    <string name="importing_sounds">Importando som(s)...</string>
+    <string name="observation_sound">Som de Observação</string>
+    <string name="deleted_sounds_from_cache_error">Parece que você excluiu um som limpando o cache do aplicativo antes de fazer o upload. Você precisará adicionar o som de volta à sua observação da sua galeria. No futuro, verifique se você enviou todos os seus sons antes de limpar o cache do aplicativo.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f seg</string>
 </resources>
