@@ -1,6 +1,6 @@
 # Contributors
 
-Many people have contributed translations to the iNaturalist Rails app over the years, mostly through the crowdsourcing platforms [Crowdin](https://crowdin.com/project/inaturalistweb). Thank you to everyone who has helped translate iNaturalist. You've allowed iNat serve a much broader audience through your work.
+Many people have contributed translations to the iNaturalist Android app over the years, mostly through the crowdsourcing platform [Crowdin](https://crowdin.com/project/inaturalistios). Thank you to everyone who has helped translate iNaturalist. You've allowed us to serve a much broader audience through your work.
 
 ## Albanian (`sq`)
 * [Liridon Shala (liridonshala)](https://crowdin.com/profile/liridonshala)
