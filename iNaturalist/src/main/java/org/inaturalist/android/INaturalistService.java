@@ -1293,48 +1293,56 @@ public class INaturalistService extends IntentService {
                 ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                String uuid = intent.getStringExtra(UUID);
                 BetterJSONObject results = getExploreResults("observers", filters, pageNumber, pageSize, null);
                 results = getMinimalObserverResults(results);
 
                 Intent reply = new Intent(EXPLORE_GET_OBSERVERS_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_OBSERVERS_RESULT, results);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(UUID, uuid);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_EXPLORE_GET_IDENTIFIERS)) {
                 ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                String uuid = intent.getStringExtra(UUID);
                 BetterJSONObject results = getExploreResults("identifiers", filters, pageNumber, pageSize, null);
                 results = getMinimalObserverResults(results);
 
                 Intent reply = new Intent(EXPLORE_GET_IDENTIFIERS_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_IDENTIFIERS_RESULT, results);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(UUID, uuid);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_EXPLORE_GET_SPECIES)) {
                 ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                String uuid = intent.getStringExtra(UUID);
                 BetterJSONObject results = getExploreResults("species_counts", filters, pageNumber, pageSize, null);
                 results = getMinimalSpeciesResults(results);
 
                 Intent reply = new Intent(EXPLORE_GET_SPECIES_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_SPECIES_RESULT, results);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(UUID, uuid);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_EXPLORE_GET_OBSERVATIONS)) {
                 ExploreSearchFilters filters = (ExploreSearchFilters) intent.getSerializableExtra(FILTERS);
                 int pageNumber = intent.getIntExtra(PAGE_NUMBER, 1);
                 int pageSize = intent.getIntExtra(PAGE_SIZE, EXPLORE_DEFAULT_RESULTS_PER_PAGE);
+                String uuid = intent.getStringExtra(UUID);
                 BetterJSONObject observations = getExploreResults(null, filters, pageNumber, pageSize, "observation.id");
                 observations = getMinimalObservationResults(observations);
 
                 Intent reply = new Intent(EXPLORE_GET_OBSERVATIONS_RESULT);
                 mApp.setServiceResult(EXPLORE_GET_OBSERVATIONS_RESULT, observations);
                 reply.putExtra(IS_SHARED_ON_APP, true);
+                reply.putExtra(UUID, uuid);
                 sendBroadcast(reply);
 
             } else if (action.equals(ACTION_ADD_COMMENT)) {

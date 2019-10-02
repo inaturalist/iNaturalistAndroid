@@ -88,6 +88,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.UUID;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -184,6 +185,7 @@ public class ExploreActivity extends BaseFragmentActivity {
     @State public boolean mLocationPermissionRequested = false;
     @State public SerializableJSONArray mAllAnnotations;
     private AnnotationsReceiver mAnnotationsReceiver;
+    @State public String[] mLatestSearchUuid = { null, null, null, null };
 
     @Override
     protected void onStart() {
@@ -600,7 +602,7 @@ public class ExploreActivity extends BaseFragmentActivity {
                             mInitialLocationBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
                             mObservationsMapContainer.setVisibility(View.GONE);
 
-                            if (shouldRedoSearch) {
+                            if (shouldRedoSearch && !mShouldMoveMapAccordingToSearchFilters) {
                                 mLastMapBounds = mInitialLocationBounds;
                                 mRedoObservationsSearch.performClick();
                             }
@@ -664,6 +666,13 @@ public class ExploreActivity extends BaseFragmentActivity {
                 index = VIEW_TYPE_IDENTIFIERS;
             } else if (intent.getAction().equals(INaturalistService.EXPLORE_GET_OBSERVERS_RESULT)) {
                 index = VIEW_TYPE_OBSERVERS;
+            }
+
+            String uuid = intent.getStringExtra(INaturalistService.UUID);
+
+            if (!mLatestSearchUuid[index].equals(uuid)) {
+                Logger.tag(TAG).debug("UUID Mismatch %s - %s", uuid, mLatestSearchUuid[index]);
+                return;
             }
 
             mLoadingNextResults[index] = false;
@@ -1241,6 +1250,8 @@ public class ExploreActivity extends BaseFragmentActivity {
             Intent serviceIntent = new Intent(action, null, this, INaturalistService.class);
             serviceIntent.putExtra(INaturalistService.FILTERS, mSearchFilters);
             serviceIntent.putExtra(INaturalistService.PAGE_NUMBER, mCurrentResultsPage[resultsType] + 1);
+            mLatestSearchUuid[resultsType] = UUID.randomUUID().toString();
+            serviceIntent.putExtra(INaturalistService.UUID, mLatestSearchUuid[resultsType]);
             ContextCompat.startForegroundService(this, serviceIntent);
 
             if (mCurrentResultsPage[resultsType] > 0) {
