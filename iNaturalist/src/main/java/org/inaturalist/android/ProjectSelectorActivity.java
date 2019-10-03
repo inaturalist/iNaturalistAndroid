@@ -160,20 +160,23 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                 mAdapter = new ProjectAdapter(ProjectSelectorActivity.this, mProjects);
                 mProjectList.setAdapter(mAdapter);
                 mProjectList.setOnItemClickListener(ProjectSelectorActivity.this);
+
                 mProjectList.setOnScrollListener(new AbsListView.OnScrollListener() {
                     @Override
                     public void onScrollStateChanged(AbsListView absListView, int i) {
-                        if (mSearchText.getVisibility() != View.VISIBLE) {
-                            mSearchText.setVisibility(View.VISIBLE);
-                            mSearchText.startAnimation(AnimationUtils.loadAnimation(ProjectSelectorActivity.this, R.anim.slide_in_from_top));
-                            mShownSearchBox = true;
-                        }
                     }
 
                     @Override
-                    public void onScroll(AbsListView absListView, int i, int i1, int i2) { }
+                    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mHelper.setListViewHeightBasedOnItems(mProjectList);
+                            }
+                        }, 5);
+                    }
                 });
-                
+
             } else {
                 mLoadingProjects.setText(R.string.no_projects);
                 mLoadingProjects.setVisibility(View.VISIBLE);
@@ -620,15 +623,6 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                 if ((mLastProjectFieldFocused == field.field_id) && (mLastProjectIdFocused == projectId)) {
                     mLastProjectIdFocused = -1;
                     mLastProjectFieldFocused = -1;
-
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            fieldViewer.setFocus();
-                            mProjectList.setSelectionFromTop(mLastProjectFieldIndex, mLastProjectFieldTop);
-                        }
-                    }, 5);
                 }
             }
         }
