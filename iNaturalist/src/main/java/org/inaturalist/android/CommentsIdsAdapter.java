@@ -259,17 +259,17 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
                             popupMenu = sheet.getMenu();
 						}
 
-                        if (restoreId) {
-                            // Show restore ID menu option
-                            popupMenu.getItem(0).setVisible(false);
-                            popupMenu.getItem(1).setVisible(true);
-                        } else {
-                            // Show withdraw ID menu option
-                            popupMenu.getItem(0).setVisible(true);
-                            popupMenu.getItem(1).setVisible(false);
-                        }
-
-
+						if (!isComment) {
+							if (restoreId) {
+								// Show restore ID menu option
+								popupMenu.getItem(0).setVisible(false);
+								popupMenu.getItem(1).setVisible(true);
+							} else {
+								// Show withdraw ID menu option
+								popupMenu.getItem(0).setVisible(true);
+								popupMenu.getItem(1).setVisible(false);
+							}
+						}
 
 					}
 				});
