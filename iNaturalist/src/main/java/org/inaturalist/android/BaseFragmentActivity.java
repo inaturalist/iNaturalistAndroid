@@ -29,6 +29,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -284,7 +285,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
 
-        View sheetView = getLayoutInflater().inflate(R.layout.new_obs_menu, null);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        boolean oneRowMenu = mHelper.pxToDp(displayMetrics.widthPixels) > 600 ? true : false;
+
+        View sheetView = getLayoutInflater().inflate(oneRowMenu ? R.layout.new_obs_menu_one_line : R.layout.new_obs_menu, null);
         bottomSheetDialog.setContentView(sheetView);
         bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

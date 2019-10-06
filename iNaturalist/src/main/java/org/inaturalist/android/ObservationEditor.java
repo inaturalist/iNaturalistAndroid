@@ -91,6 +91,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -3554,7 +3555,11 @@ public class ObservationEditor extends AppCompatActivity {
     private void openImageIntent(final Activity activity) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
 
-        View sheetView = getLayoutInflater().inflate(R.layout.new_obs_menu, null);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        boolean oneRowMenu = mHelper.pxToDp(displayMetrics.widthPixels) >= 489 ? true : false;
+
+        View sheetView = getLayoutInflater().inflate(oneRowMenu ? R.layout.new_obs_menu_one_line : R.layout.new_obs_menu, null);
         bottomSheetDialog.setContentView(sheetView);
         bottomSheetDialog.show();
 
