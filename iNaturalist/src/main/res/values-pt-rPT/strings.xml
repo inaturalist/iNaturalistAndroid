@@ -400,7 +400,7 @@
     <string name="you_will_only_receive_updates_when_following">(Só irá receber atualizações depois de seguir observações)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> sugeriu a identificação: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> comentou: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
-    <string name="deleted_photos_from_cache_error">Como limpou o cache da aplicação antes de carregar, eliminou uma foto. Precisa de adicionar novamente a foto à sua observação a partir da galeria. De futuro, por favor verifique que carregou todas as fotos antes de limpar a cache da aplicação.</string>
+    <string name="deleted_photos_from_cache_error">Como limpou o cache da aplicação antes de carregar o ficheiro, eliminou uma foto. Precisa de adicionar novamente a foto à sua observação a partir da galeria. De futuro, por favor verifique que carregou todas as fotos antes de limpar a cache da aplicação.</string>
     <string name="new_activities">%1s nova(s)</string>
     <string name="no_results_found">Nenhum Resultado Encontrado...</string>
     <string name="syncing_x_out_of_y_observations">A sincronizar %1$d de %2$d observações...</string>
@@ -558,7 +558,7 @@
     <string name="must_be_connected_to_load_more_obs">Precisa de uma ligação Internet para carregar mais observações</string>
     <string name="inat_about_title">iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da Sociedade Geográfica Nacional.</string>
     <string name="inat_credits"><![CDATA[O iNaturalist existe graças a cada pessoa que participa na nossa comunidade. Os que desenvolvem o software, projetam as interfaces, que mantêm a nossa infraestrutura, apoiam a comunidade e promovem colaborações são Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard e Ken- ichi Ueda.<br/><br/>A Caltech e a Universidade de Cornell ajudaram a desenvolver o sistema de visão computacional que sugere identificações a partir das fotografias. Agradecemos Grant Van Horn, Serge Belongie e Pietro Perona pelo progresso com a investigação da visão computacional. Informações adicionais encontram-se em <a href="http://www.visipedia.org">visipedia.org</a>. Um agradecimento especial à NVIDIA pela assistência adicional.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[A rede internacional iNaturalist suporta projetos e sites internet localizados, totalmente integrados, baseados em iNaturalist nos seguintes países, graças ao apoio de organizações parceiras associadas.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[A rede internacional iNaturalist suporta projetos e websites localizados, totalmente integrados, baseados em iNaturalist nos seguintes países, graças ao apoio de organizações parceiras associadas.]]></string>
     <string name="inat_credits_post"><![CDATA[O iNaturalist também está muito grato aos técnicos que desenvolveram o código aberto em fornecer o software em que confiamos todos os dias. Veja <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> para as contribuições de código aberto.<br/> Estamos gratos pela assistência na tradução efetuada por voluntários na comunidade crowdin.com, especialmente a Eduardo Martinez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie e katunchik. <br/>Os locais da categoria II da IUCN são fornecidos pelo IUCN e UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, Reino Unido: UNEP-WCMC. Disponível em: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>
 
 nossa comunidade de código aberto]]></string>
@@ -684,4 +684,22 @@ nossa comunidade de código aberto]]></string>
     <string name="show_hidden_content">Mostrar Conteúdo Oculto</string>
     <string name="content_hidden_because">Conteúdo ocultado por @%1$s em %2$s porque: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contactar o Apoio</a>]]></string>
+    <string name="content">Conteúdo</string>
+    <string name="has_photos">Tem Fotos</string>
+    <string name="has_sounds">Tem Sons</string>
+    <string name="could_not_play_sound">Não foi possível reproduzir o som - é provável que seja um problema na rede</string>
+    <string name="cant_play_soundcloud"><![CDATA[Para ouvir sons do Soundcloud, consulte o website <a href="%1$s"></a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Gravar Som</string>
+    <string name="no_recorder_found">Nenhum gravador de som padrão encontrado!</string>
+    <string name="couldnt_retrieve_sound">Não foi possível recuperar o som do gravador padrão - tente importar o som em vez disso</string>
+    <string name="upload_sound">Escolher Som</string>
+    <string name="multi_select_sound_description">Importar vários sons ao pressionar continuamente num única som</string>
+    <string name="alert_unsupported_audio_type">Lamentamos, mas houve um problema de incompatibilidade com o som a carregar</string>
+    <string name="invalid_audio_extension">Erro ao importar som(sons): só pode importar ficheiros áudio com as extensões WAV/MP3/AMR</string>
+    <string name="importing_sounds">A importar som(sons)...</string>
+    <string name="observation_sound">Som da Observação</string>
+    <string name="deleted_sounds_from_cache_error">Como limpou o cache da aplicação antes de carregar o ficheiro, eliminou o som. Precisa de adicionar novamente o som à sua observação a partir da galeria. De futuro, por favor verifique que carregou todas os sons antes de limpar a cache da aplicação.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f seg</string>
 </resources>

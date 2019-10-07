@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Vis Skjult Indhold</string>
     <string name="content_hidden_because">Indhold skjult af @%1$s d. %2$s fordi: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontakt Support</a>]]></string>
+    <string name="content">Indhold</string>
+    <string name="has_photos">Har fotos</string>
+    <string name="has_sounds">Har lyde</string>
+    <string name="could_not_play_sound">Kunne ikke afspille lyd - sandsynligvis et netværksproblem</string>
+    <string name="cant_play_soundcloud"><![CDATA[For at lytte til Soundcloud-lyde, tjek <a href="%1$s">webstedet</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Optag lyd</string>
+    <string name="no_recorder_found">Ingen standardlydoptager fundet!</string>
+    <string name="couldnt_retrieve_sound">Kunne ikke hente lyd fra standardlydoptager - prøv i stedet at importere lyden</string>
+    <string name="upload_sound">Vælg lyd</string>
+    <string name="multi_select_sound_description">Importér multiple lyde med et lang tryk på én enkelt lyd</string>
+    <string name="alert_unsupported_audio_type">Beklager, der var et problem med at indlæse lyden fra denne kilde</string>
+    <string name="invalid_audio_extension">Fejl under lydimport: Kan kun importere filer af typerne WAV/MP3/AMR</string>
+    <string name="importing_sounds">Importerer lyd(-e)...</string>
+    <string name="observation_sound">Observationslyd</string>
+    <string name="deleted_sounds_from_cache_error">Det ser ud til, at du slettede en lyd ved at tømme app-cachen før upload. Du er nødt til igen at føje lyden til din observation fra galleriet. Sørg fremadrettet for at have uploadet alle dine lyde, inden app-cachen tømmes.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sek</string>
 </resources>

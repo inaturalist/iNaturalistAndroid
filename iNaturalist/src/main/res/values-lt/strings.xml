@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Rodyti paslėptą turinį</string>
     <string name="content_hidden_because">%2$s turinį paslėpė %1$s, nes: „%3$s“</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Susisiekti su pagalba</a>]]></string>
+    <string name="content">Turinys</string>
+    <string name="has_photos">Turi nuotraukų</string>
+    <string name="has_sounds">Turi garsų</string>
+    <string name="could_not_play_sound">Nepavyko paleisti garso - turbūt tinklo problema</string>
+    <string name="cant_play_soundcloud"><![CDATA[Apsilankykite <a href="%1$s">tinklalapyje</a>, kad galėtumėte pasiklausyti Soundcloud garsų.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">Įrašyti garsą</string>
+    <string name="no_recorder_found">Neaptiktas numatytas garso įrašytuvas!</string>
+    <string name="couldnt_retrieve_sound">Nepavyko gauti garso iš numatytojo įrašytuvo - pabandykite importuoti garsą</string>
+    <string name="upload_sound">Pasirinkite garsą</string>
+    <string name="multi_select_sound_description">Įkelkite daugiau nei vieną garsą paspausdami ant vieno garso ir ilgai laikydami</string>
+    <string name="alert_unsupported_audio_type">Atsiprašome, tačiau nepavyko įkelti garso iš šio šaltinio</string>
+    <string name="invalid_audio_extension">Klaida įkeliant garsą(-us): Galima įkelti tik garsus su WAV/MP3/AMR plėtiniais</string>
+    <string name="importing_sounds">Įkeliamas garsas(-ai)...</string>
+    <string name="observation_sound">Stebėjimo garsas</string>
+    <string name="deleted_sounds_from_cache_error">Panašu, kad ištrynėte garsą iš talpyklos dar nespėjus jo užkrauti. Jums teks į stebėjimą garsą įkelti iš galerijos. Ateityje, prieš išvalant talpyklą, įsitikinkite, kad visi garsai buvo užkrauti.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sek.</string>
 </resources>

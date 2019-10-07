@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Pokaż Ukrytą Zawartość</string>
     <string name="content_hidden_because">Zawartość ukryta przez @%1$s w dniu %2$s z podowu: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontakt z Obsługą</a>]]></string>
+    <string name="content">Zawartość</string>
+    <string name="has_photos">Posiada zdjęcia</string>
+    <string name="has_sounds">Posiada nagrania dźwiękowe</string>
+    <string name="could_not_play_sound">Nie udało się odtworzyć dźwięku - prawdopodobnie problem w połączeniem</string>
+    <string name="cant_play_soundcloud"><![CDATA[Aby odsłuchać dźwięki z serwisu Soundcloud, odwiedź <a href="%1$s">stronę</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Nagraj dźwięk</string>
+    <string name="no_recorder_found">Nie znaleziono domyślnego rejestratora dźwięku!</string>
+    <string name="couldnt_retrieve_sound">Nie można było uzyskać dźwięku z domyślnego rejestratora - spróbuj zamiast tego importować dźwięk</string>
+    <string name="upload_sound">Wybierz dźwięk</string>
+    <string name="multi_select_sound_description">Importuj wiele dzwięków poprzez długie naciśnięcie pojedynczego dzięku</string>
+    <string name="alert_unsupported_audio_type">Przepraszamy, ale wystąpił problem przy pobieraniu dzwięku z tego źródła</string>
+    <string name="invalid_audio_extension">Błąd importu zdjęcia: Można importować tylko pliki z rozszeżeniami WAV/MP3/AMR</string>
+    <string name="importing_sounds">Importowanie dźwięku...</string>
+    <string name="observation_sound">Dzwięk z obserwacji</string>
+    <string name="deleted_sounds_from_cache_error">Wygląda na to, że usunąłeś dzwięk przez wyczyszczenie pamięci podręcznej aplikacji zanim został on wysłane. Musisz ponownie dodać dzwięk z galerii. W przyszłości, postaraj się wysłać wszystkie dodane dzwięki przed wyczyszczeniem pamięci podręcznej aplikacji.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sek.</string>
 </resources>

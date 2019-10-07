@@ -216,7 +216,7 @@
     <string name="send_email">傳送電子郵件</string>
     <string name="login_with">登入為</string>
     <string name="facebook">Facebook</string>
-    <string name="gplus">Google</string>
+    <string name="gplus">谷歌</string>
     <string name="email">電子郵件</string>
     <string name="sign_up_with">透過以下方式註冊</string>
     <string name="skip">跳過 ›</string>
@@ -682,4 +682,22 @@
     <string name="show_hidden_content">顯示隱藏內容</string>
     <string name="content_hidden_because">因為「%3$s」，所以在%2$s的內容被@%1$s隱藏起來。</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">聯絡支援</a>]]></string>
+    <string name="content">内容</string>
+    <string name="has_photos">擁有照片</string>
+    <string name="has_sounds">擁有聲音</string>
+    <string name="could_not_play_sound">無法播放聲音，可能是網路問題</string>
+    <string name="cant_play_soundcloud"><![CDATA[若要聽 Soundcloud 上的聲音，請檢視其 <a href="%1$s">網站</a>。]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">錄音</string>
+    <string name="no_recorder_found">找不到預設的錄音裝置！</string>
+    <string name="couldnt_retrieve_sound">無法從預設的錄音裝置取得聲音—試著以匯入聲音來代替</string>
+    <string name="upload_sound">選擇聲音檔</string>
+    <string name="multi_select_sound_description">在單一聲音檔上長按來匯入多個聲音檔</string>
+    <string name="alert_unsupported_audio_type">抱歉，但從這個來源載入聲音檔時發生問題</string>
+    <string name="invalid_audio_extension">匯入聲音檔出錯：只能匯入以 WAV/MP3/AMR 為副檔名的聲音檔案</string>
+    <string name="importing_sounds">正在匯入聲音檔案中...</string>
+    <string name="observation_sound">觀察記錄之聲音</string>
+    <string name="deleted_sounds_from_cache_error">看起來您在上傳前清除了 App 的快取而刪除了一個聲音檔。您需要從您的檔案庫中重新加回此聲音檔至您的觀察記錄。之後當您清理 App 快取時請確定您已經上傳了所有聲音檔。</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f 秒</string>
 </resources>

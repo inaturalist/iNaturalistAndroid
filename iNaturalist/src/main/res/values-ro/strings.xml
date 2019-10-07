@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Show Hidden Content</string>
     <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content">Conținut</string>
+    <string name="has_photos">Conține fotografii</string>
+    <string name="has_sounds">Conține sunete</string>
+    <string name="could_not_play_sound">Sunetul nu a putut fi redat - probabil o problemă cu rețeaua</string>
+    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Înregistrează sunet</string>
+    <string name="no_recorder_found">Nu a fost găsit un aparat de înregistrare prestabilit!</string>
+    <string name="couldnt_retrieve_sound">Nu am putut recupera sunetul din aparatul de înregistrare prestabilit - încercați în schimb să încărcați sunetul</string>
+    <string name="upload_sound">Alegeți sunetul</string>
+    <string name="multi_select_sound_description">Încărcați mai multe sunete ținând apăsat pe un singur sunet</string>
+    <string name="alert_unsupported_audio_type">Ne pare rău, dar a apărut o problemă la încărcarea sunetului din această sursă</string>
+    <string name="invalid_audio_extension">Eroare la importare sunet(e): pot fi importate doar fișiere foto cu extensii WAV/MP3/AMR</string>
+    <string name="importing_sounds">Se importă sunet(e)...</string>
+    <string name="observation_sound">Observation Sound</string>
+    <string name="deleted_sounds_from_cache_error">Se pare că ați șters un sunet când ați eliberat memoria cache a aplicației, înainte de a fi încărcat. Va fi nevoie să adăugați sunetul înapoi în observația proprie din galerie. Pe viitor, vă rugăm să vă asigurați că ați încărcat toate sunetele înainte de a goli memoria cache a aplicației.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sec</string>
 </resources>

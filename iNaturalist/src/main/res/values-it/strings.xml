@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Mostra il contenuto nascosto</string>
     <string name="content_hidden_because">Contenuto nascosto da @%1$s su %2$s perché: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Supporto</a>]]></string>
+    <string name="content">Contenuto</string>
+    <string name="has_photos">Ha foto</string>
+    <string name="has_sounds">Ha suono</string>
+    <string name="could_not_play_sound">Non può essere riprodotto il suono - problema probabilmente alla connessione di rete</string>
+    <string name="cant_play_soundcloud"><![CDATA[Per ascoltare i suoni di Soundcloud, visualizza il sito <a href="%1$s"></a>.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">registra il suono</string>
+    <string name="no_recorder_found">Non è stato trovato alcun registratore audio predefinito!</string>
+    <string name="couldnt_retrieve_sound">Non è stato possibile recuperare il suono dal registratore predefinito - prova una importazione del suono</string>
+    <string name="upload_sound">Scegli il suono</string>
+    <string name="multi_select_sound_description">Importa più suoni premendo a lungo su un singolo suono</string>
+    <string name="alert_unsupported_audio_type">Siamo spiacenti ma c\'è un problema nel caricamento del suono da questa sorgente</string>
+    <string name="invalid_audio_extension">Errore durante l\'importazione del(i) suono(i): puoi importare solo file immagine con estensione JPG/JPEG/PNG</string>
+    <string name="importing_sounds">Importazione suono(i)...</string>
+    <string name="observation_sound">Osservazione come suono</string>
+    <string name="deleted_sounds_from_cache_error">Sembra che tu abbia cancellato un suono, prima di caricarlo, effettuando la cancellazione della cache dell\'applicazione. Per questo sarà necessario aggiungere il suono successivamente come osservazione nella tua galleria. In futuro fai attenzione di aver caricato tutti i suoni prima di cancellare la cache dell\'applicazione.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sec</string>
 </resources>

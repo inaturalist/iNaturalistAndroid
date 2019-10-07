@@ -683,4 +683,22 @@
     <string name="show_hidden_content">Показать скрытый контент</string>
     <string name="content_hidden_because">Контент скрыт @%1$s в %2$s поскольку \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Связаться со службой поддержки</a>]]></string>
+    <string name="content">Контент</string>
+    <string name="has_photos">Содержит фото</string>
+    <string name="has_sounds">Содержит звуки</string>
+    <string name="could_not_play_sound">Не удалось воспроизвести звук - вероятно, проблема с сетью</string>
+    <string name="cant_play_soundcloud"><![CDATA[Чтобы прослушивать звуки Soundcloud, перейдите на <a href="%1$s">веб-сайт</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Записать звук</string>
+    <string name="no_recorder_found">Не найдено устройство записи звука по умолчанию!</string>
+    <string name="couldnt_retrieve_sound">Не удалось получить звук с устройства записи звука по умолчанию - попробуйте вместо этого импортировать звук</string>
+    <string name="upload_sound">Выберите звук</string>
+    <string name="multi_select_sound_description">Импортировать несколько звуков долгим нажатием на один звук</string>
+    <string name="alert_unsupported_audio_type">Сожалеем, возникла проблема с загрузкой звука из этого источника</string>
+    <string name="invalid_audio_extension">Ошибка импорта звука(ов): можно импортировать только файлы с расширениями WAV / MP3 / AMR</string>
+    <string name="importing_sounds">Импорт звука(ов)...</string>
+    <string name="observation_sound">Звук наблюдения</string>
+    <string name="deleted_sounds_from_cache_error">Похоже, вы удалили звук, очистив кэш приложения перед загрузкой. Вам нужно будет добавить звук обратно к вашему наблюдению из вашей галереи. В будущем, пожалуйста, убедитесь, что вы загрузили все ваши звуки, прежде чем очистить кэш приложения.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f сек</string>
 </resources>

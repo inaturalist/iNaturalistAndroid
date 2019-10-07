@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Afficher le contenu masqué</string>
     <string name="content_hidden_because">Contenu caché par @%1$s sur %2$s car : \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contacter l\'assistance</a>]]></string>
+    <string name="content">Content</string>
+    <string name="has_photos">Has Photos</string>
+    <string name="has_sounds">Has Sounds</string>
+    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
+    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Record Sound</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
+    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
+    <string name="upload_sound">Choose Sound</string>
+    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
+    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
+    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
+    <string name="importing_sounds">Importing sound(s)...</string>
+    <string name="observation_sound">Observation Sound</string>
+    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sec</string>
 </resources>
