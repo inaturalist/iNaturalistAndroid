@@ -678,8 +678,26 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Merkitse kaikki katsotuksi</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="content_hidden">Sisältö piilotettu</string>
+    <string name="show_hidden_content">Näytä piilotettu sisältö</string>
+    <string name="content_hidden_because">\@%1$s piilotti sisällön %2$s koska \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Ota yhteyttä tukeen</a>]]></string>
+    <string name="content">Sisältö</string>
+    <string name="has_photos">On kuvia</string>
+    <string name="has_sounds">On ääniä</string>
+    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
+    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">Nauhoita ääntä</string>
+    <string name="no_recorder_found">No default sound recorder found!</string>
+    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
+    <string name="upload_sound">Valitse ääni</string>
+    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
+    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
+    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
+    <string name="importing_sounds">Tuodaan ääntä/ääniä...</string>
+    <string name="observation_sound">Observation Sound</string>
+    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sekuntia</string>
 </resources>

@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Ausgeblendeten Inhalt anzeigen</string>
     <string name="content_hidden_because">Inhalt von @%1$s auf %2$s ausgeblendet. Grund: %3$s</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Hilfe anfordern</a>]]></string>
+    <string name="content">Inhalt</string>
+    <string name="has_photos">Enthält Fotos</string>
+    <string name="has_sounds">Enthält Tonaufnahmen</string>
+    <string name="could_not_play_sound">Tonaufnahmen konnten nicht wiedergegeben werden - möglicherweise ein Netzwerkproblem</string>
+    <string name="cant_play_soundcloud"><![CDATA[Um Soundcloud-Tonaufnahmen anzuhören, besuchen Sie bitte die <a href="%1$s">Website</a>.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">Geräusche aufzeichnen</string>
+    <string name="no_recorder_found">Kein Standard-Tonaufnahmegerät gefunden!</string>
+    <string name="couldnt_retrieve_sound">Die Tonaufnahme konnte nicht vom Standardgerät abgerufen werden - versuchen Sie stattdessen, das Geräusch zu importieren.</string>
+    <string name="upload_sound">Tonaufnahme auswählen</string>
+    <string name="multi_select_sound_description">Importieren Sie mehrerer Tonaufnahmen durch langes Drücken auf eine einzelne Tonaufnahme.</string>
+    <string name="alert_unsupported_audio_type">Leider gab es ein Problem beim Laden der Tonaufnahmen von dieser Quelle</string>
+    <string name="invalid_audio_extension">Fehler beim Importieren der Tonaufnahme(n): Nur Audiodateien mit den Dateiendungen WAV/MP3/AMR können importiert werden</string>
+    <string name="importing_sounds">Tonaufnahme(n) werden importiert …</string>
+    <string name="observation_sound">Beobachtungsgeräusche</string>
+    <string name="deleted_sounds_from_cache_error">Es sieht so aus, als hätten Sie eine Tonaufnahme gelöscht, indem Sie den Zwischenspeicher der App vor dem Hochladen geleert haben. Sie müssen die Tonaufnahme Ihrer Beobachtung erneut aus Ihrer Galerie hinzufügen. Bitte stellen Sie in Zukunft sicher, dass Sie alle Ihre Tonaufnahmen hochgeladen haben, bevor Sie den Zwischenspeicher der App leeren.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f Sek.</string>
 </resources>

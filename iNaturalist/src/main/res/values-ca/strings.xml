@@ -682,4 +682,22 @@
     <string name="show_hidden_content">Mostra Contingut Amagat</string>
     <string name="content_hidden_because">Contingut amagat per @%1$s de %2$s perquè: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org"> Contacte amb el suport</a>]]></string>
+    <string name="content">Contingut</string>
+    <string name="has_photos">Té fotos</string>
+    <string name="has_sounds">Té sons</string>
+    <string name="could_not_play_sound">No s\'ha pogut reproduir el so -probablement hi ha un problema amb la xarxa</string>
+    <string name="cant_play_soundcloud"><![CDATA[Per escoltar els sons de Soundcloud, mireu el <a href="%1$s">web</a>.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Gravar so</string>
+    <string name="no_recorder_found">No s\'ha trobat gravadora per defecte!</string>
+    <string name="couldnt_retrieve_sound">No s\'ha pogut recuperar cap so de la gravadora per defecte - proveu d\'importar el so</string>
+    <string name="upload_sound">Triar So</string>
+    <string name="multi_select_sound_description">Importar diversos sons mantenint polsat un so</string>
+    <string name="alert_unsupported_audio_type">Ho sentim, però hi ha hagut un problema en carregar el so d\'aquesta font</string>
+    <string name="invalid_audio_extension">Error en importar so(ns): Només es poden importar arxius de so amb extensions WAV/MP3/AMR</string>
+    <string name="importing_sounds">Important so(ns)...</string>
+    <string name="observation_sound">So d\'observació</string>
+    <string name="deleted_sounds_from_cache_error">Sembla que heu esborrat un so en netejar la memòria cau de l\'aplicació abans de fer la pujada. Haureu d\'afegir el so novament a la vostra observació des de la vostra galeria. En el futur, si us plau, assegureu-vos que heu pujat tots els sons abans de netejar la memòria cau de l\'aplicació.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f segons</string>
 </resources>

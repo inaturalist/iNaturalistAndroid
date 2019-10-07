@@ -193,8 +193,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista, Kolombiya\'daki iNaturalist Ağı\'nın bir üyesidir. Naturalista\'yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamusal olarak gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All Portekiz\'deki iNaturalist Ağı\'nın bir üyesidir. Biodiversity4All Destekleyen Yerel e-posta adresinize erişebilecek ve halk tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panama, Panama’daki iNaturalist Network’ün bir üyesidir. iNaturalist Panama\'yı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve halk tarafından gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ekvador, Ekvador\'daki iNaturalist Ağı üyesidir. iNaturalist Ekvador\'u destekleyen yerel kurumlar gözlemler için e-posta adresinize ve kamu tarafından gizlenmiş ya da özel olan gerçek konumlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Avustralya, Avustralya\'daki iNaturalist Ağı üyesidir. iNaturalist Avustralya\'yı destekleyen yerel kurumlar gözlemler için e-posta adresinize ve kamu tarafından gizlenmiş ya da özel olan gerçek konumlara erişebilecek. 1000\'den fazla gözleminiz varsa lütfen deneysel olarak üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="editor">Editör</string>
     <string name="license">Lisans</string>
     <string name="download_for_offline_use">Çevrimdışı kullanım için indirme</string>
@@ -677,9 +677,27 @@
     <string name="network_credit_naturewatchnz"><![CDATA[Yeni Zelanda: iNaturalist NZ - Mātaki Taiao\'da faaliyet gösteren Yeni Zelanda Biyoçeşitlilik Kayıt Ağı (<a href="https://inaturalist.nz"> inaturalist.nz</a>)]]></string>
     <string name="network_credit_biodiversity4all"><![CDATA[Portekiz: Tüm Çalışan Biyolojik Biodiversity4All Derneği İçin Biyoçeşitlilik (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Doğa Araştırmacısını işleten Çevre Bakanlığı (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
+    <string name="mark_all_as_viewed">Tümünü görüntülendi olarak işaretle</string>
+    <string name="content_hidden">İçerik Gizlendi</string>
+    <string name="show_hidden_content">Gizli İçeriği Göster</string>
+    <string name="content_hidden_because">İçerik %2$s \'da, @%1$s tarafından gizlendi çünkü: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">İletişim Desteği</a>]]></string>
+    <string name="content">İçerik</string>
+    <string name="has_photos">Şu Fotoğraflar Var</string>
+    <string name="has_sounds">Şu Sesler Var</string>
+    <string name="could_not_play_sound">Ses oynatılamıyor - olasılıkla bir ağ sorunu</string>
+    <string name="cant_play_soundcloud"><![CDATA[Soundcloud seslerini dinlemek için <a href="%1$s">genel ağ sayfasını</a> görüntüleyin.]]></string>
+    <string name="soundcloud">Soundcloud</string>
+    <string name="record_sound">Ses Kaydet</string>
+    <string name="no_recorder_found">Varsayılan ses kaydedici bulunamadı!</string>
+    <string name="couldnt_retrieve_sound">Varsayılan kayıt aygıtından ses alınamadı - bunun yerine sesi almayı deneyin</string>
+    <string name="upload_sound">Ses Seç</string>
+    <string name="multi_select_sound_description">Tek bir sese uzun basarak birden çok ses alın</string>
+    <string name="alert_unsupported_audio_type">Üzgünüm, sesi bu kaynaktan yüklerken bir sorun oluştu</string>
+    <string name="invalid_audio_extension">Ses(leri) alma hatası: Fotoğraf dosyaları yalnızca WAV/MP3/AMR uzantılarıyla alınabilir</string>
+    <string name="importing_sounds">Alınan ses(ler)...</string>
+    <string name="observation_sound">Gözlem Sesi</string>
+    <string name="deleted_sounds_from_cache_error">Yüklemeden önce uygulama önbelleğini temizleyerek bir sesi sildiğiniz anlaşılıyor. Sesi galerideki gözleminize geri eklemeniz gerekir. Gelecekte, lütfen uygulama önbelleğini temizlemeden önce tüm seslerinizi yüklediğinizden emin olun.</string>
+    <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
+    <string name="seconds">%1$.1f sn</string>
 </resources>
