@@ -7,10 +7,10 @@
             <corners android:radius="999dp" />
             <solid android:color="#5dcccccc" />
             <padding
-                android:left="15dp"
-                android:top="15dp"
-                android:right="15dp"
-                android:bottom="15dp" />
+                android:left="20dp"
+                android:top="20dp"
+                android:right="20dp"
+                android:bottom="20dp" />
         </shape>
     </item>
 
@@ -19,10 +19,10 @@
             <corners android:radius="999dp" />
             <solid android:color="#5dcccccc" />
             <padding
-                android:left="15dp"
-                android:top="15dp"
-                android:right="15dp"
-                android:bottom="15dp" />
+                android:left="20dp"
+                android:top="20dp"
+                android:right="20dp"
+                android:bottom="20dp" />
         </shape>
     </item>
 
@@ -35,10 +35,10 @@
                 android:color="#f1f1f1" />
             <solid android:color="#ffffff" />
             <padding
-                android:left="15dp"
-                android:top="15dp"
-                android:right="15dp"
-                android:bottom="15dp" />
+                android:left="20dp"
+                android:top="20dp"
+                android:right="20dp"
+                android:bottom="20dp" />
         </shape>
     </item>
 </selector>

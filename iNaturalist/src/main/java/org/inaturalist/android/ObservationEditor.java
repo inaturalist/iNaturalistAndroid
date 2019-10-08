@@ -1,6 +1,5 @@
 package org.inaturalist.android;
 
-import com.cocosw.bottomsheet.BottomSheet;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.lang.Rational;
@@ -19,7 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.sql.Timestamp;
@@ -61,6 +59,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -92,7 +91,6 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -232,7 +230,9 @@ public class ObservationEditor extends AppCompatActivity {
     @State public String mObsJson;
     @State public boolean mSharedAudio;
 
-@Override
+    private BottomSheetDialog mBottomSheetDialog;
+
+    @Override
 	protected void onStop()
 	{
         super.onStop();
@@ -3553,21 +3553,21 @@ public class ObservationEditor extends AppCompatActivity {
 
     
     private void openImageIntent(final Activity activity) {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        mBottomSheetDialog = new ExpandedBottomSheetDialog(this);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         boolean oneRowMenu = mHelper.pxToDp(displayMetrics.widthPixels) >= 489 ? true : false;
 
         View sheetView = getLayoutInflater().inflate(oneRowMenu ? R.layout.new_obs_menu_one_line : R.layout.new_obs_menu, null);
-        bottomSheetDialog.setContentView(sheetView);
-        bottomSheetDialog.show();
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.show();
 
         View takePhotoButton = sheetView.findViewById(R.id.take_photo);
         takePhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 takePhoto();
             }
         });
@@ -3576,7 +3576,7 @@ public class ObservationEditor extends AppCompatActivity {
         importPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 choosePhoto();
             }
         });
@@ -3585,7 +3585,7 @@ public class ObservationEditor extends AppCompatActivity {
         recordSoundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 recordSound();
             }
         });
@@ -3594,7 +3594,7 @@ public class ObservationEditor extends AppCompatActivity {
         importSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 chooseSound();
             }
         });
@@ -3833,4 +3833,14 @@ public class ObservationEditor extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if ((mBottomSheetDialog != null) && (mBottomSheetDialog.isShowing())) {
+            mBottomSheetDialog.dismiss();
+        }
+    }
+
 }

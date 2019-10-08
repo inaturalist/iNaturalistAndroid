@@ -4,7 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center"
     android:paddingTop="18dp"
-    android:paddingBottom="17dp"
+    android:paddingBottom="7dp"
     android:layout_height="144dp">
     <LinearLayout
         android:orientation="horizontal"

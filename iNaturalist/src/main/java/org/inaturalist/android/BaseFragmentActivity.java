@@ -23,9 +23,6 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.StyleRes;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -54,8 +51,6 @@ import java.text.DecimalFormat;
  */
 public class BaseFragmentActivity extends AppCompatActivity {
 	
-    static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
-    static final int SELECT_IMAGE_REQUEST_CODE = 2;
     protected static final int REQUEST_CODE_OBSERVATION_EDIT = 0x1000;
 
 	private static final String TAG = "BaseFragmentActivity";
@@ -755,35 +750,5 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
 
         return size;
-    }
-
-
-    public class ExpandedBottomSheetDialog extends BottomSheetDialog {
-
-        public ExpandedBottomSheetDialog(@NonNull Context context) {
-            super(context);
-        }
-
-        protected ExpandedBottomSheetDialog(@NonNull Context context, boolean cancelable, OnCancelListener cancelListener) {
-            super(context, cancelable, cancelListener);
-        }
-
-        public ExpandedBottomSheetDialog(@NonNull Context context, @StyleRes int theme) {
-            super(context, theme);
-        }
-
-        @Override
-        public void show() {
-            super.show();
-            final View view = findViewById(R.id.design_bottom_sheet);
-            view.post(new Runnable() {
-                @Override
-                public void run() {
-                    BottomSheetBehavior behavior = BottomSheetBehavior.from(view);
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-                }
-            });
-        }
     }
 }
