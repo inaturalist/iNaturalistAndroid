@@ -23,14 +23,15 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.StyleRes;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -39,8 +40,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +72,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
     private UserDetailsReceiver mUserDetailsReceiver;
     private boolean mSelectedBottomGrid;
     private INaturalistApp mApp;
+
+    private BottomSheetDialog mBottomSheetDialog = null;
 
     public int getStatusBarHeight() {
         int result = 0;
@@ -283,15 +284,15 @@ public class BaseFragmentActivity extends AppCompatActivity {
     public void showNewObsMenu() {
         mSelectedBottomGrid = false;
 
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        mBottomSheetDialog = new ExpandedBottomSheetDialog(this);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         boolean oneRowMenu = mHelper.pxToDp(displayMetrics.widthPixels) > 600 ? true : false;
 
         View sheetView = getLayoutInflater().inflate(oneRowMenu ? R.layout.new_obs_menu_one_line : R.layout.new_obs_menu, null);
-        bottomSheetDialog.setContentView(sheetView);
-        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        mBottomSheetDialog.setContentView(sheetView);
+        mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 if (!mSelectedBottomGrid) {
@@ -300,14 +301,14 @@ public class BaseFragmentActivity extends AppCompatActivity {
                 mSelectedBottomGrid = false;
             }
         });
-        bottomSheetDialog.show();
+        mBottomSheetDialog.show();
 
         View takePhoto = sheetView.findViewById(R.id.take_photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mSelectedBottomGrid = true;
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_SHUTTER);
 
                 Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
@@ -321,7 +322,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSelectedBottomGrid = true;
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_LIBRARY_START);
 
                 Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
@@ -335,7 +336,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSelectedBottomGrid = true;
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
                 intent.putExtra(ObservationEditor.RECORD_SOUND, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
@@ -347,7 +348,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSelectedBottomGrid = true;
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 Intent intent = new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class);
                 intent.putExtra(ObservationEditor.CHOOSE_SOUND, true);
                 startActivityForResult(intent, REQUEST_CODE_OBSERVATION_EDIT);
@@ -359,7 +360,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSelectedBottomGrid = true;
-                bottomSheetDialog.dismiss();
+                mBottomSheetDialog.dismiss();
                 AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_NEW_OBS_NO_PHOTO);
                 startActivityForResult(new Intent(Intent.ACTION_INSERT, Observation.CONTENT_URI, BaseFragmentActivity.this, ObservationEditor.class), REQUEST_CODE_OBSERVATION_EDIT);
             }
@@ -559,6 +560,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
         if (mDrawerToggle != null) {
             mDrawerToggle.onConfigurationChanged(newConfig);
         }
+
+        if ((mBottomSheetDialog != null) && (mBottomSheetDialog.isShowing())) {
+            mBottomSheetDialog.dismiss();
+            mSelectedBottomGrid = false;
+        }
     }
     
     private boolean isNetworkAvailable() {
@@ -580,6 +586,12 @@ public class BaseFragmentActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+        if ((mBottomSheetDialog != null) && (mBottomSheetDialog.isShowing())) {
+            mBottomSheetDialog.dismiss();
+            mSelectedBottomGrid = false;
+        }
+
         if (mHelper != null) {
             mHelper.stopLoading();
         }
@@ -743,5 +755,35 @@ public class BaseFragmentActivity extends AppCompatActivity {
         }
 
         return size;
+    }
+
+
+    public class ExpandedBottomSheetDialog extends BottomSheetDialog {
+
+        public ExpandedBottomSheetDialog(@NonNull Context context) {
+            super(context);
+        }
+
+        protected ExpandedBottomSheetDialog(@NonNull Context context, boolean cancelable, OnCancelListener cancelListener) {
+            super(context, cancelable, cancelListener);
+        }
+
+        public ExpandedBottomSheetDialog(@NonNull Context context, @StyleRes int theme) {
+            super(context, theme);
+        }
+
+        @Override
+        public void show() {
+            super.show();
+            final View view = findViewById(R.id.design_bottom_sheet);
+            view.post(new Runnable() {
+                @Override
+                public void run() {
+                    BottomSheetBehavior behavior = BottomSheetBehavior.from(view);
+                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+                }
+            });
+        }
     }
 }
