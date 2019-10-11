@@ -208,6 +208,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                     JSONObject value = values.optJSONObject(i);
 
                     String attributeName = value.optJSONObject("controlled_attribute").optString("label");
+                    attributeName = AnnotationsAdapter.getAnnotationTranslatedValue(mApp, attributeName, false);
                     String valueName = value.optJSONObject("controlled_value").optString("label");
 
                     if (!attributes.containsKey(attributeName)) {
@@ -223,6 +224,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                         monthValues.add(months.optInt(String.valueOf(c)));
                     }
 
+                    valueName = AnnotationsAdapter.getAnnotationTranslatedValue(mApp, valueName, true);
                     attribute.put(valueName, monthValues);
                 }
 
