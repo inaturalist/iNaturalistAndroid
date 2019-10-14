@@ -359,55 +359,6 @@ public class SignInTask extends AsyncTask<String, Void, String> {
 	    }
 	}
 
-	private void signOut() {
-        String login = mPreferences.getString("username", null);
-
-		mPrefEditor.remove("username");
-		mPrefEditor.remove("credentials");
-		mPrefEditor.remove("password");
-		mPrefEditor.remove("login_type");
-        mPrefEditor.remove("last_sync_time");
-        mPrefEditor.remove("last_downloaded_id");
-		mPrefEditor.commit();
-
-		int count1 = mActivity.getContentResolver().delete(Observation.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
-		int count2 = mActivity.getContentResolver().delete(ObservationPhoto.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
-        int count3 = mActivity.getContentResolver().delete(ProjectObservation.CONTENT_URI, "(is_new = 1) OR (is_deleted = 1)", null);
-        int count4 = mActivity.getContentResolver().delete(ProjectFieldValue.CONTENT_URI, "((_updated_at > _synced_at AND _synced_at IS NOT NULL) OR (_synced_at IS NULL))", null);
-
-		Logger.tag(TAG).debug(String.format("Deleted %d / %d / %d / %d unsynced observations", count1, count2, count3, count4));
-
-        // TODO
-		//toggle();
-    }
-
-    private void askForGoogleEmail() {
-        final EditText input = new EditText(mActivity);
-        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        input.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
-
-        mHelper.confirm(R.string.email_address, input, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        String username = input.getText().toString();
-
-                        if (username.trim().length() == 0) {
-                            return;
-                        }
-
-                        signIn(INaturalistService.LoginType.GOOGLE, username.trim().toLowerCase(), null);
-                    }
-                },
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-    }
-
-
     public void pause() {
         if (mFacebookAccessTokenTracker != null) {
             mFacebookAccessTokenTracker.stopTracking();

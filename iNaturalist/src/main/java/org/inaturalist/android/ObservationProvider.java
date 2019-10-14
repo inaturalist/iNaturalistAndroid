@@ -389,6 +389,9 @@ public class ObservationProvider extends ContentProvider {
         int count;
         String id;
         Uri contentUri;
+
+        Logger.tag(TAG).debug("Delete: " + uri + "; where: " + (where != null ? where : "null") + "; whereArgs: " + (whereArgs != null ? whereArgs : "null"));
+
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             // TODO delete associated observation photos
@@ -533,14 +536,14 @@ public class ObservationProvider extends ContentProvider {
                 // update foreign key in observation_photos
                 ContentValues cv = new ContentValues();
                 cv.put(ObservationPhoto.OBSERVATION_ID, values.getAsInteger(Observation.ID));
-                Logger.tag(TAG).debug("Update " + ObservationPhoto.TABLE_NAME + "; " + cv.toString());
-                db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
+                int count2 = db.update(ObservationPhoto.TABLE_NAME, cv, ObservationPhoto._OBSERVATION_ID + "=" + id, null);
+                Logger.tag(TAG).debug("Update " + ObservationPhoto.TABLE_NAME + "; " + cv.toString() + ", for _observation_id=" + id + " ==> " + count2);
 
                 // update foreign key in observation_sounds
                 cv = new ContentValues();
                 cv.put(ObservationSound.OBSERVATION_ID, values.getAsInteger(Observation.ID));
-                Logger.tag(TAG).debug("Update " + ObservationSound.TABLE_NAME + "; " + cv.toString());
-                db.update(ObservationSound.TABLE_NAME, cv, ObservationSound._OBSERVATION_ID + "=" + id, null);
+                count2 = db.update(ObservationSound.TABLE_NAME, cv, ObservationSound._OBSERVATION_ID + "=" + id, null);
+                Logger.tag(TAG).debug("Update " + ObservationSound.TABLE_NAME + "; " + cv.toString() + ", for _observation_id=" + id + " ==> " + count2);
             }
 
 
@@ -548,7 +551,7 @@ public class ObservationProvider extends ContentProvider {
             if ((count > 0) && (values.containsKey(Observation.ID)) && (values.get(Observation.ID) != null)) {
                 ContentValues cv = new ContentValues();
                 cv.put(ProjectObservation.OBSERVATION_ID, values.getAsInteger(Observation.ID));
-                Logger.tag(TAG).debug("Update observation from " + id + "to " + values.getAsInteger(Observation.ID));
+                Logger.tag(TAG).debug("Update observation from " + id + " to " + values.getAsInteger(Observation.ID));
                 db.update(ProjectObservation.TABLE_NAME, cv, ProjectObservation.OBSERVATION_ID + "=" + id, null);
                 
                 cv = new ContentValues();

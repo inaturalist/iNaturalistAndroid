@@ -394,6 +394,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
     private void signOut() {
+        Logger.tag(TAG).debug("signOut");
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_LOGOUT);
 
@@ -409,6 +410,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		mPrefEditor.remove("login_type");
         mPrefEditor.remove("last_sync_time");
 		mPrefEditor.remove("observation_count");
+        mPrefEditor.remove("last_downloaded_id");
 		mPrefEditor.remove("user_icon_url");
 		mPrefEditor.remove("user_bio");
         mPrefEditor.remove("user_email");
@@ -445,6 +447,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		int count2 = getActivity().getContentResolver().delete(ObservationPhoto.CONTENT_URI, null, null);
         int count3 = getActivity().getContentResolver().delete(ProjectObservation.CONTENT_URI, null, null);
         int count4 = getActivity().getContentResolver().delete(ProjectFieldValue.CONTENT_URI, null, null);
+        int count5 = getActivity().getContentResolver().delete(ObservationSound.CONTENT_URI, null, null);
+
+        Logger.tag(TAG).debug(String.format("Deleted %d / %d / %d / %d / %d", count1, count2, count3, count4, count5));
 
         File obsPhotoCache = new File(getActivity().getFilesDir(), "observations_photo_info.dat");
         obsPhotoCache.delete();
