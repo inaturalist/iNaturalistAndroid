@@ -20,6 +20,9 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:background">@drawable/actionbar_background</item>
     </style>
+    <style name="LocationChooserActionBar" parent="iNatAppTheme">
+        <item name="android:actionBarSize">70dp</item>
+    </style>
     <style name="ActionBarItem">
         <item name="android:layout_width">@dimen/actionbar_item_width</item>
         <item name="android:layout_height">@dimen/actionbar_height</item>

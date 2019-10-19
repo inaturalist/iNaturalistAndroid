@@ -316,6 +316,7 @@
         <activity
             android:name=".LocationChooserActivity"
             android:configChanges="orientation"
+            android:theme="@style/LocationChooserActionBar"
             android:label="@string/choose_location"></activity>
         <activity
             android:name=".WebActivity"

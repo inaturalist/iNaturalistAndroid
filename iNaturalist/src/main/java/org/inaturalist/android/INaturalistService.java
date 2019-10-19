@@ -70,7 +70,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.maps.GeoApiContext;
-import com.google.maps.PendingResult;
 import com.google.maps.TimeZoneApi;
 import com.google.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
@@ -104,7 +103,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import io.jsonwebtoken.Jwts;
@@ -335,6 +333,9 @@ public class INaturalistService extends IntentService {
     public static final String OBS_PHOTO_FILENAME = "obs_photo_filename";
     public static final String OBS_PHOTO_URL = "obs_photo_url";
     public static final String LONGITUDE = "longitude";
+    public static final String ACCURACY = "accuracy";
+    public static final String TITLE = "title";
+    public static final String GEOPRIVACY = "geoprivacy";
     public static final String LATITUDE = "latitude";
     public static final String OBSERVED_ON = "observed_on";
     public static final String USERNAME = "username";
@@ -470,6 +471,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_REGISTER_USER_RESULT = "register_user_result";
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
+    public static String ACTION_PIN_LOCATION = "pin_location";
     public static String ACTION_REFRESH_CURRENT_USER_SETTINGS = "refresh_current_user_settings";
     public static String ACTION_UPDATE_CURRENT_USER_DETAILS = "update_current_user_details";
     public static String ACTION_GET_CURRENT_LOCATION = "get_current_location";
@@ -1142,6 +1144,15 @@ public class INaturalistService extends IntentService {
                     sendBroadcast(reply);
                 }
 
+            } else if (action.equals(ACTION_PIN_LOCATION)) {
+                Double latitude = intent.getDoubleExtra(LATITUDE, 0);
+                Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
+                Double accuracy = intent.getDoubleExtra(ACCURACY, 0);
+                String geoprivacy = intent.getStringExtra(GEOPRIVACY);
+                String title = intent.getStringExtra(TITLE);
+
+                boolean success = pinLocation(latitude, longitude, accuracy, geoprivacy, title);
+
             } else if (action.equals(ACTION_GET_SPECIFIC_USER_DETAILS)) {
                 String username = intent.getStringExtra(USERNAME);
                 BetterJSONObject user = getUserDetails(username);
@@ -1763,6 +1774,23 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(FIRST_SYNC, action.equals(ACTION_FIRST_SYNC));
                 sendBroadcast(reply);
             }
+        }
+    }
+
+    private boolean pinLocation(Double latitude, Double longitude, Double accuracy, String geoprivacy, String title) throws AuthenticationException {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("saved_location[latitude]", latitude.toString()));
+        params.add(new BasicNameValuePair("saved_location[longitude]", longitude.toString()));
+        params.add(new BasicNameValuePair("saved_location[positional_accuracy]", accuracy.toString()));
+        params.add(new BasicNameValuePair("saved_location[geoprivacy]", geoprivacy));
+        params.add(new BasicNameValuePair("saved_location[title]", title));
+
+        JSONArray result = post(HOST + "/saved_locations.json", params);
+
+        if (result != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 

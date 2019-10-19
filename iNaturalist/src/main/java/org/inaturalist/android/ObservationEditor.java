@@ -724,86 +724,26 @@ public class ObservationEditor extends AppCompatActivity {
         mLocationRefreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ObservationEditor.this);
-                // Set the adapter
-                String[] items = {
-                        getResources().getString(R.string.get_current_location),
-                        getResources().getString(R.string.edit_location),
-                        getResources().getString(R.string.edit_locality_notes)
-                };
-                builder.setAdapter(
-                        new ArrayAdapter<String>(ObservationEditor.this,
-                                android.R.layout.simple_list_item_1, items), null);
+                // Edit place
+                Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
+                Double lat, lon;
+                lat = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
+                lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
+                intent.putExtra(LocationChooserActivity.LONGITUDE, lon);
+                intent.putExtra(LocationChooserActivity.LATITUDE,  lat);
+                intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
+                intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
+                intent.putExtra(LocationChooserActivity.GEOPRIVACY, (String) mGeoprivacy.getSelectedItem());
 
-                final AlertDialog alertDialog = builder.create();
+                String placeGuess;
+                if ((mObservation.private_place_guess != null) && (mObservation.private_place_guess.length() > 0)) {
+                    placeGuess = mObservation.private_place_guess;
+                } else {
+                    placeGuess = mObservation.place_guess != null ? mObservation.place_guess : "";
+                }
+                intent.putExtra(LocationChooserActivity.PLACE_GUESS, placeGuess);
 
-                ListView listView = alertDialog.getListView();
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        alertDialog.dismiss();
-
-                        if (position == 0) {
-                            // Get current place
-                            mLocationManuallySet = true;
-                            getLocation();
-                        } else if (position == 1) {
-                            // Edit place
-                            Intent intent = new Intent(ObservationEditor.this, LocationChooserActivity.class);
-                            Double lat, lon;
-                            lat = mObservation.private_latitude == null ? mObservation.latitude : mObservation.private_latitude;
-                            lon = mObservation.private_longitude == null ? mObservation.longitude : mObservation.private_longitude;
-                            intent.putExtra(LocationChooserActivity.LONGITUDE, lon);
-                            intent.putExtra(LocationChooserActivity.LATITUDE,  lat);
-                            intent.putExtra(LocationChooserActivity.ACCURACY, (mObservation.positional_accuracy != null ? mObservation.positional_accuracy.doubleValue() : 0));
-                            intent.putExtra(LocationChooserActivity.ICONIC_TAXON_NAME, mObservation.iconic_taxon_name);
-
-                            startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
-                        } else {
-                            // Edit locality notes
-                            final EditText input = new EditText(ObservationEditor.this);
-                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.MATCH_PARENT);
-                            input.setLayoutParams(lp);
-                            input.setMaxLines(1);
-                            input.setSingleLine(true);
-
-                            String placeGuess;
-                            if ((mObservation.private_place_guess != null) && (mObservation.private_place_guess.length() > 0)) {
-                                placeGuess = mObservation.private_place_guess;
-                            } else {
-                                placeGuess = mObservation.place_guess != null ? mObservation.place_guess : "";
-                            }
-                            input.setText(placeGuess);
-                            input.setSelection(0, placeGuess.length());
-
-                            mHelper.confirm(R.string.edit_locality_notes, input, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    // OK - update place guess
-                                    setPlaceGuess(input.getText().toString());
-                                }
-                            }, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    // Cancel
-                                }
-                            });
-
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    input.requestFocus();
-                                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                    imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
-                                }
-                            }, 300);
-                        }
-                    }
-                });
-
-                alertDialog.show();
+                startActivityForResult(intent, LOCATION_CHOOSER_REQUEST_CODE);
             }
         });
 
@@ -2213,6 +2153,8 @@ public class ObservationEditor extends AppCompatActivity {
                 double longitude = data.getDoubleExtra(LocationChooserActivity.LONGITUDE, 0);
                 double latitude = data.getDoubleExtra(LocationChooserActivity.LATITUDE, 0);
                 double accuracy = data.getDoubleExtra(LocationChooserActivity.ACCURACY, 0);
+                String geoprivacy = data.getStringExtra(LocationChooserActivity.GEOPRIVACY);
+                String placeGuess = data.getStringExtra(LocationChooserActivity.PLACE_GUESS);
 
                 if ((latitude == 0) && (longitude == 0)) {
                     // Don't set position if lat/lng are exactly 0
@@ -2222,6 +2164,11 @@ public class ObservationEditor extends AppCompatActivity {
                 mObservation.latitude = latitude;
                 mObservation.longitude = longitude;
                 mObservation.positional_accuracy = (int) Math.ceil(accuracy);
+
+                mObservation.geoprivacy = geoprivacy;
+                updateObservationVisibilityDescription();
+
+                setPlaceGuess(placeGuess);
 
                 if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
                     mObservation.private_longitude = mObservation.longitude;
@@ -2235,13 +2182,6 @@ public class ObservationEditor extends AppCompatActivity {
                 findViewById(R.id.coordinates).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy_prefix).setVisibility(View.VISIBLE);
                 findViewById(R.id.accuracy).setVisibility(View.VISIBLE);
-
-                if (isNetworkAvailable()) {
-                    guessLocation();
-                } else {
-                    setPlaceGuess(null);
-                }
-
             }
          } else if (requestCode == TAXON_SEARCH_REQUEST_CODE) {
             mTaxonSearchStarted = false;

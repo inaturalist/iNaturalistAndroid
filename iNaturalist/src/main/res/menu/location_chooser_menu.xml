@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/save_location"
+        android:title=""
+        android:icon="@drawable/ic_check_black_24dp"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/edit_locality_notes"
+        app:showAsAction="never"
+        android:title="@string/edit_locality_notes"/>
+    <item
+        android:id="@+id/choose_pinned_location"
+        app:showAsAction="never"
+        android:title="@string/choose_pinned_location"/>
+    <item
+        android:id="@+id/pin_current_location"
+        app:showAsAction="never"
+        android:title="@string/pin_current_location"/>
+</menu>
