@@ -15,7 +15,7 @@ public class RotateTransformation extends BitmapTransformation {
     private float rotateRotationAngle = 0f;
 
     public RotateTransformation(Context context, float rotateRotationAngle) {
-        super(context);
+        super();
 
         this.rotateRotationAngle = rotateRotationAngle;
     }

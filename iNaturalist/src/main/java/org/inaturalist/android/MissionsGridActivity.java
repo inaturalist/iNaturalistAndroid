@@ -5,28 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
+
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;

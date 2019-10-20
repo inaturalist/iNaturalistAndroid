@@ -1,20 +1,18 @@
 package org.inaturalist.android;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.inaturalist.android.INaturalistService.LoginType;
 
 
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.util.Log;
+import androidx.appcompat.app.ActionBar;
+
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;

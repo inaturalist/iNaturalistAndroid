@@ -3,33 +3,27 @@ package org.inaturalist.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
-import android.os.Handler;
-import android.support.test.espresso.IdlingResource;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
-import android.support.test.runner.lifecycle.Stage;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
+
+import androidx.test.espresso.IdlingResource;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import androidx.test.runner.lifecycle.Stage;
+
 import android.widget.ListView;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Collection;
-import java.util.Objects;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.registerIdlingResources;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.registerIdlingResources;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 @RunWith(AndroidJUnit4.class)
 public class ObservationManagementTest {

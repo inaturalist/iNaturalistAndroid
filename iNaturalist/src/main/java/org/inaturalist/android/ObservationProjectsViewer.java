@@ -1,16 +1,13 @@
 package org.inaturalist.android;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -19,35 +16,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.evernote.android.state.State;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 public class ObservationProjectsViewer extends AppCompatActivity {

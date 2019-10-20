@@ -2,34 +2,21 @@ package org.inaturalist.android;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.util.Log;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.ActionBar;
+
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 
 import org.json.JSONArray;

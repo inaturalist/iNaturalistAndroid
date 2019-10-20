@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -20,7 +20,7 @@
         />
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_below="@id/tabs"
         android:layout_width="match_parent"

@@ -19,9 +19,8 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
-import android.util.Log;
 
 public class ObservationProvider extends ContentProvider {
     private static final String TAG = "ObservationProvider";

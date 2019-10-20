@@ -102,7 +102,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.widget.Toast;
 
 import io.jsonwebtoken.Jwts;

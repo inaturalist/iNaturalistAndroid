@@ -6,17 +6,13 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
@@ -26,14 +22,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.livefront.bridge.Bridge;
 
 import org.tinylog.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LocationDetailsActivity extends AppCompatActivity implements LocationListener {
     private final static String TAG = "LocationDetailsActivity";

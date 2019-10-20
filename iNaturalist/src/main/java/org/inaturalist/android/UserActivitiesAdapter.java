@@ -1,22 +1,18 @@
 package org.inaturalist.android;
 
 
-import android.app.Activity;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,10 +21,8 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.method.MovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -42,7 +36,6 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Transformation;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
@@ -53,7 +46,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 class UserActivitiesAdapter extends ArrayAdapter<String> {

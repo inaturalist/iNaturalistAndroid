@@ -1,31 +1,16 @@
 package org.inaturalist.android;
 
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.util.Log;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.evernote.android.state.State;
 
@@ -35,27 +20,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.android.gms.maps.model.TileProvider;
 import com.google.android.gms.maps.model.UrlTileProvider;
 import com.livefront.bridge.Bridge;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-import com.viewpagerindicator.CirclePageIndicator;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import uk.co.senab.photoview.HackyViewPager;
 
 public class TaxonMapActivity extends AppCompatActivity {
     private static String TAG = "TaxonMapActivity";

@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
@@ -30,7 +30,6 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;

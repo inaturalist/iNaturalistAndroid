@@ -7,10 +7,9 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatRadioButton;
-import android.text.Html;
-import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatRadioButton;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;

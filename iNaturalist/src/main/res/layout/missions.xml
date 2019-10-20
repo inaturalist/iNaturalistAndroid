@@ -112,7 +112,7 @@
 
 
 
-                <android.support.v4.view.ViewPager
+                <androidx.viewpager.widget.ViewPager
                     android:layout_below="@id/view_all"
                     android:layout_marginTop="16dp"
                     android:id="@+id/recommended_missions"

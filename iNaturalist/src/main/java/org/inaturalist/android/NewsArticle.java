@@ -1,28 +1,19 @@
 package org.inaturalist.android;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.evernote.android.state.State;
@@ -31,13 +22,9 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
-
-import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class NewsArticle extends AppCompatActivity {
     public static final String KEY_ARTICLE = "article";

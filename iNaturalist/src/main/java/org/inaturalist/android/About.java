@@ -1,30 +1,12 @@
 package org.inaturalist.android;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatRadioButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class About extends AppCompatActivity {
     private static final String TAG = "About";

@@ -11,9 +11,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.MenuItem;
 import android.view.TextureView;
 import android.view.View;
@@ -23,7 +23,6 @@ import com.livefront.bridge.Bridge;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;

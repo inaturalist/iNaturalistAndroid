@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:background="#E7E7E7"
                 android:id="@+id/taxonic_icons"
                 android:paddingLeft="6dp"

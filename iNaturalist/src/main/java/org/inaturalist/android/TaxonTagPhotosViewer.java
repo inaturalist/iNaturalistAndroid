@@ -3,10 +3,6 @@ package org.inaturalist.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import uk.co.senab.photoview.HackyViewPager;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -20,10 +16,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager.LayoutParams;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager.LayoutParams;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;

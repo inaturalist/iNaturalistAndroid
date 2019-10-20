@@ -7,7 +7,6 @@ import android.accounts.AccountManagerFuture;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -15,14 +14,10 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
-import android.text.InputType;
-import android.util.Base64;
-import android.util.Log;
+
+import androidx.core.content.ContextCompat;
+
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -39,7 +34,6 @@ import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SignInTask extends AsyncTask<String, Void, String> {
     private static final String TAG = "SignInTask";

@@ -3,23 +3,19 @@ package org.inaturalist.android;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.HeaderViewListAdapter;

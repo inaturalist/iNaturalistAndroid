@@ -8,15 +8,13 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +27,10 @@ import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
 import com.viewpagerindicator.CirclePageIndicator;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.senab.photoview.HackyViewPager;

@@ -11,12 +11,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;

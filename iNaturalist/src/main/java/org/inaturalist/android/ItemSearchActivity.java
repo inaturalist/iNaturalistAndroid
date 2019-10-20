@@ -1,33 +1,22 @@
 package org.inaturalist.android;
 
 import android.app.Activity;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Typeface;
-import android.media.projection.MediaProjection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.HeaderViewListAdapter;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -35,24 +24,12 @@ import android.widget.TextView;
 
 import com.evernote.android.state.State;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.InvocationTargetException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ItemSearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, ProjectsAdapter.OnLoading {
     private static final String LOG_TAG = "ItemSearchActivity";

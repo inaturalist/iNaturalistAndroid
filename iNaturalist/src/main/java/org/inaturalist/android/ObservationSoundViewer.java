@@ -1,51 +1,23 @@
 package org.inaturalist.android;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.LayoutParams;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
+
+import androidx.viewpager.widget.ViewPager.LayoutParams;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.BaseTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
 import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import uk.co.senab.photoview.HackyViewPager;
-import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class ObservationSoundViewer extends AppCompatActivity implements SoundPlayer.OnPlayerStatusChange {
     private static String TAG = "ObservationSoundViewer";

@@ -1,34 +1,9 @@
 package org.inaturalist.android;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class MissionsOnboardingActivity extends BaseFragmentActivity {
 

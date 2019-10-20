@@ -11,16 +11,14 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.text.Layout;
-import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,11 +46,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 
 public class UserProfile extends AppCompatActivity implements TabHost.OnTabChangeListener, AppBarLayout.OnOffsetChangedListener {

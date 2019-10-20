@@ -2,21 +2,15 @@ package org.inaturalist.android;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TimeZone;
 
-import org.apache.commons.lang3.StringUtils;
 import org.inaturalist.android.INaturalistApp.INotificationCallback;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tinylog.Logger;
 
-import com.cocosw.bottomsheet.BottomSheet;
 import com.evernote.android.state.State;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -27,7 +21,6 @@ import com.livefront.bridge.Bridge;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.content.BroadcastReceiver;
@@ -43,12 +36,12 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import com.google.android.material.tabs.TabLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;

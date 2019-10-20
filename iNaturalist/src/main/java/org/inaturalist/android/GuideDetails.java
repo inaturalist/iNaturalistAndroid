@@ -22,15 +22,14 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.NavUtils;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
+import androidx.core.app.NavUtils;
+import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBar;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -56,7 +55,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.livefront.bridge.Bridge;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.tinylog.Logger;
 

@@ -10,10 +10,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
