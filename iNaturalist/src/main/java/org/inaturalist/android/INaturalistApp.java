@@ -12,6 +12,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.libraries.places.api.Places;
 import com.livefront.bridge.Bridge;
 import com.livefront.bridge.SavedStateHandler;
 import com.squareup.picasso.LruCache;
@@ -233,6 +234,10 @@ public class INaturalistApp extends MultiDexApplication {
             deviceLocale = getResources().getConfiguration().locale;
         }
         applyLocaleSettings();
+
+        if (!Places.isInitialized()) {
+            Places.initialize(this, getString(R.string.gmaps2_api_key));
+        }
 
         // Create the root offline guides directory, if needed
         GuideXML.createOfflineGuidesDirectory(this);

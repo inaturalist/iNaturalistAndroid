@@ -358,6 +358,7 @@ public class INaturalistService extends IntentService {
     public static final String FIRST_SYNC = "first_sync";
     public static final String PAGE_NUMBER = "page_number";
     public static final String PAGE_SIZE = "page_size";
+    public static final String ID = "id";
 
     public static final int NEAR_BY_OBSERVATIONS_PER_PAGE = 25;
     public static final int EXPLORE_DEFAULT_RESULTS_PER_PAGE = 30;
@@ -472,6 +473,7 @@ public class INaturalistService extends IntentService {
     public static String TAXA_GUIDE_RESULT = "taxa_guide_result";
     public static String ACTION_GET_SPECIFIC_USER_DETAILS = "get_specific_user_details";
     public static String ACTION_PIN_LOCATION = "pin_location";
+    public static String ACTION_DELETE_PINNED_LOCATION = "delete_pinned_location";
     public static String ACTION_REFRESH_CURRENT_USER_SETTINGS = "refresh_current_user_settings";
     public static String ACTION_UPDATE_CURRENT_USER_DETAILS = "update_current_user_details";
     public static String ACTION_GET_CURRENT_LOCATION = "get_current_location";
@@ -1144,6 +1146,11 @@ public class INaturalistService extends IntentService {
                     sendBroadcast(reply);
                 }
 
+            } else if (action.equals(ACTION_DELETE_PINNED_LOCATION)) {
+                String id = intent.getStringExtra(ID);
+
+                boolean success = deletePinnedLocation(id);
+
             } else if (action.equals(ACTION_PIN_LOCATION)) {
                 Double latitude = intent.getDoubleExtra(LATITUDE, 0);
                 Double longitude = intent.getDoubleExtra(LONGITUDE, 0);
@@ -1774,6 +1781,17 @@ public class INaturalistService extends IntentService {
                 reply.putExtra(FIRST_SYNC, action.equals(ACTION_FIRST_SYNC));
                 sendBroadcast(reply);
             }
+        }
+    }
+
+
+    private boolean deletePinnedLocation(String id) throws AuthenticationException {
+        JSONArray result = delete(String.format("%s/saved_locations/%s.json", HOST, id), null);
+
+        if (result != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -712,5 +712,6 @@
     <string name="choose_pinned_location">Choose Pinned Location</string>
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
+    <string name="delete_this_pinned_location">Delete this pinned location?</string>
 </resources>
 

@@ -1,9 +1,13 @@
 package org.inaturalist.android;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 import org.tinylog.Logger;
 
@@ -23,11 +27,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,10 +47,12 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +67,17 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.VisibleRegion;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
+import com.google.android.libraries.places.api.model.LocationBias;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.livefront.bridge.Bridge;
 
 public class LocationChooserActivity extends AppCompatActivity implements LocationListener {
@@ -67,6 +88,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     protected static final String ICONIC_TAXON_NAME = "iconic_taxon_name";
     protected static final String GEOPRIVACY = "geoprivacy";
     protected static final String PLACE_GUESS = "place_guess";
+
+    protected static final int REQUEST_CODE_CHOOSE_PINNED_LOCATION = 0x1000;
 
     private static final float MY_LOCATION_ZOOM_LEVEL = 10;
 
@@ -91,6 +114,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private ViewGroup mLocationSearchResultsContainer;
     private ListView mLocationSearchResults;
     @State public String mPlaceGuess;
+    @State public String mQuery = "";
     @State public boolean mGeodecodingPlaceName;
     private TextView mActionBarPlaceGuess;
     private TextView mActionBarGeoprivacy;
@@ -98,6 +122,14 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private TextView mActionBarLongtitude;
     private TextView mActionBarAccuracy;
     private Handler mHandler;
+    private AutocompleteSessionToken mAutoCompleteToken;
+    private PlacesClient mPlacesClient;
+
+    private List<INatPlace> mPlaces = new ArrayList<>();
+    private LocationChooserPlaceAdapter mPlaceAdapter = null;
+    private ListView mLocationList;
+    private ProgressBar mLoadingSearch;
+    private boolean mNoMapRefresh;
 
 
     @Override
@@ -109,7 +141,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mHandler = new Handler();
 
-        //AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
+        mAutoCompleteToken = AutocompleteSessionToken.newInstance();
+        mPlacesClient = Places.createClient(this);
 
         setContentView(R.layout.location_chooser);
 
@@ -135,7 +168,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         actionBar.setHomeButtonEnabled(true);
         actionBar.setLogo(R.drawable.ic_arrow_back);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setShowHideAnimationEnabled(true);
         actionBar.setCustomView(R.layout.location_chooser_action_bar);
         actionBar.setDisplayShowCustomEnabled(true);
 
@@ -214,15 +246,161 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             }
         });
 
+        mLocationSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                refreshPlaceQuery();
+            }
+        });
+
         mClearLocation.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 hideLocationSearch();
             }
         });
+        
+        mLocationList = (ListView) findViewById(R.id.location_search_results);
+        mLoadingSearch = (ProgressBar) findViewById(R.id.loading_search);
+
+        mLoadingSearch.setVisibility(View.GONE);
+
+        mLocationList.setOnItemClickListener((adapterView, view, index, l) -> {
+            INatPlace place = mPlaces.get(index);
+
+            mLongitude = place.longitude;
+            mLatitude = place.latitude;
+            mAccuracy = place.accuracy;
+            mPlaceGuess = place.subtitle;
+
+            hideLocationSearch();
+
+            refreshActionBar();
+            zoomToLocation();
+        });
 
         refreshMapType();
         updateObservationVisibility();
+    }
+
+    private void refreshPlaceQuery() {
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.postDelayed(() -> {
+            String query = mLocationSearch.getText().toString();
+
+            if (query.length() == 0) {
+                mLoadingSearch.setVisibility(View.GONE);
+                mLocationList.setVisibility(View.VISIBLE);
+                return;
+            }
+
+            mLoadingSearch.setVisibility(View.VISIBLE);
+            mLocationList.setVisibility(View.GONE);
+
+            VisibleRegion region = mMap.getProjection().getVisibleRegion();
+            RectangularBounds bounds = RectangularBounds.newInstance(
+                    region.nearLeft,
+                    region.farRight);
+
+            FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
+                    .setTypeFilter(TypeFilter.ADDRESS)
+                    .setSessionToken(mAutoCompleteToken)
+                    .setLocationBias(bounds)
+                    .setQuery(query)
+                    .build();
+
+            mQuery = query;
+
+            mPlacesClient.findAutocompletePredictions(request).addOnSuccessListener((response) -> {
+                if (!query.equals(mQuery)) return;
+
+                new Thread(() -> loadPlaceResults(response.getAutocompletePredictions())).start();
+            }).addOnFailureListener((exception) -> {
+                Logger.tag(TAG).error("Place not found: " + exception);
+            });
+        }, 500);
+    }
+
+    private void loadPlaceResults(List<AutocompletePrediction> predictions) {
+        CountDownLatch waitForAllResults = new CountDownLatch(predictions.size());
+
+        mPlaces = new ArrayList<>();
+
+        for (AutocompletePrediction prediction : predictions) {
+            getPlaceDetails(prediction, waitForAllResults);
+        }
+
+        // Wait for details from all place suggestions (lat/lng/etc)
+        try {
+            waitForAllResults.await(10000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Refresh results
+        
+        mPlaceAdapter = new LocationChooserPlaceAdapter(this, mPlaces);
+
+        runOnUiThread(() -> {
+            mLocationList.setAdapter(mPlaceAdapter);
+            mLoadingSearch.setVisibility(View.GONE);
+            mLocationList.setVisibility(View.VISIBLE);
+        });
+    }
+
+    private void getPlaceDetails(AutocompletePrediction prediction, CountDownLatch latch) {
+        new Thread(() -> {
+            if (prediction.getPlaceId() == null) {
+                // We only show predictions with place IDs (so we can retrieve exact lat/lng)
+                latch.countDown();
+                return;
+            }
+
+            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG);
+            FetchPlaceRequest request = FetchPlaceRequest.builder(prediction.getPlaceId(), fields).build();
+
+            mPlacesClient.fetchPlace(request).addOnSuccessListener(fetchPlaceResponse -> {
+                // Only when successfully fetching the place details -> add it to the results list
+                INatPlace inatPlace = new INatPlace();
+                Place googlePlace = fetchPlaceResponse.getPlace();
+
+                inatPlace.id = googlePlace.getId();
+                inatPlace.latitude = googlePlace.getLatLng().latitude;
+                inatPlace.longitude = googlePlace.getLatLng().longitude;
+                inatPlace.title = googlePlace.getName();
+                inatPlace.subtitle = googlePlace.getAddress();
+
+                LatLngBounds viewport = googlePlace.getViewport();
+
+                Double radius = null;
+
+                if (viewport != null) {
+                    LatLng center = viewport.getCenter();
+                    LatLng northeast = viewport.northeast;
+
+                    // Radius is the largest distance from geom center to one of the bounds corners
+                    radius = Math.max(
+                            distanceInMeters(inatPlace.latitude, inatPlace.longitude,
+                                    center.latitude, center.longitude),
+                            distanceInMeters(inatPlace.latitude, inatPlace.longitude,
+                                    northeast.latitude, northeast.longitude)
+                    );
+                } else {
+                    radius = 10.0;
+                }
+
+                inatPlace.accuracy = radius;
+
+                mPlaces.add(inatPlace);
+                latch.countDown();
+            }).addOnFailureListener(e -> {
+                latch.countDown();
+            });
+        }).start();
     }
 
     private void refreshActionBar() {
@@ -252,6 +430,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 mLocationSearch.setText("");
                 mLocationSearch.clearFocus();
                 mClearLocation.setVisibility(View.INVISIBLE);
+                mLocationList.setAdapter(new LocationChooserPlaceAdapter(LocationChooserActivity.this, new ArrayList<>()));
             }
 
             @Override
@@ -325,6 +504,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         
         double longitude = mLongitude;
         double latitude = mLatitude;
+        mNoMapRefresh = true;
         
         if ((longitude != 0) && (latitude != 0)) {
         	LatLng location = new LatLng(latitude, longitude);
@@ -357,8 +537,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         	} else {
         		if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom), 1, null);
         	}
-        } else {
-
         }
         
     }
@@ -480,12 +658,17 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             case R.id.edit_locality_notes:
                 editLocalityNotes();
                 return true;
+
             case R.id.choose_pinned_location:
                 if (!isNetworkAvailable()) {
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
                     return true;
                 }
+
+                Intent intent = new Intent(this, PinnedLocationSearchActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivityForResult(intent, REQUEST_CODE_CHOOSE_PINNED_LOCATION);
                 return true;
+
             case R.id.pin_current_location:
                 if (!isNetworkAvailable()) {
                     Toast.makeText(getApplicationContext(), R.string.not_connected, Toast.LENGTH_LONG).show();
@@ -600,15 +783,19 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                             public void onCameraMove() {
                                 mObservationsMapMyLocation.setColorFilter(Color.parseColor("#676767"));
 
-                                // User moved the map view - reset place guess
-                                updateLocationBasedOnMap();
-                                refreshActionBar();
+                                if (!mNoMapRefresh) {
+                                    // User moved the map view - reset place guess
+                                    updateLocationBasedOnMap();
+                                    refreshActionBar();
 
-                                // Make sure we geodecode the location only after the map finished moving
-                                mHandler.removeCallbacksAndMessages(null);
-                                mHandler.postDelayed(() -> {
-                                    guessLocation();
-                                }, 500);
+                                    // Make sure we geodecode the location only after the map finished moving
+                                    mHandler.removeCallbacksAndMessages(null);
+                                    mHandler.postDelayed(() -> {
+                                        guessLocation();
+                                    }, 500);
+                                }
+
+                                mNoMapRefresh = false;
                             }
                         });
 
@@ -722,4 +909,41 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                     });
         }
     }
+
+    // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
+    double distanceInMeters(double lat1, double lon1, double lat2, double lon2) {
+        int earthRadius = 6370997; // m
+        double degreesPerRadian = 57.2958;
+        double dLat = (lat2 - lat1) / degreesPerRadian;
+        double dLon = (lon2 - lon1) / degreesPerRadian;
+        double lat1Mod = lat1 / degreesPerRadian;
+        double lat2Mod = lat2 / degreesPerRadian;
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1Mod) * Math.cos(lat2Mod);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = earthRadius * c;
+        return d;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_CHOOSE_PINNED_LOCATION) {
+            if (resultCode == RESULT_OK) {
+                // Update location to pinned location
+                mLatitude = data.getDoubleExtra(PinnedLocationSearchActivity.LATITUDE, 0);
+                mLongitude = data.getDoubleExtra(PinnedLocationSearchActivity.LONGITUDE, 0);
+                mAccuracy = data.getDoubleExtra(PinnedLocationSearchActivity.ACCURACY, 0);
+                List<String> values = Arrays.asList(getResources().getStringArray(R.array.geoprivacy_values));
+                mGeoprivacySpinner.setSelection(values.indexOf(data.getStringExtra(PinnedLocationSearchActivity.GEOPRIVACY)));
+                mPlaceGuess = data.getStringExtra(PinnedLocationSearchActivity.TITLE);
+
+                refreshActionBar();
+                zoomToLocation();
+            }
+        }
+    }
+
 }
