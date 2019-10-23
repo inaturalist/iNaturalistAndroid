@@ -42,6 +42,7 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
     private boolean mIsRecording = false;
     private SoundRecorder mRecorder;
     private String mOutputFilename;
+    private boolean mCancelledRecording = false;
 
     private static final int MAX_SOUND_LINES = 300;
     private static final int SOUND_LINE_WIDTH = 4;
@@ -256,8 +257,7 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                setResult(RESULT_CANCELED);
-                finish();
+                onBack();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -302,8 +302,30 @@ public class RecordSoundActivity extends AppCompatActivity implements SoundRecor
     }
 
     @Override
+    public void onBackPressed() {
+        onBack();
+    }
+
+    private void onBack() {
+        mCancelledRecording = true;
+        mRecorder.stopRecording();
+        mHelper.loading();
+    }
+
+
+    @Override
     public void onRecordingStopped() {
         mHelper.stopLoading();
+
+        if (mCancelledRecording) {
+            // User chose to cancel recording - delete the file
+            File outputFile = new File(mOutputFilename);
+            outputFile.delete();
+
+            setResult(RESULT_CANCELED);
+            finish();
+            return;
+        }
 
         // Make this sound accessible via the Android Files app (under Audio category)
         ContentValues values = new ContentValues();
