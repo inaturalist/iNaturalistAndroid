@@ -6265,6 +6265,19 @@ public class INaturalistService extends IntentService {
                 obs.put("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork));
             }
 
+            if (obs.has("longitude") && !obs.isNull("longitude")) {
+                if (obs.getString("longitude").equals("0.0")) {
+                    // Handle edge cases where long/lat was saved as 0.0 - just don't send a location
+                    obs.remove("longitude");
+                }
+            }
+            if (obs.has("latitude") && !obs.isNull("latitude")) {
+                if (obs.getString("latitude").equals("0.0")) {
+                    // Handle edge cases where long/lat was saved as 0.0 - just don't send a location
+                    obs.remove("latitude");
+                }
+            }
+
             JSONObject obsContainer = new JSONObject();
             obsContainer.put("observation", obs);
             obsContainer.put("ignore_photos", true);
