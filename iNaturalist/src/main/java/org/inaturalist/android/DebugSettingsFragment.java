@@ -125,7 +125,7 @@ public class DebugSettingsFragment extends PreferenceFragmentCompat implements D
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Add the dividers between the preference items
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.list);
+        RecyclerView recyclerView = getListView();
         recyclerView.addItemDecoration(
                 new DividerItemDecorationPreferences(getActivity(), 0, 0));
     }

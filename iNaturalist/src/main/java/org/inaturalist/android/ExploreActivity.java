@@ -23,6 +23,7 @@ import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -590,7 +591,6 @@ public class ExploreActivity extends BaseFragmentActivity {
                         @Override
                         public void onFinish() {
                             mInitialLocationBounds = mObservationsMap.getProjection().getVisibleRegion().latLngBounds;
-                            mObservationsMapContainer.setVisibility(View.GONE);
 
                             if (shouldRedoSearch && !mShouldMoveMapAccordingToSearchFilters) {
                                 mLastMapBounds = mInitialLocationBounds;
@@ -1120,6 +1120,7 @@ public class ExploreActivity extends BaseFragmentActivity {
         });
 
         refreshMapType();
+
 
         mRedoObservationsSearch.setVisibility(mMapMoved ? View.VISIBLE : View.GONE);
         mPerformingSearch.setVisibility(mLoadingNextResults[VIEW_TYPE_OBSERVATIONS] ? View.VISIBLE : View.GONE);

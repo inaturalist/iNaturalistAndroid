@@ -44,21 +44,24 @@ class LocationChooserPlaceAdapter extends ArrayAdapter<INatPlace> {
 
         placeName.setText(item.title);
 
-        String coords = String.format(mContext.getString(R.string.location_coords),
-                    String.format("%.2f", item.latitude),
-                    String.format("%.2f", item.longitude),
-                    String.format("%d", item.accuracy.intValue())
-                );
 
         if (item.geoprivacy == null) {
             // Results from Google API place suggestions
             subtitle1.setText(item.subtitle);
-            subtitle2.setText(coords);
+            subtitle2.setVisibility(View.GONE);
         } else {
             // Results from iNat pinned locations
+
+            String coords = String.format(mContext.getString(R.string.location_coords),
+                    String.format("%.2f", item.latitude),
+                    String.format("%.2f", item.longitude),
+                    String.format("%d", item.accuracy.intValue())
+            );
+
             subtitle1.setText(coords);
             subtitle2.setText(String.format(mContext.getString(R.string.geoprivacy_with_value),
                     item.geoprivacy));
+            subtitle2.setVisibility(View.VISIBLE);
         }
 
         view.setTag(item);

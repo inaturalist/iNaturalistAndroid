@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import org.tinylog.Logger;
@@ -47,7 +46,6 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,7 +69,6 @@ import com.google.android.gms.maps.model.VisibleRegion;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
-import com.google.android.libraries.places.api.model.LocationBias;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.RectangularBounds;
 import com.google.android.libraries.places.api.model.TypeFilter;
@@ -90,8 +87,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     protected static final String PLACE_GUESS = "place_guess";
 
     protected static final int REQUEST_CODE_CHOOSE_PINNED_LOCATION = 0x1000;
-
-    private static final float MY_LOCATION_ZOOM_LEVEL = 10;
 
     private GoogleMap mMap;
     private HashMap<String, Observation> mMarkerObservations;
@@ -130,6 +125,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private ListView mLocationList;
     private ProgressBar mLoadingSearch;
     private boolean mNoMapRefresh;
+    private CountDownLatch mWaitForAllResults;
+    @State public boolean mLocationSearchOpen;
+    private ImageView mCrosshairs;
 
 
     @Override
@@ -192,6 +190,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             }
         });
 
+        mCrosshairs = (ImageView) findViewById(R.id.crosshairs);
+
         mObservationsMapMyLocation.setVisibility(mApp.isLocationPermissionGranted() ? View.VISIBLE : View.INVISIBLE);
 
         mObservationsChangeMapLayers.setOnClickListener(new View.OnClickListener() {
@@ -199,8 +199,10 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             public void onClick(View v) {
                 if (mObservationsMapType == GoogleMap.MAP_TYPE_SATELLITE) {
                     mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
+                    mCrosshairs.setColorFilter(Color.parseColor("#000000"));
                 } else {
                     mObservationsMapType = GoogleMap.MAP_TYPE_SATELLITE;
+                    mCrosshairs.setColorFilter(Color.parseColor("#ffffff"));
                 }
 
                 refreshMapType();
@@ -270,6 +272,16 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mLoadingSearch.setVisibility(View.GONE);
 
         mLocationList.setOnItemClickListener((adapterView, view, index, l) -> {
+            mHelper.loading();
+
+            try {
+                mWaitForAllResults.await(10, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            mHelper.stopLoading();
+
             INatPlace place = mPlaces.get(index);
 
             mLongitude = place.longitude;
@@ -307,7 +319,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                     region.farRight);
 
             FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
-                    .setTypeFilter(TypeFilter.ADDRESS)
                     .setSessionToken(mAutoCompleteToken)
                     .setLocationBias(bounds)
                     .setQuery(query)
@@ -326,19 +337,19 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     }
 
     private void loadPlaceResults(List<AutocompletePrediction> predictions) {
-        CountDownLatch waitForAllResults = new CountDownLatch(predictions.size());
+        mWaitForAllResults = new CountDownLatch(predictions.size());
 
         mPlaces = new ArrayList<>();
 
         for (AutocompletePrediction prediction : predictions) {
-            getPlaceDetails(prediction, waitForAllResults);
-        }
+            INatPlace inatPlace = new INatPlace();
+            inatPlace.id = prediction.getPlaceId();
+            inatPlace.title = prediction.getPrimaryText(null).toString();
+            inatPlace.subtitle = prediction.getSecondaryText(null).toString();
 
-        // Wait for details from all place suggestions (lat/lng/etc)
-        try {
-            waitForAllResults.await(10000, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            mPlaces.add(inatPlace);
+
+            getPlaceDetails(prediction, mPlaces.size() - 1, mWaitForAllResults);
         }
 
         // Refresh results
@@ -352,7 +363,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         });
     }
 
-    private void getPlaceDetails(AutocompletePrediction prediction, CountDownLatch latch) {
+    private void getPlaceDetails(AutocompletePrediction prediction, int index, CountDownLatch latch) {
         new Thread(() -> {
             if (prediction.getPlaceId() == null) {
                 // We only show predictions with place IDs (so we can retrieve exact lat/lng)
@@ -360,23 +371,18 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 return;
             }
 
-            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG);
+            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.VIEWPORT);
             FetchPlaceRequest request = FetchPlaceRequest.builder(prediction.getPlaceId(), fields).build();
 
             mPlacesClient.fetchPlace(request).addOnSuccessListener(fetchPlaceResponse -> {
                 // Only when successfully fetching the place details -> add it to the results list
-                INatPlace inatPlace = new INatPlace();
                 Place googlePlace = fetchPlaceResponse.getPlace();
-
-                inatPlace.id = googlePlace.getId();
-                inatPlace.latitude = googlePlace.getLatLng().latitude;
-                inatPlace.longitude = googlePlace.getLatLng().longitude;
-                inatPlace.title = googlePlace.getName();
-                inatPlace.subtitle = googlePlace.getAddress();
 
                 LatLngBounds viewport = googlePlace.getViewport();
 
                 Double radius = null;
+                Double latitude = googlePlace.getLatLng().latitude;
+                Double longitude = googlePlace.getLatLng().longitude;
 
                 if (viewport != null) {
                     LatLng center = viewport.getCenter();
@@ -384,18 +390,19 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
                     // Radius is the largest distance from geom center to one of the bounds corners
                     radius = Math.max(
-                            distanceInMeters(inatPlace.latitude, inatPlace.longitude,
+                            distanceInMeters(latitude, longitude,
                                     center.latitude, center.longitude),
-                            distanceInMeters(inatPlace.latitude, inatPlace.longitude,
+                            distanceInMeters(latitude, longitude,
                                     northeast.latitude, northeast.longitude)
                     );
                 } else {
                     radius = 10.0;
                 }
 
-                inatPlace.accuracy = radius;
+                mPlaces.get(index).accuracy = radius;
+                mPlaces.get(index).latitude = latitude;
+                mPlaces.get(index).longitude = longitude;
 
-                mPlaces.add(inatPlace);
                 latch.countDown();
             }).addOnFailureListener(e -> {
                 latch.countDown();
@@ -413,6 +420,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
     private void hideLocationSearch() {
         Animation moveDown = AnimationUtils.loadAnimation(LocationChooserActivity.this, R.anim.slide_down);
+        mLocationSearchOpen = false;
         moveDown.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -447,6 +455,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
     private void showLocationSearch() {
         Animation moveUp = AnimationUtils.loadAnimation(LocationChooserActivity.this, R.anim.slide_up);
+        mLocationSearchOpen = true;
         moveUp.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -511,25 +520,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
         	int zoom = 15;
 
-        	if (mAccuracy > 0) {
-            	DisplayMetrics metrics = new DisplayMetrics();
-            	getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-                int screenWidth = (int) (metrics.widthPixels * 0.4 * 0.2);
-
-                double equatorLength = 40075004; // in meters
-                double widthInPixels = screenWidth * 0.4 * 0.40;
-                double metersPerPixel = equatorLength / 256;
-                int zoomLevel = 1;
-                while ((metersPerPixel * widthInPixels) > mAccuracy) {
-                    metersPerPixel /= 2;
-                    ++zoomLevel;
-                    Logger.tag(TAG).error("\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + mAccuracy);
-                }
-                Logger.tag(TAG).error("Zoom = " + zoomLevel + "; Accuracy = " + mAccuracy);
-                zoom = zoomLevel;
-        	}
-        	
+        	zoom = accuracyToZoomLevel(mAccuracy);
 
         	if (mZoomToLocation) {
         		if (mMap != null) mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, zoom));
@@ -598,8 +589,13 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
     	if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-    		onCancel();
-    		return false;
+    	    if (mLocationSearchOpen) {
+    	        hideLocationSearch();
+            } else {
+                onCancel();
+            }
+
+            return false;
     	} else {
     		return super.onKeyDown(keyCode, event);
     	}
@@ -640,6 +636,11 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 Bundle bundle = new Bundle();
 
                 updateLocationBasedOnMap();
+
+                if ((mLatitude == 0) || (mLongitude == 0)) {
+                    // Don't allow 0/0 coordinates
+                    return true;
+                }
 
                 bundle.putDouble(LATITUDE, mLatitude);
                 bundle.putDouble(LONGITUDE, mLongitude);
@@ -893,7 +894,16 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 return;
             }
 
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), MY_LOCATION_ZOOM_LEVEL),
+            // Calculate zoom level based on accuracy
+
+            int zoom = 15;
+            mAccuracy = location.getAccuracy();
+
+        	if (mAccuracy > 0) {
+        	    zoom = accuracyToZoomLevel(mAccuracy);
+        	}
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), zoom),
                     1000,
                     new GoogleMap.CancelableCallback() {
                         @Override
@@ -908,6 +918,25 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                         }
                     });
         }
+    }
+
+    int accuracyToZoomLevel(double accuracy) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int screenWidth = (int) (metrics.widthPixels * 0.4 * 0.2);
+
+        double equatorLength = 40075004; // in meters
+        double widthInPixels = screenWidth * 0.4 * 0.40;
+        double metersPerPixel = equatorLength / 256;
+        int zoomLevel = 1;
+        while ((metersPerPixel * widthInPixels) > accuracy) {
+            metersPerPixel /= 2;
+            ++zoomLevel;
+            Logger.tag(TAG).error("\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + accuracy);
+        }
+        Logger.tag(TAG).error("Zoom = " + zoomLevel + "; Accuracy = " + accuracy);
+        return zoomLevel;
     }
 
     // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
