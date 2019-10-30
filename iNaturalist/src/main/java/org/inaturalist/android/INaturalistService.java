@@ -4371,14 +4371,32 @@ public class INaturalistService extends IntentService {
 
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
-        String url = String.format("%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&order=desc&return_bounds=true&%s",
-                API_HOST,
-                command == null ? "" : "/" + command,
-                deviceLanguage,
-                pageNumber,
-                pageSize,
-                orderBy == null ? "" : orderBy,
-                filters.toUrlQueryString());
+        String url;
+        if (command == null) {
+            url = String.format("%s/observations%s?locale=%s&page=%d&per_page=%d&ordered_by=%s&order=desc&return_bounds=true&%s",
+                    API_HOST,
+                    command == null ? "" : "/" + command,
+                    deviceLanguage,
+                    pageNumber,
+                    pageSize,
+                    orderBy == null ? "" : orderBy,
+                    filters.toUrlQueryString());
+        } else if (command.equals("species_counts")) {
+            url = String.format("%s/observations/%s?locale=%s&page=%d&per_page=%d&%s",
+                    API_HOST,
+                    command,
+                    deviceLanguage,
+                    pageNumber,
+                    pageSize,
+                    filters.toUrlQueryString());
+        } else {
+             url = String.format("%s/observations/%s?page=%d&per_page=%d&%s",
+                    API_HOST,
+                    command,
+                    pageNumber,
+                    pageSize,
+                    filters.toUrlQueryString());
+        }
 
         JSONArray json = get(url, false);
         if (json == null) return null;
@@ -4395,7 +4413,7 @@ public class INaturalistService extends IntentService {
     private BetterJSONObject getUserSpeciesCount(String username) throws AuthenticationException {
         Locale deviceLocale = getResources().getConfiguration().locale;
         String deviceLanguage = deviceLocale.getLanguage();
-        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&per_page=30&user_id=" + username + "&locale=" + deviceLanguage;
+        String url = API_HOST + "/observations/species_counts?place_id=any&verifiable=any&user_id=" + username + "&locale=" + deviceLanguage;
         JSONArray json = get(url, false);
         if (json == null) return null;
         if (json.length() == 0) return null;
