@@ -39,6 +39,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -233,19 +234,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mClearLocation.setVisibility(View.INVISIBLE);
 
         mLocationSearchResultsContainer.setVisibility(View.GONE);
-        mLocationSearch.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLocationSearch();
-            }
-        });
-        mLocationSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focused) {
-                if (focused) {
-                    showLocationSearch();
-                }
-            }
+        mLocationSearch.setOnTouchListener((view, motionEvent) -> {
+            showLocationSearch();
+            return false;
         });
 
         mLocationSearch.addTextChangedListener(new TextWatcher() {
@@ -274,25 +265,31 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mLocationList.setOnItemClickListener((adapterView, view, index, l) -> {
             mHelper.loading();
 
-            try {
-                mWaitForAllResults.await(10, TimeUnit.SECONDS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            new Thread(() -> {
+                try {
+                    mWaitForAllResults.await(10, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            mHelper.stopLoading();
+                INatPlace place = mPlaces.get(index);
 
-            INatPlace place = mPlaces.get(index);
+                if ((place.longitude != null) && (place.latitude != null)) {
+                    mLongitude = place.longitude;
+                    mLatitude = place.latitude;
+                    mAccuracy = place.accuracy;
+                    mPlaceGuess = place.title;
+                }
 
-            mLongitude = place.longitude;
-            mLatitude = place.latitude;
-            mAccuracy = place.accuracy;
-            mPlaceGuess = place.subtitle;
+                runOnUiThread(() -> {
+                    mHelper.stopLoading();
+                    hideLocationSearch();
 
-            hideLocationSearch();
+                    refreshActionBar();
+                    zoomToLocation();
+                });
+            }).start();
 
-            refreshActionBar();
-            zoomToLocation();
         });
 
         refreshMapType();
@@ -419,6 +416,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     }
 
     private void hideLocationSearch() {
+        if (!mLocationSearchOpen) return;
+
         Animation moveDown = AnimationUtils.loadAnimation(LocationChooserActivity.this, R.anim.slide_down);
         mLocationSearchOpen = false;
         moveDown.setAnimationListener(new Animation.AnimationListener() {
@@ -454,6 +453,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     }
 
     private void showLocationSearch() {
+        if (mLocationSearchOpen) return;
+
         Animation moveUp = AnimationUtils.loadAnimation(LocationChooserActivity.this, R.anim.slide_up);
         mLocationSearchOpen = true;
         moveUp.setAnimationListener(new Animation.AnimationListener() {
@@ -611,13 +612,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
         double equatorLength = 40075004; // in meters
         double metersPerPixel = equatorLength / 256;
-        int zoomLevel = 1;
-        while (zoomLevel < currentZoom) {
-            metersPerPixel /= 2;
-            ++zoomLevel;
-        }
+        metersPerPixel = metersPerPixel / (Math.pow(2, currentZoom - 1));
         mAccuracy = (double) ((screenWidth * 0.4 * 0.8) * metersPerPixel);
-        Logger.tag(TAG).error("Meters per radius = " + mAccuracy + "; zoom = " + zoomLevel);
+        Logger.tag(TAG).error("Meters per radius = " + mAccuracy);
 
         mLatitude = mMap.getCameraPosition().target.latitude;
         mLongitude = mMap.getCameraPosition().target.longitude;
