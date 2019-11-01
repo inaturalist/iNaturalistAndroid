@@ -29,13 +29,13 @@
     <string name="something_went_wrong">Æsj, noe gikk galt: %1$s</string>
     <string name="edit">Redigér</string>
     <string name="oh_no">Åh nei! %1$s</string>
-    <string name="observations">Observasjonene mine</string>
+    <string name="observations">Mine observasjoner</string>
     <string name="map">Kart</string>
     <string name="settings">Innstillinger</string>
     <string name="projects">Prosjekter</string>
     <string name="delete_photo">Slett fotografi</string>
     <string name="menu">Meny</string>
-    <string name="my_location">Posisjonen min</string>
+    <string name="my_location">Min posisjon</string>
     <string name="nearby_observations">Nære observasjoner</string>
     <string name="add">Legg til</string>
     <string name="view_on_inat">Vis på iNaturalist.org</string>
@@ -121,7 +121,7 @@
     <string name="geoprivacy">Geoprivat</string>
     <string name="delete_confirmation">Er du sikker på at du vil slette denne observasjonen?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
-    <string name="guides">Gaider</string>
+    <string name="guides">Guider</string>
     <string name="my_guides">Din(e)</string>
     <string name="nearby_guides">Nære</string>
     <string name="all_guides">Alle</string>
@@ -164,7 +164,7 @@
         <item>Gå ut! Finn noe vilt, og ta et klart fullformatfotografi.</item>
         <item>Del observasjonen din med iNaturalist-samfunnet.</item>
         <item>Kom tilbake for kommentarer og identifikasjoner på observasjonen din!</item>
-        <item><![CDATA[Observasjoner med <b>forskningsklasse</b> deles med forskere som jobber med å bedre forstå og beskytte naturen.]]></item>
+        <item><![CDATA[Observasjoner med <b>Forskningsgrad</b> deles med forskere som jobber med å bedre forstå og beskytte naturen.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Åpne</item>
@@ -226,7 +226,7 @@
     <string name="min_6_chars">Minst 6 karakterer</string>
     <string name="use_my_license"><![CDATA[Ja, lisensiér innholdet mitt slik at forskere kan bruke dataen min. <b>Lær mer</b>]]></string>
     <string name="content_licensing">Innholdslisensiering</string>
-    <string name="content_licensing_description">Sjekk ut denne boksen hvis du vil legge til en ikke-kommersiell lisens til fotografiene dine. Du kan velge en forskjellig lisens eller fjerne lisensen senere, men dette er den beste lisensen for deling med forskere.</string>
+    <string name="content_licensing_description">Huk av i denne boksen hvis du vil legge til et ikke-kommersielt lisens til bildene dine. Du kan velge et annet lisens eller fjerne lisenset senere, men dette er det beste lisenset for å dele med forskere.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Brukernavn eller e-post</string>
     <string name="forgot">Glemt?</string>
@@ -247,7 +247,7 @@
     <string name="make_first">Skap den første</string>
     <string name="notes">Notater</string>
     <string name="location_is">Posisjon er</string>
-    <string name="is_captive">Den er bevart eller kultivert</string>
+    <string name="is_captive">Den er i fangenskap eller kultivert</string>
     <string name="location_visibility">Posisjonssynlighet</string>
     <string name="set_location">Posisjon</string>
     <string name="coordinates_lat">Breddegrad:</string>
@@ -269,13 +269,13 @@
     <string name="unable_to_acquire_location">Kunne ikke hente posisjon</string>
     <string name="casual_grade">Formell grad</string>
     <string name="needs_id">Trenger ID</string>
-    <string name="research_grade">Utforskningsgrad</string>
+    <string name="research_grade">Forskningsgrad</string>
     <string name="data_quality">Datakvalitet</string>
     <string name="casual_grade_add_location"><![CDATA[ Legg til et <b>sted</b> for å fremheve denne observasjonen til “trenger-ID-status". ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Legg til en <b>dato</b> for å fremheve denne observasjonen til “trenger-ID-status". ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Legg til et <b>fotografi</b> for å fremheve denne observasjonen til “trenger-ID-status". ]]></string>
     <string name="casual_grade_captive"><![CDATA[ Observasjon er i uformell klasse fordi den er <b>bevart/kultivert</b>. ]]></string>
-    <string name="needs_id_more_ids"><![CDATA[ Observasjon trenger <b>flere identifikasjoner</b> fra fellesskapet for å få "søkeklassestatus". ]]></string>
+    <string name="needs_id_more_ids"><![CDATA[ Observasjon trenger <b>flere identifikasjoner</b> fra fellesskapet for å få status som "Forskningsgrad". ]]></string>
     <string name="included_in_projects">Inkludert i %1$d prosjekter</string>
     <string name="included_in_projects_singular">Inkludert i %1$d prosjekt</string>
     <string name="geoprivacy_explanation"><![CDATA[ Geoprivat er en innstilling du kan bruke på observasjonene dine som kontrollerer hvordan de romlige koordinatene (breddegrad og lengdegrad) vises. Her er innstillingene:<br/><b>åpn</b> - Alle kan se koordinater med mindre gruppen er utrydningstruet. <br/><b>skjult</b> - Offentlige koordinater vises som tilfeldige punkter innen et 0.2-av-0.2-gradsområde som virker cirka 22x22km² fra ekvator og minsker når du nærmer deg polene. Sanne koordinater er bare synlige for deg og administratorene i prosjektene du legger observasjonen din til. <br/><b>privat</b> - <br/><br/>Notér at moderatorene i individuelle prosjekter alltid kan se koordinater uansett hvilken geoprivatinnstilling du bruker, så hvis du er bekymret over hvem som har tilgang til koordinater bør du være sikker på at du kan stole på administratorene i prosjektene du deltar i. ]]></string>
@@ -289,9 +289,9 @@
     <string name="comment">Kommentar</string>
     <string name="suggest_id">Foreslå ID</string>
     <string name="update_comment">Oppdatér kommentar</string>
-    <string name="fave_this_observation">Favorittisér denne observasjonen</string>
+    <string name="fave_this_observation">Favoriser denne observasjonen</string>
     <string name="faved">Favorittisert</string>
-    <string name="be_the_first_to_fave_this_obs">Vær den første til å favorittisere denne observasjonen...</string>
+    <string name="be_the_first_to_fave_this_obs">Vær den første til å favorisere denne observasjonen...</string>
     <string name="leave_a_comment">Etterlat en kommentar eller foreslå en identifikasjon...</string>
     <string name="location_coords">Breddegrad: %1$s Lengdegrad: %2$s Nøyaktighet: %3$s</string>
     <string name="location_coords_no_acc">Breddegrad: %1$s Lengdegrad: %2$s</string>
@@ -360,7 +360,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Oppdatér identifikasjonsbeskrivelse</string>
     <string name="your_identification">ID-en din: %1$s</string>
-    <string name="onboarding_species_name">Navngi hva du så hvis du kan, men det er okay hvis du ikke kan. Andre kan kanskje hjelpe deg med å identifisere den!</string>
+    <string name="onboarding_species_name">Navngi hva du så hvis du kan, men det er OK hvis du ikke kan. Andre kan kanskje hjelpe deg med å identifisere den!</string>
     <string name="upload_complete">Opplastning fullført!</string>
     <string name="onboarding_upload_description">Kom tilbake snart for identifikasjoner og kommentarer på observasjonen(e) din(e).</string>
     <string name="importing_photos">Importerer fotografi(er)...</string>
@@ -393,7 +393,7 @@
     <string name="ok_got_it">Okay, har det!</string>
     <string name="could_not_download_observations">Kunne ikke laste ned nyeste observasjoner - forbindelsesproblemer. Prøv igjen senere.</string>
     <string name="no_news_yet">Ingen nyheter enda. Følg med!</string>
-    <string name="my_content">Innholdet mitt</string>
+    <string name="my_content">Mitt innhold</string>
     <string name="following">Følger</string>
     <string name="no_updates_yet">Ingen oppdateringer enda. Følg med!</string>
     <string name="you_will_only_receive_updates_when_creating">(Du vil bare motta oppdateringer når du har laget observasjoner)</string>
@@ -448,7 +448,7 @@
     <string name="nearby">I nærheten</string>
     <string name="couldnt_load_results">Kunne ikke laste inn resultater: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
-    <string name="research_grade_initials">FK</string>
+    <string name="research_grade_initials">FG</string>
     <string name="taxon_search_hint">f.eks. fulger, monark</string>
     <string name="location_search_hint">f.eks. by, stat, park, land...</string>
     <string name="no_taxon">Beklager, takson ikke funnet</string>
@@ -652,7 +652,7 @@
     <string name="observers_all_caps">OBSERVATØRER</string>
     <string name="observations_regular">Observasjoner</string>
     <string name="data_quality_assessment">Datakvalitetsvurdering</string>
-    <string name="research_grade_qualification">Forskningskvalitetskvalifikasjon</string>
+    <string name="research_grade_qualification">Forskningsgradkvalifikasjon</string>
     <string name="date_specified">Dato spesifisert</string>
     <string name="location_specified">Plassering spesifisert</string>
     <string name="has_photos_or_sounds">Har bilde eller lyd</string>
@@ -700,4 +700,12 @@
     <string name="deleted_sounds_from_cache_error">Det ser ut til at du har slettet en lyd ved å rydde appens cache før opplasting. Du må derfor legge lyden til observasjoner fra galleriet på nytt. Sørg for at du har lastet opp alle dine lyder før du rydder appcachen i fremtiden.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sek</string>
+    <string name="clear_all_debug_logs">Fjern alle feilsøkingslogger</string>
+    <string name="clears_up_storage_room_on_your_phone">Rydder i lagringskapasiteten på telefonen din</string>
+    <string name="number_of_days_to_store_logs">Antall dager for lagring av logger</string>
+    <string name="send_debug_logs_from_start_date">Send feilsøkingslogger fra startdato</string>
+    <string name="send_debug_logs_by_email">Send feilsøkingslogger på e-post (fra spesifisert startdato)</string>
+    <string name="debug_settings">Feilsøkingsinstillinger</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Er du sikker på at du vil slette alle feilsøkingslogger? Bare trykk \"Ja\" dersom du vil rydde i lagringskapasiteten på telefonen din</string>
+    <string name="no_log_files_found">Ingen loggfiler funnet for valgte tidsrom - prøv tidligere tidspunkt?</string>
 </resources>

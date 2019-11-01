@@ -525,7 +525,7 @@
     <string name="end">Koniec</string>
     <string name="months">Mesiace</string>
     <string name="choose_months">Vyber mesiac(e)</string>
-    <string name="map_area">Map Area</string>
+    <string name="map_area">Oblasť mapy</string>
     <string name="global">Global</string>
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Prehľadajte oblasť</string>
@@ -552,7 +552,7 @@
     <string name="do_you_think_this_could_be"><![CDATA[Is the evidence provided enough to confirm this is <b>%1$s</b>?]]></string>
     <string name="i_dont_know_but"><![CDATA[I don\'t know but I\'m sure this is <b>%1$s</b>.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[No, but it is a member of <b>%1$s</b>.]]></string>
-    <string name="submit">Submit</string>
+    <string name="submit">Odoslať</string>
     <string name="change_password">Zmena hesla</string>
     <string name="search_projects_youve_joined">Prehľadajte projekty, na ktorých participujete...</string>
     <string name="must_be_connected_to_load_more_obs">Musíte byť pripojený na internet aby ste načítali viac pozorovaní</string>
@@ -628,7 +628,7 @@
     <string name="annotation_value_male">Samec</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
-    <string name="nearby_projects_all_caps">NEARBY</string>
+    <string name="nearby_projects_all_caps">BLÍZKO</string>
     <string name="featured_projects_all_caps">FEATURED</string>
     <!-- Text for a button or label that allows someone to join a project -->
     <string name="join_all_caps">JOIN</string>
@@ -700,4 +700,12 @@
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sec</string>
+    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
+    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
+    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
+    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
+    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
+    <string name="debug_settings">Debug Settings</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
+    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
 </resources>
