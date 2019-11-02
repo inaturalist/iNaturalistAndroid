@@ -9,11 +9,16 @@ import android.database.Cursor;
 import android.graphics.Typeface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,6 +75,10 @@ public class ProjectFieldViewer {
     private TextView mFieldDescription;
     private FocusedListener mFocusedListener;
     private boolean mIsFocusing;
+
+    private String mValue;
+
+    private View mView;
 
     public void unregisterReceivers() {
         BaseFragmentActivity.safeUnregisterReceiver(mTaxonReceiver, mContext);
@@ -162,6 +171,10 @@ public class ProjectFieldViewer {
 
     }
 
+    public void setFieldValue(ProjectFieldValue value) {
+        mFieldValue = value;
+    }
+
 
     public ProjectFieldViewer(AppCompatActivity context, ProjectField field, ProjectFieldValue fieldValue, boolean isConfirmation) {
         mField = field;
@@ -184,11 +197,11 @@ public class ProjectFieldViewer {
 
     public String getValue() {
         if ((mField.data_type.equals("text")) && (mField.allowed_values != null) && (!mField.allowed_values.equals(""))) {
-            return (String) mSpinner.getSelectedItem();
+            return mValue;
         } else if (mField.data_type.equals("text")) {
-            return mEditText.getText().toString();
+            return mValue;
         } else if (mField.data_type.equals("numeric")) {
-            String val = mEditText.getText().toString();
+            String val = mValue;
             return (val.equals("") ? null : val);
         } else if (mField.data_type.equals("date")) {
             String dateString = mDate.getText().toString();
@@ -279,6 +292,10 @@ public class ProjectFieldViewer {
     }
 
     public View getView() {
+        if (mView != null && false) {
+            return mView;
+        }
+
         ViewGroup row = (ViewGroup) LayoutInflater.from(mContext).inflate(mIsConfirmation ? R.layout.project_field_confirmation : R.layout.project_field, null);
         row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
@@ -327,6 +344,33 @@ public class ProjectFieldViewer {
             }
         }
 
+        mEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                mValue = editable.toString();
+            }
+        });
+
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mValue = (String) adapterView.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         if ((mField.data_type.equals("text")) && (mField.allowed_values != null) && (!mField.allowed_values.equals(""))) {
             mSpinner.setVisibility(View.VISIBLE);
             String[] allowedValues = mField.allowed_values.split("\\|");
@@ -334,9 +378,11 @@ public class ProjectFieldViewer {
             mSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             mSpinner.setAdapter(mSpinnerAdapter);
 
-            int position = mSpinnerAdapter.getPosition(mFieldValue.value);
-            if (position != -1) {
-                mSpinner.setSelection(position);
+            if (mFieldValue.value != null) {
+                int position = mSpinnerAdapter.getPosition(mFieldValue.value);
+                if (position != -1) {
+                    mSpinner.setSelection(position);
+                }
             }
         } else if (mField.data_type.equals("text")) {
             mEditText.setVisibility(View.VISIBLE);
@@ -348,16 +394,26 @@ public class ProjectFieldViewer {
         } else if (mField.data_type.equals("date")) {
             mDateContainer.setVisibility(View.VISIBLE);
 
-            if (!mFieldValue.value.equals("")) {
+            if ((mFieldValue.value != null) && !mFieldValue.value.equals("")) {
                 mDate.setText(formatDate(mFieldValue.value));
             } else {
                 mDate.setText("");
             }
+
             mDateContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DatePickerFragment newFragment = new DatePickerFragment();
+                    mDate = (TextView) ((ViewGroup)v).getChildAt(1);
+
                     newFragment.setDate(mDate);
+                    newFragment.setOnDateChange(new DatePickerFragment.OnDateChange() {
+                        @Override
+                        public void onDateChange(String date) {
+                            mValue = date;
+                            mDate.setText(mValue);
+                        }
+                    });
                     newFragment.show(mContext.getSupportFragmentManager(), "datePicker");
                 }
             });
@@ -370,7 +426,14 @@ public class ProjectFieldViewer {
                 @Override
                 public void onClick(View v) {
                     TimePickerFragment newFragment = new TimePickerFragment();
+                    mDate = (TextView) ((ViewGroup)v).getChildAt(1);
                     newFragment.setDate(mDate);
+                    newFragment.setOnDateChange(new TimePickerFragment.OnDateChange() {
+                        @Override
+                        public void onDateChange(String date) {
+                            mValue = date;
+                        }
+                    });
                     newFragment.show(mContext.getSupportFragmentManager(), "timePicker");
                 }
             });
@@ -379,7 +442,7 @@ public class ProjectFieldViewer {
         } else if (mField.data_type.equals("datetime")) {
             mDateContainer.setVisibility(View.VISIBLE);
             // date time = 2013-11-14T13:23:37+00:00
-            if (!mFieldValue.value.equals("")) {
+            if ((mFieldValue.value != null) && !mFieldValue.value.equals("")) {
                 mDate.setText(formatDateTime(mFieldValue.value));
             } else {
                 mDate.setText("");
@@ -387,15 +450,17 @@ public class ProjectFieldViewer {
             mDateContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mDate = (TextView) ((ViewGroup)v).getChildAt(1);
                     showDateTimeDialog();
                 }
             });
 
         } else if (mField.data_type.equals("taxon")) {
+
             mTaxonContainer.setVisibility(View.VISIBLE);
 
             if (mTaxonId == -1) {
-                mTaxonId = (mFieldValue.value.equals("") ? -1 : Integer.valueOf(mFieldValue.value));
+                mTaxonId = ((mFieldValue.value == null) || mFieldValue.value.equals("") ? -1 : Integer.valueOf(mFieldValue.value));
             }
 
             if (mTaxonId != -1) {
@@ -418,11 +483,16 @@ public class ProjectFieldViewer {
                     Intent intent = new Intent(mContext, TaxonSearchActivity.class);
                     intent.putExtra(TaxonSearchActivity.FIELD_ID, mField.field_id);
                     mContext.startActivityForResult(intent, PROJECT_FIELD_TAXON_SEARCH_REQUEST_CODE);
+
+                    mTaxonPic = (ImageView) ((ViewGroup)v).getChildAt(0);
+                    mIdName = (TextView) ((ViewGroup)((ViewGroup)v).getChildAt(1)).getChildAt(0);
+                    mIdTaxonName = (TextView) ((ViewGroup)((ViewGroup)v).getChildAt(1)).getChildAt(1);
                 }
             });
 
         }
 
+        mView = row;
         return row;
     }
 
@@ -442,6 +512,7 @@ public class ProjectFieldViewer {
                 Date selectedTime = mDateTimePicker.getDate();
                 String formatted = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(selectedTime);
                 mDate.setText(formatted);
+                mValue = formatted;
 
                 mDateTimeDialog.dismiss();
             }

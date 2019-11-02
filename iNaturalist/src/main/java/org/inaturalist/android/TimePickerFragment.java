@@ -17,8 +17,18 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     private int mHour, mMinute;
     private TextView mDate;
 
+    private OnDateChange mOnDateChange;
+
     public void setDate(TextView date) {
         mDate = date;
+    }
+
+    public interface OnDateChange {
+        void onDateChange(String date);
+    }
+
+    public void setOnDateChange(OnDateChange onDateChange) {
+        mOnDateChange = onDateChange;
     }
 
     @Override
@@ -56,6 +66,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public void onDismiss(DialogInterface dialog) {
         if (!mIsCanceled) {
             mDate.setText(String.format("%02d:%02d", mHour, mMinute));
+            mOnDateChange.onDateChange(mDate.getText().toString());
         }
 
         dismiss();

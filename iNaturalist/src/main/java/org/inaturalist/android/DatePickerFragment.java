@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -20,11 +22,20 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     private boolean mIsCanceled;
     private int mYear, mMonth, mDay;
     private TextView mDate;
+    private OnDateChange mOnDateChange;
 
     public void setDate(TextView date) {
         mDate = date;
     }
-
+    
+    public interface OnDateChange {
+        void onDateChange(String date);
+    }
+    
+    public void setOnDateChange(OnDateChange onDateChange) {
+        mOnDateChange = onDateChange;
+    }
+    
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String currentDate = mDate.getText().toString();
@@ -65,6 +76,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     public void onDismiss(DialogInterface dialog) {
         if (!mIsCanceled) {
             mDate.setText(String.format("%d-%02d-%02d", mYear, mMonth + 1, mDay));
+            mOnDateChange.onDateChange(mDate.getText().toString());
         }
 
         dismiss();

@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -371,6 +372,7 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                     mProjectFieldValues.put(fieldId, fieldValue);
                 }
                 fieldValue.value = newValue;
+                viewer.setFieldValue(fieldValue);
             }
         }
     }
@@ -536,7 +538,6 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                         List<ProjectField> fields = ProjectFieldViewer.sortProjectFields(projectId, mProjectFields);
 
                         List<ProjectFieldViewer> viewers = new ArrayList<ProjectFieldViewer>();
-                        mProjectFieldViewers.put(projectId, viewers);
 
                         if (fields.size() > 0) {
                             projectFieldsTable.setVisibility(View.VISIBLE);
@@ -554,29 +555,51 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
                             projectFieldsTable.setVisibility(View.GONE);
                         }
 
-                        for (final ProjectField field : fields) {
-                            ProjectFieldValue fieldValue = mProjectFieldValues.get(field.field_id);
-                            final ProjectFieldViewer fieldViewer = new ProjectFieldViewer(ProjectSelectorActivity.this, field, fieldValue, true);
+                        if (!mProjectFieldViewers.containsKey(projectId)) {
+                            mProjectFieldViewers.put(projectId, viewers);
 
-                            viewers.add(fieldViewer);
+                            for (final ProjectField field : fields) {
+                                ProjectFieldValue fieldValue = mProjectFieldValues.get(field.field_id);
+                                final ProjectFieldViewer fieldViewer = new ProjectFieldViewer(ProjectSelectorActivity.this, field, fieldValue, true);
+                                viewers.add(fieldViewer);
 
-                            if (field.is_required) {
-                                view.findViewById(R.id.is_required).setVisibility(View.VISIBLE);
+                                if (field.is_required) {
+                                    view.findViewById(R.id.is_required).setVisibility(View.VISIBLE);
+                                }
+
+                                fieldViewer.setOnFocusedListener(new ProjectFieldViewer.FocusedListener() {
+                                    @Override
+                                    public void onFocused() {
+                                        mLastProjectFieldFocused = field.field_id;
+                                        mLastProjectIdFocused = projectId;
+
+                                        mLastProjectFieldIndex = mProjectList.getFirstVisiblePosition();
+                                        View v = mProjectList.getChildAt(0);
+                                        mLastProjectFieldTop = (v == null) ? 0 : (v.getTop() - mProjectList.getPaddingTop());
+                                    }
+                                });
+
+                                View fieldView = fieldViewer.getView();
+                                if (fieldView.getParent() != null) {
+                                    ((ViewGroup)fieldView.getParent()).removeView(fieldView);
+                                }
+
+                                projectFieldsTable.addView(fieldView);
+                            }
+                        } else if ((projectFieldsTable.getChildCount() == 0) && (fields.size() > 0)) {
+                            int i = 0;
+                            List<ProjectFieldViewer> currentViewers = mProjectFieldViewers.get(projectId);
+                            for (final ProjectField field : fields) {
+                                View fieldView = currentViewers.get(i).getView();
+                                if (fieldView.getParent() != null) {
+                                    ((ViewGroup)fieldView.getParent()).removeView(fieldView);
+                                }
+
+                                projectFieldsTable.addView(fieldView);
+
+                                i++;
                             }
 
-                            fieldViewer.setOnFocusedListener(new ProjectFieldViewer.FocusedListener() {
-                                @Override
-                                public void onFocused() {
-                                    mLastProjectFieldFocused = field.field_id;
-                                    mLastProjectIdFocused = projectId;
-
-                                    mLastProjectFieldIndex = mProjectList.getFirstVisiblePosition();
-                                    View v = mProjectList.getChildAt(0);
-                                    mLastProjectFieldTop = (v == null) ? 0 : (v.getTop() - mProjectList.getPaddingTop());
-                                }
-                            });
-
-                            projectFieldsTable.addView(fieldViewer.getView());
                         }
 
                         focusProjectField();
