@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Подробно</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Конфиденциальность геоданных</string>
+    <string name="geoprivacy_with_value">Конфиденциальность геоданных: %1$s</string>
     <string name="delete_confirmation">Вы уверены, что хотите удалить это наблюдение?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Инструкции</string>
@@ -235,7 +236,7 @@
     <string name="recommended_next_step">Следующий рекомендуемый шаг</string>
     <string name="could_not_register_user">Не удалось зарегистрировать пользователя</string>
     <!-- Short label for a button in the side bar, not much more than 16 characters -->
-    <string name="login_signup">Войти / Зарегистрироваться</string>
+    <string name="login_signup">Вход/Регистрация</string>
     <string name="please_sign_in_via_settings_for_guides">Вы должны войти для просмотра ваших руководств.</string>
     <string name="please_sign_in_for_updates">Вы должны войти для просмотра ваших обновлений.</string>
     <string name="by_using_inat_terms"><![CDATA[Используя iNaturalist, вы соглашаетесь с <b><a href="http://www.inaturalist.org/pages/terms"> Условиями использования</a></b> и <b><a href="http://www.inaturalist.org/pages/privacy"> Политикой конфиденциальности</a></b>]]></string>
@@ -709,4 +710,8 @@
     <string name="debug_settings">Параметры отладки</string>
     <string name="are_you_sure_you_want_to_delete_logs">Вы уверены, что хотите удалить все лог-файлы отладки? Нажмите «Да» только в том случае, если вы хотите очистить пространство хранения вашего телефона</string>
     <string name="no_log_files_found">Для этого диапазона дат лог-файлы не найдены - попробовать более ранние даты?</string>
+    <string name="choose_pinned_location">Выберите прикрепленное местоположение</string>
+    <string name="pin_current_location">Прикрепить текущее местоположение</string>
+    <string name="location_pinned_successfully">Текущее местоположение успешно прикреплено</string>
+    <string name="delete_this_pinned_location">Удалить это прикрепленное местоположение?</string>
 </resources>

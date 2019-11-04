@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Acerca de</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacidade</string>
+    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
     <string name="delete_confirmation">Tem a certeza que deseja eliminar esta observação?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guias</string>
@@ -710,4 +711,8 @@ nossa comunidade de código aberto]]></string>
     <string name="debug_settings">Debug Settings</string>
     <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
     <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
+    <string name="choose_pinned_location">Choose Pinned Location</string>
+    <string name="pin_current_location">Pin Current Location</string>
+    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
+    <string name="delete_this_pinned_location">Delete this pinned location?</string>
 </resources>

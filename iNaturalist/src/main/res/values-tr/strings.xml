@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Hakkında</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Coğrafi gizlilik</string>
+    <string name="geoprivacy_with_value">Coğrafi Gizlilik: %1$s</string>
     <string name="delete_confirmation">Bu gözlemi silmek istediğinden emin misin?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Rehberler</string>
@@ -708,4 +709,8 @@
     <string name="debug_settings">Hata Ayıklama Ayarları</string>
     <string name="are_you_sure_you_want_to_delete_logs">Tüm hata ayıklama günlüklerini silmek istediğinize emin misiniz? Sadece telefonunuzdaki saklama alanını temizlemek istiyorsanız \'Evet\'e basın</string>
     <string name="no_log_files_found">Bu tarih aralığında kayıt bulunamadı - daha önceki bir tarihi dene?</string>
+    <string name="choose_pinned_location">Sabitlenmiş Konumu Seç</string>
+    <string name="pin_current_location">Geçerli Konumu Sabitle</string>
+    <string name="location_pinned_successfully">Geçerli Konum Başarıyla Sabitlendi</string>
+    <string name="delete_this_pinned_location">Bu sabitlenmiş konum silinsin mi?</string>
 </resources>
