@@ -700,4 +700,12 @@
     <string name="deleted_sounds_from_cache_error">看起來您在上傳前清除了 App 的快取而刪除了一個聲音檔。您需要從您的檔案庫中重新加回此聲音檔至您的觀察記錄。之後當您清理 App 快取時請確定您已經上傳了所有聲音檔。</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f 秒</string>
+    <string name="clear_all_debug_logs">清除所有除錯記錄</string>
+    <string name="clears_up_storage_room_on_your_phone">在您的手機上清理儲藏空間</string>
+    <string name="number_of_days_to_store_logs">儲存記錄的天數</string>
+    <string name="send_debug_logs_from_start_date">從起始日期傳送除錯記錄</string>
+    <string name="send_debug_logs_by_email">使用電子郵件來傳送除錯記錄(從指定日期開始)</string>
+    <string name="debug_settings">除錯設定</string>
+    <string name="are_you_sure_you_want_to_delete_logs">您確定真的要刪除所有的除錯記錄嗎？若您想要清空手機上儲存空間的話請按下「是」</string>
+    <string name="no_log_files_found">指定日期範圍內找不到記錄檔案–試試更早一點的日期？</string>
 </resources>

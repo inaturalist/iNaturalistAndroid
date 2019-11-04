@@ -700,4 +700,12 @@
     <string name="deleted_sounds_from_cache_error">Yüklemeden önce uygulama önbelleğini temizleyerek bir sesi sildiğiniz anlaşılıyor. Sesi galerideki gözleminize geri eklemeniz gerekir. Gelecekte, lütfen uygulama önbelleğini temizlemeden önce tüm seslerinizi yüklediğinizden emin olun.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sn</string>
+    <string name="clear_all_debug_logs">Tüm Hata Ayıklama Günlüklerini Temizle</string>
+    <string name="clears_up_storage_room_on_your_phone">Telefonunuzdaki saklama alanını temizler</string>
+    <string name="number_of_days_to_store_logs">Kayıtların saklanacağı gün sayısı</string>
+    <string name="send_debug_logs_from_start_date">Başlangıç tarihinden başlayarak hata ayıklama günlükleri gönder</string>
+    <string name="send_debug_logs_by_email">Hata ayıklama günlüklerini e-posta ile gönder (belirtilen başlangıç gününden başlayarak)</string>
+    <string name="debug_settings">Hata Ayıklama Ayarları</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Tüm hata ayıklama günlüklerini silmek istediğinize emin misiniz? Sadece telefonunuzdaki saklama alanını temizlemek istiyorsanız \'Evet\'e basın</string>
+    <string name="no_log_files_found">Bu tarih aralığında kayıt bulunamadı - daha önceki bir tarihi dene?</string>
 </resources>

@@ -701,4 +701,12 @@
     <string name="deleted_sounds_from_cache_error">Похоже, вы удалили звук, очистив кэш приложения перед загрузкой. Вам нужно будет добавить звук обратно к вашему наблюдению из вашей галереи. В будущем, пожалуйста, убедитесь, что вы загрузили все ваши звуки, прежде чем очистить кэш приложения.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f сек</string>
+    <string name="clear_all_debug_logs">Удалить все лог-файлы отладки</string>
+    <string name="clears_up_storage_room_on_your_phone">Очистить пространство хранения вашего телефона</string>
+    <string name="number_of_days_to_store_logs">Число дней, в течение которых хранятся лог-файлы</string>
+    <string name="send_debug_logs_from_start_date">Отправлять лог-файлы отладки с начальной даты</string>
+    <string name="send_debug_logs_by_email">Отправлять лог-файлы отладки по е-мейл (с заданной начальной даты)</string>
+    <string name="debug_settings">Параметры отладки</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Вы уверены, что хотите удалить все лог-файлы отладки? Нажмите «Да» только в том случае, если вы хотите очистить пространство хранения вашего телефона</string>
+    <string name="no_log_files_found">Для этого диапазона дат лог-файлы не найдены - попробовать более ранние даты?</string>
 </resources>

@@ -685,19 +685,27 @@
     <string name="content">Inhoud</string>
     <string name="has_photos">Heeft Foto\'s</string>
     <string name="has_sounds">Heeft geluiden</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="could_not_play_sound">Kon geluid niet afspelen - waarschijnlijk een netwerkprobleem</string>
+    <string name="cant_play_soundcloud"><![CDATA[Om geluiden op Soundcloud te beluisteren, bekijk de <a href="%1$s">website</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
     <string name="record_sound">Geluid opnemen</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
+    <string name="no_recorder_found">Geen standaard geluidsrecorder gevonden!</string>
+    <string name="couldnt_retrieve_sound">Kon geluid niet ophalen van standaard recorder - probeer het geluid in plaats daarvan te importeren</string>
+    <string name="upload_sound">Kies geluid</string>
+    <string name="multi_select_sound_description">Om meerdere geluiden te importeren, druk lang op een enkel geluid</string>
+    <string name="alert_unsupported_audio_type">Sorry, er was een probleem bij het laden van het geluid uit deze bron</string>
     <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
     <string name="importing_sounds">Importing sound(s)...</string>
     <string name="observation_sound">Observation Sound</string>
     <string name="deleted_sounds_from_cache_error">Het lijkt erop dat u geluid hebt verwijderd door het cachegeheugen van de app wissen voordat u deze hebt ge upload. U moet het geluid opnieuw toevoegen aan uw waarneming van uw galerij. Controleer in het vervolg eerst dat u al uw foto\'s en geluiden hebt geüpload vóórdat u het cachegeheugen van de app wist.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sec</string>
+    <string name="clear_all_debug_logs">Wis alle Debug Logbestanden</string>
+    <string name="clears_up_storage_room_on_your_phone">Opslagruimte op uw telefoon vrijmaken</string>
+    <string name="number_of_days_to_store_logs">Aantal dagen om logs te bewaren</string>
+    <string name="send_debug_logs_from_start_date">Stuur Debug Logs vanaf begindatum</string>
+    <string name="send_debug_logs_by_email">Stuur debug logs per e-mail (vanaf opgegeven begindatum)</string>
+    <string name="debug_settings">Debuginstellingen</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Weet je zeker dat je alle debug logs wilt verwijderen? Druk alleen op \'Ja\' als je de opslagruimte op je telefoon wilt vrijmaken</string>
+    <string name="no_log_files_found">Geen logbestanden gevonden voor dat datumreeks - probeer eerdere datum?</string>
 </resources>

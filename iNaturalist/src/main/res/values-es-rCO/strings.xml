@@ -193,8 +193,8 @@
     <string name="alert_message_use_naturalistacolombia">Naturalista es miembro de la red iNaturalist en Colombia. Las instituciones locales que apoyan a Naturalista tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_biodiversity4all">Biodiversity4All es miembro de la red iNaturalist en Portugal. Las instituciones locales que apoyan a Biodiversity4All tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá es miembro de la red iNaturalist en Panamá. Las instituciones locales que apoyan a iNaturalist Panamá tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador es miembro de la red iNaturalist en Ecuador. Las instituciones locales que apoyan a iNaturalist Ecuador tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia es miembro de la red iNaturalist en Australia. Las instituciones locales que apoyan a iNaturalist Australia tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descargar para uso fuera de línea</string>
@@ -682,22 +682,30 @@
     <string name="show_hidden_content">Mostrar contenido ocultado</string>
     <string name="content_hidden_because">Contenido ocultado por @%1$s de %2$s porque: \"%3$s\"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org"> Contacta con el Soporte</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
-    <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="content">Contenido</string>
+    <string name="has_photos">Tiene fotos</string>
+    <string name="has_sounds">Tiene sonidos</string>
+    <string name="could_not_play_sound">No se pudo reproducir el sonido - probablemente por un problema en la red</string>
+    <string name="cant_play_soundcloud"><![CDATA[Para escuchar sonidos de Soundcloud, visite el sitio <a href="%1$s">web </a>.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">Grabar Sonido</string>
+    <string name="no_recorder_found">¡No se ha encontrado un grabador de sonido predeterminado!</string>
+    <string name="couldnt_retrieve_sound">No se ha podido recuperar el sonido de la grabadora predeterminada - intente, en vez de eso, importar el sonido</string>
+    <string name="upload_sound">Elegir Sonido</string>
+    <string name="multi_select_sound_description">Importar múltiples sonidos presionando un tiempo sobre un solo sonido</string>
+    <string name="alert_unsupported_audio_type">Lo sentimos, ha habido un problema al cargar el sonido desde esta fuente</string>
+    <string name="invalid_audio_extension">Error al importar el(los) sonido(s): Sólo se pueden importar archivos de sonido con extensiones WAV/MP3/AMR</string>
+    <string name="importing_sounds">Importando sonido(s)...</string>
+    <string name="observation_sound">Sonido de la Observación</string>
+    <string name="deleted_sounds_from_cache_error">Parece que ha eliminado un sonido al borrar el caché de la aplicación antes de subirlo. Necesitará volver a agregar el sonido a su observación desde la galería. En el futuro, por favor, asegúrese de que se han subido todos los sonidos antes de borrar la memoria caché de la aplicación.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
+    <string name="seconds">%1$.1f s.</string>
+    <string name="clear_all_debug_logs">Eliminar todos los registros de depuración</string>
+    <string name="clears_up_storage_room_on_your_phone">Limpia el espacio de almacenamiento en tu teléfono</string>
+    <string name="number_of_days_to_store_logs">Número de días para almacenar registros</string>
+    <string name="send_debug_logs_from_start_date">Enviar registros de depuración desde la fecha de inicio</string>
+    <string name="send_debug_logs_by_email">Enviar registros de depuración por correo electrónico (desde la fecha de inicio especificada)</string>
+    <string name="debug_settings">Ajustes de Depuración</string>
+    <string name="are_you_sure_you_want_to_delete_logs">¿Está seguro de que desea eliminar todos los registros de depuración? Pulse \'Sí\' solo si desea borrar el espacio de almacenamiento de su teléfono</string>
+    <string name="no_log_files_found">No se encontraron registros para ese rango de fechas - ¿quieres probar con una fecha anterior?</string>
 </resources>

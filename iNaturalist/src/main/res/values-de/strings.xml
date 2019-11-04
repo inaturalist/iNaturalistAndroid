@@ -700,4 +700,12 @@
     <string name="deleted_sounds_from_cache_error">Es sieht so aus, als hätten Sie eine Tonaufnahme gelöscht, indem Sie den Zwischenspeicher der App vor dem Hochladen geleert haben. Sie müssen die Tonaufnahme Ihrer Beobachtung erneut aus Ihrer Galerie hinzufügen. Bitte stellen Sie in Zukunft sicher, dass Sie alle Ihre Tonaufnahmen hochgeladen haben, bevor Sie den Zwischenspeicher der App leeren.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f Sek.</string>
+    <string name="clear_all_debug_logs">Alle Fehlerprotokolle löschen</string>
+    <string name="clears_up_storage_room_on_your_phone">Speicherplatz auf Ihrem Mobiltelefon bereinigen</string>
+    <string name="number_of_days_to_store_logs">Anzahl der Tage für die Speicherung von Protokollen</string>
+    <string name="send_debug_logs_from_start_date">Fehlerprotokolle senden ab Startdatum</string>
+    <string name="send_debug_logs_by_email">Fehlerprotokolle per E-Mail senden (ab angegebenem Startdatum)</string>
+    <string name="debug_settings">Fehlerbehebungseinstellungen</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Möchten Sie wirklich alle Fehlerprotokolle löschen? Drücken Sie nur dann auf „Ja”, wenn Sie Speicher auf Ihrem Mobilgeräte freigeben möchten.</string>
+    <string name="no_log_files_found">Keine Protokolldateien für diesen Datumsbereich vorhanden — Ein früheres Datum versuchen?</string>
 </resources>
