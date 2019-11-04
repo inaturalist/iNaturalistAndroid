@@ -700,4 +700,12 @@
     <string name="deleted_sounds_from_cache_error">Det ser ud til, at du slettede en lyd ved at tømme app-cachen før upload. Du er nødt til igen at føje lyden til din observation fra galleriet. Sørg fremadrettet for at have uploadet alle dine lyde, inden app-cachen tømmes.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sek</string>
+    <string name="clear_all_debug_logs">Ryd alle fejlfindingslogger</string>
+    <string name="clears_up_storage_room_on_your_phone">Frigiver lagerplads på din mobil</string>
+    <string name="number_of_days_to_store_logs">Antal dage, logger skal gemmes</string>
+    <string name="send_debug_logs_from_start_date">Send Fejlfindingslogger fra Startdato</string>
+    <string name="send_debug_logs_by_email">Send fejlfindingslogger via e-mail (fra angivne startdato)</string>
+    <string name="debug_settings">Fejlfindingsindstillinger</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Sikker på, at du vil slette alle fejlfindingslogger? Tryk kun \"Ja\", hvis du vil frigive lagerplads på din mobil</string>
+    <string name="no_log_files_found">Ingen logfiler fundet for dette område - prøv en tidligere dato?</string>
 </resources>

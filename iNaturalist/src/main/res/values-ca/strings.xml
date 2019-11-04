@@ -688,7 +688,7 @@
     <string name="could_not_play_sound">No s\'ha pogut reproduir el so -probablement hi ha un problema amb la xarxa</string>
     <string name="cant_play_soundcloud"><![CDATA[Per escoltar els sons de Soundcloud, mireu el <a href="%1$s">web</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Gravar so</string>
+    <string name="record_sound">Gravar So</string>
     <string name="no_recorder_found">No s\'ha trobat gravadora per defecte!</string>
     <string name="couldnt_retrieve_sound">No s\'ha pogut recuperar cap so de la gravadora per defecte - proveu d\'importar el so</string>
     <string name="upload_sound">Triar So</string>
@@ -700,4 +700,12 @@
     <string name="deleted_sounds_from_cache_error">Sembla que heu esborrat un so en netejar la memòria cau de l\'aplicació abans de fer la pujada. Haureu d\'afegir el so novament a la vostra observació des de la vostra galeria. En el futur, si us plau, assegureu-vos que heu pujat tots els sons abans de netejar la memòria cau de l\'aplicació.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f segons</string>
+    <string name="clear_all_debug_logs">Esborrar tots els registres de depuració</string>
+    <string name="clears_up_storage_room_on_your_phone">Fes net a l\'espai d\'emmagatzematge del teu telèfon</string>
+    <string name="number_of_days_to_store_logs">Nombre de dies per emmagatzemar registres</string>
+    <string name="send_debug_logs_from_start_date">Enviar registres de depuració des de la data d\'inici</string>
+    <string name="send_debug_logs_by_email">Enviar registres de depuració per correu electrònic (des d\'una data específica)</string>
+    <string name="debug_settings">Depurar configuració</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Estàs segur que vols esborrar tots els registres de depuració? Prem \"Sí\" només si vols fer net a l\'espai d\'emmagatzematge del teu telèfon</string>
+    <string name="no_log_files_found">No ha trobat cap arxiu de registre per aquest rang de dades - vols provar una data anterior?</string>
 </resources>
