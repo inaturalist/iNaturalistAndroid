@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Über</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivatsphäre</string>
+    <string name="geoprivacy_with_value">Geodatenschutz: %1$s</string>
     <string name="delete_confirmation">Möchtest du diese Beobachtung wirklich löschen?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guides</string>
@@ -708,4 +709,8 @@
     <string name="debug_settings">Fehlerbehebungseinstellungen</string>
     <string name="are_you_sure_you_want_to_delete_logs">Möchten Sie wirklich alle Fehlerprotokolle löschen? Drücken Sie nur dann auf „Ja”, wenn Sie Speicher auf Ihrem Mobilgeräte freigeben möchten.</string>
     <string name="no_log_files_found">Keine Protokolldateien für diesen Datumsbereich vorhanden — Ein früheres Datum versuchen?</string>
+    <string name="choose_pinned_location">Anheftete Position auswählen</string>
+    <string name="pin_current_location">Aktuelle Position anheften</string>
+    <string name="location_pinned_successfully">Aktuelle Position angeheftet</string>
+    <string name="delete_this_pinned_location">Diese anheftete Position löschen?</string>
 </resources>

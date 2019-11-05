@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Про таксон</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Геоприватність</string>
+    <string name="geoprivacy_with_value">Геоприватність: %1$s</string>
     <string name="delete_confirmation">Ви дійсно бажаєте видалити це спостереження?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Посібники</string>
@@ -700,7 +701,7 @@
     <string name="no_recorder_found">Чи не знайдено пристрій запису звуку за замовчуванням!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <string name="upload_sound">Оберіть звук</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
+    <string name="multi_select_sound_description">Імпорт декількох аудіо шляхом довгого натискання на одне аудіо</string>
     <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
     <string name="invalid_audio_extension">Помилка імпортування звуків: можна імпортувати лише файли з розширенням WAV/MP3/AMR</string>
     <string name="importing_sounds">Імпортування звуків...</string>
@@ -716,4 +717,8 @@
     <string name="debug_settings">Налаштування відлагодження</string>
     <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
     <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
+    <string name="choose_pinned_location">Choose Pinned Location</string>
+    <string name="pin_current_location">Pin Current Location</string>
+    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
+    <string name="delete_this_pinned_location">Delete this pinned location?</string>
 </resources>
