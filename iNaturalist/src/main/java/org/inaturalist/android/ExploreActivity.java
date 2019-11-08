@@ -660,6 +660,11 @@ public class ExploreActivity extends BaseFragmentActivity {
 
             String uuid = intent.getStringExtra(INaturalistService.UUID);
 
+            if ((uuid == null) || (mLatestSearchUuid[index] == null)) {
+                Logger.tag(TAG).debug("Null UUID or latest search UUID");
+                return;
+            }
+
             if (!mLatestSearchUuid[index].equals(uuid)) {
                 Logger.tag(TAG).debug("UUID Mismatch %s - %s", uuid, mLatestSearchUuid[index]);
                 return;
