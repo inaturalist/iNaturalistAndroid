@@ -396,9 +396,11 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                     radius = 10.0;
                 }
 
-                mPlaces.get(index).accuracy = radius;
-                mPlaces.get(index).latitude = latitude;
-                mPlaces.get(index).longitude = longitude;
+                if (index < mPlaces.size()) {
+                    mPlaces.get(index).accuracy = radius;
+                    mPlaces.get(index).latitude = latitude;
+                    mPlaces.get(index).longitude = longitude;
+                }
 
                 latch.countDown();
             }).addOnFailureListener(e -> {
