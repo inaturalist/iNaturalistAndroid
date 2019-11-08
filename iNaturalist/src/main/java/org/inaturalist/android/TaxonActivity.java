@@ -197,7 +197,13 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                 }
 
             } else if (intent.getAction().equals(INaturalistService.POPULAR_FIELD_VALUES_RESULT)) {
-                JSONArray values = results.getJSONArray("results").getJSONArray();
+                SerializableJSONArray array = results.getJSONArray("results");
+
+                if (array == null) {
+                    return;
+                }
+
+                JSONArray values = array.getJSONArray();
                 TreeMap<String, Map<String, List<Integer>>> attributes = new TreeMap<>();
 
                 // Save a list of fields (e.g. flowering, budding, ...) and a list of months for each
