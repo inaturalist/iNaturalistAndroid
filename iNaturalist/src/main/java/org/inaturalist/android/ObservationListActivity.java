@@ -216,7 +216,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             mSyncRequested = false;
 
             if (!mApp.getIsSyncing()) {
-                if ((intent != null) && (!intent.getBooleanExtra(INaturalistService.SYNC_CANCELED, false))) {
+                if ((intent != null) && (!intent.getBooleanExtra(INaturalistService.SYNC_CANCELED, false)) && (!intent.getBooleanExtra(INaturalistService.SYNC_FAILED, false))) {
                     // Sync finished
                     mUserCanceledSync = false;
                     refreshSyncBar();
