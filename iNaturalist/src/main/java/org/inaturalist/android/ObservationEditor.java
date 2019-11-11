@@ -317,18 +317,23 @@ public class ObservationEditor extends AppCompatActivity {
                 mSharedAudio = (mimeType != null) && (mimeType.startsWith("audio/"));
             }
 
-            mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
-            if (mUri == null) {
-                Logger.tag(TAG).error("Failed to insert new observation into " + Observation.CONTENT_URI);
-                finish();
-                return;
+            if (mUri != null) {
+                Logger.tag(TAG).info("onCreate - sharePhotos != null - however mUri is not null = " + mUri);
+            } else {
+                mUri = getContentResolver().insert(Observation.CONTENT_URI, null);
+                if (mUri == null) {
+                    Logger.tag(TAG).error("Failed to insert new observation into " + Observation.CONTENT_URI);
+                    finish();
+                    return;
+                }
+
+                mPhotosAndSoundsAdded = new ArrayList<String>();
+                mPhotosRemoved = new ArrayList<ObservationPhoto>();
+                mSoundsRemoved = new ArrayList<>();
             }
+
             setResult(RESULT_OK, (new Intent()).setAction(mUri.toString()));
             getIntent().setAction(Intent.ACTION_INSERT);
-
-            mPhotosAndSoundsAdded = new ArrayList<String>();
-            mPhotosRemoved = new ArrayList<ObservationPhoto>();
-            mSoundsRemoved = new ArrayList<>();
 
         } else if (savedInstanceState == null) {
             // Do some setup based on the action being performed.
@@ -1290,6 +1295,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private void initObservation() {
+        Logger.tag(TAG).debug("initObservation 1 - " + mCursor + ":" + mUri + ":" + mObservation);
         if (mCursor == null) {
             mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
         } else {
@@ -1299,11 +1305,13 @@ public class ObservationEditor extends AppCompatActivity {
         if (mObservation == null) {
             if (mCursor.getCount() > 0) {
                 mObservation = new Observation(mCursor);
+                Logger.tag(TAG).debug("initObservation 2 - " + mObservation);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
                     Logger.tag(TAG).error("UUID 2 - " + mObservation.uuid);
                 }
             } else {
+                Logger.tag(TAG).debug("initObservation 3");
                 mObservation = new Observation();
                 mObservation.uuid = UUID.randomUUID().toString();
                 Logger.tag(TAG).error("UUID 3 - " + mObservation.uuid);
