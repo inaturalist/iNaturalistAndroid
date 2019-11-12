@@ -2770,6 +2770,7 @@ public class ObservationEditor extends AppCompatActivity {
                 (!extension.toLowerCase().equals("mp3")) &&
                 (!extension.toLowerCase().equals("wav")) &&
                 (!extension.toLowerCase().equals("3gp")) &&
+                (!extension.toLowerCase().equals("m4a")) &&
                 (!extension.toLowerCase().equals("amr"))
             ) {
             return null;
