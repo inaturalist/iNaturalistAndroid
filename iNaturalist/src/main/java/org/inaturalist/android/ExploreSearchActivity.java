@@ -332,6 +332,8 @@ public class ExploreSearchActivity extends AppCompatActivity {
 
 
     private void refreshViewState(boolean refreshSearchFields) {
+	    if (mSearchFilters == null) return;
+
         mRefreshingUi = true;
 
         if (refreshSearchFields) {
