@@ -311,9 +311,18 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             mLocationList.setVisibility(View.GONE);
 
             VisibleRegion region = mMap.getProjection().getVisibleRegion();
-            RectangularBounds bounds = RectangularBounds.newInstance(
-                    region.nearLeft,
-                    region.farRight);
+
+            RectangularBounds bounds;
+
+            if (region.farRight.latitude >= region.nearLeft.latitude) {
+                bounds = RectangularBounds.newInstance(
+                        region.nearLeft,
+                        region.farRight);
+            } else {
+                 bounds = RectangularBounds.newInstance(
+                        region.farRight,
+                        region.nearLeft);
+            }
 
             FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
                     .setSessionToken(mAutoCompleteToken)
