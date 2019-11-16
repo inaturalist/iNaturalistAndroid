@@ -100,7 +100,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private ActivityHelper mHelper;
     @State public String mIconicTaxonName;
     private ImageView mObservationsMapMyLocation;
-    private LocationReceiver mLocationReceiver;
     private ImageView mObservationsChangeMapLayers;
     @State public int mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
     private ImageView mGeoprivacy;
@@ -130,6 +129,13 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     @State public boolean mLocationSearchOpen;
     private ImageView mCrosshairs;
 
+    @State public boolean mAskedForLocationPermission = false;
+    private LocationListener mLocationListener;
+    @State public boolean mGettingLocation;
+    private Long mLocationRequestedAt;
+    private Location mCurrentLocation;
+
+    private static final int ONE_MINUTE = 60 * 1000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -186,8 +192,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_CURRENT_LOCATION, null, LocationChooserActivity.this, INaturalistService.class);
-                ContextCompat.startForegroundService(LocationChooserActivity.this, serviceIntent);
+                getLocation();
             }
         });
 
@@ -496,12 +501,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         }
         setUpMapIfNeeded();
         zoomToLocation();
-
-        mLocationReceiver = new LocationReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(INaturalistService.GET_CURRENT_LOCATION_RESULT);
-        BaseFragmentActivity.safeRegisterReceiver(mLocationReceiver, filter, this);
-
     }
 
     private void updateObservationVisibility() {
@@ -559,8 +558,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     @Override
     public void onPause() {
         super.onPause();
-
-        BaseFragmentActivity.safeUnregisterReceiver(mLocationReceiver, this);
     }
     
     @Override
@@ -891,43 +888,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 	}
 
 
-    private class LocationReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Bundle extras = intent.getExtras();
-
-            Location location = extras.getParcelable(INaturalistService.LOCATION);
-
-            if ((location == null) || (mMap == null)) {
-                return;
-            }
-
-            // Calculate zoom level based on accuracy
-
-            int zoom = 15;
-            mAccuracy = location.getAccuracy();
-
-        	if (mAccuracy > 0) {
-        	    zoom = accuracyToZoomLevel(mAccuracy);
-        	}
-
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), zoom),
-                    1000,
-                    new GoogleMap.CancelableCallback() {
-                        @Override
-                        public void onFinish() {
-                            // TODO - refresh place guess
-                            //mInitialLocationBounds = mMap.getProjection().getVisibleRegion().latLngBounds;
-                            mObservationsMapMyLocation.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
-                        }
-
-                        @Override
-                        public void onCancel() {
-                        }
-                    });
-        }
-    }
-
     int accuracyToZoomLevel(double accuracy) {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -982,5 +942,155 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
             }
         }
     }
+
+
+    // Kicks off place service
+    @SuppressLint("MissingPermission")
+    private void getLocation() {
+        if (!mApp.isLocationPermissionGranted()) {
+            if (!mAskedForLocationPermission) {
+                mAskedForLocationPermission = true;
+
+                mApp.requestLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
+                    @Override
+                    public void onPermissionGranted() {
+                        getLocation();
+                    }
+
+                    @Override
+                    public void onPermissionDenied() {
+                    }
+                });
+            }
+
+            return;
+        }
+
+        if (mLocationListener != null) {
+            return;
+        }
+
+        mGettingLocation = true;
+
+        if (mLocationManager == null) {
+            mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        }
+
+        if (mLocationListener == null) {
+            // Define a listener that responds to place updates
+            mLocationListener = new LocationListener() {
+                public void onLocationChanged(Location location) {
+                    // Called when a new place is found by the network place provider.
+
+                    handleNewLocation(location);
+                }
+
+                public void onStatusChanged(String provider, int status, Bundle extras) {}
+                public void onProviderEnabled(String provider) {}
+                public void onProviderDisabled(String provider) {}
+            };
+        }
+
+        // Register the listener with the Location Manager to receive place updates
+        if (mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
+        }
+        if (mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
+        }
+
+        mLocationRequestedAt = System.currentTimeMillis();
+    }
+
+    private void setCurrentLocation(Location location) {
+        if ((location == null) || (mMap == null)) {
+            return;
+        }
+
+        mCurrentLocation = location;
+
+        // Calculate zoom level based on accuracy
+
+        int zoom = 15;
+        mAccuracy = location.getAccuracy();
+
+        if (mAccuracy > 0) {
+            zoom = accuracyToZoomLevel(mAccuracy);
+        }
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), zoom),
+                1000,
+                new GoogleMap.CancelableCallback() {
+                    @Override
+                    public void onFinish() {
+                        // TODO - refresh place guess
+                        //mInitialLocationBounds = mMap.getProjection().getVisibleRegion().latLngBounds;
+                        mObservationsMapMyLocation.setColorFilter(getResources().getColor(R.color.inatapptheme_color));
+                    }
+
+                    @Override
+                    public void onCancel() {
+                    }
+                });
+    }
+
+    private void handleNewLocation(Location location) {
+        if (isBetterLocation(location, mCurrentLocation)) {
+            setCurrentLocation(location);
+        }
+
+        if (locationIsGood(mCurrentLocation)) {
+            Logger.tag(TAG).debug("place was good, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            stopGetLocation();
+        }
+
+        if (locationRequestIsOld() && locationIsGoodEnough(mCurrentLocation)) {
+            Logger.tag(TAG).debug("place request was old and place was good enough, removing updates.  mCurrentLocation: " + mCurrentLocation);
+            stopGetLocation();
+        }
+    }
+
+    private void stopGetLocation() {
+        if (mLocationManager != null && mLocationListener != null) {
+            mLocationManager.removeUpdates(mLocationListener);
+        }
+
+        mLocationListener = null;
+        mGettingLocation = false;
+    }
+
+
+    private boolean locationIsGood(Location location) {
+        if (!locationIsGoodEnough(location)) { return false; }
+        if (location.getAccuracy() <= 10) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean locationIsGoodEnough(Location location) {
+        if (location == null || !location.hasAccuracy()) { return false; }
+        if (location.getAccuracy() <= 500) { return true; }
+        return false;
+    }
+
+        private boolean locationRequestIsOld() {
+        long delta = System.currentTimeMillis() - mLocationRequestedAt;
+        return delta > ONE_MINUTE;
+    }
+
+    private boolean isBetterLocation(Location newLocation, Location currentLocation) {
+        if (currentLocation == null) {
+            return true;
+        }
+        if (newLocation.hasAccuracy() && !currentLocation.hasAccuracy()) {
+            return true;
+        }
+        if (!newLocation.hasAccuracy() && currentLocation.hasAccuracy()) {
+            return false;
+        }
+        return newLocation.getAccuracy() < currentLocation.getAccuracy();
+    }
+
 
 }
