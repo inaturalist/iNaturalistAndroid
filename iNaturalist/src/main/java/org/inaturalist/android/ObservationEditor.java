@@ -1109,9 +1109,11 @@ public class ObservationEditor extends AppCompatActivity {
 
 
         // Delete any photos/sounds that were added
-        for (String uriString : mPhotosAndSoundsAdded) {
-            Uri uri = Uri.parse(uriString);
-            getContentResolver().delete(uri, null, null);
+        if (mPhotosAndSoundsAdded != null) {
+            for (String uriString : mPhotosAndSoundsAdded) {
+                Uri uri = Uri.parse(uriString);
+                getContentResolver().delete(uri, null, null);
+            }
         }
 
         // Restore the positions of all photos
@@ -2508,7 +2510,9 @@ public class ObservationEditor extends AppCompatActivity {
             return;
         }
 
-        mPhotosAndSoundsAdded.add(createdUri.toString());
+        if (mPhotosAndSoundsAdded != null) {
+            mPhotosAndSoundsAdded.add(createdUri.toString());
+        }
 
         runOnUiThread(new Runnable() {
             @Override
@@ -2564,7 +2568,9 @@ public class ObservationEditor extends AppCompatActivity {
 
         if (copyPath != null) {
             createdUri = createObservationPhotoForPhoto(Uri.fromFile(new File(copyPath)));
-            mPhotosAndSoundsAdded.add(createdUri.toString());
+            if (mPhotosAndSoundsAdded != null) {
+                mPhotosAndSoundsAdded.add(createdUri.toString());
+            }
             mCameraPhotos.add(copyPath);
         }
 
@@ -2644,15 +2650,17 @@ public class ObservationEditor extends AppCompatActivity {
             public void run() {
                 boolean errorImporting = false;
 
-                for (final Uri sound : sounds) {
-                    Uri createdUri = createObservationSoundForSound(sound);
+                if (mPhotosAndSoundsAdded != null) {
+                    for (final Uri sound : sounds) {
+                        Uri createdUri = createObservationSoundForSound(sound);
 
-                    if (createdUri == null) {
-                        errorImporting = true;
-                        break;
+                        if (createdUri == null) {
+                            errorImporting = true;
+                            break;
+                        }
+
+                        mPhotosAndSoundsAdded.add(createdUri.toString());
                     }
-
-                    mPhotosAndSoundsAdded.add(createdUri.toString());
                 }
 
                 final boolean finalErrorImporting = errorImporting;
@@ -2681,38 +2689,40 @@ public class ObservationEditor extends AppCompatActivity {
                 int position = ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount();
                 boolean errorImporting = false;
 
-                for (final Uri photo : photos) {
-                    if (photo == null) continue;
+                if (mPhotosAndSoundsAdded != null) {
+                    for (final Uri photo : photos) {
+                        if (photo == null) continue;
 
-                    Uri createdUri = createObservationPhotoForPhoto(photo, position);
+                        Uri createdUri = createObservationPhotoForPhoto(photo, position);
 
-                    if (createdUri == null) {
-                        errorImporting = true;
-                        break;
-                    }
+                        if (createdUri == null) {
+                            errorImporting = true;
+                            break;
+                        }
 
-                    mPhotosAndSoundsAdded.add(createdUri.toString());
-                    position++;
+                        mPhotosAndSoundsAdded.add(createdUri.toString());
+                        position++;
 
-                    // Import photo metadata (e.g. place) only when the place hasn't been set
-                    // by the user before (whether manually or by importing previous images)
-                    if ((!mLocationManuallySet && mObservation.latitude == null && mObservation.longitude == null) ||
-                        (overrideLocation && position == 1)) {
-                        mLocationManuallySet = true;
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                stopGetLocation();
-                                importPhotoMetadata(photo);
+                        // Import photo metadata (e.g. place) only when the place hasn't been set
+                        // by the user before (whether manually or by importing previous images)
+                        if ((!mLocationManuallySet && mObservation.latitude == null && mObservation.longitude == null) ||
+                                (overrideLocation && position == 1)) {
+                            mLocationManuallySet = true;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    stopGetLocation();
+                                    importPhotoMetadata(photo);
 
-                                mFindingCurrentLocation.setVisibility(View.GONE);
-                                mLocationRefreshButton.setVisibility(View.VISIBLE);
+                                    mFindingCurrentLocation.setVisibility(View.GONE);
+                                    mLocationRefreshButton.setVisibility(View.VISIBLE);
 
-                                mLocationProgressView.setVisibility(View.GONE);
-                                mLocationIcon.setVisibility(View.VISIBLE);
-                            }
-                        });
+                                    mLocationProgressView.setVisibility(View.GONE);
+                                    mLocationIcon.setVisibility(View.VISIBLE);
+                                }
+                            });
 
+                        }
                     }
                 }
 
