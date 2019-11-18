@@ -65,6 +65,9 @@ public class TutorialActivity extends BaseFragmentActivity {
 
             Bundle args = new Bundle();
             String[] images = res.getStringArray(R.array.tutorial_images);
+            String[] secondaryImages = res.getStringArray(R.array.secondary_tutorial_images);
+
+            String[] layouts = res.getStringArray(R.array.tutorial_layouts);
 
             if (position == images.length) {
                 // Final page ("Let's get started")
@@ -75,7 +78,15 @@ public class TutorialActivity extends BaseFragmentActivity {
 
                 args.putString("title", res.getStringArray(R.array.tutorial_titles)[position]);
                 args.putString("description", res.getStringArray(R.array.tutorial_descriptions)[position]);
+
+                if (secondaryImages[position].length() > 0) {
+                    int secondaryImageResId = res.getIdentifier("@drawable/" + secondaryImages[position], "drawable", getApplicationContext().getPackageName());
+                    args.putInt("secondaryImage", secondaryImageResId);
+                }
             }
+
+            int layoutResId = res.getIdentifier("@layout/" + layouts[position], "layout", getApplicationContext().getPackageName());
+            args.putInt("layout", layoutResId);
 
             logOnboardingEvent(position);
 

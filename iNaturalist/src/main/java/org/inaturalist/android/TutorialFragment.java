@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +19,24 @@ public class TutorialFragment extends Fragment {
         Bundle args = getArguments();
 
         boolean isFinalPage = args.getBoolean("final_page", false);
+        int layoutId = args.getInt("layout");
 
-        View v = inflater.inflate(isFinalPage ? R.layout.tutorial_page_get_started : R.layout.tutorial_page, container, false);
+        View v = inflater.inflate(layoutId, container, false);
 
         if (!isFinalPage) {
             // "Regular" tutorial page
             int imageResId = args.getInt("image");
+            int secondaryImageResId = args.getInt("secondaryImage", -1);
             String title = args.getString("title");
             String description = args.getString("description");
 
             ImageView imageView = (ImageView) v.findViewById(R.id.tutorial_image);
+            ImageView secondaryImageView = (ImageView) v.findViewById(R.id.secondary_tutorial_image);
             TextView titleView = (TextView) v.findViewById(R.id.tutorial_title);
             TextView descriptionView = (TextView) v.findViewById(R.id.tutorial_description);
 
             imageView.setImageResource(imageResId);
+
             if (title.length() > 0) {
                 titleView.setText(title);
             } else {
@@ -40,6 +45,9 @@ public class TutorialFragment extends Fragment {
 
             descriptionView.setText(Html.fromHtml(description));
 
+            if (secondaryImageResId > -1) {
+                secondaryImageView.setImageResource(secondaryImageResId);
+            }
         } else {
             // Final tutorial page ("Let's get started")
             TextView skip = (TextView) v.findViewById(R.id.skip);
