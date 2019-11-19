@@ -605,12 +605,16 @@
     <string name="annotation_name_life_stage">Life Stage</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sex</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Flowering</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Fruiting</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Budding</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -622,6 +626,10 @@
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
     <string name="annotation_value_egg">Egg</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Alive</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Dead</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenile</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
