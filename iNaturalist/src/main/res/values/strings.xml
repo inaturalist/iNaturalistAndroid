@@ -626,16 +626,18 @@
     <!-- Noun for the arthropod life stage between egg and adult -->
     <string name="annotation_value_larva">Larva</string>
     <string name="annotation_value_egg">Egg</string>
-    <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
-    <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
     <!-- Life stage before adulthood, could work as a noun or an adjective -->
     <string name="annotation_value_juvenile">Juvenile</string>
     <!-- Life stage between pupa and adult, generally used for mayflies (Ephemeroptera) -->
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Female</string>
     <string name="annotation_value_male">Male</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Alive</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Dead</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
