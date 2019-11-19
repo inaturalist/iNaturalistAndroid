@@ -605,12 +605,16 @@
     <string name="annotation_name_life_stage">Life Stage</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sex</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Flowering</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Fruiting</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Budding</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -628,6 +632,12 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Female</string>
     <string name="annotation_value_male">Male</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Alive</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Dead</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
