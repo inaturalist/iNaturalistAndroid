@@ -24,7 +24,18 @@ def extless_basename(path):
     return os.path.splitext(os.path.basename(path))[0]
   return os.path.split(path)[-1]
 
-def import_crowdin_for_android(zip_path, options=None):
+def copy_to_android_locale(src, android_locale, options={}):
+  android_dir_path = os.path.join( "iNaturalist", "src", "main", "res", "values-{}".format(android_locale))
+  if not os.path.isdir(android_dir_path):
+    if options.verbose:
+      print("\tCreating {}".format(android_dir_path))
+    os.makedirs(android_dir_path, exist_ok=True)
+  dst = os.path.join(android_dir_path, "strings.xml")
+  if options.verbose:
+    print("\tCopying {} to {}".format(src, dst))
+  shutil.copyfile(src, dst)
+
+def import_crowdin_for_android(zip_path, options={}):
   if zip_path == __file__:
     zip_path = sys.argv[1]
   dir_path = os.path.join(tempfile.mkdtemp(), extless_basename(zip_path))
@@ -38,18 +49,14 @@ def import_crowdin_for_android(zip_path, options=None):
     android_locale = locale
     if sublocale:
       android_locale = "{}-r{}".format(locale, sublocale)
-    android_dir_path = os.path.join( "iNaturalist", "src", "main", "res", "values-{}".format(android_locale))
-    if not os.path.isdir(android_dir_path):
-      if options.verbose:
-        print("\tCreating {}".format(android_dir_path))
-      os.makedirs(android_dir_path, exist_ok=True)
     src = os.path.join(path, "Android", "strings.xml")
-    dst = os.path.join(android_dir_path, "strings.xml")
-    if options.verbose:
-      print("\tCopying {} to {}".format(src, dst))
-    shutil.copyfile(src, dst)
+    copy_to_android_locale(src, android_locale, options)
+    # Copy Hebrew file to the old locale codes that some modern Androids still use
+    if locale == "he":
+      for new_android_locale in ["iw", "iw-rIL", "he-rIL"]:
+        copy_to_android_locale(src, new_android_locale, options)
 
-def validate_android_translations(options=None):
+def validate_android_translations(options={}):
   # Build the English reference dicts
   en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
   en_strings = {}
@@ -143,7 +150,7 @@ def validate_android_translations(options=None):
         for warning in warnings[path][key]:
           print("\t\tWarning: {}".format(warning))
 
-def find_unused_keys(options=None):
+def find_unused_keys(options={}):
   en_tree = ET.parse("iNaturalist/src/main/res/values/strings.xml")
   keys = set()
   for node in en_tree.findall("string"):
