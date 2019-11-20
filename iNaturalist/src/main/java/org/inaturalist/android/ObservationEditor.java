@@ -2480,7 +2480,7 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void prepareCapturedSound(Uri selectedSoundUri, boolean translateUriToPath) {
         // We can't control where the audio file gets saved to - just copy it locally
-        String filePath = translateUriToPath ? getAudioFilePathFromUri(selectedSoundUri) : selectedSoundUri.toString();
+        String filePath = translateUriToPath && (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) ? getAudioFilePathFromUri(selectedSoundUri) : selectedSoundUri.toString();
 
         if (filePath == null) {
             Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
@@ -2491,7 +2491,14 @@ public class ObservationEditor extends AppCompatActivity {
 
         File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + fileExtension);
         try {
-            copyFile(new File(filePath), destFile);
+            if (selectedSoundUri.toString().startsWith("/")) {
+                // Filename
+                copyFile(new File(filePath), destFile);
+            } else {
+                // ContentProvider
+                InputStream is = getContentResolver().openInputStream(selectedSoundUri);
+                copyInputStream(is, destFile);
+            }
         } catch (IOException e) {
             Logger.tag(TAG).error(e);
             Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
@@ -2775,6 +2782,13 @@ public class ObservationEditor extends AppCompatActivity {
             String mimeType = cr.getType(soundUri);
             if ((mimeType == null) || (!mimeType.startsWith("audio/"))) {
                 return null;
+            }
+
+            // Build file extension from mime type
+            extension = mimeType.substring("audio/".length());
+            if (extension.startsWith("x-")) {
+                // e.g. "audio/x-m4a" - strip the "x-" part
+                extension = extension.substring("x-".length());
             }
         } else if (
                 (!extension.toLowerCase().equals("mp3")) &&

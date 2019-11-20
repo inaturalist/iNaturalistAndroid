@@ -78,9 +78,19 @@ public class SoundPlayer implements MediaPlayer.OnBufferingUpdateListener, Media
                 mPlayerButton.setEnabled(false);
                 mSeekBar.setEnabled(false);
 
-                mMediaPlayer.setDataSource(mContext, Uri.parse(sound.filename != null ? sound.filename : sound.file_url));
-                mMediaPlayer.prepare();
+                if (sound.filename != null) {
+                    if (sound.filename.startsWith("/")) {
+                        // Filename
+                        mMediaPlayer.setDataSource(sound.filename);
+                    } else {
+                        // ContentProvider
+                        mMediaPlayer.setDataSource(mContext, Uri.parse(sound.filename != null ? sound.filename : sound.file_url));
+                    }
+                } else {
+                    mMediaPlayer.setDataSource(sound.file_url);
+                }
                 mMediaPlayer.setOnPreparedListener(this);
+                mMediaPlayer.prepare();
 
                 updateProgress();
             }
