@@ -103,6 +103,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
 import androidx.core.app.NotificationCompat;
+
+import android.util.Log;
 import android.widget.Toast;
 
 import io.jsonwebtoken.Jwts;
@@ -113,7 +115,7 @@ public class INaturalistService extends IntentService {
     private static final int INITIAL_SYNC_OBSERVATION_COUNT = 100;
 
     private static final int JWT_TOKEN_EXPIRATION_MINS = 25; // JWT Tokens expire after 30 mins - consider 25 mins as the max time (safe margin)
-    private static final int OLD_PHOTOS_CACHE_EXPIRATION_HOURS = 24 * 7; // Number of hours after which old cached photos will be deleted locally (and viewed remotely)
+    private static final int OLD_PHOTOS_MAX_COUNT = 100; // Number of cached photos to save before removing them and turning them into online photos
 
     public static final String IS_SHARED_ON_APP = "is_shared_on_app";
 
@@ -4121,19 +4123,26 @@ public class INaturalistService extends IntentService {
     private void clearOldCachedPhotos() {
         if (!isNetworkAvailable()) return;
 
-        long cacheTime = System.currentTimeMillis() - (OLD_PHOTOS_CACHE_EXPIRATION_HOURS * 60 * 60 * 1000);
         Cursor c = getContentResolver().query(ObservationPhoto.CONTENT_URI, ObservationPhoto.PROJECTION,
                 "_updated_at = _synced_at AND _synced_at IS NOT NULL AND id IS NOT NULL AND " +
-                        "_updated_at < ? AND " +
                         "photo_filename IS NOT NULL AND observation_id IS NOT NULL",
-                new String[]{String.valueOf(cacheTime)}, ObservationPhoto.DEFAULT_SORT_ORDER);
+                new String[]{}, ObservationPhoto.DEFAULT_SORT_ORDER);
 
-        while (!c.isAfterLast()) {
+        int totalCount = c.getCount();
+        int photoIndex = 0;
+
+        Logger.tag(TAG).info(String.format("clearOldCachedPhotos - %d available cached photos", totalCount));
+
+        while ((totalCount > OLD_PHOTOS_MAX_COUNT) && (!c.isAfterLast()) && (photoIndex < OLD_PHOTOS_MAX_COUNT)) {
             ObservationPhoto op = new ObservationPhoto(c);
+
+            Logger.tag(TAG).info(String.format("clearOldCachedPhotos - clearing photo %d: %s", photoIndex, op.toString()));
+
             File obsPhotoFile = new File(op.photo_filename);
 
             if (op.photo_url == null) {
                 // No photo URL defined - download the observation and get the external URL for that photo
+                Logger.tag(TAG).info(String.format("clearOldCachedPhotos - No photo_url found for obs photo: %s", op.toString()));
                 boolean foundPhoto = false;
                 try {
                     JSONObject json = getObservationJson(op.observation_id, false);
@@ -4145,6 +4154,7 @@ public class INaturalistService extends IntentService {
                                 if (obs.photos.get(0).id.equals(op.id)) {
                                     // Found the appropriate photo - update the URL
                                     op.photo_url = obs.photos.get(i).photo_url;
+                                    Logger.tag(TAG).info(String.format("clearOldCachedPhotos - foundPhoto: %s", op.photo_url));
                                     foundPhoto = true;
                                     break;
                                 }
@@ -4157,6 +4167,8 @@ public class INaturalistService extends IntentService {
                 }
 
 
+                Logger.tag(TAG).info(String.format("clearOldCachedPhotos - foundPhoto: %s", foundPhoto));
+
                 if (!foundPhoto) {
                     // Couldn't download remote URL for the observation photo - don't delete it
                     c.moveToNext();
@@ -4166,7 +4178,8 @@ public class INaturalistService extends IntentService {
 
             if (obsPhotoFile.exists()) {
                 // Delete the local cached photo file
-                obsPhotoFile.delete();
+                boolean success = obsPhotoFile.delete();
+                Logger.tag(TAG).info(String.format("clearOldCachedPhotos - deleted photo: %s: %s", success, obsPhotoFile.toString()));
             }
 
             // Update the obs photo record with the remote photo URL
@@ -4179,6 +4192,7 @@ public class INaturalistService extends IntentService {
             // Warm up the cache for the image
             warmUpImageCache(op.photo_url);
 
+            photoIndex += 1;
             c.moveToNext();
         }
 
