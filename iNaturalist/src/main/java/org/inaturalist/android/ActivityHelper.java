@@ -396,15 +396,18 @@ public class ActivityHelper {
             // No need to add anything other than the above marker
             cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
 
-        } else if ((currentUser != null) && (observation.user_login != null) && (observation.user_login.equals(currentUser)) &&
-                (observation.positional_accuracy != null)) {
+        } else if ((currentUser != null) && (observation.user_login != null) && (observation.user_login.equals(currentUser))) {
             // Add a single marker
             BitmapDescriptor obsIcon = TaxonUtils.observationMarkerIcon(observation.iconic_taxon_name, false);
             MarkerOptions opts = new MarkerOptions().position(latlng).icon(obsIcon);
             map.addMarker(opts);
 
-            // Show circle of private positional accuracy
-            cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
+            if (observation.positional_accuracy == null) {
+                cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
+            } else {
+                // Show circle of private positional accuracy
+                cameraUpdate = addCircle(map, latlng, observation.positional_accuracy, observation, updateCamera);
+            }
         } else {
             if ((observation.positional_accuracy != null) && (publicAcc != null) &&
                     (observation.positional_accuracy.equals(publicAcc))) {
@@ -464,6 +467,8 @@ public class ActivityHelper {
                             .include(rectPoints[4])
                             .build(), 10);
                 }
+            } else {
+                // How does one even get here? Don't we need some default behavior?
             }
         }
 
