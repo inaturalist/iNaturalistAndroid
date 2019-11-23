@@ -463,7 +463,7 @@ public class MissionDetails extends AppCompatActivity implements AppBarLayout.On
             mLoadingAbout.setVisibility(View.GONE);
             mAboutTaxonText.setVisibility(View.VISIBLE);
             mViewOnWikipedia.setVisibility(View.VISIBLE);
-            mAboutTaxonText.setText(Html.fromHtml(mAboutText));
+            HtmlUtils.fromHtml(mAboutTaxonText, mAboutText);
         }
     }
 

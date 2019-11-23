@@ -465,10 +465,9 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             }
 
             TextView projectDescription = (TextView) view.findViewById(R.id.project_description);
-            final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
+            final String description = item.getString("description").replace("\n", "<br/>");
             if (!mIsConfirmation) {
-                // Strip HTML tags
-                projectDescription.setText(noHTMLDescription);
+                HtmlUtils.fromHtml(projectDescription, description);
             }
             ImageView projectPic = (ImageView) view.findViewById(R.id.project_pic);
             String iconUrl = item.getString("icon_url");
@@ -492,11 +491,11 @@ public class ProjectSelectorActivity extends AppCompatActivity implements OnItem
             }
 
             if (mIsConfirmation) {
-                if (noHTMLDescription.length() > 0) {
+                if (description.length() > 0) {
                     ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mHelper.alert(projectTitle, noHTMLDescription);
+                            mHelper.alert(projectTitle, description);
                         }
                     });
                 } else {

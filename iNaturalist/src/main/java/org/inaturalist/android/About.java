@@ -72,8 +72,7 @@ public class About extends AppCompatActivity {
 
         credits.append(getString(R.string.inat_credits_post));
 
-        mAboutText.setText(Html.fromHtml(credits.toString()));
-        mAboutText.setMovementMethod(LinkMovementMethod.getInstance());
+        HtmlUtils.fromHtml(mAboutText, credits.toString());
     }
 
     @Override

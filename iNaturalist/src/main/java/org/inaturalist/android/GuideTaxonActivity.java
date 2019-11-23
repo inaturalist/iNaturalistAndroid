@@ -147,8 +147,7 @@ public class GuideTaxonActivity extends AppCompatActivity {
                 TextView body = (TextView) layout.findViewById(R.id.body);
 
                 title.setText(section.getTitle());
-                body.setText(Html.fromHtml(section.getBody()));
-                body.setMovementMethod(LinkMovementMethod.getInstance());
+                HtmlUtils.fromHtml(body, section.getBody());
 
                 sectionsRoot.addView(layout);
 

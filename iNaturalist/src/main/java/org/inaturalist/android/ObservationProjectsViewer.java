@@ -239,12 +239,12 @@ public class ObservationProjectsViewer extends AppCompatActivity {
                 view.findViewById(R.id.project_pic_none).setVisibility(View.VISIBLE);
             }
 
-            final String noHTMLDescription = Html.fromHtml(item.getString("description")).toString();
-            if (noHTMLDescription.length() > 0) {
+            final String description = item.getString("description");
+            if (description.length() > 0) {
                 ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mHelper.alert(projectTitle, noHTMLDescription);
+                        mHelper.alert(projectTitle, description.replace("\n", "<br/>"));
                     }
                 });
             } else {

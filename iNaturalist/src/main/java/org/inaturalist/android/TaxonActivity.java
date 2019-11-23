@@ -863,7 +863,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
             mWikipediaSummary.setVisibility(View.GONE);
         } else {
             mWikipediaSummary.setVisibility(View.VISIBLE);
-            mWikipediaSummary.setText(Html.fromHtml(wikiSummary + " " + getString(R.string.source_wikipedia)));
+            HtmlUtils.fromHtml(mWikipediaSummary, wikiSummary + " " + getString(R.string.source_wikipedia));
         }
 
 

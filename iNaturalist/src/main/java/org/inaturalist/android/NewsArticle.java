@@ -129,8 +129,8 @@ public class NewsArticle extends AppCompatActivity {
         } else {
             mArticleContentWeb.setVisibility(View.GONE);
             mArticleContent.setVisibility(View.VISIBLE);
-            mArticleContent.setText(Html.fromHtml(mArticle.getString("body")));
-            Linkify.addLinks(mArticleContent, Linkify.ALL);
+            String article = mArticle.getString("body").replace("\n", "<br/>");
+            HtmlUtils.fromHtml(mArticleContent, article);
         }
 
         final JSONObject user = mArticle.getJSONObject("user");
