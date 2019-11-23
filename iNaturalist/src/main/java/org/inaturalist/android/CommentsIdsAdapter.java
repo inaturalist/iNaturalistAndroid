@@ -278,11 +278,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 			showHiddenContent.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					comment.setText(Html.fromHtml(item.getString("body")));
-					Linkify.addLinks(comment, Linkify.ALL);
-					comment.setMovementMethod(LinkMovementMethod.getInstance());
 					comment.setTypeface(null, Typeface.NORMAL);
-
+					HtmlUtils.fromHtml(comment, item.getString("body"));
 					contentHidden.setVisibility(View.VISIBLE);
 					showHiddenContent.setVisibility(View.GONE);
 					userDetails.setVisibility(View.VISIBLE);
@@ -330,11 +327,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					userDetails.setVisibility(View.INVISIBLE);
 					showHiddenContent.setVisibility(allowToShowHiddenContent(item) ? View.VISIBLE : View.GONE);
                 } else {
-					comment.setText(Html.fromHtml(item.getString("body")));
 					comment.setTypeface(null, Typeface.NORMAL);
-					Linkify.addLinks(comment, Linkify.ALL);
-					comment.setMovementMethod(LinkMovementMethod.getInstance());
-
+					HtmlUtils.fromHtml(comment, item.getString("body"));
 					showHiddenContent.setVisibility(View.GONE);
 				}
 
@@ -354,10 +348,8 @@ public class CommentsIdsAdapter extends ArrayAdapter<BetterJSONObject> implement
 					showHiddenContent.setVisibility(allowToShowHiddenContent(item) ? View.VISIBLE : View.GONE);
 
 				} else if (body != null && body.length() > 0) {
-					comment.setText(Html.fromHtml(body));
 					comment.setTypeface(null, Typeface.NORMAL);
-					Linkify.addLinks(comment, Linkify.ALL);
-					comment.setMovementMethod(LinkMovementMethod.getInstance());
+					HtmlUtils.fromHtml(comment, body);
 
                     comment.setVisibility(View.VISIBLE);
 					showHiddenContent.setVisibility(View.GONE);

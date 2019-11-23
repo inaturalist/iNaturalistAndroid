@@ -279,12 +279,14 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
         }
 
         String description = item.getString("description");
-        final String noHTMLDescription = Html.fromHtml(description != null ? description : "").toString();
-        if ((noHTMLDescription.length() > 0) && (!mIsUser)) {
+        if (description == null) description = "";
+        description = description.replace("\n", "<br/>");
+        if ((description.length() > 0) && (!mIsUser)) {
+            String finalDescription = description;
             ((ViewGroup) view.findViewById(R.id.project_pic_container)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mHelper.alert(projectTitle, noHTMLDescription);
+                    mHelper.alert(projectTitle, finalDescription);
                 }
             });
         } else {
@@ -296,15 +298,6 @@ public class ProjectsAdapter extends ArrayAdapter<JSONObject> implements Filtera
         view.setTag(item.getJSONObject().toString());
 
         return view;
-    }
-
-    private String getShortDescription(String description) {
-        // Strip HTML tags
-        if (description == null) return "";
-
-        String noHTML = Html.fromHtml(description).toString();
-
-        return noHTML;
     }
 }
 

@@ -9,9 +9,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,16 +55,12 @@ public class ProjectDetailsAbout extends AppCompatActivity {
         title.setText(mProject.getString("title"));
         String description = mProject.getString("description");
         description = description.replace("\n", "\n<br>");
-        projectDescription.setText(Html.fromHtml(description));
-        Linkify.addLinks(projectDescription, Linkify.ALL);
-        projectDescription.setMovementMethod(LinkMovementMethod.getInstance());
+        HtmlUtils.fromHtml(projectDescription, description);
 
         String terms = mProject.getString("terms");
         if ((terms != null) && (terms.length() > 0)) {
             projectTermsContainer.setVisibility(View.VISIBLE);
-            projectTerms.setText(Html.fromHtml(terms));
-            Linkify.addLinks(projectTerms, Linkify.ALL);
-            projectTerms.setMovementMethod(LinkMovementMethod.getInstance());
+            HtmlUtils.fromHtml(projectTerms, terms);
         } else {
             projectTermsContainer.setVisibility(View.GONE);
         }
@@ -78,9 +71,7 @@ public class ProjectDetailsAbout extends AppCompatActivity {
             String[] rulesSplit = rules.split("\\|");
             String rulesFinal = StringUtils.join(rulesSplit, "<br/>&#8226; ");
             rulesFinal = "&#8226; " + rulesFinal;
-            projectRules.setText(Html.fromHtml(rulesFinal));
-            Linkify.addLinks(projectRules, Linkify.ALL);
-            projectRules.setMovementMethod(LinkMovementMethod.getInstance());
+            HtmlUtils.fromHtml(projectRules, rulesFinal);
         } else {
             projectRulesContainer.setVisibility(View.GONE);
         }

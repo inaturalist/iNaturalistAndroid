@@ -1844,7 +1844,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
         if ((mObservation.description != null) && (mObservation.description.trim().length() > 0)) {
             mNotesContainer.setVisibility(View.VISIBLE);
-            mNotes.setText(mObservation.description);
+            HtmlUtils.fromHtml(mNotes, mObservation.description);
         } else {
             mNotesContainer.setVisibility(View.GONE);
         }
@@ -2420,7 +2420,6 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                     params.height = height;
                     background.requestLayout();
                 }
-
             }
         });
     }

@@ -314,8 +314,9 @@ public class GuideDetails extends AppCompatActivity implements INaturalistApp.On
         if (mGuideXml == null) return;
 
         String description = mGuideXml.getDescription();
-        mDescription.setText(Html.fromHtml(description != null ? description : ""));
-        mDescription.setMovementMethod(LinkMovementMethod.getInstance());
+        if (description == null) description = "";
+        description = description.replace("\n", "<br/>");
+        HtmlUtils.fromHtml(mDescription, description);
         mEditorName.setText(mGuideXml.getCompiler());
         mLicense.setText(GuideXML.licenseToText(this, mGuideXml.getLicense()));
 

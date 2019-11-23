@@ -231,9 +231,7 @@ public class ActivityHelper {
         if (msg instanceof String) {
             ScrollView parentView = (ScrollView) inflater.inflate(R.layout.dialog_message, null, false);
             textContent = (TextView) parentView.findViewById(R.id.text);
-            textContent.setText(Html.fromHtml((String)msg));
-            Linkify.addLinks(textContent, Linkify.ALL);
-            textContent.setMovementMethod(LinkMovementMethod.getInstance());
+            HtmlUtils.fromHtml(textContent, (String)msg);
             content.addView(parentView, title != null ? 2 : 1);
         } else if (msg instanceof View) {
             content.addView((View) msg, title != null ? 2 : 1);

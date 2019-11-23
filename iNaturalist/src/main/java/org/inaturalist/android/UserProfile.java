@@ -738,7 +738,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                 } else {
                     title = fullName;
                 }
-                mHelper.alert(title, mUser.getString("description"));
+                String formattedBio = mUser.getString("description");
+                formattedBio = formattedBio.replace("\n", "<br/>");
+                mHelper.alert(title, formattedBio);
             }
         };
 
@@ -746,7 +748,7 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mUserBio.setVisibility(View.GONE);
         } else {
             mUserBio.setVisibility(View.VISIBLE);
-            mUserBio.setText(Html.fromHtml(bio));
+            HtmlUtils.fromHtml(mUserBio, bio);
 
             ViewTreeObserver vto = mUserBio.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -762,10 +764,11 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                     if (l != null) {
                         int lines = l.getLineCount();
                         if (lines > 0) {
-                            if (l.getEllipsisCount(lines - 1) > 0) {
+                            //if (l.getEllipsisCount(lines - 1) > 0) {
+                            if (l.getLineCount() > 2) {
                                 // Bio is ellipsized - Trim the bio text to show the more link
-                                String newBio = bio.substring(0, l.getLineStart(lines - 1) + l.getEllipsisStart(lines - 1) - 8) + "... " + getString(R.string.more_bio);
-                                mUserBio.setText(Html.fromHtml(newBio));
+                                String newBio = bio.substring(0, l.getLineEnd(1) - 8) + "... " + getString(R.string.more_bio);
+                                HtmlUtils.fromHtml(mUserBio, newBio);
 
                                 // Show the full bio when the shortened bio is clicked
                                 mUserBio.setOnClickListener(onBio);
