@@ -124,7 +124,47 @@
             android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".ObservationViewerActivity"
-            android:configChanges="orientation"></activity>
+            android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="*.inaturalist.org"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                <data
+                    android:host="*.naturalista.mx"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                 <data
+                    android:host="*.inaturalist.nz"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                  <data
+                    android:host="inaturalist.nz"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                 <data
+                    android:host="*.inaturalist.ca"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                 <data
+                    android:host="*.biodiversity4all.org"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                 <data
+                    android:host="inaturalist.ala.org.au"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+                 <data
+                    android:host="*.argentinat.org"
+                    android:pathPattern="/observations/.*"
+                    android:scheme="https"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".OnboardingActivity"
             android:configChanges="orientation"

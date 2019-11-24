@@ -88,6 +88,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ObservationViewerActivity extends AppCompatActivity implements AnnotationsAdapter.OnAnnotationActions {
     private static final int NEW_ID_REQUEST_CODE = 0x101;
@@ -681,24 +683,53 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 		if (savedInstanceState == null) {
 			// Do some setup based on the action being performed.
 			Uri uri = intent.getData();
-            mShowComments = intent.getBooleanExtra(SHOW_COMMENTS, false);
-            mScrollToCommentsBottom = intent.getBooleanExtra(SCROLL_TO_COMMENTS_BOTTOM, false);
-			if (uri == null) {
-                String obsJson = intent.getStringExtra("observation");
-                mReadOnly = intent.getBooleanExtra("read_only", false);
-                mReloadObs = intent.getBooleanExtra("reload", false);
-                mObsJson = obsJson;
 
-                if (obsJson == null) {
-                    Logger.tag(TAG).error("Null URI from intent.getData");
+			if ((uri != null) && (uri.getScheme().equals("https"))) {
+			    // User clicked on an observation link (e.g. https://www.inaturalist.org/observations/1234)
+                String path = uri.getPath();
+                Logger.tag(TAG).info("Launched from external URL: " + uri);
+
+                if (path.toLowerCase().startsWith("/observations/")) {
+                    Pattern pattern = Pattern.compile("/observations/([0-9]+)");
+                    Matcher matcher = pattern.matcher(path);
+                    if (matcher.find()) {
+                        int obsId = Integer.valueOf(matcher.group(1));
+                        mReadOnly = true;
+                        mShowComments = false;
+                        mScrollToCommentsBottom = false;
+                        mReloadObs = true;
+                        mObsJson = String.format("{ \"id\": %d }", obsId);
+                        mObservation = new Observation(new BetterJSONObject(mObsJson));
+                    } else {
+                        Logger.tag(TAG).error("Invalid URL");
+                        finish();
+                        return;
+                    }
+                } else {
+                    Logger.tag(TAG).error("Invalid URL");
                     finish();
                     return;
                 }
+            } else {
+                mShowComments = intent.getBooleanExtra(SHOW_COMMENTS, false);
+                mScrollToCommentsBottom = intent.getBooleanExtra(SCROLL_TO_COMMENTS_BOTTOM, false);
+                if (uri == null) {
+                    String obsJson = intent.getStringExtra("observation");
+                    mReadOnly = intent.getBooleanExtra("read_only", false);
+                    mReloadObs = intent.getBooleanExtra("reload", false);
+                    mObsJson = obsJson;
 
-                mObservation = new Observation(new BetterJSONObject(obsJson));
-			}
+                    if (obsJson == null) {
+                        Logger.tag(TAG).error("Null URI from intent.getData");
+                        finish();
+                        return;
+                    }
 
-			mUri = uri;
+                    mObservation = new Observation(new BetterJSONObject(obsJson));
+                }
+
+                mUri = uri;
+            }
 
         } else {
             String obsUri = savedInstanceState.getString("mUri");
