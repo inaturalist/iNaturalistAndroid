@@ -2482,12 +2482,23 @@ public class ObservationEditor extends AppCompatActivity {
         // We can't control where the audio file gets saved to - just copy it locally
         String filePath = translateUriToPath && (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) ? getAudioFilePathFromUri(selectedSoundUri) : selectedSoundUri.toString();
 
+        Logger.tag(TAG).info("prepareCapturedSound: " + selectedSoundUri + ":" + translateUriToPath + ":" + filePath);
+
         if (filePath == null) {
             Toast.makeText(this,  R.string.couldnt_retrieve_sound, Toast.LENGTH_LONG).show();
             return;
         }
 
-        String fileExtension = filePath.substring(filePath.lastIndexOf('.'));
+
+        String fileExtension;
+
+        if (!filePath.startsWith("/")) {
+            // Content provider
+            fileExtension = "." + getExtension(this, Uri.parse(filePath));
+        } else {
+            // Filename - get extension directly from file path
+            fileExtension = filePath.substring(filePath.lastIndexOf('.'));
+        }
 
         File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + fileExtension);
         try {
