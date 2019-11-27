@@ -1714,9 +1714,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                                 break;
 
                             case R.id.view_on_inat:
-                                Intent i = new Intent(Intent.ACTION_VIEW);
-                                i.setData(Uri.parse(obsUrl));
-                                startActivity(i);
+                                mHelper.openUrlInBrowser(obsUrl);
                                 break;
                         }
                     }

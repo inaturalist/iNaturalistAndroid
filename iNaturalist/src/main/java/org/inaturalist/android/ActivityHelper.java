@@ -4,8 +4,12 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -643,5 +647,21 @@ public class ActivityHelper {
 
     public int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    }
+
+
+    // Forcefully opens a URL in the user's browser (even if iNaturalist is defined to open such URL -
+    // e.g. https://www.inaturalist.org/observations/1234)
+    public void openUrlInBrowser(String url) {
+        // Find out package name of default browser
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"));
+        ResolveInfo resolveInfo = mContext.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        String packageName = resolveInfo.activityInfo.packageName;
+
+        // Use the explicit browser package name (so we won't open iNaturalist)
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        i.setPackage(packageName);
+        mContext.startActivity(i);
     }
 }
