@@ -1868,7 +1868,14 @@ public class INaturalistService extends IntentService {
 
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            observationIdsToSync.add(c.getInt(c.getColumnIndexOrThrow(Observation._ID)));
+            Integer internalId = c.getInt(c.getColumnIndexOrThrow(Observation._ID));
+
+            // Make sure observation is not currently being edited by user (split-observation bug)
+            if (!mApp.isObservationCurrentlyBeingEdited(internalId)) {
+                observationIdsToSync.add(internalId);
+            } else {
+                Logger.tag(TAG).error("syncObservations: Observation " + internalId + " is currently being edited - not syncing it");
+            }
             c.moveToNext();
         }
 

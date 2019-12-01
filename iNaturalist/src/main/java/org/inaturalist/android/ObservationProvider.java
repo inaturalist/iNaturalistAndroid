@@ -518,7 +518,9 @@ public class ObservationProvider extends ContentProvider {
                 (uriCode != ObservationSound.OBSERVATION_SOUNDS_URI_CODE) && (uriCode != ObservationSound.OBSERVATION_SOUND_ID_URI_CODE)) {
             values.put(Observation._UPDATED_AT, System.currentTimeMillis());
         }
-        
+
+        Logger.tag(TAG).debug("Update " + uri + ": " + values + ":" + whereArgs);
+
         switch (URI_MATCHER.match(uri)) {
         case Observation.OBSERVATIONS_URI_CODE:
             count = db.update(Observation.TABLE_NAME, values, where, whereArgs);
@@ -527,10 +529,10 @@ public class ObservationProvider extends ContentProvider {
         case Observation.OBSERVATION_ID_URI_CODE:
             id = uri.getPathSegments().get(1);
             contentUri = Observation.CONTENT_URI;
-            Logger.tag(TAG).debug("Update " + Observation.TABLE_NAME + "; " + values.toString());
             count = db.update(Observation.TABLE_NAME, values, Observation._ID + "=" + id
                     + (!TextUtils.isEmpty(where) ? " AND (" + where + ')' : ""), whereArgs);
-            
+            Logger.tag(TAG).debug("Update " + Observation.TABLE_NAME + "; " + count + ": " + values.toString());
+
             if (count > 0 && values.containsKey(Observation.ID)) {
                 // update foreign key in observation_photos
                 ContentValues cv = new ContentValues();
@@ -550,7 +552,7 @@ public class ObservationProvider extends ContentProvider {
             if ((count > 0) && (values.containsKey(Observation.ID)) && (values.get(Observation.ID) != null)) {
                 ContentValues cv = new ContentValues();
                 cv.put(ProjectObservation.OBSERVATION_ID, values.getAsInteger(Observation.ID));
-                Logger.tag(TAG).debug("Update observation from " + id + " to " + values.getAsInteger(Observation.ID));
+                Logger.tag(TAG).debug("Update project observation from " + id + " to " + values.getAsInteger(Observation.ID));
                 db.update(ProjectObservation.TABLE_NAME, cv, ProjectObservation.OBSERVATION_ID + "=" + id, null);
                 
                 cv = new ContentValues();

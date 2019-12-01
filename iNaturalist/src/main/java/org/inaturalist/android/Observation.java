@@ -340,7 +340,7 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login_was = this.user_login;
         this.is_deleted = bc.getBoolean(IS_DELETED);
         this.is_deleted_was = this.is_deleted;
-        
+
         this.comments_count = bc.getInteger(COMMENTS_COUNT);
         this.identifications_count = bc.getInteger(IDENTIFICATIONS_COUNT);
         this.last_comments_count = bc.getInteger(LAST_COMMENTS_COUNT);
@@ -416,7 +416,7 @@ public class Observation implements BaseColumns, Serializable {
         this.user_login = o.getString("user_login");
         this.user_login_was = this.user_login;
         this.is_deleted_was = this.is_deleted;
-        
+
         this.comments = o.getJSONArray("comments");
         this.identifications = o.getJSONArray("identifications");
         this.favorites = o.getJSONArray("faves");

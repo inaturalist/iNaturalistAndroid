@@ -291,6 +291,40 @@ public class INaturalistApp extends MultiDexApplication {
 	}
 
 
+    public boolean isObservationCurrentlyBeingEdited(int obsId) {
+        SharedPreferences settings = getPrefs();
+
+        long lastTime = settings.getLong("observation_being_edited_" + obsId, 0);
+        long currentTime = System.currentTimeMillis();
+
+        Logger.tag(TAG).debug("isObservationCurrentlyBeingEdited: " + obsId + " => " + lastTime + " < " + currentTime);
+
+        if (currentTime - lastTime > 30 * 60 * 1000) {
+            // Observation marked as being edited too long ago, more than 30 mins ago (could happen
+            // if app was abruptly closed while editing an observation)
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void setIsObservationCurrentlyBeingEdited(int obsId, boolean value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        long currentTime = System.currentTimeMillis();
+
+        Logger.tag(TAG).debug("setIsObservationCurrentlyBeingEdited: " + obsId + " => " + value + ": " + currentTime);
+
+        if (value) {
+            settingsEditor.putLong("observation_being_edited_" + obsId, currentTime);
+        } else {
+            settingsEditor.remove("observation_being_edited_" + obsId);
+        }
+        settingsEditor.apply();
+    }
+
+
     public boolean getSuggestSpecies() {
         SharedPreferences settings = getPrefs();
         return settings.getBoolean("pref_suggest_species", true);

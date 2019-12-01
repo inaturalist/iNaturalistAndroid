@@ -266,9 +266,12 @@ public class ObservationEditor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
 
+
         final Intent intent = getIntent();
         String action = intent != null ? intent.getAction() : null;
         String type = intent != null ? intent.getType() : null;
+
+        Logger.tag(TAG).info("onCreate 1 - " + action + ":" + intent);
 
         StrictMode.VmPolicy.Builder newBuilder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(newBuilder.build());
@@ -376,6 +379,7 @@ public class ObservationEditor extends AppCompatActivity {
                 }
                 mCursor = managedQuery(mUri, Observation.PROJECTION, null, null, null);
                 mObservation = new Observation(mCursor);
+                mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, true);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
                     Logger.tag(TAG).error("UUID 1 - " + mObservation.uuid);
@@ -402,6 +406,7 @@ public class ObservationEditor extends AppCompatActivity {
             }
         }
 
+        Logger.tag(TAG).info("onCreate 2 - " + mUri);
 
         findViewById(R.id.locationVisibility).setOnClickListener(new OnClickListener() {
             @Override
@@ -1272,6 +1277,10 @@ public class ObservationEditor extends AppCompatActivity {
         			save();
         		}
         	}
+
+        	if (mObservation != null) {
+                mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, false);
+            }
         }
     }
     
@@ -1307,6 +1316,7 @@ public class ObservationEditor extends AppCompatActivity {
         if (mObservation == null) {
             if (mCursor.getCount() > 0) {
                 mObservation = new Observation(mCursor);
+                mApp.setIsObservationCurrentlyBeingEdited(mObservation._id, true);
                 Logger.tag(TAG).debug("initObservation 2 - " + mObservation);
                 if (mObservation.uuid == null) {
                     mObservation.uuid = UUID.randomUUID().toString();
@@ -1586,6 +1596,8 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private final boolean save() {
+        Logger.tag(TAG).info("save: " + mCursor + ":" + mObservation);
+
         if (mCursor == null) { return true; }
 
         uiToObservation();
@@ -1602,6 +1614,7 @@ public class ObservationEditor extends AppCompatActivity {
                     cv.put(Observation.POSITIONING_METHOD, "gps");
                     cv.put(Observation.POSITIONING_DEVICE, "gps");
                 }
+                Logger.tag(TAG).debug("save: Update: " + mUri + ":" + cv);
                 getContentResolver().update(mUri, cv, null, null);
             } catch (NullPointerException e) {
                 Logger.tag(TAG).error("failed to save observation:" + e);
@@ -1636,6 +1649,7 @@ public class ObservationEditor extends AppCompatActivity {
             // Only mark as deleted (so we'll later on sync the deletion)
             ContentValues cv = mObservation.getContentValues();
             cv.put(Observation.IS_DELETED, 1);
+            Logger.tag(TAG).debug("delete: Update: " + mUri + ":" + cv);
             getContentResolver().update(mUri, cv, null, null);
         }
         
