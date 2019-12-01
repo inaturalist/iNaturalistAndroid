@@ -662,6 +662,7 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
             // Trigger a sync (in case of auto-sync and unsynced obs OR when having old-style observations)
             if (hasOldObs || (((syncCount > 0) || (photoSyncCount > 0) || (soundSyncCount > 0)) && (!mUserCanceledSync) && (isNetworkAvailable()))) {
                 mSyncRequested = true;
+                Logger.tag(TAG).debug("Start sync by triggerSyncIfNeeded");
                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 ContextCompat.startForegroundService(this, serviceIntent);
@@ -1291,6 +1292,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                     return;
                                 }
 
+                                Logger.tag(TAG).debug("Start sync by button");
+
                                 mUserCanceledSync = false;
                                 mApp.setCancelSync(false);
                                 mCancelSync.setText(R.string.stop);
@@ -1299,8 +1302,6 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
                                 Intent serviceIntent = new Intent(INaturalistService.ACTION_SYNC, null, ObservationListActivity.this, INaturalistService.class);
                                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 ContextCompat.startForegroundService(ObservationListActivity.this, serviceIntent);
-
-                                Logger.tag(TAG).debug("Start sync by button");
 
                             }
                         }
