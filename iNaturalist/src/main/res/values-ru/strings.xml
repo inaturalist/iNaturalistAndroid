@@ -270,9 +270,9 @@
     <string name="observation">Наблюдение</string>
     <string name="share">Поделиться</string>
     <string name="unable_to_acquire_location">Не удается определить местоположение</string>
-    <string name="casual_grade">Класс (Casual Grade) случайных наблюдений</string>
+    <string name="casual_grade">Обыкновенный уровень</string>
     <string name="needs_id">Требуется ID</string>
-    <string name="research_grade">Статус (Research Grade) исследовательский уровень</string>
+    <string name="research_grade">Исследовательский</string>
     <string name="data_quality">Качество данных</string>
     <string name="casual_grade_add_location"><![CDATA[ Добавьте <b>Местоположение</b> для перехода этого наблюдения в статус «Требуется ID». ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Добавьте <b>дату</b> для перехода этого наблюдения в статус «Требуется ID». ]]></string>

@@ -684,45 +684,45 @@
     <string name="donate_to_inaturalist">Donasi ke iNaturalist</string>
     <string name="prefers_scientific_name_first">Tunjukkan nama ilmiah terlebih dahulu</string>
     <string name="prefers_scientific_name_first_description">Tampilkan nama ilmiah di depan nama umum.</string>
-    <string name="network_credit_inaturalistcanada"><![CDATA[Canada: Canadian Wildlife Federation, the Royal Ontario Museum, NatureServe Canada, and Parks Canada operating iNaturalist Canada (<a href="https://inaturalist.ca">inaturalist.ca</a>)]]></string>
-    <string name="network_credit_naturalistacolombia"><![CDATA[Colombia: Instituto Humboldt operating Naturalista (<a href="https://colombia.inaturalist.org">colombia.inaturalist.org</a>)]]></string>
-    <string name="network_credit_naturalista"><![CDATA[Mexico: Comisión nacional para el conocimiento y uso de la biodiversidad (CONABIO) operating NaturaLista (<a href="https://naturalista.mx">NaturaLista.mx</a>)]]></string>
-    <string name="network_credit_naturewatchnz"><![CDATA[New Zealand: New Zealand Biodiversity Recording Network operating iNaturalist NZ — Mātaki Taiao (<a href="https://inaturalist.nz">inaturalist.nz</a>)]]></string>
-    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
-    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
-    <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="network_credit_inaturalistcanada"><![CDATA[Kanada: Federasi Satwa Liar Kanada, Museum Royal Ontario, Kanada NatureServe, dan Taman Kanada yang mengoperasikan iNaturalist Canada (<a href="https://inaturalist.ca"> inaturalist.ca </a>)]]></string>
+    <string name="network_credit_naturalistacolombia"><![CDATA[Kolombia: Instituto Humboldt mengoperasikan Naturalista (<a href="https://colombia.inaturalist.org"> colombia.inaturalist.org</a>)]]></string>
+    <string name="network_credit_naturalista"><![CDATA[Meksiko: Komisi Nasional untuk pengetahuan dan penggunaan keanekaragaman hayati (CONABIO) yang mengoperasikan NaturaLista (<a href="https://naturalista.mx"> NaturaLista.mx</a>)]]></string>
+    <string name="network_credit_naturewatchnz"><![CDATA[Selandia Baru: Jaringan Rekaman Keanekaragaman Hayati Selandia Baru mengoperasikan iNaturalist NZ - Mātaki Taiao (<a href="https://inaturalist.nz"> inaturalist.nz </a>)]]></string>
+    <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Keanekaragaman Hayati Untuk Semua Asosiasi yang mengoperasikan Biodiversity4All (<a href="https://biodiversity4all.org"> Biodiversity4All.org</a>)]]></string>
+    <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente yang mengoperasikan iNaturalistPa (<a href="https://panama.inaturalist.org"> panama.inaturalist.org</a>)]]></string>
+    <string name="mark_all_as_viewed">Tandai semua sebagai dilihat</string>
+    <string name="content_hidden">Konten Tersembunyi</string>
+    <string name="show_hidden_content">Tampilkan Konten Tersembunyi</string>
+    <string name="content_hidden_because">Konten disembunyikan oleh @%1$s pada %2$s karena: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org"> Hubungi Dukungan</a>]]></string>
+    <string name="content">Konten</string>
+    <string name="has_photos">Memiliki Foto</string>
+    <string name="has_sounds">Memiliki Suara</string>
+    <string name="could_not_play_sound">Tidak dapat memutar suara - mungkin masalah jaringan</string>
+    <string name="cant_play_soundcloud"><![CDATA[Untuk mendengarkan suara Soundcloud, lihat <a href="%1$s">situs web</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="record_sound">Rekam Suara</string>
+    <string name="no_recorder_found">Tidak ada perekam suara default ditemukan!</string>
+    <string name="couldnt_retrieve_sound">Tidak dapat mengambil suara dari perekam default - coba impor suara sebagai gantinya</string>
+    <string name="upload_sound">Pilih Suara</string>
+    <string name="multi_select_sound_description">Impor banyak suara dengan menekan lama pada satu suara</string>
+    <string name="alert_unsupported_audio_type">Maaf, tetapi ada masalah saat memuat suara dari sumber ini</string>
+    <string name="invalid_audio_extension">Kesalahan saat mengimpor suara: Hanya dapat mengimpor file suara dengan ekstensi WAV/MP3/AMR</string>
+    <string name="importing_sounds">Mengimpor suara...</string>
+    <string name="observation_sound">Suara Pengamatan</string>
+    <string name="deleted_sounds_from_cache_error">Sepertinya Anda menghapus suara dengan membersihkan cache aplikasi sebelum mengunggah. Anda perlu menambahkan suara kembali ke pengamatan Anda dari galeri Anda. Di masa mendatang, pastikan Anda telah mengunggah semua suara Anda sebelum membersihkan cache aplikasi.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="seconds">%1$.1f detik</string>
+    <string name="clear_all_debug_logs">Kosongkan Semua Log Debug</string>
+    <string name="clears_up_storage_room_on_your_phone">Membersihkan ruang penyimpanan di ponsel Anda</string>
+    <string name="number_of_days_to_store_logs">Jumlah hari untuk menyimpan log</string>
+    <string name="send_debug_logs_from_start_date">Kirim Debug Log Dari Tanggal Mulai</string>
+    <string name="send_debug_logs_by_email">Kirim log debug melalui email (dari tanggal mulai yang ditentukan)</string>
+    <string name="debug_settings">Pengaturan Debug</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Apakah Anda yakin ingin menghapus semua log debug? Hanya tekan \'Ya\' jika Anda ingin membersihkan ruang penyimpanan untuk ponsel Anda</string>
+    <string name="no_log_files_found">Tidak ditemukan file log untuk rentang tanggal itu - coba tanggal sebelumnya?</string>
+    <string name="choose_pinned_location">Pilih Lokasi Yang Disematkan</string>
+    <string name="pin_current_location">Sematkan Lokasi Saat Ini</string>
+    <string name="location_pinned_successfully">Lokasi Saat Ini Berhasil Disematkan</string>
+    <string name="delete_this_pinned_location">Hapus lokasi yang disematkan ini?</string>
 </resources>
