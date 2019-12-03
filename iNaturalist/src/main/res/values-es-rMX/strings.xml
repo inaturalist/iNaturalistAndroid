@@ -119,7 +119,8 @@
     <string name="about_taxon_short">Acerca de</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacidad</string>
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
+    <string name="geoprivacy_with_value">Geoprivacidad: %1$s</string>
     <string name="delete_confirmation">¿Estás seguro que deseas eliminar esta observación?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guías</string>
@@ -197,6 +198,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá es miembro de la red iNaturalist en Panamá. Las instituciones locales que apoyan a iNaturalist Panamá tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador es miembro de la red iNaturalist en Ecuador. Las instituciones locales que apoyan a iNaturalist Ecuador tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia es miembro de la red iNaturalist en Australia. Las instituciones locales que apoyan a iNaturalist Australia tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. No cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat es miembro de la red iNaturalist en Argentina. Las instituciones locales que apoyan a ArgentiNat tendrán acceso a tu dirección de correo electrónico y a las coordenadas reales de tus observaciones aunque estén públicamente oscurecidas o sean privadas. Por favor, no cambies experimentalmente tu afiliación si tienes más de 1000 observaciones. ¿Deseas cambiar tu afiliación?</string>
     <string name="editor">Editor</string>
     <string name="license">Licencia</string>
     <string name="download_for_offline_use">Descarga para uso fuera de línea</string>
@@ -605,12 +607,16 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="annotation_name_life_stage">Estadio biológico</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sexo</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Vivo o Muerto</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floración</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Fructificando</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Germinando</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Yemas Florales</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -628,6 +634,12 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Hembra</string>
     <string name="annotation_value_male">Macho</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Vivo</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Muerto</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Indeterminado</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">UNIDO</string>
     <string name="nearby_projects_all_caps">CERCANO</string>
@@ -710,8 +722,8 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="debug_settings">Ajustes de Depuración</string>
     <string name="are_you_sure_you_want_to_delete_logs">¿Está seguro de que desea eliminar todos los registros de depuración? Pulse \'Sí\' solo si desea borrar el espacio de almacenamiento de su teléfono</string>
     <string name="no_log_files_found">No se encontraron registros para ese rango de fechas - ¿quieres probar con una fecha anterior?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="choose_pinned_location">Escoger ubicación anclada</string>
+    <string name="pin_current_location">Anclar la ubicación actual</string>
+    <string name="location_pinned_successfully">Ubicación actual anclada con éxito</string>
+    <string name="delete_this_pinned_location">¿Desea borrar esta ubicación anclada?</string>
 </resources>

@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Acerca de</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacidade</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
     <string name="delete_confirmation">Tem a certeza que deseja eliminar esta observação?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -196,6 +197,7 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá é membro da Rede iNaturalist no Panamá. As instituições locais que apoiam o iNaturalist Panamá terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador é membro da Rede iNaturalist no Equador. As instituições locais que apoiam o iNaturalist Ecuador terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia é membro da Rede iNaturalist na Austrália. As instituições locais que apoiam o iNaturalist Australia terão acesso ao seu endereço de email e às verdadeiras coordenadas das observações que são publicamente ocultas ou privadas. Por favor, não altere experimentalmente a sua afiliação se tiver mais de 1000 observações. Gostaria de alterar a sua afiliação?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editor</string>
     <string name="license">Licença</string>
     <string name="download_for_offline_use">Descarregar para usar offline</string>
@@ -606,12 +608,16 @@ nossa comunidade de código aberto]]></string>
     <string name="annotation_name_life_stage">Fase da Vida</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Género</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floração</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Frutificação</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Brotamento</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -629,6 +635,12 @@ nossa comunidade de código aberto]]></string>
     <string name="annotation_value_subimago">Estágio Subimago</string>
     <string name="annotation_value_female">Fêmea</string>
     <string name="annotation_value_male">Macho</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Alive</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Dead</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">A QUE ADERIU</string>
     <string name="nearby_projects_all_caps">NAS PROXIMIDADES</string>

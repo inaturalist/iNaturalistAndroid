@@ -119,6 +119,7 @@
     <string name="about_taxon_short">關於</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">地理資訊隱私權</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">地理資訊隱私權：%1$s</string>
     <string name="delete_confirmation">您確定您想要刪除此觀察記錄嗎？</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -196,6 +197,7 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá 是 iNaturalist 附屬網路在巴拿馬的成員。支援 iNaturalist Panamá 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador 是 iNaturalist 附屬網路在厄瓜多的成員。支援 iNaturalist Ecuador 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia 是 iNaturalist 附屬網路在澳洲的成員。支援 iNaturalist Australia 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
+    <string name="alert_message_use_argentinat">ArgentiNat 是 iNaturalist 附屬網路阿根廷的成員。支援 ArgentiNat 的地方機構將有權存取您的電子郵件地址，並存取遮蔽或私有觀察紀錄的真實座標。如果您有超過 1000 筆觀察紀錄的話，請不要實驗性地更動您的附屬網路。您想變更您的 iNat 附屬網路嗎？</string>
     <string name="editor">編輯</string>
     <string name="license">授權</string>
     <string name="download_for_offline_use">下載供離線使用</string>
@@ -604,12 +606,16 @@
     <string name="annotation_name_life_stage">生命階段</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">性別</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">活體或死亡</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">開花</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">結果</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">萌新芽</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">花芽</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">成體</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -627,6 +633,12 @@
     <string name="annotation_value_subimago">亞成蟲</string>
     <string name="annotation_value_female">雌</string>
     <string name="annotation_value_male">雄</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">活體</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">死亡</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">無法確認</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">已加入</string>
     <string name="nearby_projects_all_caps">附近的</string>

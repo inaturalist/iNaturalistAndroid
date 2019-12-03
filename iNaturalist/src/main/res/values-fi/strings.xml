@@ -82,7 +82,7 @@
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
     <!-- Label for a button that adds an identification that is the same as another identification, as in "Do you agree this is correct?" Should be short. -->
-    <string name="agree">Hyväksy?</string>
+    <string name="agree">Samaa mieltä?</string>
     <string name="no_comments">Ei kommentteja/tunnistuksia vielä</string>
     <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
     <string name="you">sinä</string>
@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Tietoja</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoyksityisyys</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
     <string name="delete_confirmation">Haluatko varmasti poistaa tämän havainnon?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -142,7 +143,7 @@
     <string name="leave_project_confirmation">Haluatko varmasti jättää tämän projektin?</string>
     <string name="discard_location_changes">Haluatko varmasti hylätä tallentamattomat muutokset?</string>
     <string name="edit_location">Muokkaa sijaintia</string>
-    <string name="edit_locality_notes">Edit Locality Notes</string>
+    <string name="edit_locality_notes">Muokkaa sijaintimerkintöjä</string>
     <string name="get_current_location">Hanki tämänhetkinen sijainti</string>
     <string name="pull_to_refresh">Vedä päivittääksesi...</string>
     <string name="release_to_refresh">Irroita päivittääksesi...</string>
@@ -196,6 +197,7 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is a member of the iNaturalist Network in Panama. Local institutions supporting iNaturalist Panamá will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is a member of the iNaturalist Network in Ecuador. Local institutions supporting iNaturalist Ecuador will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is a member of the iNaturalist Network in Australia. Local institutions supporting iNaturalist Australia will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Editori</string>
     <string name="license">Lisenssi</string>
     <string name="download_for_offline_use">Lataa offline-käyttöön</string>
@@ -268,14 +270,14 @@
     <string name="observation">Havainto</string>
     <string name="share">Jaa</string>
     <string name="unable_to_acquire_location">Sijaintia ei voi hakea</string>
-    <string name="casual_grade">Rentoaste</string>
+    <string name="casual_grade">Epämuodollinen</string>
     <string name="needs_id">Tarvitsee tunnisteen</string>
     <string name="research_grade">Tutkimusaste</string>
     <string name="data_quality">Tietojen laatu</string>
     <string name="casual_grade_add_location"><![CDATA[ Lisää <b>sijainti</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Lisää <b>päivämäärä</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Lisää <b>kuva</b> edistääksesi tämän havainnon ”Tarvitsee tunnisteen” tilaan. ]]></string>
-    <string name="casual_grade_captive"><![CDATA[ Havainto on rentoasteinen koska se on <b>vangittu/viljelty</b>. ]]></string>
+    <string name="casual_grade_captive"><![CDATA[ Havainto on epämuodollinen, koska se on <b>tarhattu/viljelty</b>. ]]></string>
     <string name="needs_id_more_ids"><![CDATA[ Havainto tarvitsee <b>lisää tunnistuksia</b> yhteisöltä tullakseen "Tutkimusaste" tilaan. ]]></string>
     <string name="included_in_projects">Sisältyy %1$d projektiin</string>
     <string name="included_in_projects_singular">Sisältyy %1$d projektiin</string>
@@ -311,7 +313,7 @@
     <string name="flag_as_captive">Liputa vangituksi/viljellyksi</string>
     <string name="observation_flagged_as_captive">Havainto liputettiin vangituksi/viljellyksi</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Haluatko varmasti liputtaa tämän havainnon vangituksi/viljellyksi (Vaihtoehdon kyllä painaminen sulkee myös havainnon katseluikkunan)</string>
-    <string name="do_you_agree_to_the_following">Hyväksytkö seuraavan?</string>
+    <string name="do_you_agree_to_the_following">Oletko samaa mieltä seuraavan kanssa?</string>
     <string name="terms">Ehdot</string>
     <string name="observation_rules">Havaintosäännöt</string>
     <string name="couldnt_load_project_details">Ei voida ladata projektin tietoja: %1$s</string>
@@ -604,12 +606,16 @@
     <string name="annotation_name_life_stage">Elämänvaihe</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sukupuoli</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Kukkiminen</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Hedelmöinti</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Orastava</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Aikuinen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -627,6 +633,12 @@
     <string name="annotation_value_subimago">Alaimago</string>
     <string name="annotation_value_female">Naaras</string>
     <string name="annotation_value_male">Koiras</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Alive</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Dead</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">LIITYTTY</string>
     <string name="nearby_projects_all_caps">LÄHELLÄ</string>
@@ -640,7 +652,7 @@
     <string name="quantity_all_caps">KPL</string>
     <string name="observation_count_all_caps">%1$s HAVAINTOA</string>
     <string name="observation_count_single_all_caps">%1$d HAVAINTO</string>
-    <string name="agree_all_caps">HYVÄKSY</string>
+    <string name="agree_all_caps">SAMAA MIELTÄ</string>
     <string name="observations_all_caps">HAVAINTOA</string>
     <string name="species_all_caps">LAJIA</string>
     <string name="people_all_caps">IHMISET</string>
@@ -686,18 +698,18 @@
     <string name="content">Sisältö</string>
     <string name="has_photos">On kuvia</string>
     <string name="has_sounds">On ääniä</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
+    <string name="could_not_play_sound">Ääntä ei voitu toistaa - luultavasti verkko-ongelma</string>
+    <string name="cant_play_soundcloud"><![CDATA[Kuunnellaksesi Soundcloud-ääniä, siirry <a href="%1$s">verkkosivulle</a>.]]></string>
     <string name="soundcloud">SoundCloud</string>
     <string name="record_sound">Nauhoita ääntä</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
+    <string name="no_recorder_found">Oletusäänentallenninta ei löytynyt!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <string name="upload_sound">Valitse ääni</string>
     <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
     <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
     <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
     <string name="importing_sounds">Tuodaan ääntä/ääniä...</string>
-    <string name="observation_sound">Observation Sound</string>
+    <string name="observation_sound">Havaintoääni</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sekuntia</string>
@@ -709,8 +721,8 @@
     <string name="debug_settings">Debug Settings</string>
     <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
     <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="choose_pinned_location">Valitse kiinnitetty sijainti</string>
+    <string name="pin_current_location">Kiinnitä tämänhetkinen sijainti</string>
+    <string name="location_pinned_successfully">Tämänhetkinen sijainti kiinnitetty onnistuneesti</string>
+    <string name="delete_this_pinned_location">Poista tämä kiinnitetty sijainti?</string>
 </resources>
