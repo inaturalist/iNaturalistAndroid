@@ -13,7 +13,7 @@
     <string name="sync_required_message">%1$d observaties, %2$d foto\'s moeten gesynchroniseerd worden</string>
     <string name="street">Straat</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
-    <string name="satellite">Sateliet</string>
+    <string name="satellite">Satelliet</string>
     <string name="couldnt_load_nearby_observations">Kon nabije observaties niet laden:%1$s</string>
     <string name="username_invalid">Gebruikersnaam of wachtwoord is verkeerd, probeer het opnieuw.</string>
     <string name="signing_in">Inloggen...</string>
@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Over</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacy</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
     <string name="delete_confirmation">Weet u zeker dat u deze waarneming wilt verwijderen?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -188,14 +189,15 @@
     <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Het iNaturalist netwerk. Door op OK te klikken, wordt jouw app onderdeel van het mondiale iNaturalist-netwerk.</string>
-    <string name="alert_message_use_naturalista">NaturaLista is lid van het iNaturalist Network in Mexico. Lokale instellingen die NaturaLista ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is lid van het iNaturalist Network in Nieuw Zeeland. Lokale instellingen die iNaturalist NZ ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is lid van het iNaturalist Network in Canada. Lokale instellingen die iNaturalist Canada ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_naturalistacolombia">NaturaLista is lid van het iNaturalist Network in Colombia. Lokale instellingen die NaturaLista ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All is lid van het iNaturalist Network in Portugal. Lokale instellingen die Biodiversity4All ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is lid van het iNaturalist Network in Panama. Lokale instellingen die iNaturalist Panamá ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is lid van het iNaturalist Network in Ecuador. Lokale instellingen die iNaturalist Ecuador ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar verborgen of privé zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is lid van het iNaturalist Network in Australia. Lokale instellingen die iNaturalist Australia ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten voor waarnemingen die openbaar worden vertroebeld of privé. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_naturalista">NaturaLista is lid van het iNaturalist Network in Mexico. Lokale instellingen die NaturaLista ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ is lid van het iNaturalist Network in Nieuw Zeeland. Lokale instellingen die iNaturalist NZ ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada is lid van het iNaturalist Network in Canada. Lokale instellingen die iNaturalist Canada ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_naturalistacolombia">NaturaLista is lid van het iNaturalist Network in Colombia. Lokale instellingen die NaturaLista ondersteunen hebben toegang tot uw e-mailadresen toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All is lid van het iNaturalist Network in Portugal. Lokale instellingen die Biodiversity4All ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá is lid van het iNaturalist Network in Panama. Lokale instellingen die iNaturalist Panamá ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador is lid van het iNaturalist Network in Ecuador. Lokale instellingen die iNaturalist Ecuador ondersteunen, hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia is lid van het iNaturalist Network in Australië. Lokale instellingen die iNaturalist Australia ondersteunen hebben toegang tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat is lid van het iNaturalist Netwerk in Argentinië. Lokale instellingen die ArgentiNat ondersteunen zullen toegang hebben tot uw e-mailadres en toegang tot de echte coördinaten van waarnemingen die vervaagd of afgeschermd zijn. Verander alstublieft niet experimenteel uw affiliatie als u meer dan 1000 waarnemingen hebt. Wilt u uw affiliatie wijzigen?</string>
     <string name="editor">Redacteur</string>
     <string name="license">Licentie</string>
     <string name="download_for_offline_use">Downloaden voor offline gebruik</string>
@@ -543,7 +545,7 @@
     <string name="no_identifications_found">Volg determinaties die je voorstelt voor waarnemingen van anderen.</string>
     <string name="no_species_found">Dit is een lijst van de soorten die u het vaakst hebt waargenomen.\n\nFYI: er zijn naar schatting 9 miljoen soorten op de planeet, dus ga naar buiten en ga kijken!</string>
     <string name="make_an_observation">Waarneming opslaan</string>
-    <string name="no_observations_found_new">Waarnemingen worden records van uw observaties van individuele organismen op bepaalde tijdstippen en locaties.</string>
+    <string name="no_observations_found_new">Waarnemingen zijn records van uw ontmoetingen met individuele organismen op bepaalde tijdstippen en locaties.</string>
     <string name="discard_comment">Weet je zeker dat je dit commentaar wilt wissen?</string>
     <string name="leave_comment">Laat een bericht achter...</string>
     <string name="swipe">Vegen</string>
@@ -556,7 +558,7 @@
     <string name="submit">Versturen</string>
     <string name="change_password">Wachtwoord Wijzigen</string>
     <string name="search_projects_youve_joined">Zoek projecten waar je aan deelneemt...</string>
-    <string name="must_be_connected_to_load_more_obs">U moet verbinding hebben met Internet om meer observaties te kunnen laden</string>
+    <string name="must_be_connected_to_load_more_obs">U moet verbinding hebben met Internet om meer waarnemingen te kunnen laden</string>
     <string name="inat_about_title">iNaturalist is een gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society.</string>
     <string name="inat_credits"><![CDATA[iNaturalist bestaat dankzij elke persoon die deelneemt aan onze Gemeenschap. De mensen die bouwen de software, de interfaces ontwerpen, onderhouden van onze infrastructuur, ondersteuning van de Gemeenschap en stimuleren van samenwerkingsverbanden zijn Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard, en Ken-ichi Ueda.<br/><br/>CalTech en Cornell Tech hielp ontwikkelen van het computersysteem van de visie dat identificaties van foto\'s suggereert. Wij danken Grant Van Horn, Serge Belongie en Pietro Perona ter bevordering van de computer vision onderzoek. Meer informatie kan worden gevonden bij <a href="http://www.visipedia.org">visipedia.org</a>. Speciale dank aan NVIDIA voor assistentie.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Het internationale iNaturalist Network ondersteunt lokale, volledig geïntegreerde, op iNaturalist gebaseerde websites in de volgende landen, dankzij de steun van geassocieerde partnerorganisaties.]]></string>
@@ -604,12 +606,16 @@
     <string name="annotation_name_life_stage">Levensstadium</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Geslacht</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Dood of levend</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Bloeiend</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">In vrucht</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Ontluikende</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Bloemknoppen</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Volwassen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -627,6 +633,12 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Vrouw</string>
     <string name="annotation_value_male">Man</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Levend</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Dood</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Kan niet worden vastgesteld</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">SLOOT ZICH AAN BIJ</string>
     <string name="nearby_projects_all_caps">IN DE BUURT</string>

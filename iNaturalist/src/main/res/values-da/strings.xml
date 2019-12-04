@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Om</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geofortrolighed</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geofortrolighed: %1$s</string>
     <string name="delete_confirmation">Sikker på, at du vil slette denne observation?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -169,7 +170,7 @@
     </string-array>
     <string-array name="geoprivacy_items">
         <item>Åbn</item>
-        <item>Skjult</item>
+        <item>Sløret</item>
         <item>Fortrolig</item>
     </string-array>
     <string name="alert_sign_out">Sikker på, at du vil logge ud? Dette vil slette alle dine observationer på denne enhed. Det vil ikke påvirke observationer, du har uploadet til iNaturalist.</string>
@@ -188,14 +189,15 @@
     <string name="text"><![CDATA[<b>Tekst:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Overordnet iNaturalist-netværk. Ved at klikke OK vil din app blive en del af det globale iNaturalist-netværk.</string>
-    <string name="alert_message_use_naturalista">NaturaLista er medlem af iNaturalist Network i Mexico. Lokale institutioner, som støtter NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ er medlem af iNaturalist Network i New Zealand. Lokale institutioner, som støtter iNaturalist NZ, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada er medlem af iNaturalist Network i Canada. Lokale institutioner, som støtter iNaturalist Canada, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista er medlem af iNaturalist Network i Colombia. Lokale institutioner, som støtter Naturalista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All er medlem af iNaturalist Network i Portugal. Lokale institutioner, som støtter Biodiversity4All, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá er medlem af iNaturalist Network i Panama. Lokale institutioner, som støtter iNaturalist Panamá, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er medlem af iNaturalist Network i Ecuador. Lokale institutioner, som støtter iNaturalist Ecuador, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien er medlem af iNaturalist Network i Australien. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt skjulte eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_naturalista">NaturaLista er medlem af iNaturalist Network i Mexico. Lokale institutioner, som støtter NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ er medlem af iNaturalist Network i New Zealand. Lokale institutioner, som støtter iNaturalist NZ, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada er medlem af iNaturalist Network i Canada. Lokale institutioner, som støtter iNaturalist Canada, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista er medlem af iNaturalist Network i Colombia. Lokale institutioner, som støtter Naturalista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All er medlem af iNaturalist Network i Portugal. Lokale institutioner, som støtter Biodiversity4All, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá er medlem af iNaturalist Network i Panama. Lokale institutioner, som støtter iNaturalist Panamá, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador er medlem af iNaturalist Network i Ecuador. Lokale institutioner, som støtter iNaturalist Ecuador, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australien er medlem af iNaturalist Network i Australien. Lokale institutioner, som støtter Naturalist Australien, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat er medlem af iNaturalist Network i Argentina. Lokale institutioner, som støtter NaturaLista, kan se din e-mail og de reelle koordinater for observationer, som er offentligt slørede eller fortrolige. Ændr venligst ikke din tilknytning eksperimentelt, hvis du har flere end 1.000 observationer. Vil du ændre din tilknytning?</string>
     <string name="editor">Redaktør</string>
     <string name="license">Licens</string>
     <string name="download_for_offline_use">Download til offlinebrug</string>
@@ -604,12 +606,16 @@
     <string name="annotation_name_life_stage">Livsstadie</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Køn</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Levende eller Død</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Blomsbærende</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Frugtbærende</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Spirende</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Blomstknopbærende</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Voksen</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -627,6 +633,12 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Hunkøn</string>
     <string name="annotation_value_male">Hankøn</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Levende</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Død</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Kan ikke bestemmes</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">DELTAGER</string>
     <string name="nearby_projects_all_caps">I NÆRHEDEN</string>

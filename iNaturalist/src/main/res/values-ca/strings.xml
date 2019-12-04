@@ -119,7 +119,8 @@
     <string name="about_taxon_short">Quant a</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacitat</string>
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
+    <string name="geoprivacy_with_value">Geoprivacitat:%1$s</string>
     <string name="delete_confirmation">Segur que vols esborrar aquesta observació?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Guies</string>
@@ -196,6 +197,7 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamà és membre de la Xarxa iNaturalist a Panamà. Les Institucions locals que donen suport a iNaturalist Panamà tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador és membre de la Xarxa iNaturalist de l\'Equador. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Austalia és membre de la Xarxa iNaturalist d\'Austràlia. Les institucions locals que donen suport a iNaturalist Ecuador tindran accés a la teva adreça de correu electrònic i a les teves coordenades reals per a observacions que són públicament enfosquides o privades. Si us plau, no facis experiments canviant la teva afiliació si tens més de 1000 observacions. T\'agradaria canviar la teva afiliació?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat és membre de la Xarxa iNaturalist a Argentin. Les Institucions locals que donen suport a ArgentiNat tenen accés a la vostra adreça de correu electrònic i a les coordenades reals de les observacions encara que siguin enfosquides o privades. Si us plau, no canvieu experimentalment la vostra afiliació si teniu més de 1000 observacions. Voleu canviar la vostra afiliació?</string>
     <string name="editor">Editor</string>
     <string name="license">Llicència</string>
     <string name="download_for_offline_use">Descarregar per a ús fora de línia</string>
@@ -604,12 +606,16 @@
     <string name="annotation_name_life_stage">Estadi de desenvolupament</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sexe</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Viu o Mort</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Floració</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Fructificació</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Germinant</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Gemmes florals</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adult</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -627,6 +633,12 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Femella</string>
     <string name="annotation_value_male">Mascle</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Viu</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Mort</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">No es pot determinar</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">UNIT</string>
     <string name="nearby_projects_all_caps">PROPER</string>
@@ -709,8 +721,8 @@
     <string name="debug_settings">Depurar configuració</string>
     <string name="are_you_sure_you_want_to_delete_logs">Estàs segur que vols esborrar tots els registres de depuració? Prem \"Sí\" només si vols fer net a l\'espai d\'emmagatzematge del teu telèfon</string>
     <string name="no_log_files_found">No ha trobat cap arxiu de registre per aquest rang de dades - vols provar una data anterior?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="choose_pinned_location">Escollir Ubicació Marcada</string>
+    <string name="pin_current_location">Marcar Ubicació Actual</string>
+    <string name="location_pinned_successfully">Ubicació Actual Marcada Correctament</string>
+    <string name="delete_this_pinned_location">Esborrar aquesta ubicació marcada?</string>
 </resources>

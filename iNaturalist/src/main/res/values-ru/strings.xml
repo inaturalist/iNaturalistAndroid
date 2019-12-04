@@ -118,7 +118,8 @@
     <string name="about_this_app">Подробно</string>
     <string name="about_taxon_short">Подробно</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
-    <string name="geoprivacy">Конфиденциальность геоданных</string>
+    <string name="geoprivacy">Скрыть на карте</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Конфиденциальность геоданных: %1$s</string>
     <string name="delete_confirmation">Вы уверены, что хотите удалить это наблюдение?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -196,6 +197,7 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá - это член сети iNaturalist Network в Панаме. Местные организации, поддерживающие iNaturalist Panamá, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador - это член сети iNaturalist Network в Эквадоре. Местные организации, поддерживающие iNaturalist Ecuador, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia - это член сети iNaturalist Network в Австралии. Местные организации, поддерживающие iNaturalist Australia, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat - это член сети iNaturalist Network в Аргентине. Местные организации, поддерживающие ArgentiNat, будут иметь доступ к вашему адресу электронной почты и к истинным координатам наблюдений, которые публично скрыты или приватны. Если у вас имеется более 1000 наблюдений, пожалуйста, не экспериментируйте с изменением вашей сетевой принадлежности. Хотите ли вы изменить вашу сетевую принадлежность?</string>
     <string name="editor">Редактор</string>
     <string name="license">Лицензия</string>
     <string name="download_for_offline_use">Загрузить для использования в автономном режиме</string>
@@ -254,7 +256,7 @@
     <string name="coordinates_lat">Шир:</string>
     <string name="coordinates_lon">Долг:</string>
     <string name="coordinates_acc">Точн. </string>
-    <string name="required">Обязательно для заполнения</string>
+    <string name="required">* Обязательное</string>
     <string name="downloading_observations">Загрузка наблюдений...</string>
     <string name="no_thanks">Нет, спасибо</string>
     <string name="turn_on">Включить</string>
@@ -268,9 +270,9 @@
     <string name="observation">Наблюдение</string>
     <string name="share">Поделиться</string>
     <string name="unable_to_acquire_location">Не удается определить местоположение</string>
-    <string name="casual_grade">Класс (Casual Grade) случайных наблюдений</string>
+    <string name="casual_grade">Обыкновенный уровень</string>
     <string name="needs_id">Требуется ID</string>
-    <string name="research_grade">Статус (Research Grade) исследовательский уровень</string>
+    <string name="research_grade">Исследовательский</string>
     <string name="data_quality">Качество данных</string>
     <string name="casual_grade_add_location"><![CDATA[ Добавьте <b>Местоположение</b> для перехода этого наблюдения в статус «Требуется ID». ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Добавьте <b>дату</b> для перехода этого наблюдения в статус «Требуется ID». ]]></string>
@@ -532,9 +534,9 @@
     <!-- As in redo search in the current map area -->
     <string name="search_map_area">Поиск Карта области</string>
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
-    <string name="date_minute">%dм</string>
+    <string name="date_minute">%dмин</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dh</string>
+    <string name="date_hour">%dчас</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
     <string name="date_day">%dд</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
@@ -605,12 +607,16 @@
     <string name="annotation_name_life_stage">Стадия жизни</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Пол</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Жив или Мёртв</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Цветение</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Плодоношение</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Почкование</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Бутонизация</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Взрослый</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -628,6 +634,12 @@
     <string name="annotation_value_subimago">Субимаго</string>
     <string name="annotation_value_female">Женский</string>
     <string name="annotation_value_male">Мужской</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Жив</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Мёртв</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Нельзя определить</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ПРИСОЕДИНИЛИСЬ К</string>
     <string name="nearby_projects_all_caps">ПОБЛИЗОСТИ</string>

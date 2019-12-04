@@ -7,7 +7,7 @@
     <string name="observation_deleted">Osservazione cancellata</string>
     <string name="species_guess_hint">Nome della specie...</string>
     <string name="ok">OK</string>
-    <string name="cancel">Cancella</string>
+    <string name="cancel">Annulla</string>
     <string name="loading">Caricamento...</string>
     <string name="sync_required">Sincronizz. necessaria</string>
     <string name="sync_required_message">%1$d osservazioni, %2$d foto da sincronizzare</string>
@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Informazioni</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Geoprivacy</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
     <string name="delete_confirmation">Sei sicuro di voler cancellare questa osservazione?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -188,14 +189,15 @@
     <string name="text"><![CDATA[<b>Testo:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">La rete principale di iNaturalist. Premendo OK aggiungerai la tua app alla rete iNaturalist.</string>
-    <string name="alert_message_use_naturalista">NaturaLista è membro della rete iNaturalist in Messico. Le istituzioni locali che supportano NaturaLista avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_naturewatchnz">iNaturalist NZ è membro della rete iNaturalist in Nuova Zelanda. Le istituzioni locali che supportano iNaturalist NZ avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada è membro della rete iNaturalist in Canada. Le istituzioni locali che supportano iNaturalist Canada avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_naturalistacolombia">Naturalista è membro della rete iNaturalist in Colombia. Le istituzioni locali che supportano Naturalista avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_biodiversity4all">Biodiversity4All è membro della rete iNaturalist in Portogallo. Le istituzioni locali che supportano Biodiversity4All avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_inaturalistpanama">iNaturalist Panama è membro della rete iNaturalist in Panama. Le istituzioni locali che supportano iNaturalist Panama avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador è membro della rete iNaturalist in Ecuador. Le istituzioni locali che supportano iNaturalist Ecuador avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
-    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia è membro della rete iNaturalist in Australia. Le istituzioni locali che supportano iNaturalist Australia avranno accesso al tuo indirizzo email e accesso alle vere coordinate per le osservazioni che sono oscurate pubblicamente o private. Si prega di non cambiare in modo sperimentale la propria affiliazione se si hanno più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_naturalista">NaturaLista è membro del Network iNaturalist in Mexico. Le istituzioni locali che supportano NaturaLista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_naturewatchnz">iNaturalist NZ è membro del Network iNaturalist in Nuova Zelanda. Le istituzioni locali che supportano iNaturalist NZ avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_inaturalistcanada">iNaturalist Canada è membro del Network iNaturalist in Canada. Le istituzioni locali che supportano iNaturalist Canada avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_naturalistacolombia">Naturalista è membro del Network iNaturalist in Colombia. Le istituzioni locali che supportano Naturalista avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_biodiversity4all">Biodiversity4All è membro del Network iNaturalist in Portogallo. Le istituzioni locali che supportano Biodiversity4All avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_inaturalistpanama">iNaturalist Panama è membro del Network iNaturalist in Panama. Le istituzioni locali che supportano iNaturalist Panama avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador è membro del Network iNaturalist in Ecuador. Le istituzioni locali che supportano iNaturalist Ecuador avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia è membro del Network iNaturalist in Australia. Le istituzioni locali che supportano iNaturalist Australia avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat è membro del Network iNaturalist in Argentina. Le istituzioni locali che supportano ArgentiNat avranno accesso al tuo indirizzo email e alle coordinate reali per le osservazioni che sono oscurate pubblicamente e per quelle private. Per favore non cambiare la tua affiliazione solo per provare se hai più di 1000 osservazioni. Vuoi cambiare la tua affiliazione?</string>
     <string name="editor">Editor</string>
     <string name="license">Licenza</string>
     <string name="download_for_offline_use">Scarica per uso non in linea</string>
@@ -360,7 +362,7 @@
     <string name="withdraw">Ritira</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Aggiorna la descrizione dell\'identificazione</string>
-    <string name="your_identification">Il tuo ID: %1$s</string>
+    <string name="your_identification">La tua ID: %1$s</string>
     <string name="onboarding_species_name">Dai un nome a quello che hai visto. Non sei obbligato a rispondere, altre persone potrebbero aiutarti!</string>
     <string name="upload_complete">Caricamento completato!</string>
     <string name="onboarding_upload_description">Verifica più tardi le identificazioni e commenti sulla(e) tua(e) osservazione(i).</string>
@@ -604,12 +606,16 @@
     <string name="annotation_name_life_stage">Stadio Vitale</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Sesso</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Vivo o Morto</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">In fiore</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">In frutto</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Germogliare</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Bocciolo di Fiore</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Adulto</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -627,6 +633,12 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Femmina</string>
     <string name="annotation_value_male">Maschio</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Vivo</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Morto</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Impossibile da Determinare</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ISCRITTO</string>
     <string name="nearby_projects_all_caps">NELLE VICINANZE</string>

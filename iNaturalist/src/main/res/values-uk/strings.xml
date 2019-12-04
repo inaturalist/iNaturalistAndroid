@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Про таксон</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Геоприватність</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Геоприватність: %1$s</string>
     <string name="delete_confirmation">Ви дійсно бажаєте видалити це спостереження?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -204,6 +205,7 @@
 Чи хочете ви змінити вашу мережеву приналежність?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia є частиною мережі iNuturalist у Австралії. Місцеві організації, що підтримують iNaturalist Australia, матимуть доступ до вашої адреси електронної пошти та до істинних координат спостережень, які публічно приховані або є приватними. Якщо у вас є більше 1000 спостережень, будь ласка, не експериментуйте зі зміною вашої мережевої приналежності. 
 Чи хочете ви змінити вашу мережеву приналежність?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Редактор</string>
     <string name="license">Ліцензія</string>
     <string name="download_for_offline_use">Завантажено для використання в автономному режимі</string>
@@ -612,12 +614,16 @@
     <string name="annotation_name_life_stage">Стадія життя</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Стать</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Живий або мертвий</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Цвітіння</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Плодоносить</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Брунькування</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Дорослий</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -635,6 +641,12 @@
     <string name="annotation_value_subimago">Субімаго</string>
     <string name="annotation_value_female">Жіноча</string>
     <string name="annotation_value_male">Чоловіча</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Живий</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Мертвий</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Неможливо визначити</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">ПРИЄДНАЛИСЯ ДО</string>
     <string name="nearby_projects_all_caps">НЕПОДАЛІК</string>
@@ -702,23 +714,23 @@
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <string name="upload_sound">Оберіть звук</string>
     <string name="multi_select_sound_description">Імпорт декількох аудіо шляхом довгого натискання на одне аудіо</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
+    <string name="alert_unsupported_audio_type">Вибачте, але виникли труднощі з завантаженням аудіо з цього джерела</string>
     <string name="invalid_audio_extension">Помилка імпортування звуків: можна імпортувати лише файли з розширенням WAV/MP3/AMR</string>
     <string name="importing_sounds">Імпортування звуків...</string>
     <string name="observation_sound">Звук спостереження</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="deleted_sounds_from_cache_error">Схоже, ви видалили звук під час очищення кешу програми до того, як відвантажили його. Вам потрібно заново додати звук до вашого спостереження із вашої галереї. Надалі, будь ласка, переконуйтеся, що ви відвантажили всі свої звуки, перш ніж очистити кеш програми.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
+    <string name="seconds">%1$.1f сек</string>
+    <string name="clear_all_debug_logs">Видалити усі файли журналу відлагодження</string>
+    <string name="clears_up_storage_room_on_your_phone">Очистити кеш програми</string>
+    <string name="number_of_days_to_store_logs">Кількість днів зберігання журналів</string>
     <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
     <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
     <string name="debug_settings">Налаштування відлагодження</string>
     <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="no_log_files_found">Для цього діапазону дат файли журналу не знайдені - спробувати більш ранні дати?</string>
+    <string name="choose_pinned_location">Обрати закріплене місце</string>
+    <string name="pin_current_location">Закріпити поточне місце</string>
+    <string name="location_pinned_successfully">Поточне місце успішно закріплено</string>
+    <string name="delete_this_pinned_location">Видалити це закріплене місце?</string>
 </resources>

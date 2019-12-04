@@ -119,6 +119,7 @@
     <string name="about_taxon_short">Apie</string>
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Vietos privatumas</string>
+    <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
     <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
     <string name="delete_confirmation">Ar tikrai norite ištrinti šį stebėjimą?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
@@ -196,6 +197,7 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá yra Panamos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Panamá, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador yra Ekvadoro iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Ecuador, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia yra Australijos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Australia, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
     <string name="editor">Redaktorius</string>
     <string name="license">Licencija</string>
     <string name="download_for_offline_use">Atsisiųsti naudojimui atsijungus nuo tinklo</string>
@@ -604,12 +606,16 @@
     <string name="annotation_name_life_stage">Amžiaus tarpsnis</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Lytis</string>
+    <!-- Attribute that describes whether the organism is alive or dead -->
+    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Žydintis</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Dera</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Sprogsta</string>
+    <!-- Adjective, having unopened flowers -->
+    <string name="annotation_value_flower_budding">Flower Budding</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Suaugęs</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -627,6 +633,12 @@
     <string name="annotation_value_subimago">Subimago</string>
     <string name="annotation_value_female">Patelė</string>
     <string name="annotation_value_male">Patinas</string>
+    <!-- Adjective, alive and shows no signs of imminent death -->
+    <string name="annotation_value_alive">Alive</string>
+    <!-- Adjective, dead or shows signs of imminent death -->
+    <string name="annotation_value_dead">Dead</string>
+    <!-- Value for when the value of the attribute cannot be determined -->
+    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRISIJUNGTA</string>
     <string name="nearby_projects_all_caps">NETOLIESE</string>
