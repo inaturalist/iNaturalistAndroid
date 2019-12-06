@@ -2,6 +2,7 @@ package org.inaturalist.android;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,6 +48,7 @@ import org.json.JSONObject;
 import org.tinylog.Logger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -649,19 +651,42 @@ public class ActivityHelper {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
+    private static final String[] BROWSER_PACKAGE_NAMES = { "com.android.chrome", "com.android.beta", "com.android.dev", "com.android.canary", "com.sec.android.app.sbrowser" };
 
     // Forcefully opens a URL in the user's browser (even if iNaturalist is defined to open such URL -
     // e.g. https://www.inaturalist.org/observations/1234)
     public void openUrlInBrowser(String url) {
+        ArrayList<String> packageNames = new ArrayList<>(Arrays.asList(BROWSER_PACKAGE_NAMES));
+
         // Find out package name of default browser
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"));
         ResolveInfo resolveInfo = mContext.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        String packageName = resolveInfo.activityInfo.packageName;
+
+        if (resolveInfo != null) {
+            String defaultBrowserPackageName = resolveInfo.activityInfo.packageName;
+            packageNames.add(0, defaultBrowserPackageName); // Try default browser first
+        }
+
+        packageNames.add(""); // So if we've reached this last item (meaning, couldn't find a default browser) - we'll just open it in our app
 
         // Use the explicit browser package name (so we won't open iNaturalist)
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        i.setPackage(packageName);
-        mContext.startActivity(i);
+
+        // Try different package names until reaching one that works
+
+        for (String packageName : packageNames) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            if (packageName.length() > 0) {
+                i.setPackage(packageName);
+            }
+
+            try {
+                mContext.startActivity(i);
+                // If we've reached this far - this means we've successfully found a browser to handle this URL
+                break;
+            } catch (ActivityNotFoundException exc) {
+                Logger.tag(TAG).error("Couldn't open URL for package: " + packageName);
+            }
+        }
     }
 }
