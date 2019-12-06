@@ -941,6 +941,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             return;
         }
 
+
+        if (mObservation == null) return;
+
         if (mObservation.id == null) {
             // Observation not synced
             mSyncToAddCommentsIds.setVisibility(View.VISIBLE);
