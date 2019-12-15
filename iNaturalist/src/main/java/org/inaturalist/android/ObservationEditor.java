@@ -1,5 +1,16 @@
 package org.inaturalist.android;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BaseTarget;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.lang.Rational;
@@ -65,6 +76,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -81,6 +93,9 @@ import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
@@ -90,6 +105,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -1103,6 +1119,7 @@ public class ObservationEditor extends AppCompatActivity {
         for (ObservationPhoto photo : mPhotosRemoved) {
             ContentValues cv = new ContentValues();
             cv.put(ObservationPhoto.IS_DELETED, 0);
+            cv.put(ObservationPhoto._SYNCED_AT, photo._synced_at.getTime());
             getContentResolver().update(photo.getUri(), cv, null, null);
         }
         // Mark any deleted sounds as non-deleted
@@ -1124,7 +1141,7 @@ public class ObservationEditor extends AppCompatActivity {
         // Restore the positions of all photos
     	updateImagesAndSounds();
         GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-        adapter.refreshPhotoPositions(null);
+        adapter.refreshPhotoPositions(null, true);
     }
 
 
@@ -2150,17 +2167,52 @@ public class ObservationEditor extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Integer setFirstPhotoIndex = data.getIntExtra(ObservationPhotosViewer.SET_DEFAULT_PHOTO_INDEX, -1);
                 Integer deletePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DELETE_PHOTO_INDEX, -1);
+                Integer duplicatePhotoIndex = data.getIntExtra(ObservationPhotosViewer.DUPLICATE_PHOTO_INDEX, -1);
+
+                if (data.hasExtra(ObservationPhotosViewer.REPLACED_PHOTOS)) {
+                    // Photos the user has edited
+                    String rawReplacedPhotos = data.getStringExtra(ObservationPhotosViewer.REPLACED_PHOTOS);
+                    rawReplacedPhotos = rawReplacedPhotos.substring(1, rawReplacedPhotos.length() - 1);
+                    String parts[] = rawReplacedPhotos.split(",");
+                    List<Pair<Uri, Long>> replacedPhotos = new ArrayList<>();
+                    for (String value : parts) {
+                        value = value.trim();
+                        String[] innerParts = value.substring(5, value.length() - 1).split(" ", 2);
+                        replacedPhotos.add(new Pair<Uri, Long>(Uri.parse(innerParts[0]), Long.valueOf(innerParts[1])));
+                    }
+
+                    for (Pair<Uri, Long> replacedPhoto : replacedPhotos) {
+                        int index = replacedPhoto.second.intValue();
+                        Uri photoUri = replacedPhoto.first;
+
+                        // Delete old photo
+                        deletePhoto(index, false);
+
+                        // Add new photo instead
+                        Uri createdUri = createObservationPhotoForPhoto(photoUri, index, false);
+                        if (mPhotosAndSoundsAdded != null) {
+                            mPhotosAndSoundsAdded.add(createdUri.toString());
+                        }
+                        mCameraPhotos.add(photoUri.getPath());
+                    }
+                }
+
                 if (setFirstPhotoIndex > -1) {
-                    GalleryCursorAdapter adapter = ((GalleryCursorAdapter)mGallery.getAdapter());
+                    // Set photo as first
+                    GalleryCursorAdapter adapter = ((GalleryCursorAdapter) mGallery.getAdapter());
                     if (setFirstPhotoIndex < adapter.getPhotoCount()) {
                         adapter.setAsFirstPhoto(setFirstPhotoIndex);
                     }
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_NEW_DEFAULT_PHOTO);
                 } else if (deletePhotoIndex > -1) {
-                    deletePhoto(deletePhotoIndex);
+                    // Delete photo
+                    deletePhoto(deletePhotoIndex, true);
 
                     AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_OBS_DELETE_PHOTO);
+                } else if (duplicatePhotoIndex > -1) {
+                    // Duplicate photo
+                    duplicatePhoto(duplicatePhotoIndex);
                 }
             }
         } else if (requestCode == LOCATION_CHOOSER_REQUEST_CODE) {
@@ -2725,7 +2777,7 @@ public class ObservationEditor extends AppCompatActivity {
                     for (final Uri photo : photos) {
                         if (photo == null) continue;
 
-                        Uri createdUri = createObservationPhotoForPhoto(photo, position);
+                        Uri createdUri = createObservationPhotoForPhoto(photo, position, false);
 
                         if (createdUri == null) {
                             errorImporting = true;
@@ -2776,7 +2828,7 @@ public class ObservationEditor extends AppCompatActivity {
     }
 
     private Uri createObservationPhotoForPhoto(Uri photoUri) {
-        return createObservationPhotoForPhoto(photoUri, ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount());
+        return createObservationPhotoForPhoto(photoUri, ((GalleryCursorAdapter)mGallery.getAdapter()).getPhotoCount(), false);
     }
 
     public static String getExtension(Context context, Uri uri) {
@@ -2846,7 +2898,7 @@ public class ObservationEditor extends AppCompatActivity {
         return getContentResolver().insert(ObservationSound.CONTENT_URI, cv);
     }
 
-    private Uri createObservationPhotoForPhoto(Uri photoUri, int position) {
+    private Uri createObservationPhotoForPhoto(Uri photoUri, int position, boolean isDuplicated) {
         mPhotosChanged = true;
 
         String path = FileUtils.getPath(this, photoUri);
@@ -2883,7 +2935,7 @@ public class ObservationEditor extends AppCompatActivity {
         cv.put(ObservationPhoto._OBSERVATION_ID, mObservation._id);
         cv.put(ObservationPhoto.OBSERVATION_ID, mObservation.id);
         cv.put(ObservationPhoto.PHOTO_FILENAME, resizedPhoto);
-        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, path);
+        cv.put(ObservationPhoto.ORIGINAL_PHOTO_FILENAME, isDuplicated ? null : path);
         cv.put(ObservationPhoto.POSITION, position);
 
         return getContentResolver().insert(ObservationPhoto.CONTENT_URI, cv);
@@ -3004,8 +3056,95 @@ public class ObservationEditor extends AppCompatActivity {
 
     	updateImagesAndSounds();
     }
+
+    private void duplicatePhoto(int position) {
+        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+        if (position >= adapter.getPhotoCount()) {
+            return;
+        }
+
+        mPhotosChanged = true;
+
+        Cursor cursor = adapter.getCursor();
+        cursor.moveToPosition(position);
+
+        ObservationPhoto op = new ObservationPhoto(cursor);
+
+        // Add a duplicate of this photo (in a position ahead of this one)
+
+        // Copy file
+        String photoUrl = op.photo_url;
+        String photoFileName = op.photo_filename;
+        final File destFile = new File(getFilesDir(), UUID.randomUUID().toString() + ".jpeg");
+
+        Logger.tag(TAG).info("Duplicate: " + op + ":" + photoFileName + ":" + photoUrl);
+
+        if (photoFileName != null) {
+            // Local file - copy it
+            try {
+                copyFile(new File(photoFileName), destFile);
+                addDuplicatedPhoto(op, destFile);
+            } catch (IOException e) {
+                Logger.tag(TAG).error(e);
+                Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        } else {
+            // Online only - need to download it and then copy
+            Glide.with(this)
+                    .asBitmap()
+                    .load(photoUrl)
+                    .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC))
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                            // Save downloaded bitmap into local file
+                            try {
+                                OutputStream outStream = new FileOutputStream(destFile);
+                                resource.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+                                outStream.close();
+                                addDuplicatedPhoto(op, destFile);
+                            } catch (Exception e) {
+                                Logger.tag(TAG).error(e);
+                                Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                        }
+
+                        @Override
+                        public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                            Logger.tag(TAG).error("onLoadedFailed");
+                            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private void addDuplicatedPhoto(ObservationPhoto originalPhoto, File duplicatedPhotoFile) {
+        // Create new photo observation with the duplicated photo file
+
+        Uri createdUri = createObservationPhotoForPhoto(Uri.fromFile(duplicatedPhotoFile), originalPhoto.position, true);
+
+        if (createdUri == null) {
+            Logger.tag(TAG).error("addDuplicatedPhoto - couldn't create duplicate OP");
+            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_duplicate_photo), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mPhotosAndSoundsAdded.add(createdUri.toString());
+
+        updateImagesAndSounds();
+
+        // Refresh the positions of all other photos
+        GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+        adapter.refreshPhotoPositions(originalPhoto.position, false);
+    }
     
-    private void deletePhoto(int position) {
+    private void deletePhoto(int position, boolean refreshPositions) {
     	GalleryCursorAdapter adapter = (GalleryCursorAdapter) mGallery.getAdapter();
         if (position >= adapter.getPhotoCount()) {
             return;
@@ -3026,9 +3165,11 @@ public class ObservationEditor extends AppCompatActivity {
 
     	updateImagesAndSounds();
 
-        // Refresh the positions of all other photos
-        adapter = (GalleryCursorAdapter) mGallery.getAdapter();
-        adapter.refreshPhotoPositions(null);
+    	if (refreshPositions) {
+            // Refresh the positions of all other photos
+            adapter = (GalleryCursorAdapter) mGallery.getAdapter();
+            adapter.refreshPhotoPositions(null, false);
+        }
     }
 
     /**
@@ -3292,12 +3433,12 @@ public class ObservationEditor extends AppCompatActivity {
             }
 
             // Update the rest of the photos to be positioned afterwards
-            refreshPhotoPositions(position);
+            refreshPhotoPositions(position, false);
 
             updateImagesAndSounds();
         }
 
-        public void refreshPhotoPositions(Integer position) {
+        public void refreshPhotoPositions(Integer position, boolean doNotUpdate) {
             int currentPosition = position == null ? 0 : 1;
             int count = mGalleryCursor.getCount();
 
@@ -3309,10 +3450,15 @@ public class ObservationEditor extends AppCompatActivity {
                 if ((position == null) || (mGalleryCursor.getPosition() != position.intValue()))  {
                     ObservationPhoto currentOp = new ObservationPhoto(mGalleryCursor);
                     currentOp.position = currentPosition;
+                    ContentValues cv = currentOp.getContentValues();
+                    if (doNotUpdate) {
+                        cv.put(ObservationPhoto._SYNCED_AT, currentOp._synced_at.getTime());
+                    }
+
                     if (currentOp.photo_filename != null) {
-                        getContentResolver().update(ObservationPhoto.CONTENT_URI, currentOp.getContentValues(), "photo_filename = '" + currentOp.photo_filename + "'", null);
+                        getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_filename = '" + currentOp.photo_filename + "'", null);
                     } else {
-                        getContentResolver().update(ObservationPhoto.CONTENT_URI, currentOp.getContentValues(), "photo_url = '" + currentOp.photo_url + "'", null);
+                        getContentResolver().update(ObservationPhoto.CONTENT_URI, cv, "photo_url = '" + currentOp.photo_url + "'", null);
                     }
 
                     currentPosition++;

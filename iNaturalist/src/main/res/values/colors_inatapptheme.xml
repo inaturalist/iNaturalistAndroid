@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:override="true">
     <color name="inatapptheme_color_disabled">#33669900</color>
     <color name="inatapptheme_color">#669900</color>
     <color name="inatapptheme_color_highlighted">#ff006616</color>
@@ -10,4 +10,7 @@
     <color name="inatapptheme_color_error">#F3D3DA</color>
     <color name="inatapptheme_color_error_highlighted">#ff474b</color>
     <color name="inatapptheme_color_being_uploaded">#E3EDCD</color>
+    <color name="ucrop_color_widget_background">#FFFFFF</color>
+    <color name="ucrop_color_active_controls_color">#74AC00</color>
+    <color name="ucrop_color_widget_active">#74AC00</color>
 </resources>

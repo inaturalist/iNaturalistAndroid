@@ -3,6 +3,7 @@ package org.inaturalist.android;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,12 +26,18 @@ import com.bumptech.glide.request.transition.Transition;
 import com.evernote.android.state.State;
 
 import com.livefront.bridge.Bridge;
+import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.UCropActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
@@ -39,6 +46,8 @@ import androidx.viewpager.widget.ViewPager.LayoutParams;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,6 +56,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class ObservationPhotosViewer extends AppCompatActivity {
     private static String TAG = "ObservationPhotosViewer";
@@ -63,19 +73,22 @@ public class ObservationPhotosViewer extends AppCompatActivity {
     public static final String READ_ONLY = "read_only";
     public static final String IS_TAXON = "is_taxon";
 
+    public static final String REPLACED_PHOTOS = "replaced_photos";
     public static final String SET_DEFAULT_PHOTO_INDEX = "set_default_photo_index";
     public static final String DELETE_PHOTO_INDEX = "delete_photo_index";
+    public static final String DUPLICATE_PHOTO_INDEX = "duplicate_photo_index";
 
     @State public boolean mIsNewObservation;
     @State public int mObservationId;
     @State public int mCurrentPhotoIndex;
     private View mDeletePhoto;
+    private View mDuplicatePhoto;
+    private View mEditPhoto;
+    private View mActionContainer;
     @State public boolean mReadOnly;
     @State public int mObservationIdInternal;
     @State public boolean mIsTaxon;
-
-
-
+    @State(AndroidStateBundlers.ListPairBundler.class) public List<Pair<Uri, Long>> mReplacedPhotos = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +104,10 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         setContentView(R.layout.observation_photos);
 
         mDeletePhoto = findViewById(R.id.delete_photo);
-        
+        mDuplicatePhoto = findViewById(R.id.duplicate_photo);
+        mEditPhoto = findViewById(R.id.edit_photo);
+        mActionContainer = findViewById(R.id.action_container);
+
         Intent intent = getIntent();
 
         try {
@@ -131,8 +147,16 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 		if ((mObservation != null) && (!mIsNewObservation)) {
             mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservation, mIsTaxon));
 		} else if (mIsNewObservation) {
-            mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal));
-            if (!mReadOnly) mDeletePhoto.setVisibility(View.VISIBLE);
+		    IdPicsPagerAdapter adapter = new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal);
+            mViewPager.setAdapter(adapter);
+            if (mReplacedPhotos.size() > 0) {
+                // Update with any modified/cropped photos
+                for (Pair<Uri, Long> replacedPhoto : mReplacedPhotos) {
+                    adapter.setImageUri(replacedPhoto.second.intValue(), replacedPhoto.first);
+                }
+            }
+
+            if (!mReadOnly) mActionContainer.setVisibility(View.VISIBLE);
             mDeletePhoto.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -142,17 +166,119 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     finish();
                 }
             });
+            mDuplicatePhoto.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent data = new Intent();
+                    data.putExtra(DUPLICATE_PHOTO_INDEX, mViewPager.getCurrentItem());
+                    setResult(RESULT_OK, data);
+                    finish();
+                }
+            });
+            mEditPhoto.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    editPhoto(mViewPager.getCurrentItem());
+                }
+            });
         }
         mViewPager.setCurrentItem(mCurrentPhotoIndex);
 
     }
 
+    private void editPhoto(int photoIndex) {
+        IdPicsPagerAdapter adapter = (IdPicsPagerAdapter) mViewPager.getAdapter();
+        String sourceImage = adapter.getImageUri(photoIndex);
+
+        if (sourceImage == null) {
+            Toast.makeText(getApplicationContext(), getString(R.string.couldnt_edit_photo), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Uri sourceUri = sourceImage.startsWith("http") ? Uri.parse(sourceImage) : Uri.fromFile(new File(sourceImage));
+
+
+        Uri destUri = Uri.fromFile(new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg"));
+        UCrop uCrop = UCrop.of(sourceUri, destUri);
+
+        // Configure uCrop
+
+        uCrop = uCrop.useSourceImageAspectRatio();
+
+        UCrop.Options options = new UCrop.Options();
+        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
+        options.setFreeStyleCropEnabled(true);
+        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.NONE, UCropActivity.SCALE);
+        options.setToolbarColor(Color.parseColor("#74AC00"));
+        options.setActiveWidgetColor(Color.parseColor("#FFFFFF"));
+        options.setStatusBarColor(Color.parseColor("#74AC00"));
+        options.setToolbarWidgetColor(Color.parseColor("#FFFFFF"));
+        options.setRootViewBackgroundColor(Color.parseColor("#74AC00"));
+        options.setCropGridColumnCount(2);
+        options.setCropGridRowCount(1);
+        options.setShowCropGrid(false);
+        options.setActiveControlsWidgetColor(Color.parseColor("#74AC00"));
+        options.setRootViewBackgroundColor(Color.parseColor("#FFFFFF"));
+        options.setToolbarCancelDrawable(R.drawable.ic_arrow_back_white_24dp);
+
+        uCrop = uCrop.withOptions(options);
+
+        mCurrentPhotoIndex = photoIndex;
+
+        uCrop.start(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == UCrop.REQUEST_CROP) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                // Replace current photo with edited photo
+                Uri uri = data.getParcelableExtra(UCrop.EXTRA_OUTPUT_URI);
+                IdPicsPagerAdapter adapter = (IdPicsPagerAdapter) mViewPager.getAdapter();
+
+                adapter.setImageUri(mCurrentPhotoIndex, uri);
+
+                for (int i = 0; i < mReplacedPhotos.size(); i++) {
+                    Pair<Uri, Long> pair = mReplacedPhotos.get(i);
+                    if (pair.second == mCurrentPhotoIndex) {
+                        // User already edited this photo before - just replace the edit
+                        mReplacedPhotos.set(mCurrentPhotoIndex, new Pair<Uri, Long>(uri, Long.valueOf(mCurrentPhotoIndex)));
+                        return;
+                    }
+                }
+
+                // New edit of this photo - save it
+                mReplacedPhotos.add(new Pair<>(uri, Long.valueOf(mCurrentPhotoIndex)));
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        checkForReplacedPhotos();
+
+        super.onBackPressed();
+    }
+
+    private void checkForReplacedPhotos() {
+        if (mReplacedPhotos.size() > 0) {
+            Intent data = new Intent();
+            String replacedPhotos = mReplacedPhotos.toString();
+            data.putExtra(REPLACED_PHOTOS, replacedPhotos);
+            setResult(RESULT_OK, data);
+        } else {
+            setResult(RESULT_CANCELED);
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                setResult(RESULT_CANCELED);
+                checkForReplacedPhotos();
                 finish();
                 return true;
             case R.id.set_as_first:
@@ -194,11 +320,17 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         }
  		int mDefaultTaxonIcon;
  		List<String> mImages;
+        List<ImageView> mImageViews;
+        List<PhotoViewAttacher> mImageViewAttachers;
+        List<Long> mPhotoIds;
         List<String> mImageThumbnails;
         Activity mActivity;
         ViewPager mViewPager;
         private OnClickListener mClickListener;
         private OnZoomListener mZoomListener = null;
+
+        private Integer mObservationId = null;
+        private Integer mInternalObservationId = null;
 
         public IdPicsPagerAdapter(Activity activity, ViewPager viewPager, int observationId, int _observationId, OnClickListener listener) {
             this(activity, viewPager, observationId, _observationId);
@@ -214,17 +346,27 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mActivity = activity;
             mViewPager = viewPager;
             mImages = new ArrayList<String>();
+            mImageViews = new ArrayList<>();
+            mImageViewAttachers = new ArrayList<>();
+            mPhotoIds = new ArrayList<>();
             mImageThumbnails = new ArrayList<String>();
+            mObservationId = observationId;
+            mInternalObservationId = _observationId;
 
             Cursor imageCursor = activity.getContentResolver().query(ObservationPhoto.CONTENT_URI,
                     ObservationPhoto.PROJECTION,
-                    "_observation_id=? or observation_id=?",
+                    "(_observation_id=? OR observation_id=?) AND ((is_deleted = 0) OR (is_deleted IS NULL))",
                     new String[]{String.valueOf(_observationId), String.valueOf(observationId)},
                     ObservationPhoto.DEFAULT_SORT_ORDER);
 
             imageCursor.moveToFirst();
 
             if (imageCursor.getCount() == 0) return;
+
+            for (int i = 0; i < imageCursor.getCount(); i++) {
+                mImageViews.add(null);
+                mImageViewAttachers.add(null);
+            }
 
             do {
                 String photoFileName = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_FILENAME));
@@ -243,6 +385,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
                 String imageUrl = imageCursor.getString(imageCursor.getColumnIndexOrThrow(ObservationPhoto.PHOTO_URL));
                 mImages.add(imageUrl != null ? imageUrl : photoFileName);
+                mPhotoIds.add(imageCursor.getLong(imageCursor.getColumnIndexOrThrow(ObservationPhoto._ID)));
 
                 if (imageUrl != null) {
                     // Deduct the URL of the thumbnail
@@ -263,12 +406,23 @@ public class ObservationPhotosViewer extends AppCompatActivity {
             mActivity = activity;
             mViewPager = viewPager;
  			mImages = new ArrayList<String>();
+            mImageViews = new ArrayList<>();
+            mImageViewAttachers = new ArrayList<>();
+            mPhotoIds = new ArrayList<>();
             mImageThumbnails = new ArrayList<String>();
  			mDefaultTaxonIcon = TaxonUtils.observationIcon(observation);
 
+
+
  			JSONArray photos = observation.optJSONArray(isTaxon ? "taxon_photos" : "observation_photos");
  			if ((photos != null) && (photos.length() > 0)) {
- 				// Show the photos
+                for (int i = 0; i < photos.length(); i++) {
+                    mImageViews.add(null);
+                    mImageViewAttachers.add(null);
+                    mPhotoIds.add(null);
+                }
+
+                // Show the photos
  				for (int i = 0; i < photos.length(); i++) {
  					JSONObject photo = photos.optJSONObject(i);
  					if (photo != null) {
@@ -301,11 +455,38 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  			return mImages.size();
  		}
 
+ 		public String getImageUri(int index) {
+            if ((index < 0) || (index >= mImages.size())) return null;
+
+            return mImages.get(index);
+        }
+
+        public Long getImageId(int index) {
+            if ((index < 0) || (index >= mImages.size())) return null;
+
+            return mPhotoIds.get(index);
+        }
+
+        // Sets a new image URI (assumes it's an offline image) - basically replaces existing photo
+        public void setImageUri(int index, Uri uri) {
+            if ((index < 0) || (index >= mImages.size())) return;
+            if ((mInternalObservationId == null) || (mObservationId == null)) return; // Can't edit a read-only observation's photos
+
+            // Refresh UI
+            mImages.set(index, uri.getPath());
+            ImageView imageView = mImageViews.get(index);
+            if (imageView != null) {
+                imageView.setImageBitmap(BitmapFactory.decodeFile(uri.getPath()));
+                mImageViewAttachers.get(index).update();
+            }
+        }
+
  		@Override
  		public View instantiateItem(ViewGroup container, int position) {
  			View layout = (View) mActivity.getLayoutInflater().inflate(R.layout.observation_photo, null, false);
  			container.addView(layout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
  			final ImageView imageView = (ImageView) layout.findViewById(R.id.id_pic);
+ 			mImageViews.set(position, imageView);
  			final ProgressBar loading = (ProgressBar) layout.findViewById(R.id.id_pic_loading);
 
             String imagePath = mImages.get(position);
@@ -315,6 +496,7 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 // Offline photo
                 try {
                     attacher = new PhotoViewAttacher(imageView);
+                    mImageViewAttachers.set(position, attacher);
                     final PhotoViewAttacher finalAttacher2 = attacher;
                     GlideApp.with(mActivity)
                             .load(new File(imagePath))
@@ -347,8 +529,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     loading.setVisibility(View.VISIBLE);
                     imageView.setVisibility(View.INVISIBLE);
                     attacher = new PhotoViewAttacher(imageView);
+                    mImageViewAttachers.set(position, attacher);
 
-                    // Deduct the original-sized URL
+                    // Deduce the original-sized URL
                     imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/')) + "/original" + imageUrl.substring(imageUrl.lastIndexOf('.'));
 
                     // Show a photo

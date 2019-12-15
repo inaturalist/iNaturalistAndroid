@@ -279,7 +279,8 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
 
         c.close();
         
-        Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI, 
+        Cursor opc = getContentResolver().query(ObservationPhoto.CONTENT_URI,
+        		/*
         		new String[]{
         		ObservationPhoto._ID, 
         		ObservationPhoto._OBSERVATION_ID,
@@ -287,7 +288,9 @@ public class ObservationListActivity extends BaseFragmentActivity implements INo
         		ObservationPhoto.PHOTO_URL,
         		ObservationPhoto._UPDATED_AT,
         		ObservationPhoto._SYNCED_AT
-            }, 
+            },
+            */
+        		ObservationPhoto.PROJECTION,
             "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NULL)) OR " +
             "((photo_url IS NULL) AND (_updated_at IS NOT NULL) AND (_synced_at IS NOT NULL) AND (_updated_at > _synced_at)) OR " +
             "(is_deleted = 1)",

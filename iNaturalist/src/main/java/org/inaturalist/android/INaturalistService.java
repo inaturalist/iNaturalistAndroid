@@ -3937,6 +3937,7 @@ public class INaturalistService extends IntentService {
                 String inatHost = mApp.getStringResourceByName("inat_host_" + inatNetwork);
                 params.add(new BasicNameValuePair("site_id", mApp.getStringResourceByName("inat_site_id_" + inatNetwork)));
 
+
                 Logger.tag(TAG).debug("postPhotos: Updating " + op + ":" + params);
                 JSONArray response = put(inatHost + "/observation_photos/" + op.id + ".json", params);
                 try {

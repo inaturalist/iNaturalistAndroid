@@ -725,5 +725,17 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
+    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_edit_photo">Edit Photo</string>
 </resources>
 

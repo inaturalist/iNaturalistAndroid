@@ -2,6 +2,8 @@ package org.inaturalist.android;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -18,6 +20,33 @@ import java.util.List;
 
 /** Where all the android-state custom bundlers are implemented */
 public class AndroidStateBundlers {
+
+    public static final class ListPairBundler implements Bundler<List<Pair<Uri, Long>>> {
+        @Override
+        public void put(@NonNull String key, @NonNull List<Pair<Uri, Long>> value, @NonNull Bundle bundle) {
+            String str = value.toString();
+            bundle.putString(key, str.substring(1, str.length() - 1));
+        }
+
+        @Nullable
+        @Override
+        public List<Pair<Uri, Long>> get(@NonNull String key, @NonNull Bundle bundle) {
+            if (bundle.containsKey(key)) {
+                String parts[] = bundle.getString(key).split(",");
+                List<Pair<Uri, Long>> results = new ArrayList<>();
+                for (String value : parts) {
+                    value = value.trim();
+                    String[] innerParts = value.substring(5, value.length() - 1).split(" ", 2);
+                    results.add(new Pair<Uri, Long>(Uri.parse(innerParts[0]), Long.valueOf(innerParts[1])));
+                }
+
+                return results;
+
+            } else {
+                return null;
+            }
+        }
+    }
 
     public static final class ListBundler implements Bundler<List<Integer>> {
         @Override

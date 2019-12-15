@@ -4,22 +4,59 @@
     android:layout_height="match_parent">
 
 
-    <ImageButton
-        android:id="@+id/delete_photo"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_delete_black_24dp"
+    <RelativeLayout
+        android:id="@+id/action_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@null"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="10dp"
         android:visibility="gone"
-        />
+        >
+        <Button
+            android:id="@+id/edit_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_mode_edit_black_24dp"
+            android:drawablePadding="5dp"
+            android:background="@null"
+            android:text="@string/edit"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            />
+
+        <Button
+            android:id="@+id/duplicate_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/baseline_file_copy_black_24"
+            android:drawablePadding="5dp"
+            android:background="@null"
+            android:text="@string/duplicate"
+            android:layout_centerInParent="true"
+            />
+
+        <Button
+            android:id="@+id/delete_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_delete_black_24dp"
+            android:drawablePadding="5dp"
+            android:background="@null"
+            android:text="@string/delete"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
 
     <uk.co.senab.photoview.HackyViewPager
         android:id="@+id/id_pic_view_pager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/delete_photo"
+        android:layout_above="@id/action_container"
          />
 
 </RelativeLayout>
