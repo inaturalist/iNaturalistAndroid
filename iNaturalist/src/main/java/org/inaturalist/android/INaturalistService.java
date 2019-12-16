@@ -14,6 +14,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -518,6 +519,9 @@ public class INaturalistService extends IntentService {
     private Hashtable<Integer, Hashtable<Integer, ProjectFieldValue>> mProjectFieldValues;
 
     private Header[] mResponseHeaders = null;
+    private Date mRetryAfterDate = null;
+    private long mLastServiceUnavailableNotification = 0;
+    private boolean mServiceUnavailable = false;
 
     private JSONArray mResponseErrors;
 
@@ -1848,7 +1852,8 @@ public class INaturalistService extends IntentService {
         mApp.notify(getString(R.string.preparing), getString(R.string.preparing));
 
         Logger.tag(TAG).debug("syncObservations: Calling syncRemotelyDeletedObs");
-        syncRemotelyDeletedObs();
+        if (!syncRemotelyDeletedObs()) throw new SyncFailedException();
+
         // First, download remote observations (new/updated)
         Logger.tag(TAG).debug("syncObservations: Calling getUserObservations");
         if (!getUserObservations(0)) throw new SyncFailedException();
@@ -5683,6 +5688,9 @@ public class INaturalistService extends IntentService {
 
         HttpRequestBase request;
 
+        mRetryAfterDate = null;
+        mServiceUnavailable = false;
+
         Logger.tag(TAG).debug(String.format("URL: %s - %s (params: %s / %s)", method, url, (params != null ? params.toString() : "null"), (jsonContent != null ? jsonContent.toString() : "null")));
 
         if (method.equalsIgnoreCase("post")) {
@@ -5784,7 +5792,7 @@ public class INaturalistService extends IntentService {
             JSONArray json = null;
             mLastStatusCode = response.getStatusLine().getStatusCode();
 
-            switch (response.getStatusLine().getStatusCode()) {
+            switch (mLastStatusCode) {
                 //switch (response.getStatusCode()) {
                 case HttpStatus.SC_UNPROCESSABLE_ENTITY:
                     // Validation error - still need to return response
@@ -5826,6 +5834,77 @@ public class INaturalistService extends IntentService {
 
                 case HttpStatus.SC_UNAUTHORIZED:
                     throw new AuthenticationException();
+                case HttpURLConnection.HTTP_UNAVAILABLE:
+                    Logger.tag(TAG).error("503 server unavailable");
+                    mServiceUnavailable = true;
+
+                    // Find out if there's a "Retry-After" header
+                    Header[] headers = response.getHeaders("Retry-After");
+                    if ((headers != null) && (headers.length > 0)) {
+                        for (Header header : headers) {
+                            String timestampString = header.getValue();
+                            Logger.tag(TAG).error("Retry after raw string: " + timestampString);
+                            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+                            try {
+                                mRetryAfterDate = format.parse(timestampString);
+                                Logger.tag(TAG).error("Retry after: " + mRetryAfterDate);
+                                break;
+                            } catch (ParseException e) {
+                                Logger.tag(TAG).error(e);
+                                try {
+                                    // Try parsing it as a seconds-delay value
+                                    int secondsDelay = Integer.valueOf(timestampString);
+                                    Logger.tag(TAG).error("Retry after: " + secondsDelay);
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.add(Calendar.SECOND, secondsDelay);
+                                    mRetryAfterDate = calendar.getTime();
+
+                                    break;
+                                } catch (NumberFormatException exc) {
+                                    Logger.tag(TAG).error(exc);
+                                }
+                            }
+                        }
+                    }
+
+                    // Show service not available message to user
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            String errorMessage;
+                            if (mRetryAfterDate == null) {
+                                // No specific retry time
+                                errorMessage = getString(R.string.please_try_again_in_a_few_hours);
+                            } else {
+                                // Specific retry time
+                                Date currentTime = Calendar.getInstance().getTime();
+                                long differenceSeconds = (mRetryAfterDate.getTime() - currentTime.getTime()) / 1000;
+
+                                long delay;
+                                String delayType;
+
+                                if (differenceSeconds < 60) {
+                                    delayType = getString(R.string.seconds_value);
+                                    delay = differenceSeconds;
+                                } else if (differenceSeconds < 60 * 60) {
+                                    delayType = getString(R.string.minutes);
+                                    delay = (differenceSeconds / 60);
+                                } else {
+                                    delayType = getString(R.string.hours);
+                                    delay = (differenceSeconds / (60 * 60));
+                                }
+                                errorMessage = String.format(getString(R.string.please_try_again_in_x), delay, delayType);
+                            }
+
+                            if (System.currentTimeMillis() - mLastServiceUnavailableNotification > 30000) {
+                                // Make sure we won't notify the user about this too often
+                                mLastServiceUnavailableNotification = System.currentTimeMillis();
+                                Toast.makeText(getApplicationContext(), getString(R.string.service_temporarily_unavailable) + " " + errorMessage, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+                    return null;
                 case HttpStatus.SC_GONE:
                     Logger.tag(TAG).error("GONE: " + response.getStatusLine().toString());
                     // TODO create notification that informs user some observations have been deleted on the server,
@@ -6357,11 +6436,15 @@ public class INaturalistService extends IntentService {
                 Logger.tag(TAG).debug("handleObservationResponse - error response (probably validation error)");
                 JSONObject original = json.optJSONObject("error").optJSONObject("original");
                 if ((original != null) && (original.has("error")) && (!original.isNull("error"))) {
-                    JSONArray errors = new JSONArray()
+                    JSONArray errors = new JSONArray();
                     errors.put(original.optString("error").trim());
                     mApp.setErrorsForObservation(observation.id, 0, errors);
                 }
 
+                return false;
+            } else if (mLastStatusCode == 503) {
+                // Server not available
+                Logger.tag(TAG).error("503 - server not available");
                 return false;
             }
 

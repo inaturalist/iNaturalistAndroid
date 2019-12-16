@@ -737,5 +737,12 @@
     <string name="ucrop_sharpness">Sharpness</string>
     <string name="ucrop_label_original">Original</string>
     <string name="ucrop_label_edit_photo">Edit Photo</string>
+    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
+    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds_value">seconds</string>
 </resources>
 
