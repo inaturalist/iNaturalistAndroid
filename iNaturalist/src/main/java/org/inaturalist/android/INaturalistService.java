@@ -6355,6 +6355,13 @@ public class INaturalistService extends IntentService {
             if ((json.has("error") && !json.isNull("error")) || ((mLastStatusCode >= 400) && (mLastStatusCode < 500))) {
                 // Error
                 Logger.tag(TAG).debug("handleObservationResponse - error response (probably validation error)");
+                JSONObject original = json.optJSONObject("error").optJSONObject("original");
+                if ((original != null) && (original.has("error")) && (!original.isNull("error"))) {
+                    JSONArray errors = new JSONArray()
+                    errors.put(original.optString("error").trim());
+                    mApp.setErrorsForObservation(observation.id, 0, errors);
+                }
+
                 return false;
             }
 
