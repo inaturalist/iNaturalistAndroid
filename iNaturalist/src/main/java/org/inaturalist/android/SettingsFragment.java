@@ -33,6 +33,7 @@ import java.io.File;
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
+    private static final String SHOP_URL = "https://store.inaturalist.org/?utm_source=android&utm_medium=mobile&utm_campaign=store";
     private static final String TAG = "SettingsFragment";
 
     private Preference mUsernamePreference;
@@ -45,6 +46,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mVersion;
     private Preference mAbout;
     private Preference mDonate;
+    private Preference mShop;
 
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
@@ -75,6 +77,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mContactSupport = (Preference) getPreferenceManager().findPreference("contact_support");
         mAbout = (Preference) getPreferenceManager().findPreference("about");
         mDonate = (Preference) getPreferenceManager().findPreference("donate");
+        mShop = (Preference) getPreferenceManager().findPreference("shop");
         mVersion = (Preference) getPreferenceManager().findPreference("version");
 
         mHelper = new ActivityHelper(getActivity());
@@ -287,6 +290,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
             }
         });
+
+        mShop.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                // Open donation page
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(SHOP_URL));
+                startActivity(browserIntent);
+                return false;
+            }
+        });
+
 
 
         // Show app version

@@ -59,6 +59,11 @@
         android:key="about"
         android:title="@string/about_this_app" />
 
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="shop"
+        android:title="@string/shop_the_inat_store" />
+
      <Preference
         android:layout="@layout/custom_preference"
         android:key="donate"
