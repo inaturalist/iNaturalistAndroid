@@ -41,9 +41,15 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     private static final String VIEW_TYPE_MY_FOLLOWING = "following";
     private static final String VIEW_TYPE_NEWS = "news";
 
+    private static final int REFRESH_TYPE_NONE = 0;
+    private static final int REFRESH_TYPE_MY_CONTENT = 1;
+    private static final int REFRESH_TYPE_FOLLOWING = 2;
+    private static final int REFRESH_TYPE_NEWS = 3;
+
     private ActivityHelper mHelper;
     private INaturalistApp mApp;
     @State public String mViewType;
+    @State public int mRefreshType = REFRESH_TYPE_NONE;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     
@@ -58,7 +64,6 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
     private TextView mFollowingActivityEmpty;
     private PullToRefreshListView mFollowingActivityList;
     private TextView mFollowingActivityEmptySubTitle;
-
 
     private NewsReceiver mNewsReceiver;
 
@@ -363,6 +368,7 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         @Override
         public void onReceive(Context context, Intent intent) {
             Bundle extras = intent.getExtras();
+            mRefreshType = REFRESH_TYPE_NONE;
             String error = extras.getString("error");
             if (error != null) {
                 return;
@@ -447,22 +453,33 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
         pullToRefresh.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                Intent serviceIntent;
-
                 if (refreshView == mNewsList) {
-                    // Get the user's news
-                    serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
+                    refreshActivities(REFRESH_TYPE_NEWS);
+                } else if (refreshView == mActivityList) {
+                    refreshActivities(REFRESH_TYPE_MY_CONTENT);
                 } else {
-                    // Get the user's activities
-                    serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
-                    serviceIntent.putExtra(INaturalistService.FOLLOWING, refreshView == mActivityList ? false : true);
+                    refreshActivities(REFRESH_TYPE_FOLLOWING);
                 }
-
-                ContextCompat.startForegroundService(UserActivity.this, serviceIntent);
             }
         });
     }
 
+    private void refreshActivities(int refreshType) {
+        Intent serviceIntent;
+
+        mRefreshType = refreshType;
+
+        if (refreshType == REFRESH_TYPE_NEWS) {
+            // Get the user's news
+            serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
+        } else {
+            // Get the user's activities
+            serviceIntent = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
+            serviceIntent.putExtra(INaturalistService.FOLLOWING, refreshType == REFRESH_TYPE_MY_CONTENT ? false : true);
+        }
+
+        ContextCompat.startForegroundService(UserActivity.this, serviceIntent);
+    }
 
 
     @Override
@@ -481,19 +498,19 @@ public class UserActivity extends BaseFragmentActivity implements UserActivities
 
 
         // Get the user's news feed
-        if (mNews == null) {
+        if ((mNews == null) || (mRefreshType == REFRESH_TYPE_NEWS)) {
             Intent serviceIntent = new Intent(INaturalistService.ACTION_GET_NEWS, null, UserActivity.this, INaturalistService.class);
             ContextCompat.startForegroundService(this, serviceIntent);
         }
 
         if (mApp.loggedIn()) {
-            if (mActivities == null) {
+            if ((mActivities == null) || (mRefreshType == REFRESH_TYPE_MY_CONTENT)) {
                 // Get the user's activities
                 Intent serviceIntent2 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
                 serviceIntent2.putExtra(INaturalistService.FOLLOWING, false);
                 ContextCompat.startForegroundService(this, serviceIntent2);
             }
-            if (mFollowingActivities == null) {
+            if ((mFollowingActivities == null) || (mRefreshType == REFRESH_TYPE_FOLLOWING)) {
                 // Get the user's activities (following obs)
                 Intent serviceIntent3 = new Intent(INaturalistService.ACTION_GET_USER_UPDATES, null, UserActivity.this, INaturalistService.class);
                 serviceIntent3.putExtra(INaturalistService.FOLLOWING, true);
