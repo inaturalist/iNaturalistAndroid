@@ -366,6 +366,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                     sound = new ObservationSound(mSoundCursor);
 
+                    Logger.tag(TAG).info("Observation: " + mObservation);
+                    Logger.tag(TAG).info("Sound: " + sound);
+
                 } else {
                     // Photo
                     mImageCursor.moveToPosition(position);

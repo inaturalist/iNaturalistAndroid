@@ -76,7 +76,7 @@ public class ObservationSound implements BaseColumns, Serializable {
     }
 
     public String toString() {
-        return String.format("ObservationSound (%d / %d): %s / %s", _id, id != null ? id : -1, filename, file_url);
+        return String.format("ObservationSound (%d / %d): %d/%d - %s / %s", _id, id != null ? id : -1, observation_id != null ? observation_id : -1, _observation_id != null ? _observation_id : -1, filename, file_url);
     }
 
     public ObservationSound() {}
