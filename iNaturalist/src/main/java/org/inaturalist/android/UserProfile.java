@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -49,6 +50,8 @@ import org.tinylog.Logger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserProfile extends AppCompatActivity implements TabHost.OnTabChangeListener, AppBarLayout.OnOffsetChangedListener {
  	private final static String VIEW_TYPE_OBSERVATIONS = "observations";
@@ -258,14 +261,47 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
         }
         
         if (savedInstanceState == null) {
-            mUser = (BetterJSONObject) intent.getSerializableExtra("user");
-            mTotalObservations = mUser.getJSONObject().optInt("observations_count", 0);
-            mTotalIdentifications = mUser.getJSONObject().optInt("identifications_count", 0);
-            mViewType = VIEW_TYPE_OBSERVATIONS;
+            Uri uri = intent.getData();
 
-            mObservationsContainer.setVisibility(View.VISIBLE);
-            mSpeciesContainer.setVisibility(View.INVISIBLE);
-            mIdentificationsContainer.setVisibility(View.INVISIBLE);
+            if ((uri != null) && (uri.getScheme().equals("https"))) {
+                // User clicked on a user link (e.g. https://www.inaturalist.org/people/myuser)
+                String path = uri.getPath();
+                Logger.tag(TAG).info("Launched from external URL: " + uri);
+
+                if (path.toLowerCase().startsWith("/people/")) {
+                    Pattern pattern = Pattern.compile("people/([^ /?]+)");
+                    Matcher matcher = pattern.matcher(path);
+                    if (matcher.find()) {
+                        String username = matcher.group(1);
+                        String json = String.format("{ \"login\": %s }", username);
+                        mUser = new BetterJSONObject(json);
+                        mTotalObservations = 0;
+                        mTotalIdentifications = 0;
+                        mViewType = VIEW_TYPE_OBSERVATIONS;
+
+                        mObservationsContainer.setVisibility(View.VISIBLE);
+                        mSpeciesContainer.setVisibility(View.INVISIBLE);
+                        mIdentificationsContainer.setVisibility(View.INVISIBLE);
+                    } else {
+                        Logger.tag(TAG).error("Invalid URL");
+                        finish();
+                        return;
+                    }
+                } else {
+                    Logger.tag(TAG).error("Invalid URL");
+                    finish();
+                    return;
+                }
+            } else {
+                mUser = (BetterJSONObject) intent.getSerializableExtra("user");
+                mTotalObservations = mUser.getJSONObject().optInt("observations_count", 0);
+                mTotalIdentifications = mUser.getJSONObject().optInt("identifications_count", 0);
+                mViewType = VIEW_TYPE_OBSERVATIONS;
+
+                mObservationsContainer.setVisibility(View.VISIBLE);
+                mSpeciesContainer.setVisibility(View.INVISIBLE);
+                mIdentificationsContainer.setVisibility(View.INVISIBLE);
+            }
         }
 
         // Tab Initialization
