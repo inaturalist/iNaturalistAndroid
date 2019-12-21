@@ -362,7 +362,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
     <string name="your_identification">Your ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, but it\'s OK if you can\'t. Others may help you identify it!</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \'insect\' or \'bird,\' or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">Upload Complete!</string>
     <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
     <string name="importing_photos">Importing photo(s)...</string>
