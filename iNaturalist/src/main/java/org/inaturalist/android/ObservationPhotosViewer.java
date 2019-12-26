@@ -447,8 +447,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  				// Show taxon icon
  				mImages.add(null);
                 mImageThumbnails.add(null);
- 			}
- 		}
+
+                mImageViews.add(null);
+                mImageViewAttachers.add(null);
+            }
+        }
 
  		@Override
  		public int getCount() {
