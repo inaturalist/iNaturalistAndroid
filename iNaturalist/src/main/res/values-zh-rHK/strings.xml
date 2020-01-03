@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">更新物種辨認描述</string>
     <string name="your_identification">您的 ID: %1$s</string>
-    <string name="onboarding_species_name">請辨認你所看到的動物。如果你不肯定該物種的名稱，沒關係，其他人也可以幫助你辨認它！</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">上傳完成！</string>
     <string name="onboarding_upload_description">請稍後回來查看其他人對你的觀察記錄的辨認及評論。</string>
     <string name="importing_photos">正在上載照片中...</string>
@@ -518,7 +518,8 @@
     <string name="user">使用者</string>
     <string name="search_users">搜尋使用者</string>
     <string name="quality_grade">品質等級</string>
-    <string name="dates">日期</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Date Observed</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">任一</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -725,4 +726,24 @@
     <string name="pin_current_location">釘選現在的位置</string>
     <string name="location_pinned_successfully">現在的位址已成功釘選</string>
     <string name="delete_this_pinned_location">您要刪除這筆釘選的位置嗎？</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
+    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_saturation">飽和度</string>
+    <string name="ucrop_sharpness">銳利度</string>
+    <string name="ucrop_label_original">原始照片</string>
+    <string name="ucrop_label_edit_photo">編輯照片</string>
+    <string name="service_temporarily_unavailable">暫時無法使用服務。</string>
+    <string name="please_try_again_in_a_few_hours">請在幾個小時之後再試一次。</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds_value">seconds</string>
+    <string name="shop_the_inat_store">Shop the iNat Store</string>
 </resources>
