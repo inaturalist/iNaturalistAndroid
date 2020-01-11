@@ -27,26 +27,26 @@ import com.evernote.android.state.State;
 
 import com.livefront.bridge.Bridge;
 import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.UCropActivity;
+import com.yalantis.ucrop.UCropFragment;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.LayoutParams;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Handler;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -171,6 +171,10 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent data = new Intent();
                     data.putExtra(DUPLICATE_PHOTO_INDEX, mViewPager.getCurrentItem());
+                    if (mReplacedPhotos.size() > 0) {
+                        String replacedPhotos = mReplacedPhotos.toString();
+                        data.putExtra(REPLACED_PHOTOS, replacedPhotos);
+                    }
                     setResult(RESULT_OK, data);
                     finish();
                 }
@@ -197,35 +201,11 @@ public class ObservationPhotosViewer extends AppCompatActivity {
 
         Uri sourceUri = sourceImage.startsWith("http") ? Uri.parse(sourceImage) : Uri.fromFile(new File(sourceImage));
 
-
-        Uri destUri = Uri.fromFile(new File(getExternalCacheDir(), UUID.randomUUID().toString() + ".jpeg"));
-        UCrop uCrop = UCrop.of(sourceUri, destUri);
-
-        // Configure uCrop
-
-        uCrop = uCrop.useSourceImageAspectRatio();
-
-        UCrop.Options options = new UCrop.Options();
-        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
-        options.setFreeStyleCropEnabled(true);
-        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.NONE, UCropActivity.SCALE);
-        options.setToolbarColor(Color.parseColor("#74AC00"));
-        options.setActiveWidgetColor(Color.parseColor("#FFFFFF"));
-        options.setStatusBarColor(Color.parseColor("#74AC00"));
-        options.setToolbarWidgetColor(Color.parseColor("#FFFFFF"));
-        options.setRootViewBackgroundColor(Color.parseColor("#74AC00"));
-        options.setCropGridColumnCount(2);
-        options.setCropGridRowCount(1);
-        options.setShowCropGrid(false);
-        options.setActiveControlsWidgetColor(Color.parseColor("#74AC00"));
-        options.setRootViewBackgroundColor(Color.parseColor("#FFFFFF"));
-        options.setToolbarCancelDrawable(R.drawable.ic_arrow_back_white_24dp);
-
-        uCrop = uCrop.withOptions(options);
-
         mCurrentPhotoIndex = photoIndex;
 
-        uCrop.start(this);
+        Intent intent = new Intent(ObservationPhotosViewer.this, ObservationPhotoEditor.class);
+        intent.putExtra(ObservationPhotoEditor.PHOTO_URI, sourceUri.toString());
+        startActivityForResult(intent, UCrop.REQUEST_CROP);
     }
 
     @Override
@@ -311,9 +291,8 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         Bridge.saveInstanceState(this, outState);
     }
- 
-    
- 	public static class IdPicsPagerAdapter extends PagerAdapter {
+
+    public static class IdPicsPagerAdapter extends PagerAdapter {
         public static interface OnZoomListener {
             void onZoomedIn();
             void onZoomOriginal();

@@ -524,6 +524,13 @@
             android:name=".PinnedLocationSearchActivity"
             android:configChanges="orientation"
             android:label=""></activity>
+        <activity
+            android:name=".ObservationPhotoEditor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowActionBar="false"
+            android:configChanges="orientation"
+            android:label=""></activity>
+
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

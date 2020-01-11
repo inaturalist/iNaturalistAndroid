@@ -1119,7 +1119,7 @@ public class ObservationEditor extends AppCompatActivity {
         for (ObservationPhoto photo : mPhotosRemoved) {
             ContentValues cv = new ContentValues();
             cv.put(ObservationPhoto.IS_DELETED, 0);
-            cv.put(ObservationPhoto._SYNCED_AT, photo._synced_at.getTime());
+            if (photo._synced_at != null) cv.put(ObservationPhoto._SYNCED_AT, photo._synced_at.getTime());
             getContentResolver().update(photo.getUri(), cv, null, null);
         }
         // Mark any deleted sounds as non-deleted
@@ -2195,6 +2195,8 @@ public class ObservationEditor extends AppCompatActivity {
                         }
                         mCameraPhotos.add(photoUri.getPath());
                     }
+
+                    updateImagesAndSounds();
                 }
 
                 if (setFirstPhotoIndex > -1) {
@@ -3451,7 +3453,7 @@ public class ObservationEditor extends AppCompatActivity {
                     ObservationPhoto currentOp = new ObservationPhoto(mGalleryCursor);
                     currentOp.position = currentPosition;
                     ContentValues cv = currentOp.getContentValues();
-                    if (doNotUpdate) {
+                    if (doNotUpdate && currentOp._synced_at != null) {
                         cv.put(ObservationPhoto._SYNCED_AT, currentOp._synced_at.getTime());
                     }
 
