@@ -727,6 +727,7 @@ public class ExploreFiltersActivity extends AppCompatActivity {
 
     private String monthToString(int month) {
         Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, month - 1); // Calendar has zero-based indexing for months
 
         return new SimpleDateFormat("MMMM").format(cal.getTime());
