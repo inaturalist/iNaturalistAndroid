@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Aktualizovať opis identifikácie</string>
     <string name="your_identification">Vaše ID: %1$s</string>
-    <string name="onboarding_species_name">Urči čo si videl. Ak nepoznáš názov druhu nevadí, ostatní užívatelia radi pomôžu s určením!</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">Nahrávanie dokončené!</string>
     <string name="onboarding_upload_description">Vráť sa skoro a pozri identifikácie a komentáre k pozorovaniu (niam).</string>
     <string name="importing_photos">Import fotografie (í)...</string>
@@ -518,7 +518,8 @@
     <string name="user">Používateľ</string>
     <string name="search_users">Vyhľadávanie používateľov...</string>
     <string name="quality_grade">Kvalita určenia</string>
-    <string name="dates">Dates</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Date Observed</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Akýkoľvek</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -607,7 +608,7 @@
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Pohlavie</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">mŕtvy alebo živý</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Kvitnutie</string>
     <!-- Adjective, having fruit -->
@@ -634,13 +635,13 @@
     <string name="annotation_value_female">Samica</string>
     <string name="annotation_value_male">Samec</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">Nažive</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">Mŕtvy</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">Nedá sa určiť</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
-    <string name="joined_projects_all_caps">JOINED</string>
+    <string name="joined_projects_all_caps">PRIDAL SA</string>
     <string name="nearby_projects_all_caps">BLÍZKO</string>
     <string name="featured_projects_all_caps">FEATURED</string>
     <!-- Text for a button or label that allows someone to join a project -->
@@ -653,7 +654,7 @@
     <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
     <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
     <string name="agree_all_caps">SÚHLAS</string>
-    <string name="observations_all_caps">OBSERVATIONS</string>
+    <string name="observations_all_caps">POZOROVANIA</string>
     <string name="species_all_caps">DRUHY</string>
     <string name="people_all_caps">PEOPLE</string>
     <string name="identifiers_all_caps">IDENTIFIERS</string>
@@ -691,13 +692,13 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Označiť všetko ako videné</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="content_hidden">Obsah skrytý</string>
+    <string name="show_hidden_content">Zobraziť skrytý obsah</string>
+    <string name="content_hidden_because">Obsah skryl @%1$s v %2$s, pretože: \"%3$s\" </string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
+    <string name="content">Obsah</string>
+    <string name="has_photos">Má fotky</string>
+    <string name="has_sounds">Má zvuky</string>
     <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
     <string name="soundcloud">Soundcloud</string>
@@ -725,4 +726,24 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
+    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_edit_photo">Edit Photo</string>
+    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
+    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds_value">seconds</string>
+    <string name="shop_the_inat_store">Shop the iNat Store</string>
 </resources>

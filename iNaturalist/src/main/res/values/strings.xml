@@ -726,11 +726,15 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplicate</string>
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
     <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Rotate</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Scale</string>
+    <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">Crop</string>
     <string name="ucrop_brightness">Brightness</string>
     <string name="ucrop_contrast">Contrast</string>

@@ -364,7 +364,7 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Actualiza la descripción de la identificación</string>
     <string name="your_identification">Tu identificación:%1$s</string>
-    <string name="onboarding_species_name">Si puedes ponle nombre a lo que has visto, pero si no puedes, no te preocupes. ¡Otros te pueden ayudar a identificarlo!</string>
+    <string name="onboarding_species_name">Si puedes, nombra lo que has visto, incluso si únicamente es \"insecto\" o \"ave\", o simplemente déjalo en blanco. ¡Otros pueden ayudarte a identificarlo!</string>
     <string name="upload_complete">¡Carga completa!</string>
     <string name="onboarding_upload_description">Revisa pronto las identificaciones y comentarios en tu(s) observación(es).</string>
     <string name="importing_photos">Importando foto(s)...</string>
@@ -519,7 +519,8 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="user">Usuario</string>
     <string name="search_users">Busca usuarios...</string>
     <string name="quality_grade">Grado de calidad</string>
-    <string name="dates">Fechas</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Fecha de observación</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Cualquiera</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -726,4 +727,24 @@ para el Conocimiento y Uso de la Biodiversidad (CONABIO).</string>
     <string name="pin_current_location">Anclar la ubicación actual</string>
     <string name="location_pinned_successfully">Ubicación actual anclada con éxito</string>
     <string name="delete_this_pinned_location">¿Desea borrar esta ubicación anclada?</string>
+    <string name="duplicate">Duplicar</string>
+    <string name="couldnt_duplicate_photo">¡No se pudo duplicar la foto!</string>
+    <string name="couldnt_edit_photo">¡No se ha podido editar la foto!</string>
+    <string name="ucrop_rotate">Rotar</string>
+    <string name="ucrop_scale">Escalar</string>
+    <string name="ucrop_crop">Recortar</string>
+    <string name="ucrop_brightness">Brillo</string>
+    <string name="ucrop_contrast">Contraste</string>
+    <string name="ucrop_saturation">Saturación</string>
+    <string name="ucrop_sharpness">Nitidez</string>
+    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_edit_photo">Editar foto</string>
+    <string name="service_temporarily_unavailable">El servicio no está disponible temporalmente.</string>
+    <string name="please_try_again_in_a_few_hours">Por favor, inténtalo de nuevo en unas horas.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Por favor, inténtalo de nuevo en %1$d %2$s.</string>
+    <string name="hours">horas</string>
+    <string name="minutes">minutos</string>
+    <string name="seconds_value">segundos</string>
+    <string name="shop_the_inat_store">Compra en la tienda de iNat</string>
 </resources>
