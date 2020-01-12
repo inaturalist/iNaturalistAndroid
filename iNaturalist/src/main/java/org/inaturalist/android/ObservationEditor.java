@@ -2945,18 +2945,24 @@ public class ObservationEditor extends AppCompatActivity {
 
     private void importPhotoMetadata(Uri photoUri) {
 
+        Logger.tag(TAG).info("importPhotoMetadata: " + photoUri);
         try {
             InputStream is = getContentResolver().openInputStream(photoUri);
+            Logger.tag(TAG).info("importPhotoMetadata: IS = " + is);
             ExifInterface exif = new ExifInterface(is);
-            float[] latLng = new float[2];
+            Logger.tag(TAG).info("importPhotoMetadata: Exif = " + exif);
             uiToObservation();
-            if (exif.getLatLong(latLng)) {
+            double[] latLng = exif.getLatLong();
+            if (latLng != null) {
+                Logger.tag(TAG).info("importPhotoMetadata: Got lng/lat = " + latLng[0] + "/" + latLng[1]);
                 stopGetLocation();
-                mObservation.latitude = (double) latLng[0];
-                mObservation.longitude = (double) latLng[1];
+                mObservation.latitude = latLng[0];
+                mObservation.longitude = latLng[1];
                 mObservation.positional_accuracy = null;
 
+                Logger.tag(TAG).info("importPhotoMetadata: Geoprivacy: " + mObservation.geoprivacy);
                 if ((mObservation.geoprivacy != null) && ((mObservation.geoprivacy.equals("private") || mObservation.geoprivacy.equals("obscured")))) {
+                    Logger.tag(TAG).info("importPhotoMetadata: Setting private lat/lng");
                     mObservation.private_longitude = mObservation.longitude;
                     mObservation.private_latitude = mObservation.latitude;
                 }
@@ -2971,6 +2977,13 @@ public class ObservationEditor extends AppCompatActivity {
 
             } else {
                 // No coordinates - don't override the observation coordinates
+                Logger.tag(TAG).error("importPhotoMetadata: No lat/lng");
+                String latValue = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+                String latRef = exif.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
+                String lngValue = exif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
+                String lngRef = exif.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
+
+                Logger.tag(TAG).error(String.format("importPhotoMetadata: Attributes: %s / %s / %s / %s", latValue, latRef, lngValue, lngRef));
             }
 
             try {
