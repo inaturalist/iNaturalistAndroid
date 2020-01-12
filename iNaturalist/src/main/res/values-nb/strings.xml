@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Oppdatér identifikasjonsbeskrivelse</string>
     <string name="your_identification">ID-en din: %1$s</string>
-    <string name="onboarding_species_name">Navngi hva du så hvis du kan, men det er OK hvis du ikke kan. Andre kan kanskje hjelpe deg med å identifisere den!</string>
+    <string name="onboarding_species_name">Oppgi hva du så hvis du kan, selv hvis det kun er \"insekt\" eller \"fugl\", eller bare la stå tomt. Andre kan hjelpe deg med å identifisere det!</string>
     <string name="upload_complete">Opplastning fullført!</string>
     <string name="onboarding_upload_description">Kom tilbake snart for identifikasjoner og kommentarer på observasjonen(e) din(e).</string>
     <string name="importing_photos">Importerer fotografi(er)...</string>
@@ -518,7 +518,8 @@
     <string name="user">Bruker</string>
     <string name="search_users">Søk blant brukere...</string>
     <string name="quality_grade">Kvalitetsgrad</string>
-    <string name="dates">Dato</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Dato observert</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Alle</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -725,4 +726,24 @@
     <string name="pin_current_location">Fest nåværende beliggenhet</string>
     <string name="location_pinned_successfully">Nåværende beliggenhet ble festet vellykket</string>
     <string name="delete_this_pinned_location">Slett denne festede beliggenheten?</string>
+    <string name="duplicate">Dupliser</string>
+    <string name="couldnt_duplicate_photo">Kunne ikke duplisere bilde!</string>
+    <string name="couldnt_edit_photo">Kunne ikke redigere bilde!</string>
+    <string name="ucrop_rotate">Rotér</string>
+    <string name="ucrop_scale">Skalér</string>
+    <string name="ucrop_crop">Beskjær</string>
+    <string name="ucrop_brightness">Lysstyrke</string>
+    <string name="ucrop_contrast">Kontrast</string>
+    <string name="ucrop_saturation">Metning</string>
+    <string name="ucrop_sharpness">Skarphet</string>
+    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_edit_photo">Rediger bilde</string>
+    <string name="service_temporarily_unavailable">Tjeneste midlertidig utilgjengelig.</string>
+    <string name="please_try_again_in_a_few_hours">Vennligst prøv igjen om noen timer.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Vennligst prøv igjen om %1$d %2$s.</string>
+    <string name="hours">timer</string>
+    <string name="minutes">minutter</string>
+    <string name="seconds_value">sekunder</string>
+    <string name="shop_the_inat_store">Handle i iNat butikken</string>
 </resources>

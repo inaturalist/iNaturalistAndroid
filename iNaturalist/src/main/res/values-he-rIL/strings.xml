@@ -241,7 +241,7 @@
     <string name="login_signup">הירשמו / היתחברו</string>
     <string name="please_sign_in_via_settings_for_guides">עליך להיות מחובר/ת כדי לצפות במדריכים שלך.</string>
     <string name="please_sign_in_for_updates">עליך להיות מחובר/ת כדי לצפות בעדכונים שלך.</string>
-    <string name="by_using_inat_terms"><![CDATA[By using iNaturalist you agree to the <b><a href="https://www.inaturalist.org/pages/terms">Terms of Service</a></b> and <b><a href="https://www.inaturalist.org/pages/privacy">Privacy Policy</a></b>]]></string>
+    <string name="by_using_inat_terms"><![CDATA[שימוש בשירותי אי-נטוראליסט מתקיים הסכמה עם <b><a href="https://www.inaturalist.org/pages/terms">תנאי השירות</a></b> וגם עם <b><a href="https://www.inaturalist.org/pages/privacy">תנאי הפרטיות</a></b>]]></string>
     <string name="activity">פעילות</string>
     <string name="camera">צלם/י תמונה</string>
     <string name="upload_photo">בחר/י תמונה</string>
@@ -348,7 +348,7 @@
     <string name="inat_network">רשת iNaturalist</string>
     <string name="inat_network_description">The iNaturalist Network is a framework for localizing the iNaturalist community. Network sites are supported by local institutions that have signed an agreement with iNaturalist to encourage local use and benefit local biodiversity.</string>
     <string name="more_info">מידע נוסף</string>
-    <string name="select_network">Select Network Affiliation</string>
+    <string name="select_network">בחר אסוציאציה לנודה</string>
     <string name="help">עזרה</string>
     <string name="stop">הפסק</string>
     <string name="resume">המשך</string>
@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">עדכנו תיאור זיהוי</string>
     <string name="your_identification">המזהה שלך: %1$s</string>
-    <string name="onboarding_species_name">תן/ני שם למה שראית, אם אינך יודע/ת, אחרים יוכלו לעזור בזיהוי!</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">ההעלאה הושלמה!</string>
     <string name="onboarding_upload_description">חזור/חיזרי בקרוב לראות זיהויים ותגובות על התצפית/יות שלך.</string>
     <string name="importing_photos">מייבא תמונה/ות</string>
@@ -518,7 +518,8 @@
     <string name="user">משתמש</string>
     <string name="search_users">חפש משתמשים...</string>
     <string name="quality_grade">ציון איכות</string>
-    <string name="dates">תאריכים</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Date Observed</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">איזשהו</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -607,7 +608,7 @@
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">מין</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">חי או מת</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">פריחה</string>
     <!-- Adjective, having fruit -->
@@ -634,11 +635,11 @@
     <string name="annotation_value_female">נקבה</string>
     <string name="annotation_value_male">זכר</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">חי</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">מת</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">לא ניתן לברר</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">הצטרפו</string>
     <string name="nearby_projects_all_caps">בקרבת מקום</string>
@@ -691,17 +692,17 @@
     <string name="network_credit_biodiversity4all"><![CDATA[Portugal: Associação Biodiversidade Para Todos operating Biodiversity4All (<a href="https://biodiversity4all.org">Biodiversity4All.org</a>)]]></string>
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente operating iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Mark all as viewed</string>
-    <string name="content_hidden">Content Hidden</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
+    <string name="content_hidden">תוכן מוסתר</string>
+    <string name="show_hidden_content">הציג תוכן מוסתר</string>
+    <string name="content_hidden_because">תוכן מוסתר על-ידי @%1$s ב %2$s משום ש:\" %3$s \"</string>
     <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
+    <string name="content">תוכן</string>
+    <string name="has_photos">יש תמונות</string>
+    <string name="has_sounds">יש קולות</string>
+    <string name="could_not_play_sound">לא התאפשר להשמיע - רוב הסיכויים תקלה במערכת</string>
     <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
-    <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
+    <string name="soundcloud">סאונדקלאוד</string>
+    <string name="record_sound">הקלט קול</string>
     <string name="no_recorder_found">No default sound recorder found!</string>
     <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
     <string name="upload_sound">Choose Sound</string>
@@ -712,7 +713,7 @@
     <string name="observation_sound">Observation Sound</string>
     <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
+    <string name="seconds">%1$.1f שניות</string>
     <string name="clear_all_debug_logs">Clear All Debug Logs</string>
     <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
     <string name="number_of_days_to_store_logs">Number of days to store logs</string>
@@ -725,4 +726,24 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
+    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_edit_photo">Edit Photo</string>
+    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
+    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds_value">seconds</string>
+    <string name="shop_the_inat_store">Shop the iNat Store</string>
 </resources>

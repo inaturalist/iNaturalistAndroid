@@ -120,7 +120,7 @@
     <!-- Noun describing the ability to obscure or hide the coordinates of an observation. Should be a short noun or noun-phrase suitable for use on a button or popup header -->
     <string name="geoprivacy">Vietos privatumas</string>
     <!-- Generally used when we need to display both the label and the value on one line. Specifically used in the toolbar at the top of the location chooser -->
-    <string name="geoprivacy_with_value">Geoprivacy: %1$s</string>
+    <string name="geoprivacy_with_value">Vietos privatumas: %1$s</string>
     <string name="delete_confirmation">Ar tikrai norite ištrinti šį stebėjimą?</string>
     <!-- This refers to field guide-like content within the app, i.e. user-created lists of species that help other people identify organisms. It does not refer to tutorials or other instructional content. -->
     <string name="guides">Vadovai</string>
@@ -189,7 +189,7 @@
     <string name="text"><![CDATA[<b>Tekstas:</b> %1$s]]></string>
     <!-- The dialog content asking the user to switch to another iNat network -->
     <string name="alert_message_use_inaturalist">Pagrindinis iNaturalist tinklas. Paspaudus Gerai jūsų programėlė pataps globalaus iNaturalist tinklo dalimi.</string>
-    <string name="alert_message_use_naturalista">NaturaLista yra Moksikos iNaturalist tinklo narys. Vietinės institucijos, remiančios NaturaLista, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
+    <string name="alert_message_use_naturalista">NaturaLista yra Meksikos iNaturalist tinklo narys. Vietinės institucijos, remiančios NaturaLista, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_naturewatchnz">iNaturalist NZ yra Naujosios Zelandijos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist NZ, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistcanada">iNaturalist Canada yra Kanados iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Canada, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_naturalistacolombia">Naturalista yra Kolumbijos iNaturalist tinklo narys. Vietinės institucijos, remiančios Naturalista, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
@@ -197,7 +197,7 @@
     <string name="alert_message_use_inaturalistpanama">iNaturalist Panamá yra Panamos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Panamá, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistecuador">iNaturalist Ecuador yra Ekvadoro iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Ecuador, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="alert_message_use_inaturalistaustralia">iNaturalist Australia yra Australijos iNaturalist tinklo narys. Vietinės institucijos, remiančios iNaturalist Australia, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
-    <string name="alert_message_use_argentinat">ArgentiNat is a member of the iNaturalist Network in Argentina. Local institutions supporting ArgentiNat will have access to your email address and access to the true coordinates for observations that are publicly obscured or private. Please do not experimentally change your affiliation if you have more than 1000 observations. Would you like to change your affiliation?</string>
+    <string name="alert_message_use_argentinat">ArgentiNat yra Argentinos iNaturalist tinklo narys. Vietinės institucijos, remiančios ArgentiNat, turės prieigą prie jūsų el. pašto adreso ir tikrųjų stebėjimų koordinčių, kurios yra paslėptos arba privačios. Prašome nekeisti priklausymo jeigu turite daugiau nei 1000 stebėjimų. Ar norėtumėte pakeisti priklausymą?</string>
     <string name="editor">Redaktorius</string>
     <string name="license">Licencija</string>
     <string name="download_for_offline_use">Atsisiųsti naudojimui atsijungus nuo tinklo</string>
@@ -244,7 +244,7 @@
     <string name="by_using_inat_terms"><![CDATA[Naudodamiesi iNaturalist sutinkate su <b><a href="https://www.inaturalist.org/pages/terms">paslaugų teikimo sąlygomis</a></b> ir <b><a href="https://www.inaturalist.org/pages/privacy">privatumo politika</a></b>]]></string>
     <string name="activity">Veikla</string>
     <string name="camera">Fotografuoti</string>
-    <string name="upload_photo">Pasirinkite paveikslėlį</string>
+    <string name="upload_photo">Pasirinkti paveikslėlį</string>
     <string name="menu_text">Be nuotraukos</string>
     <string name="first">1-asis</string>
     <string name="make_first">Sukurti 1-ąjį</string>
@@ -304,12 +304,12 @@
     <string name="sync_obs_to_see_favs">Sinchronizuokite šį stebėjimą, kad matytumėte pamėgimus...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Susinchronizuokite šį stebėjimą, kad galėtumėte palikti komentarą arba padėti identifikuoti...</string>
-    <string name="no_photo">Nėra nuotraukos</string>
+    <string name="no_photo">Be nuotraukos</string>
     <string name="about_this_species">Apie šią rūšį</string>
     <string name="view_on_wikipedia">Wikipedijos straipsnis</string>
     <string name="photo"><![CDATA[Nuotrauka: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Nuotrauka: <b>%1$s</b>]]></string>
-    <string name="finding_current_location">Rasti dabartinę vietą...</string>
+    <string name="finding_current_location">Ieškoma jūsų vieta...</string>
     <string name="flag_as_captive">Pažymėti kaip naminį/kultivuojamą</string>
     <string name="observation_flagged_as_captive">Stebėjimas buvo pažymėtas kaip naminis/kultivuojamas</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Ar tikrai norite pažymėti šį stebėjimą kaip naminį/kultivuojamą? (Paspaudę „taip“ taip pat uždarysite stebėjimo langą)</string>
@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Atnaujinti identifikacijos aprašymą</string>
     <string name="your_identification">Jūsų ID: %1$s</string>
-    <string name="onboarding_species_name">Įvardink tai, ką pamatei. Nieko tokio, jeigu nesugebėsi. Identifikuoti rūšį tau padės kiti!</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">Užkrovimas sėkmingas!</string>
     <string name="onboarding_upload_description">Po kurio laiko sugrįžkite peržiūrėti jūsų stebėjimo(-ų) identifikacijas ir komentarus.</string>
     <string name="importing_photos">Įkeliama nuotrauka(-os)...</string>
@@ -401,7 +401,7 @@
     <string name="no_updates_yet">Naujienų kol kas nėra. Likite prisijungę!</string>
     <string name="you_will_only_receive_updates_when_creating">(Gausite naujienas tik tada, kai būsite sukūrę stebėjimų)</string>
     <string name="you_will_only_receive_updates_when_following">(Gausite naujienas tik tada, kai seksite stebėjimus)</string>
-    <string name="user_activity_id"><![CDATA[<b>%1$s</b> siūlyti ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
+    <string name="user_activity_id"><![CDATA[<b>%1$s</b> pasiūlė ID: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> paliko komentarą: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Panašu, kad ištrynėte nuotrauką iš talpyklos dar nespėjus jos užkrauti. Jums teks į stebėjimą nuotrauką įkelti iš galerijos. Ateityje, prieš išvalant talpyklą, įsitikinkite, kad visos nuotraukos buvo užkrautos.</string>
     <string name="new_activities">%1s nauja</string>
@@ -426,7 +426,7 @@
     <string name="taxonomy">Taksonomija</string>
     <string name="about_this_section">Apie šią skiltį</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
-    <string name="taxonomy_info">These are links to ancestors of this particular taxon. They are in order from coarser to more refined. Use these links to move up and down the Tree of Life. For example, if you don\'t know what an organism is, but know what grouping it falls into, tap on a taxon from the list to view more information about it.</string>
+    <string name="taxonomy_info">Tai yra nuoruodos į šio taksono giminystės ryšius. Jie surikiuoti nuo plačiausio iki siauriausio. Naudokite šias nuorodas keliauti aukštyn ir žemyn gyvybės medžiu. Pavyzdžiui, jeigu nežinote, koks tai organizmas, bet žinote, kokiai grupei jis priklauso, paspauskite ant taksono, kad pamatytumėte daugiau informacijos.</string>
     <string name="more_info_on_inat">Daugiau informacijos tinklalapyje</string>
     <string name="view_suggestions">Žiūrėti pasiūlymus</string>
     <string name="species_search">Rūšies paieška</string>
@@ -464,11 +464,11 @@
     <string name="town">Miestas</string>
     <string name="state">Valstija</string>
     <string name="county">Apskritis</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
+    <string name="local_administrative_area">Lokalus administracinis vienetas</string>
     <string name="country">Šalis</string>
     <string name="island">Sala</string>
     <string name="airport">Oro uostas</string>
-    <string name="drainage">Drainage</string>
+    <string name="drainage">Drenažas</string>
     <string name="land_feature">Reljefo ypatybės</string>
     <string name="miscellaneous">Įvairūs</string>
     <string name="nationality">Tautybė</string>
@@ -490,7 +490,7 @@
     <string name="province">Provincija</string>
     <string name="municipality">Savivaldybė</string>
     <string name="parish">Parapija</string>
-    <string name="department_segment">Department Segment</string>
+    <string name="department_segment">Skyriaus segmentas</string>
     <string name="city_building">Miesto pastatas</string>
     <string name="commune">Bendruomenė</string>
     <string name="governorate">Gubernija</string>
@@ -506,11 +506,11 @@
     <string name="shire">Grafystė</string>
     <string name="prefecture_city">Prefektūros miestas</string>
     <!-- Indonesian sub-sub-national place type -->
-    <string name="regency">Regency</string>
-    <string name="constituency">Constituency</string>
-    <string name="local_authority">Local Authority</string>
-    <string name="poblacion">Poblacion</string>
-    <string name="delegation">Delegation</string>
+    <string name="regency">Regencija</string>
+    <string name="constituency">Apygarda</string>
+    <string name="local_authority">Vietos Valdžios Institucija</string>
+    <string name="poblacion">Poblacionas</string>
+    <string name="delegation">Delegacija</string>
     <string name="apply_filters">Uždėti filtrą</string>
     <string name="reset">Atstatyti</string>
     <string name="show_only_my_observations">Rodyti tik mano stebėjimus</string>
@@ -518,7 +518,8 @@
     <string name="user">Vartotojas</string>
     <string name="search_users">Ieškomi vartotojai...</string>
     <string name="quality_grade">Kokybės įvertinimas</string>
-    <string name="dates">Datos</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Stebėjimo data</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Nesvarbu</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -561,7 +562,7 @@
     <string name="must_be_connected_to_load_more_obs">Prisijunkite prie interneto, jei norite užkrauti daugiau stebėjimų</string>
     <string name="inat_about_title">iNaturalist yra bendra California Academy of Sciences ir National Geographic Society iniciatyva.</string>
     <string name="inat_credits"><![CDATA[iNaturalist egzistuoja dėka kiekvieno asmens, kuris dalyvauja mūsų bendruomenėje. Žmonės, kurie sukūrė programas, palaiko mūsų infrastruktūrą, remia bendruomenę ir skatina bendradarbiavimą yra Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard ir Ken-ichi Ueda.<br/><br/>CalTech ir Cornell Tech padėjo sukurti kompiuterinio matymo sistemą, kuri iš nuotraukų pasiūlo identifikacijas. Dėkojame Grant Van Horn, Serge Belongie, ir Pietro Perona, kurie padarė pažangą kompiuterinio matymo tyrimuose. Daugiau informacijos tinklalapyje <a href="http://www.visipedia.org">visipedia.org</a>. Ypatinga padėka NVIDIA už papildomą pagalbą.]]></string>
-    <string name="inat_credits_networks_pre"><![CDATA[The international iNaturalist Network supports localized, fully integrated, iNaturalist-based websites in the following countries, thanks to the support of associated partner organizations.]]></string>
+    <string name="inat_credits_networks_pre"><![CDATA[Tarptautinis iNaturalist tinklas remia lokalizuotus, pilnai integruotus, iNaturalist pagrindu sukurtus tinklalapius šiose šalyse, dėka asocijuotų partnerinių organizacijų palaikymo.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist dėkoja atviro kodo kūrėjams, kurie aprūpino mus programomis, kuriomis naudojamės kasdien. Žiūrėkite <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a>, kad pamatytumėte atviro kodo kontribucijas.<br/> Dėkojame crowdin.com bendruomenės vertėjams savanoriams, ypač Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN II kategorijos vietoves suteikė IUCN ir UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Juos galima rasti: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Kūrėjų sąrašas</string>
     <string name="password_changed">Slaptažodis, kuri naudoja programėlė, nebegalioja - galbūt pakeitėte slaptažodį tinklalapyje? Prašome įvesti naują slaptažodį</string>
@@ -607,15 +608,15 @@
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Lytis</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">Gyvas ar miręs</string>
     <!-- Adjective, having open flowers -->
-    <string name="annotation_value_flowering">Žydintis</string>
+    <string name="annotation_value_flowering">Žydi</string>
     <!-- Adjective, having fruit -->
     <string name="annotation_value_fruiting">Dera</string>
     <!-- Adjective, having unopened flowers -->
     <string name="annotation_value_budding">Sprogsta</string>
     <!-- Adjective, having unopened flowers -->
-    <string name="annotation_value_flower_budding">Flower Budding</string>
+    <string name="annotation_value_flower_budding">Su sprogstančiais žiedais</string>
     <!-- Adjective describing the life stage where an individual can reproduce -->
     <string name="annotation_value_adult">Suaugęs</string>
     <!-- Adjective describing the odonate life stage between nymph and adult -->
@@ -634,11 +635,11 @@
     <string name="annotation_value_female">Patelė</string>
     <string name="annotation_value_male">Patinas</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">Gyvas</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">Miręs</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">Negali būti nustatyta</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">PRISIJUNGTA</string>
     <string name="nearby_projects_all_caps">NETOLIESE</string>
@@ -665,7 +666,7 @@
     <string name="observers_all_caps">STEBĖTOJAI</string>
     <string name="observations_regular">Stebėjimai</string>
     <string name="data_quality_assessment">Duomenų kokybės įvertinimas</string>
-    <string name="research_grade_qualification">Research Grade Qualification</string>
+    <string name="research_grade_qualification">Identifikuoto stebėjimo reikalavimai</string>
     <string name="date_specified">Data nurodyta</string>
     <string name="location_specified">Vieta nurodyta</string>
     <string name="has_photos_or_sounds">Yra nuotrauka arba garsas</string>
@@ -704,7 +705,7 @@
     <string name="record_sound">Įrašyti garsą</string>
     <string name="no_recorder_found">Neaptiktas numatytas garso įrašytuvas!</string>
     <string name="couldnt_retrieve_sound">Nepavyko gauti garso iš numatytojo įrašytuvo - pabandykite importuoti garsą</string>
-    <string name="upload_sound">Pasirinkite garsą</string>
+    <string name="upload_sound">Pasirinkti garsą</string>
     <string name="multi_select_sound_description">Įkelkite daugiau nei vieną garsą paspausdami ant vieno garso ir ilgai laikydami</string>
     <string name="alert_unsupported_audio_type">Atsiprašome, tačiau nepavyko įkelti garso iš šio šaltinio</string>
     <string name="invalid_audio_extension">Klaida įkeliant garsą(-us): Galima įkelti tik garsus su WAV/MP3/AMR plėtiniais</string>
@@ -714,15 +715,35 @@
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
     <string name="seconds">%1$.1f sek.</string>
     <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
+    <string name="clears_up_storage_room_on_your_phone">Išvalo jūsų telefono talpyklą</string>
     <string name="number_of_days_to_store_logs">Number of days to store logs</string>
     <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
     <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
     <string name="debug_settings">Debug Settings</string>
     <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
     <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="choose_pinned_location">Rinktis prisegtą vietovę</string>
+    <string name="pin_current_location">Prisegti dabartinę vietovę</string>
+    <string name="location_pinned_successfully">Dabartinė vietovė sėkmingai prisegta</string>
+    <string name="delete_this_pinned_location">Ištrinti šią prisegtą vietovę?</string>
+    <string name="duplicate">Sukurti kopiją</string>
+    <string name="couldnt_duplicate_photo">Nepavyko sukurti nuotraukos kopijos!</string>
+    <string name="couldnt_edit_photo">Nepavyko redaguoti nuotraukos!</string>
+    <string name="ucrop_rotate">Pasukti</string>
+    <string name="ucrop_scale">Mastelis</string>
+    <string name="ucrop_crop">Apkirpti</string>
+    <string name="ucrop_brightness">Ryškumas</string>
+    <string name="ucrop_contrast">Kontrastas</string>
+    <string name="ucrop_saturation">Spalvų sodrumas</string>
+    <string name="ucrop_sharpness">Aštrumas</string>
+    <string name="ucrop_label_original">Originalas</string>
+    <string name="ucrop_label_edit_photo">Redaguoti nuotrauką</string>
+    <string name="service_temporarily_unavailable">Paslauga laikinai nepasiekiama.</string>
+    <string name="please_try_again_in_a_few_hours">Prašome pabandyti vėl po kelių valandų.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Prašome pabandyti vėl po %1$d %2$s</string>
+    <string name="hours">valand.</string>
+    <string name="minutes">min.</string>
+    <string name="seconds_value">sek.</string>
+    <string name="shop_the_inat_store">Apsipirkite iNat parduotuvėje</string>
 </resources>

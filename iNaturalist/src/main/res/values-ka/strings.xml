@@ -363,7 +363,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
     <string name="your_identification">თქვენი ID: %1$s</string>
-    <string name="onboarding_species_name">დაასახეთ რა დაინახეთ, მაგრამ არაუშავს თუ არ შეგიძლიათ. შეიძლება სხვებმა დაგეხმარონ ამოცნობაში!</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">ატვირთვა დასრულდა!</string>
     <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
     <string name="importing_photos">ფოტო(ები)ს იმპორტი...</string>
@@ -518,7 +518,8 @@
     <string name="user">მომხ.</string>
     <string name="search_users">Search Users...</string>
     <string name="quality_grade">Quality Grade</string>
-    <string name="dates">თარიღები</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Date Observed</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">რაიმე</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -725,4 +726,24 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
+    <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <string name="ucrop_rotate">Rotate</string>
+    <string name="ucrop_scale">Scale</string>
+    <string name="ucrop_crop">Crop</string>
+    <string name="ucrop_brightness">Brightness</string>
+    <string name="ucrop_contrast">Contrast</string>
+    <string name="ucrop_saturation">Saturation</string>
+    <string name="ucrop_sharpness">Sharpness</string>
+    <string name="ucrop_label_original">Original</string>
+    <string name="ucrop_label_edit_photo">Edit Photo</string>
+    <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
+    <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Please try again in %1$d %2$s.</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds_value">seconds</string>
+    <string name="shop_the_inat_store">Shop the iNat Store</string>
 </resources>

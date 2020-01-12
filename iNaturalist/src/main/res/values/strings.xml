@@ -362,7 +362,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
     <string name="your_identification">Your ID: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, but it\'s OK if you can\'t. Others may help you identify it!</string>
+    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
     <string name="upload_complete">Upload Complete!</string>
     <string name="onboarding_upload_description">Check back soon for identifications and comments on your observation(s).</string>
     <string name="importing_photos">Importing photo(s)...</string>
@@ -517,7 +517,8 @@
     <string name="user">User</string>
     <string name="search_users">Search Users...</string>
     <string name="quality_grade">Quality Grade</string>
-    <string name="dates">Dates</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Date Observed</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Any</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -725,11 +726,15 @@
     <string name="pin_current_location">Pin Current Location</string>
     <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
     <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Duplicate</string>
     <string name="couldnt_duplicate_photo">Couldn\'t duplicate photo!</string>
     <string name="couldnt_edit_photo">Couldn\'t edit photo!</string>
+    <!-- Verb, as in "Rotate this photo" -->
     <string name="ucrop_rotate">Rotate</string>
+    <!-- Verb, as in "Scale (resize) this photo" -->
     <string name="ucrop_scale">Scale</string>
+    <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">Crop</string>
     <string name="ucrop_brightness">Brightness</string>
     <string name="ucrop_contrast">Contrast</string>

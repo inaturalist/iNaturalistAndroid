@@ -354,7 +354,7 @@
                 android:layout_height="1dp" />
 
             <TextView
-                android:text="@string/dates"
+                android:text="@string/date_observed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"

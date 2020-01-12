@@ -169,7 +169,7 @@
         <item><![CDATA[Наблюдения <b>Research Grade</b> используются совместно с учеными для лучшего понимания и защиты природы.]]></item>
     </string-array>
     <string-array name="geoprivacy_items">
-        <item>Открыть</item>
+        <item>Открытое</item>
         <item>Скрыт</item>
         <item>Частный</item>
     </string-array>
@@ -250,7 +250,7 @@
     <string name="make_first">Сделать первым</string>
     <string name="notes">Заметки</string>
     <string name="location_is">Местоположение</string>
-    <string name="is_captive">Это содержится в неволе или культивируемое</string>
+    <string name="is_captive">Содержится в неволе или культивируемое</string>
     <string name="location_visibility">Видимость местоположения</string>
     <string name="set_location">Местоположение</string>
     <string name="coordinates_lat">Шир:</string>
@@ -364,7 +364,7 @@
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Описание обновления идентификации</string>
     <string name="your_identification">Ваш ID: %1$s</string>
-    <string name="onboarding_species_name">Назовите, что вы видели, если можете, но это нормально, если вы не сможете. Другие могут помочь вам определить это!</string>
+    <string name="onboarding_species_name">Назовите то, что вы видели, если можете, даже если это просто \"насекомое\" или \"птица\", или просто оставьте это пустым. Другие могут помочь вам это идентифицировать!</string>
     <string name="upload_complete">Загрузка завершена!</string>
     <string name="onboarding_upload_description">Возвращайтесь вскоре для проверки комментариев и идентификаций вашего наблюдения(ий).</string>
     <string name="importing_photos">Импорт фото...</string>
@@ -519,7 +519,8 @@
     <string name="user">Пользователь</string>
     <string name="search_users">Поиск пользователей...</string>
     <string name="quality_grade">Класс качества</string>
-    <string name="dates">Время</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Дата наблюдения</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Any</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
@@ -726,4 +727,24 @@
     <string name="pin_current_location">Прикрепить текущее местоположение</string>
     <string name="location_pinned_successfully">Текущее местоположение успешно прикреплено</string>
     <string name="delete_this_pinned_location">Удалить это прикрепленное местоположение?</string>
+    <string name="duplicate">Дублировать</string>
+    <string name="couldnt_duplicate_photo">Не удалось дублировать фото!</string>
+    <string name="couldnt_edit_photo">Не удалось изменить фото!</string>
+    <string name="ucrop_rotate">Повернуть</string>
+    <string name="ucrop_scale">Масштабировать</string>
+    <string name="ucrop_crop">Обрезать</string>
+    <string name="ucrop_brightness">Яркость</string>
+    <string name="ucrop_contrast">Контраст</string>
+    <string name="ucrop_saturation">Насыщение</string>
+    <string name="ucrop_sharpness">Резкость</string>
+    <string name="ucrop_label_original">Оригинал</string>
+    <string name="ucrop_label_edit_photo">Изменить фото</string>
+    <string name="service_temporarily_unavailable">Сервис временно недоступен.</string>
+    <string name="please_try_again_in_a_few_hours">Пожалуйста, попробуйте через несколько часов.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Пожалуйста, попробуйте через %1$d %2$s.</string>
+    <string name="hours">часов</string>
+    <string name="minutes">минут</string>
+    <string name="seconds_value">секунд</string>
+    <string name="shop_the_inat_store">Купить в iNat Store</string>
 </resources>

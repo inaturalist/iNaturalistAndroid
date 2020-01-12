@@ -20,11 +20,11 @@
     <string name="signed_in">Oturum açıldı!</string>
     <string name="please_sign_in">Lütfen oturum açın</string>
     <string name="please_sign_in_description">Lütfen iNaturalist hesabınızla oturum açın ya da yeni hesap açmak için kaydolun.</string>
-    <string name="please_enable_location_services">Bulunduğunuz yeri tespit edebilmek için lütfen konum servislerini etkinleştirin ...</string>
+    <string name="please_enable_location_services">Geçerli konumunuzu bulmak için lütfen konum hizmetlerini etkinleştirin...</string>
     <string name="go_to_settings">Ayarlara Git</string>
     <string name="photo_not_specified">Belirtilmeyen fotoğraf</string>
-    <string name="set_date">Tarih ayarla</string>
-    <string name="set_time">Saati ayarla</string>
+    <string name="set_date">Tarih</string>
+    <string name="set_time">Zaman</string>
     <!-- "Blast" is meant to be a jocular, intentionally archaic curse. It should not be translated as a word that might offend anyone. If that's impossible, please just leave it out. We occasionally use language like this add a little personality, but that doesn't always translate very well. -->
     <string name="something_went_wrong">Kahretsin, bir şeyler ters gitti: %1$s</string>
     <string name="edit">Düzenle</string>
@@ -42,7 +42,7 @@
     <string name="reload">Yeniden yükleyin</string>
     <string name="view_in_browser">Tarayıcıda görüntüle</string>
     <string name="add_observation">Gözlem ekle</string>
-    <string name="take_picture">Resim Çek</string>
+    <string name="take_picture">Resim çek</string>
     <string name="save">Kaydet</string>
     <string name="no_observations_yet">Henüz gözlem yok!</string>
     <string name="or">veya</string>
@@ -67,7 +67,7 @@
     <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
     <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d buradaydı</string>
     <string name="com_facebook_picker_done_button_text">Tamamlandı</string>
-    <string name="com_facebook_choose_friends">Arkadaş Seç</string>
+    <string name="com_facebook_choose_friends">Arkadaşları Seç</string>
     <string name="com_facebook_nearby">Yakında</string>
     <string name="com_facebook_loading">Yükleniyor...</string>
     <string name="com_facebook_internet_permission_error_title">AndroidManifest hatası</string>
@@ -86,7 +86,7 @@
     <string name="no_comments">Henüz yorum/tanımlama yok</string>
     <!-- Used in combination with posted_by, e.g. "Posted by you on 29 May 2017" -->
     <string name="you">sen</string>
-    <string name="add_comment">Yorum Ekle</string>
+    <string name="add_comment">Yorum ekle</string>
     <string name="add_id">Tanımlama ekleme</string>
     <string name="remarks">Açıklamalar...</string>
     <string name="enter_taxon_name">Tür ismi</string>
@@ -100,7 +100,7 @@
     <!-- Verb, used as a label for actions like leaving a project -->
     <string name="leave">Ayrıl</string>
     <string name="join">Katıl</string>
-    <string name="no_check_list">Kontrol Listesinde Sınıflandırma Yok!</string>
+    <string name="no_check_list">Kontrol Listesinde Sınıflar Yok!</string>
     <string name="failed_to_add_obs_to_project">%2$s projesine \'%1$s\' gözlemini eklemek başarısız: %3$s</string>
     <string name="invalid_project_field">Lütfen \'%1s\' alanı için geçerli bir değer girin.</string>
     <!-- Title of interface used to add an observation to a project. This should be relatively short, not much more than a few characters longer than the English translation. -->
@@ -127,14 +127,14 @@
     <string name="my_guides">Senin</string>
     <string name="nearby_guides">Yakında</string>
     <string name="all_guides">Hepsi</string>
-    <string name="no_taxa">Bu rehber için sınıflandırma bulunamadı!</string>
-    <string name="search_taxa">Sınıflandırma ara...</string>
+    <string name="no_taxa">Bu rehber için sınıflar bulunamadı!</string>
+    <string name="search_taxa">Sınıfları ara...</string>
     <string name="no_internet_guides">Rehberler için bir internet bağlantısına ihtiyaç var</string>
     <string name="no_internet_projects">Projeler için bir internet bağlantısına ihtiyacınız var</string>
     <string name="locale_gl">Galiççe</string>
     <string name="locale_eu">Baskça</string>
     <string name="use_device_language_settings">Cihazınızın dil ayarlarını kullanın</string>
-    <string name="choose_location">Konum seç</string>
+    <string name="choose_location">Konum Seç</string>
     <string name="done">Tamamlandı</string>
     <string name="please_sign_in_via_settings">Katıldığınız projeleri görüntüleyebilmek için giriş yapmanız gerekmektedir.</string>
     <string name="contact_support">Destekle İletişime Geç</string>
@@ -150,9 +150,9 @@
     <string name="refreshing">Yenileniyor...</string>
     <string name="sync_x_observations">%1$d gözlem eşitlemesi</string>
     <string name="sync_1_observation">1 gözlem eşitleme</string>
-    <string name="sync_observations">Gözlemleri eşitle</string>
+    <string name="sync_observations">Gözlemleri Eşitle</string>
     <string name="lets_get_started">Haydi Başlayalım!</string>
-    <string name="view_nearby_observations">Yakın gözlemleri görüntüle</string>
+    <string name="view_nearby_observations">Yakındaki Gözlemleri Görüntüle</string>
     <string name="skip_for_now">Şimdilik Atla</string>
     <string-array name="tutorial_titles">
         <item></item>
@@ -162,7 +162,7 @@
         <item>Katkıda bulun</item>
     </string-array>
     <string-array name="tutorial_descriptions">
-        <item>Doğa ile bağlanın ve keşfedin</item>
+        <item>Nature ile Bağlanın ve Keşfedin</item>
         <item>Dışarı çıkın! Yabani bir şeyler bulup, güzel ve net bir fotoğraf çekin.</item>
         <item>Gözleminizi iNaturalist toplumu ile paylaşın.</item>
         <item>Gözlemleriniz hakkındaki yorum ve tanımlamalar için tekrar kontrol edin</item>
@@ -200,23 +200,23 @@
     <string name="alert_message_use_argentinat">ArgentiNat, Arjantin’deki iNaturalist Ağı\'nın bir üyesidir. ArgentiNat\'ı destekleyen yerel kurumlar, e-posta adresinize erişebilecek ve kamusal olarak gizlenmiş ya da özel gözlemleriniz için gerçek koordinatlarınıza erişebilecek. 1000\'den çok gözleminiz varsa lütfen deneyerek üyeliğinizi değiştirmeyin. Üyeliğinizi değiştirmek ister misiniz?</string>
     <string name="editor">Düzenleyici</string>
     <string name="license">Lisans</string>
-    <string name="download_for_offline_use">Çevrim dışı kullanım için indir</string>
+    <string name="download_for_offline_use">Çevrimdışı kullanım için indir</string>
     <string name="download_not_available">Mevcut indirme yok</string>
     <string name="guide_editor_must_enable_this_feature">Bu özellik için rehber düzenleyicisi etkinleştirilmelidir.</string>
     <string name="are_you_sure">Emin misiniz?</string>
     <string name="download_guide_alert">Bu, İnternet erişiminiz olmasa bile bu rehberi kullanabilmeniz için %1$s veri indirir.</string>
-    <string name="download">indir</string>
+    <string name="download">İndir</string>
     <string name="failed_to_download_guide">Rehber indirme başarısız</string>
-    <string name="internet_connection_seems_to_be_offline">İnternet bağlantısı çevrim dışı görünüyor.</string>
+    <string name="internet_connection_seems_to_be_offline">İnternet bağlantısı çevrimdışı görünüyor.</string>
     <string name="downloading">İndiriliyor...</string>
-    <string name="extracting">Ayıklanıyor...</string>
+    <string name="extracting">Dışa aktarılıyor...</string>
     <string name="downloaded">İndirildi</string>
     <string name="delete_download">İndirmeyi sil</string>
     <string name="re_download">Tekrar indir</string>
     <string name="error">Hata</string>
-    <string name="could_not_retrieve_guide">Rehber ayrıntıları alınamadı - muhtemelen bir ağ hatası.</string>
+    <string name="could_not_retrieve_guide">Rehber ayrıntıları alınamadı - olasılıkla bir ağ hatası.</string>
     <string name="inat_support_email_subject">İnaturalist ile yardım(sürüm %1$s - %2$s; kullanıcı kimliği - %3$s)</string>
-    <string name="send_email">E-mail gönder...</string>
+    <string name="send_email">E-posta gönder...</string>
     <string name="login_with">Şununla oturum açın</string>
     <string name="facebook">Facebook</string>
     <string name="gplus">Google</string>
@@ -228,7 +228,7 @@
     <string name="sign_up">ÜYE OL</string>
     <string name="min_6_chars">En az 6 karakter</string>
     <string name="use_my_license"><![CDATA[Evet, bilim adamlarının verilerimi kullanabilmesi için içeriğimi lisanslıyorum. <b>Daha Fazla Bilgi Edin</b>]]></string>
-    <string name="content_licensing">İçerik lisansı</string>
+    <string name="content_licensing">İçerik Lisanslama</string>
     <string name="content_licensing_description">Fotoğraflarınıza bir Creative Commons Attribution-NonCommercial lisansı uygulamak istiyorsanız bu kutuyu işaretleyin. Değişik bir lisans seçebilir ya da daha sonra lisansı kaldırabilirsiniz ancak araştırmacılarla paylaşmak için en iyi lisans budur.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Kullanıcı Adı veya E-posta</string>
@@ -244,14 +244,14 @@
     <string name="by_using_inat_terms"><![CDATA[iNaturalist’i kullanarak <b><a href="https://www.inaturalist.org/pages/terms">Hizmet Şartları </a></b> ve <b><a href="https://www.inaturalist.org/pages/privacy">Gizlilik Politikası\'nı</a></b> onaylarsınız]]></string>
     <string name="activity">Etkinlik</string>
     <string name="camera">Resim Çek</string>
-    <string name="upload_photo">Resim seçin</string>
-    <string name="menu_text">Fotoğraf yok</string>
+    <string name="upload_photo">Resim Seç</string>
+    <string name="menu_text">Fotoğraf Yok</string>
     <string name="first">Birinci</string>
     <string name="make_first">Birinci yap</string>
     <string name="notes">Notlar</string>
     <string name="location_is">Konum</string>
-    <string name="is_captive">Kısıtlı ya da ekili</string>
-    <string name="location_visibility">Konum görünürlüğü</string>
+    <string name="is_captive">O kısıtlı ya da ekili</string>
+    <string name="location_visibility">Konum Görünürlüğü</string>
     <string name="set_location">Konum</string>
     <string name="coordinates_lat">Enlem:</string>
     <string name="coordinates_lon">Boylam:</string>
@@ -262,18 +262,18 @@
     <string name="turn_on">Aç</string>
     <string name="introducing_auto_sync">Oto-Eşitleme Tanıtımı!</string>
     <string name="turn_on_auto_sync">Otomatik Yükleme özelliğini açarsanız, gözlemleriniz otomatik olarak iNaturalist\'e yüklenir.</string>
-    <string name="automatic_upload">Otomatik yükleme (otomatik eşitleme)</string>
+    <string name="automatic_upload">Otomatik Yükleme (Oto Eşitleme)</string>
     <string name="waiting_to_upload">Yüklenmeyi bekliyor ...</string>
     <string name="uploading">Yükleniyor...</string>
     <string name="failed_to_add_to_project">\'%1$s\' projesine ekleme başarısız: %2$s</string>
-    <string name="needs_your_attention">Dikkate ihtiyacınız var.</string>
+    <string name="needs_your_attention">Dikkat edin...</string>
     <string name="observation">Gözlem</string>
     <string name="share">Paylaş</string>
     <string name="unable_to_acquire_location">Konum alınamıyor</string>
     <string name="casual_grade">Sıradan Sınıf</string>
     <string name="needs_id">Tanımlama Gerekli</string>
     <string name="research_grade">Araştırma Sınıfı</string>
-    <string name="data_quality">Veri kalitesi</string>
+    <string name="data_quality">Veri Niteliği</string>
     <string name="casual_grade_add_location"><![CDATA[ Bu gözlemi “Tanımlama Gerekli” durumuna ilerletmek için bir <b>konum</b> ekleyin. ]]></string>
     <string name="casual_grade_add_date"><![CDATA[ Bu gözlemi “Tanımalama Gerekli” durumuna ilerletmek için bir <b>tarih</b> ekleyin. ]]></string>
     <string name="casual_grade_add_photo"><![CDATA[ Bu gözlemi “Tanımlama Gerekli” durumuna ilerletmek için bir <b>fotoğraf</b> ekleyin. ]]></string>
@@ -285,8 +285,8 @@
     <string name="id_title">%1$s\'in kimliği • %2$s</string>
     <string name="comment_title">%1$s • %2$s</string>
     <string name="delete">Sil</string>
-    <string name="delete_id">Tanımlamayı geri al</string>
-    <string name="delete_comment">Yorumu sil</string>
+    <string name="delete_id">Tanımlamayı Geri Al</string>
+    <string name="delete_comment">Yorumu Sil</string>
     <string name="delete_id_message">Bu tanımlamayı geri almak istediğinizden emin misiniz?</string>
     <string name="delete_comment_message">Bu yorumu silmek istediğinizden emin misiniz?</string>
     <string name="comment">Yorum</string>
@@ -304,12 +304,12 @@
     <string name="sync_obs_to_see_favs">Favorileri görmek için bu gözlemi eşitleyin...</string>
     <!-- Message when you try to view faves on an observation you haven't uploaded yet -->
     <string name="sync_obs_to_add_comments_ids">Yorum bırakmak ya da tanımlamak için bu gözlemi eşitleyin...</string>
-    <string name="no_photo">Fotoğraf yok</string>
+    <string name="no_photo">Fotoğraf Yok</string>
     <string name="about_this_species">Bu türler hakkında</string>
     <string name="view_on_wikipedia">Vikipedi Makalesi</string>
     <string name="photo"><![CDATA[Fotoğraf: <b><a href="%1$s">%2$s</a></b>]]></string>
     <string name="photo_attr"><![CDATA[Fotoğraf: <b>%1$s</b>]]></string>
-    <string name="finding_current_location">Konumunuz bulunuyor...</string>
+    <string name="finding_current_location">Geçerli konumunuz bulunuyor...</string>
     <string name="flag_as_captive">Kısıtlanmış/Ekili olarak işaretle</string>
     <string name="observation_flagged_as_captive">Gözlem kısıtlanmış/ekili olarak işaretlendi</string>
     <string name="are_you_sure_you_want_to_flag_as_captive">Bu gözlemi kısıtlanmış/ekili olarak işaretlemek istediğinizden emin misiniz? (Evet düğmesine basıldığında gözlem görüntüleme penceresi de kapanır)</string>
@@ -318,20 +318,20 @@
     <string name="observation_rules">Gözlem Kuralları</string>
     <string name="couldnt_load_project_details">Proje detayları yüklenemedi: %1$s</string>
     <string name="no_people_found">Hiç kimse bulunamadı</string>
-    <string name="rank">Rütbe</string>
+    <string name="rank">Düzey</string>
     <string name="identifications">Tanımlamalar</string>
-    <string name="no_news_found">Haber bulunamadı</string>
+    <string name="no_news_found">Yeni öğeler bulunamadı</string>
     <string name="news">Haberler</string>
     <string name="article">Makale</string>
     <string name="couldnt_load_project_news">Proje haberi yüklenemedi: %1$s</string>
     <string name="couldnt_load_user_details">Kullanıcı detayları yüklenemedi: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Daha çok »</font></b>]]></string>
-    <string name="no_location">Konum yok</string>
+    <string name="no_location">Konum Yok</string>
     <string name="add_to_projects">Proje(ler)ye ekle</string>
     <string name="are_you_sure_you_want_to_save_obs_without_coords">Gözlemi herhangi bir koordinat olmadan kaydetmek istediğinden emin misin?</string>
     <string name="users_identification">%1$s\'in kimliği: %2$s</string>
     <string name="edit_profile">Profili Düzenle</string>
-    <string name="remove_photo">Fotoğrafı kaldır</string>
+    <string name="remove_photo">Fotoğrafı Kaldır</string>
     <string name="name">İsim</string>
     <string name="tell_us_about_yourself">Bize kendinden bahset...</string>
     <string name="view_profile">Profili Görüntüle</string>
@@ -340,7 +340,7 @@
     <string name="there_was_a_problem_updating_profile">Profiliniz güncellenirken bir sorunla karşılaştık!</string>
     <string name="there_was_a_problem_updating_profile_params">Profiliniz güncellenirken bir sorunla karşılaştık: %1$s</string>
     <string name="logged_in_as_html"><![CDATA[<b>%1$s</b> olarak giriş yapıldı]]></string>
-    <string name="log_out">Oturumu Kapat</string>
+    <string name="log_out">Çıkış yap</string>
     <string name="not_logged_in">Giriş yapılmadı</string>
     <string name="auto_upload_description">Yeni gözlemleri ve gözlem düzenlemerini otomatik yükle</string>
     <string name="language">Dil</string>
@@ -358,12 +358,12 @@
     <string name="syncing_observations">Gözlemler eşitleniyor...</string>
     <string name="syncing_paused">Duraklatıldı</string>
     <string name="upload">Yükle</string>
-    <string name="search_observations">Gözlemler aranıyor...</string>
+    <string name="search_observations">Gözlemleri Ara...</string>
     <string name="withdraw">Geri al</string>
     <!-- Dialog title for when you are updating the description of an identification -->
-    <string name="update_id_description">Kimlik tanımlamasını güncelle.</string>
+    <string name="update_id_description">Tanımlama Açıklamasını Güncelle</string>
     <string name="your_identification">Tanımlaman: %1$s</string>
-    <string name="onboarding_species_name">Yapabilirsen ne gördüğünü söyle ama yapamazsan sorun değil. Diğerleri tanımlamanıza yardımcı olabilir!</string>
+    <string name="onboarding_species_name">Sadece \"böcek\" veya \"kuş\" olsa bile mümkünse gördüklerinizi adlandırın, veya öylece boş bırakın. Diğerleri onu tanımlamanıza yardımcı olabilir!</string>
     <string name="upload_complete">Yükleme Tamamlandı!</string>
     <string name="onboarding_upload_description">Gözlem(ler)indeki tanımlama ve yorumlar için daha sonra tekrar kontrol et.</string>
     <string name="importing_photos">Fotoğraf(lar) içe aktarılıyor...</string>
@@ -383,10 +383,10 @@
     <string name="fungi">Mantarlar</string>
     <string name="birds">Kuşlar</string>
     <string name="arachnids">Eklembacaklılar</string>
-    <string name="no_connectivity">Bağlantı yok</string>
+    <string name="no_connectivity">Bağlantı Yok</string>
     <string name="no_recommended_missions">Bu alanda öneri yok gibi görünüyor. Yeni bir konuma taşımayı deneyin.</string>
-    <string name="what_to_look_for">Bakılacak şey</string>
-    <string name="have_been_seen_here">Burada görüldü</string>
+    <string name="what_to_look_for">Bakılacak Şey</string>
+    <string name="have_been_seen_here">Burada Görüldü</string>
     <string name="observe">Gözlemle</string>
     <string name="nearby_missions">Yakındaki Görevler</string>
     <string name="searching_your_area">Alanın aranıyor...</string>
@@ -404,10 +404,10 @@
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> önerdiği kimlik: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="user_activity_comment"><![CDATA[<b>%1$s</b> yorum yaptı: &ldquo;%2$s&rdquo; <font color="#8B8B8B">%3$s</font>]]></string>
     <string name="deleted_photos_from_cache_error">Yüklemeden önce uygulama önbelleği temizleyerek bir fotoğraf silmiş gibi görünüyor. Fotoğrafını Galeriden gözleme geri eklemeniz gerekecektir. Gelecekte, lütfen Uygulama önbelleğini temizlemeden önce tüm fotoğraflarınızı yüklediğiniz emin olun.</string>
-    <string name="new_activities">%1s bildirim</string>
-    <string name="no_results_found">Hiçbir sonuç bulunamadı</string>
+    <string name="new_activities">%1s yenilik</string>
+    <string name="no_results_found">Sonuçlar Bulunamadı...</string>
     <string name="syncing_x_out_of_y_observations">%2$d gözlemden %1$d tanesi eşitleniyor...</string>
-    <string name="deleting_observations">Gözlemler siliniyor...</string>
+    <string name="deleting_observations">Gözlemler Siliniyor...</string>
     <string name="preparing">Hazırlanıyor...</string>
     <string name="add_edit_remark">Açıklama Ekle/Düzenle</string>
     <string name="restore">Geri yükle</string>
@@ -416,20 +416,20 @@
     <string name="source_wikipedia">(Kaynak: Vikipedi)</string>
     <string name="conservation_source"><![CDATA[<b>Kaynak:</b> %1$s</i>]]></string>
     <string name="conservation_status_least_concern">En az endişe</string>
-    <string name="conservation_status_near_threatened">Tehlikeye Yakın</string>
+    <string name="conservation_status_near_threatened">Tehdite yakın</string>
     <string name="conservation_status_vulnerable">Savunmasız</string>
-    <string name="conservation_status_endangered">Nesli tehlike altında olan</string>
-    <string name="conservation_status_critically_endangered">Nesli tehlike altında olan(Kritik)</string>
+    <string name="conservation_status_endangered">Soyu tükenmekte</string>
+    <string name="conservation_status_critically_endangered">Soyu kritik şekilde tükenmekte</string>
     <string name="conservation_status_extinct_in_the_wild">Doğada soyu tükenmiş</string>
     <string name="conservation_status_extinct">Soyu tükenmiş</string>
     <string name="map_of_observations">Gözlem Haritası</string>
     <string name="taxonomy">Sınıflandırma</string>
-    <string name="about_this_section">Bu bölüm hakkında</string>
+    <string name="about_this_section">Bu Bölüm Hakkında</string>
     <!-- Explanation of the taxonomy displayed on the taxon detail screen. -->
     <string name="taxonomy_info">Bunlar, bu sınıfın atalarıyla bağlıdırlar. En kapsamlıdan en özele doğru sıralanar. Yaşam Ağacı\'nda aşağı yukarı hareket etmek için bu bağlantıları kullanın. Örneğin, bir organizmanın ne olduğunu bilmiyorsanız ancak hangi gruba girdiğini biliyorsanız, bu konuda daha çok bilgi edinmek için listeden bir sınıfa dokunun.</string>
     <string name="more_info_on_inat">iNaturalist.org üzerinden daha çok bilgi</string>
-    <string name="view_suggestions">Önerileri görüntüle</string>
-    <string name="species_search">Tür arama</string>
+    <string name="view_suggestions">Önerileri Görüntüle</string>
+    <string name="species_search">Tür Ara</string>
     <string name="were_not_confident">Bir öneride bulunacak kadar kendimizden emin değiliz ancak en iyi %1$d önerimiz:</string>
     <string name="top_species_suggestions">İşte ilk %1$d tür önerimiz:</string>
     <string name="pretty_sure_rank">Bunun %1$s içinde olduğuna oldukça eminiz:</string>
@@ -444,18 +444,18 @@
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">Alt Sınıf Görünümü</string>
     <string name="invalid_photo_extension">Fotoğraf(lar) alma hatası: Yalnızca JPG/JPEG/PNG uzantılı fotoğraflar alınabilir.</string>
-    <string name="taxon_has_no_photos">Bu sınıflandırmada hiç fotoğraf bulunmuyor.</string>
+    <string name="taxon_has_no_photos">Bu sınıfın fotoğrafları yok.</string>
     <string name="terrain">Arazi</string>
     <string name="filters">Filtreler</string>
-    <string name="exploring_all">Tümü keşfediliyor</string>
+    <string name="exploring_all">Tümünü Keşfetme</string>
     <string name="nearby">Yakındaki</string>
     <string name="couldnt_load_results">Sonuçlar yüklenemedi : %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">AS</string>
     <string name="taxon_search_hint">örn. kuşlar, kral kelebeği</string>
     <string name="location_search_hint">örn: kent, eyalet, park, ülke...</string>
-    <string name="no_taxon">Üzgünüz, sınıflandırma bulunamadı</string>
-    <string name="please_select_taxon">Lütfen listeden geçerli bir sınıflandırma seçin (ya da sınıflandırma alanını temizleyin).</string>
+    <string name="no_taxon">Üzgünüz, sınıf bulunamadı</string>
+    <string name="please_select_taxon">Lütfen listeden geçerli bir sınıf seçin (ya da sınıf alanını temizleyin).</string>
     <string name="sorry_no_location">Üzgünüz, konum bulunamadı</string>
     <string name="location_not_found">Aradığınız konum ya da yer veri tabanımızda bulunmuyor. Lütfen konum arama alanının altındaki seçenekler listesinden bir yer seçin ya da arama alanını temizleyin.</string>
     <string name="undefined">Tanımlanmamış</string>
@@ -469,7 +469,7 @@
     <string name="island">Ada</string>
     <string name="airport">Hava Alanı</string>
     <string name="drainage">Drenaj</string>
-    <string name="land_feature">Arazi özelliği</string>
+    <string name="land_feature">Arazi Özelliği</string>
     <string name="miscellaneous">Çeşitli</string>
     <string name="nationality">Uyruk</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
@@ -503,27 +503,28 @@
     <string name="village_block">Mezra</string>
     <!-- Mongolian sub-sub-national place type: https://en.wikipedia.org/wiki/Districts_of_Mongolia -->
     <string name="sum">Sum</string>
-    <string name="shire">Kent</string>
+    <string name="shire">Shire</string>
     <string name="prefecture_city">İl Düzeyindeki Kent</string>
     <!-- Indonesian sub-sub-national place type -->
     <string name="regency">Naiplik</string>
     <string name="constituency">Seçim bölgesi</string>
-    <string name="local_authority">Yerel yönetim</string>
+    <string name="local_authority">Yerel Yönetim</string>
     <string name="poblacion">Nüfus</string>
     <string name="delegation">Delegasyon</string>
-    <string name="apply_filters">Filtreleri uygula</string>
+    <string name="apply_filters">Filtreleri Uygula</string>
     <string name="reset">Sıfırla</string>
-    <string name="show_only_my_observations">Sadece gözlemleri göster</string>
+    <string name="show_only_my_observations">Yalnız Gözlemlerimi Göster</string>
     <string name="project">Proje</string>
     <string name="user">Kullanıcı</string>
-    <string name="search_users">Kullanıcı ara...</string>
-    <string name="quality_grade">Kalite sınıfı</string>
-    <string name="dates">Tarihler</string>
+    <string name="search_users">Kullanıcıları Ara...</string>
+    <string name="quality_grade">Nitelik Sınıfı</string>
+    <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
+    <string name="date_observed">Gözlem Tarihi</string>
     <!-- Generally used as a menu option to indicate no preference, e.g. Date of Observation: Any / Exact / Range / Month -->
     <string name="any">Herhangi</string>
     <!-- Used to separate a date range, e.g. "2018-01-04 to 2018-05-02" -->
     <string name="to">için</string>
-    <string name="exact_date">Tam tarih</string>
+    <string name="exact_date">Tam Tarih</string>
     <string name="start">Başlangıç</string>
     <string name="end">Bitiş</string>
     <string name="months">Aylar</string>
@@ -535,13 +536,13 @@
     <!-- Compact form of "X minutes ago", so "3 minutes ago" would be "3m" -->
     <string name="date_minute">%ddk</string>
     <!-- Compact form of "X hours ago", so "3 hours ago" would be "3h" -->
-    <string name="date_hour">%dsaat</string>
+    <string name="date_hour">%ds</string>
     <!-- Compact form of "X days ago", so "3 days ago" would be "3d" -->
-    <string name="date_day">%dgün</string>
+    <string name="date_day">%dg</string>
     <!-- Compact form of "X weeks ago", so "3 weeks ago" would be "3w" -->
-    <string name="date_week">%dhafta</string>
-    <string name="new_observation">Yeni gözlem</string>
-    <string name="inactive_taxon">Etkin olmayan sınıflandırma</string>
+    <string name="date_week">%dh</string>
+    <string name="new_observation">Yeni Gözlem</string>
+    <string name="inactive_taxon">Etkin Olmayan Sınıf</string>
     <string name="no_identifications_found">Buradaki diğer kişilerin incelemeleri için önerdiğiniz tanımlamaları izleyin.</string>
     <string name="no_species_found">Bu, en çok gözlemlediğin türlerin bir listesi.\n\nFYI: Gezegende tahmini 9 milyon tür var, o yüzden oraya çık ve onları gözlemle!</string>
     <string name="make_an_observation">Bir gözlem yap</string>
@@ -551,7 +552,7 @@
     <string name="swipe">Kaydır</string>
     <string name="swipe_indicator">›</string>
     <string name="select_google_account">Hangi Google hesabı?</string>
-    <string name="potential_disagreement">Potansiyel anlaşmazlık</string>
+    <string name="potential_disagreement">Olası Anlaşmazlık</string>
     <string name="do_you_think_this_could_be"><![CDATA[Bunun <b>%1$s</b> olduğunu doğrulamak için yeterli kanıt var mı?]]></string>
     <string name="i_dont_know_but"><![CDATA[Bilmiyorum ama bunun <b>%1$s</b> olduğundan eminim.]]></string>
     <string name="no_but_it_is_a_member_of_taxon"><![CDATA[Hayır ama <b>%1$s</b> üyesidir.]]></string>
@@ -563,7 +564,7 @@
     <string name="inat_credits"><![CDATA[iNaturalist topluluğumuza katılan her bir kişiye teşekkür eder. Yazılımı oluşturan, arayüzleri tasarlayan, altyapımızı koruyan, toplumu destekleyen ve işbirliğini geliştiren insanlar Yaron Budowski, Amanda Bullington, Tony Iwane, Patrick Leary, Scott Loarie, Abhas Misraraj, Carrie Seltzer, Alex Shepard ve Ken; ichi Ueda. <br/><br/> CalTech ve Cornell Tech, fotoğraflardaki kimlikleri öneren bilgisayarlı görü sisteminin geliştirilmesine yardımcı oldu. Bilgisayarla görme araştırmasını ilerlettiği için Grant Van Horn, Serge Belongie ve Pietro Perona\'ya teşekkür ediyoruz. Daha fazla bilgiyi <a href="http://www.visipedia.org">visipedia.org</a> adresinde bulabilirsiniz. Ek yardım için NVIDIA\'ya özel teşekkür ederiz.]]></string>
     <string name="inat_credits_networks_pre"><![CDATA[Uluslararası iNaturalist Ağı, ilişkili ortak kuruluşların desteğiyle aşağıdaki ülkelerde yerelleştirilmiş, tam entegre, iNaturalist tabanlı web sitelerini destekler.]]></string>
     <string name="inat_credits_post"><![CDATA[iNaturalist, her gün güvendiğimiz yazılımın çoğunu sağlayan açık kaynaklı geliştiricilere de minnettar. Açık kaynak katkıları için<a href="https://github.com/inaturalist/iNaturalistAndroid"> https://github.com/inaturalist/iNaturalistAndroid</a> adresine bakın. Açık kaynak katkıları için minnettarız. <br/>Crowdin.com topluluğunda gönüllüler tarafından sağlanan çeviri yardımları için teşekkür ediyoruz, özellikle Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie ve katunchik. <br/> IUCN ve UNEP-WCMC (2015), Korunan Alanlar Dünya Veri Tabanı (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC tarafından sağlanan IUCN kategori II yerleri. Aşağıdaki adreste bulunabilir: <a href="http://www.protectedplanet.net"> www.protectedplanet.net </a>]]></string>
-    <string name="credits_title">Teşekkürler</string>
+    <string name="credits_title">Emeği Geçenler</string>
     <string name="password_changed">Uygulamanın kullandığı şifre artık çalışmıyor - web sitesindeki şifrenizi değiştirdiniz mi? Lütfen yenisini buraya girin</string>
     <string name="just_so_you_know">Bilginiz olsun...</string>
     <string name="ask_for_g_plus_permissions">Google, Google hesabınızı kullanmak için kişilerinize erişim izni talep etmemizi gerektiriyor, ancak kişilerinize herhangi bir nedenle erişemiyoruz. Bu izni reddederseniz, bir kullanıcı adı ve şifre ile kaydolmanız veya giriş yapmanız gerekir.</string>
@@ -664,7 +665,7 @@
     <string name="new_all_caps">YENİ</string>
     <string name="observers_all_caps">GÖZLEMCİLER</string>
     <string name="observations_regular">Gözlemler</string>
-    <string name="data_quality_assessment">Veri Kalitesi Değerlendirmesi</string>
+    <string name="data_quality_assessment">Veri Nitelik Değerlendirmesi</string>
     <string name="research_grade_qualification">Araştırma Sınıfı Niteliği</string>
     <string name="date_specified">Belirtilen tarih</string>
     <string name="location_specified">Belirtilen konum</string>
@@ -725,4 +726,24 @@
     <string name="pin_current_location">Geçerli Konumu Sabitle</string>
     <string name="location_pinned_successfully">Geçerli Konum Başarıyla Sabitlendi</string>
     <string name="delete_this_pinned_location">Bu sabitlenmiş konum silinsin mi?</string>
+    <string name="duplicate">Çoğalt</string>
+    <string name="couldnt_duplicate_photo">Fotoğraf çoğaltılamadı!</string>
+    <string name="couldnt_edit_photo">Fotoğraf düzenlenemedi!</string>
+    <string name="ucrop_rotate">Döndür</string>
+    <string name="ucrop_scale">Ölçek</string>
+    <string name="ucrop_crop">Kırp</string>
+    <string name="ucrop_brightness">Parlaklık</string>
+    <string name="ucrop_contrast">Renk karşıtlığı</string>
+    <string name="ucrop_saturation">Renk doygunluğu</string>
+    <string name="ucrop_sharpness">Keskinlik</string>
+    <string name="ucrop_label_original">Asıl</string>
+    <string name="ucrop_label_edit_photo">Fotoğrafı Düzenle</string>
+    <string name="service_temporarily_unavailable">Hizmet geçici olarak kullanılamıyor.</string>
+    <string name="please_try_again_in_a_few_hours">Lütfen birkaç saat içinde tekrar deneyin.</string>
+    <!-- e.g. "Please try again in 3 hours", or "Please try again in 15 minutes" -->
+    <string name="please_try_again_in_x">Lütfen %1$d %2$s içinde tekrar deneyin.</string>
+    <string name="hours">saat</string>
+    <string name="minutes">dakika</string>
+    <string name="seconds_value">saniye</string>
+    <string name="shop_the_inat_store">iNat Mağazasında Alışveriş Yapın</string>
 </resources>
