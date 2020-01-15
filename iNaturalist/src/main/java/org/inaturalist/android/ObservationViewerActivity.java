@@ -407,6 +407,9 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 // Online photo
             	imageView.setLayoutParams(new TwoWayView.LayoutParams(TwoWayView.LayoutParams.MATCH_PARENT, TwoWayView.LayoutParams.WRAP_CONTENT));
 
+                // Deduce the original-sized URL
+                imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/')) + "/original" + imageUrl.substring(imageUrl.lastIndexOf('.'));
+
                 Picasso.with(ObservationViewerActivity.this)
                         .load(imageUrl)
                         .fit()
@@ -438,7 +441,6 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
 
                 try {
                     BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize = ImageUtils.calculateInSampleSize(options, newWidth, newHeight);
 
                     // Decode bitmap with inSampleSize set
                     options.inJustDecodeBounds = false;

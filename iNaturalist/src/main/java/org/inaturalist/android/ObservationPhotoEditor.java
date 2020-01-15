@@ -28,11 +28,14 @@ import com.yalantis.ucrop.UCropActivity;
 import com.yalantis.ucrop.UCropFragment;
 import com.yalantis.ucrop.UCropFragmentCallback;
 
+import org.tinylog.Logger;
+
 import java.io.File;
 import java.util.UUID;
 
 public class ObservationPhotoEditor extends AppCompatActivity implements UCropFragmentCallback {
     public static final String PHOTO_URI = "photo_uri";
+    private static final String TAG = "ObservationPhotoEditor";
 
     private String mToolbarTitle;
     @DrawableRes
@@ -157,7 +160,7 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
             if (mFragment != null && mFragment.isAdded())
                 mFragment.cropAndSaveImage();
         } else if (item.getItemId() == android.R.id.home) {
-            Log.e("AAA", "Dirty:" + mFragment.isDirty());
+            Logger.tag(TAG).info("Dirty:" + mFragment.isDirty());
             setResult(RESULT_CANCELED);
             closeActivity();
         }
@@ -166,7 +169,7 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
 
     @Override
     public void onBackPressed() {
-        Log.e("AAA", "Dirty:" + mFragment.isDirty());
+        Logger.tag(TAG).info("Dirty:" + mFragment.isDirty());
         closeActivity();
     }
 
@@ -245,7 +248,7 @@ public class ObservationPhotoEditor extends AppCompatActivity implements UCropFr
                 setResult(RESULT_CANCELED);
                 break;
         }
-        closeActivity();
+        finish();
     }
 
 }
