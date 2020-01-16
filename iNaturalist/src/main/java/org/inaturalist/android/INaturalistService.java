@@ -406,6 +406,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_ADD_OBSERVATION_TO_PROJECT = "add_observation_to_project";
     public static String ACTION_REMOVE_OBSERVATION_FROM_PROJECT = "remove_observation_from_project";
     public static String ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON = "redownload_observations_for_taxon";
+    public static String ACTION_SYNC_JOINED_PROJECTS = "sync_joined_projects";
     public static String ACTION_GET_ALL_GUIDES = "get_all_guides";
     public static String ACTION_GET_MY_GUIDES = "get_my_guides";
     public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
@@ -1659,6 +1660,9 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON)) {
                 redownloadOldObservationsForTaxonNames();
+
+            } else if (action.equals(ACTION_SYNC_JOINED_PROJECTS)) {
+                saveJoinedProjects();
 
             } else if (action.equals(ACTION_GET_CHECK_LIST)) {
                 int id = intent.getExtras().getInt(CHECK_LIST_ID);
