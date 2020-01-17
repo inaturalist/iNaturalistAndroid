@@ -784,7 +784,8 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
             mUserBio.setVisibility(View.GONE);
         } else {
             mUserBio.setVisibility(View.VISIBLE);
-            HtmlUtils.fromHtml(mUserBio, bio);
+            String bioNoHtml = Html.fromHtml(bio, null, null).toString();
+            mUserBio.setText(bioNoHtml);
 
             ViewTreeObserver vto = mUserBio.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -800,10 +801,9 @@ public class UserProfile extends AppCompatActivity implements TabHost.OnTabChang
                     if (l != null) {
                         int lines = l.getLineCount();
                         if (lines > 0) {
-                            //if (l.getEllipsisCount(lines - 1) > 0) {
-                            if (l.getLineCount() > 2) {
+                            if ((l.getEllipsisCount(lines - 1) > 0) || (l.getLineCount() > 2)) {
                                 // Bio is ellipsized - Trim the bio text to show the more link
-                                String newBio = bio.substring(0, l.getLineEnd(1) - 8) + "... " + getString(R.string.more_bio);
+                                String newBio = bioNoHtml.substring(0, l.getLineEnd(1) - 10) + "... " + getString(R.string.more_bio);
                                 HtmlUtils.fromHtml(mUserBio, newBio);
 
                                 // Show the full bio when the shortened bio is clicked

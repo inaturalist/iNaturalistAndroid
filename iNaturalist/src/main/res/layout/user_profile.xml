@@ -111,8 +111,6 @@
                         android:text="Some bio text"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:ellipsize="end"
-                        android:maxLines="2"
                         android:gravity="center_horizontal"
                         />
                 </RelativeLayout>

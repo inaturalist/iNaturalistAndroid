@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/action_container"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -10,45 +10,49 @@
         android:layout_centerHorizontal="true"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
+        android:orientation="horizontal"
         >
-        <Button
+        <ImageButton
             android:id="@+id/edit_photo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="40dp"
-            android:drawableLeft="@drawable/ic_mode_edit_black_24dp"
-            android:drawablePadding="5dp"
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            android:padding="5dp"
             android:background="@null"
-            android:text="@string/edit"
+            android:contentDescription="@string/edit"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/duplicate_photo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="40dp"
-            android:drawableLeft="@drawable/baseline_file_copy_black_24"
-            android:drawablePadding="5dp"
+            android:src="@drawable/baseline_file_copy_black_24"
+            android:padding="5dp"
             android:background="@null"
-            android:text="@string/duplicate"
+            android:contentDescription="@string/duplicate"
             android:layout_centerInParent="true"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/delete_photo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="40dp"
-            android:drawableLeft="@drawable/ic_delete_black_24dp"
-            android:drawablePadding="5dp"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:padding="5dp"
             android:background="@null"
-            android:text="@string/delete"
+            android:contentDescription="@string/delete"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             />
-    </RelativeLayout>
+    </LinearLayout>
 
     <uk.co.senab.photoview.HackyViewPager
         android:id="@+id/id_pic_view_pager"
