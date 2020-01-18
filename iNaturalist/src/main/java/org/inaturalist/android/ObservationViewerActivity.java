@@ -489,6 +489,14 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
             }
         }
 
+        public void pause() {
+            for (SoundPlayer player : mPlayers) {
+                if (player != null) {
+                    player.pause();
+                }
+            }
+        }
+
         @Override
         public void onPlay(SoundPlayer player) {
             // Pause all other players
@@ -2685,7 +2693,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         BaseFragmentActivity.safeUnregisterReceiver(mAttributesReceiver, this);
         BaseFragmentActivity.safeUnregisterReceiver(mChangeAttributesReceiver, this);
         if (mPhotosAdapter != null) {
-            mPhotosAdapter.destroy();
+            mPhotosAdapter.pause();
         }
     }
 
