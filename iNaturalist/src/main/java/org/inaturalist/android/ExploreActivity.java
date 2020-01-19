@@ -1162,25 +1162,42 @@ public class ExploreActivity extends BaseFragmentActivity {
             addPlaceLayerToMap(mSearchFilters.place);
         }
 
-
-        // Set the tile overlay (for the taxon's observations map)
-        TileProvider tileProvider = new UrlTileProvider(256, 256) {
-            @Override
-            public URL getTileUrl(int x, int y, int zoom) {
-
-                String s = String.format(INaturalistService.API_HOST + "/%s/%d/%d/%d.png?%s",
-                        zoom <= 9 ? "colored_heatmap" : "points", zoom, x, y, mSearchFilters.toUrlQueryString());
-
-                try {
-                    return new URL(s);
-                } catch (MalformedURLException e) {
-                    throw new AssertionError(e);
-                }
-            }
-        };
-
         if (mObservationsMap != null) {
-            TileOverlay tileOverlay = mObservationsMap.addTileOverlay(new TileOverlayOptions().tileProvider(tileProvider));
+            // Set the tile overlay (for the taxon's observations map)
+            TileProvider gridTileProvider = new UrlTileProvider(256, 256) {
+                @Override
+                public URL getTileUrl(int x, int y, int zoom) {
+                    if ( zoom > 10 ) {
+                        return null;
+                    }
+                    String s = String.format(INaturalistService.API_HOST + "/grid/%d/%d/%d.png?%s",
+                        zoom, x, y, mSearchFilters.toUrlQueryString());
+
+                    try {
+                        return new URL(s);
+                    } catch (MalformedURLException e) {
+                        throw new AssertionError(e);
+                    }
+                }
+            };
+            TileProvider pointTileProvider = new UrlTileProvider(256, 256) {
+                @Override
+                public URL getTileUrl(int x, int y, int zoom) {
+                    if ( zoom <= 10 ) {
+                        return null;
+                    }
+                    String s = String.format(INaturalistService.API_HOST + "/points/%d/%d/%d.png?%s",
+                        zoom, x, y, mSearchFilters.toUrlQueryString());
+
+                    try {
+                        return new URL(s);
+                    } catch (MalformedURLException e) {
+                        throw new AssertionError(e);
+                    }
+                }
+            };
+            mObservationsMap.addTileOverlay(new TileOverlayOptions().transparency((float)0.25).tileProvider(gridTileProvider));
+            mObservationsMap.addTileOverlay(new TileOverlayOptions().tileProvider(pointTileProvider));
         }
     }
 

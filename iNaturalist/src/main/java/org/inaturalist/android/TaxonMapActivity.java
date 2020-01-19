@@ -109,7 +109,7 @@ public class TaxonMapActivity extends AppCompatActivity {
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 
-                        String s = String.format(INaturalistService.API_HOST + "/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
+                        String s = String.format(INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d",
                                 zoom, x, y, mTaxonId);
                         try {
                             return new URL(s);

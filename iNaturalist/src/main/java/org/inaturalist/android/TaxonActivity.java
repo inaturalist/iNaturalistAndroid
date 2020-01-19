@@ -688,7 +688,7 @@ public class TaxonActivity extends AppCompatActivity implements TaxonomyAdapter.
                     @Override
                     public URL getTileUrl(int x, int y, int zoom) {
 
-                        String s = String.format(INaturalistService.API_HOST + "/colored_heatmap/%d/%d/%d.png?taxon_id=%d",
+                        String s = String.format(INaturalistService.API_HOST + "/grid/%d/%d/%d.png?taxon_id=%d",
                                 zoom, x, y, mTaxon.getInt("id"));
                         try {
                             return new URL(s);
