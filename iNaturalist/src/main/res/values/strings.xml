@@ -736,12 +736,19 @@
     <string name="ucrop_scale">Scale</string>
     <!-- Verb, as in "Crop this photo" -->
     <string name="ucrop_crop">Crop</string>
+    <!-- Label for adjusting the brightness of an image -->
     <string name="ucrop_brightness">Brightness</string>
+    <!-- Label for adjusting the contrast of an image -->
     <string name="ucrop_contrast">Contrast</string>
+    <!-- Label for adjusting the saturation of an image -->
     <string name="ucrop_saturation">Saturation</string>
+    <!-- Label for adjusting the sharpness of an image -->
     <string name="ucrop_sharpness">Sharpness</string>
+    <!-- Label for image cropping mode that maintains the original aspect ratio -->
     <string name="ucrop_label_original">Original</string>
+    <!-- Label for image cropping mode that has no limits on the aspect ratio -->
     <string name="ucrop_label_free">Free</string>
+    <!-- Verb phrase, button label to edit an observation photo -->
     <string name="ucrop_label_edit_photo">Edit Photo</string>
     <string name="service_temporarily_unavailable">Service temporarily unavailable.</string>
     <string name="please_try_again_in_a_few_hours">Please try again in a few hours.</string>
