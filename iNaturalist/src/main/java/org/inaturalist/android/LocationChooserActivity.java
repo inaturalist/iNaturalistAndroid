@@ -192,13 +192,32 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!mApp.isLocationPermissionGranted()) {
+                    if (!mAskedForLocationPermission) {
+                        mAskedForLocationPermission = true;
+
+                        mApp.requestLocationPermission(LocationChooserActivity.this, new INaturalistApp.OnRequestPermissionResult() {
+                            @Override
+                            public void onPermissionGranted() {
+                                getLocation();
+                            }
+
+                            @Override
+                            public void onPermissionDenied() {
+                            }
+                        });
+                    }
+
+                    return;
+                }
+
                 getLocation();
             }
         });
 
         mCrosshairs = (ImageView) findViewById(R.id.crosshairs);
 
-        mObservationsMapMyLocation.setVisibility(mApp.isLocationPermissionGranted() ? View.VISIBLE : View.INVISIBLE);
+        mObservationsMapMyLocation.setVisibility(View.VISIBLE);
 
         mObservationsChangeMapLayers.setOnClickListener(new View.OnClickListener() {
             @Override
