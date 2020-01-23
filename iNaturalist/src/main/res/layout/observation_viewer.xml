@@ -93,7 +93,7 @@
             android:id="@+id/share_photo"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_action_share"
+            android:src="@drawable/share_shadow"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:paddingTop="15dp"

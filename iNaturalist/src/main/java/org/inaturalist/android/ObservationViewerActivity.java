@@ -571,7 +571,7 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
         mUserPic = (ImageView) findViewById(R.id.user_pic);
         mPhotosViewPager = (ViewPager) findViewById(R.id.photos);
         mIndicator = (CirclePageIndicator)findViewById(R.id.photos_indicator);
-        mSharePhoto = (ImageView)findViewById(R.id.share_photo);
+        mSharePhoto = findViewById(R.id.share_photo);
         mIdPic = (ImageView)findViewById(R.id.id_icon);
         mIdName = (TextView) findViewById(R.id.id_name);
         mTaxonicName = (TextView) findViewById(R.id.id_sub_name);
