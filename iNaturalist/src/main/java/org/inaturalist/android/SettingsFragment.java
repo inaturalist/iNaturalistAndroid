@@ -32,6 +32,8 @@ import java.io.File;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
+    private static final int REQUEST_CODE_DELETE_ACCOUNT = 0x1001;
+
     private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
     private static final String SHOP_URL = "https://store.inaturalist.org/?utm_source=android&utm_medium=mobile&utm_campaign=store";
     private static final String TAG = "SettingsFragment";
@@ -47,6 +49,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mAbout;
     private Preference mDonate;
     private Preference mShop;
+    private Preference mDeleteAccount;
 
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
@@ -78,6 +81,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mAbout = (Preference) getPreferenceManager().findPreference("about");
         mDonate = (Preference) getPreferenceManager().findPreference("donate");
         mShop = (Preference) getPreferenceManager().findPreference("shop");
+        mDeleteAccount = (Preference) getPreferenceManager().findPreference("delete_account");
+        mDeleteAccount.setVisible(mApp.currentUserLogin() != null);
         mVersion = (Preference) getPreferenceManager().findPreference("version");
 
         mHelper = new ActivityHelper(getActivity());
@@ -301,6 +306,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
+        mDeleteAccount.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                // Open deletion screen
+                Intent intent = new Intent(getActivity(), DeleteAccount.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivityForResult(intent, REQUEST_CODE_DELETE_ACCOUNT);
+                return false;
+            }
+        });
+
+
 
 
         // Show app version
@@ -395,6 +411,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if ((requestCode == REQUEST_CODE_LOGIN) && (resultCode == Activity.RESULT_OK)) {
             // Refresh login state
             refreshSettings();
+        } else if ((requestCode == REQUEST_CODE_DELETE_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
+            // User deleted account - sign out immediately
+            signOut();
         }
     }
 
@@ -462,5 +481,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         refreshSettings();
         ((SettingsActivity)getActivity()).refreshUserDetails();
+
+        mDeleteAccount.setVisible(false);
 	}
 }

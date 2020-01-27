@@ -69,6 +69,11 @@
         android:key="donate"
         android:title="@string/donate_to_inaturalist" />
 
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="delete_account"
+        android:title="@string/delete_your_account" />
+
      <Preference
         android:layout="@layout/custom_preference_with_header"
         android:key="version"

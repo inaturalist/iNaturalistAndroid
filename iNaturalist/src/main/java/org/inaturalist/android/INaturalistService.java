@@ -310,6 +310,7 @@ public class INaturalistService extends IntentService {
     public static final String UPDATE_CURRENT_USER_DETAILS_RESULT = "update_current_user_details_result";
     public static final String OBSERVATION_SYNC_PROGRESS = "observation_sync_progress";
     public static final String ADD_OBSERVATION_TO_PROJECT_RESULT = "add_observation_to_project_result";
+    public static final String DELETE_ACCOUNT_RESULT = "delete_account_result";
     public static final String TAXON_ID = "taxon_id";
     public static final String RESEARCH_GRADE = "research_grade";
     public static final String TAXON = "taxon";
@@ -407,6 +408,7 @@ public class INaturalistService extends IntentService {
     public static String ACTION_REMOVE_OBSERVATION_FROM_PROJECT = "remove_observation_from_project";
     public static String ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON = "redownload_observations_for_taxon";
     public static String ACTION_SYNC_JOINED_PROJECTS = "sync_joined_projects";
+    public static String ACTION_DELETE_ACCOUNT = "delete_account";
     public static String ACTION_GET_ALL_GUIDES = "get_all_guides";
     public static String ACTION_GET_MY_GUIDES = "get_my_guides";
     public static String ACTION_GET_NEAR_BY_GUIDES = "get_near_by_guides";
@@ -1660,6 +1662,12 @@ public class INaturalistService extends IntentService {
 
             } else if (action.equals(ACTION_REDOWNLOAD_OBSERVATIONS_FOR_TAXON)) {
                 redownloadOldObservationsForTaxonNames();
+
+            } else if (action.equals(ACTION_DELETE_ACCOUNT)) {
+                boolean success = deleteAccount();
+                Intent reply = new Intent(DELETE_ACCOUNT_RESULT);
+                reply.putExtra(SUCCESS, success);
+                sendBroadcast(reply);
 
             } else if (action.equals(ACTION_SYNC_JOINED_PROJECTS)) {
                 saveJoinedProjects();
@@ -3159,6 +3167,17 @@ public class INaturalistService extends IntentService {
                 }
             }
         }
+    }
+
+    private boolean deleteAccount() throws AuthenticationException {
+        JSONArray result = delete(HOST + "/users/" + mApp.currentUserLogin(), null);
+
+        if (result == null) {
+            Logger.tag(TAG).debug("deleteAccount error: " + mLastStatusCode);
+            return false;
+        }
+
+        return true;
     }
 
     private boolean saveJoinedProjects() throws AuthenticationException, CancelSyncException, SyncFailedException {

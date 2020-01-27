@@ -53,7 +53,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 28
         multiDexEnabled true
-        renderscriptTargetApi 18
+        renderscriptTargetApi 28
         renderscriptSupportModeEnabled true
 
         packagingOptions {

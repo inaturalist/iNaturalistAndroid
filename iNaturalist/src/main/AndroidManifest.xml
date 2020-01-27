@@ -530,6 +530,10 @@
             android:windowActionBar="false"
             android:configChanges="orientation"
             android:label=""></activity>
+        <activity
+            android:name=".DeleteAccount"
+            android:configChanges="orientation"
+            android:label=""></activity>
 
 
         <activity
