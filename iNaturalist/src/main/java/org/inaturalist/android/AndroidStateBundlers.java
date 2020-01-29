@@ -36,6 +36,8 @@ public class AndroidStateBundlers {
                 List<Pair<Uri, Long>> results = new ArrayList<>();
                 for (String value : parts) {
                     value = value.trim();
+                    if (value.length() == 0) continue;
+
                     String[] innerParts = value.substring(5, value.length() - 1).split(" ", 2);
                     results.add(new Pair<Uri, Long>(Uri.parse(innerParts[0]), Long.valueOf(innerParts[1])));
                 }
