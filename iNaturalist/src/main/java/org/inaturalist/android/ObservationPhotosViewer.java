@@ -414,9 +414,18 @@ public class ObservationPhotosViewer extends AppCompatActivity {
  							} else {
  							    String url = innerPhoto.optString("url");
  							    if (url != null) {
-                                    String extension = url.substring(url.lastIndexOf(".") + 1);
-                                    mImages.add(url.substring(0, url.lastIndexOf('/') + 1) + "original." + extension);
-                                    mImageThumbnails.add(url.substring(0, url.lastIndexOf('/') + 1) + "square." + extension);
+                                    String extension = url.substring(url.lastIndexOf("."));
+
+                                    // Deduce the original-sized URL
+                                    if (url.substring(0, url.lastIndexOf('/')).endsWith("assets")) {
+                                        // It's an assets default URL - e.g. https://www.inaturalist.org/assets/copyright-infringement-square.png
+                                        mImages.add(url.substring(0, url.lastIndexOf('-') + 1) + "original" + extension);
+                                        mImageThumbnails.add(url.substring(0, url.lastIndexOf('-') + 1) + "square" + extension);
+                                    } else {
+                                        // "Regular" observation photo
+                                        mImages.add(url.substring(0, url.lastIndexOf('/') + 1) + "original" + extension);
+                                        mImageThumbnails.add(url.substring(0, url.lastIndexOf('/') + 1) + "square" + extension);
+                                    }
                                 }
                             }
  						}
@@ -514,7 +523,16 @@ public class ObservationPhotosViewer extends AppCompatActivity {
                     mImageViewAttachers.set(position, attacher);
 
                     // Deduce the original-sized URL
-                    imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/')) + "/original" + imageUrl.substring(imageUrl.lastIndexOf('.'));
+                    String extension = imageUrl.substring(imageUrl.lastIndexOf('.'));
+
+                    // Deduce the original-sized URL
+                    if (imageUrl.substring(0, imageUrl.lastIndexOf('/')).endsWith("assets")) {
+                        // It's an assets default URL - e.g. https://www.inaturalist.org/assets/copyright-infringement-square.png
+                        imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('-') + 1) + "original" + extension;
+                    } else {
+                        // "Regular" observation photo
+                        imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1) + "original" + extension;
+                    }
 
                     // Show a photo
                     

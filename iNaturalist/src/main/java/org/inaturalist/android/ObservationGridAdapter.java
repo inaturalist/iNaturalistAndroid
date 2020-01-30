@@ -130,8 +130,17 @@ public class ObservationGridAdapter extends ArrayAdapter<JSONObject> {
                 }
 
                 if ((url != null) && (url.length() > 0)) {
-                    String extension = url.substring(url.lastIndexOf(".") + 1);
-                    url = url.substring(0, url.lastIndexOf("/") + 1) + "medium." + extension;
+                    String extension = url.substring(url.lastIndexOf('.'));
+
+                    // Deduce the original-sized URL
+                    if (url.substring(0, url.lastIndexOf('/')).endsWith("assets")) {
+                        // It's an assets default URL - e.g. https://www.inaturalist.org/assets/copyright-infringement-square.png
+                        url = url.substring(0, url.lastIndexOf("-") + 1) + "medium" + extension;
+                    } else {
+                        // "Regular" observation photo
+                        url = url.substring(0, url.lastIndexOf("/") + 1) + "medium" + extension;
+                    }
+
                 }
 
                 Picasso.with(mContext)

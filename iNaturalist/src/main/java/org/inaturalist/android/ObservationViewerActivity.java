@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.text.InputType;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -407,8 +408,16 @@ public class ObservationViewerActivity extends AppCompatActivity implements Anno
                 // Online photo
             	imageView.setLayoutParams(new TwoWayView.LayoutParams(TwoWayView.LayoutParams.MATCH_PARENT, TwoWayView.LayoutParams.WRAP_CONTENT));
 
+            	String extension = imageUrl.substring(imageUrl.lastIndexOf('.'));
+
                 // Deduce the original-sized URL
-                imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/')) + "/original" + imageUrl.substring(imageUrl.lastIndexOf('.'));
+                if (imageUrl.substring(0, imageUrl.lastIndexOf('/')).endsWith("assets")) {
+                    // It's an assets default URL - e.g. https://www.inaturalist.org/assets/copyright-infringement-square.png
+                    imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('-') + 1) + "original" + extension;
+                } else {
+                    // "Regular" observation photo
+                    imageUrl = imageUrl.substring(0, imageUrl.lastIndexOf('/') + 1) + "original" + extension;
+                }
 
                 Picasso.with(ObservationViewerActivity.this)
                         .load(imageUrl)

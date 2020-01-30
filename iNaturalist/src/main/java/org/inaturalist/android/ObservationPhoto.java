@@ -206,7 +206,14 @@ public class ObservationPhoto implements BaseColumns, Serializable {
 
         if (this.photo_url != null) {
             String extension = this.photo_url.substring(this.photo_url.lastIndexOf(".") + 1);
-            this.photo_url = this.photo_url.substring(0, this.photo_url.lastIndexOf('/') + 1) + "large." + extension;
+
+            if (this.photo_url.substring(0, this.photo_url.lastIndexOf('/')).endsWith("assets")) {
+                // It's an assets default URL - e.g. https://www.inaturalist.org/assets/copyright-infringement-square.png
+                this.photo_url = this.photo_url.substring(0, this.photo_url.lastIndexOf('-') + 1) + "large." + extension;
+            } else {
+                // "Regular" observation photo
+                this.photo_url = this.photo_url.substring(0, this.photo_url.lastIndexOf('/') + 1) + "large." + extension;
+            }
         }
     }
 
