@@ -3170,7 +3170,10 @@ public class INaturalistService extends IntentService {
     }
 
     private boolean deleteAccount() throws AuthenticationException {
-        JSONArray result = delete(HOST + "/users/" + mApp.currentUserLogin(), null);
+        String username = mApp.currentUserLogin();
+
+        JSONArray result = delete(
+                String.format("%s/users/%s.json?confirmation_code=%s&confirmation=%s", HOST, username, username, username), null);
 
         if (result == null) {
             Logger.tag(TAG).debug("deleteAccount error: " + mLastStatusCode);
@@ -5974,7 +5977,7 @@ public class INaturalistService extends IntentService {
 
 
     // Returns an array of two strings: access token + iNat username
-    public static String[] verifyCredentials(Context context, String username, String oauth2Token, LoginType authType) {
+    public static String[] verifyCredentials(Context context, String username, String oauth2Token, LoginType authType, boolean askForScopeDeletion) {
         String grantType = null;
         DefaultHttpClient client = new DefaultHttpClient();
         client.getParams().setParameter(CoreProtocolPNames.USER_AGENT, getUserAgent(context));
@@ -5999,6 +6002,9 @@ public class INaturalistService extends IntentService {
             postParams.add(new BasicNameValuePair("client_secret", INaturalistApp.getAppContext().getString(R.string.oauth_client_secret)));
         } else {
             postParams.add(new BasicNameValuePair("assertion", oauth2Token));
+        }
+        if (askForScopeDeletion) {
+            postParams.add(new BasicNameValuePair("scope", "login write account_delete"));
         }
 
         try {

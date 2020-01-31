@@ -17,10 +17,13 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -46,6 +49,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
     public static final String BACKGROUND_ID = "background_id";
     public static final String SIGNUP = "signup";
+    public static final String VERIFY_PASSWORD = "verify_password";
     public static final String PASSWORD_CHANGED = "password_changed";
 
     private ImageView mEmailIcon;
@@ -67,6 +71,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     private UserRegisterReceiver mUserRegisterReceiver;
     private TextView mTerms;
     private boolean mPasswordChanged;
+    private boolean mVerifyPassword;
 
     @Override
     protected void onStart() {
@@ -105,7 +110,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
     // Recreates a new instance of the sign in task if it finished running before (since an AsyncTask can only be run once).
     private void recreateSignInTaskIfNeeded() {
         if (mSignInTask.getStatus() == AsyncTask.Status.FINISHED) {
-            mSignInTask = new SignInTask(this, this, mFacebookLoginButton);
+            mSignInTask = new SignInTask(this, this, mFacebookLoginButton, mVerifyPassword);
         }
     }
 
@@ -138,6 +143,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
         int backgroundId = getIntent().getIntExtra(BACKGROUND_ID, 0);
         mIsSignup = getIntent().getBooleanExtra(SIGNUP, false);
         mPasswordChanged = getIntent().getBooleanExtra(PASSWORD_CHANGED, false);
+        mVerifyPassword = getIntent().getBooleanExtra(VERIFY_PASSWORD, false);
 
         switch (backgroundId) {
             case 2:
@@ -179,6 +185,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
                 }
             }
         });
+
         mEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -309,7 +316,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
 
         if (!mIsSignup) {
             TextView title = (TextView) findViewById(R.id.action_bar_title);
-            title.setText(R.string.log_in);
+            title.setText(mVerifyPassword ? R.string.verify_your_password : R.string.log_in);
             View emailContainer = (View) findViewById(R.id.email_container);
             emailContainer.setVisibility(View.GONE);
             View checkboxContainer = (View) findViewById(R.id.checkbox_container);
@@ -399,7 +406,7 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             }
         });
 
-        mSignInTask = new SignInTask(this, this, mFacebookLoginButton);
+        mSignInTask = new SignInTask(this, this, mFacebookLoginButton, mVerifyPassword);
 
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -426,6 +433,11 @@ public class LoginSignupActivity extends AppCompatActivity implements SignInTask
             }
         });
 
+        if (mVerifyPassword) {
+            // Pre-fill email address
+            mUsername.setText(mApp.currentUserLogin());
+            mUsername.setEnabled(false);
+        }
 
         if (getCurrentFocus() != null) {
             // Hide keyboard

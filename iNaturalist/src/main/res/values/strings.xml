@@ -763,5 +763,6 @@
     <string name="your_account_has_been_deleted">Your account has been deleted</string>
     <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
     <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
+    <string name="verify_your_password">Verify Your Password</string>
 </resources>
 

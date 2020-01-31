@@ -183,7 +183,7 @@ public class OnboardingActivity extends AppCompatActivity implements SignInTask.
             }
         });
 
-        mSignInTask = new SignInTask(this, this, mFacebookLoginButton);
+        mSignInTask = new SignInTask(this, this, mFacebookLoginButton, false);
 
         if (shouldLogin) {
             // Show login screen

@@ -39,6 +39,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
     private static final String TAG = "SignInTask";
 
     private static final String GOOGLE_AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+    private boolean mPasswordVerificationForDeletion = false;
 
     private AccessTokenTracker mFacebookAccessTokenTracker = null;
 
@@ -79,9 +80,10 @@ public class SignInTask extends AsyncTask<String, Void, String> {
         mFacebookCallbackManager = null;
     }
 
-    public SignInTask(Activity activity, SignInTaskStatus callback, LoginButton facebookLoginButton) {
+    public SignInTask(Activity activity, SignInTaskStatus callback, LoginButton facebookLoginButton, boolean passwordVerificationForDeletion) {
         this(activity, callback);
         mFacebookLoginButton = facebookLoginButton;
+        mPasswordVerificationForDeletion = passwordVerificationForDeletion;
 
         mFacebookAccessTokenTracker = new AccessTokenTracker() {
             @Override
@@ -154,7 +156,7 @@ public class SignInTask extends AsyncTask<String, Void, String> {
             mInvalidated = false;
         }
 
-        String[] results = INaturalistService.verifyCredentials(mActivity, mUsername, mPassword, mLoginType);
+        String[] results = INaturalistService.verifyCredentials(mActivity, mUsername, mPassword, mLoginType, mPasswordVerificationForDeletion);
 
         if (results == null) {
             return null;
