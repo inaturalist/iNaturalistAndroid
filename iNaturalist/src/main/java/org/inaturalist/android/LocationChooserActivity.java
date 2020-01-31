@@ -100,6 +100,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
     private ActivityHelper mHelper;
     @State public String mIconicTaxonName;
     private ImageView mObservationsMapMyLocation;
+    private ProgressBar mMyLocationProgressView;
     private ImageView mObservationsChangeMapLayers;
     @State public int mObservationsMapType = GoogleMap.MAP_TYPE_TERRAIN;
     private ImageView mGeoprivacy;
@@ -187,6 +188,7 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         mApp = (INaturalistApp) getApplicationContext();
 
         mObservationsMapMyLocation = (ImageView) findViewById(R.id.my_location);
+        mMyLocationProgressView = (ProgressBar) findViewById(R.id.my_location_progress);
         mObservationsChangeMapLayers = (ImageView) findViewById(R.id.change_map_layers);
 
         mObservationsMapMyLocation.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +197,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
                 if (!mApp.isLocationPermissionGranted()) {
                     if (!mAskedForLocationPermission) {
                         mAskedForLocationPermission = true;
-
                         mApp.requestLocationPermission(LocationChooserActivity.this, new INaturalistApp.OnRequestPermissionResult() {
                             @Override
                             public void onPermissionGranted() {
@@ -210,8 +211,14 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
 
                     return;
                 }
-
                 getLocation();
+            }
+        });
+
+        mMyLocationProgressView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopGetLocation();
             }
         });
 
@@ -920,9 +927,9 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         while ((metersPerPixel * widthInPixels) > accuracy) {
             metersPerPixel /= 2;
             ++zoomLevel;
-            Logger.tag(TAG).error("\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + accuracy);
+            // Logger.tag(TAG).error("\t** Zoom = " + zoomLevel + "; CurrentAcc = " + (metersPerPixel * widthInPixels) +  "; Accuracy = " + accuracy);
         }
-        Logger.tag(TAG).error("Zoom = " + zoomLevel + "; Accuracy = " + accuracy);
+        // Logger.tag(TAG).error("Zoom = " + zoomLevel + "; Accuracy = " + accuracy);
         return zoomLevel;
     }
 
@@ -969,7 +976,6 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         if (!mApp.isLocationPermissionGranted()) {
             if (!mAskedForLocationPermission) {
                 mAskedForLocationPermission = true;
-
                 mApp.requestLocationPermission(this, new INaturalistApp.OnRequestPermissionResult() {
                     @Override
                     public void onPermissionGranted() {
@@ -990,6 +996,8 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         }
 
         mGettingLocation = true;
+        mMyLocationProgressView.setVisibility(View.VISIBLE);
+        mObservationsMapMyLocation.setVisibility(View.GONE);
 
         if (mLocationManager == null) {
             mLocationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -1073,9 +1081,10 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         if (mLocationManager != null && mLocationListener != null) {
             mLocationManager.removeUpdates(mLocationListener);
         }
-
         mLocationListener = null;
         mGettingLocation = false;
+        mMyLocationProgressView.setVisibility(View.GONE);
+        mObservationsMapMyLocation.setVisibility(View.VISIBLE);
     }
 
 
