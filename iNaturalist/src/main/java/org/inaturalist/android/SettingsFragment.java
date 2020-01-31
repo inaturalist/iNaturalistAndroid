@@ -82,7 +82,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mDonate = (Preference) getPreferenceManager().findPreference("donate");
         mShop = (Preference) getPreferenceManager().findPreference("shop");
         mDeleteAccount = (Preference) getPreferenceManager().findPreference("delete_account");
-        mDeleteAccount.setVisible(mApp.currentUserLogin() != null);
         mVersion = (Preference) getPreferenceManager().findPreference("version");
 
         mHelper = new ActivityHelper(getActivity());
@@ -339,6 +338,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return false;
             }
         });
+
+        mDeleteAccount.setVisible(mApp.currentUserLogin() != null);
     }
 
     private void refreshLanguageSettings() {
