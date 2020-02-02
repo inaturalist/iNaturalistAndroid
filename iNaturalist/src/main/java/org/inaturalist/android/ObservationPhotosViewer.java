@@ -146,6 +146,9 @@ public class ObservationPhotosViewer extends AppCompatActivity {
         mViewPager = (HackyViewPager) findViewById(R.id.id_pic_view_pager);
 		if ((mObservation != null) && (!mIsNewObservation)) {
             mViewPager.setAdapter(new IdPicsPagerAdapter(this, mViewPager, mObservation, mIsTaxon));
+            mEditPhoto.setVisibility(View.GONE);
+            mDuplicatePhoto.setVisibility(View.GONE);
+            mDeletePhoto.setVisibility(View.GONE);
 		} else if (mIsNewObservation) {
 		    IdPicsPagerAdapter adapter = new IdPicsPagerAdapter(this, mViewPager, mObservationId, mObservationIdInternal);
             mViewPager.setAdapter(adapter);
