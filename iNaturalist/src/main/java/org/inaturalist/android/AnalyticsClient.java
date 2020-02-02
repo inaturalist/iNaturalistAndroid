@@ -185,9 +185,11 @@ public class AnalyticsClient {
 
     private Application mApplication;
     private Activity mCurrentActivity;
+    private final boolean mDisabled;
 
-    private AnalyticsClient(Application application) {
+    private AnalyticsClient(Application application, boolean disabled) {
         mApplication = application;
+        mDisabled = disabled;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             // Modern way of getting current activity
@@ -231,8 +233,8 @@ public class AnalyticsClient {
     }
 
     // Initializes the analytics client - should be called from the main activity or application class
-    public static void initAnalyticsClient(Application application) {
-        mAnalyticsClient = new AnalyticsClient(application);
+    public static void initAnalyticsClient(Application application, boolean disabled) {
+        mAnalyticsClient = new AnalyticsClient(application, disabled);
     }
 
     public static AnalyticsClient getInstance() {
@@ -246,6 +248,8 @@ public class AnalyticsClient {
 
     // Logs an event with parameters - automatically ads the "Via" parameter (that indicates the current activity name)
     public void logEvent(String eventName, JSONObject parameters) {
+        // Happens when the user has disabled tracking
+        if (mDisabled) return;
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             // Don't log events for old phones - since those require using the GET_TASKS permission in
@@ -259,6 +263,8 @@ public class AnalyticsClient {
                 String currentActivityName = getCurrentActivityName();
                 if (!parameters.has(EVENT_PARAM_VIA)) parameters.put(EVENT_PARAM_VIA, currentActivityName);
             }
+
+            // Currently we've removed all analytics events (not using a tracker like Mixpanel, etc.)
 
         } catch (JSONException e) {
             Logger.tag(TAG).error(e);

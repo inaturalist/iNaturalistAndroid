@@ -33,6 +33,7 @@ import java.io.File;
 public class SettingsFragment extends PreferenceFragmentCompat {
     private static final int REQUEST_CODE_LOGIN = 0x1000;
     private static final int REQUEST_CODE_DELETE_ACCOUNT = 0x1001;
+    private static final int REQUEST_CODE_THIRD_PARTY_DATA_SHARING = 0x1002;
 
     private static final String DONATION_URL = "http://www.inaturalist.org/donate?utm_source=Android&utm_medium=mobile";
     private static final String SHOP_URL = "https://store.inaturalist.org/?utm_source=android&utm_medium=mobile&utm_campaign=store";
@@ -50,6 +51,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference mDonate;
     private Preference mShop;
     private Preference mDeleteAccount;
+    private Preference mThirdPartyDataSharing;
 
     private SharedPreferences mPreferences;
     private ActivityHelper mHelper;
@@ -82,6 +84,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         mDonate = (Preference) getPreferenceManager().findPreference("donate");
         mShop = (Preference) getPreferenceManager().findPreference("shop");
         mDeleteAccount = (Preference) getPreferenceManager().findPreference("delete_account");
+        mThirdPartyDataSharing = (Preference) getPreferenceManager().findPreference("third_party_data_sharing");
         mVersion = (Preference) getPreferenceManager().findPreference("version");
 
         mHelper = new ActivityHelper(getActivity());
@@ -340,6 +343,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         });
 
         mDeleteAccount.setVisible(mApp.currentUserLogin() != null);
+        mThirdPartyDataSharing.setSummary(mApp.getPrefersNoTracking() ? R.string.disabled : R.string.enabled);
+
+        mThirdPartyDataSharing.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), ThirdPartyDataSharingActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivityForResult(intent, REQUEST_CODE_THIRD_PARTY_DATA_SHARING);
+                return false;
+            }
+        });
     }
 
     private void refreshLanguageSettings() {
@@ -415,6 +428,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         } else if ((requestCode == REQUEST_CODE_DELETE_ACCOUNT) && (resultCode == Activity.RESULT_OK)) {
             // User deleted account - sign out immediately
             signOut();
+        } else if (requestCode == REQUEST_CODE_THIRD_PARTY_DATA_SHARING) {
+            // Refresh third party data sharing setting
+            refreshSettings();
         }
     }
 

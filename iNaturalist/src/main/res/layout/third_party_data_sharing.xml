@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent" android:layout_width="match_parent"
+    android:background="#F5F5F5"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:name="org.inaturalist.android.ThirdPartyDataSharingFragment"
+            android:tag=".ThirdPartyDataSharingFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:id="@+id/separator"
+            android:background="#cccccc"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="1dp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_info_outline_black_24dp"
+                android:tint="#616060"
+                android:layout_marginRight="20dp"
+                />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/notes1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/third_party_data_sharing_notes1"
+                    android:textSize="14sp"
+                    android:textColor="#616060"
+                    android:layout_marginBottom="12dp"
+                    />
+                <TextView
+                    android:id="@+id/notes2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/third_party_data_sharing_notes2"
+                    android:textSize="14sp"
+                    android:textColor="#616060"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:id="@+id/notes3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/third_party_data_sharing_notes3"
+                    android:textSize="14sp"
+                    android:textColor="#616060"
+                    android:layout_marginBottom="8dp"
+                    />
+                <TextView
+                    android:id="@+id/notes4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/third_party_data_sharing_notes4"
+                    android:textSize="14sp"
+                    android:textColor="#616060"
+                    android:layout_marginBottom="8dp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

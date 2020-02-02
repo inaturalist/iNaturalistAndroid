@@ -108,7 +108,11 @@ public class BaseFragmentActivity extends AppCompatActivity {
     }
 
     public void onDrawerCreate(Bundle savedInstanceState) {
-        Fabric.with(this, new Crashlytics());
+        mApp = (INaturalistApp) getApplication();
+
+        if (!mApp.getPrefersNoTracking()) {
+            Fabric.with(this, new Crashlytics());
+        }
 
         moveDrawerToTop();
 
@@ -205,6 +209,8 @@ public class BaseFragmentActivity extends AppCompatActivity {
 	}
 
     public void refreshUserDetails() {
+        mApp = (INaturalistApp) getApplication();
+
         SharedPreferences prefs = getSharedPreferences("iNaturalistPreferences", MODE_PRIVATE);
         String username = prefs.getString("username", null);
         Integer obsCount = prefs.getInt("observation_count", -1);
@@ -225,8 +231,6 @@ public class BaseFragmentActivity extends AppCompatActivity {
             findViewById(R.id.menu_login).setVisibility(View.VISIBLE);
             findViewById(R.id.side_menu_username).setVisibility(View.INVISIBLE);
         }
-
-        mApp = (INaturalistApp) getApplication();
 
         if (obsCount > -1) {
             if (obsCount == 1) {
@@ -652,6 +656,7 @@ public class BaseFragmentActivity extends AppCompatActivity {
             editor.putLong("last_user_details_refresh_time", System.currentTimeMillis());
             String currentUsername = prefs.getString("username", null);
             String newUsername = user.getString("login");
+            mApp.setPrefersNoTracking(user.getBoolean("prefers_no_tracking"));
 
             if ((currentUsername != null) && (newUsername != null) && (!currentUsername.equals(newUsername))) {
                 // Username changed remotely - Update all existing observations' username

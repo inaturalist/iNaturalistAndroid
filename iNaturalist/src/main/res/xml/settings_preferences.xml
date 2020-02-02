@@ -32,6 +32,12 @@
         android:summary="@string/prefers_scientific_name_first_description"
         android:title="@string/prefers_scientific_name_first" />
 
+    <Preference
+        android:layout="@layout/custom_preference"
+        android:key="third_party_data_sharing"
+        android:title="@string/third_party_data_sharing"
+        android:summary="@string/enabled"
+        />
 
     <ListPreference
         android:layout="@layout/custom_preference"

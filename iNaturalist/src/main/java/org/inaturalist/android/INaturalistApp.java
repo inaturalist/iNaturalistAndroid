@@ -188,9 +188,13 @@ public class INaturalistApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
-        Fabric.with(this, new Crashlytics());
         FacebookSdk.sdkInitialize(getApplicationContext());
-        AnalyticsClient.initAnalyticsClient(this);
+
+        if (!getPrefersNoTracking()) {
+            Fabric.with(this, new Crashlytics());
+        }
+
+        AnalyticsClient.initAnalyticsClient(this, getPrefersNoTracking());
 
         AnalyticsClient.getInstance().logEvent(AnalyticsClient.EVENT_NAME_APP_LAUNCH);
 
@@ -350,6 +354,20 @@ public class INaturalistApp extends MultiDexApplication {
     	settingsEditor.putBoolean("prefers_scientific_name_first", value);
     	settingsEditor.apply();
 	}
+
+
+    public boolean getPrefersNoTracking() {
+        SharedPreferences settings = getPrefs();
+        return settings.getBoolean("prefers_no_tracking", false);
+    }
+
+    public void setPrefersNoTracking(boolean value) {
+        SharedPreferences settings = getPrefs();
+        Editor settingsEditor = settings.edit();
+
+        settingsEditor.putBoolean("prefers_no_tracking", value);
+        settingsEditor.apply();
+    }
 
     public void setUserRoles(Set<String> roles) {
     	SharedPreferences settings = getPrefs();
