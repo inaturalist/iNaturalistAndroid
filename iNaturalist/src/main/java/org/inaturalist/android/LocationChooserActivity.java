@@ -962,6 +962,10 @@ public class LocationChooserActivity extends AppCompatActivity implements Locati
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        mApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
     // Kicks off place service
     @SuppressLint("MissingPermission")
