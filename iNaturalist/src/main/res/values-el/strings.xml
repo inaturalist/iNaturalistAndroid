@@ -14,7 +14,7 @@
     <string name="street">Χάρτης</string>
     <!-- As in map tiles using satellite imagery, generally used as an option when choosing a base map type -->
     <string name="satellite">Δορυφόρος</string>
-    <string name="couldnt_load_nearby_observations">Couldn\'t load nearby observations: %1$s</string>
+    <string name="couldnt_load_nearby_observations">Δεν ήταν δυνατή η φόρτωση γειτονικών παρατηρήσεων: %1$s</string>
     <string name="username_invalid">Λανθασμένος κωδικός πρόσβασης, παρακαλώ δοκιμάστε ξανά.</string>
     <string name="signing_in">Γίνεται σύνδεση...</string>
     <string name="signed_in">Συνδεθήκατε!</string>
@@ -229,7 +229,7 @@
     <string name="min_6_chars">Τουλάχιστον 6 χαρακτήρες</string>
     <string name="use_my_license"><![CDATA[Ναι, συμφωνώ να προστεθεί άδεια στο περιεχόμενό μου για να χρησιμοποιηθεί από ερευνητές. <b>Μάθετε περισσότερα</b>]]></string>
     <string name="content_licensing">Άδεια χρήσης περιεχομένου</string>
-    <string name="content_licensing_description">Tσέκαρε το κουτί αν θέλεις να διανέμονται οι φωτογραφίες σου με την άδεια Creative Commons Αναφορά Δημιουργού-Μη Εμπορική Χρήση. Μπορείς στο μέλλον να διαλέξεις διαφορετική άδεια ή να την αφαιρέσεις, αλλά η συγκεκριμένη είναι η καλύτερα άδεια για την επιστημονική χρήση των παρατηρήσεων σου.</string>
+    <string name="content_licensing_description">Τσεκάρετε το κουτί αν θέλετε να διανέμονται οι φωτογραφίες σας με την άδεια Creative Commons Αναφορά Δημιουργού-Μη Εμπορική Χρήση. Μπορείτε στο μέλλον να διαλέξετε διαφορετική άδεια ή να την αφαιρέσετε, αλλά η συγκεκριμένη είναι η καλύτερα άδεια για την επιστημονική χρήση των παρατηρήσεων σας.</string>
     <!-- Try to keep this about the length of the English text -->
     <string name="username_or_email">Όνομα χρήστη ή email</string>
     <string name="forgot">Ξεχάσατε τον κωδικό σας;</string>
@@ -261,10 +261,10 @@
     <string name="no_thanks">Όχι ευχαριστώ</string>
     <string name="turn_on">Ενεργοποιήστε</string>
     <string name="introducing_auto_sync">Εισαγωγή Αυτόματου Συγχρονισμού!</string>
-    <string name="turn_on_auto_sync">Turn on Auto-Sync in Settings and your observations will be automatically uploaded to iNaturalist.</string>
-    <string name="automatic_upload">Automatic Upload (Auto Sync)</string>
-    <string name="waiting_to_upload">Waiting to upload...</string>
-    <string name="uploading">Uploading...</string>
+    <string name="turn_on_auto_sync">Ενεργοποιήστε τον Αυτόματο Συγχρονισμό στις Ρυθμίσεις και οι παρατηρήσεις σας θα αποστέλλονται αυτόματα στο iNaturalist.</string>
+    <string name="automatic_upload">Αυτόματη Αποστολή (Αυτόματος Συγχρονισμός)</string>
+    <string name="waiting_to_upload">Αναμονή για αποστολή...</string>
+    <string name="uploading">Αποστολή...</string>
     <string name="failed_to_add_to_project">Σφάλμα στην προσθήκη στο πρότζεκτ \'%1$s\': %2$s</string>
     <string name="needs_your_attention">Χρειάζεται την προσοχή σου...</string>
     <string name="observation">Παρατήρηση</string>
@@ -316,7 +316,7 @@
     <string name="do_you_agree_to_the_following">Συμφωνείς με τα εξής;</string>
     <string name="terms">Όροι</string>
     <string name="observation_rules">Κανόνες παρατήρησης</string>
-    <string name="couldnt_load_project_details">Couldn\'t load project details: %1$s</string>
+    <string name="couldnt_load_project_details">Δεν ήταν δυνατή η φόρτωση των λεπτομερειών του πρότζεκτ: %1$s</string>
     <string name="no_people_found">Δεν βρέθηκαν άτομα</string>
     <string name="rank">Κατάταξη</string>
     <string name="identifications">Αναγνωρίσεις</string>
@@ -324,25 +324,25 @@
     <string name="news">Νέα</string>
     <string name="article">Άρθρο</string>
     <string name="couldnt_load_project_news">Couldn\'t load project news: %1$s</string>
-    <string name="couldnt_load_user_details">Couldn\'t load user details: %1$s</string>
+    <string name="couldnt_load_user_details">Δεν ήταν δυνατή η φόρτωση των στοιχείων του χρήστη: %1$s</string>
     <string name="more_bio"><![CDATA[<b><font color="#ffffff">Περισσότερα »</font></b>]]></string>
     <string name="no_location">Χωρίς τοποθεσία</string>
     <string name="add_to_projects">Προσθήκη σε πρότζεκτ</string>
-    <string name="are_you_sure_you_want_to_save_obs_without_coords">Are you sure you want to save the observation without any coordinates?</string>
+    <string name="are_you_sure_you_want_to_save_obs_without_coords">Είστε σίγουροι ότι θέλετε να αποθηκεύσετε την παρατήρηση χωρίς συντεταγμένες;</string>
     <string name="users_identification">%1$s\'s ID: %2$s</string>
     <string name="edit_profile">Επεξεργασία προφίλ</string>
     <string name="remove_photo">Κατάργηση φωτογραφίας</string>
     <string name="name">Όνομα</string>
-    <string name="tell_us_about_yourself">Tell us about yourself...</string>
+    <string name="tell_us_about_yourself">Πείτε μας για τον εαυτό σας...</string>
     <string name="view_profile">Προβολή του προφίλ</string>
-    <string name="are_you_sure_you_want_to_remove_photo">Are you sure you would like to remove your photo?</string>
+    <string name="are_you_sure_you_want_to_remove_photo">Είστε βέβαιοι ότι θέλετε να διαγράψετε τη φωτογραφία σας;</string>
     <string name="updating_profile">Αποθήκευση προφίλ...</string>
-    <string name="there_was_a_problem_updating_profile">There was a problem while updating your profile!</string>
-    <string name="there_was_a_problem_updating_profile_params">There was a problem while updating your profile: %1$s</string>
-    <string name="logged_in_as_html"><![CDATA[Logged in as <b>%1$s</b>]]></string>
+    <string name="there_was_a_problem_updating_profile">Παρουσιάστηκε πρόβλημα κατά την ενημέρωση του προφίλ σας!</string>
+    <string name="there_was_a_problem_updating_profile_params">Παρουσιάστηκε πρόβλημα κατά την ενημέρωση του προφίλ σας: %1$s</string>
+    <string name="logged_in_as_html"><![CDATA[Συνδεδεμένος ως <b>%1$s</b>]]></string>
     <string name="log_out">Αποσύνδεση</string>
     <string name="not_logged_in">Δεν είσαι συνδεδεμένος/η</string>
-    <string name="auto_upload_description">Auto-upload new observations and edits to observations</string>
+    <string name="auto_upload_description">Αυτόματη αποστολή νέων παρατηρήσεων και επεξεργασία των παρατηρήσεων</string>
     <string name="language">Γλώσσα</string>
     <string name="version">Έκδοση</string>
     <string name="inat_network">Δίκτυο iNaturalist</string>
@@ -357,22 +357,22 @@
     <string name="syncing_observation_fields">Γίνεται συγχρονισμός των παρατηρήσεων...</string>
     <string name="syncing_observations">Γίνεται συγχρονισμός των παρατηρήσεων...</string>
     <string name="syncing_paused">Σε παύση</string>
-    <string name="upload">Upload</string>
+    <string name="upload">Αποστολή</string>
     <string name="search_observations">Αναζήτηση παρατηρήσεων...</string>
     <string name="withdraw">Απόσυρση</string>
     <!-- Dialog title for when you are updating the description of an identification -->
     <string name="update_id_description">Update Identification Description</string>
     <string name="your_identification">Το ID σας είναι: %1$s</string>
-    <string name="onboarding_species_name">Name what you saw if you can, even if that\'s just \"insect\" or \"bird,\" or just leave this blank. Others may help you identify it!</string>
-    <string name="upload_complete">Upload Complete!</string>
+    <string name="onboarding_species_name">Ονομάστε αυτό που είδατε αν μπορείτε, ακόμα κι αν αυτό είναι απλώς \"έντομο\" ή \"πουλί\", ή απλά αφήστε το κενό. Άλλοι μπορεί να σας βοηθήσουν να το αναγνωρίσετε!</string>
+    <string name="upload_complete">Αποστολή Ολοκληρώθηκε!</string>
     <string name="onboarding_upload_description">Επιστρέψτε σύντομα για σχόλια και προσδιορισμούς στις παρατηρήσεις σας.</string>
-    <string name="importing_photos">Importing photo(s)...</string>
-    <string name="multi_select_description">Import multiple photos by long-pressing on a single photo</string>
+    <string name="importing_photos">Εισαγωγή φωτογραφίας(-ών)...</string>
+    <string name="multi_select_description">Εισαγωγή πολλών φωτογραφιών πατώντας παρατεταμένα σε μία φωτογραφία</string>
     <string name="preparing_photo">Preparing photo...</string>
-    <string name="recommended_for_you">Recommended for You</string>
-    <string name="missions">Missions</string>
-    <string name="browse_by_category">Browse By Category</string>
-    <string name="couldnt_load_recommended_missions">Couldn\'t load recommended missions: %1$s</string>
+    <string name="recommended_for_you">Προτεινόμενα για εσάς</string>
+    <string name="missions">Αποστολές</string>
+    <string name="browse_by_category">Αναζήτηση Ανά Κατηγορία</string>
+    <string name="couldnt_load_recommended_missions">Δεν ήταν δυνατή η φόρτωση προτεινόμενων αποστολών: %1$s</string>
     <string name="plants">Φυτά</string>
     <string name="mammals">Θηλαστικά</string>
     <string name="insects">Έντομα</string>
@@ -382,23 +382,23 @@
     <string name="amphibians">Αμφίβια</string>
     <string name="fungi">Μύκητες</string>
     <string name="birds">Πουλιά</string>
-    <string name="arachnids">Arachnids</string>
+    <string name="arachnids">Αραχνίδια</string>
     <string name="no_connectivity">Δεν υπάρχει σύνδεση</string>
-    <string name="no_recommended_missions">Looks like there’s no recommendations in this area. Try moving to a new location.</string>
+    <string name="no_recommended_missions">Φαίνεται ότι δεν υπάρχουν προτάσεις σε αυτόν τον τομέα. Δοκιμάστε να μετακινηθείτε σε μια νέα τοποθεσία.</string>
     <string name="what_to_look_for">What To Look For</string>
-    <string name="have_been_seen_here">Have Been Seen Here</string>
-    <string name="observe">Observe</string>
+    <string name="have_been_seen_here">Έχει Παρατηρηθεί Εδώ</string>
+    <string name="observe">Παρατηρήστε</string>
     <string name="nearby_missions">Nearby Missions</string>
     <string name="searching_your_area">Αναζητώντας στην περιοχή σου...</string>
-    <string name="expanding_your_search_area">Expanding your search area...</string>
+    <string name="expanding_your_search_area">Διευρύνεται την περιοχή αναζήτησης...</string>
     <string name="introducing_missions">Introducing Missions!</string>
     <string name="missions_onboarding_description">Missions are realtime recommendations of what to look for around you. This way you can discover species new to you! (Requires connectivity)</string>
     <string name="ok_got_it">Εντάξει, κατάλαβα!</string>
     <string name="could_not_download_observations">Αδυναμία λήψης των πιο πρόσφατων παρατηρήσεων - προόβλημα σύνδεσης. Δοκίμασε ξανά αργότερα.</string>
-    <string name="no_news_yet">No news yet. Stay tuned!</string>
+    <string name="no_news_yet">Δεν υπάρχουν ακόμα νέα. Μείνετε συντονισμένοι!</string>
     <string name="my_content">Το περιεχόμενό μου</string>
     <string name="following">Following</string>
-    <string name="no_updates_yet">No updates yet. Stay tuned!</string>
+    <string name="no_updates_yet">Δεν υπάρχουν ακόμη ενημερώσεις. Μείνετε συντονισμένοι!</string>
     <string name="you_will_only_receive_updates_when_creating">(Θα ενημερώνεσαι μόνο όταν έχεις δημιουργήσει παρατηρήσεις)</string>
     <string name="you_will_only_receive_updates_when_following">(Θα ενημερώνεσαι μόνο όταν ακολουθείς παρατηρήσεις)</string>
     <string name="user_activity_id"><![CDATA[<b>%1$s</b> πρότεινε προσδιορισμό: %2$s <font color="#8B8B8B">%3$s</font>]]></string>
@@ -434,42 +434,42 @@
     <string name="top_species_suggestions">Here\'s our top %1$d species suggestions:</string>
     <string name="pretty_sure_rank">We\'re pretty sure it\'s in this %1$s:</string>
     <string name="what_did_you_see">Τι είδες;</string>
-    <string name="suggest_species">Suggest Species</string>
-    <string name="suggest_species_description">Suggest species based on visual similarity to photos.</string>
+    <string name="suggest_species">Προτείνετε είδη</string>
+    <string name="suggest_species_description">Προτείνετε είδη με βάση την οπτική ομοιότητα με τις φωτογραφίες.</string>
     <string name="taxon_name"><![CDATA[<b>%1$s</b>]]></string>
-    <string name="visually_similar">Visually Similar</string>
+    <string name="visually_similar">Οπτικά Παρόμοια</string>
     <string name="visually_similar_seen_nearby">Visually Similar / Seen Nearby</string>
     <string name="seen_nearby">Seen Nearby</string>
     <string name="enlarge">Μεγέθυνση</string>
     <!-- Label for a button that shows children of the current taxon, e.g. species within a genus or families within an order -->
     <string name="view_children">View Children</string>
-    <string name="invalid_photo_extension">Error importing photo(s): Can only import photo files with JPG/JPEG/PNG extensions</string>
+    <string name="invalid_photo_extension">Σφάλμα κατά την εισαγωγή φωτογραφίας(-ών): Μπορεί να εισαχθούν μόνο αρχεία φωτογραφιών με επεκτάσεις JPG / JPEG / PNG</string>
     <string name="taxon_has_no_photos">This taxon has no photos.</string>
     <string name="terrain">Terrain</string>
-    <string name="filters">Filters</string>
+    <string name="filters">Φίλτρα</string>
     <string name="exploring_all">Exploring All</string>
     <string name="nearby">Σε κοντινή απόσταση</string>
-    <string name="couldnt_load_results">Couldn\'t load results: %1$s</string>
+    <string name="couldnt_load_results">Δεν ήταν δυνατή η φόρτωση των αποτελεσμάτων: %1$s</string>
     <!-- This should match the way Research Grade has been transalted, so if that's been translated as "grado de investigación" this should be "GI" -->
     <string name="research_grade_initials">RG</string>
     <string name="taxon_search_hint">e.g. birds, monarch</string>
     <string name="location_search_hint">e.g. city, state, park, country...</string>
     <string name="no_taxon">Sorry, taxon not found</string>
     <string name="please_select_taxon">Please select a valid taxon from the list (or clear the taxon field).</string>
-    <string name="sorry_no_location">Sorry, location not found</string>
-    <string name="location_not_found">The location or place you have searched is not in our database. Please choose a place from the list of options below the location search field or clear the search field.</string>
+    <string name="sorry_no_location">Λυπούμαστε, η τοποθεσία δεν βρέθηκε</string>
+    <string name="location_not_found">Η τοποθεσία ή το μέρος που αναζητήσατε δεν βρίσκεται στη βάση δεδομένων μας. Επιλέξτε μια θέση από τη λίστα επιλογών κάτω από το πεδίο αναζήτησης της τοποθεσίας ή διαγράψτε το πεδίο αναζήτησης.</string>
     <string name="undefined">Μη ορισμένο</string>
-    <string name="street_segment">Street Segment</string>
+    <string name="street_segment">Τμήμα Oδού</string>
     <string name="intersection">Intersection</string>
     <string name="town">Πόλη</string>
     <string name="state">Κράτος</string>
     <string name="county">Νομός</string>
-    <string name="local_administrative_area">Local Administrative Area</string>
+    <string name="local_administrative_area">Τοπική Διοικητική Περιοχή</string>
     <string name="country">Χώρα</string>
     <string name="island">Νησί</string>
     <string name="airport">Αεροδρόμιο</string>
     <string name="drainage">Drainage</string>
-    <string name="land_feature">Land Feature</string>
+    <string name="land_feature">Χαρακτηριστικό Γης</string>
     <string name="miscellaneous">Διάφορα</string>
     <string name="nationality">Εθνικότητα</string>
     <!-- Place type describing an area spanning multiple countries, e.g. Western Europe or Hispaniola -->
@@ -487,7 +487,7 @@
     <string name="open_space">Ανοιχτός χώρος</string>
     <string name="territory">Έδαφος</string>
     <string name="district">Περιφέρεια</string>
-    <string name="province">Province</string>
+    <string name="province">Επαρχία</string>
     <string name="municipality">Δήμος</string>
     <string name="parish">Parish</string>
     <string name="department_segment">Department Segment</string>
@@ -516,7 +516,7 @@
     <string name="show_only_my_observations">Show Only My Observations</string>
     <string name="project">Πρότζεκτ</string>
     <string name="user">Χρήστης</string>
-    <string name="search_users">Search Users...</string>
+    <string name="search_users">Αναζήτηση Χρηστών...</string>
     <string name="quality_grade">Quality Grade</string>
     <!-- Label for observation filters specifying when the observations were made in the field (not necessarily when they were added to iNaturalist) -->
     <string name="date_observed">Date Observed</string>
@@ -566,12 +566,12 @@
     <string name="inat_credits_post"><![CDATA[iNaturalist is also deeply grateful to the open source developers who have provided so much of the software we rely on every day. See <a href="https://github.com/inaturalist/iNaturalistAndroid">https://github.com/inaturalist/iNaturalistAndroid</a> for open source contributions.<br/> We are grateful for the translation assistance provided by volunteers in the crowdin.com community, especially Eduardo Martínez, Lin Cheng-Tao, KestrelLam, cgalindo, vilseskog, NCAA, ldacosta, radana, Mykola Pukhalskyi, danieleseglie, and katunchik. <br/>IUCN category II places provided by IUCN and UNEP-WCMC (2015), The World Database on Protected Areas (WDPA) [On-line], [11/2014], Cambridge, UK: UNEP-WCMC. Available at: <a href="http://www.protectedplanet.net">www.protectedplanet.net</a>]]></string>
     <string name="credits_title">Credits</string>
     <string name="password_changed">Ο κωδικός πρόσβασης που χρησιμοποιείται από την εφαρμογή δεν είναι πια σωστός - αλλάξατε τον κωδικό σας στην ιστοσελίδα; Παρακαλώ εισάγετε τον νέο κωδικό σας εδώ</string>
-    <string name="just_so_you_know">Just So You Know...</string>
+    <string name="just_so_you_know">Απλώς Για Να Γνωρίζετε...</string>
     <string name="ask_for_g_plus_permissions">Google requires us to ask for permission to access your contacts in order to use your Google Account, even though we do not access your contacts for any reason. If you deny this permission, you will need to sign up or login with a username and password.</string>
     <string name="new_to_inat_sign_up_now"><![CDATA[Πρώτη φορά στο %1$s; <b>Εγγραφείτε τώρα!</b>]]></string>
-    <string name="see_more_observations">See more observations</string>
-    <string name="see_more_species">See more species</string>
-    <string name="see_more_identifications">See more identifications</string>
+    <string name="see_more_observations">Δείτε περισσότερες παρατηρήσεις</string>
+    <string name="see_more_species">Δείτε περισσότερα είδη</string>
+    <string name="see_more_identifications">Δείτε περισσότερες αναγνωρίσεις</string>
     <string name="collection_and_umbrella_projects">Collection and Umbrella Projects</string>
     <string name="description">Περιγραφή</string>
     <string name="quantity">Ποσότητα</string>
@@ -602,13 +602,13 @@
     <!-- Annotation value for when no annotation has been chosen -->
     <string name="none">Κανένα</string>
     <!-- Describes state of a plant at the time of observation, e.g. flowering, fruiting, etc. -->
-    <string name="annotation_name_plant_phenology">Plant Phenology</string>
+    <string name="annotation_name_plant_phenology">Φαινολογία Φυτού</string>
     <!-- Describes life stage at the time of observation, e.g. juvenile, adult -->
     <string name="annotation_name_life_stage">Στάδιο ζωής</string>
     <!-- Noun, describes sex of the organism -->
     <string name="annotation_name_sex">Φύλο</string>
     <!-- Attribute that describes whether the organism is alive or dead -->
-    <string name="annotation_name_alive_or_dead">Alive or Dead</string>
+    <string name="annotation_name_alive_or_dead">Ζωντανό ή Νεκρό</string>
     <!-- Adjective, having open flowers -->
     <string name="annotation_value_flowering">Flowering</string>
     <!-- Adjective, having fruit -->
@@ -635,11 +635,11 @@
     <string name="annotation_value_female">Θηλυκό</string>
     <string name="annotation_value_male">Αρσενικό</string>
     <!-- Adjective, alive and shows no signs of imminent death -->
-    <string name="annotation_value_alive">Alive</string>
+    <string name="annotation_value_alive">Ζωντανό</string>
     <!-- Adjective, dead or shows signs of imminent death -->
-    <string name="annotation_value_dead">Dead</string>
+    <string name="annotation_value_dead">Νεκρό</string>
     <!-- Value for when the value of the attribute cannot be determined -->
-    <string name="annotation_value_cannot_be_determined">Cannot Be Determined</string>
+    <string name="annotation_value_cannot_be_determined">Δε μπορεί να προσδιοριστεί</string>
     <!-- Text for a label for a list of projects the viewer has joined -->
     <string name="joined_projects_all_caps">JOINED</string>
     <string name="nearby_projects_all_caps">NEARBY</string>
@@ -649,11 +649,11 @@
     <string name="my_guides_all_caps">YOURS</string>
     <string name="nearby_guides_all_caps">NEARBY</string>
     <string name="all_guides_all_caps">ALL</string>
-    <string name="description_all_caps">DESCRIPTION</string>
-    <string name="quantity_all_caps">QTY</string>
-    <string name="observation_count_all_caps">%1$s OBSERVATIONS</string>
-    <string name="observation_count_single_all_caps">%1$d OBSERVATION</string>
-    <string name="agree_all_caps">AGREE</string>
+    <string name="description_all_caps">ΠΕΡΙΓΡΑΦΗ</string>
+    <string name="quantity_all_caps">Ποσότητα</string>
+    <string name="observation_count_all_caps">%1$s ΠΑΡΑΤΗΡΗΣΕΙΣ</string>
+    <string name="observation_count_single_all_caps">%1$d ΠΑΡΑΤΗΡΗΣΗ</string>
+    <string name="agree_all_caps">ΣΥΜΦΩΝΗΣΤΕ</string>
     <string name="observations_all_caps">OBSERVATIONS</string>
     <string name="species_all_caps">SPECIES</string>
     <string name="people_all_caps">ΑΤΟΜΑ</string>
@@ -768,11 +768,11 @@
     <string name="verify_your_password">Verify Your Password</string>
     <string name="third_party_data_sharing">Third-party Data Sharing</string>
     <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
+    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third-party services</string>
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third-party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
     <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third-party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
     <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
 </resources>

@@ -490,7 +490,7 @@
     <string name="province">Provins</string>
     <string name="municipality">Kommun</string>
     <string name="parish">Socken</string>
-    <string name="department_segment">Department Segment</string>
+    <string name="department_segment">Institutionsavdelning</string>
     <string name="city_building">Stadsbyggnad</string>
     <string name="commune">Kommun</string>
     <string name="governorate">Governorate</string>
@@ -693,39 +693,39 @@
     <string name="network_credit_inaturalistpanama"><![CDATA[Panama: Ministerio de Ambiente som driver iNaturalistPa (<a href="https://panama.inaturalist.org">panama.inaturalist.org</a>)]]></string>
     <string name="mark_all_as_viewed">Markera alla som lästa</string>
     <string name="content_hidden">Dolt innehåll</string>
-    <string name="show_hidden_content">Show Hidden Content</string>
-    <string name="content_hidden_because">Content hidden by @%1$s on %2$s because: \"%3$s\"</string>
-    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Contact Support</a>]]></string>
-    <string name="content">Content</string>
-    <string name="has_photos">Has Photos</string>
-    <string name="has_sounds">Has Sounds</string>
-    <string name="could_not_play_sound">Couldn\'t play sound - probably a network issue</string>
-    <string name="cant_play_soundcloud"><![CDATA[To listen to Soundcloud sounds, view the <a href="%1$s">website</a>.]]></string>
-    <string name="soundcloud">Soundcloud</string>
-    <string name="record_sound">Record Sound</string>
-    <string name="no_recorder_found">No default sound recorder found!</string>
-    <string name="couldnt_retrieve_sound">Couldn\'t retrieve sound from default recorder - try importing the sound instead</string>
-    <string name="upload_sound">Choose Sound</string>
-    <string name="multi_select_sound_description">Import multiple sounds by long-pressing on a single sound</string>
-    <string name="alert_unsupported_audio_type">Sorry, but there was a problem loading the sound from this source</string>
-    <string name="invalid_audio_extension">Error importing sound(s): Can only import sound files with WAV/MP3/AMR extensions</string>
-    <string name="importing_sounds">Importing sound(s)...</string>
-    <string name="observation_sound">Observation Sound</string>
-    <string name="deleted_sounds_from_cache_error">It looks like you deleted a sound by clearing the app cache before uploading. You will need to add the sound back to your observation from your gallery. In the future, please make sure you have uploaded all your sounds before clearing the app cache.</string>
+    <string name="show_hidden_content">Visa dolt innehåll</string>
+    <string name="content_hidden_because">Innehåll dolt av @%1$s på %2$s eftersom: \"%3$s\"</string>
+    <string name="contact_support_with_link"><![CDATA[<a href="mailto:help@inaturalist.org">Kontakta support</a>]]></string>
+    <string name="content">Innehåll</string>
+    <string name="has_photos">Har bilder</string>
+    <string name="has_sounds">Har ljud</string>
+    <string name="could_not_play_sound">Kunde inte spela upp ljud - förmodligen ett nätverksproblem</string>
+    <string name="cant_play_soundcloud"><![CDATA[För att lyssna på Soundcloud-ljud, se <a href="%1$s">webbplats</a>.]]></string>
+    <string name="soundcloud">SoundCloud</string>
+    <string name="record_sound">Spela in ljud</string>
+    <string name="no_recorder_found">Ingen standardljudinspelare hittades!</string>
+    <string name="couldnt_retrieve_sound">Kunde inte hämta ljud från standardinspelaren - försök importera ljudet istället</string>
+    <string name="upload_sound">Välj ljud</string>
+    <string name="multi_select_sound_description">Importera flera ljud genom att trycka länge på ett enskilt ljud</string>
+    <string name="alert_unsupported_audio_type">Tyvärr, kunde inte att ladda ljudet från denna källa</string>
+    <string name="invalid_audio_extension">Fel vid ljudimport: Kan endast importera ljudfiler med WAV/MP3/AMR-ändelse</string>
+    <string name="importing_sounds">Importerar ljud...</string>
+    <string name="observation_sound">Observationsljud</string>
+    <string name="deleted_sounds_from_cache_error">Det ser ut som du raderade ett ljud genom att rensa cacheminnet i appen innan uppladdningen. Du måste lägga till ljudet igen till din observation från ditt ljudgalleri. I fortsättningen, kontrollera att du har laddat upp alla dina ljud innan du rensar din cacheminnet i appen.</string>
     <!-- Used when recording a sound - it's a counter, counting the number of seconds that have passed. e.g. 3.2 sec = 3.2. seconds -->
-    <string name="seconds">%1$.1f sec</string>
-    <string name="clear_all_debug_logs">Clear All Debug Logs</string>
-    <string name="clears_up_storage_room_on_your_phone">Clears up storage room on your phone</string>
-    <string name="number_of_days_to_store_logs">Number of days to store logs</string>
-    <string name="send_debug_logs_from_start_date">Send Debug Logs From Start Date</string>
-    <string name="send_debug_logs_by_email">Send debug logs by email (from specified start date)</string>
-    <string name="debug_settings">Debug Settings</string>
-    <string name="are_you_sure_you_want_to_delete_logs">Are you sure you want to delete all debug logs? Only press \'Yes\' if you want clear up storage room for your phone</string>
-    <string name="no_log_files_found">No log files found for that date range - try earlier date?</string>
-    <string name="choose_pinned_location">Choose Pinned Location</string>
-    <string name="pin_current_location">Pin Current Location</string>
-    <string name="location_pinned_successfully">Current Location Pinned Successfully</string>
-    <string name="delete_this_pinned_location">Delete this pinned location?</string>
+    <string name="seconds">%1$.1f s</string>
+    <string name="clear_all_debug_logs">Rensa alla felsökningsloggar</string>
+    <string name="clears_up_storage_room_on_your_phone">Frigör lagringsutrymme på din mobil</string>
+    <string name="number_of_days_to_store_logs">Antal dagar som loggar sparas</string>
+    <string name="send_debug_logs_from_start_date">Skicka felsökningsloggar från startdatum</string>
+    <string name="send_debug_logs_by_email">Skicka felsökningsloggar via e-post (från angivet startdatum)</string>
+    <string name="debug_settings">Felsökningsinställningar</string>
+    <string name="are_you_sure_you_want_to_delete_logs">Är du säker på att du vill ta bort alla felsökningsloggar? Tryck bara på \"Ja\" om du vill frigöra lagringsutrymme på din mobil</string>
+    <string name="no_log_files_found">Inga loggfiler hittades för detta datumintervall - prova tidigare datum?</string>
+    <string name="choose_pinned_location">Välj nålad plats</string>
+    <string name="pin_current_location">Nåla aktuell plats</string>
+    <string name="location_pinned_successfully">Lyckades nåla aktuell plats</string>
+    <string name="delete_this_pinned_location">Ta bort denna nålade plats?</string>
     <!-- Verb, as in "Duplicate this photo" -->
     <string name="duplicate">Kopiera</string>
     <string name="couldnt_duplicate_photo">Kunde inte kopiera foto!</string>
@@ -758,21 +758,21 @@
     <string name="minutes">minuter</string>
     <string name="seconds_value">sekunder</string>
     <string name="shop_the_inat_store">Shoppa i iNat Store</string>
-    <string name="delete_your_account">Delete Your Account</string>
-    <string name="delete_account_message"><![CDATA[By deleting your account you will remove:<br/><br/><ul><li> All of your observations, including the work of the all the people who have helped you out with identifications.</li><li> All of the identifications you\'ve added to the observations of other people, which will potentially affect the data quality of those observations.</li><li> All of the comments you\'ve added.</li></ul><br/>Furthermore, this action cannot be undone. If you change your mind later, you aren\'t getting any of that content back.<br/><br/>If this service generates too many notifications, consider <a href="https://www.inaturalist.org/users/edit">editing your settings on the website</a> to opt out of certain notifications or stop receiving email from us. If you\'re having trouble with a specific person, consider <a href="https://www.inaturalist.org/users/edit">muting them</a> instead of deleting your account.<br/><br/>If you\'re still sure you want to delete your account, enter <b>\"%1$s\"</b> in the form below and click the button to delete your account and all your data.]]></string>
-    <string name="your_account_has_been_deleted">Your account has been deleted</string>
-    <string name="you_must_enter_username_in_the_form_to_delete_account">You must enter \'%1$s\' in the form to delete your account</string>
+    <string name="delete_your_account">Radera ditt konto</string>
+    <string name="delete_account_message"><![CDATA[Genom att radera ditt konto kommer du att ta bort:<br/><br/><ul><li> Alla dina observationer, inklusive arbetet från alla de människor som hjälpt dig med bestämning.</li><li> Alla bestämningar du har gjort av andra personers observationer, som potentiellt kommer att påverka datakvaliteten för dessa observationer.</li><li> Alla kommentarer du har lagt till.</li></ul><br/>Dessutom kan denna åtgärd inte ångras. Om du senare ändrar dig får du inte tillbaka något av detta innehåll.<br/><br/>Om denna tjänst genererar för många meddelanden, överväg <a href="https://www.inaturalist.org/users/edit">att ändra dina inställningar på webbplatsen</a> för att välja bort vissa meddelanden eller sluta få e-post från oss. Om du har problem med en viss person, överväg <a href="https://www.inaturalist.org/users/edit">att tysta dem</a> istället för att radera ditt konto.<br/><br/>Om du fortfarande är säker på att du vill radera ditt konto, skriv <b>\"%1$s\"</b> i formuläret nedan och klicka på knappen för att radera ditt konto och alla dina data.]]></string>
+    <string name="your_account_has_been_deleted">Ditt konto har raderats</string>
+    <string name="you_must_enter_username_in_the_form_to_delete_account">Du måste ange \'%1$s\' i formuläret för att radera ditt konto</string>
     <!-- Second person hint text asking the user to enter their username -->
-    <string name="type_your_username">Type your username</string>
-    <string name="error_deleting_account">There was an error deleting your account - please check your Internet connection</string>
-    <string name="verify_your_password">Verify Your Password</string>
-    <string name="third_party_data_sharing">Third-party Data Sharing</string>
-    <string name="disable_third_party_data_sharing">Disable Third-party Data Sharing</string>
-    <string name="do_not_collect_third_party_data">Do not collect stability and usage data using third party services</string>
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-    <string name="third_party_data_sharing_notes1"><![CDATA[We use a variety of third party services to monitor stability and diagnose bugs and problems in our software. These third parties include:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">New Relic</a></li></ul>]]></string>
-    <string name="third_party_data_sharing_notes2"><![CDATA[Information we share with these third parties include:<br/><ul><li> IP addresses (which can be used to derive location at city-level resolution, and to track you across different websites and services; note that we have enabled <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a> in Google Analytics and <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> does not record IP address to our knowledge)</li><li>Browser details, like make, model, and version</li><li>Crash details, like exactly what line of code caused a crash</li><li>Device details, like make and model of a mobile phone</li></ul>]]></string>
-    <string name="third_party_data_sharing_notes3"><![CDATA[<b>These third party services provide enormous value to us</b> in maintaining the stability and usability of iNaturalist with our relatively small staff. On mobile devices, there is almost no other way we can gain insight into problems that are occurring, since the software is running on devices we do not control. Sometimes we aren’t even aware such problems are occurring until we see them in the data these services provide. <b>By sharing this information, you are helping us serve you and the entire iNaturalist community.</b>]]></string>
-    <string name="third_party_data_sharing_notes4"><![CDATA[Note that this option only applies to analytics and crash data that we are explicitly sending to these companies. All iNaturalist servers are provided and hosted by Microsoft, all iNaturalist images are hosted by Amazon, and almost all iNaturalist maps are served by Google, which means every time you look at an observation on iNaturalist, you are connecting to services provided by these companies and exposing your IP address to them, at the very least (in the iPhone app we use Apple’s maps). iNaturalist probably would not exist without the services these companies provide, and while we can limit the amount and kinds of data you share with them while using iNat, we cannot stop the flow of data entirely.]]></string>
+    <string name="type_your_username">Ange ditt användarnamn</string>
+    <string name="error_deleting_account">Det gick inte att radera ditt konto - kontrollera din internetanslutning</string>
+    <string name="verify_your_password">Bekräfta ditt lösenord</string>
+    <string name="third_party_data_sharing">Delning av data från tredje part</string>
+    <string name="disable_third_party_data_sharing">Inaktivera delning av data från tredje part</string>
+    <string name="do_not_collect_third_party_data">Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster</string>
+    <string name="enabled">Aktiverad</string>
+    <string name="disabled">Inaktiverad</string>
+    <string name="third_party_data_sharing_notes1"><![CDATA[Vi använder en mängd tjänster från tredje part för att övervaka stabilitet och diagnostisera buggar och problem med vår programvara. Dessa tredje parter inkluderar:<br/><ul><li>Google (<a href="https://analytics.google.com/">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)</li><li><a href="https://newrelic.com/">Ny relik</a></li></ul>]]></string>
+    <string name="third_party_data_sharing_notes2"><![CDATA[Information som vi delar med dessa tredje parter:<br/><ul><li> IP-adresser (som kan användas för att härleda plats på stadsnivå, och spåra dig över olika webbplatser och tjänster; observera att vi har aktiverat <a href="https://support.google.com/analytics/answer/2763052">IP-anonymisering</a> i Google Analytics och <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> inte spelar in IP-adress så vitt vi vet)</li><li>Webbläsardetaljer, som typ, modell och version</li><li>Kraschdetaljer, t.ex. exakt vilken kodrad som orsakade en krasch</li><li>Enhetsdetaljer, som märke och modell av mobiltelefon</li></ul>]]></string>
+    <string name="third_party_data_sharing_notes3"><![CDATA[<b>Dessa tredjepartstjänster är enormt värdefulla</b> för att vi ska kunna upprätthålla iNaturalists stabilitet och användbarhet med relativt lite personal. På mobila enheter finns det nästan inget annat sätt för oss att få insikt i problem som uppstår, eftersom programvaran körs på enheter som vi inte kan kontrollera. Ibland är vi inte ens medvetna om att sådana problem inträffar förrän vi ser dem i de data som dessa tjänster tillhandahåller. <b>Genom att dela denna information hjälper du oss att hjälpa dig och hela iNaturalist-gemenskapen.</b>]]></string>
+    <string name="third_party_data_sharing_notes4"><![CDATA[Observera att detta alternativ endast gäller analys- och kraschdata som vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhandahålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket innebär att varje gång du tittar på en observation på iNaturalist, ansluter du till tjänster som tillhandahålls av dessa företag och visar din IP-adress för dem, som ett minimum (i iPhone-appen använder vi Apples kartor). iNaturalist skulle förmodligen inte existera utan de tjänster som dessa företag tillhandahåller, och även om vi kan begränsa mängden och de typer av data som du delar med dem när du använder iNat, kan vi inte stoppa flödet av data helt.]]></string>
 </resources>
